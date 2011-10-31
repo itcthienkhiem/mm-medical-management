@@ -11,10 +11,24 @@ namespace MM
 {
     public partial class MainForm : Form
     {
+        #region Members
+
+        #endregion
+
+        #region Constructor
         public MainForm()
         {
             InitializeComponent();
-            
+
         }   
+        #endregion
+
+        #region UI Command
+
+        #endregion
+
+        #region Window Event Handlers
+
+        #endregion
     }
 }
