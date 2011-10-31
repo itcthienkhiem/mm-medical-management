@@ -53,6 +53,7 @@
             this.Controls.Add(this.picColor);
             this.Name = "uColor";
             this.Size = new System.Drawing.Size(16, 16);
+            this.Load += new System.EventHandler(this.uColor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picColor)).EndInit();
             this.ResumeLayout(false);
 
