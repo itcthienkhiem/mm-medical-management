@@ -105,7 +105,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Components\" />
     <Folder Include="Dialogs\" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +120,13 @@
       <Project>{3B05BCE2-9686-40F6-B65B-8A05C9DEA92C}</Project>
       <Name>Databasae</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Components\DevComponents.DotNetBar.Design.dll" />
+    <Content Include="Components\DevComponents.DotNetBar2.dll" />
+    <Content Include="Components\DevComponents.Instrumentation.Design.dll" />
+    <Content Include="Components\DevComponents.Instrumentation.dll" />
+    <Content Include="Components\DevComponents.TreeGX.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
