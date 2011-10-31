@@ -34,7 +34,9 @@
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this._mainToolbar = new System.Windows.Forms.ToolStrip();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this.uDraw1 = new MM.Controls.uDraw();
             this._mainMenu.SuspendLayout();
+            this._mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // _mainMenu
@@ -80,11 +82,22 @@
             // _mainPanel
             // 
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this.uDraw1);
             this._mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._mainPanel.Location = new System.Drawing.Point(0, 49);
             this._mainPanel.Name = "_mainPanel";
             this._mainPanel.Size = new System.Drawing.Size(928, 489);
             this._mainPanel.TabIndex = 3;
+            // 
+            // uDraw1
+            // 
+            this.uDraw1.BrushWidth = 1;
+            this.uDraw1.Color = System.Drawing.Color.Black;
+            this.uDraw1.DrawType = MM.Common.DrawType.Line;
+            this.uDraw1.Location = new System.Drawing.Point(228, 79);
+            this.uDraw1.Name = "uDraw1";
+            this.uDraw1.Size = new System.Drawing.Size(171, 229);
+            this.uDraw1.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -102,6 +115,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this._mainMenu.ResumeLayout(false);
             this._mainMenu.PerformLayout();
+            this._mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,6 +129,7 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Panel _mainPanel;
+        private Controls.uDraw uDraw1;
 
 
 
