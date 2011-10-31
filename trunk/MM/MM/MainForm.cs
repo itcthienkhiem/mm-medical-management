@@ -28,7 +28,10 @@ namespace MM
         #endregion
 
         #region Window Event Handlers
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
 
+        }
         #endregion
     }
 }
