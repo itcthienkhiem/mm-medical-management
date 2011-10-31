@@ -9,10 +9,10 @@ using System.Windows.Forms;
 
 namespace MM.Dialogs
 {
-    public partial class DlgWaiting : Form
+    public partial class dlgWaiting : Form
     {
         #region Constructor
-        public DlgWaiting()
+        public dlgWaiting()
         {
             InitializeComponent();
         }
