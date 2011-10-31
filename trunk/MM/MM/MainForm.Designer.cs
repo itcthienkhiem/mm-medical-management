@@ -33,6 +33,7 @@
             this._mainToolbar = new System.Windows.Forms.ToolStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._mainPanel = new System.Windows.Forms.Panel();
             this._mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,11 +77,21 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "&Exit";
             // 
+            // _mainPanel
+            // 
+            this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._mainPanel.Location = new System.Drawing.Point(0, 49);
+            this._mainPanel.Name = "_mainPanel";
+            this._mainPanel.Size = new System.Drawing.Size(928, 489);
+            this._mainPanel.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(928, 560);
+            this.Controls.Add(this._mainPanel);
             this.Controls.Add(this._mainToolbar);
             this.Controls.Add(this._mainStatus);
             this.Controls.Add(this._mainMenu);
@@ -103,6 +114,7 @@
         private System.Windows.Forms.ToolStrip _mainToolbar;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.Panel _mainPanel;
 
 
 
