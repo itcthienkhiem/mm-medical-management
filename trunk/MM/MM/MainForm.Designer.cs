@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this._mainMenu = new System.Windows.Forms.MenuStrip();
-            this._mainStatus = new System.Windows.Forms.StatusStrip();
-            this._mainToolbar = new System.Windows.Forms.ToolStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._mainStatus = new System.Windows.Forms.StatusStrip();
+            this._mainToolbar = new System.Windows.Forms.ToolStrip();
             this._mainPanel = new System.Windows.Forms.Panel();
             this._mainMenu.SuspendLayout();
             this.SuspendLayout();
@@ -45,6 +45,20 @@
             this._mainMenu.Name = "_mainMenu";
             this._mainMenu.Size = new System.Drawing.Size(928, 24);
             this._mainMenu.TabIndex = 0;
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.exitToolStripMenuItem.Text = "&Exit";
             // 
             // _mainStatus
             // 
@@ -62,20 +76,6 @@
             this._mainToolbar.Size = new System.Drawing.Size(928, 25);
             this._mainToolbar.TabIndex = 2;
             this._mainToolbar.Text = "toolStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
-            this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exitToolStripMenuItem.Text = "&Exit";
             // 
             // _mainPanel
             // 
