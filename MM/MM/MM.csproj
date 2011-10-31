@@ -74,10 +74,6 @@
     <Compile Include="Dialogs\dlgBase.Designer.cs">
       <DependentUpon>dlgBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\DlgWaiting.cs" />
-    <Compile Include="Dialogs\DlgWaiting.Designer.cs">
-      <DependentUpon>DlgWaiting.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,9 +87,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPalette.resx">
       <DependentUpon>uPalette.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\DlgWaiting.resx">
-      <DependentUpon>DlgWaiting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
