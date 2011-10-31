@@ -19,7 +19,7 @@ namespace MM.Controls
         private Pen _pen = null;
         private Line _line = null;
         private List<Line> _lineList = new List<Line>();
-
+        
         Bitmap bufferBmp = null;
         Graphics bufferGraphics = null;
 
