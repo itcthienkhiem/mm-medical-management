@@ -119,6 +119,8 @@ namespace MM.Controls
                         _line.P1.Y = e.Y;
                         break;
                     case DrawType.Pencil:
+                        _pencil = new Pencil();
+                        _pencil.Points.Add(new Point(e.X, e.Y));
                         break;
                 }
             }
@@ -149,6 +151,12 @@ namespace MM.Controls
             else
             {
                 _line = null;
+
+                if (_pencil != null)
+                {
+                    _pencil.Points.Clear();
+                    _pencil = null;
+                }
             }
         }
 
