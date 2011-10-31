@@ -86,9 +86,17 @@ namespace MM.Controls
                 {
                     line.Draw(_pen, canvasGraphics);
                 }
+            }
 
-                bufferGraphics.DrawImage(canvasBmp, 0, 0);
-            }          
+            if (_pencilList.Count > 0)
+            {
+                foreach (Pencil pencil in _pencilList)
+                {
+                    pencil.Draw(_pen, canvasGraphics);
+                }
+            }
+
+            bufferGraphics.DrawImage(canvasBmp, 0, 0);
         }
 
         private void InvalidateEx()
@@ -142,7 +150,7 @@ namespace MM.Controls
                         else _line = null;
                         break;
                     case DrawType.Pencil:
-
+                        _pencilList.Add(_pencil);
                         break;
                 }
 
@@ -176,7 +184,8 @@ namespace MM.Controls
                         _line.Draw(_pen, bufferGraphics);
                         break;
                     case DrawType.Pencil:
-
+                        _pencil.Points.Add(new Point(e.X, e.Y));
+                        _pencil.Draw(_pen, bufferGraphics);
                         break;
                 }
                 
