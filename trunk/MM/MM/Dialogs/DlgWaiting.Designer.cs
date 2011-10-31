@@ -1,6 +1,6 @@
 ﻿namespace MM.Dialogs
 {
-    partial class DlgWaiting
+    partial class dlgWaiting
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DlgWaiting));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgWaiting));
             this.label1 = new System.Windows.Forms.Label();
             this.picWait = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picWait)).BeginInit();
