@@ -18,8 +18,9 @@ namespace MM.Controls
         private int _width = 1;
         private Pen _pen = null;
         private Line _line = null;
+        private Pencil _pencil = null;
         private List<Line> _lineList = new List<Line>();
-        
+        private List<Pencil> _pencilList = new List<Pencil>();
         Bitmap bufferBmp = null;
         Graphics bufferGraphics = null;
 
