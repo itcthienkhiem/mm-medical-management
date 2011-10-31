@@ -93,7 +93,7 @@
             // 
             this.uDraw1.BrushWidth = 1;
             this.uDraw1.Color = System.Drawing.Color.Black;
-            this.uDraw1.DrawType = MM.Common.DrawType.Line;
+            this.uDraw1.DrawType = MM.Common.DrawType.Pencil;
             this.uDraw1.Location = new System.Drawing.Point(228, 79);
             this.uDraw1.Name = "uDraw1";
             this.uDraw1.Size = new System.Drawing.Size(171, 229);
