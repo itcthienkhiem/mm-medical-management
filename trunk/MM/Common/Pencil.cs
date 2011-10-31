@@ -5,10 +5,7 @@ using System.Text;
 
 namespace MM.Common
 {
-    public enum DrawType
+    class Pencil
     {
-        None,
-        Line,
-        Pencil
     }
 }
