@@ -117,7 +117,7 @@ namespace MM.Controls
                         _line.P1.X = e.X;
                         _line.P1.Y = e.Y;
                         break;
-                    case DrawType.Pen:
+                    case DrawType.Pencil:
                         break;
                 }
             }
@@ -138,7 +138,7 @@ namespace MM.Controls
                         if (_line.P1 != _line.P2) _lineList.Add(_line);
                         else _line = null;
                         break;
-                    case DrawType.Pen:
+                    case DrawType.Pencil:
 
                         break;
                 }
@@ -166,7 +166,7 @@ namespace MM.Controls
                         _line.P2.Y = e.Y;
                         _line.Draw(_pen, bufferGraphics);
                         break;
-                    case DrawType.Pen:
+                    case DrawType.Pencil:
 
                         break;
                 }
