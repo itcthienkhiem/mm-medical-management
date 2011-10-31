@@ -30,21 +30,30 @@ namespace MM.Controls
         }
         #endregion
 
+        #region Window Event Handlers
         private void picColor_MouseDown(object sender, MouseEventArgs e)
         {
-            RaiseColorClicked(this.Color);       
+            RaiseColorClicked(this.Color);
         }
 
         private void picColor_MouseMove(object sender, MouseEventArgs e)
         {
-            _toolTip.SetToolTip(picColor, picColor.BackColor.Name);
+            Cursor.Current = Cursors.Hand;
             _toolTip.Active = true;
         }
 
         private void picColor_MouseLeave(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.Default;
             _toolTip.Active = false;
-            _toolTip.RemoveAll();
+            _toolTip.Hide(picColor);
         }
+
+        private void uColor_Load(object sender, EventArgs e)
+        {
+            _toolTip.SetToolTip(picColor, picColor.BackColor.Name);
+
+        }
+        #endregion
     }
 }

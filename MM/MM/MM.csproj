@@ -62,6 +62,12 @@
     <Compile Include="Controls\uColor.Designer.cs">
       <DependentUpon>uColor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPalette.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPalette.Designer.cs">
+      <DependentUpon>uPalette.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\uColor.resx">
       <DependentUpon>uColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPalette.resx">
+      <DependentUpon>uPalette.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
