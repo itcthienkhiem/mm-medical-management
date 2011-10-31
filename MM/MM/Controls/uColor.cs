@@ -31,6 +31,12 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void uColor_Load(object sender, EventArgs e)
+        {
+            _toolTip.SetToolTip(picColor, picColor.BackColor.Name);
+
+        }
+
         private void picColor_MouseDown(object sender, MouseEventArgs e)
         {
             RaiseColorClicked(this.Color);
@@ -47,12 +53,6 @@ namespace MM.Controls
             Cursor.Current = Cursors.Default;
             _toolTip.Active = false;
             _toolTip.Hide(picColor);
-        }
-
-        private void uColor_Load(object sender, EventArgs e)
-        {
-            _toolTip.SetToolTip(picColor, picColor.BackColor.Name);
-
         }
         #endregion
     }
