@@ -88,6 +88,7 @@
             this.Name = "MainForm";
             this.Text = "Medical Management";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this._mainMenu.ResumeLayout(false);
             this._mainMenu.PerformLayout();
             this.ResumeLayout(false);
