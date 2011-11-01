@@ -1,0 +1,1 @@
+start msiexec /x {AAE740BF-CE5A-411F-9257-DDAB277C56B6}

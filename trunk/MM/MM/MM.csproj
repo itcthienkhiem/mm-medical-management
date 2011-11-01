@@ -140,6 +140,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Components\Uninstall_MM.bat" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -171,6 +172,7 @@
     <Content Include="Components\DevComponents.Instrumentation.Design.dll" />
     <Content Include="Components\DevComponents.Instrumentation.dll" />
     <Content Include="Components\DevComponents.TreeGX.dll" />
+    <Content Include="Components\uninstall.ico" />
     <Content Include="MM_Ico.ico" />
     <None Include="Resources\accept-icon.png" />
     <None Include="Resources\1320161545_people.png" />
