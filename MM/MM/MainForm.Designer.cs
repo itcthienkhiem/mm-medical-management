@@ -172,6 +172,8 @@
             // 
             // _mainPanel
             // 
+            this._mainPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_mainPanel.BackgroundImage")));
+            this._mainPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this._mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._mainPanel.Location = new System.Drawing.Point(0, 55);
