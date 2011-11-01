@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussiness", "Bussiness\Buss
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Databasae", "Databasae\Databasae.csproj", "{3B05BCE2-9686-40F6-B65B-8A05C9DEA92C}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MMSetup", "MMSetup\MMSetup.vdproj", "{BAE0AEC8-A572-4E73-BDB6-70074C0D3AFC}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -63,6 +65,12 @@ Global
 		{3B05BCE2-9686-40F6-B65B-8A05C9DEA92C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{3B05BCE2-9686-40F6-B65B-8A05C9DEA92C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{3B05BCE2-9686-40F6-B65B-8A05C9DEA92C}.Release|x86.ActiveCfg = Release|Any CPU
+		{BAE0AEC8-A572-4E73-BDB6-70074C0D3AFC}.Debug|Any CPU.ActiveCfg = Debug
+		{BAE0AEC8-A572-4E73-BDB6-70074C0D3AFC}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{BAE0AEC8-A572-4E73-BDB6-70074C0D3AFC}.Debug|x86.ActiveCfg = Debug
+		{BAE0AEC8-A572-4E73-BDB6-70074C0D3AFC}.Release|Any CPU.ActiveCfg = Release
+		{BAE0AEC8-A572-4E73-BDB6-70074C0D3AFC}.Release|Mixed Platforms.ActiveCfg = Release
+		{BAE0AEC8-A572-4E73-BDB6-70074C0D3AFC}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
