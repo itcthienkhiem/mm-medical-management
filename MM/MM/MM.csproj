@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>MM_Ico.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -128,13 +131,14 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -167,6 +171,22 @@
     <Content Include="Components\DevComponents.Instrumentation.Design.dll" />
     <Content Include="Components\DevComponents.Instrumentation.dll" />
     <Content Include="Components\DevComponents.TreeGX.dll" />
+    <Content Include="MM_Ico.ico" />
+    <None Include="Resources\accept-icon.png" />
+    <None Include="Resources\1320161545_people.png" />
+    <None Include="Resources\currency_dollar_yellow.png" />
+    <None Include="Resources\viewalldie.gif" />
+    <None Include="Resources\save.gif" />
+    <None Include="Resources\del.gif" />
+    <None Include="Resources\edit.gif" />
+    <None Include="Resources\check.gif" />
+    <None Include="Resources\add.gif" />
+    <None Include="Resources\open.gif" />
+    <None Include="Resources\contact_new.gif" />
+    <None Include="Resources\exit.gif" />
+    <None Include="Resources\help.gif" />
+    <None Include="Resources\about.gif" />
+    <None Include="Resources\connect_info.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
