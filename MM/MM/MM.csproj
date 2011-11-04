@@ -95,6 +95,12 @@
     <Compile Include="Dialogs\dlgBase.Designer.cs">
       <DependentUpon>dlgBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgMessage.Designer.cs">
+      <DependentUpon>dlgMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgWaiting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MsgBox.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\uColor.resx">
@@ -123,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPanelDrawType.resx">
       <DependentUpon>uPanelDrawType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgMessage.resx">
+      <DependentUpon>dlgMessage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgWaiting.resx">
       <DependentUpon>dlgWaiting.cs</DependentUpon>
@@ -174,6 +184,8 @@
     <Content Include="Components\DevComponents.TreeGX.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\Doctor-32.png" />
+    <None Include="Resources\add_mail.gif" />
     <None Include="Resources\accept-icon.png" />
     <None Include="Resources\1320161545_people.png" />
     <None Include="Resources\currency_dollar_yellow.png" />
