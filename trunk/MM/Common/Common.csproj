@@ -48,6 +48,7 @@
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="DrawType.cs" />
     <Compile Include="Line.cs" />
+    <Compile Include="MsgBoxType.cs" />
     <Compile Include="Pencil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

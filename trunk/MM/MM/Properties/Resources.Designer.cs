@@ -88,6 +88,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap add_mail {
+            get {
+                object obj = ResourceManager.GetObject("add_mail", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap check {
             get {
                 object obj = ResourceManager.GetObject("check", resourceCulture);
@@ -119,6 +126,13 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap del {
             get {
                 object obj = ResourceManager.GetObject("del", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Doctor_32 {
+            get {
+                object obj = ResourceManager.GetObject("Doctor_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
