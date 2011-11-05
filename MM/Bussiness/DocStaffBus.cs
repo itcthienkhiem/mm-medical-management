@@ -8,16 +8,16 @@ using MM.Databasae;
 
 namespace MM.Bussiness
 {
-    public class DocStaffBus
+    public class DocStaffBus : BusBase
     {
         public static Result GetUserList()
         {
-            Result result = new Result();
-            MMOverride db = null;
+            Result result = null;
             
             try
             {
-                
+                string query = "SELECT ContactGUID, Username FROM DocStaff WHERE AvailableToWork = 'True' ORDER BY Username";
+                result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -28,14 +28,6 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
-            }
-            finally
-            {
-                if (db != null)
-                {
-                    db.Dispose();
-                    db = null;
-                }
             }
 
             return result;

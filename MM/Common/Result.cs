@@ -26,6 +26,15 @@ namespace MM.Common
         #endregion
 
         #region Properties
+        public bool IsOK
+        {
+            get
+            {
+                if (_error.Code == ErrorCode.OK) return true;
+                return false;
+            }
+        }
+
         public Error Error
         {
             get { return _error; }
@@ -36,6 +45,13 @@ namespace MM.Common
         {
             get { return _queryResult; }
             set { _queryResult = value; }
+        }
+        #endregion
+
+        #region Methods
+        public string GetErrorAsString(string methods)
+        {
+            return string.Format("({0} ErrorCode: {1} : {2})", methods, _error.Code.ToString(), _error.Description);
         }
         #endregion
     }

@@ -48,10 +48,8 @@ namespace MM.Dialogs
                 }
             };
 
-            if (InvokeRequired)
-                BeginInvoke(method);
-            else
-                method.Invoke();
+            if (InvokeRequired) BeginInvoke(method);
+            else method.Invoke();
         }
         #endregion
     }

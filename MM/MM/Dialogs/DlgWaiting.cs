@@ -24,18 +24,11 @@ namespace MM.Dialogs
             get { return label1.Text; }
             set { label1.Text = value; }
         }
-
-        public bool IsShowTitle
-        {
-            get { return label1.Visible; }
-            set 
-            {
-                if (value) this.Size = new Size(209, 48);
-                else this.Size = new Size(48, 48);
-                
-                label1.Visible = value; 
-            }
-        }
         #endregion
+
+        private void dlgWaiting_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
