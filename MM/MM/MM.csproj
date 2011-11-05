@@ -95,6 +95,12 @@
     <Compile Include="Controls\uServicesList.Designer.cs">
       <DependentUpon>uServicesList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddServices.Designer.cs">
+      <DependentUpon>dlgAddServices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uServicesList.resx">
       <DependentUpon>uServicesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddServices.resx">
+      <DependentUpon>dlgAddServices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgDatabaseConfig.resx">
       <DependentUpon>dlgDatabaseConfig.cs</DependentUpon>
