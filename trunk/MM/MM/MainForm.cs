@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Globalization;
+using System.IO;
+using MM.Common;
 using MM.Controls;
 using MM.Dialogs;
 
@@ -15,17 +17,90 @@ namespace MM
     public partial class MainForm : Form
     {
         #region Members
-        
+        private bool _flag = true;
         #endregion
 
         #region Constructor
         public MainForm()
         {
             InitializeComponent();
+            InitConfig();
         }   
         #endregion
 
         #region UI Command
+        private void InitConfig()
+        {
+            if (File.Exists(Global.AppConfig))
+            {
+                Configuration.LoadData(Global.AppConfig);
+
+                object obj = Configuration.GetValues(Const.ServerNameKey);
+                if (obj != null) Global.ConnectionInfo.ServerName = Convert.ToString(obj);
+
+                obj = Configuration.GetValues(Const.DatabaseNameKey);
+                if (obj != null) Global.ConnectionInfo.DatabaseName = Convert.ToString(obj);
+
+                obj = Configuration.GetValues(Const.AuthenticationKey);
+                if (obj != null) Global.ConnectionInfo.Authentication = Convert.ToString(obj);
+
+                obj = Configuration.GetValues(Const.UserNameKey);
+                if (obj != null) Global.ConnectionInfo.UserName = Convert.ToString(obj);
+
+                obj = Configuration.GetValues(Const.PasswordKey);
+                if (obj != null)
+                {
+                    string password = Convert.ToString(obj);
+                    RijndaelCrypto crypto = new RijndaelCrypto();
+                    Global.ConnectionInfo.Password = crypto.Decrypt(password);
+                }
+
+                if (!Global.ConnectionInfo.TestConnection())
+                {
+                    dlgDatabaseConfig dlg = new dlgDatabaseConfig();
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        dlg.SetAppConfig();
+                        SaveAppConfig();
+                    }
+                    else
+                    {
+                        if (!Global.ConnectionInfo.TestConnection())
+                        {
+                            _flag = false;
+                            this.Close();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                dlgDatabaseConfig dlg = new dlgDatabaseConfig();
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    dlg.SetAppConfig();
+                    SaveAppConfig();
+                }
+                else
+                {
+                    _flag = false;
+                    this.Close();
+                }
+            }
+        }
+
+        private void SaveAppConfig()
+        {
+            Configuration.SetValues(Const.ServerNameKey, Global.ConnectionInfo.ServerName);
+            Configuration.SetValues(Const.DatabaseNameKey, Global.ConnectionInfo.DatabaseName);
+            Configuration.SetValues(Const.AuthenticationKey, Global.ConnectionInfo.Authentication);
+            Configuration.SetValues(Const.UserNameKey, Global.ConnectionInfo.UserName);
+            RijndaelCrypto crypto = new RijndaelCrypto();
+            string password = crypto.Encrypt(Global.ConnectionInfo.Password);
+            Configuration.SetValues(Const.PasswordKey, password);
+            Configuration.SaveData(Global.AppConfig);
+        }
+
         private void ExcuteCmd(string cmd)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -72,7 +147,15 @@ namespace MM
 
         private void OnDatabaseConfig()
         {
-
+            dlgDatabaseConfig dlg = new dlgDatabaseConfig();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                if (dlg.IsChangeConnectionInfo)
+                {
+                    dlg.SetAppConfig();
+                    SaveAppConfig();
+                }
+            }
         }
 
         private void OnExit()
@@ -109,7 +192,13 @@ namespace MM
         #region Window Event Handlers
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            if (_flag)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn thoát khỏi chương trình ?") == System.Windows.Forms.DialogResult.Yes)
+                    SaveAppConfig();
+                else
+                    e.Cancel = true;
+            }
         }
 
         private void _mainToolbar_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
