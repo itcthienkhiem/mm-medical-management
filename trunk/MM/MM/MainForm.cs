@@ -140,6 +140,17 @@ namespace MM
             }
         }
 
+        private void ViewControl(Control view)
+        {
+            view.Visible = true;
+
+            foreach (Control ctrl in this._mainPanel.Controls)
+            {
+                if (ctrl != view)
+                    ctrl.Visible = false;
+            }
+        }
+
         private void OnDoctorList()
         {
             
@@ -165,7 +176,8 @@ namespace MM
 
         private void OnServicesList()
         {
-
+            this.Text = string.Format("{0} - Danh muc dich vu", Application.ProductName);
+            ViewControl(_uServicesList);
         }
 
         private void OnPatientList()
