@@ -95,6 +95,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Apps_session_logout_icon {
+            get {
+                object obj = ResourceManager.GetObject("Apps_session_logout_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Apps_session_logout_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Apps_session_logout_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap check {
             get {
                 object obj = ResourceManager.GetObject("check", resourceCulture);
@@ -154,6 +168,48 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap help {
             get {
                 object obj = ResourceManager.GetObject("help", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Log_Out_icon {
+            get {
+                object obj = ResourceManager.GetObject("Log_Out_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Log_Out_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Log_Out_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Login_icon {
+            get {
+                object obj = ResourceManager.GetObject("Login_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Login_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Login_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap logout_icon {
+            get {
+                object obj = ResourceManager.GetObject("logout_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap logout_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("logout_icon__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

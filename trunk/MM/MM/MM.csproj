@@ -211,6 +211,14 @@
     <Content Include="Components\DevComponents.TreeGX.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\logout-icon %281%29.png" />
+    <None Include="Resources\Log-Out-icon.png" />
+    <None Include="Resources\logout-icon.png" />
+    <None Include="Resources\Login-icon %281%29.png" />
+    <None Include="Resources\Login-icon.png" />
+    <None Include="Resources\Apps-session-logout-icon %281%29.png" />
+    <None Include="Resources\Apps-session-logout-icon.png" />
+    <None Include="Resources\Log-Out-icon %281%29.png" />
     <None Include="Resources\Doctor-32.png" />
     <None Include="Resources\add_mail.gif" />
     <None Include="Resources\accept-icon.png" />
