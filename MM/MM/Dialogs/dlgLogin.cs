@@ -57,7 +57,7 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     cboUserName.DataSource = dt;
-                    cboUserName.DisplayMember = "Username";
+                    cboUserName.DisplayMember = "Fullname";
                     cboUserName.ValueMember = "ContactGUID";
                 };
 
@@ -82,7 +82,7 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 Global.UserGUID = cboUserName.SelectedValue.ToString();
-                Global.Username = cboUserName.Text;
+                Global.Fullname = cboUserName.Text;
             }
         }
         #endregion

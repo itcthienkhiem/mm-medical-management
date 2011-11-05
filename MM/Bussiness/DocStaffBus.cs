@@ -16,7 +16,7 @@ namespace MM.Bussiness
             
             try
             {
-                string query = "SELECT ContactGUID, Username FROM DocStaff WHERE AvailableToWork = 'True' ORDER BY Username";
+                string query = "SELECT ContactGUID, Fullname FROM UserView WHERE AvailableToWork = 'True' ORDER BY Fullname";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

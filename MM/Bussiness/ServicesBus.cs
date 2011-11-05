@@ -14,13 +14,11 @@ namespace MM.Bussiness
     {
         public static Result GetServicesList()
         {
-            Result result = new Result();
-            MMOverride db = null;
+            Result result = null;
 
             try
             {
-                db = new MMOverride();
-                result.QueryResult = db.Services.ToList<Service>();
+                return ExcuteQuery("SELECT CAST(0 AS Bit) AS Checked, * FROM Services ORDER BY Code");
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -31,14 +29,6 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
-            }
-            finally
-            {
-                if (db != null)
-                {
-                    db.Dispose();
-                    db = null;
-                }
             }
 
             return result;
@@ -54,8 +44,13 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    Service d;
-                    db.Services.DeleteAllOnSubmit(services);
+                    foreach (Service srv in services)
+                    {
+                        Service s = db.Services.SingleOrDefault<Service>(ss => ss.ServiceGUID == srv.ServiceGUID);
+                        db.Services.DeleteOnSubmit(s);
+                    }
+
+                    db.SubmitChanges();
                     t.Complete();
                 }
             }
@@ -94,7 +89,7 @@ namespace MM.Bussiness
                     srv = db.Services.SingleOrDefault<Service>(s => s.Code.ToLower() == code.ToLower());
                 else
                     srv = db.Services.SingleOrDefault<Service>(s => s.Code.ToLower() == code.ToLower() && 
-                                                                s.ServiceGUID.ToString() == srvGUID);
+                                                                s.ServiceGUID.ToString() != srvGUID);
 
                 if (srv == null)
                     result.Error.Code = ErrorCode.NOT_EXIST;
@@ -133,8 +128,9 @@ namespace MM.Bussiness
                 db = new MMOverride();
 
                 //Insert
-                if (service.ServiceGUID == null || service.ServiceGUID.ToString() == string.Empty)
+                if (service.ServiceGUID == null || service.ServiceGUID == Guid.Empty)
                 {
+                    service.ServiceGUID = Guid.NewGuid();
                     db.Services.InsertOnSubmit(service);
                 }
                 else //Update

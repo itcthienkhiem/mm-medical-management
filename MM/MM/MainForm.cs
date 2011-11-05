@@ -191,7 +191,7 @@ namespace MM
                 tbLogin.Tag = "Logout";
                 tbLogin.ToolTipText = "Đăng xuất";
                 tbLogin.Image = Properties.Resources.Apps_session_logout_icon;
-                statusLabel.Text = string.Format("Người đăng nhập: {0}", Global.Username);
+                statusLabel.Text = string.Format("Người đăng nhập: {0}", Global.Fullname);
                 RefreshFunction(true);
             }
         }

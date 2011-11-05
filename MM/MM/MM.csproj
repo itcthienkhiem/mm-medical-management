@@ -41,6 +41,7 @@
     <ApplicationIcon>MM_Ico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -187,6 +188,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Components\Uninstall_MM.bat" />
+    <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

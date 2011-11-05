@@ -51,7 +51,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString1, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -125,6 +125,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<DocStaff>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserView> UserViews
+		{
+			get
+			{
+				return this.GetTable<UserView>();
 			}
 		}
 	}
@@ -2079,8 +2087,6 @@ namespace MM.Databasae
 		
 		private System.Nullable<byte> _StaffType;
 		
-		private string _Username;
-		
 		private EntityRef<Contact> _Contact;
 		
 		private EntityRef<Speciality> _Speciality;
@@ -2103,8 +2109,6 @@ namespace MM.Databasae
     partial void OnWorkTypeChanged();
     partial void OnStaffTypeChanging(System.Nullable<byte> value);
     partial void OnStaffTypeChanged();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
     #endregion
 		
 		public DocStaff()
@@ -2258,26 +2262,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="NVarChar(50)")]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this.OnUsernameChanging(value);
-					this.SendPropertyChanging();
-					this._Username = value;
-					this.SendPropertyChanged("Username");
-					this.OnUsernameChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_Contact", Storage="_Contact", ThisKey="ContactGUID", OtherKey="ContactGUID", IsUnique=true, IsForeignKey=false)]
 		public Contact Contact
 		{
@@ -2358,6 +2342,69 @@ namespace MM.Databasae
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserView")]
+	public partial class UserView
+	{
+		
+		private System.Guid _ContactGUID;
+		
+		private string _Fullname;
+		
+		private System.Nullable<bool> _AvailableToWork;
+		
+		public UserView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ContactGUID
+		{
+			get
+			{
+				return this._ContactGUID;
+			}
+			set
+			{
+				if ((this._ContactGUID != value))
+				{
+					this._ContactGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fullname", DbType="NVarChar(304)")]
+		public string Fullname
+		{
+			get
+			{
+				return this._Fullname;
+			}
+			set
+			{
+				if ((this._Fullname != value))
+				{
+					this._Fullname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit")]
+		public System.Nullable<bool> AvailableToWork
+		{
+			get
+			{
+				return this._AvailableToWork;
+			}
+			set
+			{
+				if ((this._AvailableToWork != value))
+				{
+					this._AvailableToWork = value;
+				}
 			}
 		}
 	}
