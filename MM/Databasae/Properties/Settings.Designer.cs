@@ -33,5 +33,16 @@ namespace MM.Databasae.Properties {
                 return ((string)(this["MMConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=USER-PC\\SQLEXPRESS;Initial Catalog=MM;Integrated Security=True;Poolin" +
+            "g=False")]
+        public string MMConnectionString1 {
+            get {
+                return ((string)(this["MMConnectionString1"]));
+            }
+        }
     }
 }
