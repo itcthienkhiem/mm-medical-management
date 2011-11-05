@@ -6,15 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Globalization;
 using System.IO;
+using System.Threading;
 using MM.Common;
 using MM.Controls;
 using MM.Dialogs;
 
 namespace MM
 {
-    public partial class MainForm : Form
+    public partial class MainForm : dlgBase
     {
         #region Members
         private bool _flag = true;
@@ -28,33 +28,56 @@ namespace MM
         #endregion
 
         #region UI Command
-        private void InitConfig()
+        private void OnInitConfig()
         {
-            if (File.Exists(Global.AppConfig))
+            MethodInvoker method = delegate
             {
-                Configuration.LoadData(Global.AppConfig);
-
-                object obj = Configuration.GetValues(Const.ServerNameKey);
-                if (obj != null) Global.ConnectionInfo.ServerName = Convert.ToString(obj);
-
-                obj = Configuration.GetValues(Const.DatabaseNameKey);
-                if (obj != null) Global.ConnectionInfo.DatabaseName = Convert.ToString(obj);
-
-                obj = Configuration.GetValues(Const.AuthenticationKey);
-                if (obj != null) Global.ConnectionInfo.Authentication = Convert.ToString(obj);
-
-                obj = Configuration.GetValues(Const.UserNameKey);
-                if (obj != null) Global.ConnectionInfo.UserName = Convert.ToString(obj);
-
-                obj = Configuration.GetValues(Const.PasswordKey);
-                if (obj != null)
+                if (File.Exists(Global.AppConfig))
                 {
-                    string password = Convert.ToString(obj);
-                    RijndaelCrypto crypto = new RijndaelCrypto();
-                    Global.ConnectionInfo.Password = crypto.Decrypt(password);
-                }
+                    Configuration.LoadData(Global.AppConfig);
 
-                if (!Global.ConnectionInfo.TestConnection())
+                    object obj = Configuration.GetValues(Const.ServerNameKey);
+                    if (obj != null) Global.ConnectionInfo.ServerName = Convert.ToString(obj);
+
+                    obj = Configuration.GetValues(Const.DatabaseNameKey);
+                    if (obj != null) Global.ConnectionInfo.DatabaseName = Convert.ToString(obj);
+
+                    obj = Configuration.GetValues(Const.AuthenticationKey);
+                    if (obj != null) Global.ConnectionInfo.Authentication = Convert.ToString(obj);
+
+                    obj = Configuration.GetValues(Const.UserNameKey);
+                    if (obj != null) Global.ConnectionInfo.UserName = Convert.ToString(obj);
+
+                    obj = Configuration.GetValues(Const.PasswordKey);
+                    if (obj != null)
+                    {
+                        string password = Convert.ToString(obj);
+                        RijndaelCrypto crypto = new RijndaelCrypto();
+                        Global.ConnectionInfo.Password = crypto.Decrypt(password);
+                    }
+
+                    if (!Global.ConnectionInfo.TestConnection())
+                    {
+                        dlgDatabaseConfig dlg = new dlgDatabaseConfig();
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                        {
+                            dlg.SetAppConfig();
+                            SaveAppConfig();
+                            OnLogin();
+                        }
+                        else
+                        {
+                            if (!Global.ConnectionInfo.TestConnection())
+                            {
+                                _flag = false;
+                                this.Close();
+                            }
+                        }
+                    }
+                    else
+                        OnLogin();
+                }
+                else
                 {
                     dlgDatabaseConfig dlg = new dlgDatabaseConfig();
                     if (dlg.ShowDialog(this) == DialogResult.OK)
@@ -65,31 +88,16 @@ namespace MM
                     }
                     else
                     {
-                        if (!Global.ConnectionInfo.TestConnection())
-                        {
-                            _flag = false;
-                            this.Close();
-                        }
+                        _flag = false;
+                        this.Close();
                     }
-                } 
-                else
-                    OnLogin();
-            }
-            else
-            {
-                dlgDatabaseConfig dlg = new dlgDatabaseConfig();
-                if (dlg.ShowDialog(this) == DialogResult.OK)
-                {
-                    dlg.SetAppConfig();
-                    SaveAppConfig();
-                    OnLogin();
                 }
-                else
-                {
-                    _flag = false;
-                    this.Close();
-                }
-            }
+            };
+
+            if (InvokeRequired) BeginInvoke(method);
+            else method.Invoke();
+
+            
         }
 
         private void SaveAppConfig()
@@ -179,8 +187,11 @@ namespace MM
             {
                 loginToolStripMenuItem.Tag = "Logout";
                 loginToolStripMenuItem.Text = "Đăng xuất";
+                loginToolStripMenuItem.Image = Properties.Resources.Apps_session_logout_icon;
                 tbLogin.Tag = "Logout";
                 tbLogin.ToolTipText = "Đăng xuất";
+                tbLogin.Image = Properties.Resources.Apps_session_logout_icon;
+                statusLabel.Text = string.Format("Người đăng nhập: {0}", Global.Username);
                 RefreshFunction(true);
             }
         }
@@ -192,8 +203,12 @@ namespace MM
             {
                 loginToolStripMenuItem.Tag = "Login";
                 loginToolStripMenuItem.Text = "Đăng nhập";
+                loginToolStripMenuItem.Image = Properties.Resources.Login_icon;
+
                 tbLogin.Tag = "Login";
                 tbLogin.ToolTipText = "Đăng nhập";
+                tbLogin.Image = Properties.Resources.Login_icon;
+                statusLabel.Text = string.Empty;
                 RefreshFunction(false);    
             }
         }
@@ -246,13 +261,30 @@ namespace MM
         {
 
         }
+
+        private void InitConfigAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnInitConfigProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(Application.ProductName, e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+
+        }
         #endregion
 
         #region Window Event Handlers
         private void MainForm_Load(object sender, EventArgs e)
-        {
-            this.Refresh();
-            InitConfig();
+        {            
+            InitConfigAsThread();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -278,6 +310,25 @@ namespace MM
             string cmd = (sender as ToolStripMenuItem).Tag as string;
             if (cmd == null || cmd == string.Empty) return;
             ExcuteCmd(cmd);
+        }
+        #endregion
+
+        #region Working Thread
+        private void OnInitConfigProc(object state)
+        {
+            try
+            {
+                Thread.Sleep(1000);
+                OnInitConfig();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(Application.ProductName, e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
         }
         #endregion
     }

@@ -168,7 +168,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.del;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.Location = new System.Drawing.Point(169, 186);
             this.btnCancel.Name = "btnCancel";

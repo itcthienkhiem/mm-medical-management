@@ -68,7 +68,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.del;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.Location = new System.Drawing.Point(98, 93);
             this.btnCancel.Name = "btnCancel";
@@ -80,7 +80,7 @@
             // btnCancel2
             // 
             this.btnCancel2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel2.Image = global::MM.Properties.Resources.del;
+            this.btnCancel2.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel2.Location = new System.Drawing.Point(137, 93);
             this.btnCancel2.Name = "btnCancel2";
