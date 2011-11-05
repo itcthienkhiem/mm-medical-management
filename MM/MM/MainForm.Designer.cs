@@ -58,8 +58,10 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uServicesList = new MM.Controls.uServicesList();
             this._mainToolbar.SuspendLayout();
             this._mainMenu.SuspendLayout();
+            this._mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripSeparator6
@@ -283,16 +285,22 @@
             // 
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uServicesList
+            // 
+            resources.ApplyResources(this._uServicesList, "_uServicesList");
+            this._uServicesList.Name = "_uServicesList";
             // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this._mainPanel);
             this.Controls.Add(this._mainToolbar);
             this.Controls.Add(this._mainStatus);
             this.Controls.Add(this._mainMenu);
-            this.Controls.Add(this._mainPanel);
             this.Name = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -300,6 +308,7 @@
             this._mainToolbar.PerformLayout();
             this._mainMenu.ResumeLayout(false);
             this._mainMenu.PerformLayout();
+            this._mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,6 +345,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem aboutMedicalManagementToolStripMenuItem;
         private System.Windows.Forms.Panel _mainPanel;
+        private Controls.uServicesList _uServicesList;
 
 
 

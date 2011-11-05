@@ -89,6 +89,12 @@
     <Compile Include="Controls\uPanelDrawType.Designer.cs">
       <DependentUpon>uPanelDrawType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uServicesList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uServicesList.Designer.cs">
+      <DependentUpon>uServicesList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPanelDrawType.resx">
       <DependentUpon>uPanelDrawType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uServicesList.resx">
+      <DependentUpon>uServicesList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgDatabaseConfig.resx">
       <DependentUpon>dlgDatabaseConfig.cs</DependentUpon>
