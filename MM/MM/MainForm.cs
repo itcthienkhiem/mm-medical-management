@@ -240,6 +240,7 @@ namespace MM
         {
             this.Text = string.Format("{0} - Danh muc dich vu", Application.ProductName);
             ViewControl(_uServicesList);
+            _uServicesList.DisplayAsThread();
         }
 
         private void OnPatientList()
