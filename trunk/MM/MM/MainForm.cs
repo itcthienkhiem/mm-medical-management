@@ -62,6 +62,7 @@ namespace MM
                     {
                         dlg.SetAppConfig();
                         SaveAppConfig();
+                        OnLogin();
                     }
                     else
                     {
@@ -80,6 +81,7 @@ namespace MM
                 {
                     dlg.SetAppConfig();
                     SaveAppConfig();
+                    OnLogin();
                 }
                 else
                 {
@@ -101,6 +103,16 @@ namespace MM
             Configuration.SaveData(Global.AppConfig);
         }
 
+        private void RefreshFunction(bool isLogin)
+        {
+            servicesToolStripMenuItem.Enabled = isLogin;
+            tbServiceList.Enabled = isLogin;
+            doctorToolStripMenuItem.Enabled = isLogin;
+            tbDoctorList.Enabled = isLogin;
+            patientToolStripMenuItem.Enabled = isLogin;
+            tbPatientList.Enabled = isLogin;
+        }
+
         private void ExcuteCmd(string cmd)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -108,6 +120,14 @@ namespace MM
             {
                 case "Database Configuration":
                     OnDatabaseConfig();
+                    break;
+
+                case "Login":
+                    OnLogin();
+                    break;
+
+                case "Logout":
+                    OnLogout();
                     break;
 
                 case "Exit":
@@ -149,6 +169,24 @@ namespace MM
                 if (ctrl != view)
                     ctrl.Visible = false;
             }
+        }
+
+        private void OnLogin()
+        {
+            dlgLogin dlgLogin = new dlgLogin();
+            if (dlgLogin.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                loginToolStripMenuItem.Tag = "Logout";
+                loginToolStripMenuItem.Text = "Đăng xuất";
+                RefreshFunction(true);
+            }
+        }
+
+        private void OnLogout()
+        {
+            loginToolStripMenuItem.Tag = "Login";
+            loginToolStripMenuItem.Text = "Đăng nhập";
+            RefreshFunction(false);
         }
 
         private void OnDoctorList()

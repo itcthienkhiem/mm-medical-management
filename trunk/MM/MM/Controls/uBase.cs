@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MM.Common;
+using MM.Dialogs;
 
 namespace MM.Controls
 {
@@ -20,6 +21,10 @@ namespace MM.Controls
         #region Events
         public event ColorClickedHandler OnColorClicked;
         public event DrawTypeClickedHandler OnDrawTypeClicked;
+        #endregion
+
+        #region Members
+        private dlgWaiting _dlgWaiting = null;
         #endregion
 
         #region Constructor
@@ -40,6 +45,31 @@ namespace MM.Controls
         {
             if (OnDrawTypeClicked != null)
                 OnDrawTypeClicked(type, width);
+        }
+        #endregion
+
+        #region Methods
+        protected void ShowWaiting()
+        {
+            if (_dlgWaiting == null) _dlgWaiting = new dlgWaiting();
+            _dlgWaiting.ShowDialog();
+        }
+
+        protected void HideWaiting()
+        {
+            MethodInvoker method = delegate
+            {
+                if (_dlgWaiting != null)
+                {
+                    _dlgWaiting.Close();
+                    _dlgWaiting = null;
+                }
+            };
+
+            if (InvokeRequired)
+                BeginInvoke(method);
+            else
+                method.Invoke();
         }
         #endregion
     }

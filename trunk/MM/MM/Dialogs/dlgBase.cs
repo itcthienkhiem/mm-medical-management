@@ -15,6 +15,10 @@ namespace MM.Dialogs
 
         #endregion
 
+        #region Members
+        private dlgWaiting _dlgWaiting = null;
+        #endregion
+
         #region Constructor
         public dlgBase()
         {
@@ -24,6 +28,31 @@ namespace MM.Dialogs
 
         #region Raise Events
 
+        #endregion
+
+        #region Methods
+        protected void ShowWaiting()
+        {
+            if (_dlgWaiting == null) _dlgWaiting = new dlgWaiting();
+            _dlgWaiting.ShowDialog();
+        }
+
+        protected void HideWaiting()
+        {
+            MethodInvoker method = delegate
+            {
+                if (_dlgWaiting != null)
+                {
+                    _dlgWaiting.Close();
+                    _dlgWaiting = null;
+                }
+            };
+
+            if (InvokeRequired)
+                BeginInvoke(method);
+            else
+                method.Invoke();
+        }
         #endregion
     }
 }

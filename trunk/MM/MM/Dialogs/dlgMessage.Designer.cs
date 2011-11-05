@@ -60,7 +60,7 @@
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOK.Location = new System.Drawing.Point(58, 93);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "   &Đồng ý";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -73,7 +73,7 @@
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.Location = new System.Drawing.Point(98, 93);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "   &Thoát";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -85,7 +85,7 @@
             this.btnCancel2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel2.Location = new System.Drawing.Point(137, 93);
             this.btnCancel2.Name = "btnCancel2";
-            this.btnCancel2.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel2.Size = new System.Drawing.Size(75, 25);
             this.btnCancel2.TabIndex = 2;
             this.btnCancel2.Text = "   &Đóng";
             this.btnCancel2.UseVisualStyleBackColor = true;

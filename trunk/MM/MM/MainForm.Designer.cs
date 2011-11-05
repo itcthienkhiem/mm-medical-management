@@ -59,6 +59,10 @@
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainPanel = new System.Windows.Forms.Panel();
             this._uServicesList = new MM.Controls.uServicesList();
+            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbLogin = new System.Windows.Forms.ToolStripButton();
             this._mainToolbar.SuspendLayout();
             this._mainMenu.SuspendLayout();
             this._mainPanel.SuspendLayout();
@@ -72,8 +76,8 @@
             // tbServiceList
             // 
             this.tbServiceList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbServiceList.Image = global::MM.Properties.Resources.accept_icon;
             resources.ApplyResources(this.tbServiceList, "tbServiceList");
+            this.tbServiceList.Image = global::MM.Properties.Resources.accept_icon;
             this.tbServiceList.Name = "tbServiceList";
             this.tbServiceList.Tag = "Services List";
             // 
@@ -81,6 +85,8 @@
             // 
             this._mainToolbar.ImageScalingSize = new System.Drawing.Size(24, 24);
             this._mainToolbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tbLogin,
+            this.toolStripSeparator8,
             this.tbServiceList,
             this.toolStripSeparator6,
             this.tbDoctorList,
@@ -97,8 +103,8 @@
             // tbDoctorList
             // 
             this.tbDoctorList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbDoctorList.Image = global::MM.Properties.Resources.Doctor_32;
             resources.ApplyResources(this.tbDoctorList, "tbDoctorList");
+            this.tbDoctorList.Image = global::MM.Properties.Resources.Doctor_32;
             this.tbDoctorList.Name = "tbDoctorList";
             this.tbDoctorList.Tag = "Doctor List";
             // 
@@ -110,16 +116,16 @@
             // tbOpenPatient
             // 
             this.tbOpenPatient.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbOpenPatient.Image = global::MM.Properties.Resources.open;
             resources.ApplyResources(this.tbOpenPatient, "tbOpenPatient");
+            this.tbOpenPatient.Image = global::MM.Properties.Resources.open;
             this.tbOpenPatient.Name = "tbOpenPatient";
             this.tbOpenPatient.Tag = "Open Patient";
             // 
             // tbPatientList
             // 
             this.tbPatientList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbPatientList.Image = global::MM.Properties.Resources._1320161545_people;
             resources.ApplyResources(this.tbPatientList, "tbPatientList");
+            this.tbPatientList.Image = global::MM.Properties.Resources._1320161545_people;
             this.tbPatientList.Name = "tbPatientList";
             this.tbPatientList.Tag = "Patient List";
             // 
@@ -166,6 +172,8 @@
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.databaseConfigurationToolStripMenuItem,
             this.toolStripSeparator4,
+            this.loginToolStripMenuItem,
+            this.toolStripSeparator7,
             this.exitToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             resources.ApplyResources(this.systemToolStripMenuItem, "systemToolStripMenuItem");
@@ -195,8 +203,8 @@
             // 
             this.servicesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.serviceListToolStripMenuItem});
-            this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
             resources.ApplyResources(this.servicesToolStripMenuItem, "servicesToolStripMenuItem");
+            this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
             // 
             // serviceListToolStripMenuItem
             // 
@@ -210,8 +218,8 @@
             // 
             this.doctorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.doctorListToolStripMenuItem});
-            this.doctorToolStripMenuItem.Name = "doctorToolStripMenuItem";
             resources.ApplyResources(this.doctorToolStripMenuItem, "doctorToolStripMenuItem");
+            this.doctorToolStripMenuItem.Name = "doctorToolStripMenuItem";
             // 
             // doctorListToolStripMenuItem
             // 
@@ -227,8 +235,8 @@
             this.openPatientToolStripMenuItem,
             this.toolStripSeparator3,
             this.patientListToolStripMenuItem});
-            this.patientToolStripMenuItem.Name = "patientToolStripMenuItem";
             resources.ApplyResources(this.patientToolStripMenuItem, "patientToolStripMenuItem");
+            this.patientToolStripMenuItem.Name = "patientToolStripMenuItem";
             // 
             // openPatientToolStripMenuItem
             // 
@@ -293,6 +301,30 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
+            // loginToolStripMenuItem
+            // 
+            this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
+            resources.ApplyResources(this.loginToolStripMenuItem, "loginToolStripMenuItem");
+            this.loginToolStripMenuItem.Tag = "Login";
+            this.loginToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
+            // 
+            // tbLogin
+            // 
+            this.tbLogin.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbLogin, "tbLogin");
+            this.tbLogin.Name = "tbLogin";
+            this.tbLogin.Tag = "Login";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -346,6 +378,10 @@
         private System.Windows.Forms.ToolStripMenuItem aboutMedicalManagementToolStripMenuItem;
         private System.Windows.Forms.Panel _mainPanel;
         private Controls.uServicesList _uServicesList;
+        private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripButton tbLogin;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
 
 
 
