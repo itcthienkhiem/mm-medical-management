@@ -1,47 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
-using MM.Dialogs;
 using MM.Common;
-using MM.Databasae;
 using MM.Bussiness;
 
-namespace MM.Controls
+namespace MM.Dialogs
 {
-    public partial class uServicesList : uBase
+    public partial class dlgLogin : dlgBase
     {
         #region Members
 
         #endregion
 
         #region Constructor
-        public uServicesList()
+        public dlgLogin()
         {
             InitializeComponent();
         }
         #endregion
 
-        #region Properties
-
-        #endregion
-
         #region UI Command
-        public void DisplayAsThread()
+        private void DisplayUserListAsThread()
         {
             try
             {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayServicesListProc));
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayUserListProc));
                 base.ShowWaiting();
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MsgBox.Show(Application.ProductName, e.Message);
             }
             finally
             {
@@ -49,40 +43,35 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayServicesList()
+        private void OnDisplayUserList()
         {
 
         }
         #endregion
 
         #region Window Event Handlers
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void dlgLogin_Load(object sender, EventArgs e)
         {
-
+            DisplayUserListAsThread();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void dlgLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
 
         }
         #endregion
 
         #region Working Thread
-        private void OnDisplayServicesListProc(object state)
+        private void OnDisplayUserListProc(object state)
         {
             try
             {
                 Thread.Sleep(1000);
-                OnDisplayServicesList();
+                OnDisplayUserList();
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MsgBox.Show(Application.ProductName, e.Message);
             }
             finally
             {

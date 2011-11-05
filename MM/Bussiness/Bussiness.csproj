@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,9 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocStaffBus.cs" />
+    <Compile Include="PatientBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesBus.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A8C421C9-52BA-4A39-A741-E2499DD43DC8}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Databasae\Databasae.csproj">
       <Project>{3B05BCE2-9686-40F6-B65B-8A05C9DEA92C}</Project>
       <Name>Databasae</Name>

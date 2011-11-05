@@ -30,19 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgDatabaseConfig));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtServerName = new System.Windows.Forms.TextBox();
-            this.txtDatabaseName = new System.Windows.Forms.TextBox();
-            this.cboAuthentication = new System.Windows.Forms.ComboBox();
-            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.btnTestConnection = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.cboAuthentication = new System.Windows.Forms.ComboBox();
+            this.txtDatabaseName = new System.Windows.Forms.TextBox();
+            this.txtServerName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.btnTestConnection = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,64 +66,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin kết nối CSDL";
             // 
-            // label1
+            // btnTestConnection
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Máy chủ:";
+            this.btnTestConnection.Image = global::MM.Properties.Resources.check;
+            this.btnTestConnection.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTestConnection.Location = new System.Drawing.Point(181, 144);
+            this.btnTestConnection.Name = "btnTestConnection";
+            this.btnTestConnection.Size = new System.Drawing.Size(119, 25);
+            this.btnTestConnection.TabIndex = 10;
+            this.btnTestConnection.Text = "   &Kiểm tra kết nối";
+            this.btnTestConnection.UseVisualStyleBackColor = true;
+            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
-            // label2
+            // txtPassword
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "CSDL:";
+            this.txtPassword.Location = new System.Drawing.Point(78, 118);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(222, 20);
+            this.txtPassword.TabIndex = 9;
             // 
-            // label3
+            // txtUserName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 72);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Xác thực:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 97);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(63, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Đăng nhập:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 121);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Mật khẩu:";
-            // 
-            // txtServerName
-            // 
-            this.txtServerName.Location = new System.Drawing.Point(78, 22);
-            this.txtServerName.Name = "txtServerName";
-            this.txtServerName.Size = new System.Drawing.Size(222, 20);
-            this.txtServerName.TabIndex = 5;
-            // 
-            // txtDatabaseName
-            // 
-            this.txtDatabaseName.Location = new System.Drawing.Point(78, 45);
-            this.txtDatabaseName.Name = "txtDatabaseName";
-            this.txtDatabaseName.Size = new System.Drawing.Size(222, 20);
-            this.txtDatabaseName.TabIndex = 6;
+            this.txtUserName.Location = new System.Drawing.Point(78, 94);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(222, 20);
+            this.txtUserName.TabIndex = 8;
             // 
             // cboAuthentication
             // 
@@ -138,20 +106,64 @@
             this.cboAuthentication.TabIndex = 7;
             this.cboAuthentication.SelectedIndexChanged += new System.EventHandler(this.cboAuthentication_SelectedIndexChanged);
             // 
-            // txtUserName
+            // txtDatabaseName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(78, 94);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(222, 20);
-            this.txtUserName.TabIndex = 8;
+            this.txtDatabaseName.Location = new System.Drawing.Point(78, 45);
+            this.txtDatabaseName.Name = "txtDatabaseName";
+            this.txtDatabaseName.Size = new System.Drawing.Size(222, 20);
+            this.txtDatabaseName.TabIndex = 6;
             // 
-            // txtPassword
+            // txtServerName
             // 
-            this.txtPassword.Location = new System.Drawing.Point(78, 118);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(222, 20);
-            this.txtPassword.TabIndex = 9;
+            this.txtServerName.Location = new System.Drawing.Point(78, 22);
+            this.txtServerName.Name = "txtServerName";
+            this.txtServerName.Size = new System.Drawing.Size(222, 20);
+            this.txtServerName.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 121);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Mật khẩu:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 97);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(63, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Đăng nhập:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Xác thực:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "CSDL:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Máy chủ:";
             // 
             // btnCancel
             // 
@@ -160,7 +172,7 @@
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancel.Location = new System.Drawing.Point(169, 186);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "   &Đóng";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -173,22 +185,10 @@
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOK.Location = new System.Drawing.Point(90, 186);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // btnTestConnection
-            // 
-            this.btnTestConnection.Image = global::MM.Properties.Resources.check;
-            this.btnTestConnection.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTestConnection.Location = new System.Drawing.Point(181, 144);
-            this.btnTestConnection.Name = "btnTestConnection";
-            this.btnTestConnection.Size = new System.Drawing.Size(119, 23);
-            this.btnTestConnection.TabIndex = 10;
-            this.btnTestConnection.Text = "   &Kiểm tra kết nối";
-            this.btnTestConnection.UseVisualStyleBackColor = true;
-            this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
             // 
             // dlgDatabaseConfig
             // 
