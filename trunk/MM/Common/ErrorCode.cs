@@ -23,6 +23,8 @@ namespace MM.Common
         LOCK,
         DELETED,
         NO_UPDATED,
-        CANCEL_UPDATED
+        CANCEL_UPDATED,
+        EXIST,
+        NOT_EXIST
     };
 }
