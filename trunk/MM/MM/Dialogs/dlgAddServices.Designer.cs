@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServices));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.numPrice = new System.Windows.Forms.NumericUpDown();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.numPrice = new System.Windows.Forms.NumericUpDown();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +62,96 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(206, 72);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "(VNĐ)";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(81, 95);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(269, 96);
+            this.txtDescription.TabIndex = 7;
+            // 
+            // numPrice
+            // 
+            this.numPrice.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numPrice.Location = new System.Drawing.Point(81, 69);
+            this.numPrice.Maximum = new decimal(new int[] {
+            999999999,
+            0,
+            0,
+            0});
+            this.numPrice.Name = "numPrice";
+            this.numPrice.Size = new System.Drawing.Size(121, 20);
+            this.numPrice.TabIndex = 6;
+            this.numPrice.ThousandsSeparator = true;
+            this.numPrice.Value = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(81, 45);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(269, 20);
+            this.txtName.TabIndex = 5;
+            // 
+            // txtCode
+            // 
+            this.txtCode.Location = new System.Drawing.Point(81, 21);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(121, 20);
+            this.txtCode.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(11, 98);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Ghi chú:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(26, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Giá:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Tên dịch vụ:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Mã dịch vụ:";
             // 
             // btnCancel
             // 
@@ -87,101 +177,6 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã dịch vụ:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Tên dịch vụ:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Giá:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 98);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Ghi chú:";
-            // 
-            // txtCode
-            // 
-            this.txtCode.Location = new System.Drawing.Point(81, 21);
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(121, 20);
-            this.txtCode.TabIndex = 4;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(81, 45);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(269, 20);
-            this.txtName.TabIndex = 5;
-            // 
-            // numPrice
-            // 
-            this.numPrice.Increment = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numPrice.Location = new System.Drawing.Point(81, 69);
-            this.numPrice.Maximum = new decimal(new int[] {
-            999999999,
-            0,
-            0,
-            0});
-            this.numPrice.Minimum = new decimal(new int[] {
-            50000,
-            0,
-            0,
-            0});
-            this.numPrice.Name = "numPrice";
-            this.numPrice.Size = new System.Drawing.Size(121, 20);
-            this.numPrice.TabIndex = 6;
-            this.numPrice.ThousandsSeparator = true;
-            this.numPrice.Value = new decimal(new int[] {
-            50000,
-            0,
-            0,
-            0});
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(81, 95);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(269, 96);
-            this.txtDescription.TabIndex = 7;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(206, 72);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "(VNĐ)";
-            // 
             // dlgAddServices
             // 
             this.AcceptButton = this.btnOK;
@@ -201,7 +196,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them dich vu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddServices_FormClosing);
-            this.Load += new System.EventHandler(this.dlgAddServices_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
