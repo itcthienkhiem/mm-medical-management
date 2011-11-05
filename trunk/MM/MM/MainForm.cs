@@ -24,7 +24,6 @@ namespace MM
         public MainForm()
         {
             InitializeComponent();
-            InitConfig();
         }   
         #endregion
 
@@ -72,7 +71,9 @@ namespace MM
                             this.Close();
                         }
                     }
-                }
+                } 
+                else
+                    OnLogin();
             }
             else
             {
@@ -178,15 +179,23 @@ namespace MM
             {
                 loginToolStripMenuItem.Tag = "Logout";
                 loginToolStripMenuItem.Text = "Đăng xuất";
+                tbLogin.Tag = "Logout";
+                tbLogin.ToolTipText = "Đăng xuất";
                 RefreshFunction(true);
             }
         }
 
         private void OnLogout()
         {
-            loginToolStripMenuItem.Tag = "Login";
-            loginToolStripMenuItem.Text = "Đăng nhập";
-            RefreshFunction(false);
+            if (MsgBox.Question(Application.ProductName, 
+                "Bạn có muốn đăng xuất ?") == System.Windows.Forms.DialogResult.Yes)
+            {
+                loginToolStripMenuItem.Tag = "Login";
+                loginToolStripMenuItem.Text = "Đăng nhập";
+                tbLogin.Tag = "Login";
+                tbLogin.ToolTipText = "Đăng nhập";
+                RefreshFunction(false);    
+            }
         }
 
         private void OnDoctorList()
@@ -240,6 +249,12 @@ namespace MM
         #endregion
 
         #region Window Event Handlers
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            this.Refresh();
+            InitConfig();
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_flag)

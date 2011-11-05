@@ -51,7 +51,6 @@
             this.lbMessage.Name = "lbMessage";
             this.lbMessage.Size = new System.Drawing.Size(240, 67);
             this.lbMessage.TabIndex = 0;
-            this.lbMessage.Text = "Message";
             // 
             // btnOK
             // 

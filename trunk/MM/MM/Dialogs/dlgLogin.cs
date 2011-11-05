@@ -45,7 +45,29 @@ namespace MM.Dialogs
 
         private void OnDisplayUserList()
         {
+            Result result = DocStaffBus.GetUserList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow[0] = Const.AdminGUID;
+                newRow[1] = "Admin";
+                dt.Rows.InsertAt(newRow, 0);
 
+                MethodInvoker method = delegate
+                {
+                    cboUserName.DataSource = dt;
+                    cboUserName.DisplayMember = "Username";
+                    cboUserName.ValueMember = "ContactGUID";
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetUserList"));
+            }
         }
         #endregion
 
@@ -57,7 +79,11 @@ namespace MM.Dialogs
 
         private void dlgLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                Global.UserGUID = cboUserName.SelectedValue.ToString();
+                Global.Username = cboUserName.Text;
+            }
         }
         #endregion
 
@@ -66,7 +92,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(1000);
+                //Thread.Sleep(1000);
                 OnDisplayUserList();
             }
             catch (Exception e)

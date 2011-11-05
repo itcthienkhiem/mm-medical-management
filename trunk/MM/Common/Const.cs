@@ -12,5 +12,7 @@ namespace MM.Common
         public static string AuthenticationKey = "AuthenticationKey";
         public static string UserNameKey = "UserNameKey";
         public static string PasswordKey = "PasswordKey";
+
+        public static string AdminGUID = "00000000-0000-0000-0000-000000000000";
     }
 }

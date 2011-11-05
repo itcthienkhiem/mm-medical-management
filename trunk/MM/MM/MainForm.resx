@@ -278,6 +278,30 @@
   <metadata name="_mainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>592, 17</value>
   </metadata>
+  <data name="databaseConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 22</value>
+  </data>
+  <data name="databaseConfigurationToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cấu hình CSDL</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 6</value>
+  </data>
+  <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 22</value>
+  </data>
+  <data name="loginToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 6</value>
+  </data>
+  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>155, 22</value>
+  </data>
+  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
+    <value>Thoát</value>
+  </data>
   <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>63, 20</value>
   </data>
@@ -338,6 +362,21 @@
   <data name="patientToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Bệnh nhân</value>
   </data>
+  <data name="medicalManagementHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 22</value>
+  </data>
+  <data name="medicalManagementHelpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Giúp đỡ</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 6</value>
+  </data>
+  <data name="aboutMedicalManagementToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 22</value>
+  </data>
+  <data name="aboutMedicalManagementToolStripMenuItem.Text" xml:space="preserve">
+    <value>Giới thiệu</value>
+  </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>58, 20</value>
   </data>
@@ -364,36 +403,6 @@
   </data>
   <data name="&gt;&gt;_mainMenu.ZOrder" xml:space="preserve">
     <value>3</value>
-  </data>
-  <data name="databaseConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 30</value>
-  </data>
-  <data name="databaseConfigurationToolStripMenuItem.Text" xml:space="preserve">
-    <value>Cấu hình CSDL</value>
-  </data>
-  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 6</value>
-  </data>
-  <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 30</value>
-  </data>
-  <data name="exitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Thoát</value>
-  </data>
-  <data name="medicalManagementHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 22</value>
-  </data>
-  <data name="medicalManagementHelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Giúp đỡ</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 6</value>
-  </data>
-  <data name="aboutMedicalManagementToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 22</value>
-  </data>
-  <data name="aboutMedicalManagementToolStripMenuItem.Text" xml:space="preserve">
-    <value>Giới thiệu</value>
   </data>
   <data name="_mainPanel.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -31501,6 +31510,21 @@
   <data name="_mainPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
+  <data name="_uServicesList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uServicesList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uServicesList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>924, 479</value>
+  </data>
+  <data name="_uServicesList.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="_uServicesList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;_uServicesList.Name" xml:space="preserve">
     <value>_uServicesList</value>
   </data>
@@ -31536,42 +31560,6 @@
   </data>
   <data name="&gt;&gt;_mainPanel.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="_uServicesList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uServicesList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uServicesList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
-  </data>
-  <data name="_uServicesList.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="_uServicesList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;_uServicesList.Name" xml:space="preserve">
-    <value>_uServicesList</value>
-  </data>
-  <data name="&gt;&gt;_uServicesList.Type" xml:space="preserve">
-    <value>MM.Controls.uServicesList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;_uServicesList.Parent" xml:space="preserve">
-    <value>_mainPanel</value>
-  </data>
-  <data name="&gt;&gt;_uServicesList.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 30</value>
-  </data>
-  <data name="loginToolStripMenuItem.Text" xml:space="preserve">
-    <value>Đăng nhập</value>
-  </data>
-  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 6</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -33160,6 +33148,18 @@
   <data name="&gt;&gt;tbServiceList.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;tbLogin.Name" xml:space="preserve">
+    <value>tbLogin</value>
+  </data>
+  <data name="&gt;&gt;tbLogin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Name" xml:space="preserve">
+    <value>toolStripSeparator8</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;tbDoctorList.Name" xml:space="preserve">
     <value>tbDoctorList</value>
   </data>
@@ -33218,6 +33218,18 @@
     <value>toolStripSeparator4</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;loginToolStripMenuItem.Name" xml:space="preserve">
+    <value>loginToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;loginToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator7.Name" xml:space="preserve">
+    <value>toolStripSeparator7</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator7.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;exitToolStripMenuItem.Name" xml:space="preserve">
@@ -33297,30 +33309,6 @@
   </data>
   <data name="&gt;&gt;aboutMedicalManagementToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;loginToolStripMenuItem.Name" xml:space="preserve">
-    <value>loginToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;loginToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator7.Name" xml:space="preserve">
-    <value>toolStripSeparator7</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator8.Name" xml:space="preserve">
-    <value>toolStripSeparator8</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbLogin.Name" xml:space="preserve">
-    <value>tbLogin</value>
-  </data>
-  <data name="&gt;&gt;tbLogin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

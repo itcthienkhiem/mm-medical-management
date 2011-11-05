@@ -113,7 +113,7 @@ namespace MM.Dialogs
             {
                 txtUserName.Enabled = false;
                 txtPassword.Enabled = false;
-                txtServerName.Text = ("(local)");
+                //txtServerName.Text = ("(local)");
             }
             else
             {
