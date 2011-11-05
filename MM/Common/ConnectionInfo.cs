@@ -12,7 +12,7 @@ namespace MM.Common
 		private string _serverName = "(local)";
         private string _databaseName = "MM";
 		private string _userName = "sa";
-		private string _password = "123456";
+		private string _password = "12345678";
         private string _authentication = "SQL Server Authentication";
 		#endregion
 

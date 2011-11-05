@@ -95,6 +95,12 @@
     <Compile Include="Dialogs\dlgBase.Designer.cs">
       <DependentUpon>dlgBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgDatabaseConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgDatabaseConfig.Designer.cs">
+      <DependentUpon>dlgDatabaseConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPanelDrawType.resx">
       <DependentUpon>uPanelDrawType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgDatabaseConfig.resx">
+      <DependentUpon>dlgDatabaseConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgMessage.resx">
       <DependentUpon>dlgMessage.cs</DependentUpon>
