@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MM" Class="MMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=vunguyen;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=USER-PC\SQLEXPRESS;Initial Catalog=MM;Integrated Security=True;Pooling=False" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Contact" Member="Contacts">
     <Type Name="Contact">
       <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -33,8 +33,8 @@
       <Column Name="Ward" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="District" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="DocStaff_Contact" Member="DocStaff" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="DocStaff" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Patient_Contact" Member="Patient" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DocStaff_Contact" Member="DocStaff" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="DocStaff" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Speciality" Member="Specialities">
@@ -44,19 +44,6 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Speciality_DocStaff" Member="DocStaffs" ThisKey="SpecialityGUID" OtherKey="SpecialityGUID" Type="DocStaff" />
-    </Type>
-  </Table>
-  <Table Name="dbo.DocStaff" Member="DocStaffs">
-    <Type Name="DocStaff">
-      <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SpecialityGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PrescriberNum" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Qualifications" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="AvailableToWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="WorkType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="StaffType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Association Name="DocStaff_Contact" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" Cardinality="One" />
-      <Association Name="Speciality_DocStaff" Member="Speciality" ThisKey="SpecialityGUID" OtherKey="SpecialityGUID" Type="Speciality" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Patient" Member="Patients">
@@ -100,6 +87,20 @@
       <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Association Name="Service_ServiceHistory" Member="ServiceHistories" ThisKey="ServiceGUID" OtherKey="SerivceGUID" Type="ServiceHistory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DocStaff" Member="DocStaffs">
+    <Type Name="DocStaff">
+      <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SpecialityGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PrescriberNum" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Qualifications" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="AvailableToWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="WorkType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StaffType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="DocStaff_Contact" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" Cardinality="One" />
+      <Association Name="Speciality_DocStaff" Member="Speciality" ThisKey="SpecialityGUID" OtherKey="SpecialityGUID" Type="Speciality" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>
