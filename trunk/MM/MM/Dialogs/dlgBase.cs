@@ -43,6 +43,7 @@ namespace MM.Dialogs
             {
                 if (_dlgWaiting != null)
                 {
+                    _dlgWaiting.Hide();
                     _dlgWaiting.Close();
                     _dlgWaiting = null;
                 }
