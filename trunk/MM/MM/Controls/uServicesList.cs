@@ -51,7 +51,15 @@ namespace MM.Controls
 
         private void OnDisplayServicesList()
         {
+            Result result = ServicesBus.GetServicesList();
+            if (result.IsOK)
+            {
 
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesList"));
+            }
         }
         #endregion
 
