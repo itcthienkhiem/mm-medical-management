@@ -165,6 +165,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap folder_customer_icon {
+            get {
+                object obj = ResourceManager.GetObject("folder_customer_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap folder_customer_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("folder_customer_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap help {
             get {
                 object obj = ResourceManager.GetObject("help", resourceCulture);

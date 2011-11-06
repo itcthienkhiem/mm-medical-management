@@ -2509,6 +2509,10 @@ namespace MM.Databasae
 		
 		private string _Description;
 		
+		private string _Fullname;
+		
+		private string _FullAddress;
+		
 		public DocStaffView()
 		{
 		}
@@ -3152,6 +3156,38 @@ namespace MM.Databasae
 				}
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fullname", DbType="NVarChar(252)")]
+		public string Fullname
+		{
+			get
+			{
+				return this._Fullname;
+			}
+			set
+			{
+				if ((this._Fullname != value))
+				{
+					this._Fullname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullAddress", DbType="NVarChar(408)")]
+		public string FullAddress
+		{
+			get
+			{
+				return this._FullAddress;
+			}
+			set
+			{
+				if ((this._FullAddress != value))
+				{
+					this._FullAddress = value;
+				}
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PatientView")]
@@ -3237,6 +3273,10 @@ namespace MM.Databasae
 		private System.Nullable<System.DateTime> _DateDeceased;
 		
 		private System.Nullable<System.Guid> _LastVisitGUID;
+		
+		private string _Fullname;
+		
+		private string _FullAddress;
 		
 		public PatientView()
 		{
@@ -3878,6 +3918,38 @@ namespace MM.Databasae
 				if ((this._LastVisitGUID != value))
 				{
 					this._LastVisitGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fullname", DbType="NVarChar(252)")]
+		public string Fullname
+		{
+			get
+			{
+				return this._Fullname;
+			}
+			set
+			{
+				if ((this._Fullname != value))
+				{
+					this._Fullname = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullAddress", DbType="NVarChar(408)")]
+		public string FullAddress
+		{
+			get
+			{
+				return this._FullAddress;
+			}
+			set
+			{
+				if ((this._FullAddress != value))
+				{
+					this._FullAddress = value;
 				}
 			}
 		}
