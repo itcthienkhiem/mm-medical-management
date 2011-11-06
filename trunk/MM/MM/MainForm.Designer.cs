@@ -64,6 +64,7 @@
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainPanel = new System.Windows.Forms.Panel();
             this._uServicesList = new MM.Controls.uServicesList();
+            this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -132,7 +133,7 @@
             // 
             this.tbOpenPatient.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tbOpenPatient, "tbOpenPatient");
-            this.tbOpenPatient.Image = global::MM.Properties.Resources.open;
+            this.tbOpenPatient.Image = global::MM.Properties.Resources.folder_customer_icon;
             this.tbOpenPatient.Name = "tbOpenPatient";
             this.tbOpenPatient.Tag = "Open Patient";
             // 
@@ -276,7 +277,7 @@
             // 
             // openPatientToolStripMenuItem
             // 
-            this.openPatientToolStripMenuItem.Image = global::MM.Properties.Resources.open;
+            this.openPatientToolStripMenuItem.Image = global::MM.Properties.Resources.folder_customer_icon;
             this.openPatientToolStripMenuItem.Name = "openPatientToolStripMenuItem";
             resources.ApplyResources(this.openPatientToolStripMenuItem, "openPatientToolStripMenuItem");
             this.openPatientToolStripMenuItem.Tag = "Open Patient";
@@ -329,6 +330,7 @@
             // 
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
             // 
@@ -336,6 +338,11 @@
             // 
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
+            // 
+            // _uDocStaffList
+            // 
+            resources.ApplyResources(this._uDocStaffList, "_uDocStaffList");
+            this._uDocStaffList.Name = "_uDocStaffList";
             // 
             // MainForm
             // 
@@ -398,6 +405,7 @@
         private System.Windows.Forms.ToolStripButton tbLogin;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private Controls.uDocStaffList _uDocStaffList;
 
 
 

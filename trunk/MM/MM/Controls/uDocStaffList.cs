@@ -13,7 +13,7 @@ using MM.Dialogs;
 
 namespace MM.Controls
 {
-    public partial class uDocStaffList : UserControl
+    public partial class uDocStaffList : uBase
     {
         #region Members
 
@@ -31,7 +31,25 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
         #endregion
     }
 }

@@ -197,6 +197,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Components\Uninstall_MM.bat" />
+    <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -231,6 +232,8 @@
     <Content Include="Components\DevComponents.TreeGX.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\folder-customer-icon.png" />
+    <None Include="Resources\folder-customer-icon %281%29.png" />
     <None Include="Resources\logout-icon %281%29.png" />
     <None Include="Resources\Log-Out-icon.png" />
     <None Include="Resources\logout-icon.png" />

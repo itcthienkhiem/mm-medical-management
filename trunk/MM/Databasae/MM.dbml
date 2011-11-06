@@ -151,6 +151,8 @@
       <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(252)" CanBeNull="true" />
+      <Column Name="FullAddress" Type="System.String" DbType="NVarChar(408)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.PatientView" Member="PatientViews">
@@ -195,6 +197,8 @@
       <Column Name="LastSeenDocGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="DateDeceased" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="LastVisitGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(252)" CanBeNull="true" />
+      <Column Name="FullAddress" Type="System.String" DbType="NVarChar(408)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

@@ -120,6 +120,7 @@ namespace MM
             tbDoctorList.Enabled = isLogin;
             patientToolStripMenuItem.Enabled = isLogin;
             tbPatientList.Enabled = isLogin;
+            tbOpenPatient.Enabled = isLogin;
         }
 
         private void ExcuteCmd(string cmd)
@@ -215,7 +216,8 @@ namespace MM
 
         private void OnDoctorList()
         {
-            
+            this.Text = string.Format("{0} - Danh muc bác sĩ", Application.ProductName);
+            ViewControl(_uDocStaffList);
         }
 
         private void OnDatabaseConfig()
