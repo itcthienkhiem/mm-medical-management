@@ -118,7 +118,7 @@ namespace MM.Dialogs
             finally
             {
                 base.HideWaiting();
-            }
+            }   
         }
 
         private void OnSaveInfo()

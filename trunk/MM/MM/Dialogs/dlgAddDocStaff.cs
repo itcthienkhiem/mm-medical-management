@@ -26,6 +26,7 @@ namespace MM.Dialogs
         public dlgAddDocStaff()
         {
             InitializeComponent();
+            InitData();
         }
 
         public dlgAddDocStaff(DataRow drDocStaff)
@@ -34,12 +35,7 @@ namespace MM.Dialogs
             _isNew = false;
             this.Text = "Sửa bác sĩ";
             DisplayInfo(drDocStaff);
-        }
-
-        private void DisplayInfo(DataRow drDocStaff)
-        {
-            
-        }
+        }       
         #endregion
 
         #region Properties
@@ -47,10 +43,114 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void InitData()
+        {
+            cboGender.SelectedIndex = 0;
+            cboWorkType.SelectedIndex = 0;
+            cboStaffType.SelectedIndex = 0;
+
+            //Load Speciality List
+            Result result = SpecialityBus.GetSpecialityList();
+            if (result.IsOK)
+                cboSpeciality.DataSource = result.QueryResult;
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.GetSpecialityList"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("SpecialityBus.GetSpecialityList"));
+            }
+        }
+
         private bool CheckInfo()
         {
+            if (txtSurName.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập họ.");
+                txtSurName.Focus();
+                return false;
+            }
+
+            if (txtMiddleName.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập tên đệm.");
+                txtMiddleName.Focus();
+                return false;
+            }
+
+            if (txtFirstName.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập tên.");
+                txtFirstName.Focus();
+                return false;
+            }
+
+            if (txtIdentityCard.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập CMND.");
+                txtIdentityCard.Focus();
+                return false;
+            }
+
+            if (txtQualifications.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập bằng cấp.");
+                txtQualifications.Focus();
+                return false;
+            }
+
+            if (txtAddress.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập địa chỉ.");
+                txtAddress.Focus();
+                return false;
+            }
+
+            if (txtWard.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập phường/xã.");
+                txtWard.Focus();
+                return false;
+            }
+
+            if (txtDistrict.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập quận/huyện");
+                txtDistrict.Focus();
+                return false;
+            }
+
+            if (txtCity.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập tỉnh/thành phố.");
+                txtCity.Focus();
+                return false;
+            }
 
             return true;
+        }
+
+        private void DisplayInfo(DataRow drDocStaff)
+        {
+            txtSurName.Text = drDocStaff["SurName"] as string;
+            txtMiddleName.Text = drDocStaff["MiddleName"] as string;
+            txtFirstName.Text = drDocStaff["FirstName"] as string;
+            txtKnownAs.Text = drDocStaff["KnownAs"] as string;
+            txtPreferredName.Text = drDocStaff["PreferredName"] as string;
+            cboGender.SelectedIndex = Convert.ToInt32(drDocStaff["Gender"]);
+            dtpkDOB.Value = Convert.ToDateTime(drDocStaff["Dob"]);
+            txtIdentityCard.Text = drDocStaff["IdentityCard"] as string;
+            txtQualifications.Text = drDocStaff["Qualifications"] as string;
+            cboSpeciality.SelectedValue = drDocStaff["SpecialityGUID"] as string;
+            cboWorkType.SelectedIndex = Convert.ToInt32(drDocStaff["WorkType"]);
+            cboStaffType.SelectedIndex = Convert.ToInt32(drDocStaff["StaffType"]);
+            txtHomePhone.Text = drDocStaff["HomePhone"] as string;
+            txtWorkPhone.Text = drDocStaff["WorkPhone"] as string;
+            txtMobile.Text = drDocStaff["Mobile"] as string;
+            txtEmail.Text = drDocStaff["Email"] as string;
+            txtFax.Text = drDocStaff["Fax"] as string;
+            txtAddress.Text = drDocStaff["Address"] as string;
+            txtWard.Text = drDocStaff["Ward"] as string;
+            txtDistrict.Text = drDocStaff["District"] as string;
+            txtCity.Text = drDocStaff["City"] as string;
         }
 
         private void SaveInfoAsThread()

@@ -68,7 +68,11 @@ namespace MM.Controls
 
         private void OnAddDocStaff()
         {
+            dlgAddDocStaff dlg = new dlgAddDocStaff();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
 
+            }
         }
 
         private void OnEditDocStaff()
