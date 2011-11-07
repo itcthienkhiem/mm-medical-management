@@ -38,7 +38,15 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
+        public Contact Contact
+        {
+            get { return _contact; }
+        }
 
+        public DocStaff DocStaff
+        {
+            get { return _docStaff; }
+        }
         #endregion
 
         #region UI Command
