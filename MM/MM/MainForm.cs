@@ -290,7 +290,8 @@ namespace MM
 
         private void OnPatientList()
         {
-
+            this.Text = string.Format("{0} - Danh muc bệnh nhân", Application.ProductName);
+            ViewControl(_uPatientList);
         }
 
         private void OnOpenPatient()
