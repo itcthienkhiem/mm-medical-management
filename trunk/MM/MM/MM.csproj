@@ -99,6 +99,12 @@
     <Compile Include="Controls\uPanelDrawType.Designer.cs">
       <DependentUpon>uPanelDrawType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPatientList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPatientList.Designer.cs">
+      <DependentUpon>uPatientList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uServicesList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -174,6 +180,9 @@
     <EmbeddedResource Include="Controls\uPanelDrawType.resx">
       <DependentUpon>uPanelDrawType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPatientList.resx">
+      <DependentUpon>uPatientList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uServicesList.resx">
       <DependentUpon>uServicesList.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,6 +220,7 @@
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
     <None Include="Properties\Settings.settings">
