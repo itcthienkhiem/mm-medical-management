@@ -36,6 +36,7 @@ namespace MM.Dialogs
             catch (Exception e)
             {
                 MsgBox.Show(Application.ProductName, e.Message);
+                Utility.WriteToTraceLog(e.Message);
             }
             finally
             {
@@ -67,6 +68,7 @@ namespace MM.Dialogs
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetUserList"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetUserList"));
             }
         }
         #endregion
@@ -98,6 +100,7 @@ namespace MM.Dialogs
             catch (Exception e)
             {
                 MsgBox.Show(Application.ProductName, e.Message);
+                Utility.WriteToTraceLog(e.Message);
             }
             finally
             {

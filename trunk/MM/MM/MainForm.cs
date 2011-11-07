@@ -218,6 +218,7 @@ namespace MM
         {
             this.Text = string.Format("{0} - Danh muc bác sĩ", Application.ProductName);
             ViewControl(_uDocStaffList);
+            _uDocStaffList.DisplayAsThread();
         }
 
         private void OnDatabaseConfig()
