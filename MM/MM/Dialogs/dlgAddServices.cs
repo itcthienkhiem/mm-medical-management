@@ -53,10 +53,10 @@ namespace MM.Dialogs
             txtDescription.Text = drService["Description"] as string;
 
             _service.ServiceGUID = Guid.Parse(drService["ServiceGUID"].ToString());
-            _service.Code = txtCode.Text;
+            /*_service.Code = txtCode.Text;
             _service.Name = txtName.Text;
             _service.Price = (double)numPrice.Value;
-            _service.Description = txtDescription.Text;
+            _service.Description = txtDescription.Text;*/
         }
 
         private bool CheckInfo()
