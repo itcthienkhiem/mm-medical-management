@@ -63,6 +63,7 @@ namespace MM
                         {
                             dlg.SetAppConfig();
                             SaveAppConfig();
+                            RefreshData();
                             OnLogin();
                         }
                         else
@@ -84,6 +85,7 @@ namespace MM
                     {
                         dlg.SetAppConfig();
                         SaveAppConfig();
+                        RefreshData();
                         OnLogin();
                     }
                     else
@@ -99,6 +101,19 @@ namespace MM
 
             
         }
+
+        private void RefreshData()
+        {
+            Control ctrl = GetControlActive();
+            if (ctrl == null) return;
+            ctrl.Enabled = true;
+            if (ctrl.GetType() == typeof(uServicesList))
+                _uServicesList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uDocStaffList))
+                _uDocStaffList.DisplayAsThread();
+        }
+
+
 
         private void SaveAppConfig()
         {
@@ -181,6 +196,17 @@ namespace MM
             }
         }
 
+        private Control GetControlActive()
+        {
+            foreach (Control ctrl in this._mainPanel.Controls)
+            {
+                if (ctrl.Visible == true)
+                    return ctrl;
+            }
+
+            return null;
+        }
+
         private void OnLogin()
         {
             dlgLogin dlgLogin = new dlgLogin();
@@ -194,6 +220,7 @@ namespace MM
                 tbLogin.Image = Properties.Resources.Apps_session_logout_icon;
                 statusLabel.Text = string.Format("Người đăng nhập: {0}", Global.Fullname);
                 RefreshFunction(true);
+                RefreshData();
             }
         }
 
@@ -210,8 +237,22 @@ namespace MM
                 tbLogin.ToolTipText = "Đăng nhập";
                 tbLogin.Image = Properties.Resources.Login_icon;
                 statusLabel.Text = string.Empty;
-                RefreshFunction(false);    
+                RefreshFunction(false);
+                ClearData();
             }
+        }
+
+        private void ClearData()
+        {
+            Control ctrl = GetControlActive();
+            if (ctrl == null) return;
+
+            ctrl.Enabled = false;
+            if (ctrl.GetType() == typeof(uServicesList))
+                _uServicesList.ClearData();
+            else if (ctrl.GetType() == typeof(uDocStaffList))
+                _uDocStaffList.ClearData();
+
         }
 
         private void OnDoctorList()
@@ -230,6 +271,7 @@ namespace MM
                 {
                     dlg.SetAppConfig();
                     SaveAppConfig();
+                    RefreshData();
                 }
             }
         }

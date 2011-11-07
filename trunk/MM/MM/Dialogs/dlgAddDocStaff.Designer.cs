@@ -38,13 +38,13 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.cboStaffType = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.cboWorkType = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.cboSpeciality = new System.Windows.Forms.ComboBox();
+            this.specialityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label19 = new System.Windows.Forms.Label();
             this.txtQualifications = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -84,7 +84,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.specialityBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.specialityBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -98,7 +97,6 @@
             this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.label25);
             this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.cboStaffType);
             this.groupBox1.Controls.Add(this.label21);
@@ -219,16 +217,6 @@
             this.label24.TabIndex = 44;
             this.label24.Text = "[*]";
             // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.ForeColor = System.Drawing.Color.Red;
-            this.label23.Location = new System.Drawing.Point(214, 48);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(17, 13);
-            this.label23.TabIndex = 43;
-            this.label23.Text = "[*]";
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -298,6 +286,10 @@
             this.cboSpeciality.Size = new System.Drawing.Size(165, 21);
             this.cboSpeciality.TabIndex = 10;
             this.cboSpeciality.ValueMember = "SpecialityGUID";
+            // 
+            // specialityBindingSource
+            // 
+            this.specialityBindingSource.DataSource = typeof(MM.Databasae.Speciality);
             // 
             // label19
             // 
@@ -629,10 +621,6 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // specialityBindingSource
-            // 
-            this.specialityBindingSource.DataSource = typeof(MM.Databasae.Speciality);
-            // 
             // dlgAddDocStaff
             // 
             this.AcceptButton = this.btnOK;
@@ -652,6 +640,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them bac si";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddDocStaff_FormClosing);
+            this.Load += new System.EventHandler(this.dlgAddDocStaff_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.specialityBindingSource)).EndInit();
@@ -713,7 +702,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.BindingSource specialityBindingSource;
     }

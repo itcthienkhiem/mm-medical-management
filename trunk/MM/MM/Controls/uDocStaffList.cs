@@ -28,6 +28,11 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void ClearData()
+        {
+            dgDocStaff.DataSource = null;
+        }
+
         public void DisplayAsThread()
         {
             try
@@ -75,14 +80,15 @@ namespace MM.Controls
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
-                newRow["ServiceGUID"] = dlg.Contact.ContactGUID.ToString();
+                newRow["DocStaffGUID"] = dlg.DocStaff.DocStaffGUID.ToString();
+                newRow["ContactGUID"] = dlg.Contact.ContactGUID.ToString();
                 newRow["SurName"] = dlg.Contact.SurName;
                 newRow["MiddleName"] = dlg.Contact.MiddleName;
                 newRow["FirstName"] = dlg.Contact.FirstName;
                 newRow["KnownAs"] = dlg.Contact.KnownAs;
                 newRow["PreferredName"] = dlg.Contact.PreferredName;
                 newRow["Gender"] = dlg.Contact.Gender;
-                newRow["GenderAsStr"] = dlg.Contact.Gender == 0 ? "Name" : "Nữ";
+                newRow["GenderAsStr"] = dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
                 newRow["Dob"] = dlg.Contact.Dob;
                 newRow["IdentityCard"] = dlg.Contact.IdentityCard;
                 newRow["HomePhone"] = dlg.Contact.HomePhone;
@@ -94,6 +100,8 @@ namespace MM.Controls
                 newRow["Ward"] = dlg.Contact.Ward;
                 newRow["District"] = dlg.Contact.District;
                 newRow["City"] = dlg.Contact.City;
+                newRow["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
+                newRow["FullAddress"] = string.Format("{0} {1} {2} {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
 
                 newRow["Qualifications"] = dlg.DocStaff.Qualifications;
                 newRow["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
@@ -121,7 +129,7 @@ namespace MM.Controls
                 drDocStaff["KnownAs"] = dlg.Contact.KnownAs;
                 drDocStaff["PreferredName"] = dlg.Contact.PreferredName;
                 drDocStaff["Gender"] = dlg.Contact.Gender;
-                drDocStaff["GenderAsStr"] = dlg.Contact.Gender == 0 ? "Name" : "Nữ";
+                drDocStaff["GenderAsStr"] = dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
                 drDocStaff["Dob"] = dlg.Contact.Dob;
                 drDocStaff["IdentityCard"] = dlg.Contact.IdentityCard;
                 drDocStaff["HomePhone"] = dlg.Contact.HomePhone;
@@ -133,6 +141,8 @@ namespace MM.Controls
                 drDocStaff["Ward"] = dlg.Contact.Ward;
                 drDocStaff["District"] = dlg.Contact.District;
                 drDocStaff["City"] = dlg.Contact.City;
+                drDocStaff["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
+                drDocStaff["FullAddress"] = string.Format("{0} {1} {2} {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
 
                 drDocStaff["Qualifications"] = dlg.DocStaff.Qualifications;
                 drDocStaff["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
@@ -150,7 +160,7 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedDocStaffList.Add(row["ServiceGUID"].ToString());
+                    deletedDocStaffList.Add(row["DocStaffGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
@@ -193,6 +203,11 @@ namespace MM.Controls
         private void btnDelete_Click(object sender, EventArgs e)
         {
             OnDeleteDocStaff();
+        }
+
+        private void dgDocStaff_DoubleClick(object sender, EventArgs e)
+        {
+            OnEditDocStaff();
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)

@@ -59,7 +59,7 @@ namespace MM.Dialogs
                 {
                     cboUserName.DataSource = dt;
                     cboUserName.DisplayMember = "Fullname";
-                    cboUserName.ValueMember = "ContactGUID";
+                    cboUserName.ValueMember = "DocStaffGUID";
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
