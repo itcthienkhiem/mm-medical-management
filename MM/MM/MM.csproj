@@ -208,6 +208,7 @@
     <None Include="Components\Uninstall_MM.bat" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
