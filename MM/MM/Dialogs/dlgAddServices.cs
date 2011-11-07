@@ -128,6 +128,7 @@ namespace MM.Dialogs
             if (!result.IsOK)
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.InsertService"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.InsertService"));
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
         }

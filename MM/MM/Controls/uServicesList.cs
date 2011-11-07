@@ -42,6 +42,7 @@ namespace MM.Controls
             catch (Exception e)
             {
                 MM.MsgBox.Show(Application.ProductName, e.Message);
+                Utility.WriteToTraceLog(e.Message);
             }
             finally
             {
@@ -65,6 +66,7 @@ namespace MM.Controls
             else
             {
                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesList"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
             }
         }
 
@@ -134,7 +136,10 @@ namespace MM.Controls
                         }
                     }
                     else
+                    {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.DeleteServices"));
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.DeleteServices"));
+                    }
                 }
             }
             else
@@ -185,6 +190,7 @@ namespace MM.Controls
             catch (Exception e)
             {
                 MM.MsgBox.Show(Application.ProductName, e.Message);
+                Utility.WriteToTraceLog(e.Message);
             }
             finally
             {
