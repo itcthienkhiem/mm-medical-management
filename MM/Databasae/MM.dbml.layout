@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 20.625" name="MM">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 15.5, 12.25" name="MM">
   <DataContextMoniker Name="/MMDataContext" />
   <nestedChildShapes>
     <classShape Id="c75d4b1a-8388-4407-b170-df21998eeb4b" absoluteBounds="0.75, 6.375, 2, 1.4248478190104166">
@@ -26,14 +26,14 @@
         <elementListCompartment Id="a2a6efda-ee1a-46ea-af94-5fcb4dda7146" absoluteBounds="3.5150000005960464, 9.96000000089407, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 3.10013956690207); (5.79166666666667 : 3.10013956690207 : JumpStart); (5.95833333333333 : 3.10013956690207 : JumpEnd); (6.25 : 3.10013956690207)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 3.10013956690207); (6.25 : 3.10013956690207)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MMDataContext/Patient/Patient_ServiceHistory" />
       <nodes>
         <classShapeMoniker Id="5a341a03-75d1-4e0d-9c0b-cf621cd2297a" />
         <classShapeMoniker Id="e88e81cd-f39f-4956-b320-cc4c65712d7c" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.50000000036011 : 9.5); (5.875 : 9.12500000036011); (5.875 : 1.89381778363109); (6.25 : 1.89381778363109)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.50000000036011 : 9.5); (5.875 : 9.12500000036011); (5.875 : 1.89381778363109); (6.25 : 1.89381778363109)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MMDataContext/Service/Service_ServiceHistory" />
       <nodes>
         <classShapeMoniker Id="bd60d95e-5723-4820-af57-831ae16990b4" />
@@ -52,7 +52,7 @@
         <elementListCompartment Id="4db3292b-d41f-4eab-90e5-2f768e65bf41" absoluteBounds="6.2650000005960464, 4.58500000089407, 1.9700000000000002, 5.3022257486979161" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 4.70546590169271); (5.79166666666667 : 4.70546590169271 : JumpStart); (5.95833333333333 : 4.70546590169271 : JumpEnd); (6.25 : 4.70546590169271)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 4.70546590169271); (6.25 : 4.70546590169271)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MMDataContext/Patient/Patient_Contact" />
       <nodes>
         <classShapeMoniker Id="5a341a03-75d1-4e0d-9c0b-cf621cd2297a" />
@@ -65,7 +65,7 @@
         <elementListCompartment Id="941fb34a-22f2-45ff-b359-cb02428b72db" absoluteBounds="3.5150000005960464, 6.58500000089407, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 7.08394490559896); (5.79166666666667 : 7.08394490559896 : JumpStart); (5.95833333333333 : 7.08394490559896 : JumpEnd); (6.25 : 7.08394490559896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 7.08394490559896); (6.25 : 7.08394490559896)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MMDataContext/DocStaff/DocStaff_Contact" />
       <nodes>
         <classShapeMoniker Id="17522317-e46b-4225-b230-d3b18c8dae7d" />
@@ -79,16 +79,16 @@
         <classShapeMoniker Id="17522317-e46b-4225-b230-d3b18c8dae7d" />
       </nodes>
     </associationConnector>
-    <classShape Id="66a11913-f5da-41be-a2f2-f4554c59d1a4" absoluteBounds="9.75, 3.75, 2, 7.6700463867187523">
+    <classShape Id="8835aed4-f76d-4a83-87ed-622441b2777a" absoluteBounds="10.375, 3.375, 2, 7.8343937174479148">
       <DataClassMoniker Name="/MMDataContext/DocStaffView" />
       <nestedChildShapes>
-        <elementListCompartment Id="c69914b6-b0d7-4024-8a31-3bff815b45ca" absoluteBounds="9.765, 4.21, 1.9700000000000002, 7.11004638671875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="be6d5b2a-a639-4644-867e-dcea685449bd" absoluteBounds="10.39, 3.835, 1.9700000000000002, 7.2743937174479161" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="84a253c3-5eeb-4954-8b3d-278b10cb81e8" absoluteBounds="0.75, 12.75, 2, 7.6700463867187505">
+    <classShape Id="74dd7cc2-972e-48d2-9c0e-bb5c47f9663e" absoluteBounds="13.25, 3.625, 2, 7.8343937174479148">
       <DataClassMoniker Name="/MMDataContext/PatientView" />
       <nestedChildShapes>
-        <elementListCompartment Id="7af06c89-5e64-461f-aea4-9c9fd16781f4" absoluteBounds="0.76500000000000057, 13.21, 1.9700000000000002, 7.11004638671875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5684e5c8-9e23-461c-9647-61d9caf94ec9" absoluteBounds="13.265, 4.085, 1.9700000000000002, 7.2743937174479161" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

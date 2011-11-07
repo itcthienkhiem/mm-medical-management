@@ -2513,6 +2513,8 @@ namespace MM.Databasae
 		
 		private System.Nullable<byte> _Gender;
 		
+		private string _GenderAsStr;
+		
 		public DocStaffView()
 		{
 		}
@@ -3188,6 +3190,22 @@ namespace MM.Databasae
 				}
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenderAsStr", DbType="NVarChar(3)")]
+		public string GenderAsStr
+		{
+			get
+			{
+				return this._GenderAsStr;
+			}
+			set
+			{
+				if ((this._GenderAsStr != value))
+				{
+					this._GenderAsStr = value;
+				}
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PatientView")]
@@ -3277,6 +3295,8 @@ namespace MM.Databasae
 		private string _Fullname;
 		
 		private string _FullAddress;
+		
+		private string _GenderAsStr;
 		
 		public PatientView()
 		{
@@ -3950,6 +3970,22 @@ namespace MM.Databasae
 				if ((this._FullAddress != value))
 				{
 					this._FullAddress = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenderAsStr", DbType="NVarChar(3)")]
+		public string GenderAsStr
+		{
+			get
+			{
+				return this._GenderAsStr;
+			}
+			set
+			{
+				if ((this._GenderAsStr != value))
+				{
+					this._GenderAsStr = value;
 				}
 			}
 		}
