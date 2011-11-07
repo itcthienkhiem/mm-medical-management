@@ -209,7 +209,7 @@ namespace MM.Dialogs
             _contact.FirstName = txtFirstName.Text;
             _contact.KnownAs = txtKnownAs.Text;
             _contact.PreferredName = txtPreferredName.Text;
-            _contact.Gender = (byte)cboGender.SelectedIndex;
+            
             _contact.Dob = dtpkDOB.Value;
             _contact.IdentityCard = txtIdentityCard.Text;
             _contact.HomePhone = txtHomePhone.Text;
@@ -221,11 +221,19 @@ namespace MM.Dialogs
             _contact.Ward = txtWard.Text;
             _contact.District = txtDistrict.Text;
             _contact.City = txtCity.Text;
-
             _docStaff.Qualifications = txtQualifications.Text;
-            _docStaff.SpecialityGUID = Guid.Parse(cboSpeciality.SelectedValue.ToString());
-            _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
-            _docStaff.StaffType = (byte)cboStaffType.SelectedIndex;
+
+            MethodInvoker method = delegate
+            {
+                _docStaff.SpecialityGUID = Guid.Parse(cboSpeciality.SelectedValue.ToString());
+                _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
+                _docStaff.StaffType = (byte)cboStaffType.SelectedIndex;
+                _contact.Gender = (byte)cboGender.SelectedIndex;
+            };
+
+            if (InvokeRequired) BeginInvoke(method);
+            else method.Invoke();
+            
         }
 
         private void OnSaveInfo()
