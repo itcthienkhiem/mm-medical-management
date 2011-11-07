@@ -17,7 +17,7 @@ namespace MM.Bussiness
             
             try
             {
-                string query = "SELECT ContactGUID, Fullname FROM UserView WHERE AvailableToWork = 'True' ORDER BY Fullname";
+                string query = "SELECT DocStaffGUID, Fullname FROM UserView WHERE AvailableToWork = 'True' ORDER BY Fullname";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -40,7 +40,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT * FROM DocStaffView WHERE AvailableToWork = 'True' ORDER BY Fullname";
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WHERE AvailableToWork = 'True' ORDER BY Fullname";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -69,8 +69,20 @@ namespace MM.Bussiness
                 {
                     foreach (string key in docStaffKeys)
                     {
-                        DocStaff docStaff = db.DocStaffs.SingleOrDefault<DocStaff>(d => d.ContactGUID.ToString() == key);
-                        if (docStaff != null) docStaff.AvailableToWork = false;
+                        DocStaff docStaff = db.DocStaffs.SingleOrDefault<DocStaff>(d => d.DocStaffGUID.ToString() == key);
+                        if (docStaff != null)
+                        {
+                            docStaff.AvailableToWork = false;
+                            Contact contact = docStaff.Contact;
+                            if (contact != null)
+                            {
+                                contact.Archived = false;
+                                contact.DateArchived = DateTime.Now;
+                                contact.DeletedBy = Guid.Parse(Global.UserGUID);
+                                contact.DeletedDate = DateTime.Now;
+                            }
+                        }
+
                         db.SubmitChanges();
                     }
 
@@ -116,6 +128,7 @@ namespace MM.Bussiness
                         contact.ContactGUID = Guid.NewGuid();
                         db.Contacts.InsertOnSubmit(contact);
                         db.SubmitChanges();
+                        docStaff.DocStaffGUID = Guid.NewGuid();
                         docStaff.ContactGUID = contact.ContactGUID;
                         db.DocStaffs.InsertOnSubmit(docStaff);
                         db.SubmitChanges();
@@ -156,7 +169,7 @@ namespace MM.Bussiness
                             ct.Ward = contact.Ward;
                             ct.WorkPhone = contact.WorkPhone;
 
-                            DocStaff doc = ct.DocStaff;
+                            DocStaff doc = db.DocStaffs.SingleOrDefault<DocStaff>(d => d.DocStaffGUID.ToString() == docStaff.DocStaffGUID.ToString());
                             if (doc != null)
                             {
                                 doc.AvailableToWork = docStaff.AvailableToWork;

@@ -32,6 +32,11 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void ClearData()
+        {
+            dgService.DataSource = null;
+        }
+
         public void DisplayAsThread()
         {
             try

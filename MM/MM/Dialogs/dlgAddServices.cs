@@ -47,16 +47,20 @@ namespace MM.Dialogs
         #region UI Command
         private void DisplayInfo(DataRow drService)
         {
-            txtCode.Text = drService["Code"] as string;
+            try
+            {
+                txtCode.Text = drService["Code"] as string;
             txtName.Text = drService["Name"] as string;
             numPrice.Value = (decimal)Double.Parse(drService["Price"].ToString());
             txtDescription.Text = drService["Description"] as string;
 
             _service.ServiceGUID = Guid.Parse(drService["ServiceGUID"].ToString());
-            /*_service.Code = txtCode.Text;
-            _service.Name = txtName.Text;
-            _service.Price = (double)numPrice.Value;
-            _service.Description = txtDescription.Text;*/
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+                Utility.WriteToTraceLog(e.Message);
+            }
         }
 
         private bool CheckInfo()
@@ -98,10 +102,18 @@ namespace MM.Dialogs
 
         private void SetServiceInfo()
         {
-            _service.Code = txtCode.Text;
-            _service.Name = txtName.Text;
-            _service.Price = (double)numPrice.Value;
-            _service.Description = txtDescription.Text;
+            try
+            {
+                _service.Code = txtCode.Text;
+                _service.Name = txtName.Text;
+                _service.Price = (double)numPrice.Value;
+                _service.Description = txtDescription.Text;
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+                Utility.WriteToTraceLog(e.Message);
+            }
         }
 
         private void SaveInfoAsThread()
