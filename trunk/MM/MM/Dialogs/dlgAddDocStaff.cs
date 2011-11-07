@@ -158,6 +158,31 @@ namespace MM.Dialogs
             txtWard.Text = drDocStaff["Ward"] as string;
             txtDistrict.Text = drDocStaff["District"] as string;
             txtCity.Text = drDocStaff["City"] as string;
+
+            _contact.ContactGUID = Guid.Parse(drDocStaff["ContactGUID"].ToString());
+            /*_contact.SurName = txtSurName.Text;
+            _contact.MiddleName = txtMiddleName.Text;
+            _contact.FirstName = txtFirstName.Text;
+            _contact.KnownAs = txtKnownAs.Text;
+            _contact.PreferredName = txtPreferredName.Text;
+            _contact.Gender = (byte)cboGender.SelectedIndex;
+            _contact.Dob = dtpkDOB.Value;
+            _contact.IdentityCard = txtIdentityCard.Text;
+            _contact.HomePhone = txtHomePhone.Text;
+            _contact.WorkPhone = txtWorkPhone.Text;
+            _contact.Mobile = txtMobile.Text;
+            _contact.Email = txtEmail.Text;
+            _contact.FAX = txtFax.Text;
+            _contact.Address = txtAddress.Text;
+            _contact.Ward = txtWard.Text;
+            _contact.District = txtDistrict.Text;
+            _contact.City = txtCity.Text;*/
+
+            _docStaff.ContactGUID = _contact.ContactGUID;
+            /*_docStaff.Qualifications = txtQualifications.Text;
+            _docStaff.SpecialityGUID = Guid.Parse(cboSpeciality.SelectedValue.ToString());
+            _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
+            _docStaff.StaffType = (byte)cboStaffType.SelectedIndex;*/
         }
 
         private void SaveInfoAsThread()
@@ -177,9 +202,42 @@ namespace MM.Dialogs
             }
         }
 
+        private void SetDocStaffInfo()
+        {
+            _contact.SurName = txtSurName.Text;
+            _contact.MiddleName = txtMiddleName.Text;
+            _contact.FirstName = txtFirstName.Text;
+            _contact.KnownAs = txtKnownAs.Text;
+            _contact.PreferredName = txtPreferredName.Text;
+            _contact.Gender = (byte)cboGender.SelectedIndex;
+            _contact.Dob = dtpkDOB.Value;
+            _contact.IdentityCard = txtIdentityCard.Text;
+            _contact.HomePhone = txtHomePhone.Text;
+            _contact.WorkPhone = txtWorkPhone.Text;
+            _contact.Mobile = txtMobile.Text;
+            _contact.Email = txtEmail.Text;
+            _contact.FAX = txtFax.Text;
+            _contact.Address = txtAddress.Text;
+            _contact.Ward = txtWard.Text;
+            _contact.District = txtDistrict.Text;
+            _contact.City = txtCity.Text;
+
+            _docStaff.Qualifications = txtQualifications.Text;
+            _docStaff.SpecialityGUID = Guid.Parse(cboSpeciality.SelectedValue.ToString());
+            _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
+            _docStaff.StaffType = (byte)cboStaffType.SelectedIndex;
+        }
+
         private void OnSaveInfo()
         {
-
+            SetDocStaffInfo();
+            Result result = DocStaffBus.InsertDocStaff(_contact, _docStaff);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            }
         }
         #endregion
 
