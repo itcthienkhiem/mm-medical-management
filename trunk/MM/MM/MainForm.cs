@@ -241,12 +241,23 @@ namespace MM
                 tbLogin.Image = Properties.Resources.Login_icon;
                 statusLabel.Text = string.Empty;
                 RefreshFunction(false);
+                HideAllControls();
                 ClearData();
+            }
+        }
+
+        private void HideAllControls()
+        {
+            foreach (Control ctrl in this._mainPanel.Controls)
+            {
+                ctrl.Visible = false;
             }
         }
 
         private void ClearData()
         {
+            _uPatientHistory.ClearData();
+
             Control ctrl = GetControlActive();
             if (ctrl == null) return;
 
