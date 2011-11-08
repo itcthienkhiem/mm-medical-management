@@ -13,28 +13,29 @@ using MM.Databasae;
 
 namespace MM.Dialogs
 {
-    public partial class dlgAddDocStaff : dlgBase
+    public partial class dlgAddPatient : dlgBase
     {
         #region Members
         private bool _isNew = true;
         private Contact _contact = new Contact();
-        private DocStaff _docStaff = new DocStaff();
+        private Patient _patient = new Patient();
         #endregion
 
         #region Constructor
-        public dlgAddDocStaff()
+        public dlgAddPatient()
         {
             InitializeComponent();
             InitData();
         }
 
-        public dlgAddDocStaff(DataRow drDocStaff)
+        public dlgAddPatient(DataRow drPatient)
         {
             InitializeComponent();
+            InitData();
             _isNew = false;
-            this.Text = "Sửa bác sĩ";
-            DisplayInfo(drDocStaff);
-        }       
+            this.Text = "Sua benh nhan";
+            DisplayInfo(drPatient);
+        }
         #endregion
 
         #region Properties
@@ -43,9 +44,9 @@ namespace MM.Dialogs
             get { return _contact; }
         }
 
-        public DocStaff DocStaff
+        public Patient Patient
         {
-            get { return _docStaff; }
+            get { return _patient; }
         }
         #endregion
 
@@ -53,22 +54,17 @@ namespace MM.Dialogs
         private void InitData()
         {
             cboGender.SelectedIndex = 0;
-            cboWorkType.SelectedIndex = 0;
-            cboStaffType.SelectedIndex = 0;
-
-            //Load Speciality List
-            Result result = SpecialityBus.GetSpecialityList();
-            if (result.IsOK)
-                cboSpeciality.DataSource = result.QueryResult;
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.GetSpecialityList"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("SpecialityBus.GetSpecialityList"));
-            }
         }
 
         private bool CheckInfo()
         {
+            if (txtFileNum.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập mã bệnh án.");
+                txtFileNum.Focus();
+                return false;
+            }
+
             if (txtSurName.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập họ.");
@@ -90,10 +86,10 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (txtQualifications.Text.Trim() == string.Empty)
+            if (txtOccupation.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập bằng cấp.");
-                txtQualifications.Focus();
+                MsgBox.Show(this.Text, "Vui lòng nhập nghề nghiệp.");
+                txtOccupation.Focus();
                 return false;
             }
 
@@ -125,45 +121,61 @@ namespace MM.Dialogs
                 return false;
             }
 
+            string patientGUID = _isNew ? string.Empty : _patient.PatientGUID.ToString();
+            Result result = PatientBus.CheckPatientExistFileNum(patientGUID, txtFileNum.Text);
+
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
+                    MsgBox.Show(this.Text, "Mã bệnh án này đã tồn tại rồi. Vui lòng nhập mã khác.");
+                    txtFileNum.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.CheckPatientExistFileNum"));
+                return false;
+            }
+
             return true;
         }
 
-        private void DisplayInfo(DataRow drDocStaff)
+        private void DisplayInfo(DataRow drPatient)
         {
             try
             {
-                txtSurName.Text = drDocStaff["SurName"] as string;
-                txtMiddleName.Text = drDocStaff["MiddleName"] as string;
-                txtFirstName.Text = drDocStaff["FirstName"] as string;
-                txtKnownAs.Text = drDocStaff["KnownAs"] as string;
-                txtPreferredName.Text = drDocStaff["PreferredName"] as string;
-                cboGender.SelectedIndex = Convert.ToInt32(drDocStaff["Gender"]);
-                dtpkDOB.Value = Convert.ToDateTime(drDocStaff["Dob"]);
-                txtIdentityCard.Text = drDocStaff["IdentityCard"] as string;
-                txtQualifications.Text = drDocStaff["Qualifications"] as string;
-                cboSpeciality.SelectedValue = drDocStaff["SpecialityGUID"];
-                cboWorkType.SelectedIndex = Convert.ToInt32(drDocStaff["WorkType"]);
-                cboStaffType.SelectedIndex = Convert.ToInt32(drDocStaff["StaffType"]);
-                txtHomePhone.Text = drDocStaff["HomePhone"] as string;
-                txtWorkPhone.Text = drDocStaff["WorkPhone"] as string;
-                txtMobile.Text = drDocStaff["Mobile"] as string;
-                txtEmail.Text = drDocStaff["Email"] as string;
-                txtFax.Text = drDocStaff["Fax"] as string;
-                txtAddress.Text = drDocStaff["Address"] as string;
-                txtWard.Text = drDocStaff["Ward"] as string;
-                txtDistrict.Text = drDocStaff["District"] as string;
-                txtCity.Text = drDocStaff["City"] as string;
+                txtFileNum.Text = drPatient["FileNum"] as string;
+                txtSurName.Text = drPatient["SurName"] as string;
+                txtMiddleName.Text = drPatient["MiddleName"] as string;
+                txtFirstName.Text = drPatient["FirstName"] as string;
+                txtKnownAs.Text = drPatient["KnownAs"] as string;
+                txtPreferredName.Text = drPatient["PreferredName"] as string;
+                cboGender.SelectedIndex = Convert.ToInt32(drPatient["Gender"]);
+                dtpkDOB.Value = Convert.ToDateTime(drPatient["Dob"]);
+                txtIdentityCard.Text = drPatient["IdentityCard"] as string;
+                txtOccupation.Text = drPatient["Occupation"] as string;
+                txtHomePhone.Text = drPatient["HomePhone"] as string;
+                txtWorkPhone.Text = drPatient["WorkPhone"] as string;
+                txtMobile.Text = drPatient["Mobile"] as string;
+                txtEmail.Text = drPatient["Email"] as string;
+                txtFax.Text = drPatient["Fax"] as string;
+                txtAddress.Text = drPatient["Address"] as string;
+                txtWard.Text = drPatient["Ward"] as string;
+                txtDistrict.Text = drPatient["District"] as string;
+                txtCity.Text = drPatient["City"] as string;
 
-                _contact.ContactGUID = Guid.Parse(drDocStaff["ContactGUID"].ToString());
-                _docStaff.DocStaffGUID = Guid.Parse(drDocStaff["DocStaffGUID"].ToString());
-                _docStaff.ContactGUID = _contact.ContactGUID;
+                _contact.ContactGUID = Guid.Parse(drPatient["ContactGUID"].ToString());
+                _patient.PatientGUID = Guid.Parse(drPatient["PatientGUID"].ToString());
+                _patient.ContactGUID = _contact.ContactGUID;
             }
             catch (Exception e)
             {
                 MsgBox.Show(this.Text, e.Message);
                 Utility.WriteToTraceLog(e.Message);
             }
-            
+
         }
 
         private void SaveInfoAsThread()
@@ -183,7 +195,7 @@ namespace MM.Dialogs
             }
         }
 
-        private void SetDocStaffInfo()
+        private void SetPatientInfo()
         {
             try
             {
@@ -193,9 +205,9 @@ namespace MM.Dialogs
                 _contact.KnownAs = txtKnownAs.Text;
                 _contact.PreferredName = txtPreferredName.Text;
                 _contact.Archived = true;
-
                 _contact.Dob = dtpkDOB.Value;
                 _contact.IdentityCard = txtIdentityCard.Text;
+                _contact.Occupation = txtOccupation.Text;
                 _contact.HomePhone = txtHomePhone.Text;
                 _contact.WorkPhone = txtWorkPhone.Text;
                 _contact.Mobile = txtMobile.Text;
@@ -205,8 +217,8 @@ namespace MM.Dialogs
                 _contact.Ward = txtWard.Text;
                 _contact.District = txtDistrict.Text;
                 _contact.City = txtCity.Text;
-                _docStaff.Qualifications = txtQualifications.Text;
-                _docStaff.AvailableToWork = true;
+
+                _patient.FileNum = txtFileNum.Text;
 
                 if (_isNew)
                 {
@@ -221,10 +233,6 @@ namespace MM.Dialogs
 
                 MethodInvoker method = delegate
                 {
-                    _docStaff.SpecialityGUID = Guid.Parse(cboSpeciality.SelectedValue.ToString());
-                    _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
-                    _docStaff.StaffType = (byte)cboStaffType.SelectedIndex;
-                    _contact.Occupation = _docStaff.StaffType == 0 ? "Bác sĩ" : "Y tá";
                     _contact.Gender = (byte)cboGender.SelectedIndex;
                 };
 
@@ -240,19 +248,19 @@ namespace MM.Dialogs
 
         private void OnSaveInfo()
         {
-            SetDocStaffInfo();
-            Result result = DocStaffBus.InsertDocStaff(_contact, _docStaff);
+            SetPatientInfo();
+            Result result = PatientBus.InsertPatient(_contact, _patient);
             if (!result.IsOK)
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.InsertPatient"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.InsertPatient"));
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
         }
         #endregion
 
         #region Window Event Handlers
-        private void dlgAddDocStaff_FormClosing(object sender, FormClosingEventArgs e)
+        private void dlgAddPatient_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {

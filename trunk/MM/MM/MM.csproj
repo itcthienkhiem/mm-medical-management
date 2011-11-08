@@ -117,6 +117,12 @@
     <Compile Include="Dialogs\dlgAddDocStaff.Designer.cs">
       <DependentUpon>dlgAddDocStaff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPatient.Designer.cs">
+      <DependentUpon>dlgAddPatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddServices.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDocStaff.resx">
       <DependentUpon>dlgAddDocStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddPatient.resx">
+      <DependentUpon>dlgAddPatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddServices.resx">
       <DependentUpon>dlgAddServices.cs</DependentUpon>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using MM.Common;
 
 namespace MM
 {
@@ -19,9 +20,10 @@ namespace MM
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                
+                MsgBox.Show(Application.ProductName, e.Message);
+                Utility.WriteToTraceLog(e.Message);   
             }
         }
     }
