@@ -54,13 +54,15 @@ namespace MM.Controls
             docBar.Visible = true;
         }
 
-        public void AddDockContainerItem(string fileNum, string fullName)
+        private void AddDockContainerItem(string fileNum, string fullName)
         {
             if (_isFirst)
             {
                 dockContainerItem1.Name = fileNum;
                 dockContainerItem1.Text = string.Format("{0} - {1}", fileNum, fullName);
                 dockContainerItem1.Visible = true;
+                DevComponents.DotNetBar.TabControl tab = NewTabControl();
+                panelDockContainer1.Controls.Add(tab);
                 _isFirst = false;
             }
             else
@@ -76,11 +78,21 @@ namespace MM.Controls
                 item.Control = p;
                 docBar.Items.Add(item);
                 p.Dock = DockStyle.Fill;
+                DevComponents.DotNetBar.TabControl tab = NewTabControl();
+                p.Controls.Add(tab);
                 item.Selected = true;
             }
         }
 
-        public DockContainerItem GetDockContainerItem(string fileNum)
+        private DevComponents.DotNetBar.TabControl NewTabControl()
+        {
+            DevComponents.DotNetBar.TabControl tab = new DevComponents.DotNetBar.TabControl();
+            tab.Dock = DockStyle.Fill;
+            TabItem item = tab.CreateTab("Dịch vụ");
+            return tab;
+        }
+
+        private DockContainerItem GetDockContainerItem(string fileNum)
         {
             foreach (DockContainerItem item in docBar.Items)
             {
