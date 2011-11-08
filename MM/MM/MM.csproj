@@ -130,6 +130,12 @@
     <Compile Include="Controls\uSearchPatient.Designer.cs">
       <DependentUpon>uSearchPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uServiceHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uServiceHistory.Designer.cs">
+      <DependentUpon>uServiceHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uServicesList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -225,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSearchPatient.resx">
       <DependentUpon>uSearchPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uServiceHistory.resx">
+      <DependentUpon>uServiceHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uServicesList.resx">
       <DependentUpon>uServicesList.cs</DependentUpon>
