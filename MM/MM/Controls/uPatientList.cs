@@ -205,7 +205,8 @@ namespace MM.Controls
                 return;
             }
 
-
+            DataRow patientRow = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            base.RaiseOpentPatient(patientRow);
         }
 
         private void ClearHighLight()
