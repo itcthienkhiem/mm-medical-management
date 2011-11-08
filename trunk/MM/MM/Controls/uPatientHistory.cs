@@ -108,7 +108,24 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            
+            _isFirst = true;
+            List<DockContainerItem> deletedDocks = new List<DockContainerItem>();
+
+            foreach (DockContainerItem item in docBar.Items)
+            {
+                if (item.Tag != null && item.Tag.ToString() == "NotDelete")
+                {
+                    item.Name = "Name";
+                    continue;
+                }
+
+                deletedDocks.Add(item);
+            }
+
+            foreach (DockContainerItem item in deletedDocks)
+            {
+                docBar.Items.Remove(item);
+            }
         }
         #endregion
 
