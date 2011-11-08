@@ -143,6 +143,7 @@
             // 
             this.dockContainerItem1.Control = this.panelDockContainer1;
             this.dockContainerItem1.Name = "dockContainerItem1";
+            this.dockContainerItem1.Tag = "NotDelete";
             this.dockContainerItem1.Text = "dockContainerItem1";
             // 
             // dockSite1
