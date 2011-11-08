@@ -69,17 +69,18 @@ namespace MM.Controls
             {
                 DockContainerItem item = new DockContainerItem(fileNum, string.Format("{0} - {1}", fileNum, fullName));
                 PanelDockContainer p = new PanelDockContainer();
+                p.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Windows7;
                 p.Style.Alignment = System.Drawing.StringAlignment.Center;
                 p.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
                 p.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
                 p.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
                 p.Style.GradientAngle = 90;
-
-                item.Control = p;
-                docBar.Items.Add(item);
-                p.Dock = DockStyle.Fill;
                 DevComponents.DotNetBar.TabControl tab = NewTabControl();
                 p.Controls.Add(tab);
+
+                docBar.Controls.Add(p);
+                item.Control = p;
+                docBar.Items.Add(item);
                 item.Selected = true;
             }
         }
@@ -88,7 +89,9 @@ namespace MM.Controls
         {
             DevComponents.DotNetBar.TabControl tab = new DevComponents.DotNetBar.TabControl();
             tab.Dock = DockStyle.Fill;
-            TabItem item = tab.CreateTab("Dịch vụ");
+
+            //Service
+            TabItem item = tab.CreateTab("Dịch vụ đã sử dụng");
             return tab;
         }
 
@@ -101,6 +104,11 @@ namespace MM.Controls
             }
 
             return null;
+        }
+
+        public void ClearData()
+        {
+            
         }
         #endregion
 
