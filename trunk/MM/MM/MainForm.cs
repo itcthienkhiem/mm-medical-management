@@ -24,7 +24,10 @@ namespace MM
         public MainForm()
         {
             InitializeComponent();
-        }   
+            _uPatientList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+        }
+
+        
         #endregion
 
         #region UI Command
@@ -302,8 +305,15 @@ namespace MM
             dlg.DataSource = _uPatientList.DataSource;
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-
+                OnPatientHistory(dlg.PatientRow);
             }
+        }
+
+        private void OnPatientHistory(object patientRow)
+        {
+            this.Text = string.Format("{0} - Benh an", Application.ProductName);
+            ViewControl(_uPatientHistory);
+            _uPatientHistory.PatientRow = patientRow;
         }
 
         private void OnHelp()
@@ -336,6 +346,11 @@ namespace MM
         #endregion
 
         #region Window Event Handlers
+        private void _uPatientList_OnOpenPatient(object patientRow)
+        {
+            OnPatientHistory(patientRow);
+        }   
+
         private void MainForm_Load(object sender, EventArgs e)
         {            
             InitConfigAsThread();
