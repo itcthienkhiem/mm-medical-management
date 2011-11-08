@@ -32,25 +32,25 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.dgPatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contactGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,15 +106,6 @@
             this.panel1.Size = new System.Drawing.Size(806, 36);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dgPatient);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 36);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(806, 437);
-            this.panel2.TabIndex = 1;
-            // 
             // txtSearchPatient
             // 
             this.txtSearchPatient.Location = new System.Drawing.Point(80, 8);
@@ -122,6 +113,7 @@
             this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
             this.txtSearchPatient.TabIndex = 3;
             this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
+            this.txtSearchPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPatient_KeyDown);
             // 
             // label1
             // 
@@ -131,6 +123,15 @@
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Tìm bệnh án:";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dgPatient);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 36);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(806, 437);
+            this.panel2.TabIndex = 1;
             // 
             // dgPatient
             // 
@@ -215,6 +216,7 @@
             this.dgPatient.Size = new System.Drawing.Size(806, 437);
             this.dgPatient.TabIndex = 3;
             this.dgPatient.DoubleClick += new System.EventHandler(this.dgPatient_DoubleClick);
+            this.dgPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgPatient_KeyDown);
             // 
             // colChecked
             // 
@@ -231,6 +233,31 @@
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Visible = false;
             this.colChecked.Width = 40;
+            // 
+            // patientGUIDDataGridViewTextBoxColumn
+            // 
+            this.patientGUIDDataGridViewTextBoxColumn.DataPropertyName = "PatientGUID";
+            this.patientGUIDDataGridViewTextBoxColumn.HeaderText = "PatientGUID";
+            this.patientGUIDDataGridViewTextBoxColumn.Name = "patientGUIDDataGridViewTextBoxColumn";
+            this.patientGUIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.patientGUIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contactGUIDDataGridViewTextBoxColumn
+            // 
+            this.contactGUIDDataGridViewTextBoxColumn.DataPropertyName = "ContactGUID";
+            this.contactGUIDDataGridViewTextBoxColumn.HeaderText = "ContactGUID";
+            this.contactGUIDDataGridViewTextBoxColumn.Name = "contactGUIDDataGridViewTextBoxColumn";
+            this.contactGUIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contactGUIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fileNumDataGridViewTextBoxColumn
+            // 
+            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh án";
+            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
+            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Fullname
             // 
@@ -257,31 +284,6 @@
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
             this.GenderAsStr.Width = 70;
-            // 
-            // patientGUIDDataGridViewTextBoxColumn
-            // 
-            this.patientGUIDDataGridViewTextBoxColumn.DataPropertyName = "PatientGUID";
-            this.patientGUIDDataGridViewTextBoxColumn.HeaderText = "PatientGUID";
-            this.patientGUIDDataGridViewTextBoxColumn.Name = "patientGUIDDataGridViewTextBoxColumn";
-            this.patientGUIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.patientGUIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // contactGUIDDataGridViewTextBoxColumn
-            // 
-            this.contactGUIDDataGridViewTextBoxColumn.DataPropertyName = "ContactGUID";
-            this.contactGUIDDataGridViewTextBoxColumn.HeaderText = "ContactGUID";
-            this.contactGUIDDataGridViewTextBoxColumn.Name = "contactGUIDDataGridViewTextBoxColumn";
-            this.contactGUIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.contactGUIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fileNumDataGridViewTextBoxColumn
-            // 
-            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh án";
-            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
-            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // titleDataGridViewTextBoxColumn
             // 

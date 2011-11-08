@@ -49,8 +49,9 @@ namespace MM.Controls
             {
                 item.Visible = true;
                 item.Selected = true;
-                docBar.Visible = true;
             }
+
+            docBar.Visible = true;
         }
 
         public void AddDockContainerItem(string fileNum, string fullName)
