@@ -140,6 +140,13 @@ namespace MM.Controls
 
             dgPatient.DataSource = newDataSource;
         }
+
+        private void RaiseOpentPatient()
+        {
+            object patientRow = this.PatientRow;
+            if (patientRow != null)
+                base.RaiseOpentPatient(patientRow);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -150,9 +157,32 @@ namespace MM.Controls
 
         private void dgPatient_DoubleClick(object sender, EventArgs e)
         {
-            object patientRow = this.PatientRow;
-            if (patientRow != null)
-                base.RaiseOpentPatient(patientRow);
+            RaiseOpentPatient();
+        }
+
+        private void dgPatient_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                RaiseOpentPatient();
+        }
+
+        private void txtSearchPatient_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                dgPatient.Focus();
+
+                if (dgPatient.SelectedRows != null && dgPatient.SelectedRows.Count > 0)
+                {
+                    int index = dgPatient.SelectedRows[0].Index;
+                    if (index < dgPatient.RowCount - 1)
+                    {
+                        index++;
+                        dgPatient.CurrentCell = dgPatient.Rows[index].Cells[1];
+                        dgPatient.Rows[index].Selected = true;
+                    }
+                }
+            }
         }
         #endregion
     }
