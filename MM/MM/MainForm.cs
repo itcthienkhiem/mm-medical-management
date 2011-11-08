@@ -111,9 +111,9 @@ namespace MM
                 _uServicesList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uDocStaffList))
                 _uDocStaffList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uPatientList))
+                _uDocStaffList.DisplayAsThread();
         }
-
-
 
         private void SaveAppConfig()
         {
@@ -252,7 +252,8 @@ namespace MM
                 _uServicesList.ClearData();
             else if (ctrl.GetType() == typeof(uDocStaffList))
                 _uDocStaffList.ClearData();
-
+            else if (ctrl.GetType() == typeof(uPatientList))
+                _uPatientList.ClearData();
         }
 
         private void OnDoctorList()
@@ -292,6 +293,7 @@ namespace MM
         {
             this.Text = string.Format("{0} - Danh muc bệnh nhân", Application.ProductName);
             ViewControl(_uPatientList);
+            _uPatientList.DisplayAsThread();
         }
 
         private void OnOpenPatient()
