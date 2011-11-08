@@ -314,6 +314,7 @@ namespace MM
             this.Text = string.Format("{0} - Benh an", Application.ProductName);
             ViewControl(_uPatientHistory);
             _uPatientHistory.PatientRow = patientRow;
+            _uPatientHistory.Display();
         }
 
         private void OnHelp()

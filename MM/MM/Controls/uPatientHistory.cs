@@ -17,20 +17,13 @@ namespace MM.Controls
     {
         #region Members
         private object _patientRow = null;
+        private bool _isFirst = true;
         #endregion
 
         #region Constructor
         public uPatientHistory()
         {
             InitializeComponent();
-            //DockContainerItem item = new DockContainerItem("Name", "Name");
-            //PanelDockContainer p = new PanelDockContainer();
-            //TextBox text = new TextBox();
-            //p.Controls.Add(text);
-            //item.Control = p;
-            
-
-            //docBarManager.Items.Add(item);
         }
         #endregion
 
@@ -43,7 +36,59 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void Display()
+        {
+            DataRow row = _patientRow as DataRow;
+            string fileNum = row["FileNum"] as string;
+            string fullName = row["Fullname"] as string;
 
+            DockContainerItem item = GetDockContainerItem(fileNum);
+            if (item == null)
+                AddDockContainerItem(fileNum, fullName);
+            else
+            {
+                item.Visible = true;
+                item.Selected = true;
+                docBar.Visible = true;
+            }
+        }
+
+        public void AddDockContainerItem(string fileNum, string fullName)
+        {
+            if (_isFirst)
+            {
+                dockContainerItem1.Name = fileNum;
+                dockContainerItem1.Text = string.Format("{0} - {1}", fileNum, fullName);
+                dockContainerItem1.Visible = true;
+                _isFirst = false;
+            }
+            else
+            {
+                DockContainerItem item = new DockContainerItem(fileNum, string.Format("{0} - {1}", fileNum, fullName));
+                PanelDockContainer p = new PanelDockContainer();
+                p.Style.Alignment = System.Drawing.StringAlignment.Center;
+                p.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+                p.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+                p.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+                p.Style.GradientAngle = 90;
+
+                item.Control = p;
+                docBar.Items.Add(item);
+                p.Dock = DockStyle.Fill;
+                item.Selected = true;
+            }
+        }
+
+        public DockContainerItem GetDockContainerItem(string fileNum)
+        {
+            foreach (DockContainerItem item in docBar.Items)
+            {
+                if (item.Name.Trim().ToLower() == fileNum.Trim().ToLower())
+                    return item;
+            }
+
+            return null;
+        }
         #endregion
 
         #region Window Event Handlers
