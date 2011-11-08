@@ -112,7 +112,7 @@ namespace MM
             else if (ctrl.GetType() == typeof(uDocStaffList))
                 _uDocStaffList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uPatientList))
-                _uDocStaffList.DisplayAsThread();
+                _uPatientList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
