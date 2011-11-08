@@ -17,18 +17,29 @@ namespace MM.Controls
     public partial class uPatientList : uBase
     {
         #region Members
-
+        private Color _defaultBackColor;
+        private Color _highLightBackColor;
         #endregion
 
         #region Constructor
         public uPatientList()
         {
             InitializeComponent();
+            _highLightBackColor = Color.YellowGreen;
         }
         #endregion
 
         #region Properties
+        public object DataSource
+        {
+            get
+            {
+                if (dgPatient.RowCount <= 0)
+                    DisplayAsThread();
 
+                return dgPatient.DataSource;
+            }
+        }
         #endregion
 
         #region UI Command
@@ -185,6 +196,117 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần xóa.");
         }
+
+        private void OnOpentPatient()
+        {
+            if (dgPatient.SelectedRows == null || dgPatient.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.");
+                return;
+            }
+
+
+        }
+
+        private void ClearHighLight()
+        {
+            foreach (DataGridViewRow row in dgPatient.Rows)
+            {
+                row.DefaultCellStyle.BackColor = SystemColors.Window;
+            }
+        }
+
+        private void OnSearchPatient()
+        {
+            ClearHighLight();
+            if (txtSearchPatient.Text.Trim() == string.Empty)
+            {
+                if (dgPatient.RowCount > 0) dgPatient.Rows[0].Selected = true;
+                return;
+            }
+
+            string str = txtSearchPatient.Text.ToLower();
+
+            //Fullname
+            foreach (DataGridViewRow row in dgPatient.Rows)
+            {
+                DataRow r = (row.DataBoundItem as DataRowView).Row;
+                string fullName = (r["Fullname"] as string).ToLower();
+                if (fullName.IndexOf(str) >= 0 || str.IndexOf(fullName) >= 0)
+                {
+                    dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
+                    row.DefaultCellStyle.BackColor = _highLightBackColor;
+                    //row.Selected = true;
+                    return;
+                }
+            }
+
+            //File Num
+            foreach (DataGridViewRow row in dgPatient.Rows)
+            {
+                DataRow r = (row.DataBoundItem as DataRowView).Row;
+                string fileNum = (r["FileNum"] as string).ToLower();
+                if (fileNum.IndexOf(str) >= 0 || str.IndexOf(fileNum) >= 0)
+                {
+                    dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
+                    row.DefaultCellStyle.BackColor = _highLightBackColor;
+                    //row.Selected = true;
+                    return;
+                }
+            }
+
+            //Home Phone
+            foreach (DataGridViewRow row in dgPatient.Rows)
+            {
+                DataRow r = (row.DataBoundItem as DataRowView).Row;
+                if (r["HomePhone"] != null && r["HomePhone"].ToString().Trim() != string.Empty)
+                {
+                    string homePhone = (r["HomePhone"] as string).ToLower();
+                    if (homePhone.IndexOf(str) >= 0 || str.IndexOf(homePhone) >= 0)
+                    {
+                        dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
+                        row.DefaultCellStyle.BackColor = _highLightBackColor;
+                        //row.Selected = true;
+                        return;
+                    }
+                }
+            }
+
+            //Work Phone
+            foreach (DataGridViewRow row in dgPatient.Rows)
+            {
+                DataRow r = (row.DataBoundItem as DataRowView).Row;
+                if (r["WorkPhone"] != null && r["WorkPhone"].ToString().Trim() != string.Empty)
+                {
+                    string workPhone = (r["WorkPhone"] as string).ToLower();
+                    if (workPhone.IndexOf(str) >= 0 || str.IndexOf(workPhone) >= 0)
+                    {
+                        dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
+                        row.DefaultCellStyle.BackColor = _highLightBackColor;
+                        //row.Selected = true;
+                        return;
+                    }
+                }
+            }
+
+            //Mobie
+            foreach (DataGridViewRow row in dgPatient.Rows)
+            {
+                DataRow r = (row.DataBoundItem as DataRowView).Row;
+                if (r["Mobile"] != null && r["Mobile"].ToString().Trim() != string.Empty)
+                {
+                    string mobile = (r["Mobile"] as string).ToLower();
+                    if (mobile.IndexOf(str) >= 0 || str.IndexOf(mobile) >= 0)
+                    {
+                        dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
+                        row.DefaultCellStyle.BackColor = _highLightBackColor;
+                        //row.Selected = true;
+                        return;
+                    }
+                }
+            }
+
+        }
         #endregion
 
         #region Window Event Handlers
@@ -205,7 +327,7 @@ namespace MM.Controls
 
         private void btnOpenPatient_Click(object sender, EventArgs e)
         {
-
+            OnOpentPatient();
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -222,6 +344,12 @@ namespace MM.Controls
         {
             OnEditPatient();
         }
+
+        private void txtSearchPatient_TextChanged(object sender, EventArgs e)
+        {
+            OnSearchPatient();
+        }
+
         #endregion
 
         #region Working Thread

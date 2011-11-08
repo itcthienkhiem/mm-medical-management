@@ -298,7 +298,12 @@ namespace MM
 
         private void OnOpenPatient()
         {
+            dlgOpentPatient dlg = new dlgOpentPatient();
+            dlg.DataSource = _uPatientList.DataSource;
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
 
+            }
         }
 
         private void OnHelp()

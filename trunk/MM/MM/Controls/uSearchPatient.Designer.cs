@@ -1,6 +1,6 @@
 ﻿namespace MM.Controls
 {
-    partial class uPatientList
+    partial class uSearchPatient
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,23 +32,25 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtSearchPatient = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.dgPatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,40 +90,47 @@
             this.dateDeceasedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastVisitGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnOpenPatient = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSearchPatient = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel3.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel3
+            // panel1
             // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgPatient);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 39);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1101, 365);
-            this.panel3.TabIndex = 1;
+            this.panel1.Controls.Add(this.txtSearchPatient);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(806, 36);
+            this.panel1.TabIndex = 0;
             // 
-            // chkChecked
+            // panel2
             // 
-            this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(44, 5);
-            this.chkChecked.Name = "chkChecked";
-            this.chkChecked.Size = new System.Drawing.Size(15, 14);
-            this.chkChecked.TabIndex = 3;
-            this.chkChecked.UseVisualStyleBackColor = true;
-            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
+            this.panel2.Controls.Add(this.dgPatient);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 36);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(806, 437);
+            this.panel2.TabIndex = 1;
+            // 
+            // txtSearchPatient
+            // 
+            this.txtSearchPatient.Location = new System.Drawing.Point(80, 8);
+            this.txtSearchPatient.Name = "txtSearchPatient";
+            this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
+            this.txtSearchPatient.TabIndex = 3;
+            this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Tìm bệnh án:";
             // 
             // dgPatient
             // 
@@ -203,9 +212,9 @@
             this.dgPatient.ReadOnly = true;
             this.dgPatient.RowHeadersWidth = 30;
             this.dgPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPatient.Size = new System.Drawing.Size(1101, 365);
-            this.dgPatient.TabIndex = 2;
-            this.dgPatient.DoubleClick += new System.EventHandler(this.dgDocStaff_DoubleClick);
+            this.dgPatient.Size = new System.Drawing.Size(806, 437);
+            this.dgPatient.TabIndex = 3;
+            this.dgPatient.DoubleClick += new System.EventHandler(this.dgPatient_DoubleClick);
             // 
             // colChecked
             // 
@@ -220,32 +229,8 @@
             this.colChecked.ReadOnly = true;
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Visible = false;
             this.colChecked.Width = 40;
-            // 
-            // patientGUIDDataGridViewTextBoxColumn
-            // 
-            this.patientGUIDDataGridViewTextBoxColumn.DataPropertyName = "PatientGUID";
-            this.patientGUIDDataGridViewTextBoxColumn.HeaderText = "PatientGUID";
-            this.patientGUIDDataGridViewTextBoxColumn.Name = "patientGUIDDataGridViewTextBoxColumn";
-            this.patientGUIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.patientGUIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // contactGUIDDataGridViewTextBoxColumn
-            // 
-            this.contactGUIDDataGridViewTextBoxColumn.DataPropertyName = "ContactGUID";
-            this.contactGUIDDataGridViewTextBoxColumn.HeaderText = "ContactGUID";
-            this.contactGUIDDataGridViewTextBoxColumn.Name = "contactGUIDDataGridViewTextBoxColumn";
-            this.contactGUIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.contactGUIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fileNumDataGridViewTextBoxColumn
-            // 
-            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh án";
-            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
-            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Fullname
             // 
@@ -272,6 +257,31 @@
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
             this.GenderAsStr.Width = 70;
+            // 
+            // patientGUIDDataGridViewTextBoxColumn
+            // 
+            this.patientGUIDDataGridViewTextBoxColumn.DataPropertyName = "PatientGUID";
+            this.patientGUIDDataGridViewTextBoxColumn.HeaderText = "PatientGUID";
+            this.patientGUIDDataGridViewTextBoxColumn.Name = "patientGUIDDataGridViewTextBoxColumn";
+            this.patientGUIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.patientGUIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contactGUIDDataGridViewTextBoxColumn
+            // 
+            this.contactGUIDDataGridViewTextBoxColumn.DataPropertyName = "ContactGUID";
+            this.contactGUIDDataGridViewTextBoxColumn.HeaderText = "ContactGUID";
+            this.contactGUIDDataGridViewTextBoxColumn.Name = "contactGUIDDataGridViewTextBoxColumn";
+            this.contactGUIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contactGUIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fileNumDataGridViewTextBoxColumn
+            // 
+            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh án";
+            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
+            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // titleDataGridViewTextBoxColumn
             // 
@@ -593,109 +603,19 @@
             // 
             this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnOpenPatient);
-            this.panel2.Controls.Add(this.btnDelete);
-            this.panel2.Controls.Add(this.btnEdit);
-            this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 404);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1101, 36);
-            this.panel2.TabIndex = 5;
-            // 
-            // btnOpenPatient
-            // 
-            this.btnOpenPatient.Image = global::MM.Properties.Resources.folder_customer_icon__1_;
-            this.btnOpenPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenPatient.Location = new System.Drawing.Point(243, 5);
-            this.btnOpenPatient.Name = "btnOpenPatient";
-            this.btnOpenPatient.Size = new System.Drawing.Size(97, 25);
-            this.btnOpenPatient.TabIndex = 9;
-            this.btnOpenPatient.Text = "    &Mở bệnh án";
-            this.btnOpenPatient.UseVisualStyleBackColor = true;
-            this.btnOpenPatient.Click += new System.EventHandler(this.btnOpenPatient_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::MM.Properties.Resources.del;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(164, 5);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
-            this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "    &Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(85, 5);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
-            this.btnEdit.TabIndex = 7;
-            this.btnEdit.Text = "    &Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::MM.Properties.Resources.add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(6, 5);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
-            this.btnAdd.TabIndex = 6;
-            this.btnAdd.Text = "    &Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.txtSearchPatient);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1101, 39);
-            this.panel1.TabIndex = 0;
-            // 
-            // txtSearchPatient
-            // 
-            this.txtSearchPatient.Location = new System.Drawing.Point(84, 9);
-            this.txtSearchPatient.Name = "txtSearchPatient";
-            this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
-            this.txtSearchPatient.TabIndex = 1;
-            this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tìm bệnh án:";
-            // 
-            // uPatientList
+            // uSearchPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "uPatientList";
-            this.Size = new System.Drawing.Size(1101, 440);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.Name = "uSearchPatient";
+            this.Size = new System.Drawing.Size(806, 473);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -704,14 +624,10 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnOpenPatient;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnAdd;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dgPatient;
+        private System.Windows.Forms.TextBox txtSearchPatient;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource patientViewBindingSource;
-        private System.Windows.Forms.CheckBox chkChecked;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dgPatient;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientGUIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contactGUIDDataGridViewTextBoxColumn;
@@ -757,7 +673,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastSeenDocGUIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDeceasedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastVisitGUIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TextBox txtSearchPatient;
-        private System.Windows.Forms.Label label1;
     }
 }

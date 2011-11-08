@@ -14,6 +14,7 @@ namespace MM.Controls
     #region Delegate Events
     public delegate void ColorClickedHandler(Color color);
     public delegate void DrawTypeClickedHandler(DrawType type, int width);
+    public delegate void OpenPatientHandler(object patientRow);
     #endregion
 
     public partial class uBase : UserControl
@@ -21,6 +22,7 @@ namespace MM.Controls
         #region Events
         public event ColorClickedHandler OnColorClicked;
         public event DrawTypeClickedHandler OnDrawTypeClicked;
+        public event OpenPatientHandler OnOpenPatient;
         #endregion
 
         #region Members
@@ -45,6 +47,12 @@ namespace MM.Controls
         {
             if (OnDrawTypeClicked != null)
                 OnDrawTypeClicked(type, width);
+        }
+
+        public void RaiseOpentPatient(object patientRow)
+        {
+            if (OnOpenPatient != null)
+                OnOpenPatient(patientRow);
         }
         #endregion
 
