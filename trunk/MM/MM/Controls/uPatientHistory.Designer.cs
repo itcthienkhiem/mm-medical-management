@@ -65,7 +65,7 @@
             this._dotNetBarManager.ParentForm = null;
             this._dotNetBarManager.ParentUserControl = this;
             this._dotNetBarManager.RightDockSite = this.dockSite2;
-            this._dotNetBarManager.Style = DevComponents.DotNetBar.eDotNetBarStyle.Windows7;
+            this._dotNetBarManager.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
             this._dotNetBarManager.ToolbarBottomDockSite = this.dockSite8;
             this._dotNetBarManager.ToolbarLeftDockSite = this.dockSite5;
             this._dotNetBarManager.ToolbarRightDockSite = this.dockSite6;
@@ -121,14 +121,14 @@
             this.docBar.SelectedDockTab = 0;
             this.docBar.Size = new System.Drawing.Size(747, 536);
             this.docBar.Stretch = true;
-            this.docBar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Windows7;
+            this.docBar.Style = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
             this.docBar.TabIndex = 0;
             this.docBar.TabNavigation = true;
             this.docBar.TabStop = false;
             // 
             // panelDockContainer1
             // 
-            this.panelDockContainer1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Windows7;
+            this.panelDockContainer1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.VS2005;
             this.panelDockContainer1.Location = new System.Drawing.Point(3, 28);
             this.panelDockContainer1.Name = "panelDockContainer1";
             this.panelDockContainer1.Size = new System.Drawing.Size(741, 505);
