@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uPatientHistory = new MM.Controls.uPatientHistory();
+            this._uPatientList = new MM.Controls.uPatientList();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._mainToolbar = new System.Windows.Forms.ToolStrip();
@@ -65,7 +67,6 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uPatientList = new MM.Controls.uPatientList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -76,10 +77,21 @@
             // 
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uPatientHistory);
             this._mainPanel.Controls.Add(this._uPatientList);
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uPatientHistory
+            // 
+            resources.ApplyResources(this._uPatientHistory, "_uPatientHistory");
+            this._uPatientHistory.Name = "_uPatientHistory";
+            // 
+            // _uPatientList
+            // 
+            resources.ApplyResources(this._uPatientList, "_uPatientList");
+            this._uPatientList.Name = "_uPatientList";
             // 
             // _uDocStaffList
             // 
@@ -346,11 +358,6 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // _uPatientList
-            // 
-            resources.ApplyResources(this._uPatientList, "_uPatientList");
-            this._uPatientList.Name = "_uPatientList";
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -414,6 +421,7 @@
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private Controls.uDocStaffList _uDocStaffList;
         private Controls.uPatientList _uPatientList;
+        private Controls.uPatientHistory _uPatientHistory;
 
 
 

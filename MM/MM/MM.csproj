@@ -44,9 +44,22 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.Design, Version=9.4.0.0, Culture=neutral, PublicKeyToken=3caa4ad0ba35cf8d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\DevComponents.DotNetBar.Design.dll</HintPath>
+    </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.Instrumentation, Version=9.4.0.0, Culture=neutral, PublicKeyToken=105a14414ec031c3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\DevComponents.Instrumentation.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.Instrumentation.Design, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d0972e594baf5baf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\DevComponents.Instrumentation.Design.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -99,11 +112,23 @@
     <Compile Include="Controls\uPanelDrawType.Designer.cs">
       <DependentUpon>uPanelDrawType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPatientHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPatientHistory.Designer.cs">
+      <DependentUpon>uPatientHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPatientList.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\uPatientList.Designer.cs">
       <DependentUpon>uPatientList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uSearchPatient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uSearchPatient.Designer.cs">
+      <DependentUpon>uSearchPatient.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\uServicesList.cs">
       <SubType>UserControl</SubType>
@@ -153,6 +178,12 @@
     <Compile Include="Dialogs\dlgMessage.Designer.cs">
       <DependentUpon>dlgMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgOpentPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgOpentPatient.Designer.cs">
+      <DependentUpon>dlgOpentPatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgWaiting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,8 +217,14 @@
     <EmbeddedResource Include="Controls\uPanelDrawType.resx">
       <DependentUpon>uPanelDrawType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPatientHistory.resx">
+      <DependentUpon>uPatientHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPatientList.resx">
       <DependentUpon>uPatientList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uSearchPatient.resx">
+      <DependentUpon>uSearchPatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uServicesList.resx">
       <DependentUpon>uServicesList.cs</DependentUpon>
@@ -209,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgMessage.resx">
       <DependentUpon>dlgMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgOpentPatient.resx">
+      <DependentUpon>dlgOpentPatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgWaiting.resx">
       <DependentUpon>dlgWaiting.cs</DependentUpon>

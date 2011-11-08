@@ -50,6 +50,7 @@
     <Compile Include="DocStaffBus.cs" />
     <Compile Include="PatientBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceHistoryBus.cs" />
     <Compile Include="ServicesBus.cs" />
     <Compile Include="SpecialityBus.cs" />
   </ItemGroup>

@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using DevComponents.DotNetBar;
+
+namespace MM.Controls
+{
+    public partial class uPatientHistory : uBase
+    {
+        #region Members
+
+        #endregion
+
+        #region Constructor
+        public uPatientHistory()
+        {
+            InitializeComponent();
+            //DockContainerItem item = new DockContainerItem("Name", "Name");
+            //PanelDockContainer p = new PanelDockContainer();
+            //TextBox text = new TextBox();
+            //p.Controls.Add(text);
+            //item.Control = p;
+            
+
+            //docBarManager.Items.Add(item);
+        }
+        #endregion
+
+        #region Properties
+
+        #endregion
+
+        #region UI Command
+
+        #endregion
+
+        #region Window Event Handlers
+
+        #endregion
+    }
+}
