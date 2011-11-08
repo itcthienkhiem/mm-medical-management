@@ -88,10 +88,21 @@ namespace MM.Controls
         private DevComponents.DotNetBar.TabControl NewTabControl()
         {
             DevComponents.DotNetBar.TabControl tab = new DevComponents.DotNetBar.TabControl();
+            TabControlPanel p = new TabControlPanel();
+            tab.Controls.Add(p);
+            tab.Style = eTabStripStyle.VS2005;
             tab.Dock = DockStyle.Fill;
 
             //Service
             TabItem item = tab.CreateTab("Dịch vụ đã sử dụng");
+            item.AttachedControl = p;
+            p.Dock = System.Windows.Forms.DockStyle.Fill;
+
+            uServiceHistory uServiceHistory = new uServiceHistory();
+            uServiceHistory.PatientRow = _patientRow;
+            p.Controls.Add(uServiceHistory);
+            uServiceHistory.Dock = DockStyle.Fill;
+            uServiceHistory.DisplayAsThread();
             return tab;
         }
 
