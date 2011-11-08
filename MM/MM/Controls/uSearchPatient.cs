@@ -178,11 +178,14 @@ namespace MM.Controls
                     if (index < dgPatient.RowCount - 1)
                     {
                         index++;
-                        dgPatient.CurrentCell = dgPatient.Rows[index].Cells[1];
+                        dgPatient.CurrentCell = dgPatient[3, index];
                         dgPatient.Rows[index].Selected = true;
                     }
                 }
             }
+
+            if (e.KeyCode == Keys.Enter)
+                RaiseOpentPatient();
         }
         #endregion
     }

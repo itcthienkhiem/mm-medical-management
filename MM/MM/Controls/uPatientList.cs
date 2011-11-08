@@ -351,6 +351,40 @@ namespace MM.Controls
             OnSearchPatient();
         }
 
+        private void txtSearchPatient_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                dgPatient.Focus();
+
+                if (dgPatient.SelectedRows != null && dgPatient.SelectedRows.Count > 0)
+                {
+                    int index = dgPatient.SelectedRows[0].Index;
+                    if (index < dgPatient.RowCount - 1)
+                    {
+                        index++;
+                        dgPatient.CurrentCell = dgPatient[3, index];
+                        dgPatient.Rows[index].Selected = true;
+                    }
+                }
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                dgPatient.Focus();
+
+                if (dgPatient.SelectedRows != null && dgPatient.SelectedRows.Count > 0)
+                {
+                    int index = dgPatient.SelectedRows[0].Index;
+                    if (index > 0)
+                    {
+                        index--;
+                        dgPatient.CurrentCell = dgPatient[3, index];
+                        dgPatient.Rows[index].Selected = true;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -372,5 +406,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

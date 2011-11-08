@@ -670,6 +670,7 @@
             this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
             this.txtSearchPatient.TabIndex = 1;
             this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
+            this.txtSearchPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPatient_KeyDown);
             // 
             // label1
             // 
