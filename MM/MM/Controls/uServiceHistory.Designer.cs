@@ -29,27 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.lbToDate = new System.Windows.Forms.Label();
             this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.chkChecked = new System.Windows.Forms.CheckBox();
-            this.dgServiceHistory = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lbTotalPrice = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.dgServiceHistory = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lbTotalPrice = new System.Windows.Forms.Label();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ServiceHistoryGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,22 +61,21 @@
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdbyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.updatedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.updatedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deletedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deletedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.availableToWorkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).BeginInit();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,6 +91,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(814, 60);
             this.panel1.TabIndex = 0;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(340, 29);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(64, 21);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "    &Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dtpkToDate
             // 
@@ -158,105 +171,6 @@
             this.panel2.Size = new System.Drawing.Size(814, 37);
             this.panel2.TabIndex = 1;
             // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgServiceHistory);
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 60);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(814, 371);
-            this.panel3.TabIndex = 2;
-            // 
-            // chkChecked
-            // 
-            this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
-            this.chkChecked.Name = "chkChecked";
-            this.chkChecked.Size = new System.Drawing.Size(15, 14);
-            this.chkChecked.TabIndex = 2;
-            this.chkChecked.UseVisualStyleBackColor = true;
-            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
-            // 
-            // dgServiceHistory
-            // 
-            this.dgServiceHistory.AllowUserToAddRows = false;
-            this.dgServiceHistory.AllowUserToDeleteRows = false;
-            this.dgServiceHistory.AllowUserToOrderColumns = true;
-            this.dgServiceHistory.AutoGenerateColumns = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgServiceHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dgServiceHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgServiceHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colChecked,
-            this.ServiceHistoryGUID,
-            this.patientGUIDDataGridViewTextBoxColumn,
-            this.docStaffGUIDDataGridViewTextBoxColumn,
-            this.serviceGUIDDataGridViewTextBoxColumn,
-            this.codeDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.fixedPriceDataGridViewTextBoxColumn,
-            this.fullnameDataGridViewTextBoxColumn,
-            this.noteDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn,
-            this.createdDateDataGridViewTextBoxColumn,
-            this.createdbyDataGridViewTextBoxColumn,
-            this.updatedDateDataGridViewTextBoxColumn,
-            this.updatedByDataGridViewTextBoxColumn,
-            this.deletedDateDataGridViewTextBoxColumn,
-            this.deletedByDataGridViewTextBoxColumn,
-            this.availableToWorkDataGridViewTextBoxColumn});
-            this.dgServiceHistory.DataSource = this.serviceHistoryViewBindingSource;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgServiceHistory.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dgServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgServiceHistory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgServiceHistory.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgServiceHistory.HighlightSelectedColumnHeaders = false;
-            this.dgServiceHistory.Location = new System.Drawing.Point(0, 0);
-            this.dgServiceHistory.MultiSelect = false;
-            this.dgServiceHistory.Name = "dgServiceHistory";
-            this.dgServiceHistory.ReadOnly = true;
-            this.dgServiceHistory.RowHeadersWidth = 30;
-            this.dgServiceHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgServiceHistory.Size = new System.Drawing.Size(810, 341);
-            this.dgServiceHistory.TabIndex = 1;
-            this.dgServiceHistory.DoubleClick += new System.EventHandler(this.dgServiceHistory_DoubleClick);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.lbTotalPrice);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 341);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(810, 26);
-            this.panel4.TabIndex = 0;
-            // 
-            // lbTotalPrice
-            // 
-            this.lbTotalPrice.AutoSize = true;
-            this.lbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalPrice.ForeColor = System.Drawing.Color.Red;
-            this.lbTotalPrice.Location = new System.Drawing.Point(17, 7);
-            this.lbTotalPrice.Name = "lbTotalPrice";
-            this.lbTotalPrice.Size = new System.Drawing.Size(55, 13);
-            this.lbTotalPrice.TabIndex = 0;
-            this.lbTotalPrice.Text = "Tổng tiền:";
-            // 
             // btnDelete
             // 
             this.btnDelete.Image = global::MM.Properties.Resources.del;
@@ -293,9 +207,108 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgServiceHistory);
+            this.panel3.Controls.Add(this.panel4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 60);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(814, 371);
+            this.panel3.TabIndex = 2;
+            // 
+            // chkChecked
+            // 
+            this.chkChecked.AutoSize = true;
+            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Name = "chkChecked";
+            this.chkChecked.Size = new System.Drawing.Size(15, 14);
+            this.chkChecked.TabIndex = 2;
+            this.chkChecked.UseVisualStyleBackColor = true;
+            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
+            // 
+            // dgServiceHistory
+            // 
+            this.dgServiceHistory.AllowUserToAddRows = false;
+            this.dgServiceHistory.AllowUserToDeleteRows = false;
+            this.dgServiceHistory.AllowUserToOrderColumns = true;
+            this.dgServiceHistory.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgServiceHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgServiceHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgServiceHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colChecked,
+            this.ServiceHistoryGUID,
+            this.patientGUIDDataGridViewTextBoxColumn,
+            this.docStaffGUIDDataGridViewTextBoxColumn,
+            this.serviceGUIDDataGridViewTextBoxColumn,
+            this.codeDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.fixedPriceDataGridViewTextBoxColumn,
+            this.fullnameDataGridViewTextBoxColumn,
+            this.createdDateDataGridViewTextBoxColumn,
+            this.createdbyDataGridViewTextBoxColumn,
+            this.noteDataGridViewTextBoxColumn,
+            this.priceDataGridViewTextBoxColumn,
+            this.updatedDateDataGridViewTextBoxColumn,
+            this.updatedByDataGridViewTextBoxColumn,
+            this.deletedDateDataGridViewTextBoxColumn,
+            this.deletedByDataGridViewTextBoxColumn,
+            this.availableToWorkDataGridViewTextBoxColumn});
+            this.dgServiceHistory.DataSource = this.serviceHistoryViewBindingSource;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgServiceHistory.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgServiceHistory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgServiceHistory.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgServiceHistory.HighlightSelectedColumnHeaders = false;
+            this.dgServiceHistory.Location = new System.Drawing.Point(0, 0);
+            this.dgServiceHistory.MultiSelect = false;
+            this.dgServiceHistory.Name = "dgServiceHistory";
+            this.dgServiceHistory.ReadOnly = true;
+            this.dgServiceHistory.RowHeadersWidth = 30;
+            this.dgServiceHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgServiceHistory.Size = new System.Drawing.Size(810, 341);
+            this.dgServiceHistory.TabIndex = 1;
+            this.dgServiceHistory.DoubleClick += new System.EventHandler(this.dgServiceHistory_DoubleClick);
+            // 
             // serviceHistoryViewBindingSource
             // 
             this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.lbTotalPrice);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 341);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(810, 26);
+            this.panel4.TabIndex = 0;
+            // 
+            // lbTotalPrice
+            // 
+            this.lbTotalPrice.AutoSize = true;
+            this.lbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalPrice.ForeColor = System.Drawing.Color.Red;
+            this.lbTotalPrice.Location = new System.Drawing.Point(17, 7);
+            this.lbTotalPrice.Name = "lbTotalPrice";
+            this.lbTotalPrice.Size = new System.Drawing.Size(55, 13);
+            this.lbTotalPrice.TabIndex = 0;
+            this.lbTotalPrice.Text = "Tổng tiền:";
             // 
             // colChecked
             // 
@@ -303,8 +316,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.ReadOnly = true;
@@ -347,8 +360,8 @@
             // codeDataGridViewTextBoxColumn
             // 
             this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.codeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.codeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.codeDataGridViewTextBoxColumn.HeaderText = "Mã DV";
             this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
             this.codeDataGridViewTextBoxColumn.ReadOnly = true;
@@ -364,10 +377,10 @@
             // fixedPriceDataGridViewTextBoxColumn
             // 
             this.fixedPriceDataGridViewTextBoxColumn.DataPropertyName = "FixedPrice";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = null;
-            this.fixedPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.fixedPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.fixedPriceDataGridViewTextBoxColumn.HeaderText = "Giá";
             this.fixedPriceDataGridViewTextBoxColumn.Name = "fixedPriceDataGridViewTextBoxColumn";
             this.fixedPriceDataGridViewTextBoxColumn.ReadOnly = true;
@@ -379,6 +392,27 @@
             this.fullnameDataGridViewTextBoxColumn.Name = "fullnameDataGridViewTextBoxColumn";
             this.fullnameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fullnameDataGridViewTextBoxColumn.Width = 180;
+            // 
+            // createdDateDataGridViewTextBoxColumn
+            // 
+            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle5.NullValue = null;
+            this.createdDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.createdDateDataGridViewTextBoxColumn.HeaderText = "Ngày tạo";
+            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
+            this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.createdDateDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // createdbyDataGridViewTextBoxColumn
+            // 
+            this.createdbyDataGridViewTextBoxColumn.DataPropertyName = "Createdby";
+            this.createdbyDataGridViewTextBoxColumn.HeaderText = "Tạo bởi";
+            this.createdbyDataGridViewTextBoxColumn.Name = "createdbyDataGridViewTextBoxColumn";
+            this.createdbyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.createdbyDataGridViewTextBoxColumn.Visible = false;
+            this.createdbyDataGridViewTextBoxColumn.Width = 150;
             // 
             // noteDataGridViewTextBoxColumn
             // 
@@ -395,22 +429,6 @@
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             this.priceDataGridViewTextBoxColumn.ReadOnly = true;
             this.priceDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // createdDateDataGridViewTextBoxColumn
-            // 
-            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
-            this.createdDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate";
-            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
-            this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.createdDateDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // createdbyDataGridViewTextBoxColumn
-            // 
-            this.createdbyDataGridViewTextBoxColumn.DataPropertyName = "Createdby";
-            this.createdbyDataGridViewTextBoxColumn.HeaderText = "Createdby";
-            this.createdbyDataGridViewTextBoxColumn.Name = "createdbyDataGridViewTextBoxColumn";
-            this.createdbyDataGridViewTextBoxColumn.ReadOnly = true;
-            this.createdbyDataGridViewTextBoxColumn.Visible = false;
             // 
             // updatedDateDataGridViewTextBoxColumn
             // 
@@ -452,18 +470,6 @@
             this.availableToWorkDataGridViewTextBoxColumn.ReadOnly = true;
             this.availableToWorkDataGridViewTextBoxColumn.Visible = false;
             // 
-            // btnSearch
-            // 
-            this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(340, 29);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(64, 21);
-            this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "    &Tìm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
             // uServiceHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,9 +485,9 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -504,6 +510,7 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgServiceHistory;
         private System.Windows.Forms.CheckBox chkChecked;
         private System.Windows.Forms.BindingSource serviceHistoryViewBindingSource;
+        private System.Windows.Forms.Button btnSearch;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn ServiceHistoryGUID;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientGUIDDataGridViewTextBoxColumn;
@@ -513,15 +520,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fixedPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdbyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn updatedDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn updatedByDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deletedDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deletedByDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn availableToWorkDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnSearch;
     }
 }

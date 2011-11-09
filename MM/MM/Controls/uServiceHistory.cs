@@ -60,6 +60,7 @@ namespace MM.Controls
                 newRow["Fullname"] = dlg.FullName;
                 newRow["Name"] = dlg.ServiceName;
                 newRow["Code"] = dlg.ServiceCode;
+                newRow["CreatedDate"] = dlg.ServiceHistory.CreatedDate;
                 dt.Rows.Add(newRow);
                 CalculateTotalPrice();
             }
@@ -87,6 +88,7 @@ namespace MM.Controls
                 drServiceHistory["Fullname"] = dlg.FullName;
                 drServiceHistory["Name"] = dlg.ServiceName;
                 drServiceHistory["Code"] = dlg.ServiceCode;
+                drServiceHistory["CreatedDate"] = dlg.ServiceHistory.CreatedDate;
                 CalculateTotalPrice();
             }
         }
