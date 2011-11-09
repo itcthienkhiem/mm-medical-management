@@ -101,7 +101,7 @@ namespace MM.Controls
                 newRow["District"] = dlg.Contact.District;
                 newRow["City"] = dlg.Contact.City;
                 newRow["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
-                newRow["FullAddress"] = string.Format("{0} {1} {2} {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
+                newRow["FullAddress"] = string.Format("{0}, {1}, {2}, {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
 
                 newRow["Qualifications"] = dlg.DocStaff.Qualifications;
                 newRow["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
@@ -142,7 +142,7 @@ namespace MM.Controls
                 drDocStaff["District"] = dlg.Contact.District;
                 drDocStaff["City"] = dlg.Contact.City;
                 drDocStaff["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
-                drDocStaff["FullAddress"] = string.Format("{0} {1} {2} {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
+                drDocStaff["FullAddress"] = string.Format("{0}, {1}, {2}, {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
 
                 drDocStaff["Qualifications"] = dlg.DocStaff.Qualifications;
                 drDocStaff["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
