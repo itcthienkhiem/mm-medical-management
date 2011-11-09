@@ -49,9 +49,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgServiceHistory = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
             this.lbTotalPrice = new System.Windows.Forms.Label();
+            this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ServiceHistoryGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +62,7 @@
             this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdbyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,8 +75,8 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -255,6 +256,7 @@
             this.fixedPriceDataGridViewTextBoxColumn,
             this.fullnameDataGridViewTextBoxColumn,
             this.createdDateDataGridViewTextBoxColumn,
+            this.DocStaffFullname,
             this.createdbyDataGridViewTextBoxColumn,
             this.noteDataGridViewTextBoxColumn,
             this.priceDataGridViewTextBoxColumn,
@@ -286,10 +288,6 @@
             this.dgServiceHistory.TabIndex = 1;
             this.dgServiceHistory.DoubleClick += new System.EventHandler(this.dgServiceHistory_DoubleClick);
             // 
-            // serviceHistoryViewBindingSource
-            // 
-            this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
-            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.lbTotalPrice);
@@ -309,6 +307,10 @@
             this.lbTotalPrice.Size = new System.Drawing.Size(55, 13);
             this.lbTotalPrice.TabIndex = 0;
             this.lbTotalPrice.Text = "Tổng tiền:";
+            // 
+            // serviceHistoryViewBindingSource
+            // 
+            this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
             // 
             // colChecked
             // 
@@ -405,6 +407,14 @@
             this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
             this.createdDateDataGridViewTextBoxColumn.Width = 120;
             // 
+            // DocStaffFullname
+            // 
+            this.DocStaffFullname.DataPropertyName = "DocStaffFullname";
+            this.DocStaffFullname.HeaderText = "Tên người tạo";
+            this.DocStaffFullname.Name = "DocStaffFullname";
+            this.DocStaffFullname.ReadOnly = true;
+            this.DocStaffFullname.Width = 150;
+            // 
             // createdbyDataGridViewTextBoxColumn
             // 
             this.createdbyDataGridViewTextBoxColumn.DataPropertyName = "Createdby";
@@ -485,9 +495,9 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -521,6 +531,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fixedPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DocStaffFullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdbyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;

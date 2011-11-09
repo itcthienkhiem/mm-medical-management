@@ -51,7 +51,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -4141,6 +4141,8 @@ namespace MM.Databasae
 		
 		private System.Guid _ServiceHistoryGUID;
 		
+		private string _DocStaffFullname;
+		
 		public ServiceHistoryView()
 		{
 		}
@@ -4413,6 +4415,22 @@ namespace MM.Databasae
 				if ((this._ServiceHistoryGUID != value))
 				{
 					this._ServiceHistoryGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffFullname", DbType="NVarChar(252) NOT NULL", CanBeNull=false)]
+		public string DocStaffFullname
+		{
+			get
+			{
+				return this._DocStaffFullname;
+			}
+			set
+			{
+				if ((this._DocStaffFullname != value))
+				{
+					this._DocStaffFullname = value;
 				}
 			}
 		}
