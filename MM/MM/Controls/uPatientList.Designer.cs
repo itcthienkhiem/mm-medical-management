@@ -243,7 +243,7 @@
             this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh án";
+            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
             this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
             this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -611,9 +611,9 @@
             this.btnOpenPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenPatient.Location = new System.Drawing.Point(243, 5);
             this.btnOpenPatient.Name = "btnOpenPatient";
-            this.btnOpenPatient.Size = new System.Drawing.Size(97, 25);
+            this.btnOpenPatient.Size = new System.Drawing.Size(108, 25);
             this.btnOpenPatient.TabIndex = 9;
-            this.btnOpenPatient.Text = "    &Mở bệnh án";
+            this.btnOpenPatient.Text = "      &Mở bệnh nhân";
             this.btnOpenPatient.UseVisualStyleBackColor = true;
             this.btnOpenPatient.Click += new System.EventHandler(this.btnOpenPatient_Click);
             // 
@@ -665,7 +665,7 @@
             // 
             // txtSearchPatient
             // 
-            this.txtSearchPatient.Location = new System.Drawing.Point(84, 9);
+            this.txtSearchPatient.Location = new System.Drawing.Point(95, 9);
             this.txtSearchPatient.Name = "txtSearchPatient";
             this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
             this.txtSearchPatient.TabIndex = 1;
@@ -677,9 +677,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Tìm bệnh án:";
+            this.label1.Text = "Tìm bệnh nhân:";
             // 
             // uPatientList
             // 
@@ -713,6 +713,8 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgPatient;
         private System.Windows.Forms.BindingSource patientViewBindingSource;
         private System.Windows.Forms.CheckBox chkChecked;
+        private System.Windows.Forms.TextBox txtSearchPatient;
+        private System.Windows.Forms.Label label1;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientGUIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contactGUIDDataGridViewTextBoxColumn;
@@ -758,7 +760,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastSeenDocGUIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDeceasedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastVisitGUIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TextBox txtSearchPatient;
-        private System.Windows.Forms.Label label1;
     }
 }
