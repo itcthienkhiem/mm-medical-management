@@ -182,11 +182,11 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(29, 26);
+            this.label20.Location = new System.Drawing.Point(17, 26);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(67, 13);
+            this.label20.Size = new System.Drawing.Size(79, 13);
             this.label20.TabIndex = 52;
-            this.label20.Text = "Mã bệnh án:";
+            this.label20.Text = "Mã bệnh nhân:";
             // 
             // label30
             // 

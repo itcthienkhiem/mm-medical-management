@@ -60,7 +60,7 @@ namespace MM.Dialogs
         {
             if (txtFileNum.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập mã bệnh án.");
+                MsgBox.Show(this.Text, "Vui lòng nhập mã bệnh nhân.");
                 txtFileNum.Focus();
                 return false;
             }
@@ -128,7 +128,7 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, "Mã bệnh án này đã tồn tại rồi. Vui lòng nhập mã khác.");
+                    MsgBox.Show(this.Text, "Mã bệnh nhân này đã tồn tại rồi. Vui lòng nhập mã khác.");
                     txtFileNum.Focus();
                     return false;
                 }
