@@ -193,7 +193,7 @@ namespace MM.Controls
                     totalPrice += price;
                 }
 
-                lbTotalPrice.Text = string.Format("Tổng tiền: {0} (VNĐ)", totalPrice);
+                lbTotalPrice.Text = string.Format("Tổng tiền: {0:#,###} (VNĐ)", totalPrice);
             }
         }
         #endregion
