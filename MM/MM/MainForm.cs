@@ -272,7 +272,7 @@ namespace MM
 
         private void OnDoctorList()
         {
-            this.Text = string.Format("{0} - Danh muc bác sĩ", Application.ProductName);
+            this.Text = string.Format("{0} - Danh muc bac si", Application.ProductName);
             ViewControl(_uDocStaffList);
             _uDocStaffList.DisplayAsThread();
         }
@@ -305,7 +305,7 @@ namespace MM
 
         private void OnPatientList()
         {
-            this.Text = string.Format("{0} - Danh muc bệnh nhân", Application.ProductName);
+            this.Text = string.Format("{0} - Danh muc benh nhan", Application.ProductName);
             ViewControl(_uPatientList);
             _uPatientList.DisplayAsThread();
         }
@@ -322,7 +322,7 @@ namespace MM
 
         private void OnPatientHistory(object patientRow)
         {
-            this.Text = string.Format("{0} - Benh an", Application.ProductName);
+            this.Text = string.Format("{0} - Thong tin benh nhan", Application.ProductName);
             ViewControl(_uPatientHistory);
             _uPatientHistory.PatientRow = patientRow;
             _uPatientHistory.Display();
