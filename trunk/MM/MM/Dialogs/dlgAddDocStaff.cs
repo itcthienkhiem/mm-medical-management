@@ -31,8 +31,9 @@ namespace MM.Dialogs
         public dlgAddDocStaff(DataRow drDocStaff)
         {
             InitializeComponent();
+            InitData();
             _isNew = false;
-            this.Text = "Sửa bác sĩ";
+            this.Text = "Sua bac si";
             DisplayInfo(drDocStaff);
         }       
         #endregion
