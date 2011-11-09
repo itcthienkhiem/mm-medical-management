@@ -117,7 +117,7 @@ namespace MM.Controls
                 newRow["District"] = dlg.Contact.District;
                 newRow["City"] = dlg.Contact.City;
                 newRow["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
-                newRow["FullAddress"] = string.Format("{0} {1} {2} {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
+                newRow["FullAddress"] = string.Format("{0}, {1}, {2}, {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
                 newRow["Occupation"] = dlg.Contact.Occupation;
                 dt.Rows.Add(newRow);
             }
@@ -155,7 +155,7 @@ namespace MM.Controls
                 drPatient["District"] = dlg.Contact.District;
                 drPatient["City"] = dlg.Contact.City;
                 drPatient["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
-                drPatient["FullAddress"] = string.Format("{0} {1} {2} {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
+                drPatient["FullAddress"] = string.Format("{0}, {1}, {2}, {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
                 drPatient["Occupation"] = dlg.Contact.Occupation;
             }
         }
