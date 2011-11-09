@@ -49,6 +49,7 @@ namespace MM.Controls
             {
                 item.Visible = true;
                 item.Selected = true;
+                //((((item.Control as PanelDockContainer).Controls[0] as DevComponents.DotNetBar.TabControl).Controls[0] as TabControlPanel).Controls[0] as uServiceHistory).PatientRow = _patientRow;
             }
 
             docBar.Visible = true;
@@ -61,8 +62,20 @@ namespace MM.Controls
                 dockContainerItem1.Name = fileNum;
                 dockContainerItem1.Text = string.Format("{0} - {1}", fileNum, fullName);
                 dockContainerItem1.Visible = true;
-                DevComponents.DotNetBar.TabControl tab = NewTabControl();
-                panelDockContainer1.Controls.Add(tab);
+
+                if (panelDockContainer1.Controls.Count <= 0)
+                {
+                    DevComponents.DotNetBar.TabControl tab = NewTabControl();
+                    panelDockContainer1.Controls.Add(tab);
+                }
+                else
+                {
+                    DevComponents.DotNetBar.TabControl tab = panelDockContainer1.Controls[0] as DevComponents.DotNetBar.TabControl;
+                    uServiceHistory uServiceHistory = (tab.Controls[0] as TabControlPanel).Controls[0] as uServiceHistory;
+                    uServiceHistory.PatientRow = _patientRow;
+                    uServiceHistory.DisplayAsThread();
+                }
+                
                 _isFirst = false;
             }
             else
