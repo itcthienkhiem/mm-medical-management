@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgOpentPatient));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnOpenPatient = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOpenPatient = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this._uSearchPatient = new MM.Controls.uSearchPatient();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -48,6 +48,30 @@
             this.panel1.Size = new System.Drawing.Size(853, 36);
             this.panel1.TabIndex = 3;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(120, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 24;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnOpenPatient
+            // 
+            this.btnOpenPatient.Image = global::MM.Properties.Resources.folder_customer_icon__1_;
+            this.btnOpenPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOpenPatient.Location = new System.Drawing.Point(8, 6);
+            this.btnOpenPatient.Name = "btnOpenPatient";
+            this.btnOpenPatient.Size = new System.Drawing.Size(107, 25);
+            this.btnOpenPatient.TabIndex = 10;
+            this.btnOpenPatient.Text = "      &Mở bệnh nhân";
+            this.btnOpenPatient.UseVisualStyleBackColor = true;
+            this.btnOpenPatient.Click += new System.EventHandler(this.btnOpenPatient_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this._uSearchPatient);
@@ -56,30 +80,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(853, 399);
             this.panel2.TabIndex = 1;
-            // 
-            // btnOpenPatient
-            // 
-            this.btnOpenPatient.Image = global::MM.Properties.Resources.folder_customer_icon__1_;
-            this.btnOpenPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenPatient.Location = new System.Drawing.Point(8, 6);
-            this.btnOpenPatient.Name = "btnOpenPatient";
-            this.btnOpenPatient.Size = new System.Drawing.Size(97, 25);
-            this.btnOpenPatient.TabIndex = 10;
-            this.btnOpenPatient.Text = "    &Mở bệnh án";
-            this.btnOpenPatient.UseVisualStyleBackColor = true;
-            this.btnOpenPatient.Click += new System.EventHandler(this.btnOpenPatient_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(109, 6);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 24;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // _uSearchPatient
             // 
@@ -101,7 +101,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "dlgOpentPatient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Mo benh an";
+            this.Text = "Mo benh nhan";
             this.Load += new System.EventHandler(this.dlgOpentPatient_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
