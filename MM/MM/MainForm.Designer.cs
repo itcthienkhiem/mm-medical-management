@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uSpecialityList = new MM.Controls.uSpecialityList();
             this._uPatientHistory = new MM.Controls.uPatientHistory();
             this._uPatientList = new MM.Controls.uPatientList();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
@@ -45,9 +46,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tbOpenPatient = new System.Windows.Forms.ToolStripButton();
             this.tbPatientList = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbHelp = new System.Windows.Forms.ToolStripButton();
-            this.tbAbout = new System.Windows.Forms.ToolStripButton();
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._mainMenu = new System.Windows.Forms.MenuStrip();
@@ -71,7 +69,6 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uSpecialityList = new MM.Controls.uSpecialityList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -89,6 +86,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uSpecialityList
+            // 
+            resources.ApplyResources(this._uSpecialityList, "_uSpecialityList");
+            this._uSpecialityList.Name = "_uSpecialityList";
             // 
             // _uPatientHistory
             // 
@@ -124,10 +126,7 @@
             this.tbDoctorList,
             this.toolStripSeparator1,
             this.tbOpenPatient,
-            this.tbPatientList,
-            this.toolStripSeparator5,
-            this.tbHelp,
-            this.tbAbout});
+            this.tbPatientList});
             resources.ApplyResources(this._mainToolbar, "_mainToolbar");
             this._mainToolbar.Name = "_mainToolbar";
             this._mainToolbar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._mainToolbar_ItemClicked);
@@ -199,27 +198,6 @@
             this.tbPatientList.Image = global::MM.Properties.Resources._1320161545_people;
             this.tbPatientList.Name = "tbPatientList";
             this.tbPatientList.Tag = "Patient List";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
-            // 
-            // tbHelp
-            // 
-            this.tbHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbHelp.Image = global::MM.Properties.Resources.help;
-            resources.ApplyResources(this.tbHelp, "tbHelp");
-            this.tbHelp.Name = "tbHelp";
-            this.tbHelp.Tag = "Help";
-            // 
-            // tbAbout
-            // 
-            this.tbAbout.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbAbout.Image = global::MM.Properties.Resources.about;
-            resources.ApplyResources(this.tbAbout, "tbAbout");
-            this.tbAbout.Name = "tbAbout";
-            this.tbAbout.Tag = "About";
             // 
             // _mainStatus
             // 
@@ -397,11 +375,6 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // _uSpecialityList
-            // 
-            resources.ApplyResources(this._uSpecialityList, "_uSpecialityList");
-            this._uSpecialityList.Name = "_uSpecialityList";
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -435,9 +408,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tbOpenPatient;
         private System.Windows.Forms.ToolStripButton tbPatientList;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripButton tbHelp;
-        private System.Windows.Forms.ToolStripButton tbAbout;
         private System.Windows.Forms.StatusStrip _mainStatus;
         private System.Windows.Forms.MenuStrip _mainMenu;
         private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
