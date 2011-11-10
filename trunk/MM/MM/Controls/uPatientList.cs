@@ -52,6 +52,7 @@ namespace MM.Controls
         {
             try
             {
+                chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPatientListProc));
                 base.ShowWaiting();
             }
@@ -119,6 +120,25 @@ namespace MM.Controls
                 newRow["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
                 newRow["FullAddress"] = string.Format("{0}, {1}, {2}, {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
                 newRow["Occupation"] = dlg.Contact.Occupation;
+
+                if (dlg.Contact.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.Contact.CreatedDate;
+
+                if (dlg.Contact.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.Contact.CreatedBy.ToString();
+
+                if (dlg.Contact.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.Contact.UpdatedDate;
+
+                if (dlg.Contact.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.Contact.UpdatedBy.ToString();
+
+                if (dlg.Contact.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.Contact.DeletedDate;
+
+                if (dlg.Contact.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
+
                 dt.Rows.Add(newRow);
             }
         }
@@ -157,6 +177,24 @@ namespace MM.Controls
                 drPatient["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
                 drPatient["FullAddress"] = string.Format("{0}, {1}, {2}, {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
                 drPatient["Occupation"] = dlg.Contact.Occupation;
+
+                if (dlg.Contact.CreatedDate.HasValue)
+                    drPatient["CreatedDate"] = dlg.Contact.CreatedDate;
+
+                if (dlg.Contact.CreatedBy.HasValue)
+                    drPatient["CreatedBy"] = dlg.Contact.CreatedBy.ToString();
+
+                if (dlg.Contact.UpdatedDate.HasValue)
+                    drPatient["UpdatedDate"] = dlg.Contact.UpdatedDate;
+
+                if (dlg.Contact.UpdatedBy.HasValue)
+                    drPatient["UpdatedBy"] = dlg.Contact.UpdatedBy.ToString();
+
+                if (dlg.Contact.DeletedDate.HasValue)
+                    drPatient["DeletedDate"] = dlg.Contact.DeletedDate;
+
+                if (dlg.Contact.DeletedBy.HasValue)
+                    drPatient["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
             }
         }
 

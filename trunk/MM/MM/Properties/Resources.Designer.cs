@@ -242,6 +242,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap stethoscope_icon {
+            get {
+                object obj = ResourceManager.GetObject("stethoscope_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap stethoscope_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("stethoscope_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap viewalldie {
             get {
                 object obj = ResourceManager.GetObject("viewalldie", resourceCulture);

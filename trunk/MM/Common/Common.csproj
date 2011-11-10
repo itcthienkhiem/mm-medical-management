@@ -92,6 +92,7 @@
     <Compile Include="Result.cs" />
     <Compile Include="RijndaelCrypto.cs" />
     <Compile Include="StaffType.cs" />
+    <Compile Include="Status.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="WorkType.cs" />
   </ItemGroup>
