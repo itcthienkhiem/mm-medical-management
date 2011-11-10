@@ -76,6 +76,8 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
+            dtpkActiveDate.Value = DateTime.Now;
+
             //Service
             Result result = ServicesBus.GetServicesList();
             if (!result.IsOK)
@@ -112,6 +114,12 @@ namespace MM.Dialogs
                 numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
                 txtDescription.Text = drServiceHistory["Note"] as string;
                 _serviceHistory.ServiceHistoryGUID = Guid.Parse(drServiceHistory["ServiceHistoryGUID"].ToString());
+
+                if (drServiceHistory["ActivedDate"] != null && drServiceHistory["ActivedDate"] != DBNull.Value)
+                {
+                    _serviceHistory.ActivedDate = Convert.ToDateTime(drServiceHistory["ActivedDate"]);
+                    dtpkActiveDate.Value = _serviceHistory.ActivedDate.Value;
+                }
 
                 if (drServiceHistory["CreatedDate"] != null && drServiceHistory["CreatedDate"] != DBNull.Value)
                     _serviceHistory.CreatedDate = Convert.ToDateTime(drServiceHistory["CreatedDate"]);
@@ -178,6 +186,7 @@ namespace MM.Dialogs
 
                 MethodInvoker method = delegate
                 {
+                    _serviceHistory.ActivedDate = dtpkActiveDate.Value;
                     _serviceHistory.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
                     _serviceHistory.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
                     _serviceHistory.Price = (double)numPrice.Value;

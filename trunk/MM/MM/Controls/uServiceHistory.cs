@@ -80,6 +80,9 @@ namespace MM.Controls
                 if (dlg.ServiceHistory.DeletedBy.HasValue)
                     newRow["DeletedBy"] = dlg.ServiceHistory.DeletedBy.ToString();
 
+                if (dlg.ServiceHistory.ActivedDate.HasValue)
+                    newRow["ActivedDate"] = dlg.ServiceHistory.ActivedDate.ToString();
+
                 newRow["Status"] = dlg.ServiceHistory.Status;
 
                 dt.Rows.Add(newRow);
@@ -128,6 +131,9 @@ namespace MM.Controls
 
                 if (dlg.ServiceHistory.DeletedBy.HasValue)
                     drServiceHistory["DeletedBy"] = dlg.ServiceHistory.DeletedBy.ToString();
+
+                if (dlg.ServiceHistory.ActivedDate.HasValue)
+                    drServiceHistory["ActivedDate"] = dlg.ServiceHistory.ActivedDate.ToString();
 
                 drServiceHistory["Status"] = dlg.ServiceHistory.Status;
 

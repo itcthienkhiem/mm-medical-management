@@ -54,6 +54,12 @@ namespace MM.Controls
                 return;
             }
 
+            if (txtSearchPatient.Text.Trim() == "*")
+            {
+                dgPatient.DataSource = _dataSource;
+                return;
+            }
+
             string str = txtSearchPatient.Text.ToLower();
             DataTable dt = _dataSource as DataTable;
 
