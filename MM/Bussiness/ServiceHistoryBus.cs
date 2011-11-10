@@ -111,6 +111,7 @@ namespace MM.Bussiness
                         ServiceHistory srvHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID.ToString() == serviceHistory.ServiceHistoryGUID.ToString());
                         if (srvHistory != null)
                         {
+                            srvHistory.ActivedDate = serviceHistory.ActivedDate;
                             srvHistory.CreatedBy = serviceHistory.CreatedBy;
                             srvHistory.CreatedDate = serviceHistory.CreatedDate;
                             srvHistory.DeletedBy = serviceHistory.DeletedBy;

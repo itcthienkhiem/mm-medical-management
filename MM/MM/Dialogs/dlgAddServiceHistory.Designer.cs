@@ -44,6 +44,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtpkActiveDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
@@ -52,6 +54,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dtpkActiveDate);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cboDocStaff);
             this.groupBox1.Controls.Add(this.cboService);
             this.groupBox1.Controls.Add(this.label5);
@@ -63,7 +67,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(363, 208);
+            this.groupBox1.Size = new System.Drawing.Size(378, 229);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
@@ -76,7 +80,7 @@
             this.cboDocStaff.DisplayMember = "Fullname";
             this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff.FormattingEnabled = true;
-            this.cboDocStaff.Location = new System.Drawing.Point(81, 45);
+            this.cboDocStaff.Location = new System.Drawing.Point(94, 45);
             this.cboDocStaff.Name = "cboDocStaff";
             this.cboDocStaff.Size = new System.Drawing.Size(269, 21);
             this.cboDocStaff.TabIndex = 1;
@@ -94,7 +98,7 @@
             this.cboService.DisplayMember = "Name";
             this.cboService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboService.FormattingEnabled = true;
-            this.cboService.Location = new System.Drawing.Point(81, 21);
+            this.cboService.Location = new System.Drawing.Point(94, 21);
             this.cboService.Name = "cboService";
             this.cboService.Size = new System.Drawing.Size(269, 21);
             this.cboService.TabIndex = 0;
@@ -108,7 +112,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(206, 72);
+            this.label5.Location = new System.Drawing.Point(219, 72);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 8;
@@ -116,12 +120,12 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(81, 95);
+            this.txtDescription.Location = new System.Drawing.Point(94, 116);
             this.txtDescription.MaxLength = 4000;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(269, 96);
-            this.txtDescription.TabIndex = 7;
+            this.txtDescription.TabIndex = 8;
             // 
             // numPrice
             // 
@@ -130,7 +134,7 @@
             0,
             0,
             0});
-            this.numPrice.Location = new System.Drawing.Point(81, 69);
+            this.numPrice.Location = new System.Drawing.Point(94, 69);
             this.numPrice.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -149,7 +153,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 98);
+            this.label4.Location = new System.Drawing.Point(11, 119);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 3;
@@ -187,10 +191,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(191, 220);
+            this.btnCancel.Location = new System.Drawing.Point(197, 241);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 9;
+            this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "   &Đóng";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -199,12 +203,30 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(112, 220);
+            this.btnOK.Location = new System.Drawing.Point(118, 241);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 8;
+            this.btnOK.TabIndex = 9;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 97);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Ngày sử dụng:";
+            // 
+            // dtpkActiveDate
+            // 
+            this.dtpkActiveDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkActiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkActiveDate.Location = new System.Drawing.Point(93, 93);
+            this.dtpkActiveDate.Name = "dtpkActiveDate";
+            this.dtpkActiveDate.Size = new System.Drawing.Size(122, 20);
+            this.dtpkActiveDate.TabIndex = 7;
             // 
             // dlgAddServiceHistory
             // 
@@ -212,7 +234,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(378, 251);
+            this.ClientSize = new System.Drawing.Size(391, 272);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -249,5 +271,7 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.BindingSource docStaffViewBindingSource;
         private System.Windows.Forms.BindingSource serviceBindingSource;
+        private System.Windows.Forms.DateTimePicker dtpkActiveDate;
+        private System.Windows.Forms.Label label6;
     }
 }

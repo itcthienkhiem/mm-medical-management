@@ -4616,6 +4616,8 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
+		private System.Nullable<System.DateTime> _ActivedDate;
+		
 		public ServiceHistoryView()
 		{
 		}
@@ -4920,6 +4922,22 @@ namespace MM.Databasae
 				if ((this._Status != value))
 				{
 					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActivedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ActivedDate
+		{
+			get
+			{
+				return this._ActivedDate;
+			}
+			set
+			{
+				if ((this._ActivedDate != value))
+				{
+					this._ActivedDate = value;
 				}
 			}
 		}
