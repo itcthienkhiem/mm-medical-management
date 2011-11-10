@@ -17,8 +17,9 @@ namespace MM.Controls
     public partial class uPatientList : uBase
     {
         #region Members
-        private Color _defaultBackColor;
+        //private Color _defaultBackColor;
         private Color _highLightBackColor;
+        private DataTable _dataSource = null;
         #endregion
 
         #region Constructor
@@ -74,7 +75,9 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    dgPatient.DataSource = result.QueryResult;
+                    //dgPatient.DataSource = result.QueryResult;
+                    _dataSource = result.QueryResult as DataTable;
+                    OnSearchPatient();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -89,10 +92,11 @@ namespace MM.Controls
 
         private void OnAddPatient()
         {
+            if (_dataSource == null) return;
             dlgAddPatient dlg = new dlgAddPatient();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                DataTable dt = dgPatient.DataSource as DataTable;
+                DataTable dt = _dataSource;//dgPatient.DataSource as DataTable;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -141,17 +145,33 @@ namespace MM.Controls
 
                 dt.Rows.Add(newRow);
             }
+
+            OnSearchPatient();
+        }
+
+        private DataRow GetDataRow(string patientGUID)
+        {
+            DataRow[] rows = _dataSource.Select(string.Format("PatientGUID = '{0}'", patientGUID));
+            if (rows == null || rows.Length <= 0) return null;
+
+            return rows[0];
         }
 
         private void OnEditPatient()
         {
+            if (_dataSource == null) return;
+
             if (dgPatient.SelectedRows == null || dgPatient.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.");
                 return;
             }
 
-            DataRow drPatient = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            //DataRow drPatient = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string patientGUID = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row["PatientGUID"].ToString();
+            DataRow drPatient = GetDataRow(patientGUID);
+            if (drPatient == null) return;
+
             dlgAddPatient dlg = new dlgAddPatient(drPatient);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -196,19 +216,26 @@ namespace MM.Controls
                 if (dlg.Contact.DeletedBy.HasValue)
                     drPatient["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
             }
+
+            OnSearchPatient();
         }
 
         private void OnDeletePatient()
         {
+            if (_dataSource == null) return;
             List<string> deletedPatientList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
+            List<DataRow> deletedRows2 = new List<DataRow>();
             DataTable dt = dgPatient.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedPatientList.Add(row["PatientGUID"].ToString());
+                    string patientGUID = row["PatientGUID"].ToString();
+                    deletedPatientList.Add(patientGUID);
                     deletedRows.Add(row);
+                    DataRow r = GetDataRow(patientGUID);
+                    if (r != null) deletedRows2.Add(r);
                 }
             }
 
@@ -222,6 +249,11 @@ namespace MM.Controls
                         foreach (DataRow row in deletedRows)
                         {
                             dt.Rows.Remove(row);
+                        }
+
+                        foreach (DataRow row in deletedRows2)
+                        {
+                            _dataSource.Rows.Remove(row);
                         }
                     }
                     else
@@ -257,9 +289,11 @@ namespace MM.Controls
 
         private void OnSearchPatient()
         {
-            ClearHighLight();
+            chkChecked.Checked = false;
+            //ClearHighLight();
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
+                dgPatient.DataSource = _dataSource;
                 if (dgPatient.RowCount > 0) dgPatient.Rows[0].Selected = true;
                 return;
             }
@@ -267,7 +301,90 @@ namespace MM.Controls
             string str = txtSearchPatient.Text.ToLower();
 
             //Fullname
-            foreach (DataGridViewRow row in dgPatient.Rows)
+            var results = from p in _dataSource.AsEnumerable()
+                          where (p.Field<string>("Fullname").ToLower().IndexOf(str) >= 0 ||
+                          str.IndexOf(p.Field<string>("Fullname").ToLower()) >= 0) &&
+                          p.Field<string>("Fullname") != null &&
+                          p.Field<string>("Fullname").Trim() != string.Empty
+                          select p;
+
+            DataTable newDataSource = _dataSource.Clone();
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgPatient.DataSource = newDataSource;
+                return;
+            }
+
+
+            //FileNum
+            results = from p in _dataSource.AsEnumerable()
+                      where (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
+                      str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0) &&
+                          p.Field<string>("FileNum") != null &&
+                          p.Field<string>("FileNum").Trim() != string.Empty
+                      select p;
+
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgPatient.DataSource = newDataSource;
+                return;
+            }
+
+            //HomePhone
+            results = from p in _dataSource.AsEnumerable()
+                      where (p.Field<string>("HomePhone").ToLower().IndexOf(str) >= 0 ||
+                      str.IndexOf(p.Field<string>("HomePhone").ToLower()) >= 0) &&
+                      p.Field<string>("HomePhone") != null &&
+                      p.Field<string>("HomePhone").Trim() != string.Empty
+                      select p;
+
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgPatient.DataSource = newDataSource;
+                return;
+            }
+
+            //WorkPhone
+            results = from p in _dataSource.AsEnumerable()
+                      where (p.Field<string>("WorkPhone").ToLower().IndexOf(str) >= 0 ||
+                      str.IndexOf(p.Field<string>("WorkPhone").ToLower()) >= 0) &&
+                          p.Field<string>("WorkPhone") != null &&
+                          p.Field<string>("WorkPhone").Trim() != string.Empty
+                      select p;
+
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgPatient.DataSource = newDataSource;
+                return;
+            }
+
+            //Mobile
+            results = from p in _dataSource.AsEnumerable()
+                      where (p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 ||
+                      str.IndexOf(p.Field<string>("Mobile").ToLower()) >= 0) &&
+                          p.Field<string>("Mobile") != null &&
+                          p.Field<string>("Mobile").Trim() != string.Empty
+                      select p;
+
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            dgPatient.DataSource = newDataSource;
+
+            //Fullname
+            /*foreach (DataGridViewRow row in dgPatient.Rows)
             {
                 DataRow r = (row.DataBoundItem as DataRowView).Row;
                 string fullName = (r["Fullname"] as string).ToLower();
@@ -343,7 +460,7 @@ namespace MM.Controls
                         return;
                     }
                 }
-            }
+            }*/
 
         }
         #endregion
