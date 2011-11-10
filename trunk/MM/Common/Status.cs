@@ -9,5 +9,6 @@ namespace MM.Common
     {
         Actived = 0,
         Deactived
+
     }
 }
