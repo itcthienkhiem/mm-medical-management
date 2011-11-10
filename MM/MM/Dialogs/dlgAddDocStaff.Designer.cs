@@ -375,6 +375,7 @@
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(157, 20);
             this.txtFax.TabIndex = 16;
+            this.txtFax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label14
             // 
@@ -401,6 +402,7 @@
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.Size = new System.Drawing.Size(157, 20);
             this.txtMobile.TabIndex = 15;
+            this.txtMobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label12
             // 
@@ -418,6 +420,7 @@
             this.txtHomePhone.Name = "txtHomePhone";
             this.txtHomePhone.Size = new System.Drawing.Size(156, 20);
             this.txtHomePhone.TabIndex = 13;
+            this.txtHomePhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label11
             // 
@@ -435,6 +438,7 @@
             this.txtIdentityCard.Name = "txtIdentityCard";
             this.txtIdentityCard.Size = new System.Drawing.Size(165, 20);
             this.txtIdentityCard.TabIndex = 8;
+            this.txtIdentityCard.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentityCard_KeyPress);
             // 
             // label10
             // 
@@ -461,6 +465,7 @@
             this.txtWorkPhone.Name = "txtWorkPhone";
             this.txtWorkPhone.Size = new System.Drawing.Size(156, 20);
             this.txtWorkPhone.TabIndex = 14;
+            this.txtWorkPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label9
             // 

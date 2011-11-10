@@ -32,29 +32,26 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.lbToDate = new System.Windows.Forms.Label();
             this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgServiceHistory = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lbTotalPrice = new System.Windows.Forms.Label();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ServiceHistoryGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lbTotalPrice = new System.Windows.Forms.Label();
             this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.docStaffGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serviceGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,9 +59,7 @@
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.updatedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,12 +67,17 @@
             this.deletedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deletedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.availableToWorkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -93,18 +93,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(814, 60);
             this.panel1.TabIndex = 0;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(340, 29);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(64, 21);
-            this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "    &Tìm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dtpkToDate
             // 
@@ -172,42 +160,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(814, 37);
             this.panel2.TabIndex = 1;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::MM.Properties.Resources.del;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(164, 6);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "    &Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(85, 6);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
-            this.btnEdit.TabIndex = 4;
-            this.btnEdit.Text = "    &Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::MM.Properties.Resources.add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(6, 6);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "    &Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel3
             // 
@@ -289,30 +241,6 @@
             this.dgServiceHistory.TabIndex = 1;
             this.dgServiceHistory.DoubleClick += new System.EventHandler(this.dgServiceHistory_DoubleClick);
             // 
-            // serviceHistoryViewBindingSource
-            // 
-            this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.lbTotalPrice);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 341);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(810, 26);
-            this.panel4.TabIndex = 0;
-            // 
-            // lbTotalPrice
-            // 
-            this.lbTotalPrice.AutoSize = true;
-            this.lbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalPrice.ForeColor = System.Drawing.Color.Red;
-            this.lbTotalPrice.Location = new System.Drawing.Point(17, 7);
-            this.lbTotalPrice.Name = "lbTotalPrice";
-            this.lbTotalPrice.Size = new System.Drawing.Size(55, 13);
-            this.lbTotalPrice.TabIndex = 0;
-            this.lbTotalPrice.Text = "Tổng tiền:";
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -335,6 +263,45 @@
             this.ServiceHistoryGUID.Name = "ServiceHistoryGUID";
             this.ServiceHistoryGUID.ReadOnly = true;
             this.ServiceHistoryGUID.Visible = false;
+            // 
+            // ActivedDate
+            // 
+            this.ActivedDate.DataPropertyName = "ActivedDate";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle5.NullValue = null;
+            this.ActivedDate.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ActivedDate.HeaderText = "Ngày sử dụng";
+            this.ActivedDate.Name = "ActivedDate";
+            this.ActivedDate.ReadOnly = true;
+            // 
+            // DocStaffFullname
+            // 
+            this.DocStaffFullname.DataPropertyName = "DocStaffFullname";
+            this.DocStaffFullname.HeaderText = "Tên người tạo";
+            this.DocStaffFullname.Name = "DocStaffFullname";
+            this.DocStaffFullname.ReadOnly = true;
+            this.DocStaffFullname.Width = 150;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.lbTotalPrice);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 341);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(810, 26);
+            this.panel4.TabIndex = 0;
+            // 
+            // lbTotalPrice
+            // 
+            this.lbTotalPrice.AutoSize = true;
+            this.lbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalPrice.ForeColor = System.Drawing.Color.Red;
+            this.lbTotalPrice.Location = new System.Drawing.Point(17, 7);
+            this.lbTotalPrice.Name = "lbTotalPrice";
+            this.lbTotalPrice.Size = new System.Drawing.Size(55, 13);
+            this.lbTotalPrice.TabIndex = 0;
+            this.lbTotalPrice.Text = "Tổng tiền:";
             // 
             // patientGUIDDataGridViewTextBoxColumn
             // 
@@ -396,17 +363,6 @@
             this.fullnameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fullnameDataGridViewTextBoxColumn.Width = 180;
             // 
-            // ActivedDate
-            // 
-            this.ActivedDate.DataPropertyName = "ActivedDate";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle5.NullValue = null;
-            this.ActivedDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ActivedDate.HeaderText = "Ngày sử dụng";
-            this.ActivedDate.Name = "ActivedDate";
-            this.ActivedDate.ReadOnly = true;
-            // 
             // createdDateDataGridViewTextBoxColumn
             // 
             this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
@@ -419,14 +375,6 @@
             this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
             this.createdDateDataGridViewTextBoxColumn.Visible = false;
             this.createdDateDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // DocStaffFullname
-            // 
-            this.DocStaffFullname.DataPropertyName = "DocStaffFullname";
-            this.DocStaffFullname.HeaderText = "Tên người tạo";
-            this.DocStaffFullname.Name = "DocStaffFullname";
-            this.DocStaffFullname.ReadOnly = true;
-            this.DocStaffFullname.Width = 150;
             // 
             // noteDataGridViewTextBoxColumn
             // 
@@ -484,6 +432,58 @@
             this.availableToWorkDataGridViewTextBoxColumn.ReadOnly = true;
             this.availableToWorkDataGridViewTextBoxColumn.Visible = false;
             // 
+            // serviceHistoryViewBindingSource
+            // 
+            this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::MM.Properties.Resources.del;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(164, 6);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 25);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "    &Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Image = global::MM.Properties.Resources.edit;
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(85, 6);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 25);
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.Text = "    &Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::MM.Properties.Resources.add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(6, 6);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 25);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "    &Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(340, 29);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(64, 21);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "    &Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // uServiceHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -493,15 +493,16 @@
             this.Controls.Add(this.panel1);
             this.Name = "uServiceHistory";
             this.Size = new System.Drawing.Size(814, 468);
+            this.Load += new System.EventHandler(this.uServiceHistory_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
