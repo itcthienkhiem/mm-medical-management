@@ -169,6 +169,24 @@ namespace MM.Dialogs
                 _contact.ContactGUID = Guid.Parse(drPatient["ContactGUID"].ToString());
                 _patient.PatientGUID = Guid.Parse(drPatient["PatientGUID"].ToString());
                 _patient.ContactGUID = _contact.ContactGUID;
+
+                if (drPatient["CreatedDate"] != null && drPatient["CreatedDate"] != DBNull.Value)
+                    _contact.CreatedDate = Convert.ToDateTime(drPatient["CreatedDate"]);
+
+                if (drPatient["CreatedBy"] != null && drPatient["CreatedBy"] != DBNull.Value)
+                    _contact.CreatedBy = Guid.Parse(drPatient["CreatedBy"].ToString());
+
+                if (drPatient["UpdatedDate"] != null && drPatient["UpdatedDate"] != DBNull.Value)
+                    _contact.UpdatedDate = Convert.ToDateTime(drPatient["UpdatedDate"]);
+
+                if (drPatient["UpdatedBy"] != null && drPatient["UpdatedBy"] != DBNull.Value)
+                    _contact.UpdatedBy = Guid.Parse(drPatient["UpdatedBy"].ToString());
+
+                if (drPatient["DeletedDate"] != null && drPatient["DeletedDate"] != DBNull.Value)
+                    _contact.DeletedDate = Convert.ToDateTime(drPatient["DeletedDate"]);
+
+                if (drPatient["DeletedBy"] != null && drPatient["DeletedBy"] != DBNull.Value)
+                    _contact.DeletedBy = Guid.Parse(drPatient["DeletedBy"].ToString());
             }
             catch (Exception e)
             {

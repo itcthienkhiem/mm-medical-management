@@ -30,7 +30,7 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             _isNew = false;
-            this.Text = "Sửa dịch vụ";
+            this.Text = "Sua dich vu";
             DisplayInfo(drService);
         }
         #endregion
@@ -50,11 +50,31 @@ namespace MM.Dialogs
             try
             {
                 txtCode.Text = drService["Code"] as string;
-            txtName.Text = drService["Name"] as string;
-            numPrice.Value = (decimal)Double.Parse(drService["Price"].ToString());
-            txtDescription.Text = drService["Description"] as string;
+                txtName.Text = drService["Name"] as string;
+                numPrice.Value = (decimal)Double.Parse(drService["Price"].ToString());
+                txtDescription.Text = drService["Description"] as string;
 
-            _service.ServiceGUID = Guid.Parse(drService["ServiceGUID"].ToString());
+                _service.ServiceGUID = Guid.Parse(drService["ServiceGUID"].ToString());
+
+                if (drService["CreatedDate"] != null && drService["CreatedDate"] != DBNull.Value)
+                    _service.CreatedDate = Convert.ToDateTime(drService["CreatedDate"]);
+
+                if (drService["CreatedBy"] != null && drService["CreatedBy"] != DBNull.Value)
+                    _service.CreatedBy = Guid.Parse(drService["CreatedBy"].ToString());
+
+                if (drService["UpdatedDate"] != null && drService["UpdatedDate"] != DBNull.Value)
+                    _service.UpdatedDate = Convert.ToDateTime(drService["UpdatedDate"]);
+
+                if (drService["UpdatedBy"] != null && drService["UpdatedBy"] != DBNull.Value)
+                    _service.UpdatedBy = Guid.Parse(drService["UpdatedBy"].ToString());
+
+                if (drService["DeletedDate"] != null && drService["DeletedDate"] != DBNull.Value)
+                    _service.DeletedDate = Convert.ToDateTime(drService["DeletedDate"]);
+
+                if (drService["DeletedBy"] != null && drService["DeletedBy"] != DBNull.Value)
+                    _service.DeletedBy = Guid.Parse(drService["DeletedBy"].ToString());
+
+                _service.Status = Convert.ToByte(drService["Status"]);
             }
             catch (Exception e)
             {
@@ -108,6 +128,18 @@ namespace MM.Dialogs
                 _service.Name = txtName.Text;
                 _service.Price = (double)numPrice.Value;
                 _service.Description = txtDescription.Text;
+                _service.Status = (byte)Status.Actived;
+
+                if (_isNew)
+                {
+                    _service.CreatedDate = DateTime.Now;
+                    _service.CreatedBy = Guid.Parse(Global.UserGUID);
+                }
+                else
+                {
+                    _service.UpdatedDate = DateTime.Now;
+                    _service.UpdatedBy = Guid.Parse(Global.UserGUID);
+                }
             }
             catch (Exception e)
             {

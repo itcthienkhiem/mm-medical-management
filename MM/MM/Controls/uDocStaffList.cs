@@ -37,6 +37,7 @@ namespace MM.Controls
         {
             try
             {
+                chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayDocStaffListProc));
                 base.ShowWaiting();
             }
@@ -107,6 +108,24 @@ namespace MM.Controls
                 newRow["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
                 newRow["WorkType"] = dlg.DocStaff.WorkType;
                 newRow["StaffType"] = dlg.DocStaff.StaffType;
+
+                if (dlg.Contact.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.Contact.CreatedDate;
+
+                if (dlg.Contact.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.Contact.CreatedBy.ToString();
+
+                if (dlg.Contact.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.Contact.UpdatedDate;
+
+                if (dlg.Contact.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.Contact.UpdatedBy.ToString();
+
+                if (dlg.Contact.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.Contact.DeletedDate;
+
+                if (dlg.Contact.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
                 dt.Rows.Add(newRow);
             }
         }
@@ -148,6 +167,24 @@ namespace MM.Controls
                 drDocStaff["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
                 drDocStaff["WorkType"] = dlg.DocStaff.WorkType;
                 drDocStaff["StaffType"] = dlg.DocStaff.StaffType;
+
+                if (dlg.Contact.CreatedDate.HasValue)
+                    drDocStaff["CreatedDate"] = dlg.Contact.CreatedDate;
+
+                if (dlg.Contact.CreatedBy.HasValue)
+                    drDocStaff["CreatedBy"] = dlg.Contact.CreatedBy.ToString();
+
+                if (dlg.Contact.UpdatedDate.HasValue)
+                    drDocStaff["UpdatedDate"] = dlg.Contact.UpdatedDate;
+
+                if (dlg.Contact.UpdatedBy.HasValue)
+                    drDocStaff["UpdatedBy"] = dlg.Contact.UpdatedBy.ToString();
+
+                if (dlg.Contact.DeletedDate.HasValue)
+                    drDocStaff["DeletedDate"] = dlg.Contact.DeletedDate;
+
+                if (dlg.Contact.DeletedBy.HasValue)
+                    drDocStaff["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
             }
         }
 

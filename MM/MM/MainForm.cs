@@ -116,6 +116,8 @@ namespace MM
                 _uDocStaffList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uPatientList))
                 _uPatientList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uSpecialityList))
+                _uSpecialityList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -139,6 +141,8 @@ namespace MM
             patientToolStripMenuItem.Enabled = isLogin;
             tbPatientList.Enabled = isLogin;
             tbOpenPatient.Enabled = isLogin;
+            specialityToolStripMenuItem.Enabled = isLogin;
+            tbSpecialityList.Enabled = isLogin;
         }
 
         private void ExcuteCmd(string cmd)
@@ -176,6 +180,10 @@ namespace MM
 
                 case "Doctor List":
                     OnDoctorList();
+                    break;
+
+                case "Speciality List":
+                    OnSpecialityList();
                     break;
 
                 case "Help":
@@ -268,6 +276,8 @@ namespace MM
                 _uDocStaffList.ClearData();
             else if (ctrl.GetType() == typeof(uPatientList))
                 _uPatientList.ClearData();
+            else if (ctrl.GetType() == typeof(uSpecialityList))
+                _uSpecialityList.ClearData();
         }
 
         private void OnDoctorList()
@@ -289,6 +299,13 @@ namespace MM
                     RefreshData();
                 }
             }
+        }
+
+        private void OnSpecialityList()
+        {
+            this.Text = string.Format("{0} - Danh muc chuyen khoa", Application.ProductName);
+            ViewControl(_uSpecialityList);
+            _uSpecialityList.DisplayAsThread();
         }
 
         private void OnExit()

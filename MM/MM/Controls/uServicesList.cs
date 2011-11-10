@@ -41,6 +41,7 @@ namespace MM.Controls
         {
             try
             {
+                chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayServicesListProc));
                 base.ShowWaiting();
             }
@@ -89,6 +90,26 @@ namespace MM.Controls
                 newRow["Name"] = dlg.Service.Name;
                 newRow["Price"] = dlg.Service.Price;
                 newRow["Description"] = dlg.Service.Description;
+
+                if (dlg.Service.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.Service.CreatedDate;
+
+                if (dlg.Service.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.Service.CreatedBy.ToString();
+
+                if (dlg.Service.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.Service.UpdatedDate;
+
+                if (dlg.Service.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.Service.UpdatedBy.ToString();
+
+                if (dlg.Service.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.Service.DeletedDate;
+
+                if (dlg.Service.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.Service.DeletedBy.ToString();
+
+                newRow["Status"] = dlg.Service.Status;
                 dt.Rows.Add(newRow);
             }
         }
@@ -109,21 +130,39 @@ namespace MM.Controls
                 drService["Name"] = dlg.Service.Name;
                 drService["Price"] = dlg.Service.Price;
                 drService["Description"] = dlg.Service.Description;
+
+                if (dlg.Service.CreatedDate.HasValue)
+                    drService["CreatedDate"] = dlg.Service.CreatedDate;
+
+                if (dlg.Service.CreatedBy.HasValue)
+                    drService["CreatedBy"] = dlg.Service.CreatedBy.ToString();
+
+                if (dlg.Service.UpdatedDate.HasValue)
+                    drService["UpdatedDate"] = dlg.Service.UpdatedDate;
+
+                if (dlg.Service.UpdatedBy.HasValue)
+                    drService["UpdatedBy"] = dlg.Service.UpdatedBy.ToString();
+
+                if (dlg.Service.DeletedDate.HasValue)
+                    drService["DeletedDate"] = dlg.Service.DeletedDate;
+
+                if (dlg.Service.DeletedBy.HasValue)
+                    drService["DeletedBy"] = dlg.Service.DeletedBy.ToString();
+
+                drService["Status"] = dlg.Service.Status;
             }
         }
 
         private void OnDeleteService()
         {
-            List<Service> deletedServiceList = new List<Service>();
+            List<string> deletedServiceList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = dgService.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    Service srv = new Service();
-                    srv.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                    deletedServiceList.Add(srv);
+                    deletedServiceList.Add(row["ServiceGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }

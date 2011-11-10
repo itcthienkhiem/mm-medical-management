@@ -142,6 +142,12 @@
     <Compile Include="Controls\uServicesList.Designer.cs">
       <DependentUpon>uServicesList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uSpecialityList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uSpecialityList.Designer.cs">
+      <DependentUpon>uSpecialityList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddDocStaff.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddServices.Designer.cs">
       <DependentUpon>dlgAddServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddSpeciality.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddSpeciality.Designer.cs">
+      <DependentUpon>dlgAddSpeciality.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgBase.cs">
       <SubType>Form</SubType>
@@ -244,6 +256,9 @@
     <EmbeddedResource Include="Controls\uServicesList.resx">
       <DependentUpon>uServicesList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uSpecialityList.resx">
+      <DependentUpon>uSpecialityList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDocStaff.resx">
       <DependentUpon>dlgAddDocStaff.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddServices.resx">
       <DependentUpon>dlgAddServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddSpeciality.resx">
+      <DependentUpon>dlgAddSpeciality.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgDatabaseConfig.resx">
       <DependentUpon>dlgDatabaseConfig.cs</DependentUpon>
@@ -324,6 +342,8 @@
     <Content Include="Components\DevComponents.TreeGX.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\stethoscope-icon %281%29.png" />
+    <None Include="Resources\stethoscope-icon.png" />
     <None Include="Resources\folder-customer-icon.png" />
     <None Include="Resources\folder-customer-icon %281%29.png" />
     <None Include="Resources\logout-icon %281%29.png" />

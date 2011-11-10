@@ -18,7 +18,8 @@ namespace MM.Bussiness
 
             try
             {
-                return ExcuteQuery("SELECT CAST(0 AS Bit) AS Checked, * FROM Services ORDER BY Code");
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} ORDER BY Code", (byte)Status.Actived);
+                return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -34,7 +35,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteServices(List<Service> services)
+        public static Result DeleteServices(List<string> serviceKeys)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -44,10 +45,15 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    foreach (Service srv in services)
+                    foreach (string key in serviceKeys)
                     {
-                        Service s = db.Services.SingleOrDefault<Service>(ss => ss.ServiceGUID == srv.ServiceGUID);
-                        db.Services.DeleteOnSubmit(s);
+                        Service s = db.Services.SingleOrDefault<Service>(ss => ss.ServiceGUID.ToString() == key);
+                        if (s != null)
+                        {
+                            s.DeletedDate = DateTime.Now;
+                            s.DeletedBy = Guid.Parse(Global.UserGUID);
+                            s.Status = (byte)Status.Deactived;
+                        }
                     }
 
                     db.SubmitChanges();
@@ -142,6 +148,13 @@ namespace MM.Bussiness
                         srv.Name = service.Name;
                         srv.Price = service.Price;
                         srv.Description = service.Description;
+                        srv.CreatedDate = service.CreatedDate;
+                        srv.CreatedBy = service.CreatedBy;
+                        srv.UpdatedDate = service.UpdatedDate;
+                        srv.UpdatedBy = service.UpdatedBy;
+                        srv.DeletedDate = service.DeletedDate;
+                        srv.DeletedBy = service.DeletedBy;
+                        srv.Status = service.Status;
                     }
                 }
 

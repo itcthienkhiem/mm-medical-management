@@ -60,8 +60,28 @@ namespace MM.Controls
                 newRow["Fullname"] = dlg.FullName;
                 newRow["Name"] = dlg.ServiceName;
                 newRow["Code"] = dlg.ServiceCode;
-                newRow["CreatedDate"] = dlg.ServiceHistory.CreatedDate;
                 newRow["DocStaffFullname"] = Global.Fullname;
+
+                if (dlg.ServiceHistory.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.ServiceHistory.CreatedDate;
+
+                if (dlg.ServiceHistory.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.ServiceHistory.CreatedBy.ToString();
+
+                if (dlg.ServiceHistory.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.ServiceHistory.UpdatedDate;
+
+                if (dlg.ServiceHistory.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.ServiceHistory.UpdatedBy.ToString();
+
+                if (dlg.ServiceHistory.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.ServiceHistory.DeletedDate;
+
+                if (dlg.ServiceHistory.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.ServiceHistory.DeletedBy.ToString();
+
+                newRow["Status"] = dlg.ServiceHistory.Status;
+
                 dt.Rows.Add(newRow);
                 CalculateTotalPrice();
             }
@@ -89,8 +109,28 @@ namespace MM.Controls
                 drServiceHistory["Fullname"] = dlg.FullName;
                 drServiceHistory["Name"] = dlg.ServiceName;
                 drServiceHistory["Code"] = dlg.ServiceCode;
-                drServiceHistory["CreatedDate"] = dlg.ServiceHistory.CreatedDate;
                 drServiceHistory["DocStaffFullname"] = Global.Fullname;
+
+                if (dlg.ServiceHistory.CreatedDate.HasValue)
+                    drServiceHistory["CreatedDate"] = dlg.ServiceHistory.CreatedDate;
+
+                if (dlg.ServiceHistory.CreatedBy.HasValue)
+                    drServiceHistory["CreatedBy"] = dlg.ServiceHistory.CreatedBy.ToString();
+
+                if (dlg.ServiceHistory.UpdatedDate.HasValue)
+                    drServiceHistory["UpdatedDate"] = dlg.ServiceHistory.UpdatedDate;
+
+                if (dlg.ServiceHistory.UpdatedBy.HasValue)
+                    drServiceHistory["UpdatedBy"] = dlg.ServiceHistory.UpdatedBy.ToString();
+
+                if (dlg.ServiceHistory.DeletedDate.HasValue)
+                    drServiceHistory["DeletedDate"] = dlg.ServiceHistory.DeletedDate;
+
+                if (dlg.ServiceHistory.DeletedBy.HasValue)
+                    drServiceHistory["DeletedBy"] = dlg.ServiceHistory.DeletedBy.ToString();
+
+                drServiceHistory["Status"] = dlg.ServiceHistory.Status;
+
                 CalculateTotalPrice();
             }
         }

@@ -98,6 +98,13 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (cboSpeciality.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập chuyên khoa.");
+                cboSpeciality.Focus();
+                return false;
+            }
+
             if (txtAddress.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập địa chỉ.");
@@ -158,6 +165,24 @@ namespace MM.Dialogs
                 _contact.ContactGUID = Guid.Parse(drDocStaff["ContactGUID"].ToString());
                 _docStaff.DocStaffGUID = Guid.Parse(drDocStaff["DocStaffGUID"].ToString());
                 _docStaff.ContactGUID = _contact.ContactGUID;
+
+                if (drDocStaff["CreatedDate"] != null && drDocStaff["CreatedDate"] != DBNull.Value)
+                    _contact.CreatedDate = Convert.ToDateTime(drDocStaff["CreatedDate"]);
+
+                if (drDocStaff["CreatedBy"] != null && drDocStaff["CreatedBy"] != DBNull.Value)
+                    _contact.CreatedBy = Guid.Parse(drDocStaff["CreatedBy"].ToString());
+
+                if (drDocStaff["UpdatedDate"] != null && drDocStaff["UpdatedDate"] != DBNull.Value)
+                    _contact.UpdatedDate = Convert.ToDateTime(drDocStaff["UpdatedDate"]);
+
+                if (drDocStaff["UpdatedBy"] != null && drDocStaff["UpdatedBy"] != DBNull.Value)
+                    _contact.UpdatedBy = Guid.Parse(drDocStaff["UpdatedBy"].ToString());
+
+                if (drDocStaff["DeletedDate"] != null && drDocStaff["DeletedDate"] != DBNull.Value)
+                    _contact.DeletedDate = Convert.ToDateTime(drDocStaff["DeletedDate"]);
+
+                if (drDocStaff["DeletedBy"] != null && drDocStaff["DeletedBy"] != DBNull.Value)
+                    _contact.DeletedBy = Guid.Parse(drDocStaff["DeletedBy"].ToString());
             }
             catch (Exception e)
             {

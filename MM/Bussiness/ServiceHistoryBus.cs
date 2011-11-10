@@ -20,10 +20,10 @@ namespace MM.Bussiness
             {
                 string query = string.Empty;
                 if (isAll)
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND DeletedDate IS NULL ORDER BY Code", patientGUID);
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND Status = {1} ORDER BY Code", patientGUID, (byte)Status.Actived);
                 else
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND CreatedDate BETWEEN '{1}' AND '{2}' AND DeletedDate IS NULL ORDER BY Code",
-                        patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND CreatedDate BETWEEN '{1}' AND '{2}' AND Status = {3} ORDER BY Code",
+                        patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
 
                 return ExcuteQuery(query);
             }
@@ -58,6 +58,7 @@ namespace MM.Bussiness
                         {
                             srvHistory.DeletedDate = DateTime.Now;
                             srvHistory.DeletedBy = Guid.Parse(Global.UserGUID);
+                            srvHistory.Status = (byte)Status.Deactived;
                         }
 
                         db.SubmitChanges();
@@ -110,7 +111,7 @@ namespace MM.Bussiness
                         ServiceHistory srvHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID.ToString() == serviceHistory.ServiceHistoryGUID.ToString());
                         if (srvHistory != null)
                         {
-                            srvHistory.Createdby = serviceHistory.Createdby;
+                            srvHistory.CreatedBy = serviceHistory.CreatedBy;
                             srvHistory.CreatedDate = serviceHistory.CreatedDate;
                             srvHistory.DeletedBy = serviceHistory.DeletedBy;
                             srvHistory.DeletedDate = serviceHistory.DeletedDate;
@@ -120,6 +121,7 @@ namespace MM.Bussiness
                             srvHistory.ServiceGUID = serviceHistory.ServiceGUID;
                             srvHistory.UpdatedBy = serviceHistory.UpdatedBy;
                             srvHistory.UpdatedDate = serviceHistory.UpdatedDate;
+                            srvHistory.Status = serviceHistory.Status;
                         }
                     }
 

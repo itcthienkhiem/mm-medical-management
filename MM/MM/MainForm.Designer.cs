@@ -39,6 +39,8 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tbServiceList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbSpecialityList = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tbDoctorList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tbOpenPatient = new System.Windows.Forms.ToolStripButton();
@@ -57,6 +59,8 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.servicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.specialityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.specialityListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doctorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doctorListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +71,7 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uSpecialityList = new MM.Controls.uSpecialityList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -75,8 +80,10 @@
             // 
             // _mainPanel
             // 
+            this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uSpecialityList);
             this._mainPanel.Controls.Add(this._uPatientHistory);
             this._mainPanel.Controls.Add(this._uPatientList);
             this._mainPanel.Controls.Add(this._uDocStaffList);
@@ -112,6 +119,8 @@
             this.toolStripSeparator8,
             this.tbServiceList,
             this.toolStripSeparator6,
+            this.tbSpecialityList,
+            this.toolStripSeparator9,
             this.tbDoctorList,
             this.toolStripSeparator1,
             this.tbOpenPatient,
@@ -148,6 +157,19 @@
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
+            // 
+            // tbSpecialityList
+            // 
+            this.tbSpecialityList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbSpecialityList, "tbSpecialityList");
+            this.tbSpecialityList.Image = global::MM.Properties.Resources.stethoscope_icon;
+            this.tbSpecialityList.Name = "tbSpecialityList";
+            this.tbSpecialityList.Tag = "Speciality List";
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
             // 
             // tbDoctorList
             // 
@@ -218,6 +240,7 @@
             this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.systemToolStripMenuItem,
             this.servicesToolStripMenuItem,
+            this.specialityToolStripMenuItem,
             this.doctorToolStripMenuItem,
             this.patientToolStripMenuItem,
             this.helpToolStripMenuItem});
@@ -283,6 +306,21 @@
             resources.ApplyResources(this.serviceListToolStripMenuItem, "serviceListToolStripMenuItem");
             this.serviceListToolStripMenuItem.Tag = "Services List";
             this.serviceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // specialityToolStripMenuItem
+            // 
+            this.specialityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.specialityListToolStripMenuItem});
+            resources.ApplyResources(this.specialityToolStripMenuItem, "specialityToolStripMenuItem");
+            this.specialityToolStripMenuItem.Name = "specialityToolStripMenuItem";
+            // 
+            // specialityListToolStripMenuItem
+            // 
+            this.specialityListToolStripMenuItem.Image = global::MM.Properties.Resources.stethoscope_icon;
+            this.specialityListToolStripMenuItem.Name = "specialityListToolStripMenuItem";
+            resources.ApplyResources(this.specialityListToolStripMenuItem, "specialityListToolStripMenuItem");
+            this.specialityListToolStripMenuItem.Tag = "Speciality List";
+            this.specialityListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // doctorToolStripMenuItem
             // 
@@ -359,6 +397,11 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // _uSpecialityList
+            // 
+            resources.ApplyResources(this._uSpecialityList, "_uSpecialityList");
+            this._uSpecialityList.Name = "_uSpecialityList";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -423,6 +466,11 @@
         private Controls.uDocStaffList _uDocStaffList;
         private Controls.uPatientList _uPatientList;
         private Controls.uPatientHistory _uPatientHistory;
+        private System.Windows.Forms.ToolStripMenuItem specialityToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem specialityListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton tbSpecialityList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private Controls.uSpecialityList _uSpecialityList;
 
 
 

@@ -112,6 +112,26 @@ namespace MM.Dialogs
                 numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
                 txtDescription.Text = drServiceHistory["Note"] as string;
                 _serviceHistory.ServiceHistoryGUID = Guid.Parse(drServiceHistory["ServiceHistoryGUID"].ToString());
+
+                if (drServiceHistory["CreatedDate"] != null && drServiceHistory["CreatedDate"] != DBNull.Value)
+                    _serviceHistory.CreatedDate = Convert.ToDateTime(drServiceHistory["CreatedDate"]);
+
+                if (drServiceHistory["CreatedBy"] != null && drServiceHistory["CreatedBy"] != DBNull.Value)
+                    _serviceHistory.CreatedBy = Guid.Parse(drServiceHistory["CreatedBy"].ToString());
+
+                if (drServiceHistory["UpdatedDate"] != null && drServiceHistory["UpdatedDate"] != DBNull.Value)
+                    _serviceHistory.UpdatedDate = Convert.ToDateTime(drServiceHistory["UpdatedDate"]);
+
+                if (drServiceHistory["UpdatedBy"] != null && drServiceHistory["UpdatedBy"] != DBNull.Value)
+                    _serviceHistory.UpdatedBy = Guid.Parse(drServiceHistory["UpdatedBy"].ToString());
+
+                if (drServiceHistory["DeletedDate"] != null && drServiceHistory["DeletedDate"] != DBNull.Value)
+                    _serviceHistory.DeletedDate = Convert.ToDateTime(drServiceHistory["DeletedDate"]);
+
+                if (drServiceHistory["DeletedBy"] != null && drServiceHistory["DeletedBy"] != DBNull.Value)
+                    _serviceHistory.DeletedBy = Guid.Parse(drServiceHistory["DeletedBy"].ToString());
+
+                _serviceHistory.Status = Convert.ToByte(drServiceHistory["Status"]);
             }
             catch (Exception e)
             {
@@ -146,7 +166,7 @@ namespace MM.Dialogs
                 if (_isNew)
                 {
                     _serviceHistory.CreatedDate = DateTime.Now;
-                    _serviceHistory.Createdby = Guid.Parse(Global.UserGUID);
+                    _serviceHistory.CreatedBy = Guid.Parse(Global.UserGUID);
                 }
                 else
                 {
