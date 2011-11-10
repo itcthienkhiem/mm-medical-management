@@ -50,32 +50,56 @@ namespace MM.Dialogs
         public string Title
         {
             get { return this.Text; }
-            set { this.Text = value; }
+            set             
+            {
+                MethodInvoker method = delegate
+                {
+                    this.Text = value; 
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
         }
 
         public string Message
         {
             get { return lbMessage.Text; }
-            set { lbMessage.Text = value; }
+            set 
+            { 
+                MethodInvoker method = delegate
+                {
+                    lbMessage.Text = value;
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
         }
 
         public MsgBoxType MsgBoxType
         {
             set
             {
-                switch (value)
+                MethodInvoker method = delegate
                 {
-                    case MsgBoxType.OK:
-                        btnCancel.Visible = true;
-                        btnCancel2.Visible = false;
-                        btnOK.Visible = false;
-                        break;
-                    case MsgBoxType.YesNo:
-                        btnCancel.Visible = false;
-                        btnCancel2.Visible = true;
-                        btnOK.Visible = true;
-                        break;
-                }
+                    switch (value)
+                    {
+                        case MsgBoxType.OK:
+                            btnCancel.Visible = true;
+                            btnCancel2.Visible = false;
+                            btnOK.Visible = false;
+                            break;
+                        case MsgBoxType.YesNo:
+                            btnCancel.Visible = false;
+                            btnCancel2.Visible = true;
+                            btnOK.Visible = true;
+                            break;
+                    }
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
             }
         }
         #endregion
