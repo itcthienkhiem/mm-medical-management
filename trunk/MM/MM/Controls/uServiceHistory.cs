@@ -308,6 +308,11 @@ namespace MM.Controls
         {
             DisplayAsThread();
         }
+
+        private void uServiceHistory_Load(object sender, EventArgs e)
+        {
+            //DisplayAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -329,5 +334,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

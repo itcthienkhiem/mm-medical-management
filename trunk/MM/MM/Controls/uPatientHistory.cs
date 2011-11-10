@@ -49,7 +49,6 @@ namespace MM.Controls
             {
                 item.Visible = true;
                 item.Selected = true;
-                //((((item.Control as PanelDockContainer).Controls[0] as DevComponents.DotNetBar.TabControl).Controls[0] as TabControlPanel).Controls[0] as uServiceHistory).PatientRow = _patientRow;
             }
 
             docBar.Visible = true;
@@ -65,15 +64,17 @@ namespace MM.Controls
 
                 if (panelDockContainer1.Controls.Count <= 0)
                 {
-                    DevComponents.DotNetBar.TabControl tab = NewTabControl();
-                    panelDockContainer1.Controls.Add(tab);
+                    uPatient ctrl = new uPatient();
+                    ctrl.PatientRow = _patientRow;
+                    panelDockContainer1.Controls.Add(ctrl);
+                    ctrl.Dock = DockStyle.Fill;
+                    ctrl.DisplayInfo();
                 }
                 else
                 {
-                    DevComponents.DotNetBar.TabControl tab = panelDockContainer1.Controls[0] as DevComponents.DotNetBar.TabControl;
-                    uServiceHistory uServiceHistory = (tab.Controls[0] as TabControlPanel).Controls[0] as uServiceHistory;
-                    uServiceHistory.PatientRow = _patientRow;
-                    uServiceHistory.DisplayAsThread();
+                    uPatient ctrl = panelDockContainer1.Controls[0] as uPatient;
+                    ctrl.PatientRow = _patientRow;
+                    ctrl.DisplayInfo();
                 }
                 
                 _isFirst = false;
@@ -88,35 +89,18 @@ namespace MM.Controls
                 p.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
                 p.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
                 p.Style.GradientAngle = 90;
-                DevComponents.DotNetBar.TabControl tab = NewTabControl();
-                p.Controls.Add(tab);
+
+                uPatient ctrl = new uPatient();
+                ctrl.PatientRow = _patientRow;
+                p.Controls.Add(ctrl);
+                ctrl.Dock = DockStyle.Fill;
+                ctrl.DisplayInfo();
 
                 docBar.Controls.Add(p);
                 item.Control = p;
                 docBar.Items.Add(item);
                 item.Selected = true;
             }
-        }
-
-        private DevComponents.DotNetBar.TabControl NewTabControl()
-        {
-            DevComponents.DotNetBar.TabControl tab = new DevComponents.DotNetBar.TabControl();
-            TabControlPanel p = new TabControlPanel();
-            tab.Controls.Add(p);
-            tab.Style = eTabStripStyle.VS2005;
-            tab.Dock = DockStyle.Fill;
-
-            //Service
-            TabItem item = tab.CreateTab("Dịch vụ đã sử dụng");
-            item.AttachedControl = p;
-            p.Dock = System.Windows.Forms.DockStyle.Fill;
-
-            uServiceHistory uServiceHistory = new uServiceHistory();
-            uServiceHistory.PatientRow = _patientRow;
-            p.Controls.Add(uServiceHistory);
-            uServiceHistory.Dock = DockStyle.Fill;
-            uServiceHistory.DisplayAsThread();
-            return tab;
         }
 
         private DockContainerItem GetDockContainerItem(string fileNum)

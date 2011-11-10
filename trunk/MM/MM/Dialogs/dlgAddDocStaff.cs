@@ -105,6 +105,13 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (txtEmail.Text.Trim() != string.Empty && !Utility.IsValidEmail(txtEmail.Text))
+            {
+                MsgBox.Show(this.Text, "Địa chỉ email không hợp lê.");
+                txtEmail.Focus();
+                return false;
+            }
+
             if (txtAddress.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập địa chỉ.");
@@ -287,6 +294,22 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
+        }
+
+        private void txtIdentityCard_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '0' && e.KeyChar != '1' && e.KeyChar != '2' && e.KeyChar != '3' && e.KeyChar != '4' &&
+                e.KeyChar != '5' && e.KeyChar != '6' && e.KeyChar != '7' && e.KeyChar != '8' && e.KeyChar != '9' &&
+                e.KeyChar != '\b')
+                e.Handled = true;
+        }
+
+        private void txtHomePhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != '0' && e.KeyChar != '1' && e.KeyChar != '2' && e.KeyChar != '3' && e.KeyChar != '4' &&
+                e.KeyChar != '5' && e.KeyChar != '6' && e.KeyChar != '7' && e.KeyChar != '8' && e.KeyChar != '9' &&
+                e.KeyChar != '\b')
+                e.Handled = true;
         }
         #endregion
 
