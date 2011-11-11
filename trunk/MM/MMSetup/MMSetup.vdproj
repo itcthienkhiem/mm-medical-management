@@ -423,7 +423,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_704652282E1C4E69AFDE3527E040552D"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:D:\\FromAnhDucPM\\Project\\PacquetBuilder\\MMOutput"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"
@@ -483,11 +483,11 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Medical Management"
         "ProductCode" = "8:{AAE740BF-CE5A-411F-9257-DDAB277C56B6}"
-        "PackageCode" = "8:{800F0F82-2B6F-43D0-8D64-7FC68A52612F}"
+        "PackageCode" = "8:{2E8A805D-753F-4F24-984A-0CAD0D2BE5CE}"
         "UpgradeCode" = "8:{D1E1E0E3-1E14-400D-9273-1170FA513FAD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
