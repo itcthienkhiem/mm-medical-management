@@ -21,25 +21,55 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1E07B290A94EF213FF794AFA248B2A80"
-        "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_7E495969133D8D29B39F3B1E7AF2BEC7"
-        "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_82E032C2956940C9B7A8209F04A6953A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_AAC5497A11B8F24ABC954805A24FB6FC"
+        "MsmKey" = "8:_8F03BFE416B335AEE5F53344A374B431"
+        "OwnerKey" = "8:_A1E53645F8A1D426FC147A647D00B1EF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8F03BFE416B335AEE5F53344A374B431"
+        "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_97D47380E843664BD90FA5869FA46E37"
+        "OwnerKey" = "8:_A1E53645F8A1D426FC147A647D00B1EF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_97D47380E843664BD90FA5869FA46E37"
+        "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_97D47380E843664BD90FA5869FA46E37"
+        "OwnerKey" = "8:_8F03BFE416B335AEE5F53344A374B431"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A1E53645F8A1D426FC147A647D00B1EF"
+        "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B8C1E53BE2A09B972B14CED5F8514CA9"
+        "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B94C105DFAE6DD6CDC3096C16CC9E867"
         "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -52,25 +82,37 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AAC5497A11B8F24ABC954805A24FB6FC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1E07B290A94EF213FF794AFA248B2A80"
+        "OwnerKey" = "8:_A1E53645F8A1D426FC147A647D00B1EF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7E495969133D8D29B39F3B1E7AF2BEC7"
+        "OwnerKey" = "8:_8F03BFE416B335AEE5F53344A374B431"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_97D47380E843664BD90FA5869FA46E37"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B8C1E53BE2A09B972B14CED5F8514CA9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_B94C105DFAE6DD6CDC3096C16CC9E867"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -91,6 +133,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -107,6 +170,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -156,14 +240,34 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1E07B290A94EF213FF794AFA248B2A80"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_82E032C2956940C9B7A8209F04A6953A"
+            {
+            "SourcePath" = "8:..\\MM\\Components\\Uninstall_MM.bat"
+            "TargetName" = "8:Uninstall_MM.bat"
+            "Tag" = "8:"
+            "Folder" = "8:_704652282E1C4E69AFDE3527E040552D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8F03BFE416B335AEE5F53344A374B431"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MM.Databasae, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MM.Databasae, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_1E07B290A94EF213FF794AFA248B2A80"
+                    "_8F03BFE416B335AEE5F53344A374B431"
                     {
                     "Name" = "8:MM.Databasae.dll"
                     "Attributes" = "3:512"
@@ -187,14 +291,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E495969133D8D29B39F3B1E7AF2BEC7"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_97D47380E843664BD90FA5869FA46E37"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MM.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:MM.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_7E495969133D8D29B39F3B1E7AF2BEC7"
+                    "_97D47380E843664BD90FA5869FA46E37"
                     {
                     "Name" = "8:MM.Common.dll"
                     "Attributes" = "3:512"
@@ -218,10 +322,21 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_82E032C2956940C9B7A8209F04A6953A"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A1E53645F8A1D426FC147A647D00B1EF"
             {
-            "SourcePath" = "8:..\\MM\\Components\\Uninstall_MM.bat"
-            "TargetName" = "8:Uninstall_MM.bat"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MM.Bussiness, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_A1E53645F8A1D426FC147A647D00B1EF"
+                    {
+                    "Name" = "8:MM.Bussiness.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MM.Bussiness.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_704652282E1C4E69AFDE3527E040552D"
             "Condition" = "8:"
@@ -235,23 +350,54 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AAC5497A11B8F24ABC954805A24FB6FC"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B8C1E53BE2A09B972B14CED5F8514CA9"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MM.Bussiness, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:DevComponents.Instrumentation, Version=9.4.0.0, Culture=neutral, PublicKeyToken=105a14414ec031c3, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_AAC5497A11B8F24ABC954805A24FB6FC"
+                    "_B8C1E53BE2A09B972B14CED5F8514CA9"
                     {
-                    "Name" = "8:MM.Bussiness.dll"
+                    "Name" = "8:DevComponents.Instrumentation.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:MM.Bussiness.dll"
+            "SourcePath" = "8:DevComponents.Instrumentation.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_704652282E1C4E69AFDE3527E040552D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B94C105DFAE6DD6CDC3096C16CC9E867"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_B94C105DFAE6DD6CDC3096C16CC9E867"
+                    {
+                    "Name" = "8:DevComponents.DotNetBar2.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:DevComponents.DotNetBar2.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_704652282E1C4E69AFDE3527E040552D"
@@ -337,7 +483,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Medical Management"
         "ProductCode" = "8:{AAE740BF-CE5A-411F-9257-DDAB277C56B6}"
-        "PackageCode" = "8:{401A0035-0894-429B-BE4E-D9A733DEEE6D}"
+        "PackageCode" = "8:{800F0F82-2B6F-43D0-8D64-7FC68A52612F}"
         "UpgradeCode" = "8:{D1E1E0E3-1E14-400D-9273-1170FA513FAD}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -345,12 +491,12 @@
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:Vu Nguyen"
+        "Manufacturer" = "8:MMGroup"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
         "Title" = "8:Medical Management Setup"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:Vu Nguyen"
+        "ARPCONTACT" = "8:MMGroup"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
@@ -900,7 +1046,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F6479B90CA1742418CF8CC2CE65B77AD"
             {
-            "SourcePath" = "8:..\\MM\\obj\\x86\\Debug\\MM.exe"
+            "SourcePath" = "8:..\\MM\\obj\\x86\\Release\\MM.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_704652282E1C4E69AFDE3527E040552D"
