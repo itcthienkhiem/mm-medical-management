@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Databasae")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("SiGlaz")]
+[assembly: AssemblyCompany("MMGroup")]
 [assembly: AssemblyProduct("Databasae")]
-[assembly: AssemblyCopyright("Copyright © SiGlaz 2011")]
+[assembly: AssemblyCopyright("Copyright © MMGroup 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
