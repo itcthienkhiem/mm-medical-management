@@ -22,7 +22,7 @@ namespace MM.Bussiness
                 if (isAll)
                     query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND Status = {1} ORDER BY Code", patientGUID, (byte)Status.Actived);
                 else
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND CreatedDate BETWEEN '{1}' AND '{2}' AND Status = {3} ORDER BY Code",
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} ORDER BY Code",
                         patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
 
                 return ExcuteQuery(query);
