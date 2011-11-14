@@ -9,7 +9,6 @@ namespace MM.Common
     {
         Doctor = 0,
         Nurse,
-        Receptionist,
         Patient
     }
 }
