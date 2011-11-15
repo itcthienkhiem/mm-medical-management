@@ -57,10 +57,10 @@ namespace MM.Controls
                 newRow["ServiceGUID"] = dlg.ServiceHistory.ServiceGUID.ToString();
                 newRow["FixedPrice"] = dlg.ServiceHistory.Price;
                 newRow["Note"] = dlg.ServiceHistory.Note;
-                newRow["Fullname"] = dlg.FullName;
+                newRow["FullName"] = dlg.FullName;
                 newRow["Name"] = dlg.ServiceName;
                 newRow["Code"] = dlg.ServiceCode;
-                newRow["DocStaffFullname"] = Global.Fullname;
+                newRow["CreatedName"] = Global.Fullname;
 
                 if (dlg.ServiceHistory.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.ServiceHistory.CreatedDate;
@@ -112,7 +112,7 @@ namespace MM.Controls
                 drServiceHistory["Fullname"] = dlg.FullName;
                 drServiceHistory["Name"] = dlg.ServiceName;
                 drServiceHistory["Code"] = dlg.ServiceCode;
-                drServiceHistory["DocStaffFullname"] = Global.Fullname;
+                drServiceHistory["CreatedName"] = Global.Fullname;
 
                 if (dlg.ServiceHistory.CreatedDate.HasValue)
                     drServiceHistory["CreatedDate"] = dlg.ServiceHistory.CreatedDate;

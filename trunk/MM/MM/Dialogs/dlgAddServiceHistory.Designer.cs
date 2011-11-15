@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceHistory));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpkActiveDate = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
             this.cboDocStaff = new System.Windows.Forms.ComboBox();
             this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboService = new System.Windows.Forms.ComboBox();
@@ -44,8 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dtpkActiveDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
@@ -71,6 +71,24 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // dtpkActiveDate
+            // 
+            this.dtpkActiveDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkActiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkActiveDate.Location = new System.Drawing.Point(93, 93);
+            this.dtpkActiveDate.Name = "dtpkActiveDate";
+            this.dtpkActiveDate.Size = new System.Drawing.Size(122, 20);
+            this.dtpkActiveDate.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 97);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Ngày sử dụng:";
             // 
             // cboDocStaff
             // 
@@ -209,24 +227,6 @@
             this.btnOK.TabIndex = 9;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 97);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Ngày sử dụng:";
-            // 
-            // dtpkActiveDate
-            // 
-            this.dtpkActiveDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpkActiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkActiveDate.Location = new System.Drawing.Point(93, 93);
-            this.dtpkActiveDate.Name = "dtpkActiveDate";
-            this.dtpkActiveDate.Size = new System.Drawing.Size(122, 20);
-            this.dtpkActiveDate.TabIndex = 7;
             // 
             // dlgAddServiceHistory
             // 

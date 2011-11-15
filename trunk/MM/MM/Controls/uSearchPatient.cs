@@ -63,12 +63,12 @@ namespace MM.Controls
             string str = txtSearchPatient.Text.ToLower();
             DataTable dt = _dataSource as DataTable;
 
-            //Fullname
+            //FullName
             var results = from p in dt.AsEnumerable()
-                          where (p.Field<string>("Fullname").ToLower().IndexOf(str) >= 0 ||
-                          str.IndexOf(p.Field<string>("Fullname").ToLower()) >= 0) &&
-                          p.Field<string>("Fullname") != null &&
-                          p.Field<string>("Fullname").Trim() != string.Empty
+                          where (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
+                          str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) &&
+                          p.Field<string>("FullName") != null &&
+                          p.Field<string>("FullName").Trim() != string.Empty
                           select p;
 
             DataTable newDataSource = dt.Clone();

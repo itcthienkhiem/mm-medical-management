@@ -17,7 +17,7 @@ namespace MM.Bussiness
             
             try
             {
-                string query = "SELECT DocStaffGUID, Fullname FROM UserView WHERE AvailableToWork = 'True' ORDER BY Fullname";
+                string query = "SELECT DocStaffGUID, FullName, StaffType FROM UserView WHERE AvailableToWork = 'True' ORDER BY Fullname";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -40,7 +40,41 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WHERE AvailableToWork = 'True' ORDER BY Fullname";
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WHERE AvailableToWork = 'True' ORDER BY FullName";
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetDocStaffList(List<byte> staffTypes)
+        {
+            Result result = null;
+
+            try
+            {
+                string staffTypeStr = string.Empty;
+                foreach (byte type in staffTypes)
+                {
+                    staffTypeStr += string.Format("{0},", type);       
+                }
+
+                if (staffTypeStr != string.Empty)
+                    staffTypeStr = staffTypeStr.Substring(0, staffTypeStr.Length - 1);
+
+                staffTypeStr = string.Format("({0})", staffTypeStr);
+
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WHERE AvailableToWork = 'True' AND StaffType IN {0} ORDER BY FullName", staffTypeStr);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -150,8 +184,10 @@ namespace MM.Bussiness
                             ct.DeletedDate = contact.DeletedDate;
                             ct.District = contact.District;
                             ct.Dob = contact.Dob;
+                            ct.DobStr = contact.DobStr;
                             ct.Email = contact.Email;
                             ct.FAX = contact.FAX;
+                            ct.FullName = contact.FullName;
                             ct.FirstName = contact.FirstName;
                             ct.Gender = contact.Gender;
                             ct.HomePhone = contact.HomePhone;

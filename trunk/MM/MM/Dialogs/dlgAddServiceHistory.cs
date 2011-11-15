@@ -92,7 +92,10 @@ namespace MM.Dialogs
             }
 
             //DocStaff
-            result = DocStaffBus.GetDocStaffList();
+            List<byte> staffTypes = new List<byte>();
+            staffTypes.Add((byte)StaffType.Doctor);
+            staffTypes.Add((byte)StaffType.Nurse);
+            result = DocStaffBus.GetDocStaffList(staffTypes);
             if (!result.IsOK)
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"));

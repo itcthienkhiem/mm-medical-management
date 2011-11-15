@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'True' ORDER BY Fullname";
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'True' ORDER BY FullName";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -88,7 +88,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertPatient(Contact contact, Patient patient)
+        public static Result InsertPatient(Contact contact, Patient patient, PatientHistory patientHistory)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -127,8 +127,10 @@ namespace MM.Bussiness
                             ct.DeletedDate = contact.DeletedDate;
                             ct.District = contact.District;
                             ct.Dob = contact.Dob;
+                            ct.DobStr = contact.DobStr;
                             ct.Email = contact.Email;
                             ct.FAX = contact.FAX;
+                            ct.FullName = contact.FullName;
                             ct.FirstName = contact.FirstName;
                             ct.Gender = contact.Gender;
                             ct.HomePhone = contact.HomePhone;

@@ -176,5 +176,180 @@ namespace MM.Common
 
             return valid;
         }
+
+        public static void GetSurNameFirstNameFromFullName(string fullName, ref string surName, ref string firstName)
+        {
+            fullName = fullName.Trim();
+            int index = fullName.LastIndexOf(" ");
+
+            if (index >= 0)
+            {
+                surName = fullName.Substring(0, index);
+                firstName = fullName.Substring(index + 1, fullName.Length - index - 1);
+            }
+            else
+            {
+                surName = string.Empty;
+                firstName = fullName;
+            }
+        }
+
+        public static bool isValidDOB(string dobStr)
+        {
+            try
+            {
+                DateTime.ParseExact(dobStr, "dd/MM/yyyy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "d/MM/yyyy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "d/M/yyyy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "dd/M/yyyy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "dd/MM/yy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "d/MM/yy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "d/M/yy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "dd/M/yy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "dd-MM-yyyy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "d-MM-yyyy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "d-M-yyyy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "dd-M-yyyy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "dd-MM-yy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "d-MM-yy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "d-M-yy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime.ParseExact(dobStr, "dd-M-yy", null);
+                return true;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                int year = int.Parse(dobStr);
+                if (year > 0) return true;
+            }
+            catch
+            {
+            }
+            
+            return false;
+        }
     }
 }

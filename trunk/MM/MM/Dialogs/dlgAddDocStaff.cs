@@ -70,34 +70,27 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (txtSurName.Text.Trim() == string.Empty)
+            if (txtFullName.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập họ.");
-                txtSurName.Focus();
+                txtFullName.Focus();
                 return false;
             }
 
-            if (txtFirstName.Text.Trim() == string.Empty)
+            if (txtDOB.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên.");
-                txtFirstName.Focus();
+                MsgBox.Show(this.Text, "Vui lòng ngày sinh hoặc năm sinh.");
+                txtDOB.Focus();
                 return false;
             }
 
-            if (txtIdentityCard.Text.Trim() == string.Empty)
+            if (!Utility.isValidDOB(txtDOB.Text))
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập CMND.");
-                txtIdentityCard.Focus();
+                MsgBox.Show(this.Text, "Ngày sinh hoặc năm sinh chưa đúng. Vui lòng nhập lại");
+                txtDOB.Focus();
                 return false;
             }
-
-            if (txtQualifications.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập bằng cấp.");
-                txtQualifications.Focus();
-                return false;
-            }
-
+            
             if (cboSpeciality.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập chuyên khoa.");
@@ -112,34 +105,6 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (txtAddress.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập địa chỉ.");
-                txtAddress.Focus();
-                return false;
-            }
-
-            if (txtWard.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập phường/xã.");
-                txtWard.Focus();
-                return false;
-            }
-
-            if (txtDistrict.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập quận/huyện");
-                txtDistrict.Focus();
-                return false;
-            }
-
-            if (txtCity.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập tỉnh/thành phố.");
-                txtCity.Focus();
-                return false;
-            }
-
             return true;
         }
 
@@ -147,13 +112,11 @@ namespace MM.Dialogs
         {
             try
             {
-                txtSurName.Text = drDocStaff["SurName"] as string;
-                txtMiddleName.Text = drDocStaff["MiddleName"] as string;
-                txtFirstName.Text = drDocStaff["FirstName"] as string;
+                txtFullName.Text = drDocStaff["FullName"] as string;
                 txtKnownAs.Text = drDocStaff["KnownAs"] as string;
                 txtPreferredName.Text = drDocStaff["PreferredName"] as string;
                 cboGender.SelectedIndex = Convert.ToInt32(drDocStaff["Gender"]);
-                dtpkDOB.Value = Convert.ToDateTime(drDocStaff["Dob"]);
+                txtDOB.Text = drDocStaff["DobStr"] as string;
                 txtIdentityCard.Text = drDocStaff["IdentityCard"] as string;
                 txtQualifications.Text = drDocStaff["Qualifications"] as string;
                 cboSpeciality.SelectedValue = drDocStaff["SpecialityGUID"];
@@ -165,9 +128,6 @@ namespace MM.Dialogs
                 txtEmail.Text = drDocStaff["Email"] as string;
                 txtFax.Text = drDocStaff["Fax"] as string;
                 txtAddress.Text = drDocStaff["Address"] as string;
-                txtWard.Text = drDocStaff["Ward"] as string;
-                txtDistrict.Text = drDocStaff["District"] as string;
-                txtCity.Text = drDocStaff["City"] as string;
 
                 _contact.ContactGUID = Guid.Parse(drDocStaff["ContactGUID"].ToString());
                 _docStaff.DocStaffGUID = Guid.Parse(drDocStaff["DocStaffGUID"].ToString());
@@ -220,14 +180,19 @@ namespace MM.Dialogs
         {
             try
             {
-                _contact.SurName = txtSurName.Text;
-                _contact.MiddleName = txtMiddleName.Text;
-                _contact.FirstName = txtFirstName.Text;
+                _contact.FullName = txtFullName.Text;
+
+                string surName = string.Empty;
+                string firstName = string.Empty;
+                Utility.GetSurNameFirstNameFromFullName(txtFullName.Text, ref surName, ref firstName);
+                _contact.SurName = surName;
+                _contact.FirstName = firstName;
+
                 _contact.KnownAs = txtKnownAs.Text;
                 _contact.PreferredName = txtPreferredName.Text;
                 _contact.Archived = true;
 
-                _contact.Dob = dtpkDOB.Value;
+                _contact.DobStr = txtDOB.Text;
                 _contact.IdentityCard = txtIdentityCard.Text;
                 _contact.HomePhone = txtHomePhone.Text;
                 _contact.WorkPhone = txtWorkPhone.Text;
@@ -235,9 +200,6 @@ namespace MM.Dialogs
                 _contact.Email = txtEmail.Text;
                 _contact.FAX = txtFax.Text;
                 _contact.Address = txtAddress.Text;
-                _contact.Ward = txtWard.Text;
-                _contact.District = txtDistrict.Text;
-                _contact.City = txtCity.Text;
                 _docStaff.Qualifications = txtQualifications.Text;
                 _docStaff.AvailableToWork = true;
 
@@ -257,7 +219,20 @@ namespace MM.Dialogs
                     _docStaff.SpecialityGUID = Guid.Parse(cboSpeciality.SelectedValue.ToString());
                     _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
                     _docStaff.StaffType = (byte)cboStaffType.SelectedIndex;
-                    _contact.Occupation = _docStaff.StaffType == 0 ? "Bác sĩ" : "Y tá";
+
+                    switch (_docStaff.StaffType)
+                    {
+                        case 0:
+                            _contact.Occupation = "Bác sĩ";
+                            break;
+                        case 1:
+                            _contact.Occupation = "Y tá";
+                            break;
+                        case 2:
+                            _contact.Occupation = "Lễ tân";
+                            break;
+                    }
+                    
                     _contact.Gender = (byte)cboGender.SelectedIndex;
                 };
 
