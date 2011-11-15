@@ -58,7 +58,7 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     cboUserName.DataSource = dt;
-                    cboUserName.DisplayMember = "Fullname";
+                    cboUserName.DisplayMember = "FullName";
                     cboUserName.ValueMember = "DocStaffGUID";
                 };
 

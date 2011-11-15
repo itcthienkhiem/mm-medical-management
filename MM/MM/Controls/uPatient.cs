@@ -42,15 +42,15 @@ namespace MM.Controls
             DataRow row = _patientRow as DataRow;
 
             txtFileNum.Text = row["FileNum"].ToString();
-            txtFullname.Text = row["Fullname"].ToString();
+            txtFullName.Text = row["FullName"].ToString();
             txtGender.Text = row["GenderAsStr"].ToString();
-            txtDOB.Text = Convert.ToDateTime(row["Dob"]).ToString("dd/MM/yyyy");
+            txtDOB.Text = row["DobStr"].ToString();
             txtIdentityCard.Text = row["IdentityCard"].ToString();
             txtHomePhone.Text = row["HomePhone"].ToString();
             txtWorkPhone.Text = row["WorkPhone"].ToString();
             txtMobile.Text = row["Mobile"].ToString();
             txtEmail.Text = row["Email"].ToString();
-            txtFullAddress.Text = row["FullAddress"].ToString();
+            txtFullAddress.Text = row["Address"].ToString();
 
             _uServiceHistory.DisplayAsThread();
         }

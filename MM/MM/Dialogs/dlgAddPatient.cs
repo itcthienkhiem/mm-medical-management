@@ -19,6 +19,7 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private Contact _contact = new Contact();
         private Patient _patient = new Patient();
+        private PatientHistory _patientHistory = new PatientHistory();
         #endregion
 
         #region Constructor
@@ -48,12 +49,18 @@ namespace MM.Dialogs
         {
             get { return _patient; }
         }
+
+        public PatientHistory PatientHistory
+        {
+            get { return _patientHistory; }
+        }
         #endregion
 
         #region UI Command
         private void InitData()
         {
             cboGender.SelectedIndex = 0;
+            tabPatient.SelectedTabIndex = 0;
         }
 
         private bool CheckInfo()
@@ -65,38 +72,24 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (txtSurName.Text.Trim() == string.Empty)
+            if (txtFullName.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập họ.");
-                txtSurName.Focus();
+                txtFullName.Focus();
                 return false;
             }
 
-            if (txtFirstName.Text.Trim() == string.Empty)
+            if (txtDOB.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên.");
-                txtFirstName.Focus();
+                MsgBox.Show(this.Text, "Vui lòng ngày sinh hoặc năm sinh.");
+                txtDOB.Focus();
                 return false;
             }
 
-            if (txtIdentityCard.Text.Trim() == string.Empty)
+            if (!Utility.isValidDOB(txtDOB.Text))
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập CMND.");
-                txtIdentityCard.Focus();
-                return false;
-            }
-
-            if (txtOccupation.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập nghề nghiệp.");
-                txtOccupation.Focus();
-                return false;
-            }
-
-            if (txtEmail.Text.Trim() != string.Empty && !Utility.IsValidEmail(txtEmail.Text))
-            {
-                MsgBox.Show(this.Text, "Địa chỉ email không hợp lê.");
-                txtEmail.Focus();
+                MsgBox.Show(this.Text, "Ngày sinh hoặc năm sinh chưa đúng. Vui lòng nhập lại");
+                txtDOB.Focus();
                 return false;
             }
 
@@ -104,27 +97,6 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập địa chỉ.");
                 txtAddress.Focus();
-                return false;
-            }
-
-            if (txtWard.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập phường/xã.");
-                txtWard.Focus();
-                return false;
-            }
-
-            if (txtDistrict.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập quận/huyện");
-                txtDistrict.Focus();
-                return false;
-            }
-
-            if (txtCity.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập tỉnh/thành phố.");
-                txtCity.Focus();
                 return false;
             }
 
@@ -146,6 +118,41 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (chkDiUngThuoc.Checked && txtThuocDiUng.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập thuốc dị ứng.");
+                tabPatient.SelectedTabIndex = 1;
+                txtThuocDiUng.Focus();
+                return false;
+            }
+
+            if (chkUngThu.Checked && txtCoQuanUngThu.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập cơ quan ung thư.");
+                tabPatient.SelectedTabIndex = 1;
+                txtCoQuanUngThu.Focus();
+                return false;
+            }
+
+            if (chkBenhKhac.Checked)
+            {
+                if (txtBenhGi.Text.Trim() == string.Empty)
+                {
+                    MsgBox.Show(this.Text, "Vui lòng nhập tên bệnh.");
+                    tabPatient.SelectedTabIndex = 1;
+                    txtBenhGi.Focus();
+                    return false;
+                }
+
+                if (txtThuocDangDung.Text.Trim() == string.Empty)
+                {
+                    MsgBox.Show(this.Text, "Vui lòng nhập thuốc đang dùng.");
+                    tabPatient.SelectedTabIndex = 1;
+                    txtThuocDangDung.Focus();
+                    return false;
+                }
+            }
+
             return true;
         }
 
@@ -154,13 +161,11 @@ namespace MM.Dialogs
             try
             {
                 txtFileNum.Text = drPatient["FileNum"] as string;
-                txtSurName.Text = drPatient["SurName"] as string;
-                txtMiddleName.Text = drPatient["MiddleName"] as string;
-                txtFirstName.Text = drPatient["FirstName"] as string;
+                txtFullName.Text = drPatient["FullName"] as string;
                 txtKnownAs.Text = drPatient["KnownAs"] as string;
                 txtPreferredName.Text = drPatient["PreferredName"] as string;
                 cboGender.SelectedIndex = Convert.ToInt32(drPatient["Gender"]);
-                dtpkDOB.Value = Convert.ToDateTime(drPatient["Dob"]);
+                txtDOB.Text = drPatient["DobStr"] as string;
                 txtIdentityCard.Text = drPatient["IdentityCard"] as string;
                 txtOccupation.Text = drPatient["Occupation"] as string;
                 txtHomePhone.Text = drPatient["HomePhone"] as string;
@@ -169,9 +174,6 @@ namespace MM.Dialogs
                 txtEmail.Text = drPatient["Email"] as string;
                 txtFax.Text = drPatient["Fax"] as string;
                 txtAddress.Text = drPatient["Address"] as string;
-                txtWard.Text = drPatient["Ward"] as string;
-                txtDistrict.Text = drPatient["District"] as string;
-                txtCity.Text = drPatient["City"] as string;
 
                 _contact.ContactGUID = Guid.Parse(drPatient["ContactGUID"].ToString());
                 _patient.PatientGUID = Guid.Parse(drPatient["PatientGUID"].ToString());
@@ -194,6 +196,120 @@ namespace MM.Dialogs
 
                 if (drPatient["DeletedBy"] != null && drPatient["DeletedBy"] != DBNull.Value)
                     _contact.DeletedBy = Guid.Parse(drPatient["DeletedBy"].ToString());
+
+                //Patient History
+                if (drPatient["PatientHistoryGUID"] != null && drPatient["PatientHistoryGUID"] != DBNull.Value)
+                    _patientHistory.PatientHistoryGUID = Guid.Parse(drPatient["PatientHistoryGUID"].ToString());
+
+                if (drPatient["Di_Ung_Thuoc"] != null && drPatient["Di_Ung_Thuoc"] != DBNull.Value)
+                    _patientHistory.Di_Ung_Thuoc = Convert.ToBoolean(drPatient["Di_Ung_Thuoc"]);
+                else
+                    _patientHistory.Di_Ung_Thuoc = false;
+
+                if (drPatient["Thuoc_Di_Ung"] != null && drPatient["Thuoc_Di_Ung"] != DBNull.Value)
+                    _patientHistory.Thuoc_Di_Ung = drPatient["Thuoc_Di_Ung"].ToString();
+
+                if (drPatient["Dot_Quy"] != null && drPatient["Dot_Quy"] != DBNull.Value)
+                    _patientHistory.Dot_Quy = Convert.ToBoolean(drPatient["Dot_Quy"]);
+                else
+                    _patientHistory.Dot_Quy = false;
+
+                if (drPatient["Benh_Tim_Mach"] != null && drPatient["Benh_Tim_Mach"] != DBNull.Value)
+                    _patientHistory.Benh_Tim_Mach = Convert.ToBoolean(drPatient["Benh_Tim_Mach"]);
+                else
+                    _patientHistory.Benh_Tim_Mach = false;
+
+                if (drPatient["Benh_Lao"] != null && drPatient["Benh_Lao"] != DBNull.Value)
+                    _patientHistory.Benh_Lao = Convert.ToBoolean(drPatient["Benh_Lao"]);
+                else
+                    _patientHistory.Benh_Lao = false;
+
+                if (drPatient["Dai_Thao_Duong"] != null && drPatient["Dai_Thao_Duong"] != DBNull.Value)
+                    _patientHistory.Dai_Thao_Duong = Convert.ToBoolean(drPatient["Dai_Thao_Duong"]);
+                else
+                    _patientHistory.Dai_Thao_Duong = false;
+
+                if (drPatient["Dai_Duong_Dang_Dieu_Tri"] != null && drPatient["Dai_Duong_Dang_Dieu_Tri"] != DBNull.Value)
+                    _patientHistory.Dai_Duong_Dang_Dieu_Tri = Convert.ToBoolean(drPatient["Dai_Duong_Dang_Dieu_Tri"]);
+                else
+                    _patientHistory.Dai_Duong_Dang_Dieu_Tri = false;
+
+                if (drPatient["Viem_Gan_B"] != null && drPatient["Viem_Gan_B"] != DBNull.Value)
+                    _patientHistory.Viem_Gan_B = Convert.ToBoolean(drPatient["Viem_Gan_B"]);
+                else
+                    _patientHistory.Viem_Gan_B = false;
+
+                if (drPatient["Viem_Gan_C"] != null && drPatient["Viem_Gan_C"] != DBNull.Value)
+                    _patientHistory.Viem_Gan_C = Convert.ToBoolean(drPatient["Viem_Gan_C"]);
+                else
+                    _patientHistory.Viem_Gan_C = false;
+
+                if (drPatient["Viem_Gan_Dang_Dieu_Tri"] != null && drPatient["Viem_Gan_Dang_Dieu_Tri"] != DBNull.Value)
+                    _patientHistory.Viem_Gan_Dang_Dieu_Tri = Convert.ToBoolean(drPatient["Viem_Gan_Dang_Dieu_Tri"]);
+                else
+                    _patientHistory.Viem_Gan_Dang_Dieu_Tri = false;
+
+                if (drPatient["Ung_Thu"] != null && drPatient["Ung_Thu"] != DBNull.Value)
+                    _patientHistory.Ung_Thu = Convert.ToBoolean(drPatient["Ung_Thu"]);
+                else
+                    _patientHistory.Ung_Thu = false;
+
+                if (drPatient["Co_Quan_Ung_Thu"] != null && drPatient["Co_Quan_Ung_Thu"] != DBNull.Value)
+                    _patientHistory.Co_Quan_Ung_Thu = drPatient["Co_Quan_Ung_Thu"].ToString();
+
+                if (drPatient["Dong_Kinh"] != null && drPatient["Dong_Kinh"] != DBNull.Value)
+                    _patientHistory.Dong_Kinh = Convert.ToBoolean(drPatient["Dong_Kinh"]);
+                else
+                    _patientHistory.Dong_Kinh = false;
+
+                if (drPatient["Hen_Suyen"] != null && drPatient["Hen_Suyen"] != DBNull.Value)
+                    _patientHistory.Hen_Suyen = Convert.ToBoolean(drPatient["Hen_Suyen"]);
+                else
+                    _patientHistory.Hen_Suyen = false;
+
+                if (drPatient["Benh_Khac"] != null && drPatient["Benh_Khac"] != DBNull.Value)
+                    _patientHistory.Benh_Khac = Convert.ToBoolean(drPatient["Benh_Khac"]);
+                else
+                    _patientHistory.Benh_Khac = false;
+
+                if (drPatient["Benh_Gi"] != null && drPatient["Benh_Gi"] != DBNull.Value)
+                    _patientHistory.Benh_Gi = drPatient["Benh_Gi"].ToString();
+
+                if (drPatient["Thuoc_Dang_Dung"] != null && drPatient["Thuoc_Dang_Dung"] != DBNull.Value)
+                    _patientHistory.Thuoc_Dang_Dung = drPatient["Thuoc_Dang_Dung"].ToString();
+
+                if (drPatient["Hut_Thuoc"] != null && drPatient["Hut_Thuoc"] != DBNull.Value)
+                    _patientHistory.Hut_Thuoc = Convert.ToBoolean(drPatient["Hut_Thuoc"]);
+                else
+                    _patientHistory.Hut_Thuoc = false;
+
+                if (drPatient["Uong_Ruou"] != null && drPatient["Uong_Ruou"] != DBNull.Value)
+                    _patientHistory.Uong_Ruou = Convert.ToBoolean(drPatient["Uong_Ruou"]);
+                else
+                    _patientHistory.Uong_Ruou = false;
+
+                if (drPatient["Tinh_Trang_Gia_Dinh"] != null && drPatient["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
+                    _patientHistory.Tinh_Trang_Gia_Dinh = drPatient["Tinh_Trang_Gia_Dinh"].ToString();
+
+                if (drPatient["Chich_Ngua_Viem_Gan_B"] != null && drPatient["Chich_Ngua_Viem_Gan_B"] != DBNull.Value)
+                    _patientHistory.Chich_Ngua_Viem_Gan_B = Convert.ToBoolean(drPatient["Chich_Ngua_Viem_Gan_B"]);
+                else
+                    _patientHistory.Chich_Ngua_Viem_Gan_B = false;
+
+                if (drPatient["Chich_Ngua_Uon_Van"] != null && drPatient["Chich_Ngua_Uon_Van"] != DBNull.Value)
+                    _patientHistory.Chich_Ngua_Uon_Van = Convert.ToBoolean(drPatient["Chich_Ngua_Uon_Van"]);
+                else
+                    _patientHistory.Chich_Ngua_Uon_Van = false;
+
+                if (drPatient["Chich_Ngua_Cum"] != null && drPatient["Chich_Ngua_Cum"] != DBNull.Value)
+                    _patientHistory.Chich_Ngua_Cum = Convert.ToBoolean(drPatient["Chich_Ngua_Cum"]);
+                else
+                    _patientHistory.Chich_Ngua_Cum = false;
+
+                if (drPatient["Dang_Co_Thai"] != null && drPatient["Dang_Co_Thai"] != DBNull.Value)
+                    _patientHistory.Dang_Co_Thai = Convert.ToBoolean(drPatient["Dang_Co_Thai"]);
+                else
+                    _patientHistory.Dang_Co_Thai = false;
             }
             catch (Exception e)
             {
@@ -224,13 +340,17 @@ namespace MM.Dialogs
         {
             try
             {
-                _contact.SurName = txtSurName.Text;
-                _contact.MiddleName = txtMiddleName.Text;
-                _contact.FirstName = txtFirstName.Text;
+                _contact.FullName = txtFullName.Text;
+                string surName = string.Empty;
+                string firstName = string.Empty;
+                Utility.GetSurNameFirstNameFromFullName(txtFullName.Text, ref surName, ref firstName);
+                _contact.SurName = surName;
+                _contact.FirstName = firstName;
+
                 _contact.KnownAs = txtKnownAs.Text;
                 _contact.PreferredName = txtPreferredName.Text;
                 _contact.Archived = true;
-                _contact.Dob = dtpkDOB.Value;
+                _contact.DobStr = txtDOB.Text;
                 _contact.IdentityCard = txtIdentityCard.Text;
                 _contact.Occupation = txtOccupation.Text;
                 _contact.HomePhone = txtHomePhone.Text;
@@ -239,9 +359,6 @@ namespace MM.Dialogs
                 _contact.Email = txtEmail.Text;
                 _contact.FAX = txtFax.Text;
                 _contact.Address = txtAddress.Text;
-                _contact.Ward = txtWard.Text;
-                _contact.District = txtDistrict.Text;
-                _contact.City = txtCity.Text;
 
                 _patient.FileNum = txtFileNum.Text;
 
@@ -259,6 +376,50 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _contact.Gender = (byte)cboGender.SelectedIndex;
+
+                    //Patient History
+                    _patientHistory.Dot_Quy = chkDotQuy.Checked;
+                    _patientHistory.Benh_Tim_Mach = chkBenhTimMach.Checked;
+                    _patientHistory.Benh_Lao = chkBenhLao.Checked;
+                    _patientHistory.Dai_Thao_Duong = chkDaiThaoDuong.Checked;
+                    _patientHistory.Dai_Duong_Dang_Dieu_Tri = chkDaiDuongDangDieuTri.Checked;
+                    _patientHistory.Viem_Gan_B = chkViemGanB.Checked;
+                    _patientHistory.Viem_Gan_C = chkViemGanC.Checked;
+                    _patientHistory.Viem_Gan_Dang_Dieu_Tri = chkViemGanDangDieuTri.Checked;
+                    _patientHistory.Dong_Kinh = chkDongKinh.Checked;
+                    _patientHistory.Hen_Suyen = chkHenSuyen.Checked;
+                    _patientHistory.Hut_Thuoc = chkHutThuoc.Checked;
+                    _patientHistory.Uong_Ruou = chkUongRuou.Checked;
+                    _patientHistory.Chich_Ngua_Viem_Gan_B = chkChichNguaViemGanB.Checked;
+                    _patientHistory.Chich_Ngua_Uon_Van = chkChichNguaUonVan.Checked;
+                    _patientHistory.Chich_Ngua_Cum = chkChichNguaCum.Checked;
+                    _patientHistory.Dang_Co_Thai = chkDangCoThai.Checked;
+                    _patientHistory.Di_Ung_Thuoc = chkDiUngThuoc.Checked;
+                    if (chkDiUngThuoc.Checked) 
+                        _patientHistory.Thuoc_Di_Ung = txtThuocDiUng.Text;
+                    else
+                        _patientHistory.Thuoc_Di_Ung = string.Empty;
+
+                    _patientHistory.Ung_Thu = chkUngThu.Checked;
+                    if (chkUngThu.Checked) 
+                        _patientHistory.Co_Quan_Ung_Thu = txtCoQuanUngThu.Text;
+                    else
+                        _patientHistory.Co_Quan_Ung_Thu = string.Empty;
+
+                    _patientHistory.Benh_Khac = chkBenhKhac.Checked;
+                    if (chkBenhKhac.Checked)
+                    {
+                        _patientHistory.Benh_Gi = txtBenhGi.Text;
+                        _patientHistory.Thuoc_Dang_Dung = txtThuocDangDung.Text;
+                    }
+                    else
+                    {
+                        _patientHistory.Benh_Gi = string.Empty;
+                        _patientHistory.Thuoc_Dang_Dung = string.Empty;
+                    }
+
+
+                    _patientHistory.Tinh_Trang_Gia_Dinh = txtTinhTrangGiaDinh.Text;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -274,7 +435,7 @@ namespace MM.Dialogs
         private void OnSaveInfo()
         {
             SetPatientInfo();
-            Result result = PatientBus.InsertPatient(_contact, _patient);
+            Result result = PatientBus.InsertPatient(_contact, _patient, _patientHistory);
             if (!result.IsOK)
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.InsertPatient"));
@@ -310,6 +471,28 @@ namespace MM.Dialogs
                 e.KeyChar != '5' && e.KeyChar != '6' && e.KeyChar != '7' && e.KeyChar != '8' && e.KeyChar != '9' &&
                 e.KeyChar != '\b')
                 e.Handled = true;
+        }
+
+        private void chkDiUngThuoc_CheckedChanged(object sender, EventArgs e)
+        {
+            txtThuocDiUng.Enabled = chkDiUngThuoc.Checked;
+            if (chkDiUngThuoc.Checked)
+                txtThuocDiUng.Focus();
+        }
+
+        private void chkUngThu_CheckedChanged(object sender, EventArgs e)
+        {
+            txtCoQuanUngThu.Enabled = chkUngThu.Checked;
+            if (chkUngThu.Checked)
+                txtCoQuanUngThu.Focus();
+        }
+
+        private void chkBenhKhac_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBenhGi.Enabled = chkBenhKhac.Checked;
+            txtThuocDangDung.Enabled = chkBenhKhac.Checked;
+            if (chkBenhKhac.Checked)
+                txtBenhGi.Focus();
         }
         #endregion
 

@@ -32,52 +32,41 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.lbToDate = new System.Windows.Forms.Label();
             this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.chkChecked = new System.Windows.Forms.CheckBox();
-            this.dgServiceHistory = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.ServiceHistoryGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lbTotalPrice = new System.Windows.Forms.Label();
-            this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.docStaffGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serviceGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.updatedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.updatedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deletedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deletedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.availableToWorkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.dgServiceHistory = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lbTotalPrice = new System.Windows.Forms.Label();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).BeginInit();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -93,6 +82,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(814, 60);
             this.panel1.TabIndex = 0;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(340, 29);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(64, 21);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "    &Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dtpkToDate
             // 
@@ -161,6 +162,42 @@
             this.panel2.Size = new System.Drawing.Size(814, 37);
             this.panel2.TabIndex = 1;
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::MM.Properties.Resources.del;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(164, 6);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 25);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "    &Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Image = global::MM.Properties.Resources.edit;
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(85, 6);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 25);
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.Text = "    &Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::MM.Properties.Resources.add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(6, 6);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 25);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "    &Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -200,24 +237,13 @@
             this.dgServiceHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgServiceHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
-            this.ServiceHistoryGUID,
-            this.patientGUIDDataGridViewTextBoxColumn,
-            this.docStaffGUIDDataGridViewTextBoxColumn,
-            this.serviceGUIDDataGridViewTextBoxColumn,
             this.codeDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.fixedPriceDataGridViewTextBoxColumn,
-            this.fullnameDataGridViewTextBoxColumn,
             this.ActivedDate,
             this.createdDateDataGridViewTextBoxColumn,
             this.DocStaffFullname,
-            this.noteDataGridViewTextBoxColumn,
-            this.priceDataGridViewTextBoxColumn,
-            this.updatedDateDataGridViewTextBoxColumn,
-            this.updatedByDataGridViewTextBoxColumn,
-            this.deletedDateDataGridViewTextBoxColumn,
-            this.deletedByDataGridViewTextBoxColumn,
-            this.availableToWorkDataGridViewTextBoxColumn});
+            this.noteDataGridViewTextBoxColumn});
             this.dgServiceHistory.DataSource = this.serviceHistoryViewBindingSource;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -241,47 +267,9 @@
             this.dgServiceHistory.TabIndex = 1;
             this.dgServiceHistory.DoubleClick += new System.EventHandler(this.dgServiceHistory_DoubleClick);
             // 
-            // colChecked
+            // serviceHistoryViewBindingSource
             // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // ServiceHistoryGUID
-            // 
-            this.ServiceHistoryGUID.DataPropertyName = "ServiceHistoryGUID";
-            this.ServiceHistoryGUID.HeaderText = "ServiceHistoryGUID";
-            this.ServiceHistoryGUID.Name = "ServiceHistoryGUID";
-            this.ServiceHistoryGUID.ReadOnly = true;
-            this.ServiceHistoryGUID.Visible = false;
-            // 
-            // ActivedDate
-            // 
-            this.ActivedDate.DataPropertyName = "ActivedDate";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle5.NullValue = null;
-            this.ActivedDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ActivedDate.HeaderText = "Ngày sử dụng";
-            this.ActivedDate.Name = "ActivedDate";
-            this.ActivedDate.ReadOnly = true;
-            // 
-            // DocStaffFullname
-            // 
-            this.DocStaffFullname.DataPropertyName = "DocStaffFullname";
-            this.DocStaffFullname.HeaderText = "Tên người tạo";
-            this.DocStaffFullname.Name = "DocStaffFullname";
-            this.DocStaffFullname.ReadOnly = true;
-            this.DocStaffFullname.Width = 150;
+            this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
             // 
             // panel4
             // 
@@ -303,29 +291,20 @@
             this.lbTotalPrice.TabIndex = 0;
             this.lbTotalPrice.Text = "Tổng tiền:";
             // 
-            // patientGUIDDataGridViewTextBoxColumn
+            // colChecked
             // 
-            this.patientGUIDDataGridViewTextBoxColumn.DataPropertyName = "PatientGUID";
-            this.patientGUIDDataGridViewTextBoxColumn.HeaderText = "PatientGUID";
-            this.patientGUIDDataGridViewTextBoxColumn.Name = "patientGUIDDataGridViewTextBoxColumn";
-            this.patientGUIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.patientGUIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // docStaffGUIDDataGridViewTextBoxColumn
-            // 
-            this.docStaffGUIDDataGridViewTextBoxColumn.DataPropertyName = "DocStaffGUID";
-            this.docStaffGUIDDataGridViewTextBoxColumn.HeaderText = "DocStaffGUID";
-            this.docStaffGUIDDataGridViewTextBoxColumn.Name = "docStaffGUIDDataGridViewTextBoxColumn";
-            this.docStaffGUIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.docStaffGUIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // serviceGUIDDataGridViewTextBoxColumn
-            // 
-            this.serviceGUIDDataGridViewTextBoxColumn.DataPropertyName = "ServiceGUID";
-            this.serviceGUIDDataGridViewTextBoxColumn.HeaderText = "ServiceGUID";
-            this.serviceGUIDDataGridViewTextBoxColumn.Name = "serviceGUIDDataGridViewTextBoxColumn";
-            this.serviceGUIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.serviceGUIDDataGridViewTextBoxColumn.Visible = false;
+            this.colChecked.Checked = true;
+            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colChecked.CheckValue = "N";
+            this.colChecked.DataPropertyName = "Checked";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.ReadOnly = true;
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -355,13 +334,16 @@
             this.fixedPriceDataGridViewTextBoxColumn.Name = "fixedPriceDataGridViewTextBoxColumn";
             this.fixedPriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // fullnameDataGridViewTextBoxColumn
+            // ActivedDate
             // 
-            this.fullnameDataGridViewTextBoxColumn.DataPropertyName = "Fullname";
-            this.fullnameDataGridViewTextBoxColumn.HeaderText = "Bác sĩ";
-            this.fullnameDataGridViewTextBoxColumn.Name = "fullnameDataGridViewTextBoxColumn";
-            this.fullnameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullnameDataGridViewTextBoxColumn.Width = 180;
+            this.ActivedDate.DataPropertyName = "ActivedDate";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle5.NullValue = null;
+            this.ActivedDate.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ActivedDate.HeaderText = "Ngày sử dụng";
+            this.ActivedDate.Name = "ActivedDate";
+            this.ActivedDate.ReadOnly = true;
             // 
             // createdDateDataGridViewTextBoxColumn
             // 
@@ -376,6 +358,14 @@
             this.createdDateDataGridViewTextBoxColumn.Visible = false;
             this.createdDateDataGridViewTextBoxColumn.Width = 120;
             // 
+            // DocStaffFullname
+            // 
+            this.DocStaffFullname.DataPropertyName = "CreatedName";
+            this.DocStaffFullname.HeaderText = "Tên người tạo";
+            this.DocStaffFullname.Name = "DocStaffFullname";
+            this.DocStaffFullname.ReadOnly = true;
+            this.DocStaffFullname.Width = 150;
+            // 
             // noteDataGridViewTextBoxColumn
             // 
             this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
@@ -383,106 +373,6 @@
             this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.priceDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // updatedDateDataGridViewTextBoxColumn
-            // 
-            this.updatedDateDataGridViewTextBoxColumn.DataPropertyName = "UpdatedDate";
-            this.updatedDateDataGridViewTextBoxColumn.HeaderText = "UpdatedDate";
-            this.updatedDateDataGridViewTextBoxColumn.Name = "updatedDateDataGridViewTextBoxColumn";
-            this.updatedDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.updatedDateDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // updatedByDataGridViewTextBoxColumn
-            // 
-            this.updatedByDataGridViewTextBoxColumn.DataPropertyName = "UpdatedBy";
-            this.updatedByDataGridViewTextBoxColumn.HeaderText = "UpdatedBy";
-            this.updatedByDataGridViewTextBoxColumn.Name = "updatedByDataGridViewTextBoxColumn";
-            this.updatedByDataGridViewTextBoxColumn.ReadOnly = true;
-            this.updatedByDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // deletedDateDataGridViewTextBoxColumn
-            // 
-            this.deletedDateDataGridViewTextBoxColumn.DataPropertyName = "DeletedDate";
-            this.deletedDateDataGridViewTextBoxColumn.HeaderText = "DeletedDate";
-            this.deletedDateDataGridViewTextBoxColumn.Name = "deletedDateDataGridViewTextBoxColumn";
-            this.deletedDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.deletedDateDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // deletedByDataGridViewTextBoxColumn
-            // 
-            this.deletedByDataGridViewTextBoxColumn.DataPropertyName = "DeletedBy";
-            this.deletedByDataGridViewTextBoxColumn.HeaderText = "DeletedBy";
-            this.deletedByDataGridViewTextBoxColumn.Name = "deletedByDataGridViewTextBoxColumn";
-            this.deletedByDataGridViewTextBoxColumn.ReadOnly = true;
-            this.deletedByDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // availableToWorkDataGridViewTextBoxColumn
-            // 
-            this.availableToWorkDataGridViewTextBoxColumn.DataPropertyName = "AvailableToWork";
-            this.availableToWorkDataGridViewTextBoxColumn.HeaderText = "AvailableToWork";
-            this.availableToWorkDataGridViewTextBoxColumn.Name = "availableToWorkDataGridViewTextBoxColumn";
-            this.availableToWorkDataGridViewTextBoxColumn.ReadOnly = true;
-            this.availableToWorkDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // serviceHistoryViewBindingSource
-            // 
-            this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::MM.Properties.Resources.del;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(164, 6);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "    &Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(85, 6);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
-            this.btnEdit.TabIndex = 4;
-            this.btnEdit.Text = "    &Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::MM.Properties.Resources.add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(6, 6);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "    &Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(340, 29);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(64, 21);
-            this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "    &Tìm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // uServiceHistory
             // 
@@ -500,9 +390,9 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -527,24 +417,14 @@
         private System.Windows.Forms.BindingSource serviceHistoryViewBindingSource;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdbyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ServiceHistoryGUID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn patientGUIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn docStaffGUIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn serviceGUIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fixedPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActivedDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DocStaffFullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn updatedDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn updatedByDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn deletedDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn deletedByDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn availableToWorkDataGridViewTextBoxColumn;
     }
 }

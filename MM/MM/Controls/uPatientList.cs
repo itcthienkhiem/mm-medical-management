@@ -75,7 +75,6 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    //dgPatient.DataSource = result.QueryResult;
                     _dataSource = result.QueryResult as DataTable;
                     OnSearchPatient();
                 };
@@ -96,13 +95,14 @@ namespace MM.Controls
             dlgAddPatient dlg = new dlgAddPatient();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                DataTable dt = _dataSource;//dgPatient.DataSource as DataTable;
+                DataTable dt = _dataSource;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
                 newRow["PatientGUID"] = dlg.Patient.PatientGUID.ToString();
                 newRow["ContactGUID"] = dlg.Contact.ContactGUID.ToString();
                 newRow["FileNum"] = dlg.Patient.FileNum;
+                newRow["FullName"] = dlg.Contact.FullName;
                 newRow["SurName"] = dlg.Contact.SurName;
                 newRow["MiddleName"] = dlg.Contact.MiddleName;
                 newRow["FirstName"] = dlg.Contact.FirstName;
@@ -110,7 +110,7 @@ namespace MM.Controls
                 newRow["PreferredName"] = dlg.Contact.PreferredName;
                 newRow["Gender"] = dlg.Contact.Gender;
                 newRow["GenderAsStr"] = dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
-                newRow["Dob"] = dlg.Contact.Dob;
+                newRow["DobStr"] = dlg.Contact.DobStr;
                 newRow["IdentityCard"] = dlg.Contact.IdentityCard;
                 newRow["HomePhone"] = dlg.Contact.HomePhone;
                 newRow["WorkPhone"] = dlg.Contact.WorkPhone;
@@ -121,8 +121,6 @@ namespace MM.Controls
                 newRow["Ward"] = dlg.Contact.Ward;
                 newRow["District"] = dlg.Contact.District;
                 newRow["City"] = dlg.Contact.City;
-                newRow["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
-                newRow["FullAddress"] = string.Format("{0}, {1}, {2}, {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
                 newRow["Occupation"] = dlg.Contact.Occupation;
 
                 if (dlg.Contact.CreatedDate.HasValue)
@@ -167,7 +165,6 @@ namespace MM.Controls
                 return;
             }
 
-            //DataRow drPatient = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string patientGUID = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row["PatientGUID"].ToString();
             DataRow drPatient = GetDataRow(patientGUID);
             if (drPatient == null) return;
@@ -176,6 +173,7 @@ namespace MM.Controls
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 drPatient["FileNum"] = dlg.Patient.FileNum;
+                drPatient["FullName"] = dlg.Contact.FullName;
                 drPatient["SurName"] = dlg.Contact.SurName;
                 drPatient["MiddleName"] = dlg.Contact.MiddleName;
                 drPatient["FirstName"] = dlg.Contact.FirstName;
@@ -183,7 +181,7 @@ namespace MM.Controls
                 drPatient["PreferredName"] = dlg.Contact.PreferredName;
                 drPatient["Gender"] = dlg.Contact.Gender;
                 drPatient["GenderAsStr"] = dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
-                drPatient["Dob"] = dlg.Contact.Dob;
+                drPatient["DobStr"] = dlg.Contact.DobStr;
                 drPatient["IdentityCard"] = dlg.Contact.IdentityCard;
                 drPatient["HomePhone"] = dlg.Contact.HomePhone;
                 drPatient["WorkPhone"] = dlg.Contact.WorkPhone;
@@ -194,8 +192,6 @@ namespace MM.Controls
                 drPatient["Ward"] = dlg.Contact.Ward;
                 drPatient["District"] = dlg.Contact.District;
                 drPatient["City"] = dlg.Contact.City;
-                drPatient["Fullname"] = string.Format("{0} {1} {2}", dlg.Contact.SurName, dlg.Contact.MiddleName, dlg.Contact.FirstName);
-                drPatient["FullAddress"] = string.Format("{0}, {1}, {2}, {3}", dlg.Contact.Address, dlg.Contact.Ward, dlg.Contact.District, dlg.Contact.City);
                 drPatient["Occupation"] = dlg.Contact.Occupation;
 
                 if (dlg.Contact.CreatedDate.HasValue)
@@ -279,18 +275,9 @@ namespace MM.Controls
             base.RaiseOpentPatient(patientRow);
         }
 
-        private void ClearHighLight()
-        {
-            foreach (DataGridViewRow row in dgPatient.Rows)
-            {
-                row.DefaultCellStyle.BackColor = SystemColors.Window;
-            }
-        }
-
         private void OnSearchPatient()
         {
             chkChecked.Checked = false;
-            //ClearHighLight();
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
                 dgPatient.DataSource = _dataSource;
@@ -300,12 +287,12 @@ namespace MM.Controls
 
             string str = txtSearchPatient.Text.ToLower();
 
-            //Fullname
+            //FullName
             var results = from p in _dataSource.AsEnumerable()
-                          where (p.Field<string>("Fullname").ToLower().IndexOf(str) >= 0 ||
-                          str.IndexOf(p.Field<string>("Fullname").ToLower()) >= 0) &&
-                          p.Field<string>("Fullname") != null &&
-                          p.Field<string>("Fullname").Trim() != string.Empty
+                          where (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
+                          str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) &&
+                          p.Field<string>("FullName") != null &&
+                          p.Field<string>("FullName").Trim() != string.Empty
                           select p;
 
             DataTable newDataSource = _dataSource.Clone();
@@ -382,86 +369,6 @@ namespace MM.Controls
                 newDataSource.Rows.Add(row.ItemArray);
 
             dgPatient.DataSource = newDataSource;
-
-            //Fullname
-            /*foreach (DataGridViewRow row in dgPatient.Rows)
-            {
-                DataRow r = (row.DataBoundItem as DataRowView).Row;
-                string fullName = (r["Fullname"] as string).ToLower();
-                if (fullName.IndexOf(str) >= 0 || str.IndexOf(fullName) >= 0)
-                {
-                    dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
-                    row.DefaultCellStyle.BackColor = _highLightBackColor;
-                    //row.Selected = true;
-                    return;
-                }
-            }
-
-            //File Num
-            foreach (DataGridViewRow row in dgPatient.Rows)
-            {
-                DataRow r = (row.DataBoundItem as DataRowView).Row;
-                string fileNum = (r["FileNum"] as string).ToLower();
-                if (fileNum.IndexOf(str) >= 0 || str.IndexOf(fileNum) >= 0)
-                {
-                    dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
-                    row.DefaultCellStyle.BackColor = _highLightBackColor;
-                    //row.Selected = true;
-                    return;
-                }
-            }
-
-            //Home Phone
-            foreach (DataGridViewRow row in dgPatient.Rows)
-            {
-                DataRow r = (row.DataBoundItem as DataRowView).Row;
-                if (r["HomePhone"] != null && r["HomePhone"].ToString().Trim() != string.Empty)
-                {
-                    string homePhone = (r["HomePhone"] as string).ToLower();
-                    if (homePhone.IndexOf(str) >= 0 || str.IndexOf(homePhone) >= 0)
-                    {
-                        dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
-                        row.DefaultCellStyle.BackColor = _highLightBackColor;
-                        //row.Selected = true;
-                        return;
-                    }
-                }
-            }
-
-            //Work Phone
-            foreach (DataGridViewRow row in dgPatient.Rows)
-            {
-                DataRow r = (row.DataBoundItem as DataRowView).Row;
-                if (r["WorkPhone"] != null && r["WorkPhone"].ToString().Trim() != string.Empty)
-                {
-                    string workPhone = (r["WorkPhone"] as string).ToLower();
-                    if (workPhone.IndexOf(str) >= 0 || str.IndexOf(workPhone) >= 0)
-                    {
-                        dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
-                        row.DefaultCellStyle.BackColor = _highLightBackColor;
-                        //row.Selected = true;
-                        return;
-                    }
-                }
-            }
-
-            //Mobie
-            foreach (DataGridViewRow row in dgPatient.Rows)
-            {
-                DataRow r = (row.DataBoundItem as DataRowView).Row;
-                if (r["Mobile"] != null && r["Mobile"].ToString().Trim() != string.Empty)
-                {
-                    string mobile = (r["Mobile"] as string).ToLower();
-                    if (mobile.IndexOf(str) >= 0 || str.IndexOf(mobile) >= 0)
-                    {
-                        dgPatient.FirstDisplayedScrollingRowIndex = row.Index;
-                        row.DefaultCellStyle.BackColor = _highLightBackColor;
-                        //row.Selected = true;
-                        return;
-                    }
-                }
-            }*/
-
         }
         #endregion
 

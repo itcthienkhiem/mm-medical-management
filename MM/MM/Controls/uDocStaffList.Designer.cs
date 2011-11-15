@@ -47,19 +47,8 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.DocStaffGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.surNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.middleNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.districtDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.wardDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.identityCardDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,30 +56,6 @@
             this.workPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fAXDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prescriberNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qualificationsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.knownAsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aliasFirstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aliasSurNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preferredNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.occupationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.archivedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dateArchivedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.updatedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.updatedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deletedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deletedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.availableToWorkDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.workTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.specialityGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgDocStaff)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
@@ -134,50 +99,15 @@
             this.dgDocStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgDocStaff.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
-            this.DocStaffGUID,
-            this.contactGUIDDataGridViewTextBoxColumn,
-            this.titleDataGridViewTextBoxColumn,
             this.Fullname,
             this.FullAddress,
-            this.surNameDataGridViewTextBoxColumn,
-            this.middleNameDataGridViewTextBoxColumn,
-            this.firstNameDataGridViewTextBoxColumn,
-            this.addressDataGridViewTextBoxColumn,
-            this.districtDataGridViewTextBoxColumn,
-            this.wardDataGridViewTextBoxColumn,
-            this.cityDataGridViewTextBoxColumn,
-            this.genderDataGridViewTextBoxColumn,
             this.GenderAsStr,
             this.dobDataGridViewTextBoxColumn,
             this.identityCardDataGridViewTextBoxColumn,
             this.homePhoneDataGridViewTextBoxColumn,
             this.workPhoneDataGridViewTextBoxColumn,
             this.mobileDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn,
-            this.fAXDataGridViewTextBoxColumn,
-            this.prescriberNumDataGridViewTextBoxColumn,
-            this.qualificationsDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.knownAsDataGridViewTextBoxColumn,
-            this.aliasFirstNameDataGridViewTextBoxColumn,
-            this.aliasSurNameDataGridViewTextBoxColumn,
-            this.preferredNameDataGridViewTextBoxColumn,
-            this.occupationDataGridViewTextBoxColumn,
-            this.archivedDataGridViewCheckBoxColumn,
-            this.dateArchivedDataGridViewTextBoxColumn,
-            this.noteDataGridViewTextBoxColumn,
-            this.createdDateDataGridViewTextBoxColumn,
-            this.createdByDataGridViewTextBoxColumn,
-            this.updatedDateDataGridViewTextBoxColumn,
-            this.updatedByDataGridViewTextBoxColumn,
-            this.deletedDateDataGridViewTextBoxColumn,
-            this.deletedByDataGridViewTextBoxColumn,
-            this.availableToWorkDataGridViewTextBoxColumn,
-            this.workTypeDataGridViewTextBoxColumn,
-            this.staffTypeDataGridViewTextBoxColumn,
-            this.specialityGUIDDataGridViewTextBoxColumn,
-            this.codeDataGridViewTextBoxColumn,
-            this.descriptionDataGridViewTextBoxColumn});
+            this.emailDataGridViewTextBoxColumn});
             this.dgDocStaff.DataSource = this.docStaffViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
@@ -267,112 +197,21 @@
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
             // 
-            // DocStaffGUID
-            // 
-            this.DocStaffGUID.DataPropertyName = "DocStaffGUID";
-            this.DocStaffGUID.HeaderText = "DocStaffGUID";
-            this.DocStaffGUID.Name = "DocStaffGUID";
-            this.DocStaffGUID.ReadOnly = true;
-            this.DocStaffGUID.Visible = false;
-            // 
-            // contactGUIDDataGridViewTextBoxColumn
-            // 
-            this.contactGUIDDataGridViewTextBoxColumn.DataPropertyName = "ContactGUID";
-            this.contactGUIDDataGridViewTextBoxColumn.HeaderText = "ContactGUID";
-            this.contactGUIDDataGridViewTextBoxColumn.Name = "contactGUIDDataGridViewTextBoxColumn";
-            this.contactGUIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.contactGUIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // titleDataGridViewTextBoxColumn
-            // 
-            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
-            this.titleDataGridViewTextBoxColumn.HeaderText = "Danh xưng";
-            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
-            this.titleDataGridViewTextBoxColumn.ReadOnly = true;
-            this.titleDataGridViewTextBoxColumn.Visible = false;
-            this.titleDataGridViewTextBoxColumn.Width = 90;
-            // 
             // Fullname
             // 
-            this.Fullname.DataPropertyName = "Fullname";
-            this.Fullname.HeaderText = "Họ & Tên";
+            this.Fullname.DataPropertyName = "FullName";
+            this.Fullname.HeaderText = "Họ Tên";
             this.Fullname.Name = "Fullname";
             this.Fullname.ReadOnly = true;
             this.Fullname.Width = 150;
             // 
             // FullAddress
             // 
-            this.FullAddress.DataPropertyName = "FullAddress";
+            this.FullAddress.DataPropertyName = "Address";
             this.FullAddress.HeaderText = "Địa chỉ";
             this.FullAddress.Name = "FullAddress";
             this.FullAddress.ReadOnly = true;
             this.FullAddress.Width = 250;
-            // 
-            // surNameDataGridViewTextBoxColumn
-            // 
-            this.surNameDataGridViewTextBoxColumn.DataPropertyName = "SurName";
-            this.surNameDataGridViewTextBoxColumn.HeaderText = "SurName";
-            this.surNameDataGridViewTextBoxColumn.Name = "surNameDataGridViewTextBoxColumn";
-            this.surNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.surNameDataGridViewTextBoxColumn.Visible = false;
-            this.surNameDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // middleNameDataGridViewTextBoxColumn
-            // 
-            this.middleNameDataGridViewTextBoxColumn.DataPropertyName = "MiddleName";
-            this.middleNameDataGridViewTextBoxColumn.HeaderText = "MiddleName";
-            this.middleNameDataGridViewTextBoxColumn.Name = "middleNameDataGridViewTextBoxColumn";
-            this.middleNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.middleNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            this.firstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.firstNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
-            this.addressDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // districtDataGridViewTextBoxColumn
-            // 
-            this.districtDataGridViewTextBoxColumn.DataPropertyName = "District";
-            this.districtDataGridViewTextBoxColumn.HeaderText = "District";
-            this.districtDataGridViewTextBoxColumn.Name = "districtDataGridViewTextBoxColumn";
-            this.districtDataGridViewTextBoxColumn.ReadOnly = true;
-            this.districtDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // wardDataGridViewTextBoxColumn
-            // 
-            this.wardDataGridViewTextBoxColumn.DataPropertyName = "Ward";
-            this.wardDataGridViewTextBoxColumn.HeaderText = "Ward";
-            this.wardDataGridViewTextBoxColumn.Name = "wardDataGridViewTextBoxColumn";
-            this.wardDataGridViewTextBoxColumn.ReadOnly = true;
-            this.wardDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // cityDataGridViewTextBoxColumn
-            // 
-            this.cityDataGridViewTextBoxColumn.DataPropertyName = "City";
-            this.cityDataGridViewTextBoxColumn.HeaderText = "City";
-            this.cityDataGridViewTextBoxColumn.Name = "cityDataGridViewTextBoxColumn";
-            this.cityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cityDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // genderDataGridViewTextBoxColumn
-            // 
-            this.genderDataGridViewTextBoxColumn.DataPropertyName = "Gender";
-            this.genderDataGridViewTextBoxColumn.HeaderText = "Gender";
-            this.genderDataGridViewTextBoxColumn.Name = "genderDataGridViewTextBoxColumn";
-            this.genderDataGridViewTextBoxColumn.ReadOnly = true;
-            this.genderDataGridViewTextBoxColumn.Visible = false;
-            this.genderDataGridViewTextBoxColumn.Width = 70;
             // 
             // GenderAsStr
             // 
@@ -386,9 +225,8 @@
             // 
             // dobDataGridViewTextBoxColumn
             // 
-            this.dobDataGridViewTextBoxColumn.DataPropertyName = "Dob";
+            this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
             dataGridViewCellStyle4.NullValue = null;
             this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.dobDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
@@ -444,198 +282,6 @@
             this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             this.emailDataGridViewTextBoxColumn.Width = 150;
             // 
-            // fAXDataGridViewTextBoxColumn
-            // 
-            this.fAXDataGridViewTextBoxColumn.DataPropertyName = "FAX";
-            this.fAXDataGridViewTextBoxColumn.HeaderText = "FAX";
-            this.fAXDataGridViewTextBoxColumn.Name = "fAXDataGridViewTextBoxColumn";
-            this.fAXDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fAXDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // prescriberNumDataGridViewTextBoxColumn
-            // 
-            this.prescriberNumDataGridViewTextBoxColumn.DataPropertyName = "PrescriberNum";
-            this.prescriberNumDataGridViewTextBoxColumn.HeaderText = "PrescriberNum";
-            this.prescriberNumDataGridViewTextBoxColumn.Name = "prescriberNumDataGridViewTextBoxColumn";
-            this.prescriberNumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.prescriberNumDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // qualificationsDataGridViewTextBoxColumn
-            // 
-            this.qualificationsDataGridViewTextBoxColumn.DataPropertyName = "Qualifications";
-            this.qualificationsDataGridViewTextBoxColumn.HeaderText = "Qualifications";
-            this.qualificationsDataGridViewTextBoxColumn.Name = "qualificationsDataGridViewTextBoxColumn";
-            this.qualificationsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.qualificationsDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // knownAsDataGridViewTextBoxColumn
-            // 
-            this.knownAsDataGridViewTextBoxColumn.DataPropertyName = "KnownAs";
-            this.knownAsDataGridViewTextBoxColumn.HeaderText = "KnownAs";
-            this.knownAsDataGridViewTextBoxColumn.Name = "knownAsDataGridViewTextBoxColumn";
-            this.knownAsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.knownAsDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // aliasFirstNameDataGridViewTextBoxColumn
-            // 
-            this.aliasFirstNameDataGridViewTextBoxColumn.DataPropertyName = "AliasFirstName";
-            this.aliasFirstNameDataGridViewTextBoxColumn.HeaderText = "AliasFirstName";
-            this.aliasFirstNameDataGridViewTextBoxColumn.Name = "aliasFirstNameDataGridViewTextBoxColumn";
-            this.aliasFirstNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.aliasFirstNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // aliasSurNameDataGridViewTextBoxColumn
-            // 
-            this.aliasSurNameDataGridViewTextBoxColumn.DataPropertyName = "AliasSurName";
-            this.aliasSurNameDataGridViewTextBoxColumn.HeaderText = "AliasSurName";
-            this.aliasSurNameDataGridViewTextBoxColumn.Name = "aliasSurNameDataGridViewTextBoxColumn";
-            this.aliasSurNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.aliasSurNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // preferredNameDataGridViewTextBoxColumn
-            // 
-            this.preferredNameDataGridViewTextBoxColumn.DataPropertyName = "PreferredName";
-            this.preferredNameDataGridViewTextBoxColumn.HeaderText = "PreferredName";
-            this.preferredNameDataGridViewTextBoxColumn.Name = "preferredNameDataGridViewTextBoxColumn";
-            this.preferredNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.preferredNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // occupationDataGridViewTextBoxColumn
-            // 
-            this.occupationDataGridViewTextBoxColumn.DataPropertyName = "Occupation";
-            this.occupationDataGridViewTextBoxColumn.HeaderText = "Occupation";
-            this.occupationDataGridViewTextBoxColumn.Name = "occupationDataGridViewTextBoxColumn";
-            this.occupationDataGridViewTextBoxColumn.ReadOnly = true;
-            this.occupationDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // archivedDataGridViewCheckBoxColumn
-            // 
-            this.archivedDataGridViewCheckBoxColumn.DataPropertyName = "Archived";
-            this.archivedDataGridViewCheckBoxColumn.HeaderText = "Archived";
-            this.archivedDataGridViewCheckBoxColumn.Name = "archivedDataGridViewCheckBoxColumn";
-            this.archivedDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.archivedDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // dateArchivedDataGridViewTextBoxColumn
-            // 
-            this.dateArchivedDataGridViewTextBoxColumn.DataPropertyName = "DateArchived";
-            this.dateArchivedDataGridViewTextBoxColumn.HeaderText = "DateArchived";
-            this.dateArchivedDataGridViewTextBoxColumn.Name = "dateArchivedDataGridViewTextBoxColumn";
-            this.dateArchivedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateArchivedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // noteDataGridViewTextBoxColumn
-            // 
-            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Note";
-            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.noteDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // createdDateDataGridViewTextBoxColumn
-            // 
-            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
-            this.createdDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate";
-            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
-            this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.createdDateDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // createdByDataGridViewTextBoxColumn
-            // 
-            this.createdByDataGridViewTextBoxColumn.DataPropertyName = "CreatedBy";
-            this.createdByDataGridViewTextBoxColumn.HeaderText = "CreatedBy";
-            this.createdByDataGridViewTextBoxColumn.Name = "createdByDataGridViewTextBoxColumn";
-            this.createdByDataGridViewTextBoxColumn.ReadOnly = true;
-            this.createdByDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // updatedDateDataGridViewTextBoxColumn
-            // 
-            this.updatedDateDataGridViewTextBoxColumn.DataPropertyName = "UpdatedDate";
-            this.updatedDateDataGridViewTextBoxColumn.HeaderText = "UpdatedDate";
-            this.updatedDateDataGridViewTextBoxColumn.Name = "updatedDateDataGridViewTextBoxColumn";
-            this.updatedDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.updatedDateDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // updatedByDataGridViewTextBoxColumn
-            // 
-            this.updatedByDataGridViewTextBoxColumn.DataPropertyName = "UpdatedBy";
-            this.updatedByDataGridViewTextBoxColumn.HeaderText = "UpdatedBy";
-            this.updatedByDataGridViewTextBoxColumn.Name = "updatedByDataGridViewTextBoxColumn";
-            this.updatedByDataGridViewTextBoxColumn.ReadOnly = true;
-            this.updatedByDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // deletedDateDataGridViewTextBoxColumn
-            // 
-            this.deletedDateDataGridViewTextBoxColumn.DataPropertyName = "DeletedDate";
-            this.deletedDateDataGridViewTextBoxColumn.HeaderText = "DeletedDate";
-            this.deletedDateDataGridViewTextBoxColumn.Name = "deletedDateDataGridViewTextBoxColumn";
-            this.deletedDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.deletedDateDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // deletedByDataGridViewTextBoxColumn
-            // 
-            this.deletedByDataGridViewTextBoxColumn.DataPropertyName = "DeletedBy";
-            this.deletedByDataGridViewTextBoxColumn.HeaderText = "DeletedBy";
-            this.deletedByDataGridViewTextBoxColumn.Name = "deletedByDataGridViewTextBoxColumn";
-            this.deletedByDataGridViewTextBoxColumn.ReadOnly = true;
-            this.deletedByDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // availableToWorkDataGridViewTextBoxColumn
-            // 
-            this.availableToWorkDataGridViewTextBoxColumn.DataPropertyName = "AvailableToWork";
-            this.availableToWorkDataGridViewTextBoxColumn.HeaderText = "AvailableToWork";
-            this.availableToWorkDataGridViewTextBoxColumn.Name = "availableToWorkDataGridViewTextBoxColumn";
-            this.availableToWorkDataGridViewTextBoxColumn.ReadOnly = true;
-            this.availableToWorkDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // workTypeDataGridViewTextBoxColumn
-            // 
-            this.workTypeDataGridViewTextBoxColumn.DataPropertyName = "WorkType";
-            this.workTypeDataGridViewTextBoxColumn.HeaderText = "WorkType";
-            this.workTypeDataGridViewTextBoxColumn.Name = "workTypeDataGridViewTextBoxColumn";
-            this.workTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.workTypeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // staffTypeDataGridViewTextBoxColumn
-            // 
-            this.staffTypeDataGridViewTextBoxColumn.DataPropertyName = "StaffType";
-            this.staffTypeDataGridViewTextBoxColumn.HeaderText = "StaffType";
-            this.staffTypeDataGridViewTextBoxColumn.Name = "staffTypeDataGridViewTextBoxColumn";
-            this.staffTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.staffTypeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // specialityGUIDDataGridViewTextBoxColumn
-            // 
-            this.specialityGUIDDataGridViewTextBoxColumn.DataPropertyName = "SpecialityGUID";
-            this.specialityGUIDDataGridViewTextBoxColumn.HeaderText = "SpecialityGUID";
-            this.specialityGUIDDataGridViewTextBoxColumn.Name = "specialityGUIDDataGridViewTextBoxColumn";
-            this.specialityGUIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.specialityGUIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Code";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.descriptionDataGridViewTextBoxColumn.Visible = false;
-            // 
             // uDocStaffList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -664,19 +310,8 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private System.Windows.Forms.BindingSource docStaffViewBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DocStaffGUID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contactGUIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn surNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn middleNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn districtDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn wardDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn genderDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn dobDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn identityCardDataGridViewTextBoxColumn;
@@ -684,29 +319,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn workPhoneDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fAXDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prescriberNumDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qualificationsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn knownAsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn aliasFirstNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn aliasSurNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preferredNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn occupationDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn archivedDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateArchivedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdByDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn updatedDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn updatedByDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn deletedDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn deletedByDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn availableToWorkDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn workTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn staffTypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn specialityGUIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
     }
 }
