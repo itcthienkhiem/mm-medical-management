@@ -349,6 +349,7 @@
     <Content Include="Components\DevComponents.Instrumentation.Design.dll" />
     <Content Include="Components\DevComponents.Instrumentation.dll" />
     <Content Include="Components\DevComponents.TreeGX.dll" />
+    <Content Include="Components\DSBarCode.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="MM_Ico.ico" />
     <None Include="Resources\stethoscope-icon %281%29.png" />
