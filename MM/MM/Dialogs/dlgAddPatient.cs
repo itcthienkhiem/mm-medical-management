@@ -93,13 +93,6 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (txtAddress.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập địa chỉ.");
-                txtAddress.Focus();
-                return false;
-            }
-
             string patientGUID = _isNew ? string.Empty : _patient.PatientGUID.ToString();
             Result result = PatientBus.CheckPatientExistFileNum(patientGUID, txtFileNum.Text);
 
@@ -202,114 +195,76 @@ namespace MM.Dialogs
                     _patientHistory.PatientHistoryGUID = Guid.Parse(drPatient["PatientHistoryGUID"].ToString());
 
                 if (drPatient["Di_Ung_Thuoc"] != null && drPatient["Di_Ung_Thuoc"] != DBNull.Value)
-                    _patientHistory.Di_Ung_Thuoc = Convert.ToBoolean(drPatient["Di_Ung_Thuoc"]);
-                else
-                    _patientHistory.Di_Ung_Thuoc = false;
+                    chkDiUngThuoc.Checked = Convert.ToBoolean(drPatient["Di_Ung_Thuoc"]);
 
                 if (drPatient["Thuoc_Di_Ung"] != null && drPatient["Thuoc_Di_Ung"] != DBNull.Value)
-                    _patientHistory.Thuoc_Di_Ung = drPatient["Thuoc_Di_Ung"].ToString();
+                    txtThuocDiUng.Text = drPatient["Thuoc_Di_Ung"].ToString();
 
                 if (drPatient["Dot_Quy"] != null && drPatient["Dot_Quy"] != DBNull.Value)
-                    _patientHistory.Dot_Quy = Convert.ToBoolean(drPatient["Dot_Quy"]);
-                else
-                    _patientHistory.Dot_Quy = false;
+                    chkDotQuy.Checked = Convert.ToBoolean(drPatient["Dot_Quy"]);
 
                 if (drPatient["Benh_Tim_Mach"] != null && drPatient["Benh_Tim_Mach"] != DBNull.Value)
-                    _patientHistory.Benh_Tim_Mach = Convert.ToBoolean(drPatient["Benh_Tim_Mach"]);
-                else
-                    _patientHistory.Benh_Tim_Mach = false;
+                    chkBenhTimMach.Checked = Convert.ToBoolean(drPatient["Benh_Tim_Mach"]);
 
                 if (drPatient["Benh_Lao"] != null && drPatient["Benh_Lao"] != DBNull.Value)
-                    _patientHistory.Benh_Lao = Convert.ToBoolean(drPatient["Benh_Lao"]);
-                else
-                    _patientHistory.Benh_Lao = false;
+                    chkBenhLao.Checked = Convert.ToBoolean(drPatient["Benh_Lao"]);
 
                 if (drPatient["Dai_Thao_Duong"] != null && drPatient["Dai_Thao_Duong"] != DBNull.Value)
-                    _patientHistory.Dai_Thao_Duong = Convert.ToBoolean(drPatient["Dai_Thao_Duong"]);
-                else
-                    _patientHistory.Dai_Thao_Duong = false;
+                    chkDaiThaoDuong.Checked = Convert.ToBoolean(drPatient["Dai_Thao_Duong"]);
 
                 if (drPatient["Dai_Duong_Dang_Dieu_Tri"] != null && drPatient["Dai_Duong_Dang_Dieu_Tri"] != DBNull.Value)
-                    _patientHistory.Dai_Duong_Dang_Dieu_Tri = Convert.ToBoolean(drPatient["Dai_Duong_Dang_Dieu_Tri"]);
-                else
-                    _patientHistory.Dai_Duong_Dang_Dieu_Tri = false;
+                    chkDaiDuongDangDieuTri.Checked = Convert.ToBoolean(drPatient["Dai_Duong_Dang_Dieu_Tri"]);
 
                 if (drPatient["Viem_Gan_B"] != null && drPatient["Viem_Gan_B"] != DBNull.Value)
-                    _patientHistory.Viem_Gan_B = Convert.ToBoolean(drPatient["Viem_Gan_B"]);
-                else
-                    _patientHistory.Viem_Gan_B = false;
+                    chkViemGanB.Checked = Convert.ToBoolean(drPatient["Viem_Gan_B"]);
 
                 if (drPatient["Viem_Gan_C"] != null && drPatient["Viem_Gan_C"] != DBNull.Value)
-                    _patientHistory.Viem_Gan_C = Convert.ToBoolean(drPatient["Viem_Gan_C"]);
-                else
-                    _patientHistory.Viem_Gan_C = false;
+                    chkViemGanC.Checked = Convert.ToBoolean(drPatient["Viem_Gan_C"]);
 
                 if (drPatient["Viem_Gan_Dang_Dieu_Tri"] != null && drPatient["Viem_Gan_Dang_Dieu_Tri"] != DBNull.Value)
-                    _patientHistory.Viem_Gan_Dang_Dieu_Tri = Convert.ToBoolean(drPatient["Viem_Gan_Dang_Dieu_Tri"]);
-                else
-                    _patientHistory.Viem_Gan_Dang_Dieu_Tri = false;
+                    chkViemGanDangDieuTri.Checked = Convert.ToBoolean(drPatient["Viem_Gan_Dang_Dieu_Tri"]);
 
                 if (drPatient["Ung_Thu"] != null && drPatient["Ung_Thu"] != DBNull.Value)
-                    _patientHistory.Ung_Thu = Convert.ToBoolean(drPatient["Ung_Thu"]);
-                else
-                    _patientHistory.Ung_Thu = false;
+                    chkUngThu.Checked = Convert.ToBoolean(drPatient["Ung_Thu"]);
 
                 if (drPatient["Co_Quan_Ung_Thu"] != null && drPatient["Co_Quan_Ung_Thu"] != DBNull.Value)
-                    _patientHistory.Co_Quan_Ung_Thu = drPatient["Co_Quan_Ung_Thu"].ToString();
+                    txtCoQuanUngThu.Text = drPatient["Co_Quan_Ung_Thu"].ToString();
 
                 if (drPatient["Dong_Kinh"] != null && drPatient["Dong_Kinh"] != DBNull.Value)
-                    _patientHistory.Dong_Kinh = Convert.ToBoolean(drPatient["Dong_Kinh"]);
-                else
-                    _patientHistory.Dong_Kinh = false;
+                    chkDongKinh.Checked = Convert.ToBoolean(drPatient["Dong_Kinh"]);
 
                 if (drPatient["Hen_Suyen"] != null && drPatient["Hen_Suyen"] != DBNull.Value)
-                    _patientHistory.Hen_Suyen = Convert.ToBoolean(drPatient["Hen_Suyen"]);
-                else
-                    _patientHistory.Hen_Suyen = false;
+                    chkHenSuyen.Checked = Convert.ToBoolean(drPatient["Hen_Suyen"]);
 
                 if (drPatient["Benh_Khac"] != null && drPatient["Benh_Khac"] != DBNull.Value)
-                    _patientHistory.Benh_Khac = Convert.ToBoolean(drPatient["Benh_Khac"]);
-                else
-                    _patientHistory.Benh_Khac = false;
+                    chkBenhKhac.Checked = Convert.ToBoolean(drPatient["Benh_Khac"]);
 
                 if (drPatient["Benh_Gi"] != null && drPatient["Benh_Gi"] != DBNull.Value)
-                    _patientHistory.Benh_Gi = drPatient["Benh_Gi"].ToString();
+                    txtBenhGi.Text = drPatient["Benh_Gi"].ToString();
 
                 if (drPatient["Thuoc_Dang_Dung"] != null && drPatient["Thuoc_Dang_Dung"] != DBNull.Value)
-                    _patientHistory.Thuoc_Dang_Dung = drPatient["Thuoc_Dang_Dung"].ToString();
+                    txtThuocDangDung.Text = drPatient["Thuoc_Dang_Dung"].ToString();
 
                 if (drPatient["Hut_Thuoc"] != null && drPatient["Hut_Thuoc"] != DBNull.Value)
-                    _patientHistory.Hut_Thuoc = Convert.ToBoolean(drPatient["Hut_Thuoc"]);
-                else
-                    _patientHistory.Hut_Thuoc = false;
+                    chkHutThuoc.Checked = Convert.ToBoolean(drPatient["Hut_Thuoc"]);
 
                 if (drPatient["Uong_Ruou"] != null && drPatient["Uong_Ruou"] != DBNull.Value)
-                    _patientHistory.Uong_Ruou = Convert.ToBoolean(drPatient["Uong_Ruou"]);
-                else
-                    _patientHistory.Uong_Ruou = false;
+                    chkUongRuou.Checked = Convert.ToBoolean(drPatient["Uong_Ruou"]);
 
                 if (drPatient["Tinh_Trang_Gia_Dinh"] != null && drPatient["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
-                    _patientHistory.Tinh_Trang_Gia_Dinh = drPatient["Tinh_Trang_Gia_Dinh"].ToString();
+                    txtTinhTrangGiaDinh.Text = drPatient["Tinh_Trang_Gia_Dinh"].ToString();
 
                 if (drPatient["Chich_Ngua_Viem_Gan_B"] != null && drPatient["Chich_Ngua_Viem_Gan_B"] != DBNull.Value)
-                    _patientHistory.Chich_Ngua_Viem_Gan_B = Convert.ToBoolean(drPatient["Chich_Ngua_Viem_Gan_B"]);
-                else
-                    _patientHistory.Chich_Ngua_Viem_Gan_B = false;
+                    chkChichNguaViemGanB.Checked = Convert.ToBoolean(drPatient["Chich_Ngua_Viem_Gan_B"]);
 
                 if (drPatient["Chich_Ngua_Uon_Van"] != null && drPatient["Chich_Ngua_Uon_Van"] != DBNull.Value)
-                    _patientHistory.Chich_Ngua_Uon_Van = Convert.ToBoolean(drPatient["Chich_Ngua_Uon_Van"]);
-                else
-                    _patientHistory.Chich_Ngua_Uon_Van = false;
+                    chkChichNguaUonVan.Checked = Convert.ToBoolean(drPatient["Chich_Ngua_Uon_Van"]);
 
                 if (drPatient["Chich_Ngua_Cum"] != null && drPatient["Chich_Ngua_Cum"] != DBNull.Value)
-                    _patientHistory.Chich_Ngua_Cum = Convert.ToBoolean(drPatient["Chich_Ngua_Cum"]);
-                else
-                    _patientHistory.Chich_Ngua_Cum = false;
+                    chkChichNguaCum.Checked = Convert.ToBoolean(drPatient["Chich_Ngua_Cum"]);
 
                 if (drPatient["Dang_Co_Thai"] != null && drPatient["Dang_Co_Thai"] != DBNull.Value)
-                    _patientHistory.Dang_Co_Thai = Convert.ToBoolean(drPatient["Dang_Co_Thai"]);
-                else
-                    _patientHistory.Dang_Co_Thai = false;
+                    chkDangCoThai.Checked = Convert.ToBoolean(drPatient["Dang_Co_Thai"]);
             }
             catch (Exception e)
             {
@@ -475,24 +430,29 @@ namespace MM.Dialogs
 
         private void chkDiUngThuoc_CheckedChanged(object sender, EventArgs e)
         {
-            txtThuocDiUng.Enabled = chkDiUngThuoc.Checked;
+            txtThuocDiUng.ReadOnly = !chkDiUngThuoc.Checked;
             if (chkDiUngThuoc.Checked)
                 txtThuocDiUng.Focus();
         }
 
         private void chkUngThu_CheckedChanged(object sender, EventArgs e)
         {
-            txtCoQuanUngThu.Enabled = chkUngThu.Checked;
+            txtCoQuanUngThu.ReadOnly = !chkUngThu.Checked;
             if (chkUngThu.Checked)
                 txtCoQuanUngThu.Focus();
         }
 
         private void chkBenhKhac_CheckedChanged(object sender, EventArgs e)
         {
-            txtBenhGi.Enabled = chkBenhKhac.Checked;
-            txtThuocDangDung.Enabled = chkBenhKhac.Checked;
+            txtBenhGi.ReadOnly = !chkBenhKhac.Checked;
+            txtThuocDangDung.ReadOnly = !chkBenhKhac.Checked;
             if (chkBenhKhac.Checked)
                 txtBenhGi.Focus();
+        }
+
+        private void txtFileNum_TextChanged(object sender, EventArgs e)
+        {
+            barCode.BarCode = txtFileNum.Text;
         }
         #endregion
 

@@ -105,9 +105,15 @@ namespace MM.Bussiness
                         contact.ContactGUID = Guid.NewGuid();
                         db.Contacts.InsertOnSubmit(contact);
                         db.SubmitChanges();
+
                         patient.PatientGUID = Guid.NewGuid();
                         patient.ContactGUID = contact.ContactGUID;
                         db.Patients.InsertOnSubmit(patient);
+                        db.SubmitChanges();
+
+                        patientHistory.PatientHistoryGUID = Guid.NewGuid();
+                        patientHistory.PatientGUID = patient.PatientGUID;
+                        db.PatientHistories.InsertOnSubmit(patientHistory);
                         db.SubmitChanges();
                     }
                     else //Update
@@ -160,6 +166,35 @@ namespace MM.Bussiness
                                 p.LastSeenDocGUID = patient.LastSeenDocGUID;
                                 p.DateDeceased = patient.DateDeceased;
                                 p.LastVisitGUID = patient.LastVisitGUID;
+                            }
+
+                            PatientHistory pHistory = db.PatientHistories.SingleOrDefault<PatientHistory>(pp => pp.PatientHistoryGUID.ToString() == patientHistory.PatientHistoryGUID.ToString());
+                            if (pHistory != null)
+                            {
+                                pHistory.Benh_Gi = patientHistory.Benh_Gi;
+                                pHistory.Benh_Khac = patientHistory.Benh_Khac;
+                                pHistory.Benh_Lao = patientHistory.Benh_Lao;
+                                pHistory.Benh_Tim_Mach = patientHistory.Benh_Tim_Mach;
+                                pHistory.Chich_Ngua_Cum = patientHistory.Chich_Ngua_Cum;
+                                pHistory.Chich_Ngua_Uon_Van = patientHistory.Chich_Ngua_Uon_Van;
+                                pHistory.Chich_Ngua_Viem_Gan_B = patientHistory.Chich_Ngua_Viem_Gan_B;
+                                pHistory.Co_Quan_Ung_Thu = patientHistory.Co_Quan_Ung_Thu;
+                                pHistory.Dai_Duong_Dang_Dieu_Tri = patientHistory.Dai_Duong_Dang_Dieu_Tri;
+                                pHistory.Dai_Thao_Duong = patientHistory.Dai_Thao_Duong;
+                                pHistory.Dang_Co_Thai = patientHistory.Dang_Co_Thai;
+                                pHistory.Di_Ung_Thuoc = patientHistory.Di_Ung_Thuoc;
+                                pHistory.Dong_Kinh = patientHistory.Dong_Kinh;
+                                pHistory.Dot_Quy = patientHistory.Dot_Quy;
+                                pHistory.Hen_Suyen = patientHistory.Hen_Suyen;
+                                pHistory.Hut_Thuoc = patientHistory.Hut_Thuoc;
+                                pHistory.Thuoc_Dang_Dung = patientHistory.Thuoc_Dang_Dung;
+                                pHistory.Thuoc_Di_Ung = patientHistory.Thuoc_Di_Ung;
+                                pHistory.Tinh_Trang_Gia_Dinh = patientHistory.Tinh_Trang_Gia_Dinh;
+                                pHistory.Ung_Thu = patientHistory.Ung_Thu;
+                                pHistory.Uong_Ruou = patientHistory.Uong_Ruou;
+                                pHistory.Viem_Gan_B = patientHistory.Viem_Gan_B;
+                                pHistory.Viem_Gan_C = patientHistory.Viem_Gan_C;
+                                pHistory.Viem_Gan_Dang_Dieu_Tri = patientHistory.Viem_Gan_Dang_Dieu_Tri;
                             }
 
                             db.SubmitChanges();

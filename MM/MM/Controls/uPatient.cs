@@ -19,6 +19,8 @@ namespace MM.Controls
         public uPatient()
         {
             InitializeComponent();
+            _uServiceHistory.OnServiceHistoryChanged += new ServiceHistoryChangedHandler(_uServiceHistory_OnServiceHistoryChanged);
+            _uDailyServiceHistory.OnServiceHistoryChanged += new ServiceHistoryChangedHandler(_uServiceHistory_OnServiceHistoryChanged);
         }
         #endregion
 
@@ -30,6 +32,7 @@ namespace MM.Controls
             { 
                 _patientRow = value;
                 _uServiceHistory.PatientRow = value;
+                _uDailyServiceHistory.PatientRow = value;
             }
         }
         #endregion
@@ -41,7 +44,6 @@ namespace MM.Controls
 
             DataRow row = _patientRow as DataRow;
 
-            txtFileNum.Text = row["FileNum"].ToString();
             txtFullName.Text = row["FullName"].ToString();
             txtGender.Text = row["GenderAsStr"].ToString();
             txtDOB.Text = row["DobStr"].ToString();
@@ -51,8 +53,10 @@ namespace MM.Controls
             txtMobile.Text = row["Mobile"].ToString();
             txtEmail.Text = row["Email"].ToString();
             txtFullAddress.Text = row["Address"].ToString();
+            txtThuocDiUng.Text = row["Thuoc_Di_Ung"].ToString();
 
             _uServiceHistory.DisplayAsThread();
+            _uDailyServiceHistory.DisplayAsThread();
         }
         #endregion
 
@@ -60,6 +64,12 @@ namespace MM.Controls
         private void uPatient_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void _uServiceHistory_OnServiceHistoryChanged()
+        {
+            _uServiceHistory.DisplayAsThread();
+            _uDailyServiceHistory.DisplayAsThread();
         }
         #endregion
     }

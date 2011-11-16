@@ -22,6 +22,7 @@ namespace MM.Controls
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private bool _isAll = true;
+        private bool _isDailyService = false;
         #endregion
 
         #region Constructor
@@ -39,6 +40,16 @@ namespace MM.Controls
             get { return _patientRow; }
             set { _patientRow = value; }
         }
+
+        public bool IsDailyService
+        {
+            get { return _isDailyService; }
+            set 
+            { 
+                _isDailyService = value;
+                pFilter.Visible = !_isDailyService;
+            }
+        }
         #endregion
 
         #region UI Command
@@ -47,7 +58,7 @@ namespace MM.Controls
             dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgServiceHistory.DataSource as DataTable;
+                /*DataTable dt = dgServiceHistory.DataSource as DataTable;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -86,7 +97,9 @@ namespace MM.Controls
                 newRow["Status"] = dlg.ServiceHistory.Status;
 
                 dt.Rows.Add(newRow);
-                CalculateTotalPrice();
+                CalculateTotalPrice();*/
+                //DisplayAsThread();
+                base.RaiseServiceHistoryChanged();
             }
         }
 
@@ -102,7 +115,7 @@ namespace MM.Controls
             dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID, drServiceHistory);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgServiceHistory.DataSource as DataTable;
+                /*DataTable dt = dgServiceHistory.DataSource as DataTable;
                 if (dt == null) return;
                 drServiceHistory["Checked"] = false;
                 drServiceHistory["DocStaffGUID"] = dlg.ServiceHistory.DocStaffGUID.ToString();
@@ -137,7 +150,9 @@ namespace MM.Controls
 
                 drServiceHistory["Status"] = dlg.ServiceHistory.Status;
 
-                CalculateTotalPrice();
+                CalculateTotalPrice();*/
+                //DisplayAsThread();
+                base.RaiseServiceHistoryChanged();
             }
         }
 
@@ -162,12 +177,14 @@ namespace MM.Controls
                     Result result = ServiceHistoryBus.DeleteServiceHistory(deletedServiceHistoryList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in deletedRows)
+                        /*foreach (DataRow row in deletedRows)
                         {
                             dt.Rows.Remove(row);
                         }
 
-                        CalculateTotalPrice();
+                        CalculateTotalPrice();*/
+                       //DisplayAsThread();
+                        base.RaiseServiceHistoryChanged();
                     }
                     else
                     {
@@ -186,14 +203,23 @@ namespace MM.Controls
 
                 //if (!raAll.Checked && _fromDate.ToString("dd/MM/yyyy") == dtpkFromDate.Value.ToString("dd/MM/yyyy") &&
                 //_toDate.ToString("dd/MM/yyyy") == dtpkToDate.Value.ToString("dd/MM/yyyy")) return;
-
             try
             {
                 DataRow row = _patientRow as DataRow;
                 _patientGUID = row["PatientGUID"].ToString();
-                _isAll = raAll.Checked;
-                _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
-                _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+                if (!_isDailyService)
+                {
+                    _isAll = raAll.Checked;
+                    _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
+                    _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+                }
+                else
+                {
+                    _isAll = false;
+                    _fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                    _toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+                }
+                
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayServiceHistoryProc));
                 base.ShowWaiting();
             }
