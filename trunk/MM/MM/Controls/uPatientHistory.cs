@@ -47,6 +47,10 @@ namespace MM.Controls
                 AddDockContainerItem(fileNum, fullName);
             else
             {
+                PanelDockContainer p = item.Control as PanelDockContainer;
+                uPatient ctrl = p.Controls[0] as uPatient;
+                ctrl.PatientRow = _patientRow;
+                ctrl.DisplayInfo();
                 item.Visible = true;
                 item.Selected = true;
             }
