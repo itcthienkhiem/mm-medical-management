@@ -141,6 +141,50 @@ namespace MM.Controls
                 if (dlg.Contact.DeletedBy.HasValue)
                     newRow["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
 
+                //Patient History
+                newRow["PatientHistoryGUID"] = dlg.PatientHistory.PatientHistoryGUID.ToString();
+                newRow["Di_Ung_Thuoc"] = dlg.PatientHistory.Di_Ung_Thuoc.Value;
+                if (dlg.PatientHistory.Di_Ung_Thuoc.Value)
+                    newRow["Thuoc_Di_Ung"] = dlg.PatientHistory.Thuoc_Di_Ung;
+                else
+                    newRow["Thuoc_Di_Ung"] = string.Empty;
+
+                newRow["Dot_Quy"] = dlg.PatientHistory.Dot_Quy.Value;
+                newRow["Benh_Tim_Mach"] = dlg.PatientHistory.Benh_Tim_Mach.Value;
+                newRow["Benh_Lao"] = dlg.PatientHistory.Benh_Lao.Value;
+                newRow["Dai_Thao_Duong"] = dlg.PatientHistory.Dai_Thao_Duong.Value;
+                newRow["Dai_Duong_Dang_Dieu_Tri"] = dlg.PatientHistory.Dai_Duong_Dang_Dieu_Tri.Value;
+                newRow["Viem_Gan_B"] = dlg.PatientHistory.Viem_Gan_B.Value;
+                newRow["Viem_Gan_C"] = dlg.PatientHistory.Viem_Gan_C.Value;
+                newRow["Viem_Gan_Dang_Dieu_Tri"] = dlg.PatientHistory.Viem_Gan_Dang_Dieu_Tri.Value;
+                newRow["Ung_Thu"] = dlg.PatientHistory.Ung_Thu.Value;
+                if (dlg.PatientHistory.Ung_Thu.Value)
+                    newRow["Co_Quan_Ung_Thu"] = dlg.PatientHistory.Co_Quan_Ung_Thu;
+                else
+                    newRow["Co_Quan_Ung_Thu"] = string.Empty;
+
+                newRow["Dong_Kinh"] = dlg.PatientHistory.Dong_Kinh.Value;
+                newRow["Hen_Suyen"] = dlg.PatientHistory.Hen_Suyen.Value;
+                newRow["Benh_Khac"] = dlg.PatientHistory.Benh_Khac.Value;
+                if (dlg.PatientHistory.Benh_Khac.Value)
+                {
+                    newRow["Benh_Gi"] = dlg.PatientHistory.Benh_Gi;
+                    newRow["Thuoc_Dang_Dung"] = dlg.PatientHistory.Thuoc_Dang_Dung;
+                }
+                else
+                {
+                    newRow["Benh_Gi"] = string.Empty;
+                    newRow["Thuoc_Dang_Dung"] = string.Empty;
+                }
+
+                newRow["Hut_Thuoc"] = dlg.PatientHistory.Hut_Thuoc.Value;
+                newRow["Uong_Ruou"] = dlg.PatientHistory.Uong_Ruou.Value;
+                newRow["Tinh_Trang_Gia_Dinh"] = dlg.PatientHistory.Tinh_Trang_Gia_Dinh;
+                newRow["Chich_Ngua_Viem_Gan_B"] = dlg.PatientHistory.Chich_Ngua_Viem_Gan_B.Value;
+                newRow["Chich_Ngua_Uon_Van"] = dlg.PatientHistory.Chich_Ngua_Uon_Van;
+                newRow["Chich_Ngua_Cum"] = dlg.PatientHistory.Chich_Ngua_Cum;
+                newRow["Dang_Co_Thai"] = dlg.PatientHistory.Dang_Co_Thai.Value;
+
                 dt.Rows.Add(newRow);
             }
 
@@ -211,6 +255,49 @@ namespace MM.Controls
 
                 if (dlg.Contact.DeletedBy.HasValue)
                     drPatient["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
+
+                //Patient History
+                drPatient["Di_Ung_Thuoc"] = dlg.PatientHistory.Di_Ung_Thuoc.Value;
+                if (dlg.PatientHistory.Di_Ung_Thuoc.Value)
+                    drPatient["Thuoc_Di_Ung"] = dlg.PatientHistory.Thuoc_Di_Ung;
+                else
+                    drPatient["Thuoc_Di_Ung"] = string.Empty;
+
+                drPatient["Dot_Quy"] = dlg.PatientHistory.Dot_Quy.Value;
+                drPatient["Benh_Tim_Mach"] = dlg.PatientHistory.Benh_Tim_Mach.Value;
+                drPatient["Benh_Lao"] = dlg.PatientHistory.Benh_Lao.Value;
+                drPatient["Dai_Thao_Duong"] = dlg.PatientHistory.Dai_Thao_Duong.Value;
+                drPatient["Dai_Duong_Dang_Dieu_Tri"] = dlg.PatientHistory.Dai_Duong_Dang_Dieu_Tri.Value;
+                drPatient["Viem_Gan_B"] = dlg.PatientHistory.Viem_Gan_B.Value;
+                drPatient["Viem_Gan_C"] = dlg.PatientHistory.Viem_Gan_C.Value;
+                drPatient["Viem_Gan_Dang_Dieu_Tri"] = dlg.PatientHistory.Viem_Gan_Dang_Dieu_Tri.Value;
+                drPatient["Ung_Thu"] = dlg.PatientHistory.Ung_Thu.Value;
+                if (dlg.PatientHistory.Ung_Thu.Value)
+                    drPatient["Co_Quan_Ung_Thu"] = dlg.PatientHistory.Co_Quan_Ung_Thu;
+                else
+                    drPatient["Co_Quan_Ung_Thu"] = string.Empty;
+
+                drPatient["Dong_Kinh"] = dlg.PatientHistory.Dong_Kinh.Value;
+                drPatient["Hen_Suyen"] = dlg.PatientHistory.Hen_Suyen.Value;
+                drPatient["Benh_Khac"] = dlg.PatientHistory.Benh_Khac.Value;
+                if (dlg.PatientHistory.Benh_Khac.Value)
+                {
+                    drPatient["Benh_Gi"] = dlg.PatientHistory.Benh_Gi;
+                    drPatient["Thuoc_Dang_Dung"] = dlg.PatientHistory.Thuoc_Dang_Dung;
+                }
+                else
+                {
+                    drPatient["Benh_Gi"] = string.Empty;
+                    drPatient["Thuoc_Dang_Dung"] = string.Empty;
+                }
+
+                drPatient["Hut_Thuoc"] = dlg.PatientHistory.Hut_Thuoc.Value;
+                drPatient["Uong_Ruou"] = dlg.PatientHistory.Uong_Ruou.Value;
+                drPatient["Tinh_Trang_Gia_Dinh"] = dlg.PatientHistory.Tinh_Trang_Gia_Dinh;
+                drPatient["Chich_Ngua_Viem_Gan_B"] = dlg.PatientHistory.Chich_Ngua_Viem_Gan_B.Value;
+                drPatient["Chich_Ngua_Uon_Van"] = dlg.PatientHistory.Chich_Ngua_Uon_Van;
+                drPatient["Chich_Ngua_Cum"] = dlg.PatientHistory.Chich_Ngua_Cum;
+                drPatient["Dang_Co_Thai"] = dlg.PatientHistory.Dang_Co_Thai.Value;
             }
 
             OnSearchPatient();

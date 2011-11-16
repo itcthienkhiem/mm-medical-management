@@ -36,7 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pFilter = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.lbToDate = new System.Windows.Forms.Label();
@@ -50,9 +50,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgServiceHistory = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lbTotalPrice = new System.Windows.Forms.Label();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +58,10 @@
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1.SuspendLayout();
+            this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lbTotalPrice = new System.Windows.Forms.Label();
+            this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).BeginInit();
@@ -69,19 +69,19 @@
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // pFilter
             // 
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Controls.Add(this.dtpkToDate);
-            this.panel1.Controls.Add(this.lbToDate);
-            this.panel1.Controls.Add(this.dtpkFromDate);
-            this.panel1.Controls.Add(this.raFromDateToDate);
-            this.panel1.Controls.Add(this.raAll);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(814, 60);
-            this.panel1.TabIndex = 0;
+            this.pFilter.Controls.Add(this.btnSearch);
+            this.pFilter.Controls.Add(this.dtpkToDate);
+            this.pFilter.Controls.Add(this.lbToDate);
+            this.pFilter.Controls.Add(this.dtpkFromDate);
+            this.pFilter.Controls.Add(this.raFromDateToDate);
+            this.pFilter.Controls.Add(this.raAll);
+            this.pFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pFilter.Location = new System.Drawing.Point(0, 0);
+            this.pFilter.Name = "pFilter";
+            this.pFilter.Size = new System.Drawing.Size(814, 60);
+            this.pFilter.TabIndex = 0;
             // 
             // btnSearch
             // 
@@ -267,30 +267,6 @@
             this.dgServiceHistory.TabIndex = 1;
             this.dgServiceHistory.DoubleClick += new System.EventHandler(this.dgServiceHistory_DoubleClick);
             // 
-            // serviceHistoryViewBindingSource
-            // 
-            this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.lbTotalPrice);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 341);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(810, 26);
-            this.panel4.TabIndex = 0;
-            // 
-            // lbTotalPrice
-            // 
-            this.lbTotalPrice.AutoSize = true;
-            this.lbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTotalPrice.ForeColor = System.Drawing.Color.Red;
-            this.lbTotalPrice.Location = new System.Drawing.Point(17, 7);
-            this.lbTotalPrice.Name = "lbTotalPrice";
-            this.lbTotalPrice.Size = new System.Drawing.Size(55, 13);
-            this.lbTotalPrice.TabIndex = 0;
-            this.lbTotalPrice.Text = "Tổng tiền:";
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -374,18 +350,42 @@
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 250;
             // 
+            // serviceHistoryViewBindingSource
+            // 
+            this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.lbTotalPrice);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 341);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(810, 26);
+            this.panel4.TabIndex = 0;
+            // 
+            // lbTotalPrice
+            // 
+            this.lbTotalPrice.AutoSize = true;
+            this.lbTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalPrice.ForeColor = System.Drawing.Color.Red;
+            this.lbTotalPrice.Location = new System.Drawing.Point(17, 7);
+            this.lbTotalPrice.Name = "lbTotalPrice";
+            this.lbTotalPrice.Size = new System.Drawing.Size(55, 13);
+            this.lbTotalPrice.TabIndex = 0;
+            this.lbTotalPrice.Text = "Tổng tiền:";
+            // 
             // uServiceHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pFilter);
             this.Name = "uServiceHistory";
             this.Size = new System.Drawing.Size(814, 468);
             this.Load += new System.EventHandler(this.uServiceHistory_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pFilter.ResumeLayout(false);
+            this.pFilter.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -399,7 +399,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pFilter;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DateTimePicker dtpkToDate;

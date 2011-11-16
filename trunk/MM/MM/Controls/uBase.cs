@@ -15,6 +15,7 @@ namespace MM.Controls
     public delegate void ColorClickedHandler(Color color);
     public delegate void DrawTypeClickedHandler(DrawType type, int width);
     public delegate void OpenPatientHandler(object patientRow);
+    public delegate void ServiceHistoryChangedHandler();
     #endregion
 
     public partial class uBase : UserControl
@@ -23,6 +24,7 @@ namespace MM.Controls
         public event ColorClickedHandler OnColorClicked;
         public event DrawTypeClickedHandler OnDrawTypeClicked;
         public event OpenPatientHandler OnOpenPatient;
+        public event ServiceHistoryChangedHandler OnServiceHistoryChanged;
         #endregion
 
         #region Members
@@ -53,6 +55,12 @@ namespace MM.Controls
         {
             if (OnOpenPatient != null)
                 OnOpenPatient(patientRow);
+        }
+
+        public void RaiseServiceHistoryChanged()
+        {
+            if (OnServiceHistoryChanged != null)
+                OnServiceHistoryChanged();
         }
         #endregion
 

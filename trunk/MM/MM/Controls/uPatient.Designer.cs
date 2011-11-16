@@ -49,8 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtFileNum = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -58,14 +56,20 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabServiceHistory = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
-            this._uServiceHistory = new MM.Controls.uServiceHistory();
             this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtThuocDiUng = new System.Windows.Forms.RichTextBox();
+            this.pageDailyService = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uServiceHistory = new MM.Controls.uServiceHistory();
+            this._uDailyServiceHistory = new MM.Controls.uServiceHistory();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
             this.tabServiceHistory.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
+            this.tabControlPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -78,11 +82,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1007, 109);
+            this.panel1.Size = new System.Drawing.Size(1007, 165);
             this.panel1.TabIndex = 0;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtThuocDiUng);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtFullAddress);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtEmail);
@@ -101,28 +107,26 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtFullName);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtFileNum);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(997, 99);
+            this.groupBox1.Size = new System.Drawing.Size(997, 155);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin bệnh nhân";
             // 
             // txtFullAddress
             // 
-            this.txtFullAddress.Location = new System.Drawing.Point(372, 68);
+            this.txtFullAddress.Location = new System.Drawing.Point(355, 68);
             this.txtFullAddress.Name = "txtFullAddress";
             this.txtFullAddress.ReadOnly = true;
-            this.txtFullAddress.Size = new System.Drawing.Size(511, 20);
+            this.txtFullAddress.Size = new System.Drawing.Size(349, 20);
             this.txtFullAddress.TabIndex = 38;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(326, 71);
+            this.label6.Location = new System.Drawing.Point(310, 71);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 13);
             this.label6.TabIndex = 37;
@@ -130,17 +134,17 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(97, 68);
+            this.txtEmail.Location = new System.Drawing.Point(83, 68);
             this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
-            this.txtEmail.Size = new System.Drawing.Size(223, 20);
+            this.txtEmail.Size = new System.Drawing.Size(225, 20);
             this.txtEmail.TabIndex = 32;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(59, 71);
+            this.label15.Location = new System.Drawing.Point(45, 71);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(35, 13);
             this.label15.TabIndex = 36;
@@ -149,7 +153,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(690, 47);
+            this.label13.Location = new System.Drawing.Point(494, 47);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 35;
@@ -157,18 +161,18 @@
             // 
             // txtMobile
             // 
-            this.txtMobile.Location = new System.Drawing.Point(748, 44);
+            this.txtMobile.Location = new System.Drawing.Point(552, 44);
             this.txtMobile.MaxLength = 50;
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.ReadOnly = true;
-            this.txtMobile.Size = new System.Drawing.Size(135, 20);
+            this.txtMobile.Size = new System.Drawing.Size(152, 20);
             this.txtMobile.TabIndex = 31;
             this.txtMobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(462, 47);
+            this.label12.Location = new System.Drawing.Point(248, 47);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(83, 13);
             this.label12.TabIndex = 34;
@@ -176,18 +180,18 @@
             // 
             // txtHomePhone
             // 
-            this.txtHomePhone.Location = new System.Drawing.Point(326, 44);
+            this.txtHomePhone.Location = new System.Drawing.Point(83, 44);
             this.txtHomePhone.MaxLength = 50;
             this.txtHomePhone.Name = "txtHomePhone";
             this.txtHomePhone.ReadOnly = true;
-            this.txtHomePhone.Size = new System.Drawing.Size(128, 20);
+            this.txtHomePhone.Size = new System.Drawing.Size(152, 20);
             this.txtHomePhone.TabIndex = 29;
             this.txtHomePhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(261, 47);
+            this.label11.Location = new System.Drawing.Point(18, 47);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 13);
             this.label11.TabIndex = 33;
@@ -195,27 +199,27 @@
             // 
             // txtWorkPhone
             // 
-            this.txtWorkPhone.Location = new System.Drawing.Point(550, 44);
+            this.txtWorkPhone.Location = new System.Drawing.Point(334, 44);
             this.txtWorkPhone.MaxLength = 50;
             this.txtWorkPhone.Name = "txtWorkPhone";
             this.txtWorkPhone.ReadOnly = true;
-            this.txtWorkPhone.Size = new System.Drawing.Size(133, 20);
+            this.txtWorkPhone.Size = new System.Drawing.Size(152, 20);
             this.txtWorkPhone.TabIndex = 30;
             this.txtWorkPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtIdentityCard
             // 
-            this.txtIdentityCard.Location = new System.Drawing.Point(97, 44);
+            this.txtIdentityCard.Location = new System.Drawing.Point(605, 19);
             this.txtIdentityCard.Name = "txtIdentityCard";
             this.txtIdentityCard.ReadOnly = true;
-            this.txtIdentityCard.Size = new System.Drawing.Size(156, 20);
+            this.txtIdentityCard.Size = new System.Drawing.Size(99, 20);
             this.txtIdentityCard.TabIndex = 9;
             this.txtIdentityCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(52, 47);
+            this.label5.Location = new System.Drawing.Point(562, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 13);
             this.label5.TabIndex = 8;
@@ -223,17 +227,17 @@
             // 
             // txtDOB
             // 
-            this.txtDOB.Location = new System.Drawing.Point(748, 20);
+            this.txtDOB.Location = new System.Drawing.Point(480, 19);
             this.txtDOB.Name = "txtDOB";
             this.txtDOB.ReadOnly = true;
-            this.txtDOB.Size = new System.Drawing.Size(101, 20);
+            this.txtDOB.Size = new System.Drawing.Size(76, 20);
             this.txtDOB.TabIndex = 7;
             this.txtDOB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(689, 23);
+            this.label4.Location = new System.Drawing.Point(421, 22);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 6;
@@ -241,17 +245,17 @@
             // 
             // txtGender
             // 
-            this.txtGender.Location = new System.Drawing.Point(612, 20);
+            this.txtGender.Location = new System.Drawing.Point(369, 19);
             this.txtGender.Name = "txtGender";
             this.txtGender.ReadOnly = true;
-            this.txtGender.Size = new System.Drawing.Size(71, 20);
+            this.txtGender.Size = new System.Drawing.Size(43, 20);
             this.txtGender.TabIndex = 5;
             this.txtGender.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(558, 23);
+            this.label3.Location = new System.Drawing.Point(315, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 13);
             this.label3.TabIndex = 4;
@@ -259,45 +263,28 @@
             // 
             // txtFullName
             // 
-            this.txtFullName.Location = new System.Drawing.Point(281, 20);
+            this.txtFullName.Location = new System.Drawing.Point(83, 19);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.ReadOnly = true;
-            this.txtFullName.Size = new System.Drawing.Size(269, 20);
+            this.txtFullName.Size = new System.Drawing.Size(225, 20);
             this.txtFullName.TabIndex = 3;
+            this.txtFullName.Text = "Tran Nguyen Thien Phuc";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(229, 23);
+            this.label2.Location = new System.Drawing.Point(34, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Họ Tên:";
-            // 
-            // txtFileNum
-            // 
-            this.txtFileNum.Location = new System.Drawing.Point(97, 20);
-            this.txtFileNum.Name = "txtFileNum";
-            this.txtFileNum.ReadOnly = true;
-            this.txtFileNum.Size = new System.Drawing.Size(121, 20);
-            this.txtFileNum.TabIndex = 1;
-            this.txtFileNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã bệnh nhân:";
             // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel6.Location = new System.Drawing.Point(1002, 5);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(5, 99);
+            this.panel6.Size = new System.Drawing.Size(5, 155);
             this.panel6.TabIndex = 3;
             // 
             // panel5
@@ -305,13 +292,13 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 5);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(5, 99);
+            this.panel5.Size = new System.Drawing.Size(5, 155);
             this.panel5.TabIndex = 2;
             // 
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 104);
+            this.panel4.Location = new System.Drawing.Point(0, 160);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1007, 5);
             this.panel4.TabIndex = 1;
@@ -328,24 +315,26 @@
             // 
             this.panel2.Controls.Add(this.tabServiceHistory);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 109);
+            this.panel2.Location = new System.Drawing.Point(0, 165);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1007, 529);
+            this.panel2.Size = new System.Drawing.Size(1007, 473);
             this.panel2.TabIndex = 1;
             // 
             // tabServiceHistory
             // 
             this.tabServiceHistory.CanReorderTabs = true;
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel2);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel1);
             this.tabServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabServiceHistory.Location = new System.Drawing.Point(0, 0);
             this.tabServiceHistory.Name = "tabServiceHistory";
             this.tabServiceHistory.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabServiceHistory.SelectedTabIndex = 0;
-            this.tabServiceHistory.Size = new System.Drawing.Size(1007, 529);
+            this.tabServiceHistory.Size = new System.Drawing.Size(1007, 473);
             this.tabServiceHistory.Style = DevComponents.DotNetBar.eTabStripStyle.VS2005;
             this.tabServiceHistory.TabIndex = 0;
             this.tabServiceHistory.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
+            this.tabServiceHistory.Tabs.Add(this.pageDailyService);
             this.tabServiceHistory.Tabs.Add(this.pageServiceHistory);
             // 
             // tabControlPanel1
@@ -355,7 +344,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1007, 504);
+            this.tabControlPanel1.Size = new System.Drawing.Size(1007, 448);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -366,20 +355,74 @@
             this.tabControlPanel1.TabIndex = 1;
             this.tabControlPanel1.TabItem = this.pageServiceHistory;
             // 
-            // _uServiceHistory
-            // 
-            this._uServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uServiceHistory.Location = new System.Drawing.Point(1, 1);
-            this._uServiceHistory.Name = "_uServiceHistory";
-            this._uServiceHistory.PatientRow = null;
-            this._uServiceHistory.Size = new System.Drawing.Size(1005, 502);
-            this._uServiceHistory.TabIndex = 0;
-            // 
             // pageServiceHistory
             // 
             this.pageServiceHistory.AttachedControl = this.tabControlPanel1;
             this.pageServiceHistory.Name = "pageServiceHistory";
             this.pageServiceHistory.Text = "Dịch vụ đã sử dụng";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 94);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "Dị ứng thuốc:";
+            // 
+            // txtThuocDiUng
+            // 
+            this.txtThuocDiUng.ForeColor = System.Drawing.Color.Red;
+            this.txtThuocDiUng.Location = new System.Drawing.Point(83, 91);
+            this.txtThuocDiUng.Name = "txtThuocDiUng";
+            this.txtThuocDiUng.ReadOnly = true;
+            this.txtThuocDiUng.Size = new System.Drawing.Size(621, 54);
+            this.txtThuocDiUng.TabIndex = 74;
+            this.txtThuocDiUng.Text = "";
+            // 
+            // pageDailyService
+            // 
+            this.pageDailyService.AttachedControl = this.tabControlPanel2;
+            this.pageDailyService.Name = "pageDailyService";
+            this.pageDailyService.Text = "Dịch vụ trong ngày";
+            // 
+            // tabControlPanel2
+            // 
+            this.tabControlPanel2.Controls.Add(this._uDailyServiceHistory);
+            this.tabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel2.Name = "tabControlPanel2";
+            this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel2.Size = new System.Drawing.Size(1007, 448);
+            this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel2.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel2.Style.GradientAngle = 90;
+            this.tabControlPanel2.TabIndex = 2;
+            this.tabControlPanel2.TabItem = this.pageDailyService;
+            // 
+            // _uServiceHistory
+            // 
+            this._uServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uServiceHistory.IsDailyService = false;
+            this._uServiceHistory.Location = new System.Drawing.Point(1, 1);
+            this._uServiceHistory.Name = "_uServiceHistory";
+            this._uServiceHistory.PatientRow = null;
+            this._uServiceHistory.Size = new System.Drawing.Size(1005, 446);
+            this._uServiceHistory.TabIndex = 0;
+            // 
+            // _uDailyServiceHistory
+            // 
+            this._uDailyServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uDailyServiceHistory.IsDailyService = true;
+            this._uDailyServiceHistory.Location = new System.Drawing.Point(1, 1);
+            this._uDailyServiceHistory.Name = "_uDailyServiceHistory";
+            this._uDailyServiceHistory.PatientRow = null;
+            this._uDailyServiceHistory.Size = new System.Drawing.Size(1005, 446);
+            this._uDailyServiceHistory.TabIndex = 0;
             // 
             // uPatient
             // 
@@ -397,6 +440,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).EndInit();
             this.tabServiceHistory.ResumeLayout(false);
             this.tabControlPanel1.ResumeLayout(false);
+            this.tabControlPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -417,8 +461,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtFullName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtFileNum;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtDOB;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtGender;
@@ -434,5 +476,10 @@
         private System.Windows.Forms.TextBox txtHomePhone;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtWorkPhone;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox txtThuocDiUng;
+        private DevComponents.DotNetBar.TabControlPanel tabControlPanel2;
+        private DevComponents.DotNetBar.TabItem pageDailyService;
+        private uServiceHistory _uDailyServiceHistory;
     }
 }
