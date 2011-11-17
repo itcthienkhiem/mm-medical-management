@@ -402,6 +402,33 @@
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 31</value>
   </data>
+  <data name="tbCompanyList.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tbCompanyList.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tbCompanyList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 28</value>
+  </data>
+  <data name="tbCompanyList.ToolTipText" xml:space="preserve">
+    <value>Danh mục công ty</value>
+  </data>
+  <data name="tbContractList.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tbContractList.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tbContractList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 28</value>
+  </data>
+  <data name="tbContractList.ToolTipText" xml:space="preserve">
+    <value>Danh mục hợp đồng</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 31</value>
+  </data>
   <data name="tbSympton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -573,8 +600,32 @@
   <data name="patientToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Bệnh nhân</value>
   </data>
+  <data name="companyListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 30</value>
+  </data>
+  <data name="companyListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Danh mục công ty</value>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 6</value>
+  </data>
+  <data name="contractListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 30</value>
+  </data>
+  <data name="contractListToolStripMenuItem.Text" xml:space="preserve">
+    <value>Danh mục hợp đồng</value>
+  </data>
+  <data name="companyToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="companyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
+  </data>
+  <data name="companyToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Công ty</value>
+  </data>
   <data name="symptomListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 30</value>
+    <value>193, 22</value>
   </data>
   <data name="symptomListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục triệu chứng</value>
@@ -2413,6 +2464,48 @@
     <value>aboutMedicalManagementToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;aboutMedicalManagementToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;companyToolStripMenuItem.Name" xml:space="preserve">
+    <value>companyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;companyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;companyListToolStripMenuItem.Name" xml:space="preserve">
+    <value>companyListToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;companyListToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">
+    <value>toolStripSeparator10</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator11.Name" xml:space="preserve">
+    <value>toolStripSeparator11</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbCompanyList.Name" xml:space="preserve">
+    <value>tbCompanyList</value>
+  </data>
+  <data name="&gt;&gt;tbCompanyList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbContractList.Name" xml:space="preserve">
+    <value>tbContractList</value>
+  </data>
+  <data name="&gt;&gt;tbContractList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;contractListToolStripMenuItem.Name" xml:space="preserve">
+    <value>contractListToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;contractListToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
