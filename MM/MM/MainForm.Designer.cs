@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uSymptomList = new MM.Controls.uSymptomList();
             this._uSpecialityList = new MM.Controls.uSpecialityList();
             this._uPatientHistory = new MM.Controls.uPatientHistory();
             this._uPatientList = new MM.Controls.uPatientList();
@@ -46,6 +47,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tbOpenPatient = new System.Windows.Forms.ToolStripButton();
             this.tbPatientList = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbSympton = new System.Windows.Forms.ToolStripButton();
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._mainMenu = new System.Windows.Forms.MenuStrip();
@@ -65,6 +68,8 @@
             this.openPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.patientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.symptomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.symptomListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -80,12 +85,18 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uSymptomList);
             this._mainPanel.Controls.Add(this._uSpecialityList);
             this._mainPanel.Controls.Add(this._uPatientHistory);
             this._mainPanel.Controls.Add(this._uPatientList);
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uSymptomList
+            // 
+            resources.ApplyResources(this._uSymptomList, "_uSymptomList");
+            this._uSymptomList.Name = "_uSymptomList";
             // 
             // _uSpecialityList
             // 
@@ -126,7 +137,9 @@
             this.tbDoctorList,
             this.toolStripSeparator1,
             this.tbOpenPatient,
-            this.tbPatientList});
+            this.tbPatientList,
+            this.toolStripSeparator5,
+            this.tbSympton});
             resources.ApplyResources(this._mainToolbar, "_mainToolbar");
             this._mainToolbar.Name = "_mainToolbar";
             this._mainToolbar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._mainToolbar_ItemClicked);
@@ -199,6 +212,19 @@
             this.tbPatientList.Name = "tbPatientList";
             this.tbPatientList.Tag = "Patient List";
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
+            // 
+            // tbSympton
+            // 
+            this.tbSympton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbSympton, "tbSympton");
+            this.tbSympton.Image = global::MM.Properties.Resources.research;
+            this.tbSympton.Name = "tbSympton";
+            this.tbSympton.Tag = "Symptom List";
+            // 
             // _mainStatus
             // 
             this._mainStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -221,6 +247,7 @@
             this.specialityToolStripMenuItem,
             this.doctorToolStripMenuItem,
             this.patientToolStripMenuItem,
+            this.symptomToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this._mainMenu, "_mainMenu");
             this._mainMenu.Name = "_mainMenu";
@@ -345,6 +372,21 @@
             this.patientListToolStripMenuItem.Tag = "Patient List";
             this.patientListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // symptomToolStripMenuItem
+            // 
+            this.symptomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.symptomListToolStripMenuItem});
+            resources.ApplyResources(this.symptomToolStripMenuItem, "symptomToolStripMenuItem");
+            this.symptomToolStripMenuItem.Name = "symptomToolStripMenuItem";
+            // 
+            // symptomListToolStripMenuItem
+            // 
+            this.symptomListToolStripMenuItem.Image = global::MM.Properties.Resources.research;
+            this.symptomListToolStripMenuItem.Name = "symptomListToolStripMenuItem";
+            resources.ApplyResources(this.symptomListToolStripMenuItem, "symptomListToolStripMenuItem");
+            this.symptomListToolStripMenuItem.Tag = "Symptom List";
+            this.symptomListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -441,6 +483,11 @@
         private System.Windows.Forms.ToolStripButton tbSpecialityList;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private Controls.uSpecialityList _uSpecialityList;
+        private System.Windows.Forms.ToolStripMenuItem symptomToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem symptomListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripButton tbSympton;
+        private Controls.uSymptomList _uSymptomList;
 
 
 

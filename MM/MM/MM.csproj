@@ -149,6 +149,12 @@
     <Compile Include="Controls\uSpecialityList.Designer.cs">
       <DependentUpon>uSpecialityList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uSymptomList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uSymptomList.Designer.cs">
+      <DependentUpon>uSymptomList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddDocStaff.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddSpeciality.Designer.cs">
       <DependentUpon>dlgAddSpeciality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddSymptom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddSymptom.Designer.cs">
+      <DependentUpon>dlgAddSymptom.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgBase.cs">
       <SubType>Form</SubType>
@@ -266,6 +278,9 @@
     <EmbeddedResource Include="Controls\uSpecialityList.resx">
       <DependentUpon>uSpecialityList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uSymptomList.resx">
+      <DependentUpon>uSymptomList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDocStaff.resx">
       <DependentUpon>dlgAddDocStaff.cs</DependentUpon>
     </EmbeddedResource>
@@ -280,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddSpeciality.resx">
       <DependentUpon>dlgAddSpeciality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddSymptom.resx">
+      <DependentUpon>dlgAddSymptom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgDatabaseConfig.resx">
       <DependentUpon>dlgDatabaseConfig.cs</DependentUpon>
@@ -319,6 +337,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -353,6 +372,12 @@
     <Content Include="Components\DSBarCode.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\Contract-icon.png" />
+    <None Include="Resources\Contract-icon %281%29.png" />
+    <None Include="Resources\industry.png" />
+    <None Include="Resources\industry %281%29.png" />
+    <None Include="Resources\research.png" />
+    <None Include="Resources\research %281%29.png" />
     <None Include="Resources\stethoscope-icon %281%29.png" />
     <None Include="Resources\stethoscope-icon.png" />
     <None Include="Resources\folder-customer-icon.png" />
