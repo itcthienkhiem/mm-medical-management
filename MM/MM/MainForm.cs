@@ -138,15 +138,23 @@ namespace MM
         {
             servicesToolStripMenuItem.Enabled = isLogin;
             tbServiceList.Enabled = isLogin;
+
             doctorToolStripMenuItem.Enabled = isLogin;
             tbDoctorList.Enabled = isLogin;
+
             patientToolStripMenuItem.Enabled = isLogin;
             tbPatientList.Enabled = isLogin;
             tbOpenPatient.Enabled = isLogin;
+
             specialityToolStripMenuItem.Enabled = isLogin;
             tbSpecialityList.Enabled = isLogin;
+
             symptomToolStripMenuItem.Enabled = isLogin;
             tbSympton.Enabled = isLogin;
+
+            companyToolStripMenuItem.Enabled = isLogin;
+            tbCompanyList.Enabled = isLogin;
+            tbContractList.Enabled = isLogin;
         }
 
         private void ExcuteCmd(string cmd)
@@ -201,7 +209,25 @@ namespace MM
                 case "Symptom List":
                     OnSymptomList();
                     break;
+
+                case "Company List":
+                    OnCompanyList();
+                    break;
+
+                case "Contract List":
+                    OnContractList();
+                    break;
             }
+        }
+
+        private void OnCompanyList()
+        {
+            this.Text = string.Format("{0} - Danh muc cong ty", Application.ProductName);
+        }
+
+        private void OnContractList()
+        {
+            this.Text = string.Format("{0} - Danh muc hop dong", Application.ProductName);
         }
 
         private void ViewControl(Control view)
