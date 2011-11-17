@@ -83,6 +83,18 @@
     <Compile Include="Controls\uColor.Designer.cs">
       <DependentUpon>uColor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uCompanyList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uCompanyList.Designer.cs">
+      <DependentUpon>uCompanyList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uContractList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uContractList.Designer.cs">
+      <DependentUpon>uContractList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uDocStaffList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -154,6 +166,18 @@
     </Compile>
     <Compile Include="Controls\uSymptomList.Designer.cs">
       <DependentUpon>uSymptomList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddCompany.Designer.cs">
+      <DependentUpon>dlgAddCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddContract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddContract.Designer.cs">
+      <DependentUpon>dlgAddContract.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddDocStaff.cs">
       <SubType>Form</SubType>
@@ -245,6 +269,9 @@
     <EmbeddedResource Include="Controls\uColor.resx">
       <DependentUpon>uColor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uContractList.resx">
+      <DependentUpon>uContractList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDocStaffList.resx">
       <DependentUpon>uDocStaffList.cs</DependentUpon>
     </EmbeddedResource>
@@ -280,6 +307,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSymptomList.resx">
       <DependentUpon>uSymptomList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddCompany.resx">
+      <DependentUpon>dlgAddCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddContract.resx">
+      <DependentUpon>dlgAddContract.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDocStaff.resx">
       <DependentUpon>dlgAddDocStaff.cs</DependentUpon>
