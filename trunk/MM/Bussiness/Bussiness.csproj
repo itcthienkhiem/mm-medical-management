@@ -89,6 +89,7 @@
     <Compile Include="ServiceHistoryBus.cs" />
     <Compile Include="ServicesBus.cs" />
     <Compile Include="SpecialityBus.cs" />
+    <Compile Include="SymptomBus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

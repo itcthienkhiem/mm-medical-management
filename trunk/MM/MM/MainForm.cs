@@ -118,6 +118,8 @@ namespace MM
                 _uPatientList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uSpecialityList))
                 _uSpecialityList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uSymptomList))
+                _uSymptomList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -143,6 +145,8 @@ namespace MM
             tbOpenPatient.Enabled = isLogin;
             specialityToolStripMenuItem.Enabled = isLogin;
             tbSpecialityList.Enabled = isLogin;
+            symptomToolStripMenuItem.Enabled = isLogin;
+            tbSympton.Enabled = isLogin;
         }
 
         private void ExcuteCmd(string cmd)
@@ -193,6 +197,10 @@ namespace MM
                 case "About":
                     OnAbout();
                     break;
+
+                case "Symptom List":
+                    OnSymptomList();
+                    break;
             }
         }
 
@@ -216,6 +224,13 @@ namespace MM
             }
 
             return null;
+        }
+
+        private void OnSymptomList()
+        {
+            this.Text = string.Format("{0} - Danh muc trieu chung", Application.ProductName);
+            ViewControl(_uSymptomList);
+            _uSymptomList.DisplayAsThread();
         }
 
         private void OnLogin()
@@ -278,6 +293,8 @@ namespace MM
                 _uPatientList.ClearData();
             else if (ctrl.GetType() == typeof(uSpecialityList))
                 _uSpecialityList.ClearData();
+            else if (ctrl.GetType() == typeof(uSymptomList))
+                _uSymptomList.ClearData();
         }
 
         private void OnDoctorList()
