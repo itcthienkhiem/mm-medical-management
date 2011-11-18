@@ -263,6 +263,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Printer_icon {
+            get {
+                object obj = ResourceManager.GetObject("Printer_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Printer_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Printer_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap research {
             get {
                 object obj = ResourceManager.GetObject("research", resourceCulture);

@@ -58,6 +58,10 @@
       <HintPath>Components\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
     <Reference Include="DSBarCode, Version=1.0.4335.40892, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="SpreadsheetGear, Version=1.6.0.122, Culture=neutral, PublicKeyToken=39c186f5904944ec">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\SpreadsheetGear.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -380,6 +384,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Templates\SymptomTemplate.xls" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -403,8 +408,13 @@
     <Content Include="Components\DevComponents.Instrumentation.dll" />
     <Content Include="Components\DevComponents.TreeGX.dll" />
     <Content Include="Components\DSBarCode.dll" />
+    <Content Include="Components\Interop.Excel.dll" />
+    <Content Include="Components\Interop.Microsoft.Office.Core.dll" />
+    <Content Include="Components\SpreadsheetGear.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\Printer-icon.png" />
+    <None Include="Resources\Printer-icon %281%29.png" />
     <None Include="Resources\Contract-icon.png" />
     <None Include="Resources\Contract-icon %281%29.png" />
     <None Include="Resources\industry.png" />

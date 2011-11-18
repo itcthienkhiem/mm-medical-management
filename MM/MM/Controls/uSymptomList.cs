@@ -11,6 +11,7 @@ using MM.Bussiness;
 using MM.Common;
 using MM.Databasae;
 using MM.Dialogs;
+using SpreadsheetGear;
 
 namespace MM.Controls
 {
@@ -187,6 +188,76 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần xóa.");
         }
+
+        private void OnPrint()
+        {
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgSymptom.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedRows.Add(row);
+                }
+            }
+
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\Symptom.xls", Application.StartupPath);
+                if (ExportToExcel(exportFileName, checkedRows))
+                    ExcelPrintPreview.PrintPreview(exportFileName);
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần in.");
+        }
+
+        private bool ExportToExcel(string exportFileName, List<DataRow> checkedRows)
+        {
+            string excelTemplateName = string.Format("{0}\\Templates\\SymptomTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                ExcelPrintPreview.SetCulturalWithEN_US();
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 1;
+
+                foreach (DataRow row in checkedRows)
+                {
+                    string symptom = row["SymptomName"].ToString();
+                    string advice = row["Advice"].ToString();
+                    workSheet.Cells[rowIndex, 0].Value = rowIndex;
+                    workSheet.Cells[rowIndex, 1].Value = symptom;
+                    workSheet.Cells[rowIndex, 2].Value = advice;
+                }
+
+                IRange range = workSheet.Cells[string.Format("A2:C{0}", checkedRows.Count + 1)];
+                range.WrapText = true;
+                range.HorizontalAlignment = HAlign.General;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+
+                range = workSheet.Cells[string.Format("A2:A{0}", checkedRows.Count + 1)];
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.XLS97);    
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message);
+                return false;
+            }
+            finally
+            {
+                ExcelPrintPreview.SetCulturalWithCurrent();
+                workBook.Close();
+                workBook = null;
+            }
+
+            return true;
+        }
         #endregion
        
         #region Window Event Handlers
@@ -208,6 +279,11 @@ namespace MM.Controls
         private void btnDelete_Click(object sender, EventArgs e)
         {
             OnDeleteSymptom();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint();
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
