@@ -68,6 +68,14 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.Excel">
+      <HintPath>..\MM\Components\Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.Microsoft.Office.Core">
+      <HintPath>..\MM\Components\Interop.Microsoft.Office.Core.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -84,6 +92,7 @@
     <Compile Include="DrawType.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="ErrorCode.cs" />
+    <Compile Include="ExcelPrintPreview.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="MsgBoxType.cs" />
