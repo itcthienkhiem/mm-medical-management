@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 using MM.Bussiness;
 using MM.Common;
 using MM.Databasae;
@@ -241,6 +242,10 @@ namespace MM.Controls
                 range = workSheet.Cells[string.Format("A2:A{0}", checkedRows.Count + 1)];
                 range.HorizontalAlignment = HAlign.Center;
                 range.VerticalAlignment = VAlign.Top;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.XLS97);    
             }
