@@ -101,14 +101,14 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(664, 38);
-            this.panel2.TabIndex = 5;
+            this.panel2.TabIndex = 0;
             // 
             // txtSearchPatient
             // 
             this.txtSearchPatient.Location = new System.Drawing.Point(93, 10);
             this.txtSearchPatient.Name = "txtSearchPatient";
             this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
-            this.txtSearchPatient.TabIndex = 3;
+            this.txtSearchPatient.TabIndex = 0;
             this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
             this.txtSearchPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPatient_KeyDown);
             // 
@@ -143,6 +143,7 @@
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 9;
             this.chkChecked.UseVisualStyleBackColor = true;
+            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
             // 
             // dgMembers
             // 
