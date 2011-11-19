@@ -121,17 +121,44 @@
   <data name="_mainPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
-  <data name="_uSymptomList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="_uCompanyList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="_uCompanyList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uCompanyList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>924, 479</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_uCompanyList.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="_uCompanyList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uCompanyList.Name" xml:space="preserve">
+    <value>_uCompanyList</value>
+  </data>
+  <data name="&gt;&gt;_uCompanyList.Type" xml:space="preserve">
+    <value>MM.Controls.uCompanyList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uCompanyList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uCompanyList.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="_uSymptomList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <data name="_uSymptomList.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="_uSymptomList.Size" type="System.Drawing.Size, System.Drawing">
     <value>924, 479</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="_uSymptomList.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
@@ -148,7 +175,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uSymptomList.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="_uSpecialityList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -175,7 +202,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uSpecialityList.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="_uPatientHistory.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -202,7 +229,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPatientHistory.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="_uPatientList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -229,7 +256,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPatientList.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="_uDocStaffList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -256,7 +283,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDocStaffList.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="_uServicesList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -283,7 +310,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uServicesList.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="_mainPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -601,16 +628,16 @@
     <value>&amp;Bệnh nhân</value>
   </data>
   <data name="companyListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="companyListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục công ty</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="contractListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="contractListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục hợp đồng</value>
@@ -2322,6 +2349,24 @@
   <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;tbCompanyList.Name" xml:space="preserve">
+    <value>tbCompanyList</value>
+  </data>
+  <data name="&gt;&gt;tbCompanyList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbContractList.Name" xml:space="preserve">
+    <value>tbContractList</value>
+  </data>
+  <data name="&gt;&gt;tbContractList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator11.Name" xml:space="preserve">
+    <value>toolStripSeparator11</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;tbSympton.Name" xml:space="preserve">
     <value>tbSympton</value>
   </data>
@@ -2430,6 +2475,30 @@
   <data name="&gt;&gt;patientListToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;companyToolStripMenuItem.Name" xml:space="preserve">
+    <value>companyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;companyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;companyListToolStripMenuItem.Name" xml:space="preserve">
+    <value>companyListToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;companyListToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">
+    <value>toolStripSeparator10</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;contractListToolStripMenuItem.Name" xml:space="preserve">
+    <value>contractListToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;contractListToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;symptomToolStripMenuItem.Name" xml:space="preserve">
     <value>symptomToolStripMenuItem</value>
   </data>
@@ -2464,48 +2533,6 @@
     <value>aboutMedicalManagementToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;aboutMedicalManagementToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;companyToolStripMenuItem.Name" xml:space="preserve">
-    <value>companyToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;companyToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;companyListToolStripMenuItem.Name" xml:space="preserve">
-    <value>companyListToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;companyListToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">
-    <value>toolStripSeparator10</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator11.Name" xml:space="preserve">
-    <value>toolStripSeparator11</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbCompanyList.Name" xml:space="preserve">
-    <value>tbCompanyList</value>
-  </data>
-  <data name="&gt;&gt;tbCompanyList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbContractList.Name" xml:space="preserve">
-    <value>tbContractList</value>
-  </data>
-  <data name="&gt;&gt;tbContractList.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;contractListToolStripMenuItem.Name" xml:space="preserve">
-    <value>contractListToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;contractListToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

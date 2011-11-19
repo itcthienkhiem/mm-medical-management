@@ -35,6 +35,29 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetPatientListNotInCompany()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'True' AND PatientGUID NOT IN (SELECT PatientGUID FROM CompanyMember) ORDER BY FullName ";
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result DeletePatient(List<String> patientKeys)
         {
             Result result = new Result();

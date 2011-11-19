@@ -273,6 +273,9 @@
     <EmbeddedResource Include="Controls\uColor.resx">
       <DependentUpon>uColor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uCompanyList.resx">
+      <DependentUpon>uCompanyList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uContractList.resx">
       <DependentUpon>uContractList.cs</DependentUpon>
     </EmbeddedResource>
@@ -369,6 +372,8 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
+    <None Include="Properties\DataSources\MM.Databasae.Company.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.CompanyMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />

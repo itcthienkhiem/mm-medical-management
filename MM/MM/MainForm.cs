@@ -120,6 +120,8 @@ namespace MM
                 _uSpecialityList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uSymptomList))
                 _uSymptomList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uCompanyList))
+                _uCompanyList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -223,6 +225,8 @@ namespace MM
         private void OnCompanyList()
         {
             this.Text = string.Format("{0} - Danh muc cong ty", Application.ProductName);
+            ViewControl(_uCompanyList);
+            _uCompanyList.DisplayAsThread();
         }
 
         private void OnContractList()

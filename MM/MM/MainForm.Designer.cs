@@ -48,6 +48,9 @@
             this.tbOpenPatient = new System.Windows.Forms.ToolStripButton();
             this.tbPatientList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbCompanyList = new System.Windows.Forms.ToolStripButton();
+            this.tbContractList = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.tbSympton = new System.Windows.Forms.ToolStripButton();
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -68,19 +71,17 @@
             this.openPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.patientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.companyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.contractListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.symptomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.symptomListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.companyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbCompanyList = new System.Windows.Forms.ToolStripButton();
-            this.tbContractList = new System.Windows.Forms.ToolStripButton();
-            this.contractListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uCompanyList = new MM.Controls.uCompanyList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -92,6 +93,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uCompanyList);
             this._mainPanel.Controls.Add(this._uSymptomList);
             this._mainPanel.Controls.Add(this._uSpecialityList);
             this._mainPanel.Controls.Add(this._uPatientHistory);
@@ -226,6 +228,27 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
+            // 
+            // tbCompanyList
+            // 
+            this.tbCompanyList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbCompanyList, "tbCompanyList");
+            this.tbCompanyList.Image = global::MM.Properties.Resources.industry;
+            this.tbCompanyList.Name = "tbCompanyList";
+            this.tbCompanyList.Tag = "Company List";
+            // 
+            // tbContractList
+            // 
+            this.tbContractList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbContractList, "tbContractList");
+            this.tbContractList.Image = global::MM.Properties.Resources.Contract_icon;
+            this.tbContractList.Name = "tbContractList";
+            this.tbContractList.Tag = "Contract List";
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
             // 
             // tbSympton
             // 
@@ -383,6 +406,36 @@
             this.patientListToolStripMenuItem.Tag = "Patient List";
             this.patientListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // companyToolStripMenuItem
+            // 
+            this.companyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.companyListToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.contractListToolStripMenuItem});
+            resources.ApplyResources(this.companyToolStripMenuItem, "companyToolStripMenuItem");
+            this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
+            // 
+            // companyListToolStripMenuItem
+            // 
+            this.companyListToolStripMenuItem.Image = global::MM.Properties.Resources.industry;
+            this.companyListToolStripMenuItem.Name = "companyListToolStripMenuItem";
+            resources.ApplyResources(this.companyListToolStripMenuItem, "companyListToolStripMenuItem");
+            this.companyListToolStripMenuItem.Tag = "Company List";
+            this.companyListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
+            // 
+            // contractListToolStripMenuItem
+            // 
+            this.contractListToolStripMenuItem.Image = global::MM.Properties.Resources.Contract_icon;
+            this.contractListToolStripMenuItem.Name = "contractListToolStripMenuItem";
+            resources.ApplyResources(this.contractListToolStripMenuItem, "contractListToolStripMenuItem");
+            this.contractListToolStripMenuItem.Tag = "Contract List";
+            this.contractListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // symptomToolStripMenuItem
             // 
             this.symptomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -428,56 +481,10 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // companyToolStripMenuItem
+            // _uCompanyList
             // 
-            this.companyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.companyListToolStripMenuItem,
-            this.toolStripSeparator10,
-            this.contractListToolStripMenuItem});
-            resources.ApplyResources(this.companyToolStripMenuItem, "companyToolStripMenuItem");
-            this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
-            // 
-            // companyListToolStripMenuItem
-            // 
-            this.companyListToolStripMenuItem.Image = global::MM.Properties.Resources.industry;
-            this.companyListToolStripMenuItem.Name = "companyListToolStripMenuItem";
-            resources.ApplyResources(this.companyListToolStripMenuItem, "companyListToolStripMenuItem");
-            this.companyListToolStripMenuItem.Tag = "Company List";
-            this.companyListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
-            // 
-            // tbCompanyList
-            // 
-            this.tbCompanyList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbCompanyList, "tbCompanyList");
-            this.tbCompanyList.Image = global::MM.Properties.Resources.industry;
-            this.tbCompanyList.Name = "tbCompanyList";
-            this.tbCompanyList.Tag = "Company List";
-            // 
-            // tbContractList
-            // 
-            this.tbContractList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbContractList, "tbContractList");
-            this.tbContractList.Image = global::MM.Properties.Resources.Contract_icon;
-            this.tbContractList.Name = "tbContractList";
-            this.tbContractList.Tag = "Contract List";
-            // 
-            // contractListToolStripMenuItem
-            // 
-            this.contractListToolStripMenuItem.Image = global::MM.Properties.Resources.Contract_icon;
-            this.contractListToolStripMenuItem.Name = "contractListToolStripMenuItem";
-            resources.ApplyResources(this.contractListToolStripMenuItem, "contractListToolStripMenuItem");
-            this.contractListToolStripMenuItem.Tag = "Contract List";
-            this.contractListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            resources.ApplyResources(this._uCompanyList, "_uCompanyList");
+            this._uCompanyList.Name = "_uCompanyList";
             // 
             // MainForm
             // 
@@ -557,6 +564,7 @@
         private System.Windows.Forms.ToolStripButton tbContractList;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem contractListToolStripMenuItem;
+        private Controls.uCompanyList _uCompanyList;
 
 
 
