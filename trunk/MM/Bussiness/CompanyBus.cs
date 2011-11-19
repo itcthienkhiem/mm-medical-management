@@ -202,6 +202,16 @@ namespace MM.Bussiness
                         company.Status = com.Status;
 
                         //Members
+                        if (deletedMembers != null && deletedMembers.Count > 0)
+                        {
+                            foreach (string key in deletedMembers)
+                            {
+                                CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.CompanyMemberGUID.ToString() == key);
+                                if (m != null)
+                                    db.CompanyMembers.DeleteOnSubmit(m);
+                            }
+                        }
+
                         if (addedMembers != null && addedMembers.Count > 0)
                         {
                             foreach (string key in addedMembers)
@@ -215,17 +225,6 @@ namespace MM.Bussiness
                                 db.CompanyMembers.InsertOnSubmit(m);
                             }
                         }
-
-                        if (deletedMembers != null && deletedMembers.Count > 0)
-                        {
-                            foreach (string key in deletedMembers)
-                            {
-                                CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.CompanyMemberGUID.ToString() == key);
-                                if (m != null)
-                                    db.CompanyMembers.DeleteOnSubmit(m);
-                            }                        
-                        }
-
                         db.SubmitChanges();
                     }
                 }

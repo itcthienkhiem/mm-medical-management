@@ -237,6 +237,12 @@
     <Compile Include="Dialogs\dlgLogin.Designer.cs">
       <DependentUpon>dlgLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgMembers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgMembers.Designer.cs">
+      <DependentUpon>dlgMembers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgLogin.resx">
       <DependentUpon>dlgLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgMembers.resx">
+      <DependentUpon>dlgMembers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgMessage.resx">
       <DependentUpon>dlgMessage.cs</DependentUpon>

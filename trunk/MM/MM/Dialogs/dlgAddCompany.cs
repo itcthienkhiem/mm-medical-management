@@ -18,6 +18,8 @@ namespace MM.Dialogs
         #region Members
         private bool _isNew = true;
         private Company _company = new Company();
+        private List<string> _addedPatients = new List<string>();
+        private List<string> _deletedPatients = new List<string>();
         #endregion
 
         #region Constructor
@@ -211,7 +213,7 @@ namespace MM.Dialogs
         private void OnSaveInfo()
         {
             SetCompanyInfo();
-            Result result = CompanyBus.InsertCompany(_company, null, null);
+            Result result = CompanyBus.InsertCompany(_company, _addedPatients, _deletedPatients);
             if (!result.IsOK)
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.InsertCompany"));
@@ -219,22 +221,67 @@ namespace MM.Dialogs
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
         }
+
+        private void OnAddMember()
+        {
+            dlgMembers dlg = new dlgMembers();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void OnDeleteMember()
+        {
+            List<string> deletedMemList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgMembers.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedMemList.Add(row["CompanyMemberGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedMemList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những thành viên mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    foreach (DataRow row in deletedRows)
+                    {
+                        dt.Rows.Remove(row);
+                        string companyMemberGUID = row["CompanyMemberGUID"].ToString();
+                        if (!_deletedPatients.Contains(companyMemberGUID))
+                            _deletedPatients.Add(companyMemberGUID);
+                    }
+                }
+            }
+            else
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những thành viên cần xóa.");
+        }
         #endregion
 
         #region Window Event Handlers
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
         {
-
+            DataTable dt = dgMembers.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            OnAddMember();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            OnDeleteMember();
         }
 
         private void dlgAddCompany_FormClosing(object sender, FormClosingEventArgs e)
