@@ -206,7 +206,8 @@ namespace MM.Bussiness
                         {
                             foreach (string key in deletedMembers)
                             {
-                                CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.CompanyMemberGUID.ToString() == key);
+                                CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.PatientGUID.ToString() == key &&
+                                                                                                    mm.CompanyGUID.ToString() == com.CompanyGUID.ToString());
                                 if (m != null)
                                     db.CompanyMembers.DeleteOnSubmit(m);
                             }

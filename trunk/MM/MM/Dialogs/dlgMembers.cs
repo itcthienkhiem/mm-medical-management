@@ -31,8 +31,17 @@ namespace MM.Dialogs
         {
             get
             {
+                if (_dataSource == null) return null;
+                List<DataRow> checkedRows = new List<DataRow>();
+                foreach (DataRow row in _dataSource.Rows)
+                {
+                    if (Boolean.Parse(row["Checked"].ToString()))
+                    {
+                        checkedRows.Add(row);
+                    }
+                }
 
-                return null;
+                return checkedRows;
             }
 
         }
@@ -79,12 +88,86 @@ namespace MM.Dialogs
             }
         }
 
+        private void OnSearchPatient()
+        {
+            UpdateChecked();
+
+            chkChecked.Checked = false;
+            if (txtSearchPatient.Text.Trim() == string.Empty)
+            {
+                dgMembers.DataSource = _dataSource;
+                return;
+            }
+
+            string str = txtSearchPatient.Text.ToLower();
+
+            //FullName
+            var results = from p in _dataSource.AsEnumerable()
+                          where (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
+                          str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) &&
+                          p.Field<string>("FullName") != null &&
+                          p.Field<string>("FullName").Trim() != string.Empty
+                          select p;
+
+            DataTable newDataSource = _dataSource.Clone();
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgMembers.DataSource = newDataSource;
+                return;
+            }
+
+
+            //FileNum
+            results = from p in _dataSource.AsEnumerable()
+                      where (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
+                      str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0) &&
+                          p.Field<string>("FileNum") != null &&
+                          p.Field<string>("FileNum").Trim() != string.Empty
+                      select p;
+
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgMembers.DataSource = newDataSource;
+                return;
+            }
+
+            dgMembers.DataSource = newDataSource;
+        }
+
+        private void UpdateChecked()
+        {
+            DataTable dt = dgMembers.DataSource as DataTable;
+            if (dt == null) return;
+
+            foreach (DataRow row1 in dt.Rows)
+            {
+                string patientGUID1 = row1["PatientGUID"].ToString();
+                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+                foreach (DataRow row2 in _dataSource.Rows)
+                {
+                    string patientGUID2 = row2["PatientGUID"].ToString();
+                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+
+                    if (patientGUID1 == patientGUID2)
+                    {
+                        row2["Checked"] = row1["Checked"];
+                        break;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
-
+            OnSearchPatient();
         }
 
         private void dlgMembers_Load(object sender, EventArgs e)
@@ -94,12 +177,20 @@ namespace MM.Dialogs
 
         private void dlgMembers_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                List<DataRow> checkedRows = Members;
+                if (checkedRows == null || checkedRows.Count <= 0)
+                {
+                    MsgBox.Show(this.Text, "Vui lòng đánh dấu ít nhất 1 bệnh nhân.");
+                    e.Cancel = true;
+                }
+            }
         }
 
         private void txtSearchPatient_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down)
+           /* if (e.KeyCode == Keys.Down)
             {
                 dgMembers.Focus();
 
@@ -129,6 +220,16 @@ namespace MM.Dialogs
                         dgMembers.Rows[index].Selected = true;
                     }
                 }
+            }*/
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgMembers.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
             }
         }
         #endregion
@@ -152,6 +253,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
        
     }

@@ -26,6 +26,7 @@ namespace MM.Dialogs
         public dlgAddCompany()
         {
             InitializeComponent();
+            DisplayMembersAsThread(Guid.Empty.ToString());
         }
 
         public dlgAddCompany(DataRow drCompany)
@@ -33,6 +34,7 @@ namespace MM.Dialogs
             InitializeComponent();
             _isNew  = false;
             this.Text = "sua cong ty";
+            DisplayInfo(drCompany);
         }
         #endregion
 
@@ -227,7 +229,29 @@ namespace MM.Dialogs
             dlgMembers dlg = new dlgMembers();
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
+                List<DataRow> checkedRows = dlg.Members;
+                DataTable dataSource = dgMembers.DataSource as DataTable;
+                foreach (DataRow row in checkedRows)
+                {
+                    string patientGUID = row["PatientGUID"].ToString();
+                    DataRow[] rows = dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                    if (rows == null || rows.Length <= 0)
+                    {
+                        DataRow newRow = dataSource.NewRow();
+                        newRow["Checked"] = false;
+                        newRow["PatientGUID"] = patientGUID;
+                        newRow["FileNum"] = row["FileNum"];
+                        newRow["FullName"] = row["FullName"];
+                        newRow["DobStr"] = row["DobStr"];
+                        newRow["GenderAsStr"] = row["GenderAsStr"];
+                        dataSource.Rows.Add(newRow);
 
+                        if (!_addedPatients.Contains(patientGUID))
+                            _addedPatients.Add(patientGUID);
+
+                        _deletedPatients.Remove(patientGUID);
+                    }
+                }
             }
         }
 
@@ -240,7 +264,7 @@ namespace MM.Dialogs
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedMemList.Add(row["CompanyMemberGUID"].ToString());
+                    deletedMemList.Add(row["PatientGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
@@ -251,10 +275,13 @@ namespace MM.Dialogs
                 {
                     foreach (DataRow row in deletedRows)
                     {
+                        string patientGUID = row["PatientGUID"].ToString();
+                        if (!_deletedPatients.Contains(patientGUID))
+                            _deletedPatients.Add(patientGUID);
+
+                        _addedPatients.Remove(patientGUID);
+
                         dt.Rows.Remove(row);
-                        string companyMemberGUID = row["CompanyMemberGUID"].ToString();
-                        if (!_deletedPatients.Contains(companyMemberGUID))
-                            _deletedPatients.Add(companyMemberGUID);
                     }
                 }
             }
