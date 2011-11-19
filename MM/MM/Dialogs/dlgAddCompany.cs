@@ -33,7 +33,7 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             _isNew  = false;
-            this.Text = "sua cong ty";
+            this.Text = "Sua cong ty";
             DisplayInfo(drCompany);
         }
         #endregion

@@ -494,7 +494,7 @@
             this.barCode.Size = new System.Drawing.Size(324, 53);
             this.barCode.TabIndex = 57;
             this.barCode.TopMargin = 5;
-            this.barCode.VertAlign = DSBarCode.BarCodeCtrl.AlignType.Center;
+            this.barCode.VertAlign = DSBarCode.BarCodeCtrl.AlignType.Left;
             this.barCode.Weight = DSBarCode.BarCodeCtrl.BarCodeWeight.Small;
             // 
             // label23

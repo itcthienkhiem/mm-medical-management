@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MM.Dialogs;
 
 namespace MM.Controls
 {
@@ -70,6 +71,12 @@ namespace MM.Controls
         {
             _uServiceHistory.DisplayAsThread();
             _uDailyServiceHistory.DisplayAsThread();
+        }
+
+        private void txtThuocDiUng_DoubleClick(object sender, EventArgs e)
+        {
+            dlgPatientHistory dlg = new dlgPatientHistory((DataRow)_patientRow);
+            dlg.ShowDialog(this);
         }
         #endregion
     }

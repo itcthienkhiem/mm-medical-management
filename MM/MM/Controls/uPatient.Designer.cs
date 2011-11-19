@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtThuocDiUng = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtFullAddress = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -55,21 +57,19 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabServiceHistory = new DevComponents.DotNetBar.TabControl();
-            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
-            this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtThuocDiUng = new System.Windows.Forms.RichTextBox();
-            this.pageDailyService = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
-            this._uServiceHistory = new MM.Controls.uServiceHistory();
             this._uDailyServiceHistory = new MM.Controls.uServiceHistory();
+            this.pageDailyService = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uServiceHistory = new MM.Controls.uServiceHistory();
+            this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
             this.tabServiceHistory.SuspendLayout();
-            this.tabControlPanel1.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
+            this.tabControlPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -114,6 +114,26 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin bệnh nhân";
+            // 
+            // txtThuocDiUng
+            // 
+            this.txtThuocDiUng.ForeColor = System.Drawing.Color.Red;
+            this.txtThuocDiUng.Location = new System.Drawing.Point(83, 91);
+            this.txtThuocDiUng.Name = "txtThuocDiUng";
+            this.txtThuocDiUng.ReadOnly = true;
+            this.txtThuocDiUng.Size = new System.Drawing.Size(621, 54);
+            this.txtThuocDiUng.TabIndex = 74;
+            this.txtThuocDiUng.Text = "";
+            this.txtThuocDiUng.DoubleClick += new System.EventHandler(this.txtThuocDiUng_DoubleClick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 94);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "Dị ứng thuốc:";
             // 
             // txtFullAddress
             // 
@@ -337,55 +357,6 @@
             this.tabServiceHistory.Tabs.Add(this.pageDailyService);
             this.tabServiceHistory.Tabs.Add(this.pageServiceHistory);
             // 
-            // tabControlPanel1
-            // 
-            this.tabControlPanel1.Controls.Add(this._uServiceHistory);
-            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel1.Name = "tabControlPanel1";
-            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1007, 448);
-            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel1.Style.GradientAngle = 90;
-            this.tabControlPanel1.TabIndex = 1;
-            this.tabControlPanel1.TabItem = this.pageServiceHistory;
-            // 
-            // pageServiceHistory
-            // 
-            this.pageServiceHistory.AttachedControl = this.tabControlPanel1;
-            this.pageServiceHistory.Name = "pageServiceHistory";
-            this.pageServiceHistory.Text = "Dịch vụ đã sử dụng";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 39;
-            this.label1.Text = "Dị ứng thuốc:";
-            // 
-            // txtThuocDiUng
-            // 
-            this.txtThuocDiUng.ForeColor = System.Drawing.Color.Red;
-            this.txtThuocDiUng.Location = new System.Drawing.Point(83, 91);
-            this.txtThuocDiUng.Name = "txtThuocDiUng";
-            this.txtThuocDiUng.ReadOnly = true;
-            this.txtThuocDiUng.Size = new System.Drawing.Size(621, 54);
-            this.txtThuocDiUng.TabIndex = 74;
-            this.txtThuocDiUng.Text = "";
-            // 
-            // pageDailyService
-            // 
-            this.pageDailyService.AttachedControl = this.tabControlPanel2;
-            this.pageDailyService.Name = "pageDailyService";
-            this.pageDailyService.Text = "Dịch vụ trong ngày";
-            // 
             // tabControlPanel2
             // 
             this.tabControlPanel2.Controls.Add(this._uDailyServiceHistory);
@@ -404,6 +375,40 @@
             this.tabControlPanel2.TabIndex = 2;
             this.tabControlPanel2.TabItem = this.pageDailyService;
             // 
+            // _uDailyServiceHistory
+            // 
+            this._uDailyServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uDailyServiceHistory.IsDailyService = true;
+            this._uDailyServiceHistory.Location = new System.Drawing.Point(1, 1);
+            this._uDailyServiceHistory.Name = "_uDailyServiceHistory";
+            this._uDailyServiceHistory.PatientRow = null;
+            this._uDailyServiceHistory.Size = new System.Drawing.Size(1005, 446);
+            this._uDailyServiceHistory.TabIndex = 0;
+            // 
+            // pageDailyService
+            // 
+            this.pageDailyService.AttachedControl = this.tabControlPanel2;
+            this.pageDailyService.Name = "pageDailyService";
+            this.pageDailyService.Text = "Dịch vụ trong ngày";
+            // 
+            // tabControlPanel1
+            // 
+            this.tabControlPanel1.Controls.Add(this._uServiceHistory);
+            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel1.Name = "tabControlPanel1";
+            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel1.Size = new System.Drawing.Size(1007, 448);
+            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel1.Style.GradientAngle = 90;
+            this.tabControlPanel1.TabIndex = 1;
+            this.tabControlPanel1.TabItem = this.pageServiceHistory;
+            // 
             // _uServiceHistory
             // 
             this._uServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -414,15 +419,11 @@
             this._uServiceHistory.Size = new System.Drawing.Size(1005, 446);
             this._uServiceHistory.TabIndex = 0;
             // 
-            // _uDailyServiceHistory
+            // pageServiceHistory
             // 
-            this._uDailyServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uDailyServiceHistory.IsDailyService = true;
-            this._uDailyServiceHistory.Location = new System.Drawing.Point(1, 1);
-            this._uDailyServiceHistory.Name = "_uDailyServiceHistory";
-            this._uDailyServiceHistory.PatientRow = null;
-            this._uDailyServiceHistory.Size = new System.Drawing.Size(1005, 446);
-            this._uDailyServiceHistory.TabIndex = 0;
+            this.pageServiceHistory.AttachedControl = this.tabControlPanel1;
+            this.pageServiceHistory.Name = "pageServiceHistory";
+            this.pageServiceHistory.Text = "Dịch vụ đã sử dụng";
             // 
             // uPatient
             // 
@@ -439,8 +440,8 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).EndInit();
             this.tabServiceHistory.ResumeLayout(false);
-            this.tabControlPanel1.ResumeLayout(false);
             this.tabControlPanel2.ResumeLayout(false);
+            this.tabControlPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
