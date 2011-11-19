@@ -512,7 +512,7 @@ namespace MM.Controls
                     if (index < dgPatient.RowCount - 1)
                     {
                         index++;
-                        dgPatient.CurrentCell = dgPatient[3, index];
+                        dgPatient.CurrentCell = dgPatient[1, index];
                         dgPatient.Rows[index].Selected = true;
                     }
                 }
@@ -528,7 +528,7 @@ namespace MM.Controls
                     if (index > 0)
                     {
                         index--;
-                        dgPatient.CurrentCell = dgPatient[3, index];
+                        dgPatient.CurrentCell = dgPatient[1, index];
                         dgPatient.Rows[index].Selected = true;
                     }
                 }
