@@ -291,7 +291,7 @@ namespace MM.Dialogs
             }
         }
 
-        private void SetPatientInfo()
+        private void OnSaveInfo()
         {
             try
             {
@@ -350,13 +350,13 @@ namespace MM.Dialogs
                     _patientHistory.Chich_Ngua_Cum = chkChichNguaCum.Checked;
                     _patientHistory.Dang_Co_Thai = chkDangCoThai.Checked;
                     _patientHistory.Di_Ung_Thuoc = chkDiUngThuoc.Checked;
-                    if (chkDiUngThuoc.Checked) 
+                    if (chkDiUngThuoc.Checked)
                         _patientHistory.Thuoc_Di_Ung = txtThuocDiUng.Text;
                     else
                         _patientHistory.Thuoc_Di_Ung = string.Empty;
 
                     _patientHistory.Ung_Thu = chkUngThu.Checked;
-                    if (chkUngThu.Checked) 
+                    if (chkUngThu.Checked)
                         _patientHistory.Co_Quan_Ung_Thu = txtCoQuanUngThu.Text;
                     else
                         _patientHistory.Co_Quan_Ung_Thu = string.Empty;
@@ -375,6 +375,14 @@ namespace MM.Dialogs
 
 
                     _patientHistory.Tinh_Trang_Gia_Dinh = txtTinhTrangGiaDinh.Text;
+
+                    Result result = PatientBus.InsertPatient(_contact, _patient, _patientHistory);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.InsertPatient"));
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.InsertPatient"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -384,18 +392,6 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, e.Message);
                 Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
-        private void OnSaveInfo()
-        {
-            SetPatientInfo();
-            Result result = PatientBus.InsertPatient(_contact, _patient, _patientHistory);
-            if (!result.IsOK)
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.InsertPatient"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.InsertPatient"));
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
         }
         #endregion
@@ -461,7 +457,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)

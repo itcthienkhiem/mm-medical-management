@@ -170,7 +170,7 @@ namespace MM.Dialogs
             return true;
         }
 
-        private void SetServiceHistoryInfo()
+        private void OnSaveInfo()
         {
             try
             {
@@ -186,6 +186,7 @@ namespace MM.Dialogs
                 }
 
                 _serviceHistory.PatientGUID = Guid.Parse(_patientGUID);
+                _serviceHistory.Note = txtDescription.Text;
 
                 MethodInvoker method = delegate
                 {
@@ -193,30 +194,25 @@ namespace MM.Dialogs
                     _serviceHistory.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
                     _serviceHistory.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
                     _serviceHistory.Price = (double)numPrice.Value;
+
+                    Result result = ServiceHistoryBus.InsertServiceHistory(_serviceHistory);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"));
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
                 else method.Invoke();
-                
-                _serviceHistory.Note = txtDescription.Text;
             }
             catch (Exception e)
             {
                 MsgBox.Show(this.Text, e.Message);
                 Utility.WriteToTraceLog(e.Message);
             }
-        }
-
-        private void OnSaveInfo()
-        {
-            SetServiceHistoryInfo();
-            Result result = ServiceHistoryBus.InsertServiceHistory(_serviceHistory);
-            if (!result.IsOK)
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"));
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            }
+           
         }
 
         private void SaveInfoAsThread()
@@ -267,7 +263,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)

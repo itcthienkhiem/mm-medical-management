@@ -24,7 +24,6 @@ namespace MM.Dialogs
         public dlgAddSpeciality()
         {
             InitializeComponent();
-
         }
 
         public dlgAddSpeciality(DataRow drSpec)
@@ -119,33 +118,6 @@ namespace MM.Dialogs
             return true;
         }
 
-        private void SetSpecialityInfo()
-        {
-            try
-            {
-                _speciality.Code = txtCode.Text;
-                _speciality.Name = txtName.Text;
-                _speciality.Description = txtDescription.Text;
-                _speciality.Status = (byte)Status.Actived;
-
-                if (_isNew)
-                {
-                    _speciality.CreatedDate = DateTime.Now;
-                    _speciality.CreatedBy = Guid.Parse(Global.UserGUID);
-                }
-                else
-                {
-                    _speciality.UpdatedDate = DateTime.Now;
-                    _speciality.UpdatedBy = Guid.Parse(Global.UserGUID);
-                }
-            }
-            catch (Exception e)
-            {
-                MsgBox.Show(this.Text, e.Message);
-                Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
         private void SaveInfoAsThread()
         {
             try
@@ -165,13 +137,36 @@ namespace MM.Dialogs
 
         private void OnSaveInfo()
         {
-            SetSpecialityInfo();
-            Result result = SpecialityBus.InsertSpeciality(_speciality);
-            if (!result.IsOK)
+            try
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.InsertSpeciality"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("SpecialityBus.InsertSpeciality"));
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                _speciality.Code = txtCode.Text;
+                _speciality.Name = txtName.Text;
+                _speciality.Description = txtDescription.Text;
+                _speciality.Status = (byte)Status.Actived;
+
+                if (_isNew)
+                {
+                    _speciality.CreatedDate = DateTime.Now;
+                    _speciality.CreatedBy = Guid.Parse(Global.UserGUID);
+                }
+                else
+                {
+                    _speciality.UpdatedDate = DateTime.Now;
+                    _speciality.UpdatedBy = Guid.Parse(Global.UserGUID);
+                }
+
+                Result result = SpecialityBus.InsertSpeciality(_speciality);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.InsertSpeciality"));
+                    Utility.WriteToTraceLog(result.GetErrorAsString("SpecialityBus.InsertSpeciality"));
+                    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                }
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+                Utility.WriteToTraceLog(e.Message);
             }
         }
         #endregion
@@ -194,7 +189,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)

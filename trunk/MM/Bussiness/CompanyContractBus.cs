@@ -264,6 +264,7 @@ namespace MM.Bussiness
                         con.DeletedDate = contract.DeletedDate;
                         con.DeletedBy = contract.DeletedBy;
                         con.Status = contract.Status;
+                        db.SubmitChanges();
 
                         //Members
                         if (deletedMembers != null && deletedMembers.Count > 0)

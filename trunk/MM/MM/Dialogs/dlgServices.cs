@@ -124,7 +124,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnDisplayServicesList();
             }
             catch (Exception e)

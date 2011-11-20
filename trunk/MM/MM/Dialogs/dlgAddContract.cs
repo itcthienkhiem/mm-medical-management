@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,6 +23,7 @@ namespace MM.Dialogs
         private List<string> _deletedMembers = new List<string>();
         private List<string> _addedServices = new List<string>();
         private List<string> _deletedServices = new List<string>();
+        private Hashtable _htCompanyMember = new Hashtable();
         #endregion
 
         #region Constructor
@@ -66,6 +68,7 @@ namespace MM.Dialogs
                 chkCompleted.Checked = Convert.ToBoolean(drContract["Completed"]);
 
                 _contract.CompanyContractGUID = Guid.Parse(drContract["CompanyContractGUID"].ToString());
+                _contract.CompanyGUID = Guid.Parse(drContract["CompanyGUID"].ToString());
 
                 if (drContract["CreatedDate"] != null && drContract["CreatedDate"] != DBNull.Value)
                     _contract.CreatedDate = Convert.ToDateTime(drContract["CreatedDate"]);
@@ -144,7 +147,24 @@ namespace MM.Dialogs
             return true;
         }
 
-        private void SetContractInfo()
+        private void SaveInfoAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSaveInfoProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnSaveInfo()
         {
             try
             {
@@ -168,6 +188,14 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _contract.CompanyGUID = Guid.Parse(cboCompany.SelectedValue.ToString());
+
+                    Result result = CompanyContractBus.InsertContract(_contract, _addedMembers, _deletedMembers, _addedServices, _deletedServices);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.InsertContract"));
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.InsertContract"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -177,35 +205,6 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, e.Message);
                 Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
-        private void SaveInfoAsThread()
-        {
-            try
-            {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSaveInfoProc));
-                base.ShowWaiting();
-            }
-            catch (Exception e)
-            {
-                MsgBox.Show(this.Text, e.Message);
-            }
-            finally
-            {
-                base.HideWaiting();
-            }
-        }
-
-        private void OnSaveInfo()
-        {
-            SetContractInfo();
-            Result result = CompanyContractBus.InsertContract(_contract, _addedMembers, _deletedMembers, _addedServices, _deletedServices);
-            if (!result.IsOK)
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.InsertContract"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.InsertContract"));
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
         }
 
@@ -476,7 +475,9 @@ namespace MM.Dialogs
         private void cboCompany_SelectedValueChanged(object sender, EventArgs e)
         {
             if (cboCompany.Text == string.Empty) return;
-            MessageBox.Show(cboCompany.Text);
+            if (dgMembers.DataSource == null) return;
+
+            //MessageBox.Show(cboCompany.Text);
         }
         #endregion
 
@@ -485,7 +486,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)
@@ -502,7 +503,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnDisplayMembers(state.ToString());
                 OnDisplayCheckList(state.ToString());
             }
@@ -519,5 +520,13 @@ namespace MM.Dialogs
         #endregion
 
         
+    }
+
+    public class CompanyMember
+    {
+        public string CompanyGUID = string.Empty;
+        public DataTable DataSource = null;
+        public List<string> AddedMembers = new List<string>();
+        public List<string> DeletedMembers = new List<string>();
     }
 }

@@ -165,7 +165,24 @@ namespace MM.Dialogs
             return true;
         }
 
-        private void SetCompanyInfo()
+        private void SaveInfoAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSaveInfoProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnSaveInfo()
         {
             try
             {
@@ -187,40 +204,19 @@ namespace MM.Dialogs
                     _company.UpdatedDate = DateTime.Now;
                     _company.UpdatedBy = Guid.Parse(Global.UserGUID);
                 }
+
+                Result result = CompanyBus.InsertCompany(_company, _addedPatients, _deletedPatients);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.InsertCompany"));
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.InsertCompany"));
+                    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                }
             }
             catch (Exception e)
             {
                 MsgBox.Show(this.Text, e.Message);
                 Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
-        private void SaveInfoAsThread()
-        {
-            try
-            {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSaveInfoProc));
-                base.ShowWaiting();
-            }
-            catch (Exception e)
-            {
-                MsgBox.Show(this.Text, e.Message);
-            }
-            finally
-            {
-                base.HideWaiting();
-            }
-        }
-
-        private void OnSaveInfo()
-        {
-            SetCompanyInfo();
-            Result result = CompanyBus.InsertCompany(_company, _addedPatients, _deletedPatients);
-            if (!result.IsOK)
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.InsertCompany"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.InsertCompany"));
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
         }
 
@@ -344,7 +340,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)
@@ -361,7 +357,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnDisplayMembers(state.ToString());
             }
             catch (Exception e)

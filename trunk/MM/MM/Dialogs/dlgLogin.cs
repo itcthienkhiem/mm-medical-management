@@ -94,7 +94,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnDisplayUserList();
             }
             catch (Exception e)
