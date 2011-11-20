@@ -161,6 +161,7 @@
             this.cboCompany.Size = new System.Drawing.Size(300, 21);
             this.cboCompany.TabIndex = 2;
             this.cboCompany.ValueMember = "CompanyGUID";
+            this.cboCompany.SelectedValueChanged += new System.EventHandler(this.cboCompany_SelectedValueChanged);
             // 
             // companyBindingSource
             // 
