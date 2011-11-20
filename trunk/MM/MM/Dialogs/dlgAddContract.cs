@@ -19,11 +19,12 @@ namespace MM.Dialogs
         #region Members
         private bool _isNew = true;
         private CompanyContract _contract = new CompanyContract();
-        private List<string> _addedMembers = new List<string>();
-        private List<string> _deletedMembers = new List<string>();
+        //private List<string> _addedMembers = new List<string>();
+        //private List<string> _deletedMembers = new List<string>();
         private List<string> _addedServices = new List<string>();
         private List<string> _deletedServices = new List<string>();
         private Hashtable _htCompanyMember = new Hashtable();
+        private CompanyMember _selectedCompanyMember = null;
         #endregion
 
         #region Constructor
@@ -189,7 +190,8 @@ namespace MM.Dialogs
                 {
                     _contract.CompanyGUID = Guid.Parse(cboCompany.SelectedValue.ToString());
 
-                    Result result = CompanyContractBus.InsertContract(_contract, _addedMembers, _deletedMembers, _addedServices, _deletedServices);
+                    Result result = CompanyContractBus.InsertContract(_contract, _selectedCompanyMember.AddedMembers, 
+                        _selectedCompanyMember.DeletedMembers, _addedServices, _deletedServices);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.InsertContract"));
@@ -250,6 +252,16 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     dgMembers.DataSource = result.QueryResult;
+
+                    if (cboCompany.Text == string.Empty) return;
+                    string companyGUID = cboCompany.SelectedValue.ToString();
+                    if (!_htCompanyMember.ContainsKey(companyGUID))
+                    {
+                        _selectedCompanyMember = new CompanyMember();
+                        _selectedCompanyMember.CompanyGUID = companyGUID;
+                        _selectedCompanyMember.DataSource = result.QueryResult as DataTable;
+                        _htCompanyMember.Add(companyGUID, _selectedCompanyMember);
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -311,10 +323,10 @@ namespace MM.Dialogs
                         newRow["GenderAsStr"] = row["GenderAsStr"];
                         dataSource.Rows.Add(newRow);
 
-                        if (!_addedMembers.Contains(companyMemberGUID))
-                            _addedMembers.Add(companyMemberGUID);
+                        if (!_selectedCompanyMember.AddedMembers.Contains(companyMemberGUID))
+                            _selectedCompanyMember.AddedMembers.Add(companyMemberGUID);
 
-                        _deletedMembers.Remove(companyMemberGUID);
+                        _selectedCompanyMember.DeletedMembers.Remove(companyMemberGUID);
                     }
                 }
             }
@@ -341,10 +353,10 @@ namespace MM.Dialogs
                     foreach (DataRow row in deletedRows)
                     {
                         string companyMemberGUID = row["CompanyMemberGUID"].ToString();
-                        if (!_deletedMembers.Contains(companyMemberGUID))
-                            _deletedMembers.Add(companyMemberGUID);
+                        if (!_selectedCompanyMember.DeletedMembers.Contains(companyMemberGUID))
+                            _selectedCompanyMember.DeletedMembers.Add(companyMemberGUID);
 
-                        _addedMembers.Remove(companyMemberGUID);
+                        _selectedCompanyMember.AddedMembers.Remove(companyMemberGUID);
 
                         dt.Rows.Remove(row);
                     }
@@ -475,9 +487,23 @@ namespace MM.Dialogs
         private void cboCompany_SelectedValueChanged(object sender, EventArgs e)
         {
             if (cboCompany.Text == string.Empty) return;
-            if (dgMembers.DataSource == null) return;
+            DataTable dt = dgMembers.DataSource as DataTable;
+            if (dt == null) return;
 
-            //MessageBox.Show(cboCompany.Text);
+            string companyGUID = cboCompany.SelectedValue.ToString();
+            if (_htCompanyMember.ContainsKey(companyGUID))
+            {
+                _selectedCompanyMember = _htCompanyMember[companyGUID] as CompanyMember;
+                dgMembers.DataSource = _selectedCompanyMember.DataSource;
+            }
+            else
+            {
+                _selectedCompanyMember = new CompanyMember();
+                _selectedCompanyMember.CompanyGUID = companyGUID;
+                _selectedCompanyMember.DataSource = dt.Clone();
+                _htCompanyMember.Add(companyGUID, _selectedCompanyMember);
+                dgMembers.DataSource = _selectedCompanyMember.DataSource;
+            }
         }
         #endregion
 
@@ -518,8 +544,6 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
     }
 
     public class CompanyMember
