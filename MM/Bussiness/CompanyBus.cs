@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} ORDER BY FullName", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='True' ORDER BY FullName",
                     companyGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -169,14 +169,25 @@ namespace MM.Bussiness
                     {
                         foreach (string key in addedMembers)
                         {
-                            CompanyMember m = new CompanyMember();
-                            m.CompanyMemberGUID = Guid.NewGuid();
-                            m.CompanyGUID = com.CompanyGUID;
-                            m.PatientGUID = Guid.Parse(key);
-                            m.CreatedDate = DateTime.Now;
-                            m.CreatedBy = Guid.Parse(Global.UserGUID);
-                            m.Status = (byte)Status.Actived;
-                            db.CompanyMembers.InsertOnSubmit(m);
+                            CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.PatientGUID.ToString() == key &&
+                                                                                                mm.CompanyGUID.ToString() == com.CompanyGUID.ToString());
+                            if (m == null)
+                            {
+                                m = new CompanyMember();
+                                m.CompanyMemberGUID = Guid.NewGuid();
+                                m.CompanyGUID = com.CompanyGUID;
+                                m.PatientGUID = Guid.Parse(key);
+                                m.CreatedDate = DateTime.Now;
+                                m.CreatedBy = Guid.Parse(Global.UserGUID);
+                                m.Status = (byte)Status.Actived;
+                                db.CompanyMembers.InsertOnSubmit(m);
+                            }
+                            else
+                            {
+                                m.Status = (byte)Status.Actived;
+                                m.UpdatedDate = DateTime.Now;
+                                m.UpdatedBy = Guid.Parse(Global.UserGUID);
+                            }
                         }
 
                         db.SubmitChanges();
@@ -209,7 +220,11 @@ namespace MM.Bussiness
                                 CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.PatientGUID.ToString() == key &&
                                                                                                     mm.CompanyGUID.ToString() == com.CompanyGUID.ToString());
                                 if (m != null)
-                                    db.CompanyMembers.DeleteOnSubmit(m);
+                                {
+                                    m.Status = (byte)Status.Deactived;
+                                    m.DeletedDate = DateTime.Now;
+                                    m.DeletedBy = Guid.Parse(Global.UserGUID);
+                                }
                             }
                         }
 
@@ -217,13 +232,25 @@ namespace MM.Bussiness
                         {
                             foreach (string key in addedMembers)
                             {
-                                CompanyMember m = new CompanyMember();
-                                m.CompanyMemberGUID = Guid.NewGuid();
-                                m.CompanyGUID = com.CompanyGUID;
-                                m.PatientGUID = Guid.Parse(key);
-                                m.CreatedDate = DateTime.Now;
-                                m.CreatedBy = Guid.Parse(Global.UserGUID);
-                                db.CompanyMembers.InsertOnSubmit(m);
+                                CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.PatientGUID.ToString() == key &&
+                                                                                                mm.CompanyGUID.ToString() == com.CompanyGUID.ToString());
+                                if (m == null)
+                                {
+                                    m = new CompanyMember();
+                                    m.CompanyMemberGUID = Guid.NewGuid();
+                                    m.CompanyGUID = com.CompanyGUID;
+                                    m.PatientGUID = Guid.Parse(key);
+                                    m.CreatedDate = DateTime.Now;
+                                    m.CreatedBy = Guid.Parse(Global.UserGUID);
+                                    m.Status = (byte)Status.Actived;
+                                    db.CompanyMembers.InsertOnSubmit(m);
+                                }
+                                else
+                                {
+                                    m.Status = (byte)Status.Actived;
+                                    m.UpdatedDate = DateTime.Now;
+                                    m.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                }
                             }
                         }
                         db.SubmitChanges();

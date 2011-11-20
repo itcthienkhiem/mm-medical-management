@@ -20,6 +20,21 @@
       <Association Name="Company_CompanyMember" Member="CompanyMembers" ThisKey="CompanyGUID" OtherKey="CompanyGUID" Type="CompanyMember" />
     </Type>
   </Table>
+  <Table Name="dbo.Symptom" Member="Symptoms">
+    <Type Name="Symptom">
+      <Column Name="SymptomGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SymptomName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Advice" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.CompanyCheckList" Member="CompanyCheckLists">
     <Type Name="CompanyCheckList">
       <Column Name="CompanyCheckListGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -41,6 +56,7 @@
       <Column Name="CompanyContractGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ContractName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="BeginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Completed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
@@ -50,6 +66,7 @@
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="CompanyContract_CompanyCheckList" Member="CompanyCheckLists" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="CompanyCheckList" />
+      <Association Name="CompanyContract_ContractMember" Member="ContractMembers" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="ContractMember" />
       <Association Name="Company_CompanyContract" Member="Company" ThisKey="CompanyGUID" OtherKey="CompanyGUID" Type="Company" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -108,6 +125,21 @@
       <Association Name="Contact_Patient" Member="Patients" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Patient" />
     </Type>
   </Table>
+  <Table Name="dbo.ContractMember" Member="ContractMembers">
+    <Type Name="ContractMember">
+      <Column Name="ContractMemberGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CompanyContractGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyMemberGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="CompanyContract_ContractMember" Member="CompanyContract" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="CompanyContract" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.DocStaff" Member="DocStaffs">
     <Type Name="DocStaff">
       <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -137,9 +169,40 @@
       <Column Name="DateDeceased" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="LastVisitGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Association Name="Patient_CompanyMember" Member="CompanyMembers" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="CompanyMember" />
-      <Association Name="Patient_ServiceHistory" Member="ServiceHistories" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="ServiceHistory" />
       <Association Name="Patient_PatientHistory" Member="PatientHistories" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="PatientHistory" />
+      <Association Name="Patient_ServiceHistory" Member="ServiceHistories" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="ServiceHistory" />
       <Association Name="Contact_Patient" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PatientHistory" Member="PatientHistories">
+    <Type Name="PatientHistory">
+      <Column Name="PatientHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Di_Ung_Thuoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Thuoc_Di_Ung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Dot_Quy" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Benh_Tim_Mach" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Benh_Lao" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Dai_Thao_Duong" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Dai_Duong_Dang_Dieu_Tri" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Viem_Gan_B" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Viem_Gan_C" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Viem_Gan_Dang_Dieu_Tri" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Ung_Thu" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Co_Quan_Ung_Thu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Dong_Kinh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Hen_Suyen" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Benh_Khac" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Benh_Gi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Thuoc_Dang_Dung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Hut_Thuoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Uong_Ruou" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Tinh_Trang_Gia_Dinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Chich_Ngua_Viem_Gan_B" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Chich_Ngua_Uon_Van" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Chich_Ngua_Cum" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Dang_Co_Thai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Patient_PatientHistory" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ServiceHistory" Member="ServiceHistories">
@@ -245,6 +308,7 @@
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="ContractStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="CompanyStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="BeginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.CompanyMemberView" Member="CompanyMemberViews">
@@ -271,6 +335,7 @@
       <Column Name="FileNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Archived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.DocStaffView" Member="DocStaffViews">
@@ -320,61 +385,6 @@
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ServiceHistoryView" Member="ServiceHistoryViews">
-    <Type Name="ServiceHistoryView">
-      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="FixedPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ServiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="AvailableToWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ServiceHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="ActivedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PatientHistory" Member="PatientHistories">
-    <Type Name="PatientHistory">
-      <Column Name="PatientHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Di_Ung_Thuoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Thuoc_Di_Ung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Dot_Quy" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Benh_Tim_Mach" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Benh_Lao" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Dai_Thao_Duong" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Dai_Duong_Dang_Dieu_Tri" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Viem_Gan_B" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Viem_Gan_C" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Viem_Gan_Dang_Dieu_Tri" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Ung_Thu" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Co_Quan_Ung_Thu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Dong_Kinh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Hen_Suyen" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Benh_Khac" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Benh_Gi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Thuoc_Dang_Dung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Hut_Thuoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Uong_Ruou" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Tinh_Trang_Gia_Dinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Chich_Ngua_Viem_Gan_B" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Chich_Ngua_Uon_Van" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Chich_Ngua_Cum" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Dang_Co_Thai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Patient_PatientHistory" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.PatientView" Member="PatientViews">
@@ -447,22 +457,31 @@
       <Column Name="Chich_Ngua_Uon_Van" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Chich_Ngua_Cum" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Dang_Co_Thai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="PatientHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PatientHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Symptom" Member="Symptoms">
-    <Type Name="Symptom">
-      <Column Name="SymptomGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+  <Table Name="dbo.ServiceHistoryView" Member="ServiceHistoryViews">
+    <Type Name="ServiceHistoryView">
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FixedPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ServiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="SymptomName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Advice" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="AvailableToWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ServiceHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="ActivedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
