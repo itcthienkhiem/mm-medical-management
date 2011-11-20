@@ -11,6 +11,7 @@ using System.Threading;
 using MM.Common;
 using MM.Controls;
 using MM.Dialogs;
+using DicomImageViewer;
 
 namespace MM
 {
@@ -221,9 +222,16 @@ namespace MM
                 case "Contract List":
                     OnContractList();
                     break;
+                case "DICOM":
+                    OnDicom();
+                    break;
             }
         }
-
+        private void OnDicom()
+        {
+            ViewDicom dlg = new ViewDicom();
+            dlg.ShowDialog();
+        }
         private void OnCompanyList()
         {
             this.Text = string.Format("{0} - Danh muc cong ty", Application.ProductName);
@@ -484,5 +492,7 @@ namespace MM
             }
         }
         #endregion
+
+        
     }
 }
