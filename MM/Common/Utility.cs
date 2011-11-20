@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Data;
 using System.Reflection;
 using System.Diagnostics;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace MM.Common
 {
@@ -351,5 +353,21 @@ namespace MM.Common
             
             return false;
         }
+
+        public static List<string> GetSQLServerInstances()
+        {
+            List<string> instances = new List<string>();
+            DataTable dtSQLServer = SmoApplication.EnumAvailableSqlServers(false);
+
+            foreach (DataRow row in dtSQLServer.Rows)
+            {
+                string serverName = row[0].ToString().Trim();
+                if (serverName == string.Empty) continue;
+                instances.Add(serverName);
+            }
+
+            return instances;
+        }
     }
 }
+
