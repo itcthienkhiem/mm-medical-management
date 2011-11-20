@@ -8,6 +8,7 @@ using System.Data;
 using System.Reflection;
 using System.Diagnostics;
 using Microsoft.SqlServer.Management.Smo;
+using System.Data.Sql;
 
 namespace MM.Common
 {
@@ -357,17 +358,21 @@ namespace MM.Common
         public static List<string> GetSQLServerInstances()
         {
             List<string> instances = new List<string>();
-            DataTable dtSQLServer = SmoApplication.EnumAvailableSqlServers(false);
+
+            SqlDataSourceEnumerator instance = SqlDataSourceEnumerator.Instance;
+            DataTable table = instance.GetDataSources();
+            /*DataTable dtSQLServer = SmoApplication.EnumAvailableSqlServers(false);
 
             foreach (DataRow row in dtSQLServer.Rows)
             {
                 string serverName = row[0].ToString().Trim();
                 if (serverName == string.Empty) continue;
                 instances.Add(serverName);
-            }
+            }*/
 
             return instances;
         }
     }
 }
+
 
