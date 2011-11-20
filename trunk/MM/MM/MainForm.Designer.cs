@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uContractList = new MM.Controls.uContractList();
             this._uCompanyList = new MM.Controls.uCompanyList();
             this._uSymptomList = new MM.Controls.uSymptomList();
             this._uSpecialityList = new MM.Controls.uSpecialityList();
@@ -82,11 +83,8 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-
-            this._uContractList = new MM.Controls.uContractList();
-
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -107,6 +105,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uContractList
+            // 
+            resources.ApplyResources(this._uContractList, "_uContractList");
+            this._uContractList.Name = "_uContractList";
             // 
             // _uCompanyList
             // 
@@ -293,6 +296,7 @@
             this.patientToolStripMenuItem,
             this.companyToolStripMenuItem,
             this.symptomToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this._mainMenu, "_mainMenu");
             this._mainMenu.Name = "_mainMenu";
@@ -467,8 +471,7 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.medicalManagementHelpToolStripMenuItem,
             this.toolStripSeparator2,
-            this.aboutMedicalManagementToolStripMenuItem,
-            this.dICOMToolStripMenuItem});
+            this.aboutMedicalManagementToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             // 
@@ -493,20 +496,19 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-
-            // dICOMToolStripMenuItem
-            // _uContractList
-
+            // toolsToolStripMenuItem
             // 
-
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dICOMToolStripMenuItem});
+            resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            // 
+            // dICOMToolStripMenuItem
+            // 
             this.dICOMToolStripMenuItem.Name = "dICOMToolStripMenuItem";
             resources.ApplyResources(this.dICOMToolStripMenuItem, "dICOMToolStripMenuItem");
             this.dICOMToolStripMenuItem.Tag = "DICOM";
             this.dICOMToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-
-            resources.ApplyResources(this._uContractList, "_uContractList");
-            this._uContractList.Name = "_uContractList";
-
             // 
             // MainForm
             // 
@@ -586,10 +588,10 @@
         private System.Windows.Forms.ToolStripButton tbContractList;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem contractListToolStripMenuItem;
-
-        private System.Windows.Forms.ToolStripMenuItem dICOMToolStripMenuItem;
         private Controls.uCompanyList _uCompanyList;
         private Controls.uContractList _uContractList;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dICOMToolStripMenuItem;
 
     }
 }

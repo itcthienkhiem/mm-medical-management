@@ -160,6 +160,8 @@ namespace MM
             companyToolStripMenuItem.Enabled = isLogin;
             tbCompanyList.Enabled = isLogin;
             tbContractList.Enabled = isLogin;
+
+            toolsToolStripMenuItem.Enabled = isLogin;
         }
 
         private void ExcuteCmd(string cmd)
@@ -222,11 +224,13 @@ namespace MM
                 case "Contract List":
                     OnContractList();
                     break;
+
                 case "DICOM":
                     OnDicom();
                     break;
             }
         }
+
         private void OnDicom()
         {
             ViewDicom dlg = new ViewDicom();
