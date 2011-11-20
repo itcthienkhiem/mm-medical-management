@@ -264,7 +264,7 @@ namespace MM.Dialogs
         {
             try
             {
-                //Thread.Sleep(1000);
+                Thread.Sleep(500);
                 OnDisplayPatientList();
             }
             catch (Exception e)

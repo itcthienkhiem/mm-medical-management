@@ -344,6 +344,7 @@ namespace MM.Dialogs
         {
             try
             {
+                Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)
@@ -360,7 +361,7 @@ namespace MM.Dialogs
         {
             try
             {
-                //Thread.Sleep(1000);
+                Thread.Sleep(500);
                 OnDisplayMembers(state.ToString());
             }
             catch (Exception e)

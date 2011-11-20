@@ -226,7 +226,7 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(1000);
+                Thread.Sleep(500);
                 OnDisplaySpecialityList();
             }
             catch (Exception e)

@@ -29,8 +29,7 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             InitData();
-            DisplayMembersAsThread(Guid.Empty.ToString());
-            DisplayCheckListAsThread(Guid.Empty.ToString());
+            DisplayDetailAsThread(Guid.Empty.ToString());
         }
 
         public dlgAddContract(DataRow drContract)
@@ -88,8 +87,7 @@ namespace MM.Dialogs
 
                 _contract.Status = Convert.ToByte(drContract["ContractStatus"]);
 
-                DisplayMembersAsThread(_contract.CompanyContractGUID.ToString());
-                DisplayCheckListAsThread(_contract.CompanyContractGUID.ToString());
+                DisplayDetailAsThread(_contract.CompanyContractGUID.ToString());
             }
             catch (Exception e)
             {
@@ -156,14 +154,6 @@ namespace MM.Dialogs
                 _contract.Completed = chkCompleted.Checked;
                 _contract.Status = (byte)Status.Actived;
 
-                MethodInvoker method = delegate
-                {
-                    _contract.CompanyGUID = Guid.Parse(cboCompany.SelectedValue.ToString());
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
-
                 if (_isNew)
                 {
                     _contract.CreatedDate = DateTime.Now;
@@ -174,6 +164,14 @@ namespace MM.Dialogs
                     _contract.UpdatedDate = DateTime.Now;
                     _contract.UpdatedBy = Guid.Parse(Global.UserGUID);
                 }
+
+                MethodInvoker method = delegate
+                {
+                    _contract.CompanyGUID = Guid.Parse(cboCompany.SelectedValue.ToString());
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
             }
             catch (Exception e)
             {
@@ -226,31 +224,12 @@ namespace MM.Dialogs
             }
         }
 
-        private void DisplayMembersAsThread(string contractGUID)
+        private void DisplayDetailAsThread(string contractGUID)
         {
             try
             {
                 chkCheckedMember.Checked = false;
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayMembersProc), contractGUID);
-                base.ShowWaiting();
-            }
-            catch (Exception e)
-            {
-                MM.MsgBox.Show(this.Text, e.Message);
-                Utility.WriteToTraceLog(e.Message);
-            }
-            finally
-            {
-                base.HideWaiting();
-            }
-        }
-
-        private void DisplayCheckListAsThread(string contractGUID)
-        {
-            try
-            {
-                chkCheckedService.Checked = false;
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayCheckListProc), contractGUID);
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayDetailProc), contractGUID);
                 base.ShowWaiting();
             }
             catch (Exception e)
@@ -378,7 +357,33 @@ namespace MM.Dialogs
 
         private void OnAddService()
         {
+            dlgServices dlg = new dlgServices();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                List<DataRow> checkedRows = dlg.Services;
+                DataTable dataSource = dgService.DataSource as DataTable;
+                foreach (DataRow row in checkedRows)
+                {
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    DataRow[] rows = dataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                    if (rows == null || rows.Length <= 0)
+                    {
+                        DataRow newRow = dataSource.NewRow();
+                        newRow["Checked"] = false;
+                        newRow["ServiceGUID"] = serviceGUID;
+                        newRow["Code"] = row["Code"];
+                        newRow["Name"] = row["Name"];
+                        newRow["Price"] = row["Price"];
+                        newRow["Description"] = row["Description"];
+                        dataSource.Rows.Add(newRow);
 
+                        if (!_addedServices.Contains(serviceGUID))
+                            _addedServices.Add(serviceGUID);
+
+                        _deletedServices.Remove(serviceGUID);
+                    }
+                }
+            }
         }
 
         private void OnDeleteService()
@@ -474,6 +479,7 @@ namespace MM.Dialogs
         {
             try
             {
+                Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)
@@ -486,29 +492,12 @@ namespace MM.Dialogs
             }
         }
 
-        private void OnDisplayMembersProc(object state)
+        private void OnDisplayDetailProc(object state)
         {
             try
             {
-                //Thread.Sleep(1000);
+                Thread.Sleep(500);
                 OnDisplayMembers(state.ToString());
-            }
-            catch (Exception e)
-            {
-                MM.MsgBox.Show(this.Text, e.Message);
-                Utility.WriteToTraceLog(e.Message);
-            }
-            finally
-            {
-                base.HideWaiting();
-            }
-        }
-
-        private void OnDisplayCheckListProc(object state)
-        {
-            try
-            {
-                //Thread.Sleep(1000);
                 OnDisplayCheckList(state.ToString());
             }
             catch (Exception e)

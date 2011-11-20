@@ -214,6 +214,8 @@ namespace MM.Bussiness
                                 m.UpdatedBy = Guid.Parse(Global.UserGUID);
                             }
                         }
+
+                        db.SubmitChanges();
                     }
 
                     //Check List
@@ -241,9 +243,9 @@ namespace MM.Bussiness
                                 c.UpdatedBy = Guid.Parse(Global.UserGUID);
                             }
                         }
-                    }
 
-                    db.SubmitChanges();
+                        db.SubmitChanges();
+                    }
                 }
                 else //Update
                 {
@@ -277,6 +279,8 @@ namespace MM.Bussiness
                                     m.DeletedBy = Guid.Parse(Global.UserGUID);
                                 }
                             }
+
+                            db.SubmitChanges();
                         }
 
                         if (addedMembers != null && addedMembers.Count > 0)
@@ -303,6 +307,8 @@ namespace MM.Bussiness
                                     m.UpdatedBy = Guid.Parse(Global.UserGUID);
                                 }
                             }
+
+                            db.SubmitChanges();
                         }
 
                         //Check List
@@ -319,6 +325,8 @@ namespace MM.Bussiness
                                     c.DeletedBy = Guid.Parse(Global.UserGUID);
                                 }
                             }
+
+                            db.SubmitChanges();
                         }
 
                         if (addedServices != null && addedServices.Count > 0)
@@ -345,12 +353,12 @@ namespace MM.Bussiness
                                     c.UpdatedBy = Guid.Parse(Global.UserGUID);
                                 }
                             }
+
+                            db.SubmitChanges();
                         }
 
-                        db.SubmitChanges();
                     }
                 }
-
 
             }
             catch (System.Data.SqlClient.SqlException se)
