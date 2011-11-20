@@ -472,6 +472,12 @@ namespace MM.Dialogs
                 row["Checked"] = chkCheckedService.Checked;
             }
         }
+
+        private void cboCompany_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cboCompany.Text == string.Empty) return;
+            MessageBox.Show(cboCompany.Text);
+        }
         #endregion
 
         #region Working Thread
@@ -511,5 +517,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
