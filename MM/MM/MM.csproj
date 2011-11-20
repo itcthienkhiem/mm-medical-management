@@ -261,6 +261,12 @@
     <Compile Include="Dialogs\dlgPatientHistory.Designer.cs">
       <DependentUpon>dlgPatientHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgServices.Designer.cs">
+      <DependentUpon>dlgServices.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgWaiting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -368,6 +374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgPatientHistory.resx">
       <DependentUpon>dlgPatientHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgServices.resx">
+      <DependentUpon>dlgServices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgWaiting.resx">
       <DependentUpon>dlgWaiting.cs</DependentUpon>

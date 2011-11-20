@@ -307,7 +307,7 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(1000);
+                Thread.Sleep(500);
                 OnDisplaySymptomList();
             }
             catch (Exception e)

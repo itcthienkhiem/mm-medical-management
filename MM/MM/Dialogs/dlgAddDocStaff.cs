@@ -293,6 +293,7 @@ namespace MM.Dialogs
         {
             try
             {
+                Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)

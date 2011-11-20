@@ -226,6 +226,8 @@ namespace MM.Bussiness
                                     m.DeletedBy = Guid.Parse(Global.UserGUID);
                                 }
                             }
+
+                            db.SubmitChanges();
                         }
 
                         if (addedMembers != null && addedMembers.Count > 0)
@@ -252,8 +254,10 @@ namespace MM.Bussiness
                                     m.UpdatedBy = Guid.Parse(Global.UserGUID);
                                 }
                             }
+
+                            db.SubmitChanges();
                         }
-                        db.SubmitChanges();
+                        
                     }
                 }
 

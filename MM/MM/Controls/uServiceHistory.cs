@@ -346,7 +346,7 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(1000);
+                Thread.Sleep(500);
                 OnDisplayServicesHistory();
             }
             catch (Exception e)
