@@ -176,7 +176,7 @@ namespace MM.Dialogs
             }
         }
 
-        private void SetDocStaffInfo()
+        private void OnSaveInfo()
         {
             try
             {
@@ -232,8 +232,16 @@ namespace MM.Dialogs
                             _contact.Occupation = "Lễ tân";
                             break;
                     }
-                    
+
                     _contact.Gender = (byte)cboGender.SelectedIndex;
+
+                    Result result = DocStaffBus.InsertDocStaff(_contact, _docStaff);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
+                        Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -243,18 +251,6 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, e.Message);
                 Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
-        private void OnSaveInfo()
-        {
-            SetDocStaffInfo();
-            Result result = DocStaffBus.InsertDocStaff(_contact, _docStaff);
-            if (!result.IsOK)
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             }
         }
         #endregion
@@ -293,7 +289,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)

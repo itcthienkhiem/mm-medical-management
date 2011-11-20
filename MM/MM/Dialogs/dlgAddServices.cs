@@ -120,34 +120,6 @@ namespace MM.Dialogs
             return true;
         }
 
-        private void SetServiceInfo()
-        {
-            try
-            {
-                _service.Code = txtCode.Text;
-                _service.Name = txtName.Text;
-                _service.Price = (double)numPrice.Value;
-                _service.Description = txtDescription.Text;
-                _service.Status = (byte)Status.Actived;
-
-                if (_isNew)
-                {
-                    _service.CreatedDate = DateTime.Now;
-                    _service.CreatedBy = Guid.Parse(Global.UserGUID);
-                }
-                else
-                {
-                    _service.UpdatedDate = DateTime.Now;
-                    _service.UpdatedBy = Guid.Parse(Global.UserGUID);
-                }
-            }
-            catch (Exception e)
-            {
-                MsgBox.Show(this.Text, e.Message);
-                Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
         private void SaveInfoAsThread()
         {
             try
@@ -167,13 +139,37 @@ namespace MM.Dialogs
 
         private void OnSaveInfo()
         {
-            SetServiceInfo();
-            Result result = ServicesBus.InsertService(_service);
-            if (!result.IsOK)
+            try
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.InsertService"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.InsertService"));
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                _service.Code = txtCode.Text;
+                _service.Name = txtName.Text;
+                _service.Price = (double)numPrice.Value;
+                _service.Description = txtDescription.Text;
+                _service.Status = (byte)Status.Actived;
+
+                if (_isNew)
+                {
+                    _service.CreatedDate = DateTime.Now;
+                    _service.CreatedBy = Guid.Parse(Global.UserGUID);
+                }
+                else
+                {
+                    _service.UpdatedDate = DateTime.Now;
+                    _service.UpdatedBy = Guid.Parse(Global.UserGUID);
+                }
+
+                Result result = ServicesBus.InsertService(_service);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.InsertService"));
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.InsertService"));
+                    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                }
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+                Utility.WriteToTraceLog(e.Message);
             }
         }
         #endregion
@@ -196,7 +192,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)

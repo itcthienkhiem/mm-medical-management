@@ -471,7 +471,7 @@ namespace MM
         {
             try
             {
-                Thread.Sleep(1000);
+                //Thread.Sleep(1000);
                 OnInitConfig();
             }
             catch (Exception e)

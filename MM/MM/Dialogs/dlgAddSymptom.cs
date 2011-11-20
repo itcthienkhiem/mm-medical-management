@@ -125,33 +125,6 @@ namespace MM.Dialogs
             return true;
         }
 
-        private void SetSymptomInfo()
-        {
-            try
-            {
-                _symptom.Code = txtCode.Text;
-                _symptom.SymptomName = txtSymptom.Text;
-                _symptom.Advice = txtAdvice.Text;
-                _symptom.Status = (byte)Status.Actived;
-
-                if (_isNew)
-                {
-                    _symptom.CreatedDate = DateTime.Now;
-                    _symptom.CreatedBy = Guid.Parse(Global.UserGUID);
-                }
-                else
-                {
-                    _symptom.UpdatedDate = DateTime.Now;
-                    _symptom.UpdatedBy = Guid.Parse(Global.UserGUID);
-                }
-            }
-            catch (Exception e)
-            {
-                MsgBox.Show(this.Text, e.Message);
-                Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
         private void SaveInfoAsThread()
         {
             try
@@ -171,14 +144,38 @@ namespace MM.Dialogs
 
         private void OnSaveInfo()
         {
-            SetSymptomInfo();
-            Result result = SymptomBus.InsertSymptom(_symptom);
-            if (!result.IsOK)
+            try
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("SymptomBus.InsertSymptom"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.InsertSymptom"));
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                _symptom.Code = txtCode.Text;
+                _symptom.SymptomName = txtSymptom.Text;
+                _symptom.Advice = txtAdvice.Text;
+                _symptom.Status = (byte)Status.Actived;
+
+                if (_isNew)
+                {
+                    _symptom.CreatedDate = DateTime.Now;
+                    _symptom.CreatedBy = Guid.Parse(Global.UserGUID);
+                }
+                else
+                {
+                    _symptom.UpdatedDate = DateTime.Now;
+                    _symptom.UpdatedBy = Guid.Parse(Global.UserGUID);
+                }
+
+                Result result = SymptomBus.InsertSymptom(_symptom);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("SymptomBus.InsertSymptom"));
+                    Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.InsertSymptom"));
+                    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                }
             }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+                Utility.WriteToTraceLog(e.Message);
+            }
+           
         }
         #endregion
 
@@ -200,7 +197,7 @@ namespace MM.Dialogs
         {
             try
             {
-                Thread.Sleep(500);
+                //Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)
