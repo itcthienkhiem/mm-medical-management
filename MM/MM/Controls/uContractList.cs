@@ -14,7 +14,7 @@ using MM.Dialogs;
 
 namespace MM.Controls
 {
-    public partial class uContractList : UserControl
+    public partial class uContractList : uBase
     {
         #region Members
 
@@ -32,11 +32,219 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void DisplayAsThread()
+        {
+            try
+            {
+                chkChecked.Checked = false;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayContractListProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
 
+        public void ClearData()
+        {
+            dgContract.DataSource = null;
+        }
+
+        private void OnDisplayContractList()
+        {
+            Result result = CompanyContractBus.GetContractList();
+            if (result.IsOK)
+            {
+                MethodInvoker method = delegate
+                {
+                    dgContract.DataSource = result.QueryResult;
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetContractList"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractList"));
+            }
+        }
+
+        private void OnAddContract()
+        {
+            dlgAddContract dlg = new dlgAddContract();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                DataTable dt = dgContract.DataSource as DataTable;
+                if (dt == null) return;
+                DataRow newRow = dt.NewRow();
+                newRow["Checked"] = false;
+                newRow["CompanyContractGUID"] = dlg.Contract.CompanyContractGUID.ToString();
+                newRow["CompanyGUID"] = dlg.Contract.CompanyGUID.ToString();
+                newRow["TenCty"] = dlg.ComName;
+                newRow["ContractCode"] = dlg.Contract.ContractCode;
+                newRow["ContractName"] = dlg.Contract.ContractName;
+                newRow["BeginDate"] = dlg.Contract.BeginDate;
+                newRow["Completed"] = dlg.Contract.Completed;
+
+                if (dlg.Contract.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.Contract.CreatedDate;
+
+                if (dlg.Contract.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.Contract.CreatedBy.ToString();
+
+                if (dlg.Contract.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.Contract.UpdatedDate;
+
+                if (dlg.Contract.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.Contract.UpdatedBy.ToString();
+
+                if (dlg.Contract.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.Contract.DeletedDate;
+
+                if (dlg.Contract.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.Contract.DeletedBy.ToString();
+
+                newRow["ContractStatus"] = dlg.Contract.Status;
+                dt.Rows.Add(newRow);
+            }
+        }
+
+        private void OnEditContract()
+        {
+            if (dgContract.SelectedRows == null || dgContract.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 hợp đồng.");
+                return;
+            }
+
+            DataRow drCon = (dgContract.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddContract dlg = new dlgAddContract(drCon);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                drCon["CompanyGUID"] = dlg.Contract.CompanyGUID.ToString();
+                drCon["TenCty"] = dlg.ComName;
+                drCon["ContractCode"] = dlg.Contract.ContractCode;
+                drCon["ContractName"] = dlg.Contract.ContractName;
+                drCon["BeginDate"] = dlg.Contract.BeginDate;
+                drCon["Completed"] = dlg.Contract.Completed;
+
+                if (dlg.Contract.CreatedDate.HasValue)
+                    drCon["CreatedDate"] = dlg.Contract.CreatedDate;
+
+                if (dlg.Contract.CreatedBy.HasValue)
+                    drCon["CreatedBy"] = dlg.Contract.CreatedBy.ToString();
+
+                if (dlg.Contract.UpdatedDate.HasValue)
+                    drCon["UpdatedDate"] = dlg.Contract.UpdatedDate;
+
+                if (dlg.Contract.UpdatedBy.HasValue)
+                    drCon["UpdatedBy"] = dlg.Contract.UpdatedBy.ToString();
+
+                if (dlg.Contract.DeletedDate.HasValue)
+                    drCon["DeletedDate"] = dlg.Contract.DeletedDate;
+
+                if (dlg.Contract.DeletedBy.HasValue)
+                    drCon["DeletedBy"] = dlg.Contract.DeletedBy.ToString();
+
+                drCon["ContractStatus"] = dlg.Contract.Status;
+            }
+        }
+
+        private void OnDeleteContract()
+        {
+            List<string> deletedConList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgContract.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedConList.Add(row["CompanyContractGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedConList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những hợp đồng mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = CompanyContractBus.DeleteContract(deletedConList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.DeleteContract"));
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.DeleteContract"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần xóa.");
+        }
         #endregion
 
         #region Window Event Handlers
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            OnAddContract();
+        }
 
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            OnEditContract();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            OnDeleteContract();
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgContract.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
+
+        private void dgContract_DoubleClick(object sender, EventArgs e)
+        {
+            OnEditContract();
+        }
+        #endregion
+
+        #region Working Thread
+        private void OnDisplayContractListProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(1000);
+                OnDisplayContractList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
         #endregion
     }
 }

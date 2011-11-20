@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="BusBase.cs" />
     <Compile Include="CompanyBus.cs" />
+    <Compile Include="CompanyContractBus.cs" />
     <Compile Include="DocStaffBus.cs" />
     <Compile Include="PatientBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

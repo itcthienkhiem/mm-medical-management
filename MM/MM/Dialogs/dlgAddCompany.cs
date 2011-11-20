@@ -271,7 +271,7 @@ namespace MM.Dialogs
 
             if (deletedMemList.Count > 0)
             {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những thành viên mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những nhân viên mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
                     foreach (DataRow row in deletedRows)
                     {
@@ -286,7 +286,7 @@ namespace MM.Dialogs
                 }
             }
             else
-                MsgBox.Show(this.Text, "Vui lòng đánh dấu những thành viên cần xóa.");
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những nhân viên cần xóa.");
         }
         #endregion
 

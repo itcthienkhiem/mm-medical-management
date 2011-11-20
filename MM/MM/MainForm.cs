@@ -122,6 +122,8 @@ namespace MM
                 _uSymptomList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uCompanyList))
                 _uCompanyList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uContractList))
+                _uContractList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -232,6 +234,8 @@ namespace MM
         private void OnContractList()
         {
             this.Text = string.Format("{0} - Danh muc hop dong", Application.ProductName);
+            ViewControl(_uContractList);
+            _uContractList.DisplayAsThread();
         }
 
         private void ViewControl(Control view)
@@ -325,6 +329,10 @@ namespace MM
                 _uSpecialityList.ClearData();
             else if (ctrl.GetType() == typeof(uSymptomList))
                 _uSymptomList.ClearData();
+            else if (ctrl.GetType() == typeof(uCompanyList))
+                _uCompanyList.ClearData();
+            else if (ctrl.GetType() == typeof(uContractList))
+                _uContractList.ClearData();
         }
 
         private void OnDoctorList()
