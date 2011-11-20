@@ -252,6 +252,19 @@ namespace MM.Bussiness
                     CompanyContract con = db.CompanyContracts.SingleOrDefault<CompanyContract>(c => c.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
                     if (con != null)
                     {
+                        var contractMembers = from c in db.CompanyContracts
+                                              join m in db.ContractMembers on c.CompanyContractGUID equals m.CompanyContractGUID
+                                              where c.CompanyGUID != contract.CompanyGUID &&
+                                              c.CompanyContractGUID == contract.CompanyContractGUID
+                                              select m;
+
+                        foreach (var c in contractMembers)
+                        {
+                            c.Status = (byte)Status.Deactived;
+                            c.DeletedDate = DateTime.Now;
+                            c.DeletedBy = Guid.Parse(Global.UserGUID);
+                        }
+
                         con.CompanyGUID = contract.CompanyGUID;
                         con.ContractCode = contract.ContractCode;
                         con.ContractName = contract.ContractName;
@@ -267,12 +280,13 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Members
+
                         if (deletedMembers != null && deletedMembers.Count > 0)
                         {
                             foreach (string key in deletedMembers)
                             {
                                 ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == key &&
-                                                                                                    mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
+                                                                        mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
                                 if (m != null)
                                 {
                                     m.Status = (byte)Status.Deactived;
