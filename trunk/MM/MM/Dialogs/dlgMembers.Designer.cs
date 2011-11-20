@@ -266,7 +266,7 @@
             this.Name = "dlgMembers";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Them thanh vien";
+            this.Text = "Them nhan vien";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgMembers_FormClosing);
             this.Load += new System.EventHandler(this.dlgMembers_Load);
             this.panel1.ResumeLayout(false);

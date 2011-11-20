@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uCompanyList = new MM.Controls.uCompanyList();
             this._uSymptomList = new MM.Controls.uSymptomList();
             this._uSpecialityList = new MM.Controls.uSpecialityList();
             this._uPatientHistory = new MM.Controls.uPatientHistory();
@@ -81,7 +82,7 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uCompanyList = new MM.Controls.uCompanyList();
+            this._uContractList = new MM.Controls.uContractList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -93,6 +94,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uContractList);
             this._mainPanel.Controls.Add(this._uCompanyList);
             this._mainPanel.Controls.Add(this._uSymptomList);
             this._mainPanel.Controls.Add(this._uSpecialityList);
@@ -101,6 +103,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uCompanyList
+            // 
+            resources.ApplyResources(this._uCompanyList, "_uCompanyList");
+            this._uCompanyList.Name = "_uCompanyList";
             // 
             // _uSymptomList
             // 
@@ -481,10 +488,10 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // _uCompanyList
+            // _uContractList
             // 
-            resources.ApplyResources(this._uCompanyList, "_uCompanyList");
-            this._uCompanyList.Name = "_uCompanyList";
+            resources.ApplyResources(this._uContractList, "_uContractList");
+            this._uContractList.Name = "_uContractList";
             // 
             // MainForm
             // 
@@ -565,6 +572,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem contractListToolStripMenuItem;
         private Controls.uCompanyList _uCompanyList;
+        private Controls.uContractList _uContractList;
 
 
 

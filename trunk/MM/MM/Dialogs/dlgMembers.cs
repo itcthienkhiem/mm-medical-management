@@ -17,9 +17,20 @@ namespace MM.Dialogs
     {
         #region Members
         private DataTable _dataSource = null;
+        private bool _isContractMember = false;
+        private string _companyGUID = string.Empty;
         #endregion
 
         #region Constructor
+        public dlgMembers(string companyGUID)
+        {
+            InitializeComponent();
+            _isContractMember = true;
+            _companyGUID = companyGUID;
+            if (_companyGUID == string.Empty)
+                _companyGUID = Guid.Empty.ToString();
+        }
+
         public dlgMembers()
         {
             InitializeComponent();
@@ -69,7 +80,13 @@ namespace MM.Dialogs
 
         private void OnDisplayPatientList()
         {
-            Result result = PatientBus.GetPatientList();
+            Result result;
+
+            if (!_isContractMember)
+                result = PatientBus.GetPatientList();
+            else
+                result = CompanyBus.GetCompanyMemberList(_companyGUID);
+
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -83,8 +100,16 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                if (!_isContractMember)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"));
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
+                }
             }
         }
 

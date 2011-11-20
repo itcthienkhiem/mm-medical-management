@@ -391,7 +391,11 @@
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
     <None Include="Properties\DataSources\MM.Databasae.Company.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.CompanyCheckListView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.CompanyContract.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.CompanyContractView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyMemberView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />

@@ -82,8 +82,8 @@
             // tabCompany
             // 
             this.tabCompany.CanReorderTabs = true;
-            this.tabCompany.Controls.Add(this.tabControlPanel1);
             this.tabCompany.Controls.Add(this.tabControlPanel2);
+            this.tabCompany.Controls.Add(this.tabControlPanel1);
             this.tabCompany.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabCompany.Location = new System.Drawing.Point(0, 0);
             this.tabCompany.Name = "tabCompany";
@@ -436,7 +436,7 @@
             // 
             this.pageCompanyMembers.AttachedControl = this.tabControlPanel2;
             this.pageCompanyMembers.Name = "pageCompanyMembers";
-            this.pageCompanyMembers.Text = "Thành viên";
+            this.pageCompanyMembers.Text = "Danh sách nhân viên";
             // 
             // btnOK
             // 
