@@ -186,9 +186,16 @@ namespace MM.Controls
                 newRow["Dang_Co_Thai"] = dlg.PatientHistory.Dang_Co_Thai.Value;
 
                 dt.Rows.Add(newRow);
+                SelectLastedRow();
             }
 
             OnSearchPatient();
+        }
+
+        private void SelectLastedRow()
+        {
+            dgPatient.CurrentCell = dgPatient[1, dgPatient.RowCount - 1];
+            dgPatient.Rows[dgPatient.RowCount - 1].Selected = true;
         }
 
         private DataRow GetDataRow(string patientGUID)

@@ -113,7 +113,15 @@ namespace MM.Controls
 
                 newRow["ContractStatus"] = dlg.Contract.Status;
                 dt.Rows.Add(newRow);
+
+                SelectLastedRow();
             }
+        }
+
+        private void SelectLastedRow()
+        {
+            dgContract.CurrentCell = dgContract[1, dgContract.RowCount - 1];
+            dgContract.Rows[dgContract.RowCount - 1].Selected = true;
         }
 
         private void OnEditContract()

@@ -110,7 +110,14 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Speciality.Status;
                 dt.Rows.Add(newRow);
+                SelectLastedRow();
             }
+        }
+
+        private void SelectLastedRow()
+        {
+            dgSpeciality.CurrentCell = dgSpeciality[1, dgSpeciality.RowCount - 1];
+            dgSpeciality.Rows[dgSpeciality.RowCount - 1].Selected = true;
         }
 
         private void OnEditSpeciality()

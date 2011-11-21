@@ -111,7 +111,14 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Service.Status;
                 dt.Rows.Add(newRow);
+                SelectLastedRow();
             }
+        }
+
+        private void SelectLastedRow()
+        {
+            dgService.CurrentCell = dgService[1, dgService.RowCount - 1];
+            dgService.Rows[dgService.RowCount - 1].Selected = true;
         }
 
         private void OnEditService()
