@@ -164,7 +164,8 @@
             // 
             this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
             this.imgList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgList.Images.SetKeyName(0, "check.gif");
+            this.imgList.Images.SetKeyName(0, "1321864209_tick.png");
+            this.imgList.Images.SetKeyName(1, "1321864188_exclamation.png");
             // 
             // txtAge
             // 
