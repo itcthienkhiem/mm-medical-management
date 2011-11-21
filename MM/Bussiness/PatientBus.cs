@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'True' AND PatientGUID NOT IN (SELECT PatientGUID FROM CompanyMember) ORDER BY FullName ";
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'True' AND PatientGUID NOT IN (SELECT PatientGUID FROM CompanyMember WHERE Status = 0) ORDER BY FullName";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
