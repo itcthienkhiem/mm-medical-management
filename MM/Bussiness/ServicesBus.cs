@@ -35,6 +35,29 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetServicesListNotInCheckList(string contractGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} AND ServiceGUID NOT IN (SELECT ServiceGUID FROM CompanyCheckList WHERE CompanyContractGUID = '{1}' AND Status = {0}) ORDER BY Code", (byte)Status.Actived, contractGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result DeleteServices(List<string> serviceKeys)
         {
             Result result = new Result();

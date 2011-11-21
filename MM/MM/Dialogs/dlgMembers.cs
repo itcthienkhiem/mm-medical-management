@@ -19,18 +19,20 @@ namespace MM.Dialogs
         private DataTable _dataSource = null;
         private bool _isContractMember = false;
         private string _companyGUID = string.Empty;
+        private string _contractGUID = string.Empty;
         private List<string> _addedMembers = null;
         private List<DataRow> _deletedMemberRows = null;
         #endregion
 
         #region Constructor
-        public dlgMembers(string companyGUID, List<string> addedMembers, List<DataRow> deletedMemberRows)
+        public dlgMembers(string companyGUID, string contractGUID, List<string> addedMembers, List<DataRow> deletedMemberRows)
         {
             InitializeComponent();
             _addedMembers = addedMembers;
             _deletedMemberRows = deletedMemberRows;
             _isContractMember = true;
             _companyGUID = companyGUID;
+            _contractGUID = contractGUID;
             if (_companyGUID == string.Empty)
                 _companyGUID = Guid.Empty.ToString();
         }
@@ -130,7 +132,7 @@ namespace MM.Dialogs
             if (!_isContractMember)
                 result = PatientBus.GetPatientListNotInCompany();
             else
-                result = CompanyBus.GetCompanyMemberList(_companyGUID);
+                result = CompanyBus.GetCompanyMemberListNotInContractMember(_companyGUID, _contractGUID);
 
             if (result.IsOK)
             {
@@ -147,13 +149,13 @@ namespace MM.Dialogs
             {
                 if (!_isContractMember)
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"));
-                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientListNotInCompany"));
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientListNotInCompany"));
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
-                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetCompanyMemberListNotInContractMember"));
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberListNotInContractMember"));
                 }
             }
         }

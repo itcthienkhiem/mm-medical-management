@@ -73,14 +73,53 @@ namespace MM.Dialogs
             }
         }
 
+        private DataTable GetDataSource(DataTable dt)
+        {
+            string fieldName = "ServiceGUID";
+
+            //Delete
+            List<DataRow> deletedRows = new List<DataRow>();
+            foreach (string key in _addedServices)
+            {
+                DataRow[] rows = dt.Select(string.Format("{0}='{1}'", fieldName, key));
+                if (rows == null || rows.Length <= 0) continue;
+
+                deletedRows.AddRange(rows);
+            }
+
+            foreach (DataRow row in deletedRows)
+            {
+                dt.Rows.Remove(row);
+            }
+
+            //Add
+            foreach (DataRow row in _deletedServiceRows)
+            {
+                string key = row[fieldName].ToString();
+                DataRow[] rows = dt.Select(string.Format("{0}='{1}'", fieldName, key));
+                if (rows != null && rows.Length > 0) continue;
+
+                DataRow newRow = dt.NewRow();
+                newRow["Checked"] = false;
+                newRow["ServiceGUID"] = key;
+                newRow["Code"] = row["Code"];
+                newRow["Name"] = row["Name"];
+                newRow["Price"] = row["Price"];
+                newRow["Description"] = row["Description"];
+                dt.Rows.Add(newRow);
+            }
+
+            return dt;
+        }
+
         private void OnDisplayServicesList()
         {
-            Result result = ServicesBus.GetServicesList();
+            Result result = ServicesBus.GetServicesListNotInCheckList(_contractGUID);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
-                    dgService.DataSource = result.QueryResult;
+                    dgService.DataSource = GetDataSource((DataTable)result.QueryResult);
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -88,8 +127,8 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesList"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
             }
         }
         #endregion

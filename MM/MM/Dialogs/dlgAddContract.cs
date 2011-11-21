@@ -305,7 +305,7 @@ namespace MM.Dialogs
                 return;
             }
 
-            dlgMembers dlg = new dlgMembers(cboCompany.SelectedValue.ToString(), _selectedCompanyMember.AddedMembers, _selectedCompanyMember.DeletedMemberRows);
+            dlgMembers dlg = new dlgMembers(cboCompany.SelectedValue.ToString(), _contract.CompanyContractGUID.ToString(), _selectedCompanyMember.AddedMembers, _selectedCompanyMember.DeletedMemberRows);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 List<DataRow> checkedRows = dlg.Members;
