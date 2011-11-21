@@ -8,7 +8,6 @@ using System.Data;
 using System.Reflection;
 using System.Diagnostics;
 using Microsoft.SqlServer.Management.Smo;
-using System.Data.Sql;
 
 namespace MM.Common
 {
