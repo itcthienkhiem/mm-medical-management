@@ -117,4 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="imgList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="imgList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACC
+        AwAAAk1TRnQBSQFMAwEBAAEEAQABBAEAARABAAEQAQAE/wEhAQAI/wFCAU0BNgcAATYDAAEoAwABQAMA
+        ARADAAEBAQABIAYAARAqAAHsAe4B6AH/AcUBtgGJAf/4AAHQAbEBXwH/AXwBXgEMAf8B3gHfAdQB//AA
+        AeEBzQGPAf8B0gGZAQYB/wGeAXkBBgH/AZwBigFcAf/sAAHcAc0BnQH/AcoBlAEJAf8B6wGrAQYB/wHm
+        AacBBgH/AZcBdAEGAf8BywHHAbEB/+QAAdEBwAGJAf8BxAGPAQYB/wHpAaoBBgH/AfABtwEkAf8B8gHO
+        AXIB/wHvAa4BBwH/AYEBagEgAf8B5wHqAeUB/9wAAfABzgF2Af8B8QG4ASYB/wHwAbEBDwH/AesBqwEG
+        Af8B7wHMAW8B/wHwAecBxgH/AfQBxQFPAf8BpgF/AQYB/wGcAYsBYQH/3AAB7gHxAesB/wH0Ad0BngH/
+        AfUBzQFpAf8B8AGxAQ8B/wHqAeUBywH/Ae4B8wHxAf8B9AHQAXQB/wHwAbQBGQH/AYYBaAEGAf8BtAGr
+        AYwB/+AAAfIB5gHAAf8B8QHMAW0B/wgAAfEB4wG2Af8B9AHGAVMB/wHNAZUBBgH/AYABYAEJAf8ByAHF
+        AbEB/+AAAe4B8gHxAf8IAAHuAfIB7gH/AfQBzwFwAf8B8gG8ATIB/wG5AYYBBgH/AYABYgERAf8BuQGy
+        AZgB/+wAAfEB4wG4Af8B9AHIAVkB/wHwAbEBEQH/AcABjAEGAf8BhAFmAQYB/wHRAckBrAH/6AAB7gHz
+        AfEB/wH0AdUBgQH/AfMBwgFFAf8B7wGuAQcB/wGwAYEBBgH/AeMB4QHRAf/sAAHvAe0B3AH/AfUBzgFs
+        Af8B8gG8ATEB/wGiAXwBBgH/AesB7gHqAf/wAAHxAeUBvQH/AfUBzAFlAf8BuwGIAQYB/wHqAe0B6AH/
+        9AAB8gHiAbAB/wHxAbYBHwH/AegB5gHWAf/4AAHwAd0BoAH/Ae4B6AHMAf//AMUAAUIBTQE+BwABPgMA
+        ASgDAAFAAwABEAMAAQEBAAEBBQABgBcAA/8BAAH8Af8GAAH8AX8GAAH4AX8GAAHwAT8GAAHgAR8GAAHA
+        AR8GAAHAAQ8GAAHzAQcGAAH7AQMGAAH/AYEGAAH/AYEGAAH/AcEGAAH/AeEGAAH/AfEGAAH/AfkGAAL/
+        BgAL
+</value>
+  </data>
 </root>
