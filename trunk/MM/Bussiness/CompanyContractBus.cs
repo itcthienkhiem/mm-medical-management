@@ -83,6 +83,29 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetCheckListByPatient(string patientGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT S.* FROM Services S, (SELECT DISTINCT(L.ServiceGUID) FROM CompanyContract C, CompanyCheckList L, CompanyMember M WHERE C.CompanyContractGUID = L.CompanyContractGUID AND C.Completed = 'False' AND C.CompanyGUID = M.CompanyGUID AND M.PatientGUID = '{0}' AND M.Status = 0 AND C.BeginDate < GetDate()) AS T WHERE S.ServiceGUID = T.ServiceGUID ORDER BY S.[Name]", patientGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result DeleteContract(List<string> keys)
         {
             Result result = new Result();
