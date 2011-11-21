@@ -16,13 +16,18 @@ namespace MM.Dialogs
     public partial class dlgServices : dlgBase
     {
         #region Members
-
+        private List<string> _addedServices = null;
+        private List<DataRow> _deletedServiceRows = null;
+        private string _contractGUID = string.Empty;
         #endregion
 
         #region Constructor
-        public dlgServices()
+        public dlgServices(string contractGUID, List<string> addedServices, List<DataRow> deletedServiceRows)
         {
             InitializeComponent();
+            _contractGUID = contractGUID;
+            _addedServices = addedServices;
+            _deletedServiceRows = deletedServiceRows;
         }
         #endregion
 
