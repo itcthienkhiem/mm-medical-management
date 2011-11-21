@@ -196,7 +196,165 @@ namespace MM.Common
             }
         }
 
-        public static bool isValidDOB(string dobStr)
+        public static int GetAge(string dobStr)
+        {
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "dd/MM/yyyy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "d/MM/yyyy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "d/M/yyyy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "dd/M/yyyy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "dd/MM/yy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "d/MM/yy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "d/M/yy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "dd/M/yy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "dd-MM-yyyy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "d-MM-yyyy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "d-M-yyyy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "dd-M-yyyy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "dd-MM-yy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "d-MM-yy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "d-M-yy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                DateTime dt = DateTime.ParseExact(dobStr, "dd-M-yy", null);
+                return DateTime.Now.Year - dt.Year;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                int year = int.Parse(dobStr);
+                return DateTime.Now.Year - year;
+            }
+            catch
+            {
+            }
+
+            return 0;
+        }
+
+        public static bool IsValidDOB(string dobStr)
         {
             try
             {
@@ -345,7 +503,7 @@ namespace MM.Common
             try
             {
                 int year = int.Parse(dobStr);
-                if (year > 0) return true;
+                if (year > 0 && year < DateTime.Now.Year) return true;
             }
             catch
             {

@@ -126,7 +126,14 @@ namespace MM.Controls
                 if (dlg.Contact.DeletedBy.HasValue)
                     newRow["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
                 dt.Rows.Add(newRow);
+                SelectLastedRow();
             }
+        }
+
+        private void SelectLastedRow()
+        {
+            dgDocStaff.CurrentCell = dgDocStaff[1, dgDocStaff.RowCount - 1];
+            dgDocStaff.Rows[dgDocStaff.RowCount - 1].Selected = true;
         }
 
         private void OnEditDocStaff()

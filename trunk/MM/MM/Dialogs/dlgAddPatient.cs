@@ -86,7 +86,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (!Utility.isValidDOB(txtDOB.Text))
+            if (!Utility.IsValidDOB(txtDOB.Text))
             {
                 MsgBox.Show(this.Text, "Ngày sinh hoặc năm sinh chưa đúng. Vui lòng nhập lại");
                 txtDOB.Focus();

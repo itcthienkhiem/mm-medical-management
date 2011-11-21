@@ -112,7 +112,14 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Symptom.Status;
                 dt.Rows.Add(newRow);
+                SelectLastedRow();
             }
+        }
+
+        private void SelectLastedRow()
+        {
+            dgSymptom.CurrentCell = dgSymptom[1, dgSymptom.RowCount - 1];
+            dgSymptom.Rows[dgSymptom.RowCount - 1].Selected = true;
         }
 
         private void OnEditSymptom()
