@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MM.Dialogs;
+using MM.Common;
 
 namespace MM.Controls
 {
@@ -48,6 +49,7 @@ namespace MM.Controls
             txtFullName.Text = row["FullName"].ToString();
             txtGender.Text = row["GenderAsStr"].ToString();
             txtDOB.Text = row["DobStr"].ToString();
+            txtAge.Text = Utility.GetAge(txtDOB.Text).ToString();
             txtIdentityCard.Text = row["IdentityCard"].ToString();
             txtHomePhone.Text = row["HomePhone"].ToString();
             txtWorkPhone.Text = row["WorkPhone"].ToString();
