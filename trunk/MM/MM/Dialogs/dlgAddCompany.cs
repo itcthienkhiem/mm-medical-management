@@ -163,7 +163,50 @@ namespace MM.Dialogs
                 return false;
             }
 
+            foreach (string patientGUID in _addedPatients)
+            {
+                result = CompanyBus.CheckMemberExist(patientGUID);
+
+                if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+                {
+                    if (result.Error.Code == ErrorCode.EXIST)
+                    {
+                        string fullName = GetFullName(patientGUID);
+                        MsgBox.Show(this.Text, string.Format("Bệnh nhân: '{0}' đã thuộc 1 công ty khác.", fullName));
+
+                        DataTable dt = dgMembers.DataSource as DataTable;
+                        if (dt != null)
+                        {
+                            DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                            if (rows != null && rows.Length > 0)
+                                dt.Rows.Remove(rows[0]);
+                        }
+
+                        return false;
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.CheckMemberExist"));
+                    return false;
+                }
+            }
+
             return true;
+        }
+
+        private string GetFullName(string patientGUID)
+        {
+            string fullName = string.Empty;
+            DataTable dt = dgMembers.DataSource as DataTable;
+            if (dt != null)
+            {
+                DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                if (rows != null && rows.Length > 0)
+                    fullName = rows[0]["FullName"].ToString();
+            }
+
+            return fullName;
         }
 
         private void SaveInfoAsThread()
