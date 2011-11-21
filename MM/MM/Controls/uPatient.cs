@@ -6,12 +6,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 using MM.Dialogs;
+using MM.Bussiness;
+using MM.Databasae;
 using MM.Common;
 
 namespace MM.Controls
 {
-    public partial class uPatient : UserControl
+    public partial class uPatient : uBase
     {
         #region Members
         private object _patientRow = null;
@@ -60,6 +63,59 @@ namespace MM.Controls
 
             _uServiceHistory.DisplayAsThread();
             _uDailyServiceHistory.DisplayAsThread();
+
+            DisplayCheckListAsThread();
+        }
+
+        public void DisplayCheckListAsThread()
+        {
+            try
+            {
+                string patientGUID = (_patientRow as DataRow)["PatientGUID"].ToString();
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayCheckListProc), patientGUID);
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnDisplayCheckList(string patientGUID)
+        {
+            Result result = CompanyContractBus.GetCheckListByPatient(patientGUID);
+            if (result.IsOK)
+            {
+                MethodInvoker method = delegate
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    lvService.Visible = dt.Rows.Count > 0 ? true : false;
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string code = row["Code"].ToString();
+                        string name = row["Name"].ToString();
+                        ListViewItem item = new ListViewItem(string.Empty, 0);
+                        item.SubItems.Add(code);
+                        item.SubItems.Add(name);
+                        lvService.Items.Add(item);
+                    }
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            else
+            {
+                lvService.Visible = false;
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
+            }
         }
         #endregion
 
@@ -81,5 +137,26 @@ namespace MM.Controls
             dlg.ShowDialog(this);
         }
         #endregion
+
+        #region Working Thread
+        private void OnDisplayCheckListProc(object state)
+        {
+            try
+            {
+                OnDisplayCheckList(state.ToString());
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+        #endregion
     }
+
+
 }

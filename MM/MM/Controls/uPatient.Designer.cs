@@ -29,8 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uPatient));
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lvService = new System.Windows.Forms.ListView();
+            this.colChecked = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imgList = new System.Windows.Forms.ImageList(this.components);
+            this.txtAge = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtThuocDiUng = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtFullAddress = new System.Windows.Forms.TextBox();
@@ -63,8 +71,6 @@
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this._uServiceHistory = new MM.Controls.uServiceHistory();
             this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
-            this.txtAge = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -84,11 +90,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1007, 165);
+            this.panel1.Size = new System.Drawing.Size(1177, 165);
             this.panel1.TabIndex = 0;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lvService);
             this.groupBox1.Controls.Add(this.txtAge);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtThuocDiUng);
@@ -114,10 +121,68 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(997, 155);
+            this.groupBox1.Size = new System.Drawing.Size(1167, 155);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin bệnh nhân";
+            // 
+            // lvService
+            // 
+            this.lvService.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colChecked,
+            this.colCode,
+            this.colName});
+            this.lvService.FullRowSelect = true;
+            this.lvService.GridLines = true;
+            this.lvService.LargeImageList = this.imgList;
+            this.lvService.Location = new System.Drawing.Point(710, 19);
+            this.lvService.MultiSelect = false;
+            this.lvService.Name = "lvService";
+            this.lvService.Size = new System.Drawing.Size(368, 126);
+            this.lvService.SmallImageList = this.imgList;
+            this.lvService.TabIndex = 77;
+            this.lvService.UseCompatibleStateImageBehavior = false;
+            this.lvService.View = System.Windows.Forms.View.Details;
+            this.lvService.Visible = false;
+            // 
+            // colChecked
+            // 
+            this.colChecked.Text = "";
+            this.colChecked.Width = 22;
+            // 
+            // colCode
+            // 
+            this.colCode.Text = "Mã DV";
+            this.colCode.Width = 86;
+            // 
+            // colName
+            // 
+            this.colName.Text = "Tên DV";
+            this.colName.Width = 235;
+            // 
+            // imgList
+            // 
+            this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
+            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgList.Images.SetKeyName(0, "check.gif");
+            // 
+            // txtAge
+            // 
+            this.txtAge.Location = new System.Drawing.Point(604, 19);
+            this.txtAge.Name = "txtAge";
+            this.txtAge.ReadOnly = true;
+            this.txtAge.Size = new System.Drawing.Size(100, 20);
+            this.txtAge.TabIndex = 76;
+            this.txtAge.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(561, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 13);
+            this.label7.TabIndex = 75;
+            this.label7.Text = "Tuổi:";
             // 
             // txtThuocDiUng
             // 
@@ -307,7 +372,7 @@
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(1002, 5);
+            this.panel6.Location = new System.Drawing.Point(1172, 5);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(5, 155);
             this.panel6.TabIndex = 3;
@@ -325,7 +390,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 160);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1007, 5);
+            this.panel4.Size = new System.Drawing.Size(1177, 5);
             this.panel4.TabIndex = 1;
             // 
             // panel3
@@ -333,7 +398,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1007, 5);
+            this.panel3.Size = new System.Drawing.Size(1177, 5);
             this.panel3.TabIndex = 0;
             // 
             // panel2
@@ -342,7 +407,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 165);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1007, 473);
+            this.panel2.Size = new System.Drawing.Size(1177, 473);
             this.panel2.TabIndex = 1;
             // 
             // tabServiceHistory
@@ -355,7 +420,7 @@
             this.tabServiceHistory.Name = "tabServiceHistory";
             this.tabServiceHistory.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabServiceHistory.SelectedTabIndex = 0;
-            this.tabServiceHistory.Size = new System.Drawing.Size(1007, 473);
+            this.tabServiceHistory.Size = new System.Drawing.Size(1177, 473);
             this.tabServiceHistory.Style = DevComponents.DotNetBar.eTabStripStyle.VS2005;
             this.tabServiceHistory.TabIndex = 0;
             this.tabServiceHistory.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
@@ -369,7 +434,7 @@
             this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel2.Name = "tabControlPanel2";
             this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(1007, 448);
+            this.tabControlPanel2.Size = new System.Drawing.Size(1177, 448);
             this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -387,7 +452,7 @@
             this._uDailyServiceHistory.Location = new System.Drawing.Point(1, 1);
             this._uDailyServiceHistory.Name = "_uDailyServiceHistory";
             this._uDailyServiceHistory.PatientRow = null;
-            this._uDailyServiceHistory.Size = new System.Drawing.Size(1005, 446);
+            this._uDailyServiceHistory.Size = new System.Drawing.Size(1175, 446);
             this._uDailyServiceHistory.TabIndex = 0;
             // 
             // pageDailyService
@@ -403,7 +468,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1007, 448);
+            this.tabControlPanel1.Size = new System.Drawing.Size(1177, 448);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -421,7 +486,7 @@
             this._uServiceHistory.Location = new System.Drawing.Point(1, 1);
             this._uServiceHistory.Name = "_uServiceHistory";
             this._uServiceHistory.PatientRow = null;
-            this._uServiceHistory.Size = new System.Drawing.Size(1005, 446);
+            this._uServiceHistory.Size = new System.Drawing.Size(1175, 446);
             this._uServiceHistory.TabIndex = 0;
             // 
             // pageServiceHistory
@@ -430,24 +495,6 @@
             this.pageServiceHistory.Name = "pageServiceHistory";
             this.pageServiceHistory.Text = "Dịch vụ đã sử dụng";
             // 
-            // txtAge
-            // 
-            this.txtAge.Location = new System.Drawing.Point(604, 19);
-            this.txtAge.Name = "txtAge";
-            this.txtAge.ReadOnly = true;
-            this.txtAge.Size = new System.Drawing.Size(100, 20);
-            this.txtAge.TabIndex = 76;
-            this.txtAge.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(561, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 13);
-            this.label7.TabIndex = 75;
-            this.label7.Text = "Tuổi:";
-            // 
             // uPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,7 +502,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uPatient";
-            this.Size = new System.Drawing.Size(1007, 638);
+            this.Size = new System.Drawing.Size(1177, 638);
             this.Load += new System.EventHandler(this.uPatient_Load);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -507,5 +554,10 @@
         private uServiceHistory _uDailyServiceHistory;
         private System.Windows.Forms.TextBox txtAge;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ListView lvService;
+        private System.Windows.Forms.ColumnHeader colCode;
+        private System.Windows.Forms.ColumnHeader colName;
+        private System.Windows.Forms.ImageList imgList;
+        private System.Windows.Forms.ColumnHeader colChecked;
     }
 }
