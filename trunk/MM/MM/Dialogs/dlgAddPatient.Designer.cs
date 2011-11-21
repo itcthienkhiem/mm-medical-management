@@ -132,6 +132,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label2.ForeColor = System.Drawing.Color.Red;
             this.label2.Location = new System.Drawing.Point(217, 196);
             this.label2.Name = "label2";
@@ -150,6 +151,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label19.ForeColor = System.Drawing.Color.Red;
             this.label19.Location = new System.Drawing.Point(278, 17);
             this.label19.Name = "label19";
@@ -169,6 +171,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label20.Location = new System.Drawing.Point(21, 17);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(79, 13);
@@ -178,6 +181,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label22.ForeColor = System.Drawing.Color.Red;
             this.label22.Location = new System.Drawing.Point(416, 99);
             this.label22.Name = "label22";
@@ -196,6 +200,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label18.Location = new System.Drawing.Point(29, 243);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(71, 13);
@@ -213,6 +218,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label17.Location = new System.Drawing.Point(18, 146);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(82, 13);
@@ -230,6 +236,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label16.Location = new System.Drawing.Point(52, 122);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 13);
@@ -247,6 +254,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label15.Location = new System.Drawing.Point(65, 363);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(35, 13);
@@ -265,6 +273,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label14.Location = new System.Drawing.Point(73, 339);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(27, 13);
@@ -274,6 +283,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label13.Location = new System.Drawing.Point(43, 315);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(57, 13);
@@ -292,6 +302,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label12.Location = new System.Drawing.Point(17, 291);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(83, 13);
@@ -310,6 +321,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label11.Location = new System.Drawing.Point(38, 267);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 13);
@@ -328,6 +340,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label10.Location = new System.Drawing.Point(58, 219);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 13);
@@ -346,6 +359,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label9.Location = new System.Drawing.Point(43, 196);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 13);
@@ -369,6 +383,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label8.Location = new System.Drawing.Point(50, 170);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(50, 13);
@@ -386,6 +401,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label4.Location = new System.Drawing.Point(57, 387);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 13);
@@ -403,6 +419,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label1.Location = new System.Drawing.Point(54, 99);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 13);
@@ -412,8 +429,8 @@
             // tabPatient
             // 
             this.tabPatient.CanReorderTabs = true;
-            this.tabPatient.Controls.Add(this.tabControlPanel1);
             this.tabPatient.Controls.Add(this.tabControlPanel2);
+            this.tabPatient.Controls.Add(this.tabControlPanel1);
             this.tabPatient.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabPatient.Location = new System.Drawing.Point(0, 0);
             this.tabPatient.Name = "tabPatient";
@@ -500,6 +517,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label23.Location = new System.Drawing.Point(48, 40);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(52, 13);
@@ -561,42 +579,46 @@
             // chkDangCoThai
             // 
             this.chkDangCoThai.AutoSize = true;
+            this.chkDangCoThai.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkDangCoThai.Location = new System.Drawing.Point(169, 170);
             this.chkDangCoThai.Name = "chkDangCoThai";
             this.chkDangCoThai.Size = new System.Drawing.Size(87, 17);
             this.chkDangCoThai.TabIndex = 70;
             this.chkDangCoThai.Text = "Đang có thai";
-            this.chkDangCoThai.UseVisualStyleBackColor = true;
+            this.chkDangCoThai.UseVisualStyleBackColor = false;
             // 
             // chkChichNguaCum
             // 
             this.chkChichNguaCum.AutoSize = true;
+            this.chkChichNguaCum.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkChichNguaCum.Location = new System.Drawing.Point(15, 170);
             this.chkChichNguaCum.Name = "chkChichNguaCum";
             this.chkChichNguaCum.Size = new System.Drawing.Size(105, 17);
             this.chkChichNguaCum.TabIndex = 69;
             this.chkChichNguaCum.Text = "Chích ngừa cúm";
-            this.chkChichNguaCum.UseVisualStyleBackColor = true;
+            this.chkChichNguaCum.UseVisualStyleBackColor = false;
             // 
             // chkChichNguaUonVan
             // 
             this.chkChichNguaUonVan.AutoSize = true;
+            this.chkChichNguaUonVan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkChichNguaUonVan.Location = new System.Drawing.Point(169, 148);
             this.chkChichNguaUonVan.Name = "chkChichNguaUonVan";
             this.chkChichNguaUonVan.Size = new System.Drawing.Size(124, 17);
             this.chkChichNguaUonVan.TabIndex = 68;
             this.chkChichNguaUonVan.Text = "Chích ngừa uốn ván";
-            this.chkChichNguaUonVan.UseVisualStyleBackColor = true;
+            this.chkChichNguaUonVan.UseVisualStyleBackColor = false;
             // 
             // chkChichNguaViemGanB
             // 
             this.chkChichNguaViemGanB.AutoSize = true;
+            this.chkChichNguaViemGanB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkChichNguaViemGanB.Location = new System.Drawing.Point(15, 148);
             this.chkChichNguaViemGanB.Name = "chkChichNguaViemGanB";
             this.chkChichNguaViemGanB.Size = new System.Drawing.Size(138, 17);
             this.chkChichNguaViemGanB.TabIndex = 67;
             this.chkChichNguaViemGanB.Text = "Chích ngừa viêm gan B";
-            this.chkChichNguaViemGanB.UseVisualStyleBackColor = true;
+            this.chkChichNguaViemGanB.UseVisualStyleBackColor = false;
             // 
             // txtTinhTrangGiaDinh
             // 
@@ -609,6 +631,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label21.Location = new System.Drawing.Point(14, 429);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(99, 13);
@@ -618,22 +641,24 @@
             // chkUongRuou
             // 
             this.chkUongRuou.AutoSize = true;
+            this.chkUongRuou.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkUongRuou.Location = new System.Drawing.Point(169, 125);
             this.chkUongRuou.Name = "chkUongRuou";
             this.chkUongRuou.Size = new System.Drawing.Size(76, 17);
             this.chkUongRuou.TabIndex = 66;
             this.chkUongRuou.Text = "Uống rượu";
-            this.chkUongRuou.UseVisualStyleBackColor = true;
+            this.chkUongRuou.UseVisualStyleBackColor = false;
             // 
             // chkHutThuoc
             // 
             this.chkHutThuoc.AutoSize = true;
+            this.chkHutThuoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkHutThuoc.Location = new System.Drawing.Point(15, 125);
             this.chkHutThuoc.Name = "chkHutThuoc";
             this.chkHutThuoc.Size = new System.Drawing.Size(73, 17);
             this.chkHutThuoc.TabIndex = 65;
             this.chkHutThuoc.Text = "Hút thuốc";
-            this.chkHutThuoc.UseVisualStyleBackColor = true;
+            this.chkHutThuoc.UseVisualStyleBackColor = false;
             // 
             // txtThuocDangDung
             // 
@@ -648,6 +673,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label7.Location = new System.Drawing.Point(25, 366);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(96, 13);
@@ -666,6 +692,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label6.Location = new System.Drawing.Point(75, 342);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(46, 13);
@@ -675,33 +702,36 @@
             // chkBenhKhac
             // 
             this.chkBenhKhac.AutoSize = true;
+            this.chkBenhKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkBenhKhac.Location = new System.Drawing.Point(15, 321);
             this.chkBenhKhac.Name = "chkBenhKhac";
             this.chkBenhKhac.Size = new System.Drawing.Size(78, 17);
             this.chkBenhKhac.TabIndex = 75;
             this.chkBenhKhac.Text = "Bệnh khác";
-            this.chkBenhKhac.UseVisualStyleBackColor = true;
+            this.chkBenhKhac.UseVisualStyleBackColor = false;
             this.chkBenhKhac.CheckedChanged += new System.EventHandler(this.chkBenhKhac_CheckedChanged);
             // 
             // chkHenSuyen
             // 
             this.chkHenSuyen.AutoSize = true;
+            this.chkHenSuyen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkHenSuyen.Location = new System.Drawing.Point(169, 102);
             this.chkHenSuyen.Name = "chkHenSuyen";
             this.chkHenSuyen.Size = new System.Drawing.Size(77, 17);
             this.chkHenSuyen.TabIndex = 64;
             this.chkHenSuyen.Text = "Hen suyễn";
-            this.chkHenSuyen.UseVisualStyleBackColor = true;
+            this.chkHenSuyen.UseVisualStyleBackColor = false;
             // 
             // chkDongKinh
             // 
             this.chkDongKinh.AutoSize = true;
+            this.chkDongKinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkDongKinh.Location = new System.Drawing.Point(15, 102);
             this.chkDongKinh.Name = "chkDongKinh";
             this.chkDongKinh.Size = new System.Drawing.Size(75, 17);
             this.chkDongKinh.TabIndex = 63;
             this.chkDongKinh.Text = "Động kinh";
-            this.chkDongKinh.UseVisualStyleBackColor = true;
+            this.chkDongKinh.UseVisualStyleBackColor = false;
             // 
             // txtCoQuanUngThu
             // 
@@ -715,6 +745,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label5.Location = new System.Drawing.Point(32, 298);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(89, 13);
@@ -724,93 +755,102 @@
             // chkUngThu
             // 
             this.chkUngThu.AutoSize = true;
+            this.chkUngThu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkUngThu.Location = new System.Drawing.Point(15, 276);
             this.chkUngThu.Name = "chkUngThu";
             this.chkUngThu.Size = new System.Drawing.Size(64, 17);
             this.chkUngThu.TabIndex = 73;
             this.chkUngThu.Text = "Ung thư";
-            this.chkUngThu.UseVisualStyleBackColor = true;
+            this.chkUngThu.UseVisualStyleBackColor = false;
             this.chkUngThu.CheckedChanged += new System.EventHandler(this.chkUngThu_CheckedChanged);
             // 
             // chkViemGanDangDieuTri
             // 
             this.chkViemGanDangDieuTri.AutoSize = true;
+            this.chkViemGanDangDieuTri.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkViemGanDangDieuTri.Location = new System.Drawing.Point(169, 79);
             this.chkViemGanDangDieuTri.Name = "chkViemGanDangDieuTri";
             this.chkViemGanDangDieuTri.Size = new System.Drawing.Size(133, 17);
             this.chkViemGanDangDieuTri.TabIndex = 62;
             this.chkViemGanDangDieuTri.Text = "Viêm gan đang điều trị";
-            this.chkViemGanDangDieuTri.UseVisualStyleBackColor = true;
+            this.chkViemGanDangDieuTri.UseVisualStyleBackColor = false;
             // 
             // chkViemGanC
             // 
             this.chkViemGanC.AutoSize = true;
+            this.chkViemGanC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkViemGanC.Location = new System.Drawing.Point(15, 79);
             this.chkViemGanC.Name = "chkViemGanC";
             this.chkViemGanC.Size = new System.Drawing.Size(80, 17);
             this.chkViemGanC.TabIndex = 61;
             this.chkViemGanC.Text = "Viêm gan C";
-            this.chkViemGanC.UseVisualStyleBackColor = true;
+            this.chkViemGanC.UseVisualStyleBackColor = false;
             // 
             // chkViemGanB
             // 
             this.chkViemGanB.AutoSize = true;
+            this.chkViemGanB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkViemGanB.Location = new System.Drawing.Point(169, 56);
             this.chkViemGanB.Name = "chkViemGanB";
             this.chkViemGanB.Size = new System.Drawing.Size(80, 17);
             this.chkViemGanB.TabIndex = 60;
             this.chkViemGanB.Text = "Viêm gan B";
-            this.chkViemGanB.UseVisualStyleBackColor = true;
+            this.chkViemGanB.UseVisualStyleBackColor = false;
             // 
             // chkDaiDuongDangDieuTri
             // 
             this.chkDaiDuongDangDieuTri.AutoSize = true;
+            this.chkDaiDuongDangDieuTri.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkDaiDuongDangDieuTri.Location = new System.Drawing.Point(15, 56);
             this.chkDaiDuongDangDieuTri.Name = "chkDaiDuongDangDieuTri";
             this.chkDaiDuongDangDieuTri.Size = new System.Drawing.Size(139, 17);
             this.chkDaiDuongDangDieuTri.TabIndex = 59;
             this.chkDaiDuongDangDieuTri.Text = "Đái đường đang điều trị";
-            this.chkDaiDuongDangDieuTri.UseVisualStyleBackColor = true;
+            this.chkDaiDuongDangDieuTri.UseVisualStyleBackColor = false;
             // 
             // chkDaiThaoDuong
             // 
             this.chkDaiThaoDuong.AutoSize = true;
+            this.chkDaiThaoDuong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkDaiThaoDuong.Location = new System.Drawing.Point(169, 33);
             this.chkDaiThaoDuong.Name = "chkDaiThaoDuong";
             this.chkDaiThaoDuong.Size = new System.Drawing.Size(100, 17);
             this.chkDaiThaoDuong.TabIndex = 58;
             this.chkDaiThaoDuong.Text = "Đái tháo đường";
-            this.chkDaiThaoDuong.UseVisualStyleBackColor = true;
+            this.chkDaiThaoDuong.UseVisualStyleBackColor = false;
             // 
             // chkBenhLao
             // 
             this.chkBenhLao.AutoSize = true;
+            this.chkBenhLao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkBenhLao.Location = new System.Drawing.Point(15, 33);
             this.chkBenhLao.Name = "chkBenhLao";
             this.chkBenhLao.Size = new System.Drawing.Size(68, 17);
             this.chkBenhLao.TabIndex = 57;
             this.chkBenhLao.Text = "Bệnh lao";
-            this.chkBenhLao.UseVisualStyleBackColor = true;
+            this.chkBenhLao.UseVisualStyleBackColor = false;
             // 
             // chkBenhTimMach
             // 
             this.chkBenhTimMach.AutoSize = true;
+            this.chkBenhTimMach.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkBenhTimMach.Location = new System.Drawing.Point(169, 10);
             this.chkBenhTimMach.Name = "chkBenhTimMach";
             this.chkBenhTimMach.Size = new System.Drawing.Size(96, 17);
             this.chkBenhTimMach.TabIndex = 56;
             this.chkBenhTimMach.Text = "Bệnh tim mạch";
-            this.chkBenhTimMach.UseVisualStyleBackColor = true;
+            this.chkBenhTimMach.UseVisualStyleBackColor = false;
             // 
             // chkDotQuy
             // 
             this.chkDotQuy.AutoSize = true;
+            this.chkDotQuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkDotQuy.Location = new System.Drawing.Point(15, 10);
             this.chkDotQuy.Name = "chkDotQuy";
             this.chkDotQuy.Size = new System.Drawing.Size(63, 17);
             this.chkDotQuy.TabIndex = 55;
             this.chkDotQuy.Text = "Đột quỵ";
-            this.chkDotQuy.UseVisualStyleBackColor = true;
+            this.chkDotQuy.UseVisualStyleBackColor = false;
             // 
             // txtThuocDiUng
             // 
@@ -825,6 +865,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label3.Location = new System.Drawing.Point(48, 215);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(73, 13);
@@ -834,12 +875,13 @@
             // chkDiUngThuoc
             // 
             this.chkDiUngThuoc.AutoSize = true;
+            this.chkDiUngThuoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkDiUngThuoc.Location = new System.Drawing.Point(15, 194);
             this.chkDiUngThuoc.Name = "chkDiUngThuoc";
             this.chkDiUngThuoc.Size = new System.Drawing.Size(87, 17);
             this.chkDiUngThuoc.TabIndex = 71;
             this.chkDiUngThuoc.Text = "Dị ứng thuốc";
-            this.chkDiUngThuoc.UseVisualStyleBackColor = true;
+            this.chkDiUngThuoc.UseVisualStyleBackColor = false;
             this.chkDiUngThuoc.CheckedChanged += new System.EventHandler(this.chkDiUngThuoc_CheckedChanged);
             // 
             // pagePatientHistory

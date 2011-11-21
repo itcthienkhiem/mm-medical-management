@@ -170,6 +170,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label4.Location = new System.Drawing.Point(18, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
@@ -179,12 +180,13 @@
             // chkCompleted
             // 
             this.chkCompleted.AutoSize = true;
+            this.chkCompleted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.chkCompleted.Location = new System.Drawing.Point(21, 112);
             this.chkCompleted.Name = "chkCompleted";
             this.chkCompleted.Size = new System.Drawing.Size(116, 17);
             this.chkCompleted.TabIndex = 4;
             this.chkCompleted.Text = "Hoàn tất hợp đồng";
-            this.chkCompleted.UseVisualStyleBackColor = true;
+            this.chkCompleted.UseVisualStyleBackColor = false;
             // 
             // dtpkBeginDate
             // 
@@ -198,6 +200,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label3.Location = new System.Drawing.Point(18, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 13);
@@ -207,6 +210,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label7.ForeColor = System.Drawing.Color.Red;
             this.label7.Location = new System.Drawing.Point(402, 40);
             this.label7.Name = "label7";
@@ -217,6 +221,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label22.ForeColor = System.Drawing.Color.Red;
             this.label22.Location = new System.Drawing.Point(265, 16);
             this.label22.Name = "label22";
@@ -243,6 +248,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label2.Location = new System.Drawing.Point(18, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(78, 13);
@@ -252,6 +258,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label1.Location = new System.Drawing.Point(18, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 13);
