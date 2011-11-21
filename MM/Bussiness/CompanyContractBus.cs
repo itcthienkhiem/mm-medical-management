@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.Linq;
 using System.Transactions;
 using MM.Common;
@@ -89,8 +90,13 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT S.* FROM Services S, (SELECT DISTINCT(L.ServiceGUID) FROM CompanyContract C, CompanyCheckList L, CompanyMember M WHERE C.CompanyContractGUID = L.CompanyContractGUID AND C.Completed = 'False' AND C.CompanyGUID = M.CompanyGUID AND M.PatientGUID = '{0}' AND M.Status = 0 AND C.BeginDate < GetDate()) AS T WHERE S.ServiceGUID = T.ServiceGUID ORDER BY S.[Name]", patientGUID);
-                return ExcuteQuery(query);
+                //string query = string.Format("SELECT S.* FROM Services S, (SELECT DISTINCT(L.ServiceGUID) FROM CompanyContract C, CompanyCheckList L, CompanyMember M WHERE C.CompanyContractGUID = L.CompanyContractGUID AND C.Completed = 'False' AND C.CompanyGUID = M.CompanyGUID AND M.PatientGUID = '{0}' AND M.Status = 0 AND C.BeginDate < GetDate()) AS T WHERE S.ServiceGUID = T.ServiceGUID ORDER BY S.[Name]", patientGUID);
+                string spName = "spGetCheckList";
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                SqlParameter param = new SqlParameter("@PatientGUID", patientGUID);
+                sqlParams.Add(param);
+
+                return ExcuteQuery(spName, sqlParams);
             }
             catch (System.Data.SqlClient.SqlException se)
             {

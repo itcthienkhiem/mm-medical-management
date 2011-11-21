@@ -515,9 +515,6 @@ namespace MM.Common
         public static List<string> GetSQLServerInstances()
         {
             List<string> instances = new List<string>();
-
-            //SqlDataSourceEnumerator instance = SqlDataSourceEnumerator.Instance;
-            //DataTable table = instance.GetDataSources();
             DataTable dtSQLServer = SmoApplication.EnumAvailableSqlServers(false);
 
             foreach (DataRow row in dtSQLServer.Rows)
