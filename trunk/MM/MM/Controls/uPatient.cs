@@ -101,7 +101,10 @@ namespace MM.Controls
                     {
                         string code = row["Code"].ToString();
                         string name = row["Name"].ToString();
-                        ListViewItem item = new ListViewItem(string.Empty, 1);
+                        bool isChecked = Convert.ToBoolean(row["Checked"]);
+                        int imgIndex = isChecked ? 0 : 1;
+
+                        ListViewItem item = new ListViewItem(string.Empty, imgIndex);
                         item.SubItems.Add(code);
                         item.SubItems.Add(name);
                         lvService.Items.Add(item);
@@ -130,6 +133,7 @@ namespace MM.Controls
         {
             _uServiceHistory.DisplayAsThread();
             _uDailyServiceHistory.DisplayAsThread();
+            DisplayCheckListAsThread();
         }
 
         private void txtThuocDiUng_DoubleClick(object sender, EventArgs e)
