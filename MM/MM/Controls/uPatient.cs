@@ -71,6 +71,7 @@ namespace MM.Controls
         {
             try
             {
+                lvService.Items.Clear();
                 string patientGUID = (_patientRow as DataRow)["PatientGUID"].ToString();
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayCheckListProc), patientGUID);
                 base.ShowWaiting();
