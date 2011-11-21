@@ -6,11 +6,12 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 using MM.Common;
 
 namespace MM.Dialogs
 {
-    public partial class dlgDatabaseConfig : Form
+    public partial class dlgDatabaseConfig : dlgBase
     {
         #region Memnbers
 
@@ -29,7 +30,7 @@ namespace MM.Dialogs
         {
             get
             {
-                if (Global.ConnectionInfo.ServerName.ToLower() != txtServerName.Text.ToLower()) return true;
+                if (Global.ConnectionInfo.ServerName.ToLower() != cboServerName.Text.ToLower()) return true;
                 if (Global.ConnectionInfo.DatabaseName.ToLower() != txtDatabaseName.Text.ToLower()) return true;
                 if (Global.ConnectionInfo.Authentication.ToLower() != cboAuthentication.Text.ToLower()) return true;
                 if (Global.ConnectionInfo.UserName.ToLower() != txtUserName.Text.ToLower()) return true;
@@ -40,15 +41,48 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void DisplaySQLInstancesAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(DisplaySQLInstancesProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void DisplaySQLInstances()
+        {
+            List<string> sqlInstances = Utility.GetSQLServerInstances();
+
+            MethodInvoker method = delegate
+            {
+                foreach (string instance in sqlInstances)
+                {
+                    cboServerName.Items.Add(instance);
+                }
+            };
+
+            if (InvokeRequired) BeginInvoke(method);
+            else method.Invoke();
+        }
+
         private bool CheckInfo()
         {
             bool result = true;
 
-            if (txtServerName.Text == string.Empty)
+            if (cboServerName.Text == string.Empty)
             {
                 result = false;
                 MM.MsgBox.Show(this.Text, "Vui lòng nhập máy chủ.");
-                txtServerName.Focus();
+                cboServerName.Focus();
             }
             else if (txtDatabaseName.Text == string.Empty)
             {
@@ -81,7 +115,7 @@ namespace MM.Dialogs
             try
             {
                 ConnectionInfo connectionInfo = new ConnectionInfo();
-                connectionInfo.ServerName = txtServerName.Text;
+                connectionInfo.ServerName = cboServerName.Text;
                 connectionInfo.DatabaseName = txtDatabaseName.Text;
                 connectionInfo.Authentication = cboAuthentication.Text;
                 connectionInfo.UserName = txtUserName.Text;
@@ -98,7 +132,7 @@ namespace MM.Dialogs
         public void SetAppConfig()
         {
             //Connection Info
-            Global.ConnectionInfo.ServerName = txtServerName.Text;
+            Global.ConnectionInfo.ServerName = cboServerName.Text;
             Global.ConnectionInfo.DatabaseName = txtDatabaseName.Text;
             Global.ConnectionInfo.Authentication = cboAuthentication.Text;
             Global.ConnectionInfo.UserName = txtUserName.Text;
@@ -134,8 +168,10 @@ namespace MM.Dialogs
 
         private void dlgDatabaseConfig_Load(object sender, EventArgs e)
         {
+            DisplaySQLInstancesAsThread();
+
             //Connnection Info
-            txtServerName.Text = Global.ConnectionInfo.ServerName;
+            cboServerName.Text = Global.ConnectionInfo.ServerName;
             txtDatabaseName.Text = Global.ConnectionInfo.DatabaseName;
             txtUserName.Text = Global.ConnectionInfo.UserName;
             txtPassword.Text = Global.ConnectionInfo.Password;
@@ -164,6 +200,25 @@ namespace MM.Dialogs
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        #endregion
+
+        #region Working Thread
+        private void DisplaySQLInstancesProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                DisplaySQLInstances();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
         }
         #endregion
     }
