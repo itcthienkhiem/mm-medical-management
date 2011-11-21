@@ -359,16 +359,16 @@ namespace MM.Common
         {
             List<string> instances = new List<string>();
 
-            SqlDataSourceEnumerator instance = SqlDataSourceEnumerator.Instance;
-            DataTable table = instance.GetDataSources();
-            /*DataTable dtSQLServer = SmoApplication.EnumAvailableSqlServers(false);
+            //SqlDataSourceEnumerator instance = SqlDataSourceEnumerator.Instance;
+            //DataTable table = instance.GetDataSources();
+            DataTable dtSQLServer = SmoApplication.EnumAvailableSqlServers(false);
 
             foreach (DataRow row in dtSQLServer.Rows)
             {
                 string serverName = row[0].ToString().Trim();
                 if (serverName == string.Empty) continue;
                 instances.Add(serverName);
-            }*/
+            }
 
             return instances;
         }
