@@ -100,7 +100,7 @@ namespace MM.Controls
                     {
                         string code = row["Code"].ToString();
                         string name = row["Name"].ToString();
-                        ListViewItem item = new ListViewItem(string.Empty, 0);
+                        ListViewItem item = new ListViewItem(string.Empty, 1);
                         item.SubItems.Add(code);
                         item.SubItems.Add(name);
                         lvService.Items.Add(item);
