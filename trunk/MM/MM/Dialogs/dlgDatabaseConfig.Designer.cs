@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgDatabaseConfig));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboServerName = new System.Windows.Forms.ComboBox();
             this.btnTestConnection = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.cboAuthentication = new System.Windows.Forms.ComboBox();
             this.txtDatabaseName = new System.Windows.Forms.TextBox();
-            this.txtServerName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,12 +48,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboServerName);
             this.groupBox1.Controls.Add(this.btnTestConnection);
             this.groupBox1.Controls.Add(this.txtPassword);
             this.groupBox1.Controls.Add(this.txtUserName);
             this.groupBox1.Controls.Add(this.cboAuthentication);
             this.groupBox1.Controls.Add(this.txtDatabaseName);
-            this.groupBox1.Controls.Add(this.txtServerName);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -65,6 +65,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin kết nối CSDL";
+            // 
+            // cboServerName
+            // 
+            this.cboServerName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboServerName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboServerName.FormattingEnabled = true;
+            this.cboServerName.Location = new System.Drawing.Point(78, 20);
+            this.cboServerName.Name = "cboServerName";
+            this.cboServerName.Size = new System.Drawing.Size(222, 21);
+            this.cboServerName.TabIndex = 1;
             // 
             // btnTestConnection
             // 
@@ -103,7 +113,7 @@
             this.cboAuthentication.Location = new System.Drawing.Point(78, 69);
             this.cboAuthentication.Name = "cboAuthentication";
             this.cboAuthentication.Size = new System.Drawing.Size(222, 21);
-            this.cboAuthentication.TabIndex = 7;
+            this.cboAuthentication.TabIndex = 3;
             this.cboAuthentication.SelectedIndexChanged += new System.EventHandler(this.cboAuthentication_SelectedIndexChanged);
             // 
             // txtDatabaseName
@@ -111,14 +121,7 @@
             this.txtDatabaseName.Location = new System.Drawing.Point(78, 45);
             this.txtDatabaseName.Name = "txtDatabaseName";
             this.txtDatabaseName.Size = new System.Drawing.Size(222, 20);
-            this.txtDatabaseName.TabIndex = 6;
-            // 
-            // txtServerName
-            // 
-            this.txtServerName.Location = new System.Drawing.Point(78, 22);
-            this.txtServerName.Name = "txtServerName";
-            this.txtServerName.Size = new System.Drawing.Size(222, 20);
-            this.txtServerName.TabIndex = 5;
+            this.txtDatabaseName.TabIndex = 2;
             // 
             // label5
             // 
@@ -223,7 +226,6 @@
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.ComboBox cboAuthentication;
         private System.Windows.Forms.TextBox txtDatabaseName;
-        private System.Windows.Forms.TextBox txtServerName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -232,5 +234,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnTestConnection;
+        private System.Windows.Forms.ComboBox cboServerName;
     }
 }
