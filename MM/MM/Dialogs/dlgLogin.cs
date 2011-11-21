@@ -25,6 +25,22 @@ namespace MM.Dialogs
         }
         #endregion
 
+        #region Properties
+        public StaffType StaffType
+        {
+            get
+            {
+                StaffType type = Common.StaffType.Admin;
+                DataTable dt = cboUserName.DataSource as DataTable;
+                DataRow[] rows = dt.Select(string.Format("DocStaffGUID='{0}'", cboUserName.SelectedValue.ToString()));
+                if (rows != null && rows.Length > 0)
+                    type = (StaffType)Convert.ToInt32(rows[0]["StaffType"]);
+
+                return type;
+            }
+        }
+        #endregion
+
         #region UI Command
         private void DisplayUserListAsThread()
         {
@@ -53,6 +69,7 @@ namespace MM.Dialogs
                 DataRow newRow = dt.NewRow();
                 newRow[0] = Const.AdminGUID;
                 newRow[1] = "Admin";
+                newRow[2] = (int)StaffType.Admin;
                 dt.Rows.InsertAt(newRow, 0);
 
                 MethodInvoker method = delegate
@@ -85,6 +102,7 @@ namespace MM.Dialogs
             {
                 Global.UserGUID = cboUserName.SelectedValue.ToString();
                 Global.Fullname = cboUserName.Text;
+                Global.StaffType = StaffType;
             }
         }
         #endregion

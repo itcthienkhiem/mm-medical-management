@@ -11,5 +11,6 @@ namespace MM.Common
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static string UserGUID = string.Empty;
         public static string Fullname = string.Empty;
+        public static StaffType StaffType = Common.StaffType.Admin;
     }
 }

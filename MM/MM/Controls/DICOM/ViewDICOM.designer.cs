@@ -123,13 +123,14 @@
             // 
             // imagePanelControl
             // 
+            this.imagePanelControl.AutoScroll = true;
             this.imagePanelControl.BackColor = System.Drawing.SystemColors.Control;
             this.imagePanelControl.Location = new System.Drawing.Point(185, 9);
             this.imagePanelControl.Name = "imagePanelControl";
             this.imagePanelControl.Size = new System.Drawing.Size(800, 647);
             this.imagePanelControl.TabIndex = 1;
             // 
-            // MainForm
+            // ViewDicom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -145,7 +146,7 @@
             this.Controls.Add(this.bnOpen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "MainForm";
+            this.Name = "ViewDicom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DICOM Image Viewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
