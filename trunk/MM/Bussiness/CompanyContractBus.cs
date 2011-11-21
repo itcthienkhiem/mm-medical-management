@@ -205,122 +205,16 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
 
-                //Insert
-                if (contract.CompanyContractGUID == null || contract.CompanyContractGUID == Guid.Empty)
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    contract.CompanyContractGUID = Guid.NewGuid();
-                    db.CompanyContracts.InsertOnSubmit(contract);
-                    db.SubmitChanges();
-
-                    //Members
-                    if (addedMembers != null && addedMembers.Count > 0)
+                    //Insert
+                    if (contract.CompanyContractGUID == null || contract.CompanyContractGUID == Guid.Empty)
                     {
-                        foreach (string key in addedMembers)
-                        {
-                            ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == key &&
-                                                                                                mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
-                            if (m == null)
-                            {
-                                m = new ContractMember();
-                                m.ContractMemberGUID = Guid.NewGuid();
-                                m.CompanyContractGUID = contract.CompanyContractGUID;
-                                m.CompanyMemberGUID = Guid.Parse(key);
-                                m.CreatedDate = DateTime.Now;
-                                m.CreatedBy = Guid.Parse(Global.UserGUID);
-                                m.Status = (byte)Status.Actived;
-                                db.ContractMembers.InsertOnSubmit(m);
-                            }
-                            else
-                            {
-                                m.Status = (byte)Status.Actived;
-                                m.UpdatedDate = DateTime.Now;
-                                m.UpdatedBy = Guid.Parse(Global.UserGUID);
-                            }
-                        }
-
-                        db.SubmitChanges();
-                    }
-
-                    //Check List
-                    if (addedServices != null && addedServices.Count > 0)
-                    {
-                        foreach (string key in addedServices)
-                        {
-                            CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
-                                                                                                cc.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
-                            if (c == null)
-                            {
-                                c = new CompanyCheckList();
-                                c.CompanyCheckListGUID = Guid.NewGuid();
-                                c.CompanyContractGUID = contract.CompanyContractGUID;
-                                c.ServiceGUID = Guid.Parse(key);
-                                c.CreatedDate = DateTime.Now;
-                                c.CreatedBy = Guid.Parse(Global.UserGUID);
-                                c.Status = (byte)Status.Actived;
-                                db.CompanyCheckLists.InsertOnSubmit(c);
-                            }
-                            else
-                            {
-                                c.Status = (byte)Status.Actived;
-                                c.UpdatedDate = DateTime.Now;
-                                c.UpdatedBy = Guid.Parse(Global.UserGUID);
-                            }
-                        }
-
-                        db.SubmitChanges();
-                    }
-                }
-                else //Update
-                {
-                    CompanyContract con = db.CompanyContracts.SingleOrDefault<CompanyContract>(c => c.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
-                    if (con != null)
-                    {
-                        var contractMembers = from c in db.CompanyContracts
-                                              join m in db.ContractMembers on c.CompanyContractGUID equals m.CompanyContractGUID
-                                              where c.CompanyGUID != contract.CompanyGUID &&
-                                              c.CompanyContractGUID == contract.CompanyContractGUID
-                                              select m;
-
-                        foreach (var c in contractMembers)
-                        {
-                            c.Status = (byte)Status.Deactived;
-                            c.DeletedDate = DateTime.Now;
-                            c.DeletedBy = Guid.Parse(Global.UserGUID);
-                        }
-
-                        con.CompanyGUID = contract.CompanyGUID;
-                        con.ContractCode = contract.ContractCode;
-                        con.ContractName = contract.ContractName;
-                        con.BeginDate = contract.BeginDate;
-                        con.Completed = contract.Completed;
-                        con.CreatedDate = contract.CreatedDate;
-                        con.CreatedBy = contract.CreatedBy;
-                        con.UpdatedDate = contract.UpdatedDate;
-                        con.UpdatedBy = contract.UpdatedBy;
-                        con.DeletedDate = contract.DeletedDate;
-                        con.DeletedBy = contract.DeletedBy;
-                        con.Status = contract.Status;
+                        contract.CompanyContractGUID = Guid.NewGuid();
+                        db.CompanyContracts.InsertOnSubmit(contract);
                         db.SubmitChanges();
 
                         //Members
-
-                        if (deletedMembers != null && deletedMembers.Count > 0)
-                        {
-                            foreach (string key in deletedMembers)
-                            {
-                                ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == key &&
-                                                                        mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
-                                if (m != null)
-                                {
-                                    m.Status = (byte)Status.Deactived;
-                                    m.DeletedDate = DateTime.Now;
-                                    m.DeletedBy = Guid.Parse(Global.UserGUID);
-                                }
-                            }
-
-                            db.SubmitChanges();
-                        }
-
                         if (addedMembers != null && addedMembers.Count > 0)
                         {
                             foreach (string key in addedMembers)
@@ -350,23 +244,6 @@ namespace MM.Bussiness
                         }
 
                         //Check List
-                        if (deletedServices != null && deletedServices.Count > 0)
-                        {
-                            foreach (string key in deletedServices)
-                            {
-                                CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
-                                                                                                    cc.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
-                                if (c != null)
-                                {
-                                    c.Status = (byte)Status.Deactived;
-                                    c.DeletedDate = DateTime.Now;
-                                    c.DeletedBy = Guid.Parse(Global.UserGUID);
-                                }
-                            }
-
-                            db.SubmitChanges();
-                        }
-
                         if (addedServices != null && addedServices.Count > 0)
                         {
                             foreach (string key in addedServices)
@@ -394,10 +271,136 @@ namespace MM.Bussiness
 
                             db.SubmitChanges();
                         }
-
                     }
-                }
+                    else //Update
+                    {
+                        CompanyContract con = db.CompanyContracts.SingleOrDefault<CompanyContract>(c => c.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
+                        if (con != null)
+                        {
+                            var contractMembers = from c in db.CompanyContracts
+                                                  join m in db.ContractMembers on c.CompanyContractGUID equals m.CompanyContractGUID
+                                                  where c.CompanyGUID != contract.CompanyGUID &&
+                                                  c.CompanyContractGUID == contract.CompanyContractGUID
+                                                  select m;
 
+                            foreach (var c in contractMembers)
+                            {
+                                c.Status = (byte)Status.Deactived;
+                                c.DeletedDate = DateTime.Now;
+                                c.DeletedBy = Guid.Parse(Global.UserGUID);
+                            }
+
+                            con.CompanyGUID = contract.CompanyGUID;
+                            con.ContractCode = contract.ContractCode;
+                            con.ContractName = contract.ContractName;
+                            con.BeginDate = contract.BeginDate;
+                            con.Completed = contract.Completed;
+                            con.CreatedDate = contract.CreatedDate;
+                            con.CreatedBy = contract.CreatedBy;
+                            con.UpdatedDate = contract.UpdatedDate;
+                            con.UpdatedBy = contract.UpdatedBy;
+                            con.DeletedDate = contract.DeletedDate;
+                            con.DeletedBy = contract.DeletedBy;
+                            con.Status = contract.Status;
+                            db.SubmitChanges();
+
+                            //Members
+
+                            if (deletedMembers != null && deletedMembers.Count > 0)
+                            {
+                                foreach (string key in deletedMembers)
+                                {
+                                    ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == key &&
+                                                                            mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
+                                    if (m != null)
+                                    {
+                                        m.Status = (byte)Status.Deactived;
+                                        m.DeletedDate = DateTime.Now;
+                                        m.DeletedBy = Guid.Parse(Global.UserGUID);
+                                    }
+                                }
+
+                                db.SubmitChanges();
+                            }
+
+                            if (addedMembers != null && addedMembers.Count > 0)
+                            {
+                                foreach (string key in addedMembers)
+                                {
+                                    ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == key &&
+                                                                                                        mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
+                                    if (m == null)
+                                    {
+                                        m = new ContractMember();
+                                        m.ContractMemberGUID = Guid.NewGuid();
+                                        m.CompanyContractGUID = contract.CompanyContractGUID;
+                                        m.CompanyMemberGUID = Guid.Parse(key);
+                                        m.CreatedDate = DateTime.Now;
+                                        m.CreatedBy = Guid.Parse(Global.UserGUID);
+                                        m.Status = (byte)Status.Actived;
+                                        db.ContractMembers.InsertOnSubmit(m);
+                                    }
+                                    else
+                                    {
+                                        m.Status = (byte)Status.Actived;
+                                        m.UpdatedDate = DateTime.Now;
+                                        m.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                    }
+                                }
+
+                                db.SubmitChanges();
+                            }
+
+                            //Check List
+                            if (deletedServices != null && deletedServices.Count > 0)
+                            {
+                                foreach (string key in deletedServices)
+                                {
+                                    CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
+                                                                                                        cc.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
+                                    if (c != null)
+                                    {
+                                        c.Status = (byte)Status.Deactived;
+                                        c.DeletedDate = DateTime.Now;
+                                        c.DeletedBy = Guid.Parse(Global.UserGUID);
+                                    }
+                                }
+
+                                db.SubmitChanges();
+                            }
+
+                            if (addedServices != null && addedServices.Count > 0)
+                            {
+                                foreach (string key in addedServices)
+                                {
+                                    CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
+                                                                                                        cc.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
+                                    if (c == null)
+                                    {
+                                        c = new CompanyCheckList();
+                                        c.CompanyCheckListGUID = Guid.NewGuid();
+                                        c.CompanyContractGUID = contract.CompanyContractGUID;
+                                        c.ServiceGUID = Guid.Parse(key);
+                                        c.CreatedDate = DateTime.Now;
+                                        c.CreatedBy = Guid.Parse(Global.UserGUID);
+                                        c.Status = (byte)Status.Actived;
+                                        db.CompanyCheckLists.InsertOnSubmit(c);
+                                    }
+                                    else
+                                    {
+                                        c.Status = (byte)Status.Actived;
+                                        c.UpdatedDate = DateTime.Now;
+                                        c.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                    }
+                                }
+
+                                db.SubmitChanges();
+                            }
+
+                        }
+                    }
+                    t.Complete();
+                }
             }
             catch (System.Data.SqlClient.SqlException se)
             {
