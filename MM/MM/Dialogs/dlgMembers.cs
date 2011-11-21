@@ -19,21 +19,27 @@ namespace MM.Dialogs
         private DataTable _dataSource = null;
         private bool _isContractMember = false;
         private string _companyGUID = string.Empty;
+        private List<string> _addedMembers = null;
+        private List<DataRow> _deletedMemberRows = null;
         #endregion
 
         #region Constructor
-        public dlgMembers(string companyGUID)
+        public dlgMembers(string companyGUID, List<string> addedMembers, List<DataRow> deletedMemberRows)
         {
             InitializeComponent();
+            _addedMembers = addedMembers;
+            _deletedMemberRows = deletedMemberRows;
             _isContractMember = true;
             _companyGUID = companyGUID;
             if (_companyGUID == string.Empty)
                 _companyGUID = Guid.Empty.ToString();
         }
 
-        public dlgMembers()
+        public dlgMembers(List<string> addedMembers, List<DataRow> deletedMemberRows)
         {
             InitializeComponent();
+            _addedMembers = addedMembers;
+            _deletedMemberRows = deletedMemberRows;
         }
         #endregion
 
@@ -78,12 +84,51 @@ namespace MM.Dialogs
             }
         }
 
+        private DataTable GetDataSource(DataTable dt)
+        {
+            string fieldName = _isContractMember ? "CompanyMemberGUID" : "PatientGUID";
+
+            //Delete
+            List<DataRow> deletedRows = new List<DataRow>();
+            foreach (string key in _addedMembers)
+            {
+                DataRow[] rows = dt.Select(string.Format("{0}='{1}'", fieldName, key));
+                if (rows == null || rows.Length <= 0) continue;
+
+                deletedRows.AddRange(rows);
+            }
+
+            foreach (DataRow row in deletedRows)
+            {
+                dt.Rows.Remove(row);
+            }
+
+            //Add
+            foreach (DataRow row in _deletedMemberRows)
+            {
+                string key = row[fieldName].ToString();
+                DataRow[] rows = dt.Select(string.Format("{0}='{1}'" , fieldName, key));
+                if (rows != null && rows.Length > 0) continue;
+
+                DataRow newRow = dt.NewRow();
+                newRow["Checked"] = false;
+                newRow[fieldName] = key;
+                newRow["FileNum"] = row["FileNum"];
+                newRow["FullName"] = row["FullName"];
+                newRow["DobStr"] = row["DobStr"];
+                newRow["GenderAsStr"] = row["GenderAsStr"];
+                dt.Rows.Add(newRow);
+            }
+
+            return dt;
+        }
+
         private void OnDisplayPatientList()
         {
             Result result;
 
             if (!_isContractMember)
-                result = PatientBus.GetPatientList();
+                result = PatientBus.GetPatientListNotInCompany();
             else
                 result = CompanyBus.GetCompanyMemberList(_companyGUID);
 
@@ -91,7 +136,7 @@ namespace MM.Dialogs
             {
                 MethodInvoker method = delegate
                 {
-                    _dataSource = result.QueryResult as DataTable;
+                    _dataSource = GetDataSource((DataTable)result.QueryResult);//result.QueryResult as DataTable;
                     dgMembers.DataSource = _dataSource;
                 };
 

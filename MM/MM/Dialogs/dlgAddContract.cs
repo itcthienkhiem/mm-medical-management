@@ -23,6 +23,7 @@ namespace MM.Dialogs
         //private List<string> _deletedMembers = new List<string>();
         private List<string> _addedServices = new List<string>();
         private List<string> _deletedServices = new List<string>();
+        private List<DataRow> _deletedServiceRows = new List<DataRow>();
         private Hashtable _htCompanyMember = new Hashtable();
         private CompanyMember _selectedCompanyMember = null;
         #endregion
@@ -303,7 +304,8 @@ namespace MM.Dialogs
                 cboCompany.Focus();
                 return;
             }
-            dlgMembers dlg = new dlgMembers(cboCompany.SelectedValue.ToString());
+
+            dlgMembers dlg = new dlgMembers(cboCompany.SelectedValue.ToString(), _selectedCompanyMember.AddedMembers, _selectedCompanyMember.DeletedMemberRows);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 List<DataRow> checkedRows = dlg.Members;
@@ -327,6 +329,14 @@ namespace MM.Dialogs
                             _selectedCompanyMember.AddedMembers.Add(companyMemberGUID);
 
                         _selectedCompanyMember.DeletedMembers.Remove(companyMemberGUID);
+                        foreach (DataRow r in _selectedCompanyMember.DeletedMemberRows)
+                        {
+                            if (r["CompanyMemberGUID"].ToString() == companyMemberGUID)
+                            {
+                                _selectedCompanyMember.DeletedMemberRows.Remove(r);
+                                break;
+                            }
+                        }
                     }
                 }
             }
@@ -354,7 +364,12 @@ namespace MM.Dialogs
                     {
                         string companyMemberGUID = row["CompanyMemberGUID"].ToString();
                         if (!_selectedCompanyMember.DeletedMembers.Contains(companyMemberGUID))
+                        {
                             _selectedCompanyMember.DeletedMembers.Add(companyMemberGUID);
+                            DataRow r = dt.NewRow();
+                            r.ItemArray = row.ItemArray;
+                            _selectedCompanyMember.DeletedMemberRows.Add(r);
+                        }
 
                         _selectedCompanyMember.AddedMembers.Remove(companyMemberGUID);
 
@@ -368,7 +383,7 @@ namespace MM.Dialogs
 
         private void OnAddService()
         {
-            dlgServices dlg = new dlgServices();
+            dlgServices dlg = new dlgServices(_contract.CompanyContractGUID.ToString(), _addedServices, _deletedServiceRows);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 List<DataRow> checkedRows = dlg.Services;
@@ -392,6 +407,14 @@ namespace MM.Dialogs
                             _addedServices.Add(serviceGUID);
 
                         _deletedServices.Remove(serviceGUID);
+                        foreach (DataRow r in _deletedServiceRows)
+                        {
+                            if (r["ServiceGUID"].ToString() == serviceGUID)
+                            {
+                                _deletedServiceRows.Remove(r);
+                                break;
+                            }
+                        }
                     }
                 }
             }
@@ -419,7 +442,12 @@ namespace MM.Dialogs
                     {
                         string serviceGUID = row["ServiceGUID"].ToString();
                         if (!_deletedServices.Contains(serviceGUID))
+                        {
                             _deletedServices.Add(serviceGUID);
+                            DataRow r = dt.NewRow();
+                            r.ItemArray = row.ItemArray;
+                            _deletedServiceRows.Add(r);
+                        }
 
                         _addedServices.Remove(serviceGUID);
 
@@ -552,5 +580,6 @@ namespace MM.Dialogs
         public DataTable DataSource = null;
         public List<string> AddedMembers = new List<string>();
         public List<string> DeletedMembers = new List<string>();
+        public List<DataRow> DeletedMemberRows = new List<DataRow>();
     }
 }

@@ -20,6 +20,7 @@ namespace MM.Dialogs
         private Company _company = new Company();
         private List<string> _addedPatients = new List<string>();
         private List<string> _deletedPatients = new List<string>();
+        private List<DataRow> _deletedPatientRows = new List<DataRow>();
         #endregion
 
         #region Constructor
@@ -222,7 +223,7 @@ namespace MM.Dialogs
 
         private void OnAddMember()
         {
-            dlgMembers dlg = new dlgMembers();
+            dlgMembers dlg = new dlgMembers(_addedPatients, _deletedPatientRows);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 List<DataRow> checkedRows = dlg.Members;
@@ -246,6 +247,14 @@ namespace MM.Dialogs
                             _addedPatients.Add(patientGUID);
 
                         _deletedPatients.Remove(patientGUID);
+                        foreach (DataRow r in _deletedPatientRows)
+                        {
+                            if (r["PatientGUID"].ToString() == patientGUID)
+                            {
+                                _deletedPatientRows.Remove(r);
+                                break;
+                            }
+                        }
                     }
                 }
             }
@@ -273,7 +282,13 @@ namespace MM.Dialogs
                     {
                         string patientGUID = row["PatientGUID"].ToString();
                         if (!_deletedPatients.Contains(patientGUID))
+                        {
                             _deletedPatients.Add(patientGUID);
+
+                            DataRow r = dt.NewRow();
+                            r.ItemArray = row.ItemArray;
+                            _deletedPatientRows.Add(r);
+                        }
 
                         _addedPatients.Remove(patientGUID);
 
