@@ -63,6 +63,8 @@
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this._uServiceHistory = new MM.Controls.uServiceHistory();
             this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
+            this.txtAge = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -87,6 +89,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtAge);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtThuocDiUng);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtFullAddress);
@@ -173,7 +177,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(494, 47);
+            this.label13.Location = new System.Drawing.Point(391, 47);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 35;
@@ -181,18 +185,18 @@
             // 
             // txtMobile
             // 
-            this.txtMobile.Location = new System.Drawing.Point(552, 44);
+            this.txtMobile.Location = new System.Drawing.Point(449, 44);
             this.txtMobile.MaxLength = 50;
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.ReadOnly = true;
-            this.txtMobile.Size = new System.Drawing.Size(152, 20);
+            this.txtMobile.Size = new System.Drawing.Size(107, 20);
             this.txtMobile.TabIndex = 31;
             this.txtMobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(248, 47);
+            this.label12.Location = new System.Drawing.Point(197, 47);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(83, 13);
             this.label12.TabIndex = 34;
@@ -204,7 +208,7 @@
             this.txtHomePhone.MaxLength = 50;
             this.txtHomePhone.Name = "txtHomePhone";
             this.txtHomePhone.ReadOnly = true;
-            this.txtHomePhone.Size = new System.Drawing.Size(152, 20);
+            this.txtHomePhone.Size = new System.Drawing.Size(100, 20);
             this.txtHomePhone.TabIndex = 29;
             this.txtHomePhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -219,27 +223,27 @@
             // 
             // txtWorkPhone
             // 
-            this.txtWorkPhone.Location = new System.Drawing.Point(334, 44);
+            this.txtWorkPhone.Location = new System.Drawing.Point(283, 44);
             this.txtWorkPhone.MaxLength = 50;
             this.txtWorkPhone.Name = "txtWorkPhone";
             this.txtWorkPhone.ReadOnly = true;
-            this.txtWorkPhone.Size = new System.Drawing.Size(152, 20);
+            this.txtWorkPhone.Size = new System.Drawing.Size(100, 20);
             this.txtWorkPhone.TabIndex = 30;
             this.txtWorkPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtIdentityCard
             // 
-            this.txtIdentityCard.Location = new System.Drawing.Point(605, 19);
+            this.txtIdentityCard.Location = new System.Drawing.Point(604, 44);
             this.txtIdentityCard.Name = "txtIdentityCard";
             this.txtIdentityCard.ReadOnly = true;
-            this.txtIdentityCard.Size = new System.Drawing.Size(99, 20);
+            this.txtIdentityCard.Size = new System.Drawing.Size(100, 20);
             this.txtIdentityCard.TabIndex = 9;
             this.txtIdentityCard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(562, 22);
+            this.label5.Location = new System.Drawing.Point(561, 47);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(42, 13);
             this.label5.TabIndex = 8;
@@ -252,6 +256,7 @@
             this.txtDOB.ReadOnly = true;
             this.txtDOB.Size = new System.Drawing.Size(76, 20);
             this.txtDOB.TabIndex = 7;
+            this.txtDOB.Tag = "";
             this.txtDOB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
@@ -425,6 +430,24 @@
             this.pageServiceHistory.Name = "pageServiceHistory";
             this.pageServiceHistory.Text = "Dịch vụ đã sử dụng";
             // 
+            // txtAge
+            // 
+            this.txtAge.Location = new System.Drawing.Point(604, 19);
+            this.txtAge.Name = "txtAge";
+            this.txtAge.ReadOnly = true;
+            this.txtAge.Size = new System.Drawing.Size(100, 20);
+            this.txtAge.TabIndex = 76;
+            this.txtAge.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(561, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 13);
+            this.label7.TabIndex = 75;
+            this.label7.Text = "Tuổi:";
+            // 
             // uPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -482,5 +505,7 @@
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel2;
         private DevComponents.DotNetBar.TabItem pageDailyService;
         private uServiceHistory _uDailyServiceHistory;
+        private System.Windows.Forms.TextBox txtAge;
+        private System.Windows.Forms.Label label7;
     }
 }
