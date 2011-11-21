@@ -10,6 +10,7 @@ namespace MM.Common
         Doctor = 0,
         Nurse,
         Reception,
-        Patient
+        Patient,
+        Admin
     }
 }
