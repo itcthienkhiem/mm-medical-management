@@ -169,6 +169,12 @@
     <Compile Include="Controls\uPatientList.Designer.cs">
       <DependentUpon>uPatientList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPermission.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPermission.Designer.cs">
+      <DependentUpon>uPermission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uSearchPatient.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -247,11 +253,23 @@
     <Compile Include="Dialogs\dlgAddSymptom.Designer.cs">
       <DependentUpon>dlgAddSymptom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddUserLogon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddUserLogon.Designer.cs">
+      <DependentUpon>dlgAddUserLogon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgBase.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\dlgBase.Designer.cs">
       <DependentUpon>dlgBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgChangePassword.Designer.cs">
+      <DependentUpon>dlgChangePassword.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgDatabaseConfig.cs">
       <SubType>Form</SubType>
@@ -358,6 +376,9 @@
     <EmbeddedResource Include="Controls\uPatientList.resx">
       <DependentUpon>uPatientList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPermission.resx">
+      <DependentUpon>uPermission.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSearchPatient.resx">
       <DependentUpon>uSearchPatient.cs</DependentUpon>
     </EmbeddedResource>
@@ -396,6 +417,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddSymptom.resx">
       <DependentUpon>dlgAddSymptom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddUserLogon.resx">
+      <DependentUpon>dlgAddUserLogon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgChangePassword.resx">
+      <DependentUpon>dlgChangePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgDatabaseConfig.resx">
       <DependentUpon>dlgDatabaseConfig.cs</DependentUpon>
@@ -452,6 +479,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -493,6 +521,8 @@
     <Content Include="Components\SpreadsheetGear.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\1321933963_change_password.png" />
+    <None Include="Resources\users_2.png" />
     <None Include="Resources\Printer-icon.png" />
     <None Include="Resources\Printer-icon %281%29.png" />
     <None Include="Resources\Contract-icon.png" />

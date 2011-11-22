@@ -10,7 +10,9 @@ namespace MM.Common
         public static string AppConfig = string.Format("{0}\\App.cfg", AppDomain.CurrentDomain.BaseDirectory);
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static string UserGUID = string.Empty;
+        public static string LogonGUID = string.Empty;
         public static string Fullname = string.Empty;
+        public static string Password = string.Empty;
         public static StaffType StaffType = Common.StaffType.Admin;
     }
 }

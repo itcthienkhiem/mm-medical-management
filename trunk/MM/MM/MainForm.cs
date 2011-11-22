@@ -125,6 +125,8 @@ namespace MM
                 _uCompanyList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uContractList))
                 _uContractList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uPermission))
+                _uPermission.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -141,27 +143,37 @@ namespace MM
 
         private void RefreshFunction(bool isLogin)
         {
-            servicesToolStripMenuItem.Enabled = isLogin;
-            tbServiceList.Enabled = isLogin;
+            if (Global.StaffType == StaffType.Admin)
+            {
+                servicesToolStripMenuItem.Enabled = isLogin;
+                tbServiceList.Enabled = isLogin;
 
-            doctorToolStripMenuItem.Enabled = isLogin;
-            tbDoctorList.Enabled = isLogin;
+                doctorToolStripMenuItem.Enabled = isLogin;
+                tbDoctorList.Enabled = isLogin;
 
-            patientToolStripMenuItem.Enabled = isLogin;
-            tbPatientList.Enabled = isLogin;
-            tbOpenPatient.Enabled = isLogin;
+                patientToolStripMenuItem.Enabled = isLogin;
+                tbPatientList.Enabled = isLogin;
+                tbOpenPatient.Enabled = isLogin;
 
-            specialityToolStripMenuItem.Enabled = isLogin;
-            tbSpecialityList.Enabled = isLogin;
+                specialityToolStripMenuItem.Enabled = isLogin;
+                tbSpecialityList.Enabled = isLogin;
 
-            symptomToolStripMenuItem.Enabled = isLogin;
-            tbSympton.Enabled = isLogin;
+                symptomToolStripMenuItem.Enabled = isLogin;
+                tbSympton.Enabled = isLogin;
 
-            companyToolStripMenuItem.Enabled = isLogin;
-            tbCompanyList.Enabled = isLogin;
-            tbContractList.Enabled = isLogin;
+                companyToolStripMenuItem.Enabled = isLogin;
+                tbCompanyList.Enabled = isLogin;
+                tbContractList.Enabled = isLogin;
 
-            toolsToolStripMenuItem.Enabled = isLogin;
+                toolsToolStripMenuItem.Enabled = isLogin;
+
+                changePasswordToolStripMenuItem.Enabled = isLogin;
+                permissionToolStripMenuItem.Enabled = isLogin;
+            }
+            else
+            {
+
+            }
         }
 
         private void ExcuteCmd(string cmd)
@@ -228,7 +240,28 @@ namespace MM
                 case "DICOM":
                     OnDicom();
                     break;
+
+                case "Change Password":
+                    OnChangePassword();
+                    break;
+
+                case "Permission":
+                    OnPermission();
+                    break;
             }
+        }
+
+        private void OnChangePassword()
+        {
+            dlgChangePassword dlg = new dlgChangePassword();
+            dlg.ShowDialog();
+        }
+
+        private void OnPermission()
+        {
+            this.Text = string.Format("{0} - Phan quyen", Application.ProductName);
+            ViewControl(_uPermission);
+            _uPermission.DisplayAsThread();
         }
 
         private void OnDicom()
@@ -345,6 +378,8 @@ namespace MM
                 _uCompanyList.ClearData();
             else if (ctrl.GetType() == typeof(uContractList))
                 _uContractList.ClearData();
+            else if (ctrl.GetType() == typeof(uPermission))
+                _uPermission.ClearData();
         }
 
         private void OnDoctorList()

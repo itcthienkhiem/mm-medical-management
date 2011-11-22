@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgLogin));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -36,7 +37,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.userViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -64,12 +67,15 @@
             // 
             this.cboUserName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboUserName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboUserName.DataSource = this.userViewBindingSource;
+            this.cboUserName.DisplayMember = "FullName";
             this.cboUserName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUserName.FormattingEnabled = true;
             this.cboUserName.Location = new System.Drawing.Point(97, 22);
             this.cboUserName.Name = "cboUserName";
             this.cboUserName.Size = new System.Drawing.Size(214, 21);
             this.cboUserName.TabIndex = 2;
+            this.cboUserName.ValueMember = "DocStaffGUID";
             // 
             // label2
             // 
@@ -113,6 +119,10 @@
             this.btnOK.Text = "     &Đăng nhập";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // userViewBindingSource
+            // 
+            this.userViewBindingSource.DataSource = typeof(MM.Databasae.UserView);
+            // 
             // dlgLogin
             // 
             this.AcceptButton = this.btnOK;
@@ -135,6 +145,7 @@
             this.Load += new System.EventHandler(this.dlgLogin_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -148,5 +159,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.BindingSource userViewBindingSource;
     }
 }
