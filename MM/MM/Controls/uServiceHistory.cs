@@ -53,6 +53,11 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
+        }
+
         private void OnAdd()
         {
             dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID);
@@ -199,6 +204,7 @@ namespace MM.Controls
 
         public void DisplayAsThread()
         {
+            UpdateGUI();
             if (_patientRow == null) return;
 
                 //if (!raAll.Checked && _fromDate.ToString("dd/MM/yyyy") == dtpkFromDate.Value.ToString("dd/MM/yyyy") &&

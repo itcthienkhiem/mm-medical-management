@@ -11,6 +11,7 @@ using System.Threading;
 using MM.Common;
 using MM.Controls;
 using MM.Dialogs;
+using MM.Bussiness;
 using DicomImageViewer;
 
 namespace MM
@@ -143,36 +144,145 @@ namespace MM
 
         private void RefreshFunction(bool isLogin)
         {
-            if (Global.StaffType == StaffType.Admin)
+            if (Global.StaffType != StaffType.Admin)
             {
-                servicesToolStripMenuItem.Enabled = isLogin;
-                tbServiceList.Enabled = isLogin;
+                Result result = LogonBus.GetPermission(Global.LogonGUID);
+                if (result.IsOK)
+                {
+                    DataTable dtPermission = result.QueryResult as DataTable;
+                    foreach (DataRow row in dtPermission.Rows)
+                    {
+                        string functionCode = row["FunctionCode"].ToString();
+                        bool isView = Convert.ToBoolean(row["IsView"]);
+                        bool isAdd = Convert.ToBoolean(row["IsAdd"]);
+                        bool isEdit = Convert.ToBoolean(row["IsEdit"]);
+                        bool isDelete = Convert.ToBoolean(row["IsDelete"]);
+                        bool isPrint = Convert.ToBoolean(row["IsPrint"]);
+                        bool isExport = Convert.ToBoolean(row["IsExport"]);
 
-                doctorToolStripMenuItem.Enabled = isLogin;
-                tbDoctorList.Enabled = isLogin;
-
-                patientToolStripMenuItem.Enabled = isLogin;
-                tbPatientList.Enabled = isLogin;
-                tbOpenPatient.Enabled = isLogin;
-
-                specialityToolStripMenuItem.Enabled = isLogin;
-                tbSpecialityList.Enabled = isLogin;
-
-                symptomToolStripMenuItem.Enabled = isLogin;
-                tbSympton.Enabled = isLogin;
-
-                companyToolStripMenuItem.Enabled = isLogin;
-                tbCompanyList.Enabled = isLogin;
-                tbContractList.Enabled = isLogin;
-
-                toolsToolStripMenuItem.Enabled = isLogin;
-                permissionToolStripMenuItem.Enabled = isLogin;
+                        if (functionCode == Const.DocStaff)
+                        {
+                            doctorListToolStripMenuItem.Enabled = isView;
+                            tbDoctorList.Enabled = isView;
+                            _uDocStaffList.AllowAdd = isAdd;
+                            _uDocStaffList.AllowEdit = isEdit;
+                            _uDocStaffList.AllowDelete = isDelete;
+                            _uDocStaffList.AllowPrint = isPrint;
+                            _uDocStaffList.AllowExport = isExport;
+                        }
+                        else if (functionCode == Const.Patient)
+                        {
+                            patientListToolStripMenuItem.Enabled = isView;
+                            tbPatientList.Enabled = isView;
+                            _uPatientList.AllowAdd = isAdd;
+                            _uPatientList.AllowEdit = isEdit;
+                            _uPatientList.AllowDelete = isDelete;
+                            _uPatientList.AllowPrint = isPrint;
+                            _uPatientList.AllowExport = isExport;
+                        }
+                        else if (functionCode == Const.Speciality)
+                        {
+                            specialityListToolStripMenuItem.Enabled = isView;
+                            tbSpecialityList.Enabled = isView;
+                            _uSpecialityList.AllowAdd = isAdd;
+                            _uSpecialityList.AllowEdit = isEdit;
+                            _uSpecialityList.AllowDelete = isDelete;
+                            _uSpecialityList.AllowPrint = isPrint;
+                            _uSpecialityList.AllowExport = isExport;
+                        }
+                        else if (functionCode == Const.Company)
+                        {
+                            companyListToolStripMenuItem.Enabled = isView;
+                            tbCompanyList.Enabled = isView;
+                            _uCompanyList.AllowAdd = isAdd;
+                            _uCompanyList.AllowEdit = isEdit;
+                            _uCompanyList.AllowDelete = isDelete;
+                            _uCompanyList.AllowPrint = isPrint;
+                            _uCompanyList.AllowExport = isExport;
+                        }
+                        else if (functionCode == Const.Services)
+                        {
+                            serviceListToolStripMenuItem.Enabled = isView;
+                            tbServiceList.Enabled = isView;
+                            _uServicesList.AllowAdd = isAdd;
+                            _uServicesList.AllowEdit = isEdit;
+                            _uServicesList.AllowDelete = isDelete;
+                            _uServicesList.AllowPrint = isPrint;
+                            _uServicesList.AllowExport = isExport;
+                        }
+                        else if (functionCode == Const.ServicePrice)
+                        {
+                            _uServicesList.AllowShowServicePrice = isView;
+                            Global.AllowShowServiePrice = isView;
+                        }
+                        else if (functionCode == Const.Contract)
+                        {
+                            contractListToolStripMenuItem.Enabled = isView;
+                            tbContractList.Enabled = isView;
+                            _uContractList.AllowAdd = isAdd;
+                            _uContractList.AllowEdit = isEdit;
+                            _uContractList.AllowDelete = isDelete;
+                            _uContractList.AllowPrint = isPrint;
+                            _uContractList.AllowExport = isExport;
+                        }
+                        else if (functionCode == Const.OpenPatient)
+                        {
+                            openPatientToolStripMenuItem.Enabled = isView;
+                            tbOpenPatient.Enabled = isView;
+                            _uPatientList.AllowOpenPatient = isView;
+                        }
+                        else if (functionCode == Const.Permission)
+                        {
+                            permissionToolStripMenuItem.Enabled = isView;
+                            _uPermission.AllowAdd = isAdd;
+                            _uPermission.AllowEdit = isEdit;
+                            _uPermission.AllowDelete = isDelete;
+                            _uPermission.AllowPrint = isPrint;
+                            _uPermission.AllowExport = isExport;
+                        }
+                        else if (functionCode == Const.Symptom)
+                        {
+                            symptomListToolStripMenuItem.Enabled = isView;
+                            tbSympton.Enabled = isView;
+                            _uSymptomList.AllowAdd = isAdd;
+                            _uSymptomList.AllowEdit = isEdit;
+                            _uSymptomList.AllowDelete = isDelete;
+                            _uSymptomList.AllowPrint = isPrint;
+                            _uSymptomList.AllowExport = isExport;
+                        }
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("LogonBus.GetPermission"));
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.GetPermission"));
+                }
             }
             else
-            {
+                permissionToolStripMenuItem.Enabled = isLogin;
 
-            }
+            servicesToolStripMenuItem.Enabled = isLogin;
+            tbServiceList.Enabled = isLogin;
 
+            doctorToolStripMenuItem.Enabled = isLogin;
+            tbDoctorList.Enabled = isLogin;
+
+            patientToolStripMenuItem.Enabled = isLogin;
+            tbPatientList.Enabled = isLogin;
+            tbOpenPatient.Enabled = isLogin;
+
+            specialityToolStripMenuItem.Enabled = isLogin;
+            tbSpecialityList.Enabled = isLogin;
+
+            symptomToolStripMenuItem.Enabled = isLogin;
+            tbSympton.Enabled = isLogin;
+
+            companyToolStripMenuItem.Enabled = isLogin;
+            tbCompanyList.Enabled = isLogin;
+            tbContractList.Enabled = isLogin;
+
+            toolsToolStripMenuItem.Enabled = isLogin;
+            
             changePasswordToolStripMenuItem.Enabled = isLogin;
         }
 

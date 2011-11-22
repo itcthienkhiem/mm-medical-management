@@ -583,58 +583,58 @@
     <value>592, 17</value>
   </metadata>
   <data name="databaseConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>161, 30</value>
   </data>
   <data name="databaseConfigurationToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình CSDL</value>
   </data>
-  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
-  </data>
-  <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
-  </data>
-  <data name="loginToolStripMenuItem.Text" xml:space="preserve">
-    <value>Đăng nhập</value>
-  </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
-  </data>
-  <data name="changePasswordToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="changePasswordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
-  </data>
-  <data name="changePasswordToolStripMenuItem.Text" xml:space="preserve">
-    <value>Đổi mật khẩu</value>
+    <value>158, 6</value>
   </data>
   <data name="permissionToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="permissionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>161, 30</value>
   </data>
   <data name="permissionToolStripMenuItem.Text" xml:space="preserve">
     <value>Phân quyền</value>
   </data>
+  <data name="changePasswordToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="changePasswordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 30</value>
+  </data>
+  <data name="changePasswordToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đổi mật khẩu</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 6</value>
+  </data>
+  <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 30</value>
+  </data>
+  <data name="loginToolStripMenuItem.Text" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>158, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>161, 30</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Thoát</value>
   </data>
   <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
+    <value>69, 20</value>
   </data>
   <data name="systemToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Hệ thống</value>
   </data>
   <data name="serviceListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 22</value>
+    <value>171, 22</value>
   </data>
   <data name="serviceListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục dịch vụ</value>
@@ -643,13 +643,13 @@
     <value>False</value>
   </data>
   <data name="servicesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 20</value>
+    <value>59, 20</value>
   </data>
   <data name="servicesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Dịch vụ</value>
   </data>
   <data name="specialityListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>200, 22</value>
   </data>
   <data name="specialityListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục chuyên khoa</value>
@@ -658,7 +658,7 @@
     <value>False</value>
   </data>
   <data name="specialityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 20</value>
+    <value>89, 20</value>
   </data>
   <data name="specialityToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Chuyên khoa</value>
@@ -673,7 +673,7 @@
     <value>False</value>
   </data>
   <data name="doctorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 20</value>
+    <value>49, 20</value>
   </data>
   <data name="doctorToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Bác sĩ</value>
@@ -697,22 +697,22 @@
     <value>False</value>
   </data>
   <data name="patientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
+    <value>76, 20</value>
   </data>
   <data name="patientToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Bệnh nhân</value>
   </data>
   <data name="companyListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>184, 22</value>
   </data>
   <data name="companyListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục công ty</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="contractListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>184, 22</value>
   </data>
   <data name="contractListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục hợp đồng</value>
@@ -721,13 +721,13 @@
     <value>False</value>
   </data>
   <data name="companyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
+    <value>61, 20</value>
   </data>
   <data name="companyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Công ty</value>
   </data>
   <data name="symptomListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>193, 22</value>
   </data>
   <data name="symptomListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục triệu chứng</value>
@@ -736,13 +736,13 @@
     <value>False</value>
   </data>
   <data name="symptomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
+    <value>83, 20</value>
   </data>
   <data name="symptomToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Triệu chứng</value>
   </data>
   <data name="dICOMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 22</value>
+    <value>113, 22</value>
   </data>
   <data name="dICOMToolStripMenuItem.Text" xml:space="preserve">
     <value>DICOM</value>
@@ -751,28 +751,28 @@
     <value>False</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
+    <value>64, 20</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Công cụ</value>
   </data>
   <data name="medicalManagementHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 22</value>
+    <value>125, 22</value>
   </data>
   <data name="medicalManagementHelpToolStripMenuItem.Text" xml:space="preserve">
     <value>Giúp đỡ</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 6</value>
+    <value>122, 6</value>
   </data>
   <data name="aboutMedicalManagementToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 22</value>
+    <value>125, 22</value>
   </data>
   <data name="aboutMedicalManagementToolStripMenuItem.Text" xml:space="preserve">
     <value>Giới thiệu</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
+    <value>64, 20</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>Trợ giúp</value>

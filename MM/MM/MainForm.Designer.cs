@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uPermission = new MM.Controls.uPermission();
             this._uContractList = new MM.Controls.uContractList();
             this._uCompanyList = new MM.Controls.uCompanyList();
             this._uSymptomList = new MM.Controls.uSymptomList();
@@ -88,7 +89,6 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uPermission = new MM.Controls.uPermission();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -110,6 +110,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uPermission
+            // 
+            resources.ApplyResources(this._uPermission, "_uPermission");
+            this._uPermission.Name = "_uPermission";
             // 
             // _uContractList
             // 
@@ -310,11 +315,11 @@
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.databaseConfigurationToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.permissionToolStripMenuItem,
+            this.changePasswordToolStripMenuItem,
             this.toolStripSeparator4,
             this.loginToolStripMenuItem,
-            this.toolStripSeparator7,
-            this.changePasswordToolStripMenuItem,
-            this.permissionToolStripMenuItem,
             this.toolStripSeparator12,
             this.exitToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
@@ -538,11 +543,6 @@
             resources.ApplyResources(this.aboutMedicalManagementToolStripMenuItem, "aboutMedicalManagementToolStripMenuItem");
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // _uPermission
-            // 
-            resources.ApplyResources(this._uPermission, "_uPermission");
-            this._uPermission.Name = "_uPermission";
             // 
             // MainForm
             // 
