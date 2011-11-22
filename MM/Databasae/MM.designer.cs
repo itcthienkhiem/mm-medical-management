@@ -286,14 +286,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		public System.Data.Linq.Table<UserView> UserViews
-		{
-			get
-			{
-				return this.GetTable<UserView>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Permission> Permissions
 		{
 			get
@@ -307,6 +299,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<PermissionView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserView> UserViews
+		{
+			get
+			{
+				return this.GetTable<UserView>();
 			}
 		}
 	}
@@ -10552,159 +10552,6 @@ namespace MM.Databasae
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserView")]
-	public partial class UserView
-	{
-		
-		private System.Guid _DocStaffGUID;
-		
-		private string _FullName;
-		
-		private bool _AvailableToWork;
-		
-		private byte _StaffType;
-		
-		private byte _WorkType;
-		
-		private System.Guid _LogonGUID;
-		
-		private byte _Status;
-		
-		private string _Password;
-		
-		public UserView()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid DocStaffGUID
-		{
-			get
-			{
-				return this._DocStaffGUID;
-			}
-			set
-			{
-				if ((this._DocStaffGUID != value))
-				{
-					this._DocStaffGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this._FullName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit NOT NULL")]
-		public bool AvailableToWork
-		{
-			get
-			{
-				return this._AvailableToWork;
-			}
-			set
-			{
-				if ((this._AvailableToWork != value))
-				{
-					this._AvailableToWork = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffType", DbType="TinyInt NOT NULL")]
-		public byte StaffType
-		{
-			get
-			{
-				return this._StaffType;
-			}
-			set
-			{
-				if ((this._StaffType != value))
-				{
-					this._StaffType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkType", DbType="TinyInt NOT NULL")]
-		public byte WorkType
-		{
-			get
-			{
-				return this._WorkType;
-			}
-			set
-			{
-				if ((this._WorkType != value))
-				{
-					this._WorkType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogonGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid LogonGUID
-		{
-			get
-			{
-				return this._LogonGUID;
-			}
-			set
-			{
-				if ((this._LogonGUID != value))
-				{
-					this._LogonGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
-		public byte Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(100)")]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this._Password = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Permission")]
 	public partial class Permission : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -11495,6 +11342,177 @@ namespace MM.Databasae
 				if ((this._FunctionName != value))
 				{
 					this._FunctionName = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserView")]
+	public partial class UserView
+	{
+		
+		private System.Guid _DocStaffGUID;
+		
+		private string _FullName;
+		
+		private bool _AvailableToWork;
+		
+		private byte _StaffType;
+		
+		private byte _WorkType;
+		
+		private System.Guid _LogonGUID;
+		
+		private byte _Status;
+		
+		private string _Password;
+		
+		private string _StaffTypeStr;
+		
+		public UserView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid DocStaffGUID
+		{
+			get
+			{
+				return this._DocStaffGUID;
+			}
+			set
+			{
+				if ((this._DocStaffGUID != value))
+				{
+					this._DocStaffGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit NOT NULL")]
+		public bool AvailableToWork
+		{
+			get
+			{
+				return this._AvailableToWork;
+			}
+			set
+			{
+				if ((this._AvailableToWork != value))
+				{
+					this._AvailableToWork = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffType", DbType="TinyInt NOT NULL")]
+		public byte StaffType
+		{
+			get
+			{
+				return this._StaffType;
+			}
+			set
+			{
+				if ((this._StaffType != value))
+				{
+					this._StaffType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkType", DbType="TinyInt NOT NULL")]
+		public byte WorkType
+		{
+			get
+			{
+				return this._WorkType;
+			}
+			set
+			{
+				if ((this._WorkType != value))
+				{
+					this._WorkType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogonGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid LogonGUID
+		{
+			get
+			{
+				return this._LogonGUID;
+			}
+			set
+			{
+				if ((this._LogonGUID != value))
+				{
+					this._LogonGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(100)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this._Password = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffTypeStr", DbType="NVarChar(6)")]
+		public string StaffTypeStr
+		{
+			get
+			{
+				return this._StaffTypeStr;
+			}
+			set
+			{
+				if ((this._StaffTypeStr != value))
+				{
+					this._StaffTypeStr = value;
 				}
 			}
 		}
