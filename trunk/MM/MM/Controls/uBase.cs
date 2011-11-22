@@ -28,6 +28,14 @@ namespace MM.Controls
         #endregion
 
         #region Members
+        public bool AllowAdd = true;
+        public bool AllowEdit = true;
+        public bool AllowDelete = true;
+        public bool AllowPrint = true;
+        public bool AllowExport = true;
+        #endregion
+
+        #region Members
         private dlgWaiting _dlgWaiting = null;
         #endregion
 

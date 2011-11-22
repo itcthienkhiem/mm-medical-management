@@ -14,5 +14,16 @@ namespace MM.Common
         public static string PasswordKey = "PasswordKey";
 
         public static string AdminGUID = "00000000-0000-0000-0000-000000000000";
+
+        public static string Contract = "Contract";
+        public static string OpenPatient = "OpenPatient";
+        public static string Patient = "Patient";
+        public static string Permission = "Permission";
+        public static string ServicePrice = "ServicePrice";
+        public static string Services = "Services";
+        public static string Company = "Company";
+        public static string Symptom = "Symptom";
+        public static string DocStaff = "DocStaff";
+        public static string Speciality = "Speciality";
     }
 }
