@@ -147,9 +147,6 @@ namespace MM.Dialogs
                             }
 
                             dgPermission.DataSource = dtPermission;
-
-                            DataGridViewDisableCheckBoxCell cell = dgPermission[2, 1] as DataGridViewDisableCheckBoxCell;
-                            cell.Enabled = false;
                         }
                         else
                         {
@@ -159,6 +156,8 @@ namespace MM.Dialogs
                     }
                     else
                         dgPermission.DataSource = result.QueryResult as DataTable;
+
+
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
