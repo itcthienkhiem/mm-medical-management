@@ -77,6 +77,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\DataGridViewDisableCheckBoxColumn.cs" />
     <Compile Include="Controls\DICOM\DicomDecoder.cs" />
     <Compile Include="Controls\DICOM\DicomDictionary.cs" />
     <Compile Include="Controls\DICOM\DicomTagsForm.cs">
@@ -475,6 +476,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
