@@ -37,11 +37,11 @@
             this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboService = new System.Windows.Forms.ComboBox();
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbUnit = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.numPrice = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbPrice = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -58,11 +58,11 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cboDocStaff);
             this.groupBox1.Controls.Add(this.cboService);
-            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lbUnit);
             this.groupBox1.Controls.Add(this.txtDescription);
             this.groupBox1.Controls.Add(this.numPrice);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.lbPrice);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
@@ -127,14 +127,14 @@
             // 
             this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
             // 
-            // label5
+            // lbUnit
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(219, 72);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "(VNĐ)";
+            this.lbUnit.AutoSize = true;
+            this.lbUnit.Location = new System.Drawing.Point(219, 72);
+            this.lbUnit.Name = "lbUnit";
+            this.lbUnit.Size = new System.Drawing.Size(36, 13);
+            this.lbUnit.TabIndex = 8;
+            this.lbUnit.Text = "(VNĐ)";
             // 
             // txtDescription
             // 
@@ -177,14 +177,14 @@
             this.label4.TabIndex = 3;
             this.label4.Text = "Ghi chú:";
             // 
-            // label3
+            // lbPrice
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 71);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Giá:";
+            this.lbPrice.AutoSize = true;
+            this.lbPrice.Location = new System.Drawing.Point(11, 72);
+            this.lbPrice.Name = "lbPrice";
+            this.lbPrice.Size = new System.Drawing.Size(26, 13);
+            this.lbPrice.TabIndex = 2;
+            this.lbPrice.Text = "Giá:";
             // 
             // label2
             // 
@@ -246,6 +246,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them su dung dich vu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddServiceHistory_FormClosing);
+            this.Load += new System.EventHandler(this.dlgAddServiceHistory_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
@@ -260,11 +261,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cboDocStaff;
         private System.Windows.Forms.ComboBox cboService;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbUnit;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.NumericUpDown numPrice;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbPrice;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;

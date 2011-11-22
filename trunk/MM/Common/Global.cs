@@ -14,5 +14,6 @@ namespace MM.Common
         public static string Fullname = string.Empty;
         public static string Password = string.Empty;
         public static StaffType StaffType = Common.StaffType.Admin;
+        public static bool AllowShowServiePrice = true;
     }
 }

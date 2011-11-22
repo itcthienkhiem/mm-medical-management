@@ -32,6 +32,14 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            btnAdd.Enabled = AllowAdd;
+            btnEdit.Enabled = AllowEdit;
+            btnDelete.Enabled = AllowDelete;
+
+        }
+
         public void ClearData()
         {
             dgSpeciality.DataSource = null;
@@ -41,6 +49,7 @@ namespace MM.Controls
         {
             try
             {
+                UpdateGUI();
                 chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplaySpecialityListProc));
                 base.ShowWaiting();
@@ -224,6 +233,7 @@ namespace MM.Controls
 
         private void dgSpeciality_DoubleClick(object sender, EventArgs e)
         {
+            if (!AllowEdit) return;
             OnEditSpeciality();
         }
         #endregion

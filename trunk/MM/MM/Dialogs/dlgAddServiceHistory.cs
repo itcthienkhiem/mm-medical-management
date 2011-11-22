@@ -256,6 +256,13 @@ namespace MM.Dialogs
             if (rows != null && rows.Length > 0)
                  numPrice.Value = (decimal)Double.Parse(rows[0]["Price"].ToString());
         }
+
+        private void dlgAddServiceHistory_Load(object sender, EventArgs e)
+        {
+            lbPrice.Visible = Global.AllowShowServiePrice;
+            lbUnit.Visible = Global.AllowShowServiePrice;
+            numPrice.Visible = Global.AllowShowServiePrice;
+        }
         #endregion
 
         #region Working Thread
@@ -276,6 +283,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }

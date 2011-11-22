@@ -32,10 +32,18 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            btnAdd.Enabled = AllowAdd;
+            btnEdit.Enabled = AllowEdit;
+            btnDelete.Enabled = AllowDelete;
+        }
+
         public void DisplayAsThread()
         {
             try
             {
+                UpdateGUI();
                 chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayCompanyListProc));
                 base.ShowWaiting();
@@ -223,6 +231,7 @@ namespace MM.Controls
 
         private void dgCompany_DoubleClick(object sender, EventArgs e)
         {
+            if (!AllowEdit) return;
             OnEditCompany();
         }
         #endregion
