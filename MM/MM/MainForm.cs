@@ -28,8 +28,6 @@ namespace MM
             InitializeComponent();
             _uPatientList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
         }
-
-        
         #endregion
 
         #region UI Command
