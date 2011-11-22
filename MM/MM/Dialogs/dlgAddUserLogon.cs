@@ -156,8 +156,6 @@ namespace MM.Dialogs
                     }
                     else
                         dgPermission.DataSource = result.QueryResult as DataTable;
-
-
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
