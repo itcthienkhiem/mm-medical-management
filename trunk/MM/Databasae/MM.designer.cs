@@ -11221,6 +11221,8 @@ namespace MM.Databasae
 		
 		private System.Nullable<System.Guid> _DeletedBy;
 		
+		private string _FunctionName;
+		
 		public PermissionView()
 		{
 		}
@@ -11477,6 +11479,22 @@ namespace MM.Databasae
 				if ((this._DeletedBy != value))
 				{
 					this._DeletedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string FunctionName
+		{
+			get
+			{
+				return this._FunctionName;
+			}
+			set
+			{
+				if ((this._FunctionName != value))
+				{
+					this._FunctionName = value;
 				}
 			}
 		}
