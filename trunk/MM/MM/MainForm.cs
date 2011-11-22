@@ -259,7 +259,62 @@ namespace MM
                 }
             }
             else
+            {
+                Global.AllowShowServiePrice = true;
+
+                _uDocStaffList.AllowAdd = true;
+                _uDocStaffList.AllowEdit = true;
+                _uDocStaffList.AllowDelete = true;
+                _uDocStaffList.AllowPrint = true;
+                _uDocStaffList.AllowExport = true;
+
+                _uPatientList.AllowAdd = true;
+                _uPatientList.AllowEdit = true;
+                _uPatientList.AllowDelete = true;
+                _uPatientList.AllowPrint = true;
+                _uPatientList.AllowExport = true;
+
+                _uSpecialityList.AllowAdd = true;
+                _uSpecialityList.AllowEdit = true;
+                _uSpecialityList.AllowDelete = true;
+                _uSpecialityList.AllowPrint = true;
+                _uSpecialityList.AllowExport = true;
+
+                _uCompanyList.AllowAdd = true;
+                _uCompanyList.AllowEdit = true;
+                _uCompanyList.AllowDelete = true;
+                _uCompanyList.AllowPrint = true;
+                _uCompanyList.AllowExport = true;
+
+                _uServicesList.AllowAdd = true;
+                _uServicesList.AllowEdit = true;
+                _uServicesList.AllowDelete = true;
+                _uServicesList.AllowPrint = true;
+                _uServicesList.AllowExport = true;
+                _uServicesList.AllowShowServicePrice = true;
+
+                _uContractList.AllowAdd = true;
+                _uContractList.AllowEdit = true;
+                _uContractList.AllowDelete = true;
+                _uContractList.AllowPrint = true;
+                _uContractList.AllowExport = true;
+
+                _uPatientList.AllowOpenPatient = true;
+
+                _uPermission.AllowAdd = true;
+                _uPermission.AllowEdit = true;
+                _uPermission.AllowDelete = true;
+                _uPermission.AllowPrint = true;
+                _uPermission.AllowExport = true;
+
+                _uSymptomList.AllowAdd = true;
+                _uSymptomList.AllowEdit = true;
+                _uSymptomList.AllowDelete = true;
+                _uSymptomList.AllowPrint = true;
+                _uSymptomList.AllowExport = true;
+
                 permissionToolStripMenuItem.Enabled = isLogin;
+            }
 
             servicesToolStripMenuItem.Enabled = isLogin;
             tbServiceList.Enabled = isLogin;
