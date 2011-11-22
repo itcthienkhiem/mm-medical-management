@@ -166,14 +166,14 @@ namespace MM
                 tbContractList.Enabled = isLogin;
 
                 toolsToolStripMenuItem.Enabled = isLogin;
-
-                changePasswordToolStripMenuItem.Enabled = isLogin;
                 permissionToolStripMenuItem.Enabled = isLogin;
             }
             else
             {
 
             }
+
+            changePasswordToolStripMenuItem.Enabled = isLogin;
         }
 
         private void ExcuteCmd(string cmd)

@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 AND LogonGUID <> '00000000-0000-0000-0000-000000000000' ORDER BY Fullname";
+                string query = "SELECT CAST(0 AS Bit) AS Checked, * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 AND LogonGUID <> '00000000-0000-0000-0000-000000000000' ORDER BY Fullname";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -202,65 +202,72 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
 
-                //Insert
-                if (logon.LogonGUID == null || logon.LogonGUID == Guid.Empty)
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    logon.LogonGUID = Guid.NewGuid();
-                    db.Logons.InsertOnSubmit(logon);
-                    db.SubmitChanges();
-
-                    //Permission
-                    foreach (DataRow row in dtPermission.Rows)
+                    //Insert
+                    if (logon.LogonGUID == null || logon.LogonGUID == Guid.Empty)
                     {
-                        Permission p = new Permission();
-                        p.LogonGUID = logon.LogonGUID;
-                        p.FunctionGUID = Guid.Parse(row["FunctionGUID"].ToString());
-                        p.IsView = Convert.ToBoolean(row["IsView"]);
-                        p.IsAdd = Convert.ToBoolean(row["IsAdd"]);
-                        p.IsEdit = Convert.ToBoolean(row["IsEdit"]);
-                        p.IsDelete = Convert.ToBoolean(row["IsDelete"]);
-                        p.IsPrint = Convert.ToBoolean(row["IsPrint"]);
-                        p.IsExport = Convert.ToBoolean(row["IsExport"]);
-                        p.CreatedDate = DateTime.Now;
-                        p.CreatedBy = Guid.Parse(Global.UserGUID);
-                        db.Permissions.InsertOnSubmit(p);
-                    }
-
-                    db.SubmitChanges();
-                }
-                else //Update
-                {
-                    Logon l = db.Logons.SingleOrDefault<Logon>(ll => ll.LogonGUID.ToString() == logon.LogonGUID.ToString());
-                    if (l != null)
-                    {
-                        l.DocStaffGUID = logon.DocStaffGUID;
-                        l.Password = logon.Password;
-                        l.UpdatedDate = logon.UpdatedDate;
-                        l.UpdatedBy = logon.UpdatedBy;
-                        l.Status = logon.Status;
+                        logon.LogonGUID = Guid.NewGuid();
+                        db.Logons.InsertOnSubmit(logon);
+                        db.SubmitChanges();
 
                         //Permission
                         foreach (DataRow row in dtPermission.Rows)
                         {
-                            string permissionGUID = row["PermissionGUID"].ToString();
-                            Permission p = db.Permissions.SingleOrDefault<Permission>(pp => pp.PermissionGUID.ToString() == permissionGUID);
-                            if (p != null)
-                            {
-                                p.IsView = Convert.ToBoolean(row["IsView"]);
-                                p.IsAdd = Convert.ToBoolean(row["IsAdd"]);
-                                p.IsEdit = Convert.ToBoolean(row["IsEdit"]);
-                                p.IsDelete = Convert.ToBoolean(row["IsDelete"]);
-                                p.IsPrint = Convert.ToBoolean(row["IsPrint"]);
-                                p.IsExport = Convert.ToBoolean(row["IsExport"]);
-                                p.UpdatedDate = DateTime.Now;
-                                p.UpdatedBy = Guid.Parse(Global.UserGUID);
-                            }
-                            
+                            Permission p = new Permission();
+                            p.PermissionGUID = Guid.NewGuid();
+                            p.LogonGUID = logon.LogonGUID;
+                            p.FunctionGUID = Guid.Parse(row["FunctionGUID"].ToString());
+                            p.IsView = Convert.ToBoolean(row["IsView"]);
+                            p.IsAdd = Convert.ToBoolean(row["IsAdd"]);
+                            p.IsEdit = Convert.ToBoolean(row["IsEdit"]);
+                            p.IsDelete = Convert.ToBoolean(row["IsDelete"]);
+                            p.IsPrint = Convert.ToBoolean(row["IsPrint"]);
+                            p.IsExport = Convert.ToBoolean(row["IsExport"]);
+                            p.CreatedDate = DateTime.Now;
+                            p.CreatedBy = Guid.Parse(Global.UserGUID);
+                            db.Permissions.InsertOnSubmit(p);
                         }
 
                         db.SubmitChanges();
                     }
+                    else //Update
+                    {
+                        Logon l = db.Logons.SingleOrDefault<Logon>(ll => ll.LogonGUID.ToString() == logon.LogonGUID.ToString());
+                        if (l != null)
+                        {
+                            l.DocStaffGUID = logon.DocStaffGUID;
+                            l.Password = logon.Password;
+                            l.UpdatedDate = logon.UpdatedDate;
+                            l.UpdatedBy = logon.UpdatedBy;
+                            l.Status = logon.Status;
+
+                            //Permission
+                            foreach (DataRow row in dtPermission.Rows)
+                            {
+                                string permissionGUID = row["PermissionGUID"].ToString();
+                                Permission p = db.Permissions.SingleOrDefault<Permission>(pp => pp.PermissionGUID.ToString() == permissionGUID);
+                                if (p != null)
+                                {
+                                    p.IsView = Convert.ToBoolean(row["IsView"]);
+                                    p.IsAdd = Convert.ToBoolean(row["IsAdd"]);
+                                    p.IsEdit = Convert.ToBoolean(row["IsEdit"]);
+                                    p.IsDelete = Convert.ToBoolean(row["IsDelete"]);
+                                    p.IsPrint = Convert.ToBoolean(row["IsPrint"]);
+                                    p.IsExport = Convert.ToBoolean(row["IsExport"]);
+                                    p.UpdatedDate = DateTime.Now;
+                                    p.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                }
+
+                            }
+
+                            db.SubmitChanges();
+                        }
+                    }
+
+                    t.Complete();
                 }
+                
             }
             catch (System.Data.SqlClient.SqlException se)
             {

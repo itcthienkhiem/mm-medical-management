@@ -40,16 +40,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgPermission = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.FunctionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.functionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsView = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.IsAdd = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.IsEdit = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.IsDelete = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.IsPrint = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.permissionViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.FunctionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.functionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isViewDataGridViewCheckBoxColumn = new MM.Controls.DataGridViewDisableCheckBoxColumn();
-            this.isAddDataGridViewCheckBoxColumn = new MM.Controls.DataGridViewDisableCheckBoxColumn();
-            this.isEditDataGridViewCheckBoxColumn = new MM.Controls.DataGridViewDisableCheckBoxColumn();
-            this.isDeleteDataGridViewCheckBoxColumn = new MM.Controls.DataGridViewDisableCheckBoxColumn();
-            this.isPrintDataGridViewCheckBoxColumn = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -144,11 +144,11 @@
             this.dgPermission.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FunctionCode,
             this.functionNameDataGridViewTextBoxColumn,
-            this.isViewDataGridViewCheckBoxColumn,
-            this.isAddDataGridViewCheckBoxColumn,
-            this.isEditDataGridViewCheckBoxColumn,
-            this.isDeleteDataGridViewCheckBoxColumn,
-            this.isPrintDataGridViewCheckBoxColumn});
+            this.IsView,
+            this.IsAdd,
+            this.IsEdit,
+            this.IsDelete,
+            this.IsPrint});
             this.dgPermission.DataSource = this.permissionViewBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -169,6 +169,64 @@
             this.dgPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPermission.Size = new System.Drawing.Size(506, 409);
             this.dgPermission.TabIndex = 4;
+            // 
+            // FunctionCode
+            // 
+            this.FunctionCode.DataPropertyName = "FunctionCode";
+            this.FunctionCode.HeaderText = "FunctionCode";
+            this.FunctionCode.Name = "FunctionCode";
+            this.FunctionCode.ReadOnly = true;
+            this.FunctionCode.Visible = false;
+            // 
+            // functionNameDataGridViewTextBoxColumn
+            // 
+            this.functionNameDataGridViewTextBoxColumn.DataPropertyName = "FunctionName";
+            this.functionNameDataGridViewTextBoxColumn.HeaderText = "Tên chức năng";
+            this.functionNameDataGridViewTextBoxColumn.Name = "functionNameDataGridViewTextBoxColumn";
+            this.functionNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.functionNameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.functionNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.functionNameDataGridViewTextBoxColumn.Width = 230;
+            // 
+            // IsView
+            // 
+            this.IsView.DataPropertyName = "IsView";
+            this.IsView.HeaderText = "Xem";
+            this.IsView.Name = "IsView";
+            this.IsView.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsView.Width = 50;
+            // 
+            // IsAdd
+            // 
+            this.IsAdd.DataPropertyName = "IsAdd";
+            this.IsAdd.HeaderText = "Thêm";
+            this.IsAdd.Name = "IsAdd";
+            this.IsAdd.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsAdd.Width = 50;
+            // 
+            // IsEdit
+            // 
+            this.IsEdit.DataPropertyName = "IsEdit";
+            this.IsEdit.HeaderText = "Sửa";
+            this.IsEdit.Name = "IsEdit";
+            this.IsEdit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsEdit.Width = 50;
+            // 
+            // IsDelete
+            // 
+            this.IsDelete.DataPropertyName = "IsDelete";
+            this.IsDelete.HeaderText = "Xóa";
+            this.IsDelete.Name = "IsDelete";
+            this.IsDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsDelete.Width = 50;
+            // 
+            // IsPrint
+            // 
+            this.IsPrint.DataPropertyName = "IsPrint";
+            this.IsPrint.HeaderText = "In";
+            this.IsPrint.Name = "IsPrint";
+            this.IsPrint.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.IsPrint.Width = 50;
             // 
             // permissionViewBindingSource
             // 
@@ -198,64 +256,6 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // FunctionCode
-            // 
-            this.FunctionCode.DataPropertyName = "FunctionCode";
-            this.FunctionCode.HeaderText = "FunctionCode";
-            this.FunctionCode.Name = "FunctionCode";
-            this.FunctionCode.ReadOnly = true;
-            this.FunctionCode.Visible = false;
-            // 
-            // functionNameDataGridViewTextBoxColumn
-            // 
-            this.functionNameDataGridViewTextBoxColumn.DataPropertyName = "FunctionName";
-            this.functionNameDataGridViewTextBoxColumn.HeaderText = "Tên chức năng";
-            this.functionNameDataGridViewTextBoxColumn.Name = "functionNameDataGridViewTextBoxColumn";
-            this.functionNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.functionNameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.functionNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.functionNameDataGridViewTextBoxColumn.Width = 230;
-            // 
-            // isViewDataGridViewCheckBoxColumn
-            // 
-            this.isViewDataGridViewCheckBoxColumn.DataPropertyName = "IsView";
-            this.isViewDataGridViewCheckBoxColumn.HeaderText = "Xem";
-            this.isViewDataGridViewCheckBoxColumn.Name = "isViewDataGridViewCheckBoxColumn";
-            this.isViewDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isViewDataGridViewCheckBoxColumn.Width = 50;
-            // 
-            // isAddDataGridViewCheckBoxColumn
-            // 
-            this.isAddDataGridViewCheckBoxColumn.DataPropertyName = "IsAdd";
-            this.isAddDataGridViewCheckBoxColumn.HeaderText = "Thêm";
-            this.isAddDataGridViewCheckBoxColumn.Name = "isAddDataGridViewCheckBoxColumn";
-            this.isAddDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isAddDataGridViewCheckBoxColumn.Width = 50;
-            // 
-            // isEditDataGridViewCheckBoxColumn
-            // 
-            this.isEditDataGridViewCheckBoxColumn.DataPropertyName = "IsEdit";
-            this.isEditDataGridViewCheckBoxColumn.HeaderText = "Sửa";
-            this.isEditDataGridViewCheckBoxColumn.Name = "isEditDataGridViewCheckBoxColumn";
-            this.isEditDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isEditDataGridViewCheckBoxColumn.Width = 50;
-            // 
-            // isDeleteDataGridViewCheckBoxColumn
-            // 
-            this.isDeleteDataGridViewCheckBoxColumn.DataPropertyName = "IsDelete";
-            this.isDeleteDataGridViewCheckBoxColumn.HeaderText = "Xóa";
-            this.isDeleteDataGridViewCheckBoxColumn.Name = "isDeleteDataGridViewCheckBoxColumn";
-            this.isDeleteDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isDeleteDataGridViewCheckBoxColumn.Width = 50;
-            // 
-            // isPrintDataGridViewCheckBoxColumn
-            // 
-            this.isPrintDataGridViewCheckBoxColumn.DataPropertyName = "IsPrint";
-            this.isPrintDataGridViewCheckBoxColumn.HeaderText = "In";
-            this.isPrintDataGridViewCheckBoxColumn.Name = "isPrintDataGridViewCheckBoxColumn";
-            this.isPrintDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.isPrintDataGridViewCheckBoxColumn.Width = 50;
-            // 
             // dlgAddUserLogon
             // 
             this.AcceptButton = this.btnOK;
@@ -275,6 +275,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them nguoi su dung";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddUserLogon_FormClosing);
             this.Load += new System.EventHandler(this.dlgAddUserLogon_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -301,10 +302,10 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.DataGridViewTextBoxColumn FunctionCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn functionNameDataGridViewTextBoxColumn;
-        private Controls.DataGridViewDisableCheckBoxColumn isViewDataGridViewCheckBoxColumn;
-        private Controls.DataGridViewDisableCheckBoxColumn isAddDataGridViewCheckBoxColumn;
-        private Controls.DataGridViewDisableCheckBoxColumn isEditDataGridViewCheckBoxColumn;
-        private Controls.DataGridViewDisableCheckBoxColumn isDeleteDataGridViewCheckBoxColumn;
-        private Controls.DataGridViewDisableCheckBoxColumn isPrintDataGridViewCheckBoxColumn;
+        private Controls.DataGridViewDisableCheckBoxColumn IsView;
+        private Controls.DataGridViewDisableCheckBoxColumn IsAdd;
+        private Controls.DataGridViewDisableCheckBoxColumn IsEdit;
+        private Controls.DataGridViewDisableCheckBoxColumn IsDelete;
+        private Controls.DataGridViewDisableCheckBoxColumn IsPrint;
     }
 }

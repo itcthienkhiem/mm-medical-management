@@ -19,6 +19,7 @@ namespace MM.Dialogs
         #region Members
         private bool _isNew = true;
         private Logon _logon = new Logon();
+        private DataRow _drLogon = null;
         #endregion
 
         #region Constructor
@@ -34,7 +35,8 @@ namespace MM.Dialogs
             _isNew = false;
             this.Text = "Sua nguoi su dung";
             InitData();
-            DisplayInfo(drLogon);
+            _drLogon = drLogon;
+            
         }
         #endregion
 
@@ -43,6 +45,49 @@ namespace MM.Dialogs
         {
             get { return _logon; }
             set { _logon = value; }
+        }
+
+        public string StaffTypeStr
+        {
+            get
+            {
+                DataTable dt = cboDocStaff.DataSource as DataTable;
+                DataRow[] rows = dt.Select(string.Format("DocStaffGUID='{0}'", cboDocStaff.SelectedValue.ToString()));
+                if (rows != null && rows.Length > 0)
+                {
+                    StaffType type = (StaffType)Convert.ToInt32(rows[0]["StaffType"]);
+                    switch (type)
+                    {
+                        case StaffType.Doctor:
+                            return "Bác sĩ";
+                        case StaffType.Nurse:
+                            return "Y tá";
+                        case StaffType.Reception:
+                            return "Lễ tân";
+                        case StaffType.Patient:
+                            return "Bệnh nhân";
+                        case StaffType.Admin:
+                            return "Admin";
+                        default:
+                            return string.Empty;
+                    }
+                }
+                else
+                    return string.Empty;
+            }
+        }
+
+        public string FullName
+        {
+            get
+            {
+                DataTable dt = cboDocStaff.DataSource as DataTable;
+                DataRow[] rows = dt.Select(string.Format("DocStaffGUID='{0}'", cboDocStaff.SelectedValue.ToString()));
+                if (rows != null && rows.Length > 0)
+                    return rows[0]["FullName"].ToString();
+                else
+                    return string.Empty;
+            }
         }
         #endregion
 
@@ -117,6 +162,60 @@ namespace MM.Dialogs
             }
         }
 
+        private void UpdateGUI()
+        {
+            foreach (DataGridViewRow row in dgPermission.Rows)
+            {
+                string functionCode = row.Cells["FunctionCode"].Value.ToString();
+                if (functionCode == Const.DocStaff)
+                {
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.Patient)
+                {
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.Speciality)
+                {
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.Company)
+                {
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.Services)
+                {
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.ServicePrice)
+                {
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.Contract)
+                {
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.OpenPatient)
+                {
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.Permission)
+                {
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.Symptom)
+                {
+
+                }
+            }
+        }
+
         private void OnDisplayPermission(string logonGUID)
         {
             Result result = LogonBus.GetPermission(logonGUID);
@@ -147,6 +246,7 @@ namespace MM.Dialogs
                             }
 
                             dgPermission.DataSource = dtPermission;
+                            UpdateGUI();
                         }
                         else
                         {
@@ -155,7 +255,10 @@ namespace MM.Dialogs
                         }
                     }
                     else
+                    {
                         dgPermission.DataSource = result.QueryResult as DataTable;
+                        UpdateGUI();
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -167,6 +270,106 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.GetPermission"));
             }
         }
+
+        private bool CheckInfo()
+        {
+            if (cboDocStaff.Text == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.");
+                cboDocStaff.Focus();
+                return false;
+            }
+
+            if (!Utility.IsValidPassword(txtPassword.Text))
+            {
+                MsgBox.Show(this.Text, "Mật khẩu không hợp lệ (4-12 kí tự). Vui lòng nhập lại.");
+                txtPassword.Focus();
+                return false;
+            }
+
+            string logonGUID = _isNew ? string.Empty : _logon.LogonGUID.ToString();
+            Result result = LogonBus.CheckUserLogonExist(logonGUID, cboDocStaff.SelectedValue.ToString());
+
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
+                    MsgBox.Show(this.Text, "Bác sĩ này đã được cấp tài khoản đăng nhập rồi. Vui lòng chọn bác sĩ khác.");
+                    cboDocStaff.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.CheckUserLogonExist"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.CheckUserLogonExist"));
+                return false;
+            }
+
+            return true;
+        }
+
+        private void SaveInfoAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSaveInfoProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnSaveInfo()
+        {
+            try
+            {
+
+                RijndaelCrypto crypt = new RijndaelCrypto();
+                _logon.Status = (byte)Status.Actived;
+                _logon.Password = crypt.Encrypt(txtPassword.Text);
+
+
+                if (_isNew)
+                {
+                    _logon.CreatedDate = DateTime.Now;
+                    _logon.CreatedBy = Guid.Parse(Global.UserGUID);
+                }
+                else
+                {
+                    _logon.UpdatedDate = DateTime.Now;
+                    _logon.UpdatedBy = Guid.Parse(Global.UserGUID);
+                }
+
+                MethodInvoker method = delegate
+                {
+                    _logon.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
+
+                    DataTable dtPermission = dgPermission.DataSource as DataTable;
+                    Result result = LogonBus.InsertUserLogon(_logon, dtPermission);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.InsertUserLogon"));
+                        Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.InsertUserLogon"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
+                };
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+                Utility.WriteToTraceLog(e.Message);
+            }
+
+        }
         #endregion
 
         #region Window Event Handlers
@@ -174,6 +377,19 @@ namespace MM.Dialogs
         {
             if (_isNew)
                 DisplayPermissionAsThread(Guid.Empty.ToString());
+            else
+                DisplayInfo(_drLogon);
+        }
+
+        private void dlgAddUserLogon_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                if (CheckInfo())
+                    SaveInfoAsThread();
+                else
+                    e.Cancel = true;
+            }
         }
         #endregion
 
@@ -194,6 +410,25 @@ namespace MM.Dialogs
                 base.HideWaiting();
             }
         }
+
+        private void OnSaveInfoProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                OnSaveInfo();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
         #endregion
+
+        
     }
 }
