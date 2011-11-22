@@ -43,6 +43,7 @@
             this.permissionViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.FunctionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.functionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isViewDataGridViewCheckBoxColumn = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.isAddDataGridViewCheckBoxColumn = new MM.Controls.DataGridViewDisableCheckBoxColumn();
@@ -71,7 +72,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(78, 49);
+            this.txtPassword.Location = new System.Drawing.Point(78, 48);
             this.txtPassword.MaxLength = 12;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -81,7 +82,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 52);
+            this.label2.Location = new System.Drawing.Point(18, 51);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 2;
@@ -117,7 +118,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgPermission);
-            this.groupBox2.Location = new System.Drawing.Point(8, 97);
+            this.groupBox2.Location = new System.Drawing.Point(8, 96);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(530, 439);
             this.groupBox2.TabIndex = 1;
@@ -141,6 +142,7 @@
             this.dgPermission.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgPermission.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPermission.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FunctionCode,
             this.functionNameDataGridViewTextBoxColumn,
             this.isViewDataGridViewCheckBoxColumn,
             this.isAddDataGridViewCheckBoxColumn,
@@ -177,7 +179,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(275, 542);
+            this.btnCancel.Location = new System.Drawing.Point(275, 541);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 15;
@@ -189,12 +191,20 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(196, 542);
+            this.btnOK.Location = new System.Drawing.Point(196, 541);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 14;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // FunctionCode
+            // 
+            this.FunctionCode.DataPropertyName = "FunctionCode";
+            this.FunctionCode.HeaderText = "FunctionCode";
+            this.FunctionCode.Name = "FunctionCode";
+            this.FunctionCode.ReadOnly = true;
+            this.FunctionCode.Visible = false;
             // 
             // functionNameDataGridViewTextBoxColumn
             // 
@@ -289,6 +299,7 @@
         private System.Windows.Forms.BindingSource permissionViewBindingSource;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FunctionCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn functionNameDataGridViewTextBoxColumn;
         private Controls.DataGridViewDisableCheckBoxColumn isViewDataGridViewCheckBoxColumn;
         private Controls.DataGridViewDisableCheckBoxColumn isAddDataGridViewCheckBoxColumn;
