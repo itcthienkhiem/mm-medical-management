@@ -263,6 +263,12 @@ namespace MM.Controls
 
         private void CalculateTotalPrice()
         {
+            if (!Global.AllowShowServiePrice)
+            {
+                lbTotalPrice.Visible = false;
+                return;
+            }
+
             double totalPrice = 0;
             DataTable dt = dgServiceHistory.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0)
