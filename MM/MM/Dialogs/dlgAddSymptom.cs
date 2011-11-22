@@ -119,6 +119,7 @@ namespace MM.Dialogs
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("SymptomBus.CheckSymptomExistCode"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.CheckSymptomExistCode"));
                 return false;
             }
 

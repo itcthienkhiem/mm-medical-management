@@ -58,6 +58,52 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetPermission(string logonGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT * FROM PermissionView WHERE LogonGUID = '{0}' ORDER BY FunctionName", logonGUID);
+                result = ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetFunction()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = "SELECT * FROM [Function] ORDER BY FunctionName";
+                result = ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result DeleteUserLogon(List<string> keys)
         {
             Result result = new Result();
