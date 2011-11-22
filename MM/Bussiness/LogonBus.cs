@@ -1,0 +1,282 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using System.Data.Linq;
+using System.Transactions;
+using MM.Common;
+using MM.Databasae;
+
+namespace MM.Bussiness
+{
+    public class LogonBus : BusBase
+    {
+        public static Result GetUserList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = "SELECT * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 ORDER BY Fullname";
+                result = ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetUserListWithoutAdmin()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = "SELECT * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 AND LogonGUID <> '00000000-0000-0000-0000-000000000000' ORDER BY Fullname";
+                result = ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result DeleteUserLogon(List<string> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    foreach (string key in keys)
+                    {
+                        Logon logon = db.Logons.SingleOrDefault<Logon>(l => l.LogonGUID.ToString() == key);
+                        if (logon != null)
+                        {
+                            logon.DeletedDate = DateTime.Now;
+                            logon.DeletedBy = Guid.Parse(Global.UserGUID);
+                            logon.Status = (byte)Status.Deactived;
+                        }
+                    }
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result CheckUserLogonExist(string logonGUID, string docStaffGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                Logon logon = null;
+                if (logonGUID == null || logonGUID == string.Empty)
+                    logon = db.Logons.SingleOrDefault<Logon>(l => l.DocStaffGUID.ToString() == docStaffGUID);
+                else
+                    logon = db.Logons.SingleOrDefault<Logon>(l => l.DocStaffGUID.ToString() == docStaffGUID &&
+                                                                l.LogonGUID.ToString() != logonGUID);
+
+                if (logon == null)
+                    result.Error.Code = ErrorCode.NOT_EXIST;
+                else
+                    result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result InsertUserLogon(Logon logon, DataTable dtPermission)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+
+                //Insert
+                if (logon.LogonGUID == null || logon.LogonGUID == Guid.Empty)
+                {
+                    logon.LogonGUID = Guid.NewGuid();
+                    db.Logons.InsertOnSubmit(logon);
+                    db.SubmitChanges();
+
+                    //Permission
+                    foreach (DataRow row in dtPermission.Rows)
+                    {
+                        Permission p = new Permission();
+                        p.LogonGUID = logon.LogonGUID;
+                        p.FunctionGUID = Guid.Parse(row["FunctionGUID"].ToString());
+                        p.IsView = Convert.ToBoolean(row["IsView"]);
+                        p.IsAdd = Convert.ToBoolean(row["IsAdd"]);
+                        p.IsEdit = Convert.ToBoolean(row["IsEdit"]);
+                        p.IsDelete = Convert.ToBoolean(row["IsDelete"]);
+                        p.IsPrint = Convert.ToBoolean(row["IsPrint"]);
+                        p.IsExport = Convert.ToBoolean(row["IsExport"]);
+                        p.CreatedDate = DateTime.Now;
+                        p.CreatedBy = Guid.Parse(Global.UserGUID);
+                        db.Permissions.InsertOnSubmit(p);
+                    }
+
+                    db.SubmitChanges();
+                }
+                else //Update
+                {
+                    Logon l = db.Logons.SingleOrDefault<Logon>(ll => ll.LogonGUID.ToString() == logon.LogonGUID.ToString());
+                    if (l != null)
+                    {
+                        l.DocStaffGUID = logon.DocStaffGUID;
+                        l.Password = logon.Password;
+                        l.UpdatedDate = logon.UpdatedDate;
+                        l.UpdatedBy = logon.UpdatedBy;
+                        l.Status = logon.Status;
+
+                        //Permission
+                        foreach (DataRow row in dtPermission.Rows)
+                        {
+                            string permissionGUID = row["PermissionGUID"].ToString();
+                            Permission p = db.Permissions.SingleOrDefault<Permission>(pp => pp.PermissionGUID.ToString() == permissionGUID);
+                            if (p != null)
+                            {
+                                p.IsView = Convert.ToBoolean(row["IsView"]);
+                                p.IsAdd = Convert.ToBoolean(row["IsAdd"]);
+                                p.IsEdit = Convert.ToBoolean(row["IsEdit"]);
+                                p.IsDelete = Convert.ToBoolean(row["IsDelete"]);
+                                p.IsPrint = Convert.ToBoolean(row["IsPrint"]);
+                                p.IsExport = Convert.ToBoolean(row["IsExport"]);
+                                p.UpdatedDate = DateTime.Now;
+                                p.UpdatedBy = Guid.Parse(Global.UserGUID);
+                            }
+                            
+                        }
+
+                        db.SubmitChanges();
+                    }
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result ChangePassword(string password)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                RijndaelCrypto crypt = new RijndaelCrypto();
+                password = crypt.Encrypt(password);
+                db = new MMOverride();
+                Logon logon = db.Logons.SingleOrDefault<Logon>(l => l.LogonGUID.ToString() == Global.LogonGUID);
+                if (logon != null)
+                {
+                    logon.Password = password;
+                    logon.UpdatedDate = DateTime.Now;
+                    logon.UpdatedBy = Guid.Parse(Global.UserGUID);
+                    db.SubmitChanges();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+    }
+}

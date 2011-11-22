@@ -25,22 +25,6 @@ namespace MM.Dialogs
         }
         #endregion
 
-        #region Properties
-        public StaffType StaffType
-        {
-            get
-            {
-                StaffType type = Common.StaffType.Admin;
-                DataTable dt = cboUserName.DataSource as DataTable;
-                DataRow[] rows = dt.Select(string.Format("DocStaffGUID='{0}'", cboUserName.SelectedValue.ToString()));
-                if (rows != null && rows.Length > 0)
-                    type = (StaffType)Convert.ToInt32(rows[0]["StaffType"]);
-
-                return type;
-            }
-        }
-        #endregion
-
         #region UI Command
         private void DisplayUserListAsThread()
         {
@@ -62,21 +46,13 @@ namespace MM.Dialogs
 
         private void OnDisplayUserList()
         {
-            Result result = DocStaffBus.GetUserList();
+            Result result = LogonBus.GetUserList();
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
-                DataRow newRow = dt.NewRow();
-                newRow[0] = Const.AdminGUID;
-                newRow[1] = "Admin";
-                newRow[2] = (int)StaffType.Admin;
-                dt.Rows.InsertAt(newRow, 0);
-
                 MethodInvoker method = delegate
                 {
                     cboUserName.DataSource = dt;
-                    cboUserName.DisplayMember = "FullName";
-                    cboUserName.ValueMember = "DocStaffGUID";
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -84,10 +60,12 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetUserList"));
-                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetUserList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.GetUserList"));
+                Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.GetUserList"));
             }
         }
+
+
         #endregion
 
         #region Window Event Handlers
@@ -100,9 +78,30 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                Global.UserGUID = cboUserName.SelectedValue.ToString();
-                Global.Fullname = cboUserName.Text;
-                Global.StaffType = StaffType;
+                DataTable dt = cboUserName.DataSource as DataTable;
+                DataRow[] rows = dt.Select(string.Format("DocStaffGUID='{0}'", cboUserName.SelectedValue.ToString()));
+                if (rows != null && rows.Length > 0)
+                {
+                    RijndaelCrypto crypt = new RijndaelCrypto();
+                    string password = crypt.Decrypt(rows[0]["Password"].ToString());
+
+                    if (password == txtPassword.Text)
+                    {
+                        Global.UserGUID = cboUserName.SelectedValue.ToString();
+                        Global.Password = password;
+                        Global.Fullname = cboUserName.Text;
+                        Global.StaffType = (StaffType)Convert.ToInt32(rows[0]["StaffType"]);
+                        Global.LogonGUID = rows[0]["LogonGUID"].ToString();
+                    }
+                    else
+                    {
+                        MsgBox.Show(this.Text, "Mật khẩu không chính xác. Vui lòng nhập lại.");
+                        txtPassword.Focus();
+                        e.Cancel = true;
+                    }
+                }
+                else
+                    e.Cancel = true;
             }
         }
         #endregion
