@@ -245,20 +245,38 @@ namespace MM.Bussiness
                             //Permission
                             foreach (DataRow row in dtPermission.Rows)
                             {
-                                string permissionGUID = row["PermissionGUID"].ToString();
-                                Permission p = db.Permissions.SingleOrDefault<Permission>(pp => pp.PermissionGUID.ToString() == permissionGUID);
-                                if (p != null)
+                                if (row["PermissionGUID"] != null && row["PermissionGUID"] != DBNull.Value)
                                 {
+                                    string permissionGUID = row["PermissionGUID"].ToString();
+                                    Permission p = db.Permissions.SingleOrDefault<Permission>(pp => pp.PermissionGUID.ToString() == permissionGUID);
+                                    if (p != null)
+                                    {
+                                        p.IsView = Convert.ToBoolean(row["IsView"]);
+                                        p.IsAdd = Convert.ToBoolean(row["IsAdd"]);
+                                        p.IsEdit = Convert.ToBoolean(row["IsEdit"]);
+                                        p.IsDelete = Convert.ToBoolean(row["IsDelete"]);
+                                        p.IsPrint = Convert.ToBoolean(row["IsPrint"]);
+                                        p.IsExport = Convert.ToBoolean(row["IsExport"]);
+                                        p.UpdatedDate = DateTime.Now;
+                                        p.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                    }
+                                }
+                                else
+                                {
+                                    Permission p = new Permission();
+                                    p.PermissionGUID = Guid.NewGuid();
+                                    p.LogonGUID = logon.LogonGUID;
+                                    p.FunctionGUID = Guid.Parse(row["FunctionGUID"].ToString());
                                     p.IsView = Convert.ToBoolean(row["IsView"]);
                                     p.IsAdd = Convert.ToBoolean(row["IsAdd"]);
                                     p.IsEdit = Convert.ToBoolean(row["IsEdit"]);
                                     p.IsDelete = Convert.ToBoolean(row["IsDelete"]);
                                     p.IsPrint = Convert.ToBoolean(row["IsPrint"]);
                                     p.IsExport = Convert.ToBoolean(row["IsExport"]);
-                                    p.UpdatedDate = DateTime.Now;
-                                    p.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                    p.CreatedDate = DateTime.Now;
+                                    p.CreatedBy = Guid.Parse(Global.UserGUID);
+                                    db.Permissions.InsertOnSubmit(p);
                                 }
-
                             }
 
                             db.SubmitChanges();

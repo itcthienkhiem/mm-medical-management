@@ -25,5 +25,6 @@ namespace MM.Common
         public static string Symptom = "Symptom";
         public static string DocStaff = "DocStaff";
         public static string Speciality = "Speciality";
+        public static string PrintLabel = "PrintLabel";
     }
 }

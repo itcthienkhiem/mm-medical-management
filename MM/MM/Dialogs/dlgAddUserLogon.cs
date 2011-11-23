@@ -20,6 +20,7 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private Logon _logon = new Logon();
         private DataRow _drLogon = null;
+        private int _selecedColumnIndex = 0;
         #endregion
 
         #region Constructor
@@ -213,6 +214,13 @@ namespace MM.Dialogs
                 {
 
                 }
+                else if (functionCode == Const.PrintLabel)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
             }
         }
 
@@ -221,15 +229,16 @@ namespace MM.Dialogs
             Result result = LogonBus.GetPermission(logonGUID);
             if (result.IsOK)
             {
-                MethodInvoker method = delegate
+                Result funcResult = LogonBus.GetFunction();
+                if (funcResult.IsOK)
                 {
-                    if (_isNew)
+                    DataTable dtPermission = result.QueryResult as DataTable;
+                    DataTable dtFunction = funcResult.QueryResult as DataTable;
+
+                    MethodInvoker method = delegate
                     {
-                        Result funcResult = LogonBus.GetFunction();
-                        if (funcResult.IsOK)
+                        if (_isNew)
                         {
-                            DataTable dtPermission = result.QueryResult as DataTable;
-                            DataTable dtFunction = funcResult.QueryResult as DataTable;
                             foreach (DataRow row in dtFunction.Rows)
                             {
                                 DataRow newRow = dtPermission.NewRow();
@@ -250,19 +259,39 @@ namespace MM.Dialogs
                         }
                         else
                         {
-                            MsgBox.Show(this.Text, funcResult.GetErrorAsString("LogonBus.GetFunction"));
-                            Utility.WriteToTraceLog(funcResult.GetErrorAsString("LogonBus.GetFunction"));
-                        }
-                    }
-                    else
-                    {
-                        dgPermission.DataSource = result.QueryResult as DataTable;
-                        UpdateGUI();
-                    }
-                };
+                            foreach (DataRow row in dtFunction.Rows)
+                            {
+                                string functionGUID = row["FunctionGUID"].ToString();
+                                DataRow[] rows = dtPermission.Select(string.Format("FunctionGUID='{0}'", functionGUID));
+                                if (rows == null || rows.Length <= 0)
+                                {
+                                    DataRow newRow = dtPermission.NewRow();
+                                    newRow["FunctionGUID"] = row["FunctionGUID"];
+                                    newRow["FunctionCode"] = row["FunctionCode"];
+                                    newRow["FunctionName"] = row["FunctionName"];
+                                    newRow["IsView"] = false;
+                                    newRow["IsAdd"] = false;
+                                    newRow["IsEdit"] = false;
+                                    newRow["IsDelete"] = false;
+                                    newRow["IsPrint"] = false;
+                                    newRow["IsExport"] = false;
+                                    dtPermission.Rows.Add(newRow);
+                                }
+                            }
 
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
+                            dgPermission.DataSource = dtPermission;
+                            UpdateGUI();
+                        }
+                    };
+
+                    if (InvokeRequired) BeginInvoke(method);
+                    else method.Invoke();
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, funcResult.GetErrorAsString("LogonBus.GetFunction"));
+                    Utility.WriteToTraceLog(funcResult.GetErrorAsString("LogonBus.GetFunction"));
+                }
             }
             else
             {
@@ -390,6 +419,44 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgPermission.Rows)
+            {
+                DataGridViewDisableCheckBoxCell cell = (DataGridViewDisableCheckBoxCell)row.Cells[_selecedColumnIndex];
+                if (cell.Enabled) cell.Value = true;
+            }
+        }
+
+        private void unselectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgPermission.Rows)
+            {
+                DataGridViewDisableCheckBoxCell cell = (DataGridViewDisableCheckBoxCell)row.Cells[_selecedColumnIndex];
+                if (cell.Enabled) cell.Value = false;
+            }
+        }
+
+        private void dgPermission_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Right)
+            {
+                dgPermission.ContextMenuStrip = null;
+                return;
+            }
+
+            if (dgPermission.Columns[e.ColumnIndex].Name != "IsView" && dgPermission.Columns[e.ColumnIndex].Name != "IsAdd" &&
+                dgPermission.Columns[e.ColumnIndex].Name != "IsEdit" && dgPermission.Columns[e.ColumnIndex].Name != "IsDelete" &&
+                dgPermission.Columns[e.ColumnIndex].Name != "IsPrint")
+            {
+                dgPermission.ContextMenuStrip = null;
+                return;
+            }
+
+            dgPermission.ContextMenuStrip = ctmPermission;
+            _selecedColumnIndex = e.ColumnIndex;
         }
         #endregion
 

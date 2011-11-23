@@ -60,11 +60,11 @@
             this._mainMenu = new System.Windows.Forms.MenuStrip();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.permissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.permissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.servicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,10 +85,12 @@
             this.symptomListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uPrintLabel = new MM.Controls.uPrintLabel();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -100,6 +102,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uPrintLabel);
             this._mainPanel.Controls.Add(this._uPermission);
             this._mainPanel.Controls.Add(this._uContractList);
             this._mainPanel.Controls.Add(this._uCompanyList);
@@ -333,6 +336,27 @@
             this.databaseConfigurationToolStripMenuItem.Tag = "Database Configuration";
             this.databaseConfigurationToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
+            // 
+            // permissionToolStripMenuItem
+            // 
+            resources.ApplyResources(this.permissionToolStripMenuItem, "permissionToolStripMenuItem");
+            this.permissionToolStripMenuItem.Image = global::MM.Properties.Resources.users_2;
+            this.permissionToolStripMenuItem.Name = "permissionToolStripMenuItem";
+            this.permissionToolStripMenuItem.Tag = "Permission";
+            this.permissionToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            resources.ApplyResources(this.changePasswordToolStripMenuItem, "changePasswordToolStripMenuItem");
+            this.changePasswordToolStripMenuItem.Image = global::MM.Properties.Resources._1321933963_change_password;
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Tag = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -345,27 +369,6 @@
             resources.ApplyResources(this.loginToolStripMenuItem, "loginToolStripMenuItem");
             this.loginToolStripMenuItem.Tag = "Login";
             this.loginToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
-            // 
-            // changePasswordToolStripMenuItem
-            // 
-            resources.ApplyResources(this.changePasswordToolStripMenuItem, "changePasswordToolStripMenuItem");
-            this.changePasswordToolStripMenuItem.Image = global::MM.Properties.Resources._1321933963_change_password;
-            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Tag = "Change Password";
-            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // permissionToolStripMenuItem
-            // 
-            resources.ApplyResources(this.permissionToolStripMenuItem, "permissionToolStripMenuItem");
-            this.permissionToolStripMenuItem.Image = global::MM.Properties.Resources.users_2;
-            this.permissionToolStripMenuItem.Name = "permissionToolStripMenuItem";
-            this.permissionToolStripMenuItem.Tag = "Permission";
-            this.permissionToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolStripSeparator12
             // 
@@ -503,7 +506,8 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dICOMToolStripMenuItem});
+            this.dICOMToolStripMenuItem,
+            this.printLabelToolStripMenuItem});
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             // 
@@ -513,6 +517,13 @@
             resources.ApplyResources(this.dICOMToolStripMenuItem, "dICOMToolStripMenuItem");
             this.dICOMToolStripMenuItem.Tag = "DICOM";
             this.dICOMToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // printLabelToolStripMenuItem
+            // 
+            this.printLabelToolStripMenuItem.Name = "printLabelToolStripMenuItem";
+            resources.ApplyResources(this.printLabelToolStripMenuItem, "printLabelToolStripMenuItem");
+            this.printLabelToolStripMenuItem.Tag = "Print Label";
+            this.printLabelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -543,6 +554,11 @@
             resources.ApplyResources(this.aboutMedicalManagementToolStripMenuItem, "aboutMedicalManagementToolStripMenuItem");
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // _uPrintLabel
+            // 
+            resources.ApplyResources(this._uPrintLabel, "_uPrintLabel");
+            this._uPrintLabel.Name = "_uPrintLabel";
             // 
             // MainForm
             // 
@@ -630,6 +646,8 @@
         private System.Windows.Forms.ToolStripMenuItem permissionToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
         private Controls.uPermission _uPermission;
+        private System.Windows.Forms.ToolStripMenuItem printLabelToolStripMenuItem;
+        private Controls.uPrintLabel _uPrintLabel;
 
     }
 }
