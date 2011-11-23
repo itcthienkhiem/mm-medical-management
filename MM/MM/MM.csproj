@@ -104,6 +104,132 @@
     <Compile Include="Controls\DICOM\WindowLevelGraphControl.Designer.cs">
       <DependentUpon>WindowLevelGraphControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Excel\CodeLib\Encoder\Bin2Hex.cs" />
+    <Compile Include="Controls\Excel\CodeLib\FileIO.cs" />
+    <Compile Include="Controls\Excel\CodeLib\FileSelector.cs" />
+    <Compile Include="Controls\Excel\CodeLib\Pair.cs" />
+    <Compile Include="Controls\Excel\CodeLib\StreamHelper.cs" />
+    <Compile Include="Controls\Excel\Office\CompoundDocumentFormat\CompoundDocument.cs" />
+    <Compile Include="Controls\Excel\Office\CompoundDocumentFormat\CompoundFileHeader.cs" />
+    <Compile Include="Controls\Excel\Office\CompoundDocumentFormat\DirectoryEntry.cs" />
+    <Compile Include="Controls\Excel\Office\CompoundDocumentFormat\Endianness.cs" />
+    <Compile Include="Controls\Excel\Office\CompoundDocumentFormat\EntryType.cs" />
+    <Compile Include="Controls\Excel\Office\CompoundDocumentFormat\FileHeader.cs" />
+    <Compile Include="Controls\Excel\Office\CompoundDocumentFormat\NodeColor.cs" />
+    <Compile Include="Controls\Excel\Office\CompoundDocumentFormat\SID.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Cell.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\CellCollection.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\ColorPalette.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Enums\ErrorCode.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Enums\EscherRecordType.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Enums\PropertyIDs.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Enums\RecordType.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Enums\SheetType.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Enums\StreamType.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Enums\SubRecordType.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecord.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\EscherRecord.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtAlignRule.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtAnchor.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtArcRule.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtBlip.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtBlipBitmapDIB.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtBlipBitmapJPEG.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtBlipBitmapPNG.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtBlipBitmapPS.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtBlipEnd.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtBlipStart.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtBSE.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtBstoreContainer.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtCalloutRule.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtChildAnchor.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtClientAnchor.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtClientData.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtClientRule.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtClientTextbox.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtCLSID.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtColorMRU.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtColorScheme.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtConnectorRule.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtContainer.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtDeletedPspl.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtDg.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtDgContainer.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtDgg.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtDggContainer.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtOleObject.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtOPT.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtRegroupItems.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtSelection.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtSolverContainer.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtSp.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtSpContainer.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtSpgr.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtSpgrContainer.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtSplitMenuColors.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\EscherRecords\MsofbtTextbox.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\BOOLERR.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\FORMULA.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\MSOCONTAINER.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\MsofbtBSE.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\MsofbtContainer.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\MsofbtDgg.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\MsofbtDggContainer.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\MsofbtOPT.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\MULRK.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\OBJ.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\PALETTE.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\SST.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Extended\XF.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Picture.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Record.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\ARRAY.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\BACKUP.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\BITMAP.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\BLANK.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\BOF.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\BOOKBOOL.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\BOOLERR.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\BOTTOMMARGIN.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\BOUNDSHEET.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\CALCCOUNT.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\CALCMODE.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\CODEPAGE.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\CONTINUE.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\DATEMODE.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\DIMENSIONS.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\FORMULA.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\LABELSST.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\MSOCONTAINER.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\MSODRAWING.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\MSODRAWINGGROUP.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\MSODRAWINGSELECTION.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\MULBLANK.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\MULRK.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\NUMBER.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\OBJ.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\PALETTE.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\Record.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\RK.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\ROW.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\RSTRING.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\SST.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\STRING.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Records\XF.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\ShapeProperty.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\SubRecord.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\SubRecords\CommonObjectData.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\SubRecords\End.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\SubRecords\GroupMarker.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\SubRecords\SubRecord.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Workbook.cs" />
+    <Compile Include="Controls\Excel\Office\Excel\Worksheet.cs" />
+    <Compile Include="Controls\Excel\uImportFromExcel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Excel\uImportFromExcel.Designer.cs">
+      <DependentUpon>uImportFromExcel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -353,6 +479,9 @@
     <EmbeddedResource Include="Controls\DICOM\WindowLevelGraphControl.resx">
       <DependentUpon>WindowLevelGraphControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Excel\uImportFromExcel.resx">
+      <DependentUpon>uImportFromExcel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uColor.resx">
       <DependentUpon>uColor.cs</DependentUpon>
     </EmbeddedResource>
@@ -531,6 +660,10 @@
     <Content Include="Components\Microsoft.SqlServer.Smo.dll" />
     <Content Include="Components\SpreadsheetGear.dll" />
     <Content Include="Components\uninstall.ico" />
+    <Content Include="Controls\Excel\Office\Excel\MetaData\EscherRecordTypes.txt" />
+    <Content Include="Controls\Excel\Office\Excel\MetaData\Excel.xml" />
+    <Content Include="Controls\Excel\Office\Excel\MetaData\Record Identifier.txt" />
+    <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MM_Ico.ico" />
     <None Include="Resources\1321933963_change_password.png" />
     <None Include="Resources\users_2.png" />
