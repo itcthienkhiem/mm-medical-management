@@ -113,7 +113,7 @@
             this.groupBox1.Size = new System.Drawing.Size(417, 422);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông tin bác sĩ";
+            this.groupBox1.Text = "Thông tin nhân viên";
             // 
             // label2
             // 
@@ -482,7 +482,7 @@
             this.Name = "dlgAddDocStaff";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Them bac si";
+            this.Text = "Them nhan vien";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddDocStaff_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

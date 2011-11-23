@@ -148,7 +148,7 @@ namespace MM.Controls
         {
             if (dgDocStaff.SelectedRows == null || dgDocStaff.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bác sĩ.");
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 nhân viên.");
                 return;
             }
 
@@ -217,7 +217,7 @@ namespace MM.Controls
 
             if (deletedDocStaffList.Count > 0)
             {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những bác sĩ mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những nhân viên mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
                     Result result = DocStaffBus.DeleteDocStaff(deletedDocStaffList);
                     if (result.IsOK)
@@ -235,7 +235,7 @@ namespace MM.Controls
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bác sĩ cần xóa.");
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhân viên cần xóa.");
         }
         #endregion
 

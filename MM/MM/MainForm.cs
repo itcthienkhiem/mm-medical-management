@@ -567,7 +567,7 @@ namespace MM
 
         private void OnDoctorList()
         {
-            this.Text = string.Format("{0} - Danh muc bac si", Application.ProductName);
+            this.Text = string.Format("{0} - Danh muc nhan vien", Application.ProductName);
             ViewControl(_uDocStaffList);
             _uDocStaffList.DisplayAsThread();
         }
