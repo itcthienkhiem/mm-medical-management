@@ -63,47 +63,6 @@ namespace MM.Controls
             dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                /*DataTable dt = dgServiceHistory.DataSource as DataTable;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["ServiceHistoryGUID"] = dlg.ServiceHistory.ServiceHistoryGUID.ToString();
-                newRow["PatientGUID"] = dlg.ServiceHistory.PatientGUID.ToString();
-                newRow["DocStaffGUID"] = dlg.ServiceHistory.DocStaffGUID.ToString();
-                newRow["ServiceGUID"] = dlg.ServiceHistory.ServiceGUID.ToString();
-                newRow["FixedPrice"] = dlg.ServiceHistory.Price;
-                newRow["Note"] = dlg.ServiceHistory.Note;
-                newRow["FullName"] = dlg.FullName;
-                newRow["Name"] = dlg.ServiceName;
-                newRow["Code"] = dlg.ServiceCode;
-                newRow["CreatedName"] = Global.Fullname;
-
-                if (dlg.ServiceHistory.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.ServiceHistory.CreatedDate;
-
-                if (dlg.ServiceHistory.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.ServiceHistory.CreatedBy.ToString();
-
-                if (dlg.ServiceHistory.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.ServiceHistory.UpdatedDate;
-
-                if (dlg.ServiceHistory.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.ServiceHistory.UpdatedBy.ToString();
-
-                if (dlg.ServiceHistory.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.ServiceHistory.DeletedDate;
-
-                if (dlg.ServiceHistory.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.ServiceHistory.DeletedBy.ToString();
-
-                if (dlg.ServiceHistory.ActivedDate.HasValue)
-                    newRow["ActivedDate"] = dlg.ServiceHistory.ActivedDate.ToString();
-
-                newRow["Status"] = dlg.ServiceHistory.Status;
-
-                dt.Rows.Add(newRow);
-                CalculateTotalPrice();*/
-                //DisplayAsThread();
                 base.RaiseServiceHistoryChanged();
             }
         }
@@ -120,43 +79,6 @@ namespace MM.Controls
             dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID, drServiceHistory);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                /*DataTable dt = dgServiceHistory.DataSource as DataTable;
-                if (dt == null) return;
-                drServiceHistory["Checked"] = false;
-                drServiceHistory["DocStaffGUID"] = dlg.ServiceHistory.DocStaffGUID.ToString();
-                drServiceHistory["ServiceGUID"] = dlg.ServiceHistory.ServiceGUID.ToString();
-                drServiceHistory["FixedPrice"] = dlg.ServiceHistory.Price;
-                drServiceHistory["Note"] = dlg.ServiceHistory.Note;
-                drServiceHistory["Fullname"] = dlg.FullName;
-                drServiceHistory["Name"] = dlg.ServiceName;
-                drServiceHistory["Code"] = dlg.ServiceCode;
-                drServiceHistory["CreatedName"] = Global.Fullname;
-
-                if (dlg.ServiceHistory.CreatedDate.HasValue)
-                    drServiceHistory["CreatedDate"] = dlg.ServiceHistory.CreatedDate;
-
-                if (dlg.ServiceHistory.CreatedBy.HasValue)
-                    drServiceHistory["CreatedBy"] = dlg.ServiceHistory.CreatedBy.ToString();
-
-                if (dlg.ServiceHistory.UpdatedDate.HasValue)
-                    drServiceHistory["UpdatedDate"] = dlg.ServiceHistory.UpdatedDate;
-
-                if (dlg.ServiceHistory.UpdatedBy.HasValue)
-                    drServiceHistory["UpdatedBy"] = dlg.ServiceHistory.UpdatedBy.ToString();
-
-                if (dlg.ServiceHistory.DeletedDate.HasValue)
-                    drServiceHistory["DeletedDate"] = dlg.ServiceHistory.DeletedDate;
-
-                if (dlg.ServiceHistory.DeletedBy.HasValue)
-                    drServiceHistory["DeletedBy"] = dlg.ServiceHistory.DeletedBy.ToString();
-
-                if (dlg.ServiceHistory.ActivedDate.HasValue)
-                    drServiceHistory["ActivedDate"] = dlg.ServiceHistory.ActivedDate.ToString();
-
-                drServiceHistory["Status"] = dlg.ServiceHistory.Status;
-
-                CalculateTotalPrice();*/
-                //DisplayAsThread();
                 base.RaiseServiceHistoryChanged();
             }
         }
@@ -263,11 +185,8 @@ namespace MM.Controls
 
         private void CalculateTotalPrice()
         {
-            if (!Global.AllowShowServiePrice)
-            {
-                lbTotalPrice.Visible = false;
-                return;
-            }
+            lbTotalPrice.Visible = Global.AllowShowServiePrice;
+            if (!Global.AllowShowServiePrice) return;
 
             double totalPrice = 0;
             DataTable dt = dgServiceHistory.DataSource as DataTable;
