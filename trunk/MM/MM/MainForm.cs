@@ -126,6 +126,8 @@ namespace MM
                 _uContractList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uPermission))
                 _uPermission.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uPrintLabel))
+                _uPrintLabel.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -248,6 +250,10 @@ namespace MM
                             _uSymptomList.AllowPrint = isPrint;
                             _uSymptomList.AllowExport = isExport;
                         }
+                        else if (functionCode == Const.PrintLabel)
+                        {
+                            printLabelToolStripMenuItem.Enabled = isPrint;
+                        }
                     }
                 }
                 else
@@ -337,6 +343,7 @@ namespace MM
             toolsToolStripMenuItem.Enabled = isLogin;
             
             changePasswordToolStripMenuItem.Enabled = isLogin;
+            printLabelToolStripMenuItem.Enabled = isLogin;
         }
 
         private void ExcuteCmd(string cmd)
@@ -411,7 +418,18 @@ namespace MM
                 case "Permission":
                     OnPermission();
                     break;
+
+                case "Print Label":
+                    OnPrintLabel();
+                    break;
             }
+        }
+
+        private void OnPrintLabel()
+        {
+            this.Text = string.Format("{0} - In nhan", Application.ProductName);
+            ViewControl(_uPrintLabel);
+            _uPrintLabel.DisplayAsThread();
         }
 
         private void OnChangePassword()
@@ -543,6 +561,8 @@ namespace MM
                 _uContractList.ClearData();
             else if (ctrl.GetType() == typeof(uPermission))
                 _uPermission.ClearData();
+            else if (ctrl.GetType() == typeof(uPrintLabel))
+                _uPrintLabel.ClearData();
         }
 
         private void OnDoctorList()

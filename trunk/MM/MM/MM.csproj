@@ -176,6 +176,12 @@
     <Compile Include="Controls\uPermission.Designer.cs">
       <DependentUpon>uPermission.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPrintLabel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPrintLabel.Designer.cs">
+      <DependentUpon>uPrintLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uSearchPatient.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -379,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPermission.resx">
       <DependentUpon>uPermission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPrintLabel.resx">
+      <DependentUpon>uPrintLabel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSearchPatient.resx">
       <DependentUpon>uSearchPatient.cs</DependentUpon>
