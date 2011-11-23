@@ -17,6 +17,18 @@ namespace MM.Controls
     {
         #region Members
         private DataTable _dataSource = null;
+        private int _width = 202;
+        private int _height = 168;
+        private int _labelWidth = 36;
+        private int _labelHeight = 19;
+        private int _deltaWidth = 3;
+        private int _deltaHeight = 1;
+        private int _top = 3;
+        private int _left = 5;
+        private int _right = 5;
+        private int bottom = 5;
+        private int _pageSize = 40;
+
         #endregion
 
         #region Constructor

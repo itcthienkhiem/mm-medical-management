@@ -344,6 +344,8 @@ namespace MM
             
             changePasswordToolStripMenuItem.Enabled = isLogin;
             printLabelToolStripMenuItem.Enabled = isLogin;
+
+            if (!isLogin) permissionToolStripMenuItem.Enabled = false;
         }
 
         private void ExcuteCmd(string cmd)
