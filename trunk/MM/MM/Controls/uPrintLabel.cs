@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
@@ -26,15 +27,38 @@ namespace MM.Controls
         private int _top = 3;
         private int _left = 5;
         private int _right = 5;
-        private int bottom = 5;
+        private int _bottom = 5;
         private int _pageSize = 40;
-
+        private int _pageCount = 0;
+        private int _pageIndex = 0;
+        private int _solution = 90;
+        private List<LabelInfo> _labels = null;
+        private int _widthPxl = 0;
+        private int _heightPxl = 0;
+        private int _labelWidthPxl = 0;
+        private int _labelHeightPxl = 0;
+        private int _deltaWidthPxl = 0;
+        private int _deltaHeightPxl = 0;
+        private int _topPxl = 0;
+        private int _leftPxl = 0;
+        private int _rightPxl = 0;
+        private int bottomPxl = 0;
         #endregion
 
         #region Constructor
         public uPrintLabel()
         {
             InitializeComponent();
+            _widthPxl = (int)Math.Round(((_width * _solution) / 25.4));
+            _heightPxl = (int)Math.Round(((_height * _solution) / 25.4));
+            _labelWidthPxl = (int)Math.Round(((_labelWidth * _solution) / 25.4));
+            _labelHeightPxl = (int)Math.Round(((_labelHeight * _solution) / 25.4));
+            _deltaWidthPxl = (int)Math.Round(((_deltaWidth * _solution) / 25.4));
+            _deltaHeightPxl = (int)Math.Round(((_deltaHeight * _solution) / 25.4));
+            _topPxl = (int)Math.Round(((_top * _solution) / 25.4));
+            _leftPxl = (int)Math.Round(((_left * _solution) / 25.4));
+            _rightPxl = (int)Math.Round(((_right * _solution) / 25.4));
+            bottomPxl = (int)Math.Round(((_bottom * _solution) / 25.4));
         }
         #endregion
 
@@ -190,11 +214,49 @@ namespace MM.Controls
                 return;
             }
 
+            int count = members.Count * (int)numCount.Value;
+            _pageCount = count / _pageSize;
+            if (count % _pageSize != 0) _pageCount++;
 
+            if (_labels == null) _labels = new List<LabelInfo>();
+            else _labels.Clear();
+
+            count = (int)numCount.Value;
+            foreach (DataRow row in members)
+            {
+                LabelInfo lbInfo = new LabelInfo();
+                lbInfo.FullName = row["FullName"].ToString();
+                lbInfo.GenderStr = row["GenderAsStr"].ToString() == "Name" ? "M" : "F";
+                lbInfo.DobStr = row["DobStr"].ToString();
+                lbInfo.FileNum = row["FileNum"].ToString();
+                for (int i = 0; i < count; i++)
+                {
+                    _labels.Add(lbInfo);
+                }
+            }
+
+            _pageIndex = 0;
+            _printPreviewDialog.ShowDialog();
+        }
+
+        private Bitmap GetPageBmp()
+        {
+            Bitmap bmp = new Bitmap(_widthPxl, _heightPxl);
+            return bmp;
         }
         #endregion
 
         #region Window Event Handlers
+        private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            //Bitmap pageBmp = GetPageBmp();
+            //e.Graphics'
+          
+            Pen pen = new Pen(Color.Black);
+            e.Graphics.DrawRectangle(pen, 0, 0, _widthPxl, _heightPxl);
+            e.HasMorePages = false;
+        }
+
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
             OnSearchPatient();
@@ -235,5 +297,18 @@ namespace MM.Controls
             }
         }
         #endregion
+    }
+
+    public class LabelInfo
+    {
+        public string FileNum = string.Empty;
+        public string FullName = string.Empty;
+        public string DobStr = string.Empty;
+        public string GenderStr = string.Empty;
+
+        public LabelInfo()
+        {
+
+        }
     }
 }
