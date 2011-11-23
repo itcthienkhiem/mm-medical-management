@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uPrintLabel = new MM.Controls.uPrintLabel();
             this._uPermission = new MM.Controls.uPermission();
             this._uContractList = new MM.Controls.uContractList();
             this._uCompanyList = new MM.Controls.uCompanyList();
@@ -90,7 +91,6 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uPrintLabel = new MM.Controls.uPrintLabel();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -113,6 +113,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uPrintLabel
+            // 
+            resources.ApplyResources(this._uPrintLabel, "_uPrintLabel");
+            this._uPrintLabel.Name = "_uPrintLabel";
             // 
             // _uPermission
             // 
@@ -520,6 +525,7 @@
             // 
             // printLabelToolStripMenuItem
             // 
+            this.printLabelToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon;
             this.printLabelToolStripMenuItem.Name = "printLabelToolStripMenuItem";
             resources.ApplyResources(this.printLabelToolStripMenuItem, "printLabelToolStripMenuItem");
             this.printLabelToolStripMenuItem.Tag = "Print Label";
@@ -554,11 +560,6 @@
             resources.ApplyResources(this.aboutMedicalManagementToolStripMenuItem, "aboutMedicalManagementToolStripMenuItem");
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // _uPrintLabel
-            // 
-            resources.ApplyResources(this._uPrintLabel, "_uPrintLabel");
-            this._uPrintLabel.Name = "_uPrintLabel";
             // 
             // MainForm
             // 
