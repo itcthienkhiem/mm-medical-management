@@ -105,6 +105,7 @@
     <Compile Include="Error.cs" />
     <Compile Include="ErrorCode.cs" />
     <Compile Include="ExcelPrintPreview.cs" />
+    <Compile Include="Gender.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="MsgBoxType.cs" />
