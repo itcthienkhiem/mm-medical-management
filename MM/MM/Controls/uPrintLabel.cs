@@ -24,14 +24,14 @@ namespace MM.Controls
         private int _labelHeight = 19;
         private int _deltaWidth = 3;
         private int _deltaHeight = 1;
-        private int _top = 3;
-        private int _left = 5;
+        private int _top = 0;
+        private int _left = 8;
         private int _right = 5;
         private int _bottom = 5;
         private int _pageSize = 40;
         private int _pageCount = 0;
-        private int _pageIndex = 0;
-        private int _solution = 90;
+        private int _labelIndex = 0;
+        private int _solution = 100;
         private List<LabelInfo> _labels = null;
         private int _widthPxl = 0;
         private int _heightPxl = 0;
@@ -43,6 +43,10 @@ namespace MM.Controls
         private int _leftPxl = 0;
         private int _rightPxl = 0;
         private int bottomPxl = 0;
+        private int _maxRow = 8;
+        private int _maxCol = 5;
+        private Font _font = new Font("Microsoft Sans Serif", 8);
+        private Pen _pen = new Pen(Color.Black);
         #endregion
 
         #region Constructor
@@ -235,26 +239,43 @@ namespace MM.Controls
                 }
             }
 
-            _pageIndex = 0;
+            _labelIndex = 0;
             _printPreviewDialog.ShowDialog();
-        }
-
-        private Bitmap GetPageBmp()
-        {
-            Bitmap bmp = new Bitmap(_widthPxl, _heightPxl);
-            return bmp;
         }
         #endregion
 
         #region Window Event Handlers
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            //Bitmap pageBmp = GetPageBmp();
-            //e.Graphics'
-          
-            Pen pen = new Pen(Color.Black);
-            e.Graphics.DrawRectangle(pen, 0, 0, _widthPxl, _heightPxl);
-            e.HasMorePages = false;
+            //e.Graphics.DrawRectangle(_pen, 0, 0, _widthPxl, _heightPxl);
+            int left = _leftPxl;
+            int top = _topPxl;
+
+            for (int i = 0; i < _maxCol; i++)
+            {
+                top = 0;
+                for (int j = 0; j < _maxRow; j++)
+                {
+                    if (_labelIndex >= _labels.Count)
+                    {
+                        e.HasMorePages = false;
+                        return;
+                    }
+
+                    LabelInfo labelInfo = _labels[_labelIndex];
+                    //e.Graphics.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+                    e.Graphics.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 12);
+                    e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 28);
+                    e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 44);
+
+                    top += _deltaHeightPxl + _labelHeightPxl;
+                    _labelIndex++;
+                }
+
+                left += _deltaWidthPxl + _labelWidthPxl;
+            }
+
+            e.HasMorePages = true;
         }
 
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
