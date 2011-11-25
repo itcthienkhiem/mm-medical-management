@@ -608,7 +608,8 @@ namespace MM.Controls
                                         //    break;
                                         case "code":
                                         case "companycode":
-                                            sCode = curCellValue;
+                                            if(curCellValue!=string.Empty)
+                                                sCode = curCellValue;
                                             break;
                                         default:
                                             break;
@@ -617,9 +618,9 @@ namespace MM.Controls
 
                             }
                             //add patient to database only if they have surname and firstname
-                            if (ct.FirstName != string.Empty && ct.SurName != string.Empty & ct.Gender.HasValue)
+                            if (ct.FirstName!= null && ct.FirstName != string.Empty && ct.SurName!=null && ct.SurName != string.Empty & ct.Gender.HasValue)
                             {
-                                if (ct.FullName == string.Empty)
+                                if (ct.FullName==null || ct.FullName == string.Empty)
                                     ct.FullName = ct.SurName + " " + ct.FirstName;
                                 ct.Source = Path.GetFileName(_fileName);
                                 if (!IsPatientExist(ct.FullName, ct.DobStr, ct.Gender.Value, ct.Source))
