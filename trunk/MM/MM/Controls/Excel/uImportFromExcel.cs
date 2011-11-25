@@ -47,6 +47,7 @@ namespace MM.Controls.Excel
             this.Cursor = Cursors.Default;
             MessageBox.Show(label2.Text);
         }
+
         private int GetPatientQuantity()
         {
             Result result = PatientBus.GetCountPatient();
@@ -54,38 +55,26 @@ namespace MM.Controls.Excel
             {
                 DataTable dt = result.QueryResult as DataTable;
                 if (dt != null && dt.Rows.Count > 0)
-                {
                     return (int)dt.Rows[0][0];
-                }
-                else
-                {
-                    return 0;
-                }
+                else return 0;
             }
-            else
-            {
-                return 0;
-            }
+            else return 0;
         }
+
         private bool IsPatientExist(string fullname, string dobStr, byte gender, string source)
         {
             Result result = PatientBus.CheckPatientExist(fullname, dobStr, gender, source);
             if (result.Error.Code == MM.Common.ErrorCode.EXIST || result.Error.Code == MM.Common.ErrorCode.NOT_EXIST)
             {
                 if (result.Error.Code == MM.Common.ErrorCode.EXIST)
-                {
                     return true;
-                }
                 else
-                {
                     return false;
-                }
             }
             else
-            {
                 return false;
-            }
         }
+
         private void ImportPatientFromExcel()
         {
             try

@@ -33,6 +33,7 @@ namespace MM.Controls
         public bool AllowEdit = true;
         public bool AllowDelete = true;
         public bool AllowPrint = true;
+        public bool AllowImport = true;
         public bool AllowExport = true;
         public bool AllowShowServicePrice = true;
         public bool AllowOpenPatient = true;

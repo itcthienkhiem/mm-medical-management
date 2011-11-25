@@ -5444,6 +5444,8 @@ namespace MM.Databasae
 		
 		private bool _IsPrint;
 		
+		private bool _IsImport;
+		
 		private bool _IsExport;
 		
 		private System.Nullable<System.DateTime> _CreatedDate;
@@ -5482,6 +5484,8 @@ namespace MM.Databasae
     partial void OnIsDeleteChanged();
     partial void OnIsPrintChanging(bool value);
     partial void OnIsPrintChanged();
+    partial void OnIsImportChanging(bool value);
+    partial void OnIsImportChanged();
     partial void OnIsExportChanging(bool value);
     partial void OnIsExportChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
@@ -5669,6 +5673,26 @@ namespace MM.Databasae
 					this._IsPrint = value;
 					this.SendPropertyChanged("IsPrint");
 					this.OnIsPrintChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsImport", DbType="Bit NOT NULL")]
+		public bool IsImport
+		{
+			get
+			{
+				return this._IsImport;
+			}
+			set
+			{
+				if ((this._IsImport != value))
+				{
+					this.OnIsImportChanging(value);
+					this.SendPropertyChanging();
+					this._IsImport = value;
+					this.SendPropertyChanged("IsImport");
+					this.OnIsImportChanged();
 				}
 			}
 		}
@@ -11100,6 +11124,8 @@ namespace MM.Databasae
 		
 		private string _FunctionName;
 		
+		private bool _IsImport;
+		
 		public PermissionView()
 		{
 		}
@@ -11372,6 +11398,22 @@ namespace MM.Databasae
 				if ((this._FunctionName != value))
 				{
 					this._FunctionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsImport", DbType="Bit NOT NULL")]
+		public bool IsImport
+		{
+			get
+			{
+				return this._IsImport;
+			}
+			set
+			{
+				if ((this._IsImport != value))
+				{
+					this._IsImport = value;
 				}
 			}
 		}

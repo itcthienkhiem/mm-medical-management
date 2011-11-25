@@ -158,6 +158,7 @@ namespace MM
                         bool isEdit = Convert.ToBoolean(row["IsEdit"]);
                         bool isDelete = Convert.ToBoolean(row["IsDelete"]);
                         bool isPrint = Convert.ToBoolean(row["IsPrint"]);
+                        bool isImport = Convert.ToBoolean(row["IsImport"]);
                         bool isExport = Convert.ToBoolean(row["IsExport"]);
 
                         if (functionCode == Const.DocStaff)
@@ -169,6 +170,7 @@ namespace MM
                             _uDocStaffList.AllowDelete = isDelete;
                             _uDocStaffList.AllowPrint = isPrint;
                             _uDocStaffList.AllowExport = isExport;
+                            _uDocStaffList.AllowImport = isImport;
                         }
                         else if (functionCode == Const.Patient)
                         {
@@ -179,6 +181,7 @@ namespace MM
                             _uPatientList.AllowDelete = isDelete;
                             _uPatientList.AllowPrint = isPrint;
                             _uPatientList.AllowExport = isExport;
+                            _uPatientList.AllowImport = isImport;
                         }
                         else if (functionCode == Const.Speciality)
                         {
@@ -189,6 +192,7 @@ namespace MM
                             _uSpecialityList.AllowDelete = isDelete;
                             _uSpecialityList.AllowPrint = isPrint;
                             _uSpecialityList.AllowExport = isExport;
+                            _uSpecialityList.AllowImport = isImport;
                         }
                         else if (functionCode == Const.Company)
                         {
@@ -199,6 +203,7 @@ namespace MM
                             _uCompanyList.AllowDelete = isDelete;
                             _uCompanyList.AllowPrint = isPrint;
                             _uCompanyList.AllowExport = isExport;
+                            _uCompanyList.AllowImport = isImport;
                         }
                         else if (functionCode == Const.Services)
                         {
@@ -209,6 +214,7 @@ namespace MM
                             _uServicesList.AllowDelete = isDelete;
                             _uServicesList.AllowPrint = isPrint;
                             _uServicesList.AllowExport = isExport;
+                            _uServicesList.AllowImport = isImport;
                         }
                         else if (functionCode == Const.ServicePrice)
                         {
@@ -224,6 +230,7 @@ namespace MM
                             _uContractList.AllowDelete = isDelete;
                             _uContractList.AllowPrint = isPrint;
                             _uContractList.AllowExport = isExport;
+                            _uContractList.AllowImport = isImport;
                         }
                         else if (functionCode == Const.OpenPatient)
                         {
@@ -239,6 +246,7 @@ namespace MM
                             _uPermission.AllowDelete = isDelete;
                             _uPermission.AllowPrint = isPrint;
                             _uPermission.AllowExport = isExport;
+                            _uPermission.AllowImport = isImport;
                         }
                         else if (functionCode == Const.Symptom)
                         {
@@ -249,6 +257,7 @@ namespace MM
                             _uSymptomList.AllowDelete = isDelete;
                             _uSymptomList.AllowPrint = isPrint;
                             _uSymptomList.AllowExport = isExport;
+                            _uSymptomList.AllowImport = isImport;
                         }
                         else if (functionCode == Const.PrintLabel)
                         {
@@ -271,30 +280,35 @@ namespace MM
                 _uDocStaffList.AllowDelete = true;
                 _uDocStaffList.AllowPrint = true;
                 _uDocStaffList.AllowExport = true;
+                _uDocStaffList.AllowImport = true;
 
                 _uPatientList.AllowAdd = true;
                 _uPatientList.AllowEdit = true;
                 _uPatientList.AllowDelete = true;
                 _uPatientList.AllowPrint = true;
                 _uPatientList.AllowExport = true;
+                _uPatientList.AllowImport = true;
 
                 _uSpecialityList.AllowAdd = true;
                 _uSpecialityList.AllowEdit = true;
                 _uSpecialityList.AllowDelete = true;
                 _uSpecialityList.AllowPrint = true;
                 _uSpecialityList.AllowExport = true;
+                _uSpecialityList.AllowImport = true;
 
                 _uCompanyList.AllowAdd = true;
                 _uCompanyList.AllowEdit = true;
                 _uCompanyList.AllowDelete = true;
                 _uCompanyList.AllowPrint = true;
                 _uCompanyList.AllowExport = true;
+                _uCompanyList.AllowImport = true;
 
                 _uServicesList.AllowAdd = true;
                 _uServicesList.AllowEdit = true;
                 _uServicesList.AllowDelete = true;
                 _uServicesList.AllowPrint = true;
                 _uServicesList.AllowExport = true;
+                _uServicesList.AllowImport = true;
                 _uServicesList.AllowShowServicePrice = true;
 
                 _uContractList.AllowAdd = true;
@@ -302,6 +316,7 @@ namespace MM
                 _uContractList.AllowDelete = true;
                 _uContractList.AllowPrint = true;
                 _uContractList.AllowExport = true;
+                _uContractList.AllowImport = true;
 
                 _uPatientList.AllowOpenPatient = true;
 
@@ -310,12 +325,14 @@ namespace MM
                 _uPermission.AllowDelete = true;
                 _uPermission.AllowPrint = true;
                 _uPermission.AllowExport = true;
+                _uPermission.AllowImport = true;
 
                 _uSymptomList.AllowAdd = true;
                 _uSymptomList.AllowEdit = true;
                 _uSymptomList.AllowDelete = true;
                 _uSymptomList.AllowPrint = true;
                 _uSymptomList.AllowExport = true;
+                _uSymptomList.AllowImport = true;
 
                 permissionToolStripMenuItem.Enabled = isLogin;
             }
