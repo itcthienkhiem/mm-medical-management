@@ -304,7 +304,7 @@ namespace MM.Dialogs
 
                 _contact.KnownAs = txtKnownAs.Text;
                 _contact.PreferredName = txtPreferredName.Text;
-                _contact.Archived = true;
+                _contact.Archived = false;
                 _contact.DobStr = txtDOB.Text;
                 _contact.IdentityCard = txtIdentityCard.Text;
                 _contact.Occupation = txtOccupation.Text;

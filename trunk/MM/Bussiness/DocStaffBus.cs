@@ -87,7 +87,7 @@ namespace MM.Bussiness
                             Contact contact = docStaff.Contact;
                             if (contact != null)
                             {
-                                contact.Archived = false;
+                                contact.Archived = true;
                                 contact.DateArchived = DateTime.Now;
                                 contact.DeletedBy = Guid.Parse(Global.UserGUID);
                                 contact.DeletedDate = DateTime.Now;
