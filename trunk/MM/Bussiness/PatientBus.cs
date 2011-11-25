@@ -269,7 +269,46 @@ namespace MM.Bussiness
 
             return result;
         }
+        public static Result CheckPatientExist(string fullname, string dobStr, byte gender, string source)
+        {
+            Result result = new Result();
+            MMOverride db = null;
 
+            try
+            {
+                db = new MMOverride();
+                Contact ct = null;
+                ct = db.Contacts.SingleOrDefault<Contact>(c => c.FullName.Trim().ToLower() == fullname.Trim().ToLower() &&
+                                                                c.DobStr.Trim().ToLower() == dobStr.Trim().ToLower() && 
+                                                                c.Gender == gender && c.Source == source);
+                    
+
+                if (ct == null)
+                    result.Error.Code = ErrorCode.NOT_EXIST;
+                else
+                    result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
         public static Result CheckPatientExistFileNum(string patientGUID, string fileNum)
         {
             Result result = new Result();
