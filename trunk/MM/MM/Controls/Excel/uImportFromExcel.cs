@@ -152,7 +152,7 @@ namespace MM.Controls.Excel
                                         case "sex":
                                             string s = curCellValue;
                                             if (s == "nữ" || s == "femail" || s == "f")
-                                                ct.Gender = (byte)Gender.Femail;
+                                                ct.Gender = (byte)Gender.Female;
                                             else
                                                 ct.Gender = (byte)Gender.Male;
                                             break;

@@ -8,7 +8,7 @@ namespace MM.Common
     public enum Gender : int
     {
         Male = 0,
-        Femail,
+        Female,
         Other
     }
 }

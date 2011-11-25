@@ -12,10 +12,8 @@ using MM.Dialogs;
 using MM.Bussiness;
 using MM.Common;
 using MM.Databasae;
-using QiHe.CodeLib;
-using QiHe.Office.CompoundDocumentFormat;
-using QiHe.Office.Excel;
-
+using SpreadsheetGear;
+using SpreadsheetGear.Advanced.Cells;
 
 namespace MM.Controls
 {
@@ -526,15 +524,12 @@ namespace MM.Controls
             {
                 if (File.Exists(_fileName))
                 {
-                    CompoundDocument doc = CompoundDocument.Read(_fileName);
-                    byte[] bookdata = doc.GetStreamData("Workbook");
-                    Workbook book = new Workbook();
-                    book.Read(new MemoryStream(bookdata));
-
-                    foreach (Worksheet sheet in book.Worksheets)
+                    IWorkbook book = SpreadsheetGear.Factory.GetWorkbook(_fileName);
+                    
+                    foreach (IWorksheet sheet in book.Worksheets)
                     {
-                        int RowCount = sheet.MaxRowIndex + 1;
-                        int ColumnCount = sheet.MaxColIndex + 1;
+                        int RowCount = sheet.UsedRange.RowCount + 1;
+                        int ColumnCount = sheet.UsedRange.ColumnCount + 1;
                         for (int i = 1; i < RowCount; i++)
                         {
                             Contact ct = new Contact();
@@ -544,20 +539,18 @@ namespace MM.Controls
                             for (int j = 0; j < ColumnCount; j++)
                             {
                                 string curCellValue = string.Empty;
-                                if (sheet.Cells[i, j] != null)
-                                {
-                                    curCellValue = sheet.Cells[i, j].StringValue.Trim();
-                                }
+                                if (sheet.Cells[i, j].Value != null)
+                                    curCellValue = sheet.Cells[i, j].Value.ToString().Trim();
+
                                 //process NULL text in excel 
                                 if (curCellValue.ToUpper() == "NULL")
-                                {
                                     curCellValue = "";
-                                }
+
                                 //process "'" character
                                 curCellValue = curCellValue.Replace("'", "''");
-                                if (sheet.Cells[0, j] != null && sheet.Cells[0, j].StringValue != null)
+                                if (sheet.Cells[0, j].Value != null && sheet.Cells[0, j].Value.ToString().Trim() != null)
                                 {
-                                    switch (sheet.Cells[0, j].StringValue.Trim().ToLower())
+                                    switch (sheet.Cells[0, j].Value.ToString().Trim().ToLower())
                                     {
                                         case "surname":
                                         case "sirname":
@@ -588,24 +581,18 @@ namespace MM.Controls
                                             ct.DobStr = dob;
                                             DateTime dt = new DateTime();
                                             if (DateTime.TryParse(dob, out dt))
-                                            {
                                                 ct.Dob = dt;
-                                            }
                                             break;
 
                                         case "gender":
                                         case "sex":
-                                            string s = curCellValue;
+                                            string s = curCellValue.ToLower();
                                             if (s == "nam" || s == "mail" || s == "m")
                                                 ct.Gender = (byte)Gender.Male;
                                             else
-                                                ct.Gender = (byte)Gender.Femail;
+                                                ct.Gender = (byte)Gender.Female;
                                             break;
-
-                                        //case "note":
-                                        //case "notes":
-                                        //    ct.Source = curCellValue;
-                                        //    break;
+                                       
                                         case "code":
                                         case "companycode":
                                             if(curCellValue!=string.Empty)
@@ -630,32 +617,23 @@ namespace MM.Controls
                                     int iCount = GetPatientQuantity();
                                     iCount++;
                                     if (iCount < 10)
-                                    {
                                         sCode += string.Format("0000{0}", iCount);
-                                    }
                                     else if (iCount >= 10 && iCount < 100)
-                                    {
                                         sCode += string.Format("000{0}", iCount);
-                                    }
                                     else if (iCount >= 100 && iCount < 1000)
-                                    {
                                         sCode += string.Format("00{0}", iCount);
-                                    }
                                     else if (iCount >= 1000 && iCount < 10000)
-                                    {
                                         sCode += string.Format("0{0}", iCount);
-                                    }
                                     else
-                                    {
                                         sCode += string.Format("{0}", iCount);
-                                    }
+
                                     p.FileNum = sCode;
+
                                     Result result = PatientBus.InsertPatient(ct, p, ph);
                                     if (!result.IsOK)
                                     {
                                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.InsertPatient"));
                                         Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.InsertPatient"));
-
                                     }
                                 }
                             }
