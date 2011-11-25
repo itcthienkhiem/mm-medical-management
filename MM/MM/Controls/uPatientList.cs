@@ -596,10 +596,10 @@ namespace MM.Controls
                                         case "gender":
                                         case "sex":
                                             string s = curCellValue;
-                                            if (s == "nữ" || s == "femail" || s == "f")
-                                                ct.Gender = (byte)Gender.Femail;
-                                            else
+                                            if (s == "nam" || s == "mail" || s == "m")
                                                 ct.Gender = (byte)Gender.Male;
+                                            else
+                                                ct.Gender = (byte)Gender.Femail;
                                             break;
 
                                         //case "note":
