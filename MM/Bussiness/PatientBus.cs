@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'True' ORDER BY FullName";
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'False' ORDER BY FullName";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -61,7 +61,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'True' AND PatientGUID NOT IN (SELECT PatientGUID FROM CompanyMember WHERE Status = 0) ORDER BY FullName";
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'False' AND PatientGUID NOT IN (SELECT PatientGUID FROM CompanyMember WHERE Status = 0) ORDER BY FullName";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -96,7 +96,7 @@ namespace MM.Bussiness
                             Contact contact = patient.Contact;
                             if (contact != null)
                             {
-                                contact.Archived = false;
+                                contact.Archived = true;
                                 contact.DateArchived = DateTime.Now;
                                 contact.DeletedBy = Guid.Parse(Global.UserGUID);
                                 contact.DeletedDate = DateTime.Now;
