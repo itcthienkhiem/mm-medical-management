@@ -34,6 +34,7 @@
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtSelectedFile = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // label2
@@ -49,6 +50,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(378, 35);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -64,6 +66,7 @@
             this.btnImport.TabIndex = 16;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnBrowse
             // 
@@ -73,6 +76,7 @@
             this.btnBrowse.TabIndex = 15;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // txtSelectedFile
             // 
@@ -90,6 +94,11 @@
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 13;
             this.label1.Text = "Select File";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
             // 
             // uImportFromExcel
             // 
@@ -116,5 +125,6 @@
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TextBox txtSelectedFile;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
