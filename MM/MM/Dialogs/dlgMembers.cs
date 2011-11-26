@@ -174,12 +174,12 @@ namespace MM.Dialogs
             string str = txtSearchPatient.Text.ToLower();
 
             //FullName
-            var results = from p in _dataSource.AsEnumerable()
-                          where (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
-                          str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) &&
-                          p.Field<string>("FullName") != null &&
-                          p.Field<string>("FullName").Trim() != string.Empty
-                          select p;
+            List<DataRow> results = (from p in _dataSource.AsEnumerable()
+                          where p.Field<string>("FullName") != null &&
+                          p.Field<string>("FullName").Trim() != string.Empty &&
+                          (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
+                          str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0)
+                          select p).ToList<DataRow>();
 
             DataTable newDataSource = _dataSource.Clone();
             foreach (DataRow row in results)
@@ -193,12 +193,12 @@ namespace MM.Dialogs
 
 
             //FileNum
-            results = from p in _dataSource.AsEnumerable()
-                      where (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                      str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0) &&
-                          p.Field<string>("FileNum") != null &&
-                          p.Field<string>("FileNum").Trim() != string.Empty
-                      select p;
+            results = (from p in _dataSource.AsEnumerable()
+                      where p.Field<string>("FileNum") != null &&
+                          p.Field<string>("FileNum").Trim() != string.Empty &&
+                          (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
+                      str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                      select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
                 newDataSource.Rows.Add(row.ItemArray);
