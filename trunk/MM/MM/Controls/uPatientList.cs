@@ -548,6 +548,8 @@ namespace MM.Controls
 
                                 //process "'" character
                                 curCellValue = curCellValue.Replace("'", "''");
+
+                                curCellValue = Utility.ConvertVNI2Unicode(curCellValue);
                                 if (sheet.Cells[0, j].Value != null && sheet.Cells[0, j].Value.ToString().Trim() != null)
                                 {
                                     switch (sheet.Cells[0, j].Value.ToString().Trim().ToLower())
@@ -587,7 +589,7 @@ namespace MM.Controls
                                         case "gender":
                                         case "sex":
                                             string s = curCellValue.ToLower();
-                                            if (s == "nam" || s == "mail" || s == "m")
+                                            if (s == "nam" || s == "male" || s == "m")
                                                 ct.Gender = (byte)Gender.Male;
                                             else
                                                 ct.Gender = (byte)Gender.Female;
