@@ -47,6 +47,7 @@ namespace MM.Controls
         private int _maxCol = 5;
         private Font _font = new Font("Microsoft Sans Serif", 8);
         private Pen _pen = new Pen(Color.Black);
+        private int _maxLenght = 20;
         #endregion
 
         #region Constructor
@@ -264,16 +265,48 @@ namespace MM.Controls
                     }
 
                     LabelInfo labelInfo = _labels[_labelIndex];
-                    //e.Graphics.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
-                    e.Graphics.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 12);
-                    e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 28);
-                    e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 44);
+                    e.Graphics.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+
+                    if (labelInfo.FullName.Length <= _maxLenght)
+                    {
+                        e.Graphics.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 12);
+                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 28);
+                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 44);
+                    }
+                    else
+                    {
+                        int index = labelInfo.FullName.LastIndexOf(" ");
+                        string fullName1 = string.Empty;
+                        string fullName2 = string.Empty;
+                        if (index >= 0)
+                        {
+                            fullName1 = labelInfo.FullName.Substring(0, index);
+                            fullName2 = labelInfo.FullName.Substring(index + 1, labelInfo.FullName.Length - index - 1);
+                        }
+                        else
+                        {
+                            fullName1 = labelInfo.FullName.Substring(0, _maxLenght);
+                            fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
+                        }
+
+                        e.Graphics.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 8);
+                        e.Graphics.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 22);
+                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 38);
+                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 54);
+                    }
 
                     top += _deltaHeightPxl + _labelHeightPxl;
                     _labelIndex++;
                 }
 
                 left += _deltaWidthPxl + _labelWidthPxl;
+            }
+
+            if (_labelIndex >= _labels.Count)
+            {
+                e.HasMorePages = false;
+                _labelIndex = 0;
+                return;
             }
 
             e.HasMorePages = true;
