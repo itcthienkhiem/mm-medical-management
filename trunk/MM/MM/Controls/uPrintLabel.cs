@@ -265,7 +265,7 @@ namespace MM.Controls
                     }
 
                     LabelInfo labelInfo = _labels[_labelIndex];
-                    e.Graphics.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+                    //e.Graphics.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
                     if (labelInfo.FullName.Length <= _maxLenght)
                     {
