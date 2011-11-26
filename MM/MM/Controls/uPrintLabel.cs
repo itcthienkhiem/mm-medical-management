@@ -259,6 +259,7 @@ namespace MM.Controls
                     if (_labelIndex >= _labels.Count)
                     {
                         e.HasMorePages = false;
+                        _labelIndex = 0;
                         return;
                     }
 
