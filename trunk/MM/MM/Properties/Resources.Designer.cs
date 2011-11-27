@@ -88,6 +88,34 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Actions_document_print_preview_icon {
+            get {
+                object obj = ResourceManager.GetObject("Actions_document_print_preview_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Actions_document_print_preview_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Actions_document_print_preview_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Actions_print_preview_icon {
+            get {
+                object obj = ResourceManager.GetObject("Actions_print_preview_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Actions_print_preview_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Actions_print_preview_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);

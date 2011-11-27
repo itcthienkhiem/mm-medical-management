@@ -29,20 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uPrintLabel));
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.numCount = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSearchPatient = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
+            this._printDocument = new System.Drawing.Printing.PrintDocument();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgMembers = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -52,38 +49,175 @@
             this.dobStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
-            this._printDocument = new System.Drawing.Printing.PrintDocument();
-            this._pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numCount)).BeginInit();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.numCount = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSearchPatient = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPrintPreview = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCount)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panel1
+            // patientViewBindingSource
             // 
-            this.panel1.Controls.Add(this.btnPrint);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 377);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(723, 38);
-            this.panel1.TabIndex = 4;
+            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
             // 
-            // btnPrint
+            // _printPreviewDialog
             // 
-            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(8, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(64, 25);
-            this.btnPrint.TabIndex = 3;
-            this.btnPrint.Text = "   &In";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this._printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this._printPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this._printPreviewDialog.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this._printPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
+            this._printPreviewDialog.Document = this._printDocument;
+            this._printPreviewDialog.Enabled = true;
+            this._printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("_printPreviewDialog.Icon")));
+            this._printPreviewDialog.Name = "_printPreviewDialog";
+            this._printPreviewDialog.ShowIcon = false;
+            this._printPreviewDialog.Visible = false;
+            // 
+            // _printDocument
+            // 
+            this._printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this._printDocument_PrintPage);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.Document = this._printDocument;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgMembers);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 60);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(723, 317);
+            this.panel3.TabIndex = 6;
+            // 
+            // chkChecked
+            // 
+            this.chkChecked.AutoSize = true;
+            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Name = "chkChecked";
+            this.chkChecked.Size = new System.Drawing.Size(15, 14);
+            this.chkChecked.TabIndex = 11;
+            this.chkChecked.UseVisualStyleBackColor = true;
+            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
+            // 
+            // dgMembers
+            // 
+            this.dgMembers.AllowUserToAddRows = false;
+            this.dgMembers.AllowUserToDeleteRows = false;
+            this.dgMembers.AllowUserToOrderColumns = true;
+            this.dgMembers.AutoGenerateColumns = false;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dgMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgMembers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colChecked,
+            this.fileNumDataGridViewTextBoxColumn,
+            this.fullNameDataGridViewTextBoxColumn,
+            this.dobStrDataGridViewTextBoxColumn,
+            this.genderAsStrDataGridViewTextBoxColumn,
+            this.IdentityCard});
+            this.dgMembers.DataSource = this.patientViewBindingSource;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dgMembers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgMembers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgMembers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgMembers.HighlightSelectedColumnHeaders = false;
+            this.dgMembers.Location = new System.Drawing.Point(0, 0);
+            this.dgMembers.MultiSelect = false;
+            this.dgMembers.Name = "dgMembers";
+            this.dgMembers.ReadOnly = true;
+            this.dgMembers.RowHeadersWidth = 30;
+            this.dgMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgMembers.Size = new System.Drawing.Size(723, 317);
+            this.dgMembers.TabIndex = 10;
+            // 
+            // colChecked
+            // 
+            this.colChecked.Checked = true;
+            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colChecked.CheckValue = "N";
+            this.colChecked.DataPropertyName = "Checked";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle8;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.ReadOnly = true;
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // fileNumDataGridViewTextBoxColumn
+            // 
+            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
+            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
+            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
+            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 180;
+            // 
+            // dobStrDataGridViewTextBoxColumn
+            // 
+            this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
+            this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
+            this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dobStrDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // genderAsStrDataGridViewTextBoxColumn
+            // 
+            this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
+            this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
+            this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.genderAsStrDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // IdentityCard
+            // 
+            this.IdentityCard.DataPropertyName = "IdentityCard";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.IdentityCard.DefaultCellStyle = dataGridViewCellStyle11;
+            this.IdentityCard.HeaderText = "CMND";
+            this.IdentityCard.Name = "IdentityCard";
+            this.IdentityCard.ReadOnly = true;
+            this.IdentityCard.Width = 120;
             // 
             // panel2
             // 
@@ -140,154 +274,39 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Tìm bệnh nhân:";
             // 
-            // panel3
+            // panel1
             // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgMembers);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 60);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(723, 317);
-            this.panel3.TabIndex = 6;
+            this.panel1.Controls.Add(this.btnPrintPreview);
+            this.panel1.Controls.Add(this.btnPrint);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 377);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(723, 38);
+            this.panel1.TabIndex = 4;
             // 
-            // chkChecked
+            // btnPrintPreview
             // 
-            this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
-            this.chkChecked.Name = "chkChecked";
-            this.chkChecked.Size = new System.Drawing.Size(15, 14);
-            this.chkChecked.TabIndex = 11;
-            this.chkChecked.UseVisualStyleBackColor = true;
-            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
+            this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
+            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintPreview.Location = new System.Drawing.Point(9, 6);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
+            this.btnPrintPreview.TabIndex = 3;
+            this.btnPrintPreview.Text = "      &Xem bản in";
+            this.btnPrintPreview.UseVisualStyleBackColor = true;
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
-            // dgMembers
+            // btnPrint
             // 
-            this.dgMembers.AllowUserToAddRows = false;
-            this.dgMembers.AllowUserToDeleteRows = false;
-            this.dgMembers.AllowUserToOrderColumns = true;
-            this.dgMembers.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgMembers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colChecked,
-            this.fileNumDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn,
-            this.dobStrDataGridViewTextBoxColumn,
-            this.genderAsStrDataGridViewTextBoxColumn,
-            this.IdentityCard});
-            this.dgMembers.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgMembers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgMembers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgMembers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgMembers.HighlightSelectedColumnHeaders = false;
-            this.dgMembers.Location = new System.Drawing.Point(0, 0);
-            this.dgMembers.MultiSelect = false;
-            this.dgMembers.Name = "dgMembers";
-            this.dgMembers.ReadOnly = true;
-            this.dgMembers.RowHeadersWidth = 30;
-            this.dgMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMembers.Size = new System.Drawing.Size(723, 317);
-            this.dgMembers.TabIndex = 10;
-            // 
-            // colChecked
-            // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // fileNumDataGridViewTextBoxColumn
-            // 
-            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
-            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
-            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 180;
-            // 
-            // dobStrDataGridViewTextBoxColumn
-            // 
-            this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
-            this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
-            this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dobStrDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // genderAsStrDataGridViewTextBoxColumn
-            // 
-            this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
-            this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
-            this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.genderAsStrDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // IdentityCard
-            // 
-            this.IdentityCard.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.IdentityCard.DefaultCellStyle = dataGridViewCellStyle5;
-            this.IdentityCard.HeaderText = "CMND";
-            this.IdentityCard.Name = "IdentityCard";
-            this.IdentityCard.ReadOnly = true;
-            this.IdentityCard.Width = 120;
-            // 
-            // patientViewBindingSource
-            // 
-            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
-            // 
-            // _printPreviewDialog
-            // 
-            this._printPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this._printPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this._printPreviewDialog.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._printPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
-            this._printPreviewDialog.Document = this._printDocument;
-            this._printPreviewDialog.Enabled = true;
-            this._printPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("_printPreviewDialog.Icon")));
-            this._printPreviewDialog.Name = "_printPreviewDialog";
-            this._printPreviewDialog.ShowIcon = false;
-            this._printPreviewDialog.Visible = false;
-            // 
-            // _printDocument
-            // 
-            this._printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this._printDocument_PrintPage);
-            // 
-            // _pageSetupDialog
-            // 
-            this._pageSetupDialog.Document = this._printDocument;
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(106, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(64, 25);
+            this.btnPrint.TabIndex = 4;
+            this.btnPrint.Text = "   &In";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // uPrintLabel
             // 
@@ -298,14 +317,14 @@
             this.Controls.Add(this.panel1);
             this.Name = "uPrintLabel";
             this.Size = new System.Drawing.Size(723, 415);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numCount)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -331,6 +350,7 @@
         private System.Windows.Forms.BindingSource patientViewBindingSource;
         private System.Windows.Forms.PrintPreviewDialog _printPreviewDialog;
         private System.Drawing.Printing.PrintDocument _printDocument;
-        private System.Windows.Forms.PageSetupDialog _pageSetupDialog;
+        private System.Windows.Forms.Button btnPrintPreview;
+        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }

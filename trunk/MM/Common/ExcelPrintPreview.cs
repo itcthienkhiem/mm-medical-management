@@ -61,6 +61,17 @@ namespace MM.Common
             ExcelTerminal(excelApp);
         }
 
+        public static void Print(string fileName)
+        {
+            object objOpt = System.Reflection.Missing.Value;
+            Excel.Application excelApp = ExcelInit();
+            Excel.Workbook workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
+                                       objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
+            excelApp.Visible = false;
+            workBook.PrintOut();
+            ExcelTerminal(excelApp);
+        }
+
         public static void SetCulturalWithEN_US()
         {
             if (_currentCultural.Name != "en-US")

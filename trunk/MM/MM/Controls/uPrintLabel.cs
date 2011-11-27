@@ -210,7 +210,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnPrint()
+        private void OnPrint(bool isPreview)
         {
             List<DataRow> members = this.Members;
             if (members == null || members.Count <= 0)
@@ -241,7 +241,13 @@ namespace MM.Controls
             }
 
             _labelIndex = 0;
-            _printPreviewDialog.ShowDialog();
+            if (isPreview)
+                _printPreviewDialog.ShowDialog();
+            else
+            {
+                if (_printDialog.ShowDialog() == DialogResult.OK)
+                    _printDocument.Print();
+            }
         }
         #endregion
 
@@ -329,7 +335,12 @@ namespace MM.Controls
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            OnPrint();
+            OnPrint(false);
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
         }
         #endregion
 
@@ -352,6 +363,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
     }
 
     public class LabelInfo
