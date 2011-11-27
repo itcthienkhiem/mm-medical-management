@@ -206,7 +206,7 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần xóa.");
         }
 
-        private void OnPrint()
+        private void OnPrint(bool isPreview)
         {
             List<DataRow> checkedRows = new List<DataRow>();
             DataTable dt = dgSymptom.DataSource as DataTable;
@@ -222,7 +222,10 @@ namespace MM.Controls
             {
                 string exportFileName = string.Format("{0}\\Temp\\Symptom.xls", Application.StartupPath);
                 if (ExportToExcel(exportFileName, checkedRows))
-                    ExcelPrintPreview.PrintPreview(exportFileName);
+                    if (isPreview) 
+                        ExcelPrintPreview.PrintPreview(exportFileName);
+                    else
+                        ExcelPrintPreview.Print(exportFileName);
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần in.");
@@ -305,7 +308,12 @@ namespace MM.Controls
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            OnPrint();
+            OnPrint(false);
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
