@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using SpreadsheetGear;
+using System.IO;
 using MM.Common;
 using MM.Dialogs;
 using MM.Bussiness;
@@ -48,6 +50,7 @@ namespace MM.Controls
             { 
                 _isDailyService = value;
                 pFilter.Visible = !_isDailyService;
+                btnPrint.Visible = _isDailyService;
             }
         }
         #endregion
@@ -56,6 +59,8 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
+            btnPrint.Visible = Global.AllowShowServiePrice;
+            pTotal.Visible = Global.AllowShowServiePrice;
         }
 
         private void OnAdd()
@@ -185,7 +190,6 @@ namespace MM.Controls
 
         private void CalculateTotalPrice()
         {
-            lbTotalPrice.Visible = Global.AllowShowServiePrice;
             if (!Global.AllowShowServiePrice) return;
 
             double totalPrice = 0;
@@ -201,11 +205,131 @@ namespace MM.Controls
                 }
 
                 lbTotalPrice.Text = string.Format("Tổng tiền: {0:#,###} (VNĐ)", totalPrice);
+                double promotionPrice = 0;
+                if (raPercentage.Checked)
+                    promotionPrice = (totalPrice * (double)numPercentage.Value) / 100;
+                else
+                    promotionPrice = (double)numAmount.Value;
+
+                if (totalPrice - promotionPrice == 0)
+                    lbPay.Text = "Còn lại: 0 (VNĐ)";
+                else
+                    lbPay.Text = string.Format("Còn lại: {0:#,###} (VNĐ)", totalPrice - promotionPrice);
             }
+        }
+
+        private void OnPrint()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            if (dgServiceHistory.RowCount <= 0) return;
+
+            string exportFileName = string.Format("{0}\\Temp\\Receipt.xls", Application.StartupPath);
+            if (ExportToExcel(exportFileName))
+                ExcelPrintPreview.PrintPreview(exportFileName);
+        }
+
+        private bool ExportToExcel(string exportFileName)
+        {
+            string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                DataRow drPatient = _patientRow as DataRow;
+                string patientFullName = drPatient["FullName"].ToString();
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                ExcelPrintPreview.SetCulturalWithEN_US();
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 6;
+
+                workSheet.Cells["B2"].Value = patientFullName;
+                workSheet.Cells["B3"].Value = Global.Fullname;
+                workSheet.Cells["B4"].Value = DateTime.Now.ToString("dd/MM/yyyy");
+
+                DataTable dtSource = dgServiceHistory.DataSource as DataTable;
+                double totalPrice = 0;
+                foreach (DataRow row in dtSource.Rows)
+                {
+                    string serviceCode = row["Code"].ToString();
+                    string serviceName = row["Name"].ToString();
+                    double price = Convert.ToDouble(row["FixedPrice"]);
+                    totalPrice += price;
+
+                    workSheet.Cells[rowIndex, 0].Value = serviceCode;
+                    workSheet.Cells[rowIndex, 1].Value = serviceName;
+                    workSheet.Cells[rowIndex, 2].Value = price.ToString("#,###");
+
+                    rowIndex++;
+                }
+
+                IRange range = workSheet.Cells[string.Format("A7:C{0}", dtSource.Rows.Count + 6)];
+                range.WrapText = true;
+                range.HorizontalAlignment = HAlign.General;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+
+                range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 7)];
+                range.Value = "Tổng tiền:";
+                range.HorizontalAlignment = HAlign.Right;
+
+                range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 7)];
+                range.Value = totalPrice.ToString("#,###");
+
+                range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 8)];
+                range.Value = "Giảm giá:";
+                range.HorizontalAlignment = HAlign.Right;
+
+                range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 8)];
+                double totalPay = 0;
+                if (raPercentage.Checked)
+                {
+                    range.Value = string.Format("{0} %", numPercentage.Value);
+                    totalPay = totalPrice - ((totalPrice * (double)numPercentage.Value) / 100);
+                }
+                else
+                {
+                    totalPay = totalPrice - (double)numAmount.Value;
+                    range.Value = numAmount.Value.ToString("#,###");
+                }
+
+                range.HorizontalAlignment = HAlign.Right;
+
+                range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 9)];
+                range.Value = "Còn lại:";
+                range.HorizontalAlignment = HAlign.Right;
+
+                range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 9)];
+                range.Value = totalPay.ToString("#,###");
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.XLS97);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message);
+                return false;
+            }
+            finally
+            {
+                ExcelPrintPreview.SetCulturalWithCurrent();
+                workBook.Close();
+                workBook = null;
+            }
+
+            return true;
         }
         #endregion
 
         #region Window Event Handlers
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
+
         private void raAll_CheckedChanged(object sender, EventArgs e)
         {
             dtpkFromDate.Enabled = !raAll.Checked;
@@ -270,6 +394,38 @@ namespace MM.Controls
         {
             //DisplayAsThread();
         }
+
+        private void raPercentage_CheckedChanged(object sender, EventArgs e)
+        {
+            numPercentage.Enabled = raPercentage.Checked;
+            numAmount.Enabled = !raPercentage.Checked;
+            CalculateTotalPrice();
+        }
+
+        private void numPercentage_ValueChanged(object sender, EventArgs e)
+        {
+            CalculateTotalPrice();
+        }
+
+        private void numAmount_ValueChanged(object sender, EventArgs e)
+        {
+            CalculateTotalPrice();
+        }
+
+        private void numPercentage_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (numPercentage.Text == string.Empty)
+                numPercentage.Value = 0;
+            CalculateTotalPrice();
+        }
+
+        private void numAmount_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (numAmount.Text == string.Empty)
+                numAmount.Value = 0;
+
+            CalculateTotalPrice();
+        }
         #endregion
 
         #region Working Thread
@@ -291,7 +447,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
