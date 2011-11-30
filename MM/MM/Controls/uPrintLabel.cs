@@ -231,7 +231,7 @@ namespace MM.Controls
             {
                 LabelInfo lbInfo = new LabelInfo();
                 lbInfo.FullName = row["FullName"].ToString();
-                lbInfo.GenderStr = row["GenderAsStr"].ToString() == "Name" ? "M" : "F";
+                lbInfo.GenderStr = row["GenderAsStr"].ToString() == "Nam" ? "M" : "F";
                 lbInfo.DobStr = row["DobStr"].ToString();
                 lbInfo.FileNum = row["FileNum"].ToString();
                 for (int i = 0; i < count; i++)
@@ -275,9 +275,9 @@ namespace MM.Controls
 
                     if (labelInfo.FullName.Length <= _maxLenght)
                     {
-                        e.Graphics.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 12);
-                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 28);
-                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 44);
+                        e.Graphics.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 5, top + 12);
+                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 5, top + 28);
+                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 5, top + 44);
                     }
                     else
                     {
@@ -295,10 +295,10 @@ namespace MM.Controls
                             fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
                         }
 
-                        e.Graphics.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 8);
-                        e.Graphics.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 22);
-                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 38);
-                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 54);
+                        e.Graphics.DrawString(fullName1, _font, Brushes.Black, left + 5, top + 8);
+                        e.Graphics.DrawString(fullName2, _font, Brushes.Black, left + 5, top + 22);
+                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 5, top + 38);
+                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 5, top + 54);
                     }
 
                     top += _deltaHeightPxl + _labelHeightPxl;
