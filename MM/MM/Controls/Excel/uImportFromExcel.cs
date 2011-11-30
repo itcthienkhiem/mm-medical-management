@@ -157,10 +157,10 @@ namespace MM.Controls.Excel
                                                 ct.Gender = (byte)Gender.Male;
                                             break;
 
-                                        //case "note":
-                                        //case "notes":
-                                        //    ct.Source = curCellValue;
-                                        //    break;
+                                        case "marital status":
+                                        case "maritalstatus":
+                                            ph.Tinh_Trang_Gia_Dinh = curCellValue;
+                                            break;
                                         case "code":
                                         case "companycode":
                                             sCode = curCellValue;
