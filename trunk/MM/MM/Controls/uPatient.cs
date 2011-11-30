@@ -51,14 +51,14 @@ namespace MM.Controls
 
             txtFullName.Text = row["FullName"].ToString();
             txtGender.Text = row["GenderAsStr"].ToString();
-            txtDOB.Text = row["DobStr"].ToString();
-            txtAge.Text = Utility.GetAge(txtDOB.Text).ToString();
-            txtIdentityCard.Text = row["IdentityCard"].ToString();
-            txtHomePhone.Text = row["HomePhone"].ToString();
-            txtWorkPhone.Text = row["WorkPhone"].ToString();
-            txtMobile.Text = row["Mobile"].ToString();
-            txtEmail.Text = row["Email"].ToString();
-            txtFullAddress.Text = row["Address"].ToString();
+            txtDOB.Text ="NS: " + row["DobStr"].ToString();
+            txtAge.Text = Utility.GetAge(row["DobStr"].ToString()).ToString() + " tuổi";
+            txtIdentityCard.Text ="CMND: " +  row["IdentityCard"].ToString();
+            //txtHomePhone.Text = row["HomePhone"].ToString();
+            txtWorkPhone.Text = "ĐT: "  + row["WorkPhone"].ToString();
+            txtMobile.Text = "ĐTDĐ: " + row["Mobile"].ToString();
+            txtEmail.Text ="Email: " + row["Email"].ToString();
+            txtFullAddress.Text ="Địa chỉ: " + row["Address"].ToString();
             txtThuocDiUng.Text = row["Thuoc_Di_Ung"].ToString();
 
             _uServiceHistory.DisplayAsThread();
