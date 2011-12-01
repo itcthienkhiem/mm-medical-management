@@ -32,12 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uPatient));
             this.imgList = new System.Windows.Forms.ImageList(this.components);
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uServiceHistory = new MM.Controls.uServiceHistory();
+            this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabServiceHistory = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this._uDailyServiceHistory = new MM.Controls.uServiceHistory();
             this.pageDailyService = new DevComponents.DotNetBar.TabItem(this.components);
-            this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lvService = new System.Windows.Forms.ListView();
@@ -59,7 +60,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this._uServiceHistory = new MM.Controls.uServiceHistory();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
@@ -93,6 +93,22 @@
             this.tabControlPanel1.Style.GradientAngle = 90;
             this.tabControlPanel1.TabIndex = 1;
             this.tabControlPanel1.TabItem = this.pageServiceHistory;
+            // 
+            // _uServiceHistory
+            // 
+            this._uServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uServiceHistory.IsDailyService = false;
+            this._uServiceHistory.Location = new System.Drawing.Point(1, 1);
+            this._uServiceHistory.Name = "_uServiceHistory";
+            this._uServiceHistory.PatientRow = null;
+            this._uServiceHistory.Size = new System.Drawing.Size(1175, 446);
+            this._uServiceHistory.TabIndex = 0;
+            // 
+            // pageServiceHistory
+            // 
+            this.pageServiceHistory.AttachedControl = this.tabControlPanel1;
+            this.pageServiceHistory.Name = "pageServiceHistory";
+            this.pageServiceHistory.Text = "Dịch vụ đã sử dụng";
             // 
             // panel2
             // 
@@ -154,12 +170,6 @@
             this.pageDailyService.Name = "pageDailyService";
             this.pageDailyService.Text = "Dịch vụ trong ngày";
             // 
-            // pageServiceHistory
-            // 
-            this.pageServiceHistory.AttachedControl = this.tabControlPanel1;
-            this.pageServiceHistory.Name = "pageServiceHistory";
-            this.pageServiceHistory.Text = "Dịch vụ đã sử dụng";
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.groupBox1);
@@ -204,10 +214,10 @@
             this.lvService.FullRowSelect = true;
             this.lvService.GridLines = true;
             this.lvService.LargeImageList = this.imgList;
-            this.lvService.Location = new System.Drawing.Point(710, 19);
+            this.lvService.Location = new System.Drawing.Point(675, 19);
             this.lvService.MultiSelect = false;
             this.lvService.Name = "lvService";
-            this.lvService.Size = new System.Drawing.Size(368, 126);
+            this.lvService.Size = new System.Drawing.Size(403, 126);
             this.lvService.SmallImageList = this.imgList;
             this.lvService.TabIndex = 77;
             this.lvService.UseCompatibleStateImageBehavior = false;
@@ -240,7 +250,7 @@
             // txtThuocDiUng
             // 
             this.txtThuocDiUng.ForeColor = System.Drawing.Color.Red;
-            this.txtThuocDiUng.Location = new System.Drawing.Point(4, 78);
+            this.txtThuocDiUng.Location = new System.Drawing.Point(4, 90);
             this.txtThuocDiUng.Name = "txtThuocDiUng";
             this.txtThuocDiUng.ReadOnly = true;
             this.txtThuocDiUng.Size = new System.Drawing.Size(665, 54);
@@ -251,7 +261,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1, 62);
+            this.label1.Location = new System.Drawing.Point(1, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 39;
@@ -357,16 +367,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1177, 5);
             this.panel3.TabIndex = 0;
-            // 
-            // _uServiceHistory
-            // 
-            this._uServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uServiceHistory.IsDailyService = false;
-            this._uServiceHistory.Location = new System.Drawing.Point(1, 1);
-            this._uServiceHistory.Name = "_uServiceHistory";
-            this._uServiceHistory.PatientRow = null;
-            this._uServiceHistory.Size = new System.Drawing.Size(1175, 446);
-            this._uServiceHistory.TabIndex = 0;
             // 
             // uPatient
             // 
