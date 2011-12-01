@@ -446,6 +446,12 @@
     <Compile Include="Dialogs\dlgServices.Designer.cs">
       <DependentUpon>dlgServices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgUpdateCheckList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgUpdateCheckList.Designer.cs">
+      <DependentUpon>dlgUpdateCheckList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgWaiting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -583,6 +589,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgServices.resx">
       <DependentUpon>dlgServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgUpdateCheckList.resx">
+      <DependentUpon>dlgUpdateCheckList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgWaiting.resx">
       <DependentUpon>dlgWaiting.cs</DependentUpon>

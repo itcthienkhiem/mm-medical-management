@@ -22,6 +22,9 @@ namespace MM.Dialogs
         private string _contractGUID = string.Empty;
         private List<string> _addedMembers = null;
         private List<DataRow> _deletedMemberRows = null;
+        private List<string> _addedServices = new List<string>();
+        private List<string> _deletedServices = new List<string>();
+        private List<DataRow> _deletedServiceRows = new List<DataRow>();
         #endregion
 
         #region Constructor
@@ -35,6 +38,8 @@ namespace MM.Dialogs
             _contractGUID = contractGUID;
             if (_companyGUID == string.Empty)
                 _companyGUID = Guid.Empty.ToString();
+
+            pageService.Visible = true;
         }
 
         public dlgMembers(List<string> addedMembers, List<DataRow> deletedMemberRows)
@@ -42,11 +47,12 @@ namespace MM.Dialogs
             InitializeComponent();
             _addedMembers = addedMembers;
             _deletedMemberRows = deletedMemberRows;
+            pageService.Visible = false;
         }
         #endregion
 
         #region Properties
-        public List<DataRow> Members
+        public List<DataRow> CheckedMembers
         {
             get
             {
@@ -63,6 +69,21 @@ namespace MM.Dialogs
                 return checkedRows;
             }
 
+        }
+
+        public List<string> AddedServices
+        {
+            get { return _addedServices; }
+        }
+
+        public List<string> DeletedServices
+        {
+            get { return _deletedServices; }
+        }
+
+        public DataTable ServiceDataSource
+        {
+            get { return dgService.DataSource as DataTable; }
         }
         #endregion
 
@@ -234,6 +255,90 @@ namespace MM.Dialogs
                 }
             }
         }
+
+        private void OnAddService()
+        {
+            dlgServices dlg = new dlgServices(Guid.Empty.ToString(), _addedServices, _deletedServiceRows);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                List<DataRow> checkedRows = dlg.Services;
+                DataTable dataSource = dgService.DataSource as DataTable;
+                if (dataSource == null)
+                {
+                    dataSource = checkedRows[0].Table.Clone();
+                    dgService.DataSource = dataSource;
+                }
+
+                foreach (DataRow row in checkedRows)
+                {
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    DataRow[] rows = dataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                    if (rows == null || rows.Length <= 0)
+                    {
+                        DataRow newRow = dataSource.NewRow();
+                        newRow["Checked"] = false;
+                        newRow["ServiceGUID"] = serviceGUID;
+                        newRow["Code"] = row["Code"];
+                        newRow["Name"] = row["Name"];
+                        newRow["Price"] = row["Price"];
+                        newRow["Description"] = row["Description"];
+                        dataSource.Rows.Add(newRow);
+
+                        if (!_addedServices.Contains(serviceGUID))
+                            _addedServices.Add(serviceGUID);
+
+                        _deletedServices.Remove(serviceGUID);
+                        foreach (DataRow r in _deletedServiceRows)
+                        {
+                            if (r["ServiceGUID"].ToString() == serviceGUID)
+                            {
+                                _deletedServiceRows.Remove(r);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void OnDeleteService()
+        {
+            List<string> deletedSrvList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgService.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedSrvList.Add(row["ServiceGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedSrvList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những dịch vụ mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    foreach (DataRow row in deletedRows)
+                    {
+                        string serviceGUID = row["ServiceGUID"].ToString();
+                        if (!_deletedServices.Contains(serviceGUID))
+                        {
+                            _deletedServices.Add(serviceGUID);
+                            DataRow r = dt.NewRow();
+                            r.ItemArray = row.ItemArray;
+                            _deletedServiceRows.Add(r);
+                        }
+
+                        _addedServices.Remove(serviceGUID);
+
+                        dt.Rows.Remove(row);
+                    }
+                }
+            }
+            else
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những dịch vụ cần xóa.");
+        }
         #endregion
 
         #region Window Event Handlers
@@ -251,18 +356,30 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                List<DataRow> checkedRows = Members;
+                List<DataRow> checkedRows = CheckedMembers;
                 if (checkedRows == null || checkedRows.Count <= 0)
                 {
                     MsgBox.Show(this.Text, "Vui lòng đánh dấu ít nhất 1 bệnh nhân.");
                     e.Cancel = true;
+                    tabMember.SelectedTabIndex = 0;
+                    return;
+                }
+
+                if (_isContractMember)
+                {
+                    if (dgService.RowCount <= 0)
+                    {
+                        MsgBox.Show(this.Text, "Vui lòng thêm ít nhất 1 dịch vụ.");
+                        e.Cancel = true;
+                        tabMember.SelectedTabIndex = 1;
+                    }
                 }
             }
         }
 
         private void txtSearchPatient_KeyDown(object sender, KeyEventArgs e)
         {
-           /* if (e.KeyCode == Keys.Down)
+            if (e.KeyCode == Keys.Down)
             {
                 dgMembers.Focus();
 
@@ -292,7 +409,7 @@ namespace MM.Dialogs
                         dgMembers.Rows[index].Selected = true;
                     }
                 }
-            }*/
+            }
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -303,6 +420,26 @@ namespace MM.Dialogs
             {
                 row["Checked"] = chkChecked.Checked;
             }
+        }
+
+        private void chkServiceChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgService.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkServiceChecked.Checked;
+            }
+        }
+
+        private void btnAddService_Click(object sender, EventArgs e)
+        {
+            OnAddService();
+        }
+
+        private void btnDeleteService_Click(object sender, EventArgs e)
+        {
+            OnDeleteService();
         }
         #endregion
 
@@ -325,9 +462,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
-
-       
     }
 }

@@ -59,7 +59,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
-            btnPrint.Visible = Global.AllowShowServiePrice;
+            btnPrint.Visible = Global.AllowShowServiePrice && _isDailyService;
             pTotal.Visible = Global.AllowShowServiePrice;
         }
 
@@ -195,7 +195,10 @@ namespace MM.Controls
             double totalPrice = 0;
             DataTable dt = dgServiceHistory.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0)
-                lbTotalPrice.Text = string.Format("Tổng tiền: {0} (VNĐ)", totalPrice);
+            {
+                lbTotalPrice.Text = "Tổng tiền: 0 (VNĐ)";
+                lbPay.Text = "Còn lại: 0 (VNĐ)";
+            }
             else
             {
                 foreach (DataRow row in dt.Rows)
