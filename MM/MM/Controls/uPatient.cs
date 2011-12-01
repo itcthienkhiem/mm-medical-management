@@ -56,7 +56,7 @@ namespace MM.Controls
             txtIdentityCard.Text ="CMND: " +  row["IdentityCard"].ToString();
             //txtHomePhone.Text = row["HomePhone"].ToString();
             txtWorkPhone.Text = "ĐT: "  + row["WorkPhone"].ToString();
-            txtMobile.Text = "ĐTDĐ: " + row["Mobile"].ToString();
+            txtMobile.Text = "DĐ: " + row["Mobile"].ToString();
             txtEmail.Text ="Email: " + row["Email"].ToString();
             txtFullAddress.Text ="Địa chỉ: " + row["Address"].ToString();
             txtThuocDiUng.Text = row["Thuoc_Di_Ung"].ToString();
