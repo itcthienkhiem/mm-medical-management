@@ -38,7 +38,7 @@
   <Table Name="dbo.CompanyCheckList" Member="CompanyCheckLists">
     <Type Name="CompanyCheckList">
       <Column Name="CompanyCheckListGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CompanyContractGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ContractMemberGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ServiceGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
@@ -47,7 +47,7 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="CompanyContract_CompanyCheckList" Member="CompanyContract" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="CompanyContract" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="ContractMember_CompanyCheckList" Member="ContractMember" ThisKey="ContractMemberGUID" OtherKey="ContractMemberGUID" Type="ContractMember" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Service_CompanyCheckList" Member="Service" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
@@ -66,7 +66,6 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="CompanyContract_CompanyCheckList" Member="CompanyCheckLists" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="CompanyCheckList" />
       <Association Name="CompanyContract_ContractMember" Member="ContractMembers" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="ContractMember" />
       <Association Name="Company_CompanyContract" Member="Company" ThisKey="CompanyGUID" OtherKey="CompanyGUID" Type="Company" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -139,6 +138,7 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="ContractMember_CompanyCheckList" Member="CompanyCheckLists" ThisKey="ContractMemberGUID" OtherKey="ContractMemberGUID" Type="CompanyCheckList" />
       <Association Name="CompanyContract_ContractMember" Member="CompanyContract" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="CompanyContract" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -270,6 +270,7 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="IsExported" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="DocStaff_ServiceHistory" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Patient_ServiceHistory" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Service_ServiceHistory" Member="Service" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" />
@@ -309,44 +310,6 @@
       <Association Name="Speciality_DocStaff" Member="DocStaffs" ThisKey="SpecialityGUID" OtherKey="SpecialityGUID" Type="DocStaff" />
     </Type>
   </Table>
-  <Table Name="dbo.CompanyCheckListView" Member="CompanyCheckListViews">
-    <Type Name="CompanyCheckListView">
-      <Column Name="CompanyCheckListGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="CompanyContractGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ServiceGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="ServiceStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="CheckListStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UserView" Member="UserViews">
-    <Type Name="UserView">
-      <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="AvailableToWork" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="StaffType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="WorkType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="LogonGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="StaffTypeStr" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.CompanyContractView" Member="CompanyContractViews">
     <Type Name="CompanyContractView">
       <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -369,6 +332,25 @@
       <Column Name="CompanyStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="BeginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="ContractCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserView" Member="UserViews">
+    <Type Name="UserView">
+      <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="AvailableToWork" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="StaffType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="WorkType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="LogonGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="StaffTypeStr" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.CompanyMemberView" Member="CompanyMemberViews">
@@ -597,6 +579,25 @@
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="ActivedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="IsExported" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyCheckListView" Member="CompanyCheckListViews">
+    <Type Name="CompanyCheckListView">
+      <Column Name="CompanyCheckListGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ContractMemberGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CheckListStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

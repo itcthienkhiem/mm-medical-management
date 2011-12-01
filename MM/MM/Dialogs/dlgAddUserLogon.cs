@@ -35,9 +35,8 @@ namespace MM.Dialogs
             InitializeComponent();
             _isNew = false;
             this.Text = "Sua nguoi su dung";
-            InitData();
             _drLogon = drLogon;
-            
+            InitData();
         }
         #endregion
 
@@ -95,7 +94,8 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
-            Result result = DocStaffBus.GetDocStaffList();
+            string docStaffGUID = _isNew ? Guid.Empty.ToString() : _drLogon["DocStaffGUID"].ToString();
+            Result result = DocStaffBus.GetDocStaffListWithoutLogon(docStaffGUID);
             if (result.IsOK)
             {
                 cboDocStaff.DataSource = result.QueryResult as DataTable;

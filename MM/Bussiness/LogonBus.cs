@@ -161,10 +161,10 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 Logon logon = null;
                 if (logonGUID == null || logonGUID == string.Empty)
-                    logon = db.Logons.SingleOrDefault<Logon>(l => l.DocStaffGUID.ToString() == docStaffGUID);
+                    logon = db.Logons.SingleOrDefault<Logon>(l => l.DocStaffGUID.ToString() == docStaffGUID && l.Status == 0);
                 else
                     logon = db.Logons.SingleOrDefault<Logon>(l => l.DocStaffGUID.ToString() == docStaffGUID &&
-                                                                l.LogonGUID.ToString() != logonGUID);
+                                                                l.LogonGUID.ToString() != logonGUID && l.Status == 0);
 
                 if (logon == null)
                     result.Error.Code = ErrorCode.NOT_EXIST;
@@ -207,16 +207,38 @@ namespace MM.Bussiness
                     //Insert
                     if (logon.LogonGUID == null || logon.LogonGUID == Guid.Empty)
                     {
-                        logon.LogonGUID = Guid.NewGuid();
-                        db.Logons.InsertOnSubmit(logon);
-                        db.SubmitChanges();
+                        string logonGUID = string.Empty;
+                        Logon l = db.Logons.SingleOrDefault<Logon>(ll => ll.DocStaffGUID.ToString() == logon.DocStaffGUID.ToString());
+                        if (l == null)
+                        {
+                            logon.LogonGUID = Guid.NewGuid();
+                            db.Logons.InsertOnSubmit(logon);
+                            db.SubmitChanges();
+                            logonGUID = logon.LogonGUID.ToString();
+                        }
+                        else
+                        {
+                            logon.LogonGUID = l.LogonGUID;
+                            l.Password = logon.Password;
+                            l.UpdatedDate = logon.UpdatedDate;
+                            l.UpdatedBy = logon.UpdatedBy;
+                            l.Status = (byte)Status.Actived;
+                            logonGUID = l.LogonGUID.ToString();
+
+                            var permissions = from p in db.Permissions
+                                              where p.LogonGUID.ToString() == logonGUID
+                                              select p;
+
+                            db.Permissions.DeleteAllOnSubmit(permissions);
+                            db.SubmitChanges();
+                        }
 
                         //Permission
                         foreach (DataRow row in dtPermission.Rows)
                         {
                             Permission p = new Permission();
                             p.PermissionGUID = Guid.NewGuid();
-                            p.LogonGUID = logon.LogonGUID;
+                            p.LogonGUID = Guid.Parse(logonGUID);
                             p.FunctionGUID = Guid.Parse(row["FunctionGUID"].ToString());
                             p.IsView = Convert.ToBoolean(row["IsView"]);
                             p.IsAdd = Convert.ToBoolean(row["IsAdd"]);
@@ -229,7 +251,6 @@ namespace MM.Bussiness
                             p.CreatedBy = Guid.Parse(Global.UserGUID);
                             db.Permissions.InsertOnSubmit(p);
                         }
-
                         db.SubmitChanges();
                     }
                     else //Update

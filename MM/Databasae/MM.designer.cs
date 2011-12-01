@@ -238,11 +238,11 @@ namespace MM.Databasae
 			}
 		}
 		
-		public System.Data.Linq.Table<CompanyCheckListView> CompanyCheckListViews
+		public System.Data.Linq.Table<CompanyContractView> CompanyContractViews
 		{
 			get
 			{
-				return this.GetTable<CompanyCheckListView>();
+				return this.GetTable<CompanyContractView>();
 			}
 		}
 		
@@ -251,14 +251,6 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<UserView>();
-			}
-		}
-		
-		public System.Data.Linq.Table<CompanyContractView> CompanyContractViews
-		{
-			get
-			{
-				return this.GetTable<CompanyContractView>();
 			}
 		}
 		
@@ -307,6 +299,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ServiceHistoryView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CompanyCheckListView> CompanyCheckListViews
+		{
+			get
+			{
+				return this.GetTable<CompanyCheckListView>();
 			}
 		}
 	}
@@ -1051,7 +1051,7 @@ namespace MM.Databasae
 		
 		private System.Guid _CompanyCheckListGUID;
 		
-		private System.Guid _CompanyContractGUID;
+		private System.Guid _ContractMemberGUID;
 		
 		private System.Nullable<System.Guid> _ServiceGUID;
 		
@@ -1069,7 +1069,7 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
-		private EntityRef<CompanyContract> _CompanyContract;
+		private EntityRef<ContractMember> _ContractMember;
 		
 		private EntityRef<Service> _Service;
 		
@@ -1079,8 +1079,8 @@ namespace MM.Databasae
     partial void OnCreated();
     partial void OnCompanyCheckListGUIDChanging(System.Guid value);
     partial void OnCompanyCheckListGUIDChanged();
-    partial void OnCompanyContractGUIDChanging(System.Guid value);
-    partial void OnCompanyContractGUIDChanged();
+    partial void OnContractMemberGUIDChanging(System.Guid value);
+    partial void OnContractMemberGUIDChanged();
     partial void OnServiceGUIDChanging(System.Nullable<System.Guid> value);
     partial void OnServiceGUIDChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
@@ -1101,7 +1101,7 @@ namespace MM.Databasae
 		
 		public CompanyCheckList()
 		{
-			this._CompanyContract = default(EntityRef<CompanyContract>);
+			this._ContractMember = default(EntityRef<ContractMember>);
 			this._Service = default(EntityRef<Service>);
 			OnCreated();
 		}
@@ -1126,26 +1126,26 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyContractGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid CompanyContractGUID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContractMemberGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ContractMemberGUID
 		{
 			get
 			{
-				return this._CompanyContractGUID;
+				return this._ContractMemberGUID;
 			}
 			set
 			{
-				if ((this._CompanyContractGUID != value))
+				if ((this._ContractMemberGUID != value))
 				{
-					if (this._CompanyContract.HasLoadedOrAssignedValue)
+					if (this._ContractMember.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnCompanyContractGUIDChanging(value);
+					this.OnContractMemberGUIDChanging(value);
 					this.SendPropertyChanging();
-					this._CompanyContractGUID = value;
-					this.SendPropertyChanged("CompanyContractGUID");
-					this.OnCompanyContractGUIDChanged();
+					this._ContractMemberGUID = value;
+					this.SendPropertyChanged("ContractMemberGUID");
+					this.OnContractMemberGUIDChanged();
 				}
 			}
 		}
@@ -1314,36 +1314,36 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CompanyContract_CompanyCheckList", Storage="_CompanyContract", ThisKey="CompanyContractGUID", OtherKey="CompanyContractGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public CompanyContract CompanyContract
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContractMember_CompanyCheckList", Storage="_ContractMember", ThisKey="ContractMemberGUID", OtherKey="ContractMemberGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public ContractMember ContractMember
 		{
 			get
 			{
-				return this._CompanyContract.Entity;
+				return this._ContractMember.Entity;
 			}
 			set
 			{
-				CompanyContract previousValue = this._CompanyContract.Entity;
+				ContractMember previousValue = this._ContractMember.Entity;
 				if (((previousValue != value) 
-							|| (this._CompanyContract.HasLoadedOrAssignedValue == false)))
+							|| (this._ContractMember.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._CompanyContract.Entity = null;
+						this._ContractMember.Entity = null;
 						previousValue.CompanyCheckLists.Remove(this);
 					}
-					this._CompanyContract.Entity = value;
+					this._ContractMember.Entity = value;
 					if ((value != null))
 					{
 						value.CompanyCheckLists.Add(this);
-						this._CompanyContractGUID = value.CompanyContractGUID;
+						this._ContractMemberGUID = value.ContractMemberGUID;
 					}
 					else
 					{
-						this._CompanyContractGUID = default(System.Guid);
+						this._ContractMemberGUID = default(System.Guid);
 					}
-					this.SendPropertyChanged("CompanyContract");
+					this.SendPropertyChanged("ContractMember");
 				}
 			}
 		}
@@ -1435,8 +1435,6 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
-		private EntitySet<CompanyCheckList> _CompanyCheckLists;
-		
 		private EntitySet<ContractMember> _ContractMembers;
 		
 		private EntityRef<Company> _Company;
@@ -1475,7 +1473,6 @@ namespace MM.Databasae
 		
 		public CompanyContract()
 		{
-			this._CompanyCheckLists = new EntitySet<CompanyCheckList>(new Action<CompanyCheckList>(this.attach_CompanyCheckLists), new Action<CompanyCheckList>(this.detach_CompanyCheckLists));
 			this._ContractMembers = new EntitySet<ContractMember>(new Action<ContractMember>(this.attach_ContractMembers), new Action<ContractMember>(this.detach_ContractMembers));
 			this._Company = default(EntityRef<Company>);
 			OnCreated();
@@ -1745,19 +1742,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CompanyContract_CompanyCheckList", Storage="_CompanyCheckLists", ThisKey="CompanyContractGUID", OtherKey="CompanyContractGUID")]
-		public EntitySet<CompanyCheckList> CompanyCheckLists
-		{
-			get
-			{
-				return this._CompanyCheckLists;
-			}
-			set
-			{
-				this._CompanyCheckLists.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CompanyContract_ContractMember", Storage="_ContractMembers", ThisKey="CompanyContractGUID", OtherKey="CompanyContractGUID")]
 		public EntitySet<ContractMember> ContractMembers
 		{
@@ -1823,18 +1807,6 @@ namespace MM.Databasae
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_CompanyCheckLists(CompanyCheckList entity)
-		{
-			this.SendPropertyChanging();
-			entity.CompanyContract = this;
-		}
-		
-		private void detach_CompanyCheckLists(CompanyCheckList entity)
-		{
-			this.SendPropertyChanging();
-			entity.CompanyContract = null;
 		}
 		
 		private void attach_ContractMembers(ContractMember entity)
@@ -3146,6 +3118,8 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
+		private EntitySet<CompanyCheckList> _CompanyCheckLists;
+		
 		private EntityRef<CompanyContract> _CompanyContract;
 		
     #region Extensibility Method Definitions
@@ -3176,6 +3150,7 @@ namespace MM.Databasae
 		
 		public ContractMember()
 		{
+			this._CompanyCheckLists = new EntitySet<CompanyCheckList>(new Action<CompanyCheckList>(this.attach_CompanyCheckLists), new Action<CompanyCheckList>(this.detach_CompanyCheckLists));
 			this._CompanyContract = default(EntityRef<CompanyContract>);
 			OnCreated();
 		}
@@ -3384,6 +3359,19 @@ namespace MM.Databasae
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ContractMember_CompanyCheckList", Storage="_CompanyCheckLists", ThisKey="ContractMemberGUID", OtherKey="ContractMemberGUID")]
+		public EntitySet<CompanyCheckList> CompanyCheckLists
+		{
+			get
+			{
+				return this._CompanyCheckLists;
+			}
+			set
+			{
+				this._CompanyCheckLists.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CompanyContract_ContractMember", Storage="_CompanyContract", ThisKey="CompanyContractGUID", OtherKey="CompanyContractGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public CompanyContract CompanyContract
 		{
@@ -3436,6 +3424,18 @@ namespace MM.Databasae
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_CompanyCheckLists(CompanyCheckList entity)
+		{
+			this.SendPropertyChanging();
+			entity.ContractMember = this;
+		}
+		
+		private void detach_CompanyCheckLists(CompanyCheckList entity)
+		{
+			this.SendPropertyChanging();
+			entity.ContractMember = null;
 		}
 	}
 	
@@ -5960,6 +5960,8 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
+		private bool _IsExported;
+		
 		private EntityRef<DocStaff> _DocStaff;
 		
 		private EntityRef<Patient> _Patient;
@@ -5998,6 +6000,8 @@ namespace MM.Databasae
     partial void OnDeletedByChanged();
     partial void OnStatusChanging(byte value);
     partial void OnStatusChanged();
+    partial void OnIsExportedChanging(bool value);
+    partial void OnIsExportedChanged();
     #endregion
 		
 		public ServiceHistory()
@@ -6296,6 +6300,26 @@ namespace MM.Databasae
 					this._Status = value;
 					this.SendPropertyChanged("Status");
 					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExported", DbType="Bit NOT NULL")]
+		public bool IsExported
+		{
+			get
+			{
+				return this._IsExported;
+			}
+			set
+			{
+				if ((this._IsExported != value))
+				{
+					this.OnIsExportedChanging(value);
+					this.SendPropertyChanging();
+					this._IsExported = value;
+					this.SendPropertyChanged("IsExported");
+					this.OnIsExportedChanged();
 				}
 			}
 		}
@@ -7135,564 +7159,6 @@ namespace MM.Databasae
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompanyCheckListView")]
-	public partial class CompanyCheckListView
-	{
-		
-		private System.Guid _CompanyCheckListGUID;
-		
-		private System.Guid _CompanyContractGUID;
-		
-		private System.Nullable<System.Guid> _ServiceGUID;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		private string _Code;
-		
-		private string _Name;
-		
-		private double _Price;
-		
-		private string _Description;
-		
-		private byte _ServiceStatus;
-		
-		private byte _CheckListStatus;
-		
-		public CompanyCheckListView()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyCheckListGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid CompanyCheckListGUID
-		{
-			get
-			{
-				return this._CompanyCheckListGUID;
-			}
-			set
-			{
-				if ((this._CompanyCheckListGUID != value))
-				{
-					this._CompanyCheckListGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyContractGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid CompanyContractGUID
-		{
-			get
-			{
-				return this._CompanyContractGUID;
-			}
-			set
-			{
-				if ((this._CompanyContractGUID != value))
-				{
-					this._CompanyContractGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> ServiceGUID
-		{
-			get
-			{
-				return this._ServiceGUID;
-			}
-			set
-			{
-				if ((this._ServiceGUID != value))
-				{
-					this._ServiceGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this._CreatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this._CreatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this._UpdatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this._UpdatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this._DeletedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this._DeletedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Code
-		{
-			get
-			{
-				return this._Code;
-			}
-			set
-			{
-				if ((this._Code != value))
-				{
-					this._Code = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
-		public double Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this._Price = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(500)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this._Description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceStatus", DbType="TinyInt NOT NULL")]
-		public byte ServiceStatus
-		{
-			get
-			{
-				return this._ServiceStatus;
-			}
-			set
-			{
-				if ((this._ServiceStatus != value))
-				{
-					this._ServiceStatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckListStatus", DbType="TinyInt NOT NULL")]
-		public byte CheckListStatus
-		{
-			get
-			{
-				return this._CheckListStatus;
-			}
-			set
-			{
-				if ((this._CheckListStatus != value))
-				{
-					this._CheckListStatus = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserView")]
-	public partial class UserView
-	{
-		
-		private System.Guid _DocStaffGUID;
-		
-		private string _FullName;
-		
-		private bool _AvailableToWork;
-		
-		private byte _StaffType;
-		
-		private byte _WorkType;
-		
-		private System.Guid _LogonGUID;
-		
-		private byte _Status;
-		
-		private string _Password;
-		
-		private string _StaffTypeStr;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		public UserView()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid DocStaffGUID
-		{
-			get
-			{
-				return this._DocStaffGUID;
-			}
-			set
-			{
-				if ((this._DocStaffGUID != value))
-				{
-					this._DocStaffGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this._FullName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit NOT NULL")]
-		public bool AvailableToWork
-		{
-			get
-			{
-				return this._AvailableToWork;
-			}
-			set
-			{
-				if ((this._AvailableToWork != value))
-				{
-					this._AvailableToWork = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffType", DbType="TinyInt NOT NULL")]
-		public byte StaffType
-		{
-			get
-			{
-				return this._StaffType;
-			}
-			set
-			{
-				if ((this._StaffType != value))
-				{
-					this._StaffType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkType", DbType="TinyInt NOT NULL")]
-		public byte WorkType
-		{
-			get
-			{
-				return this._WorkType;
-			}
-			set
-			{
-				if ((this._WorkType != value))
-				{
-					this._WorkType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogonGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid LogonGUID
-		{
-			get
-			{
-				return this._LogonGUID;
-			}
-			set
-			{
-				if ((this._LogonGUID != value))
-				{
-					this._LogonGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
-		public byte Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(100)")]
-		public string Password
-		{
-			get
-			{
-				return this._Password;
-			}
-			set
-			{
-				if ((this._Password != value))
-				{
-					this._Password = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffTypeStr", DbType="NVarChar(6)")]
-		public string StaffTypeStr
-		{
-			get
-			{
-				return this._StaffTypeStr;
-			}
-			set
-			{
-				if ((this._StaffTypeStr != value))
-				{
-					this._StaffTypeStr = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this._CreatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this._CreatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this._UpdatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this._UpdatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this._DeletedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this._DeletedBy = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompanyContractView")]
 	public partial class CompanyContractView
 	{
@@ -8057,6 +7523,285 @@ namespace MM.Databasae
 				if ((this._ContractCode != value))
 				{
 					this._ContractCode = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserView")]
+	public partial class UserView
+	{
+		
+		private System.Guid _DocStaffGUID;
+		
+		private string _FullName;
+		
+		private bool _AvailableToWork;
+		
+		private byte _StaffType;
+		
+		private byte _WorkType;
+		
+		private System.Guid _LogonGUID;
+		
+		private byte _Status;
+		
+		private string _Password;
+		
+		private string _StaffTypeStr;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		public UserView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid DocStaffGUID
+		{
+			get
+			{
+				return this._DocStaffGUID;
+			}
+			set
+			{
+				if ((this._DocStaffGUID != value))
+				{
+					this._DocStaffGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit NOT NULL")]
+		public bool AvailableToWork
+		{
+			get
+			{
+				return this._AvailableToWork;
+			}
+			set
+			{
+				if ((this._AvailableToWork != value))
+				{
+					this._AvailableToWork = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffType", DbType="TinyInt NOT NULL")]
+		public byte StaffType
+		{
+			get
+			{
+				return this._StaffType;
+			}
+			set
+			{
+				if ((this._StaffType != value))
+				{
+					this._StaffType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkType", DbType="TinyInt NOT NULL")]
+		public byte WorkType
+		{
+			get
+			{
+				return this._WorkType;
+			}
+			set
+			{
+				if ((this._WorkType != value))
+				{
+					this._WorkType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogonGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid LogonGUID
+		{
+			get
+			{
+				return this._LogonGUID;
+			}
+			set
+			{
+				if ((this._LogonGUID != value))
+				{
+					this._LogonGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(100)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this._Password = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffTypeStr", DbType="NVarChar(6)")]
+		public string StaffTypeStr
+		{
+			get
+			{
+				return this._StaffTypeStr;
+			}
+			set
+			{
+				if ((this._StaffTypeStr != value))
+				{
+					this._StaffTypeStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this._UpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this._DeletedBy = value;
 				}
 			}
 		}
@@ -11463,6 +11208,8 @@ namespace MM.Databasae
 		
 		private string _FullName;
 		
+		private bool _IsExported;
+		
 		public ServiceHistoryView()
 		{
 		}
@@ -11783,6 +11530,283 @@ namespace MM.Databasae
 				if ((this._FullName != value))
 				{
 					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExported", DbType="Bit NOT NULL")]
+		public bool IsExported
+		{
+			get
+			{
+				return this._IsExported;
+			}
+			set
+			{
+				if ((this._IsExported != value))
+				{
+					this._IsExported = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CompanyCheckListView")]
+	public partial class CompanyCheckListView
+	{
+		
+		private System.Guid _CompanyCheckListGUID;
+		
+		private System.Guid _ContractMemberGUID;
+		
+		private System.Nullable<System.Guid> _ServiceGUID;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _CheckListStatus;
+		
+		private string _Code;
+		
+		private string _Name;
+		
+		private double _Price;
+		
+		private byte _ServiceStatus;
+		
+		public CompanyCheckListView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CompanyCheckListGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid CompanyCheckListGUID
+		{
+			get
+			{
+				return this._CompanyCheckListGUID;
+			}
+			set
+			{
+				if ((this._CompanyCheckListGUID != value))
+				{
+					this._CompanyCheckListGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContractMemberGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ContractMemberGUID
+		{
+			get
+			{
+				return this._ContractMemberGUID;
+			}
+			set
+			{
+				if ((this._ContractMemberGUID != value))
+				{
+					this._ContractMemberGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ServiceGUID
+		{
+			get
+			{
+				return this._ServiceGUID;
+			}
+			set
+			{
+				if ((this._ServiceGUID != value))
+				{
+					this._ServiceGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this._UpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this._DeletedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CheckListStatus", DbType="TinyInt NOT NULL")]
+		public byte CheckListStatus
+		{
+			get
+			{
+				return this._CheckListStatus;
+			}
+			set
+			{
+				if ((this._CheckListStatus != value))
+				{
+					this._CheckListStatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this._Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
+		public double Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceStatus", DbType="TinyInt NOT NULL")]
+		public byte ServiceStatus
+		{
+			get
+			{
+				return this._ServiceStatus;
+			}
+			set
+			{
+				if ((this._ServiceStatus != value))
+				{
+					this._ServiceStatus = value;
 				}
 			}
 		}

@@ -35,13 +35,14 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetServicesListNotInCheckList(string contractGUID)
+        public static Result GetServicesListNotInCheckList(string companyMemberGUID)
         {
             Result result = null;
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} AND ServiceGUID NOT IN (SELECT ServiceGUID FROM CompanyCheckList WHERE CompanyContractGUID = '{1}' AND Status = {0}) ORDER BY Code", (byte)Status.Actived, contractGUID);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} AND ServiceGUID NOT IN (SELECT L.ServiceGUID FROM CompanyCheckList L, ContractMember M WHERE M.ContractMemberGUID = L.ContractMemberGUID AND M.companyMemberGUID = '{1}' AND L.Status = {0}) ORDER BY Code", 
+                    (byte)Status.Actived, companyMemberGUID);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

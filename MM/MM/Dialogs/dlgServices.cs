@@ -16,16 +16,17 @@ namespace MM.Dialogs
     public partial class dlgServices : dlgBase
     {
         #region Members
+        private DataTable _dataSource = null;
         private List<string> _addedServices = null;
         private List<DataRow> _deletedServiceRows = null;
-        private string _contractGUID = string.Empty;
+        private string _companyMemberGUID = string.Empty;
         #endregion
 
         #region Constructor
-        public dlgServices(string contractGUID, List<string> addedServices, List<DataRow> deletedServiceRows)
+        public dlgServices(string companyMemberGUID, List<string> addedServices, List<DataRow> deletedServiceRows)
         {
             InitializeComponent();
-            _contractGUID = contractGUID;
+            _companyMemberGUID = companyMemberGUID;
             _addedServices = addedServices;
             _deletedServiceRows = deletedServiceRows;
         }
@@ -114,12 +115,16 @@ namespace MM.Dialogs
 
         private void OnDisplayServicesList()
         {
-            Result result = ServicesBus.GetServicesListNotInCheckList(_contractGUID);
+            Result result;
+            
+            result = ServicesBus.GetServicesListNotInCheckList(_companyMemberGUID);
+
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
-                    dgService.DataSource = GetDataSource((DataTable)result.QueryResult);
+                    _dataSource = GetDataSource((DataTable)result.QueryResult);
+                    dgService.DataSource = _dataSource;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -129,6 +134,81 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
                 Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
+            }
+        }
+
+        private void OnSearchService()
+        {
+            UpdateChecked();
+
+            chkChecked.Checked = false;
+            if (txtSearchService.Text.Trim() == string.Empty)
+            {
+                dgService.DataSource = _dataSource;
+                return;
+            }
+
+            string str = txtSearchService.Text.ToLower();
+
+            //Code
+            List<DataRow> results = (from p in _dataSource.AsEnumerable()
+                                     where p.Field<string>("Code") != null &&
+                                     p.Field<string>("Code").Trim() != string.Empty &&
+                                     (p.Field<string>("Code").ToLower().IndexOf(str) >= 0 ||
+                                     str.IndexOf(p.Field<string>("Code").ToLower()) >= 0)
+                                     select p).ToList<DataRow>();
+
+            DataTable newDataSource = _dataSource.Clone();
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgService.DataSource = newDataSource;
+                return;
+            }
+
+
+            //Name
+            results = (from p in _dataSource.AsEnumerable()
+                       where p.Field<string>("Name") != null &&
+                           p.Field<string>("Name").Trim() != string.Empty &&
+                           (p.Field<string>("Name").ToLower().IndexOf(str) >= 0 ||
+                       str.IndexOf(p.Field<string>("Name").ToLower()) >= 0)
+                       select p).ToList<DataRow>();
+
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgService.DataSource = newDataSource;
+                return;
+            }
+
+            dgService.DataSource = newDataSource;
+        }
+
+        private void UpdateChecked()
+        {
+            DataTable dt = dgService.DataSource as DataTable;
+            if (dt == null) return;
+
+            foreach (DataRow row1 in dt.Rows)
+            {
+                string patientGUID1 = row1["ServiceGUID"].ToString();
+                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+                foreach (DataRow row2 in _dataSource.Rows)
+                {
+                    string patientGUID2 = row2["ServiceGUID"].ToString();
+                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+
+                    if (patientGUID1 == patientGUID2)
+                    {
+                        row2["Checked"] = row1["Checked"];
+                        break;
+                    }
+                }
             }
         }
         #endregion
@@ -159,6 +239,46 @@ namespace MM.Dialogs
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+            }
+        }
+
+        private void txtSearchService_TextChanged(object sender, EventArgs e)
+        {
+            OnSearchService();
+        }
+
+        private void txtSearchService_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                dgService.Focus();
+
+                if (dgService.SelectedRows != null && dgService.SelectedRows.Count > 0)
+                {
+                    int index = dgService.SelectedRows[0].Index;
+                    if (index < dgService.RowCount - 1)
+                    {
+                        index++;
+                        dgService.CurrentCell = dgService[1, index];
+                        dgService.Rows[index].Selected = true;
+                    }
+                }
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                dgService.Focus();
+
+                if (dgService.SelectedRows != null && dgService.SelectedRows.Count > 0)
+                {
+                    int index = dgService.SelectedRows[0].Index;
+                    if (index > 0)
+                    {
+                        index--;
+                        dgService.CurrentCell = dgService[1, index];
+                        dgService.Rows[index].Selected = true;
+                    }
+                }
             }
         }
         #endregion

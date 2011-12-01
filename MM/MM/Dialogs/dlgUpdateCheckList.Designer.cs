@@ -1,6 +1,6 @@
 ﻿namespace MM.Dialogs
 {
-    partial class dlgServices
+    partial class dlgUpdateCheckList
     {
         /// <summary>
         /// Required designer variable.
@@ -30,28 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgServices));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgUpdateCheckList));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtSearchService = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnDeleteService = new System.Windows.Forms.Button();
+            this.btnAddService = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgService = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.companyCheckListViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewCheckBoxXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgService)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
-            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyCheckListViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,9 +56,9 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 460);
+            this.panel1.Location = new System.Drawing.Point(0, 470);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(494, 38);
+            this.panel1.Size = new System.Drawing.Size(661, 38);
             this.panel1.TabIndex = 5;
             // 
             // btnCancel
@@ -69,7 +66,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(249, 6);
+            this.btnCancel.Location = new System.Drawing.Point(332, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 14;
@@ -81,48 +78,54 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.check;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(170, 6);
+            this.btnOK.Location = new System.Drawing.Point(253, 6);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 0;
             this.btnOK.Text = "    &Đồng ý";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // panel5
             // 
-            this.panel2.Controls.Add(this.txtSearchService);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(494, 42);
-            this.panel2.TabIndex = 1;
+            this.panel5.Controls.Add(this.btnDeleteService);
+            this.panel5.Controls.Add(this.btnAddService);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(574, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(87, 470);
+            this.panel5.TabIndex = 6;
             // 
-            // txtSearchService
+            // btnDeleteService
             // 
-            this.txtSearchService.Location = new System.Drawing.Point(78, 12);
-            this.txtSearchService.Name = "txtSearchService";
-            this.txtSearchService.Size = new System.Drawing.Size(404, 20);
-            this.txtSearchService.TabIndex = 0;
-            this.txtSearchService.TextChanged += new System.EventHandler(this.txtSearchService_TextChanged);
-            this.txtSearchService.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchService_KeyDown);
+            this.btnDeleteService.Image = global::MM.Properties.Resources.del;
+            this.btnDeleteService.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteService.Location = new System.Drawing.Point(6, 34);
+            this.btnDeleteService.Name = "btnDeleteService";
+            this.btnDeleteService.Size = new System.Drawing.Size(75, 25);
+            this.btnDeleteService.TabIndex = 6;
+            this.btnDeleteService.Text = "    &Xóa";
+            this.btnDeleteService.UseVisualStyleBackColor = true;
+            this.btnDeleteService.Click += new System.EventHandler(this.btnDeleteService_Click);
             // 
-            // label1
+            // btnAddService
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Tìm dịch vụ:";
+            this.btnAddService.Image = global::MM.Properties.Resources.add;
+            this.btnAddService.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddService.Location = new System.Drawing.Point(6, 6);
+            this.btnAddService.Name = "btnAddService";
+            this.btnAddService.Size = new System.Drawing.Size(75, 25);
+            this.btnAddService.TabIndex = 5;
+            this.btnAddService.Text = "    &Thêm";
+            this.btnAddService.UseVisualStyleBackColor = true;
+            this.btnAddService.Click += new System.EventHandler(this.btnAddService_Click);
             // 
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 4);
+            this.chkChecked.Location = new System.Drawing.Point(45, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
-            this.chkChecked.TabIndex = 3;
+            this.chkChecked.TabIndex = 13;
             this.chkChecked.UseVisualStyleBackColor = true;
             this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
             // 
@@ -142,18 +145,18 @@
             this.dgService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colChecked,
+            this.dataGridViewCheckBoxXColumn1,
             this.codeDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn});
-            this.dgService.DataSource = this.serviceBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgService.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgService.DataSource = this.companyCheckListViewBindingSource;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgService.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgService.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgService.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -164,83 +167,68 @@
             this.dgService.ReadOnly = true;
             this.dgService.RowHeadersWidth = 30;
             this.dgService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgService.Size = new System.Drawing.Size(494, 418);
-            this.dgService.TabIndex = 2;
+            this.dgService.Size = new System.Drawing.Size(574, 470);
+            this.dgService.TabIndex = 12;
             // 
-            // colChecked
+            // companyCheckListViewBindingSource
             // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
+            this.companyCheckListViewBindingSource.DataSource = typeof(MM.Databasae.CompanyCheckListView);
+            // 
+            // dataGridViewCheckBoxXColumn1
+            // 
+            this.dataGridViewCheckBoxXColumn1.Checked = true;
+            this.dataGridViewCheckBoxXColumn1.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.dataGridViewCheckBoxXColumn1.CheckValue = "N";
+            this.dataGridViewCheckBoxXColumn1.DataPropertyName = "Checked";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
+            this.dataGridViewCheckBoxXColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewCheckBoxXColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxXColumn1.Name = "dataGridViewCheckBoxXColumn1";
+            this.dataGridViewCheckBoxXColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxXColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCheckBoxXColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewCheckBoxXColumn1.Width = 40;
             // 
             // codeDataGridViewTextBoxColumn
             // 
             this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.codeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã dịch vụ";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã DV";
             this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
             this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn.Width = 150;
             // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên dịch vụ";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên DV";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 300;
+            this.nameDataGridViewTextBoxColumn.Width = 330;
             // 
-            // serviceBindingSource
+            // dlgUpdateCheckList
             // 
-            this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgService);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 42);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(494, 418);
-            this.panel3.TabIndex = 7;
-            // 
-            // dlgServices
-            // 
-            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(494, 498);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(661, 508);
+            this.Controls.Add(this.chkChecked);
+            this.Controls.Add(this.dgService);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "dlgServices";
+            this.Name = "dlgUpdateCheckList";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Them dich vu";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgServices_FormClosing);
-            this.Load += new System.EventHandler(this.dlgServices_Load);
+            this.Text = "Sua dich vu";
+            this.Load += new System.EventHandler(this.dlgUpdateCheckList_Load);
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgService)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyCheckListViewBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -249,15 +237,14 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button btnDeleteService;
+        private System.Windows.Forms.Button btnAddService;
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgService;
-        private System.Windows.Forms.BindingSource serviceBindingSource;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.BindingSource companyCheckListViewBindingSource;
+        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn dataGridViewCheckBoxXColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtSearchService;
-        private System.Windows.Forms.Label label1;
     }
 }

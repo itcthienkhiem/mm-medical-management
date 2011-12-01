@@ -250,6 +250,7 @@ namespace MM.Controls
                     workSheet.Cells[rowIndex, 0].Value = rowIndex;
                     workSheet.Cells[rowIndex, 1].Value = symptom;
                     workSheet.Cells[rowIndex, 2].Value = advice;
+                    rowIndex++;
                 }
 
                 IRange range = workSheet.Cells[string.Format("A2:C{0}", checkedRows.Count + 1)];

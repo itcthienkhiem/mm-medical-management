@@ -269,7 +269,7 @@ namespace MM.Dialogs
             dlgMembers dlg = new dlgMembers(_addedPatients, _deletedPatientRows);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                List<DataRow> checkedRows = dlg.Members;
+                List<DataRow> checkedRows = dlg.CheckedMembers;
                 DataTable dataSource = dgMembers.DataSource as DataTable;
                 foreach (DataRow row in checkedRows)
                 {
