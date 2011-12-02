@@ -172,7 +172,7 @@ namespace MM.Controls
             }
         }
 
-        private void HighlightPaidServices()
+        public void HighlightPaidServices()
         {
             foreach (DataGridViewRow row in dgServiceHistory.Rows)
             {
@@ -489,6 +489,11 @@ namespace MM.Controls
                 CalculateTotalPrice();
             }
         }
+
+        private void dgServiceHistory_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            HighlightPaidServices();
+        }
         #endregion
 
         #region Working Thread
@@ -510,9 +515,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
     }
 }
