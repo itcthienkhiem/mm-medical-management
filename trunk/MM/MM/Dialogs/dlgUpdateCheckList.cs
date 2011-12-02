@@ -112,7 +112,7 @@ namespace MM.Dialogs
                 }
             }
             else
-                MsgBox.Show(this.Text, "Vui lòng đánh dấu những dịch vụ cần xóa.");
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
         #endregion
 

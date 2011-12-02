@@ -85,7 +85,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -100,7 +100,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(this.Text, e.Message);
+                MM.MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -124,7 +124,7 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.GetCompanyMemberList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
             }
         }
@@ -133,14 +133,14 @@ namespace MM.Dialogs
         {
             if (txtMaCongTy.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập mã công ty.");
+                MsgBox.Show(this.Text, "Vui lòng nhập mã công ty.", IconType.Information);
                 txtMaCongTy.Focus();
                 return false;
             }
 
             if (txtTenCongTy.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên công ty.");
+                MsgBox.Show(this.Text, "Vui lòng nhập tên công ty.", IconType.Information);
                 txtTenCongTy.Focus();
                 return false;
             }
@@ -152,14 +152,14 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, "Mã công ty này đã tồn tại rồi. Vui lòng nhập mã khác.");
+                    MsgBox.Show(this.Text, "Mã công ty này đã tồn tại rồi. Vui lòng nhập mã khác.", IconType.Information);
                     txtMaCongTy.Focus();
                     return false;
                 }
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.CheckCompanyExistCode"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.CheckCompanyExistCode"), IconType.Error);
                 return false;
             }
 
@@ -172,7 +172,7 @@ namespace MM.Dialogs
                     if (result.Error.Code == ErrorCode.EXIST)
                     {
                         string fullName = GetFullName(patientGUID);
-                        MsgBox.Show(this.Text, string.Format("Bệnh nhân: '{0}' đã thuộc 1 công ty khác.", fullName));
+                        MsgBox.Show(this.Text, string.Format("Bệnh nhân: '{0}' đã thuộc 1 công ty khác.", fullName), IconType.Information);
 
                         DataTable dt = dgMembers.DataSource as DataTable;
                         if (dt != null)
@@ -187,7 +187,7 @@ namespace MM.Dialogs
                 }
                 else
                 {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.CheckMemberExist"));
+                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.CheckMemberExist"), IconType.Error);
                     return false;
                 }
             }
@@ -218,7 +218,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -252,14 +252,14 @@ namespace MM.Dialogs
                 Result result = CompanyBus.InsertCompany(_company, _addedPatients, _deletedPatients);
                 if (!result.IsOK)
                 {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.InsertCompany"));
+                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.InsertCompany"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.InsertCompany"));
                     this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 }
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -340,7 +340,7 @@ namespace MM.Dialogs
                 }
             }
             else
-                MsgBox.Show(this.Text, "Vui lòng đánh dấu những nhân viên cần xóa.");
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những nhân viên cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -403,7 +403,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -420,7 +420,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(this.Text, e.Message);
+                MM.MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

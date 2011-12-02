@@ -51,7 +51,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -75,7 +75,7 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("LogonBus.GetUserListWithoutAdmin"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("LogonBus.GetUserListWithoutAdmin"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.GetUserListWithoutAdmin"));
             }
         }
@@ -129,7 +129,7 @@ namespace MM.Controls
         {
             if (dgLogon.SelectedRows == null || dgLogon.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 người sử dụng.");
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 người sử dụng.", IconType.Information);
                 return;
             }
 
@@ -192,13 +192,13 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("LogonBus.DeleteUserLogon"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("LogonBus.DeleteUserLogon"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.DeleteUserLogon"));
                     }
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những người sử dụng cần xóa.");
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những người sử dụng cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -245,7 +245,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

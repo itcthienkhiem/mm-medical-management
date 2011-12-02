@@ -102,7 +102,7 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
             }
         }
@@ -141,7 +141,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -155,7 +155,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -311,13 +311,13 @@ namespace MM.Dialogs
                 }
                 else
                 {
-                    MsgBox.Show(this.Text, funcResult.GetErrorAsString("LogonBus.GetFunction"));
+                    MsgBox.Show(this.Text, funcResult.GetErrorAsString("LogonBus.GetFunction"), IconType.Error);
                     Utility.WriteToTraceLog(funcResult.GetErrorAsString("LogonBus.GetFunction"));
                 }
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.GetPermission"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.GetPermission"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.GetPermission"));
             }
         }
@@ -326,14 +326,14 @@ namespace MM.Dialogs
         {
             if (cboDocStaff.Text == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.");
+                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff.Focus();
                 return false;
             }
 
             if (!Utility.IsValidPassword(txtPassword.Text))
             {
-                MsgBox.Show(this.Text, "Mật khẩu không hợp lệ (4-12 kí tự). Vui lòng nhập lại.");
+                MsgBox.Show(this.Text, "Mật khẩu không hợp lệ (4-12 kí tự). Vui lòng nhập lại.", IconType.Information);
                 txtPassword.Focus();
                 return false;
             }
@@ -345,14 +345,14 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, "Bác sĩ này đã được cấp tài khoản đăng nhập rồi. Vui lòng chọn bác sĩ khác.");
+                    MsgBox.Show(this.Text, "Bác sĩ này đã được cấp tài khoản đăng nhập rồi. Vui lòng chọn bác sĩ khác.", IconType.Information);
                     cboDocStaff.Focus();
                     return false;
                 }
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.CheckUserLogonExist"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.CheckUserLogonExist"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.CheckUserLogonExist"));
                 return false;
             }
@@ -369,7 +369,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -406,7 +406,7 @@ namespace MM.Dialogs
                     Result result = LogonBus.InsertUserLogon(_logon, dtPermission);
                     if (!result.IsOK)
                     {
-                        MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.InsertUserLogon"));
+                        MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.InsertUserLogon"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.InsertUserLogon"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                     }
@@ -416,7 +416,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
 
@@ -493,7 +493,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -510,7 +510,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {

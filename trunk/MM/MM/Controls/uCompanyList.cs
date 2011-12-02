@@ -50,7 +50,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -79,7 +79,7 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetCompanyList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetCompanyList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyList"));
             }
         }
@@ -128,7 +128,7 @@ namespace MM.Controls
         {
             if (dgCompany.SelectedRows == null || dgCompany.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 công ty.");
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 công ty.", IconType.Information);
                 return;
             }
 
@@ -193,13 +193,13 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.DeleteCompany"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.DeleteCompany"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.DeleteCompany"));
                     }
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những công ty cần xóa.");
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những công ty cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -246,7 +246,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

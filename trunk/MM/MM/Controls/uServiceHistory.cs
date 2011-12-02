@@ -76,7 +76,7 @@ namespace MM.Controls
         {
             if (dgServiceHistory.SelectedRows == null || dgServiceHistory.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 dịch vụ.");
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 dịch vụ.", IconType.Information);
                 return;
             }
 
@@ -120,13 +120,13 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceHistoryBus.DeleteServiceHistory"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceHistoryBus.DeleteServiceHistory"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.DeleteServiceHistory"));
                     }
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xóa.");
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
 
         public void DisplayAsThread()
@@ -158,7 +158,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -183,7 +183,7 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceHistoryBus.GetServiceHistory"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceHistoryBus.GetServiceHistory"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.GetServiceHistory"));
             }
         }
@@ -313,7 +313,7 @@ namespace MM.Controls
             }
             catch (Exception ex)
             {
-                MsgBox.Show(Application.ProductName, ex.Message);
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
                 return false;
             }
             finally
@@ -441,7 +441,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

@@ -268,7 +268,7 @@ namespace MM
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("LogonBus.GetPermission"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("LogonBus.GetPermission"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.GetPermission"));
                 }
             }
@@ -669,7 +669,7 @@ namespace MM
             }
             catch (Exception e)
             {
-                MsgBox.Show(Application.ProductName, e.Message);
+                MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
             }
             finally
             {
@@ -726,7 +726,7 @@ namespace MM
             }
             catch (Exception e)
             {
-                MsgBox.Show(Application.ProductName, e.Message);
+                MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
             }
             finally
             {

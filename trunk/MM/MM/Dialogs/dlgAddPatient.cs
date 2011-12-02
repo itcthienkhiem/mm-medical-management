@@ -67,28 +67,28 @@ namespace MM.Dialogs
         {
             if (txtFileNum.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập mã bệnh nhân.");
+                MsgBox.Show(this.Text, "Vui lòng nhập mã bệnh nhân.", IconType.Information);
                 txtFileNum.Focus();
                 return false;
             }
 
             if (txtFullName.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập họ.");
+                MsgBox.Show(this.Text, "Vui lòng nhập họ.", IconType.Information);
                 txtFullName.Focus();
                 return false;
             }
 
             if (txtDOB.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng ngày sinh hoặc năm sinh.");
+                MsgBox.Show(this.Text, "Vui lòng ngày sinh hoặc năm sinh.", IconType.Information);
                 txtDOB.Focus();
                 return false;
             }
 
             if (!Utility.IsValidDOB(txtDOB.Text))
             {
-                MsgBox.Show(this.Text, "Ngày sinh hoặc năm sinh chưa đúng. Vui lòng nhập lại");
+                MsgBox.Show(this.Text, "Ngày sinh hoặc năm sinh chưa đúng. Vui lòng nhập lại", IconType.Information);
                 txtDOB.Focus();
                 return false;
             }
@@ -100,20 +100,20 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, "Mã bệnh nhân này đã tồn tại rồi. Vui lòng nhập mã khác.");
+                    MsgBox.Show(this.Text, "Mã bệnh nhân này đã tồn tại rồi. Vui lòng nhập mã khác.", IconType.Information);
                     txtFileNum.Focus();
                     return false;
                 }
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.CheckPatientExistFileNum"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.CheckPatientExistFileNum"), IconType.Error);
                 return false;
             }
 
             if (chkDiUngThuoc.Checked && txtThuocDiUng.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập thuốc dị ứng.");
+                MsgBox.Show(this.Text, "Vui lòng nhập thuốc dị ứng.", IconType.Information);
                 tabPatient.SelectedTabIndex = 1;
                 txtThuocDiUng.Focus();
                 return false;
@@ -121,7 +121,7 @@ namespace MM.Dialogs
 
             if (chkUngThu.Checked && txtCoQuanUngThu.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập cơ quan ung thư.");
+                MsgBox.Show(this.Text, "Vui lòng nhập cơ quan ung thư.", IconType.Information);
                 tabPatient.SelectedTabIndex = 1;
                 txtCoQuanUngThu.Focus();
                 return false;
@@ -131,7 +131,7 @@ namespace MM.Dialogs
             {
                 if (txtBenhGi.Text.Trim() == string.Empty)
                 {
-                    MsgBox.Show(this.Text, "Vui lòng nhập tên bệnh.");
+                    MsgBox.Show(this.Text, "Vui lòng nhập tên bệnh.", IconType.Information);
                     tabPatient.SelectedTabIndex = 1;
                     txtBenhGi.Focus();
                     return false;
@@ -139,7 +139,7 @@ namespace MM.Dialogs
 
                 if (txtThuocDangDung.Text.Trim() == string.Empty)
                 {
-                    MsgBox.Show(this.Text, "Vui lòng nhập thuốc đang dùng.");
+                    MsgBox.Show(this.Text, "Vui lòng nhập thuốc đang dùng.", IconType.Information);
                     tabPatient.SelectedTabIndex = 1;
                     txtThuocDangDung.Focus();
                     return false;
@@ -268,7 +268,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
 
@@ -283,7 +283,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -379,7 +379,7 @@ namespace MM.Dialogs
                     Result result = PatientBus.InsertPatient(_contact, _patient, _patientHistory);
                     if (!result.IsOK)
                     {
-                        MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.InsertPatient"));
+                        MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.InsertPatient"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.InsertPatient"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                     }
@@ -390,7 +390,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -462,7 +462,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {

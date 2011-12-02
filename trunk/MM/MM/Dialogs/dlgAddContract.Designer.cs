@@ -36,20 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddContract));
             this.tabContract = new DevComponents.DotNetBar.TabControl();
-            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
-            this.cboCompany = new System.Windows.Forms.ComboBox();
-            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label4 = new System.Windows.Forms.Label();
-            this.chkCompleted = new System.Windows.Forms.CheckBox();
-            this.dtpkBeginDate = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pageContractInfo = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkCheckedMember = new System.Windows.Forms.CheckBox();
@@ -64,26 +50,40 @@
             this.btnDeleteMember = new System.Windows.Forms.Button();
             this.btnAddMember = new System.Windows.Forms.Button();
             this.pageMemberList = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.cboCompany = new System.Windows.Forms.ComboBox();
+            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.chkCompleted = new System.Windows.Forms.CheckBox();
+            this.dtpkBeginDate = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pageContractInfo = new DevComponents.DotNetBar.TabItem(this.components);
             this.companyCheckListViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).BeginInit();
             this.tabContract.SuspendLayout();
-            this.tabControlPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             this.tabControlPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tabControlPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyCheckListViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabContract
             // 
             this.tabContract.CanReorderTabs = true;
-            this.tabContract.Controls.Add(this.tabControlPanel2);
             this.tabContract.Controls.Add(this.tabControlPanel1);
+            this.tabContract.Controls.Add(this.tabControlPanel2);
             this.tabContract.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabContract.Location = new System.Drawing.Point(0, 0);
             this.tabContract.Name = "tabContract";
@@ -97,157 +97,6 @@
             this.tabContract.Tabs.Add(this.pageMemberList);
             this.tabContract.TabStop = false;
             this.tabContract.Text = "tabControl1";
-            // 
-            // tabControlPanel1
-            // 
-            this.tabControlPanel1.Controls.Add(this.cboCompany);
-            this.tabControlPanel1.Controls.Add(this.label4);
-            this.tabControlPanel1.Controls.Add(this.chkCompleted);
-            this.tabControlPanel1.Controls.Add(this.dtpkBeginDate);
-            this.tabControlPanel1.Controls.Add(this.label3);
-            this.tabControlPanel1.Controls.Add(this.label7);
-            this.tabControlPanel1.Controls.Add(this.label22);
-            this.tabControlPanel1.Controls.Add(this.txtName);
-            this.tabControlPanel1.Controls.Add(this.txtCode);
-            this.tabControlPanel1.Controls.Add(this.label2);
-            this.tabControlPanel1.Controls.Add(this.label1);
-            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel1.Name = "tabControlPanel1";
-            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(604, 349);
-            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel1.Style.GradientAngle = 90;
-            this.tabControlPanel1.TabIndex = 1;
-            this.tabControlPanel1.TabItem = this.pageContractInfo;
-            // 
-            // cboCompany
-            // 
-            this.cboCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboCompany.DataSource = this.companyBindingSource;
-            this.cboCompany.DisplayMember = "TenCty";
-            this.cboCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCompany.FormattingEnabled = true;
-            this.cboCompany.Location = new System.Drawing.Point(98, 61);
-            this.cboCompany.Name = "cboCompany";
-            this.cboCompany.Size = new System.Drawing.Size(300, 21);
-            this.cboCompany.TabIndex = 2;
-            this.cboCompany.ValueMember = "CompanyGUID";
-            this.cboCompany.SelectedValueChanged += new System.EventHandler(this.cboCompany_SelectedValueChanged);
-            // 
-            // companyBindingSource
-            // 
-            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label4.Location = new System.Drawing.Point(18, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 53;
-            this.label4.Text = "Công ty:";
-            // 
-            // chkCompleted
-            // 
-            this.chkCompleted.AutoSize = true;
-            this.chkCompleted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.chkCompleted.Location = new System.Drawing.Point(21, 112);
-            this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(116, 17);
-            this.chkCompleted.TabIndex = 4;
-            this.chkCompleted.Text = "Hoàn tất hợp đồng";
-            this.chkCompleted.UseVisualStyleBackColor = false;
-            // 
-            // dtpkBeginDate
-            // 
-            this.dtpkBeginDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpkBeginDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkBeginDate.Location = new System.Drawing.Point(99, 86);
-            this.dtpkBeginDate.Name = "dtpkBeginDate";
-            this.dtpkBeginDate.Size = new System.Drawing.Size(97, 20);
-            this.dtpkBeginDate.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label3.Location = new System.Drawing.Point(18, 89);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 52;
-            this.label3.Text = "Ngày bắt đầu:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(402, 40);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 13);
-            this.label7.TabIndex = 51;
-            this.label7.Text = "[*]";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(265, 16);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(17, 13);
-            this.label22.TabIndex = 50;
-            this.label22.Text = "[*]";
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(98, 37);
-            this.txtName.MaxLength = 500;
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(300, 20);
-            this.txtName.TabIndex = 1;
-            // 
-            // txtCode
-            // 
-            this.txtCode.Location = new System.Drawing.Point(98, 13);
-            this.txtCode.MaxLength = 50;
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(163, 20);
-            this.txtCode.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label2.Location = new System.Drawing.Point(18, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 13);
-            this.label2.TabIndex = 48;
-            this.label2.Text = "Tên hợp đồng:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label1.Location = new System.Drawing.Point(18, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 47;
-            this.label1.Text = "Mã hợp đồng:";
-            // 
-            // pageContractInfo
-            // 
-            this.pageContractInfo.AttachedControl = this.tabControlPanel1;
-            this.pageContractInfo.Name = "pageContractInfo";
-            this.pageContractInfo.Text = "Thông tin hợp đồng";
             // 
             // tabControlPanel2
             // 
@@ -424,8 +273,161 @@
             // pageMemberList
             // 
             this.pageMemberList.AttachedControl = this.tabControlPanel2;
+            this.pageMemberList.Image = global::MM.Properties.Resources.Apps_preferences_contact_list_icon;
             this.pageMemberList.Name = "pageMemberList";
             this.pageMemberList.Text = "Danh sách nhân viên";
+            // 
+            // tabControlPanel1
+            // 
+            this.tabControlPanel1.Controls.Add(this.cboCompany);
+            this.tabControlPanel1.Controls.Add(this.label4);
+            this.tabControlPanel1.Controls.Add(this.chkCompleted);
+            this.tabControlPanel1.Controls.Add(this.dtpkBeginDate);
+            this.tabControlPanel1.Controls.Add(this.label3);
+            this.tabControlPanel1.Controls.Add(this.label7);
+            this.tabControlPanel1.Controls.Add(this.label22);
+            this.tabControlPanel1.Controls.Add(this.txtName);
+            this.tabControlPanel1.Controls.Add(this.txtCode);
+            this.tabControlPanel1.Controls.Add(this.label2);
+            this.tabControlPanel1.Controls.Add(this.label1);
+            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel1.Name = "tabControlPanel1";
+            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel1.Size = new System.Drawing.Size(604, 349);
+            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel1.Style.GradientAngle = 90;
+            this.tabControlPanel1.TabIndex = 1;
+            this.tabControlPanel1.TabItem = this.pageContractInfo;
+            // 
+            // cboCompany
+            // 
+            this.cboCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboCompany.DataSource = this.companyBindingSource;
+            this.cboCompany.DisplayMember = "TenCty";
+            this.cboCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCompany.FormattingEnabled = true;
+            this.cboCompany.Location = new System.Drawing.Point(98, 61);
+            this.cboCompany.Name = "cboCompany";
+            this.cboCompany.Size = new System.Drawing.Size(300, 21);
+            this.cboCompany.TabIndex = 2;
+            this.cboCompany.ValueMember = "CompanyGUID";
+            this.cboCompany.SelectedValueChanged += new System.EventHandler(this.cboCompany_SelectedValueChanged);
+            // 
+            // companyBindingSource
+            // 
+            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label4.Location = new System.Drawing.Point(18, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.TabIndex = 53;
+            this.label4.Text = "Công ty:";
+            // 
+            // chkCompleted
+            // 
+            this.chkCompleted.AutoSize = true;
+            this.chkCompleted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.chkCompleted.Location = new System.Drawing.Point(21, 112);
+            this.chkCompleted.Name = "chkCompleted";
+            this.chkCompleted.Size = new System.Drawing.Size(116, 17);
+            this.chkCompleted.TabIndex = 4;
+            this.chkCompleted.Text = "Hoàn tất hợp đồng";
+            this.chkCompleted.UseVisualStyleBackColor = false;
+            // 
+            // dtpkBeginDate
+            // 
+            this.dtpkBeginDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkBeginDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkBeginDate.Location = new System.Drawing.Point(99, 86);
+            this.dtpkBeginDate.Name = "dtpkBeginDate";
+            this.dtpkBeginDate.Size = new System.Drawing.Size(97, 20);
+            this.dtpkBeginDate.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label3.Location = new System.Drawing.Point(18, 89);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 13);
+            this.label3.TabIndex = 52;
+            this.label3.Text = "Ngày bắt đầu:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(402, 40);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(17, 13);
+            this.label7.TabIndex = 51;
+            this.label7.Text = "[*]";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(265, 16);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(17, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "[*]";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(98, 37);
+            this.txtName.MaxLength = 500;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(300, 20);
+            this.txtName.TabIndex = 1;
+            // 
+            // txtCode
+            // 
+            this.txtCode.Location = new System.Drawing.Point(98, 13);
+            this.txtCode.MaxLength = 50;
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(163, 20);
+            this.txtCode.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label2.Location = new System.Drawing.Point(18, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Tên hợp đồng:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label1.Location = new System.Drawing.Point(18, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Mã hợp đồng:";
+            // 
+            // pageContractInfo
+            // 
+            this.pageContractInfo.AttachedControl = this.tabControlPanel1;
+            this.pageContractInfo.Image = global::MM.Properties.Resources.info_icon;
+            this.pageContractInfo.Name = "pageContractInfo";
+            this.pageContractInfo.Text = "Thông tin hợp đồng";
             // 
             // companyCheckListViewBindingSource
             // 
@@ -476,15 +478,15 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddContract_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).EndInit();
             this.tabContract.ResumeLayout(false);
-            this.tabControlPanel1.ResumeLayout(false);
-            this.tabControlPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             this.tabControlPanel2.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.tabControlPanel1.ResumeLayout(false);
+            this.tabControlPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyCheckListViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 

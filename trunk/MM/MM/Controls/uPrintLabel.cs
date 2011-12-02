@@ -104,7 +104,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -130,7 +130,7 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
             }
         }
@@ -215,7 +215,7 @@ namespace MM.Controls
             List<DataRow> members = this.Members;
             if (members == null || members.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng dánh dấu ít nhất 1 bệnh nhân.");
+                MsgBox.Show(Application.ProductName, "Vui lòng dánh dấu ít nhất 1 bệnh nhân.", IconType.Information);
                 return;
             }
 
@@ -354,7 +354,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

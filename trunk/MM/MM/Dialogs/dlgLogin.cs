@@ -35,7 +35,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(Application.ProductName, e.Message);
+                MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -60,7 +60,7 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.GetUserList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.GetUserList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.GetUserList"));
             }
         }
@@ -95,7 +95,7 @@ namespace MM.Dialogs
                     }
                     else
                     {
-                        MsgBox.Show(this.Text, "Mật khẩu không chính xác. Vui lòng nhập lại.");
+                        MsgBox.Show(this.Text, "Mật khẩu không chính xác. Vui lòng nhập lại.", IconType.Information);
                         txtPassword.Focus();
                         e.Cancel = true;
                     }
@@ -116,7 +116,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(Application.ProductName, e.Message);
+                MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

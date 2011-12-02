@@ -205,7 +205,7 @@
             // 
             this.tbServiceList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tbServiceList, "tbServiceList");
-            this.tbServiceList.Image = global::MM.Properties.Resources.accept_icon;
+            this.tbServiceList.Image = global::MM.Properties.Resources.Service_icon__1_;
             this.tbServiceList.Name = "tbServiceList";
             this.tbServiceList.Tag = "Services List";
             // 
@@ -397,7 +397,7 @@
             // 
             // serviceListToolStripMenuItem
             // 
-            this.serviceListToolStripMenuItem.Image = global::MM.Properties.Resources.accept_icon;
+            this.serviceListToolStripMenuItem.Image = global::MM.Properties.Resources.Service_icon__1_;
             this.serviceListToolStripMenuItem.Name = "serviceListToolStripMenuItem";
             resources.ApplyResources(this.serviceListToolStripMenuItem, "serviceListToolStripMenuItem");
             this.serviceListToolStripMenuItem.Tag = "Services List";

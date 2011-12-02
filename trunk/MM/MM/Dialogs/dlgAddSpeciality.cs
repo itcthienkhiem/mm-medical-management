@@ -76,7 +76,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -85,14 +85,14 @@ namespace MM.Dialogs
         {
             if (txtCode.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập mã chuyên khoa.");
+                MsgBox.Show(this.Text, "Vui lòng nhập mã chuyên khoa.", IconType.Information);
                 txtCode.Focus();
                 return false;
             }
 
             if (txtName.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên chuyên khoa.");
+                MsgBox.Show(this.Text, "Vui lòng nhập tên chuyên khoa.", IconType.Information);
                 txtName.Focus();
                 return false;
             }
@@ -104,14 +104,14 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, "Mã chuyên khoa này đã tồn tại rồi. Vui lòng nhập mã khác.");
+                    MsgBox.Show(this.Text, "Mã chuyên khoa này đã tồn tại rồi. Vui lòng nhập mã khác.", IconType.Information);
                     txtCode.Focus();
                     return false;
                 }
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.CheckSpecialityExistCode"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.CheckSpecialityExistCode"), IconType.Error);
                 return false;
             }
 
@@ -127,7 +127,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -158,14 +158,14 @@ namespace MM.Dialogs
                 Result result = SpecialityBus.InsertSpeciality(_speciality);
                 if (!result.IsOK)
                 {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.InsertSpeciality"));
+                    MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.InsertSpeciality"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("SpecialityBus.InsertSpeciality"));
                     this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 }
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -194,7 +194,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {

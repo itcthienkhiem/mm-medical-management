@@ -107,6 +107,7 @@
             // pageServiceHistory
             // 
             this.pageServiceHistory.AttachedControl = this.tabControlPanel1;
+            this.pageServiceHistory.Image = global::MM.Properties.Resources.Service_icon;
             this.pageServiceHistory.Name = "pageServiceHistory";
             this.pageServiceHistory.Text = "Dịch vụ đã sử dụng";
             // 
@@ -167,6 +168,7 @@
             // pageDailyService
             // 
             this.pageDailyService.AttachedControl = this.tabControlPanel2;
+            this.pageDailyService.Image = global::MM.Properties.Resources.Actions_view_calendar_day_icon;
             this.pageDailyService.Name = "pageDailyService";
             this.pageDailyService.Text = "Dịch vụ trong ngày";
             // 
@@ -214,7 +216,7 @@
             this.lvService.FullRowSelect = true;
             this.lvService.GridLines = true;
             this.lvService.LargeImageList = this.imgList;
-            this.lvService.Location = new System.Drawing.Point(768, 19);
+            this.lvService.Location = new System.Drawing.Point(766, 19);
             this.lvService.MultiSelect = false;
             this.lvService.Name = "lvService";
             this.lvService.Size = new System.Drawing.Size(392, 126);
@@ -241,7 +243,7 @@
             // 
             // txtAge
             // 
-            this.txtAge.Location = new System.Drawing.Point(329, 19);
+            this.txtAge.Location = new System.Drawing.Point(331, 18);
             this.txtAge.Name = "txtAge";
             this.txtAge.ReadOnly = true;
             this.txtAge.Size = new System.Drawing.Size(115, 20);
@@ -253,7 +255,7 @@
             this.txtThuocDiUng.Location = new System.Drawing.Point(4, 78);
             this.txtThuocDiUng.Name = "txtThuocDiUng";
             this.txtThuocDiUng.ReadOnly = true;
-            this.txtThuocDiUng.Size = new System.Drawing.Size(747, 67);
+            this.txtThuocDiUng.Size = new System.Drawing.Size(751, 67);
             this.txtThuocDiUng.TabIndex = 74;
             this.txtThuocDiUng.Text = "";
             this.txtThuocDiUng.DoubleClick += new System.EventHandler(this.txtThuocDiUng_DoubleClick);
@@ -272,12 +274,12 @@
             this.txtFullAddress.Location = new System.Drawing.Point(4, 39);
             this.txtFullAddress.Name = "txtFullAddress";
             this.txtFullAddress.ReadOnly = true;
-            this.txtFullAddress.Size = new System.Drawing.Size(325, 20);
+            this.txtFullAddress.Size = new System.Drawing.Size(326, 20);
             this.txtFullAddress.TabIndex = 38;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(559, 39);
+            this.txtEmail.Location = new System.Drawing.Point(563, 39);
             this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.ReadOnly = true;
@@ -286,7 +288,7 @@
             // 
             // txtMobile
             // 
-            this.txtMobile.Location = new System.Drawing.Point(444, 39);
+            this.txtMobile.Location = new System.Drawing.Point(447, 39);
             this.txtMobile.MaxLength = 50;
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.ReadOnly = true;
@@ -295,7 +297,7 @@
             // 
             // txtWorkPhone
             // 
-            this.txtWorkPhone.Location = new System.Drawing.Point(329, 39);
+            this.txtWorkPhone.Location = new System.Drawing.Point(331, 39);
             this.txtWorkPhone.MaxLength = 50;
             this.txtWorkPhone.Name = "txtWorkPhone";
             this.txtWorkPhone.ReadOnly = true;
@@ -304,7 +306,7 @@
             // 
             // txtIdentityCard
             // 
-            this.txtIdentityCard.Location = new System.Drawing.Point(559, 19);
+            this.txtIdentityCard.Location = new System.Drawing.Point(563, 18);
             this.txtIdentityCard.Name = "txtIdentityCard";
             this.txtIdentityCard.ReadOnly = true;
             this.txtIdentityCard.Size = new System.Drawing.Size(192, 20);
@@ -312,7 +314,7 @@
             // 
             // txtDOB
             // 
-            this.txtDOB.Location = new System.Drawing.Point(214, 19);
+            this.txtDOB.Location = new System.Drawing.Point(215, 18);
             this.txtDOB.Name = "txtDOB";
             this.txtDOB.ReadOnly = true;
             this.txtDOB.Size = new System.Drawing.Size(115, 20);
@@ -321,7 +323,7 @@
             // 
             // txtGender
             // 
-            this.txtGender.Location = new System.Drawing.Point(444, 19);
+            this.txtGender.Location = new System.Drawing.Point(447, 18);
             this.txtGender.Name = "txtGender";
             this.txtGender.ReadOnly = true;
             this.txtGender.Size = new System.Drawing.Size(115, 20);
@@ -330,7 +332,7 @@
             // txtFullName
             // 
             this.txtFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFullName.Location = new System.Drawing.Point(4, 19);
+            this.txtFullName.Location = new System.Drawing.Point(4, 18);
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.ReadOnly = true;
             this.txtFullName.Size = new System.Drawing.Size(210, 20);

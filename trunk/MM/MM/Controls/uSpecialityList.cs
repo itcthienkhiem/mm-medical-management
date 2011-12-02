@@ -56,7 +56,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -80,7 +80,7 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("SpecialityBus.GetSpecialityList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("SpecialityBus.GetSpecialityList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("SpecialityBus.GetSpecialityList"));
             }
         }
@@ -133,7 +133,7 @@ namespace MM.Controls
         {
             if (dgSpeciality.SelectedRows == null || dgSpeciality.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 chuyên khoa.");
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 chuyên khoa.", IconType.Information);
                 return;
             }
 
@@ -195,13 +195,13 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("SpecialityBus.DeleteSpeciality"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("SpecialityBus.DeleteSpeciality"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("SpecialityBus.DeleteSpeciality"));
                     }
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những chuyên khoa cần xóa.");
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những chuyên khoa cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -248,7 +248,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
