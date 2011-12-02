@@ -487,7 +487,6 @@ namespace MM.Controls
             if (dgServiceHistory.Columns[e.ColumnIndex].Name == "colChecked")
             {
                 CalculateTotalPrice();
-                HighlightPaidServices();
             }
         }
         #endregion
