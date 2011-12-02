@@ -173,9 +173,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(11, 119);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Ghi chú:";
+            this.label4.Text = "Nhận xét:";
             // 
             // lbPrice
             // 
