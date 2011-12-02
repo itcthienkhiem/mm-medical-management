@@ -141,6 +141,12 @@ namespace MM.Controls
             dlgPatientHistory dlg = new dlgPatientHistory((DataRow)_patientRow);
             dlg.ShowDialog(this);
         }
+
+        private void tabServiceHistory_SelectedTabChanged(object sender, DevComponents.DotNetBar.TabStripTabChangedEventArgs e)
+        {
+            if (tabServiceHistory.SelectedTabIndex == 1)
+                _uServiceHistory.HighlightPaidServices();
+        }
         #endregion
 
         #region Working Thread
@@ -161,6 +167,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
+
+        
     }
 
 
