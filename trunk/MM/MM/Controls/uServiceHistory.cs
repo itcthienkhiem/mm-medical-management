@@ -52,6 +52,23 @@ namespace MM.Controls
                 pFilter.Visible = !_isDailyService;
             }
         }
+
+        public List<DataRow> CheckedServiceRows
+        {
+            get
+            {
+                if (dgServiceHistory.RowCount <= 0) return null;
+                List<DataRow> checkedRows = new List<DataRow>();
+                DataTable dt = dgServiceHistory.DataSource as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (Boolean.Parse(row["Checked"].ToString()))
+                        checkedRows.Add(row);
+                }
+
+                return checkedRows;
+            }
+        }
         #endregion
 
         #region UI Command
@@ -59,6 +76,7 @@ namespace MM.Controls
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
             pTotal.Visible = Global.AllowShowServiePrice;
+            btnExportReceipt.Visible = Global.AllowExportReceipt;
         }
 
         private void OnAdd()
@@ -106,16 +124,7 @@ namespace MM.Controls
                 {
                     Result result = ServiceHistoryBus.DeleteServiceHistory(deletedServiceHistoryList);
                     if (result.IsOK)
-                    {
-                        /*foreach (DataRow row in deletedRows)
-                        {
-                            dt.Rows.Remove(row);
-                        }
-
-                        CalculateTotalPrice();*/
-                       //DisplayAsThread();
                         base.RaiseServiceHistoryChanged();
-                    }
                     else
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceHistoryBus.DeleteServiceHistory"), IconType.Error);
@@ -132,8 +141,6 @@ namespace MM.Controls
             UpdateGUI();
             if (_patientRow == null) return;
 
-                //if (!raAll.Checked && _fromDate.ToString("dd/MM/yyyy") == dtpkFromDate.Value.ToString("dd/MM/yyyy") &&
-                //_toDate.ToString("dd/MM/yyyy") == dtpkToDate.Value.ToString("dd/MM/yyyy")) return;
             try
             {
                 DataRow row = _patientRow as DataRow;
@@ -165,6 +172,17 @@ namespace MM.Controls
             }
         }
 
+        private void HighlightPaidServices()
+        {
+            foreach (DataGridViewRow row in dgServiceHistory.Rows)
+            {
+                DataRow dr = (row.DataBoundItem as DataRowView).Row;
+                bool isExported = Convert.ToBoolean(dr["IsExported"]);
+                if (isExported)
+                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+            }
+        }
+
         private void OnDisplayServicesHistory()
         {
             Result result = ServiceHistoryBus.GetServiceHistory(_patientGUID, _isAll, _fromDate, _toDate);
@@ -174,6 +192,7 @@ namespace MM.Controls
                 {
                     dgServiceHistory.DataSource = result.QueryResult;
                     CalculateTotalPrice();
+                    HighlightPaidServices();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -191,10 +210,12 @@ namespace MM.Controls
             if (!Global.AllowShowServiePrice) return;
 
             double totalPrice = 0;
+            double totalPriceReceipt = 0;
             DataTable dt = dgServiceHistory.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0)
             {
-                lbTotalPrice.Text = "Tổng tiền: 0 (VNĐ)";
+                lbTotalPrice.Text = "Tổng tiền tất cả: 0 (VNĐ)";
+                lbTotalReceipt.Text = "Tổng tiền thu: 0 (VNĐ)";
                 lbPay.Text = "Còn lại: 0 (VNĐ)";
             }
             else
@@ -202,20 +223,29 @@ namespace MM.Controls
                 foreach (DataRow row in dt.Rows)
                 {
                     double price = Convert.ToDouble(row["FixedPrice"]);
+                    bool isChecked = Convert.ToBoolean(row["Checked"]);
                     totalPrice += price;
+
+                    if (isChecked) totalPriceReceipt += price;
                 }
 
-                lbTotalPrice.Text = string.Format("Tổng tiền: {0:#,###} (VNĐ)", totalPrice);
+                lbTotalPrice.Text = string.Format("Tổng tiền tất cả: {0:#,###} (VNĐ)", totalPrice);
+
+                if (totalPriceReceipt > 0)
+                    lbTotalReceipt.Text = string.Format("Tổng tiền thu: {0:#,###} (VNĐ)", totalPriceReceipt);
+                else
+                    lbTotalReceipt.Text = "Tổng tiền thu: 0 (VNĐ)";
+                
                 double promotionPrice = 0;
                 if (raPercentage.Checked)
-                    promotionPrice = (totalPrice * (double)numPercentage.Value) / 100;
+                    promotionPrice = (totalPriceReceipt * (double)numPercentage.Value) / 100;
                 else
                     promotionPrice = (double)numAmount.Value;
 
-                if (totalPrice - promotionPrice == 0)
+                if (totalPriceReceipt - promotionPrice == 0)
                     lbPay.Text = "Còn lại: 0 (VNĐ)";
                 else
-                    lbPay.Text = string.Format("Còn lại: {0:#,###} (VNĐ)", totalPrice - promotionPrice);
+                    lbPay.Text = string.Format("Còn lại: {0:#,###} (VNĐ)", totalPriceReceipt - promotionPrice);
             }
         }
 
@@ -326,12 +356,23 @@ namespace MM.Controls
 
             return true;
         }
+
+        private void OnExportReceipt() 
+        {
+
+        }
         #endregion
 
         #region Window Event Handlers
         private void btnExportReceipt_Click(object sender, EventArgs e)
         {
-            OnPrint();
+            if (dgServiceHistory.RowCount <= 0) return;
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất phiếu thu ?") == DialogResult.Yes)
+            {
+
+                OnExportReceipt();
+            }
+            //OnPrint();
         }
 
         private void raAll_CheckedChanged(object sender, EventArgs e)
@@ -351,6 +392,8 @@ namespace MM.Controls
             {
                 row["Checked"] = chkChecked.Checked;
             }
+
+            CalculateTotalPrice();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -430,6 +473,23 @@ namespace MM.Controls
 
             CalculateTotalPrice();
         }
+
+        private void dgServiceHistory_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+        }
+
+        private void dgServiceHistory_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+
+            if (dgServiceHistory.Columns[e.ColumnIndex].Name == "colChecked")
+            {
+                CalculateTotalPrice();
+                HighlightPaidServices();
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -452,9 +512,8 @@ namespace MM.Controls
         }
         #endregion
 
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
+        
 
-        }
+        
     }
 }
