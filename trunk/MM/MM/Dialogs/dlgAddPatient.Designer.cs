@@ -429,8 +429,8 @@
             // tabPatient
             // 
             this.tabPatient.CanReorderTabs = true;
-            this.tabPatient.Controls.Add(this.tabControlPanel2);
             this.tabPatient.Controls.Add(this.tabControlPanel1);
+            this.tabPatient.Controls.Add(this.tabControlPanel2);
             this.tabPatient.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabPatient.Location = new System.Drawing.Point(0, 0);
             this.tabPatient.Name = "tabPatient";
@@ -527,6 +527,7 @@
             // pagePatientInfo
             // 
             this.pagePatientInfo.AttachedControl = this.tabControlPanel1;
+            this.pagePatientInfo.Image = global::MM.Properties.Resources.personal_information_icon;
             this.pagePatientInfo.Name = "pagePatientInfo";
             this.pagePatientInfo.Text = "Thông tin bệnh nhân";
             // 
@@ -887,6 +888,7 @@
             // pagePatientHistory
             // 
             this.pagePatientHistory.AttachedControl = this.tabControlPanel2;
+            this.pagePatientHistory.Image = global::MM.Properties.Resources.File_History_icon;
             this.pagePatientHistory.Name = "pagePatientHistory";
             this.pagePatientHistory.Text = "Bệnh sử";
             // 
