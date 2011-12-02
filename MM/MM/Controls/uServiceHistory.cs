@@ -249,22 +249,42 @@ namespace MM.Controls
             }
         }
 
-        private void OnPrint()
+        private void OnPrint(string receiptGUID)
         {
             Cursor.Current = Cursors.WaitCursor;
             if (dgServiceHistory.RowCount <= 0) return;
 
             string exportFileName = string.Format("{0}\\Temp\\Receipt.xls", Application.StartupPath);
-            if (ExportToExcel(exportFileName))
+            if (ExportToExcel(exportFileName, receiptGUID))
                 ExcelPrintPreview.PrintPreview(exportFileName);
         }
 
-        private bool ExportToExcel(string exportFileName)
+        private bool ExportToExcel(string exportFileName, string receiptGUID)
         {
+            Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
 
             try
             {
+                Result result = ReceiptBus.GetReceipt(receiptGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.GetReceipt"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetReceipt"));
+                    return false;
+                }
+
+                ReceiptView receipt = result.QueryResult as ReceiptView;
+                if (receipt == null) return false;
+
+                result = ReceiptBus.GetReceiptDetailList(receiptGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.GetReceiptDetailList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetReceiptDetailList"));
+                    return false;
+                }
+
                 string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
                 DataRow drPatient = _patientRow as DataRow;
                 string patientFullName = drPatient["FullName"].ToString();
@@ -276,16 +296,14 @@ namespace MM.Controls
 
                 workSheet.Cells["B2"].Value = patientFullName;
                 workSheet.Cells["B3"].Value = Global.Fullname;
-                workSheet.Cells["B4"].Value = DateTime.Now.ToString("dd/MM/yyyy");
+                workSheet.Cells["B4"].Value = receipt.ReceiptDate.ToString("dd/MM/yyyy");
 
-                DataTable dtSource = dgServiceHistory.DataSource as DataTable;
-                double totalPrice = 0;
+                DataTable dtSource = result.QueryResult as DataTable;
                 foreach (DataRow row in dtSource.Rows)
                 {
                     string serviceCode = row["Code"].ToString();
                     string serviceName = row["Name"].ToString();
-                    double price = Convert.ToDouble(row["FixedPrice"]);
-                    totalPrice += price;
+                    double price = Convert.ToDouble(row["Price"]);
 
                     workSheet.Cells[rowIndex, 0].Value = serviceCode;
                     workSheet.Cells[rowIndex, 1].Value = serviceName;
@@ -305,25 +323,14 @@ namespace MM.Controls
                 range.HorizontalAlignment = HAlign.Right;
 
                 range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 7)];
-                range.Value = totalPrice.ToString("#,###");
+                range.Value = receipt.TotalPrice.ToString("#,###");
 
                 range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 8)];
                 range.Value = "Giảm giá:";
                 range.HorizontalAlignment = HAlign.Right;
 
                 range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 8)];
-                double totalPay = 0;
-                if (raPercentage.Checked)
-                {
-                    range.Value = string.Format("{0} %", numPercentage.Value);
-                    totalPay = totalPrice - ((totalPrice * (double)numPercentage.Value) / 100);
-                }
-                else
-                {
-                    totalPay = totalPrice - (double)numAmount.Value;
-                    range.Value = numAmount.Value.ToString("#,###");
-                }
-
+                range.Value = receipt.Promotion.ToString("#,###");
                 range.HorizontalAlignment = HAlign.Right;
 
                 range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 9)];
@@ -331,7 +338,7 @@ namespace MM.Controls
                 range.HorizontalAlignment = HAlign.Right;
 
                 range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 9)];
-                range.Value = totalPay.ToString("#,###");
+                range.Value = receipt.Payment.ToString("#,###");
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
@@ -359,7 +366,194 @@ namespace MM.Controls
 
         private void OnExportReceipt() 
         {
+            List<DataRow> paidServiceList = new List<DataRow>();
+            List<DataRow> noPaidServiceList = new List<DataRow>();
+            List<DataRow> checkedRows = CheckedServiceRows;
+            List<string> serviceHistoryKeys = new List<string>();
+            
+            foreach (DataRow row in checkedRows)
+            {
+                
+                bool isExported = Convert.ToBoolean(row["IsExported"]);
+                if (!isExported)
+                {
+                    noPaidServiceList.Add(row);
+                    serviceHistoryKeys.Add(row["ServiceHistoryGUID"].ToString());
+                }
+                else
+                    paidServiceList.Add(row);
+            }
 
+            if (paidServiceList.Count <= 0)
+            {
+                List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
+                double totalPrice = 0;
+                foreach (DataRow row in noPaidServiceList)
+                {
+                    double price = Convert.ToDouble(row["FixedPrice"]);
+                    totalPrice += price;
+                    ReceiptDetail detail = new ReceiptDetail();
+                    detail.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                    detail.Price = Convert.ToDouble(row["FixedPrice"]);
+                    detail.Note = row["Note"].ToString();
+                    detail.CreatedDate = DateTime.Now;
+                    detail.CreatedBy = Guid.Parse(Global.UserGUID);
+                    detail.Status = (byte)Status.Actived;
+                    receiptDetails.Add(detail);
+                }
+
+                double promotionPrice = 0;
+                if (raPercentage.Checked)
+                    promotionPrice = (totalPrice * (double)numPercentage.Value) / 100;
+                else
+                    promotionPrice = (double)numAmount.Value;
+
+                double payment = totalPrice - promotionPrice;
+
+                Receipt receipt = new Receipt();
+                receipt.PatientGUID = Guid.Parse(_patientGUID);
+                receipt.ReceiptDate = DateTime.Now;
+                receipt.TotalPrice = totalPrice;
+                receipt.Promotion = promotionPrice;
+                receipt.Payment = payment;
+                receipt.Status = (byte)Status.Actived;
+                receipt.CreatedDate = DateTime.Now;
+                receipt.CreatedBy = Guid.Parse(Global.UserGUID);
+
+                Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails, serviceHistoryKeys);
+                if (result.IsOK)
+                {
+                    DisplayAsThread();
+                    if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
+                        OnPrint(receipt.ReceiptGUID.ToString());
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.InsertReceipt"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
+                }
+            }
+            else
+            {
+                if (noPaidServiceList.Count <= 0)
+                {
+                    if (MsgBox.Question(Application.ProductName, "Những dịch vụ này đã xuất phiếu thu rồi. Bạn có muốn xuất lại phiếu thu ?") == DialogResult.Yes)
+                    {
+                        List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
+                        double totalPrice = 0;
+                        foreach (DataRow row in paidServiceList)
+                        {
+                            double price = Convert.ToDouble(row["FixedPrice"]);
+                            totalPrice += price;
+                            ReceiptDetail detail = new ReceiptDetail();
+                            detail.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                            detail.Price = Convert.ToDouble(row["FixedPrice"]);
+                            detail.Note = row["Note"].ToString();
+                            detail.CreatedDate = DateTime.Now;
+                            detail.CreatedBy = Guid.Parse(Global.UserGUID);
+                            detail.Status = (byte)Status.Actived;
+                            receiptDetails.Add(detail);
+                        }
+
+                        double promotionPrice = 0;
+                        if (raPercentage.Checked)
+                            promotionPrice = (totalPrice * (double)numPercentage.Value) / 100;
+                        else
+                            promotionPrice = (double)numAmount.Value;
+
+                        double payment = totalPrice - promotionPrice;
+
+                        Receipt receipt = new Receipt();
+                        receipt.PatientGUID = Guid.Parse(_patientGUID);
+                        receipt.ReceiptDate = DateTime.Now;
+                        receipt.TotalPrice = totalPrice;
+                        receipt.Promotion = promotionPrice;
+                        receipt.Payment = payment;
+                        receipt.Status = (byte)Status.Actived;
+                        receipt.CreatedDate = DateTime.Now;
+                        receipt.CreatedBy = Guid.Parse(Global.UserGUID);
+
+                        Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails, serviceHistoryKeys);
+                        if (result.IsOK)
+                        {
+                            DisplayAsThread();
+                            if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
+                                OnPrint(receipt.ReceiptGUID.ToString());
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.InsertReceipt"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
+                        }
+                    }
+                }
+                else
+                {
+                    List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
+                    double totalPrice = 0;
+                    foreach (DataRow row in noPaidServiceList)
+                    {
+                        double price = Convert.ToDouble(row["FixedPrice"]);
+                        totalPrice += price;
+                        ReceiptDetail detail = new ReceiptDetail();
+                        detail.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                        detail.Price = Convert.ToDouble(row["FixedPrice"]);
+                        detail.Note = row["Note"].ToString();
+                        detail.CreatedDate = DateTime.Now;
+                        detail.CreatedBy = Guid.Parse(Global.UserGUID);
+                        detail.Status = (byte)Status.Actived;
+                        receiptDetails.Add(detail);
+                    }
+
+                    if (MsgBox.Question(Application.ProductName, "Có 1 số dịch vụ đã xuất phiếu thu rồi. Bạn có muốn xuất phiếu thu lần nữa ?") == DialogResult.Yes)
+                    {
+                        foreach (DataRow row in paidServiceList)
+                        {
+                            double price = Convert.ToDouble(row["FixedPrice"]);
+                            totalPrice += price;
+                            ReceiptDetail detail = new ReceiptDetail();
+                            detail.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                            detail.Price = Convert.ToDouble(row["FixedPrice"]);
+                            detail.Note = row["Note"].ToString();
+                            detail.CreatedDate = DateTime.Now;
+                            detail.CreatedBy = Guid.Parse(Global.UserGUID);
+                            detail.Status = (byte)Status.Actived;
+                            receiptDetails.Add(detail);
+                        }
+                    }
+
+                    double promotionPrice = 0;
+                    if (raPercentage.Checked)
+                        promotionPrice = (totalPrice * (double)numPercentage.Value) / 100;
+                    else
+                        promotionPrice = (double)numAmount.Value;
+
+                    double payment = totalPrice - promotionPrice;
+
+                    Receipt receipt = new Receipt();
+                    receipt.PatientGUID = Guid.Parse(_patientGUID);
+                    receipt.ReceiptDate = DateTime.Now;
+                    receipt.TotalPrice = totalPrice;
+                    receipt.Promotion = promotionPrice;
+                    receipt.Payment = payment;
+                    receipt.Status = (byte)Status.Actived;
+                    receipt.CreatedDate = DateTime.Now;
+                    receipt.CreatedBy = Guid.Parse(Global.UserGUID);
+
+                    Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails, serviceHistoryKeys);
+                    if (result.IsOK)
+                    {
+                        DisplayAsThread();
+                        if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
+                            OnPrint(receipt.ReceiptGUID.ToString());
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.InsertReceipt"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
+                    }
+                }
+            }
         }
         #endregion
 
@@ -369,10 +563,8 @@ namespace MM.Controls
             if (dgServiceHistory.RowCount <= 0) return;
             if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất phiếu thu ?") == DialogResult.Yes)
             {
-
                 OnExportReceipt();
             }
-            //OnPrint();
         }
 
         private void raAll_CheckedChanged(object sender, EventArgs e)
