@@ -42,11 +42,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgService = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgService)).BeginInit();
@@ -167,6 +167,20 @@
             this.dgService.Size = new System.Drawing.Size(494, 418);
             this.dgService.TabIndex = 2;
             // 
+            // serviceBindingSource
+            // 
+            this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgService);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 42);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(494, 418);
+            this.panel3.TabIndex = 7;
+            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -175,6 +189,7 @@
             this.colChecked.DataPropertyName = "Checked";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.ReadOnly = true;
@@ -198,20 +213,6 @@
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // serviceBindingSource
-            // 
-            this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgService);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 42);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(494, 418);
-            this.panel3.TabIndex = 7;
             // 
             // dlgServices
             // 
@@ -253,11 +254,11 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgService;
         private System.Windows.Forms.BindingSource serviceBindingSource;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtSearchService;
         private System.Windows.Forms.Label label1;
+        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
     }
 }
