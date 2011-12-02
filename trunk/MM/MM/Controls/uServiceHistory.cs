@@ -451,5 +451,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

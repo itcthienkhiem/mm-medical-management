@@ -249,6 +249,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap export_icon {
+            get {
+                object obj = ResourceManager.GetObject("export_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap File_History_icon {
             get {
                 object obj = ResourceManager.GetObject("File_History_icon", resourceCulture);
@@ -280,6 +287,13 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap Help_icon {
             get {
                 object obj = ResourceManager.GetObject("Help_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap import_icon {
+            get {
+                object obj = ResourceManager.GetObject("import_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
