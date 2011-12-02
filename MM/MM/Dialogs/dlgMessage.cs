@@ -102,6 +102,25 @@ namespace MM.Dialogs
                 else method.Invoke();
             }
         }
+
+        public IconType IconType
+        {
+            set
+            {
+                switch (value)
+                {
+                    case IconType.Information:
+                        picIcon.Image = Properties.Resources.Information_icon;
+                        break;
+                    case IconType.Question:
+                        picIcon.Image = Properties.Resources.Help_icon;
+                        break;
+                    case IconType.Error:
+                        picIcon.Image = Properties.Resources.Actions_dialog_close_icon;
+                        break;
+                }
+            }
+        }
         #endregion
 
         #region UI Command

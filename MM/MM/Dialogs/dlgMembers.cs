@@ -98,7 +98,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -170,12 +170,12 @@ namespace MM.Dialogs
             {
                 if (!_isContractMember)
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientListNotInCompany"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientListNotInCompany"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientListNotInCompany"));
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetCompanyMemberListNotInContractMember"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetCompanyMemberListNotInContractMember"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberListNotInContractMember"));
                 }
             }
@@ -337,7 +337,7 @@ namespace MM.Dialogs
                 }
             }
             else
-                MsgBox.Show(this.Text, "Vui lòng đánh dấu những dịch vụ cần xóa.");
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -359,7 +359,7 @@ namespace MM.Dialogs
                 List<DataRow> checkedRows = CheckedMembers;
                 if (checkedRows == null || checkedRows.Count <= 0)
                 {
-                    MsgBox.Show(this.Text, "Vui lòng đánh dấu ít nhất 1 bệnh nhân.");
+                    MsgBox.Show(this.Text, "Vui lòng đánh dấu ít nhất 1 bệnh nhân.", IconType.Information);
                     e.Cancel = true;
                     tabMember.SelectedTabIndex = 0;
                     return;
@@ -369,7 +369,7 @@ namespace MM.Dialogs
                 {
                     if (dgService.RowCount <= 0)
                     {
-                        MsgBox.Show(this.Text, "Vui lòng thêm ít nhất 1 dịch vụ.");
+                        MsgBox.Show(this.Text, "Vui lòng thêm ít nhất 1 dịch vụ.", IconType.Information);
                         e.Cancel = true;
                         tabMember.SelectedTabIndex = 1;
                     }
@@ -453,7 +453,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

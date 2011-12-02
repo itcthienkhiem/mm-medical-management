@@ -82,7 +82,7 @@ namespace MM.Dialogs
             Result result = ServicesBus.GetServicesList();
             if (!result.IsOK)
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.GetServicesList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.GetServicesList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
                 return;
             }
@@ -98,7 +98,7 @@ namespace MM.Dialogs
             result = DocStaffBus.GetDocStaffList(staffTypes);
             if (!result.IsOK)
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
                 return;
             }
@@ -146,7 +146,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -155,14 +155,14 @@ namespace MM.Dialogs
         {
             if (cboService.Text == null || cboService.Text == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn dịch vụ.");
+                MsgBox.Show(this.Text, "Vui lòng chọn dịch vụ.", IconType.Information);
                 cboService.Focus();
                 return false;
             }
 
             if (cboDocStaff.Text == null || cboDocStaff.Text == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ");
+                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ", IconType.Information);
                 cboDocStaff.Focus();
                 return false;
             }
@@ -198,7 +198,7 @@ namespace MM.Dialogs
                     Result result = ServiceHistoryBus.InsertServiceHistory(_serviceHistory);
                     if (!result.IsOK)
                     {
-                        MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"));
+                        MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                     }
@@ -209,7 +209,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
            
@@ -224,7 +224,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -275,7 +275,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {

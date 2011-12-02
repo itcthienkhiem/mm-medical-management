@@ -264,6 +264,7 @@
             // pageCompanyInfo
             // 
             this.pageCompanyInfo.AttachedControl = this.tabControlPanel1;
+            this.pageCompanyInfo.Image = global::MM.Properties.Resources.info_icon;
             this.pageCompanyInfo.Name = "pageCompanyInfo";
             this.pageCompanyInfo.Text = "Thông tin công ty";
             // 
@@ -443,6 +444,7 @@
             // pageCompanyMembers
             // 
             this.pageCompanyMembers.AttachedControl = this.tabControlPanel2;
+            this.pageCompanyMembers.Image = global::MM.Properties.Resources.Apps_preferences_contact_list_icon;
             this.pageCompanyMembers.Name = "pageCompanyMembers";
             this.pageCompanyMembers.Text = "Danh sách nhân viên";
             // 

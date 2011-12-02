@@ -65,7 +65,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -132,7 +132,7 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
             }
         }
@@ -226,7 +226,7 @@ namespace MM.Dialogs
                 List<DataRow> checkedRows = this.Services;
                 if (checkedRows == null || checkedRows.Count <= 0)
                 {
-                    MsgBox.Show(this.Text, "Vui lòng đánh dấu ít nhất 1 dịch vụ.");
+                    MsgBox.Show(this.Text, "Vui lòng đánh dấu ít nhất 1 dịch vụ.", IconType.Information);
                     e.Cancel = true;
                 }
             }
@@ -293,7 +293,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

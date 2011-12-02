@@ -53,7 +53,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -82,7 +82,7 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("SymptomBus.GetSymptomList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("SymptomBus.GetSymptomList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.GetSymptomList"));
             }
         }
@@ -135,7 +135,7 @@ namespace MM.Controls
         {
             if (dgSymptom.SelectedRows == null || dgSymptom.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 triệu chứng.");
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 triệu chứng.", IconType.Information);
                 return;
             }
 
@@ -197,13 +197,13 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("SymptomBus.DeleteSymptom"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("SymptomBus.DeleteSymptom"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.DeleteSymptom"));
                     }
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần xóa.");
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần xóa.", IconType.Information);
         }
 
         private void OnPrint(bool isPreview)
@@ -228,7 +228,7 @@ namespace MM.Controls
                         ExcelPrintPreview.Print(exportFileName);
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần in.");
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần in.", IconType.Information);
         }
 
         private bool ExportToExcel(string exportFileName, List<DataRow> checkedRows)
@@ -271,7 +271,7 @@ namespace MM.Controls
             }
             catch (Exception ex)
             {
-                MsgBox.Show(Application.ProductName, ex.Message);
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
                 return false;
             }
             finally
@@ -338,7 +338,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

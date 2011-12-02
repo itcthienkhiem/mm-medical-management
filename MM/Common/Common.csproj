@@ -108,6 +108,7 @@
     <Compile Include="ExcelPrintPreview.cs" />
     <Compile Include="Gender.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="IconType.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="MsgBoxType.cs" />

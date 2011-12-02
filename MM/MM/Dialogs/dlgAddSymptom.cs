@@ -76,7 +76,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -85,21 +85,21 @@ namespace MM.Dialogs
         {
             if (txtCode.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập mã triệu chứng.");
+                MsgBox.Show(this.Text, "Vui lòng nhập mã triệu chứng.", IconType.Information);
                 txtCode.Focus();
                 return false;
             }
 
             if (txtSymptom.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập triệu chứng.");
+                MsgBox.Show(this.Text, "Vui lòng nhập triệu chứng.", IconType.Information);
                 txtSymptom.Focus();
                 return false;
             }
 
             if (txtAdvice.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập lời khuyên.");
+                MsgBox.Show(this.Text, "Vui lòng nhập lời khuyên.", IconType.Information);
                 txtAdvice.Focus();
                 return false;
             }
@@ -111,14 +111,14 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, "Mã triệu chứng này đã tồn tại rồi. Vui lòng nhập mã khác.");
+                    MsgBox.Show(this.Text, "Mã triệu chứng này đã tồn tại rồi. Vui lòng nhập mã khác.", IconType.Information);
                     txtCode.Focus();
                     return false;
                 }
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("SymptomBus.CheckSymptomExistCode"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("SymptomBus.CheckSymptomExistCode"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.CheckSymptomExistCode"));
                 return false;
             }
@@ -135,7 +135,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -166,14 +166,14 @@ namespace MM.Dialogs
                 Result result = SymptomBus.InsertSymptom(_symptom);
                 if (!result.IsOK)
                 {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("SymptomBus.InsertSymptom"));
+                    MsgBox.Show(this.Text, result.GetErrorAsString("SymptomBus.InsertSymptom"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.InsertSymptom"));
                     this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 }
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
            
@@ -203,7 +203,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {

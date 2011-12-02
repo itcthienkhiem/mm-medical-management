@@ -50,7 +50,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -81,13 +81,13 @@ namespace MM.Dialogs
             if (cboServerName.Text == string.Empty)
             {
                 result = false;
-                MM.MsgBox.Show(this.Text, "Vui lòng nhập máy chủ.");
+                MM.MsgBox.Show(this.Text, "Vui lòng nhập máy chủ.", IconType.Information);
                 cboServerName.Focus();
             }
             else if (txtDatabaseName.Text == string.Empty)
             {
                 result = false;
-                MM.MsgBox.Show(this.Text, "Vui lòng nhập CSDL.");
+                MM.MsgBox.Show(this.Text, "Vui lòng nhập CSDL.", IconType.Information);
                 txtDatabaseName.Focus();
             }
             else if (cboAuthentication.SelectedIndex == 1)
@@ -95,13 +95,13 @@ namespace MM.Dialogs
                 if (txtUserName.Text == string.Empty)
                 {
                     result = false;
-                    MM.MsgBox.Show(this.Text, "Vui lòng nhập tên đăng nhập.");
+                    MM.MsgBox.Show(this.Text, "Vui lòng nhập tên đăng nhập.", IconType.Information);
                     txtUserName.Focus();
                 }
                 else if (txtPassword.Text == string.Empty)
                 {
                     result = false;
-                    MM.MsgBox.Show(this.Text, "Vui lòng nhập mật khẩu.");
+                    MM.MsgBox.Show(this.Text, "Vui lòng nhập mật khẩu.", IconType.Information);
                     txtPassword.Focus();
                 }
             }
@@ -161,9 +161,9 @@ namespace MM.Dialogs
             if (!CheckInfo()) return;
 
             if (TestConnection())
-                MM.MsgBox.Show(this.Text, "Thông tin kết nối thành công.");
+                MM.MsgBox.Show(this.Text, "Thông tin kết nối thành công.", IconType.Information);
             else
-                MM.MsgBox.Show(this.Text, "Thông tin kết nối thất bại.");
+                MM.MsgBox.Show(this.Text, "Thông tin kết nối thất bại.", IconType.Information);
         }
 
         private void dlgDatabaseConfig_Load(object sender, EventArgs e)
@@ -188,7 +188,7 @@ namespace MM.Dialogs
                 {
                     if (!TestConnection())
                     {
-                        MM.MsgBox.Show(this.Text, "Thông tin kết nối thất bại.");
+                        MM.MsgBox.Show(this.Text, "Thông tin kết nối thất bại.", IconType.Information);
                         e.Cancel = true;
                     }
                 }
@@ -213,7 +213,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {

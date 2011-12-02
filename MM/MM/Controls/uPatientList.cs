@@ -72,7 +72,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -97,7 +97,7 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
             }
         }
@@ -225,7 +225,7 @@ namespace MM.Controls
 
             if (dgPatient.SelectedRows == null || dgPatient.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.");
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.", IconType.Information);
                 return;
             }
 
@@ -361,20 +361,20 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.DeletePatient"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.DeletePatient"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.DeletePatient"));
                     }
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần xóa.");
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần xóa.", IconType.Information);
         }
 
         private void OnOpentPatient()
         {
             if (dgPatient.SelectedRows == null || dgPatient.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.");
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.", IconType.Information);
                 return;
             }
 
@@ -634,7 +634,7 @@ namespace MM.Controls
                                     Result result = PatientBus.InsertPatient(ct, p, ph);
                                     if (!result.IsOK)
                                     {
-                                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.InsertPatient"));
+                                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.InsertPatient"), IconType.Error);
                                         Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.InsertPatient"));
                                     }
                                 }
@@ -643,12 +643,12 @@ namespace MM.Controls
                     }
                 }
 
-                MsgBox.Show(Application.ProductName, "Nhập dữ liệu từ Excel hoàn tất.");
+                MsgBox.Show(Application.ProductName, "Nhập dữ liệu từ Excel hoàn tất.", IconType.Information);
                 OnDisplayPatientList();
             }
             catch (Exception ex)
             {
-                MsgBox.Show(Application.ProductName, ex.Message);
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
                 Utility.WriteToTraceLog(ex.Message);
             }
         }
@@ -747,7 +747,7 @@ namespace MM.Controls
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(Application.ProductName, e.Message);
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

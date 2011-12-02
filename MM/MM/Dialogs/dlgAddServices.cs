@@ -78,7 +78,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -87,14 +87,14 @@ namespace MM.Dialogs
         {
             if (txtCode.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập mã dịch vụ.");
+                MsgBox.Show(this.Text, "Vui lòng nhập mã dịch vụ.", IconType.Information);
                 txtCode.Focus();
                 return false;
             }
 
             if (txtName.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên dịch vụ.");
+                MsgBox.Show(this.Text, "Vui lòng nhập tên dịch vụ.", IconType.Information);
                 txtName.Focus();
                 return false;
             }
@@ -106,14 +106,14 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, "Mã dịch vụ này đã tồn tại rồi. Vui lòng nhập mã khác.");
+                    MsgBox.Show(this.Text, "Mã dịch vụ này đã tồn tại rồi. Vui lòng nhập mã khác.", IconType.Information);
                     txtCode.Focus();
                     return false;
                 }
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.CheckServicesExistCode"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.CheckServicesExistCode"), IconType.Error);
                 return false;
             }
 
@@ -129,7 +129,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -161,14 +161,14 @@ namespace MM.Dialogs
                 Result result = ServicesBus.InsertService(_service);
                 if (!result.IsOK)
                 {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.InsertService"));
+                    MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.InsertService"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.InsertService"));
                     this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 }
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -197,7 +197,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {

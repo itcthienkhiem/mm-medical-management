@@ -94,7 +94,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -103,7 +103,7 @@ namespace MM.Dialogs
         {
             if (txtCode.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập mã hợp đồng.");
+                MsgBox.Show(this.Text, "Vui lòng nhập mã hợp đồng.", IconType.Information);
                 tabContract.SelectedTabIndex = 0;
                 txtCode.Focus();
                 return false;
@@ -111,7 +111,7 @@ namespace MM.Dialogs
 
             if (txtName.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên hợp đồng.");
+                MsgBox.Show(this.Text, "Vui lòng nhập tên hợp đồng.", IconType.Information);
                 tabContract.SelectedTabIndex = 0;
                 txtName.Focus();
                 return false;
@@ -119,7 +119,7 @@ namespace MM.Dialogs
 
             if (cboCompany.Text == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn công ty.");
+                MsgBox.Show(this.Text, "Vui lòng chọn công ty.", IconType.Information);
                 tabContract.SelectedTabIndex = 0;
                 cboCompany.Focus();
                 return false;
@@ -132,7 +132,7 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, "Mã hợp đồng này đã tồn tại rồi. Vui lòng nhập mã khác.");
+                    MsgBox.Show(this.Text, "Mã hợp đồng này đã tồn tại rồi. Vui lòng nhập mã khác.", IconType.Information);
                     tabContract.SelectedTabIndex = 0;
                     txtCode.Focus();
                     return false;
@@ -140,7 +140,7 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.CheckContractExistCode"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.CheckContractExistCode"), IconType.Error);
                 return false;
             }
 
@@ -156,7 +156,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -192,7 +192,7 @@ namespace MM.Dialogs
                     Result result = CompanyContractBus.InsertContract(_contract, _selectedCompanyInfo);
                     if (!result.IsOK)
                     {
-                        MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.InsertContract"));
+                        MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.InsertContract"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.InsertContract"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                     }
@@ -203,7 +203,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -218,7 +218,7 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.GetCompanyList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.GetCompanyList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyList"));
             }
         }
@@ -233,7 +233,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(this.Text, e.Message);
+                MM.MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally
@@ -267,7 +267,7 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetContractMemberList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetContractMemberList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractMemberList"));
             }
         }
@@ -276,7 +276,7 @@ namespace MM.Dialogs
         {
             if (cboCompany.Text == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn công ty.");
+                MsgBox.Show(this.Text, "Vui lòng chọn công ty.", IconType.Information);
                 tabContract.SelectedTabIndex = 0;
                 cboCompany.Focus();
                 return;
@@ -340,7 +340,7 @@ namespace MM.Dialogs
                                         }
                                         else
                                         {
-                                            MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"));
+                                            MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
                                             Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
                                         }
                                     }
@@ -391,7 +391,7 @@ namespace MM.Dialogs
                 }
             }
             else
-                MsgBox.Show(this.Text, "Vui lòng đánh dấu những nhân viên cần xóa.");
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những nhân viên cần xóa.", IconType.Information);
         }
 
         private void OnDisplayCheckList()
@@ -418,7 +418,7 @@ namespace MM.Dialogs
                 }
                 else
                 {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"));
+                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
                 }
 
@@ -431,84 +431,6 @@ namespace MM.Dialogs
 
             }
         }
-
-        /*private void OnAddService()
-        {
-            dlgServices dlg = new dlgServices(_contract.CompanyContractGUID.ToString(), _addedServices, _deletedServiceRows);
-            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                List<DataRow> checkedRows = dlg.Services;
-                DataTable dataSource = dgService.DataSource as DataTable;
-                foreach (DataRow row in checkedRows)
-                {
-                    string serviceGUID = row["ServiceGUID"].ToString();
-                    DataRow[] rows = dataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
-                    if (rows == null || rows.Length <= 0)
-                    {
-                        DataRow newRow = dataSource.NewRow();
-                        newRow["Checked"] = false;
-                        newRow["ServiceGUID"] = serviceGUID;
-                        newRow["Code"] = row["Code"];
-                        newRow["Name"] = row["Name"];
-                        newRow["Price"] = row["Price"];
-                        newRow["Description"] = row["Description"];
-                        dataSource.Rows.Add(newRow);
-
-                        if (!_addedServices.Contains(serviceGUID))
-                            _addedServices.Add(serviceGUID);
-
-                        _deletedServices.Remove(serviceGUID);
-                        foreach (DataRow r in _deletedServiceRows)
-                        {
-                            if (r["ServiceGUID"].ToString() == serviceGUID)
-                            {
-                                _deletedServiceRows.Remove(r);
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void OnDeleteService()
-        {
-            List<string> deletedSrvList = new List<string>();
-            List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = dgService.DataSource as DataTable;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    deletedSrvList.Add(row["ServiceGUID"].ToString());
-                    deletedRows.Add(row);
-                }
-            }
-
-            if (deletedSrvList.Count > 0)
-            {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những dịch vụ mà bạn đã đánh dấu ?") == DialogResult.Yes)
-                {
-                    foreach (DataRow row in deletedRows)
-                    {
-                        string serviceGUID = row["ServiceGUID"].ToString();
-                        if (!_deletedServices.Contains(serviceGUID))
-                        {
-                            _deletedServices.Add(serviceGUID);
-                            DataRow r = dt.NewRow();
-                            r.ItemArray = row.ItemArray;
-                            _deletedServiceRows.Add(r);
-                        }
-
-                        _addedServices.Remove(serviceGUID);
-
-                        dt.Rows.Remove(row);
-                    }
-                }
-            }
-            else
-                MsgBox.Show(this.Text, "Vui lòng đánh dấu những dịch vụ cần xóa.");
-        }*/
         #endregion
 
         #region Window Event Handlers
@@ -581,7 +503,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -598,7 +520,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MM.MsgBox.Show(this.Text, e.Message);
+                MM.MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             finally

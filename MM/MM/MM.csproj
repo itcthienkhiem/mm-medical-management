@@ -224,12 +224,6 @@
     <Compile Include="Controls\Excel\Office\Excel\SubRecords\SubRecord.cs" />
     <Compile Include="Controls\Excel\Office\Excel\Workbook.cs" />
     <Compile Include="Controls\Excel\Office\Excel\Worksheet.cs" />
-    <Compile Include="Controls\Excel\uImportFromExcel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Excel\uImportFromExcel.Designer.cs">
-      <DependentUpon>uImportFromExcel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\uBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -485,9 +479,6 @@
     <EmbeddedResource Include="Controls\DICOM\WindowLevelGraphControl.resx">
       <DependentUpon>WindowLevelGraphControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Excel\uImportFromExcel.resx">
-      <DependentUpon>uImportFromExcel.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uColor.resx">
       <DependentUpon>uColor.cs</DependentUpon>
     </EmbeddedResource>
@@ -675,6 +666,17 @@
     <Content Include="Controls\Excel\Office\Excel\MetaData\Record Identifier.txt" />
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\Actions-dialog-close-icon.png" />
+    <None Include="Resources\Help-icon.png" />
+    <None Include="Resources\Information-icon.png" />
+    <None Include="Resources\Service-icon %281%29.png" />
+    <None Include="Resources\Service-icon.png" />
+    <None Include="Resources\Actions-view-calendar-day-icon.png" />
+    <None Include="Resources\checklist-icon.png" />
+    <None Include="Resources\Apps-preferences-contact-list-icon.png" />
+    <None Include="Resources\info-icon.png" />
+    <None Include="Resources\File-History-icon.png" />
+    <None Include="Resources\personal-information-icon.png" />
     <None Include="Resources\Actions-print-preview-icon.png" />
     <None Include="Resources\Actions-print-preview-icon %281%29.png" />
     <None Include="Resources\Actions-document-print-preview-icon.png" />

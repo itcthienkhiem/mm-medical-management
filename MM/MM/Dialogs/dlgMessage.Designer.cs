@@ -34,11 +34,14 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCancel2 = new System.Windows.Forms.Button();
+            this.picIcon = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.picIcon);
             this.groupBox1.Controls.Add(this.lbMessage);
             this.groupBox1.Location = new System.Drawing.Point(7, 1);
             this.groupBox1.Name = "groupBox1";
@@ -48,10 +51,11 @@
             // 
             // lbMessage
             // 
-            this.lbMessage.Location = new System.Drawing.Point(9, 15);
+            this.lbMessage.Location = new System.Drawing.Point(42, 15);
             this.lbMessage.Name = "lbMessage";
-            this.lbMessage.Size = new System.Drawing.Size(240, 67);
+            this.lbMessage.Size = new System.Drawing.Size(207, 67);
             this.lbMessage.TabIndex = 0;
+            this.lbMessage.Text = "test";
             // 
             // btnOK
             // 
@@ -91,6 +95,15 @@
             this.btnCancel2.UseVisualStyleBackColor = true;
             this.btnCancel2.Visible = false;
             // 
+            // picIcon
+            // 
+            this.picIcon.Image = global::MM.Properties.Resources.Information_icon;
+            this.picIcon.Location = new System.Drawing.Point(7, 16);
+            this.picIcon.Name = "picIcon";
+            this.picIcon.Size = new System.Drawing.Size(32, 32);
+            this.picIcon.TabIndex = 1;
+            this.picIcon.TabStop = false;
+            // 
             // dlgMessage
             // 
             this.AcceptButton = this.btnOK;
@@ -111,6 +124,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Message";
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -122,5 +136,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel2;
+        private System.Windows.Forms.PictureBox picIcon;
     }
 }

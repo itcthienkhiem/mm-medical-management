@@ -22,7 +22,7 @@ namespace MM
             }
             catch (Exception e)
             {
-                MsgBox.Show(Application.ProductName, e.Message);
+                MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);   
             }
         }

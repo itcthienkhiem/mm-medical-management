@@ -63,7 +63,7 @@ namespace MM.Dialogs
                 cboSpeciality.DataSource = result.QueryResult;
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.GetSpecialityList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.GetSpecialityList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("SpecialityBus.GetSpecialityList"));
             }
         }
@@ -72,35 +72,35 @@ namespace MM.Dialogs
         {
             if (txtFullName.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập họ.");
+                MsgBox.Show(this.Text, "Vui lòng nhập họ.", IconType.Information);
                 txtFullName.Focus();
                 return false;
             }
 
             if (txtDOB.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng ngày sinh hoặc năm sinh.");
+                MsgBox.Show(this.Text, "Vui lòng ngày sinh hoặc năm sinh.", IconType.Information);
                 txtDOB.Focus();
                 return false;
             }
 
             if (!Utility.IsValidDOB(txtDOB.Text))
             {
-                MsgBox.Show(this.Text, "Ngày sinh hoặc năm sinh chưa đúng. Vui lòng nhập lại");
+                MsgBox.Show(this.Text, "Ngày sinh hoặc năm sinh chưa đúng. Vui lòng nhập lại", IconType.Information);
                 txtDOB.Focus();
                 return false;
             }
             
             if (cboSpeciality.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập chuyên khoa.");
+                MsgBox.Show(this.Text, "Vui lòng nhập chuyên khoa.", IconType.Information);
                 cboSpeciality.Focus();
                 return false;
             }
 
             if (txtEmail.Text.Trim() != string.Empty && !Utility.IsValidEmail(txtEmail.Text))
             {
-                MsgBox.Show(this.Text, "Địa chỉ email không hợp lê.");
+                MsgBox.Show(this.Text, "Địa chỉ email không hợp lê.", IconType.Information);
                 txtEmail.Focus();
                 return false;
             }
@@ -153,7 +153,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
             
@@ -168,7 +168,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -238,7 +238,7 @@ namespace MM.Dialogs
                     Result result = DocStaffBus.InsertDocStaff(_contact, _docStaff);
                     if (!result.IsOK)
                     {
-                        MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
+                        MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.InsertDocStaff"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.InsertDocStaff"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                     }
@@ -249,7 +249,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
         }
@@ -294,7 +294,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {

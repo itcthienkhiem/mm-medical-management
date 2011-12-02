@@ -31,28 +31,28 @@ namespace MM.Dialogs
         {
             if (txtOldPassword.Text != Global.Password)
             {
-                MsgBox.Show(this.Text, "Mật khẩu cũ không chính xác. Vui lòng nhập lại.");
+                MsgBox.Show(this.Text, "Mật khẩu cũ không chính xác. Vui lòng nhập lại.", IconType.Information);
                 txtOldPassword.Focus();
                 return false;
             }
 
             if (txtNewPassword.Text == txtOldPassword.Text)
             {
-                MsgBox.Show(this.Text, "Mật khẩu mới không được trùng với mật khẩu cũ. Vui lòng nhập lại.");
+                MsgBox.Show(this.Text, "Mật khẩu mới không được trùng với mật khẩu cũ. Vui lòng nhập lại.", IconType.Information);
                 txtNewPassword.Focus();
                 return false;
             }
 
             if (!Utility.IsValidPassword(txtNewPassword.Text))
             {
-                MsgBox.Show(this.Text, "Mật khẩu mới không hợp lệ (4-12 kí tự). Vui lòng nhập lại.");
+                MsgBox.Show(this.Text, "Mật khẩu mới không hợp lệ (4-12 kí tự). Vui lòng nhập lại.", IconType.Information);
                 txtNewPassword.Focus();
                 return false;
             }
 
             if (txtNewPassword.Text != txtConfirmPassword.Text)
             {
-                MsgBox.Show(this.Text, "Xác nhận lại mật khẩu không khớp với mật khẩu mới đã nhập. Vui lòng nhập lại.");
+                MsgBox.Show(this.Text, "Xác nhận lại mật khẩu không khớp với mật khẩu mới đã nhập. Vui lòng nhập lại.", IconType.Information);
                 txtConfirmPassword.Focus();
                 return false;
             }
@@ -70,7 +70,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
@@ -85,7 +85,7 @@ namespace MM.Dialogs
                 Global.Password = _newPassword;
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.ChangePassword"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("LogonBus.ChangePassword"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("LogonBus.ChangePassword"));
             }
         }
@@ -116,7 +116,7 @@ namespace MM.Dialogs
             }
             catch (Exception e)
             {
-                MsgBox.Show(this.Text, e.Message);
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
             }
             finally
             {
