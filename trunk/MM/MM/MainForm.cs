@@ -264,6 +264,14 @@ namespace MM
                         {
                             printLabelToolStripMenuItem.Enabled = isPrint;
                         }
+                        else if (functionCode == Const.Receipt)
+                        {
+                            Global.AllowViewReceipt = isView;
+                            Global.AllowAddReceipt = isAdd;
+                            Global.AllowDeleteReceipt = isDelete;
+                            Global.AllowPrintReceipt = isPrint;
+                            Global.AllowExportReceipt = isExport;
+                        }
                     }
                 }
                 else

@@ -58,7 +58,6 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
-            //btnPrint.Visible = Global.AllowShowServiePrice;
             pTotal.Visible = Global.AllowShowServiePrice;
         }
 
@@ -330,7 +329,7 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
-        private void btnPrint_Click(object sender, EventArgs e)
+        private void btnExportReceipt_Click(object sender, EventArgs e)
         {
             OnPrint();
         }

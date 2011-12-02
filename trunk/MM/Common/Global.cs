@@ -15,5 +15,10 @@ namespace MM.Common
         public static string Password = string.Empty;
         public static StaffType StaffType = Common.StaffType.Admin;
         public static bool AllowShowServiePrice = true;
+        public static bool AllowAddReceipt = true;
+        public static bool AllowDeleteReceipt = true;
+        public static bool AllowViewReceipt = true;
+        public static bool AllowPrintReceipt = true;
+        public static bool AllowExportReceipt = true;
     }
 }
