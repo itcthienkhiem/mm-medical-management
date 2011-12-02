@@ -184,14 +184,21 @@ namespace MM.Controls
                 range.HorizontalAlignment = HAlign.Right;
 
                 range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 7)];
-                range.Value = receipt.TotalPrice.ToString("#,###");
+                if (receipt.TotalPrice > 0)
+                    range.Value = receipt.TotalPrice.ToString("#,###");
+                else
+                    range.Value = "0";
 
                 range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 8)];
                 range.Value = "Giảm giá:";
                 range.HorizontalAlignment = HAlign.Right;
 
                 range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 8)];
-                range.Value = receipt.Promotion.ToString("#,###");
+                if (receipt.Promotion > 0)
+                    range.Value = receipt.Promotion.ToString("#,###");
+                else
+                    range.Value = "0";
+
                 range.HorizontalAlignment = HAlign.Right;
 
                 range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 9)];
@@ -199,7 +206,17 @@ namespace MM.Controls
                 range.HorizontalAlignment = HAlign.Right;
 
                 range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 9)];
-                range.Value = receipt.Payment.ToString("#,###");
+                if (receipt.Payment > 0)
+                    range.Value = receipt.Payment.ToString("#,###");
+                else
+                    range.Value = "0";
+
+                range = workSheet.Cells[string.Format("A{0}", dtSource.Rows.Count + 11)];
+                range.Value = "Bệnh nhân";
+                range.HorizontalAlignment = HAlign.Right;
+
+                range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 11)];
+                range.Value = "Người thu";
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
