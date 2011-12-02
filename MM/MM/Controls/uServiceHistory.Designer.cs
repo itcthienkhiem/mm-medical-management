@@ -39,16 +39,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgServiceHistory = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ActivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pTotal = new System.Windows.Forms.Panel();
+            this.lbTotalReceipt = new System.Windows.Forms.Label();
             this.lbPay = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.numAmount = new System.Windows.Forms.NumericUpDown();
@@ -70,6 +63,15 @@
             this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsExported = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).BeginInit();
@@ -123,6 +125,7 @@
             this.nameDataGridViewTextBoxColumn,
             this.fixedPriceDataGridViewTextBoxColumn,
             this.ActivedDate,
+            this.IsExported,
             this.noteDataGridViewTextBoxColumn,
             this.createdDateDataGridViewTextBoxColumn,
             this.DocStaffFullname});
@@ -145,92 +148,11 @@
             this.dgServiceHistory.ReadOnly = true;
             this.dgServiceHistory.RowHeadersWidth = 30;
             this.dgServiceHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgServiceHistory.Size = new System.Drawing.Size(810, 297);
+            this.dgServiceHistory.Size = new System.Drawing.Size(810, 267);
             this.dgServiceHistory.TabIndex = 1;
+            this.dgServiceHistory.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgServiceHistory_CellMouseDown);
+            this.dgServiceHistory.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgServiceHistory_CellMouseUp);
             this.dgServiceHistory.DoubleClick += new System.EventHandler(this.dgServiceHistory_DoubleClick);
-            // 
-            // colChecked
-            // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.codeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã DV";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên DV";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 180;
-            // 
-            // fixedPriceDataGridViewTextBoxColumn
-            // 
-            this.fixedPriceDataGridViewTextBoxColumn.DataPropertyName = "FixedPrice";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.fixedPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.fixedPriceDataGridViewTextBoxColumn.HeaderText = "Giá";
-            this.fixedPriceDataGridViewTextBoxColumn.Name = "fixedPriceDataGridViewTextBoxColumn";
-            this.fixedPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ActivedDate
-            // 
-            this.ActivedDate.DataPropertyName = "ActivedDate";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle5.NullValue = null;
-            this.ActivedDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ActivedDate.HeaderText = "Ngày sử dụng";
-            this.ActivedDate.Name = "ActivedDate";
-            this.ActivedDate.ReadOnly = true;
-            // 
-            // noteDataGridViewTextBoxColumn
-            // 
-            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Nhận xét";
-            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.noteDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // createdDateDataGridViewTextBoxColumn
-            // 
-            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle6.NullValue = null;
-            this.createdDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.createdDateDataGridViewTextBoxColumn.HeaderText = "Ngày tạo";
-            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
-            this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.createdDateDataGridViewTextBoxColumn.Visible = false;
-            this.createdDateDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // DocStaffFullname
-            // 
-            this.DocStaffFullname.DataPropertyName = "CreatedName";
-            this.DocStaffFullname.HeaderText = "Người tạo";
-            this.DocStaffFullname.Name = "DocStaffFullname";
-            this.DocStaffFullname.ReadOnly = true;
-            this.DocStaffFullname.Width = 150;
             // 
             // serviceHistoryViewBindingSource
             // 
@@ -238,6 +160,7 @@
             // 
             // pTotal
             // 
+            this.pTotal.Controls.Add(this.lbTotalReceipt);
             this.pTotal.Controls.Add(this.lbPay);
             this.pTotal.Controls.Add(this.label3);
             this.pTotal.Controls.Add(this.numAmount);
@@ -248,17 +171,28 @@
             this.pTotal.Controls.Add(this.label1);
             this.pTotal.Controls.Add(this.lbTotalPrice);
             this.pTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pTotal.Location = new System.Drawing.Point(0, 297);
+            this.pTotal.Location = new System.Drawing.Point(0, 267);
             this.pTotal.Name = "pTotal";
-            this.pTotal.Size = new System.Drawing.Size(810, 70);
+            this.pTotal.Size = new System.Drawing.Size(810, 100);
             this.pTotal.TabIndex = 7;
+            // 
+            // lbTotalReceipt
+            // 
+            this.lbTotalReceipt.AutoSize = true;
+            this.lbTotalReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalReceipt.ForeColor = System.Drawing.Color.Red;
+            this.lbTotalReceipt.Location = new System.Drawing.Point(17, 30);
+            this.lbTotalReceipt.Name = "lbTotalReceipt";
+            this.lbTotalReceipt.Size = new System.Drawing.Size(73, 13);
+            this.lbTotalReceipt.TabIndex = 9;
+            this.lbTotalReceipt.Text = "Tổng tiền thu:";
             // 
             // lbPay
             // 
             this.lbPay.AutoSize = true;
             this.lbPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPay.ForeColor = System.Drawing.Color.Red;
-            this.lbPay.Location = new System.Drawing.Point(19, 51);
+            this.lbPay.Location = new System.Drawing.Point(17, 77);
             this.lbPay.Name = "lbPay";
             this.lbPay.Size = new System.Drawing.Size(42, 13);
             this.lbPay.TabIndex = 8;
@@ -267,7 +201,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(325, 28);
+            this.label3.Location = new System.Drawing.Point(322, 54);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(36, 13);
             this.label3.TabIndex = 7;
@@ -281,7 +215,7 @@
             0,
             0,
             0});
-            this.numAmount.Location = new System.Drawing.Point(209, 25);
+            this.numAmount.Location = new System.Drawing.Point(206, 51);
             this.numAmount.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -296,7 +230,7 @@
             // raAmount
             // 
             this.raAmount.AutoSize = true;
-            this.raAmount.Location = new System.Drawing.Point(190, 28);
+            this.raAmount.Location = new System.Drawing.Point(187, 54);
             this.raAmount.Name = "raAmount";
             this.raAmount.Size = new System.Drawing.Size(14, 13);
             this.raAmount.TabIndex = 5;
@@ -305,7 +239,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(161, 28);
+            this.label2.Location = new System.Drawing.Point(158, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(21, 13);
             this.label2.TabIndex = 4;
@@ -313,7 +247,7 @@
             // 
             // numPercentage
             // 
-            this.numPercentage.Location = new System.Drawing.Point(100, 25);
+            this.numPercentage.Location = new System.Drawing.Point(97, 51);
             this.numPercentage.Name = "numPercentage";
             this.numPercentage.Size = new System.Drawing.Size(58, 20);
             this.numPercentage.TabIndex = 3;
@@ -324,7 +258,7 @@
             // 
             this.raPercentage.AutoSize = true;
             this.raPercentage.Checked = true;
-            this.raPercentage.Location = new System.Drawing.Point(81, 28);
+            this.raPercentage.Location = new System.Drawing.Point(78, 54);
             this.raPercentage.Name = "raPercentage";
             this.raPercentage.Size = new System.Drawing.Size(14, 13);
             this.raPercentage.TabIndex = 2;
@@ -335,7 +269,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 28);
+            this.label1.Location = new System.Drawing.Point(17, 54);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 1;
@@ -348,9 +282,9 @@
             this.lbTotalPrice.ForeColor = System.Drawing.Color.Red;
             this.lbTotalPrice.Location = new System.Drawing.Point(17, 7);
             this.lbTotalPrice.Name = "lbTotalPrice";
-            this.lbTotalPrice.Size = new System.Drawing.Size(55, 13);
+            this.lbTotalPrice.Size = new System.Drawing.Size(85, 13);
             this.lbTotalPrice.TabIndex = 0;
-            this.lbTotalPrice.Text = "Tổng tiền:";
+            this.lbTotalPrice.Text = "Tổng tiền tất cả:";
             // 
             // panel2
             // 
@@ -494,6 +428,98 @@
             this.raAll.UseVisualStyleBackColor = true;
             this.raAll.CheckedChanged += new System.EventHandler(this.raAll_CheckedChanged);
             // 
+            // colChecked
+            // 
+            this.colChecked.Checked = true;
+            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colChecked.CheckValue = "N";
+            this.colChecked.DataPropertyName = "Checked";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.ReadOnly = true;
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.codeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã DV";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên DV";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 180;
+            // 
+            // fixedPriceDataGridViewTextBoxColumn
+            // 
+            this.fixedPriceDataGridViewTextBoxColumn.DataPropertyName = "FixedPrice";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.fixedPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.fixedPriceDataGridViewTextBoxColumn.HeaderText = "Giá";
+            this.fixedPriceDataGridViewTextBoxColumn.Name = "fixedPriceDataGridViewTextBoxColumn";
+            this.fixedPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ActivedDate
+            // 
+            this.ActivedDate.DataPropertyName = "ActivedDate";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle5.NullValue = null;
+            this.ActivedDate.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ActivedDate.HeaderText = "Ngày sử dụng";
+            this.ActivedDate.Name = "ActivedDate";
+            this.ActivedDate.ReadOnly = true;
+            // 
+            // IsExported
+            // 
+            this.IsExported.DataPropertyName = "IsExported";
+            this.IsExported.HeaderText = "Đã trả tiền";
+            this.IsExported.Name = "IsExported";
+            this.IsExported.ReadOnly = true;
+            this.IsExported.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsExported.Width = 80;
+            // 
+            // noteDataGridViewTextBoxColumn
+            // 
+            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
+            this.noteDataGridViewTextBoxColumn.HeaderText = "Nhận xét";
+            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
+            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.noteDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // createdDateDataGridViewTextBoxColumn
+            // 
+            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle6.NullValue = null;
+            this.createdDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.createdDateDataGridViewTextBoxColumn.HeaderText = "Ngày tạo";
+            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
+            this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.createdDateDataGridViewTextBoxColumn.Visible = false;
+            this.createdDateDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // DocStaffFullname
+            // 
+            this.DocStaffFullname.DataPropertyName = "CreatedName";
+            this.DocStaffFullname.HeaderText = "Người tạo";
+            this.DocStaffFullname.Name = "DocStaffFullname";
+            this.DocStaffFullname.ReadOnly = true;
+            this.DocStaffFullname.Width = 150;
+            // 
             // uServiceHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -549,11 +575,13 @@
         private System.Windows.Forms.RadioButton raPercentage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbPay;
+        private System.Windows.Forms.Label lbTotalReceipt;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fixedPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActivedDate;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsExported;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DocStaffFullname;
