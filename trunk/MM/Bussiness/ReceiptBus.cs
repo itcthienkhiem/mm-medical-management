@@ -34,13 +34,46 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetReceipt(string receiptGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                ReceiptView receipt = db.ReceiptViews.SingleOrDefault<ReceiptView>(r => r.ReceiptGUID.ToString() == receiptGUID && r.Status == (byte)Status.Actived);
+                result.QueryResult = receipt;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetReceiptDetailList(string receiptGUID)
         {
             Result result = null;
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptDetailView WHERE ReceiptGUID='{0}' Status={1} ORDER BY Code", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptDetailView WHERE ReceiptGUID='{0}' AND Status={1} ORDER BY Code", 
                     receiptGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -105,7 +138,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertReceipt(Receipt receipt, List<ReceiptDetail> receiptDetails)
+        public static Result InsertReceipt(Receipt receipt, List<ReceiptDetail> receiptDetails, List<string> serviceHistoryKeys)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -128,6 +161,16 @@ namespace MM.Bussiness
                     }
 
                     db.ReceiptDetails.InsertAllOnSubmit(receiptDetails);
+
+                    //Update Exported Service History
+                    foreach (string key in serviceHistoryKeys)
+                    {
+                        ServiceHistory serviceHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID.ToString() == key);
+                        if (serviceHistory != null)
+                            serviceHistory.IsExported = true;
+
+                    }
+
                     db.SubmitChanges();
 
                     t.Complete();

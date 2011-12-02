@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uReceiptList = new MM.Controls.uReceiptList();
             this._uPrintLabel = new MM.Controls.uPrintLabel();
             this._uPermission = new MM.Controls.uPermission();
             this._uContractList = new MM.Controls.uContractList();
@@ -55,6 +56,8 @@
             this.tbCompanyList = new System.Windows.Forms.ToolStripButton();
             this.tbContractList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbReceiptList = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.tbSympton = new System.Windows.Forms.ToolStripButton();
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -84,6 +87,8 @@
             this.contractListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.symptomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.symptomListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.receiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +107,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uReceiptList);
             this._mainPanel.Controls.Add(this._uPrintLabel);
             this._mainPanel.Controls.Add(this._uPermission);
             this._mainPanel.Controls.Add(this._uContractList);
@@ -113,6 +119,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uReceiptList
+            // 
+            resources.ApplyResources(this._uReceiptList, "_uReceiptList");
+            this._uReceiptList.Name = "_uReceiptList";
             // 
             // _uPrintLabel
             // 
@@ -183,6 +194,8 @@
             this.tbCompanyList,
             this.tbContractList,
             this.toolStripSeparator11,
+            this.tbReceiptList,
+            this.toolStripSeparator13,
             this.tbSympton});
             resources.ApplyResources(this._mainToolbar, "_mainToolbar");
             this._mainToolbar.Name = "_mainToolbar";
@@ -282,6 +295,19 @@
             this.toolStripSeparator11.Name = "toolStripSeparator11";
             resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
             // 
+            // tbReceiptList
+            // 
+            this.tbReceiptList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbReceiptList, "tbReceiptList");
+            this.tbReceiptList.Image = global::MM.Properties.Resources.check_icon;
+            this.tbReceiptList.Name = "tbReceiptList";
+            this.tbReceiptList.Tag = "Receipt List";
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
+            // 
             // tbSympton
             // 
             this.tbSympton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -314,6 +340,7 @@
             this.patientToolStripMenuItem,
             this.companyToolStripMenuItem,
             this.symptomToolStripMenuItem,
+            this.receiptToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this._mainMenu, "_mainMenu");
@@ -508,6 +535,21 @@
             this.symptomListToolStripMenuItem.Tag = "Symptom List";
             this.symptomListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // receiptToolStripMenuItem
+            // 
+            this.receiptToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.receiptListToolStripMenuItem});
+            resources.ApplyResources(this.receiptToolStripMenuItem, "receiptToolStripMenuItem");
+            this.receiptToolStripMenuItem.Name = "receiptToolStripMenuItem";
+            // 
+            // receiptListToolStripMenuItem
+            // 
+            this.receiptListToolStripMenuItem.Image = global::MM.Properties.Resources.check_icon;
+            this.receiptListToolStripMenuItem.Name = "receiptListToolStripMenuItem";
+            resources.ApplyResources(this.receiptListToolStripMenuItem, "receiptListToolStripMenuItem");
+            this.receiptListToolStripMenuItem.Tag = "Receipt List";
+            this.receiptListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -649,6 +691,11 @@
         private Controls.uPermission _uPermission;
         private System.Windows.Forms.ToolStripMenuItem printLabelToolStripMenuItem;
         private Controls.uPrintLabel _uPrintLabel;
+        private System.Windows.Forms.ToolStripMenuItem receiptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem receiptListToolStripMenuItem;
+        private Controls.uReceiptList _uReceiptList;
+        private System.Windows.Forms.ToolStripButton tbReceiptList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
 
     }
 }

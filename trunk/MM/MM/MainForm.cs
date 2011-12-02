@@ -129,6 +129,8 @@ namespace MM
                 _uPermission.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uPrintLabel))
                 _uPrintLabel.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uReceiptList))
+                _uReceiptList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -164,8 +166,10 @@ namespace MM
 
                         if (functionCode == Const.DocStaff)
                         {
-                            doctorListToolStripMenuItem.Enabled = isView;
-                            tbDoctorList.Enabled = isView;
+                            doctorListToolStripMenuItem.Enabled = isView && isLogin;
+                            doctorToolStripMenuItem.Enabled = isLogin;
+                            tbDoctorList.Enabled = isView && isLogin;
+
                             _uDocStaffList.AllowAdd = isAdd;
                             _uDocStaffList.AllowEdit = isEdit;
                             _uDocStaffList.AllowDelete = isDelete;
@@ -175,8 +179,9 @@ namespace MM
                         }
                         else if (functionCode == Const.Patient)
                         {
-                            patientListToolStripMenuItem.Enabled = isView;
-                            tbPatientList.Enabled = isView;
+                            patientListToolStripMenuItem.Enabled = isView && isLogin;
+                            patientToolStripMenuItem.Enabled = isLogin;
+                            tbPatientList.Enabled = isView && isLogin;
                             _uPatientList.AllowAdd = isAdd;
                             _uPatientList.AllowEdit = isEdit;
                             _uPatientList.AllowDelete = isDelete;
@@ -186,8 +191,9 @@ namespace MM
                         }
                         else if (functionCode == Const.Speciality)
                         {
-                            specialityListToolStripMenuItem.Enabled = isView;
-                            tbSpecialityList.Enabled = isView;
+                            specialityListToolStripMenuItem.Enabled = isView && isLogin;
+                            specialityToolStripMenuItem.Enabled = isLogin;
+                            tbSpecialityList.Enabled = isView && isLogin;
                             _uSpecialityList.AllowAdd = isAdd;
                             _uSpecialityList.AllowEdit = isEdit;
                             _uSpecialityList.AllowDelete = isDelete;
@@ -197,8 +203,9 @@ namespace MM
                         }
                         else if (functionCode == Const.Company)
                         {
-                            companyListToolStripMenuItem.Enabled = isView;
-                            tbCompanyList.Enabled = isView;
+                            companyListToolStripMenuItem.Enabled = isView && isLogin;
+                            companyToolStripMenuItem.Enabled = isLogin;
+                            tbCompanyList.Enabled = isView && isLogin;
                             _uCompanyList.AllowAdd = isAdd;
                             _uCompanyList.AllowEdit = isEdit;
                             _uCompanyList.AllowDelete = isDelete;
@@ -208,8 +215,9 @@ namespace MM
                         }
                         else if (functionCode == Const.Services)
                         {
-                            serviceListToolStripMenuItem.Enabled = isView;
-                            tbServiceList.Enabled = isView;
+                            serviceListToolStripMenuItem.Enabled = isView && isLogin;
+                            servicesToolStripMenuItem.Enabled = isLogin;
+                            tbServiceList.Enabled = isView && isLogin;
                             _uServicesList.AllowAdd = isAdd;
                             _uServicesList.AllowEdit = isEdit;
                             _uServicesList.AllowDelete = isDelete;
@@ -219,13 +227,13 @@ namespace MM
                         }
                         else if (functionCode == Const.ServicePrice)
                         {
-                            _uServicesList.AllowShowServicePrice = isView;
-                            Global.AllowShowServiePrice = isView;
+                            _uServicesList.AllowShowServicePrice = isView && isLogin;
+                            Global.AllowShowServiePrice = isView && isLogin;
                         }
                         else if (functionCode == Const.Contract)
                         {
-                            contractListToolStripMenuItem.Enabled = isView;
-                            tbContractList.Enabled = isView;
+                            contractListToolStripMenuItem.Enabled = isView && isLogin;
+                            tbContractList.Enabled = isView && isLogin;
                             _uContractList.AllowAdd = isAdd;
                             _uContractList.AllowEdit = isEdit;
                             _uContractList.AllowDelete = isDelete;
@@ -235,13 +243,13 @@ namespace MM
                         }
                         else if (functionCode == Const.OpenPatient)
                         {
-                            openPatientToolStripMenuItem.Enabled = isView;
-                            tbOpenPatient.Enabled = isView;
+                            openPatientToolStripMenuItem.Enabled = isView && isLogin;
+                            tbOpenPatient.Enabled = isView && isLogin;
                             _uPatientList.AllowOpenPatient = isView;
                         }
                         else if (functionCode == Const.Permission)
                         {
-                            permissionToolStripMenuItem.Enabled = isView;
+                            permissionToolStripMenuItem.Enabled = isView && isLogin;
                             _uPermission.AllowAdd = isAdd;
                             _uPermission.AllowEdit = isEdit;
                             _uPermission.AllowDelete = isDelete;
@@ -251,8 +259,9 @@ namespace MM
                         }
                         else if (functionCode == Const.Symptom)
                         {
-                            symptomListToolStripMenuItem.Enabled = isView;
-                            tbSympton.Enabled = isView;
+                            symptomListToolStripMenuItem.Enabled = isView && isLogin;
+                            symptomToolStripMenuItem.Enabled = isLogin;
+                            tbSympton.Enabled = isView && isLogin;
                             _uSymptomList.AllowAdd = isAdd;
                             _uSymptomList.AllowEdit = isEdit;
                             _uSymptomList.AllowDelete = isDelete;
@@ -262,10 +271,20 @@ namespace MM
                         }
                         else if (functionCode == Const.PrintLabel)
                         {
-                            printLabelToolStripMenuItem.Enabled = isPrint;
+                            printLabelToolStripMenuItem.Enabled = isPrint && isLogin;
                         }
                         else if (functionCode == Const.Receipt)
                         {
+                            receiptListToolStripMenuItem.Enabled = isView && isLogin;
+                            receiptToolStripMenuItem.Enabled = isLogin;
+                            tbReceiptList.Enabled = isView && isLogin;
+                            _uReceiptList.AllowAdd = isAdd;
+                            _uReceiptList.AllowEdit = isEdit;
+                            _uReceiptList.AllowDelete = isDelete;
+                            _uReceiptList.AllowPrint = isPrint;
+                            _uReceiptList.AllowExport = isExport;
+                            _uReceiptList.AllowImport = isImport;
+
                             Global.AllowViewReceipt = isView;
                             Global.AllowAddReceipt = isAdd;
                             Global.AllowDeleteReceipt = isDelete;
@@ -343,35 +362,46 @@ namespace MM
                 _uSymptomList.AllowExport = true;
                 _uSymptomList.AllowImport = true;
 
+                servicesToolStripMenuItem.Enabled = isLogin;
+                serviceListToolStripMenuItem.Enabled = isLogin;
+                tbServiceList.Enabled = isLogin;
+
+                doctorToolStripMenuItem.Enabled = isLogin;
+                doctorListToolStripMenuItem.Enabled = isLogin;
+                tbDoctorList.Enabled = isLogin;
+
+                patientToolStripMenuItem.Enabled = isLogin;
+                patientListToolStripMenuItem.Enabled = isLogin;
+                openPatientToolStripMenuItem.Enabled = isLogin;
+                tbPatientList.Enabled = isLogin;
+                tbOpenPatient.Enabled = isLogin;
+
+                specialityToolStripMenuItem.Enabled = isLogin;
+                specialityListToolStripMenuItem.Enabled = isLogin;
+                tbSpecialityList.Enabled = isLogin;
+
+                symptomToolStripMenuItem.Enabled = isLogin;
+                symptomListToolStripMenuItem.Enabled = isLogin;
+                tbSympton.Enabled = isLogin;
+
+                companyToolStripMenuItem.Enabled = isLogin;
+                contractListToolStripMenuItem.Enabled = isLogin;
+                companyListToolStripMenuItem.Enabled = isLogin;
+                tbCompanyList.Enabled = isLogin;
+                tbContractList.Enabled = isLogin;
+
+                toolsToolStripMenuItem.Enabled = isLogin;
+                printLabelToolStripMenuItem.Enabled = isLogin;
+            
+                changePasswordToolStripMenuItem.Enabled = isLogin;
                 permissionToolStripMenuItem.Enabled = isLogin;
+
+                receiptListToolStripMenuItem.Enabled = isLogin;
+                receiptToolStripMenuItem.Enabled = isLogin;
+                tbReceiptList.Enabled = isLogin;
             }
 
-            servicesToolStripMenuItem.Enabled = isLogin;
-            tbServiceList.Enabled = isLogin;
-
-            doctorToolStripMenuItem.Enabled = isLogin;
-            tbDoctorList.Enabled = isLogin;
-
-            patientToolStripMenuItem.Enabled = isLogin;
-            tbPatientList.Enabled = isLogin;
-            tbOpenPatient.Enabled = isLogin;
-
-            specialityToolStripMenuItem.Enabled = isLogin;
-            tbSpecialityList.Enabled = isLogin;
-
-            symptomToolStripMenuItem.Enabled = isLogin;
-            tbSympton.Enabled = isLogin;
-
-            companyToolStripMenuItem.Enabled = isLogin;
-            tbCompanyList.Enabled = isLogin;
-            tbContractList.Enabled = isLogin;
-
-            toolsToolStripMenuItem.Enabled = isLogin;
-            
-            changePasswordToolStripMenuItem.Enabled = isLogin;
-            printLabelToolStripMenuItem.Enabled = isLogin;
-
-            if (!isLogin) permissionToolStripMenuItem.Enabled = false;
+            //if (!isLogin) permissionToolStripMenuItem.Enabled = false;*/
         }
 
         private void ExcuteCmd(string cmd)
@@ -450,7 +480,18 @@ namespace MM
                 case "Print Label":
                     OnPrintLabel();
                     break;
+
+                case "Receipt List":
+                    OnReceiptList();
+                    break;
             }
+        }
+
+        private void OnReceiptList()
+        {
+            this.Text = string.Format("{0} - Danh mục phiếu thu", Application.ProductName);
+            ViewControl(_uReceiptList);
+            _uReceiptList.DisplayAsThread();
         }
 
         private void OnPrintLabel()
@@ -591,6 +632,8 @@ namespace MM
                 _uPermission.ClearData();
             else if (ctrl.GetType() == typeof(uPrintLabel))
                 _uPrintLabel.ClearData();
+            else if (ctrl.GetType() == typeof(uReceiptList))
+                _uReceiptList.ClearData();
         }
 
         private void OnDoctorList()
