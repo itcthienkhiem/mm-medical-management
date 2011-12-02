@@ -219,7 +219,7 @@
             this.lvService.Location = new System.Drawing.Point(766, 19);
             this.lvService.MultiSelect = false;
             this.lvService.Name = "lvService";
-            this.lvService.Size = new System.Drawing.Size(392, 126);
+            this.lvService.Size = new System.Drawing.Size(368, 126);
             this.lvService.SmallImageList = this.imgList;
             this.lvService.TabIndex = 77;
             this.lvService.UseCompatibleStateImageBehavior = false;
