@@ -29,62 +29,62 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgMembers));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.tabMember = new DevComponents.DotNetBar.TabControl();
+            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.dgMembers = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtSearchPatient = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pageMember = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.chkServiceChecked = new System.Windows.Forms.CheckBox();
             this.dgService = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dataGridViewCheckBoxXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.pageService = new DevComponents.DotNetBar.TabItem(this.components);
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel5 = new System.Windows.Forms.Panel();
             this.btnDeleteService = new System.Windows.Forms.Button();
             this.btnAddService = new System.Windows.Forms.Button();
-            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.chkChecked = new System.Windows.Forms.CheckBox();
-            this.dgMembers = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.pageService = new DevComponents.DotNetBar.TabItem(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dobStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.txtSearchPatient = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pageMember = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabMember)).BeginInit();
             this.tabMember.SuspendLayout();
-            this.tabControlPanel2.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgService)).BeginInit();
-            this.panel5.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             this.tabControlPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
+            this.tabControlPanel2.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgService)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
+            this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -96,6 +96,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(666, 38);
             this.panel1.TabIndex = 4;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(335, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Image = global::MM.Properties.Resources.check;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(256, 6);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 0;
+            this.btnOK.Text = "    &Đồng ý";
+            this.btnOK.UseVisualStyleBackColor = true;
             // 
             // tabMember
             // 
@@ -114,6 +138,128 @@
             this.tabMember.Tabs.Add(this.pageMember);
             this.tabMember.Tabs.Add(this.pageService);
             this.tabMember.Text = "tabControl1";
+            // 
+            // tabControlPanel1
+            // 
+            this.tabControlPanel1.Controls.Add(this.panel3);
+            this.tabControlPanel1.Controls.Add(this.panel2);
+            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel1.Name = "tabControlPanel1";
+            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel1.Size = new System.Drawing.Size(666, 390);
+            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel1.Style.GradientAngle = 90;
+            this.tabControlPanel1.TabIndex = 1;
+            this.tabControlPanel1.TabItem = this.pageMember;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgMembers);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(1, 39);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(664, 350);
+            this.panel3.TabIndex = 1;
+            // 
+            // chkChecked
+            // 
+            this.chkChecked.AutoSize = true;
+            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Name = "chkChecked";
+            this.chkChecked.Size = new System.Drawing.Size(15, 14);
+            this.chkChecked.TabIndex = 9;
+            this.chkChecked.UseVisualStyleBackColor = true;
+            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
+            // 
+            // dgMembers
+            // 
+            this.dgMembers.AllowUserToAddRows = false;
+            this.dgMembers.AllowUserToDeleteRows = false;
+            this.dgMembers.AllowUserToOrderColumns = true;
+            this.dgMembers.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgMembers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colChecked,
+            this.fileNumDataGridViewTextBoxColumn,
+            this.fullNameDataGridViewTextBoxColumn,
+            this.dobStrDataGridViewTextBoxColumn,
+            this.genderAsStrDataGridViewTextBoxColumn,
+            this.IdentityCard});
+            this.dgMembers.DataSource = this.patientViewBindingSource;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dgMembers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgMembers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgMembers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgMembers.HighlightSelectedColumnHeaders = false;
+            this.dgMembers.Location = new System.Drawing.Point(0, 0);
+            this.dgMembers.MultiSelect = false;
+            this.dgMembers.Name = "dgMembers";
+            this.dgMembers.ReadOnly = true;
+            this.dgMembers.RowHeadersWidth = 30;
+            this.dgMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgMembers.Size = new System.Drawing.Size(664, 350);
+            this.dgMembers.TabIndex = 8;
+            // 
+            // patientViewBindingSource
+            // 
+            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.txtSearchPatient);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(1, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(664, 38);
+            this.panel2.TabIndex = 0;
+            // 
+            // txtSearchPatient
+            // 
+            this.txtSearchPatient.Location = new System.Drawing.Point(93, 10);
+            this.txtSearchPatient.Name = "txtSearchPatient";
+            this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
+            this.txtSearchPatient.TabIndex = 0;
+            this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
+            this.txtSearchPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPatient_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Tìm bệnh nhân:";
+            // 
+            // pageMember
+            // 
+            this.pageMember.AttachedControl = this.tabControlPanel1;
+            this.pageMember.Image = global::MM.Properties.Resources.Apps_preferences_contact_list_icon;
+            this.pageMember.Name = "pageMember";
+            this.pageMember.Text = "Nhân viên";
             // 
             // tabControlPanel2
             // 
@@ -210,56 +356,6 @@
             this.dataGridViewCheckBoxXColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewCheckBoxXColumn1.Width = 40;
             // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.btnDeleteService);
-            this.panel5.Controls.Add(this.btnAddService);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(578, 1);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(87, 388);
-            this.panel5.TabIndex = 1;
-            // 
-            // pageService
-            // 
-            this.pageService.AttachedControl = this.tabControlPanel2;
-            this.pageService.Image = global::MM.Properties.Resources.checklist_icon;
-            this.pageService.Name = "pageService";
-            this.pageService.Text = "Dịch vụ";
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.tabMember);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(666, 415);
-            this.panel4.TabIndex = 8;
-            // 
-            // btnOK
-            // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Image = global::MM.Properties.Resources.check;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(256, 6);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 0;
-            this.btnOK.Text = "    &Đồng ý";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(335, 6);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
             // codeDataGridViewTextBoxColumn
             // 
             this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
@@ -279,6 +375,16 @@
             // serviceBindingSource
             // 
             this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnDeleteService);
+            this.panel5.Controls.Add(this.btnAddService);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(578, 1);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(87, 388);
+            this.panel5.TabIndex = 1;
             // 
             // btnDeleteService
             // 
@@ -304,88 +410,21 @@
             this.btnAddService.UseVisualStyleBackColor = true;
             this.btnAddService.Click += new System.EventHandler(this.btnAddService_Click);
             // 
-            // tabControlPanel1
+            // pageService
             // 
-            this.tabControlPanel1.Controls.Add(this.panel3);
-            this.tabControlPanel1.Controls.Add(this.panel2);
-            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel1.Name = "tabControlPanel1";
-            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(666, 390);
-            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel1.Style.GradientAngle = 90;
-            this.tabControlPanel1.TabIndex = 1;
-            this.tabControlPanel1.TabItem = this.pageMember;
+            this.pageService.AttachedControl = this.tabControlPanel2;
+            this.pageService.Image = global::MM.Properties.Resources.checklist_icon;
+            this.pageService.Name = "pageService";
+            this.pageService.Text = "Dịch vụ";
             // 
-            // panel3
+            // panel4
             // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgMembers);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(1, 39);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(664, 350);
-            this.panel3.TabIndex = 1;
-            // 
-            // chkChecked
-            // 
-            this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
-            this.chkChecked.Name = "chkChecked";
-            this.chkChecked.Size = new System.Drawing.Size(15, 14);
-            this.chkChecked.TabIndex = 9;
-            this.chkChecked.UseVisualStyleBackColor = true;
-            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
-            // 
-            // dgMembers
-            // 
-            this.dgMembers.AllowUserToAddRows = false;
-            this.dgMembers.AllowUserToDeleteRows = false;
-            this.dgMembers.AllowUserToOrderColumns = true;
-            this.dgMembers.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgMembers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colChecked,
-            this.fileNumDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn,
-            this.dobStrDataGridViewTextBoxColumn,
-            this.genderAsStrDataGridViewTextBoxColumn,
-            this.IdentityCard});
-            this.dgMembers.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dgMembers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgMembers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgMembers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgMembers.HighlightSelectedColumnHeaders = false;
-            this.dgMembers.Location = new System.Drawing.Point(0, 0);
-            this.dgMembers.MultiSelect = false;
-            this.dgMembers.Name = "dgMembers";
-            this.dgMembers.ReadOnly = true;
-            this.dgMembers.RowHeadersWidth = 30;
-            this.dgMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMembers.Size = new System.Drawing.Size(664, 350);
-            this.dgMembers.TabIndex = 8;
+            this.panel4.Controls.Add(this.tabMember);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(666, 415);
+            this.panel4.TabIndex = 8;
             // 
             // colChecked
             // 
@@ -395,6 +434,7 @@
             this.colChecked.DataPropertyName = "Checked";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.ReadOnly = true;
@@ -447,45 +487,6 @@
             this.IdentityCard.ReadOnly = true;
             this.IdentityCard.Width = 120;
             // 
-            // patientViewBindingSource
-            // 
-            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.txtSearchPatient);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(1, 1);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(664, 38);
-            this.panel2.TabIndex = 0;
-            // 
-            // txtSearchPatient
-            // 
-            this.txtSearchPatient.Location = new System.Drawing.Point(93, 10);
-            this.txtSearchPatient.Name = "txtSearchPatient";
-            this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
-            this.txtSearchPatient.TabIndex = 0;
-            this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
-            this.txtSearchPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPatient_KeyDown);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Tìm bệnh nhân:";
-            // 
-            // pageMember
-            // 
-            this.pageMember.AttachedControl = this.tabControlPanel1;
-            this.pageMember.Image = global::MM.Properties.Resources.Apps_preferences_contact_list_icon;
-            this.pageMember.Name = "pageMember";
-            this.pageMember.Text = "Nhân viên";
-            // 
             // dlgMembers
             // 
             this.AcceptButton = this.btnOK;
@@ -508,13 +509,6 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabMember)).EndInit();
             this.tabMember.ResumeLayout(false);
-            this.tabControlPanel2.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgService)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
             this.tabControlPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -522,6 +516,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.tabControlPanel2.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgService)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -537,12 +538,6 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgMembers;
         private System.Windows.Forms.TextBox txtSearchPatient;
         private System.Windows.Forms.Label label1;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dobStrDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
         private DevComponents.DotNetBar.TabControl tabMember;
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel1;
         private System.Windows.Forms.Panel panel3;
@@ -560,5 +555,11 @@
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn dataGridViewCheckBoxXColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dobStrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
     }
 }

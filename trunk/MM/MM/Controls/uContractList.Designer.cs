@@ -178,6 +178,7 @@
             this.colChecked.DataPropertyName = "Checked";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.ReadOnly = true;

@@ -182,6 +182,7 @@
             this.dataGridViewCheckBoxXColumn1.DataPropertyName = "Checked";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGridViewCheckBoxXColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewCheckBoxXColumn1.Frozen = true;
             this.dataGridViewCheckBoxXColumn1.HeaderText = "";
             this.dataGridViewCheckBoxXColumn1.Name = "dataGridViewCheckBoxXColumn1";
             this.dataGridViewCheckBoxXColumn1.ReadOnly = true;

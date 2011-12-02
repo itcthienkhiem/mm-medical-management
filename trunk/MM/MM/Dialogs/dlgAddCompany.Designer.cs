@@ -57,11 +57,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgMembers = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DobStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.companyMemberViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -69,6 +64,11 @@
             this.pageCompanyMembers = new DevComponents.DotNetBar.TabItem(this.components);
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DobStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tabCompany)).BeginInit();
             this.tabCompany.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -350,59 +350,6 @@
             this.dgMembers.Size = new System.Drawing.Size(514, 352);
             this.dgMembers.TabIndex = 4;
             // 
-            // colChecked
-            // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // fileNumDataGridViewTextBoxColumn
-            // 
-            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
-            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
-            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fileNumDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // DobStr
-            // 
-            this.DobStr.DataPropertyName = "DobStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DobStr.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DobStr.HeaderText = "Ngày sinh";
-            this.DobStr.Name = "DobStr";
-            this.DobStr.ReadOnly = true;
-            this.DobStr.Width = 90;
-            // 
-            // GenderAsStr
-            // 
-            this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle5;
-            this.GenderAsStr.HeaderText = "Giới tính";
-            this.GenderAsStr.Name = "GenderAsStr";
-            this.GenderAsStr.ReadOnly = true;
-            this.GenderAsStr.Width = 70;
-            // 
             // companyMemberViewBindingSource
             // 
             this.companyMemberViewBindingSource.DataSource = typeof(MM.Databasae.CompanyMemberView);
@@ -472,6 +419,60 @@
             this.btnCancel.Text = "   &Đóng";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
+            // colChecked
+            // 
+            this.colChecked.Checked = true;
+            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colChecked.CheckValue = "N";
+            this.colChecked.DataPropertyName = "Checked";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.ReadOnly = true;
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // fileNumDataGridViewTextBoxColumn
+            // 
+            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
+            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
+            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fileNumDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // DobStr
+            // 
+            this.DobStr.DataPropertyName = "DobStr";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DobStr.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DobStr.HeaderText = "Ngày sinh";
+            this.DobStr.Name = "DobStr";
+            this.DobStr.ReadOnly = true;
+            this.DobStr.Width = 90;
+            // 
+            // GenderAsStr
+            // 
+            this.GenderAsStr.DataPropertyName = "GenderAsStr";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle5;
+            this.GenderAsStr.HeaderText = "Giới tính";
+            this.GenderAsStr.Name = "GenderAsStr";
+            this.GenderAsStr.ReadOnly = true;
+            this.GenderAsStr.Width = 70;
+            // 
             // dlgAddCompany
             // 
             this.AcceptButton = this.btnOK;
@@ -533,12 +534,12 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgMembers;
         private System.Windows.Forms.BindingSource companyMemberViewBindingSource;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnAdd;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DobStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnAdd;
     }
 }

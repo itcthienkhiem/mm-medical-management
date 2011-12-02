@@ -39,6 +39,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgCompany = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,7 +47,6 @@
             this.dienthoaiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.faxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.websiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCompany)).BeginInit();
@@ -166,6 +166,10 @@
             this.dgCompany.TabIndex = 4;
             this.dgCompany.DoubleClick += new System.EventHandler(this.dgCompany_DoubleClick);
             // 
+            // companyBindingSource
+            // 
+            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
+            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -174,6 +178,7 @@
             this.colChecked.DataPropertyName = "Checked";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.ReadOnly = true;
@@ -226,10 +231,6 @@
             this.websiteDataGridViewTextBoxColumn.ReadOnly = true;
             this.websiteDataGridViewTextBoxColumn.Width = 150;
             // 
-            // companyBindingSource
-            // 
-            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
-            // 
             // uCompanyList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -256,6 +257,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgCompany;
+        private System.Windows.Forms.BindingSource companyBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn maCtyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenCtyDataGridViewTextBoxColumn;
@@ -263,6 +265,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dienthoaiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn faxDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn websiteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource companyBindingSource;
     }
 }
