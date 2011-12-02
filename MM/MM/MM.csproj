@@ -440,6 +440,12 @@
     <Compile Include="Dialogs\dlgPatientHistory.Designer.cs">
       <DependentUpon>dlgPatientHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgReceiptDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgReceiptDetail.Designer.cs">
+      <DependentUpon>dlgReceiptDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgServices.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -587,6 +593,9 @@
     <EmbeddedResource Include="Dialogs\dlgPatientHistory.resx">
       <DependentUpon>dlgPatientHistory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgReceiptDetail.resx">
+      <DependentUpon>dlgReceiptDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgServices.resx">
       <DependentUpon>dlgServices.cs</DependentUpon>
     </EmbeddedResource>
@@ -624,6 +633,8 @@
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ReceiptDetailView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ReceiptView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />

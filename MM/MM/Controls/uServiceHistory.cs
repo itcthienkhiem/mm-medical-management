@@ -256,7 +256,7 @@ namespace MM.Controls
 
             string exportFileName = string.Format("{0}\\Temp\\Receipt.xls", Application.StartupPath);
             if (ExportToExcel(exportFileName, receiptGUID))
-                ExcelPrintPreview.PrintPreview(exportFileName);
+                ExcelPrintPreview.Print(exportFileName);
         }
 
         private bool ExportToExcel(string exportFileName, string receiptGUID)
@@ -286,17 +286,15 @@ namespace MM.Controls
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
-                DataRow drPatient = _patientRow as DataRow;
-                string patientFullName = drPatient["FullName"].ToString();
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 ExcelPrintPreview.SetCulturalWithEN_US();
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 6;
 
-                workSheet.Cells["B2"].Value = patientFullName;
-                workSheet.Cells["B3"].Value = Global.Fullname;
-                workSheet.Cells["B4"].Value = receipt.ReceiptDate.ToString("dd/MM/yyyy");
+                workSheet.Cells["B2"].Value = receipt.FullName;
+                workSheet.Cells["B3"].Value = receipt.Collector;
+                workSheet.Cells["B4"].Value = receipt.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss");
 
                 DataTable dtSource = result.QueryResult as DataTable;
                 foreach (DataRow row in dtSource.Rows)
@@ -412,6 +410,7 @@ namespace MM.Controls
 
                 Receipt receipt = new Receipt();
                 receipt.PatientGUID = Guid.Parse(_patientGUID);
+                receipt.Collector = Global.Fullname;
                 receipt.ReceiptDate = DateTime.Now;
                 receipt.TotalPrice = totalPrice;
                 receipt.Promotion = promotionPrice;
@@ -465,6 +464,7 @@ namespace MM.Controls
 
                         Receipt receipt = new Receipt();
                         receipt.PatientGUID = Guid.Parse(_patientGUID);
+                        receipt.Collector = Global.Fullname;
                         receipt.ReceiptDate = DateTime.Now;
                         receipt.TotalPrice = totalPrice;
                         receipt.Promotion = promotionPrice;
@@ -532,6 +532,7 @@ namespace MM.Controls
 
                     Receipt receipt = new Receipt();
                     receipt.PatientGUID = Guid.Parse(_patientGUID);
+                    receipt.Collector = Global.Fullname;
                     receipt.ReceiptDate = DateTime.Now;
                     receipt.TotalPrice = totalPrice;
                     receipt.Promotion = promotionPrice;
