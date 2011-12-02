@@ -50,7 +50,6 @@ namespace MM.Controls
             { 
                 _isDailyService = value;
                 pFilter.Visible = !_isDailyService;
-                btnPrint.Visible = _isDailyService;
             }
         }
         #endregion
@@ -59,7 +58,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
-            btnPrint.Visible = Global.AllowShowServiePrice && _isDailyService;
+            btnPrint.Visible = Global.AllowShowServiePrice;
             pTotal.Visible = Global.AllowShowServiePrice;
         }
 
@@ -233,11 +232,11 @@ namespace MM.Controls
 
         private bool ExportToExcel(string exportFileName)
         {
-            string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
             IWorkbook workBook = null;
 
             try
             {
+                string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
                 DataRow drPatient = _patientRow as DataRow;
                 string patientFullName = drPatient["FullName"].ToString();
 
@@ -319,8 +318,11 @@ namespace MM.Controls
             finally
             {
                 ExcelPrintPreview.SetCulturalWithCurrent();
-                workBook.Close();
-                workBook = null;
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
             }
 
             return true;
