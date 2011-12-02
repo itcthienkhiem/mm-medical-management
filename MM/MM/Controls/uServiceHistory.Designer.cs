@@ -366,7 +366,7 @@
             // 
             // btnExportReceipt
             // 
-            this.btnExportReceipt.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnExportReceipt.Image = global::MM.Properties.Resources.export_icon;
             this.btnExportReceipt.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExportReceipt.Location = new System.Drawing.Point(243, 6);
             this.btnExportReceipt.Name = "btnExportReceipt";
