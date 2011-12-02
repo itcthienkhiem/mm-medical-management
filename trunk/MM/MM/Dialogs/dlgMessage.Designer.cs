@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgMessage));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.picIcon = new System.Windows.Forms.PictureBox();
             this.lbMessage = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCancel2 = new System.Windows.Forms.Button();
-            this.picIcon = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +48,15 @@
             this.groupBox1.Size = new System.Drawing.Size(255, 87);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // picIcon
+            // 
+            this.picIcon.Image = global::MM.Properties.Resources.Information_icon;
+            this.picIcon.Location = new System.Drawing.Point(6, 12);
+            this.picIcon.Name = "picIcon";
+            this.picIcon.Size = new System.Drawing.Size(32, 32);
+            this.picIcon.TabIndex = 1;
+            this.picIcon.TabStop = false;
             // 
             // lbMessage
             // 
@@ -94,15 +103,6 @@
             this.btnCancel2.Text = "   &Đóng";
             this.btnCancel2.UseVisualStyleBackColor = true;
             this.btnCancel2.Visible = false;
-            // 
-            // picIcon
-            // 
-            this.picIcon.Image = global::MM.Properties.Resources.Information_icon;
-            this.picIcon.Location = new System.Drawing.Point(7, 16);
-            this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(32, 32);
-            this.picIcon.TabIndex = 1;
-            this.picIcon.TabStop = false;
             // 
             // dlgMessage
             // 
