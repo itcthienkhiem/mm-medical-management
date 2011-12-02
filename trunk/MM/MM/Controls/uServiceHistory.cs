@@ -58,7 +58,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
-            btnPrint.Visible = Global.AllowShowServiePrice;
+            //btnPrint.Visible = Global.AllowShowServiePrice;
             pTotal.Visible = Global.AllowShowServiePrice;
         }
 
