@@ -12603,6 +12603,8 @@ namespace MM.Databasae
 		
 		private System.Guid _PatientGUID;
 		
+		private string _Collector;
+		
 		private System.DateTime _ReceiptDate;
 		
 		private double _TotalPrice;
@@ -12637,6 +12639,8 @@ namespace MM.Databasae
     partial void OnReceiptGUIDChanged();
     partial void OnPatientGUIDChanging(System.Guid value);
     partial void OnPatientGUIDChanged();
+    partial void OnCollectorChanging(string value);
+    partial void OnCollectorChanged();
     partial void OnReceiptDateChanging(System.DateTime value);
     partial void OnReceiptDateChanged();
     partial void OnTotalPriceChanging(double value);
@@ -12708,6 +12712,26 @@ namespace MM.Databasae
 					this._PatientGUID = value;
 					this.SendPropertyChanged("PatientGUID");
 					this.OnPatientGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Collector", DbType="NVarChar(100)")]
+		public string Collector
+		{
+			get
+			{
+				return this._Collector;
+			}
+			set
+			{
+				if ((this._Collector != value))
+				{
+					this.OnCollectorChanging(value);
+					this.SendPropertyChanging();
+					this._Collector = value;
+					this.SendPropertyChanged("Collector");
+					this.OnCollectorChanged();
 				}
 			}
 		}
@@ -13044,6 +13068,8 @@ namespace MM.Databasae
 		
 		private string _FullName;
 		
+		private string _Collector;
+		
 		public ReceiptView()
 		{
 		}
@@ -13268,6 +13294,22 @@ namespace MM.Databasae
 				if ((this._FullName != value))
 				{
 					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Collector", DbType="NVarChar(100)")]
+		public string Collector
+		{
+			get
+			{
+				return this._Collector;
+			}
+			set
+			{
+				if ((this._Collector != value))
+				{
+					this._Collector = value;
 				}
 			}
 		}

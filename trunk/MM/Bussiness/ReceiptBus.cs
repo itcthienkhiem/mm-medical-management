@@ -17,7 +17,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} ORDER BY Code", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} ORDER BY ReceiptDate", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
