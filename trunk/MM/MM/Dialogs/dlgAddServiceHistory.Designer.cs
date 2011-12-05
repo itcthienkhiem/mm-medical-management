@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceHistory));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.numPromotion = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.dtpkActiveDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.cboDocStaff = new System.Windows.Forms.ComboBox();
@@ -39,21 +42,18 @@
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbUnit = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
-            this.numPrice = new System.Windows.Forms.NumericUpDown();
+            this.numDiscount = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.lbPrice = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.numPromotion = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPromotion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPromotion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -67,7 +67,7 @@
             this.groupBox1.Controls.Add(this.cboService);
             this.groupBox1.Controls.Add(this.lbUnit);
             this.groupBox1.Controls.Add(this.txtDescription);
-            this.groupBox1.Controls.Add(this.numPrice);
+            this.groupBox1.Controls.Add(this.numDiscount);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lbPrice);
             this.groupBox1.Controls.Add(this.label2);
@@ -78,6 +78,32 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(168, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(21, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "(%)";
+            // 
+            // numPromotion
+            // 
+            this.numPromotion.Location = new System.Drawing.Point(94, 92);
+            this.numPromotion.Name = "numPromotion";
+            this.numPromotion.Size = new System.Drawing.Size(69, 20);
+            this.numPromotion.TabIndex = 7;
+            this.numPromotion.ThousandsSeparator = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Giảm:";
             // 
             // dtpkActiveDate
             // 
@@ -152,24 +178,24 @@
             this.txtDescription.Size = new System.Drawing.Size(269, 96);
             this.txtDescription.TabIndex = 9;
             // 
-            // numPrice
+            // numDiscount
             // 
-            this.numPrice.Increment = new decimal(new int[] {
+            this.numDiscount.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numPrice.Location = new System.Drawing.Point(94, 69);
-            this.numPrice.Maximum = new decimal(new int[] {
+            this.numDiscount.Location = new System.Drawing.Point(94, 69);
+            this.numDiscount.Maximum = new decimal(new int[] {
             999999999,
             0,
             0,
             0});
-            this.numPrice.Name = "numPrice";
-            this.numPrice.Size = new System.Drawing.Size(121, 20);
-            this.numPrice.TabIndex = 6;
-            this.numPrice.ThousandsSeparator = true;
-            this.numPrice.Value = new decimal(new int[] {
+            this.numDiscount.Name = "numDiscount";
+            this.numDiscount.Size = new System.Drawing.Size(121, 20);
+            this.numDiscount.TabIndex = 6;
+            this.numDiscount.ThousandsSeparator = true;
+            this.numDiscount.Value = new decimal(new int[] {
             50000,
             0,
             0,
@@ -235,32 +261,6 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // numPromotion
-            // 
-            this.numPromotion.Location = new System.Drawing.Point(94, 92);
-            this.numPromotion.Name = "numPromotion";
-            this.numPromotion.Size = new System.Drawing.Size(69, 20);
-            this.numPromotion.TabIndex = 7;
-            this.numPromotion.ThousandsSeparator = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 95);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Giảm:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(168, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(21, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "(%)";
-            // 
             // dlgAddServiceHistory
             // 
             this.AcceptButton = this.btnOK;
@@ -282,10 +282,10 @@
             this.Load += new System.EventHandler(this.dlgAddServiceHistory_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPromotion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numPromotion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -297,7 +297,7 @@
         private System.Windows.Forms.ComboBox cboService;
         private System.Windows.Forms.Label lbUnit;
         private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.NumericUpDown numPrice;
+        private System.Windows.Forms.NumericUpDown numDiscount;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbPrice;
         private System.Windows.Forms.Label label2;

@@ -114,7 +114,7 @@ namespace MM.Dialogs
             {
                 cboDocStaff.SelectedValue = drServiceHistory["DocStaffGUID"].ToString();
                 cboService.SelectedValue = drServiceHistory["ServiceGUID"].ToString();
-                numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
+                numDiscount.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
                 txtDescription.Text = drServiceHistory["Note"] as string;
                 _serviceHistory.ServiceHistoryGUID = Guid.Parse(drServiceHistory["ServiceHistoryGUID"].ToString());
 
@@ -193,7 +193,7 @@ namespace MM.Dialogs
                     _serviceHistory.ActivedDate = dtpkActiveDate.Value;
                     _serviceHistory.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
                     _serviceHistory.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
-                    _serviceHistory.Price = (double)numPrice.Value;
+                    _serviceHistory.Price = (double)numDiscount.Value;
 
                     Result result = ServiceHistoryBus.InsertServiceHistory(_serviceHistory);
                     if (!result.IsOK)
@@ -254,14 +254,14 @@ namespace MM.Dialogs
             string serviceGUID = cboService.SelectedValue.ToString();
             DataRow[] rows = dt.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
             if (rows != null && rows.Length > 0)
-                 numPrice.Value = (decimal)Double.Parse(rows[0]["Price"].ToString());
+                 numDiscount.Value = (decimal)Double.Parse(rows[0]["Price"].ToString());
         }
 
         private void dlgAddServiceHistory_Load(object sender, EventArgs e)
         {
             lbPrice.Visible = Global.AllowShowServiePrice;
             lbUnit.Visible = Global.AllowShowServiePrice;
-            numPrice.Visible = Global.AllowShowServiePrice;
+            numDiscount.Visible = Global.AllowShowServiePrice;
         }
         #endregion
 
