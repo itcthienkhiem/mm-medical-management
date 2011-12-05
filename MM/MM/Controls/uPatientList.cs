@@ -213,7 +213,9 @@ namespace MM.Controls
 
         private DataRow GetDataRow(string patientGUID)
         {
-            DataRow[] rows = _dataSource.Select(string.Format("PatientGUID = '{0}'", patientGUID));
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return null;
+            DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", patientGUID));
             if (rows == null || rows.Length <= 0) return null;
 
             return rows[0];
@@ -326,11 +328,11 @@ namespace MM.Controls
         private void OnDeletePatient()
         {
             if (_dataSource == null) return;
+            UpdateChecked();
             List<string> deletedPatientList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             List<DataRow> deletedRows2 = new List<DataRow>();
-            DataTable dt = dgPatient.DataSource as DataTable;
-            foreach (DataRow row in dt.Rows)
+            foreach (DataRow row in _dataSource.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
@@ -351,12 +353,13 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
-                            dt.Rows.Remove(row);
+                            _dataSource.Rows.Remove(row);
                         }
 
+                        DataTable dt = dgPatient.DataSource as DataTable;
                         foreach (DataRow row in deletedRows2)
                         {
-                            _dataSource.Rows.Remove(row);
+                            dt.Rows.Remove(row);
                         }
                     }
                     else
@@ -407,6 +410,7 @@ namespace MM.Controls
 
         private void OnSearchPatient()
         {
+            UpdateChecked();
             chkChecked.Checked = false;
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
