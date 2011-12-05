@@ -212,6 +212,7 @@ namespace MM.Controls
 
         private void OnPrint(bool isPreview)
         {
+            UpdateChecked();
             List<DataRow> members = this.Members;
             if (members == null || members.Count <= 0)
             {
