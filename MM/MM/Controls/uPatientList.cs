@@ -382,6 +382,29 @@ namespace MM.Controls
             base.RaiseOpentPatient(patientRow);
         }
 
+        private void UpdateChecked()
+        {
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt == null) return;
+
+            foreach (DataRow row1 in dt.Rows)
+            {
+                string patientGUID1 = row1["PatientGUID"].ToString();
+                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+                foreach (DataRow row2 in _dataSource.Rows)
+                {
+                    string patientGUID2 = row2["PatientGUID"].ToString();
+                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+
+                    if (patientGUID1 == patientGUID2)
+                    {
+                        row2["Checked"] = row1["Checked"];
+                        break;
+                    }
+                }
+            }
+        }
+
         private void OnSearchPatient()
         {
             chkChecked.Checked = false;
