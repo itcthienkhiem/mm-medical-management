@@ -57,6 +57,9 @@ namespace MM.Dialogs
             get
             {
                 if (_dataSource == null) return null;
+
+                UpdateChecked();
+
                 List<DataRow> checkedRows = new List<DataRow>();
                 foreach (DataRow row in _dataSource.Rows)
                 {
