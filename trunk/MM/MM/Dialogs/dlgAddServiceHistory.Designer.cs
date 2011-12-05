@@ -46,14 +46,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.numPromotion = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPromotion)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.numPromotion);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.dtpkActiveDate);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cboDocStaff);
@@ -67,7 +74,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(378, 229);
+            this.groupBox1.Size = new System.Drawing.Size(378, 248);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
@@ -76,15 +83,15 @@
             // 
             this.dtpkActiveDate.CustomFormat = "dd/MM/yyyy";
             this.dtpkActiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkActiveDate.Location = new System.Drawing.Point(93, 93);
+            this.dtpkActiveDate.Location = new System.Drawing.Point(94, 115);
             this.dtpkActiveDate.Name = "dtpkActiveDate";
             this.dtpkActiveDate.Size = new System.Drawing.Size(122, 20);
-            this.dtpkActiveDate.TabIndex = 7;
+            this.dtpkActiveDate.TabIndex = 8;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 97);
+            this.label6.Location = new System.Drawing.Point(11, 119);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 13);
             this.label6.TabIndex = 9;
@@ -138,12 +145,12 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(94, 116);
+            this.txtDescription.Location = new System.Drawing.Point(94, 138);
             this.txtDescription.MaxLength = 4000;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(269, 96);
-            this.txtDescription.TabIndex = 8;
+            this.txtDescription.TabIndex = 9;
             // 
             // numPrice
             // 
@@ -171,7 +178,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 119);
+            this.label4.Location = new System.Drawing.Point(11, 141);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
@@ -209,10 +216,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(197, 241);
+            this.btnCancel.Location = new System.Drawing.Point(197, 260);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 10;
+            this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "   &Đóng";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -221,12 +228,38 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(118, 241);
+            this.btnOK.Location = new System.Drawing.Point(118, 260);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 9;
+            this.btnOK.TabIndex = 10;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // numPromotion
+            // 
+            this.numPromotion.Location = new System.Drawing.Point(94, 92);
+            this.numPromotion.Name = "numPromotion";
+            this.numPromotion.Size = new System.Drawing.Size(69, 20);
+            this.numPromotion.TabIndex = 7;
+            this.numPromotion.ThousandsSeparator = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(11, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Giảm:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(168, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(21, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "(%)";
             // 
             // dlgAddServiceHistory
             // 
@@ -234,7 +267,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(391, 272);
+            this.ClientSize = new System.Drawing.Size(391, 291);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -252,6 +285,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPromotion)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -274,5 +308,8 @@
         private System.Windows.Forms.BindingSource serviceBindingSource;
         private System.Windows.Forms.DateTimePicker dtpkActiveDate;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown numPromotion;
+        private System.Windows.Forms.Label label3;
     }
 }
