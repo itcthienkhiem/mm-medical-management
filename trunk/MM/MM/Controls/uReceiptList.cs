@@ -282,10 +282,17 @@ namespace MM.Controls
                     string exportFileName = string.Format("{0}\\Temp\\Receipt.xls", Application.StartupPath);
                     foreach (string receiptGUID in checkedReceiptList)
                     {
-                        if (ExportToExcel(exportFileName, receiptGUID))
-                            ExcelPrintPreview.Print(exportFileName);
-                        else
-                            return;
+                        try
+                        {
+                            if (ExportToExcel(exportFileName, receiptGUID))
+                                ExcelPrintPreview.Print(exportFileName);
+                            else
+                                return;
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                        }
                     }
                 }
             }

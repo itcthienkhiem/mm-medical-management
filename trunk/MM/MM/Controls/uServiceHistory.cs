@@ -244,7 +244,16 @@ namespace MM.Controls
 
             string exportFileName = string.Format("{0}\\Temp\\Receipt.xls", Application.StartupPath);
             if (ExportToExcel(exportFileName, receiptGUID))
-                ExcelPrintPreview.Print(exportFileName);
+            {
+                try
+                {
+                    ExcelPrintPreview.Print(exportFileName);
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                }
+            }
         }
 
         private bool ExportToExcel(string exportFileName, string receiptGUID)
