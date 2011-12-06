@@ -41,9 +41,9 @@
             this.dgReceipt = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.receiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -122,9 +122,9 @@
             this.dgReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgReceipt.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
+            this.receiptDateDataGridViewTextBoxColumn,
             this.FileNum,
             this.fullNameDataGridViewTextBoxColumn,
-            this.receiptDateDataGridViewTextBoxColumn,
             this.Address});
             this.dgReceipt.DataSource = this.receiptViewBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -168,6 +168,17 @@
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
             // 
+            // receiptDateDataGridViewTextBoxColumn
+            // 
+            this.receiptDateDataGridViewTextBoxColumn.DataPropertyName = "ReceiptDate";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle3.NullValue = null;
+            this.receiptDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.receiptDateDataGridViewTextBoxColumn.HeaderText = "Ngày thu";
+            this.receiptDateDataGridViewTextBoxColumn.Name = "receiptDateDataGridViewTextBoxColumn";
+            this.receiptDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // FileNum
             // 
             this.FileNum.DataPropertyName = "FileNum";
@@ -182,17 +193,6 @@
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fullNameDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // receiptDateDataGridViewTextBoxColumn
-            // 
-            this.receiptDateDataGridViewTextBoxColumn.DataPropertyName = "ReceiptDate";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle3.NullValue = null;
-            this.receiptDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.receiptDateDataGridViewTextBoxColumn.HeaderText = "Ngày thu";
-            this.receiptDateDataGridViewTextBoxColumn.Name = "receiptDateDataGridViewTextBoxColumn";
-            this.receiptDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // Address
             // 
@@ -232,9 +232,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn promotionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn paymentDataGridViewTextBoxColumn;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn receiptDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn receiptDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
     }
 }
