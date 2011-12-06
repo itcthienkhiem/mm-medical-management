@@ -356,11 +356,19 @@ namespace MM.Controls
                             _dataSource.Rows.Remove(row);
                         }
 
-                        DataTable dt = dgPatient.DataSource as DataTable;
-                        foreach (DataRow row in deletedRows2)
+                        try
                         {
-                            dt.Rows.Remove(row);
+                            DataTable dt = dgPatient.DataSource as DataTable;
+                            foreach (DataRow row in deletedRows2)
+                            {
+                                if (row.RowState != DataRowState.Detached && row.RowState != DataRowState.Deleted) 
+                                    dt.Rows.Remove(row);
+                            }
                         }
+                        catch (Exception ex)
+                        {
+                        }
+                        
                     }
                     else
                     {
