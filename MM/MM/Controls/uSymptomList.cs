@@ -222,10 +222,17 @@ namespace MM.Controls
             {
                 string exportFileName = string.Format("{0}\\Temp\\Symptom.xls", Application.StartupPath);
                 if (ExportToExcel(exportFileName, checkedRows))
-                    if (isPreview) 
-                        ExcelPrintPreview.PrintPreview(exportFileName);
-                    else
-                        ExcelPrintPreview.Print(exportFileName);
+                    try
+                    {
+                        if (isPreview)
+                            ExcelPrintPreview.PrintPreview(exportFileName);
+                        else
+                            ExcelPrintPreview.Print(exportFileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                    }
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần in.", IconType.Information);
