@@ -359,7 +359,7 @@ namespace MM.Controls
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
 
-                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.XLS97);
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
             }
             catch (Exception ex)
             {
