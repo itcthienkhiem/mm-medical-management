@@ -288,7 +288,7 @@ namespace MM.Controls
                 string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
-                ExcelPrintPreview.SetCulturalWithEN_US();
+                //ExcelPrintPreview.SetCulturalWithEN_US();
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 6;
 
@@ -368,7 +368,7 @@ namespace MM.Controls
             }
             finally
             {
-                ExcelPrintPreview.SetCulturalWithCurrent();
+                //ExcelPrintPreview.SetCulturalWithCurrent();
                 if (workBook != null)
                 {
                     workBook.Close();
