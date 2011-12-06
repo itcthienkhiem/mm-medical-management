@@ -415,7 +415,7 @@
             // IsExported
             // 
             this.IsExported.DataPropertyName = "IsExported";
-            this.IsExported.HeaderText = "Đã trả tiền";
+            this.IsExported.HeaderText = "Đã thu tiền";
             this.IsExported.Name = "IsExported";
             this.IsExported.ReadOnly = true;
             this.IsExported.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
