@@ -20,9 +20,9 @@ namespace MM.Bussiness
             {
                 string query = string.Empty;
                 if (isAll)
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND Status = {1} ORDER BY Code", patientGUID, (byte)Status.Actived);
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND Status = {1} ORDER BY Code", patientGUID, (byte)Status.Actived);
                 else
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} ORDER BY Code",
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} ORDER BY Code",
                         patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
 
                 return ExcuteQuery(query);
@@ -119,6 +119,7 @@ namespace MM.Bussiness
                             srvHistory.DocStaffGUID = serviceHistory.DocStaffGUID;
                             srvHistory.Note = serviceHistory.Note;
                             srvHistory.Price = serviceHistory.Price;
+                            srvHistory.Discount = serviceHistory.Discount;
                             srvHistory.ServiceGUID = serviceHistory.ServiceGUID;
                             srvHistory.UpdatedBy = serviceHistory.UpdatedBy;
                             srvHistory.UpdatedDate = serviceHistory.UpdatedDate;

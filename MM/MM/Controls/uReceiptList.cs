@@ -153,76 +153,97 @@ namespace MM.Controls
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 ExcelPrintPreview.SetCulturalWithEN_US();
                 IWorksheet workSheet = workBook.Worksheets[0];
-                int rowIndex = 6;
+                workSheet.Cells["B6"].Value = string.Format("Tên: {0}", receipt.FullName);
+                workSheet.Cells["B7"].Value = string.Format("Mã bệnh nhân: {0}", receipt.FileNum);
+                workSheet.Cells["B8"].Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                if (receipt.Address != null) workSheet.Cells["B9"].Value = string.Format("Địa chỉ: {0}", receipt.Address);
+                else workSheet.Cells["B9"].Value = "Địa chỉ:";
 
-                workSheet.Cells["B2"].Value = receipt.FullName;
-                workSheet.Cells["B3"].Value = receipt.Collector;
-                workSheet.Cells["B4"].Value = receipt.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss");
-
+                int rowIndex = 11;
+                int no = 1;
+                double totalPrice = 0;
+                IRange range;
                 DataTable dtSource = result.QueryResult as DataTable;
                 foreach (DataRow row in dtSource.Rows)
                 {
-                    string serviceCode = row["Code"].ToString();
                     string serviceName = row["Name"].ToString();
                     double price = Convert.ToDouble(row["Price"]);
+                    double disCount = Convert.ToDouble(row["Discount"]);
+                    double amount = Convert.ToDouble(row["Amount"]);
+                    totalPrice += amount;
+                    workSheet.Cells[rowIndex, 1].Value = no++;
+                    workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Center;
 
-                    workSheet.Cells[rowIndex, 0].Value = serviceCode;
-                    workSheet.Cells[rowIndex, 1].Value = serviceName;
-                    workSheet.Cells[rowIndex, 2].Value = price.ToString("#,###");
+                    workSheet.Cells[rowIndex, 2].Value = serviceName;
+
+                    if (price > 0)
+                        workSheet.Cells[rowIndex, 3].Value = price.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 3].Value = price.ToString();
+
+                    workSheet.Cells[rowIndex, 3].HorizontalAlignment = HAlign.Right;
+
+                    if (disCount > 0)
+                        workSheet.Cells[rowIndex, 4].Value = disCount.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 4].Value = disCount.ToString();
+
+                    workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+
+                    if (amount > 0)
+                        workSheet.Cells[rowIndex, 5].Value = amount.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 5].Value = amount.ToString();
+
+                    workSheet.Cells[rowIndex, 5].HorizontalAlignment = HAlign.Right;
+
+                    range = workSheet.Cells[string.Format("B{0}:F{0}", rowIndex + 1)];
+                    range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dash;
+                    range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
 
                     rowIndex++;
                 }
 
-                IRange range = workSheet.Cells[string.Format("A7:C{0}", dtSource.Rows.Count + 6)];
-                range.WrapText = true;
-                range.HorizontalAlignment = HAlign.General;
-                range.VerticalAlignment = VAlign.Top;
-                range.Borders.Color = Color.Black;
+                range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
+                range.Value = "Tổng cộng:";
+                range.Font.Bold = true;
 
-                range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 7)];
-                range.Value = "Tổng tiền:";
-                range.HorizontalAlignment = HAlign.Right;
-
-                range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 7)];
-                if (receipt.TotalPrice > 0)
-                    range.Value = receipt.TotalPrice.ToString("#,###");
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                if (totalPrice > 0)
+                    range.Value = string.Format("{0} VNĐ", totalPrice.ToString("#,###"));
                 else
-                    range.Value = "0";
+                    range.Value = string.Format("{0} VNĐ", totalPrice.ToString());
 
-                range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 8)];
-                range.Value = "Giảm giá:";
+                range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Right;
 
-                range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 8)];
-                if (receipt.Promotion > 0)
-                    range.Value = receipt.Promotion.ToString("#,###");
-                else
-                    range.Value = "0";
+                rowIndex += 2;
+                range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
+                range.Value = "Bằng chữ:";
+                range.Font.Bold = true;
 
-                range.HorizontalAlignment = HAlign.Right;
+                range = workSheet.Cells[string.Format("B{0}:F{0}", rowIndex + 1)];
+                range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dash;
+                range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
 
-                range = workSheet.Cells[string.Format("B{0}", dtSource.Rows.Count + 9)];
-                range.Value = "Còn lại:";
-                range.HorizontalAlignment = HAlign.Right;
+                rowIndex += 2;
+                range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
+                range.Value = "Người lập phiếu";
+                range.HorizontalAlignment = HAlign.Center;
 
-                range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 9)];
-                if (receipt.Payment > 0)
-                    range.Value = receipt.Payment.ToString("#,###");
-                else
-                    range.Value = "0";
+                range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
+                range.Value = "Người nộp tiền";
+                range.HorizontalAlignment = HAlign.Center;
 
-                range = workSheet.Cells[string.Format("A{0}", dtSource.Rows.Count + 11)];
-                range.Value = "Bệnh nhân";
-                range.HorizontalAlignment = HAlign.Right;
-
-                range = workSheet.Cells[string.Format("C{0}", dtSource.Rows.Count + 11)];
-                range.Value = "Người thu";
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.Value = "Thu ngân";
+                range.HorizontalAlignment = HAlign.Center;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
 
-                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.XLS97);
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
             }
             catch (Exception ex)
             {
@@ -262,7 +283,7 @@ namespace MM.Controls
                     foreach (string receiptGUID in checkedReceiptList)
                     {
                         if (ExportToExcel(exportFileName, receiptGUID))
-                            ExcelPrintPreview.Print(exportFileName);
+                            ExcelPrintPreview.PrintPreview(exportFileName);
                         else
                             return;
                     }
