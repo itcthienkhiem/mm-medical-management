@@ -51,25 +51,47 @@ namespace MM.Common
 
         public static void PrintPreview(string fileName)
         {
-            object objOpt = System.Reflection.Missing.Value;
-            Excel.Application excelApp = ExcelInit();
-            Excel.Workbook workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
-                                       objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
-            excelApp.Visible = true;
-            workBook.PrintPreview(objOpt);
-            excelApp.Visible = false;
-            ExcelTerminal(excelApp);
+            Excel.Application excelApp = null;
+            try
+            {
+                object objOpt = System.Reflection.Missing.Value;
+                excelApp = ExcelInit();
+                Excel.Workbook workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
+                                           objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
+                excelApp.Visible = true;
+                workBook.PrintPreview(objOpt);
+                excelApp.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                ExcelTerminal(excelApp);
+            }
         }
 
         public static void Print(string fileName)
         {
-            object objOpt = System.Reflection.Missing.Value;
-            Excel.Application excelApp = ExcelInit();
-            Excel.Workbook workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
-                                       objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
-            excelApp.Visible = false;
-            workBook.PrintOut();
-            ExcelTerminal(excelApp);
+            Excel.Application excelApp = null;
+            try
+            {
+                object objOpt = System.Reflection.Missing.Value;
+                excelApp = ExcelInit();
+                Excel.Workbook workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
+                                           objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
+                excelApp.Visible = false;
+                workBook.PrintOut(objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                ExcelTerminal(excelApp);
+            }
         }
 
         public static void SetCulturalWithEN_US()
