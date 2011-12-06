@@ -258,6 +258,8 @@ namespace MM.Controls
                 range.HorizontalAlignment = HAlign.General;
                 range.VerticalAlignment = VAlign.Top;
                 range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
 
                 range = workSheet.Cells[string.Format("A2:A{0}", checkedRows.Count + 1)];
                 range.HorizontalAlignment = HAlign.Center;
@@ -267,7 +269,7 @@ namespace MM.Controls
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
 
-                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.XLS97);    
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.XLS97);
             }
             catch (Exception ex)
             {
@@ -277,8 +279,11 @@ namespace MM.Controls
             finally
             {
                 ExcelPrintPreview.SetCulturalWithCurrent();
-                workBook.Close();
-                workBook = null;
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
             }
 
             return true;
