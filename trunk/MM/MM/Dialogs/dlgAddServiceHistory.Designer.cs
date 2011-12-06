@@ -90,6 +90,7 @@
             // 
             // numDiscount
             // 
+            this.numDiscount.DecimalPlaces = 1;
             this.numDiscount.Location = new System.Drawing.Point(94, 92);
             this.numDiscount.Name = "numDiscount";
             this.numDiscount.Size = new System.Drawing.Size(69, 20);
