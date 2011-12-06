@@ -679,6 +679,7 @@
     <Content Include="Components\Microsoft.SqlServer.ConnectionInfo.dll" />
     <Content Include="Components\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
     <Content Include="Components\Microsoft.SqlServer.Smo.dll" />
+    <Content Include="Components\SpreadsheetGear.Design.dll" />
     <Content Include="Components\SpreadsheetGear.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="Controls\Excel\Office\Excel\MetaData\EscherRecordTypes.txt" />
