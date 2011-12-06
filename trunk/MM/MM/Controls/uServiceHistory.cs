@@ -214,7 +214,7 @@ namespace MM.Controls
             DataTable dt = dgServiceHistory.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0)
             {
-                lbTotalPrice.Text = "Tổng tiền tất cả: 0 (VNĐ)";
+                lbTotalPrice.Text = "Tổng tiền: 0 (VNĐ)";
                 lbTotalReceipt.Text = "Tổng tiền thu: 0 (VNĐ)";
             }
             else
@@ -228,7 +228,7 @@ namespace MM.Controls
                     if (isChecked) totalPriceReceipt += price;
                 }
 
-                lbTotalPrice.Text = string.Format("Tổng tiền tất cả: {0:#,###} (VNĐ)", totalPrice);
+                lbTotalPrice.Text = string.Format("Tổng tiền: {0:#,###} (VNĐ)", totalPrice);
 
                 if (totalPriceReceipt > 0)
                     lbTotalReceipt.Text = string.Format("Tổng tiền thu: {0:#,###} (VNĐ)", totalPriceReceipt);
