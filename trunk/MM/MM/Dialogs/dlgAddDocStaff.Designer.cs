@@ -131,7 +131,7 @@
             this.txtDOB.MaxLength = 50;
             this.txtDOB.Name = "txtDOB";
             this.txtDOB.Size = new System.Drawing.Size(104, 20);
-            this.txtDOB.TabIndex = 7;
+            this.txtDOB.TabIndex = 2;
             // 
             // label22
             // 
@@ -156,7 +156,7 @@
             this.cboStaffType.Location = new System.Drawing.Point(106, 239);
             this.cboStaffType.Name = "cboStaffType";
             this.cboStaffType.Size = new System.Drawing.Size(109, 21);
-            this.cboStaffType.TabIndex = 12;
+            this.cboStaffType.TabIndex = 10;
             // 
             // label21
             // 
@@ -179,7 +179,7 @@
             this.cboWorkType.Location = new System.Drawing.Point(106, 214);
             this.cboWorkType.Name = "cboWorkType";
             this.cboWorkType.Size = new System.Drawing.Size(109, 21);
-            this.cboWorkType.TabIndex = 11;
+            this.cboWorkType.TabIndex = 9;
             // 
             // label20
             // 
@@ -201,7 +201,7 @@
             this.cboSpeciality.Location = new System.Drawing.Point(106, 189);
             this.cboSpeciality.Name = "cboSpeciality";
             this.cboSpeciality.Size = new System.Drawing.Size(165, 21);
-            this.cboSpeciality.TabIndex = 10;
+            this.cboSpeciality.TabIndex = 8;
             this.cboSpeciality.ValueMember = "SpecialityGUID";
             // 
             // specialityBindingSource
@@ -223,7 +223,7 @@
             this.txtQualifications.MaxLength = 255;
             this.txtQualifications.Name = "txtQualifications";
             this.txtQualifications.Size = new System.Drawing.Size(165, 20);
-            this.txtQualifications.TabIndex = 9;
+            this.txtQualifications.TabIndex = 7;
             // 
             // label18
             // 
@@ -240,7 +240,7 @@
             this.txtPreferredName.MaxLength = 50;
             this.txtPreferredName.Name = "txtPreferredName";
             this.txtPreferredName.Size = new System.Drawing.Size(104, 20);
-            this.txtPreferredName.TabIndex = 5;
+            this.txtPreferredName.TabIndex = 4;
             // 
             // label17
             // 
@@ -257,7 +257,7 @@
             this.txtKnownAs.MaxLength = 50;
             this.txtKnownAs.Name = "txtKnownAs";
             this.txtKnownAs.Size = new System.Drawing.Size(104, 20);
-            this.txtKnownAs.TabIndex = 4;
+            this.txtKnownAs.TabIndex = 5;
             // 
             // label16
             // 
@@ -274,7 +274,7 @@
             this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(223, 20);
-            this.txtEmail.TabIndex = 17;
+            this.txtEmail.TabIndex = 15;
             // 
             // label15
             // 
@@ -291,7 +291,7 @@
             this.txtFax.MaxLength = 50;
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(157, 20);
-            this.txtFax.TabIndex = 16;
+            this.txtFax.TabIndex = 14;
             this.txtFax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label14
@@ -318,7 +318,7 @@
             this.txtMobile.MaxLength = 50;
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.Size = new System.Drawing.Size(157, 20);
-            this.txtMobile.TabIndex = 15;
+            this.txtMobile.TabIndex = 13;
             this.txtMobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label12
@@ -336,7 +336,7 @@
             this.txtHomePhone.MaxLength = 50;
             this.txtHomePhone.Name = "txtHomePhone";
             this.txtHomePhone.Size = new System.Drawing.Size(156, 20);
-            this.txtHomePhone.TabIndex = 13;
+            this.txtHomePhone.TabIndex = 11;
             this.txtHomePhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label11
@@ -354,7 +354,7 @@
             this.txtIdentityCard.MaxLength = 15;
             this.txtIdentityCard.Name = "txtIdentityCard";
             this.txtIdentityCard.Size = new System.Drawing.Size(165, 20);
-            this.txtIdentityCard.TabIndex = 8;
+            this.txtIdentityCard.TabIndex = 6;
             this.txtIdentityCard.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentityCard_KeyPress);
             // 
             // label10
@@ -372,7 +372,7 @@
             this.txtWorkPhone.MaxLength = 50;
             this.txtWorkPhone.Name = "txtWorkPhone";
             this.txtWorkPhone.Size = new System.Drawing.Size(156, 20);
-            this.txtWorkPhone.TabIndex = 14;
+            this.txtWorkPhone.TabIndex = 12;
             this.txtWorkPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label9
@@ -396,7 +396,7 @@
             this.cboGender.Location = new System.Drawing.Point(106, 68);
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(69, 21);
-            this.cboGender.TabIndex = 6;
+            this.cboGender.TabIndex = 3;
             // 
             // label8
             // 
@@ -413,7 +413,7 @@
             this.txtAddress.MaxLength = 255;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(295, 20);
-            this.txtAddress.TabIndex = 18;
+            this.txtAddress.TabIndex = 16;
             // 
             // label4
             // 

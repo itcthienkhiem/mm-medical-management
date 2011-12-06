@@ -134,7 +134,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(217, 196);
+            this.label2.Location = new System.Drawing.Point(217, 122);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(17, 13);
             this.label2.TabIndex = 55;
@@ -142,11 +142,11 @@
             // 
             // txtDOB
             // 
-            this.txtDOB.Location = new System.Drawing.Point(110, 193);
+            this.txtDOB.Location = new System.Drawing.Point(110, 119);
             this.txtDOB.MaxLength = 50;
             this.txtDOB.Name = "txtDOB";
             this.txtDOB.Size = new System.Drawing.Size(104, 20);
-            this.txtDOB.TabIndex = 7;
+            this.txtDOB.TabIndex = 2;
             // 
             // label19
             // 
@@ -209,7 +209,7 @@
             // 
             // txtPreferredName
             // 
-            this.txtPreferredName.Location = new System.Drawing.Point(110, 143);
+            this.txtPreferredName.Location = new System.Drawing.Point(110, 192);
             this.txtPreferredName.MaxLength = 50;
             this.txtPreferredName.Name = "txtPreferredName";
             this.txtPreferredName.Size = new System.Drawing.Size(104, 20);
@@ -219,7 +219,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label17.Location = new System.Drawing.Point(18, 146);
+            this.label17.Location = new System.Drawing.Point(18, 195);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(82, 13);
             this.label17.TabIndex = 32;
@@ -227,7 +227,7 @@
             // 
             // txtKnownAs
             // 
-            this.txtKnownAs.Location = new System.Drawing.Point(110, 119);
+            this.txtKnownAs.Location = new System.Drawing.Point(110, 168);
             this.txtKnownAs.MaxLength = 50;
             this.txtKnownAs.Name = "txtKnownAs";
             this.txtKnownAs.Size = new System.Drawing.Size(104, 20);
@@ -237,7 +237,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label16.Location = new System.Drawing.Point(52, 122);
+            this.label16.Location = new System.Drawing.Point(52, 171);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 13);
             this.label16.TabIndex = 30;
@@ -360,7 +360,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label9.Location = new System.Drawing.Point(43, 196);
+            this.label9.Location = new System.Drawing.Point(43, 122);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 13);
             this.label9.TabIndex = 16;
@@ -375,16 +375,16 @@
             this.cboGender.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cboGender.Location = new System.Drawing.Point(110, 167);
+            this.cboGender.Location = new System.Drawing.Point(110, 143);
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(69, 21);
-            this.cboGender.TabIndex = 6;
+            this.cboGender.TabIndex = 3;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label8.Location = new System.Drawing.Point(50, 170);
+            this.label8.Location = new System.Drawing.Point(50, 146);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(50, 13);
             this.label8.TabIndex = 14;
