@@ -283,7 +283,7 @@ namespace MM.Controls
                     foreach (string receiptGUID in checkedReceiptList)
                     {
                         if (ExportToExcel(exportFileName, receiptGUID))
-                            ExcelPrintPreview.PrintPreview(exportFileName);
+                            ExcelPrintPreview.Print(exportFileName);
                         else
                             return;
                     }
