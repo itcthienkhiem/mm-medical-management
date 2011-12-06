@@ -248,8 +248,8 @@ namespace MM.Controls
                     string symptom = row["SymptomName"].ToString();
                     string advice = row["Advice"].ToString();
                     workSheet.Cells[rowIndex, 0].Value = rowIndex;
-                    workSheet.Cells[rowIndex, 1].Value = symptom;
-                    workSheet.Cells[rowIndex, 2].Value = advice;
+                    workSheet.Cells[rowIndex, 1].Value = symptom.Replace("\r", "").Replace("\t", "");
+                    workSheet.Cells[rowIndex, 2].Value = advice.Replace("\r", "").Replace("\t", "");
                     rowIndex++;
                 }
 
