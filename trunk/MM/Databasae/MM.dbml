@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MM" Class="MMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=vunguyen732\vunguyen;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString4" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=VUNGUYENXP32;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Company" Member="Companies">
     <Type Name="Company">
       <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -197,8 +197,8 @@
       <Column Name="LastVisitGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Association Name="Patient_CompanyMember" Member="CompanyMembers" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="CompanyMember" />
       <Association Name="Patient_PatientHistory" Member="PatientHistories" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="PatientHistory" />
-      <Association Name="Patient_ServiceHistory" Member="ServiceHistories" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="ServiceHistory" />
       <Association Name="Patient_Receipt" Member="Receipts" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Receipt" />
+      <Association Name="Patient_ServiceHistory" Member="ServiceHistories" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="ServiceHistory" />
       <Association Name="Contact_Patient" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -255,12 +255,29 @@
       <Association Name="Logon_Permission" Member="Logon" ThisKey="LogonGUID" OtherKey="LogonGUID" Type="Logon" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Receipt" Member="Receipts">
+    <Type Name="Receipt">
+      <Column Name="ReceiptGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ReceiptDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="Receipt_ReceiptDetail" Member="ReceiptDetails" ThisKey="ReceiptGUID" OtherKey="ReceiptGUID" Type="ReceiptDetail" />
+      <Association Name="Patient_Receipt" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.ReceiptDetail" Member="ReceiptDetails">
     <Type Name="ReceiptDetail">
       <Column Name="ReceiptDetailGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ReceiptGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="ServiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Discount" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
@@ -269,8 +286,8 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="Service_ReceiptDetail" Member="Service" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Receipt_ReceiptDetail" Member="Receipt" ThisKey="ReceiptGUID" OtherKey="ReceiptGUID" Type="Receipt" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Service_ReceiptDetail" Member="Service" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ServiceHistory" Member="ServiceHistories">
@@ -281,6 +298,7 @@
       <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="ActivedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Price" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
@@ -612,6 +630,24 @@
       <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="ServiceStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Discount" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReceiptView" Member="ReceiptViews">
+    <Type Name="ReceiptView">
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="FileNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ReceiptGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ReceiptDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.ServiceHistoryView" Member="ServiceHistoryViews">
@@ -637,45 +673,7 @@
       <Column Name="ActivedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="IsExported" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Receipt" Member="Receipts">
-    <Type Name="Receipt">
-      <Column Name="ReceiptGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Collector" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="ReceiptDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="TotalPrice" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Promotion" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Payment" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="Receipt_ReceiptDetail" Member="ReceiptDetails" ThisKey="ReceiptGUID" OtherKey="ReceiptGUID" Type="ReceiptDetail" />
-      <Association Name="Patient_Receipt" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ReceiptView" Member="ReceiptViews">
-    <Type Name="ReceiptView">
-      <Column Name="ReceiptGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ReceiptDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="TotalPrice" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Promotion" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Payment" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Collector" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>
