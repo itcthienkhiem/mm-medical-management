@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8FB4307C64504B9EADEC5E724DF97731"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_AC33917DCAAB8E98677C511E003E6F86"
         "OwnerKey" = "8:_E0CC1050B54AF6113E085941499F5BDB"
         "MsmSig" = "8:_UNDEFINED"
@@ -59,18 +65,18 @@
         {
         "MsmKey" = "8:_BEF4F6D507790B7D3186CB9115705D66"
         "OwnerKey" = "8:_E0CC1050B54AF6113E085941499F5BDB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BEF4F6D507790B7D3186CB9115705D66"
-        "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_BEF4F6D507790B7D3186CB9115705D66"
         "OwnerKey" = "8:_AC33917DCAAB8E98677C511E003E6F86"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BEF4F6D507790B7D3186CB9115705D66"
+        "OwnerKey" = "8:_F6479B90CA1742418CF8CC2CE65B77AD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -106,31 +112,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3983AF6438DDC3146DA4A93763A92DB0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6EEC9C6B651AE6D6BF1A92F1986724A6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_735F1B5289D65641EE6CAF4BBA1FE4EE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C34AD8CEB870927482221FA3ABC3BE9F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E0CC1050B54AF6113E085941499F5BDB"
+        "OwnerKey" = "8:_BEF4F6D507790B7D3186CB9115705D66"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -142,7 +124,31 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BEF4F6D507790B7D3186CB9115705D66"
+        "OwnerKey" = "8:_E0CC1050B54AF6113E085941499F5BDB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C34AD8CEB870927482221FA3ABC3BE9F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_735F1B5289D65641EE6CAF4BBA1FE4EE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6EEC9C6B651AE6D6BF1A92F1986724A6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3983AF6438DDC3146DA4A93763A92DB0"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -277,11 +283,6 @@
             "AssemblyAsmDisplayName" = "8:SpreadsheetGear, Version=1.6.0.122, Culture=neutral, PublicKeyToken=39c186f5904944ec"
                 "ScatterAssemblies"
                 {
-                    "_3983AF6438DDC3146DA4A93763A92DB0"
-                    {
-                    "Name" = "8:SpreadsheetGear.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SpreadsheetGear.dll"
             "TargetName" = "8:"
@@ -308,11 +309,6 @@
             "AssemblyAsmDisplayName" = "8:DSBarCode, Version=1.0.4335.40892, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6EEC9C6B651AE6D6BF1A92F1986724A6"
-                    {
-                    "Name" = "8:DSBarCode.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:DSBarCode.dll"
             "TargetName" = "8:"
@@ -339,11 +335,6 @@
             "AssemblyAsmDisplayName" = "8:DevComponents.Instrumentation, Version=9.4.0.0, Culture=neutral, PublicKeyToken=105a14414ec031c3, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_735F1B5289D65641EE6CAF4BBA1FE4EE"
-                    {
-                    "Name" = "8:DevComponents.Instrumentation.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:DevComponents.Instrumentation.dll"
             "TargetName" = "8:"
@@ -383,6 +374,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8FB4307C64504B9EADEC5E724DF97731"
+            {
+            "SourcePath" = "8:..\\MM\\Templates\\ReceiptTemplate.xls"
+            "TargetName" = "8:ReceiptTemplate.xls"
+            "Tag" = "8:"
+            "Folder" = "8:_BF893B4E17C94D5BB077F11B0830CDC6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AC33917DCAAB8E98677C511E003E6F86"
             {
             "AssemblyRegister" = "3:1"
@@ -390,11 +401,6 @@
             "AssemblyAsmDisplayName" = "8:MM.Databasae, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_AC33917DCAAB8E98677C511E003E6F86"
-                    {
-                    "Name" = "8:MM.Databasae.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MM.Databasae.dll"
             "TargetName" = "8:"
@@ -421,11 +427,6 @@
             "AssemblyAsmDisplayName" = "8:MM.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_BEF4F6D507790B7D3186CB9115705D66"
-                    {
-                    "Name" = "8:MM.Common.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MM.Common.dll"
             "TargetName" = "8:"
@@ -452,11 +453,6 @@
             "AssemblyAsmDisplayName" = "8:DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_C34AD8CEB870927482221FA3ABC3BE9F"
-                    {
-                    "Name" = "8:DevComponents.DotNetBar2.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:DevComponents.DotNetBar2.dll"
             "TargetName" = "8:"
@@ -503,11 +499,6 @@
             "AssemblyAsmDisplayName" = "8:MM.Bussiness, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
                 "ScatterAssemblies"
                 {
-                    "_E0CC1050B54AF6113E085941499F5BDB"
-                    {
-                    "Name" = "8:MM.Bussiness.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MM.Bussiness.dll"
             "TargetName" = "8:"
@@ -1169,7 +1160,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_F6479B90CA1742418CF8CC2CE65B77AD"
             {
-            "SourcePath" = "8:..\\MM\\obj\\x86\\Debug\\MM.exe"
+            "SourcePath" = "8:..\\MM\\obj\\x86\\Release\\MM.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_704652282E1C4E69AFDE3527E040552D"
