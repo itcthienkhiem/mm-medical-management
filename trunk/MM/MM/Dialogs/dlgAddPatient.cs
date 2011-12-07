@@ -27,6 +27,7 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             InitData();
+            GenerateCode();
         }
 
         public dlgAddPatient(DataRow drPatient)
@@ -61,6 +62,22 @@ namespace MM.Dialogs
         {
             cboGender.SelectedIndex = 0;
             tabPatient.SelectedTabIndex = 0;
+        }
+
+        private void GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = PatientBus.GetPatientCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                txtFileNum.Text = Utility.GetCode("VGH", count + 1);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientCount"));
+            }
         }
 
         private bool CheckInfo()

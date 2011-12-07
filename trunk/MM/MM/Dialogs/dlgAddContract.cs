@@ -32,6 +32,7 @@ namespace MM.Dialogs
             InitializeComponent();
             InitData();
             DisplayDetailAsThread(Guid.Empty.ToString());
+            GenerateCode();
         }
 
         public dlgAddContract(DataRow drContract)
@@ -205,6 +206,22 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
+        private void GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = CompanyContractBus.GetContractCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                txtCode.Text = Utility.GetCode("HD", count + 1);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetContractCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractCount"));
             }
         }
 

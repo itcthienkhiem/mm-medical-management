@@ -24,6 +24,7 @@ namespace MM.Dialogs
         public dlgAddSpeciality()
         {
             InitializeComponent();
+            GenerateCode();
         }
 
         public dlgAddSpeciality(DataRow drSpec)
@@ -44,6 +45,22 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = SpecialityBus.GetSpecialityCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                txtCode.Text = Utility.GetCode("CK", count + 1);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.GetSpecialityCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("SpecialityBus.GetSpecialityCount"));
+            }
+        }
+
         private void DisplayInfo(DataRow drSpec)
         {
             try

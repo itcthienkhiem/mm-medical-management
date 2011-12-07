@@ -555,6 +555,20 @@ namespace MM.Common
 
             return result;
         }
+
+        public static string GetCode(string prefix, int count)
+        {
+            if (count < 10)
+                return string.Format("{0}0000{1}", prefix, count);
+            else if (count >= 10 && count < 100)
+                return string.Format("{0}000{1}", prefix, count);
+            else if (count >= 100 && count < 1000)
+                return string.Format("{0}00{1}", prefix, count);
+            else if (count >= 1000 && count < 10000)
+                return string.Format("{0}0{1}", prefix, count);
+            else
+                return string.Format("{0}{1}", prefix, count);
+        }
     }
 }
 

@@ -34,13 +34,21 @@ namespace MM.Bussiness
 
             return result;
         }
-        public static Result GetCountPatient()
+
+        public static Result GetPatientCount()
         {
-            Result result = null;
+            Result result = new Result();
             try
             {
-                string query = "SELECT count(*) FROM PatientView";
-                return ExcuteQuery(query);
+                string query = "SELECT Count(*) FROM Patient";
+                result = ExcuteQuery(query);
+                if (result.IsOK)
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                        result.QueryResult = Convert.ToInt32(dt.Rows[0][0]);
+                    else result.QueryResult = 0;
+                }
             }
             catch(System.Data.SqlClient.SqlException se)
             {
@@ -55,6 +63,7 @@ namespace MM.Bussiness
 
             return result;
         }
+
         public static Result GetPatientListNotInCompany()
         {
             Result result = null;

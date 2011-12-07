@@ -24,6 +24,7 @@ namespace MM.Dialogs
         public dlgAddSymptom()
         {
             InitializeComponent();
+            GenerateCode();
         }
 
         public dlgAddSymptom(DataRow drSymp)
@@ -44,6 +45,22 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = SymptomBus.GetSymptomCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                txtCode.Text = Utility.GetCode("TC", count + 1);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("SymptomBus.GetSymptomCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.GetSymptomCount"));
+            }
+        }
+
         private void DisplayInfo(DataRow drSymp)
         {
             try

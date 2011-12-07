@@ -529,12 +529,7 @@ namespace MM.Controls
         {
             Result result = PatientBus.GetPatientCount();
             if (result.IsOK)
-            {
-                DataTable dt = result.QueryResult as DataTable;
-                if (dt != null && dt.Rows.Count > 0)
-                    return (int)dt.Rows[0][0];
-                else return 0;
-            }
+                return Convert.ToInt32(result.QueryResult);
             else
             {
                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientCount"), IconType.Error);
@@ -662,18 +657,7 @@ namespace MM.Controls
                                     ct.CreatedDate = DateTime.Now;
                                     int iCount = GetPatientQuantity();
                                     iCount++;
-                                    if (iCount < 10)
-                                        sCode += string.Format("0000{0}", iCount);
-                                    else if (iCount >= 10 && iCount < 100)
-                                        sCode += string.Format("000{0}", iCount);
-                                    else if (iCount >= 100 && iCount < 1000)
-                                        sCode += string.Format("00{0}", iCount);
-                                    else if (iCount >= 1000 && iCount < 10000)
-                                        sCode += string.Format("0{0}", iCount);
-                                    else
-                                        sCode += string.Format("{0}", iCount);
-
-                                    p.FileNum = sCode;
+                                    p.FileNum = Utility.GetCode(sCode, iCount); 
 
                                     Result result = PatientBus.InsertPatient(ct, p, ph);
                                     if (!result.IsOK)
