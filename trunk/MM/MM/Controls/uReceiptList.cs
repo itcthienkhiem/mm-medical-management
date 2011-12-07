@@ -233,11 +233,11 @@ namespace MM.Controls
 
                 range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
                 range.Value = "Người nộp tiền";
-                range.HorizontalAlignment = HAlign.Center;
+                range.HorizontalAlignment = HAlign.Left;
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
                 range.Value = "Thu ngân";
-                range.HorizontalAlignment = HAlign.Center;
+                range.HorizontalAlignment = HAlign.Left;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
