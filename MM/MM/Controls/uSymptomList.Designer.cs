@@ -41,11 +41,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgSymptom = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.symptomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.symptomNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adviceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.symptomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSymptom)).BeginInit();
@@ -188,10 +189,6 @@
             this.dgSymptom.TabIndex = 2;
             this.dgSymptom.DoubleClick += new System.EventHandler(this.dgSymptom_DoubleClick);
             // 
-            // symptomBindingSource
-            // 
-            this.symptomBindingSource.DataSource = typeof(MM.Databasae.Symptom);
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -232,6 +229,14 @@
             this.adviceDataGridViewTextBoxColumn.ReadOnly = true;
             this.adviceDataGridViewTextBoxColumn.Width = 350;
             // 
+            // symptomBindingSource
+            // 
+            this.symptomBindingSource.DataSource = typeof(MM.Databasae.Symptom);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
             // uSymptomList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,5 +270,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn symptomNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn adviceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }

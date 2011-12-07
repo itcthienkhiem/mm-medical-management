@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Globalization;
+using System.Management;
+using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 namespace MM.Common
 {
@@ -52,11 +55,12 @@ namespace MM.Common
         public static void PrintPreview(string fileName)
         {
             Excel.Application excelApp = null;
+            Excel.Workbook workBook = null;
             try
             {
                 object objOpt = System.Reflection.Missing.Value;
                 excelApp = ExcelInit();
-                Excel.Workbook workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
+                workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
                 excelApp.Visible = true;
                 workBook.PrintPreview(objOpt);
@@ -68,20 +72,42 @@ namespace MM.Common
             }
             finally
             {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workBook);
+                    workBook = null;
+                }
+                
                 ExcelTerminal(excelApp);
             }
         }
 
-        public static void Print(string fileName)
+        public static string ConvertToExcelPrinterFriendlyName(string printerName)
+        {
+            var key = Registry.CurrentUser;
+            var subkey = key.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\Devices");
+
+            var value = subkey.GetValue(printerName);
+            if (value == null) throw new Exception(string.Format("Device not found: {0}", printerName));
+
+            var portName = value.ToString().Substring(9);  //strip away the winspool, 
+
+            return string.Format("{0} on {1}", printerName, portName); ;
+        }
+
+        public static void Print(string fileName, string printerName)
         {
             Excel.Application excelApp = null;
+            Excel.Workbook workBook = null;
             try
             {
                 object objOpt = System.Reflection.Missing.Value;
                 excelApp = ExcelInit();
-                Excel.Workbook workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
+                workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
                 excelApp.Visible = false;
+                excelApp.ActivePrinter = ConvertToExcelPrinterFriendlyName(printerName);
                 workBook.PrintOut(objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
             }
             catch (Exception ex)
@@ -90,9 +116,18 @@ namespace MM.Common
             }
             finally
             {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workBook);
+                    workBook = null;
+                }
+
                 ExcelTerminal(excelApp);
             }
         }
+
+
 
         public static void SetCulturalWithEN_US()
         {

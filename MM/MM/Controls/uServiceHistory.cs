@@ -247,7 +247,8 @@ namespace MM.Controls
             {
                 try
                 {
-                    ExcelPrintPreview.Print(exportFileName);
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                        ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
                 }
                 catch (Exception ex)
                 {
