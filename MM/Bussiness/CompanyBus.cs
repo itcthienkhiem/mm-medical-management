@@ -35,6 +35,35 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetCompanyCount()
+        {
+            Result result = null;
+            try
+            {
+                string query = "SELECT Count(*) FROM Company";
+                result = ExcuteQuery(query);
+                if (result.IsOK)
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                        result.QueryResult = Convert.ToInt32(dt.Rows[0][0]);
+                    else result.QueryResult = 0;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetCompanyMemberList(string companyGUID)
         {
             Result result = null;

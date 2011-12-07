@@ -24,6 +24,7 @@ namespace MM.Dialogs
         public dlgAddServices()
         {
             InitializeComponent();
+            GenerateCode();
         }
 
         public dlgAddServices(DataRow drService)
@@ -45,6 +46,22 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = ServicesBus.GetServiceCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                txtCode.Text = Utility.GetCode("DV", count + 1);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.GetServiceCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServiceCount"));
+            }
+        }
+
         private void DisplayInfo(DataRow drService)
         {
             try

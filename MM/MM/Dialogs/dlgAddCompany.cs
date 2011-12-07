@@ -28,6 +28,7 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             DisplayMembersAsThread(Guid.Empty.ToString());
+            GenerateCode();
         }
 
         public dlgAddCompany(DataRow drCompany)
@@ -48,6 +49,22 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = CompanyBus.GetCompanyCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                txtMaCongTy.Text = Utility.GetCode("CTY", count + 1);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.GetCompanyCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyCount"));
+            }
+        }
+       
         private void DisplayInfo(DataRow drCompany)
         {
             try
