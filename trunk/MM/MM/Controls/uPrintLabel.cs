@@ -24,8 +24,8 @@ namespace MM.Controls
         private int _labelHeight = 19;
         private int _deltaWidth = 3;
         private int _deltaHeight = 1;
-        private int _top = 0;
-        private int _left = 8;
+        private int _top = 2;
+        private int _left = 2;
         private int _right = 5;
         private int _bottom = 5;
         private int _pageSize = 40;
@@ -261,7 +261,7 @@ namespace MM.Controls
 
             for (int i = 0; i < _maxCol; i++)
             {
-                top = 0;
+                top = _topPxl;
                 for (int j = 0; j < _maxRow; j++)
                 {
                     if (_labelIndex >= _labels.Count)
