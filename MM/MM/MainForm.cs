@@ -149,6 +149,7 @@ namespace MM
         {
             if (Global.StaffType != StaffType.Admin)
             {
+                toolsToolStripMenuItem.Enabled = isLogin;
                 Result result = LogonBus.GetPermission(Global.LogonGUID);
                 if (result.IsOK)
                 {

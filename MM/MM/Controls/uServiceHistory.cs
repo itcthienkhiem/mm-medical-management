@@ -553,7 +553,13 @@ namespace MM.Controls
         #region Window Event Handlers
         private void btnExportReceipt_Click(object sender, EventArgs e)
         {
-            if (dgServiceHistory.RowCount <= 0) return;
+            if (dgServiceHistory.RowCount <= 0 ||
+                CheckedServiceRows == null || CheckedServiceRows.Count <= 0) 
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 dịch vụ cần xuất phiếu thu.", IconType.Information);
+                return;
+            }
+
             if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất phiếu thu ?") == DialogResult.Yes)
             {
                 OnExportReceipt();
