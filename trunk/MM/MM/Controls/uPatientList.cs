@@ -527,7 +527,7 @@ namespace MM.Controls
 
         private int GetPatientQuantity()
         {
-            Result result = PatientBus.GetCountPatient();
+            Result result = PatientBus.GetPatientCount();
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
@@ -535,7 +535,12 @@ namespace MM.Controls
                     return (int)dt.Rows[0][0];
                 else return 0;
             }
-            else return 0;
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientCount"));
+                return 0;
+            }
         }
 
         private bool IsPatientExist(string fullname, string dobStr, byte gender, string source)
@@ -549,7 +554,11 @@ namespace MM.Controls
                     return false;
             }
             else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.CheckPatientExist"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.CheckPatientExist"));
                 return false;
+            }
         }
 
         private void ImportPatientFromExcel()
