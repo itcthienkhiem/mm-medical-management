@@ -285,7 +285,7 @@ namespace MM.Controls
                         try
                         {
                             if (ExportToExcel(exportFileName, receiptGUID))
-                                ExcelPrintPreview.Print(exportFileName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
                             else
                                 return;
                         }
@@ -332,7 +332,8 @@ namespace MM.Controls
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            OnPrint();
+            if (_printDialog.ShowDialog() == DialogResult.OK)
+                OnPrint();
         }
 
         private void dgReceipt_DoubleClick(object sender, EventArgs e)
