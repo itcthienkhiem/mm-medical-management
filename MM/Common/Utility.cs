@@ -569,6 +569,112 @@ namespace MM.Common
             else
                 return string.Format("{0}{1}", prefix, count);
         }
+        private static string docso(int i, int x, string n)
+        {
+
+            string s = "";
+            switch (x)
+            {
+                case 0: if (i % 3 == 0 && (n.Substring(n.Length - i + 1, 2) != "00"))
+                        s = "không ";
+                    else s = "";
+                    break;
+                case 1:
+                    if (i % 3 == 2)
+                        s = "";
+                    else
+                        s = "một ";
+                    break;
+                case 2:
+                    s = "hai ";
+                    break;
+                case 3:
+                    s = "ba ";
+                    break;
+                case 4:
+                    s = "bốn ";
+                    break;
+                case 5:
+                    if (n.Length != i && i % 3 == 1 && n.Substring(n.Length - i - 1, 1) != "0")
+                        s = "lăm ";
+                    else
+                        s = "năm ";
+                    break;
+                case 6:
+                    s = "sáu ";
+                    break;
+                case 7:
+                    s = "bảy ";
+                    break;
+                case 8:
+                    s = "tám ";
+                    break;
+                case 9:
+                    s = "chín ";
+                    break;
+            }
+            return s;
+        }
+        private static string hang(int i, int x, string n)
+        {
+            string s = "";
+            int t = i % 3;
+            switch (t)
+            {
+                case 0: if (n.Substring(n.Length - i, 3) != "000")
+                        s = "trăm ";
+                    else s = "";
+                    break;
+                case 1:
+                    if (i % 9 == 1)
+                    {
+                        if (i - 1 == 0)
+                            s = "";
+                        else
+                            s = "tỷ ";
+                    }
+                    else if (i % 6 == 1)
+                        if (n.Length > 9 && n.Substring(n.Length - i - 2, 3) == "000")
+                            s = "";
+                        else
+                            s = "triệu ";
+                    else
+                        if (n.Length > 6 && n.Substring(n.Length - i - 2, 3) == "000")
+                            s = "";
+                        else
+                            s = "ngàn ";
+                    break;
+                case 2:
+                    if (x == 0 && n.Substring(n.Length - i + 1, 1) != "0")
+                        s = "linh ";
+                    else
+                        if (n.Substring(n.Length - i, 2) == "00")
+                            s = "";
+                        else
+                        {
+                            if (n[x - 1] == '1' || n[n.Length - 2] == '1')
+                                s = "mười ";
+                            else
+                                s = "mươi ";
+                        }
+                    break;
+            }
+            return s;
+        }
+        public static string ReadNumberAsString(long so)
+        {
+            int i;
+            string s="";
+            string n = so.ToString();
+            int[] A = new int[n.Length + 1];
+            for (i = n.Length; i > 0; i--)
+            {
+                A[i] = Int32.Parse(n.Substring(n.Length - i, 1));
+                s += docso(i, A[i], n) + hang(i, A[i], n);
+            }
+            s = s + " đồng";
+            return s;
+        }
     }
 }
 
