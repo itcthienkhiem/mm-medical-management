@@ -18,14 +18,14 @@ namespace MM.Controls
     {
         #region Members
         private DataTable _dataSource = null;
-        private int _width = 202;
-        private int _height = 168;
+        //private int _width = 202;
+        //private int _height = 168;
         private int _labelWidth = 36;
         private int _labelHeight = 19;
         private int _deltaWidth = 3;
         private int _deltaHeight = 1;
-        private int _top = 2;
-        private int _left = 2;
+        private int _top = 0;
+        private int _left = 8;
         private int _right = 5;
         private int _bottom = 5;
         private int _pageSize = 40;
@@ -33,8 +33,8 @@ namespace MM.Controls
         private int _labelIndex = 0;
         private int _solution = 100;
         private List<LabelInfo> _labels = null;
-        private int _widthPxl = 0;
-        private int _heightPxl = 0;
+        //private int _widthPxl = 0;
+        //private int _heightPxl = 0;
         private int _labelWidthPxl = 0;
         private int _labelHeightPxl = 0;
         private int _deltaWidthPxl = 0;
@@ -205,26 +205,14 @@ namespace MM.Controls
         {
             _flag = false;
 
-            _printDocument.DefaultPageSettings.Margins.Left = 0;
-            _printDocument.DefaultPageSettings.Margins.Top = 0;
-            _printDocument.DefaultPageSettings.Margins.Right = 0;
-            _printDocument.DefaultPageSettings.Margins.Bottom = 0;
-
-            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Left = 0;
-            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Top = 0;
-            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Right = 0;
-            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Bottom = 0;
-
-            if (ra5x8.Checked)
+            if (ra1x2.Checked)
             {
-                _width = 202;
-                _height = 168;
                 _labelWidth = 36;
                 _labelHeight = 19;
                 _deltaWidth = 3;
                 _deltaHeight = 1;
-                _top = 2;
-                _left = 2;
+                _top = 0;
+                _left = 8;
                 _right = 5;
                 _bottom = 5;
                 _pageSize = 40;
@@ -233,9 +221,35 @@ namespace MM.Controls
                 _font = new Font("Microsoft Sans Serif", 8);
                 _maxLenght = 20;
             }
+            else if (ra2x4.Checked)
+            {
 
-            _widthPxl = (int)Math.Round(((_width * _solution) / 25.4));
-            _heightPxl = (int)Math.Round(((_height * _solution) / 25.4));
+            }
+            else if (ra5x6.Checked)
+            {
+
+            }
+            else if (ra5x8.Checked)
+            {
+                _labelWidth = 36;
+                _labelHeight = 19;
+                _deltaWidth = 3;
+                _deltaHeight = 1;
+                _top = 0;
+                _left = 8;
+                _right = 5;
+                _bottom = 5;
+                _pageSize = 40;
+                _maxRow = 8;
+                _maxCol = 5;
+                _font = new Font("Microsoft Sans Serif", 8);
+                _maxLenght = 20;
+            }
+            else if (ra5x11.Checked)
+            {
+
+            }
+
             _labelWidthPxl = (int)Math.Round(((_labelWidth * _solution) / 25.4));
             _labelHeightPxl = (int)Math.Round(((_labelHeight * _solution) / 25.4));
             _deltaWidthPxl = (int)Math.Round(((_deltaWidth * _solution) / 25.4));
@@ -291,9 +305,24 @@ namespace MM.Controls
             }
         }
 
+        private void OnDrawLabel_1x2(Graphics g, int left, int top, LabelInfo labelInfo)
+        {
+
+        }
+
+        private void OnDrawLabel_2x4(Graphics g, int left, int top, LabelInfo labelInfo)
+        {
+            
+        }
+
+        private void OnDrawLabel_5x6(Graphics g, int left, int top, LabelInfo labelInfo)
+        {
+
+        }
+
         private void OnDrawLabel_5x8(Graphics g, int left, int top, LabelInfo labelInfo)
         {
-            g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
             if (labelInfo.FullName.Length <= _maxLenght)
             {
@@ -323,11 +352,26 @@ namespace MM.Controls
                 g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 54);
             }
         }
+
+        private void OnDrawLabel_5x11(Graphics g, int left, int top, LabelInfo labelInfo)
+        {
+
+        }
         #endregion
 
         #region Window Event Handlers
         private void _printDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
+            _printDocument.DefaultPageSettings.Margins.Left = 0;
+            _printDocument.DefaultPageSettings.Margins.Top = 0;
+            _printDocument.DefaultPageSettings.Margins.Right = 0;
+            _printDocument.DefaultPageSettings.Margins.Bottom = 0;
+
+            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Left = 0;
+            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Top = 0;
+            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Right = 0;
+            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Bottom = 0;
+
             if (_flag)
             {
                 if (_printDialog.ShowDialog() != DialogResult.OK)
@@ -338,12 +382,11 @@ namespace MM.Controls
 
         private void _printDocument_EndPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-
+            
         }
 
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            //e.Graphics.DrawRectangle(_pen, 0, 0, _widthPxl, _heightPxl);
             int left = _leftPxl;
             int top = _topPxl;
 
@@ -360,8 +403,17 @@ namespace MM.Controls
                     }
 
                     LabelInfo labelInfo = _labels[_labelIndex];
-                    if (ra5x8.Checked)
+
+                    if (ra1x2.Checked)
+                        OnDrawLabel_1x2(e.Graphics, left, top, labelInfo);
+                    else if (ra2x4.Checked)
+                        OnDrawLabel_2x4(e.Graphics, left, top, labelInfo);
+                    else if (ra5x6.Checked)
+                        OnDrawLabel_5x6(e.Graphics, left, top, labelInfo);
+                    else if (ra5x8.Checked)
                         OnDrawLabel_5x8(e.Graphics, left, top, labelInfo);
+                    else if (ra5x11.Checked)
+                        OnDrawLabel_5x11(e.Graphics, left, top, labelInfo);
 
                     top += _deltaHeightPxl + _labelHeightPxl;
                     _labelIndex++;
@@ -425,8 +477,6 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 
     public class LabelInfo

@@ -288,6 +288,7 @@ namespace MM.Controls
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 ExcelPrintPreview.SetCulturalWithEN_US();
                 IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A2"].Value = string.Format("Số: {0}", receipt.ReceiptCode);
                 workSheet.Cells["B6"].Value = string.Format("Tên: {0}", receipt.FullName);
                 workSheet.Cells["B7"].Value = string.Format("Mã bệnh nhân: {0}", receipt.FileNum);
                 workSheet.Cells["B8"].Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
@@ -398,6 +399,23 @@ namespace MM.Controls
             return true;
         }
 
+        private string GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = ReceiptBus.GetReceiptCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                return Utility.GetCode("PT", count + 1, 4);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ReceiptBus.GetReceiptCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetReceiptCount"));
+                return string.Empty;
+            }
+        }
+
         private void OnExportReceipt() 
         {
             List<DataRow> paidServiceList = new List<DataRow>();
@@ -435,11 +453,13 @@ namespace MM.Controls
                 }
 
                 Receipt receipt = new Receipt();
+                receipt.ReceiptCode = GenerateCode();
                 receipt.PatientGUID = Guid.Parse(_patientGUID);
                 receipt.ReceiptDate = DateTime.Now;
                 receipt.Status = (byte)Status.Actived;
                 receipt.CreatedDate = DateTime.Now;
                 receipt.CreatedBy = Guid.Parse(Global.UserGUID);
+                receipt.IsExportedInVoice = false;
 
                 Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails, serviceHistoryKeys);
                 if (result.IsOK)
@@ -478,11 +498,13 @@ namespace MM.Controls
                         }
 
                         Receipt receipt = new Receipt();
+                        receipt.ReceiptCode = GenerateCode();
                         receipt.PatientGUID = Guid.Parse(_patientGUID);
                         receipt.ReceiptDate = DateTime.Now;
                         receipt.Status = (byte)Status.Actived;
                         receipt.CreatedDate = DateTime.Now;
                         receipt.CreatedBy = Guid.Parse(Global.UserGUID);
+                        receipt.IsExportedInVoice = false;
 
                         Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails, serviceHistoryKeys);
                         if (result.IsOK)
@@ -534,11 +556,13 @@ namespace MM.Controls
                     }
 
                     Receipt receipt = new Receipt();
+                    receipt.ReceiptCode = GenerateCode();
                     receipt.PatientGUID = Guid.Parse(_patientGUID);
                     receipt.ReceiptDate = DateTime.Now;
                     receipt.Status = (byte)Status.Actived;
                     receipt.CreatedDate = DateTime.Now;
                     receipt.CreatedBy = Guid.Parse(Global.UserGUID);
+                    receipt.IsExportedInVoice = false;
 
                     Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails, serviceHistoryKeys);
                     if (result.IsOK)
