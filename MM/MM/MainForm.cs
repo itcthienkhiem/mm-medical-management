@@ -529,14 +529,14 @@ namespace MM
 
         private void OnInvoiceList()
         {
-            this.Text = string.Format("{0} - Danh mục hóa đơn", Application.ProductName);
+            this.Text = string.Format("{0} - Danh mục hoa don", Application.ProductName);
             ViewControl(_uInvoiceList);
             _uInvoiceList.DisplayAsThread();
         }
 
         private void OnReceiptList()
         {
-            this.Text = string.Format("{0} - Danh mục phiếu thu", Application.ProductName);
+            this.Text = string.Format("{0} - Danh mục phieu thu", Application.ProductName);
             ViewControl(_uReceiptList);
             _uReceiptList.DisplayAsThread();
         }
