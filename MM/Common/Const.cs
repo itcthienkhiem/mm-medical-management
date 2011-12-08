@@ -27,5 +27,6 @@ namespace MM.Common
         public static string Speciality = "Speciality";
         public static string PrintLabel = "PrintLabel";
         public static string Receipt = "Receipt";
+        public static string Invoice = "Invoice";
     }
 }

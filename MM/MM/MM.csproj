@@ -266,6 +266,12 @@
     <Compile Include="Controls\uDrawType.Designer.cs">
       <DependentUpon>uDrawType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uInvoiceList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uInvoiceList.Designer.cs">
+      <DependentUpon>uInvoiceList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPalette.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -508,6 +514,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDrawType.resx">
       <DependentUpon>uDrawType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uInvoiceList.resx">
+      <DependentUpon>uInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPalette.resx">
       <DependentUpon>uPalette.cs</DependentUpon>
