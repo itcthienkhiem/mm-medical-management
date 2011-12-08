@@ -43,6 +43,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgMembers = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dobStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.numCount = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,12 +57,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dobStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).BeginInit();
@@ -159,6 +160,67 @@
             this.dgMembers.Size = new System.Drawing.Size(723, 317);
             this.dgMembers.TabIndex = 10;
             // 
+            // colChecked
+            // 
+            this.colChecked.Checked = true;
+            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colChecked.CheckValue = "N";
+            this.colChecked.DataPropertyName = "Checked";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.ReadOnly = true;
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // fileNumDataGridViewTextBoxColumn
+            // 
+            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
+            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
+            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
+            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 180;
+            // 
+            // dobStrDataGridViewTextBoxColumn
+            // 
+            this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
+            this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
+            this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dobStrDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // genderAsStrDataGridViewTextBoxColumn
+            // 
+            this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
+            this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
+            this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.genderAsStrDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // IdentityCard
+            // 
+            this.IdentityCard.DataPropertyName = "IdentityCard";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.IdentityCard.DefaultCellStyle = dataGridViewCellStyle5;
+            this.IdentityCard.HeaderText = "CMND";
+            this.IdentityCard.Name = "IdentityCard";
+            this.IdentityCard.ReadOnly = true;
+            this.IdentityCard.Width = 120;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.numCount);
@@ -248,66 +310,9 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // colChecked
+            // _pageSetupDialog
             // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // fileNumDataGridViewTextBoxColumn
-            // 
-            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
-            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
-            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 180;
-            // 
-            // dobStrDataGridViewTextBoxColumn
-            // 
-            this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
-            this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
-            this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dobStrDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // genderAsStrDataGridViewTextBoxColumn
-            // 
-            this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
-            this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
-            this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.genderAsStrDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // IdentityCard
-            // 
-            this.IdentityCard.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.IdentityCard.DefaultCellStyle = dataGridViewCellStyle5;
-            this.IdentityCard.HeaderText = "CMND";
-            this.IdentityCard.Name = "IdentityCard";
-            this.IdentityCard.ReadOnly = true;
-            this.IdentityCard.Width = 120;
+            this._pageSetupDialog.Document = this._printDocument;
             // 
             // uPrintLabel
             // 
@@ -353,5 +358,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dobStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
+        private System.Windows.Forms.PageSetupDialog _pageSetupDialog;
     }
 }
