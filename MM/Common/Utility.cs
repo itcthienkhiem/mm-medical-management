@@ -556,18 +556,24 @@ namespace MM.Common
             return result;
         }
 
-        public static string GetCode(string prefix, int count)
+        public static string GetCode(string prefix, int value, int lenght)
         {
-            if (count < 10)
-                return string.Format("{0}0000{1}", prefix, count);
-            else if (count >= 10 && count < 100)
-                return string.Format("{0}000{1}", prefix, count);
-            else if (count >= 100 && count < 1000)
-                return string.Format("{0}00{1}", prefix, count);
-            else if (count >= 1000 && count < 10000)
-                return string.Format("{0}0{1}", prefix, count);
-            else
-                return string.Format("{0}{1}", prefix, count);
+            string strValue = value.ToString();
+            if (strValue.Length > lenght)
+                return string.Format("{0}{1}", prefix, value);
+
+            string s = string.Empty;
+            int index = lenght - 1;
+            for (int i = strValue.Length - 1; i >= 0; i--)
+            {
+                s = strValue[i].ToString() + s;
+                index--;                      
+            }
+
+            for (int i = 0; i <= index; i++)
+                s = "0" + s;
+
+            return string.Format("{0}{1}", prefix, s);
         }
 
         private static string docso(int i, int x, string n)

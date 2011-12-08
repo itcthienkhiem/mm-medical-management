@@ -71,7 +71,7 @@ namespace MM.Dialogs
             if (result.IsOK)
             {
                 int count = Convert.ToInt32(result.QueryResult);
-                txtFileNum.Text = Utility.GetCode("VGH", count + 1);
+                txtFileNum.Text = Utility.GetCode("VGH", count + 1, 5);
             }
             else
             {
