@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "uInvoiceList";
-            this.Size = new System.Drawing.Size(656, 405);
+            this.Size = new System.Drawing.Size(764, 471);
             this.ResumeLayout(false);
 
         }
