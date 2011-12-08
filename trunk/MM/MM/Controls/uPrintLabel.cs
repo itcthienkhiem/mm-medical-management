@@ -54,16 +54,6 @@ namespace MM.Controls
         public uPrintLabel()
         {
             InitializeComponent();
-            _widthPxl = (int)Math.Round(((_width * _solution) / 25.4));
-            _heightPxl = (int)Math.Round(((_height * _solution) / 25.4));
-            _labelWidthPxl = (int)Math.Round(((_labelWidth * _solution) / 25.4));
-            _labelHeightPxl = (int)Math.Round(((_labelHeight * _solution) / 25.4));
-            _deltaWidthPxl = (int)Math.Round(((_deltaWidth * _solution) / 25.4));
-            _deltaHeightPxl = (int)Math.Round(((_deltaHeight * _solution) / 25.4));
-            _topPxl = (int)Math.Round(((_top * _solution) / 25.4));
-            _leftPxl = (int)Math.Round(((_left * _solution) / 25.4));
-            _rightPxl = (int)Math.Round(((_right * _solution) / 25.4));
-            bottomPxl = (int)Math.Round(((_bottom * _solution) / 25.4));
         }
         #endregion
 
@@ -221,6 +211,36 @@ namespace MM.Controls
             _printDocument.PrinterSettings.DefaultPageSettings.Margins.Top = 0;
             _printDocument.PrinterSettings.DefaultPageSettings.Margins.Right = 0;
             _printDocument.PrinterSettings.DefaultPageSettings.Margins.Bottom = 0;
+
+            if (ra5x8.Checked)
+            {
+                _width = 202;
+                _height = 168;
+                _labelWidth = 36;
+                _labelHeight = 19;
+                _deltaWidth = 3;
+                _deltaHeight = 1;
+                _top = 2;
+                _left = 2;
+                _right = 5;
+                _bottom = 5;
+                _pageSize = 40;
+                _maxRow = 8;
+                _maxCol = 5;
+                _font = new Font("Microsoft Sans Serif", 8);
+                _maxLenght = 20;
+            }
+
+            _widthPxl = (int)Math.Round(((_width * _solution) / 25.4));
+            _heightPxl = (int)Math.Round(((_height * _solution) / 25.4));
+            _labelWidthPxl = (int)Math.Round(((_labelWidth * _solution) / 25.4));
+            _labelHeightPxl = (int)Math.Round(((_labelHeight * _solution) / 25.4));
+            _deltaWidthPxl = (int)Math.Round(((_deltaWidth * _solution) / 25.4));
+            _deltaHeightPxl = (int)Math.Round(((_deltaHeight * _solution) / 25.4));
+            _topPxl = (int)Math.Round(((_top * _solution) / 25.4));
+            _leftPxl = (int)Math.Round(((_left * _solution) / 25.4));
+            _rightPxl = (int)Math.Round(((_right * _solution) / 25.4));
+            bottomPxl = (int)Math.Round(((_bottom * _solution) / 25.4));
         }
 
         private void OnPrint(bool isPreview)
@@ -268,7 +288,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnDrawLabel(Graphics g, int left, int top, LabelInfo labelInfo)
+        private void OnDrawLabel_5x8(Graphics g, int left, int top, LabelInfo labelInfo)
         {
             g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
@@ -322,7 +342,8 @@ namespace MM.Controls
                     }
 
                     LabelInfo labelInfo = _labels[_labelIndex];
-                    OnDrawLabel(e.Graphics, left, top, labelInfo);
+                    if (ra5x8.Checked)
+                        OnDrawLabel_5x8(e.Graphics, left, top, labelInfo);
 
                     top += _deltaHeightPxl + _labelHeightPxl;
                     _labelIndex++;
