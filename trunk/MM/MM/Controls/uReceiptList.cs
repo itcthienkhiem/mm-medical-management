@@ -66,6 +66,17 @@ namespace MM.Controls
             }
         }
 
+        public void HighlightExportedInvoice()
+        {
+            foreach (DataGridViewRow row in dgReceipt.Rows)
+            {
+                DataRow dr = (row.DataBoundItem as DataRowView).Row;
+                bool isExported = Convert.ToBoolean(dr["IsExportedInVoice"]);
+                if (isExported)
+                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+            }
+        }
+
         private void OnDisplayReceiptList()
         {
             Result result = ReceiptBus.GetReceiptList();
@@ -74,6 +85,7 @@ namespace MM.Controls
                 MethodInvoker method = delegate
                 {
                     dgReceipt.DataSource = result.QueryResult;
+                    HighlightExportedInvoice();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);

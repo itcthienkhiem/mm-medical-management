@@ -250,6 +250,15 @@ namespace MM.Dialogs
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                 }
+                else if (functionCode == Const.Invoice)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                }
             }
         }
 
