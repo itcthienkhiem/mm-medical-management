@@ -56,7 +56,7 @@ namespace MM.Dialogs
             if (result.IsOK)
             {
                 int count = Convert.ToInt32(result.QueryResult);
-                txtMaCongTy.Text = Utility.GetCode("CTY", count + 1);
+                txtMaCongTy.Text = Utility.GetCode("CTY", count + 1, 7);
             }
             else
             {

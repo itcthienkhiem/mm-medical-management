@@ -657,7 +657,7 @@ namespace MM.Controls
                                     ct.CreatedDate = DateTime.Now;
                                     int iCount = GetPatientQuantity();
                                     iCount++;
-                                    p.FileNum = Utility.GetCode(sCode, iCount); 
+                                    p.FileNum = Utility.GetCode(sCode, iCount, 5); 
 
                                     Result result = PatientBus.InsertPatient(ct, p, ph);
                                     if (!result.IsOK)

@@ -52,7 +52,7 @@ namespace MM.Dialogs
             if (result.IsOK)
             {
                 int count = Convert.ToInt32(result.QueryResult);
-                txtCode.Text = Utility.GetCode("CK", count + 1);
+                txtCode.Text = Utility.GetCode("CK", count + 1, 3);
             }
             else
             {
