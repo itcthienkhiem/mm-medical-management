@@ -536,7 +536,7 @@ namespace MM
 
         private void OnReceiptList()
         {
-            this.Text = string.Format("{0} - Danh mục phieu thu", Application.ProductName);
+            this.Text = string.Format("{0} - Danh muc phieu thu", Application.ProductName);
             ViewControl(_uReceiptList);
             _uReceiptList.DisplayAsThread();
         }
