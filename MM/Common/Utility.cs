@@ -647,7 +647,7 @@ namespace MM.Common
                     break;
                 case 2:
                     if (x == 0 && n.Substring(n.Length - i + 1, 1) != "0")
-                        s = "linh ";
+                        s = "lẻ ";
                     else
                         if (n.Substring(n.Length - i, 2) == "00")
                             s = "";
