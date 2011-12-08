@@ -569,9 +569,9 @@ namespace MM.Common
             else
                 return string.Format("{0}{1}", prefix, count);
         }
+
         private static string docso(int i, int x, string n)
         {
-
             string s = "";
             switch (x)
             {
@@ -615,6 +615,7 @@ namespace MM.Common
             }
             return s;
         }
+
         private static string hang(int i, int x, string n)
         {
             string s = "";
@@ -661,6 +662,7 @@ namespace MM.Common
             }
             return s;
         }
+
         public static string ReadNumberAsString(long so)
         {
             int i;
