@@ -50,6 +50,12 @@
             this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.ra4x8 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.ra1x2 = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
             this.numCount = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
@@ -101,9 +107,9 @@
             this.panel3.Controls.Add(this.chkChecked);
             this.panel3.Controls.Add(this.dgMembers);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 60);
+            this.panel3.Location = new System.Drawing.Point(0, 81);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(723, 317);
+            this.panel3.Size = new System.Drawing.Size(723, 296);
             this.panel3.TabIndex = 6;
             // 
             // chkChecked
@@ -157,7 +163,7 @@
             this.dgMembers.ReadOnly = true;
             this.dgMembers.RowHeadersWidth = 30;
             this.dgMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMembers.Size = new System.Drawing.Size(723, 317);
+            this.dgMembers.Size = new System.Drawing.Size(723, 296);
             this.dgMembers.TabIndex = 10;
             // 
             // colChecked
@@ -223,6 +229,12 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.radioButton4);
+            this.panel2.Controls.Add(this.ra4x8);
+            this.panel2.Controls.Add(this.radioButton2);
+            this.panel2.Controls.Add(this.radioButton1);
+            this.panel2.Controls.Add(this.ra1x2);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.numCount);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtSearchPatient);
@@ -230,8 +242,69 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(723, 60);
+            this.panel2.Size = new System.Drawing.Size(723, 81);
             this.panel2.TabIndex = 5;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(317, 59);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(48, 17);
+            this.radioButton4.TabIndex = 12;
+            this.radioButton4.Text = "4 x 8";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // ra4x8
+            // 
+            this.ra4x8.AutoSize = true;
+            this.ra4x8.Checked = true;
+            this.ra4x8.Location = new System.Drawing.Point(261, 59);
+            this.ra4x8.Name = "ra4x8";
+            this.ra4x8.Size = new System.Drawing.Size(48, 17);
+            this.ra4x8.TabIndex = 11;
+            this.ra4x8.TabStop = true;
+            this.ra4x8.Text = "4 x 8";
+            this.ra4x8.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(205, 59);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(48, 17);
+            this.radioButton2.TabIndex = 10;
+            this.radioButton2.Text = "4 x 8";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(149, 59);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(48, 17);
+            this.radioButton1.TabIndex = 9;
+            this.radioButton1.Text = "4 x 8";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // ra1x2
+            // 
+            this.ra1x2.AutoSize = true;
+            this.ra1x2.Location = new System.Drawing.Point(93, 59);
+            this.ra1x2.Name = "ra1x2";
+            this.ra1x2.Size = new System.Drawing.Size(48, 17);
+            this.ra1x2.TabIndex = 8;
+            this.ra1x2.Text = "1 x 2";
+            this.ra1x2.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Loại giấy:";
             // 
             // numCount
             // 
@@ -359,5 +432,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
         private System.Windows.Forms.PageSetupDialog _pageSetupDialog;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton ra4x8;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton ra1x2;
+        private System.Windows.Forms.Label label3;
     }
 }
