@@ -51,7 +51,7 @@
             this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.ra4x8 = new System.Windows.Forms.RadioButton();
+            this.ra5x8 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.ra1x2 = new System.Windows.Forms.RadioButton();
@@ -230,7 +230,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.radioButton4);
-            this.panel2.Controls.Add(this.ra4x8);
+            this.panel2.Controls.Add(this.ra5x8);
             this.panel2.Controls.Add(this.radioButton2);
             this.panel2.Controls.Add(this.radioButton1);
             this.panel2.Controls.Add(this.ra1x2);
@@ -255,17 +255,17 @@
             this.radioButton4.Text = "4 x 8";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
-            // ra4x8
+            // ra5x8
             // 
-            this.ra4x8.AutoSize = true;
-            this.ra4x8.Checked = true;
-            this.ra4x8.Location = new System.Drawing.Point(261, 59);
-            this.ra4x8.Name = "ra4x8";
-            this.ra4x8.Size = new System.Drawing.Size(48, 17);
-            this.ra4x8.TabIndex = 11;
-            this.ra4x8.TabStop = true;
-            this.ra4x8.Text = "4 x 8";
-            this.ra4x8.UseVisualStyleBackColor = true;
+            this.ra5x8.AutoSize = true;
+            this.ra5x8.Checked = true;
+            this.ra5x8.Location = new System.Drawing.Point(261, 59);
+            this.ra5x8.Name = "ra5x8";
+            this.ra5x8.Size = new System.Drawing.Size(48, 17);
+            this.ra5x8.TabIndex = 11;
+            this.ra5x8.TabStop = true;
+            this.ra5x8.Text = "5 x 8";
+            this.ra5x8.UseVisualStyleBackColor = true;
             // 
             // radioButton2
             // 
@@ -433,7 +433,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
         private System.Windows.Forms.PageSetupDialog _pageSetupDialog;
         private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton ra4x8;
+        private System.Windows.Forms.RadioButton ra5x8;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton ra1x2;
