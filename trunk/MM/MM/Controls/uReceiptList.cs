@@ -219,7 +219,7 @@ namespace MM.Controls
 
                 rowIndex += 2;
                 range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
-                range.Value = "Bằng chữ:";
+                range.Value = string.Format("Bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPrice).ToUpper());
                 range.Font.Bold = true;
 
                 range = workSheet.Cells[string.Format("B{0}:F{0}", rowIndex + 1)];
@@ -285,7 +285,8 @@ namespace MM.Controls
                         try
                         {
                             if (ExportToExcel(exportFileName, receiptGUID))
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                //ExcelPrintPreview.PrintPreview(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.PrintPreview(exportFileName);
                             else
                                 return;
                         }
