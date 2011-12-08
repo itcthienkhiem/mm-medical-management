@@ -262,7 +262,7 @@ namespace MM.Controls
                     workSheet.Cells[rowIndex, 2].Value = advice.Replace("\r", "").Replace("\t", "");
                     rowIndex++;
                 }
-
+                
                 IRange range = workSheet.Cells[string.Format("A2:C{0}", checkedRows.Count + 1)];
                 range.WrapText = true;
                 range.HorizontalAlignment = HAlign.General;
