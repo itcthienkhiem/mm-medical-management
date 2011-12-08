@@ -34,18 +34,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgReceipt = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.receiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.receiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnExportInvoice = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).BeginInit();
@@ -54,6 +55,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnExportInvoice);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -61,30 +63,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(790, 38);
             this.panel1.TabIndex = 1;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(87, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(64, 25);
-            this.btnPrint.TabIndex = 5;
-            this.btnPrint.Text = "   &In";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::MM.Properties.Resources.del;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(8, 6);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
-            this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "    &Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // panel2
             // 
@@ -165,6 +143,25 @@
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
             // 
+            // FileNum
+            // 
+            this.FileNum.DataPropertyName = "FileNum";
+            this.FileNum.HeaderText = "Mã bệnh nhân";
+            this.FileNum.Name = "FileNum";
+            this.FileNum.ReadOnly = true;
+            // 
+            // Address
+            // 
+            this.Address.DataPropertyName = "Address";
+            this.Address.HeaderText = "Địa chỉ";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            this.Address.Width = 250;
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
             // receiptDateDataGridViewTextBoxColumn
             // 
             this.receiptDateDataGridViewTextBoxColumn.DataPropertyName = "ReceiptDate";
@@ -176,13 +173,6 @@
             this.receiptDateDataGridViewTextBoxColumn.Name = "receiptDateDataGridViewTextBoxColumn";
             this.receiptDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // FileNum
-            // 
-            this.FileNum.DataPropertyName = "FileNum";
-            this.FileNum.HeaderText = "Mã bệnh nhân";
-            this.FileNum.Name = "FileNum";
-            this.FileNum.ReadOnly = true;
-            // 
             // fullNameDataGridViewTextBoxColumn
             // 
             this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
@@ -191,21 +181,44 @@
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fullNameDataGridViewTextBoxColumn.Width = 200;
             // 
-            // Address
-            // 
-            this.Address.DataPropertyName = "Address";
-            this.Address.HeaderText = "Địa chỉ";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            this.Address.Width = 250;
-            // 
             // receiptViewBindingSource
             // 
             this.receiptViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptView);
             // 
-            // _printDialog
+            // btnExportInvoice
             // 
-            this._printDialog.UseEXDialog = true;
+            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
+            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportInvoice.Location = new System.Drawing.Point(189, 6);
+            this.btnExportInvoice.Name = "btnExportInvoice";
+            this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
+            this.btnExportInvoice.TabIndex = 6;
+            this.btnExportInvoice.Text = "      &Xuất hóa đơn";
+            this.btnExportInvoice.UseVisualStyleBackColor = true;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(87, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(97, 25);
+            this.btnPrint.TabIndex = 5;
+            this.btnPrint.Text = "      &In phiếu thu";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::MM.Properties.Resources.del;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(8, 6);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 25);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "    &Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // uReceiptList
             // 
@@ -242,5 +255,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.PrintDialog _printDialog;
+        private System.Windows.Forms.Button btnExportInvoice;
     }
 }
