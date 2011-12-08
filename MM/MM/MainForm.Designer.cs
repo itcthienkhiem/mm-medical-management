@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uInvoiceList = new MM.Controls.uInvoiceList();
             this._uReceiptList = new MM.Controls.uReceiptList();
             this._uPrintLabel = new MM.Controls.uPrintLabel();
             this._uPermission = new MM.Controls.uPermission();
@@ -100,7 +101,6 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uInvoiceList = new MM.Controls.uInvoiceList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -125,6 +125,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uInvoiceList
+            // 
+            resources.ApplyResources(this._uInvoiceList, "_uInvoiceList");
+            this._uInvoiceList.Name = "_uInvoiceList";
             // 
             // _uReceiptList
             // 
@@ -362,8 +367,8 @@
             this.companyToolStripMenuItem,
             this.symptomToolStripMenuItem,
             this.receiptToolStripMenuItem,
-            this.toolsToolStripMenuItem,
             this.invoiceToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this._mainMenu, "_mainMenu");
             this._mainMenu.Name = "_mainMenu";
@@ -639,11 +644,6 @@
             resources.ApplyResources(this.aboutMedicalManagementToolStripMenuItem, "aboutMedicalManagementToolStripMenuItem");
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // _uInvoiceList
-            // 
-            resources.ApplyResources(this._uInvoiceList, "_uInvoiceList");
-            this._uInvoiceList.Name = "_uInvoiceList";
             // 
             // MainForm
             // 
