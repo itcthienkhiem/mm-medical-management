@@ -7,6 +7,7 @@ using System.Text;
 using System.Transactions;
 using MM.Common;
 using MM.Databasae;
+
 namespace MM.Bussiness
 {
     public class ReceiptBus : BusBase
