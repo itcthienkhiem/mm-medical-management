@@ -127,8 +127,6 @@ namespace MM.Common
             }
         }
 
-
-
         public static void SetCulturalWithEN_US()
         {
             if (_currentCultural.Name != "en-US")
