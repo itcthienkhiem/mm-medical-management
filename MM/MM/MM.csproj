@@ -649,6 +649,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Templates\HDGTGT.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
     <None Include="Templates\SymptomTemplate.xls" />
   </ItemGroup>
