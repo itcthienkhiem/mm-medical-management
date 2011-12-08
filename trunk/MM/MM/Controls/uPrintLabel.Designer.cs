@@ -50,10 +50,10 @@
             this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.ra5x11 = new System.Windows.Forms.RadioButton();
             this.ra5x8 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.ra5x6 = new System.Windows.Forms.RadioButton();
+            this.ra2x4 = new System.Windows.Forms.RadioButton();
             this.ra1x2 = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.numCount = new System.Windows.Forms.NumericUpDown();
@@ -231,10 +231,10 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.radioButton4);
+            this.panel2.Controls.Add(this.ra5x11);
             this.panel2.Controls.Add(this.ra5x8);
-            this.panel2.Controls.Add(this.radioButton2);
-            this.panel2.Controls.Add(this.radioButton1);
+            this.panel2.Controls.Add(this.ra5x6);
+            this.panel2.Controls.Add(this.ra2x4);
             this.panel2.Controls.Add(this.ra1x2);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.numCount);
@@ -247,15 +247,15 @@
             this.panel2.Size = new System.Drawing.Size(723, 81);
             this.panel2.TabIndex = 5;
             // 
-            // radioButton4
+            // ra5x11
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(317, 59);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(48, 17);
-            this.radioButton4.TabIndex = 12;
-            this.radioButton4.Text = "4 x 8";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.ra5x11.AutoSize = true;
+            this.ra5x11.Location = new System.Drawing.Point(317, 59);
+            this.ra5x11.Name = "ra5x11";
+            this.ra5x11.Size = new System.Drawing.Size(54, 17);
+            this.ra5x11.TabIndex = 12;
+            this.ra5x11.Text = "5 x 11";
+            this.ra5x11.UseVisualStyleBackColor = true;
             // 
             // ra5x8
             // 
@@ -269,25 +269,25 @@
             this.ra5x8.Text = "5 x 8";
             this.ra5x8.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // ra5x6
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(205, 59);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(48, 17);
-            this.radioButton2.TabIndex = 10;
-            this.radioButton2.Text = "4 x 8";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.ra5x6.AutoSize = true;
+            this.ra5x6.Location = new System.Drawing.Point(205, 59);
+            this.ra5x6.Name = "ra5x6";
+            this.ra5x6.Size = new System.Drawing.Size(48, 17);
+            this.ra5x6.TabIndex = 10;
+            this.ra5x6.Text = "5 x 6";
+            this.ra5x6.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // ra2x4
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(149, 59);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(48, 17);
-            this.radioButton1.TabIndex = 9;
-            this.radioButton1.Text = "4 x 8";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.ra2x4.AutoSize = true;
+            this.ra2x4.Location = new System.Drawing.Point(149, 59);
+            this.ra2x4.Name = "ra2x4";
+            this.ra2x4.Size = new System.Drawing.Size(48, 17);
+            this.ra2x4.TabIndex = 9;
+            this.ra2x4.Text = "2 x 4";
+            this.ra2x4.UseVisualStyleBackColor = true;
             // 
             // ra1x2
             // 
@@ -434,10 +434,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
         private System.Windows.Forms.PageSetupDialog _pageSetupDialog;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton ra5x11;
         private System.Windows.Forms.RadioButton ra5x8;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton ra5x6;
+        private System.Windows.Forms.RadioButton ra2x4;
         private System.Windows.Forms.RadioButton ra1x2;
         private System.Windows.Forms.Label label3;
     }
