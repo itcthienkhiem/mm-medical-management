@@ -91,6 +91,8 @@
             // 
             // _printDocument
             // 
+            this._printDocument.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this._printDocument_BeginPrint);
+            this._printDocument.EndPrint += new System.Drawing.Printing.PrintEventHandler(this._printDocument_EndPrint);
             this._printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this._printDocument_PrintPage);
             // 
             // _printDialog

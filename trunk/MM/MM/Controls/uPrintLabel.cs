@@ -48,6 +48,7 @@ namespace MM.Controls
         private Font _font = new Font("Microsoft Sans Serif", 8);
         private Pen _pen = new Pen(Color.Black);
         private int _maxLenght = 20;
+        private bool _flag = false;
         #endregion
 
         #region Constructor
@@ -202,6 +203,8 @@ namespace MM.Controls
 
         private void InitData()
         {
+            _flag = false;
+
             _printDocument.DefaultPageSettings.Margins.Left = 0;
             _printDocument.DefaultPageSettings.Margins.Top = 0;
             _printDocument.DefaultPageSettings.Margins.Right = 0;
@@ -323,6 +326,21 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void _printDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            if (_flag)
+            {
+                if (_printDialog.ShowDialog() != DialogResult.OK)
+                    e.Cancel = true;
+            }
+            else _flag = true;
+        }
+
+        private void _printDocument_EndPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+
+        }
+
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             //e.Graphics.DrawRectangle(_pen, 0, 0, _widthPxl, _heightPxl);
@@ -407,6 +425,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 
     public class LabelInfo
