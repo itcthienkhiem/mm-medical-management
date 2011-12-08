@@ -364,9 +364,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
     }
 }
