@@ -421,20 +421,24 @@ namespace MM.Controls
             List<DataRow> paidServiceList = new List<DataRow>();
             List<DataRow> noPaidServiceList = new List<DataRow>();
             List<DataRow> checkedRows = CheckedServiceRows;
-            List<string> serviceHistoryKeys = new List<string>();
             
             foreach (DataRow row in checkedRows)
             {
                 
                 bool isExported = Convert.ToBoolean(row["IsExported"]);
                 if (!isExported)
-                {
                     noPaidServiceList.Add(row);
-                    serviceHistoryKeys.Add(row["ServiceHistoryGUID"].ToString());
-                }
                 else
                     paidServiceList.Add(row);
             }
+
+            if (paidServiceList.Count > 0)
+            {
+                MsgBox.Show(Application.ProductName, "Đã có 1 số dịch vụ đã xuất phiếu thu rồi. Vui lòng kiểm tra lại.", IconType.Information);
+                return;
+            }
+
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất phiếu thu ?") == DialogResult.No) return;
 
             if (paidServiceList.Count <= 0)
             {
@@ -442,10 +446,7 @@ namespace MM.Controls
                 foreach (DataRow row in noPaidServiceList)
                 {
                     ReceiptDetail detail = new ReceiptDetail();
-                    detail.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                    detail.Price = Convert.ToDouble(row["FixedPrice"]);
-                    detail.Discount = Convert.ToDouble(row["Discount"]);
-                    detail.Note = row["Note"].ToString();
+                    detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
                     detail.CreatedDate = DateTime.Now;
                     detail.CreatedBy = Guid.Parse(Global.UserGUID);
                     detail.Status = (byte)Status.Actived;
@@ -461,7 +462,7 @@ namespace MM.Controls
                 receipt.CreatedBy = Guid.Parse(Global.UserGUID);
                 receipt.IsExportedInVoice = false;
 
-                Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails, serviceHistoryKeys);
+                Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
                 if (result.IsOK)
                 {
                     DisplayAsThread();
@@ -477,7 +478,7 @@ namespace MM.Controls
                     Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
                 }
             }
-            else
+            /*else
             {
                 if (noPaidServiceList.Count <= 0)
                 {
@@ -487,10 +488,7 @@ namespace MM.Controls
                         foreach (DataRow row in paidServiceList)
                         {
                             ReceiptDetail detail = new ReceiptDetail();
-                            detail.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                            detail.Price = Convert.ToDouble(row["FixedPrice"]);
-                            detail.Discount = Convert.ToDouble(row["Discount"]);
-                            detail.Note = row["Note"].ToString();
+                            detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
                             detail.CreatedDate = DateTime.Now;
                             detail.CreatedBy = Guid.Parse(Global.UserGUID);
                             detail.Status = (byte)Status.Actived;
@@ -506,7 +504,7 @@ namespace MM.Controls
                         receipt.CreatedBy = Guid.Parse(Global.UserGUID);
                         receipt.IsExportedInVoice = false;
 
-                        Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails, serviceHistoryKeys);
+                        Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
                         if (result.IsOK)
                         {
                             DisplayAsThread();
@@ -529,10 +527,7 @@ namespace MM.Controls
                     foreach (DataRow row in noPaidServiceList)
                     {
                         ReceiptDetail detail = new ReceiptDetail();
-                        detail.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                        detail.Price = Convert.ToDouble(row["FixedPrice"]);
-                        detail.Discount = Convert.ToDouble(row["Discount"]);
-                        detail.Note = row["Note"].ToString();
+                        detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
                         detail.CreatedDate = DateTime.Now;
                         detail.CreatedBy = Guid.Parse(Global.UserGUID);
                         detail.Status = (byte)Status.Actived;
@@ -544,10 +539,7 @@ namespace MM.Controls
                         foreach (DataRow row in paidServiceList)
                         {
                             ReceiptDetail detail = new ReceiptDetail();
-                            detail.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                            detail.Price = Convert.ToDouble(row["FixedPrice"]);
-                            detail.Discount = Convert.ToDouble(row["Discount"]);
-                            detail.Note = row["Note"].ToString();
+                            detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
                             detail.CreatedDate = DateTime.Now;
                             detail.CreatedBy = Guid.Parse(Global.UserGUID);
                             detail.Status = (byte)Status.Actived;
@@ -564,7 +556,7 @@ namespace MM.Controls
                     receipt.CreatedBy = Guid.Parse(Global.UserGUID);
                     receipt.IsExportedInVoice = false;
 
-                    Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails, serviceHistoryKeys);
+                    Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
                     if (result.IsOK)
                     {
                         DisplayAsThread();
@@ -580,7 +572,7 @@ namespace MM.Controls
                         Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
                     }
                 }
-            }
+            }*/
         }
         #endregion
 
@@ -593,11 +585,8 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 dịch vụ cần xuất phiếu thu.", IconType.Information);
                 return;
             }
-
-            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất phiếu thu ?") == DialogResult.Yes)
-            {
-                OnExportReceipt();
-            }
+            
+            OnExportReceipt();
         }
 
         private void raAll_CheckedChanged(object sender, EventArgs e)
