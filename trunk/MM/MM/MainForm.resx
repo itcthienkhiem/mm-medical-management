@@ -867,27 +867,6 @@
   <data name="receiptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Phiếu thu</value>
   </data>
-  <data name="dICOMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 22</value>
-  </data>
-  <data name="dICOMToolStripMenuItem.Text" xml:space="preserve">
-    <value>DICOM</value>
-  </data>
-  <data name="printLabelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 22</value>
-  </data>
-  <data name="printLabelToolStripMenuItem.Text" xml:space="preserve">
-    <value>In nhãn</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Công cụ</value>
-  </data>
   <data name="invoiceListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
@@ -902,6 +881,27 @@
   </data>
   <data name="invoiceToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Hóa đơn</value>
+  </data>
+  <data name="dICOMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 30</value>
+  </data>
+  <data name="dICOMToolStripMenuItem.Text" xml:space="preserve">
+    <value>DICOM</value>
+  </data>
+  <data name="printLabelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 30</value>
+  </data>
+  <data name="printLabelToolStripMenuItem.Text" xml:space="preserve">
+    <value>In nhãn</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Công cụ</value>
   </data>
   <data name="medicalManagementHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>129, 22</value>
