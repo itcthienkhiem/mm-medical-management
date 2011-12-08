@@ -43,6 +43,7 @@ namespace MM.Controls
         {
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
+            btnExportInvoice.Enabled = Global.AllowExportInvoice;
         }
 
         public void DisplayAsThread()
