@@ -445,8 +445,11 @@ namespace MM.Controls
                 if (result.IsOK)
                 {
                     DisplayAsThread();
-                    if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
-                        OnPrint(receipt.ReceiptGUID.ToString());
+                    if (Global.AllowPrintReceipt)
+                    {
+                        if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
+                            OnPrint(receipt.ReceiptGUID.ToString());
+                    }
                 }
                 else
                 {
@@ -485,8 +488,11 @@ namespace MM.Controls
                         if (result.IsOK)
                         {
                             DisplayAsThread();
-                            if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
-                                OnPrint(receipt.ReceiptGUID.ToString());
+                            if (Global.AllowPrintReceipt)
+                            {
+                                if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
+                                    OnPrint(receipt.ReceiptGUID.ToString());
+                            }
                         }
                         else
                         {
@@ -538,8 +544,11 @@ namespace MM.Controls
                     if (result.IsOK)
                     {
                         DisplayAsThread();
-                        if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
-                            OnPrint(receipt.ReceiptGUID.ToString());
+                        if (Global.AllowPrintReceipt)
+                        {
+                            if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
+                                OnPrint(receipt.ReceiptGUID.ToString());
+                        }
                     }
                     else
                     {

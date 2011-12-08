@@ -58,6 +58,8 @@
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.tbReceiptList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbInvoiceList = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
             this.tbSympton = new System.Windows.Forms.ToolStripButton();
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -92,10 +94,13 @@
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uInvoiceList = new MM.Controls.uInvoiceList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -107,6 +112,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uInvoiceList);
             this._mainPanel.Controls.Add(this._uReceiptList);
             this._mainPanel.Controls.Add(this._uPrintLabel);
             this._mainPanel.Controls.Add(this._uPermission);
@@ -196,6 +202,8 @@
             this.toolStripSeparator11,
             this.tbReceiptList,
             this.toolStripSeparator13,
+            this.tbInvoiceList,
+            this.toolStripSeparator14,
             this.tbSympton});
             resources.ApplyResources(this._mainToolbar, "_mainToolbar");
             this._mainToolbar.Name = "_mainToolbar";
@@ -308,6 +316,19 @@
             this.toolStripSeparator13.Name = "toolStripSeparator13";
             resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
             // 
+            // tbInvoiceList
+            // 
+            this.tbInvoiceList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbInvoiceList, "tbInvoiceList");
+            this.tbInvoiceList.Image = global::MM.Properties.Resources.invoice_icon__1_;
+            this.tbInvoiceList.Name = "tbInvoiceList";
+            this.tbInvoiceList.Tag = "Invoice List";
+            // 
+            // toolStripSeparator14
+            // 
+            this.toolStripSeparator14.Name = "toolStripSeparator14";
+            resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
+            // 
             // tbSympton
             // 
             this.tbSympton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -342,6 +363,7 @@
             this.symptomToolStripMenuItem,
             this.receiptToolStripMenuItem,
             this.toolsToolStripMenuItem,
+            this.invoiceToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this._mainMenu, "_mainMenu");
             this._mainMenu.Name = "_mainMenu";
@@ -573,6 +595,21 @@
             this.printLabelToolStripMenuItem.Tag = "Print Label";
             this.printLabelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // invoiceToolStripMenuItem
+            // 
+            this.invoiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.invoiceListToolStripMenuItem});
+            resources.ApplyResources(this.invoiceToolStripMenuItem, "invoiceToolStripMenuItem");
+            this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
+            // 
+            // invoiceListToolStripMenuItem
+            // 
+            this.invoiceListToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
+            this.invoiceListToolStripMenuItem.Name = "invoiceListToolStripMenuItem";
+            resources.ApplyResources(this.invoiceListToolStripMenuItem, "invoiceListToolStripMenuItem");
+            this.invoiceListToolStripMenuItem.Tag = "Invoice List";
+            this.invoiceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -602,6 +639,11 @@
             resources.ApplyResources(this.aboutMedicalManagementToolStripMenuItem, "aboutMedicalManagementToolStripMenuItem");
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // _uInvoiceList
+            // 
+            resources.ApplyResources(this._uInvoiceList, "_uInvoiceList");
+            this._uInvoiceList.Name = "_uInvoiceList";
             // 
             // MainForm
             // 
@@ -696,6 +738,11 @@
         private Controls.uReceiptList _uReceiptList;
         private System.Windows.Forms.ToolStripButton tbReceiptList;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+        private System.Windows.Forms.ToolStripMenuItem invoiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem invoiceListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton tbInvoiceList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
+        private Controls.uInvoiceList _uInvoiceList;
 
     }
 }

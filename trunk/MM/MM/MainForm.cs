@@ -131,6 +131,8 @@ namespace MM
                 _uPrintLabel.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uReceiptList))
                 _uReceiptList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uInvoiceList))
+                _uInvoiceList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -151,6 +153,12 @@ namespace MM
             {
                 toolsToolStripMenuItem.Enabled = isLogin;
                 changePasswordToolStripMenuItem.Enabled = isLogin;
+
+                Global.AllowShowServiePrice = false;
+                Global.AllowExportReceipt = false;
+                Global.AllowPrintReceipt = false;
+                Global.AllowExportInvoice = false;
+                Global.AllowPrintInvoice = false;
 
                 Result result = LogonBus.GetPermission(Global.LogonGUID);
                 if (result.IsOK)
@@ -288,11 +296,23 @@ namespace MM
                             _uReceiptList.AllowExport = isExport;
                             _uReceiptList.AllowImport = isImport;
 
-                            Global.AllowViewReceipt = isView;
-                            Global.AllowAddReceipt = isAdd;
-                            Global.AllowDeleteReceipt = isDelete;
                             Global.AllowPrintReceipt = isPrint;
                             Global.AllowExportReceipt = isExport;
+                        }
+                        else if (functionCode == Const.Invoice)
+                        {
+                            invoiceToolStripMenuItem.Enabled = isLogin;
+                            invoiceListToolStripMenuItem.Enabled = isView && isLogin;
+                            tbInvoiceList.Enabled = isView && isLogin;
+                            _uInvoiceList.AllowAdd = isAdd;
+                            _uInvoiceList.AllowEdit = isEdit;
+                            _uInvoiceList.AllowDelete = isDelete;
+                            _uInvoiceList.AllowPrint = isPrint;
+                            _uInvoiceList.AllowExport = isExport;
+                            _uInvoiceList.AllowImport = isImport;
+
+                            Global.AllowPrintInvoice = isPrint;
+                            Global.AllowExportInvoice = isExport;
                         }
                     }
                 }
@@ -305,6 +325,10 @@ namespace MM
             else
             {
                 Global.AllowShowServiePrice = true;
+                Global.AllowExportReceipt = true;
+                Global.AllowPrintReceipt = true;
+                Global.AllowExportInvoice = true;
+                Global.AllowPrintInvoice = true;
 
                 _uDocStaffList.AllowAdd = true;
                 _uDocStaffList.AllowEdit = true;
@@ -365,6 +389,13 @@ namespace MM
                 _uSymptomList.AllowExport = true;
                 _uSymptomList.AllowImport = true;
 
+                _uInvoiceList.AllowAdd = true;
+                _uInvoiceList.AllowEdit = true;
+                _uInvoiceList.AllowDelete = true;
+                _uInvoiceList.AllowPrint = true;
+                _uInvoiceList.AllowExport = true;
+                _uInvoiceList.AllowImport = true;
+
                 servicesToolStripMenuItem.Enabled = isLogin;
                 serviceListToolStripMenuItem.Enabled = isLogin;
                 tbServiceList.Enabled = isLogin;
@@ -402,9 +433,11 @@ namespace MM
                 receiptListToolStripMenuItem.Enabled = isLogin;
                 receiptToolStripMenuItem.Enabled = isLogin;
                 tbReceiptList.Enabled = isLogin;
-            }
 
-            //if (!isLogin) permissionToolStripMenuItem.Enabled = false;*/
+                invoiceToolStripMenuItem.Enabled = isLogin;
+                tbInvoiceList.Enabled = isLogin;
+                invoiceListToolStripMenuItem.Enabled = isLogin;
+            }
         }
 
         private void ExcuteCmd(string cmd)
@@ -487,7 +520,18 @@ namespace MM
                 case "Receipt List":
                     OnReceiptList();
                     break;
+
+                case "Invoice List":
+                    OnInvoiceList();
+                    break;
             }
+        }
+
+        private void OnInvoiceList()
+        {
+            this.Text = string.Format("{0} - Danh mục hóa đơn", Application.ProductName);
+            ViewControl(_uInvoiceList);
+            _uInvoiceList.DisplayAsThread();
         }
 
         private void OnReceiptList()
@@ -637,6 +681,8 @@ namespace MM
                 _uPrintLabel.ClearData();
             else if (ctrl.GetType() == typeof(uReceiptList))
                 _uReceiptList.ClearData();
+            else if (ctrl.GetType() == typeof(uInvoiceList))
+                _uInvoiceList.ClearData();
         }
 
         private void OnDoctorList()
