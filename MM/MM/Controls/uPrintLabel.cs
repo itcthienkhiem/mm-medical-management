@@ -212,6 +212,16 @@ namespace MM.Controls
 
         private void OnPrint(bool isPreview)
         {
+            _printDocument.DefaultPageSettings.Margins.Left = 0;
+            _printDocument.DefaultPageSettings.Margins.Top = 0;
+            _printDocument.DefaultPageSettings.Margins.Right = 0;
+            _printDocument.DefaultPageSettings.Margins.Bottom = 0;
+
+            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Left = 0;
+            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Top = 0;
+            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Right = 0;
+            _printDocument.PrinterSettings.DefaultPageSettings.Margins.Bottom = 0;
+
             UpdateChecked();
             List<DataRow> members = this.Members;
             if (members == null || members.Count <= 0)
@@ -243,7 +253,9 @@ namespace MM.Controls
 
             _labelIndex = 0;
             if (isPreview)
+            {
                 _printPreviewDialog.ShowDialog();
+            }
             else
             {
                 if (_printDialog.ShowDialog() == DialogResult.OK)
@@ -272,13 +284,13 @@ namespace MM.Controls
                     }
 
                     LabelInfo labelInfo = _labels[_labelIndex];
-                    //e.Graphics.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+                    e.Graphics.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
                     if (labelInfo.FullName.Length <= _maxLenght)
                     {
-                        e.Graphics.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 5, top + 12);
-                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 5, top + 28);
-                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 5, top + 44);
+                        e.Graphics.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 12);
+                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 28);
+                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 44);
                     }
                     else
                     {
@@ -296,10 +308,10 @@ namespace MM.Controls
                             fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
                         }
 
-                        e.Graphics.DrawString(fullName1, _font, Brushes.Black, left + 5, top + 8);
-                        e.Graphics.DrawString(fullName2, _font, Brushes.Black, left + 5, top + 22);
-                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 5, top + 38);
-                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 5, top + 54);
+                        e.Graphics.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 8);
+                        e.Graphics.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 22);
+                        e.Graphics.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 38);
+                        e.Graphics.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 54);
                     }
 
                     top += _deltaHeightPxl + _labelHeightPxl;
@@ -364,8 +376,6 @@ namespace MM.Controls
             }
         }
         #endregion
-
-       
     }
 
     public class LabelInfo
