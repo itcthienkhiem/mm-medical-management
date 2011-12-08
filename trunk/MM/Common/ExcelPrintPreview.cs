@@ -93,7 +93,7 @@ namespace MM.Common
 
             var portName = value.ToString().Substring(9);  //strip away the winspool, 
 
-            return string.Format("{0} on {1}", printerName, portName); ;
+            return string.Format("{0} on {1}", printerName, portName);
         }
 
         public static void Print(string fileName, string printerName)
