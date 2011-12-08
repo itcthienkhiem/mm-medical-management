@@ -102,7 +102,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST((Price - (Price * Discount)/100) AS float) AS Amount FROM ReceiptDetailView WHERE ReceiptGUID='{0}' AND Status={1} ORDER BY Code", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST((Price - (Price * Discount)/100) AS float) AS Amount FROM ReceiptDetailView WHERE ReceiptGUID='{0}' AND ServiceStatus={1} AND ServiceHistoryStatus={1} AND ReceiptDetailStatus={1} ORDER BY Code", 
                     receiptGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -138,6 +138,17 @@ namespace MM.Bussiness
                             r.DeletedDate = DateTime.Now;
                             r.DeletedBy = Guid.Parse(Global.UserGUID);
                             r.Status = (byte)Status.Deactived;
+
+                            List<ReceiptDetail> receiptDetails = r.ReceiptDetails.ToList<ReceiptDetail>();
+                            if (receiptDetails != null && receiptDetails.Count > 0)
+                            {
+                                foreach (var receiptDetail in receiptDetails)
+                                {
+                                    ServiceHistory serviceHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID == receiptDetail.ServiceHistoryGUID);
+                                    if (serviceHistory != null)
+                                        serviceHistory.IsExported = false;
+                                }
+                            }
                         }
                     }
 
@@ -167,7 +178,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertReceipt(Receipt receipt, List<ReceiptDetail> receiptDetails, List<string> serviceHistoryKeys)
+        public static Result InsertReceipt(Receipt receipt, List<ReceiptDetail> receiptDetails)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -187,18 +198,14 @@ namespace MM.Bussiness
                     {
                         receiptDetail.ReceiptDetailGUID = Guid.NewGuid();
                         receiptDetail.ReceiptGUID = receipt.ReceiptGUID;
+
+                        //Update Exported Service History
+                        ServiceHistory serviceHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID == receiptDetail.ServiceHistoryGUID);
+                        if (serviceHistory != null)
+                            serviceHistory.IsExported = true;
                     }
 
                     db.ReceiptDetails.InsertAllOnSubmit(receiptDetails);
-
-                    //Update Exported Service History
-                    foreach (string key in serviceHistoryKeys)
-                    {
-                        ServiceHistory serviceHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID.ToString() == key);
-                        if (serviceHistory != null)
-                            serviceHistory.IsExported = true;
-
-                    }
 
                     db.SubmitChanges();
 
