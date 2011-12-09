@@ -239,7 +239,19 @@ namespace MM.Controls
             }
             else if (ra5x6.Checked)
             {
-
+                _labelWidth = 37;
+                _labelHeight = 25;
+                _deltaWidth = 3;
+                _deltaHeight = 2;
+                _top = 0;
+                _left = 5;
+                _right = 5;
+                _bottom = 5;
+                _pageSize = 30;
+                _maxRow = 6;
+                _maxCol = 5;
+                _font = new Font("Microsoft Sans Serif", 8);
+                _maxLenght = 20;
             }
             else if (ra5x8.Checked)
             {
@@ -353,7 +365,7 @@ namespace MM.Controls
 
         private void OnDrawLabel_2x4(Graphics g, int left, int top, LabelInfo labelInfo)
         {
-            g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
             int deltaLeft = 20;
 
@@ -388,7 +400,35 @@ namespace MM.Controls
 
         private void OnDrawLabel_5x6(Graphics g, int left, int top, LabelInfo labelInfo)
         {
+            g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
+            if (labelInfo.FullName.Length <= _maxLenght)
+            {
+                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 26);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 42);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 58);
+            }
+            else
+            {
+                int index = labelInfo.FullName.LastIndexOf(" ");
+                string fullName1 = string.Empty;
+                string fullName2 = string.Empty;
+                if (index >= 0)
+                {
+                    fullName1 = labelInfo.FullName.Substring(0, index);
+                    fullName2 = labelInfo.FullName.Substring(index + 1, labelInfo.FullName.Length - index - 1);
+                }
+                else
+                {
+                    fullName1 = labelInfo.FullName.Substring(0, _maxLenght);
+                    fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
+                }
+
+                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 20);
+                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 34);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 50);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 66);
+            }
         }
 
         private void OnDrawLabel_5x8(Graphics g, int left, int top, LabelInfo labelInfo)
