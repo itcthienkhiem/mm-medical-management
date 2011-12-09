@@ -576,7 +576,7 @@ namespace MM.Common
             return string.Format("{0}{1}", prefix, s);
         }
 
-        public string docso(int i, int x, string n)
+        private static string docso(int i, int x, string n)
         {
 
             string s = "";
@@ -631,7 +631,8 @@ namespace MM.Common
             }
             return s;
         }
-        public string hang(int i, int x, string n)
+
+        private static string hang(int i, int x, string n)
         {
             string s = "";
             int t = i % 3;
