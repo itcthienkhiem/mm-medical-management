@@ -662,6 +662,7 @@
     <None Include="Properties\DataSources\MM.Databasae.CompanyMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ReceiptDetailView.datasource" />
