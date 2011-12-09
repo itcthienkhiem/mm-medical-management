@@ -6,22 +6,27 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 using MM.Common;
 using MM.Bussiness;
+using MM.Exports;
 using MM.Databasae;
+using SpreadsheetGear;
 
 namespace MM.Dialogs
 {
     public partial class dlgReceiptDetail : Form
     {
         #region Members
-
+        private DataRow _drReceipt = null;
         #endregion
 
         #region Constructor
         public dlgReceiptDetail(DataRow drReceipt)
         {
             InitializeComponent();
+            _drReceipt = drReceipt;
+            UpdateGUI();
             DisplayInfo(drReceipt);
         }
         #endregion
@@ -31,6 +36,13 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            btnPrint.Enabled = Global.AllowPrintReceipt;
+            bool isExportedInvoice = Convert.ToBoolean(_drReceipt["IsExportedInVoice"]);
+            btnExportInvoice.Enabled = Global.AllowExportInvoice && !isExportedInvoice;
+        }
+
         private void DisplayInfo(DataRow drReceipt)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -65,10 +77,37 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetReceiptDetailList"));
             }
         }
+
+        private void OnPrint()
+        {
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\Receipt.xls", Application.StartupPath);
+
+                try
+                {
+                    string receiptGUID = _drReceipt["ReceiptGUID"].ToString();
+                    if (ExportExcel.ExportReceiptToExcel(exportFileName, receiptGUID))
+                    {
+                        if (_printDialog.ShowDialog() == DialogResult.OK)
+                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                    }
+                    else
+                        return;
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
-
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
         #endregion
     }
 }

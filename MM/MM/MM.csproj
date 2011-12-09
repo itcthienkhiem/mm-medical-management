@@ -486,6 +486,7 @@
     <Compile Include="Dialogs\dlgWaiting.Designer.cs">
       <DependentUpon>dlgWaiting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exports\ExportExcel.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
