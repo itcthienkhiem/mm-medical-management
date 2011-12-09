@@ -227,7 +227,7 @@ namespace MM.Controls
 
             if (exportedInvoiceList.Count > 0)
             {
-                MsgBox.Show(Application.ProductName, "(1 số) phiếu thu đã xuất hóa đơn rồi. Vui lòng kiểm tra lại.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "(Một số) phiếu thu đã xuất hóa đơn rồi. Vui lòng kiểm tra lại.", IconType.Information);
                 return;
             }
 
