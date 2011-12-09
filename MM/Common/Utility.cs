@@ -576,8 +576,9 @@ namespace MM.Common
             return string.Format("{0}{1}", prefix, s);
         }
 
-        private static string docso(int i, int x, string n)
+        public string docso(int i, int x, string n)
         {
+
             string s = "";
             switch (x)
             {
@@ -589,7 +590,16 @@ namespace MM.Common
                     if (i % 3 == 2)
                         s = "";
                     else
-                        s = "một ";
+                    {
+                        if ((n.Length >= i + 1 && (n[n.Length - i - 1] == '1' || n[n.Length - i - 1] == '0')) || n.Length == i || i % 3 == 0)
+                        {
+                            s = "một ";
+                        }
+                        else
+                        {
+                            s = "mốt ";
+                        }
+                    }
                     break;
                 case 2:
                     s = "hai ";
@@ -621,8 +631,7 @@ namespace MM.Common
             }
             return s;
         }
-
-        private static string hang(int i, int x, string n)
+        public string hang(int i, int x, string n)
         {
             string s = "";
             int t = i % 3;
@@ -653,13 +662,13 @@ namespace MM.Common
                     break;
                 case 2:
                     if (x == 0 && n.Substring(n.Length - i + 1, 1) != "0")
-                        s = "lẻ ";
+                        s = "linh ";
                     else
                         if (n.Substring(n.Length - i, 2) == "00")
                             s = "";
                         else
                         {
-                            if ((x - 1) <= n.Length - 1 && (n[x - 1] == '1' || n[n.Length - 2] == '1'))
+                            if (i % 3 == 2 && n[n.Length - i] == '1')
                                 s = "mười ";
                             else
                                 s = "mươi ";
