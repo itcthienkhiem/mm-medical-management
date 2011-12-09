@@ -293,7 +293,7 @@ namespace MM.Controls
 
             if (paidServiceList.Count > 0)
             {
-                MsgBox.Show(Application.ProductName, "(1 số) dịch vụ đã xuất phiếu thu rồi. Vui lòng kiểm tra lại.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "(Một số) dịch vụ đã xuất phiếu thu rồi. Vui lòng kiểm tra lại.", IconType.Information);
                 return;
             }
 
