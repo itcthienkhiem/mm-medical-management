@@ -659,7 +659,7 @@ namespace MM.Common
                             s = "";
                         else
                         {
-                            if (n[x - 1] == '1' || n[n.Length - 2] == '1')
+                            if ((x - 1) <= n.Length - 1 && (n[x - 1] == '1' || n[n.Length - 2] == '1'))
                                 s = "mười ";
                             else
                                 s = "mươi ";

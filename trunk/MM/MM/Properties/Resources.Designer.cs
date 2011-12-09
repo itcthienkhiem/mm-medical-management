@@ -151,6 +151,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Apps_printer_icon {
+            get {
+                object obj = ResourceManager.GetObject("Apps_printer_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Apps_session_logout_icon {
             get {
                 object obj = ResourceManager.GetObject("Apps_session_logout_icon", resourceCulture);

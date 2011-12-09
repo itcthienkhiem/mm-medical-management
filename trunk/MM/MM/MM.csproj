@@ -64,6 +64,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Components\SpreadsheetGear.dll</HintPath>
     </Reference>
+    <Reference Include="SpreadsheetGear.Design, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\SpreadsheetGear.Design.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
@@ -416,6 +420,12 @@
     <Compile Include="Dialogs\dlgDatabaseConfig.Designer.cs">
       <DependentUpon>dlgDatabaseConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgInvoiceInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgInvoiceInfo.Designer.cs">
+      <DependentUpon>dlgInvoiceInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -445,6 +455,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgPatientHistory.Designer.cs">
       <DependentUpon>dlgPatientHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgPrintType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgPrintType.Designer.cs">
+      <DependentUpon>dlgPrintType.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgReceiptDetail.cs">
       <SubType>Form</SubType>
@@ -587,6 +603,9 @@
     <EmbeddedResource Include="Dialogs\dlgDatabaseConfig.resx">
       <DependentUpon>dlgDatabaseConfig.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgInvoiceInfo.resx">
+      <DependentUpon>dlgInvoiceInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgLogin.resx">
       <DependentUpon>dlgLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -601,6 +620,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgPatientHistory.resx">
       <DependentUpon>dlgPatientHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgPrintType.resx">
+      <DependentUpon>dlgPrintType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgReceiptDetail.resx">
       <DependentUpon>dlgReceiptDetail.cs</DependentUpon>
@@ -658,11 +680,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Templates\HDGTGT.xls" />
+    <None Include="Templates\HDGTGTTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
     <None Include="Templates\SymptomTemplate.xls" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Bussiness\Bussiness.csproj">
       <Project>{CDA075F2-6E1A-4843-BFA5-44F63C286557}</Project>
@@ -697,6 +718,7 @@
     <Content Include="Controls\Excel\Office\Excel\MetaData\Record Identifier.txt" />
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\Apps-printer-icon.png" />
     <None Include="Resources\invoice-icon %281%29.png" />
     <None Include="Resources\invoice-icon.png" />
     <None Include="Resources\check-icon.png" />

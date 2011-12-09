@@ -249,7 +249,6 @@ namespace MM.Controls
             try
             {
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
-                //ExcelPrintPreview.SetCulturalWithEN_US();
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 1;
 
@@ -288,7 +287,6 @@ namespace MM.Controls
             }
             finally
             {
-                //ExcelPrintPreview.SetCulturalWithCurrent();
                 if (workBook != null)
                 {
                     workBook.Close();

@@ -322,13 +322,13 @@ namespace MM.Controls
 
         private void OnDrawLabel_5x8(Graphics g, int left, int top, LabelInfo labelInfo)
         {
-            //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
             if (labelInfo.FullName.Length <= _maxLenght)
             {
-                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 12);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 28);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 44);
+                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 8);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 24);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 40);
             }
             else
             {
@@ -346,10 +346,10 @@ namespace MM.Controls
                     fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
                 }
 
-                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 8);
-                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 22);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 38);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 54);
+                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 6);
+                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 20);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 36);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 52);
             }
         }
 
