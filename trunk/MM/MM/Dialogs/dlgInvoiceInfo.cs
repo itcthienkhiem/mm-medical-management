@@ -23,6 +23,7 @@ namespace MM.Dialogs
         private double _totalPrice = 0;
         private bool _isPrinted = false;
         private string _invoiceCode = string.Empty;
+        private bool _isView = false;
         #endregion
 
         #region Constructor
@@ -32,6 +33,28 @@ namespace MM.Dialogs
             _drInvoice = drInvoice;
             cboHinhThucThanhToan.SelectedIndex = 0;
             btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
+        }
+
+        public dlgInvoiceInfo(DataRow drInvoice, bool isView)
+        {
+            InitializeComponent();
+            _drInvoice = drInvoice;
+            _isView = isView;
+            cboHinhThucThanhToan.SelectedIndex = 0;
+            btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
+
+            if (_isView)
+            {
+                btnExportInvoice.Visible = false;
+                btnExportAndPrint.Visible = false;
+                btnCancel.Visible = false;
+                btnPrint.Visible = true;
+                btnClose2.Visible = true;
+                txtTenDonVi.ReadOnly = true;
+                txtSoTaiKhoan.ReadOnly = true;
+                cboHinhThucThanhToan.Enabled = false;
+                numVAT.ReadOnly = true;
+            }
         }
         #endregion
 
@@ -69,7 +92,29 @@ namespace MM.Dialogs
         private void DisplayInfo()
         {
             Cursor.Current = Cursors.WaitCursor;
-            GenerateCode();
+            if (_isView)
+            {
+                lbInvoiceCode.Text = string.Format("Số: {0}", _drInvoice["InvoiceCode"].ToString());
+                DateTime dt = Convert.ToDateTime(_drInvoice["InvoiceDate"]);
+                string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
+                string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
+                string strYear = dt.Year.ToString();
+                lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+                txtTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
+                txtSoTaiKhoan.Text = _drInvoice["SoTaiKhoan"].ToString();
+                cboHinhThucThanhToan.SelectedIndex = Convert.ToInt32(_drInvoice["HinhThucThanhToan"]);
+                numVAT.Value = (Decimal)Convert.ToDouble(_drInvoice["VAT"]);
+            }
+            else
+            {
+                GenerateCode();
+                DateTime dt = DateTime.Now;
+                string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
+                string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
+                string strYear = dt.Year.ToString();
+                lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+            }
+            
             lbPatientName.Text = string.Format("Họ tên người mua hàng: {0}", _drInvoice["FullName"].ToString());
             lbAddress.Text = string.Format("Địa chỉ: {0}", _drInvoice["Address"].ToString());
 
@@ -282,6 +327,11 @@ namespace MM.Dialogs
                     numVAT.Text = "0.0";
                 }
             }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint(_drInvoice["InvoiceGUID"].ToString());
         }
         #endregion
     }
