@@ -179,7 +179,6 @@ namespace MM.Controls
                 string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
-                ExcelPrintPreview.SetCulturalWithEN_US();
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A2"].Value = string.Format("Số: {0}", receipt.ReceiptCode);
                 workSheet.Cells["B6"].Value = string.Format("Tên: {0}", receipt.FullName);
@@ -259,7 +258,7 @@ namespace MM.Controls
                 range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
                 range.Value = "Người lập phiếu";
                 range.HorizontalAlignment = HAlign.Center;
-
+                
                 range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
                 range.Value = "Người nộp tiền";
                 range.HorizontalAlignment = HAlign.Left;
@@ -281,7 +280,6 @@ namespace MM.Controls
             }
             finally
             {
-                ExcelPrintPreview.SetCulturalWithCurrent();
                 if (workBook != null)
                 {
                     workBook.Close();
@@ -372,8 +370,11 @@ namespace MM.Controls
 
             foreach (DataRow row in noExportedInvoiceList)
             {
-                
+                dlgInvoiceInfo dlg = new dlgInvoiceInfo(row);
+                dlg.ShowDialog();
             }
+
+            HighlightExportedInvoice();
         }
         #endregion
 

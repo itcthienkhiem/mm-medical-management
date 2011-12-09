@@ -286,7 +286,6 @@ namespace MM.Controls
                 string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
-                ExcelPrintPreview.SetCulturalWithEN_US();
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A2"].Value = string.Format("Số: {0}", receipt.ReceiptCode);
                 workSheet.Cells["B6"].Value = string.Format("Tên: {0}", receipt.FullName);
@@ -388,7 +387,6 @@ namespace MM.Controls
             }
             finally
             {
-                ExcelPrintPreview.SetCulturalWithCurrent();
                 if (workBook != null)
                 {
                     workBook.Close();
