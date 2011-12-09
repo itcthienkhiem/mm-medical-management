@@ -20,29 +20,29 @@ namespace MM.Controls
         private DataTable _dataSource = null;
         //private int _width = 202;
         //private int _height = 168;
-        private int _labelWidth = 36;
-        private int _labelHeight = 19;
-        private int _deltaWidth = 3;
-        private int _deltaHeight = 1;
-        private int _top = 0;
-        private int _left = 8;
-        private int _right = 5;
-        private int _bottom = 5;
+        private float _labelWidth = 36;
+        private float _labelHeight = 19;
+        private float _deltaWidth = 3;
+        private float _deltaHeight = 1;
+        private float _top = 0;
+        private float _left = 8;
+        private float _right = 5;
+        private float _bottom = 5;
         private int _pageSize = 40;
         private int _pageCount = 0;
         private int _labelIndex = 0;
-        private int _solution = 100;
+        private float _solution = 100;
         private List<LabelInfo> _labels = null;
         //private int _widthPxl = 0;
         //private int _heightPxl = 0;
-        private int _labelWidthPxl = 0;
-        private int _labelHeightPxl = 0;
-        private int _deltaWidthPxl = 0;
-        private int _deltaHeightPxl = 0;
-        private int _topPxl = 0;
-        private int _leftPxl = 0;
-        private int _rightPxl = 0;
-        private int bottomPxl = 0;
+        private float _labelWidthPxl = 0;
+        private float _labelHeightPxl = 0;
+        private float _deltaWidthPxl = 0;
+        private float _deltaHeightPxl = 0;
+        private float _topPxl = 0;
+        private float _leftPxl = 0;
+        private float _rightPxl = 0;
+        private float bottomPxl = 0;
         private int _maxRow = 8;
         private int _maxCol = 5;
         private Font _font = new Font("Microsoft Sans Serif", 8);
@@ -242,7 +242,7 @@ namespace MM.Controls
                 _labelWidth = 37;
                 _labelHeight = 25;
                 _deltaWidth = 3;
-                _deltaHeight = 2;
+                _deltaHeight = 1.5f;
                 _top = 0;
                 _left = 5;
                 _right = 5;
@@ -271,7 +271,19 @@ namespace MM.Controls
             }
             else if (ra5x11.Checked)
             {
-
+                _labelWidth = 37;
+                _labelHeight = 12.5f;
+                _deltaWidth = 2;
+                _deltaHeight = 2;
+                _top = 1;
+                _left = 7;
+                _right = 5;
+                _bottom = 5;
+                _pageSize = 55;
+                _maxRow = 11;
+                _maxCol = 5;
+                _font = new Font("Microsoft Sans Serif", 6);
+                _maxLenght = 100;
             }
 
             _labelWidthPxl = (int)Math.Round(((_labelWidth * _solution) / 25.4));
@@ -329,7 +341,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnDrawLabel_1x2(Graphics g, int left, int top, LabelInfo labelInfo)
+        private void OnDrawLabel_1x2(Graphics g, float left, float top, LabelInfo labelInfo)
         {
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
             int deltaLeft = 30;
@@ -363,7 +375,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnDrawLabel_2x4(Graphics g, int left, int top, LabelInfo labelInfo)
+        private void OnDrawLabel_2x4(Graphics g, float left, float top, LabelInfo labelInfo)
         {
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
@@ -398,9 +410,9 @@ namespace MM.Controls
             }
         }
 
-        private void OnDrawLabel_5x6(Graphics g, int left, int top, LabelInfo labelInfo)
+        private void OnDrawLabel_5x6(Graphics g, float left, float top, LabelInfo labelInfo)
         {
-            g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
             if (labelInfo.FullName.Length <= _maxLenght)
             {
@@ -431,7 +443,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnDrawLabel_5x8(Graphics g, int left, int top, LabelInfo labelInfo)
+        private void OnDrawLabel_5x8(Graphics g, float left, float top, LabelInfo labelInfo)
         {
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
@@ -464,9 +476,12 @@ namespace MM.Controls
             }
         }
 
-        private void OnDrawLabel_5x11(Graphics g, int left, int top, LabelInfo labelInfo)
+        private void OnDrawLabel_5x11(Graphics g, float left, float top, LabelInfo labelInfo)
         {
-
+            //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 10);
+            g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 20);
+            g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 30);
         }
         #endregion
 
@@ -498,8 +513,8 @@ namespace MM.Controls
 
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            int left = _leftPxl;
-            int top = _topPxl;
+            float left = _leftPxl;
+            float top = _topPxl;
 
             for (int i = 0; i < _maxCol; i++)
             {
