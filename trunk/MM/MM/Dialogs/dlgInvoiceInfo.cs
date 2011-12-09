@@ -193,8 +193,8 @@ namespace MM.Dialogs
                 if (result.IsOK)
                 {
                     if (!_isPrinted) return true;
-                    else if (OnPrint(invoice.InvoiceGUID.ToString()))
-                        return true;
+                    OnPrint(invoice.InvoiceGUID.ToString());
+                    return true;
                 }
                 else
                 {
