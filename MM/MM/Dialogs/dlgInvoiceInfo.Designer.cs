@@ -38,6 +38,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgInvoiceInfo));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClose2 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnExportAndPrint = new System.Windows.Forms.Button();
             this.btnExportInvoice = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -84,8 +86,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnClose2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -110,6 +110,32 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(708, 38);
             this.panel1.TabIndex = 7;
+            // 
+            // btnClose2
+            // 
+            this.btnClose2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose2.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnClose2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose2.Location = new System.Drawing.Point(367, 6);
+            this.btnClose2.Name = "btnClose2";
+            this.btnClose2.Size = new System.Drawing.Size(75, 25);
+            this.btnClose2.TabIndex = 18;
+            this.btnClose2.Text = "   &Đóng";
+            this.btnClose2.UseVisualStyleBackColor = true;
+            this.btnClose2.Visible = false;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(265, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(97, 25);
+            this.btnPrint.TabIndex = 17;
+            this.btnPrint.Text = "      &In hóa đơn";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Visible = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnExportAndPrint
             // 
@@ -153,7 +179,7 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(204, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(298, 24);
+            this.label1.Size = new System.Drawing.Size(296, 24);
             this.label1.TabIndex = 8;
             this.label1.Text = "HÓA ĐƠN GIÁ TRỊ GIA TĂNG";
             // 
@@ -163,7 +189,7 @@
             this.lbDate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDate.Location = new System.Drawing.Point(262, 37);
             this.lbDate.Name = "lbDate";
-            this.lbDate.Size = new System.Drawing.Size(183, 19);
+            this.lbDate.Size = new System.Drawing.Size(182, 19);
             this.lbDate.TabIndex = 9;
             this.lbDate.Text = "Ngày 08 tháng 12 năm 2011";
             // 
@@ -183,7 +209,7 @@
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(540, 32);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(114, 19);
+            this.label4.Size = new System.Drawing.Size(112, 19);
             this.label4.TabIndex = 11;
             this.label4.Text = "Ký hiệu: AA/11T";
             // 
@@ -239,7 +265,7 @@
             this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(5, 92);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(161, 19);
+            this.label8.Size = new System.Drawing.Size(160, 19);
             this.label8.TabIndex = 14;
             this.label8.Text = "Điện thoại: 08.39115315";
             // 
@@ -259,7 +285,7 @@
             this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(5, 47);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(501, 19);
+            this.label6.Size = new System.Drawing.Size(498, 19);
             this.label6.TabIndex = 12;
             this.label6.Text = "Địa chỉ: Lầu 2, Tòa nhà Miss Áo dài, 21 Nguyễn Trung Ngạn, P. Bến Nghé, Q. 1";
             // 
@@ -279,7 +305,7 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(5, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(375, 19);
+            this.label2.Size = new System.Drawing.Size(373, 19);
             this.label2.TabIndex = 10;
             this.label2.Text = "Đơn vị bán hàng: CÔNG TY CỔ PHẦN VIGOR HEALTH";
             // 
@@ -586,7 +612,7 @@
             this.label14.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(181, 33);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(132, 19);
+            this.label14.Size = new System.Drawing.Size(130, 19);
             this.label14.TabIndex = 19;
             this.label14.Text = "%, Tiền thuế GTGT:";
             // 
@@ -612,7 +638,7 @@
             this.label13.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(6, 32);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(114, 19);
+            this.label13.Size = new System.Drawing.Size(113, 19);
             this.label13.TabIndex = 17;
             this.label13.Text = "Thuế suất GTGT:";
             // 
@@ -630,37 +656,11 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(265, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(97, 25);
-            this.btnPrint.TabIndex = 17;
-            this.btnPrint.Text = "      &In hóa đơn";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Visible = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnClose2
-            // 
-            this.btnClose2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose2.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnClose2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose2.Location = new System.Drawing.Point(367, 6);
-            this.btnClose2.Name = "btnClose2";
-            this.btnClose2.Size = new System.Drawing.Size(75, 25);
-            this.btnClose2.TabIndex = 18;
-            this.btnClose2.Text = "   &Đóng";
-            this.btnClose2.UseVisualStyleBackColor = true;
-            this.btnClose2.Visible = false;
-            // 
             // dlgInvoiceInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(708, 781);
             this.Controls.Add(this.panel8);
