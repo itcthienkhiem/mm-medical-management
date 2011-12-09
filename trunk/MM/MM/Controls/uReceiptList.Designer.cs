@@ -40,8 +40,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgReceipt = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ReceiptCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.receiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +47,8 @@
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExportedInVoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).BeginInit();
@@ -76,6 +76,7 @@
             this.btnExportInvoice.TabIndex = 6;
             this.btnExportInvoice.Text = "      &Xuất hóa đơn";
             this.btnExportInvoice.UseVisualStyleBackColor = true;
+            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
             // 
             // btnPrint
             // 
@@ -167,14 +168,6 @@
             this.dgReceipt.TabIndex = 2;
             this.dgReceipt.DoubleClick += new System.EventHandler(this.dgReceipt_DoubleClick);
             // 
-            // receiptViewBindingSource
-            // 
-            this.receiptViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -238,6 +231,14 @@
             this.IsExportedInVoice.Name = "IsExportedInVoice";
             this.IsExportedInVoice.ReadOnly = true;
             this.IsExportedInVoice.Width = 80;
+            // 
+            // receiptViewBindingSource
+            // 
+            this.receiptViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
             // 
             // uReceiptList
             // 

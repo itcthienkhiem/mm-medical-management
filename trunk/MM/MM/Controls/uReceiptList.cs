@@ -30,7 +30,22 @@ namespace MM.Controls
         #endregion
 
         #region Properties
+        public List<DataRow> CheckedReceiptRows
+        {
+            get
+            {
+                if (dgReceipt.RowCount <= 0) return null;
+                List<DataRow> checkedRows = new List<DataRow>();
+                DataTable dt = dgReceipt.DataSource as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (Boolean.Parse(row["Checked"].ToString()))
+                        checkedRows.Add(row);
+                }
 
+                return checkedRows;
+            }
+        }
         #endregion
 
         #region UI Command
@@ -330,6 +345,36 @@ namespace MM.Controls
             dlgReceiptDetail dlg = new dlgReceiptDetail(drReceipt);
             dlg.ShowDialog();
         }
+
+        private void OnExportInvoice()
+        {
+            List<DataRow> exportedInvoiceList = new List<DataRow>();
+            List<DataRow> noExportedInvoiceList = new List<DataRow>();
+            List<DataRow> checkedRows = CheckedReceiptRows;
+
+            foreach (DataRow row in checkedRows)
+            {
+
+                bool isExported = Convert.ToBoolean(row["IsExportedInvoice"]);
+                if (!isExported)
+                    noExportedInvoiceList.Add(row);
+                else
+                    exportedInvoiceList.Add(row);
+            }
+
+            if (exportedInvoiceList.Count > 0)
+            {
+                MsgBox.Show(Application.ProductName, "Đã có 1 số phiếu thu xuất hóa đơn rồi. Vui lòng kiểm tra lại.", IconType.Information);
+                return;
+            }
+
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất hóa đơn ?") == DialogResult.No) return;
+
+            foreach (DataRow row in noExportedInvoiceList)
+            {
+                
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -356,6 +401,18 @@ namespace MM.Controls
         private void dgReceipt_DoubleClick(object sender, EventArgs e)
         {
             DisplayReceiptDetail();
+        }
+
+        private void btnExportInvoice_Click(object sender, EventArgs e)
+        {
+            if (dgReceipt.RowCount <= 0 ||
+                CheckedReceiptRows == null || CheckedReceiptRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 phiếu thu cần xuất hóa đơn.", IconType.Information);
+                return;
+            }
+
+            OnExportInvoice();
         }
         #endregion
 
