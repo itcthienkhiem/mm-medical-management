@@ -19,6 +19,7 @@ namespace MM.Dialogs
     {
         #region Members
         private DataRow _drReceipt = null;
+        private bool _isExportedInvoice = false;
         #endregion
 
         #region Constructor
@@ -32,7 +33,10 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
-
+        public bool IsExportedInvoice
+        {
+            get { return _isExportedInvoice; }
+        }
         #endregion
 
         #region UI Command
@@ -101,12 +105,27 @@ namespace MM.Dialogs
                 }
             }
         }
+
+        private void OnExportInvoice()
+        {
+            dlgInvoiceInfo dlg = new dlgInvoiceInfo(_drReceipt);
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                _isExportedInvoice = true;
+                btnExportInvoice.Enabled = false;
+            }
+        }
         #endregion
 
         #region Window Event Handlers
         private void btnPrint_Click(object sender, EventArgs e)
         {
             OnPrint();
+        }
+
+        private void btnExportInvoice_Click(object sender, EventArgs e)
+        {
+            OnExportInvoice();
         }
         #endregion
     }

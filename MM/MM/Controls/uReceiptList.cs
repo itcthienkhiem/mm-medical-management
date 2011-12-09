@@ -202,7 +202,11 @@ namespace MM.Controls
 
             DataRow drReceipt = (dgReceipt.SelectedRows[0].DataBoundItem as DataRowView).Row;
             dlgReceiptDetail dlg = new dlgReceiptDetail(drReceipt);
-            dlg.ShowDialog();
+            if (dlg.ShowDialog() == DialogResult.Cancel)
+            {
+                if (dlg.IsExportedInvoice)
+                    HighlightExportedInvoice();
+            }
         }
 
         private void OnExportInvoice()
