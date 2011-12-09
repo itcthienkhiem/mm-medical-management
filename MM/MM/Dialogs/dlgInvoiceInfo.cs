@@ -30,6 +30,7 @@ namespace MM.Dialogs
             InitializeComponent();
             _drInvoice = drInvoice;
             cboHinhThucThanhToan.SelectedIndex = 0;
+            btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
         }
         #endregion
 
