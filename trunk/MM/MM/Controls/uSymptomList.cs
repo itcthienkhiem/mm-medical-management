@@ -12,6 +12,7 @@ using MM.Bussiness;
 using MM.Common;
 using MM.Databasae;
 using MM.Dialogs;
+using MM.Exports;
 using SpreadsheetGear;
 
 namespace MM.Controls
@@ -221,7 +222,7 @@ namespace MM.Controls
             if (checkedRows.Count > 0)
             {
                 string exportFileName = string.Format("{0}\\Temp\\Symptom.xls", Application.StartupPath);
-                if (ExportToExcel(exportFileName, checkedRows))
+                if (ExportExcel.ExportSymptomToExcel(exportFileName, checkedRows))
                     try
                     {
                         if (isPreview)
@@ -239,62 +240,6 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần in.", IconType.Information);
-        }
-
-        private bool ExportToExcel(string exportFileName, List<DataRow> checkedRows)
-        {
-            string excelTemplateName = string.Format("{0}\\Templates\\SymptomTemplate.xls", Application.StartupPath);
-            IWorkbook workBook = null;
-
-            try
-            {
-                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
-                IWorksheet workSheet = workBook.Worksheets[0];
-                int rowIndex = 1;
-
-                foreach (DataRow row in checkedRows)
-                {
-                    string symptom = row["SymptomName"].ToString();
-                    string advice = row["Advice"].ToString();
-                    workSheet.Cells[rowIndex, 0].Value = rowIndex;
-                    workSheet.Cells[rowIndex, 1].Value = symptom.Replace("\r", "").Replace("\t", "");
-                    workSheet.Cells[rowIndex, 2].Value = advice.Replace("\r", "").Replace("\t", "");
-                    rowIndex++;
-                }
-                
-                IRange range = workSheet.Cells[string.Format("A2:C{0}", checkedRows.Count + 1)];
-                range.WrapText = true;
-                range.HorizontalAlignment = HAlign.General;
-                range.VerticalAlignment = VAlign.Top;
-                range.Borders.Color = Color.Black;
-                range.Borders.LineStyle = LineStyle.Continuous;
-                range.Borders.Weight = BorderWeight.Thin;
-
-                range = workSheet.Cells[string.Format("A2:A{0}", checkedRows.Count + 1)];
-                range.HorizontalAlignment = HAlign.Center;
-                range.VerticalAlignment = VAlign.Top;
-
-                string path = string.Format("{0}\\Temp", Application.StartupPath);
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-
-                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
-                return false;
-            }
-            finally
-            {
-                if (workBook != null)
-                {
-                    workBook.Close();
-                    workBook = null;
-                }
-            }
-
-            return true;
         }
         #endregion
        

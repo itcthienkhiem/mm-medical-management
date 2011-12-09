@@ -10,6 +10,7 @@ using System.IO;
 using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
+using MM.Exports;
 using SpreadsheetGear;
 using SpreadsheetGear.Windows.Forms;
 
@@ -104,165 +105,6 @@ namespace MM.Dialogs
             }
         }
 
-        private bool ExportToExcel(string exportFileName, string invoiceGUID, string lien)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            IWorkbook workBook = null;
-
-            try
-            {
-                Result result = InvoiceBus.GetInvoice(invoiceGUID);
-                if (!result.IsOK)
-                {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.GetInvoice"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.GetInvoice"));
-                    return false;
-                }
-
-                InvoiceView invoice = result.QueryResult as InvoiceView;
-                if (invoice == null) return false;
-
-                result = InvoiceBus.GetInvoiceDetailList(invoice.ReceiptGUID.ToString());
-                if (!result.IsOK)
-                {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.GetInvoiceDetailList"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.GetInvoiceDetailList"));
-                    return false;
-                }
-
-                string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
-
-                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
-                IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["E3"].Value = string.Format("Số: {0}", invoice.InvoiceCode);
-
-                DateTime dt = DateTime.Now;
-                string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
-                string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
-                string strYear = dt.Year.ToString();
-
-                workSheet.Cells["A3"].Value = lien;
-                workSheet.Cells["A4"].Value = string.Format("                                   Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
-                workSheet.Cells["A11"].Value = string.Format("  Họ tên người mua hàng: {0}", invoice.FullName);
-                workSheet.Cells["A12"].Value = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
-                workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", invoice.Address);
-                workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", invoice.SoTaiKhoan);
-                workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", invoice.HinhThucThanhToanStr);
-                
-                IRange range = null;
-                DataTable dataSource = result.QueryResult as DataTable;
-                foreach (DataRow row in dataSource.Rows)
-                {
-                    range = workSheet.Cells["A18"].EntireRow;
-                    range.Insert(InsertShiftDirection.Down);
-                }
-
-                int no = 1;
-                int rowIndex = 17;
-                double totalPrice = 0;
-                foreach (DataRow row in dataSource.Rows)
-                {
-                    string serviceName = row["Name"].ToString();
-                    string donViTinh = row["DonViTinh"].ToString();
-                    int soLuong = Convert.ToInt32(row["SoLuong"]);
-                    int donGia = Convert.ToInt32(row["DonGia"]);
-                    double thanhTien = Convert.ToDouble(row["ThanhTien"]);
-                    totalPrice += thanhTien;
-
-                    range = workSheet.Cells[rowIndex, 0];
-                    range.Value = no++;
-                    range.HorizontalAlignment = HAlign.Center;
-                    range.Font.Bold = false;
-
-                    range = workSheet.Cells[rowIndex, 1];
-                    range.Value = serviceName;
-                    range.HorizontalAlignment = HAlign.Left;
-                    range.Font.Bold = false;
-
-                    range = workSheet.Cells[rowIndex, 2];
-                    range.Value = donViTinh;
-                    range.HorizontalAlignment = HAlign.Center;
-                    range.Font.Bold = false;
-
-                    range = workSheet.Cells[rowIndex, 3];
-                    range.Value = soLuong;
-                    range.HorizontalAlignment = HAlign.Right;
-                    range.Font.Bold = false;
-
-                    range = workSheet.Cells[rowIndex, 4];
-                    if (donGia > 0)
-                        range.Value = donGia.ToString("#,###");
-                    else
-                        range.Value = donGia.ToString();
-
-                    range.HorizontalAlignment = HAlign.Right;
-                    range.Font.Bold = false;
-
-                    range = workSheet.Cells[rowIndex, 5];
-                    if (thanhTien > 0)
-                        range.Value = thanhTien.ToString("#,###");
-                    else
-                        range.Value = thanhTien.ToString();
-
-                    range.HorizontalAlignment = HAlign.Right;
-                    range.Font.Bold = false;
-
-                    rowIndex++;
-                }
-
-                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
-                if (totalPrice > 0)
-                    range.Value = totalPrice.ToString("#,###");
-                else
-                    range.Value = totalPrice.ToString();
-
-                rowIndex++;
-                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                range.Value = string.Format("  Thuế suất GTGT: {0}%, Tiền thuế GTGT:", invoice.VAT);
-
-                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
-                double vat = (invoice.VAT.Value * totalPrice) / 100;
-                vat = Math.Round(vat + 0.05);
-                if (vat > 0)
-                    range.Value = vat.ToString("#,###");
-                else
-                    range.Value = vat.ToString();
-
-                rowIndex++;
-                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
-                double totalPayment = totalPrice + vat;
-                if (totalPayment > 0)
-                    range.Value =totalPayment.ToString("#,###");
-                else
-                    range.Value = totalPayment.ToString();
-
-                rowIndex++;
-                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                range.Value = string.Format("  Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment).ToUpper());
-
-                string path = string.Format("{0}\\Temp", Application.StartupPath);
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-
-                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
-                return false;
-            }
-            finally
-            {
-                if (workBook != null)
-                {
-                    workBook.Close();
-                    workBook = null;
-                }
-            }
-
-            return true;
-        }
-
         private bool OnPrint(string invoiceGUID)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -274,7 +116,7 @@ namespace MM.Dialogs
                 {
                     if (dlg.Lien1)
                     {
-                        if (ExportToExcel(exportFileName, invoiceGUID, "                                   Liên 1: Lưu"))
+                        if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                                   Liên 1: Lưu"))
                         {
                             try
                             {
@@ -292,7 +134,7 @@ namespace MM.Dialogs
 
                     if (dlg.Lien2)
                     {
-                        if (ExportToExcel(exportFileName, invoiceGUID, "                                   Liên 2: Giao người mua"))
+                        if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                                   Liên 2: Giao người mua"))
                         {
                             try
                             {
@@ -310,7 +152,7 @@ namespace MM.Dialogs
 
                     if (dlg.Lien3)
                     {
-                        if (ExportToExcel(exportFileName, invoiceGUID, "                                   Liên 3: Nội bộ"))
+                        if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                                   Liên 3: Nội bộ"))
                         {
                             try
                             {
