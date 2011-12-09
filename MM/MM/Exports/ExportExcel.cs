@@ -113,7 +113,7 @@ namespace MM.Exports
 
                 rowIndex += 2;
                 range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
-                range.Value = "Bằng chữ:";
+                range.Value = string.Format("Bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPrice));
                 range.Font.Bold = true;
 
                 range = workSheet.Cells[string.Format("B{0}:F{0}", rowIndex + 1)];
