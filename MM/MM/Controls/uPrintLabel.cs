@@ -326,9 +326,9 @@ namespace MM.Controls
 
             if (labelInfo.FullName.Length <= _maxLenght)
             {
-                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 8);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 24);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 40);
+                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 16);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 32);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 48);
             }
             else
             {
@@ -346,10 +346,10 @@ namespace MM.Controls
                     fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
                 }
 
-                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 6);
-                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 20);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 36);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 52);
+                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 10);
+                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 24);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 40);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 56);
             }
         }
 
