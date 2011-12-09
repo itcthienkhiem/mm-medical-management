@@ -205,6 +205,19 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hóa đơn cần in.", IconType.Information);
         }
+
+        private void OnDisplayInvoiceInfo()
+        {
+            if (dgInvoice.SelectedRows == null || dgInvoice.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 hóa đơn.", IconType.Information);
+                return;
+            }
+
+            DataRow drInvoice = (dgInvoice.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgInvoiceInfo dlg = new dlgInvoiceInfo(drInvoice, true);
+            dlg.ShowDialog();
+        }
         #endregion
 
         #region Window Event Handlers
@@ -227,6 +240,11 @@ namespace MM.Controls
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void dgInvoice_DoubleClick(object sender, EventArgs e)
+        {
+            OnDisplayInvoiceInfo();
+        }
         #endregion
 
         #region Working Thread
@@ -248,5 +266,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

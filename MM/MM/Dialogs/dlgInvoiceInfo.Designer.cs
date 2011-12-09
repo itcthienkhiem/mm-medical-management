@@ -84,6 +84,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnClose2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -98,6 +100,8 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnClose2);
+            this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnExportAndPrint);
             this.panel1.Controls.Add(this.btnExportInvoice);
             this.panel1.Controls.Add(this.btnCancel);
@@ -626,6 +630,32 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(265, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(97, 25);
+            this.btnPrint.TabIndex = 17;
+            this.btnPrint.Text = "      &In hóa đơn";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Visible = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnClose2
+            // 
+            this.btnClose2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose2.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnClose2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose2.Location = new System.Drawing.Point(367, 6);
+            this.btnClose2.Name = "btnClose2";
+            this.btnClose2.Size = new System.Drawing.Size(75, 25);
+            this.btnClose2.TabIndex = 18;
+            this.btnClose2.Text = "   &Đóng";
+            this.btnClose2.UseVisualStyleBackColor = true;
+            this.btnClose2.Visible = false;
+            // 
             // dlgInvoiceInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -717,6 +747,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
         private System.Windows.Forms.PrintDialog _printDialog;
+        private System.Windows.Forms.Button btnClose2;
+        private System.Windows.Forms.Button btnPrint;
 
 
     }
