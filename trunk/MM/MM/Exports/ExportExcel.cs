@@ -70,28 +70,31 @@ namespace MM.Exports
 
                     workSheet.Cells[rowIndex, 2].Value = serviceName;
 
-                    if (price > 0)
-                        workSheet.Cells[rowIndex, 3].Value = price.ToString("#,###");
-                    else
-                        workSheet.Cells[rowIndex, 3].Value = price.ToString();
-
+                    workSheet.Cells[rowIndex, 3].Value = 1;
                     workSheet.Cells[rowIndex, 3].HorizontalAlignment = HAlign.Right;
 
-                    if (disCount > 0)
-                        workSheet.Cells[rowIndex, 4].Value = disCount.ToString("#,###");
+                    if (price > 0)
+                        workSheet.Cells[rowIndex, 4].Value = price.ToString("#,###");
                     else
-                        workSheet.Cells[rowIndex, 4].Value = disCount.ToString();
+                        workSheet.Cells[rowIndex, 4].Value = price.ToString();
 
                     workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
 
-                    if (amount > 0)
-                        workSheet.Cells[rowIndex, 5].Value = amount.ToString("#,###");
+                    if (disCount > 0)
+                        workSheet.Cells[rowIndex, 5].Value = disCount.ToString("#,###");
                     else
-                        workSheet.Cells[rowIndex, 5].Value = amount.ToString();
+                        workSheet.Cells[rowIndex, 5].Value = disCount.ToString();
 
                     workSheet.Cells[rowIndex, 5].HorizontalAlignment = HAlign.Right;
 
-                    range = workSheet.Cells[string.Format("B{0}:F{0}", rowIndex + 1)];
+                    if (amount > 0)
+                        workSheet.Cells[rowIndex, 6].Value = amount.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 6].Value = amount.ToString();
+
+                    workSheet.Cells[rowIndex, 6].HorizontalAlignment = HAlign.Right;
+
+                    range = workSheet.Cells[string.Format("B{0}:G{0}", rowIndex + 1)];
                     range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dash;
                     range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
 
@@ -102,7 +105,7 @@ namespace MM.Exports
                 range.Value = "Tổng cộng:";
                 range.Font.Bold = true;
 
-                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
                 if (totalPrice > 0)
                     range.Value = string.Format("{0} VNĐ", totalPrice.ToString("#,###"));
                 else
@@ -116,7 +119,7 @@ namespace MM.Exports
                 range.Value = string.Format("Bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPrice));
                 range.Font.Bold = true;
 
-                range = workSheet.Cells[string.Format("B{0}:F{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("B{0}:G{0}", rowIndex + 1)];
                 range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dash;
                 range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
 
@@ -127,7 +130,7 @@ namespace MM.Exports
 
                 range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
                 range.Value = "Người nộp tiền";
-                range.HorizontalAlignment = HAlign.Center;
+                range.HorizontalAlignment = HAlign.Left;
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
                 range.Value = "Thu ngân";
