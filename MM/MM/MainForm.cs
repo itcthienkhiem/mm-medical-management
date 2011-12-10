@@ -98,6 +98,9 @@ namespace MM
                         this.Close();
                     }
                 }
+
+                if (!File.Exists(Global.PrintLabelConfigPath))
+                    Global.PrintLabelConfig.Serialize(Global.PrintLabelConfigPath);
             };
 
             if (InvokeRequired) BeginInvoke(method);
