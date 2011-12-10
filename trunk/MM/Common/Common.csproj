@@ -114,6 +114,7 @@
     <Compile Include="MsgBoxType.cs" />
     <Compile Include="PaymentType.cs" />
     <Compile Include="Pencil.cs" />
+    <Compile Include="PrintLabelConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="RijndaelCrypto.cs" />

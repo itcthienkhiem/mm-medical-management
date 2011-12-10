@@ -204,6 +204,7 @@ namespace MM.Controls
         private void InitData()
         {
             _flag = false;
+            Global.PrintLabelConfig.Deserialize(Global.PrintLabelConfigPath);
 
             if (ra1x2.Checked)
             {
@@ -211,8 +212,8 @@ namespace MM.Controls
                 _labelHeight = 80;
                 _deltaWidth = 0;
                 _deltaHeight = 10;
-                _top = 12;
-                _left = 45;
+                _top = Global.PrintLabelConfig.Top_1x2;
+                _left = Global.PrintLabelConfig.Left_1x2;
                 _right = 45;
                 _bottom = 12;
                 _pageSize = 2;
@@ -227,8 +228,8 @@ namespace MM.Controls
                 _labelHeight = 37;
                 _deltaWidth = 3;
                 _deltaHeight = 3;
-                _top = 0;
-                _left = 8;
+                _top = Global.PrintLabelConfig.Top_2x4;
+                _left = Global.PrintLabelConfig.Left_2x4;
                 _right = 8;
                 _bottom = 0;
                 _pageSize = 8;
@@ -243,8 +244,8 @@ namespace MM.Controls
                 _labelHeight = 25;
                 _deltaWidth = 3;
                 _deltaHeight = 1.5f;
-                _top = 0;
-                _left = 5;
+                _top = Global.PrintLabelConfig.Top_5x6;
+                _left = Global.PrintLabelConfig.Left_5x6;
                 _right = 5;
                 _bottom = 5;
                 _pageSize = 30;
@@ -259,8 +260,8 @@ namespace MM.Controls
                 _labelHeight = 19;
                 _deltaWidth = 3;
                 _deltaHeight = 1;
-                _top = 0;
-                _left = 8;
+                _top = Global.PrintLabelConfig.Top_5x8;
+                _left = Global.PrintLabelConfig.Left_5x8;
                 _right = 5;
                 _bottom = 5;
                 _pageSize = 40;
@@ -275,8 +276,8 @@ namespace MM.Controls
                 _labelHeight = 12.5f;
                 _deltaWidth = 2;
                 _deltaHeight = 2;
-                _top = 1;
-                _left = 7;
+                _top = Global.PrintLabelConfig.Top_5x11;
+                _left = Global.PrintLabelConfig.Left_5x11;
                 _right = 5;
                 _bottom = 5;
                 _pageSize = 55;
