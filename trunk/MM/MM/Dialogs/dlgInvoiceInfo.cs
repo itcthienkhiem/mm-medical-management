@@ -51,6 +51,7 @@ namespace MM.Dialogs
                 btnPrint.Visible = true;
                 btnClose2.Visible = true;
                 txtTenDonVi.ReadOnly = true;
+                //txtAddress.ReadOnly = true;
                 txtSoTaiKhoan.ReadOnly = true;
                 cboHinhThucThanhToan.Enabled = false;
                 numVAT.ReadOnly = true;
@@ -116,7 +117,8 @@ namespace MM.Dialogs
             }
             
             lbPatientName.Text = string.Format("Họ tên người mua hàng: {0}", _drInvoice["FullName"].ToString());
-            lbAddress.Text = string.Format("Địa chỉ: {0}", _drInvoice["Address"].ToString());
+            //lbAddress.Text = string.Format("Địa chỉ: {0}", _drInvoice["Address"].ToString());
+            txtAddress.Text = string.Format("{0}", _drInvoice["Address"].ToString());
 
             Result result = InvoiceBus.GetInvoiceDetailList(_drInvoice["ReceiptGUID"].ToString());
             if (result.IsOK)
