@@ -555,9 +555,33 @@ namespace MM.Controls
                 return false;
             }
         }
-
+        private bool CheckTemplate(IWorksheet ws, ref string message)
+        {
+            string s = string.Format("Sheet {0} không đúng định dạng nên không được nhập", ws.Name) + System.Environment.NewLine;
+            try
+            {
+                if (ws.Cells[0, 0].Value != null && ws.Cells[0, 0].Value.ToString().ToLower() != "code" ||
+                        ws.Cells[0, 1].Value != null && ws.Cells[0, 1].Value.ToString().ToLower() != "fullname" ||
+                        ws.Cells[0, 2].Value != null && ws.Cells[0, 2].Value.ToString().ToLower() != "name" ||
+                        ws.Cells[0, 3].Value != null && ws.Cells[0, 3].Value.ToString().ToLower() != "dob" ||
+                        ws.Cells[0, 4].Value != null && ws.Cells[0, 4].Value.ToString().ToLower() != "sex" ||
+                        ws.Cells[0, 5].Value != null && ws.Cells[0, 5].Value.ToString().ToLower() != "mobile")
+                {
+                    message += s;
+                    return false;
+                }
+                return true;
+            }
+            catch(Exception ex)
+            {
+                message += s;
+                Utility.WriteToTraceLog(ex.Message);
+                return false;
+            }
+        }
         private void ImportPatientFromExcel()
         {
+            string message="Nhập dữ liệu từ Excel hoàn tất." + System.Environment.NewLine;
             Cursor.Current = Cursors.WaitCursor;
             try
             {
@@ -567,103 +591,116 @@ namespace MM.Controls
                     
                     foreach (IWorksheet sheet in book.Worksheets)
                     {
-                        int RowCount = sheet.UsedRange.RowCount + 1;
-                        int ColumnCount = sheet.UsedRange.ColumnCount + 1;
-                        for (int i = 1; i < RowCount; i++)
+                        if(CheckTemplate(sheet, ref message))
                         {
-                            Contact ct = new Contact();
-                            Patient p = new Patient();
-                            PatientHistory ph = new PatientHistory();
-                            string sCode = "VGH";
-                            for (int j = 0; j < ColumnCount; j++)
+                            int RowCount = sheet.UsedRange.RowCount + 1;
+                            int ColumnCount = sheet.UsedRange.ColumnCount + 1;
+                            for (int i = 1; i < RowCount; i++)
                             {
-                                string curCellValue = string.Empty;
-                                if (sheet.Cells[i, j].Value != null)
-                                    curCellValue = sheet.Cells[i, j].Value.ToString().Trim();
-
-                                //process NULL text in excel 
-                                if (curCellValue.ToUpper() == "NULL")
-                                    curCellValue = "";
-
-                                //process "'" character
-                                curCellValue = curCellValue.Replace("'", "''");
-
-                                curCellValue = Utility.ConvertVNI2Unicode(curCellValue);
-                                if (sheet.Cells[0, j].Value != null && sheet.Cells[0, j].Value.ToString().Trim() != null)
+                                Contact ct = new Contact();
+                                Patient p = new Patient();
+                                PatientHistory ph = new PatientHistory();
+                                string sCode = "VGH";
+                                for (int j = 0; j < ColumnCount; j++)
                                 {
-                                    switch (sheet.Cells[0, j].Value.ToString().Trim().ToLower())
+                                    string curCellValue = string.Empty;
+                                    if (sheet.Cells[i, j] != null && sheet.Cells[i, j].Value != null)
+                                        curCellValue = sheet.Cells[i, j].Value.ToString().Trim();
+
+                                    //process NULL text in excel 
+                                    if (curCellValue.ToUpper() == "NULL")
+                                        curCellValue = "";
+
+                                    //process "'" character
+                                    curCellValue = curCellValue.Replace("'", "''");
+
+                                    curCellValue = Utility.ConvertVNI2Unicode(curCellValue);
+                                    if (sheet.Cells[0, j].Value != null && sheet.Cells[0, j].Value.ToString().Trim() != null)
                                     {
-                                        case "surname":
-                                        case "sirname":
-                                            ct.SurName = curCellValue;
-                                            break;
+                                        switch (sheet.Cells[0, j].Value.ToString().Trim().ToLower())
+                                        {
+                                            case "surname":
+                                            case "sirname":
+                                                ct.SurName = curCellValue;
+                                                break;
 
-                                        case "firstname":
-                                        case "1st name":
-                                        case "first name":
-                                            ct.FirstName = curCellValue;
-                                            break;
+                                            case "firstname":
+                                            case "1st name":
+                                            case "first name":
+                                                ct.FirstName = curCellValue;
+                                                break;
 
-                                        case "fullname":
-                                        case "full name":
-                                            string fn = curCellValue;
-                                            string surName = string.Empty;
-                                            string firstName = string.Empty;
-                                            Utility.GetSurNameFirstNameFromFullName(fn, ref surName, ref firstName);
-                                            ct.SurName = surName;
-                                            ct.FirstName = firstName;
-                                            ct.FullName = curCellValue;
-                                            break;
+                                            case "fullname":
+                                            case "full name":
+                                                string fn = curCellValue;
+                                                string surName = string.Empty;
+                                                string firstName = string.Empty;
+                                                Utility.GetSurNameFirstNameFromFullName(fn, ref surName, ref firstName);
+                                                ct.SurName = surName;
+                                                ct.FirstName = firstName;
+                                                ct.FullName = curCellValue;
+                                                break;
 
-                                        case "birthday":
-                                        case "date of birth":
-                                        case "dob":
-                                            string dob = curCellValue;
-                                            ct.DobStr = dob;
-                                            DateTime dt = new DateTime();
-                                            if (DateTime.TryParse(dob, out dt))
-                                                ct.Dob = dt;
-                                            break;
+                                            case "birthday":
+                                            case "date of birth":
+                                            case "dob":
+                                                string dob = curCellValue;
+                                                ct.DobStr = dob;
+                                                DateTime dt = new DateTime();
+                                                if (DateTime.TryParse(dob, out dt))
+                                                    ct.Dob = dt;
+                                                break;
 
-                                        case "gender":
-                                        case "sex":
-                                            string s = curCellValue.ToLower();
-                                            if (s == "nam" || s == "male" || s == "m")
-                                                ct.Gender = (byte)Gender.Male;
-                                            else
-                                                ct.Gender = (byte)Gender.Female;
-                                            break;
-                                       
-                                        case "code":
-                                        case "companycode":
-                                            if(curCellValue!=string.Empty)
-                                                sCode = curCellValue;
-                                            break;
-                                        default:
-                                            break;
+                                            case "gender":
+                                            case "sex":
+                                                string s = curCellValue.ToLower();
+                                                if (s == "nam" || s == "male" || s == "m")
+                                                    ct.Gender = (byte)Gender.Male;
+                                                else
+                                                {
+                                                    ct.Gender = (byte)Gender.Female;
+                                                    if (s == "mf")
+                                                    {
+                                                        ph.Tinh_Trang_Gia_Dinh = "Đã kết hôn";
+                                                    }
+                                                }
+                                                break;
+
+                                            case "code":
+                                            case "companycode":
+                                                if (curCellValue != string.Empty)
+                                                    sCode = curCellValue;
+                                                break;
+                                            case "mobile":
+                                                if (curCellValue != string.Empty)
+                                                    ct.Mobile = curCellValue;
+                                                break;
+                                            default:
+                                                break;
+                                        }
                                     }
+
                                 }
-
-                            }
-                            //add patient to database only if they have surname and firstname
-                            if (ct.FirstName!= null && ct.FirstName != string.Empty && ct.SurName!=null && ct.SurName != string.Empty & ct.Gender.HasValue)
-                            {
-                                if (ct.FullName==null || ct.FullName == string.Empty)
-                                    ct.FullName = ct.SurName + " " + ct.FirstName;
-                                ct.Source = Path.GetFileName(_fileName);
-                                if (!IsPatientExist(ct.FullName, ct.DobStr, ct.Gender.Value, ct.Source))
+                                //add patient to database only if they have surname and firstname
+                                if (ct.FirstName != null && ct.FirstName != string.Empty && ct.SurName != null && ct.SurName != string.Empty & ct.Gender.HasValue)
                                 {
-                                    ct.CreatedBy = Guid.Parse(Global.UserGUID);
-                                    ct.CreatedDate = DateTime.Now;
-                                    int iCount = GetPatientQuantity();
-                                    iCount++;
-                                    p.FileNum = Utility.GetCode(sCode, iCount, 5); 
-
-                                    Result result = PatientBus.InsertPatient(ct, p, ph);
-                                    if (!result.IsOK)
+                                    if (ct.FullName == null || ct.FullName == string.Empty)
+                                        ct.FullName = ct.SurName + " " + ct.FirstName;
+                                    ct.Source = Path.GetFileName(_fileName);
+                                    if (!IsPatientExist(ct.FullName, ct.DobStr, ct.Gender.Value, ct.Source))
                                     {
-                                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.InsertPatient"), IconType.Error);
-                                        Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.InsertPatient"));
+                                        ct.CreatedBy = Guid.Parse(Global.UserGUID);
+                                        ct.CreatedDate = DateTime.Now;
+                                        int iCount = GetPatientQuantity();
+                                        iCount++;
+                                        p.FileNum = Utility.GetCode(sCode, iCount, 5);
+
+                                        Result result = PatientBus.InsertPatient(ct, p, ph);
+                                        if (!result.IsOK)
+                                        {
+                                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.InsertPatient"), IconType.Error);
+                                            Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.InsertPatient"));
+                                        }
                                     }
                                 }
                             }
@@ -671,7 +708,7 @@ namespace MM.Controls
                     }
                 }
 
-                MsgBox.Show(Application.ProductName, "Nhập dữ liệu từ Excel hoàn tất.", IconType.Information);
+                MsgBox.Show(Application.ProductName, message, IconType.Information);
                 OnDisplayPatientList();
             }
             catch (Exception ex)
