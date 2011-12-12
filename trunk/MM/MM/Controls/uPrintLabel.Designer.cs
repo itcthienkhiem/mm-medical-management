@@ -63,7 +63,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this._pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).BeginInit();
@@ -385,10 +384,6 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // _pageSetupDialog
-            // 
-            this._pageSetupDialog.Document = this._printDocument;
-            // 
             // uPrintLabel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -433,7 +428,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dobStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
-        private System.Windows.Forms.PageSetupDialog _pageSetupDialog;
         private System.Windows.Forms.RadioButton ra5x11;
         private System.Windows.Forms.RadioButton ra5x8;
         private System.Windows.Forms.RadioButton ra5x6;

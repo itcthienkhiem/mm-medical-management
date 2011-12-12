@@ -204,6 +204,12 @@ namespace MM.Controls
         private void InitData()
         {
             _flag = false;
+            _printDocument = new System.Drawing.Printing.PrintDocument();
+            _printDocument.BeginPrint += new System.Drawing.Printing.PrintEventHandler(_printDocument_BeginPrint);
+            _printDocument.EndPrint += new System.Drawing.Printing.PrintEventHandler(_printDocument_EndPrint);
+            _printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(_printDocument_PrintPage);
+            _printDialog.Document = _printDocument;
+            _printPreviewDialog.Document = _printDocument;
             Global.PrintLabelConfig.Deserialize(Global.PrintLabelConfigPath);
 
             if (ra1x2.Checked)
