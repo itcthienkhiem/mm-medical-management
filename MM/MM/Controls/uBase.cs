@@ -81,7 +81,7 @@ namespace MM.Controls
 
         protected void HideWaiting()
         {
-            MethodInvoker method = delegate
+            /*MethodInvoker method = delegate
             {
                 if (_dlgWaiting != null)
                 {
@@ -93,7 +93,18 @@ namespace MM.Controls
             if (InvokeRequired)
                 BeginInvoke(method);
             else
-                method.Invoke();
+                method.Invoke();*/
+
+           
+
+            this.Invoke(new MethodInvoker(delegate()
+            {
+                if (_dlgWaiting != null)
+                {
+                    _dlgWaiting.Close();
+                    _dlgWaiting = null;
+                }
+            }));
         }
         #endregion
     }

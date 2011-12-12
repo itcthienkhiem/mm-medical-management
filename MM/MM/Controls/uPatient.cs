@@ -18,6 +18,7 @@ namespace MM.Controls
     {
         #region Members
         private object _patientRow = null;
+        private bool _isCallDisplayInfo = false;
         #endregion
 
         #region Constructor
@@ -26,6 +27,12 @@ namespace MM.Controls
             InitializeComponent();
             _uServiceHistory.OnServiceHistoryChanged += new ServiceHistoryChangedHandler(_uServiceHistory_OnServiceHistoryChanged);
             _uDailyServiceHistory.OnServiceHistoryChanged += new ServiceHistoryChangedHandler(_uServiceHistory_OnServiceHistoryChanged);
+            this.HandleCreated += new EventHandler(uPatient_HandleCreated);
+        }
+
+        private void uPatient_HandleCreated(object sender, EventArgs e)
+        {
+            DisplayInfo();
         }
         #endregion
 
@@ -45,6 +52,14 @@ namespace MM.Controls
         #region UI Command
         public void DisplayInfo()
         {
+            if (!this.IsHandleCreated)
+            {
+                _isCallDisplayInfo = true;
+                return;
+            }
+            else
+                _isCallDisplayInfo = false;
+
             if (_patientRow == null) return;
 
             DataRow row = _patientRow as DataRow;
@@ -61,10 +76,10 @@ namespace MM.Controls
             txtFullAddress.Text ="Địa chỉ: " + row["Address"].ToString();
             txtThuocDiUng.Text = row["Thuoc_Di_Ung"].ToString();
 
+            DisplayCheckListAsThread();
+
             _uServiceHistory.DisplayAsThread();
             _uDailyServiceHistory.DisplayAsThread();
-
-            DisplayCheckListAsThread();
         }
 
         public void DisplayCheckListAsThread()
@@ -126,7 +141,7 @@ namespace MM.Controls
         #region Window Event Handlers
         private void uPatient_Load(object sender, EventArgs e)
         {
-
+            int i = 0;
         }
 
         private void _uServiceHistory_OnServiceHistoryChanged()
