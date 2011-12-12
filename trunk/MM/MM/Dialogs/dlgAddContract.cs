@@ -40,6 +40,9 @@ namespace MM.Dialogs
             InitializeComponent();
             InitData();
             _isNew = false;
+            btnDSNVChuaKham.Visible = true;
+            btnDSNVChuaKhamDu.Visible = true;
+            btnDSNVKhamDu.Visible = true;
             this.Text = "Sua hop dong";
             DisplayInfo(drContract);
         }
@@ -508,6 +511,21 @@ namespace MM.Dialogs
         {
             OnDisplayCheckList();
         }
+
+        private void btnDSNVChuaKham_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDSNVChuaKhamDu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDSNVKhamDu_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Working Thread
@@ -546,5 +564,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
