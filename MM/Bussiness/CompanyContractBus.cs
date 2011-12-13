@@ -140,6 +140,35 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetDanhSachNhanVien(string contractGUID, int type)
+        {
+            Result result = null;
+
+            try
+            {
+                string spName = "spGetDanhSachNhanVien";
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                SqlParameter param = new SqlParameter("@ContractGUID", contractGUID);
+                sqlParams.Add(param);
+                param = new SqlParameter("@Type", type);
+                sqlParams.Add(param);
+
+                return ExcuteQuery(spName, sqlParams);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result DeleteContract(List<string> keys)
         {
             Result result = new Result();

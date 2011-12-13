@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using MM.Common;
 using MM.Bussiness;
@@ -29,17 +30,78 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
-        private void DisplayInfo()
+        private void OnDisplayInfo()
         {
-            Cursor.Current = Cursors.WaitCursor;
+            Result result = CompanyContractBus.GetDanhSachNhanVien(_contractGUID, _type);
+            if (result.IsOK)
+            {
+                MethodInvoker method = delegate
+                {
+                    dgDSNV.DataSource = result.QueryResult;
+                    RefreshNo();
+                };
 
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetDanhSachNhanVien"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetDanhSachNhanVien"));
+            }
+        }
+
+        private void RefreshNo()
+        {
+            int index = 1;
+            foreach (DataGridViewRow row in dgDSNV.Rows)
+            {
+                row.Cells["STT"].Value = index++;
+            }
+        }
+
+        private void DisplayInfoAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayInfoProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
         }
         #endregion
 
         #region Window Event Handlers
         private void dlgDanhSachNhanVien_Load(object sender, EventArgs e)
         {
-            DisplayInfo();
+            DisplayInfoAsThread();
+        }
+        #endregion
+
+        #region Working Thread
+        private void OnDisplayInfoProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                OnDisplayInfo();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(this.Text, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
         }
         #endregion
     }

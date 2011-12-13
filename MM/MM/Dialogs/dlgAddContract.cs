@@ -514,17 +514,20 @@ namespace MM.Dialogs
 
         private void btnDSNVChuaKham_Click(object sender, EventArgs e)
         {
-
+            dlgDanhSachNhanVien dlg = new dlgDanhSachNhanVien(_contract.CompanyContractGUID.ToString(), 0);
+            dlg.ShowDialog();
         }
 
         private void btnDSNVChuaKhamDu_Click(object sender, EventArgs e)
         {
-
+            dlgDanhSachNhanVien dlg = new dlgDanhSachNhanVien(_contract.CompanyContractGUID.ToString(), 1);
+            dlg.ShowDialog();
         }
 
         private void btnDSNVKhamDu_Click(object sender, EventArgs e)
         {
-
+            dlgDanhSachNhanVien dlg = new dlgDanhSachNhanVien(_contract.CompanyContractGUID.ToString(), 2);
+            dlg.ShowDialog();
         }
         #endregion
 
