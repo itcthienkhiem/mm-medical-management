@@ -70,7 +70,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} AND ServiceGUID NOT IN (SELECT L.ServiceGUID FROM CompanyCheckList L, ContractMember M WHERE M.ContractMemberGUID = L.ContractMemberGUID AND M.companyMemberGUID = '{1}' AND L.Status = {0}) ORDER BY Code", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} AND ServiceGUID NOT IN (SELECT L.ServiceGUID FROM CompanyCheckList L, ContractMember M WHERE M.ContractMemberGUID = L.ContractMemberGUID AND M.companyMemberGUID = '{1}' AND L.Status = {0}) ORDER BY Name", 
                     (byte)Status.Actived, companyMemberGUID);
                 return ExcuteQuery(query);
             }
