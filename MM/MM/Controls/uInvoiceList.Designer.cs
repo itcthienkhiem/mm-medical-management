@@ -41,8 +41,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgInvoice = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.invoiceViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.invoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,7 +52,6 @@
             this.soTaiKhoanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invoiceViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).BeginInit();
@@ -160,6 +160,14 @@
             this.dgInvoice.TabIndex = 4;
             this.dgInvoice.DoubleClick += new System.EventHandler(this.dgInvoice_DoubleClick);
             // 
+            // invoiceViewBindingSource
+            // 
+            this.invoiceViewBindingSource.DataSource = typeof(MM.Databasae.InvoiceView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -176,10 +184,6 @@
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
             // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
-            // 
             // invoiceCodeDataGridViewTextBoxColumn
             // 
             this.invoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "InvoiceCode";
@@ -191,7 +195,7 @@
             // 
             this.invoiceDateDataGridViewTextBoxColumn.DataPropertyName = "InvoiceDate";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
             dataGridViewCellStyle3.NullValue = null;
             this.invoiceDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.invoiceDateDataGridViewTextBoxColumn.HeaderText = "Ngày xuất";
@@ -249,10 +253,6 @@
             this.vATDataGridViewTextBoxColumn.ReadOnly = true;
             this.vATDataGridViewTextBoxColumn.Width = 80;
             // 
-            // invoiceViewBindingSource
-            // 
-            this.invoiceViewBindingSource.DataSource = typeof(MM.Databasae.InvoiceView);
-            // 
             // uInvoiceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,6 +279,7 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgInvoice;
         private System.Windows.Forms.BindingSource invoiceViewBindingSource;
+        private System.Windows.Forms.PrintDialog _printDialog;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn invoiceCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
@@ -288,6 +289,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn soTaiKhoanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hinhThucThanhToanStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
-        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }
