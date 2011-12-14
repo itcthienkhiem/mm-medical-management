@@ -39,14 +39,11 @@ namespace MM.Dialogs
             {
                 if (dgService.RowCount <= 0) return null;
                 UpdateChecked();
-                DataTable dt = dgService.DataSource as DataTable;
                 List<DataRow> checkedRows = new List<DataRow>();
-                foreach (DataRow row in dt.Rows)
+                foreach (DataRow row in _dataSource.Rows)
                 {
                     if (Boolean.Parse(row["Checked"].ToString()))
-                    {
                         checkedRows.Add(row);
-                    }
                 }
 
                 return checkedRows;
