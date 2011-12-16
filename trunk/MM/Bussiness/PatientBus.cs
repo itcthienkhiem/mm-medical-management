@@ -155,6 +155,7 @@ namespace MM.Bussiness
                     if (contact.ContactGUID == null || contact.ContactGUID == Guid.Empty)
                     {
                         contact.ContactGUID = Guid.NewGuid();
+                        contact.FullName = contact.FullName.ToUpper();
                         db.Contacts.InsertOnSubmit(contact);
                         db.SubmitChanges();
 
@@ -188,7 +189,7 @@ namespace MM.Bussiness
                             ct.DobStr = contact.DobStr;
                             ct.Email = contact.Email;
                             ct.FAX = contact.FAX;
-                            ct.FullName = contact.FullName;
+                            ct.FullName = contact.FullName.ToUpper();
                             ct.FirstName = contact.FirstName;
                             ct.Gender = contact.Gender;
                             ct.HomePhone = contact.HomePhone;
