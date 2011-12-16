@@ -1,0 +1,214 @@
+﻿namespace MM.Controls
+{
+    partial class uDuplicatePatient
+    {
+        /// <summary> 
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Component Designer generated code
+
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.dgDuplicatePatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtSearchPatient = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.FileNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DobStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDuplicatePatient)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // dgDuplicatePatient
+            // 
+            this.dgDuplicatePatient.AllowUserToAddRows = false;
+            this.dgDuplicatePatient.AllowUserToDeleteRows = false;
+            this.dgDuplicatePatient.AllowUserToOrderColumns = true;
+            this.dgDuplicatePatient.AutoGenerateColumns = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgDuplicatePatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgDuplicatePatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgDuplicatePatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FileNum,
+            this.Fullname,
+            this.DobStr,
+            this.FullAddress,
+            this.GenderAsStr,
+            this.Mobile});
+            this.dgDuplicatePatient.DataSource = this.patientViewBindingSource;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgDuplicatePatient.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgDuplicatePatient.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgDuplicatePatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgDuplicatePatient.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgDuplicatePatient.HighlightSelectedColumnHeaders = false;
+            this.dgDuplicatePatient.Location = new System.Drawing.Point(0, 0);
+            this.dgDuplicatePatient.MultiSelect = false;
+            this.dgDuplicatePatient.Name = "dgDuplicatePatient";
+            this.dgDuplicatePatient.ReadOnly = true;
+            this.dgDuplicatePatient.RowHeadersWidth = 30;
+            this.dgDuplicatePatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgDuplicatePatient.Size = new System.Drawing.Size(861, 405);
+            this.dgDuplicatePatient.TabIndex = 3;
+            // 
+            // patientViewBindingSource
+            // 
+            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtSearchPatient);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(861, 35);
+            this.panel1.TabIndex = 4;
+            // 
+            // txtSearchPatient
+            // 
+            this.txtSearchPatient.Location = new System.Drawing.Point(87, 10);
+            this.txtSearchPatient.Name = "txtSearchPatient";
+            this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
+            this.txtSearchPatient.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Tìm bệnh nhân:";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dgDuplicatePatient);
+            this.panel2.Location = new System.Drawing.Point(3, 44);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(861, 405);
+            this.panel2.TabIndex = 5;
+            // 
+            // FileNum
+            // 
+            this.FileNum.DataPropertyName = "FileNum";
+            this.FileNum.HeaderText = "Mã Bệnh Nhân";
+            this.FileNum.Name = "FileNum";
+            this.FileNum.ReadOnly = true;
+            this.FileNum.Width = 120;
+            // 
+            // Fullname
+            // 
+            this.Fullname.DataPropertyName = "FullName";
+            this.Fullname.HeaderText = "Họ Tên";
+            this.Fullname.Name = "Fullname";
+            this.Fullname.ReadOnly = true;
+            this.Fullname.Width = 150;
+            // 
+            // DobStr
+            // 
+            this.DobStr.DataPropertyName = "DobStr";
+            this.DobStr.HeaderText = "Ngày sinh";
+            this.DobStr.Name = "DobStr";
+            this.DobStr.ReadOnly = true;
+            // 
+            // FullAddress
+            // 
+            this.FullAddress.DataPropertyName = "Address";
+            this.FullAddress.HeaderText = "Địa chỉ";
+            this.FullAddress.Name = "FullAddress";
+            this.FullAddress.ReadOnly = true;
+            this.FullAddress.Width = 250;
+            // 
+            // GenderAsStr
+            // 
+            this.GenderAsStr.DataPropertyName = "GenderAsStr";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle2;
+            this.GenderAsStr.HeaderText = "Giới tính";
+            this.GenderAsStr.Name = "GenderAsStr";
+            this.GenderAsStr.ReadOnly = true;
+            this.GenderAsStr.Width = 90;
+            // 
+            // Mobile
+            // 
+            this.Mobile.DataPropertyName = "Mobile";
+            this.Mobile.HeaderText = "Điện thoại";
+            this.Mobile.Name = "Mobile";
+            this.Mobile.ReadOnly = true;
+            // 
+            // uDuplicatePatient
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Name = "uDuplicatePatient";
+            this.Size = new System.Drawing.Size(867, 470);
+            ((System.ComponentModel.ISupportInitialize)(this.dgDuplicatePatient)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private DevComponents.DotNetBar.Controls.DataGridViewX dgDuplicatePatient;
+        private System.Windows.Forms.BindingSource patientViewBindingSource;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtSearchPatient;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileNum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DobStr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FullAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mobile;
+    }
+}
