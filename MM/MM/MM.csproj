@@ -282,6 +282,12 @@
     <Compile Include="Controls\uInvoiceList.Designer.cs">
       <DependentUpon>uInvoiceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uMergePatient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uMergePatient.Designer.cs">
+      <DependentUpon>uMergePatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPalette.cs">
       <SubType>UserControl</SubType>
     </Compile>

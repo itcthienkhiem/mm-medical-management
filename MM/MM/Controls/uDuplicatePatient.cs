@@ -208,5 +208,20 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        private void btnMerge_Click(object sender, EventArgs e)
+        {
+            if (_dataSource == null) return;
+
+            if (dgDuplicatePatient.SelectedRows == null || dgDuplicatePatient.SelectedRows.Count <= 1)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 2 bệnh nhân để merge.", IconType.Information);
+                return;
+            }
+
+            //string patientGUID = (dgDuplicatePatient.SelectedRows[0].DataBoundItem as DataRowView).Row["PatientGUID"].ToString();
+            //DataRow drPatient = GetDataRow(patientGUID);
+            //if (drPatient == null) return;
+        }
     }
 }
