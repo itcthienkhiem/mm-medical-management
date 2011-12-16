@@ -270,6 +270,12 @@
     <Compile Include="Controls\uDrawType.Designer.cs">
       <DependentUpon>uDrawType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uDuplicatePatient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uDuplicatePatient.Designer.cs">
+      <DependentUpon>uDuplicatePatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uInvoiceList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -537,6 +543,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDrawType.resx">
       <DependentUpon>uDrawType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uDuplicatePatient.resx">
+      <DependentUpon>uDuplicatePatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uInvoiceList.resx">
       <DependentUpon>uInvoiceList.cs</DependentUpon>

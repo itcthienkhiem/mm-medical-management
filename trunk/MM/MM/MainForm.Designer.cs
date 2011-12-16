@@ -40,6 +40,7 @@
             this._uSpecialityList = new MM.Controls.uSpecialityList();
             this._uPatientHistory = new MM.Controls.uPatientHistory();
             this._uPatientList = new MM.Controls.uPatientList();
+            this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._mainToolbar = new System.Windows.Forms.ToolStrip();
@@ -84,6 +85,7 @@
             this.openPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.patientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DuplicatePatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
@@ -92,11 +94,11 @@
             this.symptomListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -122,6 +124,7 @@
             this._mainPanel.Controls.Add(this._uSpecialityList);
             this._mainPanel.Controls.Add(this._uPatientHistory);
             this._mainPanel.Controls.Add(this._uPatientList);
+            this._mainPanel.Controls.Add(this._uDuplicatePatient);
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
@@ -176,6 +179,11 @@
             // 
             resources.ApplyResources(this._uPatientList, "_uPatientList");
             this._uPatientList.Name = "_uPatientList";
+            // 
+            // _uDuplicatePatient
+            // 
+            resources.ApplyResources(this._uDuplicatePatient, "_uDuplicatePatient");
+            this._uDuplicatePatient.Name = "_uDuplicatePatient";
             // 
             // _uDocStaffList
             // 
@@ -492,7 +500,8 @@
             this.patientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openPatientToolStripMenuItem,
             this.toolStripSeparator3,
-            this.patientListToolStripMenuItem});
+            this.patientListToolStripMenuItem,
+            this.DuplicatePatientToolStripMenuItem});
             resources.ApplyResources(this.patientToolStripMenuItem, "patientToolStripMenuItem");
             this.patientToolStripMenuItem.Name = "patientToolStripMenuItem";
             // 
@@ -516,6 +525,13 @@
             resources.ApplyResources(this.patientListToolStripMenuItem, "patientListToolStripMenuItem");
             this.patientListToolStripMenuItem.Tag = "Patient List";
             this.patientListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // DuplicatePatientToolStripMenuItem
+            // 
+            this.DuplicatePatientToolStripMenuItem.Name = "DuplicatePatientToolStripMenuItem";
+            resources.ApplyResources(this.DuplicatePatientToolStripMenuItem, "DuplicatePatientToolStripMenuItem");
+            this.DuplicatePatientToolStripMenuItem.Tag = "DuplicatePatient";
+            this.DuplicatePatientToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // companyToolStripMenuItem
             // 
@@ -577,6 +593,21 @@
             this.receiptListToolStripMenuItem.Tag = "Receipt List";
             this.receiptListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // invoiceToolStripMenuItem
+            // 
+            this.invoiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.invoiceListToolStripMenuItem});
+            resources.ApplyResources(this.invoiceToolStripMenuItem, "invoiceToolStripMenuItem");
+            this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
+            // 
+            // invoiceListToolStripMenuItem
+            // 
+            this.invoiceListToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
+            this.invoiceListToolStripMenuItem.Name = "invoiceListToolStripMenuItem";
+            resources.ApplyResources(this.invoiceListToolStripMenuItem, "invoiceListToolStripMenuItem");
+            this.invoiceListToolStripMenuItem.Tag = "Invoice List";
+            this.invoiceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -599,21 +630,6 @@
             resources.ApplyResources(this.printLabelToolStripMenuItem, "printLabelToolStripMenuItem");
             this.printLabelToolStripMenuItem.Tag = "Print Label";
             this.printLabelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // invoiceToolStripMenuItem
-            // 
-            this.invoiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.invoiceListToolStripMenuItem});
-            resources.ApplyResources(this.invoiceToolStripMenuItem, "invoiceToolStripMenuItem");
-            this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            // 
-            // invoiceListToolStripMenuItem
-            // 
-            this.invoiceListToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
-            this.invoiceListToolStripMenuItem.Name = "invoiceListToolStripMenuItem";
-            resources.ApplyResources(this.invoiceListToolStripMenuItem, "invoiceListToolStripMenuItem");
-            this.invoiceListToolStripMenuItem.Tag = "Invoice List";
-            this.invoiceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -705,6 +721,7 @@
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private Controls.uDocStaffList _uDocStaffList;
         private Controls.uPatientList _uPatientList;
+        private Controls.uDuplicatePatient _uDuplicatePatient;
         private Controls.uPatientHistory _uPatientHistory;
         private System.Windows.Forms.ToolStripMenuItem specialityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem specialityListToolStripMenuItem;
@@ -743,6 +760,7 @@
         private System.Windows.Forms.ToolStripButton tbInvoiceList;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private Controls.uInvoiceList _uInvoiceList;
+        private System.Windows.Forms.ToolStripMenuItem DuplicatePatientToolStripMenuItem;
 
     }
 }

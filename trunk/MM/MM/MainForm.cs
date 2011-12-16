@@ -476,6 +476,10 @@ namespace MM
                     OnOpenPatient();
                     break;
 
+                case "DuplicatePatient":
+                    OnDuplicatePatient();
+                    break;
+
                 case "Doctor List":
                     OnDoctorList();
                     break;
@@ -734,7 +738,12 @@ namespace MM
             ViewControl(_uPatientList);
             _uPatientList.DisplayAsThread();
         }
-
+        private void OnDuplicatePatient()
+        {
+            this.Text = string.Format("{0} - Danh muc trung lap benh nhan", Application.ProductName);
+            ViewControl(_uDuplicatePatient);
+            _uDuplicatePatient.DisplayAsThread();
+        }
         private void OnOpenPatient()
         {
             dlgOpentPatient dlg = new dlgOpentPatient();
@@ -817,6 +826,7 @@ namespace MM
             if (cmd == null || cmd == string.Empty) return;
             ExcuteCmd(cmd);
         }
+        
         #endregion
 
         #region Working Thread
@@ -838,6 +848,9 @@ namespace MM
         }
         #endregion
 
+        
+
+        
         
     }
 }
