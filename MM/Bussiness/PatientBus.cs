@@ -34,7 +34,28 @@ namespace MM.Bussiness
 
             return result;
         }
+        public static Result GetDuplicatePatientList()
+        {
+            Result result = null;
 
+            try
+            {
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, FileNum, FullName, DOBstr, Gender, GenderAsStr FROM PatientView pv1 WHERE Archived = 'False' And pv1.FullName in (select pv2.FullName from PatientView pv2 where pv2.FullName =pv1.FullName and pv2.Gender = pv1.Gender  and pv2.ContactGUID != pv1.ContactGUID) ORDER BY FullName";
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
         public static Result GetPatientCount()
         {
             Result result = new Result();
