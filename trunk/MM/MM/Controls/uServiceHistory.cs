@@ -181,6 +181,8 @@ namespace MM.Controls
                 bool isExported = Convert.ToBoolean(dr["IsExported"]);
                 if (isExported)
                     row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                else
+                    dr["Checked"] = true;
             }
         }
 
