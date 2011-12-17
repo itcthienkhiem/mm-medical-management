@@ -8,6 +8,7 @@ namespace MM.Common
 {
     public class Member
     {
+        public string ConstractGUID = string.Empty;
         public string CompanyMemberGUID = string.Empty;
         public List<string> AddedServices = new List<string>();
         public List<string> DeletedServices = new List<string>();
