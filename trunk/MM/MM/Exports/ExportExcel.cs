@@ -47,7 +47,7 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A2"].Value = string.Format("Số: {0}", receipt.ReceiptCode);
-                workSheet.Cells["B6"].Value = string.Format("Tên: {0}", receipt.FullName);
+                workSheet.Cells["B6"].Value = string.Format("Họ tên: {0}", receipt.FullName);
                 workSheet.Cells["B7"].Value = string.Format("Mã bệnh nhân: {0}", receipt.FileNum);
                 workSheet.Cells["B8"].Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 if (receipt.Address != null) workSheet.Cells["B9"].Value = string.Format("Địa chỉ: {0}", receipt.Address);
@@ -126,15 +126,15 @@ namespace MM.Exports
                 rowIndex += 2;
                 range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
                 range.Value = "Người lập phiếu";
-                range.HorizontalAlignment = HAlign.Center;
+                range.HorizontalAlignment = HAlign.Left;
 
                 range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
                 range.Value = "Người nộp tiền";
                 range.HorizontalAlignment = HAlign.Left;
 
-                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
                 range.Value = "Thu ngân";
-                range.HorizontalAlignment = HAlign.Center;
+                range.HorizontalAlignment = HAlign.Right;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
