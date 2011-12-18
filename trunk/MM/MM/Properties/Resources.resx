@@ -301,4 +301,16 @@
   <data name="Apps_printer_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Apps-printer-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Arrow_double_down_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arrow-double-down-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arrow_double_up_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arrow-double-up-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arrow_down_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arrow-down-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arrow_up_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Arrow-up-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
