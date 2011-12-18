@@ -15,5 +15,10 @@ namespace MM.Dialogs
         {
             InitializeComponent();
         }
+        public void SetDataSource(DataTable dt)
+        {
+            this.uMergePatient1.DataSource = dt;
+            this.uMergePatient1.BindData();
+        }
     }
 }
