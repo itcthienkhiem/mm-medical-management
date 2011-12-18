@@ -54,6 +54,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tbOpenPatient = new System.Windows.Forms.ToolStripButton();
             this.tbPatientList = new System.Windows.Forms.ToolStripButton();
+            this.tbDuplicatePatient = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.tbCompanyList = new System.Windows.Forms.ToolStripButton();
             this.tbContractList = new System.Windows.Forms.ToolStripButton();
@@ -85,6 +86,7 @@
             this.openPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.patientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.DuplicatePatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,8 +105,6 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbDuplicatePatient = new System.Windows.Forms.ToolStripButton();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -292,6 +292,14 @@
             this.tbPatientList.Image = global::MM.Properties.Resources._1320161545_people;
             this.tbPatientList.Name = "tbPatientList";
             this.tbPatientList.Tag = "Patient List";
+            // 
+            // tbDuplicatePatient
+            // 
+            this.tbDuplicatePatient.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbDuplicatePatient, "tbDuplicatePatient");
+            this.tbDuplicatePatient.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
+            this.tbDuplicatePatient.Name = "tbDuplicatePatient";
+            this.tbDuplicatePatient.Tag = "DuplicatePatient";
             // 
             // toolStripSeparator5
             // 
@@ -530,6 +538,11 @@
             this.patientListToolStripMenuItem.Tag = "Patient List";
             this.patientListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            resources.ApplyResources(this.toolStripSeparator15, "toolStripSeparator15");
+            // 
             // DuplicatePatientToolStripMenuItem
             // 
             this.DuplicatePatientToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
@@ -665,19 +678,6 @@
             resources.ApplyResources(this.aboutMedicalManagementToolStripMenuItem, "aboutMedicalManagementToolStripMenuItem");
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // toolStripSeparator15
-            // 
-            this.toolStripSeparator15.Name = "toolStripSeparator15";
-            resources.ApplyResources(this.toolStripSeparator15, "toolStripSeparator15");
-            // 
-            // tbDuplicatePatient
-            // 
-            this.tbDuplicatePatient.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbDuplicatePatient, "tbDuplicatePatient");
-            this.tbDuplicatePatient.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
-            this.tbDuplicatePatient.Name = "tbDuplicatePatient";
-            this.tbDuplicatePatient.Tag = "DuplicatePatient";
             // 
             // MainForm
             // 
