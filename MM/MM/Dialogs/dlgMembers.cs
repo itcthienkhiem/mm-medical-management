@@ -497,15 +497,20 @@ namespace MM.Dialogs
                     MsgBox.Show(this.Text, "Vui lòng đánh dấu ít nhất 1 dịch vụ.", IconType.Information);
                     return;
                 }
-            }
 
-            base.RaiseAddMember(this.CheckedMembers, this.AddedServices.ToList<string>(), this.ServiceDataSource.Copy());
-            RefreshGUI();
+                base.RaiseAddMember(this.CheckedMembers, this.AddedServices.ToList<string>(), this.ServiceDataSource.Copy());
+                RefreshGUI();
+            }
+            else
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+            }
         }
 
         private void dlgMembers_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
+            /*if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 List<DataRow> checkedRows = CheckedMembers;
                 if (checkedRows == null || checkedRows.Count <= 0)
@@ -523,7 +528,7 @@ namespace MM.Dialogs
                         e.Cancel = true;
                     }
                 }
-            }
+            }*/
         }
 
         private void txtSearchPatient_KeyDown(object sender, KeyEventArgs e)
