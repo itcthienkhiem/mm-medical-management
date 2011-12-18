@@ -691,6 +691,11 @@ namespace MM.Common
                 s += docso(i, A[i], n) + hang(i, A[i], n);
             }
             s = s + " đồng";
+            //capital first letter
+            if (s.Length > 0)
+            {
+                s = char.ToUpper(s[0]) + s.Substring(1);
+            }
             return s;
         }
     }
