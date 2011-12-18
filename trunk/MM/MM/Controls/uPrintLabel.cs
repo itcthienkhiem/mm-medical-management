@@ -306,9 +306,7 @@ namespace MM.Controls
 
             _labelIndex = 0;
             if (isPreview)
-            {
                 _printPreviewDialog.ShowDialog();
-            }
             else
             {
                 if (_printDialog.ShowDialog() == DialogResult.OK)
@@ -583,6 +581,7 @@ namespace MM.Controls
 
         private void _printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            e.Graphics.Clear(Color.White);
             float left = _leftPxl;
             float top = _topPxl;
 
