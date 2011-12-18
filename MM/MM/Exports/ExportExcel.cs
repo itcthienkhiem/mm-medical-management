@@ -98,6 +98,15 @@ namespace MM.Exports
                     range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dash;
                     range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
 
+                    range.Borders[BordersIndex.EdgeLeft].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeLeft].Color = Color.Black;
+
+                    range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
+
+                    range.Borders[BordersIndex.InsideVertical].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.InsideVertical].Color = Color.Black;
+
                     rowIndex++;
                 }
 
