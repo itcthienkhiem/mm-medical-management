@@ -319,6 +319,17 @@ namespace MM
                             Global.AllowPrintInvoice = isPrint;
                             Global.AllowExportInvoice = isExport;
                         }
+                        else if (functionCode == Const.DuplicatePatient)
+                        {
+                            DuplicatePatientToolStripMenuItem.Enabled = isView && isLogin;
+                            tbDuplicatePatient.Enabled = isView && isLogin;
+                            _uDuplicatePatient.AllowAdd = isAdd;
+                            _uDuplicatePatient.AllowEdit = isEdit;
+                            _uDuplicatePatient.AllowDelete = isDelete;
+                            _uDuplicatePatient.AllowPrint = isPrint;
+                            _uDuplicatePatient.AllowExport = isExport;
+                            _uDuplicatePatient.AllowImport = isImport;
+                        }
                     }
                 }
                 else

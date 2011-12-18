@@ -45,7 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
             this.btnMerge = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgDuplicatePatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
@@ -186,30 +185,22 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btnClose);
             this.panel3.Controls.Add(this.btnMerge);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 447);
+            this.panel3.Location = new System.Drawing.Point(0, 436);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(867, 27);
+            this.panel3.Size = new System.Drawing.Size(867, 38);
             this.panel3.TabIndex = 6;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(771, 1);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 1;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
             // 
             // btnMerge
             // 
-            this.btnMerge.Location = new System.Drawing.Point(690, 1);
+            this.btnMerge.Image = global::MM.Properties.Resources.Architecture_info_icon;
+            this.btnMerge.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMerge.Location = new System.Drawing.Point(8, 7);
             this.btnMerge.Name = "btnMerge";
             this.btnMerge.Size = new System.Drawing.Size(75, 23);
             this.btnMerge.TabIndex = 0;
-            this.btnMerge.Text = "Merge";
+            this.btnMerge.Text = "    Merge";
             this.btnMerge.UseVisualStyleBackColor = true;
             this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
@@ -247,7 +238,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMerge;
     }
 }
