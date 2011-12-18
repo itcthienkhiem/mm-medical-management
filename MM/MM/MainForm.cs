@@ -136,6 +136,8 @@ namespace MM
                 _uReceiptList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uInvoiceList))
                 _uInvoiceList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uDuplicatePatient))
+                _uDuplicatePatient.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -440,6 +442,9 @@ namespace MM
                 invoiceToolStripMenuItem.Enabled = isLogin;
                 tbInvoiceList.Enabled = isLogin;
                 invoiceListToolStripMenuItem.Enabled = isLogin;
+
+                DuplicatePatientToolStripMenuItem.Enabled = isLogin;
+                tbDuplicatePatient.Enabled = isLogin;
             }
         }
 
