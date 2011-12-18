@@ -10,6 +10,7 @@ using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
 using System.Threading;
+using MM.Dialogs;
 
 namespace MM.Controls
 {
@@ -218,7 +219,19 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 2 bệnh nhân để merge.", IconType.Information);
                 return;
             }
-
+            else
+            {
+                DataTable dt = _dataSource.Clone();
+                for (int i = 0; i < dgDuplicatePatient.SelectedRows.Count; i++)
+                {
+                    DataRow dr = (dgDuplicatePatient.SelectedRows[i].DataBoundItem as DataRowView).Row;
+                    dt.ImportRow(dr);
+                }
+                dlgMergePatient dlg = new dlgMergePatient();
+                dlg.SetDataSource(dt);
+                dlg.ShowDialog();
+                
+            }
             //string patientGUID = (dgDuplicatePatient.SelectedRows[0].DataBoundItem as DataRowView).Row["PatientGUID"].ToString();
             //DataRow drPatient = GetDataRow(patientGUID);
             //if (drPatient == null) return;
