@@ -9,10 +9,11 @@ using System.Windows.Forms;
 
 namespace MM.Dialogs
 {
+    public delegate void AddMemberHandler(List<DataRow> checkedMembers, List<string> addedServices, DataTable serviceDataSource);
     public partial class dlgBase : Form
     {
         #region Events
-
+        public event AddMemberHandler OnAddMemberEvent = null;
         #endregion
 
         #region Members
@@ -28,7 +29,11 @@ namespace MM.Dialogs
         #endregion
 
         #region Raise Events
-
+        public void RaiseAddMember(List<DataRow> checkedMembers, List<string> addedServices, DataTable serviceDataSource)
+        {
+            if (OnAddMemberEvent != null)
+                OnAddMemberEvent(checkedMembers, addedServices, serviceDataSource);
+        }
         #endregion
 
         #region Methods

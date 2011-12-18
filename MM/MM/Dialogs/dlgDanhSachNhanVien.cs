@@ -76,12 +76,50 @@ namespace MM.Dialogs
                 base.HideWaiting();
             }
         }
+
+        private void OnDisplayCheckList()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            DataRow drMember = (dgDSNV.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string patientGUID = drMember["PatientGUID"].ToString();
+            Result result = CompanyContractBus.GetCheckList(_contractGUID, patientGUID);
+            if (result.IsOK)
+            {
+                dgService.DataSource = result.QueryResult as DataTable;
+                RefreshUsingService();
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
+            }
+        }
+
+        private void RefreshUsingService()
+        {
+            foreach (DataGridViewRow row in dgService.Rows)
+            {
+                DataGridViewImageCell cell = row.Cells["Using"] as DataGridViewImageCell;
+                DataRow drRow = (row.DataBoundItem as DataRowView).Row;
+                if (!drRow.Table.Columns.Contains("Using"))
+                    cell.Value = imgList.Images[1];
+                else if (drRow["Using"] != null && drRow["Using"] != DBNull.Value && Convert.ToBoolean(drRow["Using"]))
+                    cell.Value = imgList.Images[0];
+                else
+                    cell.Value = imgList.Images[1];
+            }
+        }
         #endregion
 
         #region Window Event Handlers
         private void dlgDanhSachNhanVien_Load(object sender, EventArgs e)
         {
             DisplayInfoAsThread();
+        }
+
+        private void dgDSNV_SelectionChanged(object sender, EventArgs e)
+        {
+            OnDisplayCheckList();
         }
         #endregion
 
@@ -104,5 +142,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
