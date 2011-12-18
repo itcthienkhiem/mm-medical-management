@@ -103,6 +103,8 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbDuplicatePatient = new System.Windows.Forms.ToolStripButton();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -209,6 +211,7 @@
             this.toolStripSeparator1,
             this.tbOpenPatient,
             this.tbPatientList,
+            this.tbDuplicatePatient,
             this.toolStripSeparator5,
             this.tbCompanyList,
             this.tbContractList,
@@ -501,6 +504,7 @@
             this.openPatientToolStripMenuItem,
             this.toolStripSeparator3,
             this.patientListToolStripMenuItem,
+            this.toolStripSeparator15,
             this.DuplicatePatientToolStripMenuItem});
             resources.ApplyResources(this.patientToolStripMenuItem, "patientToolStripMenuItem");
             this.patientToolStripMenuItem.Name = "patientToolStripMenuItem";
@@ -528,6 +532,7 @@
             // 
             // DuplicatePatientToolStripMenuItem
             // 
+            this.DuplicatePatientToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
             this.DuplicatePatientToolStripMenuItem.Name = "DuplicatePatientToolStripMenuItem";
             resources.ApplyResources(this.DuplicatePatientToolStripMenuItem, "DuplicatePatientToolStripMenuItem");
             this.DuplicatePatientToolStripMenuItem.Tag = "DuplicatePatient";
@@ -661,6 +666,19 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            resources.ApplyResources(this.toolStripSeparator15, "toolStripSeparator15");
+            // 
+            // tbDuplicatePatient
+            // 
+            this.tbDuplicatePatient.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbDuplicatePatient, "tbDuplicatePatient");
+            this.tbDuplicatePatient.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
+            this.tbDuplicatePatient.Name = "tbDuplicatePatient";
+            this.tbDuplicatePatient.Tag = "DuplicatePatient";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -761,6 +779,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private Controls.uInvoiceList _uInvoiceList;
         private System.Windows.Forms.ToolStripMenuItem DuplicatePatientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+        private System.Windows.Forms.ToolStripButton tbDuplicatePatient;
 
     }
 }
