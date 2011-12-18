@@ -58,27 +58,6 @@ namespace MM.Controls
         }
         #endregion
 
-        #region Properties
-        public List<DataRow> Members
-        {
-            get
-            {
-                if (_dataSource == null) return null;
-                List<DataRow> checkedRows = new List<DataRow>();
-                foreach (DataRow row in _dataSource.Rows)
-                {
-                    if (Boolean.Parse(row["Checked"].ToString()))
-                    {
-                        checkedRows.Add(row);
-                    }
-                }
-
-                return checkedRows;
-            }
-
-        }
-        #endregion
-
         #region UI Command
         public void ClearData()
         {
@@ -89,7 +68,6 @@ namespace MM.Controls
         {
             try
             {
-                chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPatientListProc));
                 base.ShowWaiting();
             }
@@ -112,7 +90,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    _dataSource = result.QueryResult as DataTable;
+                    _dataSource = GetDataSource(result.QueryResult as DataTable);
                     dgMembers.DataSource = _dataSource;
                 };
 
@@ -126,11 +104,23 @@ namespace MM.Controls
             }
         }
 
+        private DataTable GetDataSource(DataTable dt)
+        {
+            if (dgSelectedMember.RowCount <= 0) return dt;
+            DataTable dt2 = dgSelectedMember.DataSource as DataTable;
+            
+            foreach (DataRow row in dt2.Rows)
+            {
+                DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", row["PatientGUID"].ToString()));
+                if (rows == null || rows.Length <= 0) continue;
+                dt.Rows.Remove(rows[0]);
+            }
+
+            return dt;
+        }
+
         private void OnSearchPatient()
         {
-            UpdateChecked();
-
-            chkChecked.Checked = false;
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
                 dgMembers.DataSource = _dataSource;
@@ -144,7 +134,8 @@ namespace MM.Controls
                           where p.Field<string>("FullName") != null &&
                           p.Field<string>("FullName").Trim() != string.Empty &&
                           (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
-                          str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) 
+                          str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0)
+                          orderby p.Field<string>("FullName")
                           select p).ToList<DataRow>();
 
             DataTable newDataSource = _dataSource.Clone();
@@ -164,6 +155,7 @@ namespace MM.Controls
                           p.Field<string>("FileNum").Trim() != string.Empty &&
                           (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
                       str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                      orderby p.Field<string>("FullName")
                       select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
@@ -176,29 +168,6 @@ namespace MM.Controls
             }
 
             dgMembers.DataSource = newDataSource;
-        }
-
-        private void UpdateChecked()
-        {
-            DataTable dt = dgMembers.DataSource as DataTable;
-            if (dt == null) return;
-
-            foreach (DataRow row1 in dt.Rows)
-            {
-                string patientGUID1 = row1["PatientGUID"].ToString();
-                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-                foreach (DataRow row2 in _dataSource.Rows)
-                {
-                    string patientGUID2 = row2["PatientGUID"].ToString();
-                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
-
-                    if (patientGUID1 == patientGUID2)
-                    {
-                        row2["Checked"] = row1["Checked"];
-                        break;
-                    }
-                }
-            }
         }
 
         private void InitData()
@@ -305,17 +274,15 @@ namespace MM.Controls
 
         private void OnPrint(bool isPreview)
         {
-            UpdateChecked();
-            List<DataRow> members = this.Members;
-            if (members == null || members.Count <= 0)
+            if (dgSelectedMember.RowCount <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng dánh dấu ít nhất 1 bệnh nhân.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.", IconType.Information);
                 return;
             }
 
             InitData();
 
-            int count = members.Count * (int)numCount.Value;
+            int count = dgSelectedMember.RowCount * (int)numCount.Value;
             _pageCount = count / _pageSize;
             if (count % _pageSize != 0) _pageCount++;
 
@@ -323,7 +290,8 @@ namespace MM.Controls
             else _labels.Clear();
 
             count = (int)numCount.Value;
-            foreach (DataRow row in members)
+            DataTable dt = dgSelectedMember.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
             {
                 LabelInfo lbInfo = new LabelInfo();
                 lbInfo.FullName = row["FullName"].ToString();
@@ -490,6 +458,101 @@ namespace MM.Controls
             g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 20);
             g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 30);
         }
+
+        private void OnMoveRight()
+        {
+            if (dgMembers.RowCount <= 0) return;
+            if (dgMembers.SelectedRows == null || dgMembers.SelectedRows.Count <= 0) return;
+
+            DataTable dt2 = dgSelectedMember.DataSource as DataTable;
+            if (dt2 == null)
+            {
+                dt2 = _dataSource.Clone();
+                dgSelectedMember.DataSource = dt2;
+            }
+
+            foreach  (DataGridViewRow row in dgMembers.SelectedRows)
+            {
+                DataRow drMember = (row.DataBoundItem as DataRowView).Row;
+                DataRow newRow = dt2.NewRow();
+                newRow.ItemArray = drMember.ItemArray;
+                dt2.Rows.Add(newRow);
+
+                DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", drMember["PatientGUID"]));
+                if (rows != null && rows.Length > 0)
+                    _dataSource.Rows.Remove(rows[0]);
+            }
+
+            OnSearchPatient();
+        }
+
+        private void OnMoveAllRight()
+        {
+            if (dgMembers.RowCount <= 0) return;
+            DataTable dt = dgMembers.DataSource as DataTable;
+            DataTable dt2 = dgSelectedMember.DataSource as DataTable;
+            if (dt2 == null)
+            {
+                dt2 = dt.Clone();
+                dgSelectedMember.DataSource = dt2;
+            }
+
+            List<DataRow> deletedRows = new List<DataRow>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                DataRow newRow = dt2.NewRow();
+                newRow.ItemArray = row.ItemArray;
+                dt2.Rows.Add(newRow);
+                DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", row["PatientGUID"]));
+                if (rows != null && rows.Length > 0)
+                    deletedRows.Add(rows[0]);
+            }
+
+            foreach (DataRow row in deletedRows)
+            {
+                _dataSource.Rows.Remove(row);
+            }
+
+            OnSearchPatient();
+        }
+
+        private void OnMoveLeft()
+        {
+            if (dgSelectedMember.RowCount <= 0) return;
+            if (dgSelectedMember.SelectedRows == null || dgSelectedMember.SelectedRows.Count <= 0) return;
+
+            DataTable dt2 = dgSelectedMember.DataSource as DataTable;
+
+            foreach (DataGridViewRow row in dgSelectedMember.SelectedRows)
+            {
+                DataRow drMember = (row.DataBoundItem as DataRowView).Row;
+                DataRow newRow = _dataSource.NewRow();
+                newRow.ItemArray = drMember.ItemArray;
+                _dataSource.Rows.Add(newRow);
+
+               dt2.Rows.Remove(drMember);
+            }
+
+            OnSearchPatient();
+        }
+
+        private void OnMoveAllLeft()
+        {
+            if (dgSelectedMember.RowCount <= 0) return;
+            DataTable dt2 = dgSelectedMember.DataSource as DataTable;
+
+            foreach (DataRow row in dt2.Rows)
+            {
+                DataRow newRow = _dataSource.NewRow();
+                newRow.ItemArray = row.ItemArray;
+                _dataSource.Rows.Add(newRow);
+            }
+
+            dt2.Rows.Clear();
+
+            OnSearchPatient();
+        }
         #endregion
 
         #region Window Event Handlers
@@ -570,16 +633,6 @@ namespace MM.Controls
             OnSearchPatient();
         }
 
-        private void chkChecked_CheckedChanged(object sender, EventArgs e)
-        {
-            DataTable dt = dgMembers.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return;
-            foreach (DataRow row in dt.Rows)
-            {
-                row["Checked"] = chkChecked.Checked;
-            }
-        }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
             OnPrint(false);
@@ -588,6 +641,26 @@ namespace MM.Controls
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
             OnPrint(true);
+        }
+
+        private void btnRight_Click(object sender, EventArgs e)
+        {
+            OnMoveRight();
+        }
+
+        private void btnAllRight_Click(object sender, EventArgs e)
+        {
+            OnMoveAllRight();
+        }
+
+        private void btnAllLeft_Click(object sender, EventArgs e)
+        {
+            OnMoveAllLeft();
+        }
+
+        private void btnLeft_Click(object sender, EventArgs e)
+        {
+            OnMoveLeft();
         }
         #endregion
 
