@@ -28,11 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.uMergePatient1 = new MM.Controls.uMergePatient();
+            this.SuspendLayout();
+            // 
+            // uMergePatient1
+            // 
+            this.uMergePatient1.DataSource = null;
+            this.uMergePatient1.Location = new System.Drawing.Point(1, 1);
+            this.uMergePatient1.Name = "uMergePatient1";
+            this.uMergePatient1.Size = new System.Drawing.Size(827, 237);
+            this.uMergePatient1.TabIndex = 0;
+            // 
+            // dlgMergePatient
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "dlgMergePatient";
+            this.ClientSize = new System.Drawing.Size(828, 236);
+            this.Controls.Add(this.uMergePatient1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "dlgMergePatient";
+            this.Text = "Merge Benh Nhan";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private Controls.uMergePatient uMergePatient1;
     }
 }
