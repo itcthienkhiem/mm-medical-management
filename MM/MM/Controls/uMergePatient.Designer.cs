@@ -187,6 +187,7 @@
             this.btnMerge.TabIndex = 0;
             this.btnMerge.Text = "Merge";
             this.btnMerge.UseVisualStyleBackColor = true;
+            this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
             // panel3
             // 
