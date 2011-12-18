@@ -130,6 +130,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Actions_window_duplicate_icon {
+            get {
+                object obj = ResourceManager.GetObject("Actions_window_duplicate_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
@@ -168,6 +175,13 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap Apps_session_logout_icon__1_ {
             get {
                 object obj = ResourceManager.GetObject("Apps_session_logout_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Architecture_info_icon {
+            get {
+                object obj = ResourceManager.GetObject("Architecture_info_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
