@@ -7,6 +7,7 @@ using System.Text;
 using System.Transactions;
 using MM.Common;
 using MM.Databasae;
+using System.Data.SqlClient;
 
 namespace MM.Bussiness
 {
@@ -40,8 +41,37 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT  CAST(0 AS Bit) AS Checked, FileNum, FullName, DOBstr, Gender, GenderAsStr FROM PatientView pv1 WHERE Archived = 'False' And pv1.FullName in (select pv2.FullName from PatientView pv2 where pv2.FullName =pv1.FullName and pv2.Gender = pv1.Gender  and pv2.ContactGUID != pv1.ContactGUID) ORDER BY FullName";
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView pv1 WHERE Archived = 'False' And pv1.FullName in (select pv2.FullName from PatientView pv2 where pv2.FullName =pv1.FullName and pv2.Gender = pv1.Gender  and pv2.ContactGUID != pv1.ContactGUID) ORDER BY FullName";
                 return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+        public static Result Merge2Patients(string keepPatientGuid, string mergePatientGuid, string doneByGuid)
+        {
+            Result result = null;
+
+            try
+            {
+                string spName = "spMerge2Patients";
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                SqlParameter param = new SqlParameter("@KeepGUID", keepPatientGuid);
+                sqlParams.Add(param);
+                SqlParameter param2 = new SqlParameter("@MergedGUID", mergePatientGuid);
+                sqlParams.Add(param2);
+                SqlParameter param3 = new SqlParameter("@DoneByGUID", doneByGuid);
+                sqlParams.Add(param3);
+                return ExcuteQuery(spName, sqlParams);
             }
             catch (System.Data.SqlClient.SqlException se)
             {
