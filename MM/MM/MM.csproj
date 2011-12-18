@@ -744,6 +744,10 @@
     <Content Include="Controls\Excel\Office\Excel\MetaData\Record Identifier.txt" />
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\Arrow-right-icon.png" />
+    <None Include="Resources\Arrow-left-icon.png" />
+    <None Include="Resources\Arrow-double-right-icon.png" />
+    <None Include="Resources\Arrow-double-left-icon.png" />
     <None Include="Resources\Arrow-up-icon.png" />
     <None Include="Resources\Arrow-down-icon.png" />
     <None Include="Resources\Arrow-double-up-icon.png" />

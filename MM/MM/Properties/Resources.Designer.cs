@@ -179,6 +179,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Arrow_double_left_icon {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_double_left_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Arrow_double_right_icon {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_double_right_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Arrow_double_up_icon {
             get {
                 object obj = ResourceManager.GetObject("Arrow_double_up_icon", resourceCulture);
@@ -189,6 +203,20 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap Arrow_down_icon {
             get {
                 object obj = ResourceManager.GetObject("Arrow_down_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Arrow_left_icon {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_left_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Arrow_right_icon {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_right_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
