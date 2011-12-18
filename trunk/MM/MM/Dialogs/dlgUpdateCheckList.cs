@@ -34,7 +34,7 @@ namespace MM.Dialogs
         #region UI Command
         private void OnAddService()
         {
-            dlgServices dlg = new dlgServices(_member.CompanyMemberGUID, _member.AddedServices, _member.DeletedServiceRows);
+            dlgServices dlg = new dlgServices(_member.ConstractGUID, _member.CompanyMemberGUID, _member.AddedServices, _member.DeletedServiceRows);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 List<DataRow> checkedRows = dlg.Services;

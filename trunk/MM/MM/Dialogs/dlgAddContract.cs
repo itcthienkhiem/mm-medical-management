@@ -24,6 +24,7 @@ namespace MM.Dialogs
         private List<DataRow> _deletedServiceRows = new List<DataRow>();
         private Hashtable _htCompany = new Hashtable();
         private CompanyInfo _selectedCompanyInfo = null;
+        private bool _flag = true;
         #endregion
 
         #region Constructor
@@ -280,6 +281,11 @@ namespace MM.Dialogs
                         _selectedCompanyInfo.DataSource = result.QueryResult as DataTable;
                         _htCompany.Add(companyGUID, _selectedCompanyInfo);
                     }
+
+                    if (dgMembers.RowCount <= 0)
+                        pService.Enabled = false;
+                    else
+                        pService.Enabled = true;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -305,7 +311,9 @@ namespace MM.Dialogs
 
             dlgMembers dlg = new dlgMembers(cboCompany.SelectedValue.ToString(), _contract.CompanyContractGUID.ToString(), 
                 _selectedCompanyInfo.AddedMemberKeys, _selectedCompanyInfo.DeletedMemberRows);
-            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            dlg.OnAddMemberEvent += new AddMemberHandler(dlg_OnAddMember);
+            dlg.ShowDialog(this);
+            /*if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 List<DataRow> checkedRows = dlg.CheckedMembers;
                 DataTable dataSource = dgMembers.DataSource as DataTable;
@@ -315,21 +323,13 @@ namespace MM.Dialogs
                     DataRow[] rows = dataSource.Select(string.Format("CompanyMemberGUID='{0}'", companyMemberGUID));
                     if (rows == null || rows.Length <= 0)
                     {
-                        DataRow newRow = dataSource.NewRow();
-                        newRow["Checked"] = false;
-                        newRow["CompanyMemberGUID"] = companyMemberGUID;
-                        newRow["FileNum"] = row["FileNum"];
-                        newRow["FullName"] = row["FullName"];
-                        newRow["DobStr"] = row["DobStr"];
-                        newRow["GenderAsStr"] = row["GenderAsStr"];
-                        dataSource.Rows.Add(newRow);
-
                         if (!_selectedCompanyInfo.AddedMembers.ContainsKey(companyMemberGUID))
                         {
                             Member member = new Member();
+                            member.ConstractGUID = _contract.CompanyContractGUID.ToString();
                             member.CompanyMemberGUID = companyMemberGUID;
-                            member.AddedServices = dlg.AddedServices;
-                            member.DataSource = dlg.ServiceDataSource;
+                            member.AddedServices = dlg.AddedServices.ToList<string>();
+                            member.DataSource = dlg.ServiceDataSource.Copy();
                             _selectedCompanyInfo.AddedMembers.Add(companyMemberGUID, member);
                         }
 
@@ -369,10 +369,19 @@ namespace MM.Dialogs
                                 }
                             }
                         }
+
+                        DataRow newRow = dataSource.NewRow();
+                        newRow["Checked"] = false;
+                        newRow["CompanyMemberGUID"] = companyMemberGUID;
+                        newRow["FileNum"] = row["FileNum"];
+                        newRow["FullName"] = row["FullName"];
+                        newRow["DobStr"] = row["DobStr"];
+                        newRow["GenderAsStr"] = row["GenderAsStr"];
+                        dataSource.Rows.Add(newRow);
                         
                     }
                 }
-            }
+            }*/
         }
 
         private void OnDeleteMember()
@@ -405,8 +414,10 @@ namespace MM.Dialogs
                         }
 
                         _selectedCompanyInfo.AddedMembers.Remove(companyMemberGUID);
-
                         dt.Rows.Remove(row);
+
+                        if (dgMembers.CurrentRow != null && dgMembers.CurrentRow.Index >= 0)
+                            dgMembers.Rows[dgMembers.CurrentRow.Index].Selected = true;
                     }
                 }
             }
@@ -417,10 +428,23 @@ namespace MM.Dialogs
         private void OnDisplayCheckList()
         {
             Cursor.Current = Cursors.WaitCursor;
-            if (dgMembers.SelectedRows == null || dgMembers.SelectedRows.Count <= 0) return;
+            if (_selectedCompanyInfo == null)
+            {
+                pService.Enabled = false;
+                return;
+            }
+
+            if (dgMembers.SelectedRows == null || dgMembers.SelectedRows.Count <= 0)
+            {
+                dgService.DataSource = null;
+                pService.Enabled = false;
+                return;
+            }
+
             DataRow drMember = (dgMembers.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string companyMemberGUID = drMember["CompanyMemberGUID"].ToString();
             string contractMemberGUID = drMember["ContractMemberGUID"].ToString();
+            string patientGUID = drMember["PatientGUID"].ToString();           
 
             Member member = null;
 
@@ -430,7 +454,16 @@ namespace MM.Dialogs
             {
                 member = new Member();
                 member.CompanyMemberGUID = companyMemberGUID;
-                Result result = CompanyContractBus.GetCheckList(contractMemberGUID);
+                member.ConstractGUID = _contract.CompanyContractGUID.ToString();
+
+                Result result = null;
+                if (_isNew)
+                    result = CompanyContractBus.GetCheckList(contractMemberGUID);
+                else
+                    result = CompanyContractBus.GetCheckList(_contract.CompanyContractGUID.ToString(), patientGUID);
+
+                _selectedCompanyInfo.AddedMembers.Add(companyMemberGUID, member);
+
                 if (result.IsOK)
                 {
                     DataTable dataSource = result.QueryResult as DataTable;
@@ -441,19 +474,201 @@ namespace MM.Dialogs
                     MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
                 }
-
-                _selectedCompanyInfo.AddedMembers.Add(companyMemberGUID, member);
             }
 
-            dlgUpdateCheckList dlg = new dlgUpdateCheckList(member);
-            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            dgService.DataSource = member.DataSource;
+            RefreshUsingService();
+            pService.Enabled = true;
+        }
+
+        private void RefreshUsingService()
+        {
+            foreach (DataGridViewRow row in dgService.Rows)
             {
-
+                DataGridViewImageCell cell = row.Cells["Using"] as DataGridViewImageCell;
+                DataRow drRow = (row.DataBoundItem as DataRowView).Row;
+                if (!drRow.Table.Columns.Contains("Using"))
+                    cell.Value = imgList.Images[1];
+                else if (drRow["Using"] != null && drRow["Using"] != DBNull.Value && Convert.ToBoolean(drRow["Using"]))
+                    cell.Value = imgList.Images[0];
+                else
+                    cell.Value = imgList.Images[1];
             }
+        }
+
+        private void OnAddService()
+        {
+            if (_selectedCompanyInfo == null) return;
+            if (dgMembers.SelectedRows == null || dgMembers.SelectedRows.Count <= 0) return;
+            DataRow drMember = (dgMembers.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string companyMemberGUID = drMember["CompanyMemberGUID"].ToString();
+            if (!_selectedCompanyInfo.AddedMembers.ContainsKey(companyMemberGUID)) return;
+            Member member = (Member)_selectedCompanyInfo.AddedMembers[companyMemberGUID];
+
+            dlgServices dlg = new dlgServices(member.ConstractGUID, member.CompanyMemberGUID, member.AddedServices, member.DeletedServiceRows);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                List<DataRow> checkedRows = dlg.Services;
+                DataTable dataSource = dgService.DataSource as DataTable;
+                if (dataSource == null)
+                {
+                    dataSource = checkedRows[0].Table.Clone();
+                    dgService.DataSource = dataSource;
+                }
+
+                foreach (DataRow row in checkedRows)
+                {
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    DataRow[] rows = dataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                    if (rows == null || rows.Length <= 0)
+                    {
+                        DataRow newRow = dataSource.NewRow();
+                        newRow["Checked"] = false;
+                        newRow["ServiceGUID"] = serviceGUID;
+                        newRow["Code"] = row["Code"];
+                        newRow["Name"] = row["Name"];
+                        //newRow["Price"] = row["Price"];
+                        dataSource.Rows.Add(newRow);
+
+                        if (!member.AddedServices.Contains(serviceGUID))
+                            member.AddedServices.Add(serviceGUID);
+
+                        member.DeletedServices.Remove(serviceGUID);
+                        foreach (DataRow r in member.DeletedServiceRows)
+                        {
+                            if (r["ServiceGUID"].ToString() == serviceGUID)
+                            {
+                                member.DeletedServiceRows.Remove(r);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                RefreshUsingService();
+            }
+        }
+
+        private void OnDeleteService()
+        {
+            if (_selectedCompanyInfo == null) return;
+            if (dgMembers.SelectedRows == null || dgMembers.SelectedRows.Count <= 0) return;
+            DataRow drMember = (dgMembers.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string companyMemberGUID = drMember["CompanyMemberGUID"].ToString();
+            if (!_selectedCompanyInfo.AddedMembers.ContainsKey(companyMemberGUID)) return;
+            Member member = (Member)_selectedCompanyInfo.AddedMembers[companyMemberGUID];
+
+            List<string> deletedSrvList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgService.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedSrvList.Add(row["ServiceGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedSrvList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những dịch vụ mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    foreach (DataRow row in deletedRows)
+                    {
+                        string serviceGUID = row["ServiceGUID"].ToString();
+                        if (!member.DeletedServices.Contains(serviceGUID))
+                        {
+                            member.DeletedServices.Add(serviceGUID);
+                            DataRow r = dt.NewRow();
+                            r.ItemArray = row.ItemArray;
+                            member.DeletedServiceRows.Add(r);
+                        }
+
+                        member.AddedServices.Remove(serviceGUID);
+
+                        dt.Rows.Remove(row);
+                    }
+
+                    RefreshUsingService();
+                }
+            }
+            else
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
         #endregion
 
         #region Window Event Handlers
+        private void dlg_OnAddMember(List<DataRow> checkedMembers, List<string> addedServices, DataTable serviceDataSource)
+        {
+            List<DataRow> checkedRows = checkedMembers;
+            DataTable dataSource = dgMembers.DataSource as DataTable;
+            foreach (DataRow row in checkedRows)
+            {
+                string companyMemberGUID = row["CompanyMemberGUID"].ToString();
+                DataRow[] rows = dataSource.Select(string.Format("CompanyMemberGUID='{0}'", companyMemberGUID));
+                if (rows == null || rows.Length <= 0)
+                {
+                    if (!_selectedCompanyInfo.AddedMembers.ContainsKey(companyMemberGUID))
+                    {
+                        Member member = new Member();
+                        member.ConstractGUID = _contract.CompanyContractGUID.ToString();
+                        member.CompanyMemberGUID = companyMemberGUID;
+                        member.AddedServices = addedServices;
+                        member.DataSource = serviceDataSource;
+                        _selectedCompanyInfo.AddedMembers.Add(companyMemberGUID, member);
+                    }
+
+                    if (_selectedCompanyInfo.DeletedMembers.Contains(companyMemberGUID))
+                    {
+                        _selectedCompanyInfo.DeletedMembers.Remove(companyMemberGUID);
+
+                        foreach (DataRow r in _selectedCompanyInfo.DeletedMemberRows)
+                        {
+                            if (r["CompanyMemberGUID"].ToString() == companyMemberGUID)
+                            {
+                                _selectedCompanyInfo.DeletedMemberRows.Remove(r);
+
+                                if (r["ContractMemberGUID"] != null && r["ContractMemberGUID"] != DBNull.Value)
+                                {
+                                    string contractMemberGUID = r["ContractMemberGUID"].ToString();
+                                    Result result = CompanyContractBus.GetCheckList(contractMemberGUID);
+                                    if (result.IsOK)
+                                    {
+                                        DataTable dt = result.QueryResult as DataTable;
+                                        Member member = (Member)_selectedCompanyInfo.AddedMembers[companyMemberGUID];
+                                        foreach (DataRow clRow in dt.Rows)
+                                        {
+                                            string serviceGUID = clRow["ServiceGUID"].ToString();
+                                            if (!member.DeletedServices.Contains(serviceGUID))
+                                                member.DeletedServices.Add(serviceGUID);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
+                                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
+                                    }
+                                }
+
+                                break;
+                            }
+                        }
+                    }
+
+                    DataRow newRow = dataSource.NewRow();
+                    newRow["Checked"] = false;
+                    newRow["CompanyMemberGUID"] = companyMemberGUID;
+                    newRow["FileNum"] = row["FileNum"];
+                    newRow["FullName"] = row["FullName"];
+                    newRow["DobStr"] = row["DobStr"];
+                    newRow["GenderAsStr"] = row["GenderAsStr"];
+                    dataSource.Rows.Add(newRow);
+
+                }
+            }
+        }
+
         private void dlgAddContract_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
@@ -509,6 +724,11 @@ namespace MM.Dialogs
 
         private void dgMembers_DoubleClick(object sender, EventArgs e)
         {
+            //OnDisplayCheckList();
+        }
+
+        private void dgMembers_SelectionChanged(object sender, EventArgs e)
+        {
             OnDisplayCheckList();
         }
 
@@ -528,6 +748,31 @@ namespace MM.Dialogs
         {
             dlgDanhSachNhanVien dlg = new dlgDanhSachNhanVien(_contract.CompanyContractGUID.ToString(), 2);
             dlg.ShowDialog();
+        }
+
+        private void btnAddService_Click(object sender, EventArgs e)
+        {
+            OnAddService();
+        }
+
+        private void btnDeleteService_Click(object sender, EventArgs e)
+        {
+            OnDeleteService();
+        }
+
+        private void dgService_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            RefreshUsingService();
+        }
+
+        private void chkCheckedService_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgService.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkCheckedMember.Checked;
+            }
         }
         #endregion
 
@@ -567,7 +812,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
     }
 }

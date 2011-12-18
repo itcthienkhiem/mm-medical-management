@@ -64,14 +64,19 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetServicesListNotInCheckList(string companyMemberGUID)
+        public static Result GetServicesListNotInCheckList(string constractGUID, string companyMemberGUID)
         {
             Result result = null;
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} AND ServiceGUID NOT IN (SELECT L.ServiceGUID FROM CompanyCheckList L, ContractMember M WHERE M.ContractMemberGUID = L.ContractMemberGUID AND M.companyMemberGUID = '{1}' AND L.Status = {0}) ORDER BY Name", 
-                    (byte)Status.Actived, companyMemberGUID);
+                string query = string.Empty;
+                if (constractGUID != string.Empty && constractGUID != Guid.Empty.ToString())
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} AND ServiceGUID NOT IN (SELECT L.ServiceGUID FROM CompanyCheckList L, ContractMember M WHERE M.ContractMemberGUID = L.ContractMemberGUID AND M.CompanyContractGUID = '{2}' AND M.companyMemberGUID = '{1}' AND L.Status = {0}) ORDER BY Name", 
+                    (byte)Status.Actived, companyMemberGUID, constractGUID);
+                else
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
+
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
