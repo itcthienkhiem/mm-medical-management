@@ -200,9 +200,9 @@ namespace MM.Controls
 
                 dt.Rows.Add(newRow);
                 SelectLastedRow();
-            }
 
-            OnSearchPatient();
+                OnSearchPatient();
+            }
         }
 
         private void SelectLastedRow()
@@ -320,9 +320,9 @@ namespace MM.Controls
                 drPatient["Chich_Ngua_Uon_Van"] = dlg.PatientHistory.Chich_Ngua_Uon_Van;
                 drPatient["Chich_Ngua_Cum"] = dlg.PatientHistory.Chich_Ngua_Cum;
                 drPatient["Dang_Co_Thai"] = dlg.PatientHistory.Dang_Co_Thai.Value;
-            }
 
-            OnSearchPatient();
+                OnSearchPatient();
+            }
         }
 
         private void OnDeletePatient()
