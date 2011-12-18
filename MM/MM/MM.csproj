@@ -456,6 +456,12 @@
     <Compile Include="Dialogs\dlgMembers.Designer.cs">
       <DependentUpon>dlgMembers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgMergePatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgMergePatient.Designer.cs">
+      <DependentUpon>dlgMergePatient.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgMessage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -556,6 +562,9 @@
     <EmbeddedResource Include="Controls\uInvoiceList.resx">
       <DependentUpon>uInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uMergePatient.resx">
+      <DependentUpon>uMergePatient.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPalette.resx">
       <DependentUpon>uPalette.cs</DependentUpon>
     </EmbeddedResource>
@@ -636,6 +645,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgMembers.resx">
       <DependentUpon>dlgMembers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgMergePatient.resx">
+      <DependentUpon>dlgMergePatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgMessage.resx">
       <DependentUpon>dlgMessage.cs</DependentUpon>
