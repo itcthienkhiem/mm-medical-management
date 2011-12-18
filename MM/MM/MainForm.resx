@@ -393,11 +393,14 @@
   <data name="&gt;&gt;_uPatientList.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="_uDuplicatePatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
   <data name="_uDuplicatePatient.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
   <data name="_uDuplicatePatient.Size" type="System.Drawing.Size, System.Drawing">
-    <value>867, 470</value>
+    <value>924, 479</value>
   </data>
   <data name="_uDuplicatePatient.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -826,25 +829,25 @@
     <value>&amp;Nhân viên</value>
   </data>
   <data name="openPatientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>189, 22</value>
   </data>
   <data name="openPatientToolStripMenuItem.Text" xml:space="preserve">
     <value>Mở bệnh nhân</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>186, 6</value>
   </data>
   <data name="patientListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>189, 22</value>
   </data>
   <data name="patientListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh sách bệnh nhân</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>186, 6</value>
   </data>
   <data name="DuplicatePatientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>189, 22</value>
   </data>
   <data name="DuplicatePatientToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh sách trùng lắp</value>
@@ -2625,6 +2628,12 @@
   <data name="&gt;&gt;tbPatientList.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;tbDuplicatePatient.Name" xml:space="preserve">
+    <value>tbDuplicatePatient</value>
+  </data>
+  <data name="&gt;&gt;tbDuplicatePatient.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
     <value>toolStripSeparator5</value>
   </data>
@@ -2799,6 +2808,12 @@
   <data name="&gt;&gt;patientListToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparator15.Name" xml:space="preserve">
+    <value>toolStripSeparator15</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;DuplicatePatientToolStripMenuItem.Name" xml:space="preserve">
     <value>DuplicatePatientToolStripMenuItem</value>
   </data>
@@ -2906,18 +2921,6 @@
   </data>
   <data name="&gt;&gt;aboutMedicalManagementToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator15.Name" xml:space="preserve">
-    <value>toolStripSeparator15</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator15.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbDuplicatePatient.Name" xml:space="preserve">
-    <value>tbDuplicatePatient</value>
-  </data>
-  <data name="&gt;&gt;tbDuplicatePatient.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
