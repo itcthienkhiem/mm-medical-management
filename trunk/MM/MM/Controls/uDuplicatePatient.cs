@@ -16,42 +16,40 @@ namespace MM.Controls
 {
     public partial class uDuplicatePatient : uBase
     {
+        #region Members
         private DataTable _dataSource = null;
+        #endregion
+
+        #region Constructor
         public uDuplicatePatient()
         {
             InitializeComponent();
         }
+        #endregion
+
         #region Properties
         public object DataSource
         {
-            get
-            {
-                //if (dgDuplicatePatient.RowCount <= 0)
-                //    DisplayAsThread();
-
-                return dgDuplicatePatient.DataSource;
-            }
+            get { return dgDuplicatePatient.DataSource; }
         }
         #endregion
+
+        #region UI Command
         private void UpdateGUI()
         {
-            //btnAdd.Enabled = AllowAdd;
-            //btnEdit.Enabled = AllowEdit;
-            //btnDelete.Enabled = AllowDelete;
-            //btnOpenPatient.Enabled = AllowOpenPatient;
-            //btnImportExcel.Enabled = AllowImport;
+            btnMerge.Enabled = AllowEdit;
         }
 
         public void ClearData()
         {
             dgDuplicatePatient.DataSource = null;
         }
+
         public void DisplayAsThread()
         {
             try
             {
                 UpdateGUI();
-                //chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayDuplicatePatientListProc));
                 base.ShowWaiting();
             }
@@ -65,15 +63,7 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
-        private DataRow GetDataRow(string patientGUID)
-        {
-            DataTable dt = dgDuplicatePatient.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return null;
-            DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", patientGUID));
-            if (rows == null || rows.Length <= 0) return null;
 
-            return rows[0];
-        }
         private void OnDisplayDuplicatePatientList()
         {
             Result result = PatientBus.GetDuplicatePatientList();
@@ -94,10 +84,9 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
             }
         }
+
         private void OnSearchPatient()
         {
-            //UpdateChecked();
-            //chkChecked.Checked = false;
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
                 dgDuplicatePatient.DataSource = _dataSource;
@@ -190,6 +179,8 @@ namespace MM.Controls
 
             dgDuplicatePatient.DataSource = newDataSource;
         }
+        #endregion
+        
         #region Working Thread
         private void OnDisplayDuplicatePatientListProc(object state)
         {
@@ -210,6 +201,7 @@ namespace MM.Controls
         }
         #endregion
 
+        #region Window Event Handers
         private void btnMerge_Click(object sender, EventArgs e)
         {
             if (_dataSource == null) return;
@@ -230,11 +222,9 @@ namespace MM.Controls
                 dlgMergePatient dlg = new dlgMergePatient();
                 dlg.SetDataSource(dt);
                 dlg.ShowDialog();
-                
+
             }
-            //string patientGUID = (dgDuplicatePatient.SelectedRows[0].DataBoundItem as DataRowView).Row["PatientGUID"].ToString();
-            //DataRow drPatient = GetDataRow(patientGUID);
-            //if (drPatient == null) return;
         }
+        #endregion
     }
 }
