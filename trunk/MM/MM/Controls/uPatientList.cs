@@ -213,9 +213,8 @@ namespace MM.Controls
 
         private DataRow GetDataRow(string patientGUID)
         {
-            DataTable dt = dgPatient.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return null;
-            DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", patientGUID));
+            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
+            DataRow[] rows = _dataSource.Select(string.Format("PatientGUID = '{0}'", patientGUID));
             if (rows == null || rows.Length <= 0) return null;
 
             return rows[0];
@@ -389,8 +388,9 @@ namespace MM.Controls
                 return;
             }
 
-            DataRow patientRow = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            base.RaiseOpentPatient(patientRow);
+            string patientGUID = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row["PatientGUID"].ToString();
+            DataRow drPatient = GetDataRow(patientGUID);
+            base.RaiseOpentPatient(drPatient);
         }
 
         private void UpdateChecked()
@@ -555,6 +555,7 @@ namespace MM.Controls
                 return false;
             }
         }
+
         private bool CheckTemplate(IWorksheet ws, ref string message)
         {
             string s = string.Format("Sheet {0} không đúng định dạng nên không được nhập", ws.Name) + System.Environment.NewLine;
@@ -579,6 +580,7 @@ namespace MM.Controls
                 return false;
             }
         }
+
         private void ImportPatientFromExcel()
         {
             string message="Nhập dữ liệu từ Excel hoàn tất." + System.Environment.NewLine;
