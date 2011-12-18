@@ -143,7 +143,7 @@ namespace MM.Exports
 
                 range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
                 range.Value = "Thu ngân";
-                range.HorizontalAlignment = HAlign.Right;
+                range.HorizontalAlignment = HAlign.Left;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
