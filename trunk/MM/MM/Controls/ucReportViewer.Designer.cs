@@ -35,6 +35,7 @@
             // 
             this._reportViewer.AutoScroll = true;
             this._reportViewer.AutoSize = true;
+            this._reportViewer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._reportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._reportViewer.Location = new System.Drawing.Point(0, 0);
             this._reportViewer.Name = "_reportViewer";

@@ -709,6 +709,7 @@
     <EmbeddedResource Include="Controls\uPatient.resx">
       <DependentUpon>uPatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Templates\rptDoanhThuNhanVienTongHop.rdlc" />
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
     <None Include="Properties\DataSources\MM.Databasae.Company.datasource" />

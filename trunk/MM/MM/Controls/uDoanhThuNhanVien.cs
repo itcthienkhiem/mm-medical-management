@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using Microsoft.Reporting.WinForms;
 using MM.Databasae;
 using MM.Common;
 using MM.Bussiness;
@@ -97,17 +99,26 @@ namespace MM.Controls
             DateTime toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
             string docStaffGUID = cboNhanVien.SelectedValue.ToString();
 
+            Result result = null;
             if (raTongHop.Checked)
             {
-
+                result = ReportBus.GetDoanhThuNhanVienTongHop(fromDate, toDate, docStaffGUID);
+                if (result.IsOK)
+                {
+                    ReportDataSource reportDataSource = new ReportDataSource("spDoanhThuNhanVienTongHopResult", 
+                        (List<spDoanhThuNhanVienTongHopResult>)result.QueryResult);
+                    _ucReportViewer.ViewReport("MM.Templates.rptDoanhThuNhanVienTongHop.rdlc", reportDataSource);
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetDoanhThuNhanVienTongHop"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetDoanhThuNhanVienTongHop"));
+                }
             }
             else
             {
 
             }
-
-            //ReportDataSource reportDataSource = new ReportDataSource("spBaoCaoHangTrongTayThoResult", result);
-            //_ucReportViewer.ViewReport("LichHenKhachHang.Reports.BaoCaoHangTrongTayTho.rdlc", reportDataSource);
         }
         #endregion
 
