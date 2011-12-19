@@ -101,6 +101,8 @@
             this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doanhThuNhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
+            this.dichVuHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,6 +110,7 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uDichVuHopDong = new MM.Controls.uDichVuHopDong();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -119,6 +122,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uDichVuHopDong);
             this._mainPanel.Controls.Add(this._uDoanhThuNhanVien);
             this._mainPanel.Controls.Add(this._uInvoiceList);
             this._mainPanel.Controls.Add(this._uReceiptList);
@@ -639,7 +643,9 @@
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.doanhThuNhanVienToolStripMenuItem});
+            this.doanhThuNhanVienToolStripMenuItem,
+            this.toolStripSeparator16,
+            this.dichVuHopDongToolStripMenuItem});
             resources.ApplyResources(this.reportToolStripMenuItem, "reportToolStripMenuItem");
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             // 
@@ -650,6 +656,18 @@
             resources.ApplyResources(this.doanhThuNhanVienToolStripMenuItem, "doanhThuNhanVienToolStripMenuItem");
             this.doanhThuNhanVienToolStripMenuItem.Tag = "DoanhThuNhanVien";
             this.doanhThuNhanVienToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
+            // 
+            // dichVuHopDongToolStripMenuItem
+            // 
+            this.dichVuHopDongToolStripMenuItem.Name = "dichVuHopDongToolStripMenuItem";
+            resources.ApplyResources(this.dichVuHopDongToolStripMenuItem, "dichVuHopDongToolStripMenuItem");
+            this.dichVuHopDongToolStripMenuItem.Tag = "DichVuHopDong";
+            this.dichVuHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -703,6 +721,11 @@
             resources.ApplyResources(this.aboutMedicalManagementToolStripMenuItem, "aboutMedicalManagementToolStripMenuItem");
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // _uDichVuHopDong
+            // 
+            resources.ApplyResources(this._uDichVuHopDong, "_uDichVuHopDong");
+            this._uDichVuHopDong.Name = "_uDichVuHopDong";
             // 
             // MainForm
             // 
@@ -809,6 +832,9 @@
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem doanhThuNhanVienToolStripMenuItem;
         private Controls.uDoanhThuNhanVien _uDoanhThuNhanVien;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
+        private System.Windows.Forms.ToolStripMenuItem dichVuHopDongToolStripMenuItem;
+        private Controls.uDichVuHopDong _uDichVuHopDong;
 
     }
 }

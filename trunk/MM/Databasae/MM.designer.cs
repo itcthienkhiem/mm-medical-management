@@ -380,6 +380,13 @@ namespace MM.Databasae
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fromDate, toDate, docStaffGUID, type);
 			return ((ISingleResult<spDoanhThuNhanVienChiTietResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spDichVuHopDong")]
+		public ISingleResult<spDichVuHopDongResult> spDichVuHopDong([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ContractGUID", DbType="NVarChar(50)")] string contractGUID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), contractGUID);
+			return ((ISingleResult<spDichVuHopDongResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Company")]
@@ -14339,6 +14346,68 @@ namespace MM.Databasae
 				if ((this._Revenue != value))
 				{
 					this._Revenue = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spDichVuHopDongResult
+	{
+		
+		private string _FullName;
+		
+		private string _ServiceName;
+		
+		private string _Using;
+		
+		public spDichVuHopDongResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceName", DbType="VarChar(3) NOT NULL", CanBeNull=false)]
+		public string ServiceName
+		{
+			get
+			{
+				return this._ServiceName;
+			}
+			set
+			{
+				if ((this._ServiceName != value))
+				{
+					this._ServiceName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Using", DbType="VarChar(7) NOT NULL", CanBeNull=false)]
+		public string Using
+		{
+			get
+			{
+				return this._Using;
+			}
+			set
+			{
+				if ((this._Using != value))
+				{
+					this._Using = value;
 				}
 			}
 		}

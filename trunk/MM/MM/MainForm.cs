@@ -140,6 +140,8 @@ namespace MM
                 _uDuplicatePatient.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uDoanhThuNhanVien))
                 _uDoanhThuNhanVien.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uDichVuHopDong))
+                _uDichVuHopDong.DisplayAsThread();    
         }
 
         private void SaveAppConfig()
@@ -343,6 +345,16 @@ namespace MM
                             _uDoanhThuNhanVien.AllowExport = isExport;
                             _uDoanhThuNhanVien.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.DichVuHopDong)
+                        {
+                            dichVuHopDongToolStripMenuItem.Enabled = isView && isLogin;
+                            _uDichVuHopDong.AllowAdd = isAdd;
+                            _uDichVuHopDong.AllowEdit = isEdit;
+                            _uDichVuHopDong.AllowDelete = isDelete;
+                            _uDichVuHopDong.AllowPrint = isPrint;
+                            _uDichVuHopDong.AllowExport = isExport;
+                            _uDichVuHopDong.AllowImport = isImport;
+                        }
                     }
                 }
                 else
@@ -472,6 +484,8 @@ namespace MM
 
                 reportToolStripMenuItem.Enabled = isLogin;
                 doanhThuNhanVienToolStripMenuItem.Enabled = isLogin;
+                dichVuHopDongToolStripMenuItem.Enabled = isLogin;
+
             }
         }
 
@@ -567,7 +581,18 @@ namespace MM
                 case "DoanhThuNhanVien":
                     OnDoanhThuNhanVien();
                     break;
+                    
+                case "DichVuHopDong":
+                    OnDichVuHopDong();
+                    break;
             }
+        }
+
+        private void OnDichVuHopDong()
+        {
+            this.Text = string.Format("{0} - Bao cao dich vu hop dong", Application.ProductName);
+            ViewControl(_uDichVuHopDong);
+            _uDichVuHopDong.DisplayAsThread();
         }
 
         private void OnDoanhThuNhanVien()

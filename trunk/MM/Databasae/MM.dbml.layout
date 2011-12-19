@@ -200,7 +200,7 @@
         <classShapeMoniker Id="8e914dd0-7893-462f-925d-367ae5748aad" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 15.3501395670573); (5.91666666666667 : 15.3501395670573 : JumpStart); (6.08333333333333 : 15.3501395670573 : JumpEnd); (6.25 : 15.3501395670573)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 15.3501395670573); (6.25 : 15.3501395670573)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MMDataContext/Patient/Patient_Receipt" />
       <nodes>
         <classShapeMoniker Id="e2b1856c-3705-4513-be42-9437758d0943" />
@@ -235,7 +235,7 @@
         <classShapeMoniker Id="84575a8f-0972-4f68-8163-5c8d5dae60fe" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(8.78125 : 13.34375); (8.40625 : 13.34375); (11.2916666666667 : 13.34375 : JumpStart); (11.4583333333333 : 13.34375 : JumpEnd); (11.75 : 13.34375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(8.78125 : 13.34375); (8.40625 : 13.34375); (11.75 : 13.34375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MMDataContext/Service/Service_CompanyCheckList" />
       <nodes>
         <classShapeMoniker Id="2e82c4a4-0588-4bed-8146-5bc12d28bf46" />

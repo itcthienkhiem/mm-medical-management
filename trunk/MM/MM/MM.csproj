@@ -259,6 +259,12 @@
     <Compile Include="Controls\ucReportViewer.Designer.cs">
       <DependentUpon>ucReportViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uDichVuHopDong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uDichVuHopDong.Designer.cs">
+      <DependentUpon>uDichVuHopDong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uDoanhThuNhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -562,6 +568,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ucReportViewer.resx">
       <DependentUpon>ucReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uDichVuHopDong.resx">
+      <DependentUpon>uDichVuHopDong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDoanhThuNhanVien.resx">
       <DependentUpon>uDoanhThuNhanVien.cs</DependentUpon>
