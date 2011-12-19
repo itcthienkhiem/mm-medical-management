@@ -104,11 +104,12 @@ namespace MM.Controls
             DateTime fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
             DateTime toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
             string docStaffGUID = cboNhanVien.SelectedValue.ToString();
+            byte type = raServiceHistory.Checked ? (byte)0 : (byte)1;
 
             Result result = null;
             if (raTongHop.Checked)
             {
-                result = ReportBus.GetDoanhThuNhanVienTongHop(fromDate, toDate, docStaffGUID);
+                result = ReportBus.GetDoanhThuNhanVienTongHop(fromDate, toDate, docStaffGUID, type);
                 if (result.IsOK)
                 {
                     ReportDataSource reportDataSource = new ReportDataSource("spDoanhThuNhanVienTongHopResult", 
@@ -123,7 +124,7 @@ namespace MM.Controls
             }
             else
             {
-                result = ReportBus.GetDoanhThuNhanVienChiTiet(fromDate, toDate, docStaffGUID);
+                result = ReportBus.GetDoanhThuNhanVienChiTiet(fromDate, toDate, docStaffGUID, type);
                 if (result.IsOK)
                 {
                     ReportDataSource reportDataSource = new ReportDataSource("spDoanhThuNhanVienChiTietResult",
