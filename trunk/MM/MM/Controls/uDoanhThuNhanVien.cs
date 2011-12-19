@@ -117,7 +117,18 @@ namespace MM.Controls
             }
             else
             {
-
+                result = ReportBus.GetDoanhThuNhanVienChiTiet(fromDate, toDate, docStaffGUID);
+                if (result.IsOK)
+                {
+                    ReportDataSource reportDataSource = new ReportDataSource("spDoanhThuNhanVienChiTietResult",
+                        (List<spDoanhThuNhanVienChiTietResult>)result.QueryResult);
+                    _ucReportViewer.ViewReport("MM.Templates.rptDoanhThuNhanVienChiTiet.rdlc", reportDataSource);
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetDoanhThuNhanVienChiTiet"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetDoanhThuNhanVienChiTiet"));
+                }
             }
         }
         #endregion

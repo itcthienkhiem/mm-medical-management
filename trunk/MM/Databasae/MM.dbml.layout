@@ -123,7 +123,7 @@
         <classShapeMoniker Id="60342eff-84e0-4e95-affe-df4bf02db678" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.5 : 9.81832112630208); (5.875 : 10.1933211263021); (5.875 : 9.625); (6.25 : 10)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 9.81832112630208); (5.875 : 10.1933211263021); (5.875 : 9.625); (6.00357443490112 : 9.75357443490112 : JumpStart); (6.12142556509888 : 9.87142556509888 : JumpEnd); (6.25 : 10)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/MMDataContext/Company/Company_CompanyMember" />
       <nodes>
         <classShapeMoniker Id="679ea2d1-62ec-4543-be48-02778e21cbd7" />

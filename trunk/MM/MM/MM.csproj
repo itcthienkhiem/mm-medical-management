@@ -709,6 +709,7 @@
     <EmbeddedResource Include="Controls\uPatient.resx">
       <DependentUpon>uPatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Templates\rptDoanhThuNhanVienChiTiet.rdlc" />
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienTongHop.rdlc" />
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
@@ -726,6 +727,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ReceiptView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienChiTietResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienTongHopResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
