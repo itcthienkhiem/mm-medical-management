@@ -30,5 +30,6 @@ namespace MM.Common
         public static string Invoice = "Invoice";
         public static string DuplicatePatient = "DuplicatePatient";
         public static string DoanhThuNhanVien = "DoanhThuNhanVien";
+        public static string DichVuHopDong = "DichVuHopDong";
     }
 }

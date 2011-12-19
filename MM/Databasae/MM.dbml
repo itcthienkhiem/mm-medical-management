@@ -748,4 +748,12 @@
       <Column Name="Revenue" Type="System.Double" DbType="Float" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.spDichVuHopDong" Method="spDichVuHopDong">
+    <Parameter Name="ContractGUID" Parameter="contractGUID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="spDichVuHopDongResult">
+      <Column Name="FullName" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceName" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="Using" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>
