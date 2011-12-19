@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uDoanhThuNhanVien = new MM.Controls.uDoanhThuNhanVien();
             this._uInvoiceList = new MM.Controls.uInvoiceList();
             this._uReceiptList = new MM.Controls.uReceiptList();
             this._uPrintLabel = new MM.Controls.uPrintLabel();
@@ -98,6 +99,8 @@
             this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.doanhThuNhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,6 +119,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uDoanhThuNhanVien);
             this._mainPanel.Controls.Add(this._uInvoiceList);
             this._mainPanel.Controls.Add(this._uReceiptList);
             this._mainPanel.Controls.Add(this._uPrintLabel);
@@ -130,6 +134,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uDoanhThuNhanVien
+            // 
+            resources.ApplyResources(this._uDoanhThuNhanVien, "_uDoanhThuNhanVien");
+            this._uDoanhThuNhanVien.Name = "_uDoanhThuNhanVien";
             // 
             // _uInvoiceList
             // 
@@ -387,6 +396,7 @@
             this.symptomToolStripMenuItem,
             this.receiptToolStripMenuItem,
             this.invoiceToolStripMenuItem,
+            this.reportToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this._mainMenu, "_mainMenu");
@@ -626,6 +636,21 @@
             this.invoiceListToolStripMenuItem.Tag = "Invoice List";
             this.invoiceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.doanhThuNhanVienToolStripMenuItem});
+            resources.ApplyResources(this.reportToolStripMenuItem, "reportToolStripMenuItem");
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            // 
+            // doanhThuNhanVienToolStripMenuItem
+            // 
+            this.doanhThuNhanVienToolStripMenuItem.Image = global::MM.Properties.Resources.personal_loan_icon;
+            this.doanhThuNhanVienToolStripMenuItem.Name = "doanhThuNhanVienToolStripMenuItem";
+            resources.ApplyResources(this.doanhThuNhanVienToolStripMenuItem, "doanhThuNhanVienToolStripMenuItem");
+            this.doanhThuNhanVienToolStripMenuItem.Tag = "DoanhThuNhanVien";
+            this.doanhThuNhanVienToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -781,6 +806,9 @@
         private System.Windows.Forms.ToolStripMenuItem DuplicatePatientToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
         private System.Windows.Forms.ToolStripButton tbDuplicatePatient;
+        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem doanhThuNhanVienToolStripMenuItem;
+        private Controls.uDoanhThuNhanVien _uDoanhThuNhanVien;
 
     }
 }

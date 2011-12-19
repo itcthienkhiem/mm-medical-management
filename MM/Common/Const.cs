@@ -29,5 +29,6 @@ namespace MM.Common
         public static string Receipt = "Receipt";
         public static string Invoice = "Invoice";
         public static string DuplicatePatient = "DuplicatePatient";
+        public static string DoanhThuNhanVien = "DoanhThuNhanVien";
     }
 }

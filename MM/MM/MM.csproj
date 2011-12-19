@@ -60,6 +60,7 @@
       <HintPath>Components\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
     <Reference Include="DSBarCode, Version=1.0.4335.40892, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="SpreadsheetGear, Version=1.6.0.122, Culture=neutral, PublicKeyToken=39c186f5904944ec">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Components\SpreadsheetGear.dll</HintPath>
@@ -251,6 +252,18 @@
     </Compile>
     <Compile Include="Controls\uContractList.Designer.cs">
       <DependentUpon>uContractList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ucReportViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ucReportViewer.Designer.cs">
+      <DependentUpon>ucReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uDoanhThuNhanVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uDoanhThuNhanVien.Designer.cs">
+      <DependentUpon>uDoanhThuNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\uDocStaffList.cs">
       <SubType>UserControl</SubType>
@@ -547,6 +560,12 @@
     <EmbeddedResource Include="Controls\uContractList.resx">
       <DependentUpon>uContractList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ucReportViewer.resx">
+      <DependentUpon>ucReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uDoanhThuNhanVien.resx">
+      <DependentUpon>uDoanhThuNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDocStaffList.resx">
       <DependentUpon>uDocStaffList.cs</DependentUpon>
     </EmbeddedResource>
@@ -756,6 +775,8 @@
     <Content Include="Controls\Excel\Office\Excel\MetaData\Record Identifier.txt" />
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\views-icon.png" />
+    <None Include="Resources\personal-loan-icon.png" />
     <None Include="Resources\Architecture-info-icon.png" />
     <None Include="Resources\Actions-window-duplicate-icon.png" />
     <None Include="Resources\Arrow-right-icon.png" />

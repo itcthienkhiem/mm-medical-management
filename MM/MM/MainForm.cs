@@ -138,6 +138,8 @@ namespace MM
                 _uInvoiceList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uDuplicatePatient))
                 _uDuplicatePatient.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uDoanhThuNhanVien))
+                _uDoanhThuNhanVien.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -330,6 +332,12 @@ namespace MM
                             _uDuplicatePatient.AllowExport = isExport;
                             _uDuplicatePatient.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.DoanhThuNhanVien)
+                        {
+                            reportToolStripMenuItem.Enabled = isLogin;
+                            doanhThuNhanVienToolStripMenuItem.Enabled = isView && isLogin;
+
+                        }
                     }
                 }
                 else
@@ -456,6 +464,9 @@ namespace MM
 
                 DuplicatePatientToolStripMenuItem.Enabled = isLogin;
                 tbDuplicatePatient.Enabled = isLogin;
+
+                reportToolStripMenuItem.Enabled = isLogin;
+                doanhThuNhanVienToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -547,7 +558,18 @@ namespace MM
                 case "Invoice List":
                     OnInvoiceList();
                     break;
+
+                case "DoanhThuNhanVien":
+                    OnDoanhThuNhanVien();
+                    break;
             }
+        }
+
+        private void OnDoanhThuNhanVien()
+        {
+            this.Text = string.Format("{0} - Bao cao doanh thu nhan vien", Application.ProductName);
+            ViewControl(_uDoanhThuNhanVien);
+            _uDoanhThuNhanVien.DisplayAsThread();
         }
 
         private void OnInvoiceList()
@@ -706,6 +728,8 @@ namespace MM
                 _uReceiptList.ClearData();
             else if (ctrl.GetType() == typeof(uInvoiceList))
                 _uInvoiceList.ClearData();
+            else if (ctrl.GetType() == typeof(uDuplicatePatient))
+                _uDuplicatePatient.ClearData();
         }
 
         private void OnDoctorList()
