@@ -35,6 +35,7 @@ namespace MM.Controls
         #region UI Command
         public void ViewReport(string reportEmbeddedResource, ReportDataSource reportDataSource)
         {
+            Cursor.Current = Cursors.WaitCursor;
             _reportViewer.LocalReport.DataSources.Clear();
             _reportViewer.LocalReport.DataSources.Add(reportDataSource);
             _reportViewer.LocalReport.ReportEmbeddedResource = reportEmbeddedResource;
