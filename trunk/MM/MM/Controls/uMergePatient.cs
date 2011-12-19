@@ -58,7 +58,8 @@ namespace MM.Controls
                     PatientBus.Merge2Patients(keepPatientGUID, mergePatientGUID, Global.UserGUID);
                 }
             }
-            MsgBox.Show("Merge bệnh nhân", "Quá trình Merge kết thúc", IconType.Information);
+
+            MsgBox.Show("Merge benh nhan", "Quá trình Merge kết thúc", IconType.Information);
         }
     }
 }
