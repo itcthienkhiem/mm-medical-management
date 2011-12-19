@@ -35,10 +35,16 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            _ucReportViewer.ShowPrintButton = AllowPrint;
+        }
+
         public void DisplayAsThread()
         {
             try
             {
+                UpdateGUI();
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayDocStaffListProc));
                 base.ShowWaiting();
             }
