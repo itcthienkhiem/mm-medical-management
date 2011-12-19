@@ -366,6 +366,13 @@ namespace MM.Databasae
 				return this.GetTable<ServiceHistoryView>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spDoanhThuNhanVienTongHop")]
+		public ISingleResult<spDoanhThuNhanVienTongHopResult> spDoanhThuNhanVienTongHop([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FromDate", DbType="DateTime")] System.Nullable<System.DateTime> fromDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ToDate", DbType="DateTime")] System.Nullable<System.DateTime> toDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocStaffGUID", DbType="NVarChar(50)")] string docStaffGUID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), fromDate, toDate, docStaffGUID);
+			return ((ISingleResult<spDoanhThuNhanVienTongHopResult>)(result.ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Company")]
@@ -14147,6 +14154,86 @@ namespace MM.Databasae
 				if ((this._Discount != value))
 				{
 					this._Discount = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spDoanhThuNhanVienTongHopResult
+	{
+		
+		private System.Nullable<System.DateTime> _FromDate;
+		
+		private System.Nullable<System.DateTime> _ToDate;
+		
+		private string _FullName;
+		
+		private System.Nullable<double> _Revenue;
+		
+		public spDoanhThuNhanVienTongHopResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FromDate
+		{
+			get
+			{
+				return this._FromDate;
+			}
+			set
+			{
+				if ((this._FromDate != value))
+				{
+					this._FromDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ToDate
+		{
+			get
+			{
+				return this._ToDate;
+			}
+			set
+			{
+				if ((this._ToDate != value))
+				{
+					this._ToDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Revenue", DbType="Float")]
+		public System.Nullable<double> Revenue
+		{
+			get
+			{
+				return this._Revenue;
+			}
+			set
+			{
+				if ((this._Revenue != value))
+				{
+					this._Revenue = value;
 				}
 			}
 		}

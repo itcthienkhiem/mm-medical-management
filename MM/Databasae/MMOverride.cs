@@ -16,14 +16,30 @@ namespace MM.Databasae
         #endregion
     }
 
-    public partial class spDoanhThuNhanVienTongHopResult
+    /*public partial class spDoanhThuNhanVienTongHopResult
     {
+        private DateTime _FromDate;
+        private DateTime _ToDate;
         private string _FullName;
         private double _Revenue;
 
         public spDoanhThuNhanVienTongHopResult()
         {
 
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_FromDate", DbType = "DateTime")]
+        public DateTime FromDate
+        {
+            get { return this._FromDate; }
+            set { this._FromDate = value; }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ToDate", DbType = "DateTime")]
+        public DateTime ToDate
+        {
+            get { return this._ToDate; }
+            set { this._ToDate = value; }
         }
 
         [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_FullName", DbType = "NVarChar(255)")]
@@ -43,6 +59,8 @@ namespace MM.Databasae
 
     public partial class spDoanhThuNhanVienChiTiet
     {
+        private DateTime _FromDate;
+        private DateTime _ToDate;
         private string _FullName;
         private DateTime _ActivedDate;
         private double _Revenue;
@@ -50,6 +68,20 @@ namespace MM.Databasae
         public spDoanhThuNhanVienChiTiet()
         {
 
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_FromDate", DbType = "DateTime")]
+        public DateTime FromDate
+        {
+            get { return this._FromDate; }
+            set { this._FromDate = value; }
+        }
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_ToDate", DbType = "DateTime")]
+        public DateTime ToDate
+        {
+            get { return this._ToDate; }
+            set { this._ToDate = value; }
         }
 
         [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_FullName", DbType = "NVarChar(255)")]
@@ -72,5 +104,5 @@ namespace MM.Databasae
             get { return this._Revenue; }
             set { this._Revenue = value; }
         }
-    }
+    }*/
 }
