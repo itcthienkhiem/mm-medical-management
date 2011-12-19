@@ -46,6 +46,7 @@
             this._reportViewer.ShowStopButton = false;
             this._reportViewer.Size = new System.Drawing.Size(481, 364);
             this._reportViewer.TabIndex = 0;
+            this._reportViewer.UseWaitCursor = true;
             // 
             // ucReportViewer
             // 
