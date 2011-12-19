@@ -11,7 +11,7 @@ namespace MM.Bussiness
 {
     public class ReportBus : BusBase
     {
-        public static Result GetDoanhThuNhanVienTongHop(DateTime fromDate, DateTime toDate, string docStaffGUID)
+        public static Result GetDoanhThuNhanVienTongHop(DateTime fromDate, DateTime toDate, string docStaffGUID, byte type)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -19,7 +19,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                result.QueryResult = db.spDoanhThuNhanVienTongHop(fromDate, toDate, docStaffGUID).ToList<spDoanhThuNhanVienTongHopResult>();
+                result.QueryResult = db.spDoanhThuNhanVienTongHop(fromDate, toDate, docStaffGUID, type).ToList<spDoanhThuNhanVienTongHopResult>();
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -43,7 +43,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetDoanhThuNhanVienChiTiet(DateTime fromDate, DateTime toDate, string docStaffGUID)
+        public static Result GetDoanhThuNhanVienChiTiet(DateTime fromDate, DateTime toDate, string docStaffGUID, byte type)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -51,7 +51,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                result.QueryResult = db.spDoanhThuNhanVienChiTiet(fromDate, toDate, docStaffGUID).ToList<spDoanhThuNhanVienChiTietResult>();
+                result.QueryResult = db.spDoanhThuNhanVienChiTiet(fromDate, toDate, docStaffGUID, type).ToList<spDoanhThuNhanVienChiTietResult>();
             }
             catch (System.Data.SqlClient.SqlException se)
             {

@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.raReceipt = new System.Windows.Forms.RadioButton();
+            this.raServiceHistory = new System.Windows.Forms.RadioButton();
             this.raChiTiet = new System.Windows.Forms.RadioButton();
             this.raTongHop = new System.Windows.Forms.RadioButton();
             this.btnView = new System.Windows.Forms.Button();
@@ -43,9 +45,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this._ucReportViewer = new MM.Controls.ucReportViewer();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,6 +63,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.raChiTiet);
             this.panel2.Controls.Add(this.raTongHop);
             this.panel2.Controls.Add(this.btnView);
@@ -71,13 +76,35 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(849, 115);
+            this.panel2.Size = new System.Drawing.Size(849, 138);
             this.panel2.TabIndex = 4;
+            // 
+            // raReceipt
+            // 
+            this.raReceipt.AutoSize = true;
+            this.raReceipt.Location = new System.Drawing.Point(143, 3);
+            this.raReceipt.Name = "raReceipt";
+            this.raReceipt.Size = new System.Drawing.Size(85, 17);
+            this.raReceipt.TabIndex = 10;
+            this.raReceipt.Text = "Từ phiếu thu";
+            this.raReceipt.UseVisualStyleBackColor = true;
+            // 
+            // raServiceHistory
+            // 
+            this.raServiceHistory.AutoSize = true;
+            this.raServiceHistory.Checked = true;
+            this.raServiceHistory.Location = new System.Drawing.Point(5, 3);
+            this.raServiceHistory.Name = "raServiceHistory";
+            this.raServiceHistory.Size = new System.Drawing.Size(121, 17);
+            this.raServiceHistory.TabIndex = 9;
+            this.raServiceHistory.TabStop = true;
+            this.raServiceHistory.Text = "Từ dịch vụ đã khám";
+            this.raServiceHistory.UseVisualStyleBackColor = true;
             // 
             // raChiTiet
             // 
             this.raChiTiet.AutoSize = true;
-            this.raChiTiet.Location = new System.Drawing.Point(170, 61);
+            this.raChiTiet.Location = new System.Drawing.Point(215, 61);
             this.raChiTiet.Name = "raChiTiet";
             this.raChiTiet.Size = new System.Drawing.Size(57, 17);
             this.raChiTiet.TabIndex = 8;
@@ -100,7 +127,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(77, 84);
+            this.btnView.Location = new System.Drawing.Point(77, 108);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 6;
@@ -175,9 +202,9 @@
             // 
             this.panel3.Controls.Add(this._ucReportViewer);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 115);
+            this.panel3.Location = new System.Drawing.Point(0, 138);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(849, 320);
+            this.panel3.Size = new System.Drawing.Size(849, 297);
             this.panel3.TabIndex = 5;
             // 
             // _ucReportViewer
@@ -185,8 +212,17 @@
             this._ucReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ucReportViewer.Location = new System.Drawing.Point(0, 0);
             this._ucReportViewer.Name = "_ucReportViewer";
-            this._ucReportViewer.Size = new System.Drawing.Size(849, 320);
+            this._ucReportViewer.Size = new System.Drawing.Size(849, 297);
             this._ucReportViewer.TabIndex = 0;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.raReceipt);
+            this.panel4.Controls.Add(this.raServiceHistory);
+            this.panel4.Location = new System.Drawing.Point(72, 82);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(242, 22);
+            this.panel4.TabIndex = 11;
             // 
             // uDoanhThuNhanVien
             // 
@@ -201,6 +237,8 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -221,5 +259,8 @@
         private ucReportViewer _ucReportViewer;
         private System.Windows.Forms.RadioButton raChiTiet;
         private System.Windows.Forms.RadioButton raTongHop;
+        private System.Windows.Forms.RadioButton raReceipt;
+        private System.Windows.Forms.RadioButton raServiceHistory;
+        private System.Windows.Forms.Panel panel4;
     }
 }
