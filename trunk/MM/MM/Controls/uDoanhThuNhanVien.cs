@@ -81,7 +81,7 @@ namespace MM.Controls
         {
             if (dtpkFromDate.Value > dtpkToDate.Value)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày lớn hơn hoặc bằng đến ngày.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
                 dtpkFromDate.Focus();
                 return false;
             }
