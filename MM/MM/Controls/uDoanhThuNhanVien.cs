@@ -69,7 +69,7 @@ namespace MM.Controls
                     DataTable dt = result.QueryResult as DataTable;
                     DataRow newRow = dt.NewRow();
                     newRow["DocStaffGUID"] = Guid.Empty.ToString();
-                    newRow["FullName"] = "--------All--------";
+                    newRow["FullName"] = "--------Tất cả--------";
                     dt.Rows.InsertAt(newRow, 0);
 
                     cboNhanVien.DataSource = dt;

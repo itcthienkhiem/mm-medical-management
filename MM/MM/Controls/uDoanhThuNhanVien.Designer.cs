@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.raReceipt = new System.Windows.Forms.RadioButton();
             this.raServiceHistory = new System.Windows.Forms.RadioButton();
             this.raChiTiet = new System.Windows.Forms.RadioButton();
@@ -45,11 +46,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this._ucReportViewer = new MM.Controls.ucReportViewer();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -79,10 +79,19 @@
             this.panel2.Size = new System.Drawing.Size(849, 138);
             this.panel2.TabIndex = 4;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.raReceipt);
+            this.panel4.Controls.Add(this.raServiceHistory);
+            this.panel4.Location = new System.Drawing.Point(201, 59);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(152, 49);
+            this.panel4.TabIndex = 11;
+            // 
             // raReceipt
             // 
             this.raReceipt.AutoSize = true;
-            this.raReceipt.Location = new System.Drawing.Point(143, 3);
+            this.raReceipt.Location = new System.Drawing.Point(5, 23);
             this.raReceipt.Name = "raReceipt";
             this.raReceipt.Size = new System.Drawing.Size(85, 17);
             this.raReceipt.TabIndex = 10;
@@ -104,7 +113,7 @@
             // raChiTiet
             // 
             this.raChiTiet.AutoSize = true;
-            this.raChiTiet.Location = new System.Drawing.Point(215, 61);
+            this.raChiTiet.Location = new System.Drawing.Point(77, 82);
             this.raChiTiet.Name = "raChiTiet";
             this.raChiTiet.Size = new System.Drawing.Size(57, 17);
             this.raChiTiet.TabIndex = 8;
@@ -215,15 +224,6 @@
             this._ucReportViewer.Size = new System.Drawing.Size(849, 297);
             this._ucReportViewer.TabIndex = 0;
             // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.raReceipt);
-            this.panel4.Controls.Add(this.raServiceHistory);
-            this.panel4.Location = new System.Drawing.Point(72, 82);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(242, 22);
-            this.panel4.TabIndex = 11;
-            // 
             // uDoanhThuNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,10 +235,10 @@
             this.Size = new System.Drawing.Size(849, 473);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
-            this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
