@@ -91,7 +91,20 @@ namespace MM.Controls
 
         private void OnView()
         {
+            Cursor.Current = Cursors.WaitCursor;
             if (!CheckInfo()) return;
+            DateTime fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
+            DateTime toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+            string docStaffGUID = cboNhanVien.SelectedValue.ToString();
+
+            if (raTongHop.Checked)
+            {
+
+            }
+            else
+            {
+
+            }
 
             //ReportDataSource reportDataSource = new ReportDataSource("spBaoCaoHangTrongTayThoResult", result);
             //_ucReportViewer.ViewReport("LichHenKhachHang.Reports.BaoCaoHangTrongTayTho.rdlc", reportDataSource);

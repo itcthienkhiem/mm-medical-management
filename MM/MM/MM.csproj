@@ -725,6 +725,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ReceiptView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienTongHopResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
