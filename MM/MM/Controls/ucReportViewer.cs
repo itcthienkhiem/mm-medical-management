@@ -21,6 +21,14 @@ namespace MM.Controls
         public ucReportViewer()
         {
             InitializeComponent();
+            _reportViewer.ShowPrintButton = false;
+        }
+        #endregion
+
+        #region Properties
+        public bool ShowPrintButton
+        {
+            set { _reportViewer.ShowPrintButton = value; }
         }
         #endregion
 

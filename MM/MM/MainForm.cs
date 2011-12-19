@@ -336,7 +336,12 @@ namespace MM
                         {
                             reportToolStripMenuItem.Enabled = isLogin;
                             doanhThuNhanVienToolStripMenuItem.Enabled = isView && isLogin;
-
+                            _uDoanhThuNhanVien.AllowAdd = isAdd;
+                            _uDoanhThuNhanVien.AllowEdit = isEdit;
+                            _uDoanhThuNhanVien.AllowDelete = isDelete;
+                            _uDoanhThuNhanVien.AllowPrint = isPrint;
+                            _uDoanhThuNhanVien.AllowExport = isExport;
+                            _uDoanhThuNhanVien.AllowImport = isImport;
                         }
                     }
                 }

@@ -41,6 +41,7 @@
             this._reportViewer.Name = "_reportViewer";
             this._reportViewer.ShowBackButton = false;
             this._reportViewer.ShowDocumentMapButton = false;
+            this._reportViewer.ShowExportButton = false;
             this._reportViewer.ShowRefreshButton = false;
             this._reportViewer.ShowStopButton = false;
             this._reportViewer.Size = new System.Drawing.Size(481, 364);
