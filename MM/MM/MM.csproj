@@ -379,6 +379,12 @@
     <Compile Include="Controls\uSymptomList.Designer.cs">
       <DependentUpon>uSymptomList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uThuocList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uThuocList.Designer.cs">
+      <DependentUpon>uThuocList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddCompany.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -426,6 +432,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddSymptom.Designer.cs">
       <DependentUpon>dlgAddSymptom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddThuoc.Designer.cs">
+      <DependentUpon>dlgAddThuoc.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddUserLogon.cs">
       <SubType>Form</SubType>
@@ -629,6 +641,9 @@
     <EmbeddedResource Include="Controls\uSymptomList.resx">
       <DependentUpon>uSymptomList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uThuocList.resx">
+      <DependentUpon>uThuocList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddCompany.resx">
       <DependentUpon>dlgAddCompany.cs</DependentUpon>
     </EmbeddedResource>
@@ -652,6 +667,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddSymptom.resx">
       <DependentUpon>dlgAddSymptom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddThuoc.resx">
+      <DependentUpon>dlgAddThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddUserLogon.resx">
       <DependentUpon>dlgAddUserLogon.cs</DependentUpon>
@@ -742,6 +760,7 @@
     <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienTongHopResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

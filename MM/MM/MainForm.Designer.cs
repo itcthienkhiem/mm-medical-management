@@ -46,78 +46,79 @@
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._mainToolbar = new System.Windows.Forms.ToolStrip();
+            this.tbLogin = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbServiceList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbSpecialityList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbDoctorList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbOpenPatient = new System.Windows.Forms.ToolStripButton();
+            this.tbPatientList = new System.Windows.Forms.ToolStripButton();
+            this.tbDuplicatePatient = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbCompanyList = new System.Windows.Forms.ToolStripButton();
+            this.tbContractList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbReceiptList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbInvoiceList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator14 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbSympton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbDanhMucThuoc = new System.Windows.Forms.ToolStripButton();
+            this.tbNhomThuoc = new System.Windows.Forms.ToolStripButton();
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._mainMenu = new System.Windows.Forms.MenuStrip();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.permissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.servicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.specialityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.specialityListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doctorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.doctorListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.patientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+            this.DuplicatePatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.companyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.contractListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.symptomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.symptomListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.danhMucThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
             this.nhomThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tbLogin = new System.Windows.Forms.ToolStripButton();
-            this.tbServiceList = new System.Windows.Forms.ToolStripButton();
-            this.tbSpecialityList = new System.Windows.Forms.ToolStripButton();
-            this.tbDoctorList = new System.Windows.Forms.ToolStripButton();
-            this.tbOpenPatient = new System.Windows.Forms.ToolStripButton();
-            this.tbPatientList = new System.Windows.Forms.ToolStripButton();
-            this.tbDuplicatePatient = new System.Windows.Forms.ToolStripButton();
-            this.tbCompanyList = new System.Windows.Forms.ToolStripButton();
-            this.tbContractList = new System.Windows.Forms.ToolStripButton();
-            this.tbReceiptList = new System.Windows.Forms.ToolStripButton();
-            this.tbInvoiceList = new System.Windows.Forms.ToolStripButton();
-            this.tbSympton = new System.Windows.Forms.ToolStripButton();
-            this.databaseConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.permissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serviceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.specialityListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.doctorListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.patientListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.DuplicatePatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.companyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contractListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.symptomListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doanhThuNhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.dichVuHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbDanhMucThuoc = new System.Windows.Forms.ToolStripButton();
-            this.tbNhomThuoc = new System.Windows.Forms.ToolStripButton();
+            this._uThuocList = new MM.Controls.uThuocList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -129,6 +130,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uThuocList);
             this._mainPanel.Controls.Add(this._uDichVuHopDong);
             this._mainPanel.Controls.Add(this._uDoanhThuNhanVien);
             this._mainPanel.Controls.Add(this._uInvoiceList);
@@ -253,45 +255,162 @@
             this._mainToolbar.Name = "_mainToolbar";
             this._mainToolbar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._mainToolbar_ItemClicked);
             // 
+            // tbLogin
+            // 
+            this.tbLogin.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbLogin.Image = global::MM.Properties.Resources.Login_icon;
+            resources.ApplyResources(this.tbLogin, "tbLogin");
+            this.tbLogin.Name = "tbLogin";
+            this.tbLogin.Tag = "Login";
+            // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
             resources.ApplyResources(this.toolStripSeparator8, "toolStripSeparator8");
+            // 
+            // tbServiceList
+            // 
+            this.tbServiceList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbServiceList, "tbServiceList");
+            this.tbServiceList.Image = global::MM.Properties.Resources.Service_icon__1_;
+            this.tbServiceList.Name = "tbServiceList";
+            this.tbServiceList.Tag = "Services List";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             resources.ApplyResources(this.toolStripSeparator6, "toolStripSeparator6");
             // 
+            // tbSpecialityList
+            // 
+            this.tbSpecialityList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbSpecialityList, "tbSpecialityList");
+            this.tbSpecialityList.Image = global::MM.Properties.Resources.stethoscope_icon;
+            this.tbSpecialityList.Name = "tbSpecialityList";
+            this.tbSpecialityList.Tag = "Speciality List";
+            // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             resources.ApplyResources(this.toolStripSeparator9, "toolStripSeparator9");
+            // 
+            // tbDoctorList
+            // 
+            this.tbDoctorList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbDoctorList, "tbDoctorList");
+            this.tbDoctorList.Image = global::MM.Properties.Resources.Doctor_32;
+            this.tbDoctorList.Name = "tbDoctorList";
+            this.tbDoctorList.Tag = "Doctor List";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
             // 
+            // tbOpenPatient
+            // 
+            this.tbOpenPatient.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbOpenPatient, "tbOpenPatient");
+            this.tbOpenPatient.Image = global::MM.Properties.Resources.folder_customer_icon;
+            this.tbOpenPatient.Name = "tbOpenPatient";
+            this.tbOpenPatient.Tag = "Open Patient";
+            // 
+            // tbPatientList
+            // 
+            this.tbPatientList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbPatientList, "tbPatientList");
+            this.tbPatientList.Image = global::MM.Properties.Resources._1320161545_people;
+            this.tbPatientList.Name = "tbPatientList";
+            this.tbPatientList.Tag = "Patient List";
+            // 
+            // tbDuplicatePatient
+            // 
+            this.tbDuplicatePatient.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbDuplicatePatient, "tbDuplicatePatient");
+            this.tbDuplicatePatient.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
+            this.tbDuplicatePatient.Name = "tbDuplicatePatient";
+            this.tbDuplicatePatient.Tag = "DuplicatePatient";
+            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             resources.ApplyResources(this.toolStripSeparator5, "toolStripSeparator5");
+            // 
+            // tbCompanyList
+            // 
+            this.tbCompanyList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbCompanyList, "tbCompanyList");
+            this.tbCompanyList.Image = global::MM.Properties.Resources.industry;
+            this.tbCompanyList.Name = "tbCompanyList";
+            this.tbCompanyList.Tag = "Company List";
+            // 
+            // tbContractList
+            // 
+            this.tbContractList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbContractList, "tbContractList");
+            this.tbContractList.Image = global::MM.Properties.Resources.Contract_icon;
+            this.tbContractList.Name = "tbContractList";
+            this.tbContractList.Tag = "Contract List";
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
             resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
             // 
+            // tbReceiptList
+            // 
+            this.tbReceiptList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbReceiptList, "tbReceiptList");
+            this.tbReceiptList.Image = global::MM.Properties.Resources.check_icon;
+            this.tbReceiptList.Name = "tbReceiptList";
+            this.tbReceiptList.Tag = "Receipt List";
+            // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
             resources.ApplyResources(this.toolStripSeparator13, "toolStripSeparator13");
             // 
+            // tbInvoiceList
+            // 
+            this.tbInvoiceList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbInvoiceList, "tbInvoiceList");
+            this.tbInvoiceList.Image = global::MM.Properties.Resources.invoice_icon__1_;
+            this.tbInvoiceList.Name = "tbInvoiceList";
+            this.tbInvoiceList.Tag = "Invoice List";
+            // 
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
             resources.ApplyResources(this.toolStripSeparator14, "toolStripSeparator14");
+            // 
+            // tbSympton
+            // 
+            this.tbSympton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbSympton, "tbSympton");
+            this.tbSympton.Image = global::MM.Properties.Resources.research;
+            this.tbSympton.Name = "tbSympton";
+            this.tbSympton.Tag = "Symptom List";
+            // 
+            // toolStripSeparator18
+            // 
+            this.toolStripSeparator18.Name = "toolStripSeparator18";
+            resources.ApplyResources(this.toolStripSeparator18, "toolStripSeparator18");
+            // 
+            // tbDanhMucThuoc
+            // 
+            this.tbDanhMucThuoc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbDanhMucThuoc, "tbDanhMucThuoc");
+            this.tbDanhMucThuoc.Image = global::MM.Properties.Resources.pills_3_icon;
+            this.tbDanhMucThuoc.Name = "tbDanhMucThuoc";
+            this.tbDanhMucThuoc.Tag = "DanhMucThuoc";
+            // 
+            // tbNhomThuoc
+            // 
+            this.tbNhomThuoc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbNhomThuoc, "tbNhomThuoc");
+            this.tbNhomThuoc.Image = global::MM.Properties.Resources.Drug_basket_icon;
+            this.tbNhomThuoc.Name = "tbNhomThuoc";
+            this.tbNhomThuoc.Tag = "NhomThuoc";
             // 
             // _mainStatus
             // 
@@ -340,20 +459,60 @@
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             resources.ApplyResources(this.systemToolStripMenuItem, "systemToolStripMenuItem");
             // 
+            // databaseConfigurationToolStripMenuItem
+            // 
+            this.databaseConfigurationToolStripMenuItem.Image = global::MM.Properties.Resources.connect_info;
+            this.databaseConfigurationToolStripMenuItem.Name = "databaseConfigurationToolStripMenuItem";
+            resources.ApplyResources(this.databaseConfigurationToolStripMenuItem, "databaseConfigurationToolStripMenuItem");
+            this.databaseConfigurationToolStripMenuItem.Tag = "Database Configuration";
+            this.databaseConfigurationToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             resources.ApplyResources(this.toolStripSeparator7, "toolStripSeparator7");
+            // 
+            // permissionToolStripMenuItem
+            // 
+            resources.ApplyResources(this.permissionToolStripMenuItem, "permissionToolStripMenuItem");
+            this.permissionToolStripMenuItem.Image = global::MM.Properties.Resources.users_2;
+            this.permissionToolStripMenuItem.Name = "permissionToolStripMenuItem";
+            this.permissionToolStripMenuItem.Tag = "Permission";
+            this.permissionToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            resources.ApplyResources(this.changePasswordToolStripMenuItem, "changePasswordToolStripMenuItem");
+            this.changePasswordToolStripMenuItem.Image = global::MM.Properties.Resources._1321933963_change_password;
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Tag = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             resources.ApplyResources(this.toolStripSeparator4, "toolStripSeparator4");
             // 
+            // loginToolStripMenuItem
+            // 
+            this.loginToolStripMenuItem.Image = global::MM.Properties.Resources.Login_icon;
+            this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
+            resources.ApplyResources(this.loginToolStripMenuItem, "loginToolStripMenuItem");
+            this.loginToolStripMenuItem.Tag = "Login";
+            this.loginToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
             resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::MM.Properties.Resources.Log_Out_icon;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
+            this.exitToolStripMenuItem.Tag = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // servicesToolStripMenuItem
             // 
@@ -362,6 +521,14 @@
             resources.ApplyResources(this.servicesToolStripMenuItem, "servicesToolStripMenuItem");
             this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
             // 
+            // serviceListToolStripMenuItem
+            // 
+            this.serviceListToolStripMenuItem.Image = global::MM.Properties.Resources.Service_icon__1_;
+            this.serviceListToolStripMenuItem.Name = "serviceListToolStripMenuItem";
+            resources.ApplyResources(this.serviceListToolStripMenuItem, "serviceListToolStripMenuItem");
+            this.serviceListToolStripMenuItem.Tag = "Services List";
+            this.serviceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // specialityToolStripMenuItem
             // 
             this.specialityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -369,12 +536,28 @@
             resources.ApplyResources(this.specialityToolStripMenuItem, "specialityToolStripMenuItem");
             this.specialityToolStripMenuItem.Name = "specialityToolStripMenuItem";
             // 
+            // specialityListToolStripMenuItem
+            // 
+            this.specialityListToolStripMenuItem.Image = global::MM.Properties.Resources.stethoscope_icon;
+            this.specialityListToolStripMenuItem.Name = "specialityListToolStripMenuItem";
+            resources.ApplyResources(this.specialityListToolStripMenuItem, "specialityListToolStripMenuItem");
+            this.specialityListToolStripMenuItem.Tag = "Speciality List";
+            this.specialityListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // doctorToolStripMenuItem
             // 
             this.doctorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.doctorListToolStripMenuItem});
             resources.ApplyResources(this.doctorToolStripMenuItem, "doctorToolStripMenuItem");
             this.doctorToolStripMenuItem.Name = "doctorToolStripMenuItem";
+            // 
+            // doctorListToolStripMenuItem
+            // 
+            this.doctorListToolStripMenuItem.Image = global::MM.Properties.Resources.Doctor_32;
+            this.doctorListToolStripMenuItem.Name = "doctorListToolStripMenuItem";
+            resources.ApplyResources(this.doctorListToolStripMenuItem, "doctorListToolStripMenuItem");
+            this.doctorListToolStripMenuItem.Tag = "Doctor List";
+            this.doctorListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // patientToolStripMenuItem
             // 
@@ -387,15 +570,39 @@
             resources.ApplyResources(this.patientToolStripMenuItem, "patientToolStripMenuItem");
             this.patientToolStripMenuItem.Name = "patientToolStripMenuItem";
             // 
+            // openPatientToolStripMenuItem
+            // 
+            this.openPatientToolStripMenuItem.Image = global::MM.Properties.Resources.folder_customer_icon;
+            this.openPatientToolStripMenuItem.Name = "openPatientToolStripMenuItem";
+            resources.ApplyResources(this.openPatientToolStripMenuItem, "openPatientToolStripMenuItem");
+            this.openPatientToolStripMenuItem.Tag = "Open Patient";
+            this.openPatientToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
             // 
+            // patientListToolStripMenuItem
+            // 
+            this.patientListToolStripMenuItem.Image = global::MM.Properties.Resources._1320161545_people;
+            this.patientListToolStripMenuItem.Name = "patientListToolStripMenuItem";
+            resources.ApplyResources(this.patientListToolStripMenuItem, "patientListToolStripMenuItem");
+            this.patientListToolStripMenuItem.Tag = "Patient List";
+            this.patientListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolStripSeparator15
             // 
             this.toolStripSeparator15.Name = "toolStripSeparator15";
             resources.ApplyResources(this.toolStripSeparator15, "toolStripSeparator15");
+            // 
+            // DuplicatePatientToolStripMenuItem
+            // 
+            this.DuplicatePatientToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
+            this.DuplicatePatientToolStripMenuItem.Name = "DuplicatePatientToolStripMenuItem";
+            resources.ApplyResources(this.DuplicatePatientToolStripMenuItem, "DuplicatePatientToolStripMenuItem");
+            this.DuplicatePatientToolStripMenuItem.Tag = "DuplicatePatient";
+            this.DuplicatePatientToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // companyToolStripMenuItem
             // 
@@ -406,10 +613,26 @@
             resources.ApplyResources(this.companyToolStripMenuItem, "companyToolStripMenuItem");
             this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
             // 
+            // companyListToolStripMenuItem
+            // 
+            this.companyListToolStripMenuItem.Image = global::MM.Properties.Resources.industry;
+            this.companyListToolStripMenuItem.Name = "companyListToolStripMenuItem";
+            resources.ApplyResources(this.companyListToolStripMenuItem, "companyListToolStripMenuItem");
+            this.companyListToolStripMenuItem.Tag = "Company List";
+            this.companyListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             resources.ApplyResources(this.toolStripSeparator10, "toolStripSeparator10");
+            // 
+            // contractListToolStripMenuItem
+            // 
+            this.contractListToolStripMenuItem.Image = global::MM.Properties.Resources.Contract_icon;
+            this.contractListToolStripMenuItem.Name = "contractListToolStripMenuItem";
+            resources.ApplyResources(this.contractListToolStripMenuItem, "contractListToolStripMenuItem");
+            this.contractListToolStripMenuItem.Tag = "Contract List";
+            this.contractListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // symptomToolStripMenuItem
             // 
@@ -418,12 +641,28 @@
             resources.ApplyResources(this.symptomToolStripMenuItem, "symptomToolStripMenuItem");
             this.symptomToolStripMenuItem.Name = "symptomToolStripMenuItem";
             // 
+            // symptomListToolStripMenuItem
+            // 
+            this.symptomListToolStripMenuItem.Image = global::MM.Properties.Resources.research;
+            this.symptomListToolStripMenuItem.Name = "symptomListToolStripMenuItem";
+            resources.ApplyResources(this.symptomListToolStripMenuItem, "symptomListToolStripMenuItem");
+            this.symptomListToolStripMenuItem.Tag = "Symptom List";
+            this.symptomListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // receiptToolStripMenuItem
             // 
             this.receiptToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.receiptListToolStripMenuItem});
             resources.ApplyResources(this.receiptToolStripMenuItem, "receiptToolStripMenuItem");
             this.receiptToolStripMenuItem.Name = "receiptToolStripMenuItem";
+            // 
+            // receiptListToolStripMenuItem
+            // 
+            this.receiptListToolStripMenuItem.Image = global::MM.Properties.Resources.check_icon;
+            this.receiptListToolStripMenuItem.Name = "receiptListToolStripMenuItem";
+            resources.ApplyResources(this.receiptListToolStripMenuItem, "receiptListToolStripMenuItem");
+            this.receiptListToolStripMenuItem.Tag = "Receipt List";
+            this.receiptListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // invoiceToolStripMenuItem
             // 
@@ -432,48 +671,13 @@
             resources.ApplyResources(this.invoiceToolStripMenuItem, "invoiceToolStripMenuItem");
             this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
             // 
-            // reportToolStripMenuItem
+            // invoiceListToolStripMenuItem
             // 
-            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.doanhThuNhanVienToolStripMenuItem,
-            this.toolStripSeparator16,
-            this.dichVuHopDongToolStripMenuItem});
-            resources.ApplyResources(this.reportToolStripMenuItem, "reportToolStripMenuItem");
-            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            // 
-            // toolStripSeparator16
-            // 
-            this.toolStripSeparator16.Name = "toolStripSeparator16";
-            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
-            // 
-            // toolsToolStripMenuItem
-            // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dICOMToolStripMenuItem,
-            this.printLabelToolStripMenuItem});
-            resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            // 
-            // dICOMToolStripMenuItem
-            // 
-            this.dICOMToolStripMenuItem.Name = "dICOMToolStripMenuItem";
-            resources.ApplyResources(this.dICOMToolStripMenuItem, "dICOMToolStripMenuItem");
-            this.dICOMToolStripMenuItem.Tag = "DICOM";
-            this.dICOMToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.medicalManagementHelpToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.aboutMedicalManagementToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            this.invoiceListToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
+            this.invoiceListToolStripMenuItem.Name = "invoiceListToolStripMenuItem";
+            resources.ApplyResources(this.invoiceListToolStripMenuItem, "invoiceListToolStripMenuItem");
+            this.invoiceListToolStripMenuItem.Tag = "Invoice List";
+            this.invoiceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // thuocToolStripMenuItem
             // 
@@ -505,229 +709,14 @@
             this.nhomThuocToolStripMenuItem.Tag = "NhomThuoc";
             this.nhomThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // tbLogin
+            // reportToolStripMenuItem
             // 
-            this.tbLogin.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbLogin.Image = global::MM.Properties.Resources.Login_icon;
-            resources.ApplyResources(this.tbLogin, "tbLogin");
-            this.tbLogin.Name = "tbLogin";
-            this.tbLogin.Tag = "Login";
-            // 
-            // tbServiceList
-            // 
-            this.tbServiceList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbServiceList, "tbServiceList");
-            this.tbServiceList.Image = global::MM.Properties.Resources.Service_icon__1_;
-            this.tbServiceList.Name = "tbServiceList";
-            this.tbServiceList.Tag = "Services List";
-            // 
-            // tbSpecialityList
-            // 
-            this.tbSpecialityList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbSpecialityList, "tbSpecialityList");
-            this.tbSpecialityList.Image = global::MM.Properties.Resources.stethoscope_icon;
-            this.tbSpecialityList.Name = "tbSpecialityList";
-            this.tbSpecialityList.Tag = "Speciality List";
-            // 
-            // tbDoctorList
-            // 
-            this.tbDoctorList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbDoctorList, "tbDoctorList");
-            this.tbDoctorList.Image = global::MM.Properties.Resources.Doctor_32;
-            this.tbDoctorList.Name = "tbDoctorList";
-            this.tbDoctorList.Tag = "Doctor List";
-            // 
-            // tbOpenPatient
-            // 
-            this.tbOpenPatient.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbOpenPatient, "tbOpenPatient");
-            this.tbOpenPatient.Image = global::MM.Properties.Resources.folder_customer_icon;
-            this.tbOpenPatient.Name = "tbOpenPatient";
-            this.tbOpenPatient.Tag = "Open Patient";
-            // 
-            // tbPatientList
-            // 
-            this.tbPatientList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbPatientList, "tbPatientList");
-            this.tbPatientList.Image = global::MM.Properties.Resources._1320161545_people;
-            this.tbPatientList.Name = "tbPatientList";
-            this.tbPatientList.Tag = "Patient List";
-            // 
-            // tbDuplicatePatient
-            // 
-            this.tbDuplicatePatient.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbDuplicatePatient, "tbDuplicatePatient");
-            this.tbDuplicatePatient.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
-            this.tbDuplicatePatient.Name = "tbDuplicatePatient";
-            this.tbDuplicatePatient.Tag = "DuplicatePatient";
-            // 
-            // tbCompanyList
-            // 
-            this.tbCompanyList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbCompanyList, "tbCompanyList");
-            this.tbCompanyList.Image = global::MM.Properties.Resources.industry;
-            this.tbCompanyList.Name = "tbCompanyList";
-            this.tbCompanyList.Tag = "Company List";
-            // 
-            // tbContractList
-            // 
-            this.tbContractList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbContractList, "tbContractList");
-            this.tbContractList.Image = global::MM.Properties.Resources.Contract_icon;
-            this.tbContractList.Name = "tbContractList";
-            this.tbContractList.Tag = "Contract List";
-            // 
-            // tbReceiptList
-            // 
-            this.tbReceiptList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbReceiptList, "tbReceiptList");
-            this.tbReceiptList.Image = global::MM.Properties.Resources.check_icon;
-            this.tbReceiptList.Name = "tbReceiptList";
-            this.tbReceiptList.Tag = "Receipt List";
-            // 
-            // tbInvoiceList
-            // 
-            this.tbInvoiceList.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbInvoiceList, "tbInvoiceList");
-            this.tbInvoiceList.Image = global::MM.Properties.Resources.invoice_icon__1_;
-            this.tbInvoiceList.Name = "tbInvoiceList";
-            this.tbInvoiceList.Tag = "Invoice List";
-            // 
-            // tbSympton
-            // 
-            this.tbSympton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbSympton, "tbSympton");
-            this.tbSympton.Image = global::MM.Properties.Resources.research;
-            this.tbSympton.Name = "tbSympton";
-            this.tbSympton.Tag = "Symptom List";
-            // 
-            // databaseConfigurationToolStripMenuItem
-            // 
-            this.databaseConfigurationToolStripMenuItem.Image = global::MM.Properties.Resources.connect_info;
-            this.databaseConfigurationToolStripMenuItem.Name = "databaseConfigurationToolStripMenuItem";
-            resources.ApplyResources(this.databaseConfigurationToolStripMenuItem, "databaseConfigurationToolStripMenuItem");
-            this.databaseConfigurationToolStripMenuItem.Tag = "Database Configuration";
-            this.databaseConfigurationToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // permissionToolStripMenuItem
-            // 
-            resources.ApplyResources(this.permissionToolStripMenuItem, "permissionToolStripMenuItem");
-            this.permissionToolStripMenuItem.Image = global::MM.Properties.Resources.users_2;
-            this.permissionToolStripMenuItem.Name = "permissionToolStripMenuItem";
-            this.permissionToolStripMenuItem.Tag = "Permission";
-            this.permissionToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // changePasswordToolStripMenuItem
-            // 
-            resources.ApplyResources(this.changePasswordToolStripMenuItem, "changePasswordToolStripMenuItem");
-            this.changePasswordToolStripMenuItem.Image = global::MM.Properties.Resources._1321933963_change_password;
-            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Tag = "Change Password";
-            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // loginToolStripMenuItem
-            // 
-            this.loginToolStripMenuItem.Image = global::MM.Properties.Resources.Login_icon;
-            this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            resources.ApplyResources(this.loginToolStripMenuItem, "loginToolStripMenuItem");
-            this.loginToolStripMenuItem.Tag = "Login";
-            this.loginToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // exitToolStripMenuItem
-            // 
-            this.exitToolStripMenuItem.Image = global::MM.Properties.Resources.Log_Out_icon;
-            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
-            this.exitToolStripMenuItem.Tag = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // serviceListToolStripMenuItem
-            // 
-            this.serviceListToolStripMenuItem.Image = global::MM.Properties.Resources.Service_icon__1_;
-            this.serviceListToolStripMenuItem.Name = "serviceListToolStripMenuItem";
-            resources.ApplyResources(this.serviceListToolStripMenuItem, "serviceListToolStripMenuItem");
-            this.serviceListToolStripMenuItem.Tag = "Services List";
-            this.serviceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // specialityListToolStripMenuItem
-            // 
-            this.specialityListToolStripMenuItem.Image = global::MM.Properties.Resources.stethoscope_icon;
-            this.specialityListToolStripMenuItem.Name = "specialityListToolStripMenuItem";
-            resources.ApplyResources(this.specialityListToolStripMenuItem, "specialityListToolStripMenuItem");
-            this.specialityListToolStripMenuItem.Tag = "Speciality List";
-            this.specialityListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // doctorListToolStripMenuItem
-            // 
-            this.doctorListToolStripMenuItem.Image = global::MM.Properties.Resources.Doctor_32;
-            this.doctorListToolStripMenuItem.Name = "doctorListToolStripMenuItem";
-            resources.ApplyResources(this.doctorListToolStripMenuItem, "doctorListToolStripMenuItem");
-            this.doctorListToolStripMenuItem.Tag = "Doctor List";
-            this.doctorListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // openPatientToolStripMenuItem
-            // 
-            this.openPatientToolStripMenuItem.Image = global::MM.Properties.Resources.folder_customer_icon;
-            this.openPatientToolStripMenuItem.Name = "openPatientToolStripMenuItem";
-            resources.ApplyResources(this.openPatientToolStripMenuItem, "openPatientToolStripMenuItem");
-            this.openPatientToolStripMenuItem.Tag = "Open Patient";
-            this.openPatientToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // patientListToolStripMenuItem
-            // 
-            this.patientListToolStripMenuItem.Image = global::MM.Properties.Resources._1320161545_people;
-            this.patientListToolStripMenuItem.Name = "patientListToolStripMenuItem";
-            resources.ApplyResources(this.patientListToolStripMenuItem, "patientListToolStripMenuItem");
-            this.patientListToolStripMenuItem.Tag = "Patient List";
-            this.patientListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // DuplicatePatientToolStripMenuItem
-            // 
-            this.DuplicatePatientToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
-            this.DuplicatePatientToolStripMenuItem.Name = "DuplicatePatientToolStripMenuItem";
-            resources.ApplyResources(this.DuplicatePatientToolStripMenuItem, "DuplicatePatientToolStripMenuItem");
-            this.DuplicatePatientToolStripMenuItem.Tag = "DuplicatePatient";
-            this.DuplicatePatientToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // companyListToolStripMenuItem
-            // 
-            this.companyListToolStripMenuItem.Image = global::MM.Properties.Resources.industry;
-            this.companyListToolStripMenuItem.Name = "companyListToolStripMenuItem";
-            resources.ApplyResources(this.companyListToolStripMenuItem, "companyListToolStripMenuItem");
-            this.companyListToolStripMenuItem.Tag = "Company List";
-            this.companyListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // contractListToolStripMenuItem
-            // 
-            this.contractListToolStripMenuItem.Image = global::MM.Properties.Resources.Contract_icon;
-            this.contractListToolStripMenuItem.Name = "contractListToolStripMenuItem";
-            resources.ApplyResources(this.contractListToolStripMenuItem, "contractListToolStripMenuItem");
-            this.contractListToolStripMenuItem.Tag = "Contract List";
-            this.contractListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // symptomListToolStripMenuItem
-            // 
-            this.symptomListToolStripMenuItem.Image = global::MM.Properties.Resources.research;
-            this.symptomListToolStripMenuItem.Name = "symptomListToolStripMenuItem";
-            resources.ApplyResources(this.symptomListToolStripMenuItem, "symptomListToolStripMenuItem");
-            this.symptomListToolStripMenuItem.Tag = "Symptom List";
-            this.symptomListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // receiptListToolStripMenuItem
-            // 
-            this.receiptListToolStripMenuItem.Image = global::MM.Properties.Resources.check_icon;
-            this.receiptListToolStripMenuItem.Name = "receiptListToolStripMenuItem";
-            resources.ApplyResources(this.receiptListToolStripMenuItem, "receiptListToolStripMenuItem");
-            this.receiptListToolStripMenuItem.Tag = "Receipt List";
-            this.receiptListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // invoiceListToolStripMenuItem
-            // 
-            this.invoiceListToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
-            this.invoiceListToolStripMenuItem.Name = "invoiceListToolStripMenuItem";
-            resources.ApplyResources(this.invoiceListToolStripMenuItem, "invoiceListToolStripMenuItem");
-            this.invoiceListToolStripMenuItem.Tag = "Invoice List";
-            this.invoiceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.doanhThuNhanVienToolStripMenuItem,
+            this.toolStripSeparator16,
+            this.dichVuHopDongToolStripMenuItem});
+            resources.ApplyResources(this.reportToolStripMenuItem, "reportToolStripMenuItem");
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             // 
             // doanhThuNhanVienToolStripMenuItem
             // 
@@ -737,6 +726,11 @@
             this.doanhThuNhanVienToolStripMenuItem.Tag = "DoanhThuNhanVien";
             this.doanhThuNhanVienToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator16
+            // 
+            this.toolStripSeparator16.Name = "toolStripSeparator16";
+            resources.ApplyResources(this.toolStripSeparator16, "toolStripSeparator16");
+            // 
             // dichVuHopDongToolStripMenuItem
             // 
             this.dichVuHopDongToolStripMenuItem.Image = global::MM.Properties.Resources.folder_contract_icon;
@@ -744,6 +738,21 @@
             resources.ApplyResources(this.dichVuHopDongToolStripMenuItem, "dichVuHopDongToolStripMenuItem");
             this.dichVuHopDongToolStripMenuItem.Tag = "DichVuHopDong";
             this.dichVuHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dICOMToolStripMenuItem,
+            this.printLabelToolStripMenuItem});
+            resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            // 
+            // dICOMToolStripMenuItem
+            // 
+            this.dICOMToolStripMenuItem.Name = "dICOMToolStripMenuItem";
+            resources.ApplyResources(this.dICOMToolStripMenuItem, "dICOMToolStripMenuItem");
+            this.dICOMToolStripMenuItem.Tag = "DICOM";
+            this.dICOMToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // printLabelToolStripMenuItem
             // 
@@ -753,6 +762,15 @@
             this.printLabelToolStripMenuItem.Tag = "Print Label";
             this.printLabelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.medicalManagementHelpToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.aboutMedicalManagementToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
+            // 
             // medicalManagementHelpToolStripMenuItem
             // 
             this.medicalManagementHelpToolStripMenuItem.Image = global::MM.Properties.Resources.help;
@@ -760,6 +778,11 @@
             resources.ApplyResources(this.medicalManagementHelpToolStripMenuItem, "medicalManagementHelpToolStripMenuItem");
             this.medicalManagementHelpToolStripMenuItem.Tag = "Help";
             this.medicalManagementHelpToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
             // 
             // aboutMedicalManagementToolStripMenuItem
             // 
@@ -769,26 +792,10 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // toolStripSeparator18
+            // _uThuocList
             // 
-            this.toolStripSeparator18.Name = "toolStripSeparator18";
-            resources.ApplyResources(this.toolStripSeparator18, "toolStripSeparator18");
-            // 
-            // tbDanhMucThuoc
-            // 
-            this.tbDanhMucThuoc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbDanhMucThuoc, "tbDanhMucThuoc");
-            this.tbDanhMucThuoc.Image = global::MM.Properties.Resources.pills_3_icon;
-            this.tbDanhMucThuoc.Name = "tbDanhMucThuoc";
-            this.tbDanhMucThuoc.Tag = "DanhMucThuoc";
-            // 
-            // tbNhomThuoc
-            // 
-            this.tbNhomThuoc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbNhomThuoc, "tbNhomThuoc");
-            this.tbNhomThuoc.Image = global::MM.Properties.Resources.Drug_basket_icon;
-            this.tbNhomThuoc.Name = "tbNhomThuoc";
-            this.tbNhomThuoc.Tag = "NhomThuoc";
+            resources.ApplyResources(this._uThuocList, "_uThuocList");
+            this._uThuocList.Name = "_uThuocList";
             // 
             // MainForm
             // 
@@ -905,6 +912,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
         private System.Windows.Forms.ToolStripButton tbDanhMucThuoc;
         private System.Windows.Forms.ToolStripButton tbNhomThuoc;
+        private Controls.uThuocList _uThuocList;
 
     }
 }
