@@ -35,6 +35,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetThuocListNotInNhomThuoc(string nhomThuocGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Thuoc WHERE Status={0} AND ThuocGUID NOT IN (SELECT ThuocGUID FROM NhomThuoc_Thuoc WHERE NhomThuocGUID = '{1}' AND Status={0}) ORDER BY TenThuoc", 
+                    (byte)Status.Actived, nhomThuocGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetThuocCount()
         {
             Result result = null;
@@ -176,6 +200,8 @@ namespace MM.Bussiness
                         th.MaThuoc = thuoc.MaThuoc;
                         th.TenThuoc = thuoc.TenThuoc;
                         th.BietDuoc = thuoc.BietDuoc;
+                        th.HamLuong = thuoc.HamLuong;
+                        th.HoatChat = thuoc.HoatChat;
                         th.Note = thuoc.Note;
                         th.CreatedDate = thuoc.CreatedDate;
                         th.CreatedBy = thuoc.CreatedBy;

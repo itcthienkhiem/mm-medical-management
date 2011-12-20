@@ -144,6 +144,8 @@ namespace MM
                 _uDichVuHopDong.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uThuocList))
                 _uThuocList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uNhomThuocList))
+                _uNhomThuocList.DisplayAsThread();
             
         }
 
@@ -374,6 +376,12 @@ namespace MM
                         {
                             nhomThuocToolStripMenuItem.Enabled = isView && isLogin;
                             tbNhomThuoc.Enabled = isView && isLogin;
+                            _uNhomThuocList.AllowAdd = isAdd;
+                            _uNhomThuocList.AllowEdit = isEdit;
+                            _uNhomThuocList.AllowDelete = isDelete;
+                            _uNhomThuocList.AllowPrint = isPrint;
+                            _uNhomThuocList.AllowExport = isExport;
+                            _uNhomThuocList.AllowImport = isImport;
                         }
                     }
                 }
@@ -631,6 +639,8 @@ namespace MM
         private void OnNhomThuoc()
         {
             this.Text = string.Format("{0} - Nhom thuoc", Application.ProductName);
+            ViewControl(_uNhomThuocList);
+            _uNhomThuocList.DisplayAsThread();
         }
 
         private void OnDichVuHopDong()
@@ -807,6 +817,8 @@ namespace MM
                 _uDuplicatePatient.ClearData();
             else if (ctrl.GetType() == typeof(uThuocList))
                 _uThuocList.ClearData();
+            else if (ctrl.GetType() == typeof(uNhomThuocList))
+                _uNhomThuocList.ClearData();
         }
 
         private void OnDoctorList()

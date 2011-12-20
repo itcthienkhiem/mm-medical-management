@@ -67,6 +67,13 @@ namespace MM.Dialogs
                 txtMaThuoc.Text = drThuoc["MaThuoc"] as string;
                 txtTenThuoc.Text = drThuoc["TenThuoc"] as string;
                 txtBietDuoc.Text = drThuoc["BietDuoc"] as string;
+
+                if (drThuoc["HamLuong"] != null && drThuoc["HamLuong"] != DBNull.Value)
+                    txtHamLuong.Text = drThuoc["HamLuong"] as string;
+
+                if (drThuoc["HoatChat"] != null && drThuoc["HoatChat"] != DBNull.Value)
+                    txtHoatChat.Text = drThuoc["HoatChat"] as string;
+
                 txtNote.Text = drThuoc["Note"] as string;
 
                 _thuoc.ThuocGUID = Guid.Parse(drThuoc["ThuocGUID"].ToString());
@@ -159,6 +166,8 @@ namespace MM.Dialogs
                 _thuoc.MaThuoc = txtMaThuoc.Text;
                 _thuoc.TenThuoc = txtTenThuoc.Text;
                 _thuoc.BietDuoc = txtBietDuoc.Text;
+                _thuoc.HamLuong = txtHamLuong.Text;
+                _thuoc.HoatChat = txtHoatChat.Text;
                 _thuoc.Note = txtNote.Text;
                 _thuoc.Status = (byte)Status.Actived;
 

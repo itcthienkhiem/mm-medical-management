@@ -307,6 +307,12 @@
     <Compile Include="Controls\uMergePatient.Designer.cs">
       <DependentUpon>uMergePatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uNhomThuocList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNhomThuocList.Designer.cs">
+      <DependentUpon>uNhomThuocList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPalette.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -529,6 +535,12 @@
     <Compile Include="Dialogs\dlgReceiptDetail.Designer.cs">
       <DependentUpon>dlgReceiptDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgSelectThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgSelectThuoc.Designer.cs">
+      <DependentUpon>dlgSelectThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgServices.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -610,6 +622,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uMergePatient.resx">
       <DependentUpon>uMergePatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNhomThuocList.resx">
+      <DependentUpon>uNhomThuocList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPalette.resx">
       <DependentUpon>uPalette.cs</DependentUpon>
@@ -719,6 +734,9 @@
     <EmbeddedResource Include="Dialogs\dlgReceiptDetail.resx">
       <DependentUpon>dlgReceiptDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgSelectThuoc.resx">
+      <DependentUpon>dlgSelectThuoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgServices.resx">
       <DependentUpon>dlgServices.cs</DependentUpon>
     </EmbeddedResource>
@@ -758,6 +776,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ReceiptDetailView.datasource" />

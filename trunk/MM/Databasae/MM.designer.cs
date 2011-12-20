@@ -392,6 +392,14 @@ namespace MM.Databasae
 			}
 		}
 		
+		public System.Data.Linq.Table<NhomThuoc_ThuocView> NhomThuoc_ThuocViews
+		{
+			get
+			{
+				return this.GetTable<NhomThuoc_ThuocView>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Thuoc> Thuocs
 		{
 			get
@@ -14920,6 +14928,177 @@ namespace MM.Databasae
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.NhomThuoc_ThuocView")]
+	public partial class NhomThuoc_ThuocView
+	{
+		
+		private System.Guid _NhomThuoc_ThuocGUID;
+		
+		private System.Guid _NhomThuocGUID;
+		
+		private System.Guid _ThuocGUID;
+		
+		private byte _NhomThuoc_ThuocStatus;
+		
+		private string _MaThuoc;
+		
+		private string _TenThuoc;
+		
+		private string _BietDuoc;
+		
+		private string _Note;
+		
+		private byte _ThuocStatus;
+		
+		public NhomThuoc_ThuocView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhomThuoc_ThuocGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid NhomThuoc_ThuocGUID
+		{
+			get
+			{
+				return this._NhomThuoc_ThuocGUID;
+			}
+			set
+			{
+				if ((this._NhomThuoc_ThuocGUID != value))
+				{
+					this._NhomThuoc_ThuocGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhomThuocGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid NhomThuocGUID
+		{
+			get
+			{
+				return this._NhomThuocGUID;
+			}
+			set
+			{
+				if ((this._NhomThuocGUID != value))
+				{
+					this._NhomThuocGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThuocGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ThuocGUID
+		{
+			get
+			{
+				return this._ThuocGUID;
+			}
+			set
+			{
+				if ((this._ThuocGUID != value))
+				{
+					this._ThuocGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NhomThuoc_ThuocStatus", DbType="TinyInt NOT NULL")]
+		public byte NhomThuoc_ThuocStatus
+		{
+			get
+			{
+				return this._NhomThuoc_ThuocStatus;
+			}
+			set
+			{
+				if ((this._NhomThuoc_ThuocStatus != value))
+				{
+					this._NhomThuoc_ThuocStatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaThuoc", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string MaThuoc
+		{
+			get
+			{
+				return this._MaThuoc;
+			}
+			set
+			{
+				if ((this._MaThuoc != value))
+				{
+					this._MaThuoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenThuoc", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TenThuoc
+		{
+			get
+			{
+				return this._TenThuoc;
+			}
+			set
+			{
+				if ((this._TenThuoc != value))
+				{
+					this._TenThuoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BietDuoc", DbType="NVarChar(MAX)")]
+		public string BietDuoc
+		{
+			get
+			{
+				return this._BietDuoc;
+			}
+			set
+			{
+				if ((this._BietDuoc != value))
+				{
+					this._BietDuoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="NVarChar(MAX)")]
+		public string Note
+		{
+			get
+			{
+				return this._Note;
+			}
+			set
+			{
+				if ((this._Note != value))
+				{
+					this._Note = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThuocStatus", DbType="TinyInt NOT NULL")]
+		public byte ThuocStatus
+		{
+			get
+			{
+				return this._ThuocStatus;
+			}
+			set
+			{
+				if ((this._ThuocStatus != value))
+				{
+					this._ThuocStatus = value;
+				}
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Thuoc")]
 	public partial class Thuoc : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -14933,6 +15112,10 @@ namespace MM.Databasae
 		private string _TenThuoc;
 		
 		private string _BietDuoc;
+		
+		private string _HamLuong;
+		
+		private string _HoatChat;
 		
 		private string _Note;
 		
@@ -14964,6 +15147,10 @@ namespace MM.Databasae
     partial void OnTenThuocChanged();
     partial void OnBietDuocChanging(string value);
     partial void OnBietDuocChanged();
+    partial void OnHamLuongChanging(string value);
+    partial void OnHamLuongChanged();
+    partial void OnHoatChatChanging(string value);
+    partial void OnHoatChatChanged();
     partial void OnNoteChanging(string value);
     partial void OnNoteChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
@@ -15064,6 +15251,46 @@ namespace MM.Databasae
 					this._BietDuoc = value;
 					this.SendPropertyChanged("BietDuoc");
 					this.OnBietDuocChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HamLuong", DbType="NVarChar(50)")]
+		public string HamLuong
+		{
+			get
+			{
+				return this._HamLuong;
+			}
+			set
+			{
+				if ((this._HamLuong != value))
+				{
+					this.OnHamLuongChanging(value);
+					this.SendPropertyChanging();
+					this._HamLuong = value;
+					this.SendPropertyChanged("HamLuong");
+					this.OnHamLuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoatChat", DbType="NVarChar(MAX)")]
+		public string HoatChat
+		{
+			get
+			{
+				return this._HoatChat;
+			}
+			set
+			{
+				if ((this._HoatChat != value))
+				{
+					this.OnHoatChatChanging(value);
+					this.SendPropertyChanging();
+					this._HoatChat = value;
+					this.SendPropertyChanged("HoatChat");
+					this.OnHoatChatChanged();
 				}
 			}
 		}
