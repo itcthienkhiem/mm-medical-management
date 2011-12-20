@@ -321,7 +321,7 @@ namespace MM.Bussiness
                                         m.DeletedBy = Guid.Parse(Global.UserGUID);
                                     }
                                 }
-
+                                    
                                 db.SubmitChanges();
                             }
 

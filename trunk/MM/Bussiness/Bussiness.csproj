@@ -88,6 +88,7 @@
     <Compile Include="DocStaffBus.cs" />
     <Compile Include="InvoiceBus.cs" />
     <Compile Include="LogonBus.cs" />
+    <Compile Include="NhomThuocBus.cs" />
     <Compile Include="PatientBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiptBus.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="ServicesBus.cs" />
     <Compile Include="SpecialityBus.cs" />
     <Compile Include="SymptomBus.cs" />
+    <Compile Include="ThuocBus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

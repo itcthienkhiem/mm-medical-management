@@ -337,4 +337,13 @@
   <data name="views_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\views-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="folder_contract_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\folder-contract-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Drug_basket_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Drug-basket-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pills_3_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pills-3-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

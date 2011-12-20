@@ -355,6 +355,17 @@ namespace MM
                             _uDichVuHopDong.AllowExport = isExport;
                             _uDichVuHopDong.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.Thuoc)
+                        {
+                            thuocToolStripMenuItem.Enabled = isLogin;
+                            danhMucThuocToolStripMenuItem.Enabled = isView && isLogin;
+                            tbDanhMucThuoc.Enabled = isView && isLogin;
+                        }
+                        else if (functionCode == Const.NhomThuoc)
+                        {
+                            nhomThuocToolStripMenuItem.Enabled = isView && isLogin;
+                            tbNhomThuoc.Enabled = isView && isLogin;
+                        }
                     }
                 }
                 else
@@ -486,6 +497,11 @@ namespace MM
                 doanhThuNhanVienToolStripMenuItem.Enabled = isLogin;
                 dichVuHopDongToolStripMenuItem.Enabled = isLogin;
 
+                thuocToolStripMenuItem.Enabled = isLogin;
+                danhMucThuocToolStripMenuItem.Enabled = isLogin;
+                nhomThuocToolStripMenuItem.Enabled = isLogin;
+                tbDanhMucThuoc.Enabled = isLogin;
+                tbNhomThuoc.Enabled = isLogin;
             }
         }
 
@@ -585,7 +601,25 @@ namespace MM
                 case "DichVuHopDong":
                     OnDichVuHopDong();
                     break;
+
+                case "DanhMucThuoc":
+                    OnDanhMucThuoc();
+                    break;
+
+                case "NhomThuoc":
+                    OnNhomThuoc();
+                    break;
             }
+        }
+
+        private void OnDanhMucThuoc()
+        {
+            this.Text = string.Format("{0} - Danh muc thuoc", Application.ProductName);
+        }
+
+        private void OnNhomThuoc()
+        {
+            this.Text = string.Format("{0} - Nhom thuoc", Application.ProductName);
         }
 
         private void OnDichVuHopDong()

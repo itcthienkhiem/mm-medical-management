@@ -31,5 +31,7 @@ namespace MM.Common
         public static string DuplicatePatient = "DuplicatePatient";
         public static string DoanhThuNhanVien = "DoanhThuNhanVien";
         public static string DichVuHopDong = "DichVuHopDong";
+        public static string Thuoc = "Thuoc";
+        public static string NhomThuoc = "NhomThuoc";
     }
 }

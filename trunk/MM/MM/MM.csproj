@@ -790,6 +790,9 @@
     <Content Include="Controls\Excel\Office\Excel\MetaData\Record Identifier.txt" />
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\Drug-basket-icon.png" />
+    <None Include="Resources\pills-3-icon.png" />
+    <None Include="Resources\folder-contract-icon.png" />
     <None Include="Resources\views-icon.png" />
     <None Include="Resources\personal-loan-icon.png" />
     <None Include="Resources\Architecture-info-icon.png" />
