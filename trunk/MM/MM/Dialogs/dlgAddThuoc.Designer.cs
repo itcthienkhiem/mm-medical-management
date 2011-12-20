@@ -70,6 +70,10 @@
             this.raNhom3 = new System.Windows.Forms.RadioButton();
             this.raNhom2 = new System.Windows.Forms.RadioButton();
             this.raNhom1 = new System.Windows.Forms.RadioButton();
+            this.label20 = new System.Windows.Forms.Label();
+            this.numGoi_Nhom6 = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.raNhom6 = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numMieng_Nhom5)).BeginInit();
@@ -78,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numVien_Nhom2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numVien_Nhom1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numVi_Nhom1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGoi_Nhom6)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -233,7 +238,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(224, 520);
+            this.btnCancel.Location = new System.Drawing.Point(224, 532);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 8;
@@ -244,7 +249,7 @@
             // 
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(145, 520);
+            this.btnOK.Location = new System.Drawing.Point(145, 532);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 7;
@@ -254,6 +259,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.numGoi_Nhom6);
+            this.groupBox2.Controls.Add(this.label21);
+            this.groupBox2.Controls.Add(this.raNhom6);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.numMieng_Nhom5);
             this.groupBox2.Controls.Add(this.label19);
@@ -279,7 +288,7 @@
             this.groupBox2.Controls.Add(this.raNhom1);
             this.groupBox2.Location = new System.Drawing.Point(8, 334);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(428, 180);
+            this.groupBox2.Size = new System.Drawing.Size(428, 192);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Đơn vị tính";
@@ -287,7 +296,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(137, 150);
+            this.label18.Location = new System.Drawing.Point(137, 136);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(36, 13);
             this.label18.TabIndex = 64;
@@ -296,7 +305,7 @@
             // numMieng_Nhom5
             // 
             this.numMieng_Nhom5.Enabled = false;
-            this.numMieng_Nhom5.Location = new System.Drawing.Point(89, 147);
+            this.numMieng_Nhom5.Location = new System.Drawing.Point(89, 133);
             this.numMieng_Nhom5.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -319,7 +328,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(42, 150);
+            this.label19.Location = new System.Drawing.Point(42, 136);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(45, 13);
             this.label19.TabIndex = 62;
@@ -328,7 +337,7 @@
             // raNhom5
             // 
             this.raNhom5.AutoSize = true;
-            this.raNhom5.Location = new System.Drawing.Point(16, 149);
+            this.raNhom5.Location = new System.Drawing.Point(16, 135);
             this.raNhom5.Name = "raNhom5";
             this.raNhom5.Size = new System.Drawing.Size(14, 13);
             this.raNhom5.TabIndex = 61;
@@ -338,7 +347,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(137, 119);
+            this.label16.Location = new System.Drawing.Point(137, 108);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(27, 13);
             this.label16.TabIndex = 60;
@@ -347,7 +356,7 @@
             // numOng_Nhom4
             // 
             this.numOng_Nhom4.Enabled = false;
-            this.numOng_Nhom4.Location = new System.Drawing.Point(89, 116);
+            this.numOng_Nhom4.Location = new System.Drawing.Point(89, 105);
             this.numOng_Nhom4.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -370,7 +379,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(42, 119);
+            this.label17.Location = new System.Drawing.Point(42, 108);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(45, 13);
             this.label17.TabIndex = 58;
@@ -379,7 +388,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(137, 87);
+            this.label14.Location = new System.Drawing.Point(137, 80);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(28, 13);
             this.label14.TabIndex = 57;
@@ -388,7 +397,7 @@
             // numChai_Nhom3
             // 
             this.numChai_Nhom3.Enabled = false;
-            this.numChai_Nhom3.Location = new System.Drawing.Point(89, 84);
+            this.numChai_Nhom3.Location = new System.Drawing.Point(89, 77);
             this.numChai_Nhom3.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -411,7 +420,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(42, 87);
+            this.label15.Location = new System.Drawing.Point(42, 80);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(45, 13);
             this.label15.TabIndex = 55;
@@ -420,7 +429,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(137, 55);
+            this.label12.Location = new System.Drawing.Point(137, 52);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(28, 13);
             this.label12.TabIndex = 54;
@@ -429,7 +438,7 @@
             // numVien_Nhom2
             // 
             this.numVien_Nhom2.Enabled = false;
-            this.numVien_Nhom2.Location = new System.Drawing.Point(89, 52);
+            this.numVien_Nhom2.Location = new System.Drawing.Point(89, 49);
             this.numVien_Nhom2.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -452,7 +461,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(42, 55);
+            this.label13.Location = new System.Drawing.Point(42, 52);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(45, 13);
             this.label13.TabIndex = 52;
@@ -541,7 +550,7 @@
             // raNhom4
             // 
             this.raNhom4.AutoSize = true;
-            this.raNhom4.Location = new System.Drawing.Point(16, 119);
+            this.raNhom4.Location = new System.Drawing.Point(16, 108);
             this.raNhom4.Name = "raNhom4";
             this.raNhom4.Size = new System.Drawing.Size(14, 13);
             this.raNhom4.TabIndex = 3;
@@ -551,7 +560,7 @@
             // raNhom3
             // 
             this.raNhom3.AutoSize = true;
-            this.raNhom3.Location = new System.Drawing.Point(16, 87);
+            this.raNhom3.Location = new System.Drawing.Point(16, 80);
             this.raNhom3.Name = "raNhom3";
             this.raNhom3.Size = new System.Drawing.Size(14, 13);
             this.raNhom3.TabIndex = 2;
@@ -561,7 +570,7 @@
             // raNhom2
             // 
             this.raNhom2.AutoSize = true;
-            this.raNhom2.Location = new System.Drawing.Point(16, 55);
+            this.raNhom2.Location = new System.Drawing.Point(16, 52);
             this.raNhom2.Name = "raNhom2";
             this.raNhom2.Size = new System.Drawing.Size(14, 13);
             this.raNhom2.TabIndex = 1;
@@ -580,12 +589,63 @@
             this.raNhom1.UseVisualStyleBackColor = true;
             this.raNhom1.CheckedChanged += new System.EventHandler(this.raNhom1_CheckedChanged);
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(137, 164);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(23, 13);
+            this.label20.TabIndex = 68;
+            this.label20.Text = "Gói";
+            // 
+            // numGoi_Nhom6
+            // 
+            this.numGoi_Nhom6.Enabled = false;
+            this.numGoi_Nhom6.Location = new System.Drawing.Point(89, 161);
+            this.numGoi_Nhom6.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numGoi_Nhom6.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numGoi_Nhom6.Name = "numGoi_Nhom6";
+            this.numGoi_Nhom6.Size = new System.Drawing.Size(46, 20);
+            this.numGoi_Nhom6.TabIndex = 67;
+            this.numGoi_Nhom6.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(42, 164);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(45, 13);
+            this.label21.TabIndex = 66;
+            this.label21.Text = "1 Hộp =";
+            // 
+            // raNhom6
+            // 
+            this.raNhom6.AutoSize = true;
+            this.raNhom6.Location = new System.Drawing.Point(16, 163);
+            this.raNhom6.Name = "raNhom6";
+            this.raNhom6.Size = new System.Drawing.Size(14, 13);
+            this.raNhom6.TabIndex = 65;
+            this.raNhom6.UseVisualStyleBackColor = true;
+            this.raNhom6.CheckedChanged += new System.EventHandler(this.raNhom6_CheckedChanged);
+            // 
             // dlgAddThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(445, 551);
+            this.ClientSize = new System.Drawing.Size(445, 562);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -609,6 +669,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numVien_Nhom2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numVien_Nhom1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numVi_Nhom1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGoi_Nhom6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -656,5 +717,9 @@
         private System.Windows.Forms.RadioButton raNhom3;
         private System.Windows.Forms.RadioButton raNhom2;
         private System.Windows.Forms.RadioButton raNhom1;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.NumericUpDown numGoi_Nhom6;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.RadioButton raNhom6;
     }
 }

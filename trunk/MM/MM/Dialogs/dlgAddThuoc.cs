@@ -152,6 +152,11 @@ namespace MM.Dialogs
                                 raNhom5.Checked = true;
                                 numMieng_Nhom5.Value = (Decimal)dvt.SoLuong;
                                 break;
+
+                            case "Gói":
+                                raNhom6.Checked = true;
+                                numGoi_Nhom6.Value = (Decimal)dvt.SoLuong;
+                                break;
                         }
                     }
                 }
@@ -307,6 +312,17 @@ namespace MM.Dialogs
                         dvt.Status = (byte)Status.Actived;
                         donViTinhList.Add(dvt);
                     }
+                    else if (raNhom6.Checked)
+                    {
+                        DonViTinh_Thuoc dvt = new DonViTinh_Thuoc();
+                        dvt.DonViTinhLon = "Hộp";
+                        dvt.DonViTinhNho = "Gói";
+                        dvt.SoLuong = (int)numGoi_Nhom6.Value;
+                        dvt.CreatedDate = DateTime.Now;
+                        dvt.CreatedBy = Guid.Parse(Global.UserGUID);
+                        dvt.Status = (byte)Status.Actived;
+                        donViTinhList.Add(dvt);
+                    }
 
                     Result result = ThuocBus.InsertThuoc(_thuoc, donViTinhList);
                     if (!result.IsOK)
@@ -370,6 +386,11 @@ namespace MM.Dialogs
         private void raNhom5_CheckedChanged(object sender, EventArgs e)
         {
             numMieng_Nhom5.Enabled = raNhom5.Checked;
+        }
+
+        private void raNhom6_CheckedChanged(object sender, EventArgs e)
+        {
+            numGoi_Nhom6.Enabled = raNhom6.Checked;
         }
         #endregion
 
