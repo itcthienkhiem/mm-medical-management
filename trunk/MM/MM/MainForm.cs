@@ -141,7 +141,10 @@ namespace MM
             else if (ctrl.GetType() == typeof(uDoanhThuNhanVien))
                 _uDoanhThuNhanVien.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uDichVuHopDong))
-                _uDichVuHopDong.DisplayAsThread();    
+                _uDichVuHopDong.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uThuocList))
+                _uThuocList.DisplayAsThread();
+            
         }
 
         private void SaveAppConfig()
@@ -360,6 +363,12 @@ namespace MM
                             thuocToolStripMenuItem.Enabled = isLogin;
                             danhMucThuocToolStripMenuItem.Enabled = isView && isLogin;
                             tbDanhMucThuoc.Enabled = isView && isLogin;
+                            _uThuocList.AllowAdd = isAdd;
+                            _uThuocList.AllowEdit = isEdit;
+                            _uThuocList.AllowDelete = isDelete;
+                            _uThuocList.AllowPrint = isPrint;
+                            _uThuocList.AllowExport = isExport;
+                            _uThuocList.AllowImport = isImport;
                         }
                         else if (functionCode == Const.NhomThuoc)
                         {
@@ -615,6 +624,8 @@ namespace MM
         private void OnDanhMucThuoc()
         {
             this.Text = string.Format("{0} - Danh muc thuoc", Application.ProductName);
+            ViewControl(_uThuocList);
+            _uThuocList.DisplayAsThread();
         }
 
         private void OnNhomThuoc()
@@ -794,6 +805,8 @@ namespace MM
                 _uInvoiceList.ClearData();
             else if (ctrl.GetType() == typeof(uDuplicatePatient))
                 _uDuplicatePatient.ClearData();
+            else if (ctrl.GetType() == typeof(uThuocList))
+                _uThuocList.ClearData();
         }
 
         private void OnDoctorList()
