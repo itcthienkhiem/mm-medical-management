@@ -80,6 +80,7 @@
                         <Border>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -209,6 +210,7 @@
                       <Border>
                         <Style>Solid</Style>
                       </Border>
+                      <BackgroundColor>LightGrey</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -312,7 +314,7 @@
         <Top>0.875in</Top>
         <Left>0.27083in</Left>
         <Height>0.75in</Height>
-        <Width>5.95834in</Width>
+        <Width>5.95835in</Width>
         <Style>
           <Border>
             <Style>None</Style>
