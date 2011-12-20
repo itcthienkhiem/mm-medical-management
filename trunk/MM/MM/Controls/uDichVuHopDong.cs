@@ -77,24 +77,61 @@ namespace MM.Controls
             }
         }
 
-        private void OnView()
+        private void OnView(string contractGUID)
         {
-            if (cboHopDong.Text.Trim() == string.Empty)
+            Result result = ReportBus.GetDichVuHopDong(contractGUID);
+            if (result.IsOK)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 hợp đồng.", IconType.Information);
-                return;
+                ReportDataSource reportDataSource = new ReportDataSource("spDichVuHopDongResult",
+                    (List<spDichVuHopDongResult>)result.QueryResult);
+
+                MethodInvoker method = delegate
+                {
+                   _ucReportViewer.ViewReport("MM.Templates.rptDichVuHopDong.rdlc", reportDataSource);
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
             }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetDichVuHopDong"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetDichVuHopDong"));
+            }
+        }
 
-            string contractGUID = cboHopDong.SelectedValue.ToString();
+        private void ViewAsThread()
+        {
+            try
+            {
 
+                if (cboHopDong.Text.Trim() == string.Empty)
+                {
+                    MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 hợp đồng.", IconType.Information);
+                    return;
+                }
 
+                string contractGUID = cboHopDong.SelectedValue.ToString();
+
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnViewProc), contractGUID);
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
         }
         #endregion
 
         #region Window Event Handlers
         private void btnView_Click(object sender, EventArgs e)
         {
-            OnView();
+            ViewAsThread();
         }
         #endregion
 
@@ -105,6 +142,24 @@ namespace MM.Controls
             {
                 //Thread.Sleep(500);
                 OnDisplayContractList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnViewProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                OnView(state.ToString());
             }
             catch (Exception e)
             {

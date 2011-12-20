@@ -83,7 +83,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                result.QueryResult = db.spDichVuHopDong(contractGUID);
+                result.QueryResult = db.spDichVuHopDong(contractGUID).ToList<spDichVuHopDongResult>();
             }
             catch (System.Data.SqlClient.SqlException se)
             {
