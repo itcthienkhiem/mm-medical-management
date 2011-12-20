@@ -18,7 +18,11 @@ namespace MM.Controls
     public partial class uDoanhThuNhanVien : uBase
     {
         #region Members
-
+        private DateTime _fromDate = DateTime.Now;
+        private DateTime _toDate = DateTime.Now;
+        private string _docStaffGUID = string.Empty;
+        private byte _type = 0;
+        private bool _isTongHop = true;
         #endregion
 
         #region Constructor
@@ -99,22 +103,22 @@ namespace MM.Controls
 
         private void OnView()
         {
-            Cursor.Current = Cursors.WaitCursor;
-            if (!CheckInfo()) return;
-            DateTime fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
-            DateTime toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
-            string docStaffGUID = cboNhanVien.SelectedValue.ToString();
-            byte type = raServiceHistory.Checked ? (byte)0 : (byte)1;
-
             Result result = null;
-            if (raTongHop.Checked)
+            if (_isTongHop)
             {
-                result = ReportBus.GetDoanhThuNhanVienTongHop(fromDate, toDate, docStaffGUID, type);
+                result = ReportBus.GetDoanhThuNhanVienTongHop(_fromDate, _toDate, _docStaffGUID, _type);
                 if (result.IsOK)
                 {
                     ReportDataSource reportDataSource = new ReportDataSource("spDoanhThuNhanVienTongHopResult", 
                         (List<spDoanhThuNhanVienTongHopResult>)result.QueryResult);
-                    _ucReportViewer.ViewReport("MM.Templates.rptDoanhThuNhanVienTongHop.rdlc", reportDataSource);
+
+                    MethodInvoker method = delegate
+                    {
+                        _ucReportViewer.ViewReport("MM.Templates.rptDoanhThuNhanVienTongHop.rdlc", reportDataSource);
+                    };
+
+                    if (InvokeRequired) BeginInvoke(method);
+                    else method.Invoke();
                 }
                 else
                 {
@@ -124,12 +128,19 @@ namespace MM.Controls
             }
             else
             {
-                result = ReportBus.GetDoanhThuNhanVienChiTiet(fromDate, toDate, docStaffGUID, type);
+                result = ReportBus.GetDoanhThuNhanVienChiTiet(_fromDate, _toDate, _docStaffGUID, _type);
                 if (result.IsOK)
                 {
                     ReportDataSource reportDataSource = new ReportDataSource("spDoanhThuNhanVienChiTietResult",
                         (List<spDoanhThuNhanVienChiTietResult>)result.QueryResult);
-                    _ucReportViewer.ViewReport("MM.Templates.rptDoanhThuNhanVienChiTiet.rdlc", reportDataSource);
+
+                    MethodInvoker method = delegate
+                    {
+                        _ucReportViewer.ViewReport("MM.Templates.rptDoanhThuNhanVienChiTiet.rdlc", reportDataSource);
+                    };
+
+                    if (InvokeRequired) BeginInvoke(method);
+                    else method.Invoke();
                 }
                 else
                 {
@@ -138,12 +149,37 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void ViewAsThread()
+        {
+            try
+            {
+                if (!CheckInfo()) return;
+                _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
+                _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+                _docStaffGUID = cboNhanVien.SelectedValue.ToString();
+                _type = raServiceHistory.Checked ? (byte)0 : (byte)1;
+                _isTongHop = raTongHop.Checked;
+
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnViewProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
         #endregion
 
         #region Window Event Handlers
         private void btnView_Click(object sender, EventArgs e)
         {
-            OnView();
+            ViewAsThread();
         }
         #endregion
 
@@ -154,6 +190,24 @@ namespace MM.Controls
             {
                 //Thread.Sleep(500);
                 OnDisplayDocStaffList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnViewProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                OnView();
             }
             catch (Exception e)
             {
