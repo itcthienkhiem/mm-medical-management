@@ -1,13 +1,13 @@
-﻿namespace MM.Controls
+﻿namespace MM.Dialogs
 {
-    partial class uThuocList
+    partial class dlgSelectThuoc
     {
-        /// <summary> 
+        /// <summary>
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,10 +20,10 @@
             base.Dispose(disposing);
         }
 
-        #region Component Designer generated code
+        #region Windows Form Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
+        /// <summary>
+        /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -32,83 +32,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgSelectThuoc));
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HamLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BietDuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoatChat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.btnEdit);
-            this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 399);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(796, 38);
-            this.panel1.TabIndex = 1;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::MM.Properties.Resources.del;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(164, 6);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
-            this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "    &Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(85, 6);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "    &Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::MM.Properties.Resources.add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(6, 6);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "    &Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.chkChecked);
-            this.panel2.Controls.Add(this.dgThuoc);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(796, 399);
-            this.panel2.TabIndex = 2;
             // 
             // chkChecked
             // 
@@ -116,7 +51,7 @@
             this.chkChecked.Location = new System.Drawing.Point(45, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
-            this.chkChecked.TabIndex = 3;
+            this.chkChecked.TabIndex = 9;
             this.chkChecked.UseVisualStyleBackColor = true;
             this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
             // 
@@ -138,11 +73,7 @@
             this.dgThuoc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
             this.maThuocDataGridViewTextBoxColumn,
-            this.tenThuocDataGridViewTextBoxColumn,
-            this.HamLuong,
-            this.BietDuoc,
-            this.HoatChat,
-            this.noteDataGridViewTextBoxColumn});
+            this.tenThuocDataGridViewTextBoxColumn});
             this.dgThuoc.DataSource = this.thuocBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -152,7 +83,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgThuoc.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dgThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgThuoc.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgThuoc.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgThuoc.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgThuoc.HighlightSelectedColumnHeaders = false;
@@ -162,13 +93,8 @@
             this.dgThuoc.ReadOnly = true;
             this.dgThuoc.RowHeadersWidth = 30;
             this.dgThuoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgThuoc.Size = new System.Drawing.Size(796, 399);
-            this.dgThuoc.TabIndex = 2;
-            this.dgThuoc.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
-            // 
-            // thuocBindingSource
-            // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            this.dgThuoc.Size = new System.Drawing.Size(542, 493);
+            this.dgThuoc.TabIndex = 8;
             // 
             // colChecked
             // 
@@ -189,7 +115,7 @@
             // maThuocDataGridViewTextBoxColumn
             // 
             this.maThuocDataGridViewTextBoxColumn.DataPropertyName = "MaThuoc";
-            this.maThuocDataGridViewTextBoxColumn.HeaderText = "MaThuoc";
+            this.maThuocDataGridViewTextBoxColumn.HeaderText = "Mã thuốc";
             this.maThuocDataGridViewTextBoxColumn.Name = "maThuocDataGridViewTextBoxColumn";
             this.maThuocDataGridViewTextBoxColumn.ReadOnly = true;
             this.maThuocDataGridViewTextBoxColumn.Width = 150;
@@ -197,75 +123,76 @@
             // tenThuocDataGridViewTextBoxColumn
             // 
             this.tenThuocDataGridViewTextBoxColumn.DataPropertyName = "TenThuoc";
-            this.tenThuocDataGridViewTextBoxColumn.HeaderText = "TenThuoc";
+            this.tenThuocDataGridViewTextBoxColumn.HeaderText = "Tên thuốc";
             this.tenThuocDataGridViewTextBoxColumn.Name = "tenThuocDataGridViewTextBoxColumn";
             this.tenThuocDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenThuocDataGridViewTextBoxColumn.Width = 250;
+            this.tenThuocDataGridViewTextBoxColumn.Width = 300;
             // 
-            // HamLuong
+            // thuocBindingSource
             // 
-            this.HamLuong.DataPropertyName = "HamLuong";
-            this.HamLuong.HeaderText = "Hàm lượng";
-            this.HamLuong.Name = "HamLuong";
-            this.HamLuong.ReadOnly = true;
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
             // 
-            // BietDuoc
+            // btnCancel
             // 
-            this.BietDuoc.DataPropertyName = "BietDuoc";
-            this.BietDuoc.HeaderText = "Biệt dược";
-            this.BietDuoc.Name = "BietDuoc";
-            this.BietDuoc.ReadOnly = true;
-            this.BietDuoc.Width = 250;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(273, 498);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // HoatChat
+            // btnOK
             // 
-            this.HoatChat.DataPropertyName = "HoatChat";
-            this.HoatChat.HeaderText = "Hoạt chất";
-            this.HoatChat.Name = "HoatChat";
-            this.HoatChat.ReadOnly = true;
-            this.HoatChat.Width = 250;
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Image = global::MM.Properties.Resources.check;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(194, 498);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 15;
+            this.btnOK.Text = "    &Đồng ý";
+            this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // noteDataGridViewTextBoxColumn
+            // dlgSelectThuoc
             // 
-            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Note";
-            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.noteDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // uThuocList
-            // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Name = "uThuocList";
-            this.Size = new System.Drawing.Size(796, 437);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(542, 527);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.chkChecked);
+            this.Controls.Add(this.dgThuoc);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "dlgSelectThuoc";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Chon thuoc";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgSelectThuoc_FormClosing);
+            this.Load += new System.EventHandler(this.dlgSelectThuoc_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgThuoc;
-        private System.Windows.Forms.BindingSource thuocBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn maThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HamLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BietDuoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoatChat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource thuocBindingSource;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnOK;
     }
 }

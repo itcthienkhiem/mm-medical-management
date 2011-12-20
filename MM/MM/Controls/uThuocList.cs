@@ -97,6 +97,8 @@ namespace MM.Controls
                 newRow["MaThuoc"] = dlg.Thuoc.MaThuoc;
                 newRow["TenThuoc"] = dlg.Thuoc.TenThuoc;
                 newRow["BietDuoc"] = dlg.Thuoc.BietDuoc;
+                newRow["HamLuong"] = dlg.Thuoc.HamLuong;
+                newRow["HoatChat"] = dlg.Thuoc.HoatChat;
                 newRow["Note"] = dlg.Thuoc.Note;
 
                 if (dlg.Thuoc.CreatedDate.HasValue)
@@ -144,6 +146,8 @@ namespace MM.Controls
                 drThuoc["MaThuoc"] = dlg.Thuoc.MaThuoc;
                 drThuoc["TenThuoc"] = dlg.Thuoc.TenThuoc;
                 drThuoc["BietDuoc"] = dlg.Thuoc.BietDuoc;
+                drThuoc["HamLuong"] = dlg.Thuoc.HamLuong;
+                drThuoc["HoatChat"] = dlg.Thuoc.HoatChat;
                 drThuoc["Note"] = dlg.Thuoc.Note;
 
                 if (dlg.Thuoc.CreatedDate.HasValue)

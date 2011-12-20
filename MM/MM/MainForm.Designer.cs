@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uThuocList = new MM.Controls.uThuocList();
             this._uDichVuHopDong = new MM.Controls.uDichVuHopDong();
             this._uDoanhThuNhanVien = new MM.Controls.uDoanhThuNhanVien();
             this._uInvoiceList = new MM.Controls.uInvoiceList();
@@ -118,7 +119,7 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uThuocList = new MM.Controls.uThuocList();
+            this._uNhomThuocList = new MM.Controls.uNhomThuocList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -130,6 +131,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uNhomThuocList);
             this._mainPanel.Controls.Add(this._uThuocList);
             this._mainPanel.Controls.Add(this._uDichVuHopDong);
             this._mainPanel.Controls.Add(this._uDoanhThuNhanVien);
@@ -147,6 +149,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uThuocList
+            // 
+            resources.ApplyResources(this._uThuocList, "_uThuocList");
+            this._uThuocList.Name = "_uThuocList";
             // 
             // _uDichVuHopDong
             // 
@@ -792,10 +799,10 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // _uThuocList
+            // _uNhomThuocList
             // 
-            resources.ApplyResources(this._uThuocList, "_uThuocList");
-            this._uThuocList.Name = "_uThuocList";
+            resources.ApplyResources(this._uNhomThuocList, "_uNhomThuocList");
+            this._uNhomThuocList.Name = "_uNhomThuocList";
             // 
             // MainForm
             // 
@@ -913,6 +920,7 @@
         private System.Windows.Forms.ToolStripButton tbDanhMucThuoc;
         private System.Windows.Forms.ToolStripButton tbNhomThuoc;
         private Controls.uThuocList _uThuocList;
+        private Controls.uNhomThuocList _uNhomThuocList;
 
     }
 }
