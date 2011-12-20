@@ -35,6 +35,42 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetDonViTinhList(string thuocGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<DonViTinh_Thuoc> donViTinhList = (from d in db.DonViTinh_Thuocs
+                                                      where d.Status == (byte)Status.Actived &&
+                                                      d.ThuocGUID.ToString() == thuocGUID
+                                                      select d).ToList<DonViTinh_Thuoc>();
+                result.QueryResult = donViTinhList;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetThuocListNotInNhomThuoc(string nhomThuocGUID)
         {
             Result result = null;
@@ -177,7 +213,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertThuoc(Thuoc thuoc)
+        public static Result InsertThuoc(Thuoc thuoc, List<DonViTinh_Thuoc> donViTinhList)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -185,35 +221,80 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-
-                //Insert
-                if (thuoc.ThuocGUID == null || thuoc.ThuocGUID == Guid.Empty)
+                using (TransactionScope tnx = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    thuoc.ThuocGUID = Guid.NewGuid();
-                    db.Thuocs.InsertOnSubmit(thuoc);
-                }
-                else //Update
-                {
-                    Thuoc th = db.Thuocs.SingleOrDefault<Thuoc>(t => t.ThuocGUID.ToString() == thuoc.ThuocGUID.ToString());
-                    if (th != null)
+                    //Insert
+                    if (thuoc.ThuocGUID == null || thuoc.ThuocGUID == Guid.Empty)
                     {
-                        th.MaThuoc = thuoc.MaThuoc;
-                        th.TenThuoc = thuoc.TenThuoc;
-                        th.BietDuoc = thuoc.BietDuoc;
-                        th.HamLuong = thuoc.HamLuong;
-                        th.HoatChat = thuoc.HoatChat;
-                        th.Note = thuoc.Note;
-                        th.CreatedDate = thuoc.CreatedDate;
-                        th.CreatedBy = thuoc.CreatedBy;
-                        th.UpdatedDate = thuoc.UpdatedDate;
-                        th.UpdatedBy = thuoc.UpdatedBy;
-                        th.DeletedDate = thuoc.DeletedDate;
-                        th.DeletedBy = thuoc.DeletedBy;
-                        th.Status = thuoc.Status;
-                    }
-                }
+                        thuoc.ThuocGUID = Guid.NewGuid();
+                        db.Thuocs.InsertOnSubmit(thuoc);
+                        db.SubmitChanges();
 
-                db.SubmitChanges();
+                        //Don Vi Tinh
+                        foreach (var dvt in donViTinhList)
+                        {
+                            dvt.DonViTinh_ThuocGUID = Guid.NewGuid();
+                            dvt.ThuocGUID = thuoc.ThuocGUID;
+                            db.DonViTinh_Thuocs.InsertOnSubmit(dvt);
+                        }
+
+                        db.SubmitChanges();
+                    }
+                    else //Update
+                    {
+                        Thuoc th = db.Thuocs.SingleOrDefault<Thuoc>(t => t.ThuocGUID.ToString() == thuoc.ThuocGUID.ToString());
+                        if (th != null)
+                        {
+                            th.MaThuoc = thuoc.MaThuoc;
+                            th.TenThuoc = thuoc.TenThuoc;
+                            th.BietDuoc = thuoc.BietDuoc;
+                            th.HamLuong = thuoc.HamLuong;
+                            th.HoatChat = thuoc.HoatChat;
+                            th.Note = thuoc.Note;
+                            th.CreatedDate = thuoc.CreatedDate;
+                            th.CreatedBy = thuoc.CreatedBy;
+                            th.UpdatedDate = thuoc.UpdatedDate;
+                            th.UpdatedBy = thuoc.UpdatedBy;
+                            th.DeletedDate = thuoc.DeletedDate;
+                            th.DeletedBy = thuoc.DeletedBy;
+                            th.Status = thuoc.Status;
+
+                            //Delete Don Vi Tinh
+                            var deletedDVTList = th.DonViTinh_Thuocs;
+                            foreach (var dvt in deletedDVTList)
+                            {
+                                dvt.DeletedDate = DateTime.Now;
+                                dvt.DeletedBy = Guid.Parse(Global.UserGUID);
+                                dvt.Status = (byte)Status.Deactived;
+                            }
+
+                            //Add Don Vi Tinh
+                            foreach (var dvt in donViTinhList)
+                            {
+                                DonViTinh_Thuoc donViTinh = db.DonViTinh_Thuocs.SingleOrDefault<DonViTinh_Thuoc>(d => d.DonViTinhLon == dvt.DonViTinhLon &&
+                                    d.DonViTinhNho == dvt.DonViTinhNho && d.ThuocGUID == th.ThuocGUID);
+                                if (donViTinh == null)
+                                {
+                                    dvt.DonViTinh_ThuocGUID = Guid.NewGuid();
+                                    dvt.ThuocGUID = th.ThuocGUID;
+                                    db.DonViTinh_Thuocs.InsertOnSubmit(dvt);
+                                }
+                                else
+                                {
+                                    donViTinh.SoLuong = dvt.SoLuong;
+                                    donViTinh.UpdatedDate = DateTime.Now;
+                                    donViTinh.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                    donViTinh.Status = (byte)Status.Actived;
+                                }
+                            }
+
+                            db.SubmitChanges();
+                        }
+                    }
+
+                    tnx.Complete();
+                }
+                
             }
             catch (System.Data.SqlClient.SqlException se)
             {
