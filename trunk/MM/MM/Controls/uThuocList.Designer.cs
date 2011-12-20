@@ -44,8 +44,6 @@
             this.maThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HamLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BietDuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HoatChat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -140,8 +138,6 @@
             this.maThuocDataGridViewTextBoxColumn,
             this.tenThuocDataGridViewTextBoxColumn,
             this.HamLuong,
-            this.BietDuoc,
-            this.HoatChat,
             this.noteDataGridViewTextBoxColumn});
             this.dgThuoc.DataSource = this.thuocBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -209,26 +205,10 @@
             this.HamLuong.Name = "HamLuong";
             this.HamLuong.ReadOnly = true;
             // 
-            // BietDuoc
-            // 
-            this.BietDuoc.DataPropertyName = "BietDuoc";
-            this.BietDuoc.HeaderText = "Biệt dược";
-            this.BietDuoc.Name = "BietDuoc";
-            this.BietDuoc.ReadOnly = true;
-            this.BietDuoc.Width = 250;
-            // 
-            // HoatChat
-            // 
-            this.HoatChat.DataPropertyName = "HoatChat";
-            this.HoatChat.HeaderText = "Hoạt chất";
-            this.HoatChat.Name = "HoatChat";
-            this.HoatChat.ReadOnly = true;
-            this.HoatChat.Width = 250;
-            // 
             // noteDataGridViewTextBoxColumn
             // 
             this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Note";
+            this.noteDataGridViewTextBoxColumn.HeaderText = "Ghi chú";
             this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 250;
@@ -264,8 +244,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn maThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn HamLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BietDuoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HoatChat;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
     }
 }
