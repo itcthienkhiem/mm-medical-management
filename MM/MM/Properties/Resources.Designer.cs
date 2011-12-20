@@ -312,6 +312,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Drug_basket_icon {
+            get {
+                object obj = ResourceManager.GetObject("Drug_basket_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap edit {
             get {
                 object obj = ResourceManager.GetObject("edit", resourceCulture);
@@ -343,6 +350,13 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap File_History_icon {
             get {
                 object obj = ResourceManager.GetObject("File_History_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap folder_contract_icon {
+            get {
+                object obj = ResourceManager.GetObject("folder_contract_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -483,6 +497,13 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap personal_loan_icon {
             get {
                 object obj = ResourceManager.GetObject("personal_loan_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap pills_3_icon {
+            get {
+                object obj = ResourceManager.GetObject("pills_3_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
