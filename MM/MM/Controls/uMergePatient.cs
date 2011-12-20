@@ -59,7 +59,9 @@ namespace MM.Controls
                 }
             }
 
-            MsgBox.Show("Merge benh nhan", "Quá trình Merge kết thúc", IconType.Information);
+            MsgBox.Show("Merge benh nhan", "Merge kết thúc", IconType.Information);
+            if(Form.ActiveForm!=null)
+                Form.ActiveForm.Close();
         }
     }
 }

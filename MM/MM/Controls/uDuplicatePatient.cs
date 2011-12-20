@@ -221,7 +221,11 @@ namespace MM.Controls
                 }
                 dlgMergePatient dlg = new dlgMergePatient();
                 dlg.SetDataSource(dt);
-                dlg.ShowDialog();
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    //re-bind data soource
+                    OnDisplayDuplicatePatientList();
+                }
 
             }
         }

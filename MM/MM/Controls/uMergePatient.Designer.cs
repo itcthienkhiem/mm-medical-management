@@ -41,18 +41,18 @@
             this.Mobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
             this.btnMerge = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgMergePatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgMergePatient
@@ -162,8 +162,32 @@
             this.panel2.Size = new System.Drawing.Size(827, 34);
             this.panel2.TabIndex = 1;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnClose);
+            this.panel4.Controls.Add(this.btnMerge);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(662, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(165, 34);
+            this.panel4.TabIndex = 15;
+            // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(83, 4);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 25);
+            this.btnClose.TabIndex = 14;
+            this.btnClose.Text = "   &Đóng";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // btnMerge
             // 
+            this.btnMerge.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnMerge.Image = global::MM.Properties.Resources.Architecture_info_icon;
             this.btnMerge.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMerge.Location = new System.Drawing.Point(6, 5);
@@ -194,19 +218,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Chọn bệnh nhân cần giữ lại";
             // 
-            // btnClose
-            // 
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(83, 4);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 25);
-            this.btnClose.TabIndex = 14;
-            this.btnClose.Text = "   &Đóng";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.dgMergePatient);
@@ -215,16 +226,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(827, 176);
             this.panel1.TabIndex = 5;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.btnClose);
-            this.panel4.Controls.Add(this.btnMerge);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(662, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(165, 34);
-            this.panel4.TabIndex = 15;
             // 
             // uMergePatient
             // 
@@ -238,10 +239,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgMergePatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
