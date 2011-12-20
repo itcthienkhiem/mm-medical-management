@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView pv1 WHERE Archived = 'False' And pv1.FullName in (select pv2.FullName from PatientView pv2 where pv2.FullName =pv1.FullName and pv2.Gender = pv1.Gender  and pv2.ContactGUID != pv1.ContactGUID) ORDER BY FullName";
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView pv1 WHERE pv1.Archived = 'False' And pv1.FullName in (select pv2.FullName from PatientView pv2 where pv2.FullName =pv1.FullName and pv2.Gender = pv1.Gender and pv2.Archived='False' and pv2.ContactGUID != pv1.ContactGUID) ORDER BY FullName";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
