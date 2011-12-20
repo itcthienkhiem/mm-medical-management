@@ -409,6 +409,12 @@
     <Compile Include="Dialogs\dlgAddDocStaff.Designer.cs">
       <DependentUpon>dlgAddDocStaff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddLoThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddLoThuoc.Designer.cs">
+      <DependentUpon>dlgAddLoThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddNhomThuoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -673,6 +679,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDocStaff.resx">
       <DependentUpon>dlgAddDocStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddLoThuoc.resx">
+      <DependentUpon>dlgAddLoThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddNhomThuoc.resx">
       <DependentUpon>dlgAddNhomThuoc.cs</DependentUpon>
