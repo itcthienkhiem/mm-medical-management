@@ -330,7 +330,7 @@ namespace MM.Controls
             UpdateChecked();
             List<string> deletedPatientList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            List<DataRow> deletedRows2 = new List<DataRow>();
+            //List<DataRow> deletedRows2 = new List<DataRow>();
             foreach (DataRow row in _dataSource.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
@@ -338,8 +338,8 @@ namespace MM.Controls
                     string patientGUID = row["PatientGUID"].ToString();
                     deletedPatientList.Add(patientGUID);
                     deletedRows.Add(row);
-                    DataRow r = GetDataRow(patientGUID);
-                    if (r != null) deletedRows2.Add(r);
+                    //DataRow r = GetDataRow(patientGUID);
+                    //if (r != null) deletedRows2.Add(r);
                 }
             }
 
@@ -355,7 +355,9 @@ namespace MM.Controls
                             _dataSource.Rows.Remove(row);
                         }
 
-                        try
+                        OnSearchPatient();
+
+                        /*try
                         {
                             DataTable dt = dgPatient.DataSource as DataTable;
                             foreach (DataRow row in deletedRows2)
@@ -363,10 +365,12 @@ namespace MM.Controls
                                 if (row.RowState != DataRowState.Detached && row.RowState != DataRowState.Deleted) 
                                     dt.Rows.Remove(row);
                             }
+
+                            
                         }
                         catch (Exception ex)
                         {
-                        }
+                        }*/
                         
                     }
                     else
