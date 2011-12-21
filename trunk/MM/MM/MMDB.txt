@@ -1,0 +1,15 @@
+2011-12-12
+- Update: spGetCheckList, ContractMemberView
+- Create: spCheckMember, spGetDanhSachNhanVien
+2011-12-14
+- Create: spGetCheckListByContract
+2011-12-18
+- Insert : Function (Duplicate Patient)
+- Create: spMerge2Patients
+2011-12-19
+- Create: spDoanhThuNhanVienTongHop, spDoanhThuNhanVienChiTiet,
+spDichVuHopDong
+- Insert: Function (DoanhThuNhanVien, DichVuHopDong, Thuoc, NhomThuoc, LoThuoc, GiaThuoc)
+2011-12-20
+- Create table: Thuoc, NhomThuoc, NhomThuoc_Thuoc, LoThuoc, GiaThuoc
+- Create view: NhomThuoc_ThuocView, LoThuocView, GiaThuocView
