@@ -35,5 +35,6 @@ namespace MM.Common
         public static string NhomThuoc = "NhomThuoc";
         public static string LoThuoc = "LoThuoc";
         public static string GiaThuoc = "GiaThuoc";
+        public static string KeToa = "KeToa";
     }
 }

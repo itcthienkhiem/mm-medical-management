@@ -409,6 +409,12 @@ namespace MM
                             _uGiaThuocList.AllowExport = isExport;
                             _uGiaThuocList.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.KeToa)
+                        {
+                            keToaToolStripMenuItem.Enabled = isView && isLogin;
+                            tbKeToa.Enabled = isView && isLogin;
+
+                        }
                     }
                 }
                 else
@@ -549,6 +555,8 @@ namespace MM
                 tbLoThuoc.Enabled = isLogin;
                 giaThuocToolStripMenuItem.Enabled = isLogin;
                 tbGiaThuoc.Enabled = isLogin;
+                keToaToolStripMenuItem.Enabled = isLogin;
+                tbKeToa.Enabled = isLogin;
             }
         }
 
@@ -664,7 +672,16 @@ namespace MM
                 case "GiaThuoc":
                     OnGiaThuoc();
                     break;
+
+                case "KeToa":
+                    OnKeToa();
+                    break;
             }
+        }
+
+        private void OnKeToa()
+        {
+            this.Text = string.Format("{0} - Ke toa", Application.ProductName);
         }
 
         private void OnGiaThuoc()
