@@ -86,6 +86,7 @@
     <Compile Include="CompanyBus.cs" />
     <Compile Include="CompanyContractBus.cs" />
     <Compile Include="DocStaffBus.cs" />
+    <Compile Include="GiaThuocBus.cs" />
     <Compile Include="InvoiceBus.cs" />
     <Compile Include="LogonBus.cs" />
     <Compile Include="LoThuocBus.cs" />
