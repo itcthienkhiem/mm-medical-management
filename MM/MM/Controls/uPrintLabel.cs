@@ -276,7 +276,7 @@ namespace MM.Controls
         {
             if (dgSelectedMember.RowCount <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn bệnh nhân để in nhãn.", IconType.Information);
                 return;
             }
 
