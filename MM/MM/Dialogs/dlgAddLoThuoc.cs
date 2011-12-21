@@ -305,6 +305,14 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(e.Message);
             }
         }
+
+        private void RefreshGiaNhapQuiDoi()
+        {
+            double giaQuiDoi = (double)numGiaNhap.Value / (double)numSoLuongQuiDoi.Value;
+            giaQuiDoi = Math.Round(giaQuiDoi, 0);
+            lbGiaNhapQuiDoi.Text = string.Format("Giá nhập mỗi {0}:", txtDonViTinhQuiDoi.Text.ToLower());
+            numGiaNhapQuiDoi.Value = (Decimal)giaQuiDoi;
+        }
         #endregion
 
         #region Window Event Handlers
@@ -318,6 +326,7 @@ namespace MM.Dialogs
         private void cboThuoc_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshDonViTinh();
+            RefreshGiaNhapQuiDoi();
         }
 
         private void cboDonViTinhNhap_SelectedIndexChanged(object sender, EventArgs e)
@@ -329,6 +338,8 @@ namespace MM.Dialogs
             }
             else
                 numSoLuongQuiDoi.Enabled = true;
+
+            txtDVTNhap.Text = cboDonViTinhNhap.Text;
         }
 
         private void dlgAddLoThuoc_FormClosing(object sender, FormClosingEventArgs e)
@@ -341,6 +352,35 @@ namespace MM.Dialogs
                     e.Cancel = true;
             }
         }
+
+        private void numGiaNhap_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshGiaNhapQuiDoi();
+        }
+
+        private void numSoLuongQuiDoi_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshGiaNhapQuiDoi();
+        }
+
+        private void numGiaNhap_Leave(object sender, EventArgs e)
+        {
+            if (numGiaNhap.Text == string.Empty)
+            {
+                numGiaNhap.Text = "0";
+                numGiaNhap.Value = 0;
+            }
+        }
+
+        private void numSoLuongQuiDoi_Leave(object sender, EventArgs e)
+        {
+            if (numSoLuongQuiDoi.Text == string.Empty)
+            {
+                numSoLuongQuiDoi.Text = "1";
+                numSoLuongQuiDoi.Value = 1;
+            }
+        }
+
         #endregion
 
         #region Working Thread
@@ -362,6 +402,7 @@ namespace MM.Dialogs
         }
         #endregion
 
+        
         
     }
 }

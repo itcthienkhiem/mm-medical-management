@@ -255,7 +255,6 @@ namespace MM.Controls
             UpdateChecked();
             List<string> deletedGiaThuocList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            List<DataRow> deletedRows2 = new List<DataRow>();
             foreach (DataRow row in _dataSource.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
@@ -263,8 +262,6 @@ namespace MM.Controls
                     string giaThuocGUID = row["GiaThuocGUID"].ToString();
                     deletedGiaThuocList.Add(giaThuocGUID);
                     deletedRows.Add(row);
-                    DataRow r = GetDataRow(giaThuocGUID);
-                    if (r != null) deletedRows2.Add(r);
                 }
             }
 
@@ -280,21 +277,7 @@ namespace MM.Controls
                             _dataSource.Rows.Remove(row);
                         }
 
-                        try
-                        {
-                            DataTable dt = dgGiaThuoc.DataSource as DataTable;
-                            foreach (DataRow row in deletedRows2)
-                            {
-                                if (row.RowState != DataRowState.Detached && row.RowState != DataRowState.Deleted)
-                                    dt.Rows.Remove(row);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
-                            Utility.WriteToTraceLog(ex.Message);
-                        }
-
+                        OnSearchGiaThuoc();
                     }
                     else
                     {
