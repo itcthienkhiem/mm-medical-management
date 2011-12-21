@@ -114,6 +114,7 @@ namespace MM.Controls
                 newRow["GiaNhap"] = dlg.LoThuoc.GiaNhap;
                 newRow["SoLuongQuiDoi"] = dlg.LoThuoc.SoLuongQuiDoi;
                 newRow["DonViTinhQuiDoi"] = dlg.LoThuoc.DonViTinhQuiDoi;
+                newRow["GiaNhapQuiDoi"] = dlg.LoThuoc.GiaNhapQuiDoi;
                 newRow["TongTien"] = dlg.LoThuoc.SoLuongNhap * dlg.LoThuoc.GiaNhap;
 
                 if (dlg.LoThuoc.CreatedDate.HasValue)
@@ -166,6 +167,7 @@ namespace MM.Controls
                 drLoThuoc["GiaNhap"] = dlg.LoThuoc.GiaNhap;
                 drLoThuoc["SoLuongQuiDoi"] = dlg.LoThuoc.SoLuongQuiDoi;
                 drLoThuoc["DonViTinhQuiDoi"] = dlg.LoThuoc.DonViTinhQuiDoi;
+                drLoThuoc["GiaNhapQuiDoi"] = dlg.LoThuoc.GiaNhapQuiDoi;
                 drLoThuoc["TongTien"] = dlg.LoThuoc.SoLuongNhap * dlg.LoThuoc.GiaNhap;
 
                 if (dlg.LoThuoc.CreatedDate.HasValue)

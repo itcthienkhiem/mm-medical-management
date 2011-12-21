@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -41,6 +41,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -61,6 +62,7 @@
             this.TongTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.donViTinhQuiDoiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soLuongQuiDoiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GiaNhapQuiDoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soLuongXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soDangKyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hangSanXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -166,19 +168,20 @@
             this.TongTien,
             this.donViTinhQuiDoiDataGridViewTextBoxColumn,
             this.soLuongQuiDoiDataGridViewTextBoxColumn,
+            this.GiaNhapQuiDoi,
             this.soLuongXuatDataGridViewTextBoxColumn,
             this.soDangKyDataGridViewTextBoxColumn,
             this.hangSanXuatDataGridViewTextBoxColumn,
             this.nhaPhanPhoiDataGridViewTextBoxColumn});
             this.dgLoThuoc.DataSource = this.loThuocViewBindingSource;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgLoThuoc.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgLoThuoc.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgLoThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgLoThuoc.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgLoThuoc.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -277,9 +280,10 @@
             dataGridViewCellStyle6.Format = "N0";
             dataGridViewCellStyle6.NullValue = null;
             this.giaNhapDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.giaNhapDataGridViewTextBoxColumn.HeaderText = "Giá nhập";
+            this.giaNhapDataGridViewTextBoxColumn.HeaderText = "Giá nhập (VNĐ)";
             this.giaNhapDataGridViewTextBoxColumn.Name = "giaNhapDataGridViewTextBoxColumn";
             this.giaNhapDataGridViewTextBoxColumn.ReadOnly = true;
+            this.giaNhapDataGridViewTextBoxColumn.Width = 110;
             // 
             // donViTinhNhapDataGridViewTextBoxColumn
             // 
@@ -322,13 +326,25 @@
             this.soLuongQuiDoiDataGridViewTextBoxColumn.ReadOnly = true;
             this.soLuongQuiDoiDataGridViewTextBoxColumn.Width = 110;
             // 
-            // soLuongXuatDataGridViewTextBoxColumn
+            // GiaNhapQuiDoi
             // 
-            this.soLuongXuatDataGridViewTextBoxColumn.DataPropertyName = "SoLuongXuat";
+            this.GiaNhapQuiDoi.DataPropertyName = "GiaNhapQuiDoi";
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle11.Format = "N0";
             dataGridViewCellStyle11.NullValue = null;
-            this.soLuongXuatDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            this.GiaNhapQuiDoi.DefaultCellStyle = dataGridViewCellStyle11;
+            this.GiaNhapQuiDoi.HeaderText = "Giá nhập qui đổi (VNĐ)";
+            this.GiaNhapQuiDoi.Name = "GiaNhapQuiDoi";
+            this.GiaNhapQuiDoi.ReadOnly = true;
+            this.GiaNhapQuiDoi.Width = 150;
+            // 
+            // soLuongXuatDataGridViewTextBoxColumn
+            // 
+            this.soLuongXuatDataGridViewTextBoxColumn.DataPropertyName = "SoLuongXuat";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = null;
+            this.soLuongXuatDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
             this.soLuongXuatDataGridViewTextBoxColumn.HeaderText = "Số lượng xuất";
             this.soLuongXuatDataGridViewTextBoxColumn.Name = "soLuongXuatDataGridViewTextBoxColumn";
             this.soLuongXuatDataGridViewTextBoxColumn.ReadOnly = true;
@@ -395,6 +411,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TongTien;
         private System.Windows.Forms.DataGridViewTextBoxColumn donViTinhQuiDoiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuongQuiDoiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GiaNhapQuiDoi;
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuongXuatDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn soDangKyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hangSanXuatDataGridViewTextBoxColumn;
