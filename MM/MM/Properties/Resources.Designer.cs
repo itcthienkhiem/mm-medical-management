@@ -431,6 +431,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap inventory_maintenance_icon {
+            get {
+                object obj = ResourceManager.GetObject("inventory_maintenance_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap invoice_icon {
             get {
                 object obj = ResourceManager.GetObject("invoice_icon", resourceCulture);
@@ -518,6 +525,13 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap pills_3_icon {
             get {
                 object obj = ResourceManager.GetObject("pills_3_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap prescription_icon {
+            get {
+                object obj = ResourceManager.GetObject("prescription_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
