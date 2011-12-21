@@ -130,6 +130,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Actions_view_calendar_upcoming_events_icon {
+            get {
+                object obj = ResourceManager.GetObject("Actions_view_calendar_upcoming_events_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Actions_window_duplicate_icon {
             get {
                 object obj = ResourceManager.GetObject("Actions_window_duplicate_icon", resourceCulture);
@@ -238,6 +245,13 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap Arrow_up_icon {
             get {
                 object obj = ResourceManager.GetObject("Arrow_up_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap box_icon {
+            get {
+                object obj = ResourceManager.GetObject("box_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -497,6 +511,13 @@ namespace MM.Properties {
         public static System.Drawing.Bitmap open {
             get {
                 object obj = ResourceManager.GetObject("open", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap palet_03_icon {
+            get {
+                object obj = ResourceManager.GetObject("palet_03_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

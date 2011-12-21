@@ -875,6 +875,9 @@
     <Content Include="Controls\Excel\Office\Excel\MetaData\Record Identifier.txt" />
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\palet-03-icon.png" />
+    <None Include="Resources\box-icon.png" />
+    <None Include="Resources\Actions-view-calendar-upcoming-events-icon.png" />
     <None Include="Resources\prescription-icon.png" />
     <None Include="Resources\inventory-maintenance-icon.png" />
     <None Include="Resources\Drug-basket-icon %281%29.png" />
