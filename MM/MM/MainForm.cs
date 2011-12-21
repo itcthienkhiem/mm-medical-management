@@ -146,6 +146,8 @@ namespace MM
                 _uThuocList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uNhomThuocList))
                 _uNhomThuocList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uLoThuocList))
+                _uLoThuocList.DisplayAsThread();
             
         }
 
@@ -383,6 +385,23 @@ namespace MM
                             _uNhomThuocList.AllowExport = isExport;
                             _uNhomThuocList.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.LoThuoc)
+                        {
+                            loThuocToolStripMenuItem.Enabled = isView & isLogin;
+                            tbLoThuoc.Enabled = isView & isLogin;
+                            _uLoThuocList.AllowAdd = isAdd;
+                            _uLoThuocList.AllowEdit = isEdit;
+                            _uLoThuocList.AllowDelete = isDelete;
+                            _uLoThuocList.AllowPrint = isPrint;
+                            _uLoThuocList.AllowExport = isExport;
+                            _uLoThuocList.AllowImport = isImport;
+                        }
+                        else if (functionCode == Const.GiaThuoc)
+                        {
+                            giaThuocToolStripMenuItem.Enabled = isView & isLogin;
+                            tbGiaThuoc.Enabled = isView & isLogin;
+
+                        }
                     }
                 }
                 else
@@ -519,6 +538,10 @@ namespace MM
                 nhomThuocToolStripMenuItem.Enabled = isLogin;
                 tbDanhMucThuoc.Enabled = isLogin;
                 tbNhomThuoc.Enabled = isLogin;
+                loThuocToolStripMenuItem.Enabled = isLogin;
+                tbLoThuoc.Enabled = isLogin;
+                giaThuocToolStripMenuItem.Enabled = isLogin;
+                tbGiaThuoc.Enabled = isLogin;
             }
         }
 
@@ -626,7 +649,27 @@ namespace MM
                 case "NhomThuoc":
                     OnNhomThuoc();
                     break;
+
+                case "LoThuoc":
+                    OnLoThuoc();
+                    break;
+
+                case "GiaThuoc":
+                    OnGiaThuoc();
+                    break;
             }
+        }
+
+        private void OnGiaThuoc()
+        {
+            this.Text = string.Format("{0} - Gia thuoc", Application.ProductName);
+        }
+
+        private void OnLoThuoc()
+        {
+            this.Text = string.Format("{0} - Lo thuoc", Application.ProductName);
+            ViewControl(_uLoThuocList);
+            _uLoThuocList.DisplayAsThread();
         }
 
         private void OnDanhMucThuoc()
@@ -819,6 +862,8 @@ namespace MM
                 _uThuocList.ClearData();
             else if (ctrl.GetType() == typeof(uNhomThuocList))
                 _uNhomThuocList.ClearData();
+            else if (ctrl.GetType() == typeof(uLoThuocList))
+                _uLoThuocList.ClearData();
         }
 
         private void OnDoctorList()
