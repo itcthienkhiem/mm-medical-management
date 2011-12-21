@@ -213,6 +213,19 @@ namespace MM.Bussiness
                             th.DeletedDate = thuoc.DeletedDate;
                             th.DeletedBy = thuoc.DeletedBy;
                             th.Status = thuoc.Status;
+
+                            //Update DVT to LoThuoc
+                            var loThuocs = th.LoThuocs;
+                            foreach (var lo in loThuocs)
+                            {
+                                if (th.DonViTinh == lo.DonViTinhQuiDoi) continue;
+                                lo.DonViTinhQuiDoi = th.DonViTinh;
+                                if (lo.DonViTinhNhap != "Hộp" && lo.DonViTinhNhap != "Vỉ")
+                                    lo.DonViTinhNhap = th.DonViTinh;
+                                else if (lo.DonViTinhNhap == "Vỉ" && th.DonViTinh != "Viên")
+                                    lo.DonViTinhNhap = "Hộp";
+                            }
+
                             db.SubmitChanges();
                         }
                     }
