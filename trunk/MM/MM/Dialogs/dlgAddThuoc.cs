@@ -24,12 +24,14 @@ namespace MM.Dialogs
         public dlgAddThuoc()
         {
             InitializeComponent();
+            cboDonViTinh.SelectedIndex = 0;
             GenerateCode();
         }
 
         public dlgAddThuoc(DataRow drThuoc)
         {
             InitializeComponent();
+            cboDonViTinh.SelectedIndex = 0;
             _isNew = false;
             this.Text = "Sua thuoc";
             DisplayInfo(drThuoc);
@@ -68,6 +70,7 @@ namespace MM.Dialogs
                 txtMaThuoc.Text = drThuoc["MaThuoc"] as string;
                 txtTenThuoc.Text = drThuoc["TenThuoc"] as string;
                 txtBietDuoc.Text = drThuoc["BietDuoc"] as string;
+                cboDonViTinh.Text = drThuoc["DonViTinh"] as string;
 
                 if (drThuoc["HamLuong"] != null && drThuoc["HamLuong"] != DBNull.Value)
                     txtHamLuong.Text = drThuoc["HamLuong"] as string;
@@ -98,73 +101,11 @@ namespace MM.Dialogs
                     _thuoc.DeletedBy = Guid.Parse(drThuoc["DeletedBy"].ToString());
 
                 _thuoc.Status = Convert.ToByte(drThuoc["Status"]);
-
-                DisplayDonViTinh(_thuoc.ThuocGUID.ToString());
             }
             catch (Exception e)
             {
                 MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
-        private void DisplayDonViTinh(string thuocGUID)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            Result result = ThuocBus.GetDonViTinhList(thuocGUID);
-            if (result.IsOK)
-            {
-                if (result.QueryResult != null)
-                {
-                    List<DonViTinh_Thuoc> donViTinhList = (List<DonViTinh_Thuoc>)result.QueryResult;
-                    if (donViTinhList.Count == 2)
-                    {
-                        raNhom1.Checked = true;
-                        foreach (DonViTinh_Thuoc dvt in donViTinhList)
-                        {
-                            if (dvt.DonViTinhLon == "Hộp")
-                                numVi_Nhom1.Value = (Decimal)dvt.SoLuong;
-                            else
-                                numVien_Nhom1.Value = (Decimal)dvt.SoLuong;
-                        }
-                    }
-                    else if (donViTinhList.Count == 1)
-                    {
-                        DonViTinh_Thuoc dvt = donViTinhList[0];
-                        switch (dvt.DonViTinhNho)
-                        {
-                            case "Viên":
-                                raNhom2.Checked = true;
-                                numVien_Nhom2.Value = (Decimal)dvt.SoLuong;
-                                break;
-
-                            case "Chai":
-                                raNhom3.Checked = true;
-                                numChai_Nhom3.Value = (Decimal)dvt.SoLuong;
-                                break;
-
-                            case "Ống":
-                                raNhom4.Checked = true;
-                                numOng_Nhom4.Value = (Decimal)dvt.SoLuong;
-                                break;
-
-                            case "Miếng":
-                                raNhom5.Checked = true;
-                                numMieng_Nhom5.Value = (Decimal)dvt.SoLuong;
-                                break;
-
-                            case "Gói":
-                                raNhom6.Checked = true;
-                                numGoi_Nhom6.Value = (Decimal)dvt.SoLuong;
-                                break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("ThuocBus.GetDonViTinhList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ThuocBus.GetDonViTinhList"));
             }
         }
 
@@ -245,86 +186,11 @@ namespace MM.Dialogs
                     _thuoc.UpdatedBy = Guid.Parse(Global.UserGUID);
                 }
 
-                List<DonViTinh_Thuoc> donViTinhList = new List<DonViTinh_Thuoc>();
                 MethodInvoker method = delegate
                 {
-                    if (raNhom1.Checked)
-                    {
-                        DonViTinh_Thuoc dvt = new DonViTinh_Thuoc();
-                        dvt.DonViTinhLon = "Hộp";
-                        dvt.DonViTinhNho = "Vĩ";
-                        dvt.SoLuong = (int)numVi_Nhom1.Value;
-                        dvt.CreatedDate = DateTime.Now;
-                        dvt.CreatedBy = Guid.Parse(Global.UserGUID);
-                        dvt.Status = (byte)Status.Actived;
-                        donViTinhList.Add(dvt);
+                    _thuoc.DonViTinh = cboDonViTinh.Text;
+                    Result result = ThuocBus.InsertThuoc(_thuoc);
 
-                        dvt = new DonViTinh_Thuoc();
-                        dvt.DonViTinhLon = "Vĩ";
-                        dvt.DonViTinhNho = "Viên";
-                        dvt.SoLuong = (int)numVien_Nhom1.Value;
-                        dvt.CreatedDate = DateTime.Now;
-                        dvt.CreatedBy = Guid.Parse(Global.UserGUID);
-                        dvt.Status = (byte)Status.Actived;
-                        donViTinhList.Add(dvt);
-                    }
-                    else if (raNhom2.Checked)
-                    {
-                        DonViTinh_Thuoc dvt = new DonViTinh_Thuoc();
-                        dvt.DonViTinhLon = "Hộp";
-                        dvt.DonViTinhNho = "Viên";
-                        dvt.SoLuong = (int)numVien_Nhom2.Value;
-                        dvt.CreatedDate = DateTime.Now;
-                        dvt.CreatedBy = Guid.Parse(Global.UserGUID);
-                        dvt.Status = (byte)Status.Actived;
-                        donViTinhList.Add(dvt);
-                    }
-                    else if (raNhom3.Checked)
-                    {
-                        DonViTinh_Thuoc dvt = new DonViTinh_Thuoc();
-                        dvt.DonViTinhLon = "Hộp";
-                        dvt.DonViTinhNho = "Chai";
-                        dvt.SoLuong = (int)numChai_Nhom3.Value;
-                        dvt.CreatedDate = DateTime.Now;
-                        dvt.CreatedBy = Guid.Parse(Global.UserGUID);
-                        dvt.Status = (byte)Status.Actived;
-                        donViTinhList.Add(dvt);
-                    }
-                    else if (raNhom4.Checked)
-                    {
-                        DonViTinh_Thuoc dvt = new DonViTinh_Thuoc();
-                        dvt.DonViTinhLon = "Hộp";
-                        dvt.DonViTinhNho = "Ống";
-                        dvt.SoLuong = (int)numOng_Nhom4.Value;
-                        dvt.CreatedDate = DateTime.Now;
-                        dvt.CreatedBy = Guid.Parse(Global.UserGUID);
-                        dvt.Status = (byte)Status.Actived;
-                        donViTinhList.Add(dvt);
-                    }
-                    else if (raNhom5.Checked)
-                    {
-                        DonViTinh_Thuoc dvt = new DonViTinh_Thuoc();
-                        dvt.DonViTinhLon = "Hộp";
-                        dvt.DonViTinhNho = "Miếng";
-                        dvt.SoLuong = (int)numMieng_Nhom5.Value;
-                        dvt.CreatedDate = DateTime.Now;
-                        dvt.CreatedBy = Guid.Parse(Global.UserGUID);
-                        dvt.Status = (byte)Status.Actived;
-                        donViTinhList.Add(dvt);
-                    }
-                    else if (raNhom6.Checked)
-                    {
-                        DonViTinh_Thuoc dvt = new DonViTinh_Thuoc();
-                        dvt.DonViTinhLon = "Hộp";
-                        dvt.DonViTinhNho = "Gói";
-                        dvt.SoLuong = (int)numGoi_Nhom6.Value;
-                        dvt.CreatedDate = DateTime.Now;
-                        dvt.CreatedBy = Guid.Parse(Global.UserGUID);
-                        dvt.Status = (byte)Status.Actived;
-                        donViTinhList.Add(dvt);
-                    }
-
-                    Result result = ThuocBus.InsertThuoc(_thuoc, donViTinhList);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(this.Text, result.GetErrorAsString("ThuocBus.InsertThuoc"), IconType.Error);
@@ -360,32 +226,6 @@ namespace MM.Dialogs
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
-        }
-
-        private void raNhom1_CheckedChanged(object sender, EventArgs e)
-        {
-            numVi_Nhom1.Enabled = raNhom1.Checked;
-            numVien_Nhom1.Enabled = raNhom1.Checked;
-        }
-
-        private void raNhom2_CheckedChanged(object sender, EventArgs e)
-        {
-            numVien_Nhom2.Enabled = raNhom2.Checked;
-        }
-
-        private void raNhom3_CheckedChanged(object sender, EventArgs e)
-        {
-            numChai_Nhom3.Enabled = raNhom3.Checked;
-        }
-
-        private void raNhom4_CheckedChanged(object sender, EventArgs e)
-        {
-            numOng_Nhom4.Enabled = raNhom4.Checked;
-        }
-
-        private void raNhom5_CheckedChanged(object sender, EventArgs e)
-        {
-            numMieng_Nhom5.Enabled = raNhom5.Checked;
         }
 
         private void raNhom6_CheckedChanged(object sender, EventArgs e)
