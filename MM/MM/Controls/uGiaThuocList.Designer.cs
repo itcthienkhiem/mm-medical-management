@@ -45,12 +45,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgGiaThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.giaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.giaBanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayApDungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.donViTinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.giaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -197,6 +197,10 @@
             this.dgGiaThuoc.TabIndex = 4;
             this.dgGiaThuoc.DoubleClick += new System.EventHandler(this.dgGiaThuoc_DoubleClick);
             // 
+            // giaThuocViewBindingSource
+            // 
+            this.giaThuocViewBindingSource.DataSource = typeof(MM.Databasae.GiaThuocView);
+            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -228,7 +232,7 @@
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
             this.giaBanDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.giaBanDataGridViewTextBoxColumn.HeaderText = "Giá bán";
+            this.giaBanDataGridViewTextBoxColumn.HeaderText = "Giá bán (VNĐ)";
             this.giaBanDataGridViewTextBoxColumn.Name = "giaBanDataGridViewTextBoxColumn";
             this.giaBanDataGridViewTextBoxColumn.ReadOnly = true;
             this.giaBanDataGridViewTextBoxColumn.Width = 120;
@@ -252,10 +256,6 @@
             this.donViTinhDataGridViewTextBoxColumn.HeaderText = "ĐVT";
             this.donViTinhDataGridViewTextBoxColumn.Name = "donViTinhDataGridViewTextBoxColumn";
             this.donViTinhDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // giaThuocViewBindingSource
-            // 
-            this.giaThuocViewBindingSource.DataSource = typeof(MM.Databasae.GiaThuocView);
             // 
             // uGiaThuocList
             // 
@@ -289,11 +289,11 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgGiaThuoc;
+        private System.Windows.Forms.BindingSource giaThuocViewBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn giaBanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayApDungDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn donViTinhDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource giaThuocViewBindingSource;
     }
 }

@@ -272,6 +272,7 @@ namespace MM.Dialogs
                     _loThuoc.DonViTinhNhap = cboDonViTinhNhap.Text;
                     _loThuoc.DonViTinhQuiDoi = txtDonViTinhQuiDoi.Text;
                     _loThuoc.SoLuongQuiDoi = (int)numSoLuongQuiDoi.Value;
+                    _loThuoc.GiaNhapQuiDoi = (double)numGiaNhapQuiDoi.Value;
                     _loThuoc.SoLuongXuat = 0;
                     _loThuoc.Status = (byte)Status.Actived;
 
