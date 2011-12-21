@@ -301,6 +301,18 @@ namespace MM.Dialogs
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
+                else if (functionCode == Const.LoThuoc)
+                {
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.GiaThuoc)
+                {
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
             }
         }
 

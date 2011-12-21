@@ -148,6 +148,8 @@ namespace MM
                 _uNhomThuocList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uLoThuocList))
                 _uLoThuocList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uGiaThuocList))
+                _uGiaThuocList.DisplayAsThread();
             
         }
 
@@ -400,7 +402,12 @@ namespace MM
                         {
                             giaThuocToolStripMenuItem.Enabled = isView & isLogin;
                             tbGiaThuoc.Enabled = isView & isLogin;
-
+                            _uGiaThuocList.AllowAdd = isAdd;
+                            _uGiaThuocList.AllowEdit = isEdit;
+                            _uGiaThuocList.AllowDelete = isDelete;
+                            _uGiaThuocList.AllowPrint = isPrint;
+                            _uGiaThuocList.AllowExport = isExport;
+                            _uGiaThuocList.AllowImport = isImport;
                         }
                     }
                 }
@@ -663,6 +670,8 @@ namespace MM
         private void OnGiaThuoc()
         {
             this.Text = string.Format("{0} - Gia thuoc", Application.ProductName);
+            ViewControl(_uGiaThuocList);
+            _uGiaThuocList.DisplayAsThread();
         }
 
         private void OnLoThuoc()
@@ -1021,10 +1030,5 @@ namespace MM
             }
         }
         #endregion
-
-        
-
-        
-        
     }
 }

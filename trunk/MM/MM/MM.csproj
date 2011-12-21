@@ -295,6 +295,12 @@
     <Compile Include="Controls\uDuplicatePatient.Designer.cs">
       <DependentUpon>uDuplicatePatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uGiaThuocList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uGiaThuocList.Designer.cs">
+      <DependentUpon>uGiaThuocList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uInvoiceList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -414,6 +420,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddDocStaff.Designer.cs">
       <DependentUpon>dlgAddDocStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddGiaThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddGiaThuoc.Designer.cs">
+      <DependentUpon>dlgAddGiaThuoc.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddLoThuoc.cs">
       <SubType>Form</SubType>
@@ -629,6 +641,9 @@
     <EmbeddedResource Include="Controls\uDuplicatePatient.resx">
       <DependentUpon>uDuplicatePatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uGiaThuocList.resx">
+      <DependentUpon>uGiaThuocList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uInvoiceList.resx">
       <DependentUpon>uInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
@@ -688,6 +703,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDocStaff.resx">
       <DependentUpon>dlgAddDocStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddGiaThuoc.resx">
+      <DependentUpon>dlgAddGiaThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddLoThuoc.resx">
       <DependentUpon>dlgAddLoThuoc.cs</DependentUpon>
@@ -793,6 +811,7 @@
     <None Include="Properties\DataSources\MM.Databasae.CompanyMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
