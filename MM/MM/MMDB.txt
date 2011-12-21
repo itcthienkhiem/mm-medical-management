@@ -1,4 +1,4 @@
-2011-12-12
+2011-12-13
 - Update: spGetCheckList, ContractMemberView
 - Create: spCheckMember, spGetDanhSachNhanVien
 2011-12-14
@@ -9,7 +9,7 @@
 2011-12-19
 - Create: spDoanhThuNhanVienTongHop, spDoanhThuNhanVienChiTiet,
 spDichVuHopDong
-- Insert: Function (DoanhThuNhanVien, DichVuHopDong, Thuoc, NhomThuoc, LoThuoc, GiaThuoc)
+- Insert: Function (DoanhThuNhanVien, DichVuHopDong, Thuoc, NhomThuoc, LoThuoc, GiaThuoc, KeToa)
 2011-12-20
-- Create table: Thuoc, NhomThuoc, NhomThuoc_Thuoc, LoThuoc, GiaThuoc
-- Create view: NhomThuoc_ThuocView, LoThuocView, GiaThuocView
+- Create table: Thuoc, NhomThuoc, NhomThuoc_Thuoc, LoThuoc, GiaThuoc, ToaThuoc, ChiTietToaThuoc
+- Create view: NhomThuoc_ThuocView, LoThuocView, GiaThuocView, ChiTietToaThuocView
