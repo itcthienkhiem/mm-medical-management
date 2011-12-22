@@ -12,6 +12,6 @@ namespace MM.Bussiness
 {
     public class KeToaBus : BusBase
     {
-
+        
     }
 }
