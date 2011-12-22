@@ -214,6 +214,7 @@ namespace MM.Bussiness
                             lt.SoLuongQuiDoi = loThuoc.SoLuongQuiDoi;
                             lt.DonViTinhQuiDoi = loThuoc.DonViTinhQuiDoi;
                             lt.GiaNhapQuiDoi = loThuoc.GiaNhapQuiDoi;
+                            lt.Note = loThuoc.Note;
                             lt.CreatedDate = loThuoc.CreatedDate;
                             lt.CreatedBy = loThuoc.CreatedBy;
                             lt.UpdatedDate = loThuoc.UpdatedDate;
