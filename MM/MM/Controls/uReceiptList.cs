@@ -153,6 +153,7 @@ namespace MM.Controls
 
         private void OnPrint()
         {
+            Cursor.Current = Cursors.WaitCursor;
             List<string> checkedReceiptList = new List<string>();
             DataTable dt = dgReceipt.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
