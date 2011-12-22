@@ -714,7 +714,7 @@
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <Format>dd/MM/yyyy</Format>
+                  <Format>#,0;(#,0)</Format>
                 </Style>
               </TextRun>
             </TextRuns>
