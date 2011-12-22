@@ -18,3 +18,4 @@ spDichVuHopDong
 - Update view: GiaThuocView, LoThuocView
 - Create view: ToaThuocView, ChiTietPhieuThuThuocView
 - Create table: PhieuThuThuoc, ChiTietPhieuThuThuoc	
+- Insert: Function (ThuocHetHan, ThuocTonKho)
