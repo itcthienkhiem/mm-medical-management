@@ -17,7 +17,7 @@ namespace MM.Controls
     public partial class uThuocList : uBase
     {
         #region Members
-
+        private bool _isReport = false;
         #endregion
 
         #region Constructor
@@ -28,7 +28,34 @@ namespace MM.Controls
         #endregion
 
         #region Properties
+        public bool IsReport
+        {
+            get { return _isReport; }
+            set
+            {
+                _isReport = value;
+                panel1.Visible = !_isReport;
+            }
+        }
 
+        public List<DataRow> CheckedRows
+        {
+            get
+            {
+                List<DataRow> checkedRows = new List<DataRow>();
+                DataTable dt = dgThuoc.DataSource as DataTable;
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (Convert.ToBoolean(row["Checked"]))
+                            checkedRows.Add(row);
+                    }
+                }
+
+                return checkedRows;
+            }
+        }
         #endregion
 
         #region UI Command
@@ -240,6 +267,7 @@ namespace MM.Controls
 
         private void dgThuoc_DoubleClick(object sender, EventArgs e)
         {
+            if (_isReport) return;
             if (!AllowEdit) return;
             OnEditThuoc();
         }

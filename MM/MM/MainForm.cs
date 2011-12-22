@@ -152,7 +152,8 @@ namespace MM
                 _uGiaThuocList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uToaThuocList))
                 _uToaThuocList.DisplayAsThread();
-            
+            else if (ctrl.GetType() == typeof(uBaoCaoThuocHetHan))
+                _uBaoCaoThuocHetHan.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -425,7 +426,12 @@ namespace MM
                         else if (functionCode == Const.ThuocHetHan)
                         {
                             thuocHetHanToolStripMenuItem.Enabled = isView && isLogin;
-
+                            _uBaoCaoThuocHetHan.AllowAdd = isAdd;
+                            _uBaoCaoThuocHetHan.AllowEdit = isEdit;
+                            _uBaoCaoThuocHetHan.AllowDelete = isDelete;
+                            _uBaoCaoThuocHetHan.AllowPrint = isPrint;
+                            _uBaoCaoThuocHetHan.AllowExport = isExport;
+                            _uBaoCaoThuocHetHan.AllowImport = isImport;
                         }
                         else if (functionCode == Const.ThuocTonKho)
                         {
@@ -696,7 +702,27 @@ namespace MM
                 case "KeToa":
                     OnKeToa();
                     break;
+
+                case "ThuocHetHan":
+                    OnThuocHetHan();
+                    break;
+
+                case "ThuocTonKho":
+                    OnThuocTonKho();
+                    break;
             }
+        }
+
+        private void OnThuocHetHan()
+        {
+            this.Text = string.Format("{0} - Bao cao thuoc het han", Application.ProductName);
+            ViewControl(_uBaoCaoThuocHetHan);
+            _uBaoCaoThuocHetHan.DisplayAsThread();
+        }
+
+        private void OnThuocTonKho()
+        {
+            this.Text = string.Format("{0} - Bao cao thuoc ton kho", Application.ProductName);
         }
 
         private void OnKeToa()

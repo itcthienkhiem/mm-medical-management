@@ -235,6 +235,12 @@
     <Compile Include="Controls\TNumEditDataGridViewElements.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\uBaoCaoThuocHetHan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBaoCaoThuocHetHan.Designer.cs">
+      <DependentUpon>uBaoCaoThuocHetHan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -635,6 +641,9 @@
     <EmbeddedResource Include="Controls\DICOM\WindowLevelGraphControl.resx">
       <DependentUpon>WindowLevelGraphControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uBaoCaoThuocHetHan.resx">
+      <DependentUpon>uBaoCaoThuocHetHan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uColor.resx">
       <DependentUpon>uColor.cs</DependentUpon>
     </EmbeddedResource>
@@ -916,6 +925,8 @@
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\filter-icon.png" />
+    <None Include="Resources\product-sales-report-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-14_2011-12-21.sql" />
     <None Include="Resources\palet-03-icon.png" />
     <None Include="Resources\box-icon.png" />

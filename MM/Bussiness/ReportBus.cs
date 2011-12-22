@@ -111,16 +111,15 @@ namespace MM.Bussiness
         {
             Result result = new Result();
             MMOverride db = null;
-
             try
             {
+                DateTime dt = DateTime.Now.AddDays(soNgayHetHan);
                 db = new MMOverride();
                 List<ThuocResult> thuocResults = (from t in db.Thuocs
                                 join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
                                 where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
                                 l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
-                                l.NgayHetHan.Subtract(DateTime.Now).Days <= soNgayHetHan &&
-                                thuocList.Contains(t.ThuocGUID.ToString())
+                                l.NgayHetHan <= dt && thuocList.Contains(t.ThuocGUID.ToString())
                                 select new ThuocResult(soNgayHetHan, t.MaThuoc, t.TenThuoc,
                                     l.MaLoThuoc, l.TenLoThuoc, l.NgaySanXuat, l.NgayHetHan,
                                     l.SoLuongNhap * l.SoLuongQuiDoi, l.SoLuongXuat,
