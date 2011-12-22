@@ -35,6 +35,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetThuocThayTheList(string thuocGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT T.* FROM NhomThuoc_Thuoc N, THUOC T WHERE N.NhomThuocGUID IN (SELECT NhomThuocGUID FROM NhomThuoc_Thuoc WHERE ThuocGUID = '{1}' AND Status={0}) AND N.ThuocGUID <> '{1}' AND N.ThuocGUID = T.ThuocGUID AND T.Status={0} AND N.Status={0} ORDER BY TenThuoc", 
+                    (byte)Status.Actived, thuocGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetThuocListByNhom(string nhomThuocGUID)
         {
             Result result = null;

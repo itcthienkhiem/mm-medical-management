@@ -150,6 +150,8 @@ namespace MM
                 _uLoThuocList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uGiaThuocList))
                 _uGiaThuocList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uToaThuocList))
+                _uToaThuocList.DisplayAsThread();
             
         }
 
@@ -413,7 +415,12 @@ namespace MM
                         {
                             keToaToolStripMenuItem.Enabled = isView && isLogin;
                             tbKeToa.Enabled = isView && isLogin;
-
+                            _uToaThuocList.AllowAdd = isAdd;
+                            _uToaThuocList.AllowEdit = isEdit;
+                            _uToaThuocList.AllowDelete = isDelete;
+                            _uToaThuocList.AllowPrint = isPrint;
+                            _uToaThuocList.AllowExport = isExport;
+                            _uToaThuocList.AllowImport = isImport;
                         }
                     }
                 }
@@ -682,6 +689,8 @@ namespace MM
         private void OnKeToa()
         {
             this.Text = string.Format("{0} - Ke toa", Application.ProductName);
+            ViewControl(_uToaThuocList);
+            _uToaThuocList.DisplayAsThread();
         }
 
         private void OnGiaThuoc()
