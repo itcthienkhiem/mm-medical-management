@@ -382,5 +382,105 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportToaThuocToExcel(string exportFileName, string toaThuocGUID)
+        {
+            string excelTemplateName = string.Format("{0}\\Templates\\ToaThuocTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                Result result = KeToaBus.GetToaThuoc(toaThuocGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("KeToaBus.GetToaThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("KeToaBus.GetToaThuoc"));
+                    return false;
+                }
+
+                ToaThuocView toaThuoc = result.QueryResult as ToaThuocView;
+                if (toaThuoc == null) return false;
+
+                result = KeToaBus.GetChiTietToaThuocList(toaThuocGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("KeToaBus.GetChiTietToaThuocList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("KeToaBus.GetChiTietToaThuocList"));
+                    return false;
+                }
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+
+                workSheet.Cells["A2"].Value = string.Format("Mã toa thuốc: {0}", toaThuoc.MaToaThuoc);
+                workSheet.Cells["A3"].Value = string.Format("Ngày kê toa: {0}", toaThuoc.NgayKeToa.ToString("dd/MM/yyyy"));
+                workSheet.Cells["A4"].Value = string.Format("Bác sĩ kê toa: {0}", toaThuoc.TenBacSi);
+                workSheet.Cells["A5"].Value = string.Format("Bệnh nhân: {0}", toaThuoc.TenBenhNhan);
+
+                int rowIndex = 6;
+
+                DataTable dt = result.QueryResult as DataTable;
+                int stt = 1;
+                IRange range;
+                foreach (DataRow row in dt.Rows)
+                {
+                    string tenThuoc = row["TenThuoc"] as string;
+                    int ngayUong = Convert.ToInt32(row["SoNgayUong"]);
+                    int lanTrongNgay = Convert.ToInt32(row["SoLanTrongNgay"]);
+                    int lieuTrongLan = Convert.ToInt32(row["SoLuongTrongLan"]);
+                    string note = row["Note"] as string;
+
+                    range = workSheet.Cells[rowIndex, 0];
+                    range.Value = stt;
+
+                    range = workSheet.Cells[rowIndex, 1];
+                    range.Value = tenThuoc;
+
+                    range = workSheet.Cells[rowIndex, 2];
+                    range.Value = ngayUong;
+
+                    range = workSheet.Cells[rowIndex, 3];
+                    range.Value = lanTrongNgay;
+
+                    range = workSheet.Cells[rowIndex, 4];
+                    range.Value = lieuTrongLan;
+
+                    range = workSheet.Cells[rowIndex, 5];
+                    range.Value = note.Replace("\r", "").Replace("\t", "");
+                    range.WrapText = true;
+
+                    rowIndex++;
+                    stt++;
+                }
+
+                range = workSheet.Cells[string.Format("A7:F{0}", dt.Rows.Count + 6)];
+                range.HorizontalAlignment = HAlign.General;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
