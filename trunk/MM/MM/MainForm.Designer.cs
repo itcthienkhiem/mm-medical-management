@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uBaoCaoThuocHetHan = new MM.Controls.uBaoCaoThuocHetHan();
             this._uToaThuocList = new MM.Controls.uToaThuocList();
             this._uGiaThuocList = new MM.Controls.uGiaThuocList();
             this._uLoThuocList = new MM.Controls.uLoThuocList();
@@ -125,6 +126,10 @@
             this.doanhThuNhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.dichVuHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
+            this.thuocHetHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
+            this.thuocTonKhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,10 +137,6 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
-            this.thuocHetHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
-            this.thuocTonKhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -147,6 +148,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uBaoCaoThuocHetHan);
             this._mainPanel.Controls.Add(this._uToaThuocList);
             this._mainPanel.Controls.Add(this._uGiaThuocList);
             this._mainPanel.Controls.Add(this._uLoThuocList);
@@ -168,6 +170,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uBaoCaoThuocHetHan
+            // 
+            resources.ApplyResources(this._uBaoCaoThuocHetHan, "_uBaoCaoThuocHetHan");
+            this._uBaoCaoThuocHetHan.Name = "_uBaoCaoThuocHetHan";
             // 
             // _uToaThuocList
             // 
@@ -192,6 +199,7 @@
             // _uThuocList
             // 
             resources.ApplyResources(this._uThuocList, "_uThuocList");
+            this._uThuocList.IsReport = false;
             this._uThuocList.Name = "_uThuocList";
             // 
             // _uDichVuHopDong
@@ -825,6 +833,7 @@
             this.keToaToolStripMenuItem.Name = "keToaToolStripMenuItem";
             resources.ApplyResources(this.keToaToolStripMenuItem, "keToaToolStripMenuItem");
             this.keToaToolStripMenuItem.Tag = "KeToa";
+            this.keToaToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
@@ -859,6 +868,32 @@
             resources.ApplyResources(this.dichVuHopDongToolStripMenuItem, "dichVuHopDongToolStripMenuItem");
             this.dichVuHopDongToolStripMenuItem.Tag = "DichVuHopDong";
             this.dichVuHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator22
+            // 
+            this.toolStripSeparator22.Name = "toolStripSeparator22";
+            resources.ApplyResources(this.toolStripSeparator22, "toolStripSeparator22");
+            // 
+            // thuocHetHanToolStripMenuItem
+            // 
+            this.thuocHetHanToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_view_calendar_upcoming_events_icon;
+            this.thuocHetHanToolStripMenuItem.Name = "thuocHetHanToolStripMenuItem";
+            resources.ApplyResources(this.thuocHetHanToolStripMenuItem, "thuocHetHanToolStripMenuItem");
+            this.thuocHetHanToolStripMenuItem.Tag = "ThuocHetHan";
+            this.thuocHetHanToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator23
+            // 
+            this.toolStripSeparator23.Name = "toolStripSeparator23";
+            resources.ApplyResources(this.toolStripSeparator23, "toolStripSeparator23");
+            // 
+            // thuocTonKhoToolStripMenuItem
+            // 
+            this.thuocTonKhoToolStripMenuItem.Image = global::MM.Properties.Resources.palet_03_icon;
+            this.thuocTonKhoToolStripMenuItem.Name = "thuocTonKhoToolStripMenuItem";
+            resources.ApplyResources(this.thuocTonKhoToolStripMenuItem, "thuocTonKhoToolStripMenuItem");
+            this.thuocTonKhoToolStripMenuItem.Tag = "ThuocTonKho";
+            this.thuocTonKhoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -912,32 +947,6 @@
             resources.ApplyResources(this.aboutMedicalManagementToolStripMenuItem, "aboutMedicalManagementToolStripMenuItem");
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // toolStripSeparator22
-            // 
-            this.toolStripSeparator22.Name = "toolStripSeparator22";
-            resources.ApplyResources(this.toolStripSeparator22, "toolStripSeparator22");
-            // 
-            // thuocHetHanToolStripMenuItem
-            // 
-            this.thuocHetHanToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_view_calendar_upcoming_events_icon;
-            this.thuocHetHanToolStripMenuItem.Name = "thuocHetHanToolStripMenuItem";
-            resources.ApplyResources(this.thuocHetHanToolStripMenuItem, "thuocHetHanToolStripMenuItem");
-            this.thuocHetHanToolStripMenuItem.Tag = "ThuocHetHan";
-            this.thuocHetHanToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // toolStripSeparator23
-            // 
-            this.toolStripSeparator23.Name = "toolStripSeparator23";
-            resources.ApplyResources(this.toolStripSeparator23, "toolStripSeparator23");
-            // 
-            // thuocTonKhoToolStripMenuItem
-            // 
-            this.thuocTonKhoToolStripMenuItem.Image = global::MM.Properties.Resources.palet_03_icon;
-            this.thuocTonKhoToolStripMenuItem.Name = "thuocTonKhoToolStripMenuItem";
-            resources.ApplyResources(this.thuocTonKhoToolStripMenuItem, "thuocTonKhoToolStripMenuItem");
-            this.thuocTonKhoToolStripMenuItem.Tag = "ThuocTonKho";
-            this.thuocTonKhoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1072,6 +1081,7 @@
         private System.Windows.Forms.ToolStripMenuItem thuocHetHanToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator23;
         private System.Windows.Forms.ToolStripMenuItem thuocTonKhoToolStripMenuItem;
+        private Controls.uBaoCaoThuocHetHan _uBaoCaoThuocHetHan;
 
     }
 }
