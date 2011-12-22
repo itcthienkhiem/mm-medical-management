@@ -216,6 +216,7 @@ namespace MM.Controls
 
         private void OnPrint(bool isPreview)
         {
+            Cursor.Current = Cursors.WaitCursor;
             List<DataRow> checkedRows = new List<DataRow>();
             DataTable dt = dgToaThuoc.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
