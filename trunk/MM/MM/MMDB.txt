@@ -16,5 +16,5 @@ spDichVuHopDong
 2011-12-22
 - Update table: LoThuoc(Add column: Note, SoLuongQuiDoi), GiaThuoc(Add column: Note), ToaThuoc(Add column: MaThoaThuoc)
 - Update view: GiaThuocView, LoThuocView
-- Create view: ToaThuocView
-
+- Create view: ToaThuocView, ChiTietPhieuThuThuocView
+- Create table: PhieuThuThuoc, ChiTietPhieuThuThuoc
