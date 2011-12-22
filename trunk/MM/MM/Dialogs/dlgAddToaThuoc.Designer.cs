@@ -341,7 +341,7 @@
             this.ThuocThayTheDataGridButtonColumn.ReadOnly = true;
             this.ThuocThayTheDataGridButtonColumn.Text = "Thuốc thay thế";
             this.ThuocThayTheDataGridButtonColumn.UseColumnTextForButtonValue = true;
-            this.ThuocThayTheDataGridButtonColumn.Width = 85;
+            this.ThuocThayTheDataGridButtonColumn.Width = 95;
             // 
             // soNgayUongDataGridViewTextBoxColumn
             // 
@@ -352,10 +352,9 @@
             dataGridViewCellStyle3.Format = "N0";
             dataGridViewCellStyle3.NullValue = null;
             this.soNgayUongDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.soNgayUongDataGridViewTextBoxColumn.HeaderText = "Ngày uống";
+            this.soNgayUongDataGridViewTextBoxColumn.HeaderText = "Số ngày uống";
             this.soNgayUongDataGridViewTextBoxColumn.Name = "soNgayUongDataGridViewTextBoxColumn";
             this.soNgayUongDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.soNgayUongDataGridViewTextBoxColumn.Width = 83;
             // 
             // soLanTrongNgayDataGridViewTextBoxColumn
             // 
@@ -366,10 +365,10 @@
             dataGridViewCellStyle4.Format = "N0";
             dataGridViewCellStyle4.NullValue = null;
             this.soLanTrongNgayDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.soLanTrongNgayDataGridViewTextBoxColumn.HeaderText = "Lần/ngày";
+            this.soLanTrongNgayDataGridViewTextBoxColumn.HeaderText = "Số lần/ngày";
             this.soLanTrongNgayDataGridViewTextBoxColumn.Name = "soLanTrongNgayDataGridViewTextBoxColumn";
             this.soLanTrongNgayDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.soLanTrongNgayDataGridViewTextBoxColumn.Width = 60;
+            this.soLanTrongNgayDataGridViewTextBoxColumn.Width = 90;
             // 
             // soLuongTrongLanDataGridViewTextBoxColumn
             // 
@@ -380,10 +379,9 @@
             dataGridViewCellStyle5.Format = "N0";
             dataGridViewCellStyle5.NullValue = null;
             this.soLuongTrongLanDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.soLuongTrongLanDataGridViewTextBoxColumn.HeaderText = "Liều/lần";
+            this.soLuongTrongLanDataGridViewTextBoxColumn.HeaderText = "Số lượng/lần";
             this.soLuongTrongLanDataGridViewTextBoxColumn.Name = "soLuongTrongLanDataGridViewTextBoxColumn";
             this.soLuongTrongLanDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.soLuongTrongLanDataGridViewTextBoxColumn.Width = 60;
             // 
             // noteDataGridViewTextBoxColumn
             // 
