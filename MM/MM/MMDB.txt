@@ -13,3 +13,7 @@ spDichVuHopDong
 2011-12-20
 - Create table: Thuoc, NhomThuoc, NhomThuoc_Thuoc, LoThuoc, GiaThuoc, ToaThuoc, ChiTietToaThuoc
 - Create view: NhomThuoc_ThuocView, LoThuocView, GiaThuocView, ChiTietToaThuocView
+2011-12-22
+- Update table: LoThuoc(Add column: Note, SoLuongQuiDoi), GiaThuoc(Add column: Note)
+- Update view: GiaThuocView, LoThuocView
+
