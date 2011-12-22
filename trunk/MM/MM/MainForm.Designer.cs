@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uToaThuocList = new MM.Controls.uToaThuocList();
             this._uGiaThuocList = new MM.Controls.uGiaThuocList();
             this._uLoThuocList = new MM.Controls.uLoThuocList();
             this._uNhomThuocList = new MM.Controls.uNhomThuocList();
@@ -75,6 +76,7 @@
             this.tbNhomThuoc = new System.Windows.Forms.ToolStripButton();
             this.tbLoThuoc = new System.Windows.Forms.ToolStripButton();
             this.tbGiaThuoc = new System.Windows.Forms.ToolStripButton();
+            this.tbKeToa = new System.Windows.Forms.ToolStripButton();
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._mainMenu = new System.Windows.Forms.MenuStrip();
@@ -117,6 +119,8 @@
             this.loThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator20 = new System.Windows.Forms.ToolStripSeparator();
             this.giaThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
+            this.keToaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doanhThuNhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
@@ -128,9 +132,6 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
-            this.keToaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tbKeToa = new System.Windows.Forms.ToolStripButton();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -142,6 +143,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uToaThuocList);
             this._mainPanel.Controls.Add(this._uGiaThuocList);
             this._mainPanel.Controls.Add(this._uLoThuocList);
             this._mainPanel.Controls.Add(this._uNhomThuocList);
@@ -162,6 +164,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uToaThuocList
+            // 
+            resources.ApplyResources(this._uToaThuocList, "_uToaThuocList");
+            this._uToaThuocList.Name = "_uToaThuocList";
             // 
             // _uGiaThuocList
             // 
@@ -465,6 +472,14 @@
             this.tbGiaThuoc.Image = global::MM.Properties.Resources.currency_dollar_yellow;
             this.tbGiaThuoc.Name = "tbGiaThuoc";
             this.tbGiaThuoc.Tag = "GiaThuoc";
+            // 
+            // tbKeToa
+            // 
+            this.tbKeToa.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbKeToa, "tbKeToa");
+            this.tbKeToa.Image = global::MM.Properties.Resources.prescription_icon;
+            this.tbKeToa.Name = "tbKeToa";
+            this.tbKeToa.Tag = "KeToa";
             // 
             // _mainStatus
             // 
@@ -795,6 +810,18 @@
             this.giaThuocToolStripMenuItem.Tag = "GiaThuoc";
             this.giaThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator21
+            // 
+            this.toolStripSeparator21.Name = "toolStripSeparator21";
+            resources.ApplyResources(this.toolStripSeparator21, "toolStripSeparator21");
+            // 
+            // keToaToolStripMenuItem
+            // 
+            this.keToaToolStripMenuItem.Image = global::MM.Properties.Resources.prescription_icon;
+            this.keToaToolStripMenuItem.Name = "keToaToolStripMenuItem";
+            resources.ApplyResources(this.keToaToolStripMenuItem, "keToaToolStripMenuItem");
+            this.keToaToolStripMenuItem.Tag = "KeToa";
+            // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -877,26 +904,6 @@
             resources.ApplyResources(this.aboutMedicalManagementToolStripMenuItem, "aboutMedicalManagementToolStripMenuItem");
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // toolStripSeparator21
-            // 
-            this.toolStripSeparator21.Name = "toolStripSeparator21";
-            resources.ApplyResources(this.toolStripSeparator21, "toolStripSeparator21");
-            // 
-            // keToaToolStripMenuItem
-            // 
-            this.keToaToolStripMenuItem.Image = global::MM.Properties.Resources.prescription_icon;
-            this.keToaToolStripMenuItem.Name = "keToaToolStripMenuItem";
-            resources.ApplyResources(this.keToaToolStripMenuItem, "keToaToolStripMenuItem");
-            this.keToaToolStripMenuItem.Tag = "KeToa";
-            // 
-            // tbKeToa
-            // 
-            this.tbKeToa.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tbKeToa, "tbKeToa");
-            this.tbKeToa.Image = global::MM.Properties.Resources.prescription_icon;
-            this.tbKeToa.Name = "tbKeToa";
-            this.tbKeToa.Tag = "KeToa";
             // 
             // MainForm
             // 
@@ -1026,6 +1033,7 @@
         private System.Windows.Forms.ToolStripButton tbKeToa;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator21;
         private System.Windows.Forms.ToolStripMenuItem keToaToolStripMenuItem;
+        private Controls.uToaThuocList _uToaThuocList;
 
     }
 }

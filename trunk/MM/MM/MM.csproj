@@ -229,6 +229,12 @@
     <Compile Include="Controls\Excel\Office\Excel\SubRecords\SubRecord.cs" />
     <Compile Include="Controls\Excel\Office\Excel\Workbook.cs" />
     <Compile Include="Controls\Excel\Office\Excel\Worksheet.cs" />
+    <Compile Include="Controls\TNumEditBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TNumEditDataGridViewElements.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\uBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -403,6 +409,12 @@
     <Compile Include="Controls\uThuocList.Designer.cs">
       <DependentUpon>uThuocList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uToaThuocList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uToaThuocList.Designer.cs">
+      <DependentUpon>uToaThuocList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddCompany.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -474,6 +486,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddThuoc.Designer.cs">
       <DependentUpon>dlgAddThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddToaThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddToaThuoc.Designer.cs">
+      <DependentUpon>dlgAddToaThuoc.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddUserLogon.cs">
       <SubType>Form</SubType>
@@ -570,6 +588,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgServices.Designer.cs">
       <DependentUpon>dlgServices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgThuocThayThe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgThuocThayThe.Designer.cs">
+      <DependentUpon>dlgThuocThayThe.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgUpdateCheckList.cs">
       <SubType>Form</SubType>
@@ -695,6 +719,9 @@
     <EmbeddedResource Include="Controls\uThuocList.resx">
       <DependentUpon>uThuocList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uToaThuocList.resx">
+      <DependentUpon>uToaThuocList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddCompany.resx">
       <DependentUpon>dlgAddCompany.cs</DependentUpon>
     </EmbeddedResource>
@@ -730,6 +757,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddThuoc.resx">
       <DependentUpon>dlgAddThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddToaThuoc.resx">
+      <DependentUpon>dlgAddToaThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddUserLogon.resx">
       <DependentUpon>dlgAddUserLogon.cs</DependentUpon>
@@ -776,6 +806,9 @@
     <EmbeddedResource Include="Dialogs\dlgServices.resx">
       <DependentUpon>dlgServices.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgThuocThayThe.resx">
+      <DependentUpon>dlgThuocThayThe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgUpdateCheckList.resx">
       <DependentUpon>dlgUpdateCheckList.cs</DependentUpon>
     </EmbeddedResource>
@@ -804,6 +837,7 @@
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienTongHop.rdlc" />
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Company.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyCheckListView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyContract.datasource" />
@@ -827,6 +861,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
