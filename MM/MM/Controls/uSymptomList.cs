@@ -41,6 +41,7 @@ namespace MM.Controls
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
+            btnPrintPreview.Enabled = AllowPrint;
         }
 
         public void DisplayAsThread()
