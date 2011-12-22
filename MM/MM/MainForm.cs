@@ -422,6 +422,16 @@ namespace MM
                             _uToaThuocList.AllowExport = isExport;
                             _uToaThuocList.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.ThuocHetHan)
+                        {
+                            thuocHetHanToolStripMenuItem.Enabled = isView && isLogin;
+
+                        }
+                        else if (functionCode == Const.ThuocTonKho)
+                        {
+                            thuocTonKhoToolStripMenuItem.Enabled = isView && isLogin;
+
+                        }
                     }
                 }
                 else
@@ -564,6 +574,9 @@ namespace MM
                 tbGiaThuoc.Enabled = isLogin;
                 keToaToolStripMenuItem.Enabled = isLogin;
                 tbKeToa.Enabled = isLogin;
+
+                thuocHetHanToolStripMenuItem.Enabled = isLogin;
+                thuocTonKhoToolStripMenuItem.Enabled = isLogin;
             }
         }
 
