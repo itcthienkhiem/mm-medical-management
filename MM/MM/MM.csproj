@@ -835,8 +835,11 @@
     <EmbeddedResource Include="Templates\rptDichVuHopDong.rdlc" />
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienChiTiet.rdlc" />
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienTongHop.rdlc" />
+    <EmbeddedResource Include="Templates\rptThuocHetHan.rdlc" />
+    <EmbeddedResource Include="Templates\rptThuocTonKho.rdlc" />
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
+    <None Include="Properties\DataSources\MM.Databasae.AAA.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Company.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyCheckListView.datasource" />
@@ -861,6 +864,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ThuocResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
     <None Include="Properties\Settings.settings">
