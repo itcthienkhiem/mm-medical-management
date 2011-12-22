@@ -11,6 +11,7 @@ using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -212,6 +213,71 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những toa thuốc cần xóa.", IconType.Information);
         }
+
+        private void OnPrint(bool isPreview)
+        {
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgToaThuoc.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedRows.Add(row);
+                }
+            }
+
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\ToaThuoc.xls", Application.StartupPath);
+                if (isPreview)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        string toaThuocGUID = row["ToaThuocGUID"].ToString();
+                        if (ExportExcel.ExportToaThuocToExcel(exportFileName, toaThuocGUID))
+                        {
+                            try
+                            {
+                                ExcelPrintPreview.PrintPreview(exportFileName);
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                return;
+                            }
+                        }
+                        else
+                            return;
+                    }
+                }
+                else
+                {
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach (DataRow row in checkedRows)
+                        {
+                            string toaThuocGUID = row["ToaThuocGUID"].ToString();
+                            if (ExportExcel.ExportToaThuocToExcel(exportFileName, toaThuocGUID))
+                            {
+                                try
+                                {
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                    return;
+                                }
+                            }
+                            else
+                                return;
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những toa thuốc cần in.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -248,12 +314,12 @@ namespace MM.Controls
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
-
+            OnPrint(true);
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
+            OnPrint(false);
         }
         #endregion
 
