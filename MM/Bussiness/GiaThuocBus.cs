@@ -132,6 +132,7 @@ namespace MM.Bussiness
                             gt.ThuocGUID = giaThuoc.ThuocGUID;
                             gt.GiaBan = giaThuoc.GiaBan;
                             gt.NgayApDung = giaThuoc.NgayApDung;
+                            gt.Note = giaThuoc.Note;
                             gt.CreatedDate = giaThuoc.CreatedDate;
                             gt.CreatedBy = giaThuoc.CreatedBy;
                             gt.UpdatedDate = giaThuoc.UpdatedDate;
