@@ -37,6 +37,8 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+            btnPrint.Enabled = AllowPrint;
+            btnPrintPreview.Enabled = AllowPrint;
         }
 
         public void ClearData()
@@ -242,6 +244,16 @@ namespace MM.Controls
             {
                 row["Checked"] = chkChecked.Checked;
             }
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
