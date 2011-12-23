@@ -228,11 +228,22 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Chi tiet phieu thu
+                        DateTime dt = DateTime.Now;
                         foreach (ChiTietPhieuThuThuoc ctptt in addedList)
                         {
                             ctptt.PhieuThuThuocGUID = ptthuoc.PhieuThuThuocGUID;
                             ctptt.ChiTietPhieuThuThuocGUID = Guid.NewGuid();
                             db.ChiTietPhieuThuThuocs.InsertOnSubmit(ctptt);
+
+                            LoThuoc loThuoc = (from t in db.Thuocs
+                                               join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
+                                               where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
+                                               l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
+                                               l.NgayHetHan > dt && t.ThuocGUID == ctptt.ThuocGUID
+                                               orderby l.NgayHetHan
+                                               select l).FirstOrDefault();
+                            if (loThuoc != null)
+                                loThuoc.SoLuongXuat += Convert.ToInt32(ctptt.SoLuong);
                         }
 
                         db.SubmitChanges();
