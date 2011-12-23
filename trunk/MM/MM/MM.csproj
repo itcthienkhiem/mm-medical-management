@@ -885,6 +885,7 @@
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
     <None Include="Properties\DataSources\MM.Databasae.AAA.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Company.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyCheckListView.datasource" />
