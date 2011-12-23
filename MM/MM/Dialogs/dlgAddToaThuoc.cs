@@ -516,6 +516,53 @@ namespace MM.Dialogs
                 cmbox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
                 cmbox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
             }
+            else if (dgChiTiet.CurrentCell.ColumnIndex >= 3 && dgChiTiet.CurrentCell.ColumnIndex <= 5)
+            {
+                TextBox textBox = e.Control as TextBox;
+
+                textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
+                textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
+
+                textBox.TextChanged -= new EventHandler(textBox_TextChanged);
+                textBox.TextChanged += new EventHandler(textBox_TextChanged);
+            }
+        }
+
+        private void textBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (textBox.Text == string.Empty)
+                textBox.Text = "1";
+
+            try
+            {
+                int.Parse(textBox.Text);
+            }
+            catch
+            {
+                textBox.Text = int.MaxValue.ToString();
+            }
+        }
+
+        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            DataGridViewTextBoxEditingControl textBox = (DataGridViewTextBoxEditingControl)sender;
+            if (!(char.IsDigit(e.KeyChar)))
+            {
+                if (e.KeyChar != '\b') //allow the backspace key
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void dgChiTiet_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 5)
+            {
+                if (e.Value == null || e.Value.ToString() == string.Empty)
+                    e.Value = "1";
+            }
         }
 
         private void cmbox_SelectedValueChanged(object sender, EventArgs e)
@@ -564,6 +611,6 @@ namespace MM.Dialogs
         }
         #endregion
 
-        
+       
     }
 }
