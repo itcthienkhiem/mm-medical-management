@@ -30,7 +30,6 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
@@ -92,11 +91,6 @@ namespace MM.Controls
 
         }
 
-        private void OnEditPhieuThu()
-        {
-
-        }
-
         private void OnDeletePhieuThu()
         {
             List<string> deletedPTThuocList = new List<string>();
@@ -146,11 +140,6 @@ namespace MM.Controls
             OnAddPhieuThu();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            OnEditPhieuThu();
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             OnDeletePhieuThu();
@@ -165,13 +154,7 @@ namespace MM.Controls
         {
             OnPrint(false);
         }
-
-        private void dgPhieuThu_DoubleClick(object sender, EventArgs e)
-        {
-            if (!AllowEdit) return;
-            OnEditPhieuThu();
-        }
-
+        
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
         {
             DataTable dt = dgPhieuThu.DataSource as DataTable;
