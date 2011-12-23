@@ -156,6 +156,8 @@ namespace MM
                 _uBaoCaoThuocHetHan.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBaoCaoThuocTonKho))
                 _uBaoCaoThuocTonKho.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uPhieuThuThuocList))
+                _uPhieuThuThuocList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -445,6 +447,16 @@ namespace MM
                             _uBaoCaoThuocTonKho.AllowExport = isExport;
                             _uBaoCaoThuocTonKho.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.PhieuThuThuoc)
+                        {
+                            phieuThuThuocToolStripMenuItem.Enabled = isView && isLogin;
+                            _uPhieuThuThuocList.AllowAdd = isAdd;
+                            _uPhieuThuThuocList.AllowEdit = isEdit;
+                            _uPhieuThuThuocList.AllowDelete = isDelete;
+                            _uPhieuThuThuocList.AllowPrint = isPrint;
+                            _uPhieuThuThuocList.AllowExport = isExport;
+                            _uPhieuThuThuocList.AllowImport = isImport;
+                        }
                     }
                 }
                 else
@@ -590,6 +602,7 @@ namespace MM
 
                 thuocHetHanToolStripMenuItem.Enabled = isLogin;
                 thuocTonKhoToolStripMenuItem.Enabled = isLogin;
+                phieuThuThuocToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -717,8 +730,20 @@ namespace MM
                 case "ThuocTonKho":
                     OnThuocTonKho();
                     break;
+
+                case "PhieuThuThuoc":
+                    OnPhieuThuThuoc();
+                    break;
             }
         }
+
+        private void OnPhieuThuThuoc()
+        {
+            this.Text = string.Format("{0} - Phieu thu thuoc", Application.ProductName);
+            ViewControl(_uPhieuThuThuocList);
+            _uPhieuThuThuocList.DisplayAsThread();
+        }
+
 
         private void OnThuocHetHan()
         {
@@ -947,6 +972,8 @@ namespace MM
                 _uNhomThuocList.ClearData();
             else if (ctrl.GetType() == typeof(uLoThuocList))
                 _uLoThuocList.ClearData();
+            else if (ctrl.GetType() == typeof(uPhieuThuThuocList))
+                _uPhieuThuThuocList.ClearData();
         }
 
         private void OnDoctorList()

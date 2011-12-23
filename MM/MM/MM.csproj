@@ -373,6 +373,12 @@
     <Compile Include="Controls\uPermission.Designer.cs">
       <DependentUpon>uPermission.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPhieuThuThuocList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPhieuThuThuocList.Designer.cs">
+      <DependentUpon>uPhieuThuThuocList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPrintLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -719,6 +725,9 @@
     <EmbeddedResource Include="Controls\uPermission.resx">
       <DependentUpon>uPermission.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPhieuThuThuocList.resx">
+      <DependentUpon>uPhieuThuThuocList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPrintLabel.resx">
       <DependentUpon>uPrintLabel.cs</DependentUpon>
     </EmbeddedResource>
@@ -881,6 +890,7 @@
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.PhieuThuThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ReceiptDetailView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ReceiptView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
@@ -946,6 +956,8 @@
     <None Include="Resources\filter-icon.png" />
     <None Include="Resources\product-sales-report-icon.png" />
     <None Include="Resources\prescription-icon2.png" />
+    <None Include="Resources\folder-invoices-icon %281%29.png" />
+    <None Include="Resources\folder-invoices-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-14_2011-12-21.sql" />
     <None Include="Resources\palet-03-icon.png" />
     <None Include="Resources\box-icon.png" />

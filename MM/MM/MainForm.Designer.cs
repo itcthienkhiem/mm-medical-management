@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uBaoCaoThuocTonKho = new MM.Controls.uBaoCaoThuocTonKho();
             this._uBaoCaoThuocHetHan = new MM.Controls.uBaoCaoThuocHetHan();
             this._uToaThuocList = new MM.Controls.uToaThuocList();
             this._uGiaThuocList = new MM.Controls.uGiaThuocList();
@@ -78,6 +79,7 @@
             this.tbLoThuoc = new System.Windows.Forms.ToolStripButton();
             this.tbGiaThuoc = new System.Windows.Forms.ToolStripButton();
             this.tbKeToa = new System.Windows.Forms.ToolStripButton();
+            this.tbPhieuThuThuoc = new System.Windows.Forms.ToolStripButton();
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._mainMenu = new System.Windows.Forms.MenuStrip();
@@ -122,6 +124,8 @@
             this.giaThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
             this.keToaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
+            this.phieuThuThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doanhThuNhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
@@ -137,7 +141,7 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uBaoCaoThuocTonKho = new MM.Controls.uBaoCaoThuocTonKho();
+            this._uPhieuThuThuocList = new MM.Controls.uPhieuThuThuocList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -149,6 +153,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uPhieuThuThuocList);
             this._mainPanel.Controls.Add(this._uBaoCaoThuocTonKho);
             this._mainPanel.Controls.Add(this._uBaoCaoThuocHetHan);
             this._mainPanel.Controls.Add(this._uToaThuocList);
@@ -173,6 +178,11 @@
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
             // 
+            // _uBaoCaoThuocTonKho
+            // 
+            resources.ApplyResources(this._uBaoCaoThuocTonKho, "_uBaoCaoThuocTonKho");
+            this._uBaoCaoThuocTonKho.Name = "_uBaoCaoThuocTonKho";
+            // 
             // _uBaoCaoThuocHetHan
             // 
             resources.ApplyResources(this._uBaoCaoThuocHetHan, "_uBaoCaoThuocHetHan");
@@ -182,6 +192,7 @@
             // 
             resources.ApplyResources(this._uToaThuocList, "_uToaThuocList");
             this._uToaThuocList.Name = "_uToaThuocList";
+            this._uToaThuocList.PatientRow = null;
             // 
             // _uGiaThuocList
             // 
@@ -309,7 +320,8 @@
             this.tbNhomThuoc,
             this.tbLoThuoc,
             this.tbGiaThuoc,
-            this.tbKeToa});
+            this.tbKeToa,
+            this.tbPhieuThuThuoc});
             resources.ApplyResources(this._mainToolbar, "_mainToolbar");
             this._mainToolbar.Name = "_mainToolbar";
             this._mainToolbar.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._mainToolbar_ItemClicked);
@@ -494,6 +506,14 @@
             this.tbKeToa.Image = global::MM.Properties.Resources.prescription_icon;
             this.tbKeToa.Name = "tbKeToa";
             this.tbKeToa.Tag = "KeToa";
+            // 
+            // tbPhieuThuThuoc
+            // 
+            this.tbPhieuThuThuoc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbPhieuThuThuoc, "tbPhieuThuThuoc");
+            this.tbPhieuThuThuoc.Image = global::MM.Properties.Resources.folder_invoices_icon;
+            this.tbPhieuThuThuoc.Name = "tbPhieuThuThuoc";
+            this.tbPhieuThuThuoc.Tag = "PhieuThuThuoc";
             // 
             // _mainStatus
             // 
@@ -773,7 +793,9 @@
             this.toolStripSeparator20,
             this.giaThuocToolStripMenuItem,
             this.toolStripSeparator21,
-            this.keToaToolStripMenuItem});
+            this.keToaToolStripMenuItem,
+            this.toolStripSeparator24,
+            this.phieuThuThuocToolStripMenuItem});
             resources.ApplyResources(this.thuocToolStripMenuItem, "thuocToolStripMenuItem");
             this.thuocToolStripMenuItem.Name = "thuocToolStripMenuItem";
             // 
@@ -836,6 +858,19 @@
             resources.ApplyResources(this.keToaToolStripMenuItem, "keToaToolStripMenuItem");
             this.keToaToolStripMenuItem.Tag = "KeToa";
             this.keToaToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator24
+            // 
+            this.toolStripSeparator24.Name = "toolStripSeparator24";
+            resources.ApplyResources(this.toolStripSeparator24, "toolStripSeparator24");
+            // 
+            // phieuThuThuocToolStripMenuItem
+            // 
+            this.phieuThuThuocToolStripMenuItem.Image = global::MM.Properties.Resources.folder_invoices_icon;
+            this.phieuThuThuocToolStripMenuItem.Name = "phieuThuThuocToolStripMenuItem";
+            resources.ApplyResources(this.phieuThuThuocToolStripMenuItem, "phieuThuThuocToolStripMenuItem");
+            this.phieuThuThuocToolStripMenuItem.Tag = "PhieuThuThuoc";
+            this.phieuThuThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
@@ -950,10 +985,10 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // _uBaoCaoThuocTonKho
+            // _uPhieuThuThuocList
             // 
-            resources.ApplyResources(this._uBaoCaoThuocTonKho, "_uBaoCaoThuocTonKho");
-            this._uBaoCaoThuocTonKho.Name = "_uBaoCaoThuocTonKho";
+            resources.ApplyResources(this._uPhieuThuThuocList, "_uPhieuThuThuocList");
+            this._uPhieuThuThuocList.Name = "_uPhieuThuThuocList";
             // 
             // MainForm
             // 
@@ -1090,6 +1125,10 @@
         private System.Windows.Forms.ToolStripMenuItem thuocTonKhoToolStripMenuItem;
         private Controls.uBaoCaoThuocHetHan _uBaoCaoThuocHetHan;
         private Controls.uBaoCaoThuocTonKho _uBaoCaoThuocTonKho;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator24;
+        private System.Windows.Forms.ToolStripMenuItem phieuThuThuocToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton tbPhieuThuThuoc;
+        private Controls.uPhieuThuThuocList _uPhieuThuThuocList;
 
     }
 }

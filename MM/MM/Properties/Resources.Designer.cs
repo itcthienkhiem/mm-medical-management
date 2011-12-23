@@ -403,6 +403,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap folder_invoices_icon {
+            get {
+                object obj = ResourceManager.GetObject("folder_invoices_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap folder_invoices_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("folder_invoices_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap help {
             get {
                 object obj = ResourceManager.GetObject("help", resourceCulture);
