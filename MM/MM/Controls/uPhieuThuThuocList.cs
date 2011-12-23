@@ -11,6 +11,7 @@ using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -38,7 +39,7 @@ namespace MM.Controls
 
         public void ClearData()
         {
-
+            dgPhieuThu.DataSource = null;
         }
 
         public void DisplayAsThread()
@@ -92,7 +93,38 @@ namespace MM.Controls
             dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
+                DataTable dt = dgPhieuThu.DataSource as DataTable;
+                if (dt == null) return;
+                DataRow newRow = dt.NewRow();
+                newRow["Checked"] = false;
+                newRow["PhieuThuThuocGUID"] = dlg.PhieuThuThuoc.PhieuThuThuocGUID.ToString();
+                newRow["MaPhieuThuThuoc"] = dlg.PhieuThuThuoc.MaPhieuThuThuoc;
+                newRow["NgayThu"] = dlg.PhieuThuThuoc.NgayThu;
+                newRow["MaBenhNhan"] = dlg.PhieuThuThuoc.MaBenhNhan;
+                newRow["TenBenhNhan"] = dlg.PhieuThuThuoc.TenBenhNhan;
+                newRow["DiaChi"] = dlg.PhieuThuThuoc.DiaChi;
 
+                if (dlg.PhieuThuThuoc.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.PhieuThuThuoc.CreatedDate;
+
+                if (dlg.PhieuThuThuoc.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.PhieuThuThuoc.CreatedBy.ToString();
+
+                if (dlg.PhieuThuThuoc.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.PhieuThuThuoc.UpdatedDate;
+
+                if (dlg.PhieuThuThuoc.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.PhieuThuThuoc.UpdatedBy.ToString();
+
+                if (dlg.PhieuThuThuoc.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.PhieuThuThuoc.DeletedDate;
+
+                if (dlg.PhieuThuThuoc.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.PhieuThuThuoc.DeletedBy.ToString();
+
+                newRow["Status"] = dlg.PhieuThuThuoc.Status;
+                dt.Rows.Add(newRow);
+                SelectLastedRow();
             }
         }
 
@@ -135,7 +167,68 @@ namespace MM.Controls
 
         private void OnPrint(bool isPreview)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgPhieuThu.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedRows.Add(row);
+                }
+            }
 
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\PhieuThuThuoc.xls", Application.StartupPath);
+                if (isPreview)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
+                        if (ExportExcel.ExportPhieuThuThuocToExcel(exportFileName, phieuThuThuocGUID))
+                        {
+                            try
+                            {
+                                ExcelPrintPreview.PrintPreview(exportFileName);
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                return;
+                            }
+                        }
+                        else
+                            return;
+                    }
+                }
+                else
+                {
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach (DataRow row in checkedRows)
+                        {
+                            string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
+                            if (ExportExcel.ExportPhieuThuThuocToExcel(exportFileName, phieuThuThuocGUID))
+                            {
+                                try
+                                {
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                    return;
+                                }
+                            }
+                            else
+                                return;
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu cần in.", IconType.Information);
         }
         #endregion
 

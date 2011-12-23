@@ -36,6 +36,91 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result CheckThuocHetHan(string thuocGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+            try
+            {
+                DateTime dt = DateTime.Now;
+                db = new MMOverride();
+                List<Thuoc> thuocResults = (from t in db.Thuocs
+                                                  join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
+                                                  where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
+                                                  l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
+                                                  l.NgayHetHan <= dt && t.ThuocGUID.ToString() == thuocGUID
+                                                  select t).ToList<Thuoc>();
+
+                if (thuocResults != null && thuocResults.Count > 0)
+                    result.QueryResult = true;
+                else
+                    result.QueryResult = false;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result CheckThuocTonKho(string thuocGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<Thuoc> thuocResults = (from t in db.Thuocs
+                                            join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
+                                            where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
+                                            l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
+                                            t.ThuocGUID.ToString() == thuocGUID
+                                            select t).ToList<Thuoc>();
+
+
+                if (thuocResults != null && thuocResults.Count > 0)
+                    result.QueryResult = true;
+                else
+                    result.QueryResult = false;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetNhaPhanPhoiList()
         {
             Result result = null;

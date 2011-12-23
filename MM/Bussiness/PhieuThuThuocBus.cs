@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM ChiTietPhieuThuThuocView WHERE CTPTTStatus={0} AND ThuocStatus={0} AND PhieuThuThuocGUID='{1}' ORDER TenThuoc", 
+                string query = string.Format("SELECT * FROM ChiTietPhieuThuThuocView WHERE CTPTTStatus={0} AND ThuocStatus={0} AND PhieuThuThuocGUID='{1}' ORDER BY TenThuoc", 
                     (byte)Status.Actived, phieuThuThuocGUID);
                 return ExcuteQuery(query);
             }

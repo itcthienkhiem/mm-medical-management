@@ -323,20 +323,6 @@ namespace MM.Dialogs
             for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
             {
                 dgChiTiet[0, i].Value = i + 1;
-                if (dgChiTiet[3, i].Value == null || 
-                    dgChiTiet[3, i].Value == DBNull.Value ||
-                    dgChiTiet[3, i].Value.ToString() == "0")
-                    dgChiTiet[3, i].Value = 1;
-
-                if (dgChiTiet[4, i].Value == null ||
-                    dgChiTiet[4, i].Value == DBNull.Value ||
-                    dgChiTiet[4, i].Value.ToString() == "0")
-                    dgChiTiet[4, i].Value = 1;
-
-                if (dgChiTiet[5, i].Value == null ||
-                    dgChiTiet[5, i].Value == DBNull.Value ||
-                    dgChiTiet[5, i].Value.ToString() == "0")
-                    dgChiTiet[5, i].Value = 1;
             }
         }
 
@@ -570,6 +556,7 @@ namespace MM.Dialogs
             if (!_flag) return;
 
             DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
+            if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
             string thuocGUID = cbo.SelectedValue.ToString();
             string donViTinh = GetDonViTinh(thuocGUID);
             dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
