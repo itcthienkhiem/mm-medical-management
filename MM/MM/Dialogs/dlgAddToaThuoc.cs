@@ -20,6 +20,7 @@ namespace MM.Dialogs
         private DataRow _drToaThuoc = null;
         private ToaThuoc _toaThuoc = new ToaThuoc();
         private List<string> _deletedKeys = new List<string>();
+        private bool _flag = true;
         #endregion
 
         #region Constructor
@@ -262,6 +263,18 @@ namespace MM.Dialogs
             return string.Empty;
         }
 
+        private string GetDonViTinh(string thuocGUID)
+        {
+            DataTable dt = thuocGUIDDataGridViewTextBoxColumn.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return string.Empty;
+
+            DataRow[] rows = dt.Select(string.Format("ThuocGUID='{0}'", thuocGUID));
+            if (rows != null && rows.Length > 0)
+                return rows[0]["DonViTinh"].ToString();
+
+            return string.Empty;
+        }
+
         private void RefreshNo()
         {
             for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
@@ -420,24 +433,56 @@ namespace MM.Dialogs
         {
             RefreshNo();
         }
-
-        private void dgChiTiet_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.Button != System.Windows.Forms.MouseButtons.Left) return;
-            if (e.RowIndex < 0 || e.ColumnIndex != 2) return;
-            if (dgChiTiet.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value == null ||
-                dgChiTiet.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value == DBNull.Value) return;
-
-            string thuocGUID = dgChiTiet.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value.ToString();
-            dlgThuocThayThe dlg = new dlgThuocThayThe(thuocGUID);
-            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-                dgChiTiet.Rows[e.RowIndex].Cells[e.ColumnIndex - 1].Value = dlg.ThuocThayThe;
-
-        }
-
+        
         private void dgChiTiet_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dgChiTiet_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            _flag = false;
+            if (e.RowIndex < 0) return;
+            dgChiTiet.CurrentCell = dgChiTiet[1, e.RowIndex];
+            dgChiTiet.Rows[e.RowIndex].Selected = true;
+            _flag = true;
+        }
+
+        private void thuocThayTheToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            if (dgChiTiet.SelectedRows == null || dgChiTiet.SelectedRows.Count <= 0) return;
+            int rowIndex = dgChiTiet.SelectedRows[0].Index;
+            if (rowIndex == dgChiTiet.RowCount - 1) return;
+            dgChiTiet.EndEdit();
+            if (dgChiTiet.SelectedRows[0].Cells[1].Value == null || dgChiTiet.SelectedRows[0].Cells[1].Value == DBNull.Value) return;
+            string thuocGUID = dgChiTiet.SelectedRows[0].Cells[1].Value.ToString();
+            dlgThuocThayThe dlg = new dlgThuocThayThe(thuocGUID);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                dgChiTiet.SelectedRows[0].Cells[1].Value = dlg.ThuocThayThe;
+                dgChiTiet.RefreshEdit();
+            }
+        }
+
+        private void dgChiTiet_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgChiTiet.CurrentCell.ColumnIndex == 1)
+            {
+                ComboBox cmbox = e.Control as ComboBox;
+                cmbox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
+                cmbox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
+            }
+        }
+
+        private void cmbox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (!_flag) return;
+
+            DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
+            string thuocGUID = cbo.SelectedValue.ToString();
+            string donViTinh = GetDonViTinh(thuocGUID);
+            dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
         }
         #endregion
 
