@@ -482,5 +482,163 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportPhieuThuThuocToExcel(string exportFileName, string phieuThuThuocGUID)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                Result result = PhieuThuThuocBus.GetPhieuThuThuoc(phieuThuThuocGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuoc"));
+                    return false;
+                }
+
+                PhieuThuThuoc ptThuoc = result.QueryResult as PhieuThuThuoc;
+                if (ptThuoc == null) return false;
+
+                result = PhieuThuThuocBus.GetChiTietPhieuThuThuoc(phieuThuThuocGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.GetChiTietPhieuThuThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.GetChiTietPhieuThuThuoc"));
+                    return false;
+                }
+
+                string excelTemplateName = string.Format("{0}\\Templates\\PhieuThuThuocTemplate.xls", Application.StartupPath);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A2"].Value = string.Format("Số: {0}", ptThuoc.MaPhieuThuThuoc);
+                workSheet.Cells["B6"].Value = string.Format("Họ tên: {0}", ptThuoc.TenBenhNhan);
+                workSheet.Cells["B7"].Value = string.Format("Mã bệnh nhân: {0}", ptThuoc.MaBenhNhan);
+                workSheet.Cells["B8"].Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                if (ptThuoc.DiaChi != null) workSheet.Cells["B9"].Value = string.Format("Địa chỉ: {0}", ptThuoc.DiaChi);
+                else workSheet.Cells["B9"].Value = "Địa chỉ:";
+
+                int rowIndex = 11;
+                int no = 1;
+                double totalPrice = 0;
+                IRange range;
+                DataTable dtSource = result.QueryResult as DataTable;
+                foreach (DataRow row in dtSource.Rows)
+                {
+                    string tenThuoc = row["TenThuoc"].ToString();
+                    int soLuong = Convert.ToInt32(row["SoLuong"]);
+                    string donViTinh = row["DonViTinh"].ToString();
+                    double donGia = Convert.ToDouble(row["DonGia"]);
+                    double giam = Convert.ToDouble(row["Giam"]);
+                    double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+
+                    totalPrice += thanhTien;
+                    workSheet.Cells[rowIndex, 1].Value = no++;
+                    workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Center;
+
+                    workSheet.Cells[rowIndex, 2].Value = tenThuoc;
+
+                    workSheet.Cells[rowIndex, 3].Value = soLuong;
+                    workSheet.Cells[rowIndex, 3].HorizontalAlignment = HAlign.Right;
+
+                    workSheet.Cells[rowIndex, 4].Value = donViTinh;
+                    workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
+
+                    if (donGia > 0)
+                        workSheet.Cells[rowIndex, 5].Value = donGia.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 5].Value = donGia.ToString();
+
+                    workSheet.Cells[rowIndex, 5].HorizontalAlignment = HAlign.Right;
+
+                    if (giam > 0)
+                        workSheet.Cells[rowIndex, 6].Value = giam.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 6].Value = giam.ToString();
+
+                    workSheet.Cells[rowIndex, 6].HorizontalAlignment = HAlign.Right;
+
+                    if (thanhTien > 0)
+                        workSheet.Cells[rowIndex, 7].Value = thanhTien.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 7].Value = thanhTien.ToString();
+
+                    workSheet.Cells[rowIndex, 7].HorizontalAlignment = HAlign.Right;
+
+                    range = workSheet.Cells[string.Format("B{0}:H{0}", rowIndex + 1)];
+                    range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dash;
+                    range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+
+                    range.Borders[BordersIndex.EdgeLeft].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeLeft].Color = Color.Black;
+
+                    range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
+
+                    range.Borders[BordersIndex.InsideVertical].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.InsideVertical].Color = Color.Black;
+
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.Value = "Tổng cộng:";
+                range.Font.Bold = true;
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
+                if (totalPrice > 0)
+                    range.Value = string.Format("{0} VNĐ", totalPrice.ToString("#,###"));
+                else
+                    range.Value = string.Format("{0} VNĐ", totalPrice.ToString());
+
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+
+                rowIndex += 2;
+                range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
+                range.Value = string.Format("Bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPrice));
+                range.Font.Bold = true;
+
+                range = workSheet.Cells[string.Format("B{0}:H{0}", rowIndex + 1)];
+                range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dash;
+                range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+
+                rowIndex += 2;
+                range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
+                range.Value = "Người lập phiếu";
+                range.HorizontalAlignment = HAlign.Left;
+
+                range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
+                range.Value = "Người nộp tiền";
+                range.HorizontalAlignment = HAlign.Left;
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
+                range.Value = "Thu ngân";
+                range.HorizontalAlignment = HAlign.Left;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
