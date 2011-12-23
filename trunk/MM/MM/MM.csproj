@@ -923,6 +923,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Templates\HDGTGTTemplate.xls" />
+    <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
     <None Include="Templates\SymptomTemplate.xls" />
     <None Include="Templates\ToaThuocTemplate.xls" />
