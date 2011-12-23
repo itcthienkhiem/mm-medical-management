@@ -27,6 +27,15 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            btnAdd.Enabled = AllowAdd;
+            btnEdit.Enabled = AllowEdit;
+            btnDelete.Enabled = AllowDelete;
+            btnPrint.Enabled = AllowPrint;
+            btnPrintPreview.Enabled = AllowPrint;
+        }
+
         public void ClearData()
         {
 
@@ -34,7 +43,48 @@ namespace MM.Controls
 
         public void DisplayAsThread()
         {
+            try
+            {
+                UpdateGUI();
+                chkChecked.Checked = false;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPhieuThuThuocListProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
 
+        private void OnDisplayPhieuThuThuocList()
+        {
+            Result result = PhieuThuThuocBus.GetPhieuThuThuocList();
+            if (result.IsOK)
+            {
+                MethodInvoker method = delegate
+                {
+                    dgPhieuThu.DataSource = result.QueryResult;
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuocList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuocList"));
+            }
+        }
+
+        private void SelectLastedRow()
+        {
+            dgPhieuThu.CurrentCell = dgPhieuThu[1, dgPhieuThu.RowCount - 1];
+            dgPhieuThu.Rows[dgPhieuThu.RowCount - 1].Selected = true;
         }
 
         private void OnAddPhieuThu()
@@ -48,6 +98,11 @@ namespace MM.Controls
         }
 
         private void OnDeletePhieuThu()
+        {
+
+        }
+
+        private void OnPrint(bool isPreview)
         {
 
         }
@@ -71,22 +126,50 @@ namespace MM.Controls
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
-
+            OnPrint(true);
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-
+            OnPrint(false);
         }
 
         private void dgPhieuThu_DoubleClick(object sender, EventArgs e)
         {
+            if (!AllowEdit) return;
             OnEditPhieuThu();
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
         {
+            DataTable dt = dgPhieuThu.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
 
+       
+        #endregion
+
+        #region Working Thread
+        private void OnDisplayPhieuThuThuocListProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                OnDisplayPhieuThuThuocList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
         }
         #endregion
     }
