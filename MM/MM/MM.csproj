@@ -475,6 +475,12 @@
     <Compile Include="Dialogs\dlgAddPatient.Designer.cs">
       <DependentUpon>dlgAddPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuThuThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuThuThuoc.Designer.cs">
+      <DependentUpon>dlgAddPhieuThuThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddServiceHistory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -775,6 +781,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddPatient.resx">
       <DependentUpon>dlgAddPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddPhieuThuThuoc.resx">
+      <DependentUpon>dlgAddPhieuThuThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddServiceHistory.resx">
       <DependentUpon>dlgAddServiceHistory.cs</DependentUpon>
