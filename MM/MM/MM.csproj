@@ -969,7 +969,7 @@
     <None Include="Resources\prescription-icon2.png" />
     <None Include="Resources\folder-invoices-icon %281%29.png" />
     <None Include="Resources\folder-invoices-icon.png" />
-    <Content Include="Scripts\ScriptUpdate_KH_2011-12-14_2011-12-21.sql" />
+    <Content Include="Scripts\ScriptUpdate_KH_2011-12-14_2011-12-24.sql" />
     <None Include="Resources\palet-03-icon.png" />
     <None Include="Resources\box-icon.png" />
     <None Include="Resources\Actions-view-calendar-upcoming-events-icon.png" />
