@@ -21,6 +21,8 @@ namespace MM.Dialogs
         private ToaThuoc _toaThuoc = new ToaThuoc();
         private List<string> _deletedKeys = new List<string>();
         private bool _flag = true;
+        private DataTable _dataSourceBenhNhan = null;
+        private DataRow _patientRow = null;
         #endregion
 
         #region Constructor
@@ -52,7 +54,17 @@ namespace MM.Dialogs
 
         public string TenBenhNhan
         {
-            get { return cboBenhNhan.Text; }
+            get { return txtTenBenhNhan.Text; }
+        }
+
+        public string NgaySinh
+        {
+            get { return txtNgaySinh.Text; }
+        }
+
+        public string GioiTinh
+        {
+            get { return txtGioiTinh.Text; }
         }
         #endregion
 
@@ -82,7 +94,8 @@ namespace MM.Dialogs
         {
             Result result = PatientBus.GetPatientList();
             if (result.IsOK)
-                cboBenhNhan.DataSource = result.QueryResult;
+                //cboBenhNhan.DataSource = result.QueryResult;
+                _dataSourceBenhNhan = result.QueryResult as DataTable;
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
@@ -141,7 +154,10 @@ namespace MM.Dialogs
                 txtMaToaThuoc.Text = drToaThuoc["MaToaThuoc"] as string;
                 dtpkNgayKeToa.Value = Convert.ToDateTime(drToaThuoc["NgayKeToa"]);
                 cboBacSi.SelectedValue = drToaThuoc["BacSiKeToa"].ToString();
-                cboBenhNhan.SelectedValue = drToaThuoc["BenhNhan"].ToString();
+                txtTenBenhNhan.Text = drToaThuoc["TenBenhNhan"].ToString();
+                txtTenBenhNhan.Tag = drToaThuoc["BenhNhan"].ToString();
+                txtNgaySinh.Text = drToaThuoc["DobStr"].ToString();
+                txtGioiTinh.Text = drToaThuoc["GenderAsStr"].ToString();
                 txtGhiChu.Text = drToaThuoc["Note"] as string;
 
                 _toaThuoc.ToaThuocGUID = Guid.Parse(drToaThuoc["ToaThuocGUID"].ToString());
@@ -191,10 +207,10 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboBenhNhan.Text.Trim() == string.Empty)
+            if (txtTenBenhNhan.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bệnh nhân.", IconType.Information);
-                cboBenhNhan.Focus();
+                btnChonBenhNhan.Focus();
                 return false;
             }
 
@@ -323,7 +339,7 @@ namespace MM.Dialogs
                     _toaThuoc.MaToaThuoc = txtMaToaThuoc.Text;
                     _toaThuoc.NgayKeToa = dtpkNgayKeToa.Value;
                     _toaThuoc.BacSiKeToa = Guid.Parse(cboBacSi.SelectedValue.ToString());
-                    _toaThuoc.BenhNhan = Guid.Parse(cboBenhNhan.SelectedValue.ToString());
+                    _toaThuoc.BenhNhan = Guid.Parse(txtTenBenhNhan.Tag.ToString());
                     _toaThuoc.Note = txtGhiChu.Text;
                     _toaThuoc.Status = (byte)Status.Actived;
 
@@ -484,6 +500,22 @@ namespace MM.Dialogs
             string donViTinh = GetDonViTinh(thuocGUID);
             dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
         }
+
+        private void btnChonBenhNhan_Click(object sender, EventArgs e)
+        {
+            dlgSelectPatient dlg = new dlgSelectPatient(_dataSourceBenhNhan);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                _patientRow = dlg.PatientRow;
+                if (_patientRow != null)
+                {
+                    txtTenBenhNhan.Tag = _patientRow["PatientGUID"].ToString();
+                    txtTenBenhNhan.Text = _patientRow["FullName"].ToString();
+                    txtNgaySinh.Text = _patientRow["DobStr"].ToString();
+                    txtGioiTinh.Text = _patientRow["GenderAsStr"].ToString();
+                }
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -504,5 +536,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

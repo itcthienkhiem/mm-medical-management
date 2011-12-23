@@ -109,6 +109,8 @@ namespace MM.Controls
                 newRow["BenhNhan"] = dlg.ToaThuoc.BenhNhan;
                 newRow["TenBacSi"] = dlg.TenBacSi;
                 newRow["TenBenhNhan"] = dlg.TenBenhNhan;
+                newRow["DobStr"] = dlg.NgaySinh;
+                newRow["GenderAsStr"] = dlg.GioiTinh;
                 newRow["Note"] = dlg.ToaThuoc.Note;
 
                 if (dlg.ToaThuoc.CreatedDate.HasValue)
@@ -153,6 +155,8 @@ namespace MM.Controls
                 drToaThuoc["BenhNhan"] = dlg.ToaThuoc.BenhNhan;
                 drToaThuoc["TenBacSi"] = dlg.TenBacSi;
                 drToaThuoc["TenBenhNhan"] = dlg.TenBenhNhan;
+                drToaThuoc["DobStr"] = dlg.NgaySinh;
+                drToaThuoc["GenderAsStr"] = dlg.GioiTinh;
                 drToaThuoc["Note"] = dlg.ToaThuoc.Note;
 
                 if (dlg.ToaThuoc.CreatedDate.HasValue)

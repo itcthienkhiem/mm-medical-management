@@ -38,10 +38,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddToaThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtGioiTinh = new System.Windows.Forms.TextBox();
+            this.txtNgaySinh = new System.Windows.Forms.TextBox();
+            this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
+            this.btnChonBenhNhan = new System.Windows.Forms.Button();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cboBenhNhan = new System.Windows.Forms.ComboBox();
-            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.cboBacSi = new System.Windows.Forms.ComboBox();
@@ -53,6 +55,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -68,8 +71,8 @@
             this.thuocThayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chiTietToaThuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
             this.ctmToaThuoc.SuspendLayout();
@@ -78,9 +81,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtGioiTinh);
+            this.groupBox1.Controls.Add(this.txtNgaySinh);
+            this.groupBox1.Controls.Add(this.txtTenBenhNhan);
+            this.groupBox1.Controls.Add(this.btnChonBenhNhan);
             this.groupBox1.Controls.Add(this.txtGhiChu);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.cboBenhNhan);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.cboBacSi);
@@ -98,12 +104,48 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin toa thuốc";
             // 
+            // txtGioiTinh
+            // 
+            this.txtGioiTinh.Location = new System.Drawing.Point(432, 94);
+            this.txtGioiTinh.Name = "txtGioiTinh";
+            this.txtGioiTinh.ReadOnly = true;
+            this.txtGioiTinh.Size = new System.Drawing.Size(75, 20);
+            this.txtGioiTinh.TabIndex = 53;
+            this.txtGioiTinh.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtNgaySinh
+            // 
+            this.txtNgaySinh.Location = new System.Drawing.Point(340, 94);
+            this.txtNgaySinh.Name = "txtNgaySinh";
+            this.txtNgaySinh.ReadOnly = true;
+            this.txtNgaySinh.Size = new System.Drawing.Size(88, 20);
+            this.txtNgaySinh.TabIndex = 52;
+            this.txtNgaySinh.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtTenBenhNhan
+            // 
+            this.txtTenBenhNhan.Location = new System.Drawing.Point(93, 94);
+            this.txtTenBenhNhan.Name = "txtTenBenhNhan";
+            this.txtTenBenhNhan.ReadOnly = true;
+            this.txtTenBenhNhan.Size = new System.Drawing.Size(243, 20);
+            this.txtTenBenhNhan.TabIndex = 51;
+            // 
+            // btnChonBenhNhan
+            // 
+            this.btnChonBenhNhan.Location = new System.Drawing.Point(511, 93);
+            this.btnChonBenhNhan.Name = "btnChonBenhNhan";
+            this.btnChonBenhNhan.Size = new System.Drawing.Size(105, 22);
+            this.btnChonBenhNhan.TabIndex = 50;
+            this.btnChonBenhNhan.Text = "Chọn bệnh nhân...";
+            this.btnChonBenhNhan.UseVisualStyleBackColor = true;
+            this.btnChonBenhNhan.Click += new System.EventHandler(this.btnChonBenhNhan_Click);
+            // 
             // txtGhiChu
             // 
-            this.txtGhiChu.Location = new System.Drawing.Point(93, 119);
+            this.txtGhiChu.Location = new System.Drawing.Point(93, 118);
             this.txtGhiChu.Multiline = true;
             this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(496, 70);
+            this.txtGhiChu.Size = new System.Drawing.Size(543, 70);
             this.txtGhiChu.TabIndex = 49;
             // 
             // label7
@@ -111,29 +153,11 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(385, 98);
+            this.label7.Location = new System.Drawing.Point(619, 97);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(17, 13);
             this.label7.TabIndex = 48;
             this.label7.Text = "[*]";
-            // 
-            // cboBenhNhan
-            // 
-            this.cboBenhNhan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboBenhNhan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboBenhNhan.DataSource = this.patientViewBindingSource;
-            this.cboBenhNhan.DisplayMember = "FullName";
-            this.cboBenhNhan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBenhNhan.FormattingEnabled = true;
-            this.cboBenhNhan.Location = new System.Drawing.Point(93, 94);
-            this.cboBenhNhan.Name = "cboBenhNhan";
-            this.cboBenhNhan.Size = new System.Drawing.Size(288, 21);
-            this.cboBenhNhan.TabIndex = 47;
-            this.cboBenhNhan.ValueMember = "PatientGUID";
-            // 
-            // patientViewBindingSource
-            // 
-            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
             // 
             // label6
             // 
@@ -194,7 +218,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 122);
+            this.label5.Location = new System.Drawing.Point(40, 121);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 4;
@@ -235,6 +259,10 @@
             this.label1.Size = new System.Drawing.Size(73, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã toa thuốc:";
+            // 
+            // patientViewBindingSource
+            // 
+            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
             // 
             // btnCancel
             // 
@@ -434,8 +462,8 @@
             this.Load += new System.EventHandler(this.dlgAddToaThuoc_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
             this.ctmToaThuoc.ResumeLayout(false);
@@ -457,7 +485,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cboBenhNhan;
         private System.Windows.Forms.BindingSource patientViewBindingSource;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label22;
@@ -476,5 +503,9 @@
         private Controls.TNumEditDataGridViewColumn soLanTrongNgayDataGridViewTextBoxColumn;
         private Controls.TNumEditDataGridViewColumn soLuongTrongLanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnChonBenhNhan;
+        private System.Windows.Forms.TextBox txtGioiTinh;
+        private System.Windows.Forms.TextBox txtNgaySinh;
+        private System.Windows.Forms.TextBox txtTenBenhNhan;
     }
 }
