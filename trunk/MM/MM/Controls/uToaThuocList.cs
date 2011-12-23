@@ -18,7 +18,7 @@ namespace MM.Controls
     public partial class uToaThuocList : uBase
     {
         #region Members
-
+        private DataRow _patientRow = null;
         #endregion
 
         #region Constructor
@@ -29,7 +29,11 @@ namespace MM.Controls
         #endregion
 
         #region Properties
-
+        public DataRow PatientRow
+        {
+            get { return _patientRow; }
+            set { _patientRow = value; }
+        }
         #endregion
 
         #region UI Command
@@ -96,6 +100,7 @@ namespace MM.Controls
         private void OnAddToaThuoc()
         {
             dlgAddToaThuoc dlg = new dlgAddToaThuoc();
+            if (_patientRow != null) dlg.PatientRow = _patientRow;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DataTable dt = dgToaThuoc.DataSource as DataTable;
