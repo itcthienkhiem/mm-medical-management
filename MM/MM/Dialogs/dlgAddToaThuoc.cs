@@ -66,6 +66,22 @@ namespace MM.Dialogs
         {
             get { return txtGioiTinh.Text; }
         }
+
+        public DataRow PatientRow
+        {
+            get { return _patientRow; }
+            set 
+            { 
+                _patientRow = value;
+                if (_patientRow != null)
+                {
+                    txtTenBenhNhan.Tag = _patientRow["PatientGUID"].ToString();
+                    txtTenBenhNhan.Text = _patientRow["FullName"].ToString();
+                    txtNgaySinh.Text = _patientRow["DobStr"].ToString();
+                    txtGioiTinh.Text = _patientRow["GenderAsStr"].ToString();
+                }
+            }
+        }
         #endregion
 
         #region UI Command
@@ -82,7 +98,14 @@ namespace MM.Dialogs
         {
             Result result = DocStaffBus.GetDocStaffList();
             if (result.IsOK)
-                cboBacSi.DataSource = result.QueryResult;
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                cboBacSi.DataSource = dt;
+
+                DataRow[] rows = dt.Select(string.Format("DocStaffGUID='{0}'", Global.UserGUID));
+                if (rows != null && rows.Length > 0)
+                    cboBacSi.SelectedValue = Global.UserGUID;
+            }
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);

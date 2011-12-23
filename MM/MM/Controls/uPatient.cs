@@ -45,6 +45,7 @@ namespace MM.Controls
                 _patientRow = value;
                 _uServiceHistory.PatientRow = value;
                 _uDailyServiceHistory.PatientRow = value;
+                _uToaThuocList.PatientRow = (DataRow)value;
             }
         }
         #endregion
@@ -69,7 +70,6 @@ namespace MM.Controls
             txtDOB.Text ="NS: " + row["DobStr"].ToString();
             txtAge.Text = Utility.GetAge(row["DobStr"].ToString()).ToString() + " tuổi";
             txtIdentityCard.Text ="CMND: " +  row["IdentityCard"].ToString();
-            //txtHomePhone.Text = row["HomePhone"].ToString();
             txtWorkPhone.Text = "ĐT: "  + row["WorkPhone"].ToString();
             txtMobile.Text = "DĐ: " + row["Mobile"].ToString();
             txtEmail.Text ="Email: " + row["Email"].ToString();
@@ -80,6 +80,8 @@ namespace MM.Controls
 
             _uServiceHistory.DisplayAsThread();
             _uDailyServiceHistory.DisplayAsThread();
+            _uToaThuocList.DisplayAsThread();
+            
         }
 
         public void DisplayCheckListAsThread()
@@ -141,7 +143,6 @@ namespace MM.Controls
         #region Window Event Handlers
         private void uPatient_Load(object sender, EventArgs e)
         {
-            int i = 0;
         }
 
         private void _uServiceHistory_OnServiceHistoryChanged()

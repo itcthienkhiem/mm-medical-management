@@ -945,6 +945,7 @@
     <Content Include="MM_Ico.ico" />
     <None Include="Resources\filter-icon.png" />
     <None Include="Resources\product-sales-report-icon.png" />
+    <None Include="Resources\prescription-icon2.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-14_2011-12-21.sql" />
     <None Include="Resources\palet-03-icon.png" />
     <None Include="Resources\box-icon.png" />
