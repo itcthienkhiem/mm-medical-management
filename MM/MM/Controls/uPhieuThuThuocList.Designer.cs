@@ -37,18 +37,17 @@
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgPhieuThu = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.phieuThuThuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maPhieuThuThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayThuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phieuThuThuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -61,7 +60,6 @@
             this.panel1.Controls.Add(this.btnPrintPreview);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnDelete);
-            this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 485);
@@ -73,7 +71,7 @@
             // 
             this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
             this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintPreview.Location = new System.Drawing.Point(243, 6);
+            this.btnPrintPreview.Location = new System.Drawing.Point(164, 6);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
             this.btnPrintPreview.TabIndex = 5;
@@ -85,7 +83,7 @@
             // 
             this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(340, 6);
+            this.btnPrint.Location = new System.Drawing.Point(261, 6);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(64, 25);
             this.btnPrint.TabIndex = 6;
@@ -97,25 +95,13 @@
             // 
             this.btnDelete.Image = global::MM.Properties.Resources.del;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(164, 6);
+            this.btnDelete.Location = new System.Drawing.Point(85, 6);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 25);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "    &Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(85, 6);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "    &Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -192,11 +178,6 @@
             this.dgPhieuThu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPhieuThu.Size = new System.Drawing.Size(878, 485);
             this.dgPhieuThu.TabIndex = 6;
-            this.dgPhieuThu.DoubleClick += new System.EventHandler(this.dgPhieuThu_DoubleClick);
-            // 
-            // phieuThuThuocBindingSource
-            // 
-            this.phieuThuThuocBindingSource.DataSource = typeof(MM.Databasae.PhieuThuThuoc);
             // 
             // colChecked
             // 
@@ -255,6 +236,10 @@
             this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
             this.diaChiDataGridViewTextBoxColumn.Width = 300;
             // 
+            // phieuThuThuocBindingSource
+            // 
+            this.phieuThuThuocBindingSource.DataSource = typeof(MM.Databasae.PhieuThuThuoc);
+            // 
             // _printDialog
             // 
             this._printDialog.UseEXDialog = true;
@@ -282,7 +267,6 @@
         private System.Windows.Forms.Button btnPrintPreview;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox chkChecked;
