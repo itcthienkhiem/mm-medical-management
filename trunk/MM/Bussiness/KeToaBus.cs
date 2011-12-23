@@ -36,7 +36,34 @@ namespace MM.Bussiness
             return result;
         }
 
-        
+        public static Result GetToaThuocList(string patientGUID, string docStaffGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (docStaffGUID == Guid.Empty.ToString())
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} AND BenhNhan='{1}' ORDER BY NgayKeToa ASC, MaToaThuoc ASC",
+                    (byte)Status.Actived, patientGUID);
+                else
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} AND BenhNhan='{1}' AND BacSiKeToa='{2}' ORDER BY NgayKeToa ASC, MaToaThuoc ASC",
+                    (byte)Status.Actived, patientGUID, docStaffGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
 
         public static Result GetChiTietToaThuocList(string toaThuocGUID)
         {

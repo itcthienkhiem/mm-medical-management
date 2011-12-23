@@ -79,6 +79,10 @@ namespace MM.Dialogs
                     txtTenBenhNhan.Text = _patientRow["FullName"].ToString();
                     txtNgaySinh.Text = _patientRow["DobStr"].ToString();
                     txtGioiTinh.Text = _patientRow["GenderAsStr"].ToString();
+                    btnChonBenhNhan.Visible = false;
+
+                    if (Global.StaffType != StaffType.Admin)
+                        cboBacSi.Enabled = false;
                 }
             }
         }
