@@ -450,6 +450,7 @@ namespace MM
                         else if (functionCode == Const.PhieuThuThuoc)
                         {
                             phieuThuThuocToolStripMenuItem.Enabled = isView && isLogin;
+                            tbPhieuThuThuoc.Enabled = isView && isLogin;
                             _uPhieuThuThuocList.AllowAdd = isAdd;
                             _uPhieuThuThuocList.AllowEdit = isEdit;
                             _uPhieuThuThuocList.AllowDelete = isDelete;
@@ -603,6 +604,7 @@ namespace MM
                 thuocHetHanToolStripMenuItem.Enabled = isLogin;
                 thuocTonKhoToolStripMenuItem.Enabled = isLogin;
                 phieuThuThuocToolStripMenuItem.Enabled = isLogin;
+                tbPhieuThuThuoc.Enabled = isLogin;
             }
         }
 
