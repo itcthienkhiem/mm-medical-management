@@ -30,9 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
@@ -42,14 +44,16 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgToaThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.toaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maToaThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayKeToaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBacSiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DobStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgToaThuoc)).BeginInit();
@@ -170,16 +174,18 @@
             this.ngayKeToaDataGridViewTextBoxColumn,
             this.tenBacSiDataGridViewTextBoxColumn,
             this.tenBenhNhanDataGridViewTextBoxColumn,
+            this.DobStr,
+            this.GenderAsStr,
             this.noteDataGridViewTextBoxColumn});
             this.dgToaThuoc.DataSource = this.toaThuocViewBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgToaThuoc.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgToaThuoc.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgToaThuoc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgToaThuoc.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgToaThuoc.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -193,6 +199,14 @@
             this.dgToaThuoc.Size = new System.Drawing.Size(839, 431);
             this.dgToaThuoc.TabIndex = 4;
             this.dgToaThuoc.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
+            // 
+            // toaThuocViewBindingSource
+            // 
+            this.toaThuocViewBindingSource.DataSource = typeof(MM.Databasae.ToaThuocView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
             // 
             // colChecked
             // 
@@ -244,6 +258,26 @@
             this.tenBenhNhanDataGridViewTextBoxColumn.ReadOnly = true;
             this.tenBenhNhanDataGridViewTextBoxColumn.Width = 150;
             // 
+            // DobStr
+            // 
+            this.DobStr.DataPropertyName = "DobStr";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DobStr.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DobStr.HeaderText = "Ngày sinh";
+            this.DobStr.Name = "DobStr";
+            this.DobStr.ReadOnly = true;
+            this.DobStr.Width = 90;
+            // 
+            // GenderAsStr
+            // 
+            this.GenderAsStr.DataPropertyName = "GenderAsStr";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle5;
+            this.GenderAsStr.HeaderText = "Giới tính";
+            this.GenderAsStr.Name = "GenderAsStr";
+            this.GenderAsStr.ReadOnly = true;
+            this.GenderAsStr.Width = 70;
+            // 
             // noteDataGridViewTextBoxColumn
             // 
             this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
@@ -251,14 +285,6 @@
             this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // toaThuocViewBindingSource
-            // 
-            this.toaThuocViewBindingSource.DataSource = typeof(MM.Databasae.ToaThuocView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
             // 
             // uToaThuocList
             // 
@@ -287,14 +313,16 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgToaThuoc;
         private System.Windows.Forms.BindingSource toaThuocViewBindingSource;
+        private System.Windows.Forms.Button btnPrintPreview;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.PrintDialog _printDialog;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn maToaThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayKeToaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenBacSiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenBenhNhanDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DobStr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnPrintPreview;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }

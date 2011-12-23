@@ -19,3 +19,5 @@ spDichVuHopDong
 - Create view: ToaThuocView, ChiTietPhieuThuThuocView
 - Create table: PhieuThuThuoc, ChiTietPhieuThuThuoc	
 - Insert: Function (ThuocHetHan, ThuocTonKho)
+2011-12-23
+- Update view: ToaThuocView
