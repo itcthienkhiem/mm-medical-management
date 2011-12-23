@@ -59,17 +59,17 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thuocGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ThuocThayTheDataGridButtonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soNgayUongDataGridViewTextBoxColumn = new MM.Controls.TNumEditDataGridViewColumn();
-            this.soLanTrongNgayDataGridViewTextBoxColumn = new MM.Controls.TNumEditDataGridViewColumn();
-            this.soLuongTrongLanDataGridViewTextBoxColumn = new MM.Controls.TNumEditDataGridViewColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctmToaThuoc = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.thuocThayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chiTietToaThuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thuocGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ThuocThayTheDataGridButtonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soNgayUongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLanTrongNgayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLuongTrongLanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
@@ -322,12 +322,13 @@
             this.dgChiTiet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgChiTiet.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgChiTiet.HighlightSelectedColumnHeaders = false;
-            this.dgChiTiet.Location = new System.Drawing.Point(6, 212);
+            this.dgChiTiet.Location = new System.Drawing.Point(12, 212);
             this.dgChiTiet.Name = "dgChiTiet";
             this.dgChiTiet.RowHeadersWidth = 30;
             this.dgChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgChiTiet.Size = new System.Drawing.Size(790, 320);
             this.dgChiTiet.TabIndex = 11;
+            this.dgChiTiet.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgChiTiet_CellFormatting);
             this.dgChiTiet.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_CellMouseDown);
             this.dgChiTiet.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgChiTiet_CellValueChanged);
             this.dgChiTiet.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_ColumnHeaderMouseClick);
@@ -335,6 +336,28 @@
             this.dgChiTiet.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgChiTiet_UserAddedRow);
             this.dgChiTiet.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgChiTiet_UserDeletedRow);
             this.dgChiTiet.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgChiTiet_UserDeletingRow);
+            // 
+            // thuocBindingSource
+            // 
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            // 
+            // ctmToaThuoc
+            // 
+            this.ctmToaThuoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thuocThayTheToolStripMenuItem});
+            this.ctmToaThuoc.Name = "ctmToaThuoc";
+            this.ctmToaThuoc.Size = new System.Drawing.Size(159, 26);
+            // 
+            // thuocThayTheToolStripMenuItem
+            // 
+            this.thuocThayTheToolStripMenuItem.Name = "thuocThayTheToolStripMenuItem";
+            this.thuocThayTheToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.thuocThayTheToolStripMenuItem.Text = "Thuốc thay thế";
+            this.thuocThayTheToolStripMenuItem.Click += new System.EventHandler(this.thuocThayTheToolStripMenuItem_Click);
+            // 
+            // chiTietToaThuocBindingSource
+            // 
+            this.chiTietToaThuocBindingSource.DataSource = typeof(MM.Databasae.ChiTietToaThuoc);
             // 
             // STT
             // 
@@ -360,10 +383,6 @@
             this.thuocGUIDDataGridViewTextBoxColumn.ValueMember = "ThuocGUID";
             this.thuocGUIDDataGridViewTextBoxColumn.Width = 180;
             // 
-            // thuocBindingSource
-            // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
-            // 
             // ThuocThayTheDataGridButtonColumn
             // 
             this.ThuocThayTheDataGridButtonColumn.DataPropertyName = "DonViTinh";
@@ -377,9 +396,7 @@
             // 
             // soNgayUongDataGridViewTextBoxColumn
             // 
-            this.soNgayUongDataGridViewTextBoxColumn.AllowNegative = false;
             this.soNgayUongDataGridViewTextBoxColumn.DataPropertyName = "SoNgayUong";
-            this.soNgayUongDataGridViewTextBoxColumn.DecimalLength = 0;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle4.Format = "N0";
             dataGridViewCellStyle4.NullValue = null;
@@ -390,9 +407,7 @@
             // 
             // soLanTrongNgayDataGridViewTextBoxColumn
             // 
-            this.soLanTrongNgayDataGridViewTextBoxColumn.AllowNegative = false;
             this.soLanTrongNgayDataGridViewTextBoxColumn.DataPropertyName = "SoLanTrongNgay";
-            this.soLanTrongNgayDataGridViewTextBoxColumn.DecimalLength = 0;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle5.Format = "N0";
             dataGridViewCellStyle5.NullValue = null;
@@ -404,9 +419,7 @@
             // 
             // soLuongTrongLanDataGridViewTextBoxColumn
             // 
-            this.soLuongTrongLanDataGridViewTextBoxColumn.AllowNegative = false;
             this.soLuongTrongLanDataGridViewTextBoxColumn.DataPropertyName = "SoLuongTrongLan";
-            this.soLuongTrongLanDataGridViewTextBoxColumn.DecimalLength = 0;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             dataGridViewCellStyle6.Format = "N0";
             dataGridViewCellStyle6.NullValue = null;
@@ -422,32 +435,14 @@
             this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
             this.noteDataGridViewTextBoxColumn.Width = 240;
             // 
-            // ctmToaThuoc
-            // 
-            this.ctmToaThuoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thuocThayTheToolStripMenuItem});
-            this.ctmToaThuoc.Name = "ctmToaThuoc";
-            this.ctmToaThuoc.Size = new System.Drawing.Size(159, 26);
-            // 
-            // thuocThayTheToolStripMenuItem
-            // 
-            this.thuocThayTheToolStripMenuItem.Name = "thuocThayTheToolStripMenuItem";
-            this.thuocThayTheToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.thuocThayTheToolStripMenuItem.Text = "Thuốc thay thế";
-            this.thuocThayTheToolStripMenuItem.Click += new System.EventHandler(this.thuocThayTheToolStripMenuItem_Click);
-            // 
-            // chiTietToaThuocBindingSource
-            // 
-            this.chiTietToaThuocBindingSource.DataSource = typeof(MM.Databasae.ChiTietToaThuoc);
-            // 
             // dlgAddToaThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(803, 568);
-            this.Controls.Add(this.dgChiTiet);
             this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.dgChiTiet);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -496,16 +491,16 @@
         private System.Windows.Forms.BindingSource chiTietToaThuocBindingSource;
         private System.Windows.Forms.ContextMenuStrip ctmToaThuoc;
         private System.Windows.Forms.ToolStripMenuItem thuocThayTheToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewComboBoxColumn thuocGUIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ThuocThayTheDataGridButtonColumn;
-        private Controls.TNumEditDataGridViewColumn soNgayUongDataGridViewTextBoxColumn;
-        private Controls.TNumEditDataGridViewColumn soLanTrongNgayDataGridViewTextBoxColumn;
-        private Controls.TNumEditDataGridViewColumn soLuongTrongLanDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnChonBenhNhan;
         private System.Windows.Forms.TextBox txtGioiTinh;
         private System.Windows.Forms.TextBox txtNgaySinh;
         private System.Windows.Forms.TextBox txtTenBenhNhan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
+        private System.Windows.Forms.DataGridViewComboBoxColumn thuocGUIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ThuocThayTheDataGridButtonColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soNgayUongDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLanTrongNgayDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongTrongLanDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
     }
 }
