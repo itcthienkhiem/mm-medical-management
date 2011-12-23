@@ -606,7 +606,7 @@ namespace MM.Controls
                
                 if (string.IsNullOrEmpty(initialFormattedValueStr))
                 {
-                    numEditBox.Text = "0";
+                    numEditBox.Text = m_Min.ToString();
                 }
                 else
                 {
@@ -648,7 +648,7 @@ namespace MM.Controls
 
             if (value == null || string.IsNullOrEmpty(formattedText))
             {
-                return "0";//baseFormattedValue;
+                return m_Min.ToString();//baseFormattedValue;
             }
 
             Decimal unformattedDecimal = System.Convert.ToDecimal(value); // 123.1 to "123.1"
@@ -661,12 +661,21 @@ namespace MM.Controls
 
             if (unformattedDecimal == formattedDecimal)
             {
-                string strValue = formattedDecimal.ToString("#,###");
-                if (strValue == string.Empty) strValue = "0";
-                return strValue;//formattedDecimal.ToString("F" + m_decimalLength.ToString());
+
+                //string strValue = formattedDecimal.ToString("#,###");
+                //if (strValue == string.Empty) strValue = "0";
+                return NumericToString(formattedDecimal, "#,###");//strValue;//formattedDecimal.ToString("F" + m_decimalLength.ToString());
             }
             return formattedText;
         }
+
+        private string NumericToString(decimal value, string format)
+        {
+            string strValue = value.ToString(format);
+            if (strValue == string.Empty) strValue = "0";
+            return strValue;
+        }
+
 
         private void OnCommonChange()
         {
