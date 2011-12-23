@@ -99,7 +99,39 @@ namespace MM.Controls
 
         private void OnDeletePhieuThu()
         {
+            List<string> deletedPTThuocList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgPhieuThu.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedPTThuocList.Add(row["PhieuThuThuocGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
 
+            if (deletedPTThuocList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những phiếu thu mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = PhieuThuThuocBus.DeletePhieuThuThuoc(deletedPTThuocList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu cần xóa.", IconType.Information);
         }
 
         private void OnPrint(bool isPreview)
