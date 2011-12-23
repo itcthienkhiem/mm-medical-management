@@ -10,6 +10,7 @@ using System.Threading;
 using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
+using MM.Dialogs;
 
 namespace MM.Controls
 {
@@ -88,7 +89,11 @@ namespace MM.Controls
 
         private void OnAddPhieuThu()
         {
+            dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
 
+            }
         }
 
         private void OnDeletePhieuThu()

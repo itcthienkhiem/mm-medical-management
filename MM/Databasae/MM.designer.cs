@@ -20091,6 +20091,10 @@ namespace MM.Databasae
 		
 		private string _DobStr;
 		
+		private string _FileNum;
+		
+		private string _Address;
+		
 		public ToaThuocView()
 		{
 		}
@@ -20363,6 +20367,38 @@ namespace MM.Databasae
 				if ((this._DobStr != value))
 				{
 					this._DobStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FileNum", DbType="NVarChar(50)")]
+		public string FileNum
+		{
+			get
+			{
+				return this._FileNum;
+			}
+			set
+			{
+				if ((this._FileNum != value))
+				{
+					this._FileNum = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(255)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
 				}
 			}
 		}
