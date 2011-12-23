@@ -73,7 +73,15 @@ namespace MM.Controls
 
         private void OnDisplayToaThuocList()
         {
-            Result result = KeToaBus.GetToaThuocList();
+            Result result = null;
+            if (_patientRow == null)
+                result = KeToaBus.GetToaThuocList();
+            else
+            {
+                string patientGUID = _patientRow["PatientGUID"].ToString();
+                result = KeToaBus.GetToaThuocList(patientGUID, Global.UserGUID);
+            }
+
             if (result.IsOK)
             {
                 MethodInvoker method = delegate

@@ -132,7 +132,7 @@
             // 
             // btnChonBenhNhan
             // 
-            this.btnChonBenhNhan.Location = new System.Drawing.Point(511, 93);
+            this.btnChonBenhNhan.Location = new System.Drawing.Point(531, 93);
             this.btnChonBenhNhan.Name = "btnChonBenhNhan";
             this.btnChonBenhNhan.Size = new System.Drawing.Size(105, 22);
             this.btnChonBenhNhan.TabIndex = 50;
@@ -153,7 +153,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(619, 97);
+            this.label7.Location = new System.Drawing.Point(511, 97);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(17, 13);
             this.label7.TabIndex = 48;
