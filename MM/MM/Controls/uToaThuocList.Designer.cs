@@ -256,7 +256,7 @@
             this.tenBenhNhanDataGridViewTextBoxColumn.HeaderText = "Tên bệnh nhân";
             this.tenBenhNhanDataGridViewTextBoxColumn.Name = "tenBenhNhanDataGridViewTextBoxColumn";
             this.tenBenhNhanDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenBenhNhanDataGridViewTextBoxColumn.Width = 150;
+            this.tenBenhNhanDataGridViewTextBoxColumn.Width = 200;
             // 
             // DobStr
             // 
