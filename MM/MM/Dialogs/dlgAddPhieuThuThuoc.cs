@@ -19,6 +19,7 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private bool _flag = true;
         private PhieuThuThuoc _phieuThuThuoc = new PhieuThuThuoc();
+        private DataRow _drPhieuThu = null;
         #endregion
 
         #region Constructor
@@ -26,6 +27,24 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             GenerateCode();
+        }
+
+        public dlgAddPhieuThuThuoc(DataRow drPhieuThu)
+        {
+            InitializeComponent();
+            _isNew = false;
+            _drPhieuThu = drPhieuThu;
+            btnOK.Enabled = false;
+            dgChiTiet.AllowUserToAddRows = false;
+            dgChiTiet.AllowUserToDeleteRows = false;
+            dgChiTiet.ReadOnly = true;
+            txtMaPhieuThu.ReadOnly = true;
+            cboMaToaThuoc.Enabled = false;
+            dtpkNgayThu.Enabled = false;
+            txtMaBenhNhan.ReadOnly = true;
+            txtTenBenhNhan.ReadOnly = true;
+            txtDiaChi.ReadOnly = true;
+            this.Text = "Xem phieu thu";
         }
         #endregion
 
@@ -58,6 +77,50 @@ namespace MM.Dialogs
             dtpkNgayThu.Value = DateTime.Now;
             OnDisplayToaThuocList();
             OnDisplayThuoc();
+        }
+
+        private void DisplayInfo(DataRow drPhieuThu)
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                txtMaPhieuThu.Text = drPhieuThu["MaPhieuThuThuoc"] as string;
+                cboMaToaThuoc.SelectedValue = drPhieuThu["ToaThuocGUID"].ToString();
+                dtpkNgayThu.Value = Convert.ToDateTime(drPhieuThu["NgayThu"]);
+                txtMaBenhNhan.Text = drPhieuThu["MaBenhNhan"] as string;
+                txtTenBenhNhan.Text = drPhieuThu["TenBenhNhan"] as string;
+                txtDiaChi.Text = drPhieuThu["DiaChi"] as string;
+
+                _phieuThuThuoc.PhieuThuThuocGUID = Guid.Parse(drPhieuThu["PhieuThuThuocGUID"].ToString());
+
+                if (drPhieuThu["CreatedDate"] != null && drPhieuThu["CreatedDate"] != DBNull.Value)
+                    _phieuThuThuoc.CreatedDate = Convert.ToDateTime(drPhieuThu["CreatedDate"]);
+
+                if (drPhieuThu["CreatedBy"] != null && drPhieuThu["CreatedBy"] != DBNull.Value)
+                    _phieuThuThuoc.CreatedBy = Guid.Parse(drPhieuThu["CreatedBy"].ToString());
+
+                if (drPhieuThu["UpdatedDate"] != null && drPhieuThu["UpdatedDate"] != DBNull.Value)
+                    _phieuThuThuoc.UpdatedDate = Convert.ToDateTime(drPhieuThu["UpdatedDate"]);
+
+                if (drPhieuThu["UpdatedBy"] != null && drPhieuThu["UpdatedBy"] != DBNull.Value)
+                    _phieuThuThuoc.UpdatedBy = Guid.Parse(drPhieuThu["UpdatedBy"].ToString());
+
+                if (drPhieuThu["DeletedDate"] != null && drPhieuThu["DeletedDate"] != DBNull.Value)
+                    _phieuThuThuoc.DeletedDate = Convert.ToDateTime(drPhieuThu["DeletedDate"]);
+
+                if (drPhieuThu["DeletedBy"] != null && drPhieuThu["DeletedBy"] != DBNull.Value)
+                    _phieuThuThuoc.DeletedBy = Guid.Parse(drPhieuThu["DeletedBy"].ToString());
+
+                _phieuThuThuoc.Status = Convert.ToByte(drPhieuThu["Status"]);
+
+                OnGetChiTietPhieuThuThuoc(_phieuThuThuoc.PhieuThuThuocGUID.ToString());
+                CalculateTongTien();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
         }
 
         private void OnDisplayThuoc()
@@ -171,8 +234,9 @@ namespace MM.Dialogs
 
         private void CalculateTongTien()
         {
+            int rowCount = _isNew ? dgChiTiet.RowCount - 1 : dgChiTiet.RowCount;
             double tongTien = 0;
-            for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
+            for (int i = 0; i < rowCount; i++)
             {
                 double tt = Convert.ToDouble(dgChiTiet[6, i].Value);
                 tongTien += tt;
@@ -428,7 +492,10 @@ namespace MM.Dialogs
         private void dlgAddPhieuThuThuoc_Load(object sender, EventArgs e)
         {
             InitData();
-            OnGetChiTietPhieuThuThuoc(Guid.Empty.ToString());
+            if (_isNew)
+                OnGetChiTietPhieuThuThuoc(Guid.Empty.ToString());
+            else
+                DisplayInfo(_drPhieuThu);
         }
 
         private void dlgAddPhieuThuThuoc_FormClosing(object sender, FormClosingEventArgs e)
@@ -444,6 +511,7 @@ namespace MM.Dialogs
 
         private void cboMaToaThuoc_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (!_isNew) return;
             string toaThuocGUID = cboMaToaThuoc.SelectedValue.ToString();
             if (toaThuocGUID == Guid.Empty.ToString())
             {

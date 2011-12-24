@@ -178,6 +178,7 @@
             this.dgPhieuThu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPhieuThu.Size = new System.Drawing.Size(878, 485);
             this.dgPhieuThu.TabIndex = 6;
+            this.dgPhieuThu.DoubleClick += new System.EventHandler(this.dgPhieuThu_DoubleClick);
             // 
             // colChecked
             // 
