@@ -230,6 +230,16 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu cần in.", IconType.Information);
         }
+
+        private void OnViewPhieuThuThuoc()
+        {
+            if (dgPhieuThu.SelectedRows == null || dgPhieuThu.SelectedRows.Count <= 0)
+                return;
+
+            DataRow drPhieuThu = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc(drPhieuThu);
+            dlg.ShowDialog(this);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -263,7 +273,10 @@ namespace MM.Controls
             }
         }
 
-       
+        private void dgPhieuThu_DoubleClick(object sender, EventArgs e)
+        {
+            OnViewPhieuThuThuoc();
+        }
         #endregion
 
         #region Working Thread
@@ -285,5 +298,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
