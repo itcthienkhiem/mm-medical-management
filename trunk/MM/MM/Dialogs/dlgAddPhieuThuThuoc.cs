@@ -148,6 +148,7 @@ namespace MM.Dialogs
                 }
 
                 CalculateTongTien();
+                RefreshNo();
             }
             else
             {
