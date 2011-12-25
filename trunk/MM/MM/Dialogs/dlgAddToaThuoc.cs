@@ -387,9 +387,21 @@ namespace MM.Dialogs
                         }
 
                         cttt.ThuocGUID = Guid.Parse(row["ThuocGUID"].ToString());
-                        cttt.SoNgayUong = Convert.ToInt32(row["SoNgayUong"]);
-                        cttt.SoLanTrongNgay = Convert.ToInt32(row["SoLanTrongNgay"]);
-                        cttt.SoLuongTrongLan = Convert.ToInt32(row["SoLuongTrongLan"]);
+
+                        if (row["SoNgayUong"] != null && row["SoNgayUong"] != DBNull.Value)
+                            cttt.SoNgayUong = Convert.ToInt32(row["SoNgayUong"]);
+                        else
+                            cttt.SoNgayUong = 1;
+
+                        if (row["SoLanTrongNgay"] != null && row["SoLanTrongNgay"] != DBNull.Value)
+                            cttt.SoLanTrongNgay = Convert.ToInt32(row["SoLanTrongNgay"]);
+                        else
+                            cttt.SoLanTrongNgay = 1;
+
+                        if (row["SoLuongTrongLan"] != null && row["SoLuongTrongLan"] != DBNull.Value)
+                            cttt.SoLuongTrongLan = Convert.ToInt32(row["SoLuongTrongLan"]);
+                        else
+                            cttt.SoLuongTrongLan = 1;
 
                         if (row["Note"] != null && row["Note"] != DBNull.Value)
                             cttt.Note = row["Note"].ToString();  
