@@ -677,6 +677,10 @@ namespace MM
                     OnDicom();
                     break;
 
+                case "ExcelTemplate":
+                    OnExcelTemplate();
+                    break;
+
                 case "Change Password":
                     OnChangePassword();
                     break;
@@ -842,6 +846,12 @@ namespace MM
             this.Text = string.Format("{0} - Phan quyen", Application.ProductName);
             ViewControl(_uPermission);
             _uPermission.DisplayAsThread();
+        }
+
+        private void OnExcelTemplate()
+        {
+            dlgExcelTemplate dlg = new dlgExcelTemplate();
+            dlg.ShowDialog();
         }
 
         private void OnDicom()
