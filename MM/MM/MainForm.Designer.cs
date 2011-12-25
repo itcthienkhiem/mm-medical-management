@@ -994,6 +994,7 @@
             // 
             // templateExcelToolStripMenuItem
             // 
+            this.templateExcelToolStripMenuItem.Image = global::MM.Properties.Resources.Excel2_icon;
             this.templateExcelToolStripMenuItem.Name = "templateExcelToolStripMenuItem";
             resources.ApplyResources(this.templateExcelToolStripMenuItem, "templateExcelToolStripMenuItem");
             this.templateExcelToolStripMenuItem.Tag = "ExcelTemplate";
