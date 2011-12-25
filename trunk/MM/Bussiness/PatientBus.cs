@@ -19,7 +19,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'False' ORDER BY FullName";
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'False' ORDER BY firstname, FullName";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
