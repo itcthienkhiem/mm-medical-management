@@ -623,6 +623,7 @@ namespace MM.Dialogs
         {
             if (!_flag) return;
 
+            _flag = false;
             DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
             if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
             string thuocGUID = cbo.SelectedValue.ToString();
@@ -631,6 +632,7 @@ namespace MM.Dialogs
             dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
             dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4].Value = giaThuoc;
             CalculateThanhTien();
+            _flag = true;
         }
 
         private void dgChiTiet_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

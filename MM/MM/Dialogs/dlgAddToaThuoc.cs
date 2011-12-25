@@ -260,6 +260,7 @@ namespace MM.Dialogs
                 return false;
             }
 
+
             if (dgChiTiet.RowCount > 1)
             {
                 for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
@@ -555,11 +556,13 @@ namespace MM.Dialogs
         {
             if (!_flag) return;
 
+            _flag = false;
             DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
             if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
             string thuocGUID = cbo.SelectedValue.ToString();
             string donViTinh = GetDonViTinh(thuocGUID);
             dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
+            _flag = true;
         }
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
