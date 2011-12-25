@@ -206,10 +206,10 @@ namespace MM.Dialogs
                     int soLanTrongNgay = Convert.ToInt32(row["SoLanTrongNgay"]);
                     int soLuongTrongLan = Convert.ToInt32(row["SoLuongTrongLan"]);
                     newRow["DonViTinh"] = donViTinh;
-                    newRow["SoLuong"] = soNgayUong * soLanTrongNgay * soLanTrongNgay;
+                    newRow["SoLuong"] = soNgayUong * soLanTrongNgay * soLuongTrongLan;
                     newRow["DonGia"] = donGia;
                     newRow["Giam"] = 0;
-                    newRow["ThanhTien"] = soNgayUong * soLanTrongNgay * soLanTrongNgay * donGia;
+                    newRow["ThanhTien"] = soNgayUong * soLanTrongNgay * soLuongTrongLan * donGia;
                     dtChiTiet.Rows.Add(newRow);
                 }
 
