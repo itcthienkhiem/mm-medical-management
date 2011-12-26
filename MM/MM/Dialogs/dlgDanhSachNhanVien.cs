@@ -18,6 +18,7 @@ namespace MM.Dialogs
         #region Members
         private string _contractGUID = string.Empty;
         private int _type = 0; //0: Chua kham; 1: Kham chua du; 2: Kham day du
+        private bool _isAscending = true;
         #endregion
 
         #region Constructor
@@ -80,7 +81,9 @@ namespace MM.Dialogs
         private void OnDisplayCheckList()
         {
             Cursor.Current = Cursors.WaitCursor;
+            if (dgDSNV.SelectedRows == null || dgDSNV.SelectedRows.Count <= 0) return;
             DataRow drMember = (dgDSNV.SelectedRows[0].DataBoundItem as DataRowView).Row;
+
             string patientGUID = drMember["PatientGUID"].ToString();
             Result result = CompanyContractBus.GetCheckList(_contractGUID, patientGUID);
             if (result.IsOK)
@@ -121,6 +124,40 @@ namespace MM.Dialogs
         {
             OnDisplayCheckList();
         }
+
+        private void dgDSNV_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                _isAscending = !_isAscending;
+
+                DataTable dt = dgDSNV.DataSource as DataTable;
+                List<DataRow> results = null;
+
+                if (_isAscending)
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                               select p).ToList<DataRow>();
+                }
+
+
+                DataTable newDataSource = dt.Clone();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgDSNV.DataSource = newDataSource;
+            }
+            else
+                _isAscending = false;
+        }
         #endregion
 
         #region Working Thread
@@ -142,6 +179,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }

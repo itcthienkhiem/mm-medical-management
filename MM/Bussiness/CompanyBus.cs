@@ -70,7 +70,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' ORDER BY FullName",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' ORDER BY FirstName, FullName",
                     companyGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -94,7 +94,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND CompanyMemberGUID NOT IN (SELECT CompanyMemberGUID FROM ContractMember WHERE CompanyContractGUID = '{2}' AND Status = {1}) ORDER BY FullName",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND CompanyMemberGUID NOT IN (SELECT CompanyMemberGUID FROM ContractMember WHERE CompanyContractGUID = '{2}' AND Status = {1}) ORDER BY FirstName, FullName",
                     companyGUID, (byte)Status.Actived, contractGUID);
                 return ExcuteQuery(query);
             }

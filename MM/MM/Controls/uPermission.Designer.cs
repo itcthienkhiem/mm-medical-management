@@ -39,10 +39,10 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgLogon = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.userViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StaffTypeStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLogon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userViewBindingSource)).BeginInit();
@@ -145,11 +145,8 @@
             this.dgLogon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgLogon.Size = new System.Drawing.Size(765, 463);
             this.dgLogon.TabIndex = 5;
+            this.dgLogon.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgLogon_ColumnHeaderMouseClick);
             this.dgLogon.DoubleClick += new System.EventHandler(this.dgLogon_DoubleClick);
-            // 
-            // userViewBindingSource
-            // 
-            this.userViewBindingSource.DataSource = typeof(MM.Databasae.UserView);
             // 
             // colChecked
             // 
@@ -183,6 +180,10 @@
             this.StaffTypeStr.HeaderText = "Loại";
             this.StaffTypeStr.Name = "StaffTypeStr";
             this.StaffTypeStr.ReadOnly = true;
+            // 
+            // userViewBindingSource
+            // 
+            this.userViewBindingSource.DataSource = typeof(MM.Databasae.UserView);
             // 
             // uPermission
             // 

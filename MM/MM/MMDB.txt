@@ -25,3 +25,4 @@ spDichVuHopDong
 - Update store: spMerge2Patients
 2011-12-26:
 - Update view: CompanyMemberView, ContractMemberView, UserView
+- Update store: spGetDanhSachNhanVien

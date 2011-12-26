@@ -23,6 +23,7 @@ namespace MM.Dialogs
         private string _contractGUID = string.Empty;
         private List<string> _addedMembers = null;
         private List<DataRow> _deletedMemberRows = null;
+        private bool _isAscending = true;
         #endregion
 
         #region Constructor
@@ -249,25 +250,36 @@ namespace MM.Dialogs
         private void OnSearchPatient()
         {
             UpdateCheckedMembers();
-
+            List<DataRow> results = null;
+            DataTable newDataSource = null;
             chkChecked.Checked = false;
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
-                dgMembers.DataSource = _dataSourceMember;
+                results = (from p in _dataSourceMember.AsEnumerable()
+                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                           select p).ToList<DataRow>();
+
+                newDataSource = _dataSourceMember.Clone();
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgMembers.DataSource = newDataSource;
+                _isAscending = true;
                 return;
             }
 
             string str = txtSearchPatient.Text.ToLower();
 
             //FullName
-            List<DataRow> results = (from p in _dataSourceMember.AsEnumerable()
+            results = (from p in _dataSourceMember.AsEnumerable()
                           where p.Field<string>("FullName") != null &&
                           p.Field<string>("FullName").Trim() != string.Empty &&
                           (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
                           str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0)
+                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                           select p).ToList<DataRow>();
 
-            DataTable newDataSource = _dataSourceMember.Clone();
+            newDataSource = _dataSourceMember.Clone();
             foreach (DataRow row in results)
                 newDataSource.Rows.Add(row.ItemArray);
 
@@ -284,6 +296,7 @@ namespace MM.Dialogs
                           p.Field<string>("FileNum").Trim() != string.Empty &&
                           (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
                       str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                       select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
@@ -585,6 +598,41 @@ namespace MM.Dialogs
                 row["Checked"] = chkServiceChecked.Checked;
             }
         }
+
+        private void dgMembers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                _isAscending = !_isAscending;
+
+                DataTable dt = dgMembers.DataSource as DataTable;
+                if (dt == null || dt.Rows.Count <= 0) return;
+                List<DataRow> results = null;
+
+                if (_isAscending)
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                               select p).ToList<DataRow>();
+                }
+
+
+                DataTable newDataSource = dt.Clone();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgMembers.DataSource = newDataSource;
+            }
+            else
+                _isAscending = false;
+        }
         #endregion
 
         #region Working Thread
@@ -608,7 +656,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-       
     }
 }

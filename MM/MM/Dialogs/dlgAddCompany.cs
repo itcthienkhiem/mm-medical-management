@@ -21,6 +21,7 @@ namespace MM.Dialogs
         private List<string> _addedPatients = new List<string>();
         private List<string> _deletedPatients = new List<string>();
         private List<DataRow> _deletedPatientRows = new List<DataRow>();
+        private bool _isAscending = true;
         #endregion
 
         #region Constructor
@@ -408,6 +409,41 @@ namespace MM.Dialogs
                 e.KeyChar != '\b')
                 e.Handled = true;
         }
+
+        private void dgMembers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                _isAscending = !_isAscending;
+
+                DataTable dt = dgMembers.DataSource as DataTable;
+                if (dt == null || dt.Rows.Count <= 0) return;
+                List<DataRow> results = null;
+
+                if (_isAscending)
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                               select p).ToList<DataRow>();
+                }
+
+
+                DataTable newDataSource = dt.Clone();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgMembers.DataSource = newDataSource;
+            }
+            else
+                _isAscending = false;
+        }
         #endregion
 
         #region Working Thread
@@ -446,5 +482,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

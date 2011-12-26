@@ -25,6 +25,7 @@ namespace MM.Dialogs
         private Hashtable _htCompany = new Hashtable();
         private CompanyInfo _selectedCompanyInfo = null;
         private bool _flag = true;
+        private bool _isAscending = true;
         #endregion
 
         #region Constructor
@@ -774,6 +775,41 @@ namespace MM.Dialogs
                 row["Checked"] = chkCheckedMember.Checked;
             }
         }
+
+        private void dgMembers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                _isAscending = !_isAscending;
+
+                DataTable dt = dgMembers.DataSource as DataTable;
+                if (dt == null || dt.Rows.Count <= 0) return;
+                List<DataRow> results = null;
+
+                if (_isAscending)
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                               select p).ToList<DataRow>();
+                }
+
+
+                DataTable newDataSource = dt.Clone();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgMembers.DataSource = newDataSource;
+            }
+            else
+                _isAscending = false;
+        }
         #endregion
 
         #region Working Thread
@@ -812,5 +848,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
