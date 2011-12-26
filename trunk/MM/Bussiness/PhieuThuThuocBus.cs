@@ -149,7 +149,7 @@ namespace MM.Bussiness
                                 LoThuoc loThuoc = (from th in db.Thuocs
                                                    join l in db.LoThuocs on th.ThuocGUID equals l.ThuocGUID
                                                    where th.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
-                                                   l.SoLuongNhap * l.SoLuongQuiDoi >= l.SoLuongXuat - soLuong &&
+                                                   l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
                                                    l.SoLuongXuat - soLuong >= 0 &&
                                                    l.NgayHetHan > dt && th.ThuocGUID == ctptt.ThuocGUID
                                                    orderby l.NgayHetHan descending
@@ -253,15 +253,16 @@ namespace MM.Bussiness
                             ctptt.ChiTietPhieuThuThuocGUID = Guid.NewGuid();
                             db.ChiTietPhieuThuThuocs.InsertOnSubmit(ctptt);
 
+                            int soLuong = Convert.ToInt32(ctptt.SoLuong);
                             LoThuoc loThuoc = (from t in db.Thuocs
                                                join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
                                                where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
-                                               l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
+                                               l.SoLuongNhap * l.SoLuongQuiDoi >= l.SoLuongXuat + soLuong &&
                                                l.NgayHetHan > dt && t.ThuocGUID == ctptt.ThuocGUID
                                                orderby l.NgayHetHan
                                                select l).FirstOrDefault();
                             if (loThuoc != null)
-                                loThuoc.SoLuongXuat += Convert.ToInt32(ctptt.SoLuong);
+                                loThuoc.SoLuongXuat += soLuong;
                         }
 
                         db.SubmitChanges();
