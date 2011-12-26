@@ -26,3 +26,9 @@ spDichVuHopDong
 2011-12-26:
 - Update view: CompanyMemberView, ContractMemberView, UserView
 - Update store: spGetDanhSachNhanVien
+
+
+- Hợp đồng thêm ngày hết hạn hợp đồng
+- Report Dịch vụ hợp đồng thêm ngày khám, SDĐ, raido option, (từ ngày tới ngày: tháng)
+- Report Dịch vụ khám tự túc (từ ngày tới ngày: 1 tháng) - bênh nhân thêm field công ty (nếu kô nhập cty thì là tự túc)
+- Chỉ định bác sĩ.
