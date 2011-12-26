@@ -161,6 +161,7 @@
             this.dgMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgMembers.Size = new System.Drawing.Size(503, 481);
             this.dgMembers.TabIndex = 10;
+            this.dgMembers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMembers_ColumnHeaderMouseClick);
             // 
             // fileNumDataGridViewTextBoxColumn
             // 
@@ -439,6 +440,7 @@
             this.dgSelectedMember.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSelectedMember.Size = new System.Drawing.Size(553, 481);
             this.dgSelectedMember.TabIndex = 11;
+            this.dgSelectedMember.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgSelectedMember_ColumnHeaderMouseClick);
             // 
             // dataGridViewTextBoxColumn1
             // 

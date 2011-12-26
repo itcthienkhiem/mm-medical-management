@@ -138,6 +138,7 @@
             this.dgPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPatient.Size = new System.Drawing.Size(1101, 365);
             this.dgPatient.TabIndex = 2;
+            this.dgPatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_ColumnHeaderMouseClick);
             this.dgPatient.DoubleClick += new System.EventHandler(this.dgDocStaff_DoubleClick);
             // 
             // patientViewBindingSource

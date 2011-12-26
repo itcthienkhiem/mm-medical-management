@@ -95,6 +95,7 @@
             this.dgDuplicatePatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgDuplicatePatient.Size = new System.Drawing.Size(867, 437);
             this.dgDuplicatePatient.TabIndex = 3;
+            this.dgDuplicatePatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgDuplicatePatient_ColumnHeaderMouseClick);
             // 
             // FileNum
             // 

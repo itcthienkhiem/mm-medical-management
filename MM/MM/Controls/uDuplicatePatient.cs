@@ -18,6 +18,7 @@ namespace MM.Controls
     {
         #region Members
         private DataTable _dataSource = null;
+        private bool _isAscending = true;
         #endregion
 
         #region Constructor
@@ -87,24 +88,36 @@ namespace MM.Controls
 
         private void OnSearchPatient()
         {
+            List<DataRow> results = null;
+            DataTable newDataSource = null;
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
-                dgDuplicatePatient.DataSource = _dataSource;
+                results = (from p in _dataSource.AsEnumerable()
+                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                           select p).ToList<DataRow>();
+
+                newDataSource = _dataSource.Clone();
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgDuplicatePatient.DataSource = newDataSource;
                 if (dgDuplicatePatient.RowCount > 0) dgDuplicatePatient.Rows[0].Selected = true;
+                _isAscending = true;
                 return;
             }
 
             string str = txtSearchPatient.Text.ToLower();
 
             //FullName
-            List<DataRow> results = (from p in _dataSource.AsEnumerable()
+            results = (from p in _dataSource.AsEnumerable()
                                      where (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
                                      str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) &&
                                      p.Field<string>("FullName") != null &&
                                      p.Field<string>("FullName").Trim() != string.Empty
+                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                                      select p).ToList<DataRow>();
 
-            DataTable newDataSource = _dataSource.Clone();
+            newDataSource = _dataSource.Clone();
             foreach (DataRow row in results)
                 newDataSource.Rows.Add(row.ItemArray);
 
@@ -121,6 +134,7 @@ namespace MM.Controls
                            p.Field<string>("FileNum").Trim() != string.Empty &&
                            (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
                        str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                        select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
@@ -138,6 +152,7 @@ namespace MM.Controls
                        p.Field<string>("HomePhone").Trim() != string.Empty &&
                        (p.Field<string>("HomePhone").ToLower().IndexOf(str) >= 0 ||
                        str.IndexOf(p.Field<string>("HomePhone").ToLower()) >= 0)
+                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                        select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
@@ -155,6 +170,7 @@ namespace MM.Controls
                            p.Field<string>("WorkPhone").Trim() != string.Empty &&
                            (p.Field<string>("WorkPhone").ToLower().IndexOf(str) >= 0 ||
                        str.IndexOf(p.Field<string>("WorkPhone").ToLower()) >= 0)
+                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                        select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
@@ -172,6 +188,7 @@ namespace MM.Controls
                            p.Field<string>("Mobile").Trim() != string.Empty &&
                            (p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 ||
                        str.IndexOf(p.Field<string>("Mobile").ToLower()) >= 0)
+                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                        select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
@@ -229,6 +246,42 @@ namespace MM.Controls
 
             }
         }
+
+        private void dgDuplicatePatient_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                _isAscending = !_isAscending;
+                DataTable dt = dgDuplicatePatient.DataSource as DataTable;
+
+                List<DataRow> results = null;
+
+                if (_isAscending)
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                               select p).ToList<DataRow>();
+                }
+
+
+                DataTable newDataSource = dt.Clone();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgDuplicatePatient.DataSource = newDataSource;
+            }
+            else
+                _isAscending = false;
+        }
         #endregion
+
+        
     }
 }

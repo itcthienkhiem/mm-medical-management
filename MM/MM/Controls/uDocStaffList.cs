@@ -17,7 +17,7 @@ namespace MM.Controls
     public partial class uDocStaffList : uBase
     {
         #region Members
-
+        private bool _isAscending = true;
         #endregion
 
         #region Constructor
@@ -270,6 +270,40 @@ namespace MM.Controls
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void dgDocStaff_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                _isAscending = !_isAscending;
+                DataTable dt = dgDocStaff.DataSource as DataTable;
+
+                List<DataRow> results = null;
+
+                if (_isAscending)
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                               select p).ToList<DataRow>();
+                }
+
+
+                DataTable newDataSource = dt.Clone();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgDocStaff.DataSource = newDataSource;
+            }
+            else
+                _isAscending = false;
+        }
         #endregion
 
         #region Working Thread
@@ -291,5 +325,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
