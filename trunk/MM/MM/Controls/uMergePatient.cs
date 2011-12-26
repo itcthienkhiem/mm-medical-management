@@ -14,6 +14,8 @@ namespace MM.Controls
     public partial class uMergePatient : UserControl
     {
         private DataTable _dataSource = null;
+        private bool _isAscending = true;
+
         public uMergePatient()
         {
             InitializeComponent();
@@ -62,6 +64,41 @@ namespace MM.Controls
             MsgBox.Show("Merge benh nhan", "Merge kết thúc", IconType.Information);
             if(Form.ActiveForm!=null)
                 Form.ActiveForm.Close();
+        }
+
+        private void dgMergePatient_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                _isAscending = !_isAscending;
+
+                DataTable dt = dgMergePatient.DataSource as DataTable;
+                if (dt == null || dt.Rows.Count <= 0) return;
+                List<DataRow> results = null;
+
+                if (_isAscending)
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else
+                {
+                    results = (from p in dt.AsEnumerable()
+                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                               select p).ToList<DataRow>();
+                }
+
+
+                DataTable newDataSource = dt.Clone();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgMergePatient.DataSource = newDataSource;
+            }
+            else
+                _isAscending = false;
         }
     }
 }

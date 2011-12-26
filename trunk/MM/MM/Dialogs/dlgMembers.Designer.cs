@@ -320,6 +320,7 @@
             this.dgMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgMembers.Size = new System.Drawing.Size(666, 496);
             this.dgMembers.TabIndex = 8;
+            this.dgMembers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMembers_ColumnHeaderMouseClick);
             // 
             // colChecked
             // 

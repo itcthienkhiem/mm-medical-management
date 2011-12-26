@@ -98,6 +98,7 @@
             this.dgMergePatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgMergePatient.Size = new System.Drawing.Size(827, 176);
             this.dgMergePatient.TabIndex = 4;
+            this.dgMergePatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMergePatient_ColumnHeaderMouseClick);
             // 
             // fileNumDataGridViewTextBoxColumn
             // 

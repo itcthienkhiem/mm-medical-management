@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT CAST(0 AS Bit) AS Checked, * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 AND LogonGUID <> '00000000-0000-0000-0000-000000000000' ORDER BY Fullname";
+                string query = "SELECT CAST(0 AS Bit) AS Checked, * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 AND LogonGUID <> '00000000-0000-0000-0000-000000000000' ORDER BY FirstName, Fullname";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
