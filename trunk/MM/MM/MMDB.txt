@@ -21,3 +21,7 @@ spDichVuHopDong
 - Insert: Function (ThuocHetHan, ThuocTonKho, PhieuThuThuoc)
 2011-12-23
 - Update view: ToaThuocView
+2011-12-24
+- Update store: spMerge2Patients
+2011-12-26:
+- Update view: CompanyMemberView, ContractMemberView, UserView
