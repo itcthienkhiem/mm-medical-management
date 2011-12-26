@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 ORDER BY Fullname";
+                string query = "SELECT * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 ORDER BY FirstName, Fullname";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
