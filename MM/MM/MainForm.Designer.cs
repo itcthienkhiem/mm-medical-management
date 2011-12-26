@@ -143,6 +143,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -967,6 +968,7 @@
             this.medicalManagementHelpToolStripMenuItem,
             this.toolStripSeparator2,
             this.aboutMedicalManagementToolStripMenuItem,
+            this.toolStripSeparator25,
             this.templateExcelToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
@@ -999,6 +1001,11 @@
             resources.ApplyResources(this.templateExcelToolStripMenuItem, "templateExcelToolStripMenuItem");
             this.templateExcelToolStripMenuItem.Tag = "ExcelTemplate";
             this.templateExcelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator25
+            // 
+            this.toolStripSeparator25.Name = "toolStripSeparator25";
+            resources.ApplyResources(this.toolStripSeparator25, "toolStripSeparator25");
             // 
             // MainForm
             // 
@@ -1140,6 +1147,7 @@
         private System.Windows.Forms.ToolStripButton tbPhieuThuThuoc;
         private Controls.uPhieuThuThuocList _uPhieuThuThuocList;
         private System.Windows.Forms.ToolStripMenuItem templateExcelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator25;
 
     }
 }
