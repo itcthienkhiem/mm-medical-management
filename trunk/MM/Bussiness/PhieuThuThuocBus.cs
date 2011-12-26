@@ -131,6 +131,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    DateTime dt = DateTime.Now;
                     foreach (string key in phieuThuThuocKeys)
                     {
                         PhieuThuThuoc ptthuoc = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(p => p.PhieuThuThuocGUID.ToString() == key);
@@ -139,6 +140,23 @@ namespace MM.Bussiness
                             ptthuoc.DeletedDate = DateTime.Now;
                             ptthuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             ptthuoc.Status = (byte)Status.Deactived;
+
+                            //Update So luong Lo thuoc
+                            var ctptts = ptthuoc.ChiTietPhieuThuThuocs;
+                            foreach (var ctptt in ctptts)
+                            {
+                                int soLuong = Convert.ToInt32(ctptt.SoLuong);    
+                                LoThuoc loThuoc = (from th in db.Thuocs
+                                                   join l in db.LoThuocs on th.ThuocGUID equals l.ThuocGUID
+                                                   where th.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
+                                                   l.SoLuongNhap * l.SoLuongQuiDoi >= l.SoLuongXuat - soLuong &&
+                                                   l.SoLuongXuat - soLuong >= 0 &&
+                                                   l.NgayHetHan > dt && th.ThuocGUID == ctptt.ThuocGUID
+                                                   orderby l.NgayHetHan descending
+                                                   select l).FirstOrDefault();
+                                if (loThuoc != null)
+                                    loThuoc.SoLuongXuat -= soLuong;    
+                            }
                         }
                     }
 
