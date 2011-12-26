@@ -142,8 +142,8 @@
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.templateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
+            this.templateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -994,6 +994,11 @@
             this.aboutMedicalManagementToolStripMenuItem.Tag = "About";
             this.aboutMedicalManagementToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator25
+            // 
+            this.toolStripSeparator25.Name = "toolStripSeparator25";
+            resources.ApplyResources(this.toolStripSeparator25, "toolStripSeparator25");
+            // 
             // templateExcelToolStripMenuItem
             // 
             this.templateExcelToolStripMenuItem.Image = global::MM.Properties.Resources.Excel2_icon;
@@ -1001,11 +1006,6 @@
             resources.ApplyResources(this.templateExcelToolStripMenuItem, "templateExcelToolStripMenuItem");
             this.templateExcelToolStripMenuItem.Tag = "ExcelTemplate";
             this.templateExcelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // toolStripSeparator25
-            // 
-            this.toolStripSeparator25.Name = "toolStripSeparator25";
-            resources.ApplyResources(this.toolStripSeparator25, "toolStripSeparator25");
             // 
             // MainForm
             // 
