@@ -356,12 +356,13 @@ namespace MM.Dialogs
                         return false;
                     }
 
-                    r = LoThuocBus.CheckThuocTonKho(thuocGUID);
+                    int soLuong = Convert.ToInt32(row.Cells[3].Value);
+                    r = LoThuocBus.CheckThuocTonKho(thuocGUID, soLuong);
                     if (r.IsOK)
                     {
                         if (!Convert.ToBoolean(r.QueryResult))
                         {
-                            MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết. Vui lòng chọn thuốc khác.", tenThuoc), IconType.Information);
+                            MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết hoặc không đủ số lượng để bán. Vui lòng chọn thuốc khác.", tenThuoc), IconType.Information);
                             return false;
                         }
                     }

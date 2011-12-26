@@ -78,7 +78,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CheckThuocTonKho(string thuocGUID)
+        public static Result CheckThuocTonKho(string thuocGUID, int soLuong)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -89,7 +89,7 @@ namespace MM.Bussiness
                 List<Thuoc> thuocResults = (from t in db.Thuocs
                                             join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
                                             where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
-                                            l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
+                                            l.SoLuongNhap * l.SoLuongQuiDoi >= l.SoLuongXuat + soLuong &&
                                             t.ThuocGUID.ToString() == thuocGUID
                                             select t).ToList<Thuoc>();
 
