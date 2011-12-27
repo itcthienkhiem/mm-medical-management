@@ -21,6 +21,7 @@ namespace MM.Controls
         private DateTime _tuNgay = DateTime.Now;
         private DateTime _denNgay = DateTime.Now;
         private int _type = 0;
+        private List<spDichVuHopDongResult> _results = null;
         #endregion
 
         #region Constructor
@@ -88,12 +89,14 @@ namespace MM.Controls
             Result result = ReportBus.GetDichVuHopDong(_contractGUID, _tuNgay, _denNgay, _type);
             if (result.IsOK)
             {
-                ReportDataSource reportDataSource = new ReportDataSource("spDichVuHopDongResult",
-                    (List<spDichVuHopDongResult>)result.QueryResult);
+                _results = (List<spDichVuHopDongResult>)result.QueryResult;
 
+                ReportDataSource reportDataSource = new ReportDataSource("spDichVuHopDongResult", _results);
+                
                 MethodInvoker method = delegate
                 {
                    _ucReportViewer.ViewReport("MM.Templates.rptDichVuHopDong.rdlc", reportDataSource);
+                   btnExportExcel.Enabled = AllowExport && _results.Count > 0;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -145,6 +148,11 @@ namespace MM.Controls
         {
             ViewAsThread();
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            if (_results == null || _results.Count <= 0) return;
+        }
         #endregion
 
         #region Working Thread
@@ -184,5 +192,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

@@ -123,6 +123,7 @@
             this.btnExportExcel.TabIndex = 2;
             this.btnExportExcel.Text = "      &Xuất Excel";
             this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // panel3
             // 

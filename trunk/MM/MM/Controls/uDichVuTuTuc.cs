@@ -19,6 +19,7 @@ namespace MM.Controls
         #region Members
         private DateTime _tuNgay = DateTime.Now;
         private DateTime _denNgay = DateTime.Now;
+        private List<spDichVuTuTucResult> _results = null;
         #endregion
 
         #region Constructor
@@ -69,12 +70,13 @@ namespace MM.Controls
             Result result = ReportBus.GetDichVuTuTuc(_tuNgay, _denNgay);
             if (result.IsOK)
             {
-                ReportDataSource reportDataSource = new ReportDataSource("spDichVuTuTucResult",
-                    (List<spDichVuTuTucResult>)result.QueryResult);
+                _results = (List<spDichVuTuTucResult>)result.QueryResult;
+                ReportDataSource reportDataSource = new ReportDataSource("spDichVuTuTucResult", _results);
 
                 MethodInvoker method = delegate
                 {
                     _ucReportViewer.ViewReport("MM.Templates.rptDichVuTuTuc.rdlc", reportDataSource);
+                    btnExportExcel.Enabled = AllowExport && _results.Count > 0;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -92,6 +94,12 @@ namespace MM.Controls
         private void btnView_Click(object sender, EventArgs e)
         {
             ViewAsThread();
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            if (_results == null || _results.Count <= 0) return;
+
         }
         #endregion
 
@@ -114,5 +122,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
