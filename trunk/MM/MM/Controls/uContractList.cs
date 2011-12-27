@@ -99,7 +99,11 @@ namespace MM.Controls
                 newRow["ContractCode"] = dlg.Contract.ContractCode;
                 newRow["ContractName"] = dlg.Contract.ContractName;
                 newRow["BeginDate"] = dlg.Contract.BeginDate;
-                newRow["EndDate"] = dlg.Contract.EndDate;
+                if (dlg.Contract.EndDate != null)
+                    newRow["EndDate"] = dlg.Contract.EndDate;
+                else
+                    newRow["EndDate"] = DBNull.Value;
+
                 newRow["Completed"] = dlg.Contract.Completed;
 
                 if (dlg.Contract.CreatedDate.HasValue)
