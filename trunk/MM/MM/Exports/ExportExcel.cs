@@ -170,6 +170,7 @@ namespace MM.Exports
 
         public static bool ExportSymptomToExcel(string exportFileName, List<DataRow> checkedRows)
         {
+            Cursor.Current = Cursors.WaitCursor;
             string excelTemplateName = string.Format("{0}\\Templates\\SymptomTemplate.xls", Application.StartupPath);
             IWorkbook workBook = null;
 
@@ -385,6 +386,7 @@ namespace MM.Exports
 
         public static bool ExportToaThuocToExcel(string exportFileName, string toaThuocGUID)
         {
+            Cursor.Current = Cursors.WaitCursor;
             string excelTemplateName = string.Format("{0}\\Templates\\ToaThuocTemplate.xls", Application.StartupPath);
             IWorkbook workBook = null;
 
@@ -643,6 +645,7 @@ namespace MM.Exports
 
         public static bool ExportDichVuHopDongToExcel(string exportFileName, List<spDichVuHopDongResult> results)
         {
+            Cursor.Current = Cursors.WaitCursor;
             string excelTemplateName = string.Format("{0}\\Templates\\DichVuHopDongTemplate.xls", Application.StartupPath);
             IWorkbook workBook = null;
 
@@ -714,6 +717,7 @@ namespace MM.Exports
 
         public static bool ExportDichVuTuTucToExcel(string exportFileName, List<spDichVuTuTucResult> results)
         {
+            Cursor.Current = Cursors.WaitCursor;
             string excelTemplateName = string.Format("{0}\\Templates\\DichVuTuTucTemplate.xls", Application.StartupPath);
             IWorkbook workBook = null;
 
