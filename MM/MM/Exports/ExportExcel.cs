@@ -681,11 +681,80 @@ namespace MM.Exports
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
 
+                range = workSheet.Cells[string.Format("A5:A{0}", results.Count + 5)];
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+
                 range = workSheet.Cells[string.Format("C5:C{0}", results.Count + 5)];
                 range.HorizontalAlignment = HAlign.Center;
                 range.VerticalAlignment = VAlign.Top;
 
                 range = workSheet.Cells[string.Format("E5:E{0}", results.Count + 5)];
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportDichVuTuTucToExcel(string exportFileName, List<spDichVuTuTucResult> results)
+        {
+            string excelTemplateName = string.Format("{0}\\Templates\\DichVuTuTucTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+
+                DateTime tuNgay = results[0].TuNgay.Value;
+                DateTime denNgay = results[0].DenNgay.Value;
+
+                workSheet.Cells["B2"].Value = string.Format("Từ ngày: {0} Đến ngày: {1}", tuNgay.ToString("dd/MM/yyyy"), denNgay.ToString("dd/MM/yyyy"));
+
+                int rowIndex = 4;
+                int stt = 1;
+                foreach (var result in results)
+                {
+                    workSheet.Cells[rowIndex, 0].Value = stt;
+                    workSheet.Cells[rowIndex, 1].Value = result.FullName;
+                    if (result.NgayKham.HasValue)
+                        workSheet.Cells[rowIndex, 2].Value = result.NgayKham.Value.ToString("dd/MM/yyyy");
+
+                    workSheet.Cells[rowIndex, 3].Value = result.Mobile;
+                    workSheet.Cells[rowIndex, 4].Value = result.CompanyName;
+                    rowIndex++;
+                    stt++;
+                }
+
+                IRange range = workSheet.Cells[string.Format("A5:E{0}", results.Count + 4)];
+                range.WrapText = true;
+                range.HorizontalAlignment = HAlign.General;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                range = workSheet.Cells[string.Format("A5:A{0}", results.Count + 4)];
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+
+                range = workSheet.Cells[string.Format("C5:C{0}", results.Count + 4)];
                 range.HorizontalAlignment = HAlign.Center;
                 range.VerticalAlignment = VAlign.Top;
 

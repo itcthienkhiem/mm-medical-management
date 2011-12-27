@@ -11,6 +11,7 @@ using Microsoft.Reporting.WinForms;
 using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -99,7 +100,13 @@ namespace MM.Controls
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
             if (_results == null || _results.Count <= 0) return;
-
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "Export Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                ExportExcel.ExportDichVuTuTucToExcel(dlg.FileName, _results);
+            }
         }
         #endregion
 
