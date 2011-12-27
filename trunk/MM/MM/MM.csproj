@@ -886,7 +886,7 @@
     <EmbeddedResource Include="Controls\uPatient.resx">
       <DependentUpon>uPatient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Templates\rptDichVuHopDong3.rdlc" />
+    <EmbeddedResource Include="Templates\rptDichVuHopDong.rdlc" />
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienChiTiet.rdlc" />
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienTongHop.rdlc" />
     <EmbeddedResource Include="Templates\rptThuocHetHan.rdlc" />
