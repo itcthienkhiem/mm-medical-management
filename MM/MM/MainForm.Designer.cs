@@ -132,6 +132,8 @@
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.dichVuHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
+            this.dichVuTuTucToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator26 = new System.Windows.Forms.ToolStripSeparator();
             this.thuocHetHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
             this.thuocTonKhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -144,6 +146,7 @@
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
             this.templateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uDichVuTuTuc = new MM.Controls.uDichVuTuTuc();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -155,6 +158,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uDichVuTuTuc);
             this._mainPanel.Controls.Add(this._uPhieuThuThuocList);
             this._mainPanel.Controls.Add(this._uBaoCaoThuocTonKho);
             this._mainPanel.Controls.Add(this._uBaoCaoThuocHetHan);
@@ -886,6 +890,8 @@
             this.toolStripSeparator16,
             this.dichVuHopDongToolStripMenuItem,
             this.toolStripSeparator22,
+            this.dichVuTuTucToolStripMenuItem,
+            this.toolStripSeparator26,
             this.thuocHetHanToolStripMenuItem,
             this.toolStripSeparator23,
             this.thuocTonKhoToolStripMenuItem});
@@ -917,6 +923,18 @@
             // 
             this.toolStripSeparator22.Name = "toolStripSeparator22";
             resources.ApplyResources(this.toolStripSeparator22, "toolStripSeparator22");
+            // 
+            // dichVuTuTucToolStripMenuItem
+            // 
+            this.dichVuTuTucToolStripMenuItem.Name = "dichVuTuTucToolStripMenuItem";
+            resources.ApplyResources(this.dichVuTuTucToolStripMenuItem, "dichVuTuTucToolStripMenuItem");
+            this.dichVuTuTucToolStripMenuItem.Tag = "DichVuTuTuc";
+            this.dichVuTuTucToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator26
+            // 
+            this.toolStripSeparator26.Name = "toolStripSeparator26";
+            resources.ApplyResources(this.toolStripSeparator26, "toolStripSeparator26");
             // 
             // thuocHetHanToolStripMenuItem
             // 
@@ -1006,6 +1024,11 @@
             resources.ApplyResources(this.templateExcelToolStripMenuItem, "templateExcelToolStripMenuItem");
             this.templateExcelToolStripMenuItem.Tag = "ExcelTemplate";
             this.templateExcelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // _uDichVuTuTuc
+            // 
+            resources.ApplyResources(this._uDichVuTuTuc, "_uDichVuTuTuc");
+            this._uDichVuTuTuc.Name = "_uDichVuTuTuc";
             // 
             // MainForm
             // 
@@ -1148,6 +1171,9 @@
         private Controls.uPhieuThuThuocList _uPhieuThuThuocList;
         private System.Windows.Forms.ToolStripMenuItem templateExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator25;
+        private System.Windows.Forms.ToolStripMenuItem dichVuTuTucToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator26;
+        private Controls.uDichVuTuTuc _uDichVuTuTuc;
 
     }
 }

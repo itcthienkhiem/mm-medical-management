@@ -283,6 +283,12 @@
     <Compile Include="Controls\uDichVuHopDong.Designer.cs">
       <DependentUpon>uDichVuHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uDichVuTuTuc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uDichVuTuTuc.Designer.cs">
+      <DependentUpon>uDichVuTuTuc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uDoanhThuNhanVien.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -692,6 +698,9 @@
     <EmbeddedResource Include="Controls\uDichVuHopDong.resx">
       <DependentUpon>uDichVuHopDong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uDichVuTuTuc.resx">
+      <DependentUpon>uDichVuTuTuc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDoanhThuNhanVien.resx">
       <DependentUpon>uDoanhThuNhanVien.cs</DependentUpon>
     </EmbeddedResource>
@@ -887,6 +896,7 @@
       <DependentUpon>uPatient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Templates\rptDichVuHopDong.rdlc" />
+    <EmbeddedResource Include="Templates\rptDichVuTuTuc.rdlc" />
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienChiTiet.rdlc" />
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienTongHop.rdlc" />
     <EmbeddedResource Include="Templates\rptThuocHetHan.rdlc" />
@@ -914,6 +924,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDichVuHopDongResult.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.spDichVuTuTucResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienChiTietResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienTongHopResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
@@ -973,6 +984,7 @@
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
     <None Include="Resources\export-excel-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2011-12-28_2011-12-31.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-26_2011-12-27.sql" />
     <None Include="Resources\filter-icon.png" />
     <None Include="Resources\product-sales-report-icon.png" />

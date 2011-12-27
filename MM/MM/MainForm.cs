@@ -158,6 +158,8 @@ namespace MM
                 _uBaoCaoThuocTonKho.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uPhieuThuThuocList))
                 _uPhieuThuThuocList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uDichVuTuTuc))
+                _uDichVuTuTuc.InitData();
         }
 
         private void SaveAppConfig()
@@ -458,6 +460,16 @@ namespace MM
                             _uPhieuThuThuocList.AllowExport = isExport;
                             _uPhieuThuThuocList.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.DichVuTuTuc)
+                        {
+                            dichVuTuTucToolStripMenuItem.Enabled = isView && isLogin;
+                            _uDichVuTuTuc.AllowAdd = isAdd;
+                            _uDichVuTuTuc.AllowEdit = isEdit;
+                            _uDichVuTuTuc.AllowDelete = isDelete;
+                            _uDichVuTuTuc.AllowPrint = isPrint;
+                            _uDichVuTuTuc.AllowExport = isExport;
+                            _uDichVuTuTuc.AllowImport = isImport;
+                        }
                     }
                 }
                 else
@@ -605,6 +617,8 @@ namespace MM
                 thuocTonKhoToolStripMenuItem.Enabled = isLogin;
                 phieuThuThuocToolStripMenuItem.Enabled = isLogin;
                 tbPhieuThuThuoc.Enabled = isLogin;
+
+                dichVuTuTucToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -740,7 +754,18 @@ namespace MM
                 case "PhieuThuThuoc":
                     OnPhieuThuThuoc();
                     break;
+
+                case "DichVuTuTuc":
+                    OnDichVuTuTuc();
+                    break;
             }
+        }
+
+        private void OnDichVuTuTuc()
+        {
+            this.Text = string.Format("{0} - Bao cao dich vu tu tuc", Application.ProductName);
+            ViewControl(_uDichVuTuTuc);
+            _uDichVuTuTuc.InitData();
         }
 
         private void OnPhieuThuThuoc()

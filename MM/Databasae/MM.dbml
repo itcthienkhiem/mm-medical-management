@@ -1080,12 +1080,27 @@
     <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="Type" Parameter="type" Type="System.Int32" DbType="Int" />
     <ElementType Name="spDichVuHopDongResult">
+      <Column Name="TuNgay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DenNgay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="ContractName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="NgayKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="FirstName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="TinhTrang" Type="System.String" DbType="NVarChar(9) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spDichVuTuTuc" Method="spDichVuTuTuc">
+    <Parameter Name="TuNgay" Parameter="tuNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="spDichVuTuTucResult">
+      <Column Name="TuNgay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DenNgay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NgayKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
