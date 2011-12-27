@@ -942,6 +942,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Templates\DichVuHopDongTemplate.xls" />
+    <None Include="Templates\DichVuTuTucTemplate.xls" />
     <None Include="Templates\HDGTGTTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
