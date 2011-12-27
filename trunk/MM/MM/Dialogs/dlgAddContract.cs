@@ -73,6 +73,12 @@ namespace MM.Dialogs
                 dtpkBeginDate.Value = Convert.ToDateTime(drContract["BeginDate"]);
                 chkCompleted.Checked = Convert.ToBoolean(drContract["Completed"]);
 
+                if (chkCompleted.Checked)
+                {
+                    dtpkEndDate.Value = Convert.ToDateTime(drContract["EndDate"]);
+                    dtpkEndDate.Enabled = true;
+                }
+
                 _contract.CompanyContractGUID = Guid.Parse(drContract["CompanyContractGUID"].ToString());
                 _contract.CompanyGUID = Guid.Parse(drContract["CompanyGUID"].ToString());
 
@@ -178,6 +184,12 @@ namespace MM.Dialogs
                 _contract.ContractName = txtName.Text;
                 _contract.BeginDate = dtpkBeginDate.Value;
                 _contract.Completed = chkCompleted.Checked;
+
+                if (_contract.Completed.Value)
+                    _contract.EndDate = dtpkEndDate.Value;
+                else
+                    _contract.EndDate = null;
+
                 _contract.Status = (byte)Status.Actived;
 
                 if (_isNew)
@@ -232,6 +244,9 @@ namespace MM.Dialogs
 
         private void InitData()
         {
+            dtpkBeginDate.Value = DateTime.Now;
+            dtpkEndDate.Value = DateTime.Now.AddDays(1);
+
             //Company
             Result result = CompanyBus.GetCompanyList();
             if (result.IsOK)
@@ -810,6 +825,11 @@ namespace MM.Dialogs
             else
                 _isAscending = false;
         }
+
+        private void chkCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkEndDate.Enabled = chkCompleted.Checked;
+        }
         #endregion
 
         #region Working Thread
@@ -848,7 +868,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
     }
 }

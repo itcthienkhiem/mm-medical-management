@@ -250,6 +250,7 @@ namespace MM.Bussiness
                             ct.Mobile = contact.Mobile;
                             ct.Note = contact.Note;
                             ct.Occupation = contact.Occupation;
+                            ct.CompanyName = contact.CompanyName;
                             ct.PreferredName = contact.PreferredName;
                             ct.SurName = contact.SurName;
                             ct.Title = contact.Title;

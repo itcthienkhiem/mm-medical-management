@@ -75,7 +75,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetDichVuHopDong(string contractGUID)
+        public static Result GetDichVuHopDong(string contractGUID, DateTime tuNgay, DateTime denNgay, int type)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -83,7 +83,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                result.QueryResult = db.spDichVuHopDong(contractGUID).ToList<spDichVuHopDongResult>();
+                result.QueryResult = db.spDichVuHopDong(contractGUID, tuNgay, denNgay, type).ToList<spDichVuHopDongResult>();
             }
             catch (System.Data.SqlClient.SqlException se)
             {

@@ -47,7 +47,7 @@
             this.contractNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.beginDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.completedDataGridViewTextBoxColumn = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgContract)).BeginInit();
@@ -142,7 +142,7 @@
             this.contractNameDataGridViewTextBoxColumn,
             this.tenCtyDataGridViewTextBoxColumn,
             this.beginDateDataGridViewTextBoxColumn,
-            this.completedDataGridViewTextBoxColumn});
+            this.EndDate});
             this.dgContract.DataSource = this.companyContractViewBindingSource;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -220,20 +220,16 @@
             this.beginDateDataGridViewTextBoxColumn.Name = "beginDateDataGridViewTextBoxColumn";
             this.beginDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // completedDataGridViewTextBoxColumn
+            // EndDate
             // 
-            this.completedDataGridViewTextBoxColumn.Checked = true;
-            this.completedDataGridViewTextBoxColumn.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.completedDataGridViewTextBoxColumn.CheckValue = "N";
-            this.completedDataGridViewTextBoxColumn.DataPropertyName = "Completed";
+            this.EndDate.DataPropertyName = "EndDate";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.completedDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.completedDataGridViewTextBoxColumn.HeaderText = "Hoàn tất";
-            this.completedDataGridViewTextBoxColumn.Name = "completedDataGridViewTextBoxColumn";
-            this.completedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.completedDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.completedDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.completedDataGridViewTextBoxColumn.Width = 80;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle4.NullValue = null;
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle4;
+            this.EndDate.HeaderText = "Ngày kết thúc";
+            this.EndDate.Name = "EndDate";
+            this.EndDate.ReadOnly = true;
             // 
             // uContractList
             // 
@@ -267,6 +263,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn contractNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenCtyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn beginDateDataGridViewTextBoxColumn;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn completedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
     }
 }

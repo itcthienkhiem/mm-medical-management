@@ -136,6 +136,7 @@ namespace MM.Controls
                 newRow["District"] = dlg.Contact.District;
                 newRow["City"] = dlg.Contact.City;
                 newRow["Occupation"] = dlg.Contact.Occupation;
+                newRow["CompanyName"] = dlg.Contact.CompanyName;
 
                 if (dlg.Contact.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.Contact.CreatedDate;
@@ -259,6 +260,7 @@ namespace MM.Controls
                 drPatient["District"] = dlg.Contact.District;
                 drPatient["City"] = dlg.Contact.City;
                 drPatient["Occupation"] = dlg.Contact.Occupation;
+                drPatient["CompanyName"] = dlg.Contact.CompanyName;
 
                 if (dlg.Contact.CreatedDate.HasValue)
                     drPatient["CreatedDate"] = dlg.Contact.CreatedDate;

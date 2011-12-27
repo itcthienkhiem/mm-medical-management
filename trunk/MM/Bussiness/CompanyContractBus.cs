@@ -372,6 +372,7 @@ namespace MM.Bussiness
                             con.ContractCode = contract.ContractCode;
                             con.ContractName = contract.ContractName;
                             con.BeginDate = contract.BeginDate;
+                            con.EndDate = contract.EndDate;
                             con.Completed = contract.Completed;
                             con.CreatedDate = contract.CreatedDate;
                             con.CreatedBy = contract.CreatedBy;

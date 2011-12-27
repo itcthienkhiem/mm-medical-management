@@ -16,8 +16,8 @@
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="Company_CompanyContract" Member="CompanyContracts" ThisKey="CompanyGUID" OtherKey="CompanyGUID" Type="CompanyContract" />
       <Association Name="Company_CompanyMember" Member="CompanyMembers" ThisKey="CompanyGUID" OtherKey="CompanyGUID" Type="CompanyMember" />
+      <Association Name="Company_CompanyContract" Member="CompanyContracts" ThisKey="CompanyGUID" OtherKey="CompanyGUID" Type="CompanyContract" />
     </Type>
   </Table>
   <Table Name="dbo.Symptom" Member="Symptoms">
@@ -51,25 +51,6 @@
       <Association Name="Service_CompanyCheckList" Member="Service" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
-  <Table Name="dbo.CompanyContract" Member="CompanyContracts">
-    <Type Name="CompanyContract">
-      <Column Name="CompanyContractGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ContractCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ContractName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="BeginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Completed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="CompanyContract_ContractMember" Member="ContractMembers" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="ContractMember" />
-      <Association Name="Company_CompanyContract" Member="Company" ThisKey="CompanyGUID" OtherKey="CompanyGUID" Type="Company" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.CompanyMember" Member="CompanyMembers">
     <Type Name="CompanyMember">
       <Column Name="CompanyMemberGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -84,46 +65,6 @@
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="Company_CompanyMember" Member="Company" ThisKey="CompanyGUID" OtherKey="CompanyGUID" Type="Company" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Patient_CompanyMember" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Contact" Member="Contacts">
-    <Type Name="Contact">
-      <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="SurName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="KnownAs" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MiddleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AliasFirstName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AliasSurName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Dob" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="PreferredName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Occupation" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="IdentityCard" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="Archived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="DateArchived" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Note" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="HomePhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="WorkPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="FAX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Gender" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Ward" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="District" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Source" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="Contact_DocStaff" Member="DocStaffs" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="DocStaff" />
-      <Association Name="Contact_Patient" Member="Patients" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Patient" />
     </Type>
   </Table>
   <Table Name="dbo.ContractMember" Member="ContractMembers">
@@ -155,8 +96,8 @@
       <Association Name="DocStaff_Logon" Member="Logons" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="Logon" />
       <Association Name="DocStaff_ServiceHistory" Member="ServiceHistories" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="ServiceHistory" />
       <Association Name="DocStaff_ToaThuoc" Member="ToaThuocs" ThisKey="DocStaffGUID" OtherKey="BacSiKeToa" Type="ToaThuoc" />
-      <Association Name="Contact_DocStaff" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Speciality_DocStaff" Member="Speciality" ThisKey="SpecialityGUID" OtherKey="SpecialityGUID" Type="Speciality" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Contact_DocStaff" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.[Function]" Member="Functions">
@@ -388,30 +329,6 @@
       <Column Name="ServiceStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.CompanyContractView" Member="CompanyContractViews">
-    <Type Name="CompanyContractView">
-      <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="MaCty" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="TenCty" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Dienthoai" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="Fax" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="Website" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="CompanyContractGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ContractName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="Completed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="ContractStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="CompanyStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="BeginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="ContractCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.DocStaffView" Member="DocStaffViews">
     <Type Name="DocStaffView">
       <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -483,80 +400,6 @@
       <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.PatientView" Member="PatientViews">
-    <Type Name="PatientView">
-      <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="SurName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="KnownAs" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MiddleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AliasFirstName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AliasSurName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Dob" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="PreferredName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Occupation" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="IdentityCard" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="Archived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="DateArchived" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Note" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="HomePhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="WorkPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="FAX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Gender" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Ward" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="District" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FileNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="BarCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Picture" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="HearFrom" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
-      <Column Name="Salutation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="LastSeenDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="LastSeenDocGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DateDeceased" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="LastVisitGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="GenderAsStr" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Di_Ung_Thuoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Thuoc_Di_Ung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Dot_Quy" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Benh_Tim_Mach" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Benh_Lao" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Dai_Thao_Duong" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Dai_Duong_Dang_Dieu_Tri" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Viem_Gan_B" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Viem_Gan_C" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Viem_Gan_Dang_Dieu_Tri" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Ung_Thu" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Co_Quan_Ung_Thu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Dong_Kinh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Hen_Suyen" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Benh_Khac" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Benh_Gi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Thuoc_Dang_Dung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="Hut_Thuoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Uong_Ruou" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Tinh_Trang_Gia_Dinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Chich_Ngua_Viem_Gan_B" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Chich_Ngua_Uon_Van" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Chich_Ngua_Cum" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="Dang_Co_Thai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="PatientHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Source" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.PermissionView" Member="PermissionViews">
@@ -1045,6 +888,167 @@
       <Column Name="SurName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.CompanyContract" Member="CompanyContracts">
+    <Type Name="CompanyContract">
+      <Column Name="CompanyContractGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ContractCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ContractName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="BeginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Completed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="CompanyContract_ContractMember" Member="ContractMembers" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="ContractMember" />
+      <Association Name="Company_CompanyContract" Member="Company" ThisKey="CompanyGUID" OtherKey="CompanyGUID" Type="Company" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contact" Member="Contacts">
+    <Type Name="Contact">
+      <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SurName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="KnownAs" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AliasFirstName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AliasSurName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Dob" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PreferredName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Occupation" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="IdentityCard" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Archived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DateArchived" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="HomePhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="FAX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Ward" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="District" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Source" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="Contact_DocStaff" Member="DocStaffs" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="DocStaff" />
+      <Association Name="Contact_Patient" Member="Patients" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Patient" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CompanyContractView" Member="CompanyContractViews">
+    <Type Name="CompanyContractView">
+      <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="MaCty" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TenCty" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Dienthoai" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Fax" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Website" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CompanyContractGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ContractName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Completed" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ContractStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="BeginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ContractCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PatientView" Member="PatientViews">
+    <Type Name="PatientView">
+      <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SurName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="KnownAs" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MiddleName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AliasFirstName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AliasSurName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Dob" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="PreferredName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Occupation" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="IdentityCard" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Archived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="DateArchived" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="HomePhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="FAX" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Ward" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="District" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FileNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BarCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Picture" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="HearFrom" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="Salutation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LastSeenDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastSeenDocGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DateDeceased" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastVisitGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="GenderAsStr" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Di_Ung_Thuoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Thuoc_Di_Ung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Dot_Quy" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Benh_Tim_Mach" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Benh_Lao" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Dai_Thao_Duong" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Dai_Duong_Dang_Dieu_Tri" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Viem_Gan_B" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Viem_Gan_C" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Viem_Gan_Dang_Dieu_Tri" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Ung_Thu" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Co_Quan_Ung_Thu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Dong_Kinh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Hen_Suyen" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Benh_Khac" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Benh_Gi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Thuoc_Dang_Dung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Hut_Thuoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Uong_Ruou" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Tinh_Trang_Gia_Dinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Chich_Ngua_Viem_Gan_B" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Chich_Ngua_Uon_Van" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Chich_Ngua_Cum" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Dang_Co_Thai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PatientHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Source" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">
     <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="DateTime" />
@@ -1072,11 +1076,16 @@
   </Function>
   <Function Name="dbo.spDichVuHopDong" Method="spDichVuHopDong">
     <Parameter Name="ContractGUID" Parameter="contractGUID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="TuNgay" Parameter="tuNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Type" Parameter="type" Type="System.Int32" DbType="Int" />
     <ElementType Name="spDichVuHopDongResult">
-      <Column Name="ContractName" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
-      <Column Name="FullName" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
-      <Column Name="ServiceName" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
-      <Column Name="Using" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
+      <Column Name="ContractName" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NgayKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TinhTrang" Type="System.String" DbType="NVarChar(9) NOT NULL" CanBeNull="false" />
     </ElementType>
   </Function>
 </Database>
