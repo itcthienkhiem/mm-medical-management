@@ -31,6 +31,7 @@ spDichVuHopDong
 - Update view: CompanyContractView, PatientView
 - Update store: spGetCheckList, spCheckMember, spGetCheckListByContract, spDichVuHopDong
 - Create store: spDichVuTuTuc
+- Insert: Function (DichVuTuTuc)
 
 - Hợp đồng thêm ngày hết hạn hợp đồng
 - Report Dịch vụ hợp đồng thêm ngày khám, SDĐ, raido option, (từ ngày tới ngày: tháng)

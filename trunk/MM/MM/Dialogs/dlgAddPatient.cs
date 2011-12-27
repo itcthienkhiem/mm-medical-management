@@ -328,7 +328,7 @@ namespace MM.Dialogs
                 _contact.DobStr = txtDOB.Text;
                 _contact.IdentityCard = txtIdentityCard.Text;
                 _contact.Occupation = txtOccupation.Text;
-                _contact.CompanyName = txtTenCongTy.Text;
+                _contact.CompanyName = txtTenCongTy.Text.Trim() == string.Empty ? "Tự túc" : txtTenCongTy.Text;
                 _contact.HomePhone = txtHomePhone.Text;
                 _contact.WorkPhone = txtWorkPhone.Text;
                 _contact.Mobile = txtMobile.Text;

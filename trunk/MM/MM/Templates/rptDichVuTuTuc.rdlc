@@ -6,14 +6,14 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>9e5f4049-2560-4560-9e3a-0a22facd480c</rd:DataSourceID>
+      <rd:DataSourceID>d1656500-ae3b-4202-9130-143ba8ad1655</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="spDichVuHopDongResult">
+    <DataSet Name="spDichVuTuTucResult">
       <Fields>
-        <Field Name="ContractName">
-          <DataField>ContractName</DataField>
+        <Field Name="CompanyName">
+          <DataField>CompanyName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DenNgay">
@@ -36,10 +36,6 @@
           <DataField>NgayKham</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
-        <Field Name="TinhTrang">
-          <DataField>TinhTrang</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="TuNgay">
           <DataField>TuNgay</DataField>
           <rd:TypeName>System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
@@ -51,8 +47,8 @@
       </Query>
       <rd:DataSetInfo>
         <rd:DataSetName>MM.Databasae</rd:DataSetName>
-        <rd:TableName>spDichVuHopDongResult</rd:TableName>
-        <rd:ObjectDataSourceType>MM.Databasae.spDichVuHopDongResult, MM.Databasae, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>spDichVuTuTucResult</rd:TableName>
+        <rd:ObjectDataSourceType>MM.Databasae.spDichVuTuTucResult, MM.Databasae, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -62,7 +58,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>0.86458in</Width>
+              <Width>1.79167in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -78,7 +74,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Tình trạng</Value>
+                              <Value>Công ty</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
                                 <FontSize>12pt</FontSize>
@@ -112,26 +108,24 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="TinhTrang">
+                    <Textbox Name="CompanyName">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!TinhTrang.Value</Value>
+                              <Value>=Fields!CompanyName.Value</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
                                 <FontSize>12pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
+                          <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>TinhTrang</rd:DefaultName>
+                      <rd:DefaultName>CompanyName</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -157,7 +151,7 @@
           <TablixMembers>
             <TablixMember>
               <TablixHeader>
-                <Size>3.09115in</Size>
+                <Size>2.51042in</Size>
                 <CellContents>
                   <Textbox Name="Textbox7">
                     <CanGrow>true</CanGrow>
@@ -166,7 +160,7 @@
                       <Paragraph>
                         <TextRuns>
                           <TextRun>
-                            <Value>Tên nhân viên</Value>
+                            <Value>Tên bệnh nhân</Value>
                             <Style>
                               <FontFamily>Times New Roman</FontFamily>
                               <FontSize>12pt</FontSize>
@@ -196,7 +190,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1.07552in</Size>
+                    <Size>0.98958in</Size>
                     <CellContents>
                       <Textbox Name="Textbox5">
                         <CanGrow>true</CanGrow>
@@ -235,7 +229,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>1.30469in</Size>
+                        <Size>1.03125in</Size>
                         <CellContents>
                           <Textbox Name="Textbox3">
                             <CanGrow>true</CanGrow>
@@ -286,8 +280,13 @@
                   <GroupExpression>=Fields!FullName.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Fields!FullName.Value</Value>
+                </SortExpression>
+              </SortExpressions>
               <TablixHeader>
-                <Size>3.09115in</Size>
+                <Size>2.51042in</Size>
                 <CellContents>
                   <Textbox Name="FullName">
                     <CanGrow>true</CanGrow>
@@ -332,7 +331,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>1.07552in</Size>
+                    <Size>0.98958in</Size>
                     <CellContents>
                       <Textbox Name="NgayKham">
                         <CanGrow>true</CanGrow>
@@ -380,7 +379,7 @@
                         </SortExpression>
                       </SortExpressions>
                       <TablixHeader>
-                        <Size>1.30469in</Size>
+                        <Size>1.03125in</Size>
                         <CellContents>
                           <Textbox Name="Mobile">
                             <CanGrow>true</CanGrow>
@@ -424,11 +423,11 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
-        <DataSetName>spDichVuHopDongResult</DataSetName>
-        <Top>1.15625in</Top>
-        <Left>0.08203in</Left>
+        <DataSetName>spDichVuTuTucResult</DataSetName>
+        <Top>0.9375in</Top>
+        <Left>0.08854in</Left>
         <Height>0.5in</Height>
-        <Width>6.33594in</Width>
+        <Width>6.32292in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -442,7 +441,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>DỊCH VỤ HỢP ĐỒNG</Value>
+                <Value>DỊCH VỤ TỰ TÚC</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
                   <FontSize>16pt</FontSize>
@@ -457,7 +456,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>0.05903in</Top>
+        <Top>0.09375in</Top>
         <Left>1.14062in</Left>
         <Height>0.3125in</Height>
         <Width>4.21875in</Width>
@@ -479,77 +478,6 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Hợp đồng:</Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>0.44097in</Top>
-        <Left>0.55989in</Left>
-        <Height>0.25in</Height>
-        <Width>0.88195in</Width>
-        <ZIndex>2</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="FromDate">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!ContractName.Value</Value>
-                <Style>
-                  <FontFamily>Times New Roman</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <Format>dd/MM/yyyy</Format>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>FromDate</rd:DefaultName>
-        <Top>0.44097in</Top>
-        <Left>1.51128in</Left>
-        <Height>0.25in</Height>
-        <Width>4.67882in</Width>
-        <ZIndex>3</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox14">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
                 <Value>Từ ngày:</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
@@ -562,11 +490,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>0.74479in</Top>
-        <Left>0.54688in</Left>
+        <Top>0.54167in</Top>
+        <Left>1.32812in</Left>
         <Height>0.25in</Height>
         <Width>0.75695in</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -577,7 +505,7 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox15">
+      <Textbox Name="Textbox14">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
@@ -596,11 +524,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>0.74479in</Top>
-        <Left>2.46702in</Left>
+        <Top>0.54167in</Top>
+        <Left>3.24826in</Left>
         <Height>0.25in</Height>
-        <Width>0.89063in</Width>
-        <ZIndex>5</ZIndex>
+        <Width>0.80729in</Width>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -633,11 +561,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.74479in</Top>
-        <Left>1.3455in</Left>
+        <Top>0.54167in</Top>
+        <Left>2.08507in</Left>
         <Height>0.25in</Height>
-        <Width>1.10417in</Width>
-        <ZIndex>6</ZIndex>
+        <Width>1.14583in</Width>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -670,11 +598,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.74479in</Top>
-        <Left>3.34895in</Left>
+        <Top>0.54167in</Top>
+        <Left>4.08853in</Left>
         <Height>0.25in</Height>
-        <Width>1.10417in</Width>
-        <ZIndex>7</ZIndex>
+        <Width>1.14584in</Width>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -686,7 +614,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>1.73958in</Height>
+    <Height>1.52083in</Height>
     <Style />
   </Body>
   <Width>6.5in</Width>
@@ -697,6 +625,6 @@
     <BottomMargin>1in</BottomMargin>
     <Style />
   </Page>
-  <rd:ReportID>63b2be8a-e8df-4bf9-895e-e6695e4b211b</rd:ReportID>
+  <rd:ReportID>18ebde5a-6004-4269-ab5a-ad7e8ee30668</rd:ReportID>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
 </Report>

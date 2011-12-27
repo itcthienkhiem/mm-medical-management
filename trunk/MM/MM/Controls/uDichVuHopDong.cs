@@ -40,6 +40,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             _ucReportViewer.ShowPrintButton = AllowPrint;
+            btnExportExcel.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
