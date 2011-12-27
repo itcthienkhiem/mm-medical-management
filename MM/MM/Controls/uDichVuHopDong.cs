@@ -17,13 +17,18 @@ namespace MM.Controls
     public partial class uDichVuHopDong : uBase
     {
         #region Members
-
+        private string _contractGUID = string.Empty;
+        private DateTime _tuNgay = DateTime.Now;
+        private DateTime _denNgay = DateTime.Now;
+        private int _type = 0;
         #endregion
 
         #region Constructor
         public uDichVuHopDong()
         {
             InitializeComponent();
+            dtpkTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+            dtpkDenNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month), 23, 59, 59);
         }
         #endregion
 
@@ -77,9 +82,9 @@ namespace MM.Controls
             }
         }
 
-        private void OnView(string contractGUID)
+        private void OnView()
         {
-            Result result = ReportBus.GetDichVuHopDong(contractGUID);
+            Result result = ReportBus.GetDichVuHopDong(_contractGUID, _tuNgay, _denNgay, _type);
             if (result.IsOK)
             {
                 ReportDataSource reportDataSource = new ReportDataSource("spDichVuHopDongResult",
@@ -111,9 +116,15 @@ namespace MM.Controls
                     return;
                 }
 
-                string contractGUID = cboHopDong.SelectedValue.ToString();
 
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnViewProc), contractGUID);
+                _contractGUID = cboHopDong.SelectedValue.ToString();
+                _tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                _denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 0, 0, 0);
+                if (raTatCa.Checked) _type = 0;
+                else if (raChuaKham.Checked) _type = 1;
+                else if (raDaKham.Checked) _type = 2;
+
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnViewProc));
                 base.ShowWaiting();
             }
             catch (Exception e)
@@ -159,7 +170,7 @@ namespace MM.Controls
             try
             {
                 //Thread.Sleep(500);
-                OnView(state.ToString());
+                OnView();
             }
             catch (Exception e)
             {

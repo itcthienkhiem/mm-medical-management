@@ -29,33 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddContract));
             this.tabContract = new DevComponents.DotNetBar.TabControl();
-            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
-            this.btnDSNVKhamDu = new System.Windows.Forms.Button();
-            this.btnDSNVChuaKhamDu = new System.Windows.Forms.Button();
-            this.btnDSNVChuaKham = new System.Windows.Forms.Button();
-            this.cboCompany = new System.Windows.Forms.ComboBox();
-            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label4 = new System.Windows.Forms.Label();
-            this.chkCompleted = new System.Windows.Forms.CheckBox();
-            this.dtpkBeginDate = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pageContractInfo = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -84,13 +67,29 @@
             this.btnDeleteMember = new System.Windows.Forms.Button();
             this.btnAddMember = new System.Windows.Forms.Button();
             this.pageMemberList = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.btnDSNVKhamDu = new System.Windows.Forms.Button();
+            this.btnDSNVChuaKhamDu = new System.Windows.Forms.Button();
+            this.btnDSNVChuaKham = new System.Windows.Forms.Button();
+            this.cboCompany = new System.Windows.Forms.ComboBox();
+            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.chkCompleted = new System.Windows.Forms.CheckBox();
+            this.dtpkBeginDate = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pageContractInfo = new DevComponents.DotNetBar.TabItem(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
+            this.dtpkEndDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).BeginInit();
             this.tabContract.SuspendLayout();
-            this.tabControlPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             this.tabControlPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -103,13 +102,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tabControlPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabContract
             // 
             this.tabContract.CanReorderTabs = true;
-            this.tabContract.Controls.Add(this.tabControlPanel2);
             this.tabContract.Controls.Add(this.tabControlPanel1);
+            this.tabContract.Controls.Add(this.tabControlPanel2);
             this.tabContract.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabContract.Location = new System.Drawing.Point(0, 0);
             this.tabContract.Name = "tabContract";
@@ -123,197 +124,6 @@
             this.tabContract.Tabs.Add(this.pageMemberList);
             this.tabContract.TabStop = false;
             this.tabContract.Text = "tabControl1";
-            // 
-            // tabControlPanel1
-            // 
-            this.tabControlPanel1.Controls.Add(this.btnDSNVKhamDu);
-            this.tabControlPanel1.Controls.Add(this.btnDSNVChuaKhamDu);
-            this.tabControlPanel1.Controls.Add(this.btnDSNVChuaKham);
-            this.tabControlPanel1.Controls.Add(this.cboCompany);
-            this.tabControlPanel1.Controls.Add(this.label4);
-            this.tabControlPanel1.Controls.Add(this.chkCompleted);
-            this.tabControlPanel1.Controls.Add(this.dtpkBeginDate);
-            this.tabControlPanel1.Controls.Add(this.label3);
-            this.tabControlPanel1.Controls.Add(this.label7);
-            this.tabControlPanel1.Controls.Add(this.label22);
-            this.tabControlPanel1.Controls.Add(this.txtName);
-            this.tabControlPanel1.Controls.Add(this.txtCode);
-            this.tabControlPanel1.Controls.Add(this.label2);
-            this.tabControlPanel1.Controls.Add(this.label1);
-            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel1.Name = "tabControlPanel1";
-            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(604, 511);
-            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel1.Style.GradientAngle = 90;
-            this.tabControlPanel1.TabIndex = 1;
-            this.tabControlPanel1.TabItem = this.pageContractInfo;
-            // 
-            // btnDSNVKhamDu
-            // 
-            this.btnDSNVKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDSNVKhamDu.Location = new System.Drawing.Point(372, 157);
-            this.btnDSNVKhamDu.Name = "btnDSNVKhamDu";
-            this.btnDSNVKhamDu.Size = new System.Drawing.Size(127, 45);
-            this.btnDSNVKhamDu.TabIndex = 56;
-            this.btnDSNVKhamDu.Text = "Danh sách nhân viên đã khám đầy đủ";
-            this.btnDSNVKhamDu.UseVisualStyleBackColor = true;
-            this.btnDSNVKhamDu.Visible = false;
-            this.btnDSNVKhamDu.Click += new System.EventHandler(this.btnDSNVKhamDu_Click);
-            // 
-            // btnDSNVChuaKhamDu
-            // 
-            this.btnDSNVChuaKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDSNVChuaKhamDu.Location = new System.Drawing.Point(239, 157);
-            this.btnDSNVChuaKhamDu.Name = "btnDSNVChuaKhamDu";
-            this.btnDSNVChuaKhamDu.Size = new System.Drawing.Size(127, 45);
-            this.btnDSNVChuaKhamDu.TabIndex = 55;
-            this.btnDSNVChuaKhamDu.Text = "Danh sách nhân viên chưa khám đủ dịch vụ";
-            this.btnDSNVChuaKhamDu.UseVisualStyleBackColor = true;
-            this.btnDSNVChuaKhamDu.Visible = false;
-            this.btnDSNVChuaKhamDu.Click += new System.EventHandler(this.btnDSNVChuaKhamDu_Click);
-            // 
-            // btnDSNVChuaKham
-            // 
-            this.btnDSNVChuaKham.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDSNVChuaKham.Location = new System.Drawing.Point(106, 157);
-            this.btnDSNVChuaKham.Name = "btnDSNVChuaKham";
-            this.btnDSNVChuaKham.Size = new System.Drawing.Size(127, 45);
-            this.btnDSNVChuaKham.TabIndex = 54;
-            this.btnDSNVChuaKham.Text = "Danh sách nhân viên chưa khám";
-            this.btnDSNVChuaKham.UseVisualStyleBackColor = true;
-            this.btnDSNVChuaKham.Visible = false;
-            this.btnDSNVChuaKham.Click += new System.EventHandler(this.btnDSNVChuaKham_Click);
-            // 
-            // cboCompany
-            // 
-            this.cboCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboCompany.DataSource = this.companyBindingSource;
-            this.cboCompany.DisplayMember = "TenCty";
-            this.cboCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCompany.FormattingEnabled = true;
-            this.cboCompany.Location = new System.Drawing.Point(98, 61);
-            this.cboCompany.Name = "cboCompany";
-            this.cboCompany.Size = new System.Drawing.Size(300, 21);
-            this.cboCompany.TabIndex = 2;
-            this.cboCompany.ValueMember = "CompanyGUID";
-            this.cboCompany.SelectedValueChanged += new System.EventHandler(this.cboCompany_SelectedValueChanged);
-            // 
-            // companyBindingSource
-            // 
-            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label4.Location = new System.Drawing.Point(18, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 53;
-            this.label4.Text = "Công ty:";
-            // 
-            // chkCompleted
-            // 
-            this.chkCompleted.AutoSize = true;
-            this.chkCompleted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.chkCompleted.Location = new System.Drawing.Point(21, 112);
-            this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(116, 17);
-            this.chkCompleted.TabIndex = 4;
-            this.chkCompleted.Text = "Hoàn tất hợp đồng";
-            this.chkCompleted.UseVisualStyleBackColor = false;
-            // 
-            // dtpkBeginDate
-            // 
-            this.dtpkBeginDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpkBeginDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkBeginDate.Location = new System.Drawing.Point(99, 86);
-            this.dtpkBeginDate.Name = "dtpkBeginDate";
-            this.dtpkBeginDate.Size = new System.Drawing.Size(97, 20);
-            this.dtpkBeginDate.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label3.Location = new System.Drawing.Point(18, 89);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 52;
-            this.label3.Text = "Ngày bắt đầu:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(402, 40);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 13);
-            this.label7.TabIndex = 51;
-            this.label7.Text = "[*]";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(265, 16);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(17, 13);
-            this.label22.TabIndex = 50;
-            this.label22.Text = "[*]";
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(98, 37);
-            this.txtName.MaxLength = 500;
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(300, 20);
-            this.txtName.TabIndex = 1;
-            // 
-            // txtCode
-            // 
-            this.txtCode.Location = new System.Drawing.Point(98, 13);
-            this.txtCode.MaxLength = 50;
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(163, 20);
-            this.txtCode.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label2.Location = new System.Drawing.Point(18, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 13);
-            this.label2.TabIndex = 48;
-            this.label2.Text = "Tên hợp đồng:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label1.Location = new System.Drawing.Point(18, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 47;
-            this.label1.Text = "Mã hợp đồng:";
-            // 
-            // pageContractInfo
-            // 
-            this.pageContractInfo.AttachedControl = this.tabControlPanel1;
-            this.pageContractInfo.Image = global::MM.Properties.Resources.info_icon;
-            this.pageContractInfo.Name = "pageContractInfo";
-            this.pageContractInfo.Text = "Thông tin hợp đồng";
             // 
             // tabControlPanel2
             // 
@@ -370,14 +180,14 @@
             this.dgService.AllowUserToDeleteRows = false;
             this.dgService.AllowUserToOrderColumns = true;
             this.dgService.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxXColumn1,
@@ -385,14 +195,14 @@
             this.nameDataGridViewTextBoxColumn,
             this.Using});
             this.dgService.DataSource = this.companyCheckListViewBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgService.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgService.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgService.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgService.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -413,8 +223,8 @@
             this.dataGridViewCheckBoxXColumn1.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.dataGridViewCheckBoxXColumn1.CheckValue = "N";
             this.dataGridViewCheckBoxXColumn1.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewCheckBoxXColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewCheckBoxXColumn1.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewCheckBoxXColumn1.Frozen = true;
             this.dataGridViewCheckBoxXColumn1.HeaderText = "";
             this.dataGridViewCheckBoxXColumn1.Name = "dataGridViewCheckBoxXColumn1";
@@ -529,14 +339,14 @@
             this.dgMembers.AllowUserToDeleteRows = false;
             this.dgMembers.AllowUserToOrderColumns = true;
             this.dgMembers.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMembers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -545,14 +355,14 @@
             this.dobStrDataGridViewTextBoxColumn,
             this.genderAsStrDataGridViewTextBoxColumn});
             this.dgMembers.DataSource = this.contractMemberViewBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle16;
             this.dgMembers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgMembers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgMembers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -575,8 +385,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle13;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.ReadOnly = true;
@@ -603,8 +413,8 @@
             // dobStrDataGridViewTextBoxColumn
             // 
             this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
             this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
             this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
             this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
@@ -613,8 +423,8 @@
             // genderAsStrDataGridViewTextBoxColumn
             // 
             this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
             this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
             this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
             this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
@@ -665,6 +475,199 @@
             this.pageMemberList.Name = "pageMemberList";
             this.pageMemberList.Text = "Danh sách nhân viên";
             // 
+            // tabControlPanel1
+            // 
+            this.tabControlPanel1.Controls.Add(this.dtpkEndDate);
+            this.tabControlPanel1.Controls.Add(this.btnDSNVKhamDu);
+            this.tabControlPanel1.Controls.Add(this.btnDSNVChuaKhamDu);
+            this.tabControlPanel1.Controls.Add(this.btnDSNVChuaKham);
+            this.tabControlPanel1.Controls.Add(this.cboCompany);
+            this.tabControlPanel1.Controls.Add(this.label4);
+            this.tabControlPanel1.Controls.Add(this.chkCompleted);
+            this.tabControlPanel1.Controls.Add(this.dtpkBeginDate);
+            this.tabControlPanel1.Controls.Add(this.label3);
+            this.tabControlPanel1.Controls.Add(this.label7);
+            this.tabControlPanel1.Controls.Add(this.label22);
+            this.tabControlPanel1.Controls.Add(this.txtName);
+            this.tabControlPanel1.Controls.Add(this.txtCode);
+            this.tabControlPanel1.Controls.Add(this.label2);
+            this.tabControlPanel1.Controls.Add(this.label1);
+            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel1.Name = "tabControlPanel1";
+            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel1.Size = new System.Drawing.Size(604, 511);
+            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel1.Style.GradientAngle = 90;
+            this.tabControlPanel1.TabIndex = 1;
+            this.tabControlPanel1.TabItem = this.pageContractInfo;
+            // 
+            // btnDSNVKhamDu
+            // 
+            this.btnDSNVKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDSNVKhamDu.Location = new System.Drawing.Point(372, 157);
+            this.btnDSNVKhamDu.Name = "btnDSNVKhamDu";
+            this.btnDSNVKhamDu.Size = new System.Drawing.Size(127, 45);
+            this.btnDSNVKhamDu.TabIndex = 56;
+            this.btnDSNVKhamDu.Text = "Danh sách nhân viên đã khám đầy đủ";
+            this.btnDSNVKhamDu.UseVisualStyleBackColor = true;
+            this.btnDSNVKhamDu.Visible = false;
+            this.btnDSNVKhamDu.Click += new System.EventHandler(this.btnDSNVKhamDu_Click);
+            // 
+            // btnDSNVChuaKhamDu
+            // 
+            this.btnDSNVChuaKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDSNVChuaKhamDu.Location = new System.Drawing.Point(239, 157);
+            this.btnDSNVChuaKhamDu.Name = "btnDSNVChuaKhamDu";
+            this.btnDSNVChuaKhamDu.Size = new System.Drawing.Size(127, 45);
+            this.btnDSNVChuaKhamDu.TabIndex = 55;
+            this.btnDSNVChuaKhamDu.Text = "Danh sách nhân viên chưa khám đủ dịch vụ";
+            this.btnDSNVChuaKhamDu.UseVisualStyleBackColor = true;
+            this.btnDSNVChuaKhamDu.Visible = false;
+            this.btnDSNVChuaKhamDu.Click += new System.EventHandler(this.btnDSNVChuaKhamDu_Click);
+            // 
+            // btnDSNVChuaKham
+            // 
+            this.btnDSNVChuaKham.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDSNVChuaKham.Location = new System.Drawing.Point(106, 157);
+            this.btnDSNVChuaKham.Name = "btnDSNVChuaKham";
+            this.btnDSNVChuaKham.Size = new System.Drawing.Size(127, 45);
+            this.btnDSNVChuaKham.TabIndex = 54;
+            this.btnDSNVChuaKham.Text = "Danh sách nhân viên chưa khám";
+            this.btnDSNVChuaKham.UseVisualStyleBackColor = true;
+            this.btnDSNVChuaKham.Visible = false;
+            this.btnDSNVChuaKham.Click += new System.EventHandler(this.btnDSNVChuaKham_Click);
+            // 
+            // cboCompany
+            // 
+            this.cboCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboCompany.DataSource = this.companyBindingSource;
+            this.cboCompany.DisplayMember = "TenCty";
+            this.cboCompany.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCompany.FormattingEnabled = true;
+            this.cboCompany.Location = new System.Drawing.Point(114, 61);
+            this.cboCompany.Name = "cboCompany";
+            this.cboCompany.Size = new System.Drawing.Size(300, 21);
+            this.cboCompany.TabIndex = 2;
+            this.cboCompany.ValueMember = "CompanyGUID";
+            this.cboCompany.SelectedValueChanged += new System.EventHandler(this.cboCompany_SelectedValueChanged);
+            // 
+            // companyBindingSource
+            // 
+            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label4.Location = new System.Drawing.Point(18, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.TabIndex = 53;
+            this.label4.Text = "Công ty:";
+            // 
+            // chkCompleted
+            // 
+            this.chkCompleted.AutoSize = true;
+            this.chkCompleted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.chkCompleted.Location = new System.Drawing.Point(21, 113);
+            this.chkCompleted.Name = "chkCompleted";
+            this.chkCompleted.Size = new System.Drawing.Size(96, 17);
+            this.chkCompleted.TabIndex = 4;
+            this.chkCompleted.Text = "Ngày kết thúc:";
+            this.chkCompleted.UseVisualStyleBackColor = false;
+            this.chkCompleted.CheckedChanged += new System.EventHandler(this.chkCompleted_CheckedChanged);
+            // 
+            // dtpkBeginDate
+            // 
+            this.dtpkBeginDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkBeginDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkBeginDate.Location = new System.Drawing.Point(114, 86);
+            this.dtpkBeginDate.Name = "dtpkBeginDate";
+            this.dtpkBeginDate.Size = new System.Drawing.Size(97, 20);
+            this.dtpkBeginDate.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label3.Location = new System.Drawing.Point(18, 89);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 13);
+            this.label3.TabIndex = 52;
+            this.label3.Text = "Ngày bắt đầu:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(417, 40);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(17, 13);
+            this.label7.TabIndex = 51;
+            this.label7.Text = "[*]";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(281, 16);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(17, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "[*]";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(114, 37);
+            this.txtName.MaxLength = 500;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(300, 20);
+            this.txtName.TabIndex = 1;
+            // 
+            // txtCode
+            // 
+            this.txtCode.Location = new System.Drawing.Point(114, 13);
+            this.txtCode.MaxLength = 50;
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(163, 20);
+            this.txtCode.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label2.Location = new System.Drawing.Point(18, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Tên hợp đồng:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label1.Location = new System.Drawing.Point(18, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Mã hợp đồng:";
+            // 
+            // pageContractInfo
+            // 
+            this.pageContractInfo.AttachedControl = this.tabControlPanel1;
+            this.pageContractInfo.Image = global::MM.Properties.Resources.info_icon;
+            this.pageContractInfo.Name = "pageContractInfo";
+            this.pageContractInfo.Text = "Thông tin hợp đồng";
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -696,6 +699,16 @@
             this.imgList.Images.SetKeyName(0, "1321864209_tick.png");
             this.imgList.Images.SetKeyName(1, "1321864188_exclamation.png");
             // 
+            // dtpkEndDate
+            // 
+            this.dtpkEndDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkEndDate.Enabled = false;
+            this.dtpkEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkEndDate.Location = new System.Drawing.Point(114, 110);
+            this.dtpkEndDate.Name = "dtpkEndDate";
+            this.dtpkEndDate.Size = new System.Drawing.Size(97, 20);
+            this.dtpkEndDate.TabIndex = 57;
+            // 
             // dlgAddContract
             // 
             this.AcceptButton = this.btnOK;
@@ -717,9 +730,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddContract_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).EndInit();
             this.tabContract.ResumeLayout(false);
-            this.tabControlPanel1.ResumeLayout(false);
-            this.tabControlPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             this.tabControlPanel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -734,6 +744,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.tabControlPanel1.ResumeLayout(false);
+            this.tabControlPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -789,6 +802,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewImageColumn Using;
+        private System.Windows.Forms.DateTimePicker dtpkEndDate;
 
     }
 }

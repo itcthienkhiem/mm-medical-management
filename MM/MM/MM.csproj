@@ -886,14 +886,13 @@
     <EmbeddedResource Include="Controls\uPatient.resx">
       <DependentUpon>uPatient.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Templates\rptDichVuHopDong.rdlc" />
+    <EmbeddedResource Include="Templates\rptDichVuHopDong3.rdlc" />
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienChiTiet.rdlc" />
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienTongHop.rdlc" />
     <EmbeddedResource Include="Templates\rptThuocHetHan.rdlc" />
     <EmbeddedResource Include="Templates\rptThuocTonKho.rdlc" />
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
-    <None Include="Properties\DataSources\MM.Databasae.AAA.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Company.datasource" />
@@ -973,6 +972,7 @@
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Resources\export-excel-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-26_2011-12-27.sql" />
     <None Include="Resources\filter-icon.png" />
     <None Include="Resources\product-sales-report-icon.png" />

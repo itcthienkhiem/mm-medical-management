@@ -185,6 +185,9 @@ namespace MM.Dialogs
                 txtFax.Text = drPatient["Fax"] as string;
                 txtAddress.Text = drPatient["Address"] as string;
 
+                if (drPatient["CompanyName"] != null && drPatient["CompanyName"] != DBNull.Value)
+                    txtTenCongTy.Text = drPatient["CompanyName"] as string;
+
                 _contact.ContactGUID = Guid.Parse(drPatient["ContactGUID"].ToString());
                 _patient.PatientGUID = Guid.Parse(drPatient["PatientGUID"].ToString());
                 _patient.ContactGUID = _contact.ContactGUID;
@@ -325,6 +328,7 @@ namespace MM.Dialogs
                 _contact.DobStr = txtDOB.Text;
                 _contact.IdentityCard = txtIdentityCard.Text;
                 _contact.Occupation = txtOccupation.Text;
+                _contact.CompanyName = txtTenCongTy.Text;
                 _contact.HomePhone = txtHomePhone.Text;
                 _contact.WorkPhone = txtWorkPhone.Text;
                 _contact.Mobile = txtMobile.Text;

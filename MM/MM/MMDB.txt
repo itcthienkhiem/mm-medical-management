@@ -26,7 +26,11 @@ spDichVuHopDong
 2011-12-26:
 - Update view: CompanyMemberView, ContractMemberView, UserView
 - Update store: spGetDanhSachNhanVien
-
+2011-12-27
+- Update table: CompanyContract(Add column: EndDate), Contact(Add column: CompanyName)
+- Update view: CompanyContractView, PatientView
+- Update store: spGetCheckList, spCheckMember, spGetCheckListByContract, spDichVuHopDong
+- Create store: spDichVuTuTuc
 
 - Hợp đồng thêm ngày hết hạn hợp đồng
 - Report Dịch vụ hợp đồng thêm ngày khám, SDĐ, raido option, (từ ngày tới ngày: tháng)

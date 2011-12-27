@@ -99,6 +99,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkDiUngThuoc = new System.Windows.Forms.CheckBox();
             this.pagePatientHistory = new DevComponents.DotNetBar.TabItem(this.components);
+            this.txtTenCongTy = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tabPatient)).BeginInit();
             this.tabPatient.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -245,7 +247,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(110, 360);
+            this.txtEmail.Location = new System.Drawing.Point(110, 384);
             this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(223, 20);
@@ -255,7 +257,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label15.Location = new System.Drawing.Point(65, 363);
+            this.label15.Location = new System.Drawing.Point(65, 387);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(35, 13);
             this.label15.TabIndex = 28;
@@ -263,7 +265,7 @@
             // 
             // txtFax
             // 
-            this.txtFax.Location = new System.Drawing.Point(110, 336);
+            this.txtFax.Location = new System.Drawing.Point(110, 360);
             this.txtFax.MaxLength = 50;
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(157, 20);
@@ -274,7 +276,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label14.Location = new System.Drawing.Point(73, 339);
+            this.label14.Location = new System.Drawing.Point(73, 363);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(27, 13);
             this.label14.TabIndex = 26;
@@ -284,7 +286,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label13.Location = new System.Drawing.Point(43, 315);
+            this.label13.Location = new System.Drawing.Point(43, 339);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 25;
@@ -292,7 +294,7 @@
             // 
             // txtMobile
             // 
-            this.txtMobile.Location = new System.Drawing.Point(110, 312);
+            this.txtMobile.Location = new System.Drawing.Point(110, 336);
             this.txtMobile.MaxLength = 50;
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.Size = new System.Drawing.Size(157, 20);
@@ -303,7 +305,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label12.Location = new System.Drawing.Point(17, 291);
+            this.label12.Location = new System.Drawing.Point(17, 315);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(83, 13);
             this.label12.TabIndex = 23;
@@ -311,7 +313,7 @@
             // 
             // txtHomePhone
             // 
-            this.txtHomePhone.Location = new System.Drawing.Point(110, 264);
+            this.txtHomePhone.Location = new System.Drawing.Point(110, 288);
             this.txtHomePhone.MaxLength = 50;
             this.txtHomePhone.Name = "txtHomePhone";
             this.txtHomePhone.Size = new System.Drawing.Size(156, 20);
@@ -322,7 +324,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label11.Location = new System.Drawing.Point(38, 267);
+            this.label11.Location = new System.Drawing.Point(38, 291);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 13);
             this.label11.TabIndex = 21;
@@ -349,7 +351,7 @@
             // 
             // txtWorkPhone
             // 
-            this.txtWorkPhone.Location = new System.Drawing.Point(110, 288);
+            this.txtWorkPhone.Location = new System.Drawing.Point(110, 312);
             this.txtWorkPhone.MaxLength = 50;
             this.txtWorkPhone.Name = "txtWorkPhone";
             this.txtWorkPhone.Size = new System.Drawing.Size(156, 20);
@@ -392,7 +394,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(110, 384);
+            this.txtAddress.Location = new System.Drawing.Point(110, 408);
             this.txtAddress.MaxLength = 255;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(322, 20);
@@ -402,7 +404,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label4.Location = new System.Drawing.Point(57, 387);
+            this.label4.Location = new System.Drawing.Point(57, 411);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 6;
@@ -447,6 +449,8 @@
             // 
             // tabControlPanel1
             // 
+            this.tabControlPanel1.Controls.Add(this.txtTenCongTy);
+            this.tabControlPanel1.Controls.Add(this.label24);
             this.tabControlPanel1.Controls.Add(this.barCode);
             this.tabControlPanel1.Controls.Add(this.label23);
             this.tabControlPanel1.Controls.Add(this.label2);
@@ -892,6 +896,24 @@
             this.pagePatientHistory.Name = "pagePatientHistory";
             this.pagePatientHistory.Text = "Bệnh sử";
             // 
+            // txtTenCongTy
+            // 
+            this.txtTenCongTy.Location = new System.Drawing.Point(110, 264);
+            this.txtTenCongTy.MaxLength = 255;
+            this.txtTenCongTy.Name = "txtTenCongTy";
+            this.txtTenCongTy.Size = new System.Drawing.Size(303, 20);
+            this.txtTenCongTy.TabIndex = 10;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label24.Location = new System.Drawing.Point(29, 267);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(67, 13);
+            this.label24.TabIndex = 59;
+            this.label24.Text = "Tên công ty:";
+            // 
             // dlgAddPatient
             // 
             this.AcceptButton = this.btnOK;
@@ -992,5 +1014,7 @@
         private System.Windows.Forms.CheckBox chkDotQuy;
         private DSBarCode.BarCodeCtrl barCode;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtTenCongTy;
+        private System.Windows.Forms.Label label24;
     }
 }
