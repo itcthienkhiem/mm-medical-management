@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uDichVuTuTuc = new MM.Controls.uDichVuTuTuc();
             this._uPhieuThuThuocList = new MM.Controls.uPhieuThuThuocList();
             this._uBaoCaoThuocTonKho = new MM.Controls.uBaoCaoThuocTonKho();
             this._uBaoCaoThuocHetHan = new MM.Controls.uBaoCaoThuocHetHan();
@@ -146,7 +147,6 @@
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
             this.templateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uDichVuTuTuc = new MM.Controls.uDichVuTuTuc();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -183,6 +183,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uDichVuTuTuc
+            // 
+            resources.ApplyResources(this._uDichVuTuTuc, "_uDichVuTuTuc");
+            this._uDichVuTuTuc.Name = "_uDichVuTuTuc";
             // 
             // _uPhieuThuThuocList
             // 
@@ -926,6 +931,7 @@
             // 
             // dichVuTuTucToolStripMenuItem
             // 
+            this.dichVuTuTucToolStripMenuItem.Image = global::MM.Properties.Resources.accept_icon;
             this.dichVuTuTucToolStripMenuItem.Name = "dichVuTuTucToolStripMenuItem";
             resources.ApplyResources(this.dichVuTuTucToolStripMenuItem, "dichVuTuTucToolStripMenuItem");
             this.dichVuTuTucToolStripMenuItem.Tag = "DichVuTuTuc";
@@ -1024,11 +1030,6 @@
             resources.ApplyResources(this.templateExcelToolStripMenuItem, "templateExcelToolStripMenuItem");
             this.templateExcelToolStripMenuItem.Tag = "ExcelTemplate";
             this.templateExcelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // _uDichVuTuTuc
-            // 
-            resources.ApplyResources(this._uDichVuTuTuc, "_uDichVuTuTuc");
-            this._uDichVuTuTuc.Name = "_uDichVuTuTuc";
             // 
             // MainForm
             // 
