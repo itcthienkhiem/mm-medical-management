@@ -202,14 +202,12 @@ namespace MM.Dialogs
                     newRow["ThuocGUID"] = thuocGUID;
                     string donViTinh = GetDonViTinh(thuocGUID);
                     double donGia = GetGiaThuoc(thuocGUID);
-                    int soNgayUong = Convert.ToInt32(row["SoNgayUong"]);
-                    int soLanTrongNgay = Convert.ToInt32(row["SoLanTrongNgay"]);
-                    int soLuongTrongLan = Convert.ToInt32(row["SoLuongTrongLan"]);
+                    int soLuong = Convert.ToInt32(row["SoLuong"]);
                     newRow["DonViTinh"] = donViTinh;
-                    newRow["SoLuong"] = soNgayUong * soLanTrongNgay * soLuongTrongLan;
+                    newRow["SoLuong"] = soLuong;
                     newRow["DonGia"] = donGia;
                     newRow["Giam"] = 0;
-                    newRow["ThanhTien"] = soNgayUong * soLanTrongNgay * soLuongTrongLan * donGia;
+                    newRow["ThanhTien"] = soLuong * donGia;
                     dtChiTiet.Rows.Add(newRow);
                 }
 
