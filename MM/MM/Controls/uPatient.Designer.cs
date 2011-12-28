@@ -36,13 +36,15 @@
             this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabServiceHistory = new DevComponents.DotNetBar.TabControl();
-            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
-            this.pageKeToa = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this._uDailyServiceHistory = new MM.Controls.uServiceHistory();
             this.pageDailyService = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uToaThuocList = new MM.Controls.uToaThuocList();
+            this.pageKeToa = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.lvService = new System.Windows.Forms.ListView();
             this.colChecked = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,13 +64,12 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this._uToaThuocList = new MM.Controls.uToaThuocList();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
             this.tabServiceHistory.SuspendLayout();
-            this.tabControlPanel3.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
+            this.tabControlPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -87,7 +88,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1177, 448);
+            this.tabControlPanel1.Size = new System.Drawing.Size(1177, 425);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -105,7 +106,7 @@
             this._uServiceHistory.Location = new System.Drawing.Point(1, 1);
             this._uServiceHistory.Name = "_uServiceHistory";
             this._uServiceHistory.PatientRow = null;
-            this._uServiceHistory.Size = new System.Drawing.Size(1175, 446);
+            this._uServiceHistory.Size = new System.Drawing.Size(1175, 423);
             this._uServiceHistory.TabIndex = 0;
             // 
             // pageServiceHistory
@@ -119,9 +120,9 @@
             // 
             this.panel2.Controls.Add(this.tabServiceHistory);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 165);
+            this.panel2.Location = new System.Drawing.Point(0, 188);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1177, 473);
+            this.panel2.Size = new System.Drawing.Size(1177, 450);
             this.panel2.TabIndex = 1;
             // 
             // tabServiceHistory
@@ -135,7 +136,7 @@
             this.tabServiceHistory.Name = "tabServiceHistory";
             this.tabServiceHistory.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabServiceHistory.SelectedTabIndex = 0;
-            this.tabServiceHistory.Size = new System.Drawing.Size(1177, 473);
+            this.tabServiceHistory.Size = new System.Drawing.Size(1177, 450);
             this.tabServiceHistory.Style = DevComponents.DotNetBar.eTabStripStyle.VS2005;
             this.tabServiceHistory.TabIndex = 0;
             this.tabServiceHistory.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
@@ -144,31 +145,6 @@
             this.tabServiceHistory.Tabs.Add(this.pageKeToa);
             this.tabServiceHistory.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabServiceHistory_SelectedTabChanged);
             // 
-            // tabControlPanel3
-            // 
-            this.tabControlPanel3.Controls.Add(this._uToaThuocList);
-            this.tabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel3.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel3.Name = "tabControlPanel3";
-            this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel3.Size = new System.Drawing.Size(1177, 448);
-            this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel3.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel3.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel3.Style.GradientAngle = 90;
-            this.tabControlPanel3.TabIndex = 3;
-            this.tabControlPanel3.TabItem = this.pageKeToa;
-            // 
-            // pageKeToa
-            // 
-            this.pageKeToa.AttachedControl = this.tabControlPanel3;
-            this.pageKeToa.Image = global::MM.Properties.Resources.prescription_icon2;
-            this.pageKeToa.Name = "pageKeToa";
-            this.pageKeToa.Text = "Kê toa";
-            // 
             // tabControlPanel2
             // 
             this.tabControlPanel2.Controls.Add(this._uDailyServiceHistory);
@@ -176,7 +152,7 @@
             this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel2.Name = "tabControlPanel2";
             this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(1177, 448);
+            this.tabControlPanel2.Size = new System.Drawing.Size(1177, 425);
             this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -194,7 +170,7 @@
             this._uDailyServiceHistory.Location = new System.Drawing.Point(1, 1);
             this._uDailyServiceHistory.Name = "_uDailyServiceHistory";
             this._uDailyServiceHistory.PatientRow = null;
-            this._uDailyServiceHistory.Size = new System.Drawing.Size(1175, 446);
+            this._uDailyServiceHistory.Size = new System.Drawing.Size(1175, 423);
             this._uDailyServiceHistory.TabIndex = 0;
             // 
             // pageDailyService
@@ -203,6 +179,40 @@
             this.pageDailyService.Image = global::MM.Properties.Resources.Actions_view_calendar_day_icon;
             this.pageDailyService.Name = "pageDailyService";
             this.pageDailyService.Text = "Dịch vụ trong ngày";
+            // 
+            // tabControlPanel3
+            // 
+            this.tabControlPanel3.Controls.Add(this._uToaThuocList);
+            this.tabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel3.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel3.Name = "tabControlPanel3";
+            this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel3.Size = new System.Drawing.Size(1177, 425);
+            this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel3.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel3.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel3.Style.GradientAngle = 90;
+            this.tabControlPanel3.TabIndex = 3;
+            this.tabControlPanel3.TabItem = this.pageKeToa;
+            // 
+            // _uToaThuocList
+            // 
+            this._uToaThuocList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uToaThuocList.Location = new System.Drawing.Point(1, 1);
+            this._uToaThuocList.Name = "_uToaThuocList";
+            this._uToaThuocList.PatientRow = null;
+            this._uToaThuocList.Size = new System.Drawing.Size(1175, 423);
+            this._uToaThuocList.TabIndex = 0;
+            // 
+            // pageKeToa
+            // 
+            this.pageKeToa.AttachedControl = this.tabControlPanel3;
+            this.pageKeToa.Image = global::MM.Properties.Resources.prescription_icon2;
+            this.pageKeToa.Name = "pageKeToa";
+            this.pageKeToa.Text = "Kê toa";
             // 
             // panel1
             // 
@@ -214,11 +224,12 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1177, 165);
+            this.panel1.Size = new System.Drawing.Size(1177, 188);
             this.panel1.TabIndex = 0;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnRefresh);
             this.groupBox1.Controls.Add(this.lvService);
             this.groupBox1.Controls.Add(this.txtAge);
             this.groupBox1.Controls.Add(this.txtThuocDiUng);
@@ -234,10 +245,22 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(5, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1167, 155);
+            this.groupBox1.Size = new System.Drawing.Size(1167, 178);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin bệnh nhân";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Image = global::MM.Properties.Resources.Refresh_icon;
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRefresh.Location = new System.Drawing.Point(6, 151);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(98, 23);
+            this.btnRefresh.TabIndex = 78;
+            this.btnRefresh.Text = "   &Làm tươi";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lvService
             // 
@@ -376,7 +399,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel6.Location = new System.Drawing.Point(1172, 5);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(5, 155);
+            this.panel6.Size = new System.Drawing.Size(5, 178);
             this.panel6.TabIndex = 3;
             // 
             // panel5
@@ -384,13 +407,13 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 5);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(5, 155);
+            this.panel5.Size = new System.Drawing.Size(5, 178);
             this.panel5.TabIndex = 2;
             // 
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 160);
+            this.panel4.Location = new System.Drawing.Point(0, 183);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1177, 5);
             this.panel4.TabIndex = 1;
@@ -402,14 +425,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1177, 5);
             this.panel3.TabIndex = 0;
-            // 
-            // _uToaThuocList
-            // 
-            this._uToaThuocList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uToaThuocList.Location = new System.Drawing.Point(1, 1);
-            this._uToaThuocList.Name = "_uToaThuocList";
-            this._uToaThuocList.Size = new System.Drawing.Size(1175, 446);
-            this._uToaThuocList.TabIndex = 0;
             // 
             // uPatient
             // 
@@ -424,8 +439,8 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).EndInit();
             this.tabServiceHistory.ResumeLayout(false);
-            this.tabControlPanel3.ResumeLayout(false);
             this.tabControlPanel2.ResumeLayout(false);
+            this.tabControlPanel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -468,5 +483,6 @@
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel3;
         private DevComponents.DotNetBar.TabItem pageKeToa;
         private uToaThuocList _uToaThuocList;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

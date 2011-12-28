@@ -84,6 +84,15 @@ namespace MM.Controls
             
         }
 
+        private void OnRefreshData()
+        {
+            DisplayCheckListAsThread();
+
+            _uServiceHistory.DisplayAsThread();
+            _uDailyServiceHistory.DisplayAsThread();
+            _uToaThuocList.DisplayAsThread();
+        }
+
         public void DisplayCheckListAsThread()
         {
             try
@@ -162,6 +171,11 @@ namespace MM.Controls
         {
             if (tabServiceHistory.SelectedTabIndex == 1)
                 _uServiceHistory.HighlightPaidServices();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            OnRefreshData();
         }
         #endregion
 
