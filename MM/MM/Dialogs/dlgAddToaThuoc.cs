@@ -20,7 +20,6 @@ namespace MM.Dialogs
         private DataRow _drToaThuoc = null;
         private ToaThuoc _toaThuoc = new ToaThuoc();
         private List<string> _deletedKeys = new List<string>();
-        private bool _flag = true;
         private DataTable _dataSourceBenhNhan = null;
         private DataRow _patientRow = null;
         #endregion
@@ -67,6 +66,16 @@ namespace MM.Dialogs
             get { return txtGioiTinh.Text; }
         }
 
+        public string DiaChi
+        {
+            get { return txtDiaChi.Text; }
+        }
+
+        public string DienThoai
+        {
+            get { return txtDienThoai.Text; }
+        }
+
         public DataRow PatientRow
         {
             get { return _patientRow; }
@@ -79,6 +88,8 @@ namespace MM.Dialogs
                     txtTenBenhNhan.Text = _patientRow["FullName"].ToString();
                     txtNgaySinh.Text = _patientRow["DobStr"].ToString();
                     txtGioiTinh.Text = _patientRow["GenderAsStr"].ToString();
+                    txtDienThoai.Text = _patientRow["Mobile"].ToString();
+                    txtDiaChi.Text = _patientRow["Address"].ToString();
                     btnChonBenhNhan.Visible = false;
 
                     if (Global.StaffType != StaffType.Admin)
@@ -92,10 +103,10 @@ namespace MM.Dialogs
         private void InitData()
         {
             Cursor.Current = Cursors.WaitCursor;
-            dtpkNgayKeToa.Value = DateTime.Now;
+            dtpkNgayKham.Value = DateTime.Now;
+            dtpkNgayTaiKham.Value = DateTime.Now.AddDays(1);
             OnDisplayBacSi();
             OnDisplayBenhNhan();
-            OnDisplayThuoc();
         }
 
         private void OnDisplayBacSi()
@@ -121,24 +132,11 @@ namespace MM.Dialogs
         {
             Result result = PatientBus.GetPatientList();
             if (result.IsOK)
-                //cboBenhNhan.DataSource = result.QueryResult;
                 _dataSourceBenhNhan = result.QueryResult as DataTable;
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-            }
-        }
-
-        private void OnDisplayThuoc()
-        {
-            Result result = ThuocBus.GetThuocList();
-            if (result.IsOK)
-                thuocGUIDDataGridViewTextBoxColumn.DataSource = result.QueryResult;
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("ThuocBus.GetThuocList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ThuocBus.GetThuocList"));
             }
         }
 
@@ -148,7 +146,7 @@ namespace MM.Dialogs
             if (result.IsOK)
             {
                 dgChiTiet.DataSource = result.QueryResult;
-                RefreshNo();
+                //RefreshNo();
             }
             else
             {
@@ -179,12 +177,31 @@ namespace MM.Dialogs
             {
                 Cursor.Current = Cursors.WaitCursor;
                 txtMaToaThuoc.Text = drToaThuoc["MaToaThuoc"] as string;
-                dtpkNgayKeToa.Value = Convert.ToDateTime(drToaThuoc["NgayKeToa"]);
+
+                if (drToaThuoc["NgayKham"] != null && drToaThuoc["NgayKham"] != DBNull.Value)
+                    dtpkNgayKham.Value = Convert.ToDateTime(drToaThuoc["NgayKham"]);
+
+                if (drToaThuoc["NgayTaiKham"] != null && drToaThuoc["NgayTaiKham"] != DBNull.Value)
+                    dtpkNgayTaiKham.Value = Convert.ToDateTime(drToaThuoc["NgayTaiKham"]);
+
+                LoaiToaThuoc loai = (LoaiToaThuoc)Convert.ToByte(drToaThuoc["Loai"]);
+                if (loai == LoaiToaThuoc.Chung) raToaChung.Checked = true;
+                else raToaSanKhoa.Checked = true;
+
                 cboBacSi.SelectedValue = drToaThuoc["BacSiKeToa"].ToString();
                 txtTenBenhNhan.Text = drToaThuoc["TenBenhNhan"].ToString();
                 txtTenBenhNhan.Tag = drToaThuoc["BenhNhan"].ToString();
                 txtNgaySinh.Text = drToaThuoc["DobStr"].ToString();
                 txtGioiTinh.Text = drToaThuoc["GenderAsStr"].ToString();
+                if (drToaThuoc["Address"] != null && drToaThuoc["Address"] != DBNull.Value)
+                    txtDiaChi.Text = drToaThuoc["Address"].ToString();
+
+                if (drToaThuoc["Mobile"] != null && drToaThuoc["Mobile"] != DBNull.Value)
+                    txtDienThoai.Text = drToaThuoc["Mobile"].ToString();
+
+                if (drToaThuoc["ChanDoan"] != null && drToaThuoc["ChanDoan"] != DBNull.Value)
+                    txtChanDoan.Text = drToaThuoc["ChanDoan"].ToString();
+
                 txtGhiChu.Text = drToaThuoc["Note"] as string;
 
                 _toaThuoc.ToaThuocGUID = Guid.Parse(drToaThuoc["ToaThuocGUID"].ToString());
@@ -260,71 +277,13 @@ namespace MM.Dialogs
                 return false;
             }
 
-
-            if (dgChiTiet.RowCount > 1)
+            if (dgChiTiet.RowCount <= 0)
             {
-                for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
-                {
-                    DataGridViewRow row = dgChiTiet.Rows[i];
-                    if (row.Cells[1].Value == null || row.Cells[1].Value == DBNull.Value || row.Cells[1].Value.ToString() == string.Empty)
-                    {
-                        MsgBox.Show(this.Text, "Vui lòng chọn thuốc để kê toa.", IconType.Information);
-                        return false;
-                    }
-                }
-            }
-
-            if (dgChiTiet.RowCount > 2)
-            {
-                for (int i = 0; i < dgChiTiet.RowCount - 2; i++)
-                {
-                    DataGridViewRow row1 = dgChiTiet.Rows[i];
-                    for (int j = i + 1; j < dgChiTiet.RowCount - 1; j++)
-                    {
-                        DataGridViewRow row2 = dgChiTiet.Rows[j];
-                        if (row1.Cells[1].Value.ToString() == row2.Cells[1].Value.ToString())
-                        {
-                            string tenThuoc = GetTenThuoc(row1.Cells[1].Value.ToString());
-                            MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã được kê toa rồi. Vui lòng chọn thuốc khác", tenThuoc), IconType.Information);
-                            return false;
-                        }
-                    }
-                }
+                MsgBox.Show(this.Text, "Vui lòng kê toa ít nhất 1 thuốc.", IconType.Information);
+                return false;
             }
 
             return true;
-        }
-
-        private string GetTenThuoc(string thuocGUID)
-        {
-            DataTable dt = thuocGUIDDataGridViewTextBoxColumn.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return string.Empty;
-
-            DataRow[] rows = dt.Select(string.Format("ThuocGUID='{0}'", thuocGUID));
-            if (rows != null && rows.Length > 0)
-                return rows[0]["TenThuoc"].ToString();
-
-            return string.Empty;
-        }
-
-        private string GetDonViTinh(string thuocGUID)
-        {
-            DataTable dt = thuocGUIDDataGridViewTextBoxColumn.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return string.Empty;
-
-            DataRow[] rows = dt.Select(string.Format("ThuocGUID='{0}'", thuocGUID));
-            if (rows != null && rows.Length > 0)
-                return rows[0]["DonViTinh"].ToString();
-
-            return string.Empty;
-        }
-
-        private void RefreshNo()
-        {
-            for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
-            {
-                dgChiTiet[0, i].Value = i + 1;
-            }
         }
 
         private void SaveInfoAsThread()
@@ -351,11 +310,15 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _toaThuoc.MaToaThuoc = txtMaToaThuoc.Text;
-                    _toaThuoc.NgayKeToa = dtpkNgayKeToa.Value;
+                    _toaThuoc.NgayKeToa = DateTime.Now;
+                    _toaThuoc.NgayKham = dtpkNgayKham.Value;
+                    _toaThuoc.NgayTaiKham = dtpkNgayTaiKham.Value;
                     _toaThuoc.BacSiKeToa = Guid.Parse(cboBacSi.SelectedValue.ToString());
                     _toaThuoc.BenhNhan = Guid.Parse(txtTenBenhNhan.Tag.ToString());
+                    _toaThuoc.ChanDoan = txtChanDoan.Text;
                     _toaThuoc.Note = txtGhiChu.Text;
                     _toaThuoc.Status = (byte)Status.Actived;
+                    _toaThuoc.Loai = raToaChung.Checked ? (byte)LoaiToaThuoc.Chung : (byte)LoaiToaThuoc.SanKhoa;
 
                     if (_isNew)
                     {
@@ -372,7 +335,6 @@ namespace MM.Dialogs
                     List<ChiTietToaThuoc> addedList = new List<ChiTietToaThuoc>();
                     foreach (DataRow row in dt.Rows)
                     {
-                        if (row.RowState == DataRowState.Deleted || row.RowState == DataRowState.Detached) continue;
                         ChiTietToaThuoc cttt = new ChiTietToaThuoc();
                         if (row["ChiTietToaThuocGUID"] != null && row["ChiTietToaThuocGUID"] != DBNull.Value)
                         {
@@ -387,26 +349,31 @@ namespace MM.Dialogs
                         }
 
                         cttt.ThuocGUID = Guid.Parse(row["ThuocGUID"].ToString());
-
-                        if (row["SoNgayUong"] != null && row["SoNgayUong"] != DBNull.Value)
-                            cttt.SoNgayUong = Convert.ToInt32(row["SoNgayUong"]);
-                        else
-                            cttt.SoNgayUong = 1;
-
-                        if (row["SoLanTrongNgay"] != null && row["SoLanTrongNgay"] != DBNull.Value)
-                            cttt.SoLanTrongNgay = Convert.ToInt32(row["SoLanTrongNgay"]);
-                        else
-                            cttt.SoLanTrongNgay = 1;
-
-                        if (row["SoLuongTrongLan"] != null && row["SoLuongTrongLan"] != DBNull.Value)
-                            cttt.SoLuongTrongLan = Convert.ToInt32(row["SoLuongTrongLan"]);
-                        else
-                            cttt.SoLuongTrongLan = 1;
-
-                        if (row["Note"] != null && row["Note"] != DBNull.Value)
-                            cttt.Note = row["Note"].ToString();  
-                        else
-                            cttt.Note = string.Empty;
+                        cttt.SoLuong = Convert.ToInt32(row["SoLuong"]);
+                        cttt.LieuDung = row["LieuDung"].ToString();
+                        cttt.Note = row["Note"].ToString();
+                        cttt.Sang = Convert.ToBoolean(row["Sang"]);
+                        cttt.SangNote = row["SangNote"].ToString();
+                        cttt.Trua = Convert.ToBoolean(row["Trua"]);
+                        cttt.TruaNote = row["TruaNote"].ToString();
+                        cttt.Chieu = Convert.ToBoolean(row["Chieu"]);
+                        cttt.ChieuNote = row["ChieuNote"].ToString();
+                        cttt.Toi = Convert.ToBoolean(row["Toi"]);
+                        cttt.ToiNote = row["ToiNote"].ToString();
+                        cttt.TruocAn = Convert.ToBoolean(row["TruocAn"]);
+                        cttt.TruocAnNote = row["TruocAnNote"].ToString();
+                        cttt.SauAn = Convert.ToBoolean(row["SauAn"]);
+                        cttt.SauAnNote = row["SauAnNote"].ToString();
+                        cttt.Khac_TruocSauAn = Convert.ToBoolean(row["Khac_TruocSauAn"]);
+                        cttt.Khac_TruocSauAnNote = row["Khac_TruocSauAnNote"].ToString();
+                        cttt.Uong = Convert.ToBoolean(row["Uong"]);
+                        cttt.UongNote = row["UongNote"].ToString();
+                        cttt.Boi = Convert.ToBoolean(row["Boi"]);
+                        cttt.BoiNote = row["BoiNote"].ToString();
+                        cttt.Dat = Convert.ToBoolean(row["Dat"]);
+                        cttt.DatNote = row["DatNote"].ToString();
+                        cttt.Khac_CachDung = Convert.ToBoolean(row["Khac_CachDung"]);
+                        cttt.Khac_CachDungNote = row["Khac_CachDungNote"].ToString();
 
                         cttt.Status = (byte)Status.Actived;
                         addedList.Add(cttt);
@@ -431,6 +398,173 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(e.Message);
             }
         }
+
+        private void SelectLastedRow()
+        {
+            dgChiTiet.CurrentCell = dgChiTiet[1, dgChiTiet.RowCount - 1];
+            dgChiTiet.Rows[dgChiTiet.RowCount - 1].Selected = true;
+        }
+
+        private void OnAddThuoc()
+        {
+            LoaiToaThuoc type = raToaChung.Checked ? LoaiToaThuoc.Chung : LoaiToaThuoc.SanKhoa;
+            dlgAddThuocKeToa dlg = new dlgAddThuocKeToa(type);
+            DataTable dt = (DataTable)dgChiTiet.DataSource;
+            dlg.DataSource = dt; 
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                DataRow newRow = dt.NewRow();
+                newRow["Checked"] = false;
+                newRow["ChiTietToaThuocGUID"] = dlg.ChiTietToaThuoc.ChiTietToaThuocGUID;
+                newRow["ThuocGUID"] = dlg.ChiTietToaThuoc.ThuocGUID;
+                newRow["TenThuoc"] = dlg.TenThuoc;
+                newRow["SoLuong"] = dlg.ChiTietToaThuoc.SoLuong;
+                newRow["Sang"] = dlg.ChiTietToaThuoc.Sang;
+                newRow["SangNote"] = dlg.ChiTietToaThuoc.SangNote;
+                newRow["Trua"] = dlg.ChiTietToaThuoc.Trua;
+                newRow["TruaNote"] = dlg.ChiTietToaThuoc.TruaNote;
+                newRow["Chieu"] = dlg.ChiTietToaThuoc.Chieu;
+                newRow["ChieuNote"] = dlg.ChiTietToaThuoc.ChieuNote;
+                newRow["Toi"] = dlg.ChiTietToaThuoc.Toi;
+                newRow["ToiNote"] = dlg.ChiTietToaThuoc.ToiNote;
+                newRow["TruocAn"] = dlg.ChiTietToaThuoc.TruocAn;
+                newRow["TruocAnNote"] = dlg.ChiTietToaThuoc.TruocAnNote;
+                newRow["SauAn"] = dlg.ChiTietToaThuoc.SauAn;
+                newRow["SauAnNote"] = dlg.ChiTietToaThuoc.SauAnNote;
+                newRow["Khac_TruocSauAn"] = dlg.ChiTietToaThuoc.Khac_TruocSauAn;
+                newRow["Khac_TruocSauAnNote"] = dlg.ChiTietToaThuoc.Khac_TruocSauAnNote;
+                newRow["Uong"] = dlg.ChiTietToaThuoc.Uong;
+                newRow["UongNote"] = dlg.ChiTietToaThuoc.UongNote;
+                newRow["Boi"] = dlg.ChiTietToaThuoc.Boi;
+                newRow["BoiNote"] = dlg.ChiTietToaThuoc.BoiNote;
+                newRow["Dat"] = dlg.ChiTietToaThuoc.Dat;
+                newRow["DatNote"] = dlg.ChiTietToaThuoc.DatNote;
+                newRow["Khac_CachDung"] = dlg.ChiTietToaThuoc.Khac_CachDung;
+                newRow["Khac_CachDungNote"] = dlg.ChiTietToaThuoc.Khac_CachDungNote;
+                newRow["LieuDung"] = dlg.ChiTietToaThuoc.LieuDung;
+                newRow["Note"] = dlg.ChiTietToaThuoc.Note;
+
+                if (dlg.ChiTietToaThuoc.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.ChiTietToaThuoc.CreatedDate;
+
+                if (dlg.ChiTietToaThuoc.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.ChiTietToaThuoc.CreatedBy.ToString();
+
+                if (dlg.ChiTietToaThuoc.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.ChiTietToaThuoc.UpdatedDate;
+
+                if (dlg.ChiTietToaThuoc.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.ChiTietToaThuoc.UpdatedBy.ToString();
+
+                if (dlg.ChiTietToaThuoc.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.ChiTietToaThuoc.DeletedDate;
+
+                if (dlg.ChiTietToaThuoc.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.ChiTietToaThuoc.DeletedBy.ToString();
+
+                newRow["ChiTietToaThuocStatus"] = dlg.ChiTietToaThuoc.Status;
+
+                dt.Rows.Add(newRow);
+                SelectLastedRow();
+            }
+        }
+
+        private void OnEditThuoc()
+        {
+            if (dgChiTiet.SelectedRows == null || dgChiTiet.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thuốc.", IconType.Information);
+                return;
+            }
+
+            LoaiToaThuoc type = raToaChung.Checked ? LoaiToaThuoc.Chung : LoaiToaThuoc.SanKhoa;
+            DataRow drThuoc = (dgChiTiet.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddThuocKeToa dlg = new dlgAddThuocKeToa(drThuoc, type);
+            DataTable dt = (DataTable)dgChiTiet.DataSource;
+            dlg.DataSource = dt;
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                drThuoc["ThuocGUID"] = dlg.ChiTietToaThuoc.ThuocGUID;
+                drThuoc["TenThuoc"] = dlg.TenThuoc;
+                drThuoc["SoLuong"] = dlg.ChiTietToaThuoc.SoLuong;
+                drThuoc["Sang"] = dlg.ChiTietToaThuoc.Sang;
+                drThuoc["SangNote"] = dlg.ChiTietToaThuoc.SangNote;
+                drThuoc["Trua"] = dlg.ChiTietToaThuoc.Trua;
+                drThuoc["TruaNote"] = dlg.ChiTietToaThuoc.TruaNote;
+                drThuoc["Chieu"] = dlg.ChiTietToaThuoc.Chieu;
+                drThuoc["ChieuNote"] = dlg.ChiTietToaThuoc.ChieuNote;
+                drThuoc["Toi"] = dlg.ChiTietToaThuoc.Toi;
+                drThuoc["ToiNote"] = dlg.ChiTietToaThuoc.ToiNote;
+                drThuoc["TruocAn"] = dlg.ChiTietToaThuoc.TruocAn;
+                drThuoc["TruocAnNote"] = dlg.ChiTietToaThuoc.TruocAnNote;
+                drThuoc["SauAn"] = dlg.ChiTietToaThuoc.SauAn;
+                drThuoc["SauAnNote"] = dlg.ChiTietToaThuoc.SauAnNote;
+                drThuoc["Khac_TruocSauAn"] = dlg.ChiTietToaThuoc.Khac_TruocSauAn;
+                drThuoc["Khac_TruocSauAnNote"] = dlg.ChiTietToaThuoc.Khac_TruocSauAnNote;
+                drThuoc["Uong"] = dlg.ChiTietToaThuoc.Uong;
+                drThuoc["UongNote"] = dlg.ChiTietToaThuoc.UongNote;
+                drThuoc["Boi"] = dlg.ChiTietToaThuoc.Boi;
+                drThuoc["BoiNote"] = dlg.ChiTietToaThuoc.BoiNote;
+                drThuoc["Dat"] = dlg.ChiTietToaThuoc.Dat;
+                drThuoc["DatNote"] = dlg.ChiTietToaThuoc.DatNote;
+                drThuoc["Khac_CachDung"] = dlg.ChiTietToaThuoc.Khac_CachDung;
+                drThuoc["Khac_CachDungNote"] = dlg.ChiTietToaThuoc.Khac_CachDungNote;
+                drThuoc["LieuDung"] = dlg.ChiTietToaThuoc.LieuDung;
+                drThuoc["Note"] = dlg.ChiTietToaThuoc.Note;
+
+                if (dlg.ChiTietToaThuoc.CreatedDate.HasValue)
+                    drThuoc["CreatedDate"] = dlg.ChiTietToaThuoc.CreatedDate;
+
+                if (dlg.ChiTietToaThuoc.CreatedBy.HasValue)
+                    drThuoc["CreatedBy"] = dlg.ChiTietToaThuoc.CreatedBy.ToString();
+
+                if (dlg.ChiTietToaThuoc.UpdatedDate.HasValue)
+                    drThuoc["UpdatedDate"] = dlg.ChiTietToaThuoc.UpdatedDate;
+
+                if (dlg.ChiTietToaThuoc.UpdatedBy.HasValue)
+                    drThuoc["UpdatedBy"] = dlg.ChiTietToaThuoc.UpdatedBy.ToString();
+
+                if (dlg.ChiTietToaThuoc.DeletedDate.HasValue)
+                    drThuoc["DeletedDate"] = dlg.ChiTietToaThuoc.DeletedDate;
+
+                if (dlg.ChiTietToaThuoc.DeletedBy.HasValue)
+                    drThuoc["DeletedBy"] = dlg.ChiTietToaThuoc.DeletedBy.ToString();
+
+                drThuoc["ChiTietToaThuocStatus"] = dlg.ChiTietToaThuoc.Status;
+            }
+        }
+
+        private void OnDeleteThuoc()
+        {
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgChiTiet.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedRows.Count > 0)
+            {
+                if (MsgBox.Question(this.Text, "Bạn có muốn xóa những thuốc mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    
+                    foreach (DataRow row in deletedRows)
+                    {
+                        if (row["ChiTietToaThuocGUID"] == null || row["ChiTietToaThuocGUID"] == DBNull.Value) continue;
+                        string chiTietToaThuocGUID = row["ChiTietToaThuocGUID"].ToString();
+                        if (!_deletedKeys.Contains(chiTietToaThuocGUID))
+                            _deletedKeys.Add(chiTietToaThuocGUID);
+
+                        dt.Rows.Remove(row);
+                    }
+                }
+            }
+            else
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những thuốc cần xóa.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -454,129 +588,6 @@ namespace MM.Dialogs
             }
         }
 
-        private void dgChiTiet_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            RefreshNo();
-        }
-
-        private void dgChiTiet_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            RefreshNo();
-        }
-
-        private void dgChiTiet_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
-            DataRow row = (e.Row.DataBoundItem as DataRowView).Row;
-            if (row["ChiTietToaThuocGUID"] != null && row["ChiTietToaThuocGUID"] != DBNull.Value)
-                _deletedKeys.Add(row["ChiTietToaThuocGUID"].ToString());
-        }
-
-        private void dgChiTiet_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            RefreshNo();
-        }
-        
-        private void dgChiTiet_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dgChiTiet_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            _flag = false;
-            if (e.RowIndex < 0) return;
-            dgChiTiet.CurrentCell = dgChiTiet[1, e.RowIndex];
-            dgChiTiet.Rows[e.RowIndex].Selected = true;
-            _flag = true;
-        }
-
-        private void thuocThayTheToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            if (dgChiTiet.SelectedRows == null || dgChiTiet.SelectedRows.Count <= 0) return;
-            int rowIndex = dgChiTiet.SelectedRows[0].Index;
-            if (rowIndex == dgChiTiet.RowCount - 1) return;
-            dgChiTiet.EndEdit();
-            if (dgChiTiet.SelectedRows[0].Cells[1].Value == null || dgChiTiet.SelectedRows[0].Cells[1].Value == DBNull.Value) return;
-            string thuocGUID = dgChiTiet.SelectedRows[0].Cells[1].Value.ToString();
-            dlgThuocThayThe dlg = new dlgThuocThayThe(thuocGUID);
-            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                dgChiTiet.SelectedRows[0].Cells[1].Value = dlg.ThuocThayThe;
-                dgChiTiet.RefreshEdit();
-            }
-        }
-
-        private void dgChiTiet_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            if (dgChiTiet.CurrentCell.ColumnIndex == 1)
-            {
-                ComboBox cmbox = e.Control as ComboBox;
-                cmbox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
-                cmbox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
-            }
-            else if (dgChiTiet.CurrentCell.ColumnIndex >= 3 && dgChiTiet.CurrentCell.ColumnIndex <= 5)
-            {
-                TextBox textBox = e.Control as TextBox;
-
-                textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
-                textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
-
-                textBox.TextChanged -= new EventHandler(textBox_TextChanged);
-                textBox.TextChanged += new EventHandler(textBox_TextChanged);
-            }
-        }
-
-        private void textBox_TextChanged(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            if (textBox.Text == string.Empty)
-                textBox.Text = "1";
-
-            try
-            {
-                int.Parse(textBox.Text);
-            }
-            catch
-            {
-                textBox.Text = int.MaxValue.ToString();
-            }
-        }
-
-        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            DataGridViewTextBoxEditingControl textBox = (DataGridViewTextBoxEditingControl)sender;
-            if (!(char.IsDigit(e.KeyChar)))
-            {
-                if (e.KeyChar != '\b') //allow the backspace key
-                {
-                    e.Handled = true;
-                }
-            }
-        }
-
-        private void dgChiTiet_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 5)
-            {
-                if (e.Value == null || e.Value.ToString() == string.Empty)
-                    e.Value = "1";
-            }
-        }
-
-        private void cmbox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (!_flag) return;
-
-            _flag = false;
-            DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
-            if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
-            string thuocGUID = cbo.SelectedValue.ToString();
-            string donViTinh = GetDonViTinh(thuocGUID);
-            dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
-            _flag = true;
-        }
-
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
             dlgSelectPatient dlg = new dlgSelectPatient(_dataSourceBenhNhan);
@@ -589,8 +600,30 @@ namespace MM.Dialogs
                     txtTenBenhNhan.Text = _patientRow["FullName"].ToString();
                     txtNgaySinh.Text = _patientRow["DobStr"].ToString();
                     txtGioiTinh.Text = _patientRow["GenderAsStr"].ToString();
+                    txtDienThoai.Text = _patientRow["Mobile"].ToString();
+                    txtDiaChi.Text = _patientRow["Address"].ToString();
                 }
             }
+        }
+
+        private void btnAddMember_Click(object sender, EventArgs e)
+        {
+            OnAddThuoc();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            OnEditThuoc();
+        }
+
+        private void btnDeleteMember_Click(object sender, EventArgs e)
+        {
+            OnDeleteThuoc();
+        }
+
+        private void dgChiTiet_DoubleClick(object sender, EventArgs e)
+        {
+            OnEditThuoc();
         }
         #endregion
 
@@ -612,7 +645,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-       
     }
 }

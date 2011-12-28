@@ -71,7 +71,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM ChiTietToaThuocView WHERE ThuocStatus={0} AND ChiTietToaThuocStatus={0} AND ToaThuocGUID='{1}' ORDER BY TenThuoc",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietToaThuocView WHERE ThuocStatus={0} AND ChiTietToaThuocStatus={0} AND ToaThuocGUID='{1}' ORDER BY TenThuoc",
                     (byte)Status.Actived, toaThuocGUID);
                 return ExcuteQuery(query);
             }
@@ -273,9 +273,13 @@ namespace MM.Bussiness
                         {
                             tt.MaToaThuoc = toaThuoc.MaToaThuoc;
                             tt.NgayKeToa = toaThuoc.NgayKeToa;
+                            tt.NgayKham = toaThuoc.NgayKham;
+                            tt.NgayTaiKham = toaThuoc.NgayTaiKham;
                             tt.BacSiKeToa = toaThuoc.BacSiKeToa;
                             tt.BenhNhan = toaThuoc.BenhNhan;
+                            tt.ChanDoan = toaThuoc.ChanDoan;
                             tt.Note = toaThuoc.Note;
+                            tt.Loai = toaThuoc.Loai;
                             tt.CreatedDate = toaThuoc.CreatedDate;
                             tt.CreatedBy = toaThuoc.CreatedBy;
                             tt.UpdatedDate = toaThuoc.UpdatedDate;
@@ -313,9 +317,31 @@ namespace MM.Bussiness
                                     if (chiTietToaThuoc != null)
                                     {
                                         chiTietToaThuoc.ThuocGUID = cttt.ThuocGUID;
-                                        chiTietToaThuoc.SoNgayUong = cttt.SoNgayUong;
-                                        chiTietToaThuoc.SoLanTrongNgay = cttt.SoLanTrongNgay;
-                                        chiTietToaThuoc.SoLuongTrongLan = cttt.SoLuongTrongLan;
+                                        chiTietToaThuoc.SoLuong = cttt.SoLuong;
+                                        chiTietToaThuoc.LieuDung = cttt.LieuDung;
+                                        chiTietToaThuoc.Note = cttt.Note;
+                                        chiTietToaThuoc.Sang = cttt.Sang;
+                                        chiTietToaThuoc.Trua = cttt.Trua;
+                                        chiTietToaThuoc.Chieu = cttt.Chieu;
+                                        chiTietToaThuoc.Toi = cttt.Toi;
+                                        chiTietToaThuoc.TruocAn = cttt.TruocAn;
+                                        chiTietToaThuoc.SauAn = cttt.SauAn;
+                                        chiTietToaThuoc.Khac_TruocSauAn = cttt.Khac_TruocSauAn;
+                                        chiTietToaThuoc.Uong = cttt.Uong;
+                                        chiTietToaThuoc.Boi = cttt.Boi;
+                                        chiTietToaThuoc.Dat = cttt.Dat;
+                                        chiTietToaThuoc.Khac_CachDung = cttt.Khac_CachDung;
+                                        chiTietToaThuoc.SangNote = cttt.SangNote;
+                                        chiTietToaThuoc.TruaNote = cttt.TruaNote;
+                                        chiTietToaThuoc.ChieuNote = cttt.ChieuNote;
+                                        chiTietToaThuoc.ToiNote = cttt.ToiNote;
+                                        chiTietToaThuoc.TruocAnNote = cttt.TruocAnNote;
+                                        chiTietToaThuoc.SauAnNote = cttt.SauAnNote;
+                                        chiTietToaThuoc.Khac_TruocSauAnNote = cttt.Khac_TruocSauAnNote;
+                                        chiTietToaThuoc.UongNote = cttt.UongNote;
+                                        chiTietToaThuoc.BoiNote = cttt.BoiNote;
+                                        chiTietToaThuoc.DatNote = cttt.DatNote;
+                                        chiTietToaThuoc.Khac_CachDungNote = cttt.Khac_CachDungNote;
                                         chiTietToaThuoc.Status = (byte)Status.Actived;
                                         chiTietToaThuoc.UpdatedDate = cttt.UpdatedDate;
                                         chiTietToaThuoc.UpdatedBy = cttt.UpdatedBy;

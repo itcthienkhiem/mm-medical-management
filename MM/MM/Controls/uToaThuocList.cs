@@ -118,13 +118,20 @@ namespace MM.Controls
                 newRow["ToaThuocGUID"] = dlg.ToaThuoc.ToaThuocGUID.ToString();
                 newRow["MaToaThuoc"] = dlg.ToaThuoc.MaToaThuoc;
                 newRow["NgayKeToa"] = dlg.ToaThuoc.NgayKeToa;
+                newRow["NgayKham"] = dlg.ToaThuoc.NgayKham;
+                newRow["NgayTaiKham"] = dlg.ToaThuoc.NgayTaiKham;
                 newRow["BacSiKeToa"] = dlg.ToaThuoc.BacSiKeToa;
                 newRow["BenhNhan"] = dlg.ToaThuoc.BenhNhan;
                 newRow["TenBacSi"] = dlg.TenBacSi;
                 newRow["TenBenhNhan"] = dlg.TenBenhNhan;
                 newRow["DobStr"] = dlg.NgaySinh;
                 newRow["GenderAsStr"] = dlg.GioiTinh;
+                newRow["Address"] = dlg.DiaChi;
+                newRow["Mobile"] = dlg.DienThoai;
+                newRow["ChanDoan"] = dlg.ToaThuoc.ChanDoan;
                 newRow["Note"] = dlg.ToaThuoc.Note;
+                newRow["Loai"] = dlg.ToaThuoc.Loai;
+                newRow["LoaiStr"] = (LoaiToaThuoc)dlg.ToaThuoc.Loai == LoaiToaThuoc.Chung ? "Toa chung" : "Toa sản khoa";
 
                 if (dlg.ToaThuoc.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.ToaThuoc.CreatedDate;
@@ -164,13 +171,20 @@ namespace MM.Controls
             {
                 drToaThuoc["MaToaThuoc"] = dlg.ToaThuoc.MaToaThuoc;
                 drToaThuoc["NgayKeToa"] = dlg.ToaThuoc.NgayKeToa;
+                drToaThuoc["NgayKham"] = dlg.ToaThuoc.NgayKham;
+                drToaThuoc["NgayTaiKham"] = dlg.ToaThuoc.NgayTaiKham;
                 drToaThuoc["BacSiKeToa"] = dlg.ToaThuoc.BacSiKeToa;
                 drToaThuoc["BenhNhan"] = dlg.ToaThuoc.BenhNhan;
                 drToaThuoc["TenBacSi"] = dlg.TenBacSi;
                 drToaThuoc["TenBenhNhan"] = dlg.TenBenhNhan;
                 drToaThuoc["DobStr"] = dlg.NgaySinh;
                 drToaThuoc["GenderAsStr"] = dlg.GioiTinh;
+                drToaThuoc["Address"] = dlg.DiaChi;
+                drToaThuoc["Mobile"] = dlg.DienThoai;
+                drToaThuoc["ChanDoan"] = dlg.ToaThuoc.ChanDoan;
                 drToaThuoc["Note"] = dlg.ToaThuoc.Note;
+                drToaThuoc["Loai"] = dlg.ToaThuoc.Loai;
+                drToaThuoc["LoaiStr"] = (LoaiToaThuoc)dlg.ToaThuoc.Loai == LoaiToaThuoc.Chung ? "Toa chung" : "Toa sản khoa";
 
                 if (dlg.ToaThuoc.CreatedDate.HasValue)
                     drToaThuoc["CreatedDate"] = dlg.ToaThuoc.CreatedDate;

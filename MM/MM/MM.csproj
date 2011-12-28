@@ -517,6 +517,12 @@
     <Compile Include="Dialogs\dlgAddThuoc.Designer.cs">
       <DependentUpon>dlgAddThuoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddThuocKeToa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddThuocKeToa.Designer.cs">
+      <DependentUpon>dlgAddThuocKeToa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddToaThuoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -815,6 +821,9 @@
     <EmbeddedResource Include="Dialogs\dlgAddThuoc.resx">
       <DependentUpon>dlgAddThuoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddThuocKeToa.resx">
+      <DependentUpon>dlgAddThuocKeToa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddToaThuoc.resx">
       <DependentUpon>dlgAddToaThuoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -905,6 +914,7 @@
     <None Include="Components\Uninstall_MM.bat" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Company.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyCheckListView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyContract.datasource" />
