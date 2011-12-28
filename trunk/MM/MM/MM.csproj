@@ -948,6 +948,8 @@
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
     <None Include="Templates\SymptomTemplate.xls" />
+    <None Include="Templates\ToaThuocChungTemplate.xls" />
+    <None Include="Templates\ToaThuocSanKhoaTemplate.xls" />
     <None Include="Templates\ToaThuocTemplate.xls" />
   </ItemGroup>
   <ItemGroup>
