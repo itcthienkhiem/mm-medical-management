@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} ORDER BY NgayKeToa ASC, MaToaThuoc ASC",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} ORDER BY MaToaThuoc ASC",
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
