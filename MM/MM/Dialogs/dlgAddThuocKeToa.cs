@@ -105,6 +105,7 @@ namespace MM.Dialogs
                     chkSauAn.Checked = Convert.ToBoolean(drThuoc["SauAn"]);
                     txtSauAnNote.Text = drThuoc["SauAnNote"].ToString();
                     chkKhac_TruocSauAn.Checked = Convert.ToBoolean(drThuoc["Khac_TruocSauAn"]);
+                    txtKhac_TruocSauAnNote.Text = drThuoc["Khac_TruocSauAnNote"].ToString();
                     chkUong.Checked = Convert.ToBoolean(drThuoc["Uong"]);
                     txtUongNote.Text = drThuoc["UongNote"].ToString();
                     chkBoi.Checked = Convert.ToBoolean(drThuoc["Boi"]);
@@ -112,6 +113,7 @@ namespace MM.Dialogs
                     chkDatAD.Checked = Convert.ToBoolean(drThuoc["Dat"]);
                     txtDatADNote.Text = drThuoc["DatNote"].ToString();
                     chkKhac_CachDung.Checked = Convert.ToBoolean(drThuoc["Khac_CachDung"]);
+                    txtKhac_CachDungNote.Text = drThuoc["Khac_CachDungNote"].ToString();
                 }
                 else
                 {
@@ -201,7 +203,7 @@ namespace MM.Dialogs
                 _chiTietToaThuoc.SauAn = chkSauAn.Checked;
                 _chiTietToaThuoc.SauAnNote = txtSauAnNote.Text;
                 _chiTietToaThuoc.Khac_TruocSauAn = chkKhac_TruocSauAn.Checked;
-                _chiTietToaThuoc.Khac_TruocSauAnNote = string.Empty;
+                _chiTietToaThuoc.Khac_TruocSauAnNote = txtKhac_TruocSauAnNote.Text;
                 _chiTietToaThuoc.Uong = chkUong.Checked;
                 _chiTietToaThuoc.UongNote = txtUongNote.Text;
                 _chiTietToaThuoc.Boi = chkBoi.Checked;
@@ -209,7 +211,7 @@ namespace MM.Dialogs
                 _chiTietToaThuoc.Dat = chkDatAD.Checked;
                 _chiTietToaThuoc.DatNote = txtDatADNote.Text;
                 _chiTietToaThuoc.Khac_CachDung = chkKhac_CachDung.Checked;
-                _chiTietToaThuoc.Khac_CachDungNote = string.Empty;
+                _chiTietToaThuoc.Khac_CachDungNote = txtKhac_CachDungNote.Text;
                 _chiTietToaThuoc.LieuDung = txtLieuDung.Text;
                 _chiTietToaThuoc.Note = txtGhiChu.Text;
             }
@@ -291,6 +293,18 @@ namespace MM.Dialogs
             if (!chkDatAD.Checked) txtDatADNote.Text = string.Empty;
         }
 
+        private void chkKhac_TruocSauAn_CheckedChanged(object sender, EventArgs e)
+        {
+            txtKhac_TruocSauAnNote.ReadOnly = !chkKhac_TruocSauAn.Checked;
+            if (!chkKhac_TruocSauAn.Checked) txtKhac_TruocSauAnNote.Text = string.Empty;
+        }
+
+        private void chkKhac_CachDung_CheckedChanged(object sender, EventArgs e)
+        {
+            txtKhac_CachDungNote.ReadOnly = !chkKhac_CachDung.Checked;
+            if (!chkKhac_CachDung.Checked) txtKhac_CachDungNote.Text = string.Empty;
+        }
+
         private void btnThuocThayThe_Click(object sender, EventArgs e)
         {
             if (cboThuoc.Text == string.Empty) return;
@@ -302,5 +316,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+       
     }
 }

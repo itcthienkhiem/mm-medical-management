@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddThuocKeToa));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnThuocThayThe = new System.Windows.Forms.Button();
             this.gbToaSanKhoa = new System.Windows.Forms.GroupBox();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -64,7 +65,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.btnThuocThayThe = new System.Windows.Forms.Button();
+            this.txtKhac_TruocSauAnNote = new System.Windows.Forms.TextBox();
+            this.txtKhac_CachDungNote = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.gbToaSanKhoa.SuspendLayout();
             this.gbToaChung.SuspendLayout();
@@ -87,6 +89,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin thuốc kê toa";
+            // 
+            // btnThuocThayThe
+            // 
+            this.btnThuocThayThe.Location = new System.Drawing.Point(381, 21);
+            this.btnThuocThayThe.Name = "btnThuocThayThe";
+            this.btnThuocThayThe.Size = new System.Drawing.Size(97, 23);
+            this.btnThuocThayThe.TabIndex = 6;
+            this.btnThuocThayThe.Text = "&Thuốc thay thế";
+            this.btnThuocThayThe.UseVisualStyleBackColor = true;
+            this.btnThuocThayThe.Click += new System.EventHandler(this.btnThuocThayThe_Click);
             // 
             // gbToaSanKhoa
             // 
@@ -136,6 +148,8 @@
             // 
             // gbToaChung
             // 
+            this.gbToaChung.Controls.Add(this.txtKhac_CachDungNote);
+            this.gbToaChung.Controls.Add(this.txtKhac_TruocSauAnNote);
             this.gbToaChung.Controls.Add(this.chkUong);
             this.gbToaChung.Controls.Add(this.chkTruocAn);
             this.gbToaChung.Controls.Add(this.txtBoiNote);
@@ -170,7 +184,7 @@
             this.chkUong.Name = "chkUong";
             this.chkUong.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkUong.Size = new System.Drawing.Size(52, 17);
-            this.chkUong.TabIndex = 13;
+            this.chkUong.TabIndex = 14;
             this.chkUong.Text = "Uống";
             this.chkUong.UseVisualStyleBackColor = true;
             this.chkUong.CheckedChanged += new System.EventHandler(this.chkUong_CheckedChanged);
@@ -194,7 +208,7 @@
             this.txtBoiNote.Name = "txtBoiNote";
             this.txtBoiNote.ReadOnly = true;
             this.txtBoiNote.Size = new System.Drawing.Size(105, 20);
-            this.txtBoiNote.TabIndex = 16;
+            this.txtBoiNote.TabIndex = 17;
             // 
             // chkKhac_CachDung
             // 
@@ -203,9 +217,10 @@
             this.chkKhac_CachDung.Name = "chkKhac_CachDung";
             this.chkKhac_CachDung.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkKhac_CachDung.Size = new System.Drawing.Size(51, 17);
-            this.chkKhac_CachDung.TabIndex = 19;
+            this.chkKhac_CachDung.TabIndex = 20;
             this.chkKhac_CachDung.Text = "Khác";
             this.chkKhac_CachDung.UseVisualStyleBackColor = true;
+            this.chkKhac_CachDung.CheckedChanged += new System.EventHandler(this.chkKhac_CachDung_CheckedChanged);
             // 
             // txtUongNote
             // 
@@ -214,7 +229,7 @@
             this.txtUongNote.Name = "txtUongNote";
             this.txtUongNote.ReadOnly = true;
             this.txtUongNote.Size = new System.Drawing.Size(105, 20);
-            this.txtUongNote.TabIndex = 14;
+            this.txtUongNote.TabIndex = 15;
             // 
             // chkBoi
             // 
@@ -223,7 +238,7 @@
             this.chkBoi.Name = "chkBoi";
             this.chkBoi.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkBoi.Size = new System.Drawing.Size(41, 17);
-            this.chkBoi.TabIndex = 15;
+            this.chkBoi.TabIndex = 16;
             this.chkBoi.Text = "Bôi";
             this.chkBoi.UseVisualStyleBackColor = true;
             this.chkBoi.CheckedChanged += new System.EventHandler(this.chkBoi_CheckedChanged);
@@ -244,7 +259,7 @@
             this.txtDatADNote.Name = "txtDatADNote";
             this.txtDatADNote.ReadOnly = true;
             this.txtDatADNote.Size = new System.Drawing.Size(105, 20);
-            this.txtDatADNote.TabIndex = 18;
+            this.txtDatADNote.TabIndex = 19;
             // 
             // chkDatAD
             // 
@@ -253,7 +268,7 @@
             this.chkDatAD.Name = "chkDatAD";
             this.chkDatAD.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkDatAD.Size = new System.Drawing.Size(61, 17);
-            this.chkDatAD.TabIndex = 17;
+            this.chkDatAD.TabIndex = 18;
             this.chkDatAD.Text = "Đặt AĐ";
             this.chkDatAD.UseVisualStyleBackColor = true;
             this.chkDatAD.CheckedChanged += new System.EventHandler(this.chkDatAD_CheckedChanged);
@@ -268,6 +283,7 @@
             this.chkKhac_TruocSauAn.TabIndex = 12;
             this.chkKhac_TruocSauAn.Text = "Khác";
             this.chkKhac_TruocSauAn.UseVisualStyleBackColor = true;
+            this.chkKhac_TruocSauAn.CheckedChanged += new System.EventHandler(this.chkKhac_TruocSauAn_CheckedChanged);
             // 
             // txtSauAnNote
             // 
@@ -456,15 +472,23 @@
             this.btnOK.Text = "    &Đồng ý";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // btnThuocThayThe
+            // txtKhac_TruocSauAnNote
             // 
-            this.btnThuocThayThe.Location = new System.Drawing.Point(381, 21);
-            this.btnThuocThayThe.Name = "btnThuocThayThe";
-            this.btnThuocThayThe.Size = new System.Drawing.Size(97, 23);
-            this.btnThuocThayThe.TabIndex = 6;
-            this.btnThuocThayThe.Text = "&Thuốc thay thế";
-            this.btnThuocThayThe.UseVisualStyleBackColor = true;
-            this.btnThuocThayThe.Click += new System.EventHandler(this.btnThuocThayThe_Click);
+            this.txtKhac_TruocSauAnNote.Location = new System.Drawing.Point(273, 72);
+            this.txtKhac_TruocSauAnNote.MaxLength = 100;
+            this.txtKhac_TruocSauAnNote.Name = "txtKhac_TruocSauAnNote";
+            this.txtKhac_TruocSauAnNote.ReadOnly = true;
+            this.txtKhac_TruocSauAnNote.Size = new System.Drawing.Size(105, 20);
+            this.txtKhac_TruocSauAnNote.TabIndex = 13;
+            // 
+            // txtKhac_CachDungNote
+            // 
+            this.txtKhac_CachDungNote.Location = new System.Drawing.Point(464, 96);
+            this.txtKhac_CachDungNote.MaxLength = 100;
+            this.txtKhac_CachDungNote.Name = "txtKhac_CachDungNote";
+            this.txtKhac_CachDungNote.ReadOnly = true;
+            this.txtKhac_CachDungNote.Size = new System.Drawing.Size(105, 20);
+            this.txtKhac_CachDungNote.TabIndex = 21;
             // 
             // dlgAddThuocKeToa
             // 
@@ -535,5 +559,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnThuocThayThe;
+        private System.Windows.Forms.TextBox txtKhac_CachDungNote;
+        private System.Windows.Forms.TextBox txtKhac_TruocSauAnNote;
     }
 }
