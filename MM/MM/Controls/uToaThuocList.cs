@@ -167,6 +167,7 @@ namespace MM.Controls
 
             DataRow drToaThuoc = (dgToaThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
             dlgAddToaThuoc dlg = new dlgAddToaThuoc(drToaThuoc);
+            if (_patientRow != null) dlg.PatientRow = _patientRow;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 drToaThuoc["MaToaThuoc"] = dlg.ToaThuoc.MaToaThuoc;
