@@ -110,6 +110,7 @@
     <Compile Include="Global.cs" />
     <Compile Include="IconType.cs" />
     <Compile Include="Line.cs" />
+    <Compile Include="LoaiToaThuoc.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="MsgBoxType.cs" />
     <Compile Include="PaymentType.cs" />

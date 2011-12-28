@@ -415,7 +415,7 @@ namespace MM.Exports
                 IWorksheet workSheet = workBook.Worksheets[0];
 
                 workSheet.Cells["A2"].Value = string.Format("Mã toa thuốc: {0}", toaThuoc.MaToaThuoc);
-                workSheet.Cells["A3"].Value = string.Format("Ngày kê toa: {0}", toaThuoc.NgayKeToa.ToString("dd/MM/yyyy"));
+                workSheet.Cells["A3"].Value = string.Format("Ngày kê toa: {0}", toaThuoc.NgayKeToa.Value.ToString("dd/MM/yyyy"));
                 workSheet.Cells["A4"].Value = string.Format("Bác sĩ kê toa: {0}", toaThuoc.TenBacSi);
                 workSheet.Cells["A5"].Value = string.Format("Bệnh nhân: {0}", toaThuoc.TenBenhNhan);
 

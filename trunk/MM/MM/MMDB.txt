@@ -32,6 +32,10 @@ spDichVuHopDong
 - Update store: spGetCheckList, spCheckMember, spGetCheckListByContract, spDichVuHopDong
 - Create store: spDichVuTuTuc
 - Insert: Function (DichVuTuTuc)
+2011-12-28
+- Drop table: ChiTietToaThuoc, ToaThuoc
+- Create table: ToaThuoc, ChiTietToaThuoc
+- Update view: ToaThuocView, ChiTietToaThuocView
 
 - Hợp đồng thêm ngày hết hạn hợp đồng
 - Report Dịch vụ hợp đồng thêm ngày khám, SDĐ, raido option, (từ ngày tới ngày: tháng)

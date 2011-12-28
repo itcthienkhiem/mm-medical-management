@@ -557,8 +557,8 @@
       <Association Name="Thuoc_NhomThuoc_Thuoc" Member="NhomThuoc_Thuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="NhomThuoc_Thuoc" />
       <Association Name="Thuoc_GiaThuoc" Member="GiaThuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="GiaThuoc" />
       <Association Name="Thuoc_LoThuoc" Member="LoThuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="LoThuoc" />
-      <Association Name="Thuoc_ChiTietToaThuoc" Member="ChiTietToaThuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="ChiTietToaThuoc" />
       <Association Name="Thuoc_ChiTietPhieuThuThuoc" Member="ChiTietPhieuThuThuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="ChiTietPhieuThuThuoc" />
+      <Association Name="Thuoc_ChiTietToaThuoc" Member="ChiTietToaThuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="ChiTietToaThuoc" />
     </Type>
   </Table>
   <Table Name="dbo.GiaThuoc" Member="GiaThuocs">
@@ -658,68 +658,6 @@
       <Column Name="GiaNhapQuiDoi" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.ToaThuoc" Member="ToaThuocs">
-    <Type Name="ToaThuoc">
-      <Column Name="ToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaToaThuoc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="NgayKeToa" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="BacSiKeToa" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="BenhNhan" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="ToaThuoc_ChiTietToaThuoc" Member="ChiTietToaThuocs" ThisKey="ToaThuocGUID" OtherKey="ToaThuocGUID" Type="ChiTietToaThuoc" />
-      <Association Name="DocStaff_ToaThuoc" Member="DocStaff" ThisKey="BacSiKeToa" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
-      <Association Name="Patient_ToaThuoc" Member="Patient" ThisKey="BenhNhan" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ChiTietToaThuoc" Member="ChiTietToaThuocs">
-    <Type Name="ChiTietToaThuoc">
-      <Column Name="ChiTietToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="SoNgayUong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SoLanTrongNgay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SoLuongTrongLan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="Thuoc_ChiTietToaThuoc" Member="Thuoc" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="Thuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="ToaThuoc_ChiTietToaThuoc" Member="ToaThuoc" ThisKey="ToaThuocGUID" OtherKey="ToaThuocGUID" Type="ToaThuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ChiTietToaThuocView" Member="ChiTietToaThuocViews">
-    <Type Name="ChiTietToaThuocView">
-      <Column Name="ChiTietToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="ThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="SoNgayUong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SoLanTrongNgay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SoLuongTrongLan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="ChiTietToaThuocStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="ThuocStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.PhieuThuThuoc" Member="PhieuThuThuocs">
     <Type Name="PhieuThuThuoc">
       <Column Name="PhieuThuThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -779,29 +717,6 @@
       <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ThuocStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.ToaThuocView" Member="ToaThuocViews">
-    <Type Name="ToaThuocView">
-      <Column Name="ToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="MaToaThuoc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="NgayKeToa" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="BacSiKeToa" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="BenhNhan" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="TenBacSi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenBenhNhan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="GenderAsStr" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FileNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.CompanyMemberView" Member="CompanyMemberViews">
@@ -1047,6 +962,145 @@
       <Column Name="PatientHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="Source" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="CompanyName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietToaThuoc" Member="ChiTietToaThuocs">
+    <Type Name="ChiTietToaThuoc">
+      <Column Name="ChiTietToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LieuDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Sang" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Trua" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Chieu" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Toi" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TruocAn" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SauAn" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Khac_TruocSauAn" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Uong" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Boi" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Dat" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Khac_CachDung" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SangNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TruaNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ChieuNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ToiNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TruocAnNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SauAnNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Khac_TruocSauAnNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="UongNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="BoiNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DatNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Khac_CachDungNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="Thuoc_ChiTietToaThuoc" Member="Thuoc" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="Thuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="ToaThuoc_ChiTietToaThuoc" Member="ToaThuoc" ThisKey="ToaThuocGUID" OtherKey="ToaThuocGUID" Type="ToaThuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ToaThuoc" Member="ToaThuocs">
+    <Type Name="ToaThuoc">
+      <Column Name="ToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaToaThuoc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayKeToa" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NgayKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NgayTaiKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BacSiKeToa" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BenhNhan" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ChanDoan" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Loai" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="ToaThuoc_ChiTietToaThuoc" Member="ChiTietToaThuocs" ThisKey="ToaThuocGUID" OtherKey="ToaThuocGUID" Type="ChiTietToaThuoc" />
+      <Association Name="DocStaff_ToaThuoc" Member="DocStaff" ThisKey="BacSiKeToa" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
+      <Association Name="Patient_ToaThuoc" Member="Patient" ThisKey="BenhNhan" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietToaThuocView" Member="ChiTietToaThuocViews">
+    <Type Name="ChiTietToaThuocView">
+      <Column Name="ChiTietToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ChiTietToaThuocStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ThuocStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LieuDung" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Sang" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Trua" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Chieu" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Toi" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="TruocAn" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SauAn" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Khac_TruocSauAn" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Uong" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Boi" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Dat" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Khac_CachDung" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SangNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TruaNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ChieuNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ToiNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TruocAnNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="SauAnNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Khac_TruocSauAnNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="UongNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="BoiNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DatNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Khac_CachDungNote" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ToaThuocView" Member="ToaThuocViews">
+    <Type Name="ToaThuocView">
+      <Column Name="ToaThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="MaToaThuoc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayKeToa" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="BacSiKeToa" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="BenhNhan" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="TenBacSi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenBenhNhan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="GenderAsStr" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FileNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NgayKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NgayTaiKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ChanDoan" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Loai" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HomePhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="WorkPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LoaiStr" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">
