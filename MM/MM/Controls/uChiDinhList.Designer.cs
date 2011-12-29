@@ -43,6 +43,9 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.chkChiTietChecked = new System.Windows.Forms.CheckBox();
             this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.ChiTietChiDinhChecked = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chiTietChiDinhViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -50,16 +53,13 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgChiDinh = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.chiDinhViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.Checked = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.maChiDinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayChiDinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChiTietChiDinhChecked = new MM.Controls.DataGridViewDisableCheckBoxColumn();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chiDinhViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -138,9 +138,9 @@
             this.panel2.Controls.Add(this.panel7);
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 217);
+            this.panel2.Location = new System.Drawing.Point(0, 287);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(804, 250);
+            this.panel2.Size = new System.Drawing.Size(804, 180);
             this.panel2.TabIndex = 3;
             // 
             // panel7
@@ -150,7 +150,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 20);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(804, 230);
+            this.panel7.Size = new System.Drawing.Size(804, 160);
             this.panel7.TabIndex = 2;
             // 
             // chkChiTietChecked
@@ -200,8 +200,34 @@
             this.dgChiTiet.Name = "dgChiTiet";
             this.dgChiTiet.RowHeadersWidth = 30;
             this.dgChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgChiTiet.Size = new System.Drawing.Size(804, 230);
+            this.dgChiTiet.Size = new System.Drawing.Size(804, 160);
             this.dgChiTiet.TabIndex = 6;
+            // 
+            // ChiTietChiDinhChecked
+            // 
+            this.ChiTietChiDinhChecked.DataPropertyName = "Checked";
+            this.ChiTietChiDinhChecked.Frozen = true;
+            this.ChiTietChiDinhChecked.HeaderText = "";
+            this.ChiTietChiDinhChecked.Name = "ChiTietChiDinhChecked";
+            this.ChiTietChiDinhChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ChiTietChiDinhChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ChiTietChiDinhChecked.Width = 40;
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã dịch vụ";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên dịch vụ";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 250;
             // 
             // chiTietChiDinhViewBindingSource
             // 
@@ -234,7 +260,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(804, 217);
+            this.panel3.Size = new System.Drawing.Size(804, 287);
             this.panel3.TabIndex = 4;
             // 
             // panel5
@@ -244,7 +270,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 20);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(804, 197);
+            this.panel5.Size = new System.Drawing.Size(804, 267);
             this.panel5.TabIndex = 1;
             // 
             // chkChecked
@@ -295,33 +321,9 @@
             this.dgChiDinh.Name = "dgChiDinh";
             this.dgChiDinh.RowHeadersWidth = 30;
             this.dgChiDinh.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgChiDinh.Size = new System.Drawing.Size(804, 197);
+            this.dgChiDinh.Size = new System.Drawing.Size(804, 267);
             this.dgChiDinh.TabIndex = 4;
             this.dgChiDinh.SelectionChanged += new System.EventHandler(this.dgChiDinh_SelectionChanged);
-            // 
-            // chiDinhViewBindingSource
-            // 
-            this.chiDinhViewBindingSource.DataSource = typeof(MM.Databasae.ChiDinhView);
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.label1);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(804, 20);
-            this.panel4.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.ForeColor = System.Drawing.Color.Blue;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(804, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Danh sách chỉ định";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // Checked
             // 
@@ -359,31 +361,29 @@
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fullNameDataGridViewTextBoxColumn.Width = 200;
             // 
-            // ChiTietChiDinhChecked
+            // chiDinhViewBindingSource
             // 
-            this.ChiTietChiDinhChecked.DataPropertyName = "Checked";
-            this.ChiTietChiDinhChecked.Frozen = true;
-            this.ChiTietChiDinhChecked.HeaderText = "";
-            this.ChiTietChiDinhChecked.Name = "ChiTietChiDinhChecked";
-            this.ChiTietChiDinhChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ChiTietChiDinhChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ChiTietChiDinhChecked.Width = 40;
+            this.chiDinhViewBindingSource.DataSource = typeof(MM.Databasae.ChiDinhView);
             // 
-            // codeDataGridViewTextBoxColumn
+            // panel4
             // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã dịch vụ";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn.Width = 120;
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(804, 20);
+            this.panel4.TabIndex = 0;
             // 
-            // nameDataGridViewTextBoxColumn
+            // label1
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên dịch vụ";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 250;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(804, 20);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Danh sách chỉ định";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // uChiDinhList
             // 
