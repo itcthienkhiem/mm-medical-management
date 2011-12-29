@@ -173,29 +173,34 @@ namespace MM.Dialogs
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Patient)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Speciality)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Company)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Services)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.ServicePrice)
                 {
@@ -205,12 +210,14 @@ namespace MM.Dialogs
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Contract)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.OpenPatient)
                 {
@@ -220,17 +227,20 @@ namespace MM.Dialogs
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Permission)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Symptom)
                 {
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.PrintLabel)
                 {
@@ -240,6 +250,7 @@ namespace MM.Dialogs
                     (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Receipt)
                 {
@@ -249,6 +260,7 @@ namespace MM.Dialogs
                     (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Invoice)
                 {
@@ -258,6 +270,7 @@ namespace MM.Dialogs
                     (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.DuplicatePatient)
                 {
@@ -268,6 +281,7 @@ namespace MM.Dialogs
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.DoanhThuNhanVien)
                 {
@@ -278,6 +292,7 @@ namespace MM.Dialogs
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.DichVuHopDong)
                 {
@@ -288,35 +303,41 @@ namespace MM.Dialogs
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.Thuoc)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.NhomThuoc)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.LoThuoc)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.GiaThuoc)
                 {
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.KeToa)
                 {
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.ThuocHetHan)
                 {
@@ -327,6 +348,7 @@ namespace MM.Dialogs
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.ThuocTonKho)
                 {
@@ -337,6 +359,7 @@ namespace MM.Dialogs
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.PhieuThuThuoc)
                 {
@@ -347,6 +370,7 @@ namespace MM.Dialogs
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
                 else if (functionCode == Const.DichVuTuTuc)
                 {
@@ -357,6 +381,13 @@ namespace MM.Dialogs
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.ChiDinh)
+                {
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
             }
         }
@@ -389,6 +420,7 @@ namespace MM.Dialogs
                                 newRow["IsPrint"] = false;
                                 newRow["IsExport"] = false;
                                 newRow["IsImport"] = false;
+                                newRow["IsConfirm"] = false;
                                 dtPermission.Rows.Add(newRow);
                             }
 
@@ -414,6 +446,7 @@ namespace MM.Dialogs
                                     newRow["IsPrint"] = false;
                                     newRow["IsExport"] = false;
                                     newRow["IsImport"] = false;
+                                    newRow["IsConfirm"] = false;
                                     dtPermission.Rows.Add(newRow);
                                 }
                             }

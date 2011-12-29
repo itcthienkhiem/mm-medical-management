@@ -21,5 +21,10 @@ namespace MM.Common
         public static bool AllowPrintInvoice = true;
         public static string PrintLabelConfigPath = string.Format("{0}\\PrintLabelConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
         public static PrintLabelConfig PrintLabelConfig = new PrintLabelConfig();
+        public static bool AllowViewChiDinh = true;
+        public static bool AllowAddChiDinh = true;
+        public static bool AllowEditChiDinh = true;
+        public static bool AllowDeleteChiDinh = true;
+        public static bool AllowConfirmChiDinh = true;
     }
 }

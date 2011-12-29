@@ -186,6 +186,11 @@ namespace MM
                 Global.AllowPrintReceipt = false;
                 Global.AllowExportInvoice = false;
                 Global.AllowPrintInvoice = false;
+                Global.AllowViewChiDinh = false;
+                Global.AllowAddChiDinh = false;
+                Global.AllowEditChiDinh = false;
+                Global.AllowDeleteChiDinh = false;
+                Global.AllowConfirmChiDinh = false;
 
                 Result result = LogonBus.GetPermission(Global.LogonGUID);
                 if (result.IsOK)
@@ -201,6 +206,7 @@ namespace MM
                         bool isPrint = Convert.ToBoolean(row["IsPrint"]);
                         bool isImport = Convert.ToBoolean(row["IsImport"]);
                         bool isExport = Convert.ToBoolean(row["IsExport"]);
+                        bool isConfirm = Convert.ToBoolean(row["IsConfirm"]);
 
                         if (functionCode == Const.DocStaff)
                         {
@@ -470,6 +476,14 @@ namespace MM
                             _uDichVuTuTuc.AllowExport = isExport;
                             _uDichVuTuTuc.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.ChiDinh)
+                        {
+                            Global.AllowViewChiDinh = isView;
+                            Global.AllowAddChiDinh = isAdd;
+                            Global.AllowEditChiDinh = isEdit;
+                            Global.AllowDeleteChiDinh = isDelete;
+                            Global.AllowConfirmChiDinh = isConfirm;
+                        }
                     }
                 }
                 else
@@ -485,6 +499,11 @@ namespace MM
                 Global.AllowPrintReceipt = true;
                 Global.AllowExportInvoice = true;
                 Global.AllowPrintInvoice = true;
+                Global.AllowViewChiDinh = true;
+                Global.AllowAddChiDinh = true;
+                Global.AllowEditChiDinh = true;
+                Global.AllowDeleteChiDinh = true;
+                Global.AllowConfirmChiDinh = true;
 
                 _uDocStaffList.AllowAdd = true;
                 _uDocStaffList.AllowEdit = true;

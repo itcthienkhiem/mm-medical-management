@@ -49,6 +49,7 @@
             this.IsPrint = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.IsImport = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.IsExport = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.IsConfirm = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.permissionViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -71,7 +72,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(8, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(633, 85);
+            this.groupBox1.Size = new System.Drawing.Size(699, 85);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin người sử dụng";
@@ -126,7 +127,7 @@
             this.groupBox2.Controls.Add(this.dgPermission);
             this.groupBox2.Location = new System.Drawing.Point(8, 96);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(633, 439);
+            this.groupBox2.Size = new System.Drawing.Size(699, 439);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Phân quyền";
@@ -156,7 +157,8 @@
             this.IsDelete,
             this.IsPrint,
             this.IsImport,
-            this.IsExport});
+            this.IsExport,
+            this.IsConfirm});
             this.dgPermission.DataSource = this.permissionViewBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -175,7 +177,7 @@
             this.dgPermission.RowHeadersVisible = false;
             this.dgPermission.RowHeadersWidth = 30;
             this.dgPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPermission.Size = new System.Drawing.Size(608, 409);
+            this.dgPermission.Size = new System.Drawing.Size(676, 409);
             this.dgPermission.TabIndex = 4;
             this.dgPermission.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPermission_CellMouseDown);
             // 
@@ -253,6 +255,14 @@
             this.IsExport.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.IsExport.Width = 50;
             // 
+            // IsConfirm
+            // 
+            this.IsConfirm.DataPropertyName = "IsConfirm";
+            this.IsConfirm.HeaderText = "Xác nhận";
+            this.IsConfirm.Name = "IsConfirm";
+            this.IsConfirm.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.IsConfirm.Width = 70;
+            // 
             // permissionViewBindingSource
             // 
             this.permissionViewBindingSource.DataSource = typeof(MM.Databasae.PermissionView);
@@ -262,7 +272,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(327, 541);
+            this.btnCancel.Location = new System.Drawing.Point(359, 541);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 15;
@@ -274,7 +284,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(248, 541);
+            this.btnOK.Location = new System.Drawing.Point(280, 541);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 14;
@@ -287,19 +297,19 @@
             this.selectAllToolStripMenuItem,
             this.unselectAllToolStripMenuItem});
             this.ctmPermission.Name = "ctmPermission";
-            this.ctmPermission.Size = new System.Drawing.Size(151, 48);
+            this.ctmPermission.Size = new System.Drawing.Size(155, 48);
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.selectAllToolStripMenuItem.Text = "&Chọn tất cả";
             this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
             // 
             // unselectAllToolStripMenuItem
             // 
             this.unselectAllToolStripMenuItem.Name = "unselectAllToolStripMenuItem";
-            this.unselectAllToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.unselectAllToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.unselectAllToolStripMenuItem.Text = "&Bỏ chọn tất cả";
             this.unselectAllToolStripMenuItem.Click += new System.EventHandler(this.unselectAllToolStripMenuItem_Click);
             // 
@@ -309,7 +319,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(650, 573);
+            this.ClientSize = new System.Drawing.Size(715, 573);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox2);
@@ -360,5 +370,6 @@
         private Controls.DataGridViewDisableCheckBoxColumn IsPrint;
         private Controls.DataGridViewDisableCheckBoxColumn IsImport;
         private Controls.DataGridViewDisableCheckBoxColumn IsExport;
+        private Controls.DataGridViewDisableCheckBoxColumn IsConfirm;
     }
 }
