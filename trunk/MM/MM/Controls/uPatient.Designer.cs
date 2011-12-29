@@ -36,6 +36,8 @@
             this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabServiceHistory = new DevComponents.DotNetBar.TabControl();
+            this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
+            this.pageChiDinh = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this._uDailyServiceHistory = new MM.Controls.uServiceHistory();
             this.pageDailyService = new DevComponents.DotNetBar.TabItem(this.components);
@@ -64,12 +66,12 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pageChiDinh = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uChiDinhList = new MM.Controls.uChiDinhList();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
             this.tabServiceHistory.SuspendLayout();
+            this.tabControlPanel4.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
             this.tabControlPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -148,6 +150,31 @@
             this.tabServiceHistory.Tabs.Add(this.pageKeToa);
             this.tabServiceHistory.Tabs.Add(this.pageChiDinh);
             this.tabServiceHistory.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabServiceHistory_SelectedTabChanged);
+            // 
+            // tabControlPanel4
+            // 
+            this.tabControlPanel4.Controls.Add(this._uChiDinhList);
+            this.tabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel4.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel4.Name = "tabControlPanel4";
+            this.tabControlPanel4.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel4.Size = new System.Drawing.Size(1177, 425);
+            this.tabControlPanel4.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel4.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel4.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel4.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel4.Style.GradientAngle = 90;
+            this.tabControlPanel4.TabIndex = 4;
+            this.tabControlPanel4.TabItem = this.pageChiDinh;
+            // 
+            // pageChiDinh
+            // 
+            this.pageChiDinh.AttachedControl = this.tabControlPanel4;
+            this.pageChiDinh.Image = global::MM.Properties.Resources.korganizer_todo_icon;
+            this.pageChiDinh.Name = "pageChiDinh";
+            this.pageChiDinh.Text = "Chỉ định";
             // 
             // tabControlPanel2
             // 
@@ -430,29 +457,13 @@
             this.panel3.Size = new System.Drawing.Size(1177, 5);
             this.panel3.TabIndex = 0;
             // 
-            // pageChiDinh
+            // _uChiDinhList
             // 
-            this.pageChiDinh.AttachedControl = this.tabControlPanel4;
-            this.pageChiDinh.Image = global::MM.Properties.Resources.korganizer_todo_icon;
-            this.pageChiDinh.Name = "pageChiDinh";
-            this.pageChiDinh.Text = "Chỉ định";
-            // 
-            // tabControlPanel4
-            // 
-            this.tabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel4.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel4.Name = "tabControlPanel4";
-            this.tabControlPanel4.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel4.Size = new System.Drawing.Size(1177, 425);
-            this.tabControlPanel4.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel4.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel4.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel4.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel4.Style.GradientAngle = 90;
-            this.tabControlPanel4.TabIndex = 4;
-            this.tabControlPanel4.TabItem = this.pageChiDinh;
+            this._uChiDinhList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uChiDinhList.Location = new System.Drawing.Point(1, 1);
+            this._uChiDinhList.Name = "_uChiDinhList";
+            this._uChiDinhList.Size = new System.Drawing.Size(1175, 423);
+            this._uChiDinhList.TabIndex = 0;
             // 
             // uPatient
             // 
@@ -467,6 +478,7 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).EndInit();
             this.tabServiceHistory.ResumeLayout(false);
+            this.tabControlPanel4.ResumeLayout(false);
             this.tabControlPanel2.ResumeLayout(false);
             this.tabControlPanel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -514,5 +526,6 @@
         private System.Windows.Forms.Button btnRefresh;
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel4;
         private DevComponents.DotNetBar.TabItem pageChiDinh;
+        private uChiDinhList _uChiDinhList;
     }
 }

@@ -46,6 +46,7 @@ namespace MM.Controls
                 _uServiceHistory.PatientRow = value;
                 _uDailyServiceHistory.PatientRow = value;
                 _uToaThuocList.PatientRow = (DataRow)value;
+                _uChiDinhList.PatientRow = (DataRow)value;
             }
         }
         #endregion
@@ -80,6 +81,7 @@ namespace MM.Controls
             _uServiceHistory.DisplayAsThread();
             _uDailyServiceHistory.DisplayAsThread();
             _uToaThuocList.DisplayAsThread();
+            _uChiDinhList.DisplayAsThread();
 
             pageChiDinh.Visible = Global.AllowViewChiDinh;
         }
@@ -91,6 +93,7 @@ namespace MM.Controls
             _uServiceHistory.DisplayAsThread();
             _uDailyServiceHistory.DisplayAsThread();
             _uToaThuocList.DisplayAsThread();
+            _uChiDinhList.DisplayAsThread();
         }
 
         public void DisplayCheckListAsThread()

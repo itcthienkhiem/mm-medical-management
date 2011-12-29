@@ -158,6 +158,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Alarm_Tick_icon {
+            get {
+                object obj = ResourceManager.GetObject("Alarm_Tick_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Apps_preferences_contact_list_icon {
             get {
                 object obj = ResourceManager.GetObject("Apps_preferences_contact_list_icon", resourceCulture);

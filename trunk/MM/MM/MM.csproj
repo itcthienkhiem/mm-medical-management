@@ -671,6 +671,12 @@
     <Compile Include="Controls\uPatient.Designer.cs">
       <DependentUpon>uPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uChiDinhList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uChiDinhList.Designer.cs">
+      <DependentUpon>uChiDinhList.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Controls\DICOM\DicomTagsForm.resx">
       <DependentUpon>DicomTagsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -910,8 +916,13 @@
     <EmbeddedResource Include="Templates\rptDoanhThuNhanVienTongHop.rdlc" />
     <EmbeddedResource Include="Templates\rptThuocHetHan.rdlc" />
     <EmbeddedResource Include="Templates\rptThuocTonKho.rdlc" />
+    <EmbeddedResource Include="Controls\uChiDinhList.resx">
+      <DependentUpon>uChiDinhList.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiDinhView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiTietChiDinhView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuocView.datasource" />
@@ -999,6 +1010,7 @@
     <Content Include="MM_Ico.ico" />
     <None Include="Resources\Refresh-icon.png" />
     <None Include="Resources\korganizer-todo-icon.png" />
+    <None Include="Resources\Alarm-Tick-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-28_2011-12-31.sql" />
     <None Include="Resources\export-excel-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-26_2011-12-27.sql" />
