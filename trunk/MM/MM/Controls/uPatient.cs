@@ -78,10 +78,10 @@ namespace MM.Controls
             txtThuocDiUng.Text = row["Thuoc_Di_Ung"].ToString();
 
             DisplayCheckListAsThread();
-            _uServiceHistory.DisplayAsThread();
+            //_uServiceHistory.DisplayAsThread();
             _uDailyServiceHistory.DisplayAsThread();
-            _uToaThuocList.DisplayAsThread();
-            _uChiDinhList.DisplayAsThread();
+            //_uToaThuocList.DisplayAsThread();
+            //_uChiDinhList.DisplayAsThread();
 
             pageChiDinh.Visible = Global.AllowViewChiDinh;
         }
@@ -179,7 +179,7 @@ namespace MM.Controls
             else if (tabServiceHistory.SelectedTabIndex == 2)
                 _uToaThuocList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 3)
-                _uChiDinhList.OnGetDichVuChiDinh();
+                _uChiDinhList.DisplayAsThread();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
