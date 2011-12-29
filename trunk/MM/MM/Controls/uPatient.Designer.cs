@@ -64,6 +64,8 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pageChiDinh = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
@@ -128,6 +130,7 @@
             // tabServiceHistory
             // 
             this.tabServiceHistory.CanReorderTabs = true;
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel4);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel2);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel3);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel1);
@@ -143,6 +146,7 @@
             this.tabServiceHistory.Tabs.Add(this.pageDailyService);
             this.tabServiceHistory.Tabs.Add(this.pageServiceHistory);
             this.tabServiceHistory.Tabs.Add(this.pageKeToa);
+            this.tabServiceHistory.Tabs.Add(this.pageChiDinh);
             this.tabServiceHistory.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabServiceHistory_SelectedTabChanged);
             // 
             // tabControlPanel2
@@ -426,6 +430,30 @@
             this.panel3.Size = new System.Drawing.Size(1177, 5);
             this.panel3.TabIndex = 0;
             // 
+            // pageChiDinh
+            // 
+            this.pageChiDinh.AttachedControl = this.tabControlPanel4;
+            this.pageChiDinh.Image = global::MM.Properties.Resources.korganizer_todo_icon;
+            this.pageChiDinh.Name = "pageChiDinh";
+            this.pageChiDinh.Text = "Chỉ định";
+            // 
+            // tabControlPanel4
+            // 
+            this.tabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel4.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel4.Name = "tabControlPanel4";
+            this.tabControlPanel4.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel4.Size = new System.Drawing.Size(1177, 425);
+            this.tabControlPanel4.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel4.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel4.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel4.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel4.Style.GradientAngle = 90;
+            this.tabControlPanel4.TabIndex = 4;
+            this.tabControlPanel4.TabItem = this.pageChiDinh;
+            // 
             // uPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -484,5 +512,7 @@
         private DevComponents.DotNetBar.TabItem pageKeToa;
         private uToaThuocList _uToaThuocList;
         private System.Windows.Forms.Button btnRefresh;
+        private DevComponents.DotNetBar.TabControlPanel tabControlPanel4;
+        private DevComponents.DotNetBar.TabItem pageChiDinh;
     }
 }

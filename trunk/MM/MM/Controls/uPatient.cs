@@ -77,11 +77,11 @@ namespace MM.Controls
             txtThuocDiUng.Text = row["Thuoc_Di_Ung"].ToString();
 
             DisplayCheckListAsThread();
-
             _uServiceHistory.DisplayAsThread();
             _uDailyServiceHistory.DisplayAsThread();
             _uToaThuocList.DisplayAsThread();
-            
+
+            pageChiDinh.Visible = Global.AllowViewChiDinh;
         }
 
         private void OnRefreshData()

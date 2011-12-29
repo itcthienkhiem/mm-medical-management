@@ -106,6 +106,12 @@ namespace MM.Dialogs
             {
                 cboDocStaff.DataSource = result.QueryResult;
             }
+
+            if (Global.StaffType != StaffType.Admin && Global.StaffType != StaffType.Reception)
+            {
+                cboDocStaff.SelectedValue = Global.UserGUID;
+                cboDocStaff.Enabled = false;
+            }
         }
 
         private void DisplayInfo(DataRow drServiceHistory)

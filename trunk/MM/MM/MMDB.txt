@@ -36,8 +36,10 @@ spDichVuHopDong
 - Drop table: ChiTietToaThuoc, ToaThuoc
 - Create table: ToaThuoc, ChiTietToaThuoc
 - Update view: ToaThuocView, ChiTietToaThuocView
+2011-12-29
+- Create table: ChiDinh, ChiTietChiDinh, DichVuChiDinh
+- Update table: Permission(Add column: IsConfirm)
+- Update view: PermissionView
+- Insert: Function (ChiDinh)
+- Create view: ChiDinhView, ChiTietChiDinhView
 
-- Hợp đồng thêm ngày hết hạn hợp đồng
-- Report Dịch vụ hợp đồng thêm ngày khám, SDĐ, raido option, (từ ngày tới ngày: tháng)
-- Report Dịch vụ khám tự túc (từ ngày tới ngày: 1 tháng) - bênh nhân thêm field công ty (nếu kô nhập cty thì là tự túc)
-- Chỉ định bác sĩ.

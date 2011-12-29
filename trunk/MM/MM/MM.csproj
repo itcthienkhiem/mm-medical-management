@@ -998,6 +998,7 @@
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
     <None Include="Resources\Refresh-icon.png" />
+    <None Include="Resources\korganizer-todo-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-28_2011-12-31.sql" />
     <None Include="Resources\export-excel-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-26_2011-12-27.sql" />
