@@ -166,6 +166,33 @@ namespace MM.Controls
             }
         }
 
+        private void UpdateDichVuChiDinh()
+        {
+            if (dgChiDinh.SelectedRows == null || dgChiDinh.SelectedRows.Count <= 0)
+                return;
+            DataRow dr = (dgChiDinh.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string chiDinhGUID = dr["ChiDinhGUID"].ToString();
+
+            if (_htDichVuChiDinh.ContainsKey(chiDinhGUID))
+            {
+                List<DichVuChiDinhView> dichVuChiDinhList = (List<DichVuChiDinhView>)_htDichVuChiDinh[chiDinhGUID];
+                foreach (DataGridViewRow row in dgChiTiet.Rows)
+                {
+                    DataRow r = (row.DataBoundItem as DataRowView).Row;
+                    string serviceGUID = r["ServiceGUID"].ToString();
+                    foreach (var dvcd in dichVuChiDinhList)
+                    {
+                        if (serviceGUID == dvcd.ServiceGUID.ToString())
+                        {
+                            (row.Cells["ChiTietChiDinhChecked"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                            row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         private void OnAddChiDinh()
         {
             dlgAddChiDinh dlg = new dlgAddChiDinh(_patientRow);
@@ -404,6 +431,16 @@ namespace MM.Controls
         {
             OnEditChiDinh();
         }
+
+        private void dgChiDinh_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            OnGetDichVuChiDinh();
+        }
+
+        private void dgChiTiet_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            UpdateDichVuChiDinh();
+        }
         #endregion
 
         #region Working Thread
@@ -425,5 +462,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
     }
 }

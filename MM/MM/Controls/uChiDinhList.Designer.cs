@@ -202,6 +202,7 @@
             this.dgChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgChiTiet.Size = new System.Drawing.Size(804, 160);
             this.dgChiTiet.TabIndex = 6;
+            this.dgChiTiet.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_ColumnHeaderMouseClick);
             // 
             // ChiTietChiDinhChecked
             // 
@@ -323,6 +324,7 @@
             this.dgChiDinh.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgChiDinh.Size = new System.Drawing.Size(804, 267);
             this.dgChiDinh.TabIndex = 4;
+            this.dgChiDinh.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiDinh_ColumnHeaderMouseClick);
             this.dgChiDinh.SelectionChanged += new System.EventHandler(this.dgChiDinh_SelectionChanged);
             this.dgChiDinh.DoubleClick += new System.EventHandler(this.dgChiDinh_DoubleClick);
             // 
