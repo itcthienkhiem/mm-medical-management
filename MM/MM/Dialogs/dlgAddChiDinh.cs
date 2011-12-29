@@ -31,11 +31,13 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             _patientRow = patientRow;
+            GenerateCode();
         }
 
-        public dlgAddChiDinh(DataRow drChiDinh, DataTable dtChiTietChiDinh, List<DichVuChiDinhView> dichVuChiDinhList)
+        public dlgAddChiDinh(DataRow patientRow, DataRow drChiDinh, DataTable dtChiTietChiDinh, List<DichVuChiDinhView> dichVuChiDinhList)
         {
             InitializeComponent();
+            _patientRow = patientRow;
             _drChiDinh = drChiDinh;
             _dichVuChiDinhList = dichVuChiDinhList;
             _dtChiTietChiDinh = dtChiTietChiDinh;
@@ -61,9 +63,35 @@ namespace MM.Dialogs
             }
 
         }
+
+        public ChiDinh ChiDinh
+        {
+            get { return _chiDinh; }
+        }
+
+        public string TenBacSiChiDinh
+        {
+            get { return cboDocStaff.Text; }
+        }
         #endregion
 
         #region UI Command
+        private void GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = ChiDinhBus.GetChiDinhCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                txtMaChiDinh.Text = Utility.GetCode("CD", count + 1, 5);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ChiDinhBus.GetChiDinhCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetChiDinhCount"));
+            }
+        }
+
         private void InitData()
         {
             //DocStaff
@@ -127,8 +155,8 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
             }
         }
 
@@ -140,6 +168,7 @@ namespace MM.Dialogs
             if (txtSearchService.Text.Trim() == string.Empty)
             {
                 dgService.DataSource = _dataSource;
+                UpdateDichVuChiDinh();
                 return;
             }
 
@@ -160,6 +189,7 @@ namespace MM.Dialogs
             if (newDataSource.Rows.Count > 0)
             {
                 dgService.DataSource = newDataSource;
+                UpdateDichVuChiDinh();
                 return;
             }
 
@@ -178,6 +208,7 @@ namespace MM.Dialogs
             if (newDataSource.Rows.Count > 0)
             {
                 dgService.DataSource = newDataSource;
+                UpdateDichVuChiDinh();
                 return;
             }
 
@@ -188,7 +219,7 @@ namespace MM.Dialogs
 
         private void UpdateDichVuChiDinh()
         {
-            if (_dichVuChiDinhList == null || _dichVuChiDinhList.Count > 0) return;
+            if (_dichVuChiDinhList == null || _dichVuChiDinhList.Count <= 0) return;
             foreach (DataGridViewRow row in dgService.Rows)
             {
                 DataRow r = (row.DataBoundItem as DataRowView).Row;
@@ -234,6 +265,7 @@ namespace MM.Dialogs
             try
             {
                 _chiDinh.ChiDinhGUID = Guid.Parse(_drChiDinh["ChiDinhGUID"].ToString());
+                txtMaChiDinh.Text = _drChiDinh["MaChiDinh"].ToString();
                 cboDocStaff.SelectedValue = _drChiDinh["BacSiChiDinhGUID"].ToString();
 
                 if (_dtChiTietChiDinh != null && _dtChiTietChiDinh.Rows.Count > 0)
@@ -286,6 +318,25 @@ namespace MM.Dialogs
                 return false;
             }
 
+            string chiDinhGUID = _isNew ? string.Empty : _chiDinh.ChiDinhGUID.ToString();
+            Result result = ChiDinhBus.CheckChiDinhExistCode(chiDinhGUID, txtMaChiDinh.Text);
+
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
+                    MsgBox.Show(this.Text, "Mã chỉ định này đã tồn tại rồi. Vui lòng nhập mã khác.", IconType.Information);
+                    txtMaChiDinh.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ChiDinhBus.CheckChiDinhExistCode"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.CheckChiDinhExistCode"));
+                return false;
+            }
+
             return true;
         }
 
@@ -323,12 +374,51 @@ namespace MM.Dialogs
 
                 MethodInvoker method = delegate
                 {
+                    _chiDinh.MaChiDinh = txtMaChiDinh.Text;
                     _chiDinh.BenhNhanGUID = Guid.Parse(_patientRow["PatientGUID"].ToString());
                     _chiDinh.BacSiChiDinhGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
                     _chiDinh.NgayChiDinh = DateTime.Now;
                     _chiDinh.Status = (byte)Status.Actived;
 
+                    List<DataRow> checkedRows = this.CheckedRows;
+                    List<ChiTietChiDinh> addedList = new List<ChiTietChiDinh>();
+                    List<string> deletedKeys = new List<string>();
 
+                    foreach (DataRow row in checkedRows)
+                    {
+                        ChiTietChiDinh ctcd = new ChiTietChiDinh();
+                        ctcd.CreatedDate = DateTime.Now;
+                        ctcd.CreatedBy = Guid.Parse(Global.UserGUID);
+                        ctcd.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                        addedList.Add(ctcd);
+                    }
+
+                    if (!_isNew)
+                    {
+                        foreach (DataRow row in _dtChiTietChiDinh.Rows)
+                        {
+                            bool isExist = false;
+                            foreach (DataRow row2 in checkedRows)
+                            {
+                                if (row["ServiceGUID"].ToString() == row2["ServiceGUID"].ToString())
+                                {
+                                    isExist = true;
+                                    break;
+                                }
+                            }
+
+                            if (!isExist)
+                                deletedKeys.Add(row["ChiTietChiDinhGUID"].ToString());
+                        }
+                    }
+
+                    Result result = ChiDinhBus.InsertChiDinh(_chiDinh, addedList, deletedKeys);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.InsertChiDinh"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.InsertChiDinh"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);

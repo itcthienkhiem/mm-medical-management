@@ -20,6 +20,7 @@ namespace MM.Controls
         #region Members
         private DataRow _patientRow = null;
         private Hashtable _htDichVuChiDinh = null;
+        private bool _flag = true;
         #endregion
 
         #region Constructor
@@ -75,7 +76,10 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    _flag = false;
                     dgChiDinh.DataSource = result.QueryResult;
+                    _flag = true;
+                    OnGetDichVuChiDinh();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -88,7 +92,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnGetDichVuChiDinh()
+        public void OnGetDichVuChiDinh()
         {
             if (_htDichVuChiDinh == null) _htDichVuChiDinh = new Hashtable();
             else _htDichVuChiDinh.Clear();
@@ -116,6 +120,8 @@ namespace MM.Controls
                     return;
                 }
             }
+
+            OnDisplayChiTietChiDinh();
         }
 
         private void OnDisplayChiTietChiDinh()
@@ -165,29 +171,184 @@ namespace MM.Controls
             dlgAddChiDinh dlg = new dlgAddChiDinh(_patientRow);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
+                DataTable dt = dgChiDinh.DataSource as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["Checked"] = false;
+                newRow["ChiDinhGUID"] = dlg.ChiDinh.ChiDinhGUID.ToString();
+                newRow["MaChiDinh"] = dlg.ChiDinh.MaChiDinh;
+                newRow["NgayChiDinh"] = dlg.ChiDinh.NgayChiDinh;
+                newRow["BacSiChiDinhGUID"] = dlg.ChiDinh.BacSiChiDinhGUID.ToString();
+                newRow["FullName"] = dlg.TenBacSiChiDinh;
+                newRow["BenhNhanGUID"] = dlg.ChiDinh.BenhNhanGUID.ToString();
 
+                if (dlg.ChiDinh.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.ChiDinh.CreatedDate;
+
+                if (dlg.ChiDinh.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.ChiDinh.CreatedBy.ToString();
+
+                if (dlg.ChiDinh.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.ChiDinh.UpdatedDate;
+
+                if (dlg.ChiDinh.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.ChiDinh.UpdatedBy.ToString();
+
+                if (dlg.ChiDinh.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.ChiDinh.DeletedDate;
+
+                if (dlg.ChiDinh.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.ChiDinh.DeletedBy.ToString();
+
+                newRow["Status"] = dlg.ChiDinh.Status;
+
+                dt.Rows.Add(newRow);
+
+                _htDichVuChiDinh.Add(dlg.ChiDinh.ChiDinhGUID.ToString(), new List<DichVuChiDinhView>());
+
+                SelectLastedRow();
             }
+        }
+
+        private void SelectLastedRow()
+        {
+            dgChiDinh.CurrentCell = dgChiDinh[1, dgChiDinh.RowCount - 1];
+            dgChiDinh.Rows[dgChiDinh.RowCount - 1].Selected = true;
         }
 
         private void OnEditChiDinh()
         {
+            if (dgChiDinh.SelectedRows == null || dgChiDinh.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 chỉ định.", IconType.Information);
+                return;
+            }
 
+            DataRow drChiDinh = (dgChiDinh.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            List<DichVuChiDinhView> dichVuChiDinhList = (List<DichVuChiDinhView>)_htDichVuChiDinh[drChiDinh["ChiDinhGUID"].ToString()];
+            DataTable dtChiTiet = dgChiTiet.DataSource as DataTable;
+            dlgAddChiDinh dlg = new dlgAddChiDinh(_patientRow, drChiDinh, dtChiTiet, dichVuChiDinhList);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                drChiDinh["MaChiDinh"] = dlg.ChiDinh.MaChiDinh;
+                drChiDinh["NgayChiDinh"] = dlg.ChiDinh.NgayChiDinh;
+                drChiDinh["BacSiChiDinhGUID"] = dlg.ChiDinh.BacSiChiDinhGUID.ToString();
+                drChiDinh["FullName"] = dlg.TenBacSiChiDinh;
+                drChiDinh["BenhNhanGUID"] = dlg.ChiDinh.BenhNhanGUID.ToString();
+
+                if (dlg.ChiDinh.CreatedDate.HasValue)
+                    drChiDinh["CreatedDate"] = dlg.ChiDinh.CreatedDate;
+
+                if (dlg.ChiDinh.CreatedBy.HasValue)
+                    drChiDinh["CreatedBy"] = dlg.ChiDinh.CreatedBy.ToString();
+
+                if (dlg.ChiDinh.UpdatedDate.HasValue)
+                    drChiDinh["UpdatedDate"] = dlg.ChiDinh.UpdatedDate;
+
+                if (dlg.ChiDinh.UpdatedBy.HasValue)
+                    drChiDinh["UpdatedBy"] = dlg.ChiDinh.UpdatedBy.ToString();
+
+                if (dlg.ChiDinh.DeletedDate.HasValue)
+                    drChiDinh["DeletedDate"] = dlg.ChiDinh.DeletedDate;
+
+                if (dlg.ChiDinh.DeletedBy.HasValue)
+                    drChiDinh["DeletedBy"] = dlg.ChiDinh.DeletedBy.ToString();
+
+                drChiDinh["Status"] = dlg.ChiDinh.Status;
+                OnDisplayChiTietChiDinh();
+            }
         }
 
         private void OnDeleteChiDinh()
         {
+            List<string> deletedChiDinhList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgChiDinh.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedChiDinhList.Add(row["ChiDinhGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
 
+            if (deletedChiDinhList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những chỉ định mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = ChiDinhBus.DeleteChiDinhs(deletedChiDinhList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.DeleteChiDinhs"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.DeleteChiDinhs"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những chỉ định cần xóa.", IconType.Information);
         }
 
         private void OnConfirmDichVuChiDinh()
         {
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgChiTiet.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedRows.Add(row);
+                }
+            }
 
+            if (checkedRows.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xác nhận những dịch vụ chỉ định mà bạn đánh dấu ?") == DialogResult.Yes)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientRow["PatientGUID"].ToString());
+                        dlg.ServiceGUID = row["ServiceGUID"].ToString();
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                        {
+                            if (dlg.ServiceHistory.ServiceHistoryGUID == Guid.Empty) return;
+
+                            DichVuChiDinh dichVuChiDinh = new DichVuChiDinh();
+                            //(dgChiDinh.SelectedRows[0].DataBoundItem as DataRowView).Row["ChiDinhGUID"].ToString();
+                            dichVuChiDinh.ServiceHistoryGUID = dlg.ServiceHistory.ServiceHistoryGUID;
+                            dichVuChiDinh.ChiTietChiDinhGUID = Guid.Parse(row["ChiTietChiDinhGUID"].ToString());
+                            dichVuChiDinh.CreatedDate = DateTime.Now;
+                            dichVuChiDinh.CraetedBy = Guid.Parse(Global.UserGUID);
+                            dichVuChiDinh.Status = (byte)Status.Actived;
+
+                            Result result = ChiDinhBus.InsertDichVuChiDinh(dichVuChiDinh);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.InsertDichVuChiDinh"), IconType.Error);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.InsertDichVuChiDinh"));
+                                return;
+                            }
+                        }
+                    }
+
+                    OnGetDichVuChiDinh();
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ chỉ định cần xác nhận.", IconType.Information);
         }
         #endregion
 
         #region Window Event Handlers
         private void dgChiDinh_SelectionChanged(object sender, EventArgs e)
         {
+            if (!_flag) return;
             OnDisplayChiTietChiDinh();
         }
 
@@ -214,7 +375,7 @@ namespace MM.Controls
                 if (cell.Enabled)
                 {
                     DataRow r = (row.DataBoundItem as DataRowView).Row;
-                    r["Checked"] = chkChecked.Checked;
+                    r["Checked"] = chkChiTietChecked.Checked;
                 }
             }
         }
@@ -238,6 +399,11 @@ namespace MM.Controls
         {
             OnConfirmDichVuChiDinh();
         }
+
+        private void dgChiDinh_DoubleClick(object sender, EventArgs e)
+        {
+            OnEditChiDinh();
+        }
         #endregion
 
         #region Working Thread
@@ -259,7 +425,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
