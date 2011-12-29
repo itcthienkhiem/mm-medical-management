@@ -509,6 +509,11 @@ namespace MM.Dialogs
         {
             this.Close();
         }
+
+        private void dgService_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            UpdateDichVuChiDinh();
+        }
         #endregion
 
         #region Working Thread
@@ -547,6 +552,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }
