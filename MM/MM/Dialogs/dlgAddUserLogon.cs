@@ -622,7 +622,7 @@ namespace MM.Dialogs
             if (dgPermission.Columns[e.ColumnIndex].Name != "IsView" && dgPermission.Columns[e.ColumnIndex].Name != "IsAdd" &&
                 dgPermission.Columns[e.ColumnIndex].Name != "IsEdit" && dgPermission.Columns[e.ColumnIndex].Name != "IsDelete" &&
                 dgPermission.Columns[e.ColumnIndex].Name != "IsPrint" && dgPermission.Columns[e.ColumnIndex].Name != "IsImport" &&
-                dgPermission.Columns[e.ColumnIndex].Name != "IsExport")
+                dgPermission.Columns[e.ColumnIndex].Name != "IsExport" && dgPermission.Columns[e.ColumnIndex].Name != "IsConfirm")
             {
                 dgPermission.ContextMenuStrip = null;
                 return;
