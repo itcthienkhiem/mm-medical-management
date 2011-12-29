@@ -41,5 +41,5 @@ spDichVuHopDong
 - Update table: Permission(Add column: IsConfirm)
 - Update view: PermissionView
 - Insert: Function (ChiDinh)
-- Create view: ChiDinhView, ChiTietChiDinhView
+- Create view: ChiDinhView, ChiTietChiDinhView, DichVuChiDinhView
 

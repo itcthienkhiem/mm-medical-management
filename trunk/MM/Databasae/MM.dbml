@@ -1199,6 +1199,18 @@
       <Column Name="MaChiDinh" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.DichVuChiDinhView" Member="DichVuChiDinhViews">
+    <Type Name="DichVuChiDinhView">
+      <Column Name="DichVuChiDinhGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ChiTietChiDinhGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceHistoryGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">
     <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="DateTime" />

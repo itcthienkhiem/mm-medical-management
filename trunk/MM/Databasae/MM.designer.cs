@@ -563,6 +563,14 @@ namespace MM.Databasae
 			}
 		}
 		
+		public System.Data.Linq.Table<DichVuChiDinhView> DichVuChiDinhViews
+		{
+			get
+			{
+				return this.GetTable<DichVuChiDinhView>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spDoanhThuNhanVienTongHop")]
 		public ISingleResult<spDoanhThuNhanVienTongHopResult> spDoanhThuNhanVienTongHop([global::System.Data.Linq.Mapping.ParameterAttribute(Name="FromDate", DbType="DateTime")] System.Nullable<System.DateTime> fromDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ToDate", DbType="DateTime")] System.Nullable<System.DateTime> toDate, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DocStaffGUID", DbType="NVarChar(50)")] string docStaffGUID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Type", DbType="TinyInt")] System.Nullable<byte> type)
 		{
@@ -23683,6 +23691,159 @@ namespace MM.Databasae
 				if ((this._MaChiDinh != value))
 				{
 					this._MaChiDinh = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DichVuChiDinhView")]
+	public partial class DichVuChiDinhView
+	{
+		
+		private System.Guid _DichVuChiDinhGUID;
+		
+		private System.Guid _ChiTietChiDinhGUID;
+		
+		private System.Guid _ServiceHistoryGUID;
+		
+		private string _Name;
+		
+		private double _Price;
+		
+		private string _Code;
+		
+		private System.Guid _ServiceGUID;
+		
+		private byte _Status;
+		
+		public DichVuChiDinhView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DichVuChiDinhGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid DichVuChiDinhGUID
+		{
+			get
+			{
+				return this._DichVuChiDinhGUID;
+			}
+			set
+			{
+				if ((this._DichVuChiDinhGUID != value))
+				{
+					this._DichVuChiDinhGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiTietChiDinhGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ChiTietChiDinhGUID
+		{
+			get
+			{
+				return this._ChiTietChiDinhGUID;
+			}
+			set
+			{
+				if ((this._ChiTietChiDinhGUID != value))
+				{
+					this._ChiTietChiDinhGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceHistoryGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ServiceHistoryGUID
+		{
+			get
+			{
+				return this._ServiceHistoryGUID;
+			}
+			set
+			{
+				if ((this._ServiceHistoryGUID != value))
+				{
+					this._ServiceHistoryGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
+		public double Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this._Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ServiceGUID
+		{
+			get
+			{
+				return this._ServiceGUID;
+			}
+			set
+			{
+				if ((this._ServiceGUID != value))
+				{
+					this._ServiceGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
 				}
 			}
 		}
