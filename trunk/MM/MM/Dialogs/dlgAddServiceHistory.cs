@@ -41,6 +41,11 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
+        public string ServiceGUID
+        {
+            set { cboService.SelectedValue = value; }
+        }
+
         public ServiceHistory ServiceHistory
         {
             get { return _serviceHistory; }

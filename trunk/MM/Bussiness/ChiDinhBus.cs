@@ -151,13 +151,13 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 List<DichVuChiDinhView> dichVuChiDinhList = (from cd in db.ChiTietChiDinhs
-                                                         join ct in db.ChiTietChiDinhs on cd.ChiDinhGUID equals ct.ChiDinhGUID
-                                                         join dv in db.DichVuChiDinhViews on ct.ChiTietChiDinhGUID equals dv.ChiTietChiDinhGUID
-                                                         where cd.ChiDinhGUID.ToString() == chiDinhGUID &&
-                                                         cd.Status == (byte)Status.Actived &&
-                                                         ct.Status == (byte)Status.Actived &&
-                                                         dv.Status == (byte)Status.Actived
-                                                         select dv).ToList<DichVuChiDinhView>();
+                                                             join ct in db.ChiTietChiDinhs on cd.ChiDinhGUID equals ct.ChiDinhGUID
+                                                             join dv in db.DichVuChiDinhViews on ct.ChiTietChiDinhGUID equals dv.ChiTietChiDinhGUID
+                                                             where cd.ChiDinhGUID.ToString() == chiDinhGUID &&
+                                                             cd.Status == (byte)Status.Actived &&
+                                                             ct.Status == (byte)Status.Actived &&
+                                                             dv.Status == (byte)Status.Actived
+                                                             select dv).Distinct().ToList();
 
                 result.QueryResult = dichVuChiDinhList;
             }
@@ -300,7 +300,8 @@ namespace MM.Bussiness
                         {
                             foreach (ChiTietChiDinh ctcd in addedList)
                             {
-                                ChiTietChiDinh ct = db.ChiTietChiDinhs.SingleOrDefault<ChiTietChiDinh>(c => c.ServiceGUID == ctcd.ServiceGUID);
+                                ChiTietChiDinh ct = db.ChiTietChiDinhs.SingleOrDefault<ChiTietChiDinh>(c => c.ServiceGUID == ctcd.ServiceGUID &&
+                                                                                                        c.ChiDinhGUID == cd.ChiDinhGUID);
                                 if (ct == null)
                                 {
                                     ctcd.ChiTietChiDinhGUID = Guid.NewGuid();
@@ -323,6 +324,45 @@ namespace MM.Bussiness
                 }
 
                 
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result InsertDichVuChiDinh(DichVuChiDinh dichVuChiDinh)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope tnx = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    dichVuChiDinh.DichVuChiDinhGUID = Guid.NewGuid();
+                    db.DichVuChiDinhs.InsertOnSubmit(dichVuChiDinh);
+                    db.SubmitChanges();
+                    tnx.Complete();
+                }
+
             }
             catch (System.Data.SqlClient.SqlException se)
             {

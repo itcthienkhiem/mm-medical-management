@@ -174,6 +174,8 @@ namespace MM.Controls
         {
             if (tabServiceHistory.SelectedTabIndex == 1)
                 _uServiceHistory.HighlightPaidServices();
+            else if (tabServiceHistory.SelectedTabIndex == 3)
+                _uChiDinhList.OnGetDichVuChiDinh();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

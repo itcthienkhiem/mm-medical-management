@@ -156,7 +156,7 @@
             // chkChiTietChecked
             // 
             this.chkChiTietChecked.AutoSize = true;
-            this.chkChiTietChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChiTietChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChiTietChecked.Name = "chkChiTietChecked";
             this.chkChiTietChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChiTietChecked.TabIndex = 7;
@@ -276,7 +276,7 @@
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 5;
@@ -324,6 +324,7 @@
             this.dgChiDinh.Size = new System.Drawing.Size(804, 267);
             this.dgChiDinh.TabIndex = 4;
             this.dgChiDinh.SelectionChanged += new System.EventHandler(this.dgChiDinh_SelectionChanged);
+            this.dgChiDinh.DoubleClick += new System.EventHandler(this.dgChiDinh_DoubleClick);
             // 
             // Checked
             // 
@@ -346,12 +347,13 @@
             // 
             this.ngayChiDinhDataGridViewTextBoxColumn.DataPropertyName = "NgayChiDinh";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy HH:mm:ss";
             dataGridViewCellStyle4.NullValue = null;
             this.ngayChiDinhDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.ngayChiDinhDataGridViewTextBoxColumn.HeaderText = "Ngày chỉ định";
             this.ngayChiDinhDataGridViewTextBoxColumn.Name = "ngayChiDinhDataGridViewTextBoxColumn";
             this.ngayChiDinhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ngayChiDinhDataGridViewTextBoxColumn.Width = 140;
             // 
             // fullNameDataGridViewTextBoxColumn
             // 
