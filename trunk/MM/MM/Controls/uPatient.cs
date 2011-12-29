@@ -77,12 +77,7 @@ namespace MM.Controls
             txtFullAddress.Text ="Địa chỉ: " + row["Address"].ToString();
             txtThuocDiUng.Text = row["Thuoc_Di_Ung"].ToString();
 
-            DisplayCheckListAsThread();
-            //_uServiceHistory.DisplayAsThread();
-            _uDailyServiceHistory.DisplayAsThread();
-            //_uToaThuocList.DisplayAsThread();
-            //_uChiDinhList.DisplayAsThread();
-
+            OnRefreshData();
             pageChiDinh.Visible = Global.AllowViewChiDinh;
         }
 
@@ -90,10 +85,14 @@ namespace MM.Controls
         {
             DisplayCheckListAsThread();
 
-            _uServiceHistory.DisplayAsThread();
-            _uDailyServiceHistory.DisplayAsThread();
-            _uToaThuocList.DisplayAsThread();
-            _uChiDinhList.DisplayAsThread();
+            if (tabServiceHistory.SelectedTabIndex == 0)
+                _uDailyServiceHistory.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 1)
+                _uServiceHistory.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 2)
+                _uToaThuocList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 3)
+                _uChiDinhList.DisplayAsThread();
         }
 
         public void DisplayCheckListAsThread()
