@@ -439,6 +439,12 @@
     <Compile Include="Controls\uToaThuocList.Designer.cs">
       <DependentUpon>uToaThuocList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddChiDinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddChiDinh.Designer.cs">
+      <DependentUpon>dlgAddChiDinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddCompany.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -787,6 +793,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uToaThuocList.resx">
       <DependentUpon>uToaThuocList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddChiDinh.resx">
+      <DependentUpon>dlgAddChiDinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddCompany.resx">
       <DependentUpon>dlgAddCompany.cs</DependentUpon>
