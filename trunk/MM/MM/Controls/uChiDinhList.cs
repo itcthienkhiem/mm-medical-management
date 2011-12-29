@@ -162,7 +162,11 @@ namespace MM.Controls
 
         private void OnAddChiDinh()
         {
+            dlgAddChiDinh dlg = new dlgAddChiDinh(_patientRow);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
 
+            }
         }
 
         private void OnEditChiDinh()
