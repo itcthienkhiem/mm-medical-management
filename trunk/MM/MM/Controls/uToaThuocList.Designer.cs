@@ -53,12 +53,12 @@
             this.NgayTaiKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ChanDoan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenBacSiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DobStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenBacSiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgToaThuoc)).BeginInit();
@@ -180,12 +180,12 @@
             this.NgayTaiKham,
             this.ChanDoan,
             this.noteDataGridViewTextBoxColumn,
-            this.tenBacSiDataGridViewTextBoxColumn,
             this.tenBenhNhanDataGridViewTextBoxColumn,
             this.DobStr,
             this.GenderAsStr,
             this.Mobile,
-            this.Address});
+            this.Address,
+            this.tenBacSiDataGridViewTextBoxColumn});
             this.dgToaThuoc.DataSource = this.toaThuocViewBindingSource;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -279,14 +279,6 @@
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 250;
             // 
-            // tenBacSiDataGridViewTextBoxColumn
-            // 
-            this.tenBacSiDataGridViewTextBoxColumn.DataPropertyName = "TenBacSi";
-            this.tenBacSiDataGridViewTextBoxColumn.HeaderText = "Bác sĩ kê toa";
-            this.tenBacSiDataGridViewTextBoxColumn.Name = "tenBacSiDataGridViewTextBoxColumn";
-            this.tenBacSiDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenBacSiDataGridViewTextBoxColumn.Width = 150;
-            // 
             // tenBenhNhanDataGridViewTextBoxColumn
             // 
             this.tenBenhNhanDataGridViewTextBoxColumn.DataPropertyName = "TenBenhNhan";
@@ -330,6 +322,14 @@
             this.Address.ReadOnly = true;
             this.Address.Width = 150;
             // 
+            // tenBacSiDataGridViewTextBoxColumn
+            // 
+            this.tenBacSiDataGridViewTextBoxColumn.DataPropertyName = "TenBacSi";
+            this.tenBacSiDataGridViewTextBoxColumn.HeaderText = "Bác sĩ kê toa";
+            this.tenBacSiDataGridViewTextBoxColumn.Name = "tenBacSiDataGridViewTextBoxColumn";
+            this.tenBacSiDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenBacSiDataGridViewTextBoxColumn.Width = 150;
+            // 
             // uToaThuocList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,11 +366,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayTaiKham;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChanDoan;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenBacSiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenBenhNhanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DobStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenBacSiDataGridViewTextBoxColumn;
     }
 }
