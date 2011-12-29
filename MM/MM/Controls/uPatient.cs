@@ -172,8 +172,12 @@ namespace MM.Controls
 
         private void tabServiceHistory_SelectedTabChanged(object sender, DevComponents.DotNetBar.TabStripTabChangedEventArgs e)
         {
-            if (tabServiceHistory.SelectedTabIndex == 1)
-                _uServiceHistory.HighlightPaidServices();
+            if (tabServiceHistory.SelectedTabIndex == 0)
+                _uDailyServiceHistory.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 1)
+                _uServiceHistory.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 2)
+                _uToaThuocList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 3)
                 _uChiDinhList.OnGetDichVuChiDinh();
         }
