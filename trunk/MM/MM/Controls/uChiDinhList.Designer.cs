@@ -198,7 +198,6 @@
             this.dgChiTiet.Location = new System.Drawing.Point(0, 0);
             this.dgChiTiet.MultiSelect = false;
             this.dgChiTiet.Name = "dgChiTiet";
-            this.dgChiTiet.ReadOnly = true;
             this.dgChiTiet.RowHeadersWidth = 30;
             this.dgChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgChiTiet.Size = new System.Drawing.Size(804, 230);
@@ -294,7 +293,6 @@
             this.dgChiDinh.Location = new System.Drawing.Point(0, 0);
             this.dgChiDinh.MultiSelect = false;
             this.dgChiDinh.Name = "dgChiDinh";
-            this.dgChiDinh.ReadOnly = true;
             this.dgChiDinh.RowHeadersWidth = 30;
             this.dgChiDinh.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgChiDinh.Size = new System.Drawing.Size(804, 197);
@@ -330,7 +328,6 @@
             this.Checked.DataPropertyName = "Checked";
             this.Checked.HeaderText = "";
             this.Checked.Name = "Checked";
-            this.Checked.ReadOnly = true;
             this.Checked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Checked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Checked.Width = 40;
@@ -368,7 +365,6 @@
             this.ChiTietChiDinhChecked.Frozen = true;
             this.ChiTietChiDinhChecked.HeaderText = "";
             this.ChiTietChiDinhChecked.Name = "ChiTietChiDinhChecked";
-            this.ChiTietChiDinhChecked.ReadOnly = true;
             this.ChiTietChiDinhChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ChiTietChiDinhChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.ChiTietChiDinhChecked.Width = 40;
