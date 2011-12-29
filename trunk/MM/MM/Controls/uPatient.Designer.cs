@@ -37,6 +37,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabServiceHistory = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uChiDinhList = new MM.Controls.uChiDinhList();
             this.pageChiDinh = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this._uDailyServiceHistory = new MM.Controls.uServiceHistory();
@@ -66,7 +67,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this._uChiDinhList = new MM.Controls.uChiDinhList();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
@@ -132,8 +132,8 @@
             // tabServiceHistory
             // 
             this.tabServiceHistory.CanReorderTabs = true;
-            this.tabServiceHistory.Controls.Add(this.tabControlPanel4);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel2);
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel4);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel3);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel1);
             this.tabServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -168,6 +168,15 @@
             this.tabControlPanel4.Style.GradientAngle = 90;
             this.tabControlPanel4.TabIndex = 4;
             this.tabControlPanel4.TabItem = this.pageChiDinh;
+            // 
+            // _uChiDinhList
+            // 
+            this._uChiDinhList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uChiDinhList.Location = new System.Drawing.Point(1, 1);
+            this._uChiDinhList.Name = "_uChiDinhList";
+            this._uChiDinhList.PatientRow = null;
+            this._uChiDinhList.Size = new System.Drawing.Size(1175, 423);
+            this._uChiDinhList.TabIndex = 0;
             // 
             // pageChiDinh
             // 
@@ -287,9 +296,9 @@
             this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRefresh.Location = new System.Drawing.Point(6, 151);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(98, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(124, 23);
             this.btnRefresh.TabIndex = 78;
-            this.btnRefresh.Text = "   &Làm tươi";
+            this.btnRefresh.Text = "   &Làm mới dữ liệu";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -456,14 +465,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1177, 5);
             this.panel3.TabIndex = 0;
-            // 
-            // _uChiDinhList
-            // 
-            this._uChiDinhList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uChiDinhList.Location = new System.Drawing.Point(1, 1);
-            this._uChiDinhList.Name = "_uChiDinhList";
-            this._uChiDinhList.Size = new System.Drawing.Size(1175, 423);
-            this._uChiDinhList.TabIndex = 0;
             // 
             // uPatient
             // 
