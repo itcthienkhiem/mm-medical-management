@@ -1249,7 +1249,7 @@ namespace MM
                 int ind = strServerName.IndexOf("\\");
                 strServerName = strServerName.Substring(0, ind);
             }
-            string fileOnServer = string.Format("\\\\{0}\\MMupdatedDate\\updatedDate.txt", strServerName);
+            string fileOnServer = string.Format("\\\\{0}\\MMupdate\\updatedDate.txt", strServerName);
             if (!File.Exists(fileOnServer))
                 return;
             string serverUpdatedDate = ReadInforFromFile(fileOnServer);
@@ -1266,7 +1266,7 @@ namespace MM
                     if (localUpdatedDate != serverUpdatedDate)
                     {
                         //call update here
-                        RunUpdateFile(Path.Combine(string.Format("\\{0}\\MMupdatedDate\\", strServerName), "MMSetup.exe"));
+                        RunUpdateFile(Path.Combine(string.Format("\\{0}\\MMupdate\\", strServerName), "MMSetup.exe"));
                         //copy the file from server tolocal
                         File.Copy(fileOnServer, storagePath, true);
                     }
