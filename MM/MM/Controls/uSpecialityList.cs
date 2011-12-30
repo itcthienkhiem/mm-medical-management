@@ -119,7 +119,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Speciality.Status;
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

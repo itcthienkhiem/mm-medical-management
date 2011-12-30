@@ -232,7 +232,7 @@ namespace MM.Controls
 
                 _htDichVuChiDinh.Add(dlg.ChiDinh.ChiDinhGUID.ToString(), new List<DichVuChiDinhView>());
 
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

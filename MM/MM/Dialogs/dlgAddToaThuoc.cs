@@ -465,7 +465,7 @@ namespace MM.Dialogs
                 newRow["ChiTietToaThuocStatus"] = dlg.ChiTietToaThuoc.Status;
 
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

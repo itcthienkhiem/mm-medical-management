@@ -120,7 +120,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Service.Status;
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

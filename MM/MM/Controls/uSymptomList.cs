@@ -123,7 +123,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Symptom.Status;
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

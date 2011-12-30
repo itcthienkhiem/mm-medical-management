@@ -201,8 +201,7 @@ namespace MM.Controls
                 newRow["Dang_Co_Thai"] = dlg.PatientHistory.Dang_Co_Thai.Value;
 
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
-
+                //SelectLastedRow();
                 OnSearchPatient();
             }
         }
