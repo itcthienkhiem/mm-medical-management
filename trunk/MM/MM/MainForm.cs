@@ -14,6 +14,7 @@ using MM.Controls;
 using MM.Dialogs;
 using MM.Bussiness;
 using DicomImageViewer;
+using System.Diagnostics;
 
 namespace MM
 {
@@ -1138,8 +1139,9 @@ namespace MM
         }   
 
         private void MainForm_Load(object sender, EventArgs e)
-        {            
+        {
             InitConfigAsThread();
+            AutoDetectUpdate();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1184,6 +1186,96 @@ namespace MM
             finally
             {
                 base.HideWaiting();
+            }
+        }
+        #endregion
+        #region AutoUpdate
+        private bool IsServerMachine
+        {
+            get
+            {
+                string computerName = System.Environment.MachineName;
+                string server = Global.ConnectionInfo.ServerName;
+                if (computerName.ToUpper() == server.ToUpper() || server.ToUpper() == "(LOCAL)")
+                    return true;
+                else if (server.Contains("\\"))
+                {
+                    int ind = server.IndexOf("\\");
+                    string temp = server.Substring(0, ind);
+                    if (temp.ToUpper() == computerName.ToUpper())
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+            }
+        }
+        private string ReadInforFromFile(string filepath)
+        {
+            StreamReader re = null;
+            string input = null;
+            try
+            {
+                re = File.OpenText(filepath);
+                input = re.ReadLine();
+                if (input != null)
+                {
+                    re.Close();
+                }
+                return input;
+            }
+            catch
+            {
+                if (re != null)
+                    re.Close();
+                return input;
+            }
+        }
+        private void RunUpdateFile(string filename)
+        {
+            Process p = new Process();
+            p.StartInfo.FileName = filename;
+            p.Start();
+            p.WaitForExit();
+        }
+        private void AutoDetectUpdate()
+        {
+            string strServerName;
+            //read infor from server
+            strServerName = Global.ConnectionInfo.ServerName;
+            if (strServerName.Contains("\\"))
+            {
+                int ind = strServerName.IndexOf("\\");
+                strServerName = strServerName.Substring(0, ind);
+            }
+            string fileOnServer = string.Format("\\\\{0}\\MMupdatedDate\\updatedDate.txt", strServerName);
+            if (!File.Exists(fileOnServer))
+                return;
+            string serverUpdatedDate = ReadInforFromFile(fileOnServer);
+            if (serverUpdatedDate == null)
+                return;
+            //read file from client
+            if (!IsServerMachine)
+            {
+                string storagePath = Path.Combine(Application.StartupPath, "updatedDate.txt");
+                if (File.Exists(storagePath))
+                {
+                    //read infor from local file
+                    string localUpdatedDate = ReadInforFromFile(storagePath);
+                    if (localUpdatedDate != serverUpdatedDate)
+                    {
+                        //call update here
+                        RunUpdateFile(Path.Combine(string.Format("\\{0}\\MMupdatedDate\\", strServerName), "MMSetup.exe"));
+                        //copy the file from server tolocal
+                        File.Copy(fileOnServer, storagePath, true);
+                    }
+                }
+                else
+                {
+                    //Call update Mn & MIMS here
+                    //MessageBox.Show("Call update MM here");
+                }
             }
         }
         #endregion
