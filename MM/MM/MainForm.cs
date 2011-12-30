@@ -1234,6 +1234,7 @@ namespace MM
         }
         private void RunUpdateFile(string filename)
         {
+            MsgBox.Show("Cap nhat chuong trinh", "Bạn đang dùng phiên bản cũ. Vui lòng chạy tập tin MMSeup.exe để cập nhật chương trình", IconType.Information);
             Process p = new Process();
             p.StartInfo.FileName = filename;
             p.Start();
@@ -1266,7 +1267,7 @@ namespace MM
                     if (localUpdatedDate != serverUpdatedDate)
                     {
                         //call update here
-                        RunUpdateFile(Path.Combine(string.Format("\\{0}\\MMupdate\\", strServerName), "MMSetup.exe"));
+                        RunUpdateFile(Path.Combine(string.Format("\\\\{0}\\MMupdate\\", strServerName), "MMSetup.exe"));
                         //copy the file from server tolocal
                         File.Copy(fileOnServer, storagePath, true);
                     }
