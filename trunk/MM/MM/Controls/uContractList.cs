@@ -127,7 +127,7 @@ namespace MM.Controls
                 newRow["ContractStatus"] = dlg.Contract.Status;
                 dt.Rows.Add(newRow);
 
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

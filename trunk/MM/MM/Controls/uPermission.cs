@@ -115,7 +115,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Logon.Status;
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

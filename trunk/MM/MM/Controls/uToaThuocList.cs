@@ -153,7 +153,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.ToaThuoc.Status;
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

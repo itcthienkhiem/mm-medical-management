@@ -134,7 +134,7 @@ namespace MM.Controls
                 if (dlg.Contact.DeletedBy.HasValue)
                     newRow["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

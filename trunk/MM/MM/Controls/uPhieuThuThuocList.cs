@@ -124,7 +124,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.PhieuThuThuoc.Status;
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

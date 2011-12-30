@@ -185,7 +185,7 @@ namespace MM.Controls
 
                 dt.Rows.Add(newRow);
                 OnSearchGiaThuoc();
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 

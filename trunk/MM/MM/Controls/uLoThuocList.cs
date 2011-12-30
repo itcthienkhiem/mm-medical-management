@@ -137,7 +137,7 @@ namespace MM.Controls
 
                 newRow["LoThuocStatus"] = dlg.LoThuoc.Status;
                 dt.Rows.Add(newRow);
-                SelectLastedRow();
+                //SelectLastedRow();
             }
         }
 
