@@ -42,8 +42,8 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TOP 1 * FROM GiaThuoc WHERE ThuocGUID = '{0}' AND Status = {1} ORDER BY NgayApDung DESC",
-                    thuocGUID, (byte)Status.Actived);
+                string query = string.Format("SELECT TOP 1 * FROM GiaThuoc WHERE ThuocGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
+                    thuocGUID, (byte)Status.Actived, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
