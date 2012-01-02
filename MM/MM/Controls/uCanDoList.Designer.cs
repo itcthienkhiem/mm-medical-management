@@ -46,7 +46,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgCanDo = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.canDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayCanDoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timMachDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +55,7 @@
             this.canNangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bMIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.canDoKhacDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.canDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -189,6 +189,7 @@
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 4;
             this.chkChecked.UseVisualStyleBackColor = true;
+            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
             // 
             // dgCanDo
             // 
@@ -237,10 +238,6 @@
             this.dgCanDo.Size = new System.Drawing.Size(734, 325);
             this.dgCanDo.TabIndex = 3;
             this.dgCanDo.DoubleClick += new System.EventHandler(this.dgCanDo_DoubleClick);
-            // 
-            // canDoBindingSource
-            // 
-            this.canDoBindingSource.DataSource = typeof(MM.Databasae.CanDo);
             // 
             // colChecked
             // 
@@ -324,6 +321,10 @@
             this.canDoKhacDataGridViewTextBoxColumn.Name = "canDoKhacDataGridViewTextBoxColumn";
             this.canDoKhacDataGridViewTextBoxColumn.ReadOnly = true;
             this.canDoKhacDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // canDoBindingSource
+            // 
+            this.canDoBindingSource.DataSource = typeof(MM.Databasae.CanDo);
             // 
             // uCanDoList
             // 

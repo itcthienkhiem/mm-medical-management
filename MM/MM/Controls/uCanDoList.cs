@@ -176,6 +176,16 @@ namespace MM.Controls
         {
             OnEdit();
         }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgCanDo.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -197,6 +207,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
 
         
 
