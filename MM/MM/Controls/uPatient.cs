@@ -47,6 +47,7 @@ namespace MM.Controls
                 _uDailyServiceHistory.PatientRow = value;
                 _uToaThuocList.PatientRow = (DataRow)value;
                 _uChiDinhList.PatientRow = (DataRow)value;
+                _uCanDoList.PatientRow = (DataRow)value;
             }
         }
         #endregion
@@ -93,6 +94,8 @@ namespace MM.Controls
                 _uToaThuocList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 3)
                 _uChiDinhList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 4)
+                _uCanDoList.DisplayAsThread();
         }
 
         public void DisplayCheckListAsThread()
@@ -179,6 +182,8 @@ namespace MM.Controls
                 _uToaThuocList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 3)
                 _uChiDinhList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 4)
+                _uCanDoList.DisplayAsThread();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
