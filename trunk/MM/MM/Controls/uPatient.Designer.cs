@@ -45,6 +45,8 @@
             this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
             this._uToaThuocList = new MM.Controls.uToaThuocList();
             this.pageKeToa = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel5 = new DevComponents.DotNetBar.TabControlPanel();
+            this.pageCanDo = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -67,6 +69,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this._uCanDoList = new MM.Controls.uCanDoList();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
@@ -74,6 +77,7 @@
             this.tabControlPanel4.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
             this.tabControlPanel3.SuspendLayout();
+            this.tabControlPanel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -133,6 +137,7 @@
             // 
             this.tabServiceHistory.CanReorderTabs = true;
             this.tabServiceHistory.Controls.Add(this.tabControlPanel2);
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel5);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel4);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel3);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel1);
@@ -149,6 +154,7 @@
             this.tabServiceHistory.Tabs.Add(this.pageServiceHistory);
             this.tabServiceHistory.Tabs.Add(this.pageKeToa);
             this.tabServiceHistory.Tabs.Add(this.pageChiDinh);
+            this.tabServiceHistory.Tabs.Add(this.pageCanDo);
             this.tabServiceHistory.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabServiceHistory_SelectedTabChanged);
             // 
             // tabControlPanel4
@@ -253,6 +259,31 @@
             this.pageKeToa.Image = global::MM.Properties.Resources.prescription_icon2;
             this.pageKeToa.Name = "pageKeToa";
             this.pageKeToa.Text = "Kê toa";
+            // 
+            // tabControlPanel5
+            // 
+            this.tabControlPanel5.Controls.Add(this._uCanDoList);
+            this.tabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel5.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel5.Name = "tabControlPanel5";
+            this.tabControlPanel5.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel5.Size = new System.Drawing.Size(1177, 425);
+            this.tabControlPanel5.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel5.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel5.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel5.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel5.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel5.Style.GradientAngle = 90;
+            this.tabControlPanel5.TabIndex = 5;
+            this.tabControlPanel5.TabItem = this.pageCanDo;
+            // 
+            // pageCanDo
+            // 
+            this.pageCanDo.AttachedControl = this.tabControlPanel5;
+            this.pageCanDo.Image = global::MM.Properties.Resources.measure_crop_icon;
+            this.pageCanDo.Name = "pageCanDo";
+            this.pageCanDo.Text = "Cân đo";
             // 
             // panel1
             // 
@@ -466,6 +497,15 @@
             this.panel3.Size = new System.Drawing.Size(1177, 5);
             this.panel3.TabIndex = 0;
             // 
+            // _uCanDoList
+            // 
+            this._uCanDoList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uCanDoList.Location = new System.Drawing.Point(1, 1);
+            this._uCanDoList.Name = "_uCanDoList";
+            this._uCanDoList.PatientRow = null;
+            this._uCanDoList.Size = new System.Drawing.Size(1175, 423);
+            this._uCanDoList.TabIndex = 0;
+            // 
             // uPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -482,6 +522,7 @@
             this.tabControlPanel4.ResumeLayout(false);
             this.tabControlPanel2.ResumeLayout(false);
             this.tabControlPanel3.ResumeLayout(false);
+            this.tabControlPanel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -528,5 +569,8 @@
         private DevComponents.DotNetBar.TabControlPanel tabControlPanel4;
         private DevComponents.DotNetBar.TabItem pageChiDinh;
         private uChiDinhList _uChiDinhList;
+        private DevComponents.DotNetBar.TabControlPanel tabControlPanel5;
+        private DevComponents.DotNetBar.TabItem pageCanDo;
+        private uCanDoList _uCanDoList;
     }
 }

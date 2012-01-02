@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusBase.cs" />
+    <Compile Include="CanDoBus.cs" />
     <Compile Include="ChiDinhBus.cs" />
     <Compile Include="CompanyBus.cs" />
     <Compile Include="CompanyContractBus.cs" />

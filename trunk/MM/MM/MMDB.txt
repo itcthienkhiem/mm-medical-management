@@ -42,4 +42,5 @@ spDichVuHopDong
 - Update view: PermissionView
 - Insert: Function (ChiDinh)
 - Create view: ChiDinhView, ChiTietChiDinhView, DichVuChiDinhView
-
+2012-01-02
+- Create table: CanDo
