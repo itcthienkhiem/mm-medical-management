@@ -19,7 +19,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                result.QueryResult = db.spDoanhThuNhanVienTongHop(fromDate, toDate, docStaffGUID, type).ToList<spDoanhThuNhanVienTongHopResult>();
+                result.QueryResult = db.spDoanhThuNhanVienTongHop(fromDate, toDate, docStaffGUID, type).ToList<spDoanhThuNhanVienTongHopResult>().ToList <spDoanhThuNhanVienTongHopResult>();
             }
             catch (System.Data.SqlClient.SqlException se)
             {
