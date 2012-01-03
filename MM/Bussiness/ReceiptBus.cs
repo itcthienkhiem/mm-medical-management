@@ -12,13 +12,24 @@ namespace MM.Bussiness
 {
     public class ReceiptBus : BusBase
     {
-        public static Result GetReceiptList()
+        public static Result GetReceiptList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan)
         {
             Result result = null;
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} ORDER BY ReceiptDate", (byte)Status.Actived);
+                string query = string.Empty;
+                if (isFromDateToDate)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
+                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND FullName LIKE '%{1}%' ORDER BY ReceiptDate DESC",
+                        (byte)Status.Actived, tenBenhNhan);
+                }
+                
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

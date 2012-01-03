@@ -20,13 +20,18 @@ namespace MM.Controls
     public partial class uReceiptList : uBase
     {
         #region Members
-
+        private bool _isFromDateToDate = true;
+        private string _tenBenhNhan = string.Empty;
+        private DateTime _fromDate = DateTime.Now;
+        private DateTime _toDate = DateTime.Now;
         #endregion
 
         #region Constructor
         public uReceiptList()
         {
             InitializeComponent();
+            dtpkDenNgay.Value = DateTime.Now;
+            dtpkTuNgay.Value = DateTime.Now.AddDays(-7);
         }
         #endregion
 
@@ -68,6 +73,10 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+                _isFromDateToDate = raTuNgayToiNgay.Checked;
+                _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
+                _tenBenhNhan = txtTenBenhNhan.Text;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayReceiptListProc));
                 base.ShowWaiting();
             }
@@ -95,7 +104,7 @@ namespace MM.Controls
 
         private void OnDisplayReceiptList()
         {
-            Result result = ReceiptBus.GetReceiptList();
+            Result result = ReceiptBus.GetReceiptList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -281,6 +290,54 @@ namespace MM.Controls
 
             OnExportInvoice();
         }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            if (raTuNgayToiNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
+                dtpkTuNgay.Focus();
+                return;
+            }
+
+            if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng nhập tên bệnh nhân.", IconType.Information);
+                txtTenBenhNhan.Focus();
+                return;
+            }
+
+            DisplayAsThread();
+        }
+
+        private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
+            dtpkDenNgay.Enabled = raTuNgayToiNgay.Checked;
+            txtTenBenhNhan.ReadOnly = raTuNgayToiNgay.Checked;
+        }
+
+        private void txtTenBenhNhan_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (raTenBenhNhan.Checked && e.KeyCode == Keys.Enter)
+            {
+                if (raTuNgayToiNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
+                {
+                    MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
+                    dtpkTuNgay.Focus();
+                    return;
+                }
+
+                if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
+                {
+                    MsgBox.Show(Application.ProductName, "Vui lòng nhập tên bệnh nhân.", IconType.Information);
+                    txtTenBenhNhan.Focus();
+                    return;
+                }
+
+                DisplayAsThread();
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -302,5 +359,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

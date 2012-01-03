@@ -256,6 +256,16 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
+            else
+            {
+                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin dịch vụ sử dụng ?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (CheckInfo())
+                        SaveInfoAsThread();
+                    else
+                        e.Cancel = true;
+                }
+            }
         }
 
         private void cboService_SelectedValueChanged(object sender, EventArgs e)

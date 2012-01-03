@@ -336,6 +336,16 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
+            else
+            {
+                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin nhóm thuốc ?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (CheckInfo())
+                        SaveInfoAsThread();
+                    else
+                        e.Cancel = true;
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

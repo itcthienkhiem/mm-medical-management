@@ -352,6 +352,16 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
+            else
+            {
+                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin lô thuốc ?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (CheckInfo())
+                        SaveInfoAsThread();
+                    else
+                        e.Cancel = true;
+                }
+            }
         }
 
         private void numGiaNhap_ValueChanged(object sender, EventArgs e)

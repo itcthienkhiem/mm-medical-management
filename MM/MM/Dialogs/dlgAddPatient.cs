@@ -128,7 +128,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (chkDiUngThuoc.Checked && txtThuocDiUng.Text.Trim() == string.Empty)
+            /*if (chkDiUngThuoc.Checked && txtThuocDiUng.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập thuốc dị ứng.", IconType.Information);
                 tabPatient.SelectedTabIndex = 1;
@@ -161,7 +161,7 @@ namespace MM.Dialogs
                     txtThuocDangDung.Focus();
                     return false;
                 }
-            }
+            }*/
 
             return true;
         }
@@ -426,6 +426,16 @@ namespace MM.Dialogs
                     SaveInfoAsThread();
                 else
                     e.Cancel = true;
+            }
+            else
+            {
+                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin bệnh nhân ?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (CheckInfo())
+                        SaveInfoAsThread();
+                    else
+                        e.Cancel = true;
+                }
             }
         }
 

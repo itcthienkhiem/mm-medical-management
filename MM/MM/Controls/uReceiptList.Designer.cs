@@ -38,10 +38,15 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnView = new System.Windows.Forms.Button();
+            this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
+            this.raTenBenhNhan = new System.Windows.Forms.RadioButton();
+            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
+            this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgReceipt = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ReceiptCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.receiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,10 +54,14 @@
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExportedInVoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.receiptViewBindingSource)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -104,18 +113,93 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.chkChecked);
-            this.panel2.Controls.Add(this.dgReceipt);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Controls.Add(this.btnView);
+            this.panel2.Controls.Add(this.txtTenBenhNhan);
+            this.panel2.Controls.Add(this.raTenBenhNhan);
+            this.panel2.Controls.Add(this.dtpkDenNgay);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.dtpkTuNgay);
+            this.panel2.Controls.Add(this.raTuNgayToiNgay);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(998, 417);
+            this.panel2.Size = new System.Drawing.Size(998, 88);
             this.panel2.TabIndex = 2;
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::MM.Properties.Resources.views_icon;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(300, 58);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 23);
+            this.btnView.TabIndex = 13;
+            this.btnView.Text = "   &Xem";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // txtTenBenhNhan
+            // 
+            this.txtTenBenhNhan.Location = new System.Drawing.Point(120, 34);
+            this.txtTenBenhNhan.Name = "txtTenBenhNhan";
+            this.txtTenBenhNhan.Size = new System.Drawing.Size(255, 20);
+            this.txtTenBenhNhan.TabIndex = 5;
+            this.txtTenBenhNhan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTenBenhNhan_KeyDown);
+            // 
+            // raTenBenhNhan
+            // 
+            this.raTenBenhNhan.AutoSize = true;
+            this.raTenBenhNhan.Location = new System.Drawing.Point(16, 35);
+            this.raTenBenhNhan.Name = "raTenBenhNhan";
+            this.raTenBenhNhan.Size = new System.Drawing.Size(98, 17);
+            this.raTenBenhNhan.TabIndex = 4;
+            this.raTenBenhNhan.Text = "Tên bệnh nhân";
+            this.raTenBenhNhan.UseVisualStyleBackColor = true;
+            // 
+            // dtpkDenNgay
+            // 
+            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkDenNgay.Location = new System.Drawing.Point(262, 10);
+            this.dtpkDenNgay.Name = "dtpkDenNgay";
+            this.dtpkDenNgay.Size = new System.Drawing.Size(113, 20);
+            this.dtpkDenNgay.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(205, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "đến ngày";
+            // 
+            // dtpkTuNgay
+            // 
+            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkTuNgay.Location = new System.Drawing.Point(84, 10);
+            this.dtpkTuNgay.Name = "dtpkTuNgay";
+            this.dtpkTuNgay.Size = new System.Drawing.Size(113, 20);
+            this.dtpkTuNgay.TabIndex = 1;
+            // 
+            // raTuNgayToiNgay
+            // 
+            this.raTuNgayToiNgay.AutoSize = true;
+            this.raTuNgayToiNgay.Checked = true;
+            this.raTuNgayToiNgay.Location = new System.Drawing.Point(16, 11);
+            this.raTuNgayToiNgay.Name = "raTuNgayToiNgay";
+            this.raTuNgayToiNgay.Size = new System.Drawing.Size(64, 17);
+            this.raTuNgayToiNgay.TabIndex = 0;
+            this.raTuNgayToiNgay.TabStop = true;
+            this.raTuNgayToiNgay.Text = "Từ ngày";
+            this.raTuNgayToiNgay.UseVisualStyleBackColor = true;
+            this.raTuNgayToiNgay.CheckedChanged += new System.EventHandler(this.raTuNgayToiNgay_CheckedChanged);
             // 
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Location = new System.Drawing.Point(45, 4);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 3;
@@ -164,17 +248,9 @@
             this.dgReceipt.ReadOnly = true;
             this.dgReceipt.RowHeadersWidth = 30;
             this.dgReceipt.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgReceipt.Size = new System.Drawing.Size(998, 417);
+            this.dgReceipt.Size = new System.Drawing.Size(998, 329);
             this.dgReceipt.TabIndex = 2;
             this.dgReceipt.DoubleClick += new System.EventHandler(this.dgReceipt_DoubleClick);
-            // 
-            // receiptViewBindingSource
-            // 
-            this.receiptViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
             // 
             // colChecked
             // 
@@ -241,10 +317,29 @@
             this.IsExportedInVoice.ReadOnly = true;
             this.IsExportedInVoice.Width = 80;
             // 
+            // receiptViewBindingSource
+            // 
+            this.receiptViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgReceipt);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 88);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(998, 329);
+            this.panel3.TabIndex = 4;
+            // 
             // uReceiptList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uReceiptList";
@@ -254,6 +349,8 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.receiptViewBindingSource)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -279,5 +376,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsExportedInVoice;
+        private System.Windows.Forms.TextBox txtTenBenhNhan;
+        private System.Windows.Forms.RadioButton raTenBenhNhan;
+        private System.Windows.Forms.DateTimePicker dtpkDenNgay;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtpkTuNgay;
+        private System.Windows.Forms.RadioButton raTuNgayToiNgay;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnView;
     }
 }
