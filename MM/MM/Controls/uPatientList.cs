@@ -586,7 +586,6 @@ namespace MM.Controls
             {
                 if (ws.Cells[0, 0].Value != null && ws.Cells[0, 0].Value.ToString().ToLower() != "code" ||
                         ws.Cells[0, 1].Value != null && ws.Cells[0, 1].Value.ToString().ToLower() != "fullname" ||
-                        ws.Cells[0, 2].Value != null && ws.Cells[0, 2].Value.ToString().ToLower() != "name" ||
                         ws.Cells[0, 3].Value != null && ws.Cells[0, 3].Value.ToString().ToLower() != "dob" ||
                         ws.Cells[0, 4].Value != null && ws.Cells[0, 4].Value.ToString().ToLower() != "sex" ||
                         ws.Cells[0, 5].Value != null && ws.Cells[0, 5].Value.ToString().ToLower() != "mobile")
