@@ -96,6 +96,11 @@ namespace MM.Controls
                 
                 MethodInvoker method = delegate
                 {
+                    if (_results == null || _results.Count <= 0)
+                        txtKetQua.Text = "0";
+                    else
+                        txtKetQua.Text = _results.Count.ToString();
+
                    _ucReportViewer.ViewReport("MM.Templates.rptDichVuHopDong.rdlc", reportDataSource);
                    btnExportExcel.Enabled = AllowExport && _results.Count > 0;
                 };

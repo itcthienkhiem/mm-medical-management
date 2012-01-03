@@ -114,6 +114,11 @@ namespace MM.Controls
 
                     MethodInvoker method = delegate
                     {
+                        if (result == null || result.QueryResult == null)
+                            txtKetQua.Text = "0";
+                        else
+                            txtKetQua.Text = ((List<spDoanhThuNhanVienTongHopResult>)result.QueryResult).Count.ToString();
+
                         _ucReportViewer.ViewReport("MM.Templates.rptDoanhThuNhanVienTongHop.rdlc", reportDataSource);
                     };
 
@@ -136,6 +141,27 @@ namespace MM.Controls
 
                     MethodInvoker method = delegate
                     {
+                        if (result == null || result.QueryResult == null)
+                        {
+                            txtKetQua.Text = "0";
+                        }
+                        else
+                        {
+                            List<spDoanhThuNhanVienChiTietResult> doanhThuChiTietList = (List<spDoanhThuNhanVienChiTietResult>)result.QueryResult;
+                            int count = 0;
+                            string fullName = string.Empty;
+                            foreach (var doanhThu in doanhThuChiTietList)
+                            {
+                                if (fullName.ToLower() != doanhThu.FullName.ToLower())
+                                {
+                                    count++;
+                                    fullName = doanhThu.FullName;
+                                }
+                            }
+
+                            txtKetQua.Text = count.ToString();
+                        }
+
                         _ucReportViewer.ViewReport("MM.Templates.rptDoanhThuNhanVienChiTiet.rdlc", reportDataSource);
                     };
 

@@ -45,6 +45,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lbKetQua = new System.Windows.Forms.Label();
+            this.txtKetQua = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
@@ -53,6 +55,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtKetQua);
+            this.panel1.Controls.Add(this.lbKetQua);
             this.panel1.Controls.Add(this.dtpkDenNgay);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -215,6 +219,23 @@
             this.panel3.Size = new System.Drawing.Size(758, 275);
             this.panel3.TabIndex = 3;
             // 
+            // lbKetQua
+            // 
+            this.lbKetQua.AutoSize = true;
+            this.lbKetQua.Location = new System.Drawing.Point(170, 95);
+            this.lbKetQua.Name = "lbKetQua";
+            this.lbKetQua.Size = new System.Drawing.Size(114, 13);
+            this.lbKetQua.TabIndex = 15;
+            this.lbKetQua.Text = "Kết quả được tìm thấy:";
+            // 
+            // txtKetQua
+            // 
+            this.txtKetQua.Location = new System.Drawing.Point(286, 92);
+            this.txtKetQua.Name = "txtKetQua";
+            this.txtKetQua.ReadOnly = true;
+            this.txtKetQua.Size = new System.Drawing.Size(78, 20);
+            this.txtKetQua.TabIndex = 16;
+            // 
             // uDichVuHopDong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,5 +272,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpkTuNgay;
+        private System.Windows.Forms.TextBox txtKetQua;
+        private System.Windows.Forms.Label lbKetQua;
     }
 }

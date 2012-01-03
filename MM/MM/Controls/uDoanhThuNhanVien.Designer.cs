@@ -46,6 +46,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this._ucReportViewer = new MM.Controls.ucReportViewer();
+            this.txtKetQua = new System.Windows.Forms.TextBox();
+            this.lbKetQua = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
@@ -63,6 +65,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtKetQua);
+            this.panel2.Controls.Add(this.lbKetQua);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.raChiTiet);
             this.panel2.Controls.Add(this.raTongHop);
@@ -224,6 +228,23 @@
             this._ucReportViewer.Size = new System.Drawing.Size(849, 297);
             this._ucReportViewer.TabIndex = 0;
             // 
+            // txtKetQua
+            // 
+            this.txtKetQua.Location = new System.Drawing.Point(300, 110);
+            this.txtKetQua.Name = "txtKetQua";
+            this.txtKetQua.ReadOnly = true;
+            this.txtKetQua.Size = new System.Drawing.Size(78, 20);
+            this.txtKetQua.TabIndex = 20;
+            // 
+            // lbKetQua
+            // 
+            this.lbKetQua.AutoSize = true;
+            this.lbKetQua.Location = new System.Drawing.Point(184, 113);
+            this.lbKetQua.Name = "lbKetQua";
+            this.lbKetQua.Size = new System.Drawing.Size(114, 13);
+            this.lbKetQua.TabIndex = 19;
+            this.lbKetQua.Text = "Kết quả được tìm thấy:";
+            // 
             // uDoanhThuNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,5 +283,7 @@
         private System.Windows.Forms.RadioButton raReceipt;
         private System.Windows.Forms.RadioButton raServiceHistory;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox txtKetQua;
+        private System.Windows.Forms.Label lbKetQua;
     }
 }
