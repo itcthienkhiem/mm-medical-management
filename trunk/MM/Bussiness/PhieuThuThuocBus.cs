@@ -12,13 +12,24 @@ namespace MM.Bussiness
 {
     public class PhieuThuThuocBus : BusBase
     {
-        public static Result GetPhieuThuThuocList()
+        public static Result GetPhieuThuThuocList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan)
         {
             Result result = null;
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} ORDER BY NgayThu ASC, MaPhieuThuThuoc ASC", (byte)Status.Actived);
+                string query = string.Empty;
+                if (isFromDateToDate)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
+                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND TenBenhNhan LIKE '%{1}%' ORDER BY NgayThu DESC", 
+                        (byte)Status.Actived, tenBenhNhan);
+                }
+                
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

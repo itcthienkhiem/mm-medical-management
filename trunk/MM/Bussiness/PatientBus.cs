@@ -381,10 +381,12 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 Patient patient = null;
                 if (patientGUID == null || patientGUID == string.Empty)
-                    patient = db.Patients.SingleOrDefault<Patient>(p => p.FileNum.Trim().ToLower() == fileNum.Trim().ToLower());
+                    patient = db.Patients.SingleOrDefault<Patient>(p => p.FileNum.Trim().ToLower() == fileNum.Trim().ToLower() &&
+                                                                    p.Contact.Archived == false);
                 else
                     patient = db.Patients.SingleOrDefault<Patient>(p => p.FileNum.Trim().ToLower() == fileNum.Trim().ToLower() &&
-                                                                p.PatientGUID.ToString() != patientGUID);
+                                                                p.PatientGUID.ToString() != patientGUID &&
+                                                                    p.Contact.Archived == false);
 
                 if (patient == null)
                     result.Error.Code = ErrorCode.NOT_EXIST;

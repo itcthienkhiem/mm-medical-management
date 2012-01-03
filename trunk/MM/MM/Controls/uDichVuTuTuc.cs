@@ -50,7 +50,7 @@ namespace MM.Controls
             {
 
                 _tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
-                _denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 0, 0, 0);
+                _denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnViewProc));
                 base.ShowWaiting();
