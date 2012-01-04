@@ -1189,6 +1189,7 @@ namespace MM
             }
         }
         #endregion
+
         #region AutoUpdate
         private bool IsServerMachine
         {
@@ -1211,6 +1212,7 @@ namespace MM
                     return false;
             }
         }
+
         private string ReadInforFromFile(string filepath)
         {
             StreamReader re = null;
@@ -1232,6 +1234,7 @@ namespace MM
                 return input;
             }
         }
+
         private void RunUpdateFile(string filename)
         {
             MsgBox.Show("Cap nhat chuong trinh", "Bạn đang dùng phiên bản cũ. Vui lòng chạy tập tin MMSeup.exe để cập nhật chương trình", IconType.Information);
@@ -1240,6 +1243,7 @@ namespace MM
             p.Start();
             p.WaitForExit();
         }
+
         private void AutoDetectUpdate()
         {
             string strServerName;
