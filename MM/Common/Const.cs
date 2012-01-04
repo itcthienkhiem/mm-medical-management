@@ -41,5 +41,6 @@ namespace MM.Common
         public static string PhieuThuThuoc = "PhieuThuThuoc";
         public static string DichVuTuTuc = "DichVuTuTuc";
         public static string ChiDinh = "ChiDinh";
+        public static string Tracking = "Tracking";
     }
 }
