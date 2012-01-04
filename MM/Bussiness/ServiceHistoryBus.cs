@@ -21,7 +21,7 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (isAll)
                 {
-                    if (Global.StaffType == StaffType.Admin || Global.StaffType == StaffType.Reception)
+                    if (Global.StaffType == StaffType.Admin || Global.StaffType == StaffType.LeTan)
                         query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND Status = {1} ORDER BY Name", 
                             patientGUID, (byte)Status.Actived);
                     else
@@ -30,7 +30,7 @@ namespace MM.Bussiness
                 }
                 else
                 {
-                    if (Global.StaffType == StaffType.Admin || Global.StaffType == StaffType.Reception)
+                    if (Global.StaffType == StaffType.Admin || Global.StaffType == StaffType.LeTan)
                         query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} ORDER BY Name",
                             patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
                     else

@@ -58,16 +58,24 @@ namespace MM.Dialogs
                     StaffType type = (StaffType)Convert.ToInt32(rows[0]["StaffType"]);
                     switch (type)
                     {
-                        case StaffType.Doctor:
+                        case StaffType.BacSi:
                             return "Bác sĩ";
-                        case StaffType.Nurse:
-                            return "Y tá";
-                        case StaffType.Reception:
+                        case StaffType.DieuDuong:
+                            return "Điều dưỡng";
+                        case StaffType.LeTan:
                             return "Lễ tân";
-                        case StaffType.Patient:
+                        case StaffType.BenhNhan:
                             return "Bệnh nhân";
                         case StaffType.Admin:
                             return "Admin";
+                        case StaffType.KeToan:
+                            return "Kế toán";
+                        case StaffType.ThuKyYKhoa:
+                            return "Thư ký y khoa";
+                        case StaffType.XetNghiem:
+                            return "Xét nghiệm";
+                        case StaffType.Sale:
+                            return "Sale";
                         default:
                             return string.Empty;
                     }
