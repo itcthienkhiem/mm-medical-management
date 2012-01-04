@@ -151,8 +151,12 @@
             this.cboStaffType.FormattingEnabled = true;
             this.cboStaffType.Items.AddRange(new object[] {
             "Bác sĩ",
-            "Y tá",
-            "Lễ tân"});
+            "Điều dưỡng",
+            "Lễ tân",
+            "Thư ký y khoa",
+            "Xét nghiệm",
+            "Sale",
+            "Kế toán"});
             this.cboStaffType.Location = new System.Drawing.Point(106, 239);
             this.cboStaffType.Name = "cboStaffType";
             this.cboStaffType.Size = new System.Drawing.Size(109, 21);

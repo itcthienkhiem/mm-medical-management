@@ -98,8 +98,7 @@ namespace MM.Dialogs
 
             //DocStaff
             List<byte> staffTypes = new List<byte>();
-            staffTypes.Add((byte)StaffType.Doctor);
-            staffTypes.Add((byte)StaffType.Nurse);
+            staffTypes.Add((byte)StaffType.BacSi);
             result = DocStaffBus.GetDocStaffList(staffTypes);
             if (!result.IsOK)
             {
@@ -112,7 +111,7 @@ namespace MM.Dialogs
                 cboDocStaff.DataSource = result.QueryResult;
             }
 
-            if (Global.StaffType != StaffType.Admin && Global.StaffType != StaffType.Reception)
+            if (Global.StaffType != StaffType.Admin && Global.StaffType != StaffType.LeTan)
             {
                 cboDocStaff.SelectedValue = Global.UserGUID;
                 cboDocStaff.Enabled = false;

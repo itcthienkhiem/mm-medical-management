@@ -108,6 +108,52 @@ namespace MM.Dialogs
             return true;
         }
 
+        private int GetStaffTypeIndex(StaffType type)
+        {
+            switch (type)
+            {
+                case StaffType.BacSi:
+                    return 0;
+                case StaffType.DieuDuong:
+                    return 1;
+                case StaffType.LeTan:
+                    return 2;
+                case StaffType.ThuKyYKhoa:
+                    return 3;
+                case StaffType.XetNghiem:
+                    return 4;
+                case StaffType.Sale:
+                    return 5;
+                case StaffType.KeToan:
+                    return 6;
+                default:
+                    return 0;
+            }
+        }
+
+        private StaffType GetStaffType(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    return StaffType.BacSi;
+                case 1:
+                    return StaffType.DieuDuong;
+                case 2:
+                    return StaffType.LeTan;
+                case 3:
+                    return StaffType.ThuKyYKhoa;
+                case 4:
+                    return StaffType.XetNghiem;
+                case 5:
+                    return StaffType.Sale;
+                case 6:
+                    return StaffType.KeToan;
+                default:
+                    return StaffType.BacSi;
+            }
+        }
+
         private void DisplayInfo(DataRow drDocStaff)
         {
             try
@@ -121,7 +167,7 @@ namespace MM.Dialogs
                 txtQualifications.Text = drDocStaff["Qualifications"] as string;
                 cboSpeciality.SelectedValue = drDocStaff["SpecialityGUID"];
                 cboWorkType.SelectedIndex = Convert.ToInt32(drDocStaff["WorkType"]);
-                cboStaffType.SelectedIndex = Convert.ToInt32(drDocStaff["StaffType"]);
+                cboStaffType.SelectedIndex = GetStaffTypeIndex((StaffType)Convert.ToInt32(drDocStaff["StaffType"]));
                 txtHomePhone.Text = drDocStaff["HomePhone"] as string;
                 txtWorkPhone.Text = drDocStaff["WorkPhone"] as string;
                 txtMobile.Text = drDocStaff["Mobile"] as string;
@@ -218,7 +264,7 @@ namespace MM.Dialogs
                 {
                     _docStaff.SpecialityGUID = Guid.Parse(cboSpeciality.SelectedValue.ToString());
                     _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
-                    _docStaff.StaffType = (byte)cboStaffType.SelectedIndex;
+                    _docStaff.StaffType = (byte)GetStaffType(cboStaffType.SelectedIndex);
 
                     switch (_docStaff.StaffType)
                     {
@@ -226,10 +272,22 @@ namespace MM.Dialogs
                             _contact.Occupation = "Bác sĩ";
                             break;
                         case 1:
-                            _contact.Occupation = "Y tá";
+                            _contact.Occupation = "Điều dưỡng";
                             break;
                         case 2:
                             _contact.Occupation = "Lễ tân";
+                            break;
+                        case 3:
+                            _contact.Occupation = "Thư ký y khoa";
+                            break;
+                        case 4:
+                            _contact.Occupation = "Xét nghiệm";
+                            break;
+                        case 5:
+                            _contact.Occupation = "Sale";
+                            break;
+                        case 6:
+                            _contact.Occupation = "Kế toán";
                             break;
                     }
 

@@ -7,10 +7,14 @@ namespace MM.Common
 {
     public enum StaffType : int
     {
-        Doctor = 0,
-        Nurse,
-        Reception,
-        Patient,
-        Admin
+        BacSi = 0,
+        DieuDuong,
+        LeTan,
+        BenhNhan,
+        Admin,
+        XetNghiem,
+        ThuKyYKhoa,
+        Sale,
+        KeToan
     }
 }
