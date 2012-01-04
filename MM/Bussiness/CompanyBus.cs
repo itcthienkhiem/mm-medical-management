@@ -122,6 +122,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in keys)
                     {
                         Company c = db.Companies.SingleOrDefault<Company>(cc => cc.CompanyGUID.ToString() == key);
@@ -130,8 +131,26 @@ namespace MM.Bussiness
                             c.DeletedDate = DateTime.Now;
                             c.DeletedBy = Guid.Parse(Global.UserGUID);
                             c.Status = (byte)Status.Deactived;
+
+                            foreach (var cm in c.CompanyMembers)
+                                cm.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Mã cty: '{1}', Tên cty: '{2}', Địa chỉ: '{3}', Điện thoại: '{4}', Fax: '{5}', Website: '{6}'\n",
+                                c.CompanyGUID.ToString(), c.MaCty, c.TenCty, c.DiaChi, c.Dienthoai, c.Fax, c.Website);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin công ty";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -211,8 +230,9 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
 
-                CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.PatientGUID.ToString() == patientGUID && 
-                                                                                    mm.Status == (byte)Status.Actived);
+                CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.PatientGUID.ToString() == patientGUID &&
+                                                                                    mm.Status == (byte)Status.Actived && 
+                                                                                    mm.Company.Status == (byte)Status.Actived);
 
                 if (m == null)
                     result.Error.Code = ErrorCode.NOT_EXIST;
@@ -249,6 +269,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
 
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
@@ -259,9 +280,13 @@ namespace MM.Bussiness
                         db.Companies.InsertOnSubmit(com);
                         db.SubmitChanges();
 
+                        desc += string.Format("- Công ty: GUID: '{0}', Mã cty: '{1}', Tên cty: '{2}', Địa chỉ: '{3}', Điện thoại: '{4}', Fax: '{5}', Website: '{6}'\n",
+                                com.CompanyGUID.ToString(), com.MaCty, com.TenCty, com.DiaChi, com.Dienthoai, com.Fax, com.Website);
+
                         //Members
                         if (addedMembers != null && addedMembers.Count > 0)
                         {
+                            desc += "- Danh sách nhân viên:\n";
                             foreach (string key in addedMembers)
                             {
                                 CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.PatientGUID.ToString() == key &&
@@ -276,6 +301,7 @@ namespace MM.Bussiness
                                     m.CreatedBy = Guid.Parse(Global.UserGUID);
                                     m.Status = (byte)Status.Actived;
                                     db.CompanyMembers.InsertOnSubmit(m);
+                                    db.SubmitChanges();
                                 }
                                 else
                                 {
@@ -283,10 +309,25 @@ namespace MM.Bussiness
                                     m.UpdatedDate = DateTime.Now;
                                     m.UpdatedBy = Guid.Parse(Global.UserGUID);
                                 }
+
+                                desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.CompanyMemberGUID.ToString(), m.Patient.Contact.FullName);
                             }
 
                             db.SubmitChanges();
                         }
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin công ty";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+                        db.SubmitChanges();
                     }
                     else //Update
                     {
@@ -307,9 +348,13 @@ namespace MM.Bussiness
                             company.DeletedBy = com.DeletedBy;
                             company.Status = com.Status;
 
+                            desc += string.Format("- Công ty: GUID: '{0}', Mã cty: '{1}', Tên cty: '{2}', Địa chỉ: '{3}', Điện thoại: '{4}', Fax: '{5}', Website: '{6}'\n",
+                                company.CompanyGUID.ToString(), company.MaCty, company.TenCty, company.DiaChi, company.Dienthoai, company.Fax, company.Website);
+
                             //Members
                             if (deletedMembers != null && deletedMembers.Count > 0)
                             {
+                                desc += "- Danh sách nhân viên được xóa:\n";
                                 foreach (string key in deletedMembers)
                                 {
                                     CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.PatientGUID.ToString() == key &&
@@ -319,6 +364,8 @@ namespace MM.Bussiness
                                         m.Status = (byte)Status.Deactived;
                                         m.DeletedDate = DateTime.Now;
                                         m.DeletedBy = Guid.Parse(Global.UserGUID);
+
+                                        desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.CompanyMemberGUID.ToString(), m.Patient.Contact.FullName);
                                     }
                                 }
                                     
@@ -327,6 +374,9 @@ namespace MM.Bussiness
 
                             if (addedMembers != null && addedMembers.Count > 0)
                             {
+                                string addedStr = string.Empty;
+                                bool isAdd = false;
+
                                 foreach (string key in addedMembers)
                                 {
                                     CompanyMember m = db.CompanyMembers.SingleOrDefault<CompanyMember>(mm => mm.PatientGUID.ToString() == key &&
@@ -341,9 +391,19 @@ namespace MM.Bussiness
                                         m.CreatedBy = Guid.Parse(Global.UserGUID);
                                         m.Status = (byte)Status.Actived;
                                         db.CompanyMembers.InsertOnSubmit(m);
+                                        db.SubmitChanges();
+
+                                        addedStr += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.CompanyMemberGUID.ToString(), m.Patient.Contact.FullName);
+                                        isAdd = true;
                                     }
                                     else
                                     {
+                                        if (m.Status == (byte)Status.Deactived)
+                                        {
+                                            addedStr += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.CompanyMemberGUID.ToString(), m.Patient.Contact.FullName);
+                                            isAdd = true;
+                                        }
+
                                         m.Status = (byte)Status.Actived;
                                         m.UpdatedDate = DateTime.Now;
                                         m.UpdatedBy = Guid.Parse(Global.UserGUID);
@@ -351,7 +411,23 @@ namespace MM.Bussiness
                                 }
 
                                 db.SubmitChanges();
+
+                                if (isAdd) addedStr = "- Danh sách nhân viên được thêm:\n" + addedStr;
+                                desc += addedStr;
                             }
+
+                            //Tracking
+                            desc = desc.Substring(0, desc.Length - 1);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin công ty";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                            db.SubmitChanges();
 
                         }
                     }

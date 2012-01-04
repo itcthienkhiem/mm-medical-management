@@ -195,6 +195,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in chiDinhKeys)
                     {
                         ChiDinh chiDinh = db.ChiDinhs.SingleOrDefault<ChiDinh>(c => c.ChiDinhGUID.ToString() == key);
@@ -203,8 +204,24 @@ namespace MM.Bussiness
                             chiDinh.DeletedDate = DateTime.Now;
                             chiDinh.DeletedBy = Guid.Parse(Global.UserGUID);
                             chiDinh.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Mã chỉ định: '{1}', Ngày chỉ định: '{2}', Bác sĩ chỉ định: '{3}', Bệnh nhân: '{4}'\n", 
+                                chiDinh.ChiDinhGUID.ToString(), chiDinh.MaChiDinh, chiDinh.NgayChiDinh.ToString("dd/MM/yyyy HH:mm:ss"), 
+                                chiDinh.DocStaff.Contact.FullName, chiDinh.Patient.Contact.FullName);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin chỉ định";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -240,6 +257,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
 
                 //Insert
                 if (chiDinh.ChiDinhGUID == null || chiDinh.ChiDinhGUID == Guid.Empty)
@@ -248,18 +266,38 @@ namespace MM.Bussiness
                     db.ChiDinhs.InsertOnSubmit(chiDinh);
                     db.SubmitChanges();
 
+                    desc += string.Format("- Chỉ định: GUID: '{0}', Mã chỉ định: '{1}', Ngày chỉ định: '{2}', Bác sĩ chỉ định: '{3}', Bệnh nhân: '{4}'\n",
+                                chiDinh.ChiDinhGUID.ToString(), chiDinh.MaChiDinh, chiDinh.NgayChiDinh.ToString("dd/MM/yyyy HH:mm:ss"),
+                                chiDinh.DocStaff.Contact.FullName, chiDinh.Patient.Contact.FullName);
+
                     //Add chi tiet
                     if (addedList != null && addedList.Count > 0)
                     {
+                        desc += "- Chi tiết chỉ định được thêm:\n";
+
                         foreach (ChiTietChiDinh ctcd in addedList)
                         {
                             ctcd.ChiTietChiDinhGUID = Guid.NewGuid();
                             ctcd.ChiDinhGUID = chiDinh.ChiDinhGUID;
                             db.ChiTietChiDinhs.InsertOnSubmit(ctcd);
-                        }
+                            db.SubmitChanges();
 
-                        db.SubmitChanges();
+                            desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}'\n", ctcd.ChiTietChiDinhGUID.ToString(), ctcd.Service.Name);
+                        }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Add;
+                    tk.Action = "Thêm thông tin chỉ định";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+                    db.SubmitChanges();
                 }
                 else //Update
                 {
@@ -277,10 +315,16 @@ namespace MM.Bussiness
                         cd.DeletedDate = chiDinh.DeletedDate;
                         cd.DeletedBy = chiDinh.DeletedBy;
                         cd.Status = chiDinh.Status;
+                        db.SubmitChanges();
+
+                        desc += string.Format("- Chỉ định: GUID: '{0}', Mã chỉ định: '{1}', Ngày chỉ định: '{2}', Bác sĩ chỉ định: '{3}', Bệnh nhân: '{4}'\n",
+                                cd.ChiDinhGUID.ToString(), cd.MaChiDinh, cd.NgayChiDinh.ToString("dd/MM/yyyy HH:mm:ss"),
+                                cd.DocStaff.Contact.FullName, cd.Patient.Contact.FullName);
 
                         //Delete chi tiet
                         if (deletedList != null && deletedList.Count > 0)
                         {
+                            desc += "- Chi tiết chỉ định được xóa:\n";
                             foreach (string key in deletedList)
                             {
                                 ChiTietChiDinh ctcd = db.ChiTietChiDinhs.SingleOrDefault<ChiTietChiDinh>(c => c.ChiTietChiDinhGUID.ToString() == key);
@@ -289,6 +333,8 @@ namespace MM.Bussiness
                                     ctcd.DeletedDate = DateTime.Now;
                                     ctcd.DeletedBy = Guid.Parse(Global.UserGUID);
                                     ctcd.Status = (byte)Status.Deactived;
+
+                                    desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}'\n", ctcd.ChiTietChiDinhGUID.ToString(), ctcd.Service.Name);
                                 }    
                             }
 
@@ -298,6 +344,8 @@ namespace MM.Bussiness
                         //Add chi tiet
                         if (addedList != null && addedList.Count > 0)
                         {
+                            string addedStr = string.Empty;
+                            bool isAdd = false;
                             foreach (ChiTietChiDinh ctcd in addedList)
                             {
                                 ChiTietChiDinh ct = db.ChiTietChiDinhs.SingleOrDefault<ChiTietChiDinh>(c => c.ServiceGUID == ctcd.ServiceGUID &&
@@ -309,9 +357,19 @@ namespace MM.Bussiness
                                     ctcd.CreatedDate = DateTime.Now;
                                     ctcd.CreatedBy = Guid.Parse(Global.UserGUID);
                                     db.ChiTietChiDinhs.InsertOnSubmit(ctcd);
+                                    db.SubmitChanges();
+
+                                    addedStr += string.Format("  + GUID: '{0}', Dịch vụ: '{1}'\n", ctcd.ChiTietChiDinhGUID.ToString(), ctcd.Service.Name);
+                                    isAdd = true;
                                 }
                                 else
                                 {
+                                    if (ct.Status == (byte)Status.Deactived)
+                                    {
+                                        addedStr += string.Format("  + GUID: '{0}', Dịch vụ: '{1}'\n", ct.ChiTietChiDinhGUID.ToString(), ct.Service.Name);
+                                        isAdd = true;
+                                    }
+
                                     ct.UpdatedDate = DateTime.Now;
                                     ct.UpdatedBy = Guid.Parse(Global.UserGUID);
                                     ct.Status = (byte)Status.Actived;
@@ -319,7 +377,23 @@ namespace MM.Bussiness
                             }
 
                             db.SubmitChanges();
+
+                            if (isAdd) addedStr = "- Chi tiết chỉ định được thêm:\n" + addedStr;
+                            desc += addedStr;
                         }
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Edit;
+                        tk.Action = "Sửa thông tin chỉ định";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+                        db.SubmitChanges();
                     }
                 }
 

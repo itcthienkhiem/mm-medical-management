@@ -197,7 +197,10 @@ namespace MM.Dialogs
                         {
                             DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", patientGUID));
                             if (rows != null && rows.Length > 0)
+                            {
+                                _addedPatients.Remove(rows[0]["PatientGUID"].ToString());
                                 dt.Rows.Remove(rows[0]);
+                            }
                         }
 
                         return false;
