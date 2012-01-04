@@ -57,10 +57,9 @@ namespace MM.Bussiness
                             cd.DeletedBy = Guid.Parse(Global.UserGUID);
                             cd.Status = (byte)Status.Deactived;
                         }
-
-                        db.SubmitChanges();
                     }
 
+                    db.SubmitChanges();
                     t.Complete();
                 }
             }
