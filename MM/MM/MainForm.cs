@@ -1141,7 +1141,7 @@ namespace MM
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitConfigAsThread();
-            AutoDetectUpdate();
+            AutoDetectUpdateAsThread();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1244,6 +1244,24 @@ namespace MM
             p.WaitForExit();
         }
 
+        private void AutoDetectUpdateAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(AutoDetectUpdateProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
         private void AutoDetectUpdate()
         {
             string strServerName;
@@ -1281,6 +1299,26 @@ namespace MM
                     //Call update Mn & MIMS here
                     //MessageBox.Show("Call update MM here");
                 }
+            }
+        }
+        #endregion
+
+        #region Working Thread
+        private void AutoDetectUpdateProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                AutoDetectUpdate();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
             }
         }
         #endregion
