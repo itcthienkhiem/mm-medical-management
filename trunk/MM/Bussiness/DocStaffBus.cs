@@ -101,6 +101,8 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
+
                     foreach (string key in docStaffKeys)
                     {
                         DocStaff docStaff = db.DocStaffs.SingleOrDefault<DocStaff>(d => d.DocStaffGUID.ToString() == key);
@@ -114,12 +116,27 @@ namespace MM.Bussiness
                                 contact.DateArchived = DateTime.Now;
                                 contact.DeletedBy = Guid.Parse(Global.UserGUID);
                                 contact.DeletedDate = DateTime.Now;
+
+                                desc += string.Format("- GUID: '{0}', Tên nhân viên: '{1}', Ngày sinh: '{2}', Giới tính: '{3}', CMND: '{4}'\n",
+                                    docStaff.DocStaffGUID.ToString(), contact.FullName, contact.DobStr, contact.Gender == 0 ? "Nam" : "Nữ",
+                                    contact.IdentityCard);
                             }
                         }
-
-                        db.SubmitChanges();
                     }
 
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin nhân viên";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
                     t.Complete();
                 }
             }
@@ -153,6 +170,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
 
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
@@ -165,6 +183,23 @@ namespace MM.Bussiness
                         docStaff.DocStaffGUID = Guid.NewGuid();
                         docStaff.ContactGUID = contact.ContactGUID;
                         db.DocStaffs.InsertOnSubmit(docStaff);
+                        db.SubmitChanges();
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Tên nhân viên: '{1}', Ngày sinh: '{2}', Giới tính: '{3}', CMND: '{4}'",
+                                    docStaff.DocStaffGUID.ToString(), contact.FullName, contact.DobStr, contact.Gender == 0 ? "Nam" : "Nữ",
+                                    contact.IdentityCard);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin nhân viên";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
                         db.SubmitChanges();
                     }
                     else //Update
@@ -215,6 +250,20 @@ namespace MM.Bussiness
                                 doc.StaffType = docStaff.StaffType;
                                 doc.WorkType = docStaff.WorkType;
                             }
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Tên nhân viên: '{1}', Ngày sinh: '{2}', Giới tính: '{3}', CMND: '{4}'",
+                                        doc.DocStaffGUID.ToString(), ct.FullName, ct.DobStr, ct.Gender == 0 ? "Nam" : "Nữ", ct.IdentityCard);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin nhân viên";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();
                         }

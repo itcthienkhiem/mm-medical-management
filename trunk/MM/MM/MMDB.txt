@@ -44,3 +44,6 @@ spDichVuHopDong
 - Create view: ChiDinhView, ChiTietChiDinhView, DichVuChiDinhView
 2012-01-02
 - Create table: CanDo
+2012-01-04
+- Create table: Tracking
+- Create view: TrackingView

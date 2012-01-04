@@ -11,4 +11,11 @@ namespace MM.Common
         Edit,
         Delete
     }
+
+    public enum TrackingType : byte
+    {
+        None = 0,
+        Price,
+        Count
+    }
 }

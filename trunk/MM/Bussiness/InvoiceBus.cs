@@ -173,6 +173,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in invoiceKeys)
                     {
                         Invoice invoice = db.Invoices.SingleOrDefault<Invoice>(i => i.InvoiceGUID.ToString() == key);
@@ -184,8 +185,25 @@ namespace MM.Bussiness
 
                             //Update Exported Invoice
                             invoice.Receipt.IsExportedInVoice = false;
+
+                            desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
+                                invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"), 
+                                invoice.Receipt.Patient.Contact.FullName, invoice.TenDonVi, invoice.Receipt.Patient.Contact.Address, invoice.SoTaiKhoan, 
+                                invoice.HinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản");
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin hóa đơn";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.Price;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -221,16 +239,45 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-
+                string desc = string.Empty;
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     invoice.InvoiceGUID = Guid.NewGuid();
                     db.Invoices.InsertOnSubmit(invoice);
+                    db.SubmitChanges();
+
+                    desc += string.Format("- Hóa đơn: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
+                                invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"),
+                                invoice.Receipt.Patient.Contact.FullName, invoice.TenDonVi, invoice.Receipt.Patient.Contact.Address, invoice.SoTaiKhoan,
+                                invoice.HinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản");
+
 
                     //Update Exported Invoice
                     Receipt receipt = db.Receipts.SingleOrDefault<Receipt>(r => r.ReceiptGUID == invoice.ReceiptGUID);
                     if (receipt != null)
+                    {
                         receipt.IsExportedInVoice = true;
+
+                        desc += "- Chi tiết hóa đơn:\n";
+                        foreach (var cthd in receipt.ReceiptDetails)
+                        {
+                            double donGia = Math.Round(cthd.ServiceHistory.Price.Value - (cthd.ServiceHistory.Price.Value * cthd.ServiceHistory.Discount)/100, 0);
+                            desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}', Số lượng: '1', Đơn giá: '{2}', Thành tiền: '{2}'\n",
+                                cthd.ReceiptDetailGUID.ToString(), cthd.ServiceHistory.Service.Name, donGia);
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Add;
+                    tk.Action = "Thêm thông tin hóa đơn";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.Price;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();

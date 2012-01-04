@@ -70,6 +70,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in giaThuocKeys)
                     {
                         GiaThuoc giaThuoc = db.GiaThuocs.SingleOrDefault<GiaThuoc>(g => g.GiaThuocGUID.ToString() == key);
@@ -78,8 +79,23 @@ namespace MM.Bussiness
                             giaThuoc.DeletedDate = DateTime.Now;
                             giaThuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             giaThuoc.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Thuốc: '{1}', Giá bán: '{2}', Ngày áp dụng: '{3}'\n",
+                                giaThuoc.GiaThuocGUID.ToString(), giaThuoc.Thuoc.TenThuoc, giaThuoc.GiaBan, giaThuoc.NgayApDung.ToString("dd/MM/yyyy HH:mm:ss"));
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin giá thuốc";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.Price;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -115,6 +131,8 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
+
                 using (TransactionScope tnx = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     //Insert
@@ -123,12 +141,31 @@ namespace MM.Bussiness
                         giaThuoc.GiaThuocGUID = Guid.NewGuid();
                         db.GiaThuocs.InsertOnSubmit(giaThuoc);
                         db.SubmitChanges();
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Thuốc: '{1}', Giá bán: '{2}', Ngày áp dụng: '{3}'",
+                                giaThuoc.GiaThuocGUID.ToString(), giaThuoc.Thuoc.TenThuoc, giaThuoc.GiaBan, giaThuoc.NgayApDung.ToString("dd/MM/yyyy HH:mm:ss"));
+
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin giá thuốc";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.Price;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
                     }
                     else //Update
                     {
                         GiaThuoc gt = db.GiaThuocs.SingleOrDefault<GiaThuoc>(g => g.GiaThuocGUID.ToString() == giaThuoc.GiaThuocGUID.ToString());
                         if (gt != null)
                         {
+                            double giaCu = gt.GiaBan;
+
                             gt.ThuocGUID = giaThuoc.ThuocGUID;
                             gt.GiaBan = giaThuoc.GiaBan;
                             gt.NgayApDung = giaThuoc.NgayApDung;
@@ -140,6 +177,23 @@ namespace MM.Bussiness
                             gt.DeletedDate = giaThuoc.DeletedDate;
                             gt.DeletedBy = giaThuoc.DeletedBy;
                             gt.Status = giaThuoc.Status;
+                            db.SubmitChanges();
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Thuốc: '{1}', Giá bán: cũ: '{2}' - mới: '{3}', Ngày áp dụng: '{4}'",
+                                    gt.GiaThuocGUID.ToString(), gt.Thuoc.TenThuoc, giaCu, gt.GiaBan, gt.NgayApDung.ToString("dd/MM/yyyy HH:mm:ss"));
+
+                            desc = desc.Substring(0, desc.Length - 1);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin giá thuốc";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.Price;
+                            db.Trackings.InsertOnSubmit(tk);
+
                             db.SubmitChanges();
                         }
                     }

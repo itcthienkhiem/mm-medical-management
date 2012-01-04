@@ -46,8 +46,10 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in canDoKeys)
                     {
                         CanDo cd = db.CanDos.SingleOrDefault<CanDo>(c => c.CanDoGuid.ToString() == key);
@@ -56,8 +58,24 @@ namespace MM.Bussiness
                             cd.DeletedDate = DateTime.Now;
                             cd.DeletedBy = Guid.Parse(Global.UserGUID);
                             cd.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Tim mạch: '{3}', Huyết áp: '{4}', Hô hấp: '{5}', Chiều cao: '{6}', Cân nặng: '{7}', BMI: '{8}', Cân đo khác: '{9}'\n",
+                                cd.CanDoGuid.ToString(), cd.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), cd.Patient.Contact.FullName, cd.TimMach, cd.HuyetAp, 
+                                cd.HoHap, cd.ChieuCao, cd.CanNang, cd.BMI, cd.CanDoKhac);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin cân đo";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -96,11 +114,30 @@ namespace MM.Bussiness
 
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     //Insert
                     if (canDo.CanDoGuid == null || canDo.CanDoGuid == Guid.Empty)
                     {
                         canDo.CanDoGuid = Guid.NewGuid();
                         db.CanDos.InsertOnSubmit(canDo);
+                        db.SubmitChanges();
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Tim mạch: '{3}', Huyết áp: '{4}', Hô hấp: '{5}', Chiều cao: '{6}', Cân nặng: '{7}', BMI: '{8}', Cân đo khác: '{9}'",
+                                canDo.CanDoGuid.ToString(), canDo.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), canDo.Patient.Contact.FullName, canDo.TimMach,
+                                canDo.HuyetAp, canDo.HoHap, canDo.ChieuCao, canDo.CanNang, canDo.BMI, canDo.CanDoKhac);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin cân đo";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
                     }
                     else //Update
                     {
@@ -123,10 +160,26 @@ namespace MM.Bussiness
                             cd.UpdatedBy = canDo.UpdatedBy;
                             cd.UpdatedDate = canDo.UpdatedDate;
                             cd.Status = canDo.Status;
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Tim mạch: '{3}', Huyết áp: '{4}', Hô hấp: '{5}', Chiều cao: '{6}', Cân nặng: '{7}', BMI: '{8}', Cân đo khác: '{9}'\n",
+                                cd.CanDoGuid.ToString(), cd.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), cd.Patient.Contact.FullName, cd.TimMach, cd.HuyetAp,
+                                cd.HoHap, cd.ChieuCao, cd.CanNang, cd.BMI, cd.CanDoKhac);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin cân đo";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+
+                            db.SubmitChanges();
                         }
                     }
-
-                    db.SubmitChanges();
+                    
                     t.Complete();
                 }
             }

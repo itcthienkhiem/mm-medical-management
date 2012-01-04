@@ -161,6 +161,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in toaThuocKeys)
                     {
                         ToaThuoc toaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID.ToString() == key);
@@ -169,8 +170,25 @@ namespace MM.Bussiness
                             toaThuoc.DeletedDate = DateTime.Now;
                             toaThuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             toaThuoc.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Ma toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
+                                toaThuoc.ToaThuocGUID.ToString(), toaThuoc.MaToaThuoc, toaThuoc.NgayKham.Value.ToString("dd/MM/yyyy HH:mm:ss"),
+                                toaThuoc.NgayTaiKham.Value.ToString("dd/MM/yyyy HH:mm:ss"), toaThuoc.DocStaff.Contact.FullName, 
+                                toaThuoc.Patient.Contact.FullName, toaThuoc.ChanDoan, toaThuoc.Note);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin toa thuốc";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -248,6 +266,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
                 using (TransactionScope tnx = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     //Insert
@@ -257,13 +276,40 @@ namespace MM.Bussiness
                         db.ToaThuocs.InsertOnSubmit(toaThuoc);
                         db.SubmitChanges();
 
-                        //Chi tiet toa thuoc
-                        foreach (ChiTietToaThuoc cttt in addedList)
+                        desc += string.Format("- Toa thuốc: GUID: '{0}', Ma toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
+                                toaThuoc.ToaThuocGUID.ToString(), toaThuoc.MaToaThuoc, toaThuoc.NgayKham.Value.ToString("dd/MM/yyyy HH:mm:ss"),
+                                toaThuoc.NgayTaiKham.Value.ToString("dd/MM/yyyy HH:mm:ss"), toaThuoc.DocStaff.Contact.FullName,
+                                toaThuoc.Patient.Contact.FullName, toaThuoc.ChanDoan, toaThuoc.Note);
+
+                        if (addedList != null && addedList.Count > 0)
                         {
-                            cttt.ChiTietToaThuocGUID = Guid.NewGuid();
-                            cttt.ToaThuocGUID = toaThuoc.ToaThuocGUID;
-                            db.ChiTietToaThuocs.InsertOnSubmit(cttt);
+                            desc += "- Chi tiết toa thuốc được thêm:\n";
+
+                            //Chi tiet toa thuoc
+                            foreach (ChiTietToaThuoc cttt in addedList)
+                            {
+                                cttt.ChiTietToaThuocGUID = Guid.NewGuid();
+                                cttt.ToaThuocGUID = toaThuoc.ToaThuocGUID;
+                                db.ChiTietToaThuocs.InsertOnSubmit(cttt);
+                                db.SubmitChanges();
+
+                                desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Số lượng: '{2}'\n", cttt.ChiTietToaThuocGUID.ToString(),
+                                    cttt.Thuoc.TenThuoc, cttt.SoLuong);
+                            }
                         }
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin toa thuốc";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
                         db.SubmitChanges();
                     }
                     else //Update
@@ -287,67 +333,105 @@ namespace MM.Bussiness
                             tt.DeletedDate = toaThuoc.DeletedDate;
                             tt.DeletedBy = toaThuoc.DeletedBy;
                             tt.Status = toaThuoc.Status;
-
-                            //Delete chi tiet toa thuoc
-                            foreach (string key in deletedKeys)
-                            {
-                                ChiTietToaThuoc cttt = db.ChiTietToaThuocs.SingleOrDefault<ChiTietToaThuoc>(c => c.ChiTietToaThuocGUID.ToString() == key);
-                                if (cttt != null)
-                                {
-                                    cttt.DeletedDate = DateTime.Now;
-                                    cttt.DeletedBy = Guid.Parse(Global.UserGUID);
-                                    cttt.Status = (byte)Status.Deactived;
-                                }
-                            }
-
                             db.SubmitChanges();
 
-                            //Add chi tiet toa thuoc
-                            foreach (ChiTietToaThuoc cttt in addedList)
+                            desc += string.Format("- Toa thuốc: GUID: '{0}', Ma toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
+                                tt.ToaThuocGUID.ToString(), tt.MaToaThuoc, tt.NgayKham.Value.ToString("dd/MM/yyyy HH:mm:ss"), 
+                                tt.NgayTaiKham.Value.ToString("dd/MM/yyyy HH:mm:ss"), tt.DocStaff.Contact.FullName, tt.Patient.Contact.FullName, 
+                                tt.ChanDoan, toaThuoc.Note);
+
+                            //Delete chi tiet toa thuoc
+                            if (deletedKeys != null && deletedKeys.Count > 0)
                             {
-                                cttt.ToaThuocGUID = tt.ToaThuocGUID;
-                                if (cttt.ChiTietToaThuocGUID == Guid.Empty)
+                                desc += "- Chi tiết toa thuốc được xóa:\n";
+                                foreach (string key in deletedKeys)
                                 {
-                                    cttt.ChiTietToaThuocGUID = Guid.NewGuid();
-                                    db.ChiTietToaThuocs.InsertOnSubmit(cttt);
-                                }
-                                else
-                                {
-                                    ChiTietToaThuoc chiTietToaThuoc = db.ChiTietToaThuocs.SingleOrDefault<ChiTietToaThuoc>(c => c.ChiTietToaThuocGUID == cttt.ChiTietToaThuocGUID);
-                                    if (chiTietToaThuoc != null)
+                                    ChiTietToaThuoc cttt = db.ChiTietToaThuocs.SingleOrDefault<ChiTietToaThuoc>(c => c.ChiTietToaThuocGUID.ToString() == key);
+                                    if (cttt != null)
                                     {
-                                        chiTietToaThuoc.ThuocGUID = cttt.ThuocGUID;
-                                        chiTietToaThuoc.SoLuong = cttt.SoLuong;
-                                        chiTietToaThuoc.LieuDung = cttt.LieuDung;
-                                        chiTietToaThuoc.Note = cttt.Note;
-                                        chiTietToaThuoc.Sang = cttt.Sang;
-                                        chiTietToaThuoc.Trua = cttt.Trua;
-                                        chiTietToaThuoc.Chieu = cttt.Chieu;
-                                        chiTietToaThuoc.Toi = cttt.Toi;
-                                        chiTietToaThuoc.TruocAn = cttt.TruocAn;
-                                        chiTietToaThuoc.SauAn = cttt.SauAn;
-                                        chiTietToaThuoc.Khac_TruocSauAn = cttt.Khac_TruocSauAn;
-                                        chiTietToaThuoc.Uong = cttt.Uong;
-                                        chiTietToaThuoc.Boi = cttt.Boi;
-                                        chiTietToaThuoc.Dat = cttt.Dat;
-                                        chiTietToaThuoc.Khac_CachDung = cttt.Khac_CachDung;
-                                        chiTietToaThuoc.SangNote = cttt.SangNote;
-                                        chiTietToaThuoc.TruaNote = cttt.TruaNote;
-                                        chiTietToaThuoc.ChieuNote = cttt.ChieuNote;
-                                        chiTietToaThuoc.ToiNote = cttt.ToiNote;
-                                        chiTietToaThuoc.TruocAnNote = cttt.TruocAnNote;
-                                        chiTietToaThuoc.SauAnNote = cttt.SauAnNote;
-                                        chiTietToaThuoc.Khac_TruocSauAnNote = cttt.Khac_TruocSauAnNote;
-                                        chiTietToaThuoc.UongNote = cttt.UongNote;
-                                        chiTietToaThuoc.BoiNote = cttt.BoiNote;
-                                        chiTietToaThuoc.DatNote = cttt.DatNote;
-                                        chiTietToaThuoc.Khac_CachDungNote = cttt.Khac_CachDungNote;
-                                        chiTietToaThuoc.Status = (byte)Status.Actived;
-                                        chiTietToaThuoc.UpdatedDate = cttt.UpdatedDate;
-                                        chiTietToaThuoc.UpdatedBy = cttt.UpdatedBy;
+                                        cttt.DeletedDate = DateTime.Now;
+                                        cttt.DeletedBy = Guid.Parse(Global.UserGUID);
+                                        cttt.Status = (byte)Status.Deactived;
+
+                                        desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Số lượng: '{2}'\n", cttt.ChiTietToaThuocGUID.ToString(),
+                                        cttt.Thuoc.TenThuoc, cttt.SoLuong);
+                                    }
+                                }
+
+                                db.SubmitChanges();
+                            }
+                            
+
+                            //Add chi tiet toa thuoc
+                            if (addedList != null && addedList.Count > 0)
+                            {
+                                desc += "- Chi tiết toa thuốc được thêm:\n";
+                                foreach (ChiTietToaThuoc cttt in addedList)
+                                {
+                                    cttt.ToaThuocGUID = tt.ToaThuocGUID;
+                                    if (cttt.ChiTietToaThuocGUID == Guid.Empty)
+                                    {
+                                        cttt.ChiTietToaThuocGUID = Guid.NewGuid();
+                                        db.ChiTietToaThuocs.InsertOnSubmit(cttt);
+                                        db.SubmitChanges();
+
+                                        desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Số lượng: '{2}'\n", cttt.ChiTietToaThuocGUID.ToString(),
+                                        cttt.Thuoc.TenThuoc, cttt.SoLuong);
+                                    }
+                                    else
+                                    {
+                                        ChiTietToaThuoc chiTietToaThuoc = db.ChiTietToaThuocs.SingleOrDefault<ChiTietToaThuoc>(c => c.ChiTietToaThuocGUID == cttt.ChiTietToaThuocGUID);
+                                        if (chiTietToaThuoc != null)
+                                        {
+                                            chiTietToaThuoc.ThuocGUID = cttt.ThuocGUID;
+                                            chiTietToaThuoc.SoLuong = cttt.SoLuong;
+                                            chiTietToaThuoc.LieuDung = cttt.LieuDung;
+                                            chiTietToaThuoc.Note = cttt.Note;
+                                            chiTietToaThuoc.Sang = cttt.Sang;
+                                            chiTietToaThuoc.Trua = cttt.Trua;
+                                            chiTietToaThuoc.Chieu = cttt.Chieu;
+                                            chiTietToaThuoc.Toi = cttt.Toi;
+                                            chiTietToaThuoc.TruocAn = cttt.TruocAn;
+                                            chiTietToaThuoc.SauAn = cttt.SauAn;
+                                            chiTietToaThuoc.Khac_TruocSauAn = cttt.Khac_TruocSauAn;
+                                            chiTietToaThuoc.Uong = cttt.Uong;
+                                            chiTietToaThuoc.Boi = cttt.Boi;
+                                            chiTietToaThuoc.Dat = cttt.Dat;
+                                            chiTietToaThuoc.Khac_CachDung = cttt.Khac_CachDung;
+                                            chiTietToaThuoc.SangNote = cttt.SangNote;
+                                            chiTietToaThuoc.TruaNote = cttt.TruaNote;
+                                            chiTietToaThuoc.ChieuNote = cttt.ChieuNote;
+                                            chiTietToaThuoc.ToiNote = cttt.ToiNote;
+                                            chiTietToaThuoc.TruocAnNote = cttt.TruocAnNote;
+                                            chiTietToaThuoc.SauAnNote = cttt.SauAnNote;
+                                            chiTietToaThuoc.Khac_TruocSauAnNote = cttt.Khac_TruocSauAnNote;
+                                            chiTietToaThuoc.UongNote = cttt.UongNote;
+                                            chiTietToaThuoc.BoiNote = cttt.BoiNote;
+                                            chiTietToaThuoc.DatNote = cttt.DatNote;
+                                            chiTietToaThuoc.Khac_CachDungNote = cttt.Khac_CachDungNote;
+                                            chiTietToaThuoc.Status = (byte)Status.Actived;
+                                            chiTietToaThuoc.UpdatedDate = cttt.UpdatedDate;
+                                            chiTietToaThuoc.UpdatedBy = cttt.UpdatedBy;
+                                            db.SubmitChanges();
+
+                                            desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Số lượng: '{2}'\n", 
+                                                chiTietToaThuoc.ChiTietToaThuocGUID.ToString(), chiTietToaThuoc.Thuoc.TenThuoc, chiTietToaThuoc.SoLuong);
+                                        }
                                     }
                                 }
                             }
+
+                            //Tracking
+                            desc = desc.Substring(0, desc.Length - 1);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin toa thuốc";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();
                         }

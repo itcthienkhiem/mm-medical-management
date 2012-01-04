@@ -206,6 +206,8 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
+
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     foreach (string key in keys)
@@ -216,8 +218,32 @@ namespace MM.Bussiness
                             c.DeletedDate = DateTime.Now;
                             c.DeletedBy = Guid.Parse(Global.UserGUID);
                             c.Status = (byte)Status.Deactived;
+
+                            if (c.EndDate.HasValue)
+                            {
+                                desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}'\n",
+                                    c.CompanyContractGUID.ToString(), c.ContractCode, c.ContractName, c.Company.TenCty, c.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"),
+                                    c.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
+                            }
+                            else
+                            {
+                                desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}'\n",
+                                    c.CompanyContractGUID.ToString(), c.ContractCode, c.ContractName, c.Company.TenCty, c.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"));
+                            }
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin hợp đồng";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -295,6 +321,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
 
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
@@ -305,9 +332,23 @@ namespace MM.Bussiness
                         db.CompanyContracts.InsertOnSubmit(contract);
                         db.SubmitChanges();
 
+                        if (contract.EndDate.HasValue)
+                        {
+                            desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}'\n",
+                                contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
+                                contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), contract.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
+                        }
+                        else
+                        {
+                            desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}'\n",
+                                contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
+                                contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"));
+                        }
+
                         //Members
                         if (companyInfo.AddedMembers != null && companyInfo.AddedMembers.Count > 0)
                         {
+                            desc += "- Danh sách nhân viên được thêm:\n";
                             foreach (Member member in companyInfo.AddedMembers.Values)
                             {
                                 ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == member.CompanyMemberGUID &&
@@ -322,6 +363,7 @@ namespace MM.Bussiness
                                     m.CreatedBy = Guid.Parse(Global.UserGUID);
                                     m.Status = (byte)Status.Actived;
                                     db.ContractMembers.InsertOnSubmit(m);
+                                    
                                 }
                                 else
                                 {
@@ -332,9 +374,15 @@ namespace MM.Bussiness
 
                                 db.SubmitChanges();
 
+                                var companyMember = db.CompanyMembers.SingleOrDefault<CompanyMember>(cm => cm.CompanyMemberGUID == m.CompanyMemberGUID);
+                                string tenNhanVien = string.Empty;
+                                if (companyMember != null) tenNhanVien = companyMember.Patient.Contact.FullName;
+                                desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.ContractMemberGUID.ToString(), tenNhanVien);
+
                                 //Check List
                                 if (member.AddedServices != null && member.AddedServices.Count > 0)
                                 {
+                                    desc += string.Format("     Danh sách dịch vụ được thêm:\n");
                                     foreach (string key in member.AddedServices)
                                     {
                                         CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
@@ -349,19 +397,34 @@ namespace MM.Bussiness
                                             c.CreatedBy = Guid.Parse(Global.UserGUID);
                                             c.Status = (byte)Status.Actived;
                                             db.CompanyCheckLists.InsertOnSubmit(c);
+                                            db.SubmitChanges();
                                         }
                                         else
                                         {
                                             c.Status = (byte)Status.Actived;
                                             c.UpdatedDate = DateTime.Now;
                                             c.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                            db.SubmitChanges();
                                         }
-                                    }
 
-                                    db.SubmitChanges();
+                                        desc += string.Format("     * GUID: '{0}', Dịch vụ: {1}\n", c.CompanyCheckListGUID.ToString(), c.Service.Name);
+                                    }
                                 }
                             }
                         }
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin hợp đồng";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+                        db.SubmitChanges();
                     }
                     else //Update
                     {
@@ -383,9 +446,23 @@ namespace MM.Bussiness
                             con.Status = contract.Status;
                             db.SubmitChanges();
 
+                            if (con.EndDate.HasValue)
+                            {
+                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}'\n",
+                                    con.CompanyContractGUID.ToString(), con.ContractCode, con.ContractName, con.Company.TenCty,
+                                    con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), con.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
+                            }
+                            else
+                            {
+                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}'\n",
+                                    con.CompanyContractGUID.ToString(), con.ContractCode, con.ContractName, con.Company.TenCty,
+                                    con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"));
+                            }
+
                             //Members
                             if (companyInfo.DeletedMembers != null && companyInfo.DeletedMembers.Count > 0)
                             {
+                                desc += "- Danh sách nhân viên được xóa:\n";
                                 foreach (string key in companyInfo.DeletedMembers)
                                 {
                                     ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == key &&
@@ -395,6 +472,11 @@ namespace MM.Bussiness
                                         m.Status = (byte)Status.Deactived;
                                         m.DeletedDate = DateTime.Now;
                                         m.DeletedBy = Guid.Parse(Global.UserGUID);
+
+                                        var companyMember = db.CompanyMembers.SingleOrDefault<CompanyMember>(cm => cm.CompanyMemberGUID == m.CompanyMemberGUID);
+                                        string tenNhanVien = string.Empty;
+                                        if (companyMember != null) tenNhanVien = companyMember.Patient.Contact.FullName;
+                                        desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.ContractMemberGUID.ToString(), tenNhanVien);
                                     }
                                 }
 
@@ -403,6 +485,7 @@ namespace MM.Bussiness
 
                             if (companyInfo.AddedMembers != null && companyInfo.AddedMembers.Count > 0)
                             {
+                                desc += "- Danh sách nhân viên được thêm:\n";
                                 foreach (Member member in companyInfo.AddedMembers.Values)
                                 {
                                     ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == member.CompanyMemberGUID &&
@@ -427,9 +510,17 @@ namespace MM.Bussiness
 
                                     db.SubmitChanges();
 
+                                    var companyMember = db.CompanyMembers.SingleOrDefault<CompanyMember>(cm => cm.CompanyMemberGUID == m.CompanyMemberGUID);
+                                    string tenNhanVien = string.Empty;
+                                    if (companyMember != null) tenNhanVien = companyMember.Patient.Contact.FullName;
+                                    desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.ContractMemberGUID.ToString(), tenNhanVien);
+
+
                                     //Delete Service
                                     if (member.DeletedServices != null && member.DeletedServices.Count > 0)
                                     {
+                                        desc += string.Format("     Danh sách dịch vụ được xóa:\n");
+
                                         foreach (string key in member.DeletedServices)
                                         {
                                             CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
@@ -439,6 +530,8 @@ namespace MM.Bussiness
                                                 c.Status = (byte)Status.Deactived;
                                                 c.DeletedDate = DateTime.Now;
                                                 c.DeletedBy = Guid.Parse(Global.UserGUID);
+
+                                                desc += string.Format("     * GUID: '{0}', Dịch vụ: {1}\n", c.CompanyCheckListGUID.ToString(), c.Service.Name);
                                             }
                                         }
 
@@ -448,6 +541,7 @@ namespace MM.Bussiness
                                     //Add Service
                                     if (member.AddedServices != null && member.AddedServices.Count > 0)
                                     {
+                                        desc += string.Format("     Danh sách dịch vụ được thêm:\n");
                                         foreach (string key in member.AddedServices)
                                         {
                                             CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
@@ -462,21 +556,37 @@ namespace MM.Bussiness
                                                 c.CreatedBy = Guid.Parse(Global.UserGUID);
                                                 c.Status = (byte)Status.Actived;
                                                 db.CompanyCheckLists.InsertOnSubmit(c);
+                                                db.SubmitChanges();
                                             }
                                             else
                                             {
                                                 c.Status = (byte)Status.Actived;
                                                 c.UpdatedDate = DateTime.Now;
                                                 c.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                                db.SubmitChanges();
                                             }
-                                        }
 
-                                        db.SubmitChanges();
+                                            desc += string.Format("     * GUID: '{0}', Dịch vụ: {1}\n", c.CompanyCheckListGUID.ToString(), c.Service.Name);
+                                        }
                                     }
                                 }
                             }
+
+                            //Tracking
+                            desc = desc.Substring(0, desc.Length - 1);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin hợp đồng";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                            db.SubmitChanges();
                         }
                     }
+
                     t.Complete();
                 }
             }
