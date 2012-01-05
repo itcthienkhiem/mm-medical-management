@@ -111,7 +111,7 @@ namespace MM.Dialogs
                 cboDocStaff.DataSource = result.QueryResult;
             }
 
-            if (Global.StaffType != StaffType.Admin && Global.StaffType != StaffType.LeTan)
+            if (Global.StaffType == StaffType.BacSi)
             {
                 cboDocStaff.SelectedValue = Global.UserGUID;
                 cboDocStaff.Enabled = false;
