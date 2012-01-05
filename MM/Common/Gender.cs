@@ -9,6 +9,6 @@ namespace MM.Common
     {
         Male = 0,
         Female,
-        Other
+        None
     }
 }
