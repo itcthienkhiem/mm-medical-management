@@ -6,14 +6,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MM.Controls;
 
 namespace MM.Dialogs
 {
     public delegate void AddMemberHandler(List<DataRow> checkedMembers, List<string> addedServices, DataTable serviceDataSource);
+
     public partial class dlgBase : Form
     {
         #region Events
         public event AddMemberHandler OnAddMemberEvent = null;
+        public event OpenPatientHandler OnOpenPatient;
         #endregion
 
         #region Members
@@ -33,6 +36,12 @@ namespace MM.Dialogs
         {
             if (OnAddMemberEvent != null)
                 OnAddMemberEvent(checkedMembers, addedServices, serviceDataSource);
+        }
+
+        public void RaiseOpentPatient(object patientRow)
+        {
+            if (OnOpenPatient != null)
+                OnOpenPatient(patientRow);
         }
         #endregion
 

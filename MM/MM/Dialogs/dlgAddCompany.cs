@@ -22,6 +22,7 @@ namespace MM.Dialogs
         private List<string> _deletedPatients = new List<string>();
         private List<DataRow> _deletedPatientRows = new List<DataRow>();
         private bool _isAscending = true;
+        private bool _flag = true;
         #endregion
 
         #region Constructor
@@ -397,6 +398,12 @@ namespace MM.Dialogs
             }
             else
             {
+                if (!_flag)
+                {
+                    _flag = true;
+                    return;
+                }
+
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin công ty ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (CheckInfo())
@@ -457,6 +464,17 @@ namespace MM.Dialogs
             else
                 _isAscending = false;
         }
+
+        private void dgMembers_DoubleClick(object sender, EventArgs e)
+        {
+            if (_isNew) return;
+            if (dgMembers.SelectedRows == null || dgMembers.SelectedRows.Count <= 0) return;
+
+            DataRow patientRow = (dgMembers.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            base.RaiseOpentPatient(patientRow);
+            _flag = false;
+            this.Close();
+        }
         #endregion
 
         #region Working Thread
@@ -495,7 +513,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
     }
 }
