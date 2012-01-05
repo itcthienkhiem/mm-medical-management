@@ -12,7 +12,7 @@ namespace MM.Bussiness
 {
     public class PhieuThuThuocBus : BusBase
     {
-        public static Result GetPhieuThuThuocList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan)
+        public static Result GetPhieuThuThuocList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
         {
             Result result = null;
 
@@ -21,13 +21,40 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (isFromDateToDate)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
+                    if (type == 0) //Tất cả
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE NgayThu BETWEEN '{0}' AND '{1}' ORDER BY NgayThu DESC",
+                           fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
+                    }
+                    else if (type == 1) //Chưa xóa
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
+                    }
+                    else //Đã xóa
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
+                        (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
+                    }
+                    
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND TenBenhNhan LIKE '%{1}%' ORDER BY NgayThu DESC", 
+                    if (type == 0) //Tất cả
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE TenBenhNhan LIKE '%{0}%' ORDER BY NgayThu DESC", tenBenhNhan);
+                    }
+                    else if (type == 1) //Chưa xóa
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND TenBenhNhan LIKE '%{1}%' ORDER BY NgayThu DESC", 
                         (byte)Status.Actived, tenBenhNhan);
+                    }
+                    else //Đã xóa
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND TenBenhNhan LIKE '%{1}%' ORDER BY NgayThu DESC", 
+                        (byte)Status.Deactived, tenBenhNhan);
+                    }
+                    
                 }
                 
                 return ExcuteQuery(query);

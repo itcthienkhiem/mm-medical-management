@@ -57,11 +57,16 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.raDaXoa = new System.Windows.Forms.RadioButton();
+            this.raChuaXoa = new System.Windows.Forms.RadioButton();
+            this.raTatCa = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.phieuThuThuocBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPhieuThu)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // phieuThuThuocBindingSource
@@ -77,9 +82,9 @@
             this.panel3.Controls.Add(this.chkChecked);
             this.panel3.Controls.Add(this.dgPhieuThu);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 88);
+            this.panel3.Location = new System.Drawing.Point(0, 138);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(878, 397);
+            this.panel3.Size = new System.Drawing.Size(878, 347);
             this.panel3.TabIndex = 9;
             // 
             // chkChecked
@@ -133,7 +138,7 @@
             this.dgPhieuThu.ReadOnly = true;
             this.dgPhieuThu.RowHeadersWidth = 30;
             this.dgPhieuThu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPhieuThu.Size = new System.Drawing.Size(878, 397);
+            this.dgPhieuThu.Size = new System.Drawing.Size(878, 347);
             this.dgPhieuThu.TabIndex = 6;
             this.dgPhieuThu.DoubleClick += new System.EventHandler(this.dgPhieuThu_DoubleClick);
             // 
@@ -196,6 +201,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.btnView);
             this.panel2.Controls.Add(this.txtTenBenhNhan);
             this.panel2.Controls.Add(this.raTenBenhNhan);
@@ -206,14 +212,14 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(878, 88);
+            this.panel2.Size = new System.Drawing.Size(878, 138);
             this.panel2.TabIndex = 8;
             // 
             // btnView
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(300, 58);
+            this.btnView.Location = new System.Drawing.Point(300, 106);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 13;
@@ -339,6 +345,49 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.raDaXoa);
+            this.groupBox1.Controls.Add(this.raChuaXoa);
+            this.groupBox1.Controls.Add(this.raTatCa);
+            this.groupBox1.Location = new System.Drawing.Point(16, 57);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(359, 43);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            // 
+            // raDaXoa
+            // 
+            this.raDaXoa.AutoSize = true;
+            this.raDaXoa.Location = new System.Drawing.Point(271, 15);
+            this.raDaXoa.Name = "raDaXoa";
+            this.raDaXoa.Size = new System.Drawing.Size(59, 17);
+            this.raDaXoa.TabIndex = 3;
+            this.raDaXoa.Text = "Đã xóa";
+            this.raDaXoa.UseVisualStyleBackColor = true;
+            // 
+            // raChuaXoa
+            // 
+            this.raChuaXoa.AutoSize = true;
+            this.raChuaXoa.Checked = true;
+            this.raChuaXoa.Location = new System.Drawing.Point(137, 15);
+            this.raChuaXoa.Name = "raChuaXoa";
+            this.raChuaXoa.Size = new System.Drawing.Size(70, 17);
+            this.raChuaXoa.TabIndex = 2;
+            this.raChuaXoa.TabStop = true;
+            this.raChuaXoa.Text = "Chưa xóa";
+            this.raChuaXoa.UseVisualStyleBackColor = true;
+            // 
+            // raTatCa
+            // 
+            this.raTatCa.AutoSize = true;
+            this.raTatCa.Location = new System.Drawing.Point(20, 15);
+            this.raTatCa.Name = "raTatCa";
+            this.raTatCa.Size = new System.Drawing.Size(56, 17);
+            this.raTatCa.TabIndex = 1;
+            this.raTatCa.Text = "Tất cả";
+            this.raTatCa.UseVisualStyleBackColor = true;
+            // 
             // uPhieuThuThuocList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,6 +404,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -385,5 +436,9 @@
         private System.Windows.Forms.DateTimePicker dtpkTuNgay;
         private System.Windows.Forms.RadioButton raTuNgayToiNgay;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton raDaXoa;
+        private System.Windows.Forms.RadioButton raChuaXoa;
+        private System.Windows.Forms.RadioButton raTatCa;
     }
 }
