@@ -184,6 +184,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in loThuocKeys)
                     {
                         LoThuoc loThuoc = db.LoThuocs.SingleOrDefault<LoThuoc>(l => l.LoThuocGUID.ToString() == key);
@@ -192,8 +193,25 @@ namespace MM.Bussiness
                             loThuoc.DeletedDate = DateTime.Now;
                             loThuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             loThuoc.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: '{9}', ĐVT nhập: '{10}', Giá nhập: '{11}', SL qui đổi: '{12}', ĐVT qui đổi: '{13}', Giá nhập qui đổi: '{14}', SL xuất: '{15}'\n",
+                                loThuoc.LoThuocGUID.ToString(), loThuoc.MaLoThuoc, loThuoc.TenLoThuoc, loThuoc.Thuoc.TenThuoc, loThuoc.SoDangKy, loThuoc.HangSanXuat,
+                                loThuoc.NgaySanXuat.ToString("dd/MM/yyyy"), loThuoc.NgayHetHan.ToString("dd/MM/yyyy"), loThuoc.NhaPhanPhoi, loThuoc.SoLuongNhap, 
+                                loThuoc.DonViTinhNhap, loThuoc.GiaNhap, loThuoc.SoLuongQuiDoi, loThuoc.DonViTinhQuiDoi, loThuoc.GiaNhapQuiDoi, loThuoc.SoLuongXuat);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin lô thuốc";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.Price;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -271,6 +289,8 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
+
                 using (TransactionScope tnx = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     //Insert
@@ -279,12 +299,35 @@ namespace MM.Bussiness
                         loThuoc.LoThuocGUID = Guid.NewGuid();
                         db.LoThuocs.InsertOnSubmit(loThuoc);
                         db.SubmitChanges();
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: '{9}', ĐVT nhập: '{10}', Giá nhập: '{11}', SL qui đổi: '{12}', ĐVT qui đổi: '{13}', Giá nhập qui đổi: '{14}', SL xuất: '{15}'",
+                                loThuoc.LoThuocGUID.ToString(), loThuoc.MaLoThuoc, loThuoc.TenLoThuoc, loThuoc.Thuoc.TenThuoc, loThuoc.SoDangKy, loThuoc.HangSanXuat,
+                                loThuoc.NgaySanXuat.ToString("dd/MM/yyyy"), loThuoc.NgayHetHan.ToString("dd/MM/yyyy"), loThuoc.NhaPhanPhoi, loThuoc.SoLuongNhap,
+                                loThuoc.DonViTinhNhap, loThuoc.GiaNhap, loThuoc.SoLuongQuiDoi, loThuoc.DonViTinhQuiDoi, loThuoc.GiaNhapQuiDoi, loThuoc.SoLuongXuat);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin lô thuốc";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.Price;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
                     }
                     else //Update
                     {
                         LoThuoc lt = db.LoThuocs.SingleOrDefault<LoThuoc>(l => l.LoThuocGUID.ToString() == loThuoc.LoThuocGUID.ToString());
                         if (lt != null)
                         {
+                            double giaNhapCu = lt.GiaNhap;
+                            int soLuongNhapCu = lt.SoLuongNhap;
+                            double giaNhapQuiDoiCu = lt.GiaNhapQuiDoi;
+                            int soLuongQuiDoiCu = lt.SoLuongQuiDoi;
+
                             lt.ThuocGUID = loThuoc.ThuocGUID;
                             lt.MaLoThuoc = loThuoc.MaLoThuoc;
                             lt.TenLoThuoc = loThuoc.TenLoThuoc;
@@ -307,6 +350,25 @@ namespace MM.Bussiness
                             lt.DeletedDate = loThuoc.DeletedDate;
                             lt.DeletedBy = loThuoc.DeletedBy;
                             lt.Status = loThuoc.Status;
+                            db.SubmitChanges();
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: cũ: '{9}' - mới: '{10}', ĐVT nhập: '{11}', Giá nhập: cũ: '{12}' - mới: '{13}', SL qui đổi: cũ: '{14}' - mới: '{15}', ĐVT qui đổi: '{16}', Giá nhập qui đổi: cũ: '{17}' - mới: '{18}', SL xuất: '{19}'",
+                                    lt.LoThuocGUID.ToString(), lt.MaLoThuoc, lt.TenLoThuoc, lt.Thuoc.TenThuoc, lt.SoDangKy, lt.HangSanXuat,
+                                    lt.NgaySanXuat.ToString("dd/MM/yyyy"), lt.NgayHetHan.ToString("dd/MM/yyyy"), lt.NhaPhanPhoi, soLuongNhapCu,
+                                    lt.SoLuongNhap, lt.DonViTinhNhap, giaNhapCu, lt.GiaNhap, soLuongQuiDoiCu, lt.SoLuongQuiDoi,
+                                    lt.DonViTinhQuiDoi, giaNhapQuiDoiCu, lt.GiaNhapQuiDoi, lt.SoLuongXuat);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin lô thuốc";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.Price;
+                            db.Trackings.InsertOnSubmit(tk);
+
                             db.SubmitChanges();
                         }
                     }
