@@ -33,12 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgDuplicatePatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.FileNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DobStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
@@ -46,6 +40,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnMerge = new System.Windows.Forms.Button();
+            this.FileNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DobStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgDuplicatePatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -96,54 +96,6 @@
             this.dgDuplicatePatient.Size = new System.Drawing.Size(867, 437);
             this.dgDuplicatePatient.TabIndex = 3;
             this.dgDuplicatePatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgDuplicatePatient_ColumnHeaderMouseClick);
-            // 
-            // FileNum
-            // 
-            this.FileNum.DataPropertyName = "FileNum";
-            this.FileNum.HeaderText = "Mã Bệnh Nhân";
-            this.FileNum.Name = "FileNum";
-            this.FileNum.ReadOnly = true;
-            this.FileNum.Width = 120;
-            // 
-            // Fullname
-            // 
-            this.Fullname.DataPropertyName = "FullName";
-            this.Fullname.HeaderText = "Họ Tên";
-            this.Fullname.Name = "Fullname";
-            this.Fullname.ReadOnly = true;
-            this.Fullname.Width = 150;
-            // 
-            // DobStr
-            // 
-            this.DobStr.DataPropertyName = "DobStr";
-            this.DobStr.HeaderText = "Ngày sinh";
-            this.DobStr.Name = "DobStr";
-            this.DobStr.ReadOnly = true;
-            // 
-            // FullAddress
-            // 
-            this.FullAddress.DataPropertyName = "Address";
-            this.FullAddress.HeaderText = "Địa chỉ";
-            this.FullAddress.Name = "FullAddress";
-            this.FullAddress.ReadOnly = true;
-            this.FullAddress.Width = 250;
-            // 
-            // GenderAsStr
-            // 
-            this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle2;
-            this.GenderAsStr.HeaderText = "Giới tính";
-            this.GenderAsStr.Name = "GenderAsStr";
-            this.GenderAsStr.ReadOnly = true;
-            this.GenderAsStr.Width = 90;
-            // 
-            // Mobile
-            // 
-            this.Mobile.DataPropertyName = "Mobile";
-            this.Mobile.HeaderText = "Điện thoại";
-            this.Mobile.Name = "Mobile";
-            this.Mobile.ReadOnly = true;
             // 
             // patientViewBindingSource
             // 
@@ -205,6 +157,53 @@
             this.btnMerge.UseVisualStyleBackColor = true;
             this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
+            // FileNum
+            // 
+            this.FileNum.DataPropertyName = "FileNum";
+            this.FileNum.HeaderText = "Mã Bệnh Nhân";
+            this.FileNum.Name = "FileNum";
+            this.FileNum.ReadOnly = true;
+            this.FileNum.Width = 120;
+            // 
+            // Fullname
+            // 
+            this.Fullname.DataPropertyName = "FullName";
+            this.Fullname.HeaderText = "Họ Tên";
+            this.Fullname.Name = "Fullname";
+            this.Fullname.ReadOnly = true;
+            this.Fullname.Width = 150;
+            // 
+            // DobStr
+            // 
+            this.DobStr.DataPropertyName = "DobStr";
+            this.DobStr.HeaderText = "Ngày sinh";
+            this.DobStr.Name = "DobStr";
+            this.DobStr.ReadOnly = true;
+            // 
+            // FullAddress
+            // 
+            this.FullAddress.DataPropertyName = "Address";
+            this.FullAddress.HeaderText = "Địa chỉ";
+            this.FullAddress.Name = "FullAddress";
+            this.FullAddress.ReadOnly = true;
+            this.FullAddress.Width = 250;
+            // 
+            // GenderAsStr
+            // 
+            this.GenderAsStr.DataPropertyName = "GenderAsStr";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle2;
+            this.GenderAsStr.HeaderText = "Giới tính";
+            this.GenderAsStr.Name = "GenderAsStr";
+            this.GenderAsStr.ReadOnly = true;
+            // 
+            // Mobile
+            // 
+            this.Mobile.DataPropertyName = "Mobile";
+            this.Mobile.HeaderText = "Điện thoại";
+            this.Mobile.Name = "Mobile";
+            this.Mobile.ReadOnly = true;
+            // 
             // uDuplicatePatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,13 +231,13 @@
         private System.Windows.Forms.TextBox txtSearchPatient;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnMerge;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn DobStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnMerge;
     }
 }

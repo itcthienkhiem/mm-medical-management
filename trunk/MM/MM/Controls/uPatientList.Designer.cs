@@ -295,7 +295,6 @@
             this.GenderAsStr.HeaderText = "Giới tính";
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
-            this.GenderAsStr.Width = 70;
             // 
             // dobDataGridViewTextBoxColumn
             // 

@@ -162,6 +162,15 @@
             this.bar1 = new DevComponents.DotNetBar.Bar();
             this.panelDockContainer1 = new DevComponents.DotNetBar.PanelDockContainer();
             this.dgPatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dockContainerItem1 = new DevComponents.DotNetBar.DockContainerItem();
+            this.dockSite1 = new DevComponents.DotNetBar.DockSite();
+            this.dockSite2 = new DevComponents.DotNetBar.DockSite();
+            this.dockSite8 = new DevComponents.DotNetBar.DockSite();
+            this.dockSite5 = new DevComponents.DotNetBar.DockSite();
+            this.dockSite6 = new DevComponents.DotNetBar.DockSite();
+            this.dockSite7 = new DevComponents.DotNetBar.DockSite();
+            this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -172,15 +181,6 @@
             this.workPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dockContainerItem1 = new DevComponents.DotNetBar.DockContainerItem();
-            this.dockSite1 = new DevComponents.DotNetBar.DockSite();
-            this.dockSite2 = new DevComponents.DotNetBar.DockSite();
-            this.dockSite8 = new DevComponents.DotNetBar.DockSite();
-            this.dockSite5 = new DevComponents.DotNetBar.DockSite();
-            this.dockSite6 = new DevComponents.DotNetBar.DockSite();
-            this.dockSite7 = new DevComponents.DotNetBar.DockSite();
-            this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -1178,6 +1178,68 @@
             this.dgPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPatient.DoubleClick += new System.EventHandler(this.dgPatient_DoubleClick);
             // 
+            // patientViewBindingSource
+            // 
+            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
+            // 
+            // dockContainerItem1
+            // 
+            this.dockContainerItem1.Control = this.panelDockContainer1;
+            this.dockContainerItem1.Name = "dockContainerItem1";
+            resources.ApplyResources(this.dockContainerItem1, "dockContainerItem1");
+            // 
+            // dockSite1
+            // 
+            this.dockSite1.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
+            resources.ApplyResources(this.dockSite1, "dockSite1");
+            this.dockSite1.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer();
+            this.dockSite1.Name = "dockSite1";
+            this.dockSite1.TabStop = false;
+            // 
+            // dockSite2
+            // 
+            this.dockSite2.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
+            resources.ApplyResources(this.dockSite2, "dockSite2");
+            this.dockSite2.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer();
+            this.dockSite2.Name = "dockSite2";
+            this.dockSite2.TabStop = false;
+            // 
+            // dockSite8
+            // 
+            this.dockSite8.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
+            resources.ApplyResources(this.dockSite8, "dockSite8");
+            this.dockSite8.Name = "dockSite8";
+            this.dockSite8.TabStop = false;
+            // 
+            // dockSite5
+            // 
+            this.dockSite5.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
+            resources.ApplyResources(this.dockSite5, "dockSite5");
+            this.dockSite5.Name = "dockSite5";
+            this.dockSite5.TabStop = false;
+            // 
+            // dockSite6
+            // 
+            this.dockSite6.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
+            resources.ApplyResources(this.dockSite6, "dockSite6");
+            this.dockSite6.Name = "dockSite6";
+            this.dockSite6.TabStop = false;
+            // 
+            // dockSite7
+            // 
+            this.dockSite7.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
+            resources.ApplyResources(this.dockSite7, "dockSite7");
+            this.dockSite7.Name = "dockSite7";
+            this.dockSite7.TabStop = false;
+            // 
+            // dockSite3
+            // 
+            this.dockSite3.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
+            resources.ApplyResources(this.dockSite3, "dockSite3");
+            this.dockSite3.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer();
+            this.dockSite3.Name = "dockSite3";
+            this.dockSite3.TabStop = false;
+            // 
             // fileNumDataGridViewTextBoxColumn
             // 
             this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
@@ -1262,68 +1324,6 @@
             resources.ApplyResources(this.emailDataGridViewTextBoxColumn, "emailDataGridViewTextBoxColumn");
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // patientViewBindingSource
-            // 
-            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
-            // 
-            // dockContainerItem1
-            // 
-            this.dockContainerItem1.Control = this.panelDockContainer1;
-            this.dockContainerItem1.Name = "dockContainerItem1";
-            resources.ApplyResources(this.dockContainerItem1, "dockContainerItem1");
-            // 
-            // dockSite1
-            // 
-            this.dockSite1.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
-            resources.ApplyResources(this.dockSite1, "dockSite1");
-            this.dockSite1.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer();
-            this.dockSite1.Name = "dockSite1";
-            this.dockSite1.TabStop = false;
-            // 
-            // dockSite2
-            // 
-            this.dockSite2.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
-            resources.ApplyResources(this.dockSite2, "dockSite2");
-            this.dockSite2.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer();
-            this.dockSite2.Name = "dockSite2";
-            this.dockSite2.TabStop = false;
-            // 
-            // dockSite8
-            // 
-            this.dockSite8.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
-            resources.ApplyResources(this.dockSite8, "dockSite8");
-            this.dockSite8.Name = "dockSite8";
-            this.dockSite8.TabStop = false;
-            // 
-            // dockSite5
-            // 
-            this.dockSite5.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
-            resources.ApplyResources(this.dockSite5, "dockSite5");
-            this.dockSite5.Name = "dockSite5";
-            this.dockSite5.TabStop = false;
-            // 
-            // dockSite6
-            // 
-            this.dockSite6.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
-            resources.ApplyResources(this.dockSite6, "dockSite6");
-            this.dockSite6.Name = "dockSite6";
-            this.dockSite6.TabStop = false;
-            // 
-            // dockSite7
-            // 
-            this.dockSite7.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
-            resources.ApplyResources(this.dockSite7, "dockSite7");
-            this.dockSite7.Name = "dockSite7";
-            this.dockSite7.TabStop = false;
-            // 
-            // dockSite3
-            // 
-            this.dockSite3.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
-            resources.ApplyResources(this.dockSite3, "dockSite3");
-            this.dockSite3.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer();
-            this.dockSite3.Name = "dockSite3";
-            this.dockSite3.TabStop = false;
             // 
             // MainForm
             // 
@@ -1496,6 +1496,7 @@
         private DevComponents.DotNetBar.DockSite dockSite7;
         private DevComponents.DotNetBar.DockSite dockSite8;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgPatient;
+        private System.Windows.Forms.BindingSource patientViewBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullAddress;
@@ -1506,7 +1507,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn workPhoneDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource patientViewBindingSource;
 
     }
 }
