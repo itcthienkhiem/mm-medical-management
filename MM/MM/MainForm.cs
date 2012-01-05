@@ -30,6 +30,7 @@ namespace MM
             InitializeComponent();
             _uPatientList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uCompanyList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            _uContractList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
         }
         #endregion
 

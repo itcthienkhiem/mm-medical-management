@@ -147,6 +147,7 @@ namespace MM.Controls
 
             DataRow drCon = (dgContract.SelectedRows[0].DataBoundItem as DataRowView).Row;
             dlgAddContract dlg = new dlgAddContract(drCon);
+            dlg.OnOpenPatient += new OpenPatientHandler(dlg_OnOpenPatient);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 drCon["CompanyGUID"] = dlg.Contract.CompanyGUID.ToString();
@@ -223,6 +224,11 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dlg_OnOpenPatient(object patientRow)
+        {
+            base.RaiseOpentPatient(patientRow);
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OnAddContract();

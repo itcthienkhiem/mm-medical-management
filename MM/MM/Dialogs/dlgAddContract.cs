@@ -696,6 +696,12 @@ namespace MM.Dialogs
             }
             else
             {
+                if (!_flag)
+                {
+                    _flag = true;
+                    return;
+                }
+
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin hợp đồng ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (CheckInfo())
@@ -750,7 +756,13 @@ namespace MM.Dialogs
 
         private void dgMembers_DoubleClick(object sender, EventArgs e)
         {
-            //OnDisplayCheckList();
+            if (_isNew) return;
+            if (dgMembers.SelectedRows == null || dgMembers.SelectedRows.Count <= 0) return;
+
+            DataRow patientRow = (dgMembers.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            base.RaiseOpentPatient(patientRow);
+            _flag = false;
+            this.Close();
         }
 
         private void dgMembers_SelectionChanged(object sender, EventArgs e)
