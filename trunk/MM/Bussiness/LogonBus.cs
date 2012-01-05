@@ -114,6 +114,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in keys)
                     {
                         Logon logon = db.Logons.SingleOrDefault<Logon>(l => l.LogonGUID.ToString() == key);
@@ -122,8 +123,22 @@ namespace MM.Bussiness
                             logon.DeletedDate = DateTime.Now;
                             logon.DeletedBy = Guid.Parse(Global.UserGUID);
                             logon.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'\n", logon.LogonGUID.ToString(), logon.DocStaff.Contact.FullName);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin người sử dụng";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -201,6 +216,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
 
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
@@ -215,6 +231,9 @@ namespace MM.Bussiness
                             db.Logons.InsertOnSubmit(logon);
                             db.SubmitChanges();
                             logonGUID = logon.LogonGUID.ToString();
+                            db.SubmitChanges();
+
+                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'", logon.LogonGUID.ToString(), logon.DocStaff.Contact.FullName);
                         }
                         else
                         {
@@ -231,6 +250,8 @@ namespace MM.Bussiness
 
                             db.Permissions.DeleteAllOnSubmit(permissions);
                             db.SubmitChanges();
+
+                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'", l.LogonGUID.ToString(), l.DocStaff.Contact.FullName);
                         }
 
                         //Permission
@@ -252,6 +273,18 @@ namespace MM.Bussiness
                             p.CreatedBy = Guid.Parse(Global.UserGUID);
                             db.Permissions.InsertOnSubmit(p);
                         }
+                        
+                        //Tracking
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin người sử dụng";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
                         db.SubmitChanges();
                     }
                     else //Update
@@ -264,6 +297,8 @@ namespace MM.Bussiness
                             l.UpdatedDate = logon.UpdatedDate;
                             l.UpdatedBy = logon.UpdatedBy;
                             l.Status = logon.Status;
+
+                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'", l.LogonGUID.ToString(), l.DocStaff.Contact.FullName);
 
                             //Permission
                             foreach (DataRow row in dtPermission.Rows)
@@ -305,6 +340,17 @@ namespace MM.Bussiness
                                     db.Permissions.InsertOnSubmit(p);
                                 }
                             }
+
+                            //Tracking
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin người sử dụng";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();
                         }
