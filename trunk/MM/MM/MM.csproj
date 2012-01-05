@@ -863,6 +863,9 @@
     <EmbeddedResource Include="Dialogs\dlgAddUserLogon.resx">
       <DependentUpon>dlgAddUserLogon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgBase.resx">
+      <DependentUpon>dlgBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgChangePassword.resx">
       <DependentUpon>dlgChangePassword.cs</DependentUpon>
     </EmbeddedResource>
