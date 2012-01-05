@@ -82,14 +82,14 @@
             // tabCompany
             // 
             this.tabCompany.CanReorderTabs = true;
-            this.tabCompany.Controls.Add(this.tabControlPanel2);
             this.tabCompany.Controls.Add(this.tabControlPanel1);
+            this.tabCompany.Controls.Add(this.tabControlPanel2);
             this.tabCompany.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabCompany.Location = new System.Drawing.Point(0, 0);
             this.tabCompany.Name = "tabCompany";
             this.tabCompany.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabCompany.SelectedTabIndex = 0;
-            this.tabCompany.Size = new System.Drawing.Size(603, 379);
+            this.tabCompany.Size = new System.Drawing.Size(632, 379);
             this.tabCompany.Style = DevComponents.DotNetBar.eTabStripStyle.VS2005;
             this.tabCompany.TabIndex = 0;
             this.tabCompany.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
@@ -106,7 +106,7 @@
             this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel2.Name = "tabControlPanel2";
             this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(603, 354);
+            this.tabControlPanel2.Size = new System.Drawing.Size(632, 354);
             this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -124,7 +124,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(514, 352);
+            this.panel2.Size = new System.Drawing.Size(543, 352);
             this.panel2.TabIndex = 1;
             // 
             // chkChecked
@@ -177,7 +177,7 @@
             this.dgMembers.ReadOnly = true;
             this.dgMembers.RowHeadersWidth = 30;
             this.dgMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMembers.Size = new System.Drawing.Size(514, 352);
+            this.dgMembers.Size = new System.Drawing.Size(543, 352);
             this.dgMembers.TabIndex = 4;
             this.dgMembers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMembers_ColumnHeaderMouseClick);
             this.dgMembers.DoubleClick += new System.EventHandler(this.dgMembers_DoubleClick);
@@ -234,7 +234,6 @@
             this.GenderAsStr.HeaderText = "Giới tính";
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
-            this.GenderAsStr.Width = 70;
             // 
             // companyMemberViewBindingSource
             // 
@@ -245,7 +244,7 @@
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(515, 1);
+            this.panel1.Location = new System.Drawing.Point(544, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(87, 352);
             this.panel1.TabIndex = 0;
@@ -301,7 +300,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(603, 354);
+            this.tabControlPanel1.Size = new System.Drawing.Size(632, 354);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -456,7 +455,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(224, 385);
+            this.btnOK.Location = new System.Drawing.Point(239, 385);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 12;
@@ -468,7 +467,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(303, 385);
+            this.btnCancel.Location = new System.Drawing.Point(318, 385);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 13;
@@ -481,7 +480,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(603, 415);
+            this.ClientSize = new System.Drawing.Size(632, 415);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tabCompany);

@@ -96,7 +96,7 @@
             this.dgMergePatient.ReadOnly = true;
             this.dgMergePatient.RowHeadersWidth = 30;
             this.dgMergePatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgMergePatient.Size = new System.Drawing.Size(827, 176);
+            this.dgMergePatient.Size = new System.Drawing.Size(849, 176);
             this.dgMergePatient.TabIndex = 4;
             this.dgMergePatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMergePatient_ColumnHeaderMouseClick);
             // 
@@ -140,7 +140,6 @@
             this.GenderAsStr.HeaderText = "Giới tính";
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
-            this.GenderAsStr.Width = 80;
             // 
             // Mobile
             // 
@@ -160,7 +159,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 210);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(827, 34);
+            this.panel2.Size = new System.Drawing.Size(849, 34);
             this.panel2.TabIndex = 1;
             // 
             // panel4
@@ -168,7 +167,7 @@
             this.panel4.Controls.Add(this.btnClose);
             this.panel4.Controls.Add(this.btnMerge);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(662, 0);
+            this.panel4.Location = new System.Drawing.Point(684, 0);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(165, 34);
             this.panel4.TabIndex = 15;
@@ -178,7 +177,7 @@
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose.Location = new System.Drawing.Point(83, 4);
+            this.btnClose.Location = new System.Drawing.Point(87, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 25);
             this.btnClose.TabIndex = 14;
@@ -191,7 +190,7 @@
             this.btnMerge.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnMerge.Image = global::MM.Properties.Resources.Architecture_info_icon;
             this.btnMerge.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMerge.Location = new System.Drawing.Point(6, 5);
+            this.btnMerge.Location = new System.Drawing.Point(10, 5);
             this.btnMerge.Name = "btnMerge";
             this.btnMerge.Size = new System.Drawing.Size(75, 23);
             this.btnMerge.TabIndex = 0;
@@ -205,7 +204,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(827, 34);
+            this.panel3.Size = new System.Drawing.Size(849, 34);
             this.panel3.TabIndex = 2;
             // 
             // label1
@@ -225,7 +224,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 34);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(827, 176);
+            this.panel1.Size = new System.Drawing.Size(849, 176);
             this.panel1.TabIndex = 5;
             // 
             // uMergePatient
@@ -236,7 +235,7 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Name = "uMergePatient";
-            this.Size = new System.Drawing.Size(827, 244);
+            this.Size = new System.Drawing.Size(849, 244);
             ((System.ComponentModel.ISupportInitialize)(this.dgMergePatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -254,16 +253,16 @@
         private System.Windows.Forms.Button btnMerge;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgMergePatient;
         private System.Windows.Forms.BindingSource patientViewBindingSource;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fullname;
         private System.Windows.Forms.DataGridViewTextBoxColumn DobStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel1;
     }
 }

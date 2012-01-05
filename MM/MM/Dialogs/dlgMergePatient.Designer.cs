@@ -35,16 +35,16 @@
             // uMergePatient1
             // 
             this.uMergePatient1.DataSource = null;
-            this.uMergePatient1.Location = new System.Drawing.Point(1, 1);
+            this.uMergePatient1.Location = new System.Drawing.Point(2, 1);
             this.uMergePatient1.Name = "uMergePatient1";
-            this.uMergePatient1.Size = new System.Drawing.Size(827, 237);
+            this.uMergePatient1.Size = new System.Drawing.Size(848, 237);
             this.uMergePatient1.TabIndex = 0;
             // 
             // dlgMergePatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(828, 236);
+            this.ClientSize = new System.Drawing.Size(852, 236);
             this.Controls.Add(this.uMergePatient1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
