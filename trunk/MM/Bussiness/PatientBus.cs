@@ -148,6 +148,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in patientKeys)
                     {
                         Patient patient = db.Patients.SingleOrDefault<Patient>(p => p.PatientGUID.ToString() == key);
@@ -160,12 +161,27 @@ namespace MM.Bussiness
                                 contact.DateArchived = DateTime.Now;
                                 contact.DeletedBy = Guid.Parse(Global.UserGUID);
                                 contact.DeletedDate = DateTime.Now;
+
+                                desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'\n",
+                                    patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, contact.Gender == 0 ? "Nam" : "Nữ",
+                                    contact.IdentityCard);
                             }
                         }
-
-                        db.SubmitChanges();
                     }
 
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin bệnh nhân";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
                     t.Complete();
                 }
             }
@@ -199,6 +215,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
 
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
@@ -218,6 +235,21 @@ namespace MM.Bussiness
                         patientHistory.PatientHistoryGUID = Guid.NewGuid();
                         patientHistory.PatientGUID = patient.PatientGUID;
                         db.PatientHistories.InsertOnSubmit(patientHistory);
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'",
+                                    patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, contact.Gender == 0 ? "Nam" : "Nữ",
+                                    contact.IdentityCard);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin bệnh nhân";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
                         db.SubmitChanges();
                     }
                     else //Update
@@ -271,6 +303,19 @@ namespace MM.Bussiness
                                 p.LastSeenDocGUID = patient.LastSeenDocGUID;
                                 p.DateDeceased = patient.DateDeceased;
                                 p.LastVisitGUID = patient.LastVisitGUID;
+
+                                //Tracking
+                                desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'",
+                                            p.PatientGUID.ToString(), p.FileNum, ct.FullName, ct.DobStr, ct.Gender == 0 ? "Nam" : "Nữ", ct.IdentityCard);
+                                Tracking tk = new Tracking();
+                                tk.TrackingGUID = Guid.NewGuid();
+                                tk.TrackingDate = DateTime.Now;
+                                tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                                tk.ActionType = (byte)ActionType.Edit;
+                                tk.Action = "Sữa thông tin bệnh nhân";
+                                tk.Description = desc;
+                                tk.TrackingType = (byte)TrackingType.None;
+                                db.Trackings.InsertOnSubmit(tk);
                             }
 
                             PatientHistory pHistory = db.PatientHistories.SingleOrDefault<PatientHistory>(pp => pp.PatientHistoryGUID.ToString() == patientHistory.PatientHistoryGUID.ToString());
