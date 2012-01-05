@@ -125,6 +125,7 @@
             this.docBar.TabIndex = 0;
             this.docBar.TabNavigation = true;
             this.docBar.TabStop = false;
+            this.docBar.Closing += new DevComponents.DotNetBar.DotNetBarManager.BarClosingEventHandler(this.docBar_Closing);
             // 
             // panelDockContainer1
             // 

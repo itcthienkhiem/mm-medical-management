@@ -141,6 +141,11 @@ namespace MM.Controls
         }
         #endregion
 
+        private void docBar_Closing(object sender, BarClosingEventArgs e)
+        {
+
+        }
+
         #region Window Event Handlers
 
         #endregion

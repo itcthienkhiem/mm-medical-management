@@ -995,6 +995,7 @@ namespace MM
 
         private void ClearData()
         {
+            dgPatient.DataSource = null;
             _uPatientHistory.ClearData();
 
             Control ctrl = GetControlActive();
@@ -1087,6 +1088,7 @@ namespace MM
             ViewControl(_uDuplicatePatient);
             _uDuplicatePatient.DisplayAsThread();
         }
+
         private void OnOpenPatient()
         {
             dlgOpentPatient dlg = new dlgOpentPatient();
@@ -1103,6 +1105,20 @@ namespace MM
             ViewControl(_uPatientHistory);
             _uPatientHistory.PatientRow = patientRow;
             _uPatientHistory.Display();
+
+            if (_flag) AddPatientToList((DataRow)patientRow);
+        }
+
+        private void AddPatientToList(DataRow patientRow)
+        {
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt == null) dt = patientRow.Table.Clone();
+
+            DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", patientRow["PatientGUID"].ToString()));
+            if (rows == null || rows.Length <= 0)
+                dt.ImportRow(patientRow);
+
+            dgPatient.DataSource = dt;
         }
 
         private void OnHelp()
@@ -1138,12 +1154,21 @@ namespace MM
         private void _uPatientList_OnOpenPatient(object patientRow)
         {
             OnPatientHistory(patientRow);
-        }   
+        }
+
+        private void dgPatient_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgPatient.SelectedRows == null || dgPatient.SelectedRows.Count <= 0) return;
+            DataRow patientRow = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            _flag = false;
+            OnPatientHistory(patientRow);
+            _flag = true;
+        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitConfigAsThread();
-            AutoDetectUpdateAsThread();
+            //AutoDetectUpdateAsThread();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1303,6 +1328,8 @@ namespace MM
                 }
             }
         }
+
+        
         #endregion
 
         #region Working Thread

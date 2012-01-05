@@ -1071,7 +1071,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uDichVuTuTuc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="_uDichVuTuTuc.TabIndex" type="System.Int32, mscorlib">
@@ -1099,7 +1099,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uPhieuThuThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uPhieuThuThuocList.TabIndex" type="System.Int32, mscorlib">
     <value>22</value>
@@ -1126,7 +1126,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uBaoCaoThuocTonKho.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uBaoCaoThuocTonKho.TabIndex" type="System.Int32, mscorlib">
     <value>21</value>
@@ -1153,7 +1153,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uBaoCaoThuocHetHan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uBaoCaoThuocHetHan.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -1180,7 +1180,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uToaThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uToaThuocList.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -1207,7 +1207,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uGiaThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uGiaThuocList.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1234,7 +1234,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uLoThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uLoThuocList.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -1261,7 +1261,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uNhomThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uNhomThuocList.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -1288,7 +1288,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uThuocList.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1315,7 +1315,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uDichVuHopDong.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uDichVuHopDong.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -1342,7 +1342,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uDoanhThuNhanVien.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uDoanhThuNhanVien.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -1369,7 +1369,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uInvoiceList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uInvoiceList.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -1396,7 +1396,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uReceiptList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uReceiptList.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -1423,7 +1423,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uPrintLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uPrintLabel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -1450,7 +1450,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uPermission.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uPermission.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -1477,7 +1477,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uContractList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uContractList.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -1504,7 +1504,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uCompanyList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uCompanyList.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1531,7 +1531,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uSymptomList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uSymptomList.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1558,7 +1558,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uSpecialityList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uSpecialityList.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1585,7 +1585,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uPatientHistory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uPatientHistory.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1612,7 +1612,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uPatientList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uPatientList.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1639,7 +1639,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uDuplicatePatient.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uDuplicatePatient.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1666,7 +1666,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uDocStaffList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uDocStaffList.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1693,7 +1693,7 @@
     <value>0, 0</value>
   </data>
   <data name="_uServicesList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>924, 479</value>
+    <value>924, 249</value>
   </data>
   <data name="_uServicesList.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1720,7 +1720,7 @@
     <value>0, 55</value>
   </data>
   <data name="_mainPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>928, 483</value>
+    <value>928, 253</value>
   </data>
   <data name="_mainPanel.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -1735,7 +1735,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_mainPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <metadata name="_mainToolbar.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>359, 17</value>
@@ -2008,7 +2008,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_mainToolbar.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <metadata name="_mainStatus.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>479, 17</value>
@@ -2041,7 +2041,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_mainStatus.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>11</value>
   </data>
   <metadata name="_mainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>592, 17</value>
@@ -2305,43 +2305,43 @@
     <value>&amp;Thuốc</value>
   </data>
   <data name="doanhThuNhanVienToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 30</value>
+    <value>185, 22</value>
   </data>
   <data name="doanhThuNhanVienToolStripMenuItem.Text" xml:space="preserve">
     <value>Doanh thu nhân viên</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 6</value>
+    <value>182, 6</value>
   </data>
   <data name="dichVuHopDongToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 30</value>
+    <value>185, 22</value>
   </data>
   <data name="dichVuHopDongToolStripMenuItem.Text" xml:space="preserve">
     <value>Dịch vụ hợp đồng</value>
   </data>
   <data name="toolStripSeparator22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 6</value>
+    <value>182, 6</value>
   </data>
   <data name="dichVuTuTucToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 30</value>
+    <value>185, 22</value>
   </data>
   <data name="dichVuTuTucToolStripMenuItem.Text" xml:space="preserve">
     <value>Dịch vụ tự túc</value>
   </data>
   <data name="toolStripSeparator26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 6</value>
+    <value>182, 6</value>
   </data>
   <data name="thuocHetHanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 30</value>
+    <value>185, 22</value>
   </data>
   <data name="thuocHetHanToolStripMenuItem.Text" xml:space="preserve">
     <value>Thuốc hết hạn</value>
   </data>
   <data name="toolStripSeparator23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 6</value>
+    <value>182, 6</value>
   </data>
   <data name="thuocTonKhoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 30</value>
+    <value>185, 22</value>
   </data>
   <data name="thuocTonKhoToolStripMenuItem.Text" xml:space="preserve">
     <value>Thuốc tồn kho</value>
@@ -2425,19 +2425,367 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;_mainMenu.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="_dotNetBarManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>701, 17</value>
+  </metadata>
+  <data name="bar1.AccessibleDescription" xml:space="preserve">
+    <value>Danh sách bệnh nhân đang khám (bar1)</value>
+  </data>
+  <data name="bar1.AccessibleName" xml:space="preserve">
+    <value>Danh sách bệnh nhân đang khám</value>
+  </data>
+  <data name="fileNumDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Mã bệnh nhân</value>
+  </data>
+  <metadata name="Fullname.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Fullname.HeaderText" xml:space="preserve">
+    <value>Họ Tên</value>
+  </data>
+  <data name="Fullname.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="FullAddress.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="FullAddress.HeaderText" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="FullAddress.Width" type="System.Int32, mscorlib">
+    <value>250</value>
+  </data>
+  <metadata name="GenderAsStr.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="GenderAsStr.HeaderText" xml:space="preserve">
+    <value>Giới tính</value>
+  </data>
+  <data name="GenderAsStr.Width" type="System.Int32, mscorlib">
+    <value>70</value>
+  </data>
+  <data name="dobDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Ngày sinh</value>
+  </data>
+  <data name="dobDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="identityCardDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>CMND</value>
+  </data>
+  <data name="identityCardDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="homePhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>SĐT nhà</value>
+  </data>
+  <data name="homePhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="workPhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>SĐT làm việc</value>
+  </data>
+  <data name="workPhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>95</value>
+  </data>
+  <data name="mobileDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Số DTDĐ</value>
+  </data>
+  <data name="mobileDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="emailDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="emailDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="patientViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>852, 17</value>
+  </metadata>
+  <data name="dgPatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="dgPatient.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dgPatient.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="dgPatient.Size" type="System.Drawing.Size, System.Drawing">
+    <value>922, 201</value>
+  </data>
+  <data name="dgPatient.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Name" xml:space="preserve">
+    <value>dgPatient</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.Controls.DataGridViewX, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Parent" xml:space="preserve">
+    <value>panelDockContainer1</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panelDockContainer1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 23</value>
+  </data>
+  <data name="panelDockContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>922, 201</value>
+  </data>
+  <data name="panelDockContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.Name" xml:space="preserve">
+    <value>panelDockContainer1</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.PanelDockContainer, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.Parent" xml:space="preserve">
+    <value>bar1</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bar1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="dockContainerItem1.Text" xml:space="preserve">
+    <value>Danh sách bệnh nhân đang khám</value>
+  </data>
+  <data name="bar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 3</value>
+  </data>
+  <data name="bar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>928, 227</value>
+  </data>
+  <data name="bar1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="bar1.Text" xml:space="preserve">
+    <value>Danh sách bệnh nhân đang khám</value>
+  </data>
+  <data name="&gt;&gt;bar1.Name" xml:space="preserve">
+    <value>bar1</value>
+  </data>
+  <data name="&gt;&gt;bar1.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.Bar, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;bar1.Parent" xml:space="preserve">
+    <value>dockSite4</value>
+  </data>
+  <data name="&gt;&gt;bar1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="dockSite4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="dockSite4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 308</value>
+  </data>
+  <data name="dockSite4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>928, 230</value>
+  </data>
+  <data name="dockSite4.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;dockSite4.Name" xml:space="preserve">
+    <value>dockSite4</value>
+  </data>
+  <data name="&gt;&gt;dockSite4.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DockSite, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dockSite4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dockSite4.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="dockSite1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="dockSite1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 55</value>
+  </data>
+  <data name="dockSite1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 253</value>
+  </data>
+  <data name="dockSite1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;dockSite1.Name" xml:space="preserve">
+    <value>dockSite1</value>
+  </data>
+  <data name="&gt;&gt;dockSite1.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DockSite, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dockSite1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dockSite1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>25</value>
+    <value>126</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>928, 560</value>
+  </data>
+  <data name="dockSite2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="dockSite2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>928, 55</value>
+  </data>
+  <data name="dockSite2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 253</value>
+  </data>
+  <data name="dockSite2.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;dockSite2.Name" xml:space="preserve">
+    <value>dockSite2</value>
+  </data>
+  <data name="&gt;&gt;dockSite2.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DockSite, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dockSite2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dockSite2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="dockSite3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="dockSite3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dockSite3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>928, 0</value>
+  </data>
+  <data name="dockSite3.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;dockSite3.Name" xml:space="preserve">
+    <value>dockSite3</value>
+  </data>
+  <data name="&gt;&gt;dockSite3.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DockSite, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dockSite3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dockSite3.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="dockSite5.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="dockSite5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dockSite5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 538</value>
+  </data>
+  <data name="dockSite5.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;dockSite5.Name" xml:space="preserve">
+    <value>dockSite5</value>
+  </data>
+  <data name="&gt;&gt;dockSite5.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DockSite, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dockSite5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dockSite5.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="dockSite6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="dockSite6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>928, 0</value>
+  </data>
+  <data name="dockSite6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 538</value>
+  </data>
+  <data name="dockSite6.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;dockSite6.Name" xml:space="preserve">
+    <value>dockSite6</value>
+  </data>
+  <data name="&gt;&gt;dockSite6.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DockSite, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dockSite6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dockSite6.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="dockSite7.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="dockSite7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dockSite7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>928, 0</value>
+  </data>
+  <data name="dockSite7.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;dockSite7.Name" xml:space="preserve">
+    <value>dockSite7</value>
+  </data>
+  <data name="&gt;&gt;dockSite7.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DockSite, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dockSite7.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dockSite7.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="dockSite8.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="dockSite8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 538</value>
+  </data>
+  <data name="dockSite8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>928, 0</value>
+  </data>
+  <data name="dockSite8.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;dockSite8.Name" xml:space="preserve">
+    <value>dockSite8</value>
+  </data>
+  <data name="&gt;&gt;dockSite8.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DockSite, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dockSite8.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dockSite8.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4541,6 +4889,84 @@
   </data>
   <data name="&gt;&gt;templateExcelToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_dotNetBarManager.Name" xml:space="preserve">
+    <value>_dotNetBarManager</value>
+  </data>
+  <data name="&gt;&gt;_dotNetBarManager.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DotNetBarManager, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;fileNumDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>fileNumDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;fileNumDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Fullname.Name" xml:space="preserve">
+    <value>Fullname</value>
+  </data>
+  <data name="&gt;&gt;Fullname.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FullAddress.Name" xml:space="preserve">
+    <value>FullAddress</value>
+  </data>
+  <data name="&gt;&gt;FullAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GenderAsStr.Name" xml:space="preserve">
+    <value>GenderAsStr</value>
+  </data>
+  <data name="&gt;&gt;GenderAsStr.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dobDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>dobDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;dobDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;identityCardDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>identityCardDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;identityCardDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;homePhoneDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>homePhoneDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;homePhoneDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;workPhoneDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>workPhoneDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;workPhoneDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mobileDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>mobileDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;mobileDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;emailDataGridViewTextBoxColumn.Name" xml:space="preserve">
+    <value>emailDataGridViewTextBoxColumn</value>
+  </data>
+  <data name="&gt;&gt;emailDataGridViewTextBoxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;patientViewBindingSource.Name" xml:space="preserve">
+    <value>patientViewBindingSource</value>
+  </data>
+  <data name="&gt;&gt;patientViewBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dockContainerItem1.Name" xml:space="preserve">
+    <value>dockContainerItem1</value>
+  </data>
+  <data name="&gt;&gt;dockContainerItem1.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.DockContainerItem, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>

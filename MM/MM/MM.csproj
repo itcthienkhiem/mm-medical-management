@@ -713,6 +713,9 @@
     <EmbeddedResource Include="Controls\uBaoCaoThuocTonKho.resx">
       <DependentUpon>uBaoCaoThuocTonKho.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uBase.resx">
+      <DependentUpon>uBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uCanDoList.resx">
       <DependentUpon>uCanDoList.cs</DependentUpon>
     </EmbeddedResource>
