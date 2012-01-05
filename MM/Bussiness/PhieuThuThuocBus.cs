@@ -305,42 +305,7 @@ namespace MM.Bussiness
 
                         db.SubmitChanges();
                     }
-                    /*else //Update
-                    {
-                        Thuoc th = db.Thuocs.SingleOrDefault<Thuoc>(t => t.ThuocGUID.ToString() == thuoc.ThuocGUID.ToString());
-                        if (th != null)
-                        {
-                            th.MaThuoc = thuoc.MaThuoc;
-                            th.TenThuoc = thuoc.TenThuoc;
-                            th.BietDuoc = thuoc.BietDuoc;
-                            th.HamLuong = thuoc.HamLuong;
-                            th.HoatChat = thuoc.HoatChat;
-                            th.DonViTinh = thuoc.DonViTinh;
-                            th.Note = thuoc.Note;
-                            th.CreatedDate = thuoc.CreatedDate;
-                            th.CreatedBy = thuoc.CreatedBy;
-                            th.UpdatedDate = thuoc.UpdatedDate;
-                            th.UpdatedBy = thuoc.UpdatedBy;
-                            th.DeletedDate = thuoc.DeletedDate;
-                            th.DeletedBy = thuoc.DeletedBy;
-                            th.Status = thuoc.Status;
-
-                            //Update DVT to LoThuoc
-                            var loThuocs = th.LoThuocs;
-                            foreach (var lo in loThuocs)
-                            {
-                                if (th.DonViTinh == lo.DonViTinhQuiDoi) continue;
-                                lo.DonViTinhQuiDoi = th.DonViTinh;
-                                if (lo.DonViTinhNhap != "Hộp" && lo.DonViTinhNhap != "Vỉ")
-                                    lo.DonViTinhNhap = th.DonViTinh;
-                                else if (lo.DonViTinhNhap == "Vỉ" && th.DonViTinh != "Viên")
-                                    lo.DonViTinhNhap = "Hộp";
-                            }
-
-                            db.SubmitChanges();
-                        }
-                    }*/
-
+                    
                     tnx.Complete();
                 }
 
