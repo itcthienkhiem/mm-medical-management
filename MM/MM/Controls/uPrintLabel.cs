@@ -308,7 +308,13 @@ namespace MM.Controls
             {
                 LabelInfo lbInfo = new LabelInfo();
                 lbInfo.FullName = row["FullName"].ToString();
-                lbInfo.GenderStr = row["GenderAsStr"].ToString() == "Nam" ? "M" : "F";
+                if (row["GenderAsStr"].ToString() == "Nam")
+                    lbInfo.GenderStr = "M";
+                else if (row["GenderAsStr"].ToString() == "Nữ")
+                    lbInfo.GenderStr = "F";
+                else
+                    lbInfo.GenderStr = "N";
+                
                 lbInfo.DobStr = row["DobStr"].ToString();
                 lbInfo.FileNum = row["FileNum"].ToString();
                 for (int i = 0; i < count; i++)

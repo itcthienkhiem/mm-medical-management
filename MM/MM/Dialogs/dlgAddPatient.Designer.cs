@@ -65,6 +65,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPatient = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.txtTenCongTy = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.barCode = new DSBarCode.BarCodeCtrl();
             this.label23 = new System.Windows.Forms.Label();
             this.pagePatientInfo = new DevComponents.DotNetBar.TabItem(this.components);
@@ -99,8 +101,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkDiUngThuoc = new System.Windows.Forms.CheckBox();
             this.pagePatientHistory = new DevComponents.DotNetBar.TabItem(this.components);
-            this.txtTenCongTy = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tabPatient)).BeginInit();
             this.tabPatient.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -376,10 +376,11 @@
             this.cboGender.FormattingEnabled = true;
             this.cboGender.Items.AddRange(new object[] {
             "Nam",
-            "Nữ"});
+            "Nữ",
+            "Không xác định"});
             this.cboGender.Location = new System.Drawing.Point(110, 143);
             this.cboGender.Name = "cboGender";
-            this.cboGender.Size = new System.Drawing.Size(69, 21);
+            this.cboGender.Size = new System.Drawing.Size(104, 21);
             this.cboGender.TabIndex = 3;
             // 
             // label8
@@ -498,6 +499,24 @@
             this.tabControlPanel1.Style.GradientAngle = 90;
             this.tabControlPanel1.TabIndex = 1;
             this.tabControlPanel1.TabItem = this.pagePatientInfo;
+            // 
+            // txtTenCongTy
+            // 
+            this.txtTenCongTy.Location = new System.Drawing.Point(110, 264);
+            this.txtTenCongTy.MaxLength = 255;
+            this.txtTenCongTy.Name = "txtTenCongTy";
+            this.txtTenCongTy.Size = new System.Drawing.Size(303, 20);
+            this.txtTenCongTy.TabIndex = 10;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label24.Location = new System.Drawing.Point(29, 267);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(67, 13);
+            this.label24.TabIndex = 59;
+            this.label24.Text = "Tên công ty:";
             // 
             // barCode
             // 
@@ -895,24 +914,6 @@
             this.pagePatientHistory.Image = global::MM.Properties.Resources.File_History_icon;
             this.pagePatientHistory.Name = "pagePatientHistory";
             this.pagePatientHistory.Text = "Bệnh sử";
-            // 
-            // txtTenCongTy
-            // 
-            this.txtTenCongTy.Location = new System.Drawing.Point(110, 264);
-            this.txtTenCongTy.MaxLength = 255;
-            this.txtTenCongTy.Name = "txtTenCongTy";
-            this.txtTenCongTy.Size = new System.Drawing.Size(303, 20);
-            this.txtTenCongTy.TabIndex = 10;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label24.Location = new System.Drawing.Point(29, 267);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(67, 13);
-            this.label24.TabIndex = 59;
-            this.label24.Text = "Tên công ty:";
             // 
             // dlgAddPatient
             // 

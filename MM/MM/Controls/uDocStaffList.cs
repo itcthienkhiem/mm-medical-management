@@ -98,7 +98,11 @@ namespace MM.Controls
                 newRow["KnownAs"] = dlg.Contact.KnownAs;
                 newRow["PreferredName"] = dlg.Contact.PreferredName;
                 newRow["Gender"] = dlg.Contact.Gender;
-                newRow["GenderAsStr"] = dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
+
+                if (dlg.Contact.Gender == 0) newRow["GenderAsStr"] = "Nam";//dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
+                else if (dlg.Contact.Gender == 1) newRow["GenderAsStr"] = "Nữ";
+                else newRow["GenderAsStr"] = "Không xác định";
+
                 newRow["DobStr"] = dlg.Contact.DobStr;
                 newRow["IdentityCard"] = dlg.Contact.IdentityCard;
                 newRow["HomePhone"] = dlg.Contact.HomePhone;
@@ -163,7 +167,11 @@ namespace MM.Controls
                 drDocStaff["KnownAs"] = dlg.Contact.KnownAs;
                 drDocStaff["PreferredName"] = dlg.Contact.PreferredName;
                 drDocStaff["Gender"] = dlg.Contact.Gender;
-                drDocStaff["GenderAsStr"] = dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
+
+                if (dlg.Contact.Gender == 0) drDocStaff["GenderAsStr"] = "Nam";//dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
+                else if (dlg.Contact.Gender == 1) drDocStaff["GenderAsStr"] = "Nữ";
+                else drDocStaff["GenderAsStr"] = "Không xác định";
+
                 drDocStaff["DobStr"] = dlg.Contact.DobStr;
                 drDocStaff["IdentityCard"] = dlg.Contact.IdentityCard;
                 drDocStaff["HomePhone"] = dlg.Contact.HomePhone;

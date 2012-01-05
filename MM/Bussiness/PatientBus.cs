@@ -162,9 +162,13 @@ namespace MM.Bussiness
                                 contact.DeletedBy = Guid.Parse(Global.UserGUID);
                                 contact.DeletedDate = DateTime.Now;
 
+                                string genderStr = string.Empty;
+                                if (contact.Gender == 0) genderStr = "Nam";
+                                else if (contact.Gender == 1) genderStr = "Nữ";
+                                else genderStr = "Không xác định";
+
                                 desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'\n",
-                                    patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, contact.Gender == 0 ? "Nam" : "Nữ",
-                                    contact.IdentityCard);
+                                    patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, genderStr, contact.IdentityCard);
                             }
                         }
                     }
@@ -236,10 +240,14 @@ namespace MM.Bussiness
                         patientHistory.PatientGUID = patient.PatientGUID;
                         db.PatientHistories.InsertOnSubmit(patientHistory);
 
+                        string genderStr = string.Empty;
+                        if (contact.Gender == 0) genderStr = "Nam";
+                        else if (contact.Gender == 1) genderStr = "Nữ";
+                        else genderStr = "Không xác định";
+
                         //Tracking
                         desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'",
-                                    patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, contact.Gender == 0 ? "Nam" : "Nữ",
-                                    contact.IdentityCard);
+                                    patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, genderStr, contact.IdentityCard);
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
                         tk.TrackingDate = DateTime.Now;
@@ -304,9 +312,14 @@ namespace MM.Bussiness
                                 p.DateDeceased = patient.DateDeceased;
                                 p.LastVisitGUID = patient.LastVisitGUID;
 
+                                string genderStr = string.Empty;
+                                if (ct.Gender == 0) genderStr = "Nam";
+                                else if (ct.Gender == 1) genderStr = "Nữ";
+                                else genderStr = "Không xác định";
+
                                 //Tracking
                                 desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'",
-                                            p.PatientGUID.ToString(), p.FileNum, ct.FullName, ct.DobStr, ct.Gender == 0 ? "Nam" : "Nữ", ct.IdentityCard);
+                                            p.PatientGUID.ToString(), p.FileNum, ct.FullName, ct.DobStr, genderStr, ct.IdentityCard);
                                 Tracking tk = new Tracking();
                                 tk.TrackingGUID = Guid.NewGuid();
                                 tk.TrackingDate = DateTime.Now;

@@ -117,9 +117,13 @@ namespace MM.Bussiness
                                 contact.DeletedBy = Guid.Parse(Global.UserGUID);
                                 contact.DeletedDate = DateTime.Now;
 
+                                string genderStr = string.Empty;
+                                if (contact.Gender == 0) genderStr = "Nam";
+                                else if (contact.Gender == 1) genderStr = "Nữ";
+                                else genderStr = "Không xác định";
+
                                 desc += string.Format("- GUID: '{0}', Tên nhân viên: '{1}', Ngày sinh: '{2}', Giới tính: '{3}', CMND: '{4}'\n",
-                                    docStaff.DocStaffGUID.ToString(), contact.FullName, contact.DobStr, contact.Gender == 0 ? "Nam" : "Nữ",
-                                    contact.IdentityCard);
+                                    docStaff.DocStaffGUID.ToString(), contact.FullName, contact.DobStr, genderStr, contact.IdentityCard);
                             }
                         }
                     }
@@ -185,10 +189,14 @@ namespace MM.Bussiness
                         db.DocStaffs.InsertOnSubmit(docStaff);
                         db.SubmitChanges();
 
+                        string genderStr = string.Empty;
+                        if (contact.Gender == 0) genderStr = "Nam";
+                        else if (contact.Gender == 1) genderStr = "Nữ";
+                        else genderStr = "Không xác định";
+
                         //Tracking
                         desc += string.Format("- GUID: '{0}', Tên nhân viên: '{1}', Ngày sinh: '{2}', Giới tính: '{3}', CMND: '{4}'",
-                                    docStaff.DocStaffGUID.ToString(), contact.FullName, contact.DobStr, contact.Gender == 0 ? "Nam" : "Nữ",
-                                    contact.IdentityCard);
+                                    docStaff.DocStaffGUID.ToString(), contact.FullName, contact.DobStr, genderStr, contact.IdentityCard);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -251,9 +259,14 @@ namespace MM.Bussiness
                                 doc.WorkType = docStaff.WorkType;
                             }
 
+                            string genderStr = string.Empty;
+                            if (ct.Gender == 0) genderStr = "Nam";
+                            else if (ct.Gender == 1) genderStr = "Nữ";
+                            else genderStr = "Không xác định";
+
                             //Tracking
                             desc += string.Format("- GUID: '{0}', Tên nhân viên: '{1}', Ngày sinh: '{2}', Giới tính: '{3}', CMND: '{4}'",
-                                        doc.DocStaffGUID.ToString(), ct.FullName, ct.DobStr, ct.Gender == 0 ? "Nam" : "Nữ", ct.IdentityCard);
+                                        doc.DocStaffGUID.ToString(), ct.FullName, ct.DobStr, genderStr, ct.IdentityCard);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
