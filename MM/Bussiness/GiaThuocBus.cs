@@ -146,7 +146,6 @@ namespace MM.Bussiness
                         desc += string.Format("- GUID: '{0}', Thuốc: '{1}', Giá bán: '{2}', Ngày áp dụng: '{3}'",
                                 giaThuoc.GiaThuocGUID.ToString(), giaThuoc.Thuoc.TenThuoc, giaThuoc.GiaBan, giaThuoc.NgayApDung.ToString("dd/MM/yyyy HH:mm:ss"));
 
-                        desc = desc.Substring(0, desc.Length - 1);
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
                         tk.TrackingDate = DateTime.Now;
@@ -183,7 +182,6 @@ namespace MM.Bussiness
                             desc += string.Format("- GUID: '{0}', Thuốc: '{1}', Giá bán: cũ: '{2}' - mới: '{3}', Ngày áp dụng: '{4}'",
                                     gt.GiaThuocGUID.ToString(), gt.Thuoc.TenThuoc, giaCu, gt.GiaBan, gt.NgayApDung.ToString("dd/MM/yyyy HH:mm:ss"));
 
-                            desc = desc.Substring(0, desc.Length - 1);
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
                             tk.TrackingDate = DateTime.Now;

@@ -162,7 +162,7 @@ namespace MM.Bussiness
                             cd.Status = canDo.Status;
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Tim mạch: '{3}', Huyết áp: '{4}', Hô hấp: '{5}', Chiều cao: '{6}', Cân nặng: '{7}', BMI: '{8}', Cân đo khác: '{9}'\n",
+                            desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Tim mạch: '{3}', Huyết áp: '{4}', Hô hấp: '{5}', Chiều cao: '{6}', Cân nặng: '{7}', BMI: '{8}', Cân đo khác: '{9}'",
                                 cd.CanDoGuid.ToString(), cd.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), cd.Patient.Contact.FullName, cd.TimMach, cd.HuyetAp,
                                 cd.HoHap, cd.ChieuCao, cd.CanNang, cd.BMI, cd.CanDoKhac);
 
