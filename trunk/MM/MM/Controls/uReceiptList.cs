@@ -24,6 +24,7 @@ namespace MM.Controls
         private string _tenBenhNhan = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
+        private int _type = 1; //0: TatCa; 1: ChuaXoa; 2: DaXoa
         #endregion
 
         #region Constructor
@@ -77,6 +78,10 @@ namespace MM.Controls
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 _tenBenhNhan = txtTenBenhNhan.Text;
+                if (raTatCa.Checked) _type = 0;
+                else if (raChuaXoa.Checked) _type = 1;
+                else _type = 2;
+                               
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayReceiptListProc));
                 base.ShowWaiting();
             }
@@ -104,7 +109,7 @@ namespace MM.Controls
 
         private void OnDisplayReceiptList()
         {
-            Result result = ReceiptBus.GetReceiptList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan);
+            Result result = ReceiptBus.GetReceiptList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
