@@ -2557,7 +2557,7 @@
     <value>Microsoft Sans Serif, 8.25pt</value>
   </data>
   <data name="dockContainerItem1.Text" xml:space="preserve">
-    <value>Danh sách bệnh nhân đang khám</value>
+    <value>Danh sách bệnh nhân được khám</value>
   </data>
   <data name="bar1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 3</value>
@@ -2569,7 +2569,7 @@
     <value>0</value>
   </data>
   <data name="bar1.Text" xml:space="preserve">
-    <value>Danh sách bệnh nhân đang khám</value>
+    <value>Danh sách bệnh nhân được khám</value>
   </data>
   <data name="&gt;&gt;bar1.Name" xml:space="preserve">
     <value>bar1</value>
