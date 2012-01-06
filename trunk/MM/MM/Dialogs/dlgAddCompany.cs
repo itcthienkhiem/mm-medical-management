@@ -10,6 +10,7 @@ using System.Threading;
 using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
+using MM.Exports;
 
 namespace MM.Dialogs
 {
@@ -364,6 +365,40 @@ namespace MM.Dialogs
             else
                 MsgBox.Show(this.Text, "Vui lòng đánh dấu những nhân viên cần xóa.", IconType.Information);
         }
+
+        private void OnPrint(bool isPreview)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgMembers.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    checkedRows.Add(row);
+            }
+
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\DanhSachBenhNhan.xls", Application.StartupPath);
+                if (ExportExcel.ExportDanhSachBenhNhanToExcel(exportFileName, checkedRows))
+                    try
+                    {
+                        if (isPreview)
+                            ExcelPrintPreview.PrintPreview(exportFileName);
+                        else
+                        {
+                            if (_printDialog.ShowDialog() == DialogResult.OK)
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                    }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần in.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -475,6 +510,16 @@ namespace MM.Dialogs
             _flag = false;
             this.Close();
         }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
         #endregion
 
         #region Working Thread
@@ -513,5 +558,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
