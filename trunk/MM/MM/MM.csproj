@@ -445,6 +445,18 @@
     <Compile Include="Controls\uToaThuocList.Designer.cs">
       <DependentUpon>uToaThuocList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uTrackingList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uTrackingList.Designer.cs">
+      <DependentUpon>uTrackingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgActionDescription.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgActionDescription.Designer.cs">
+      <DependentUpon>dlgActionDescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddCanDo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -812,6 +824,12 @@
     <EmbeddedResource Include="Controls\uToaThuocList.resx">
       <DependentUpon>uToaThuocList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uTrackingList.resx">
+      <DependentUpon>uTrackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgActionDescription.resx">
+      <DependentUpon>dlgActionDescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddCanDo.resx">
       <DependentUpon>dlgAddCanDo.cs</DependentUpon>
     </EmbeddedResource>
@@ -987,6 +1005,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ThuocResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.TrackingView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1046,6 +1065,7 @@
     <None Include="Resources\korganizer-todo-icon.png" />
     <None Include="Resources\Alarm-Tick-icon.png" />
     <None Include="Resources\measure-crop-icon.png" />
+    <None Include="Resources\log-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-03_2012-01-05.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-01_2012-01-02.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2011-12-28_2011-12-31.sql" />
