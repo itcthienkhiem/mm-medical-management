@@ -1128,5 +1128,73 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportDanhSachBenhNhanToExcel(string exportFileName, List<DataRow> checkedRows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\DanhSachBenhNhanTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                int stt = 1;
+
+                foreach (DataRow row in checkedRows)
+                {
+                    string maBenhNhan = row["FileNum"].ToString();
+                    string tenBenhNhan = row["FullName"].ToString();
+                    string ngaySinh = row["DobStr"].ToString();
+                    string gioiTinh = row["GenderAsStr"].ToString();
+
+                    workSheet.Cells[rowIndex, 0].Value = stt;
+                    workSheet.Cells[rowIndex, 1].Value = maBenhNhan;
+                    workSheet.Cells[rowIndex, 2].Value = tenBenhNhan;
+                    workSheet.Cells[rowIndex, 3].Value = ngaySinh;
+                    workSheet.Cells[rowIndex, 4].Value = gioiTinh;
+                    rowIndex++;
+                    stt++;
+                }
+
+                IRange range = workSheet.Cells[string.Format("A3:G{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+                range.HorizontalAlignment = HAlign.General;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                range = workSheet.Cells[string.Format("A3:A{0}", checkedRows.Count + 2)];
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+
+                range = workSheet.Cells[string.Format("D3:E{0}", checkedRows.Count + 2)];
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
