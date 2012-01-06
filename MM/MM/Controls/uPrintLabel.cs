@@ -470,10 +470,10 @@ namespace MM.Controls
 
         private void OnDrawLabel_5x11(Graphics g, float left, float top, LabelInfo labelInfo)
         {
-            //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
-            g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 10);
-            g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 20);
-            g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 30);
+            g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 7);
+            g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 17);
+            g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 27);
         }
 
         private void OnMoveRight()
