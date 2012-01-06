@@ -100,7 +100,7 @@
             this.btnCancel2.Name = "btnCancel2";
             this.btnCancel2.Size = new System.Drawing.Size(75, 25);
             this.btnCancel2.TabIndex = 2;
-            this.btnCancel2.Text = "   &Đóng";
+            this.btnCancel2.Text = "   &Không";
             this.btnCancel2.UseVisualStyleBackColor = true;
             this.btnCancel2.Visible = false;
             // 
