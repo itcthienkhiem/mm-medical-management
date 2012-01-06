@@ -103,6 +103,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in serviceKeys)
                     {
                         Service s = db.Services.SingleOrDefault<Service>(ss => ss.ServiceGUID.ToString() == key);
@@ -111,8 +112,23 @@ namespace MM.Bussiness
                             s.DeletedDate = DateTime.Now;
                             s.DeletedBy = Guid.Parse(Global.UserGUID);
                             s.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Giá: '{3}'\n",
+                                s.ServiceGUID.ToString(), s.Code, s.Name, s.Price);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin dịch vụ";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.Price;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -190,33 +206,71 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-
-                //Insert
-                if (service.ServiceGUID == null || service.ServiceGUID == Guid.Empty)
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    service.ServiceGUID = Guid.NewGuid();
-                    db.Services.InsertOnSubmit(service);
-                }
-                else //Update
-                {
-                    Service srv = db.Services.SingleOrDefault<Service>(s => s.ServiceGUID.ToString() == service.ServiceGUID.ToString());
-                    if (srv != null)
+                    //Insert
+                    if (service.ServiceGUID == null || service.ServiceGUID == Guid.Empty)
                     {
-                        srv.Code = service.Code;
-                        srv.Name = service.Name;
-                        srv.Price = service.Price;
-                        srv.Description = service.Description;
-                        srv.CreatedDate = service.CreatedDate;
-                        srv.CreatedBy = service.CreatedBy;
-                        srv.UpdatedDate = service.UpdatedDate;
-                        srv.UpdatedBy = service.UpdatedBy;
-                        srv.DeletedDate = service.DeletedDate;
-                        srv.DeletedBy = service.DeletedBy;
-                        srv.Status = service.Status;
-                    }
-                }
+                        service.ServiceGUID = Guid.NewGuid();
+                        db.Services.InsertOnSubmit(service);
+                        db.SubmitChanges();
 
-                db.SubmitChanges();
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Giá: '{3}'",
+                                service.ServiceGUID.ToString(), service.Code, service.Name, service.Price);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin dịch vụ";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.Price;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+                    else //Update
+                    {
+                        Service srv = db.Services.SingleOrDefault<Service>(s => s.ServiceGUID.ToString() == service.ServiceGUID.ToString());
+                        if (srv != null)
+                        {
+                            double giaCu = srv.Price;
+                            srv.Code = service.Code;
+                            srv.Name = service.Name;
+                            srv.Price = service.Price;
+                            srv.Description = service.Description;
+                            srv.CreatedDate = service.CreatedDate;
+                            srv.CreatedBy = service.CreatedBy;
+                            srv.UpdatedDate = service.UpdatedDate;
+                            srv.UpdatedBy = service.UpdatedBy;
+                            srv.DeletedDate = service.DeletedDate;
+                            srv.DeletedBy = service.DeletedBy;
+                            srv.Status = service.Status;
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Giá: cũ: '{3}' - mới: '{4}'",
+                                    srv.ServiceGUID.ToString(), srv.Code, srv.Name, giaCu, srv.Price);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin dịch vụ";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.Price;
+                            db.Trackings.InsertOnSubmit(tk);
+
+                            db.SubmitChanges();
+                        }
+                    }
+                    
+                    t.Complete();
+                }
+                
             }
             catch (System.Data.SqlClient.SqlException se)
             {

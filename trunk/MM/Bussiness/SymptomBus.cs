@@ -74,6 +74,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in keys)
                     {
                         Symptom s = db.Symptoms.SingleOrDefault<Symptom>(ss => ss.SymptomGUID.ToString() == key);
@@ -82,8 +83,23 @@ namespace MM.Bussiness
                             s.DeletedDate = DateTime.Now;
                             s.DeletedBy = Guid.Parse(Global.UserGUID);
                             s.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Mã triệu chứng: '{1}', Tên triệu chứng: '{2}', Lời khuyên: '{3}'\n",
+                                s.SymptomGUID.ToString(), s.Code, s.SymptomName, s.Advice);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin triệu chứng";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -161,32 +177,70 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-
-                //Insert
-                if (symp.SymptomGUID == null || symp.SymptomGUID == Guid.Empty)
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    symp.SymptomGUID = Guid.NewGuid();
-                    db.Symptoms.InsertOnSubmit(symp);
-                }
-                else //Update
-                {
-                    Symptom symptom = db.Symptoms.SingleOrDefault<Symptom>(s => s.SymptomGUID.ToString() == symp.SymptomGUID.ToString());
-                    if (symptom != null)
+                    //Insert
+                    if (symp.SymptomGUID == null || symp.SymptomGUID == Guid.Empty)
                     {
-                        symptom.Code = symp.Code;
-                        symptom.SymptomName = symp.SymptomName;
-                        symptom.Advice = symp.Advice;
-                        symptom.CreatedDate = symp.CreatedDate;
-                        symptom.CreatedBy = symp.CreatedBy;
-                        symptom.UpdatedDate = symp.UpdatedDate;
-                        symptom.UpdatedBy = symp.UpdatedBy;
-                        symptom.DeletedDate = symp.DeletedDate;
-                        symptom.DeletedBy = symp.DeletedBy;
-                        symptom.Status = symp.Status;
-                    }
-                }
+                        symp.SymptomGUID = Guid.NewGuid();
+                        db.Symptoms.InsertOnSubmit(symp);
+                        db.SubmitChanges();
 
-                db.SubmitChanges();
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Mã triệu chứng: '{1}', Tên triệu chứng: '{2}', Lời khuyên: '{3}'",
+                               symp.SymptomGUID.ToString(), symp.Code, symp.SymptomName, symp.Advice);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin triệu chứng";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+                    else //Update
+                    {
+                        Symptom symptom = db.Symptoms.SingleOrDefault<Symptom>(s => s.SymptomGUID.ToString() == symp.SymptomGUID.ToString());
+                        if (symptom != null)
+                        {
+                            symptom.Code = symp.Code;
+                            symptom.SymptomName = symp.SymptomName;
+                            symptom.Advice = symp.Advice;
+                            symptom.CreatedDate = symp.CreatedDate;
+                            symptom.CreatedBy = symp.CreatedBy;
+                            symptom.UpdatedDate = symp.UpdatedDate;
+                            symptom.UpdatedBy = symp.UpdatedBy;
+                            symptom.DeletedDate = symp.DeletedDate;
+                            symptom.DeletedBy = symp.DeletedBy;
+                            symptom.Status = symp.Status;
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Mã triệu chứng: '{1}', Tên triệu chứng: '{2}', Lời khuyên: '{3}'",
+                                   symptom.SymptomGUID.ToString(), symptom.Code, symptom.SymptomName, symptom.Advice);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin triệu chứng";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+
+                            db.SubmitChanges();
+                        }
+                    }
+
+                    
+                    t.Complete();
+                }
+                
             }
             catch (System.Data.SqlClient.SqlException se)
             {
