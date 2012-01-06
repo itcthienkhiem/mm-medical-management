@@ -163,6 +163,8 @@ namespace MM
                 _uPhieuThuThuocList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uDichVuTuTuc))
                 _uDichVuTuTuc.InitData();
+            else if (ctrl.GetType() == typeof(uTrackingList))
+                _uTrackingList.InitData();
         }
 
         private void SaveAppConfig()
@@ -487,6 +489,10 @@ namespace MM
                             Global.AllowDeleteChiDinh = isDelete;
                             Global.AllowConfirmChiDinh = isConfirm;
                         }
+                        else if (functionCode == Const.Tracking)
+                        {
+                            trackingToolStripMenuItem.Enabled = isView && isLogin;
+                        }
                     }
                 }
                 else
@@ -641,6 +647,7 @@ namespace MM
                 tbPhieuThuThuoc.Enabled = isLogin;
 
                 dichVuTuTucToolStripMenuItem.Enabled = isLogin;
+                trackingToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -780,7 +787,18 @@ namespace MM
                 case "DichVuTuTuc":
                     OnDichVuTuTuc();
                     break;
+
+                case "Tracking":
+                    OnTracking();
+                    break;
             }
+        }
+
+        private void OnTracking()
+        {
+            this.Text = string.Format("{0} - Truy vet", Application.ProductName);
+            ViewControl(_uTrackingList);
+            _uTrackingList.InitData();
         }
 
         private void OnDichVuTuTuc()

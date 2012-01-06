@@ -104,6 +104,7 @@
     <Compile Include="SpecialityBus.cs" />
     <Compile Include="SymptomBus.cs" />
     <Compile Include="ThuocBus.cs" />
+    <Compile Include="TrackingBus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

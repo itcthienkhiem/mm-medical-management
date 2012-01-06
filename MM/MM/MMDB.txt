@@ -47,4 +47,5 @@ spDichVuHopDong
 2012-01-04
 - Create table: Tracking
 - Create view: TrackingView
-- Update view: CompanyMemberView, ContractMemberView, PatientView
+- Update view: CompanyMemberView, ContractMemberView, PatientView, UserView, TrackingView
+- Insert: Function(Tracking)
