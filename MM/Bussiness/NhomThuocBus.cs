@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT T.* FROM NhomThuoc_Thuoc N, THUOC T WHERE N.NhomThuocGUID IN (SELECT NhomThuocGUID FROM NhomThuoc_Thuoc WHERE ThuocGUID = '{1}' AND Status={0}) AND N.ThuocGUID <> '{1}' AND N.ThuocGUID = T.ThuocGUID AND T.Status={0} AND N.Status={0} ORDER BY TenThuoc", 
+                string query = string.Format("SELECT DISTINCT T.* FROM NhomThuoc_Thuoc N, THUOC T WHERE N.NhomThuocGUID IN (SELECT NhomThuocGUID FROM NhomThuoc_Thuoc WHERE ThuocGUID = '{1}' AND Status={0}) AND N.ThuocGUID <> '{1}' AND N.ThuocGUID = T.ThuocGUID AND T.Status={0} AND N.Status={0} ORDER BY TenThuoc", 
                     (byte)Status.Actived, thuocGUID);
                 return ExcuteQuery(query);
             }

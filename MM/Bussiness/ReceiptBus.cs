@@ -169,6 +169,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in receiptKeys)
                     {
                         Receipt r = db.Receipts.SingleOrDefault<Receipt>(rr => rr.ReceiptGUID.ToString() == key);
@@ -188,8 +189,24 @@ namespace MM.Bussiness
                                         serviceHistory.IsExported = false;
                                 }
                             }
+
+                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}'\n",
+                                r.ReceiptGUID.ToString(), r.ReceiptCode, r.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), r.Patient.FileNum, 
+                                r.Patient.Contact.FullName, r.Patient.Contact.Address);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin phiếu thu";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.Price;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -225,18 +242,31 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-
+                string desc = string.Empty;
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     receipt.ReceiptGUID = Guid.NewGuid();
                     db.Receipts.InsertOnSubmit(receipt);
                     db.SubmitChanges();
 
+                    desc += string.Format("- Phiếu thu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}'\n",
+                               receipt.ReceiptGUID.ToString(), receipt.ReceiptCode, receipt.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), receipt.Patient.FileNum,
+                               receipt.Patient.Contact.FullName, receipt.Patient.Contact.Address);
+
+                    desc += "- Chi tiết phiếu thu được thêm:\n";
+
                     //Detail
                     foreach (var receiptDetail in receiptDetails)
                     {
                         receiptDetail.ReceiptDetailGUID = Guid.NewGuid();
                         receiptDetail.ReceiptGUID = receipt.ReceiptGUID;
+                        db.ReceiptDetails.InsertOnSubmit(receiptDetail);
+                        db.SubmitChanges();
+
+                        desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}', Đơn giá: '{2}', Số lượng: '1', Giảm: '{3}', Thành tiền: '{4}'\n",
+                            receiptDetail.ReceiptDetailGUID.ToString(), receiptDetail.ServiceHistory.Service.Name, receiptDetail.ServiceHistory.Price.Value,
+                            receiptDetail.ServiceHistory.Discount, 
+                            Math.Round(receiptDetail.ServiceHistory.Price.Value - (receiptDetail.ServiceHistory.Price.Value * receiptDetail.ServiceHistory.Discount / 100), 0));
 
                         //Update Exported Service History
                         ServiceHistory serviceHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID == receiptDetail.ServiceHistoryGUID);
@@ -244,7 +274,17 @@ namespace MM.Bussiness
                             serviceHistory.IsExported = true;
                     }
 
-                    db.ReceiptDetails.InsertAllOnSubmit(receiptDetails);
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Add;
+                    tk.Action = "Thêm thông tin phiếu thu";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.Price;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
 

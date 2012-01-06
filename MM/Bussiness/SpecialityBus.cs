@@ -74,6 +74,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in keys)
                     {
                         Speciality s = db.Specialities.SingleOrDefault<Speciality>(ss => ss.SpecialityGUID.ToString() == key);
@@ -82,8 +83,22 @@ namespace MM.Bussiness
                             s.DeletedDate = DateTime.Now;
                             s.DeletedBy = Guid.Parse(Global.UserGUID);
                             s.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Mã chuyên khoa: '{1}', Tên chuyên khoa: '{2}'\n", s.SpecialityGUID.ToString(), s.Code, s.Name);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin chuyên khoa";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -161,32 +176,68 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-
-                //Insert
-                if (spec.SpecialityGUID == null || spec.SpecialityGUID == Guid.Empty)
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    spec.SpecialityGUID = Guid.NewGuid();
-                    db.Specialities.InsertOnSubmit(spec);
-                }
-                else //Update
-                {
-                    Speciality speciality = db.Specialities.SingleOrDefault<Speciality>(s => s.SpecialityGUID.ToString() == spec.SpecialityGUID.ToString());
-                    if (speciality != null)
+                    //Insert
+                    if (spec.SpecialityGUID == null || spec.SpecialityGUID == Guid.Empty)
                     {
-                        speciality.Code = spec.Code;
-                        speciality.Name = spec.Name;
-                        speciality.Description = spec.Description;
-                        speciality.CreatedDate = spec.CreatedDate;
-                        speciality.CreatedBy = spec.CreatedBy;
-                        speciality.UpdatedDate = spec.UpdatedDate;
-                        speciality.UpdatedBy = spec.UpdatedBy;
-                        speciality.DeletedDate = spec.DeletedDate;
-                        speciality.DeletedBy = spec.DeletedBy;
-                        speciality.Status = spec.Status;
-                    }
-                }
+                        spec.SpecialityGUID = Guid.NewGuid();
+                        db.Specialities.InsertOnSubmit(spec);
+                        db.SubmitChanges();
 
-                db.SubmitChanges();
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Mã chuyên khoa: '{1}', Tên chuyên khoa: '{2}'", spec.SpecialityGUID.ToString(), spec.Code, spec.Name);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin chuyên khoa";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+                    else //Update
+                    {
+                        Speciality speciality = db.Specialities.SingleOrDefault<Speciality>(s => s.SpecialityGUID.ToString() == spec.SpecialityGUID.ToString());
+                        if (speciality != null)
+                        {
+                            speciality.Code = spec.Code;
+                            speciality.Name = spec.Name;
+                            speciality.Description = spec.Description;
+                            speciality.CreatedDate = spec.CreatedDate;
+                            speciality.CreatedBy = spec.CreatedBy;
+                            speciality.UpdatedDate = spec.UpdatedDate;
+                            speciality.UpdatedBy = spec.UpdatedBy;
+                            speciality.DeletedDate = spec.DeletedDate;
+                            speciality.DeletedBy = spec.DeletedBy;
+                            speciality.Status = spec.Status;
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Mã chuyên khoa: '{1}', Tên chuyên khoa: '{2}'",
+                                speciality.SpecialityGUID.ToString(), speciality.Code, speciality.Name);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Add;
+                            tk.Action = "Sửa thông tin chuyên khoa";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+
+                            db.SubmitChanges();
+                        }
+                    }
+                    
+                    t.Complete();
+                }
+                
             }
             catch (System.Data.SqlClient.SqlException se)
             {

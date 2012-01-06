@@ -170,6 +170,7 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     DateTime dt = DateTime.Now;
+                    string desc = string.Empty;
                     foreach (string key in phieuThuThuocKeys)
                     {
                         PhieuThuThuoc ptthuoc = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(p => p.PhieuThuThuocGUID.ToString() == key);
@@ -195,8 +196,28 @@ namespace MM.Bussiness
                                 if (loThuoc != null)
                                     loThuoc.SoLuongXuat -= soLuong;    
                             }
+
+                            string maToaThuoc = string.Empty;
+                            if (ptthuoc.ToaThuocGUID.Value != Guid.Empty)
+                                maToaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID == ptthuoc.ToaThuocGUID.Value).MaToaThuoc;
+
+                            desc += string.Format("- GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}'\n",
+                                ptthuoc.PhieuThuThuocGUID.ToString(), maToaThuoc, ptthuoc.MaPhieuThuThuoc, ptthuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"), 
+                                ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin phiếu thu thuốc";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.Price;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -274,6 +295,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
                 using (TransactionScope tnx = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     //Insert
@@ -282,6 +304,16 @@ namespace MM.Bussiness
                         ptthuoc.PhieuThuThuocGUID = Guid.NewGuid();
                         db.PhieuThuThuocs.InsertOnSubmit(ptthuoc);
                         db.SubmitChanges();
+
+                        string maToaThuoc = string.Empty;
+                        if (ptthuoc.ToaThuocGUID.Value != Guid.Empty)
+                            maToaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID == ptthuoc.ToaThuocGUID.Value).MaToaThuoc;
+
+                        desc += string.Format("- Phiếu thu thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}'\n",
+                            ptthuoc.PhieuThuThuocGUID.ToString(), maToaThuoc, ptthuoc.MaPhieuThuThuoc, ptthuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
+                            ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi);
+
+                        desc += "- Chi tiết phiếu thu thuốc được thêm:\n";
 
                         //Chi tiet phieu thu
                         DateTime dt = DateTime.Now;
@@ -301,7 +333,24 @@ namespace MM.Bussiness
                                                select l).FirstOrDefault();
                             if (loThuoc != null)
                                 loThuoc.SoLuongXuat += soLuong;
+
+                            db.SubmitChanges();
+
+                            desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Đơn giá: '{2}', Số lượng: '{3}', Giảm: '{4}', Thành tiền: '{5}'\n",
+                                ctptt.ChiTietPhieuThuThuocGUID.ToString(), ctptt.Thuoc.TenThuoc, ctptt.DonGia, ctptt.SoLuong, ctptt.Giam, ctptt.ThanhTien);
                         }
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin phiếu thu thuốc";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.Price;
+                        db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
                     }

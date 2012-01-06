@@ -64,6 +64,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in serviceHistoryKeys)
                     {
                         ServiceHistory srvHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID.ToString() == key);
@@ -72,11 +73,28 @@ namespace MM.Bussiness
                             srvHistory.DeletedDate = DateTime.Now;
                             srvHistory.DeletedBy = Guid.Parse(Global.UserGUID);
                             srvHistory.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}'\n",
+                                srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, srvHistory.DocStaff.Contact.FullName,
+                                srvHistory.Service.Name, srvHistory.Price.Value, srvHistory.Discount);
                         }
 
-                        db.SubmitChanges();
+                        
                     }
 
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin dịch vụ sử dụng";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.Price;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
                     t.Complete();
                 }
             }
@@ -110,7 +128,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-
+                string desc = string.Empty;
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     //Insert
@@ -118,12 +136,33 @@ namespace MM.Bussiness
                     {
                         serviceHistory.ServiceHistoryGUID = Guid.NewGuid();
                         db.ServiceHistories.InsertOnSubmit(serviceHistory);
+                        db.SubmitChanges();
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}'",
+                                serviceHistory.ServiceHistoryGUID.ToString(), serviceHistory.Patient.Contact.FullName, serviceHistory.DocStaff.Contact.FullName,
+                                serviceHistory.Service.Name, serviceHistory.Price.Value, serviceHistory.Discount);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin dịch vụ sử dụng";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.Price;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
                     }
                     else //Update
                     {
                         ServiceHistory srvHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID.ToString() == serviceHistory.ServiceHistoryGUID.ToString());
                         if (srvHistory != null)
                         {
+                            double giaCu = srvHistory.Price.Value;
+                            double giamCu = srvHistory.Discount;
+
                             srvHistory.ActivedDate = serviceHistory.ActivedDate;
                             srvHistory.CreatedBy = serviceHistory.CreatedBy;
                             srvHistory.CreatedDate = serviceHistory.CreatedDate;
@@ -137,10 +176,26 @@ namespace MM.Bussiness
                             srvHistory.UpdatedBy = serviceHistory.UpdatedBy;
                             srvHistory.UpdatedDate = serviceHistory.UpdatedDate;
                             srvHistory.Status = serviceHistory.Status;
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: cũ: '{4}' - mới: '{5}', Giảm: cũ: '{6}' - mới: '{7}'",
+                                    srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, srvHistory.DocStaff.Contact.FullName,
+                                    srvHistory.Service.Name, giaCu, srvHistory.Price.Value, giamCu, srvHistory.Discount);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin dịch vụ sử dụng";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.Price;
+                            db.Trackings.InsertOnSubmit(tk);
+
+                            db.SubmitChanges();
                         }
                     }
-
-                    db.SubmitChanges();
+                    
                     t.Complete();
                 }
             }

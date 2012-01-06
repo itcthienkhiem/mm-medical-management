@@ -98,6 +98,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    string desc = string.Empty;
                     foreach (string key in thuocKeys)
                     {
                         Thuoc thuoc = db.Thuocs.SingleOrDefault<Thuoc>(th => th.ThuocGUID.ToString() == key);
@@ -106,8 +107,23 @@ namespace MM.Bussiness
                             thuoc.DeletedDate = DateTime.Now;
                             thuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             thuoc.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Mã thuốc: '{1}', Tên thuốc: '{2}', ĐVT: '{3}', Biệt dược: '{4}', Hàm lượng: '{5}', Hoạt chất: '{6}'\n",
+                                thuoc.ThuocGUID.ToString(), thuoc.MaThuoc, thuoc.TenThuoc, thuoc.DonViTinh, thuoc.BietDuoc, thuoc.HamLuong, thuoc.HoatChat);
                         }
                     }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin thuốc";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
@@ -185,6 +201,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
+                string desc = string.Empty;
                 using (TransactionScope tnx = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     //Insert
@@ -192,6 +209,22 @@ namespace MM.Bussiness
                     {
                         thuoc.ThuocGUID = Guid.NewGuid();
                         db.Thuocs.InsertOnSubmit(thuoc);
+                        db.SubmitChanges();
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Mã thuốc: '{1}', Tên thuốc: '{2}', ĐVT: '{3}', Biệt dược: '{4}', Hàm lượng: '{5}', Hoạt chất: '{6}'",
+                                thuoc.ThuocGUID.ToString(), thuoc.MaThuoc, thuoc.TenThuoc, thuoc.DonViTinh, thuoc.BietDuoc, thuoc.HamLuong, thuoc.HoatChat);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin thuốc";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
                         db.SubmitChanges();
                     }
                     else //Update
@@ -225,6 +258,20 @@ namespace MM.Bussiness
                                 else if (lo.DonViTinhNhap == "Vỉ" && th.DonViTinh != "Viên")
                                     lo.DonViTinhNhap = "Hộp";
                             }
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Mã thuốc: '{1}', Tên thuốc: '{2}', ĐVT: '{3}', Biệt dược: '{4}', Hàm lượng: '{5}', Hoạt chất: '{6}'",
+                                    th.ThuocGUID.ToString(), th.MaThuoc, th.TenThuoc, th.DonViTinh, th.BietDuoc, th.HamLuong, th.HoatChat);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin thuốc";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();
                         }
