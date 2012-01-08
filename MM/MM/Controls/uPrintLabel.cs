@@ -497,8 +497,8 @@ namespace MM.Controls
                 string fullName2 = string.Empty;
                 ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
-                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + deltaTop);
-                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + deltaTop + 10);
+                g.DrawString(fullName1, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(fullName2, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 10);
                 g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 20);
                 g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 30);
             }
