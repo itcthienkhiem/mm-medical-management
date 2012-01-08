@@ -578,6 +578,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Notepad_Bloc_notes_icon {
+            get {
+                object obj = ResourceManager.GetObject("Notepad_Bloc_notes_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap open {
             get {
                 object obj = ResourceManager.GetObject("open", resourceCulture);

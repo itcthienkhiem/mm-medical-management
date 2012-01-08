@@ -1069,6 +1069,7 @@
     <None Include="Resources\log-icon.png" />
     <None Include="Resources\Freelance-icon.png" />
     <None Include="Resources\Stethoscope-icon2.png" />
+    <None Include="Resources\Notepad-Bloc-notes-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-06_2012-01-10.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-03_2012-01-05.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-01_2012-01-02.sql" />
