@@ -371,6 +371,7 @@ namespace MM.Controls
 
         private void OnDrawLabel_1x2(Graphics g, float left, float top, LabelInfo labelInfo)
         {
+            _maxLenght = 18;
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
             int deltaLeft = 30;
             int deltaTop = 70;
@@ -398,6 +399,7 @@ namespace MM.Controls
 
         private void OnDrawLabel_2x4(Graphics g, float left, float top, LabelInfo labelInfo)
         {
+            _maxLenght = 19;
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
             int deltaLeft = 20;
@@ -426,6 +428,7 @@ namespace MM.Controls
 
         private void OnDrawLabel_5x6(Graphics g, float left, float top, LabelInfo labelInfo)
         {
+            _maxLenght = 17;
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
             int deltaLeft = 8;
             int deltaTop = 26;
@@ -453,6 +456,7 @@ namespace MM.Controls
 
         private void OnDrawLabel_5x8(Graphics g, float left, float top, LabelInfo labelInfo)
         {
+            _maxLenght = 16;
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
             int deltaLeft = 8;
             int deltaTop = 16;

@@ -49,3 +49,6 @@ spDichVuHopDong
 - Create view: TrackingView
 - Update view: CompanyMemberView, ContractMemberView, PatientView, UserView, TrackingView
 - Insert: Function(Tracking)
+2012-01-08
+- Update table: Services (Add column: EnglishName), CanDo (Add Colum: MuMau, MatTrai, MatPhai, HieuChinh)
+- Update view: ServiceHistoryView, DichVuChiDinhView, CompanyCheckListView, ChiTietChiDinhView
