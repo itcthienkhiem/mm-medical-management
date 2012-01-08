@@ -27,27 +27,29 @@ namespace MM.Dialogs
         private CompanyInfo _selectedCompanyInfo = null;
         private bool _flag = true;
         private bool _isAscending = true;
+        private DataRow _drContract = null;
         #endregion
 
         #region Constructor
         public dlgAddContract()
         {
             InitializeComponent();
-            InitData();
-            DisplayDetailAsThread(Guid.Empty.ToString());
+            //InitData();
+            //DisplayDetailAsThread(Guid.Empty.ToString());
             GenerateCode();
         }
 
         public dlgAddContract(DataRow drContract)
         {
             InitializeComponent();
-            InitData();
+            //InitData();
             _isNew = false;
             btnDSNVChuaKham.Visible = true;
             btnDSNVChuaKhamDu.Visible = true;
             btnDSNVKhamDu.Visible = true;
             this.Text = "Sua hop dong";
-            DisplayInfo(drContract);
+            //DisplayInfo(drContract);
+            _drContract = drContract;
         }
         #endregion
 
@@ -650,6 +652,16 @@ namespace MM.Dialogs
         #endregion
 
         #region Window Event Handlers
+        private void dlgAddContract_Load(object sender, EventArgs e)
+        {
+            InitData();
+            if (_isNew)
+                DisplayDetailAsThread(Guid.Empty.ToString());
+            else
+                DisplayInfo(_drContract);
+
+        }
+
         private void dlg_OnAddMember(List<DataRow> checkedMembers, List<string> addedServices, DataTable serviceDataSource)
         {
             List<DataRow> checkedRows = checkedMembers;
@@ -935,6 +947,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }

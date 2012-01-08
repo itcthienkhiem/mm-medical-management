@@ -24,13 +24,14 @@ namespace MM.Dialogs
         private List<DataRow> _deletedPatientRows = new List<DataRow>();
         private bool _isAscending = true;
         private bool _flag = true;
+        private DataRow _drCompany = null;
         #endregion
 
         #region Constructor
         public dlgAddCompany()
         {
             InitializeComponent();
-            DisplayMembersAsThread(Guid.Empty.ToString());
+            //DisplayMembersAsThread(Guid.Empty.ToString());
             GenerateCode();
         }
 
@@ -39,7 +40,8 @@ namespace MM.Dialogs
             InitializeComponent();
             _isNew  = false;
             this.Text = "Sua cong ty";
-            DisplayInfo(drCompany);
+            //DisplayInfo(drCompany);
+            _drCompany = drCompany;
         }
         #endregion
 
@@ -402,6 +404,14 @@ namespace MM.Dialogs
         #endregion
 
         #region Window Event Handlers
+        private void dlgAddCompany_Load(object sender, EventArgs e)
+        {
+            if (_isNew)
+                DisplayMembersAsThread(Guid.Empty.ToString());
+            else
+                DisplayInfo(_drCompany);
+        }
+
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
         {
             DataTable dt = dgMembers.DataSource as DataTable;
@@ -558,6 +568,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }
