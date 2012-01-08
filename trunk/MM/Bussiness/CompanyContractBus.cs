@@ -71,7 +71,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WHERE CompanyContractGUID='{0}' AND Status={1} AND CompanyMemberStatus={1} ORDER BY FirstName, FullName",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WHERE CompanyContractGUID='{0}' AND Status={1} AND CompanyMemberStatus={1} AND Archived='False' ORDER BY FirstName, FullName",
                     contractGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }

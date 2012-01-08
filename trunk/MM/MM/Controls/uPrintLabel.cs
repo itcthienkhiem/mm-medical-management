@@ -272,7 +272,7 @@ namespace MM.Controls
                 _maxRow = 11;
                 _maxCol = 5;
                 _font = new Font("Microsoft Sans Serif", 6);
-                _maxLenght = 100;
+                _maxLenght = 20;
             }
 
             _labelWidthPxl = (int)Math.Round(((_labelWidth * _solution) / 25.4));
@@ -333,6 +333,42 @@ namespace MM.Controls
             }
         }
 
+        private void ProcessFullName(string fullName, ref string fullName1, ref string fullName2)
+        {
+            int index = fullName.LastIndexOf(" ");
+            fullName1 = string.Empty;
+            fullName2 = string.Empty;
+            if (index >= 0)
+            {
+                fullName1 = fullName.Substring(0, index);
+                fullName2 = fullName.Substring(index + 1, fullName.Length - index - 1);
+                if (index > _maxLenght - 1)
+                {
+                    string fullName3 = string.Empty;
+                    string fullName4 = string.Empty;
+                    index = fullName1.LastIndexOf(" ");
+                    if (index >= 0)
+                    {
+                        fullName3 = fullName1.Substring(0, index);
+                        fullName4 = fullName1.Substring(index + 1, fullName1.Length - index - 1);
+                    }
+                    else
+                    {
+                        fullName3 = fullName1.Substring(0, _maxLenght);
+                        fullName4 = fullName1.Substring(_maxLenght, fullName1.Length - _maxLenght);
+                    }
+
+                    fullName1 = fullName3;
+                    fullName2 = string.Format("{0} {1}", fullName4, fullName2);
+                }
+            }
+            else
+            {
+                fullName1 = fullName.Substring(0, _maxLenght);
+                fullName2 = fullName.Substring(_maxLenght, fullName.Length - _maxLenght);
+            }
+        }
+
         private void OnDrawLabel_1x2(Graphics g, float left, float top, LabelInfo labelInfo)
         {
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
@@ -346,19 +382,9 @@ namespace MM.Controls
             }
             else
             {
-                int index = labelInfo.FullName.LastIndexOf(" ");
                 string fullName1 = string.Empty;
                 string fullName2 = string.Empty;
-                if (index >= 0)
-                {
-                    fullName1 = labelInfo.FullName.Substring(0, index);
-                    fullName2 = labelInfo.FullName.Substring(index + 1, labelInfo.FullName.Length - index - 1);
-                }
-                else
-                {
-                    fullName1 = labelInfo.FullName.Substring(0, _maxLenght);
-                    fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
-                }
+                ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
                 g.DrawString(fullName1, _font, Brushes.Black, left + deltaLeft, top + 60);
                 g.DrawString(fullName2, _font, Brushes.Black, left + deltaLeft, top + 110);
@@ -381,19 +407,9 @@ namespace MM.Controls
             }
             else
             {
-                int index = labelInfo.FullName.LastIndexOf(" ");
                 string fullName1 = string.Empty;
                 string fullName2 = string.Empty;
-                if (index >= 0)
-                {
-                    fullName1 = labelInfo.FullName.Substring(0, index);
-                    fullName2 = labelInfo.FullName.Substring(index + 1, labelInfo.FullName.Length - index - 1);
-                }
-                else
-                {
-                    fullName1 = labelInfo.FullName.Substring(0, _maxLenght);
-                    fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
-                }
+                ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
                 g.DrawString(fullName1, _font, Brushes.Black, left + deltaLeft, top + 15);
                 g.DrawString(fullName2, _font, Brushes.Black, left + deltaLeft, top + 45);
@@ -414,19 +430,9 @@ namespace MM.Controls
             }
             else
             {
-                int index = labelInfo.FullName.LastIndexOf(" ");
                 string fullName1 = string.Empty;
                 string fullName2 = string.Empty;
-                if (index >= 0)
-                {
-                    fullName1 = labelInfo.FullName.Substring(0, index);
-                    fullName2 = labelInfo.FullName.Substring(index + 1, labelInfo.FullName.Length - index - 1);
-                }
-                else
-                {
-                    fullName1 = labelInfo.FullName.Substring(0, _maxLenght);
-                    fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
-                }
+                ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
                 g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 20);
                 g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 34);
@@ -447,19 +453,9 @@ namespace MM.Controls
             }
             else
             {
-                int index = labelInfo.FullName.LastIndexOf(" ");
                 string fullName1 = string.Empty;
                 string fullName2 = string.Empty;
-                if (index >= 0)
-                {
-                    fullName1 = labelInfo.FullName.Substring(0, index);
-                    fullName2 = labelInfo.FullName.Substring(index + 1, labelInfo.FullName.Length - index - 1);
-                }
-                else
-                {
-                    fullName1 = labelInfo.FullName.Substring(0, _maxLenght);
-                    fullName2 = labelInfo.FullName.Substring(_maxLenght, labelInfo.FullName.Length - _maxLenght);
-                }
+                ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
                 g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 10);
                 g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 24);
@@ -470,10 +466,24 @@ namespace MM.Controls
 
         private void OnDrawLabel_5x11(Graphics g, float left, float top, LabelInfo labelInfo)
         {
-            g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
-            g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 7);
-            g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 17);
-            g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 27);
+            //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            if (labelInfo.FullName.Length <= _maxLenght)
+            {
+                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 7);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 17);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 27);
+            }
+            else
+            {
+                string fullName1 = string.Empty;
+                string fullName2 = string.Empty;
+                ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
+
+                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 3);
+                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 14);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 24);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 34);
+            }
         }
 
         private void OnMoveRight()
