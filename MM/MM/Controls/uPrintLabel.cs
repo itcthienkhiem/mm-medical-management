@@ -373,23 +373,26 @@ namespace MM.Controls
         {
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
             int deltaLeft = 30;
+            int deltaTop = 70;
 
             if (labelInfo.FullName.Length <= _maxLenght)
             {
-                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + deltaLeft, top + 70);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + 130);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + 190);
+                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 60);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 120);
             }
             else
             {
+                deltaTop -= 10;
+
                 string fullName1 = string.Empty;
                 string fullName2 = string.Empty;
                 ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
-                g.DrawString(fullName1, _font, Brushes.Black, left + deltaLeft, top + 60);
-                g.DrawString(fullName2, _font, Brushes.Black, left + deltaLeft, top + 110);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + 160);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + 210);
+                g.DrawString(fullName1, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(fullName2, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 50);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 100);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + +deltaTop + 150);
             }
         }
 
@@ -398,91 +401,106 @@ namespace MM.Controls
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
 
             int deltaLeft = 20;
+            int deltaTop = 30;
 
             if (labelInfo.FullName.Length <= _maxLenght)
             {
-                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + deltaLeft, top + 30);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + 60);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + 90);
+                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 30);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 60);
             }
             else
             {
+                deltaTop -= 15;
+
                 string fullName1 = string.Empty;
                 string fullName2 = string.Empty;
                 ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
-                g.DrawString(fullName1, _font, Brushes.Black, left + deltaLeft, top + 15);
-                g.DrawString(fullName2, _font, Brushes.Black, left + deltaLeft, top + 45);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + 75);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + 105);
+                g.DrawString(fullName1, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(fullName2, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 30);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 60);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 90);
             }
         }
 
         private void OnDrawLabel_5x6(Graphics g, float left, float top, LabelInfo labelInfo)
         {
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            int deltaLeft = 8;
+            int deltaTop = 26;
 
             if (labelInfo.FullName.Length <= _maxLenght)
             {
-                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 26);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 42);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 58);
+                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 16);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 32);
             }
             else
             {
+                deltaTop -= 6;
+
                 string fullName1 = string.Empty;
                 string fullName2 = string.Empty;
                 ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
-                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 20);
-                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 34);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 50);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 66);
+                g.DrawString(fullName1, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(fullName2, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 16);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 32);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 48);
             }
         }
 
         private void OnDrawLabel_5x8(Graphics g, float left, float top, LabelInfo labelInfo)
         {
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            int deltaLeft = 8;
+            int deltaTop = 16;
 
             if (labelInfo.FullName.Length <= _maxLenght)
             {
-                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 16);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 32);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 48);
+                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 16);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 32);
             }
             else
             {
+                deltaTop -= 6;
+
                 string fullName1 = string.Empty;
                 string fullName2 = string.Empty;
                 ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
-                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 10);
-                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 24);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 40);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 56);
+                g.DrawString(fullName1, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(fullName2, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 16);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 32);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 48);
             }
         }
 
         private void OnDrawLabel_5x11(Graphics g, float left, float top, LabelInfo labelInfo)
         {
             //g.DrawRectangle(_pen, left, top, _labelWidthPxl, _labelHeightPxl);
+            int deltaLeft = 8;
+            int deltaTop = 7;
+
             if (labelInfo.FullName.Length <= _maxLenght)
             {
-                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + 8, top + 7);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 17);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 27);
+                g.DrawString(labelInfo.FullName, _font, Brushes.Black, left + deltaLeft, top + deltaTop);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 10);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 20);
             }
             else
             {
+                deltaTop -= 3;
                 string fullName1 = string.Empty;
                 string fullName2 = string.Empty;
                 ProcessFullName(labelInfo.FullName, ref fullName1, ref fullName2);
 
-                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + 3);
-                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + 14);
-                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + 8, top + 24);
-                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + 8, top + 34);
+                g.DrawString(fullName1, _font, Brushes.Black, left + 8, top + deltaTop);
+                g.DrawString(fullName2, _font, Brushes.Black, left + 8, top + deltaTop + 10);
+                g.DrawString(string.Format("{0} {1}", labelInfo.GenderStr, labelInfo.DobStr), _font, Brushes.Black, left + deltaLeft, top + deltaTop + 20);
+                g.DrawString(labelInfo.FileNum, _font, Brushes.Black, left + deltaLeft, top + deltaTop + 30);
             }
         }
 
