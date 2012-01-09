@@ -21,6 +21,7 @@ namespace MM.Dialogs
         private List<DataRow> _deletedServiceRows = null;
         private string _companyMemberGUID = string.Empty;
         private string _contractGUID = string.Empty;
+        private bool _isServiceGroup = false;
         #endregion
 
         #region Constructor
@@ -31,6 +32,14 @@ namespace MM.Dialogs
             _companyMemberGUID = companyMemberGUID;
             _addedServices = addedServices;
             _deletedServiceRows = deletedServiceRows;
+        }
+
+        public dlgServices(List<string> addedServices, List<DataRow> deletedServiceRows)
+        {
+            InitializeComponent();
+            _addedServices = addedServices;
+            _deletedServiceRows = deletedServiceRows;
+            _isServiceGroup = true;
         }
         #endregion
 
@@ -115,7 +124,12 @@ namespace MM.Dialogs
 
         private void OnDisplayServicesList()
         {
-            Result result = ServicesBus.GetServicesListNotInCheckList(_contractGUID, _companyMemberGUID);
+            Result result = null;
+
+            if (!_isServiceGroup)
+                result = ServicesBus.GetServicesListNotInCheckList(_contractGUID, _companyMemberGUID);
+            else
+                result = ServiceGroupBus.GetServiceListNotInGroup();
 
             if (result.IsOK)
             {

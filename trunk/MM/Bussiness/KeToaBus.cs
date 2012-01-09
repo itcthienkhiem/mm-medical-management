@@ -171,7 +171,7 @@ namespace MM.Bussiness
                             toaThuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             toaThuoc.Status = (byte)Status.Deactived;
 
-                            desc += string.Format("- GUID: '{0}', Ma toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
                                 toaThuoc.ToaThuocGUID.ToString(), toaThuoc.MaToaThuoc, toaThuoc.NgayKham.Value.ToString("dd/MM/yyyy HH:mm:ss"),
                                 toaThuoc.NgayTaiKham.Value.ToString("dd/MM/yyyy HH:mm:ss"), toaThuoc.DocStaff.Contact.FullName, 
                                 toaThuoc.Patient.Contact.FullName, toaThuoc.ChanDoan, toaThuoc.Note);
@@ -276,7 +276,7 @@ namespace MM.Bussiness
                         db.ToaThuocs.InsertOnSubmit(toaThuoc);
                         db.SubmitChanges();
 
-                        desc += string.Format("- Toa thuốc: GUID: '{0}', Ma toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
+                        desc += string.Format("- Toa thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
                                 toaThuoc.ToaThuocGUID.ToString(), toaThuoc.MaToaThuoc, toaThuoc.NgayKham.Value.ToString("dd/MM/yyyy HH:mm:ss"),
                                 toaThuoc.NgayTaiKham.Value.ToString("dd/MM/yyyy HH:mm:ss"), toaThuoc.DocStaff.Contact.FullName,
                                 toaThuoc.Patient.Contact.FullName, toaThuoc.ChanDoan, toaThuoc.Note);
@@ -335,7 +335,7 @@ namespace MM.Bussiness
                             tt.Status = toaThuoc.Status;
                             db.SubmitChanges();
 
-                            desc += string.Format("- Toa thuốc: GUID: '{0}', Ma toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
+                            desc += string.Format("- Toa thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
                                 tt.ToaThuocGUID.ToString(), tt.MaToaThuoc, tt.NgayKham.Value.ToString("dd/MM/yyyy HH:mm:ss"), 
                                 tt.NgayTaiKham.Value.ToString("dd/MM/yyyy HH:mm:ss"), tt.DocStaff.Contact.FullName, tt.Patient.Contact.FullName, 
                                 tt.ChanDoan, toaThuoc.Note);

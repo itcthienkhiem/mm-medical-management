@@ -409,6 +409,12 @@
     <Compile Include="Controls\uSearchPatient.Designer.cs">
       <DependentUpon>uSearchPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uServiceGroupList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uServiceGroupList.Designer.cs">
+      <DependentUpon>uServiceGroupList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uServiceHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -516,6 +522,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddPhieuThuThuoc.Designer.cs">
       <DependentUpon>dlgAddPhieuThuThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddServiceGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddServiceGroup.Designer.cs">
+      <DependentUpon>dlgAddServiceGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddServiceHistory.cs">
       <SubType>Form</SubType>
@@ -806,6 +818,9 @@
     <EmbeddedResource Include="Controls\uSearchPatient.resx">
       <DependentUpon>uSearchPatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uServiceGroupList.resx">
+      <DependentUpon>uServiceGroupList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uServiceHistory.resx">
       <DependentUpon>uServiceHistory.cs</DependentUpon>
     </EmbeddedResource>
@@ -859,6 +874,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddPhieuThuThuoc.resx">
       <DependentUpon>dlgAddPhieuThuThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddServiceGroup.resx">
+      <DependentUpon>dlgAddServiceGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddServiceHistory.resx">
       <DependentUpon>dlgAddServiceHistory.cs</DependentUpon>
@@ -995,7 +1013,9 @@
     <None Include="Properties\DataSources\MM.Databasae.ReceiptDetailView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ReceiptView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ServiceGroup.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.Service_ServiceGroupView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDichVuHopDongResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDichVuTuTucResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienChiTietResult.datasource" />

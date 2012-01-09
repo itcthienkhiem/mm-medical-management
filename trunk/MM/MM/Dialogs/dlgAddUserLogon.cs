@@ -408,6 +408,13 @@ namespace MM.Dialogs
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
+                else if (functionCode == Const.ServiceGroup)
+                {
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
             }
         }
 
