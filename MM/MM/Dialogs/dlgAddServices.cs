@@ -24,12 +24,14 @@ namespace MM.Dialogs
         public dlgAddServices()
         {
             InitializeComponent();
+            InitData();
             GenerateCode();
         }
 
         public dlgAddServices(DataRow drService)
         {
             InitializeComponent();
+            InitData();
             _isNew = false;
             this.Text = "Sua dich vu";
             DisplayInfo(drService);
@@ -46,6 +48,11 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void InitData()
+        {
+            cboType.SelectedIndex = 0;
+        }
+
         private void GenerateCode()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -70,6 +77,11 @@ namespace MM.Dialogs
                 txtName.Text = drService["Name"] as string;
                 numPrice.Value = (decimal)Double.Parse(drService["Price"].ToString());
                 txtDescription.Text = drService["Description"] as string;
+
+                if (drService["EnglishName"] != null && drService["EnglishName"] != DBNull.Value)
+                    txtEnglishName.Text = drService["EnglishName"].ToString();
+
+                cboType.SelectedIndex = Convert.ToByte(drService["Type"]);
 
                 _service.ServiceGUID = Guid.Parse(drService["ServiceGUID"].ToString());
 
@@ -160,6 +172,7 @@ namespace MM.Dialogs
             {
                 _service.Code = txtCode.Text;
                 _service.Name = txtName.Text;
+                _service.EnglishName = txtEnglishName.Text;
                 _service.Price = (double)numPrice.Value;
                 _service.Description = txtDescription.Text;
                 _service.Status = (byte)Status.Actived;
@@ -175,13 +188,21 @@ namespace MM.Dialogs
                     _service.UpdatedBy = Guid.Parse(Global.UserGUID);
                 }
 
-                Result result = ServicesBus.InsertService(_service);
-                if (!result.IsOK)
+                MethodInvoker method = delegate
                 {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.InsertService"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.InsertService"));
-                    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                }
+                    _service.Type = (byte)cboType.SelectedIndex;
+
+                    Result result = ServicesBus.InsertService(_service);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.InsertService"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.InsertService"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
             }
             catch (Exception e)
             {

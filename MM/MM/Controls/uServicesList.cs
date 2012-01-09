@@ -99,6 +99,9 @@ namespace MM.Controls
                 newRow["Name"] = dlg.Service.Name;
                 newRow["Price"] = dlg.Service.Price;
                 newRow["Description"] = dlg.Service.Description;
+                newRow["EnglishName"] = dlg.Service.EnglishName;
+                newRow["Type"] = dlg.Service.Type;
+                newRow["TypeStr"] = dlg.Service.Type == (byte)ServiceType.LamSang ? "Lâm sàng" : "Cận lâm sàng";
 
                 if (dlg.Service.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.Service.CreatedDate;
@@ -146,6 +149,9 @@ namespace MM.Controls
                 drService["Name"] = dlg.Service.Name;
                 drService["Price"] = dlg.Service.Price;
                 drService["Description"] = dlg.Service.Description;
+                drService["EnglishName"] = dlg.Service.EnglishName;
+                drService["Type"] = dlg.Service.Type;
+                drService["TypeStr"] = dlg.Service.Type == (byte)ServiceType.LamSang ? "Lâm sàng" : "Cận lâm sàng";
 
                 if (dlg.Service.CreatedDate.HasValue)
                     drService["CreatedDate"] = dlg.Service.CreatedDate;
