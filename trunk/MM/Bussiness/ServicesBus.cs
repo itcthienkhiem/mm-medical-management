@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE Type WHEN 0 THEN N'Lâm sàng' WHEN 1 THEN N'Cận lâm sàng' END AS TypeStr FROM Services WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -113,8 +113,8 @@ namespace MM.Bussiness
                             s.DeletedBy = Guid.Parse(Global.UserGUID);
                             s.Status = (byte)Status.Deactived;
 
-                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Giá: '{3}'\n",
-                                s.ServiceGUID.ToString(), s.Code, s.Name, s.Price);
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}'\n",
+                                s.ServiceGUID.ToString(), s.Code, s.Name, s.EnglishName, s.Price, s.Type == 0 ? "Lâm sàng" : "Cận lâm sàng");
                         }
                     }
 
@@ -217,8 +217,8 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Giá: '{3}'",
-                                service.ServiceGUID.ToString(), service.Code, service.Name, service.Price);
+                        desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}'",
+                                service.ServiceGUID.ToString(), service.Code, service.Name, service.EnglishName, service.Price, service.Type == 0 ? "Lâm sàng" : "Cận lâm sàng");
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -240,6 +240,8 @@ namespace MM.Bussiness
                             double giaCu = srv.Price;
                             srv.Code = service.Code;
                             srv.Name = service.Name;
+                            srv.EnglishName = service.EnglishName;
+                            srv.Type = service.Type;
                             srv.Price = service.Price;
                             srv.Description = service.Description;
                             srv.CreatedDate = service.CreatedDate;
@@ -251,8 +253,8 @@ namespace MM.Bussiness
                             srv.Status = service.Status;
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Giá: cũ: '{3}' - mới: '{4}'",
-                                    srv.ServiceGUID.ToString(), srv.Code, srv.Name, giaCu, srv.Price);
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}'",
+                                srv.ServiceGUID.ToString(), srv.Code, srv.Name, srv.EnglishName, srv.Price, srv.Type == 0 ? "Lâm sàng" : "Cận lâm sàng");
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
