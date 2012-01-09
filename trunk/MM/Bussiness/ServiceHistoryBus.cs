@@ -176,6 +176,11 @@ namespace MM.Bussiness
                             srvHistory.UpdatedBy = serviceHistory.UpdatedBy;
                             srvHistory.UpdatedDate = serviceHistory.UpdatedDate;
                             srvHistory.Status = serviceHistory.Status;
+                            srvHistory.IsNormalOrNegative = serviceHistory.IsNormalOrNegative;
+                            srvHistory.Normal = serviceHistory.Normal;
+                            srvHistory.Abnormal = serviceHistory.Abnormal;
+                            srvHistory.Negative = serviceHistory.Negative;
+                            srvHistory.Positive = serviceHistory.Positive;
 
                             //Tracking
                             desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: cũ: '{4}' - mới: '{5}', Giảm: cũ: '{6}' - mới: '{7}'",
