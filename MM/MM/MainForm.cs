@@ -165,6 +165,8 @@ namespace MM
                 _uDichVuTuTuc.InitData();
             else if (ctrl.GetType() == typeof(uTrackingList))
                 _uTrackingList.InitData();
+            else if (ctrl.GetType() == typeof(uServiceGroupList))
+                _uServiceGroupList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -493,6 +495,16 @@ namespace MM
                         {
                             trackingToolStripMenuItem.Enabled = isView && isLogin;
                         }
+                        else if (functionCode == Const.ServiceGroup)
+                        {
+                            serviceGroupToolStripMenuItem.Enabled = isView && isLogin;
+                            _uServiceGroupList.AllowAdd = isAdd;
+                            _uServiceGroupList.AllowEdit = isEdit;
+                            _uServiceGroupList.AllowDelete = isDelete;
+                            _uServiceGroupList.AllowPrint = isPrint;
+                            _uServiceGroupList.AllowExport = isExport;
+                            _uServiceGroupList.AllowImport = isImport;
+                        }
                     }
                 }
                 else
@@ -514,71 +526,15 @@ namespace MM
                 Global.AllowDeleteChiDinh = true;
                 Global.AllowConfirmChiDinh = true;
 
-                _uDocStaffList.AllowAdd = true;
-                _uDocStaffList.AllowEdit = true;
-                _uDocStaffList.AllowDelete = true;
-                _uDocStaffList.AllowPrint = true;
-                _uDocStaffList.AllowExport = true;
-                _uDocStaffList.AllowImport = true;
-
-                _uPatientList.AllowAdd = true;
-                _uPatientList.AllowEdit = true;
-                _uPatientList.AllowDelete = true;
-                _uPatientList.AllowPrint = true;
-                _uPatientList.AllowExport = true;
-                _uPatientList.AllowImport = true;
-
-                _uSpecialityList.AllowAdd = true;
-                _uSpecialityList.AllowEdit = true;
-                _uSpecialityList.AllowDelete = true;
-                _uSpecialityList.AllowPrint = true;
-                _uSpecialityList.AllowExport = true;
-                _uSpecialityList.AllowImport = true;
-
-                _uCompanyList.AllowAdd = true;
-                _uCompanyList.AllowEdit = true;
-                _uCompanyList.AllowDelete = true;
-                _uCompanyList.AllowPrint = true;
-                _uCompanyList.AllowExport = true;
-                _uCompanyList.AllowImport = true;
-
-                _uServicesList.AllowAdd = true;
-                _uServicesList.AllowEdit = true;
-                _uServicesList.AllowDelete = true;
-                _uServicesList.AllowPrint = true;
-                _uServicesList.AllowExport = true;
-                _uServicesList.AllowImport = true;
-                _uServicesList.AllowShowServicePrice = true;
-
-                _uContractList.AllowAdd = true;
-                _uContractList.AllowEdit = true;
-                _uContractList.AllowDelete = true;
-                _uContractList.AllowPrint = true;
-                _uContractList.AllowExport = true;
-                _uContractList.AllowImport = true;
-
-                _uPatientList.AllowOpenPatient = true;
-
-                _uPermission.AllowAdd = true;
-                _uPermission.AllowEdit = true;
-                _uPermission.AllowDelete = true;
-                _uPermission.AllowPrint = true;
-                _uPermission.AllowExport = true;
-                _uPermission.AllowImport = true;
-
-                _uSymptomList.AllowAdd = true;
-                _uSymptomList.AllowEdit = true;
-                _uSymptomList.AllowDelete = true;
-                _uSymptomList.AllowPrint = true;
-                _uSymptomList.AllowExport = true;
-                _uSymptomList.AllowImport = true;
-
-                _uInvoiceList.AllowAdd = true;
-                _uInvoiceList.AllowEdit = true;
-                _uInvoiceList.AllowDelete = true;
-                _uInvoiceList.AllowPrint = true;
-                _uInvoiceList.AllowExport = true;
-                _uInvoiceList.AllowImport = true;
+                foreach (Control ctrl in this._mainPanel.Controls)
+                {   
+                    (ctrl as uBase).AllowAdd = true;
+                    (ctrl as uBase).AllowEdit = true;
+                    (ctrl as uBase).AllowDelete = true;
+                    (ctrl as uBase).AllowPrint = true;
+                    (ctrl as uBase).AllowExport = true;
+                    (ctrl as uBase).AllowImport = true;
+                }
 
                 servicesToolStripMenuItem.Enabled = isLogin;
                 serviceListToolStripMenuItem.Enabled = isLogin;
@@ -648,6 +604,8 @@ namespace MM
 
                 dichVuTuTucToolStripMenuItem.Enabled = isLogin;
                 trackingToolStripMenuItem.Enabled = isLogin;
+
+                serviceGroupToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -791,7 +749,18 @@ namespace MM
                 case "Tracking":
                     OnTracking();
                     break;
+
+                case "ServiceGroup":
+                    OnServiceGroup();
+                    break;
             }
+        }
+
+        private void OnServiceGroup()
+        {
+            this.Text = string.Format("{0} - Nhom dich vu", Application.ProductName);
+            ViewControl(_uServiceGroupList);
+            _uServiceGroupList.DisplayAsThread();
         }
 
         private void OnTracking()
@@ -1052,6 +1021,8 @@ namespace MM
                 _uLoThuocList.ClearData();
             else if (ctrl.GetType() == typeof(uPhieuThuThuocList))
                 _uPhieuThuThuocList.ClearData();
+            else if (ctrl.GetType() == typeof(uServiceGroupList))
+                _uServiceGroupList.ClearData();
         }
 
         private void OnDoctorList()

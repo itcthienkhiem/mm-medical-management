@@ -55,3 +55,5 @@ spDichVuHopDong
 - Update view: ServiceHistoryView, DichVuChiDinhView, CompanyCheckListView, ChiTietChiDinhView
 - Create view: CanDoView, Service_ServiceGroupView
 - Create table: ServiceGroup, Service_ServiceGroup
+2012-01-09
+- Insert: Function (ServiceGroup)
