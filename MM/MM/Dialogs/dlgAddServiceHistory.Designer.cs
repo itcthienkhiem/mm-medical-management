@@ -49,15 +49,29 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.gbNormal = new System.Windows.Forms.GroupBox();
+            this.gbNegative = new System.Windows.Forms.GroupBox();
+            this.chkNormal = new System.Windows.Forms.CheckBox();
+            this.chkAbnormal = new System.Windows.Forms.CheckBox();
+            this.chkPositive = new System.Windows.Forms.CheckBox();
+            this.chkNegative = new System.Windows.Forms.CheckBox();
+            this.raNormal = new System.Windows.Forms.RadioButton();
+            this.raNegative = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
+            this.gbNormal.SuspendLayout();
+            this.gbNegative.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.raNegative);
+            this.groupBox1.Controls.Add(this.raNormal);
+            this.groupBox1.Controls.Add(this.gbNegative);
+            this.groupBox1.Controls.Add(this.gbNormal);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.numDiscount);
             this.groupBox1.Controls.Add(this.label3);
@@ -74,7 +88,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(378, 248);
+            this.groupBox1.Size = new System.Drawing.Size(380, 363);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
@@ -172,12 +186,12 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(94, 138);
+            this.txtDescription.Location = new System.Drawing.Point(94, 253);
             this.txtDescription.MaxLength = 4000;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(269, 96);
-            this.txtDescription.TabIndex = 9;
+            this.txtDescription.TabIndex = 13;
             // 
             // numPrice
             // 
@@ -205,7 +219,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 141);
+            this.label4.Location = new System.Drawing.Point(11, 256);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
@@ -243,7 +257,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(197, 260);
+            this.btnCancel.Location = new System.Drawing.Point(199, 375);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 11;
@@ -255,12 +269,95 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(118, 260);
+            this.btnOK.Location = new System.Drawing.Point(120, 375);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 10;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // gbNormal
+            // 
+            this.gbNormal.Controls.Add(this.chkAbnormal);
+            this.gbNormal.Controls.Add(this.chkNormal);
+            this.gbNormal.Location = new System.Drawing.Point(94, 141);
+            this.gbNormal.Name = "gbNormal";
+            this.gbNormal.Size = new System.Drawing.Size(269, 47);
+            this.gbNormal.TabIndex = 11;
+            this.gbNormal.TabStop = false;
+            // 
+            // gbNegative
+            // 
+            this.gbNegative.Controls.Add(this.chkPositive);
+            this.gbNegative.Controls.Add(this.chkNegative);
+            this.gbNegative.Enabled = false;
+            this.gbNegative.Location = new System.Drawing.Point(94, 195);
+            this.gbNegative.Name = "gbNegative";
+            this.gbNegative.Size = new System.Drawing.Size(269, 47);
+            this.gbNegative.TabIndex = 12;
+            this.gbNegative.TabStop = false;
+            // 
+            // chkNormal
+            // 
+            this.chkNormal.AutoSize = true;
+            this.chkNormal.Location = new System.Drawing.Point(20, 19);
+            this.chkNormal.Name = "chkNormal";
+            this.chkNormal.Size = new System.Drawing.Size(83, 17);
+            this.chkNormal.TabIndex = 0;
+            this.chkNormal.Text = "Bình thường";
+            this.chkNormal.UseVisualStyleBackColor = true;
+            // 
+            // chkAbnormal
+            // 
+            this.chkAbnormal.AutoSize = true;
+            this.chkAbnormal.Location = new System.Drawing.Point(128, 19);
+            this.chkAbnormal.Name = "chkAbnormal";
+            this.chkAbnormal.Size = new System.Drawing.Size(101, 17);
+            this.chkAbnormal.TabIndex = 1;
+            this.chkAbnormal.Text = "Bất bình thường";
+            this.chkAbnormal.UseVisualStyleBackColor = true;
+            // 
+            // chkPositive
+            // 
+            this.chkPositive.AutoSize = true;
+            this.chkPositive.Location = new System.Drawing.Point(128, 19);
+            this.chkPositive.Name = "chkPositive";
+            this.chkPositive.Size = new System.Drawing.Size(80, 17);
+            this.chkPositive.TabIndex = 3;
+            this.chkPositive.Text = "Dương tính";
+            this.chkPositive.UseVisualStyleBackColor = true;
+            // 
+            // chkNegative
+            // 
+            this.chkNegative.AutoSize = true;
+            this.chkNegative.Location = new System.Drawing.Point(20, 19);
+            this.chkNegative.Name = "chkNegative";
+            this.chkNegative.Size = new System.Drawing.Size(63, 17);
+            this.chkNegative.TabIndex = 2;
+            this.chkNegative.Text = "Âm tính";
+            this.chkNegative.UseVisualStyleBackColor = true;
+            // 
+            // raNormal
+            // 
+            this.raNormal.AutoSize = true;
+            this.raNormal.Checked = true;
+            this.raNormal.Location = new System.Drawing.Point(89, 143);
+            this.raNormal.Name = "raNormal";
+            this.raNormal.Size = new System.Drawing.Size(14, 13);
+            this.raNormal.TabIndex = 9;
+            this.raNormal.TabStop = true;
+            this.raNormal.UseVisualStyleBackColor = true;
+            this.raNormal.CheckedChanged += new System.EventHandler(this.raNormal_CheckedChanged);
+            // 
+            // raNegative
+            // 
+            this.raNegative.AutoSize = true;
+            this.raNegative.Location = new System.Drawing.Point(89, 195);
+            this.raNegative.Name = "raNegative";
+            this.raNegative.Size = new System.Drawing.Size(14, 13);
+            this.raNegative.TabIndex = 10;
+            this.raNegative.UseVisualStyleBackColor = true;
+            this.raNegative.CheckedChanged += new System.EventHandler(this.raNegative_CheckedChanged);
             // 
             // dlgAddServiceHistory
             // 
@@ -268,7 +365,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(391, 291);
+            this.ClientSize = new System.Drawing.Size(395, 406);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -287,6 +384,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
+            this.gbNormal.ResumeLayout(false);
+            this.gbNormal.PerformLayout();
+            this.gbNegative.ResumeLayout(false);
+            this.gbNegative.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -312,5 +413,13 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numDiscount;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RadioButton raNegative;
+        private System.Windows.Forms.RadioButton raNormal;
+        private System.Windows.Forms.GroupBox gbNegative;
+        private System.Windows.Forms.CheckBox chkPositive;
+        private System.Windows.Forms.CheckBox chkNegative;
+        private System.Windows.Forms.GroupBox gbNormal;
+        private System.Windows.Forms.CheckBox chkAbnormal;
+        private System.Windows.Forms.CheckBox chkNormal;
     }
 }

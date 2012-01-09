@@ -50,6 +50,8 @@ spDichVuHopDong
 - Update view: CompanyMemberView, ContractMemberView, PatientView, UserView, TrackingView
 - Insert: Function(Tracking)
 2012-01-08
-- Update table: Services (Add column: EnglishName, Type), CanDo (Add Colum: MuMau, MatTrai, MatPhai, HieuChinh, DocStaffGUID)
+- Update table: Services (Add column: EnglishName, Type), CanDo (Add Colum: MuMau, MatTrai, MatPhai, HieuChinh, DocStaffGUID),
+  ServiceHistory(Add column: IsNormalOrNegatvie, Normal, Abnormal, Negative, Positive)
 - Update view: ServiceHistoryView, DichVuChiDinhView, CompanyCheckListView, ChiTietChiDinhView
 - Create view: CanDoView
+- Create table: 

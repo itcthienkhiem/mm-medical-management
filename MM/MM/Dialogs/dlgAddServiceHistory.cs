@@ -129,6 +129,19 @@ namespace MM.Dialogs
                 txtDescription.Text = drServiceHistory["Note"] as string;
                 _serviceHistory.ServiceHistoryGUID = Guid.Parse(drServiceHistory["ServiceHistoryGUID"].ToString());
 
+                bool isNormalOrNegative = Convert.ToBoolean(drServiceHistory["IsNormalOrNegative"]);
+                bool normal = Convert.ToBoolean(drServiceHistory["Normal"]);
+                bool abnormal = Convert.ToBoolean(drServiceHistory["Abnormal"]);
+                bool negative = Convert.ToBoolean(drServiceHistory["Negative"]);
+                bool positive = Convert.ToBoolean(drServiceHistory["Positive"]);
+
+                raNormal.Checked = isNormalOrNegative;
+                raNegative.Checked = !isNormalOrNegative;
+                chkNormal.Checked = normal;
+                chkAbnormal.Checked = abnormal;
+                chkNegative.Checked = negative;
+                chkPositive.Checked = positive;
+
                 if (drServiceHistory["ActivedDate"] != null && drServiceHistory["ActivedDate"] != DBNull.Value)
                 {
                     _serviceHistory.ActivedDate = Convert.ToDateTime(drServiceHistory["ActivedDate"]);
@@ -206,6 +219,22 @@ namespace MM.Dialogs
                     _serviceHistory.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
                     _serviceHistory.Price = (double)numPrice.Value;
                     _serviceHistory.Discount = (double)numDiscount.Value;
+
+                    _serviceHistory.IsNormalOrNegative = raNormal.Checked;
+                    if (raNormal.Checked)
+                    {
+                        _serviceHistory.Normal = chkNormal.Checked;
+                        _serviceHistory.Abnormal = chkAbnormal.Checked;
+                        _serviceHistory.Negative = false;
+                        _serviceHistory.Positive = false;
+                    }
+                    else
+                    {
+                        _serviceHistory.Normal = false;
+                        _serviceHistory.Abnormal = false;
+                        _serviceHistory.Negative = chkNegative.Checked;
+                        _serviceHistory.Positive = chkPositive.Checked;
+                    }
 
                     Result result = ServiceHistoryBus.InsertServiceHistory(_serviceHistory);
                     if (!result.IsOK)
@@ -285,6 +314,16 @@ namespace MM.Dialogs
             lbUnit.Visible = Global.AllowShowServiePrice;
             numPrice.Visible = Global.AllowShowServiePrice;
         }
+
+        private void raNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            gbNormal.Enabled = raNormal.Checked;
+        }
+
+        private void raNegative_CheckedChanged(object sender, EventArgs e)
+        {
+            gbNegative.Enabled = raNegative.Checked;
+        }
         #endregion
 
         #region Working Thread
@@ -305,9 +344,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
-
-        
     }
 }
