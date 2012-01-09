@@ -106,4 +106,10 @@ namespace MM.Common
         FullTime = 0,
         PartTime
     };
+
+    public enum PaymentType : int
+    {
+        TienMat = 0,
+        ChuyenKhoan
+    };
 }

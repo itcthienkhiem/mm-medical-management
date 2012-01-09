@@ -108,7 +108,6 @@
     <Compile Include="Global.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Member.cs" />
-    <Compile Include="PaymentType.cs" />
     <Compile Include="Pencil.cs" />
     <Compile Include="PrintLabelConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
