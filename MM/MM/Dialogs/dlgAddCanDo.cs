@@ -19,24 +19,26 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private string _patientGUID = string.Empty;
         private CanDo _canDo = new CanDo();
+        private DataRow _drCanDo = null;
         #endregion
 
         #region Constructor
         public dlgAddCanDo(string patientGUID)
         {
             InitializeComponent();
-            InitData();
+            //InitData();
             _patientGUID = patientGUID;
         }
 
         public dlgAddCanDo(string patientGUID, DataRow drCanDo)
         {
             InitializeComponent();
-            InitData();
+            //InitData();
             _isNew = false;
             this.Text = "Sua can do";
             _patientGUID = patientGUID;
-            DisplayInfo(drCanDo);
+            _drCanDo = drCanDo;
+            //DisplayInfo(drCanDo);
         }
         #endregion
 
@@ -51,6 +53,27 @@ namespace MM.Dialogs
         private void InitData()
         {
             dtpkNgayCanDo.Value = DateTime.Now;
+
+            //DocStaff
+            List<byte> staffTypes = new List<byte>();
+            staffTypes.Add((byte)StaffType.DieuDuong);
+            Result result = DocStaffBus.GetDocStaffList(staffTypes);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                return;
+            }
+            else
+            {
+                cboDocStaff.DataSource = result.QueryResult;
+            }
+
+            if (Global.StaffType == StaffType.DieuDuong)
+            {
+                cboDocStaff.SelectedValue = Global.UserGUID;
+                cboDocStaff.Enabled = false;
+            }
         }
 
         private void DisplayInfo(DataRow drCanDo)
@@ -59,6 +82,7 @@ namespace MM.Dialogs
             {
                 _canDo.CanDoGuid = Guid.Parse(drCanDo["CanDoGuid"].ToString());
                 dtpkNgayCanDo.Value = Convert.ToDateTime(drCanDo["NgayCanDo"]);
+                cboDocStaff.SelectedValue = drCanDo["DocStaffGUID"].ToString();
 
                 if (drCanDo["TimMach"] != null && drCanDo["TimMach"] != DBNull.Value)
                     txtTimMach.Text = drCanDo["TimMach"].ToString();
@@ -81,8 +105,20 @@ namespace MM.Dialogs
                 if (drCanDo["BMI"] != null && drCanDo["BMI"] != DBNull.Value)
                     txtBMI.Text = drCanDo["BMI"].ToString();
 
-                if (drCanDo["CanDoKhac"] != null && drCanDo["CanDoKhac"] != DBNull.Value)
-                    txtCanDoKhac.Text = drCanDo["CanDoKhac"].ToString();
+                if (drCanDo["MuMau"] != null && drCanDo["MuMau"] != DBNull.Value)
+                    txtMuMau.Text = drCanDo["MuMau"].ToString();
+
+                if (drCanDo["MatPhai"] != null && drCanDo["MatPhai"] != DBNull.Value)
+                    txtMatPhai.Text = drCanDo["MatPhai"].ToString();
+
+                if (drCanDo["MatTrai"] != null && drCanDo["MatTrai"] != DBNull.Value)
+                    txtMatTrai.Text = drCanDo["MatTrai"].ToString();
+
+                if (drCanDo["HieuChinh"] != null && drCanDo["HieuChinh"] != DBNull.Value)
+                {
+                    bool isHieuChinh = Convert.ToBoolean(drCanDo["HieuChinh"]);
+                    raHieuChinh.Checked = isHieuChinh;
+                }
 
                 if (drCanDo["CreatedDate"] != null && drCanDo["CreatedDate"] != DBNull.Value)
                     _canDo.CreatedDate = Convert.ToDateTime(drCanDo["CreatedDate"]);
@@ -111,6 +147,18 @@ namespace MM.Dialogs
             }
         }
 
+        private bool CheckInfo()
+        {
+            if (cboDocStaff.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng chọn người khám.", IconType.Information);
+                cboDocStaff.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
         private void OnSaveInfo()
         {
             try
@@ -133,11 +181,16 @@ namespace MM.Dialogs
                 _canDo.ChieuCao = txtChieuCao.Text;
                 _canDo.CanNang = txtCanNang.Text;
                 _canDo.BMI = txtBMI.Text;
-                _canDo.CanDoKhac = txtCanDoKhac.Text;
+                _canDo.MuMau = txtMuMau.Text;
+                _canDo.MatPhai = txtMatPhai.Text;
+                _canDo.MatTrai = txtMatTrai.Text;
+                _canDo.HieuChinh = raHieuChinh.Checked;
+                _canDo.CanDoKhac = string.Empty;
 
                 MethodInvoker method = delegate
                 {
-                    _canDo.NgayCanDo = dtpkNgayCanDo.Value;    
+                    _canDo.NgayCanDo = dtpkNgayCanDo.Value;
+                    _canDo.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
 
                     Result result = CanDoBus.InsertCanDo(_canDo);
                     if (!result.IsOK)
@@ -178,11 +231,21 @@ namespace MM.Dialogs
         #endregion
 
         #region Window Event Handlers
+        private void dlgAddCanDo_Load(object sender, EventArgs e)
+        {
+            InitData();
+            if (!_isNew) DisplayInfo(_drCanDo);
+        }
+
+
         private void dlgAddCanDo_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                SaveInfoAsThread();
+                if (CheckInfo())
+                    SaveInfoAsThread();
+                else
+                    e.Cancel = true;
             }
             else
             {
@@ -211,6 +274,7 @@ namespace MM.Dialogs
         }
         #endregion
 
+        
         
     }
 }

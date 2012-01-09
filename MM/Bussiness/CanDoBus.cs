@@ -19,8 +19,19 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM CanDo WHERE Status = {0} AND NgayCanDo BETWEEN '{1}' AND '{2}' AND PatientGUID = '{3}' ORDER BY NgayCanDo DESC",
+                string query = string.Empty;
+
+                if (Global.StaffType != StaffType.DieuDuong)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, 'R(P): ' + MatPhai + '; L(T): ' + MatTrai + '; ' + CASE HieuChinh WHEN 'True' THEN N'Hiệu chỉnh' ELSE N'Không hiệu chỉnh' END AS ThiLuc FROM CanDoView WHERE Status = {0} AND NgayCanDo BETWEEN '{1}' AND '{2}' AND PatientGUID = '{3}' AND Archived = 'False' ORDER BY NgayCanDo DESC",
                             (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), patientGUID);
+                }
+                else
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, 'R(P): ' + MatPhai + '; L(T): ' + MatTrai + '; ' + CASE HieuChinh WHEN 'True' THEN N'Hiệu chỉnh' ELSE N'Không hiệu chỉnh' END AS ThiLuc FROM CanDoView WHERE Status = {0} AND NgayCanDo BETWEEN '{1}' AND '{2}' AND PatientGUID = '{3}' AND Archived = 'False' AND DocStaffGUID = '{4}' ORDER BY NgayCanDo DESC",
+                            (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), patientGUID,
+                            Global.UserGUID);
+                }
 
                 return ExcuteQuery(query);
             }
@@ -59,9 +70,9 @@ namespace MM.Bussiness
                             cd.DeletedBy = Guid.Parse(Global.UserGUID);
                             cd.Status = (byte)Status.Deactived;
 
-                            desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Tim mạch: '{3}', Huyết áp: '{4}', Hô hấp: '{5}', Chiều cao: '{6}', Cân nặng: '{7}', BMI: '{8}', Cân đo khác: '{9}'\n",
-                                cd.CanDoGuid.ToString(), cd.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), cd.Patient.Contact.FullName, cd.TimMach, cd.HuyetAp, 
-                                cd.HoHap, cd.ChieuCao, cd.CanNang, cd.BMI, cd.CanDoKhac);
+                            desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Người khám: '{3}', Tim mạch: '{4}', Huyết áp: '{5}', Hô hấp: '{6}', Chiều cao: '{7}', Cân nặng: '{8}', BMI: '{9}', Mù màu: '{10}', Thị lực: 'R(P): {11}; L(T): {12}; {13}'\n",
+                                cd.CanDoGuid.ToString(), cd.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), cd.Patient.Contact.FullName, cd.DocStaff.Contact.FullName, cd.TimMach,
+                                cd.HuyetAp, cd.HoHap, cd.ChieuCao, cd.CanNang, cd.BMI, cd.MuMau, cd.MatPhai, cd.MatTrai, cd.HieuChinh ? "Hiệu chỉnh" : "Không hiệu chỉnh");
                         }
                     }
 
@@ -123,9 +134,10 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Tim mạch: '{3}', Huyết áp: '{4}', Hô hấp: '{5}', Chiều cao: '{6}', Cân nặng: '{7}', BMI: '{8}', Cân đo khác: '{9}'",
-                                canDo.CanDoGuid.ToString(), canDo.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), canDo.Patient.Contact.FullName, canDo.TimMach,
-                                canDo.HuyetAp, canDo.HoHap, canDo.ChieuCao, canDo.CanNang, canDo.BMI, canDo.CanDoKhac);
+                        desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Người khám: '{3}', Tim mạch: '{4}', Huyết áp: '{5}', Hô hấp: '{6}', Chiều cao: '{7}', Cân nặng: '{8}', BMI: '{9}', Mù màu: '{10}', Thị lực: 'R(P): {11}; L(T): {12}; {13}'",
+                                canDo.CanDoGuid.ToString(), canDo.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), canDo.Patient.Contact.FullName,
+                                canDo.DocStaff.Contact.FullName, canDo.TimMach, canDo.HuyetAp, canDo.HoHap, canDo.ChieuCao, canDo.CanNang, canDo.BMI,
+                                canDo.MuMau, canDo.MatPhai, canDo.MatTrai, canDo.HieuChinh ? "Hiệu chỉnh" : "Không hiệu chỉnh");
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -145,6 +157,7 @@ namespace MM.Bussiness
                         if (cd != null)
                         {
                             cd.PatientGUID = canDo.PatientGUID;
+                            cd.DocStaffGUID = canDo.DocStaffGUID;
                             cd.NgayCanDo = canDo.NgayCanDo;
                             cd.TimMach = canDo.TimMach;
                             cd.HuyetAp = canDo.HuyetAp;
@@ -152,6 +165,10 @@ namespace MM.Bussiness
                             cd.ChieuCao = canDo.ChieuCao;
                             cd.CanNang = canDo.CanNang;
                             cd.BMI = canDo.BMI;
+                            cd.MuMau = canDo.MuMau;
+                            cd.MatPhai = canDo.MatPhai;
+                            cd.MatTrai = canDo.MatTrai;
+                            cd.HieuChinh = canDo.HieuChinh;
                             cd.CanDoKhac = canDo.CanDoKhac;
                             cd.CreatedBy = canDo.CreatedBy;
                             cd.CreatedDate = canDo.CreatedDate;
@@ -162,9 +179,9 @@ namespace MM.Bussiness
                             cd.Status = canDo.Status;
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Tim mạch: '{3}', Huyết áp: '{4}', Hô hấp: '{5}', Chiều cao: '{6}', Cân nặng: '{7}', BMI: '{8}', Cân đo khác: '{9}'",
-                                cd.CanDoGuid.ToString(), cd.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), cd.Patient.Contact.FullName, cd.TimMach, cd.HuyetAp,
-                                cd.HoHap, cd.ChieuCao, cd.CanNang, cd.BMI, cd.CanDoKhac);
+                            desc += string.Format("- GUID: '{0}', Ngày cân đo: '{1}', Bệnh nhân: '{2}', Người khám: '{3}', Tim mạch: '{4}', Huyết áp: '{5}', Hô hấp: '{6}', Chiều cao: '{7}', Cân nặng: '{8}', BMI: '{9}', Mù màu: '{10}', Thị lực: 'R(P): {11}; L(T): {12}; {13}'",
+                                 cd.CanDoGuid.ToString(), cd.NgayCanDo.ToString("dd/MM/yyyy HH:mm:ss"), cd.Patient.Contact.FullName, cd.DocStaff.Contact.FullName, cd.TimMach,
+                                 cd.HuyetAp, cd.HoHap, cd.ChieuCao, cd.CanNang, cd.BMI, cd.MuMau, cd.MatPhai, cd.MatTrai, cd.HieuChinh ? "Hiệu chỉnh" : "Không hiệu chỉnh");
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();

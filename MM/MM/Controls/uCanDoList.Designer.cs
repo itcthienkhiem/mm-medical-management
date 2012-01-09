@@ -49,13 +49,15 @@
             this.canDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayCanDoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timMachDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.huyetApDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hoHapDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chieuCaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.canNangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bMIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.canDoKhacDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MuMau = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ThiLuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -73,7 +75,7 @@
             this.pFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.pFilter.Location = new System.Drawing.Point(0, 0);
             this.pFilter.Name = "pFilter";
-            this.pFilter.Size = new System.Drawing.Size(734, 42);
+            this.pFilter.Size = new System.Drawing.Size(1195, 42);
             this.pFilter.TabIndex = 1;
             // 
             // label1
@@ -132,7 +134,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 367);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(734, 37);
+            this.panel2.Size = new System.Drawing.Size(1195, 37);
             this.panel2.TabIndex = 11;
             // 
             // btnDelete
@@ -178,7 +180,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 42);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(734, 325);
+            this.panel1.Size = new System.Drawing.Size(1195, 325);
             this.panel1.TabIndex = 12;
             // 
             // chkChecked
@@ -209,13 +211,15 @@
             this.dgCanDo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
             this.ngayCanDoDataGridViewTextBoxColumn,
+            this.FullName,
             this.timMachDataGridViewTextBoxColumn,
             this.huyetApDataGridViewTextBoxColumn,
             this.hoHapDataGridViewTextBoxColumn,
             this.chieuCaoDataGridViewTextBoxColumn,
             this.canNangDataGridViewTextBoxColumn,
             this.bMIDataGridViewTextBoxColumn,
-            this.canDoKhacDataGridViewTextBoxColumn});
+            this.MuMau,
+            this.ThiLuc});
             this.dgCanDo.DataSource = this.canDoBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -235,7 +239,7 @@
             this.dgCanDo.ReadOnly = true;
             this.dgCanDo.RowHeadersWidth = 30;
             this.dgCanDo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCanDo.Size = new System.Drawing.Size(734, 325);
+            this.dgCanDo.Size = new System.Drawing.Size(1195, 325);
             this.dgCanDo.TabIndex = 3;
             this.dgCanDo.DoubleClick += new System.EventHandler(this.dgCanDo_DoubleClick);
             // 
@@ -269,6 +273,14 @@
             this.ngayCanDoDataGridViewTextBoxColumn.Name = "ngayCanDoDataGridViewTextBoxColumn";
             this.ngayCanDoDataGridViewTextBoxColumn.ReadOnly = true;
             this.ngayCanDoDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // FullName
+            // 
+            this.FullName.DataPropertyName = "FullName";
+            this.FullName.HeaderText = "Người khám";
+            this.FullName.Name = "FullName";
+            this.FullName.ReadOnly = true;
+            this.FullName.Width = 150;
             // 
             // timMachDataGridViewTextBoxColumn
             // 
@@ -318,13 +330,21 @@
             this.bMIDataGridViewTextBoxColumn.ReadOnly = true;
             this.bMIDataGridViewTextBoxColumn.Width = 120;
             // 
-            // canDoKhacDataGridViewTextBoxColumn
+            // MuMau
             // 
-            this.canDoKhacDataGridViewTextBoxColumn.DataPropertyName = "CanDoKhac";
-            this.canDoKhacDataGridViewTextBoxColumn.HeaderText = "Cân đo khác";
-            this.canDoKhacDataGridViewTextBoxColumn.Name = "canDoKhacDataGridViewTextBoxColumn";
-            this.canDoKhacDataGridViewTextBoxColumn.ReadOnly = true;
-            this.canDoKhacDataGridViewTextBoxColumn.Width = 120;
+            this.MuMau.DataPropertyName = "MuMau";
+            this.MuMau.HeaderText = "Mù màu";
+            this.MuMau.Name = "MuMau";
+            this.MuMau.ReadOnly = true;
+            this.MuMau.Width = 120;
+            // 
+            // ThiLuc
+            // 
+            this.ThiLuc.DataPropertyName = "ThiLuc";
+            this.ThiLuc.HeaderText = "Thị lực";
+            this.ThiLuc.Name = "ThiLuc";
+            this.ThiLuc.ReadOnly = true;
+            this.ThiLuc.Width = 200;
             // 
             // uCanDoList
             // 
@@ -334,7 +354,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pFilter);
             this.Name = "uCanDoList";
-            this.Size = new System.Drawing.Size(734, 404);
+            this.Size = new System.Drawing.Size(1195, 404);
             this.pFilter.ResumeLayout(false);
             this.pFilter.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -364,12 +384,14 @@
         private System.Windows.Forms.BindingSource canDoBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayCanDoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn timMachDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn huyetApDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hoHapDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn chieuCaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn canNangDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bMIDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn canDoKhacDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MuMau;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ThiLuc;
     }
 }
