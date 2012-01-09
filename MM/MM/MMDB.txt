@@ -53,5 +53,5 @@ spDichVuHopDong
 - Update table: Services (Add column: EnglishName, Type), CanDo (Add Colum: MuMau, MatTrai, MatPhai, HieuChinh, DocStaffGUID),
   ServiceHistory(Add column: IsNormalOrNegatvie, Normal, Abnormal, Negative, Positive)
 - Update view: ServiceHistoryView, DichVuChiDinhView, CompanyCheckListView, ChiTietChiDinhView
-- Create view: CanDoView
-- Create table: 
+- Create view: CanDoView, Service_ServiceGroupView
+- Create table: ServiceGroup, Service_ServiceGroup
