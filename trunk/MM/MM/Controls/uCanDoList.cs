@@ -27,7 +27,7 @@ namespace MM.Controls
         public uCanDoList()
         {
             InitializeComponent();
-            dtpkFromDate.Value = DateTime.Now.AddDays(-1);
+            dtpkFromDate.Value = DateTime.Now;
             dtpkToDate.Value = DateTime.Now;
         }
         #endregion
