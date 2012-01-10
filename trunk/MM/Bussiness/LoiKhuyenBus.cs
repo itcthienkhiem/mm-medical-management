@@ -151,6 +151,7 @@ namespace MM.Bussiness
                             lk.Ngay = loiKhuyen.Ngay;
                             lk.PatientGUID = loiKhuyen.PatientGUID;
                             lk.DocStaffGUID = loiKhuyen.DocStaffGUID;
+                            lk.SymptomGUID = loiKhuyen.SymptomGUID;
                             lk.Note = loiKhuyen.Note;
                             lk.CreatedBy = loiKhuyen.CreatedBy;
                             lk.CreatedDate = loiKhuyen.CreatedDate;

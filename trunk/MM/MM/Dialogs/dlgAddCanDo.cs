@@ -250,7 +250,12 @@ namespace MM.Dialogs
             else
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin cân đo ?") == System.Windows.Forms.DialogResult.Yes)
-                    SaveInfoAsThread();
+                {
+                    if (CheckInfo())
+                        SaveInfoAsThread();
+                    else
+                        e.Cancel = true;
+                }
             }
         }
         #endregion
