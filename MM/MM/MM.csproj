@@ -505,6 +505,12 @@
     <Compile Include="Dialogs\dlgAddGiaThuoc.Designer.cs">
       <DependentUpon>dlgAddGiaThuoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddLoiKhuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddLoiKhuyen.Designer.cs">
+      <DependentUpon>dlgAddLoiKhuyen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddLoThuoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -871,6 +877,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddGiaThuoc.resx">
       <DependentUpon>dlgAddGiaThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddLoiKhuyen.resx">
+      <DependentUpon>dlgAddLoiKhuyen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddLoThuoc.resx">
       <DependentUpon>dlgAddLoThuoc.cs</DependentUpon>

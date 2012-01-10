@@ -64,7 +64,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayLoiKhuyen()
+        private void OnDisplayLoiKhuyenList()
         {
             Result result = LoiKhuyenBus.GetLoiKhuyenList(_patientGUID, _fromDate, _toDate);
             if (result.IsOK)
@@ -86,15 +86,14 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-
+            dlgAddLoiKhuyen dlg = new dlgAddLoiKhuyen(_patientGUID);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                DisplayAsThread();
+            }
         }
 
         private void OnEdit()
-        {
-
-        }
-
-        private void OnDelete()
         {
             if (dgLoiKhuyen.SelectedRows == null || dgLoiKhuyen.SelectedRows.Count <= 0)
             {
@@ -103,28 +102,86 @@ namespace MM.Controls
             }
 
             DataRow drLoiKhuyen = (dgLoiKhuyen.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddLoiKhuyen dlg = new dlgAddLoiKhuyen(_patientGUID, drLoiKhuyen);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                DisplayAsThread();
+            }
+        }
+
+        private void OnDelete()
+        {
+            List<string> deletedLoiKhuyenList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgLoiKhuyen.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedLoiKhuyenList.Add(row["LoiKhuyenGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedLoiKhuyenList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những lời khuyên mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = LoiKhuyenBus.DeleteLoiKhuyen(deletedLoiKhuyenList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("LoiKhuyenBus.DeleteLoiKhuyen"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("LoiKhuyenBus.DeleteLoiKhuyen"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những lời khuyên.", IconType.Information);
+
         }
         #endregion
 
         #region Window Event Handlers
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            DisplayAsThread();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
+            OnAdd();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
+            OnEdit();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            OnDelete();
+        }
 
+        private void dgLoiKhuyen_DoubleClick(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgLoiKhuyen.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
         }
         #endregion
 
@@ -147,5 +204,9 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
+
+        
     }
 }
