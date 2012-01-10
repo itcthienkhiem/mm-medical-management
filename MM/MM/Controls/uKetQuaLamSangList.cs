@@ -14,7 +14,7 @@ using MM.Dialogs;
 
 namespace MM.Controls
 {
-    public partial class uLoiKhuyenList : uBase
+    public partial class uKetQuaLamSangList : uBase
     {
         #region Members
         private DataRow _patientRow = null;
@@ -24,7 +24,7 @@ namespace MM.Controls
         #endregion
 
         #region Constructor
-        public uLoiKhuyenList()
+        public uKetQuaLamSangList()
         {
             InitializeComponent();
         }
@@ -50,7 +50,7 @@ namespace MM.Controls
                 _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
 
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayLoiKhuyenListProc));
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayKetQuaLamSangListProc));
                 base.ShowWaiting();
             }
             catch (Exception e)
@@ -64,14 +64,15 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayLoiKhuyenList()
+        private void OnDisplayKetQuaLamSangList()
         {
-            Result result = LoiKhuyenBus.GetLoiKhuyenList(_patientGUID, _fromDate, _toDate);
+            Result result = KetQuaLamSangBus.GetKetQuaLamSangList(_patientGUID, _fromDate, _toDate);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
-                    dgLoiKhuyen.DataSource = result.QueryResult;
+                    dgKhamLamSang.DataSource = result.QueryResult;
+                    UpdateKetQua();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -79,14 +80,32 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("LoiKhuyenBus.GetLoiKhuyenList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("LoiKhuyenBus.GetLoiKhuyenList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaLamSangBus.GetKetQuaLamSangList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaLamSangBus.GetKetQuaLamSangList"));
+            }
+        }
+
+        private void UpdateKetQua()
+        {
+            DataTable dt = dgKhamLamSang.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                bool normal = Convert.ToBoolean(row["Normal"]);
+                bool abnormal = Convert.ToBoolean(row["Abnormal"]);
+
+                string kq = string.Empty;
+                if (normal) kq += "Bình thường, ";
+                if (abnormal) kq += "Bất thường, ";
+
+                if (kq != string.Empty) kq = kq.Substring(0, kq.Length - 2);
+
+                row["KetQua"] = kq;
             }
         }
 
         private void OnAdd()
         {
-            dlgAddLoiKhuyen dlg = new dlgAddLoiKhuyen(_patientGUID);
+            dlgAddKhamLamSang dlg = new dlgAddKhamLamSang(_patientGUID);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
@@ -95,14 +114,14 @@ namespace MM.Controls
 
         private void OnEdit()
         {
-            if (dgLoiKhuyen.SelectedRows == null || dgLoiKhuyen.SelectedRows.Count <= 0)
+            if (dgKhamLamSang.SelectedRows == null || dgKhamLamSang.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 lời khuyên.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 kết quả lâm sàng.", IconType.Information);
                 return;
             }
 
-            DataRow drLoiKhuyen = (dgLoiKhuyen.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddLoiKhuyen dlg = new dlgAddLoiKhuyen(_patientGUID, drLoiKhuyen);
+            DataRow drKetQuaLamSang = (dgKhamLamSang.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddKhamLamSang dlg = new dlgAddKhamLamSang(_patientGUID, drKetQuaLamSang);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
@@ -111,23 +130,23 @@ namespace MM.Controls
 
         private void OnDelete()
         {
-            List<string> deletedLoiKhuyenList = new List<string>();
+            List<string> deletedKQLSList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = dgLoiKhuyen.DataSource as DataTable;
+            DataTable dt = dgKhamLamSang.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedLoiKhuyenList.Add(row["LoiKhuyenGUID"].ToString());
+                    deletedKQLSList.Add(row["KetQuaLamSangGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
 
-            if (deletedLoiKhuyenList.Count > 0)
+            if (deletedKQLSList.Count > 0)
             {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những lời khuyên mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những kết quả lâm sàng mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = LoiKhuyenBus.DeleteLoiKhuyen(deletedLoiKhuyenList);
+                    Result result = KetQuaLamSangBus.DeleteKetQuaLamSang(deletedKQLSList);
                     if (result.IsOK)
                     {
                         foreach (DataRow row in deletedRows)
@@ -137,14 +156,13 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("LoiKhuyenBus.DeleteLoiKhuyen"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("LoiKhuyenBus.DeleteLoiKhuyen"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaLamSangBus.DeleteKetQuaLamSang"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaLamSangBus.DeleteKetQuaLamSang"));
                     }
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những lời khuyên.", IconType.Information);
-
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả lâm sàng.", IconType.Information);
         }
         #endregion
 
@@ -152,6 +170,16 @@ namespace MM.Controls
         private void btnSearch_Click(object sender, EventArgs e)
         {
             DisplayAsThread();
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgKhamLamSang.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -169,29 +197,19 @@ namespace MM.Controls
             OnDelete();
         }
 
-        private void dgLoiKhuyen_DoubleClick(object sender, EventArgs e)
+        private void dgKhamLamSang_DoubleClick(object sender, EventArgs e)
         {
             OnEdit();
-        }
-
-        private void chkChecked_CheckedChanged(object sender, EventArgs e)
-        {
-            DataTable dt = dgLoiKhuyen.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return;
-            foreach (DataRow row in dt.Rows)
-            {
-                row["Checked"] = chkChecked.Checked;
-            }
         }
         #endregion
 
         #region Working Thread
-        private void OnDisplayLoiKhuyenListProc(object state)
+        private void OnDisplayKetQuaLamSangListProc(object state)
         {
             try
             {
                 //Thread.Sleep(500);
-                OnDisplayLoiKhuyenList();
+                OnDisplayKetQuaLamSangList();
             }
             catch (Exception e)
             {

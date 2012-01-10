@@ -49,6 +49,7 @@ namespace MM.Controls
                 _uChiDinhList.PatientRow = (DataRow)value;
                 _uCanDoList.PatientRow = (DataRow)value;
                 _uLoiKhuyenList.PatientRow = (DataRow)value;
+                _uKetQuaLamSangList.PatientRow = (DataRow)value;
             }
         }
         #endregion
@@ -98,9 +99,7 @@ namespace MM.Controls
             else if (tabServiceHistory.SelectedTabIndex == 4)
                 _uCanDoList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 5)
-            {
-
-            }
+                _uKetQuaLamSangList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 6)
                 _uLoiKhuyenList.DisplayAsThread();
         }
@@ -192,9 +191,7 @@ namespace MM.Controls
             else if (tabServiceHistory.SelectedTabIndex == 4)
                 _uCanDoList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 5)
-            {
-
-            }
+                _uKetQuaLamSangList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 6)
                 _uLoiKhuyenList.DisplayAsThread();
         }

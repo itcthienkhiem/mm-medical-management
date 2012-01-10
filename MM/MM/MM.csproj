@@ -337,6 +337,12 @@
     <Compile Include="Controls\uInvoiceList.Designer.cs">
       <DependentUpon>uInvoiceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaLamSangList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaLamSangList.Designer.cs">
+      <DependentUpon>uKetQuaLamSangList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uLoiKhuyenList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -504,6 +510,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddGiaThuoc.Designer.cs">
       <DependentUpon>dlgAddGiaThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKhamLamSang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKhamLamSang.Designer.cs">
+      <DependentUpon>dlgAddKhamLamSang.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddLoiKhuyen.cs">
       <SubType>Form</SubType>
@@ -794,6 +806,9 @@
     <EmbeddedResource Include="Controls\uInvoiceList.resx">
       <DependentUpon>uInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaLamSangList.resx">
+      <DependentUpon>uKetQuaLamSangList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uLoiKhuyenList.resx">
       <DependentUpon>uLoiKhuyenList.cs</DependentUpon>
     </EmbeddedResource>
@@ -877,6 +892,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddGiaThuoc.resx">
       <DependentUpon>dlgAddGiaThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddKhamLamSang.resx">
+      <DependentUpon>dlgAddKhamLamSang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddLoiKhuyen.resx">
       <DependentUpon>dlgAddLoiKhuyen.cs</DependentUpon>
@@ -1023,6 +1041,7 @@
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.KetQuaLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
