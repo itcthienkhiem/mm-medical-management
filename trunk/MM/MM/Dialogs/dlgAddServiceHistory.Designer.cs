@@ -31,6 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceHistory));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.raNegative = new System.Windows.Forms.RadioButton();
+            this.raNormal = new System.Windows.Forms.RadioButton();
+            this.gbNegative = new System.Windows.Forms.GroupBox();
+            this.chkPositive = new System.Windows.Forms.CheckBox();
+            this.chkNegative = new System.Windows.Forms.CheckBox();
+            this.gbNormal = new System.Windows.Forms.GroupBox();
+            this.chkAbnormal = new System.Windows.Forms.CheckBox();
+            this.chkNormal = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.numDiscount = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,21 +57,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.gbNormal = new System.Windows.Forms.GroupBox();
-            this.gbNegative = new System.Windows.Forms.GroupBox();
-            this.chkNormal = new System.Windows.Forms.CheckBox();
-            this.chkAbnormal = new System.Windows.Forms.CheckBox();
-            this.chkPositive = new System.Windows.Forms.CheckBox();
-            this.chkNegative = new System.Windows.Forms.CheckBox();
-            this.raNormal = new System.Windows.Forms.RadioButton();
-            this.raNegative = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
+            this.gbNegative.SuspendLayout();
+            this.gbNormal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
-            this.gbNormal.SuspendLayout();
-            this.gbNegative.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -92,6 +92,89 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // raNegative
+            // 
+            this.raNegative.AutoSize = true;
+            this.raNegative.Location = new System.Drawing.Point(89, 195);
+            this.raNegative.Name = "raNegative";
+            this.raNegative.Size = new System.Drawing.Size(14, 13);
+            this.raNegative.TabIndex = 10;
+            this.raNegative.UseVisualStyleBackColor = true;
+            this.raNegative.CheckedChanged += new System.EventHandler(this.raNegative_CheckedChanged);
+            // 
+            // raNormal
+            // 
+            this.raNormal.AutoSize = true;
+            this.raNormal.Checked = true;
+            this.raNormal.Location = new System.Drawing.Point(89, 143);
+            this.raNormal.Name = "raNormal";
+            this.raNormal.Size = new System.Drawing.Size(14, 13);
+            this.raNormal.TabIndex = 9;
+            this.raNormal.TabStop = true;
+            this.raNormal.UseVisualStyleBackColor = true;
+            this.raNormal.CheckedChanged += new System.EventHandler(this.raNormal_CheckedChanged);
+            // 
+            // gbNegative
+            // 
+            this.gbNegative.Controls.Add(this.chkPositive);
+            this.gbNegative.Controls.Add(this.chkNegative);
+            this.gbNegative.Enabled = false;
+            this.gbNegative.Location = new System.Drawing.Point(94, 195);
+            this.gbNegative.Name = "gbNegative";
+            this.gbNegative.Size = new System.Drawing.Size(269, 47);
+            this.gbNegative.TabIndex = 12;
+            this.gbNegative.TabStop = false;
+            // 
+            // chkPositive
+            // 
+            this.chkPositive.AutoSize = true;
+            this.chkPositive.Location = new System.Drawing.Point(128, 19);
+            this.chkPositive.Name = "chkPositive";
+            this.chkPositive.Size = new System.Drawing.Size(80, 17);
+            this.chkPositive.TabIndex = 3;
+            this.chkPositive.Text = "Dương tính";
+            this.chkPositive.UseVisualStyleBackColor = true;
+            // 
+            // chkNegative
+            // 
+            this.chkNegative.AutoSize = true;
+            this.chkNegative.Location = new System.Drawing.Point(20, 19);
+            this.chkNegative.Name = "chkNegative";
+            this.chkNegative.Size = new System.Drawing.Size(63, 17);
+            this.chkNegative.TabIndex = 2;
+            this.chkNegative.Text = "Âm tính";
+            this.chkNegative.UseVisualStyleBackColor = true;
+            // 
+            // gbNormal
+            // 
+            this.gbNormal.Controls.Add(this.chkAbnormal);
+            this.gbNormal.Controls.Add(this.chkNormal);
+            this.gbNormal.Location = new System.Drawing.Point(94, 141);
+            this.gbNormal.Name = "gbNormal";
+            this.gbNormal.Size = new System.Drawing.Size(269, 47);
+            this.gbNormal.TabIndex = 11;
+            this.gbNormal.TabStop = false;
+            // 
+            // chkAbnormal
+            // 
+            this.chkAbnormal.AutoSize = true;
+            this.chkAbnormal.Location = new System.Drawing.Point(128, 19);
+            this.chkAbnormal.Name = "chkAbnormal";
+            this.chkAbnormal.Size = new System.Drawing.Size(78, 17);
+            this.chkAbnormal.TabIndex = 1;
+            this.chkAbnormal.Text = "Bất thường";
+            this.chkAbnormal.UseVisualStyleBackColor = true;
+            // 
+            // chkNormal
+            // 
+            this.chkNormal.AutoSize = true;
+            this.chkNormal.Location = new System.Drawing.Point(20, 19);
+            this.chkNormal.Name = "chkNormal";
+            this.chkNormal.Size = new System.Drawing.Size(83, 17);
+            this.chkNormal.TabIndex = 0;
+            this.chkNormal.Text = "Bình thường";
+            this.chkNormal.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -276,89 +359,6 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // gbNormal
-            // 
-            this.gbNormal.Controls.Add(this.chkAbnormal);
-            this.gbNormal.Controls.Add(this.chkNormal);
-            this.gbNormal.Location = new System.Drawing.Point(94, 141);
-            this.gbNormal.Name = "gbNormal";
-            this.gbNormal.Size = new System.Drawing.Size(269, 47);
-            this.gbNormal.TabIndex = 11;
-            this.gbNormal.TabStop = false;
-            // 
-            // gbNegative
-            // 
-            this.gbNegative.Controls.Add(this.chkPositive);
-            this.gbNegative.Controls.Add(this.chkNegative);
-            this.gbNegative.Enabled = false;
-            this.gbNegative.Location = new System.Drawing.Point(94, 195);
-            this.gbNegative.Name = "gbNegative";
-            this.gbNegative.Size = new System.Drawing.Size(269, 47);
-            this.gbNegative.TabIndex = 12;
-            this.gbNegative.TabStop = false;
-            // 
-            // chkNormal
-            // 
-            this.chkNormal.AutoSize = true;
-            this.chkNormal.Location = new System.Drawing.Point(20, 19);
-            this.chkNormal.Name = "chkNormal";
-            this.chkNormal.Size = new System.Drawing.Size(83, 17);
-            this.chkNormal.TabIndex = 0;
-            this.chkNormal.Text = "Bình thường";
-            this.chkNormal.UseVisualStyleBackColor = true;
-            // 
-            // chkAbnormal
-            // 
-            this.chkAbnormal.AutoSize = true;
-            this.chkAbnormal.Location = new System.Drawing.Point(128, 19);
-            this.chkAbnormal.Name = "chkAbnormal";
-            this.chkAbnormal.Size = new System.Drawing.Size(101, 17);
-            this.chkAbnormal.TabIndex = 1;
-            this.chkAbnormal.Text = "Bất bình thường";
-            this.chkAbnormal.UseVisualStyleBackColor = true;
-            // 
-            // chkPositive
-            // 
-            this.chkPositive.AutoSize = true;
-            this.chkPositive.Location = new System.Drawing.Point(128, 19);
-            this.chkPositive.Name = "chkPositive";
-            this.chkPositive.Size = new System.Drawing.Size(80, 17);
-            this.chkPositive.TabIndex = 3;
-            this.chkPositive.Text = "Dương tính";
-            this.chkPositive.UseVisualStyleBackColor = true;
-            // 
-            // chkNegative
-            // 
-            this.chkNegative.AutoSize = true;
-            this.chkNegative.Location = new System.Drawing.Point(20, 19);
-            this.chkNegative.Name = "chkNegative";
-            this.chkNegative.Size = new System.Drawing.Size(63, 17);
-            this.chkNegative.TabIndex = 2;
-            this.chkNegative.Text = "Âm tính";
-            this.chkNegative.UseVisualStyleBackColor = true;
-            // 
-            // raNormal
-            // 
-            this.raNormal.AutoSize = true;
-            this.raNormal.Checked = true;
-            this.raNormal.Location = new System.Drawing.Point(89, 143);
-            this.raNormal.Name = "raNormal";
-            this.raNormal.Size = new System.Drawing.Size(14, 13);
-            this.raNormal.TabIndex = 9;
-            this.raNormal.TabStop = true;
-            this.raNormal.UseVisualStyleBackColor = true;
-            this.raNormal.CheckedChanged += new System.EventHandler(this.raNormal_CheckedChanged);
-            // 
-            // raNegative
-            // 
-            this.raNegative.AutoSize = true;
-            this.raNegative.Location = new System.Drawing.Point(89, 195);
-            this.raNegative.Name = "raNegative";
-            this.raNegative.Size = new System.Drawing.Size(14, 13);
-            this.raNegative.TabIndex = 10;
-            this.raNegative.UseVisualStyleBackColor = true;
-            this.raNegative.CheckedChanged += new System.EventHandler(this.raNegative_CheckedChanged);
-            // 
             // dlgAddServiceHistory
             // 
             this.AcceptButton = this.btnOK;
@@ -380,14 +380,14 @@
             this.Load += new System.EventHandler(this.dlgAddServiceHistory_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.gbNegative.ResumeLayout(false);
+            this.gbNegative.PerformLayout();
+            this.gbNormal.ResumeLayout(false);
+            this.gbNormal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
-            this.gbNormal.ResumeLayout(false);
-            this.gbNormal.PerformLayout();
-            this.gbNegative.ResumeLayout(false);
-            this.gbNegative.PerformLayout();
             this.ResumeLayout(false);
 
         }

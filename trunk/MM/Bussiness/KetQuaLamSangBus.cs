@@ -10,9 +10,9 @@ using MM.Databasae;
 
 namespace MM.Bussiness
 {
-    public class LoiKhuyenBus : BusBase
+    public class KetQuaLamSangBus : BusBase
     {
-        public static Result GetLoiKhuyenList(string patientGUID, DateTime fromDate, DateTime toDate)
+        public static Result GetKetQuaLamSangList(string patientGUID, DateTime fromDate, DateTime toDate)
         {
             Result result = null;
 
@@ -20,10 +20,10 @@ namespace MM.Bussiness
             {
                 string query = string.Empty;
                 if (Global.StaffType != StaffType.BacSi)
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM LoiKhuyenView WHERE PatientGUID = '{0}' AND Ngay BETWEEN '{1}' AND '{2}' AND LoiKhuyenStatus = {3} AND SymptomStatus = {3} AND Archived = 'False' ORDER BY Ngay DESC",
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, '' AS KetQua FROM KetQuaLamSangView WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND Status = {3} AND Archived = 'False' ORDER BY NgayKham DESC",
                         patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
                 else
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM LoiKhuyenView WHERE PatientGUID = '{0}' AND Ngay BETWEEN '{1}' AND '{2}' AND LoiKhuyenStatus = {3} AND SymptomStatus = {3} AND Archived = 'False' AND DocStaffGUID = '{4}' ORDER BY Ngay DESC",
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, '' AS KetQua FROM KetQuaLamSangView WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND Status = {3} AND Archived = 'False' AND DocStaffGUID = '{4}' ORDER BY NgayKham DESC",
                         patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
 
                 return ExcuteQuery(query);
@@ -42,7 +42,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteLoiKhuyen(List<String> loiKhuyenKeys)
+        public static Result DeleteKetQuaLamSang(List<String> ketQuaLamSangKeys)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -53,21 +53,25 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     string desc = string.Empty;
-                    foreach (string key in loiKhuyenKeys)
+                    foreach (string key in ketQuaLamSangKeys)
                     {
-                        LoiKhuyen loiKhuyen = db.LoiKhuyens.SingleOrDefault<LoiKhuyen>(l => l.LoiKhuyenGUID.ToString() == key);
-                        if (loiKhuyen != null)
+                        KetQuaLamSang kqls = db.KetQuaLamSangs.SingleOrDefault<KetQuaLamSang>(k => k.KetQuaLamSangGUID.ToString() == key);
+                        if (kqls != null)
                         {
-                            loiKhuyen.DeletedDate = DateTime.Now;
-                            loiKhuyen.DeletedBy = Guid.Parse(Global.UserGUID);
-                            loiKhuyen.Status = (byte)Status.Deactived;
+                            kqls.DeletedDate = DateTime.Now;
+                            kqls.DeletedBy = Guid.Parse(Global.UserGUID);
+                            kqls.Status = (byte)Status.Deactived;
 
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Triệu chứng: '{3}', Lời khuyên: '{4}'\n",
-                                loiKhuyen.LoiKhuyenGUID.ToString(), loiKhuyen.Patient.Contact.FullName, loiKhuyen.DocStaff.Contact.FullName,
-                                loiKhuyen.Symptom.SymptomName, loiKhuyen.Symptom.Advice);
+                            string ketQua = string.Empty;
+                            if (kqls.Normal) ketQua += "Bình thường, ";
+                            if (kqls.Abnormal) ketQua += "Bất thường, ";
+
+                            if (ketQua != string.Empty) ketQua = ketQua.Substring(0, ketQua.Length - 2);
+
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'\n",
+                                kqls.KetQuaLamSangGUID.ToString(), kqls.Patient.Contact.FullName, kqls.DocStaff.Contact.FullName,
+                                Utility.ParseCoQuanEnumToName((CoQuan)kqls.CoQuan), ketQua, kqls.Note);
                         }
-
-
                     }
 
                     //Tracking
@@ -77,7 +81,7 @@ namespace MM.Bussiness
                     tk.TrackingDate = DateTime.Now;
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Delete;
-                    tk.Action = "Xóa thông tin lời khuyên";
+                    tk.Action = "Xóa thông tin khám lâm sàng";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
                     db.Trackings.InsertOnSubmit(tk);
@@ -108,7 +112,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertLoiKhuyen(LoiKhuyen loiKhuyen)
+        public static Result InsertKetQuaLamSang(KetQuaLamSang ketQuaLamSang)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -120,23 +124,29 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     //Insert
-                    if (loiKhuyen.LoiKhuyenGUID == null || loiKhuyen.LoiKhuyenGUID == Guid.Empty)
+                    if (ketQuaLamSang.KetQuaLamSangGUID == null || ketQuaLamSang.KetQuaLamSangGUID == Guid.Empty)
                     {
-                        loiKhuyen.LoiKhuyenGUID = Guid.NewGuid();
-                        db.LoiKhuyens.InsertOnSubmit(loiKhuyen);
+                        ketQuaLamSang.KetQuaLamSangGUID = Guid.NewGuid();
+                        db.KetQuaLamSangs.InsertOnSubmit(ketQuaLamSang);
                         db.SubmitChanges();
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Triệu chứng: '{3}', Lời khuyên: '{4}'",
-                                 loiKhuyen.LoiKhuyenGUID.ToString(), loiKhuyen.Patient.Contact.FullName, loiKhuyen.DocStaff.Contact.FullName,
-                                 loiKhuyen.Symptom.SymptomName, loiKhuyen.Symptom.Advice);
+                        string ketQua = string.Empty;
+                        if (ketQuaLamSang.Normal) ketQua += "Bình thường, ";
+                        if (ketQuaLamSang.Abnormal) ketQua += "Bất thường, ";
+
+                        if (ketQua != string.Empty) ketQua = ketQua.Substring(0, ketQua.Length - 2);
+
+                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'\n",
+                            ketQuaLamSang.KetQuaLamSangGUID.ToString(), ketQuaLamSang.Patient.Contact.FullName, ketQuaLamSang.DocStaff.Contact.FullName,
+                            Utility.ParseCoQuanEnumToName((CoQuan)ketQuaLamSang.CoQuan), ketQua, ketQuaLamSang.Note);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
                         tk.TrackingDate = DateTime.Now;
                         tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                         tk.ActionType = (byte)ActionType.Add;
-                        tk.Action = "Thêm thông tin lời khuyên";
+                        tk.Action = "Thêm thông tin khám lâm sàng";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
                         db.Trackings.InsertOnSubmit(tk);
@@ -145,34 +155,42 @@ namespace MM.Bussiness
                     }
                     else //Update
                     {
-                        LoiKhuyen lk = db.LoiKhuyens.SingleOrDefault<LoiKhuyen>(l => l.LoiKhuyenGUID.ToString() == loiKhuyen.LoiKhuyenGUID.ToString());
-                        if (lk != null)
+                        KetQuaLamSang kqls = db.KetQuaLamSangs.SingleOrDefault<KetQuaLamSang>(k => k.KetQuaLamSangGUID == ketQuaLamSang.KetQuaLamSangGUID);
+                        if (kqls != null)
                         {
-                            lk.Ngay = loiKhuyen.Ngay;
-                            lk.PatientGUID = loiKhuyen.PatientGUID;
-                            lk.DocStaffGUID = loiKhuyen.DocStaffGUID;
-                            lk.SymptomGUID = loiKhuyen.SymptomGUID;
-                            lk.Note = loiKhuyen.Note;
-                            lk.CreatedBy = loiKhuyen.CreatedBy;
-                            lk.CreatedDate = loiKhuyen.CreatedDate;
-                            lk.DeletedBy = loiKhuyen.DeletedBy;
-                            lk.DeletedDate = loiKhuyen.DeletedDate;
-                            lk.UpdatedBy = loiKhuyen.UpdatedBy;
-                            lk.UpdatedDate = loiKhuyen.UpdatedDate;
-                            lk.Status = loiKhuyen.Status;
+                            kqls.NgayKham = ketQuaLamSang.NgayKham;
+                            kqls.PatientGUID = ketQuaLamSang.PatientGUID;
+                            kqls.DocStaffGUID = ketQuaLamSang.DocStaffGUID;
+                            kqls.CoQuan = ketQuaLamSang.CoQuan;
+                            kqls.Normal = ketQuaLamSang.Normal;
+                            kqls.Abnormal = ketQuaLamSang.Abnormal;
+                            kqls.Note = ketQuaLamSang.Note;
+                            kqls.CreatedBy = ketQuaLamSang.CreatedBy;
+                            kqls.CreatedDate = ketQuaLamSang.CreatedDate;
+                            kqls.DeletedBy = ketQuaLamSang.DeletedBy;
+                            kqls.DeletedDate = ketQuaLamSang.DeletedDate;
+                            kqls.UpdatedBy = ketQuaLamSang.UpdatedBy;
+                            kqls.UpdatedDate = ketQuaLamSang.UpdatedDate;
+                            kqls.Status = ketQuaLamSang.Status;
                             db.SubmitChanges();
-                            
+
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Triệu chứng: '{3}', Lời khuyên: '{4}'",
-                                 lk.LoiKhuyenGUID.ToString(), lk.Patient.Contact.FullName, lk.DocStaff.Contact.FullName,
-                                 lk.Symptom.SymptomName, lk.Symptom.Advice);
+                            string ketQua = string.Empty;
+                            if (ketQuaLamSang.Normal) ketQua += "Bình thường, ";
+                            if (ketQuaLamSang.Abnormal) ketQua += "Bất thường, ";
+
+                            if (ketQua != string.Empty) ketQua = ketQua.Substring(0, ketQua.Length - 2);
+
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'\n",
+                                kqls.KetQuaLamSangGUID.ToString(), kqls.Patient.Contact.FullName, kqls.DocStaff.Contact.FullName,
+                                Utility.ParseCoQuanEnumToName((CoQuan)kqls.CoQuan), ketQua, kqls.Note);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
                             tk.TrackingDate = DateTime.Now;
                             tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                             tk.ActionType = (byte)ActionType.Edit;
-                            tk.Action = "Sửa thông tin lời khuyên";
+                            tk.Action = "Sửa thông tin khám lâm sàng";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
                             db.Trackings.InsertOnSubmit(tk);

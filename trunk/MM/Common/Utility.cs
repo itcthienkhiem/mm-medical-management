@@ -698,6 +698,39 @@ namespace MM.Common
             }
             return s;
         }
+
+        public static string ParseCoQuanEnumToName(CoQuan coQuan)
+        {
+            switch (coQuan)
+            {
+                case CoQuan.Mat:
+                    return "Eyes (Mắt)";
+                case CoQuan.TaiMuiHong:
+                    return "Ear, Nose, Throat (Tai, mũi, họng)";
+                case CoQuan.RangHamMat:
+                    return "Odontology (Răng, hàm, mặt)";
+                case CoQuan.HoHap:
+                    return "Respiratory system (Hô hấp)";
+                case CoQuan.TimMach:
+                    return "Cardiovascular system (Tim mạch)";
+                case CoQuan.TieuHoa:
+                    return "Gastro - intestinal system (Tiêu hóa)";
+                case CoQuan.TietNieuSinhDuc:
+                    return "Genitourinary system (Tiết niệu, sinh dục)";
+                case CoQuan.CoXuongKhop:
+                    return "Musculoskeletal system (Cơ, xương, khớp)";
+                case CoQuan.DaLieu:
+                    return "Dermatology (Da liễu)";
+                case CoQuan.ThanKinh:
+                    return "Neurological system (Thần kinh)";
+                case CoQuan.NoiTiet:
+                    return "Endocrine system (Nội tiết)";
+                case CoQuan.Khac:
+                    return "Orthers (Các cơ quan khác)";
+            }
+
+            return string.Empty;
+        }
     }
 }
 
