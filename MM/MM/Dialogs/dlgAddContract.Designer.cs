@@ -91,6 +91,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.btnExportExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).BeginInit();
             this.tabContract.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -112,8 +113,8 @@
             // tabContract
             // 
             this.tabContract.CanReorderTabs = true;
-            this.tabContract.Controls.Add(this.tabControlPanel1);
             this.tabContract.Controls.Add(this.tabControlPanel2);
+            this.tabContract.Controls.Add(this.tabControlPanel1);
             this.tabContract.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabContract.Location = new System.Drawing.Point(0, 0);
             this.tabContract.Name = "tabContract";
@@ -641,6 +642,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnExportExcel);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnPrintPreview);
             this.panel1.Controls.Add(this.btnDeleteMember);
@@ -741,6 +743,18 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(6, 119);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
+            this.btnExportExcel.TabIndex = 16;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
             // dlgAddContract
             // 
             this.AcceptButton = this.btnOK;
@@ -839,6 +853,7 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnPrintPreview;
         private System.Windows.Forms.PrintDialog _printDialog;
+        private System.Windows.Forms.Button btnExportExcel;
 
     }
 }

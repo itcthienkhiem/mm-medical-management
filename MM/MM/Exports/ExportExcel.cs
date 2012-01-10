@@ -1159,7 +1159,7 @@ namespace MM.Exports
                 }
 
                 IRange range = workSheet.Cells[string.Format("A3:G{0}", checkedRows.Count + 2)];
-                range.WrapText = true;
+                range.WrapText = false;
                 range.HorizontalAlignment = HAlign.General;
                 range.VerticalAlignment = VAlign.Top;
                 range.Borders.Color = Color.Black;
@@ -1170,9 +1170,13 @@ namespace MM.Exports
                 range.HorizontalAlignment = HAlign.Center;
                 range.VerticalAlignment = VAlign.Top;
 
+                range = workSheet.Cells[string.Format("C3:C{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+
                 range = workSheet.Cells[string.Format("D3:E{0}", checkedRows.Count + 2)];
                 range.HorizontalAlignment = HAlign.Center;
                 range.VerticalAlignment = VAlign.Top;
+                range.ShrinkToFit = true;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))

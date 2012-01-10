@@ -592,6 +592,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap page_excel_icon {
+            get {
+                object obj = ResourceManager.GetObject("page_excel_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap palet_03_icon {
             get {
                 object obj = ResourceManager.GetObject("palet_03_icon", resourceCulture);
