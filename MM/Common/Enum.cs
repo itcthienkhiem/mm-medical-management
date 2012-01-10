@@ -112,4 +112,20 @@ namespace MM.Common
         TienMat = 0,
         ChuyenKhoan
     };
+
+    public enum CoQuan : int
+    {
+        Mat = 0,
+        TaiMuiHong,
+        RangHamMat,
+        HoHap,
+        TimMach,
+        TieuHoa,
+        TietNieuSinhDuc,
+        CoXuongKhop,
+        DaLieu,
+        ThanKinh,
+        NoiTiet,
+        Khac
+    };
 }

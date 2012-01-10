@@ -337,6 +337,12 @@
     <Compile Include="Controls\uInvoiceList.Designer.cs">
       <DependentUpon>uInvoiceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uLoiKhuyenList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uLoiKhuyenList.Designer.cs">
+      <DependentUpon>uLoiKhuyenList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uLoThuocList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -782,6 +788,9 @@
     <EmbeddedResource Include="Controls\uInvoiceList.resx">
       <DependentUpon>uInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uLoiKhuyenList.resx">
+      <DependentUpon>uLoiKhuyenList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uLoThuocList.resx">
       <DependentUpon>uLoThuocList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1005,6 +1014,7 @@
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />

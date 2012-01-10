@@ -57,3 +57,6 @@ spDichVuHopDong
 - Create table: ServiceGroup, Service_ServiceGroup
 2012-01-09
 - Insert: Function (ServiceGroup)
+2012-01-10
+- Create table: LoiKhuyen, KetQuaLamSang
+- Create view: LoiKhuyenView, KetQuaLamSangView
