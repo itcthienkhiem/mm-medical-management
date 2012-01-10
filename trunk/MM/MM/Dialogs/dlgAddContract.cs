@@ -649,6 +649,29 @@ namespace MM.Dialogs
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần in.", IconType.Information);
         }
+
+        private void OnExportExcel()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgMembers.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    checkedRows.Add(row);
+            }
+
+            if (checkedRows.Count > 0)
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Title = "Export Excel";
+                dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                    ExportExcel.ExportDanhSachBenhNhanToExcel(dlg.FileName, checkedRows);
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần in.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -909,6 +932,11 @@ namespace MM.Dialogs
         {
             OnPrint(false);
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -947,9 +975,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
-
-        
     }
 }
