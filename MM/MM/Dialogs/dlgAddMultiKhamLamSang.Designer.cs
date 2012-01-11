@@ -32,6 +32,40 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddMultiKhamLamSang));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkKhamPhuKhoa = new System.Windows.Forms.CheckBox();
+            this.chkCacCoQuanKhac = new System.Windows.Forms.CheckBox();
+            this.chkNoiTiet = new System.Windows.Forms.CheckBox();
+            this.chkThanKinh = new System.Windows.Forms.CheckBox();
+            this.chkDaLieu = new System.Windows.Forms.CheckBox();
+            this.chkCoXuongKhop = new System.Windows.Forms.CheckBox();
+            this.chkTietNieuSinhDuc = new System.Windows.Forms.CheckBox();
+            this.chkTieuHoa = new System.Windows.Forms.CheckBox();
+            this.chkTimMach = new System.Windows.Forms.CheckBox();
+            this.chkHoHap = new System.Windows.Forms.CheckBox();
+            this.chkMat = new System.Windows.Forms.CheckBox();
+            this.cboDocStaff_KhamPhuKhoa = new System.Windows.Forms.ComboBox();
+            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label32 = new System.Windows.Forms.Label();
+            this.cboDocStaff_CoQuanKhac = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.cboDocStaff_NoiTiet = new System.Windows.Forms.ComboBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.cboDocStaff_ThanKinh = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cboDocStaff_DaLieu = new System.Windows.Forms.ComboBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.cboDocStaff_CoXuongKhop = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.cboDocStaff_TietNieuSinhDuc = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.cboDocStaff_TieuHoa = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.cboDocStaff_TimMach = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.cboDocStaff_HoHap = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.cboDocStaff_Mat = new System.Windows.Forms.ComboBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.chkAbnormal_KhamPhuKhoa = new System.Windows.Forms.CheckBox();
             this.chkNormal_KhamPhuKhoa = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -82,6 +116,12 @@
             this.chkNormal_TietNieuSinhDuc = new System.Windows.Forms.CheckBox();
             this.chkAbnormal_TietNieuSinhDuc = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkRangHamMat = new System.Windows.Forms.CheckBox();
+            this.chkTaiMuiHong = new System.Windows.Forms.CheckBox();
+            this.cboDocStaff_RangHamMat = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.cboDocStaff_TaiMuiHong = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.chkNormal_TaiMuiHong = new System.Windows.Forms.CheckBox();
             this.chkAbnormal_TaiMuiHong = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -90,55 +130,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.chkAbnormal_RangHamMat = new System.Windows.Forms.CheckBox();
             this.chkNormal_RangHamMat = new System.Windows.Forms.CheckBox();
-            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dtpkNgay = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cboDocStaff_TaiMuiHong = new System.Windows.Forms.ComboBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.cboDocStaff_RangHamMat = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.cboDocStaff_Mat = new System.Windows.Forms.ComboBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.cboDocStaff_HoHap = new System.Windows.Forms.ComboBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.cboDocStaff_TimMach = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.cboDocStaff_TieuHoa = new System.Windows.Forms.ComboBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.cboDocStaff_TietNieuSinhDuc = new System.Windows.Forms.ComboBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.cboDocStaff_CoXuongKhop = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.cboDocStaff_DaLieu = new System.Windows.Forms.ComboBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.cboDocStaff_ThanKinh = new System.Windows.Forms.ComboBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.cboDocStaff_NoiTiet = new System.Windows.Forms.ComboBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.cboDocStaff_CoQuanKhac = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.cboDocStaff_KhamPhuKhoa = new System.Windows.Forms.ComboBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.chkTaiMuiHong = new System.Windows.Forms.CheckBox();
-            this.chkRangHamMat = new System.Windows.Forms.CheckBox();
-            this.chkMat = new System.Windows.Forms.CheckBox();
-            this.chkHoHap = new System.Windows.Forms.CheckBox();
-            this.chkTimMach = new System.Windows.Forms.CheckBox();
-            this.chkTieuHoa = new System.Windows.Forms.CheckBox();
-            this.chkTietNieuSinhDuc = new System.Windows.Forms.CheckBox();
-            this.chkCoXuongKhop = new System.Windows.Forms.CheckBox();
-            this.chkDaLieu = new System.Windows.Forms.CheckBox();
-            this.chkThanKinh = new System.Windows.Forms.CheckBox();
-            this.chkNoiTiet = new System.Windows.Forms.CheckBox();
-            this.chkCacCoQuanKhac = new System.Windows.Forms.CheckBox();
-            this.chkKhamPhuKhoa = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -245,6 +245,406 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Khám nội khoa";
+            // 
+            // chkKhamPhuKhoa
+            // 
+            this.chkKhamPhuKhoa.AutoSize = true;
+            this.chkKhamPhuKhoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkKhamPhuKhoa.Location = new System.Drawing.Point(20, 341);
+            this.chkKhamPhuKhoa.Name = "chkKhamPhuKhoa";
+            this.chkKhamPhuKhoa.Size = new System.Drawing.Size(192, 17);
+            this.chkKhamPhuKhoa.TabIndex = 49;
+            this.chkKhamPhuKhoa.Text = "Gynecology (Khám phụ khoa)";
+            this.chkKhamPhuKhoa.UseVisualStyleBackColor = true;
+            this.chkKhamPhuKhoa.CheckedChanged += new System.EventHandler(this.chkKhamPhuKhoa_CheckedChanged);
+            // 
+            // chkCacCoQuanKhac
+            // 
+            this.chkCacCoQuanKhac.AutoSize = true;
+            this.chkCacCoQuanKhac.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCacCoQuanKhac.Location = new System.Drawing.Point(411, 277);
+            this.chkCacCoQuanKhac.Name = "chkCacCoQuanKhac";
+            this.chkCacCoQuanKhac.Size = new System.Drawing.Size(183, 17);
+            this.chkCacCoQuanKhac.TabIndex = 46;
+            this.chkCacCoQuanKhac.Text = "Orthers (Các cơ quan khác)";
+            this.chkCacCoQuanKhac.UseVisualStyleBackColor = true;
+            this.chkCacCoQuanKhac.CheckedChanged += new System.EventHandler(this.chkCacCoQuanKhac_CheckedChanged);
+            // 
+            // chkNoiTiet
+            // 
+            this.chkNoiTiet.AutoSize = true;
+            this.chkNoiTiet.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkNoiTiet.Location = new System.Drawing.Point(20, 277);
+            this.chkNoiTiet.Name = "chkNoiTiet";
+            this.chkNoiTiet.Size = new System.Drawing.Size(178, 17);
+            this.chkNoiTiet.TabIndex = 41;
+            this.chkNoiTiet.Text = "Endocrine system (Nội tiết)";
+            this.chkNoiTiet.UseVisualStyleBackColor = true;
+            this.chkNoiTiet.CheckedChanged += new System.EventHandler(this.chkNoiTiet_CheckedChanged);
+            // 
+            // chkThanKinh
+            // 
+            this.chkThanKinh.AutoSize = true;
+            this.chkThanKinh.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkThanKinh.Location = new System.Drawing.Point(411, 212);
+            this.chkThanKinh.Name = "chkThanKinh";
+            this.chkThanKinh.Size = new System.Drawing.Size(208, 17);
+            this.chkThanKinh.TabIndex = 36;
+            this.chkThanKinh.Text = "Neurological system (Thần kinh)";
+            this.chkThanKinh.UseVisualStyleBackColor = true;
+            this.chkThanKinh.CheckedChanged += new System.EventHandler(this.chkThanKinh_CheckedChanged);
+            // 
+            // chkDaLieu
+            // 
+            this.chkDaLieu.AutoSize = true;
+            this.chkDaLieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkDaLieu.Location = new System.Drawing.Point(20, 212);
+            this.chkDaLieu.Name = "chkDaLieu";
+            this.chkDaLieu.Size = new System.Drawing.Size(148, 17);
+            this.chkDaLieu.TabIndex = 31;
+            this.chkDaLieu.Text = "Dermatology (Da liễu)";
+            this.chkDaLieu.UseVisualStyleBackColor = true;
+            this.chkDaLieu.CheckedChanged += new System.EventHandler(this.chkDaLieu_CheckedChanged);
+            // 
+            // chkCoXuongKhop
+            // 
+            this.chkCoXuongKhop.AutoSize = true;
+            this.chkCoXuongKhop.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCoXuongKhop.Location = new System.Drawing.Point(411, 146);
+            this.chkCoXuongKhop.Name = "chkCoXuongKhop";
+            this.chkCoXuongKhop.Size = new System.Drawing.Size(264, 17);
+            this.chkCoXuongKhop.TabIndex = 26;
+            this.chkCoXuongKhop.Text = "Musculoskeletal system (Cơ, xương, khớp)";
+            this.chkCoXuongKhop.UseVisualStyleBackColor = true;
+            this.chkCoXuongKhop.CheckedChanged += new System.EventHandler(this.chkCoXuongKhop_CheckedChanged);
+            // 
+            // chkTietNieuSinhDuc
+            // 
+            this.chkTietNieuSinhDuc.AutoSize = true;
+            this.chkTietNieuSinhDuc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTietNieuSinhDuc.Location = new System.Drawing.Point(20, 146);
+            this.chkTietNieuSinhDuc.Name = "chkTietNieuSinhDuc";
+            this.chkTietNieuSinhDuc.Size = new System.Drawing.Size(261, 17);
+            this.chkTietNieuSinhDuc.TabIndex = 21;
+            this.chkTietNieuSinhDuc.Text = "Genitourinary system (Tiết niệu, sinh dục)";
+            this.chkTietNieuSinhDuc.UseVisualStyleBackColor = true;
+            this.chkTietNieuSinhDuc.CheckedChanged += new System.EventHandler(this.chkTietNieuSinhDuc_CheckedChanged);
+            // 
+            // chkTieuHoa
+            // 
+            this.chkTieuHoa.AutoSize = true;
+            this.chkTieuHoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTieuHoa.Location = new System.Drawing.Point(411, 81);
+            this.chkTieuHoa.Name = "chkTieuHoa";
+            this.chkTieuHoa.Size = new System.Drawing.Size(230, 17);
+            this.chkTieuHoa.TabIndex = 16;
+            this.chkTieuHoa.Text = "Gastro - intestinal system (Tiêu hóa)";
+            this.chkTieuHoa.UseVisualStyleBackColor = true;
+            this.chkTieuHoa.CheckedChanged += new System.EventHandler(this.chkTieuHoa_CheckedChanged);
+            // 
+            // chkTimMach
+            // 
+            this.chkTimMach.AutoSize = true;
+            this.chkTimMach.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTimMach.Location = new System.Drawing.Point(20, 81);
+            this.chkTimMach.Name = "chkTimMach";
+            this.chkTimMach.Size = new System.Drawing.Size(218, 17);
+            this.chkTimMach.TabIndex = 11;
+            this.chkTimMach.Text = "Cardiovascular system (Tim mạch)";
+            this.chkTimMach.UseVisualStyleBackColor = true;
+            this.chkTimMach.CheckedChanged += new System.EventHandler(this.chkTimMach_CheckedChanged);
+            // 
+            // chkHoHap
+            // 
+            this.chkHoHap.AutoSize = true;
+            this.chkHoHap.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkHoHap.Location = new System.Drawing.Point(411, 16);
+            this.chkHoHap.Name = "chkHoHap";
+            this.chkHoHap.Size = new System.Drawing.Size(185, 17);
+            this.chkHoHap.TabIndex = 6;
+            this.chkHoHap.Text = "Respiratory system (Hô hấp)";
+            this.chkHoHap.UseVisualStyleBackColor = true;
+            this.chkHoHap.CheckedChanged += new System.EventHandler(this.chkHoHap_CheckedChanged);
+            // 
+            // chkMat
+            // 
+            this.chkMat.AutoSize = true;
+            this.chkMat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkMat.Location = new System.Drawing.Point(20, 16);
+            this.chkMat.Name = "chkMat";
+            this.chkMat.Size = new System.Drawing.Size(86, 17);
+            this.chkMat.TabIndex = 1;
+            this.chkMat.Text = "Eyes (Mắt)";
+            this.chkMat.UseVisualStyleBackColor = true;
+            this.chkMat.CheckedChanged += new System.EventHandler(this.chkMat_CheckedChanged);
+            // 
+            // cboDocStaff_KhamPhuKhoa
+            // 
+            this.cboDocStaff_KhamPhuKhoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_KhamPhuKhoa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_KhamPhuKhoa.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_KhamPhuKhoa.DisplayMember = "FullName";
+            this.cboDocStaff_KhamPhuKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_KhamPhuKhoa.Enabled = false;
+            this.cboDocStaff_KhamPhuKhoa.FormattingEnabled = true;
+            this.cboDocStaff_KhamPhuKhoa.Location = new System.Drawing.Point(93, 361);
+            this.cboDocStaff_KhamPhuKhoa.Name = "cboDocStaff_KhamPhuKhoa";
+            this.cboDocStaff_KhamPhuKhoa.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_KhamPhuKhoa.TabIndex = 50;
+            this.cboDocStaff_KhamPhuKhoa.ValueMember = "DocStaffGUID";
+            // 
+            // docStaffViewBindingSource
+            // 
+            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(36, 364);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(42, 13);
+            this.label32.TabIndex = 102;
+            this.label32.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_CoQuanKhac
+            // 
+            this.cboDocStaff_CoQuanKhac.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_CoQuanKhac.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_CoQuanKhac.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_CoQuanKhac.DisplayMember = "FullName";
+            this.cboDocStaff_CoQuanKhac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_CoQuanKhac.Enabled = false;
+            this.cboDocStaff_CoQuanKhac.FormattingEnabled = true;
+            this.cboDocStaff_CoQuanKhac.Location = new System.Drawing.Point(484, 297);
+            this.cboDocStaff_CoQuanKhac.Name = "cboDocStaff_CoQuanKhac";
+            this.cboDocStaff_CoQuanKhac.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_CoQuanKhac.TabIndex = 47;
+            this.cboDocStaff_CoQuanKhac.ValueMember = "DocStaffGUID";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(427, 300);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(42, 13);
+            this.label31.TabIndex = 100;
+            this.label31.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_NoiTiet
+            // 
+            this.cboDocStaff_NoiTiet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_NoiTiet.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_NoiTiet.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_NoiTiet.DisplayMember = "FullName";
+            this.cboDocStaff_NoiTiet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_NoiTiet.Enabled = false;
+            this.cboDocStaff_NoiTiet.FormattingEnabled = true;
+            this.cboDocStaff_NoiTiet.Location = new System.Drawing.Point(93, 297);
+            this.cboDocStaff_NoiTiet.Name = "cboDocStaff_NoiTiet";
+            this.cboDocStaff_NoiTiet.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_NoiTiet.TabIndex = 42;
+            this.cboDocStaff_NoiTiet.ValueMember = "DocStaffGUID";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(36, 300);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(42, 13);
+            this.label30.TabIndex = 98;
+            this.label30.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_ThanKinh
+            // 
+            this.cboDocStaff_ThanKinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_ThanKinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_ThanKinh.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_ThanKinh.DisplayMember = "FullName";
+            this.cboDocStaff_ThanKinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_ThanKinh.Enabled = false;
+            this.cboDocStaff_ThanKinh.FormattingEnabled = true;
+            this.cboDocStaff_ThanKinh.Location = new System.Drawing.Point(484, 232);
+            this.cboDocStaff_ThanKinh.Name = "cboDocStaff_ThanKinh";
+            this.cboDocStaff_ThanKinh.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_ThanKinh.TabIndex = 37;
+            this.cboDocStaff_ThanKinh.ValueMember = "DocStaffGUID";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(427, 235);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(42, 13);
+            this.label29.TabIndex = 96;
+            this.label29.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_DaLieu
+            // 
+            this.cboDocStaff_DaLieu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_DaLieu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_DaLieu.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_DaLieu.DisplayMember = "FullName";
+            this.cboDocStaff_DaLieu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_DaLieu.Enabled = false;
+            this.cboDocStaff_DaLieu.FormattingEnabled = true;
+            this.cboDocStaff_DaLieu.Location = new System.Drawing.Point(93, 232);
+            this.cboDocStaff_DaLieu.Name = "cboDocStaff_DaLieu";
+            this.cboDocStaff_DaLieu.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_DaLieu.TabIndex = 32;
+            this.cboDocStaff_DaLieu.ValueMember = "DocStaffGUID";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(36, 235);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(42, 13);
+            this.label28.TabIndex = 94;
+            this.label28.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_CoXuongKhop
+            // 
+            this.cboDocStaff_CoXuongKhop.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_CoXuongKhop.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_CoXuongKhop.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_CoXuongKhop.DisplayMember = "FullName";
+            this.cboDocStaff_CoXuongKhop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_CoXuongKhop.Enabled = false;
+            this.cboDocStaff_CoXuongKhop.FormattingEnabled = true;
+            this.cboDocStaff_CoXuongKhop.Location = new System.Drawing.Point(484, 166);
+            this.cboDocStaff_CoXuongKhop.Name = "cboDocStaff_CoXuongKhop";
+            this.cboDocStaff_CoXuongKhop.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_CoXuongKhop.TabIndex = 27;
+            this.cboDocStaff_CoXuongKhop.ValueMember = "DocStaffGUID";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(427, 169);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(42, 13);
+            this.label27.TabIndex = 92;
+            this.label27.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_TietNieuSinhDuc
+            // 
+            this.cboDocStaff_TietNieuSinhDuc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_TietNieuSinhDuc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_TietNieuSinhDuc.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_TietNieuSinhDuc.DisplayMember = "FullName";
+            this.cboDocStaff_TietNieuSinhDuc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_TietNieuSinhDuc.Enabled = false;
+            this.cboDocStaff_TietNieuSinhDuc.FormattingEnabled = true;
+            this.cboDocStaff_TietNieuSinhDuc.Location = new System.Drawing.Point(93, 166);
+            this.cboDocStaff_TietNieuSinhDuc.Name = "cboDocStaff_TietNieuSinhDuc";
+            this.cboDocStaff_TietNieuSinhDuc.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_TietNieuSinhDuc.TabIndex = 22;
+            this.cboDocStaff_TietNieuSinhDuc.ValueMember = "DocStaffGUID";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(36, 169);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(42, 13);
+            this.label26.TabIndex = 90;
+            this.label26.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_TieuHoa
+            // 
+            this.cboDocStaff_TieuHoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_TieuHoa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_TieuHoa.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_TieuHoa.DisplayMember = "FullName";
+            this.cboDocStaff_TieuHoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_TieuHoa.Enabled = false;
+            this.cboDocStaff_TieuHoa.FormattingEnabled = true;
+            this.cboDocStaff_TieuHoa.Location = new System.Drawing.Point(484, 100);
+            this.cboDocStaff_TieuHoa.Name = "cboDocStaff_TieuHoa";
+            this.cboDocStaff_TieuHoa.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_TieuHoa.TabIndex = 17;
+            this.cboDocStaff_TieuHoa.ValueMember = "DocStaffGUID";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(427, 103);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(42, 13);
+            this.label25.TabIndex = 88;
+            this.label25.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_TimMach
+            // 
+            this.cboDocStaff_TimMach.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_TimMach.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_TimMach.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_TimMach.DisplayMember = "FullName";
+            this.cboDocStaff_TimMach.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_TimMach.Enabled = false;
+            this.cboDocStaff_TimMach.FormattingEnabled = true;
+            this.cboDocStaff_TimMach.Location = new System.Drawing.Point(93, 100);
+            this.cboDocStaff_TimMach.Name = "cboDocStaff_TimMach";
+            this.cboDocStaff_TimMach.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_TimMach.TabIndex = 12;
+            this.cboDocStaff_TimMach.ValueMember = "DocStaffGUID";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(36, 103);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(42, 13);
+            this.label24.TabIndex = 86;
+            this.label24.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_HoHap
+            // 
+            this.cboDocStaff_HoHap.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_HoHap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_HoHap.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_HoHap.DisplayMember = "FullName";
+            this.cboDocStaff_HoHap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_HoHap.Enabled = false;
+            this.cboDocStaff_HoHap.FormattingEnabled = true;
+            this.cboDocStaff_HoHap.Location = new System.Drawing.Point(484, 35);
+            this.cboDocStaff_HoHap.Name = "cboDocStaff_HoHap";
+            this.cboDocStaff_HoHap.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_HoHap.TabIndex = 7;
+            this.cboDocStaff_HoHap.ValueMember = "DocStaffGUID";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(427, 38);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(42, 13);
+            this.label23.TabIndex = 84;
+            this.label23.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_Mat
+            // 
+            this.cboDocStaff_Mat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_Mat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_Mat.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_Mat.DisplayMember = "FullName";
+            this.cboDocStaff_Mat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_Mat.Enabled = false;
+            this.cboDocStaff_Mat.FormattingEnabled = true;
+            this.cboDocStaff_Mat.Location = new System.Drawing.Point(93, 35);
+            this.cboDocStaff_Mat.Name = "cboDocStaff_Mat";
+            this.cboDocStaff_Mat.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_Mat.TabIndex = 2;
+            this.cboDocStaff_Mat.ValueMember = "DocStaffGUID";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(36, 38);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(42, 13);
+            this.label22.TabIndex = 82;
+            this.label22.Text = "Bác sĩ:";
             // 
             // chkAbnormal_KhamPhuKhoa
             // 
@@ -778,6 +1178,78 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Khám ngoại khoa";
             // 
+            // chkRangHamMat
+            // 
+            this.chkRangHamMat.AutoSize = true;
+            this.chkRangHamMat.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRangHamMat.Location = new System.Drawing.Point(411, 16);
+            this.chkRangHamMat.Name = "chkRangHamMat";
+            this.chkRangHamMat.Size = new System.Drawing.Size(191, 17);
+            this.chkRangHamMat.TabIndex = 6;
+            this.chkRangHamMat.Text = "Odontology (Răng, hàm, mặt)";
+            this.chkRangHamMat.UseVisualStyleBackColor = true;
+            this.chkRangHamMat.CheckedChanged += new System.EventHandler(this.chkRangHamMat_CheckedChanged);
+            // 
+            // chkTaiMuiHong
+            // 
+            this.chkTaiMuiHong.AutoSize = true;
+            this.chkTaiMuiHong.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTaiMuiHong.Location = new System.Drawing.Point(20, 16);
+            this.chkTaiMuiHong.Name = "chkTaiMuiHong";
+            this.chkTaiMuiHong.Size = new System.Drawing.Size(220, 17);
+            this.chkTaiMuiHong.TabIndex = 1;
+            this.chkTaiMuiHong.Text = "Ear, Nose, Throat (Tai, mũi, họng)";
+            this.chkTaiMuiHong.UseVisualStyleBackColor = true;
+            this.chkTaiMuiHong.CheckedChanged += new System.EventHandler(this.chkTaiMuiHong_CheckedChanged);
+            // 
+            // cboDocStaff_RangHamMat
+            // 
+            this.cboDocStaff_RangHamMat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_RangHamMat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_RangHamMat.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_RangHamMat.DisplayMember = "FullName";
+            this.cboDocStaff_RangHamMat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_RangHamMat.Enabled = false;
+            this.cboDocStaff_RangHamMat.FormattingEnabled = true;
+            this.cboDocStaff_RangHamMat.Location = new System.Drawing.Point(484, 36);
+            this.cboDocStaff_RangHamMat.Name = "cboDocStaff_RangHamMat";
+            this.cboDocStaff_RangHamMat.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_RangHamMat.TabIndex = 7;
+            this.cboDocStaff_RangHamMat.ValueMember = "DocStaffGUID";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(427, 39);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(42, 13);
+            this.label21.TabIndex = 38;
+            this.label21.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff_TaiMuiHong
+            // 
+            this.cboDocStaff_TaiMuiHong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_TaiMuiHong.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff_TaiMuiHong.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff_TaiMuiHong.DisplayMember = "FullName";
+            this.cboDocStaff_TaiMuiHong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff_TaiMuiHong.Enabled = false;
+            this.cboDocStaff_TaiMuiHong.FormattingEnabled = true;
+            this.cboDocStaff_TaiMuiHong.Location = new System.Drawing.Point(93, 36);
+            this.cboDocStaff_TaiMuiHong.Name = "cboDocStaff_TaiMuiHong";
+            this.cboDocStaff_TaiMuiHong.Size = new System.Drawing.Size(310, 21);
+            this.cboDocStaff_TaiMuiHong.TabIndex = 2;
+            this.cboDocStaff_TaiMuiHong.ValueMember = "DocStaffGUID";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(36, 39);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(42, 13);
+            this.label20.TabIndex = 36;
+            this.label20.Text = "Bác sĩ:";
+            // 
             // chkNormal_TaiMuiHong
             // 
             this.chkNormal_TaiMuiHong.AutoSize = true;
@@ -864,10 +1336,6 @@
             this.chkNormal_RangHamMat.UseVisualStyleBackColor = true;
             this.chkNormal_RangHamMat.CheckedChanged += new System.EventHandler(this.chkNormal_RangHamMat_CheckedChanged);
             // 
-            // docStaffViewBindingSource
-            // 
-            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
-            // 
             // dtpkNgay
             // 
             this.dtpkNgay.CustomFormat = "dd/MM/yyyy";
@@ -922,461 +1390,6 @@
             this.panel1.Size = new System.Drawing.Size(841, 639);
             this.panel1.TabIndex = 7;
             // 
-            // cboDocStaff_TaiMuiHong
-            // 
-            this.cboDocStaff_TaiMuiHong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_TaiMuiHong.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_TaiMuiHong.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_TaiMuiHong.DisplayMember = "FullName";
-            this.cboDocStaff_TaiMuiHong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_TaiMuiHong.Enabled = false;
-            this.cboDocStaff_TaiMuiHong.FormattingEnabled = true;
-            this.cboDocStaff_TaiMuiHong.Location = new System.Drawing.Point(93, 36);
-            this.cboDocStaff_TaiMuiHong.Name = "cboDocStaff_TaiMuiHong";
-            this.cboDocStaff_TaiMuiHong.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_TaiMuiHong.TabIndex = 2;
-            this.cboDocStaff_TaiMuiHong.ValueMember = "DocStaffGUID";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(36, 39);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(42, 13);
-            this.label20.TabIndex = 36;
-            this.label20.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_RangHamMat
-            // 
-            this.cboDocStaff_RangHamMat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_RangHamMat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_RangHamMat.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_RangHamMat.DisplayMember = "FullName";
-            this.cboDocStaff_RangHamMat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_RangHamMat.Enabled = false;
-            this.cboDocStaff_RangHamMat.FormattingEnabled = true;
-            this.cboDocStaff_RangHamMat.Location = new System.Drawing.Point(484, 36);
-            this.cboDocStaff_RangHamMat.Name = "cboDocStaff_RangHamMat";
-            this.cboDocStaff_RangHamMat.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_RangHamMat.TabIndex = 7;
-            this.cboDocStaff_RangHamMat.ValueMember = "DocStaffGUID";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(427, 39);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(42, 13);
-            this.label21.TabIndex = 38;
-            this.label21.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_Mat
-            // 
-            this.cboDocStaff_Mat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_Mat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_Mat.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_Mat.DisplayMember = "FullName";
-            this.cboDocStaff_Mat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_Mat.Enabled = false;
-            this.cboDocStaff_Mat.FormattingEnabled = true;
-            this.cboDocStaff_Mat.Location = new System.Drawing.Point(93, 35);
-            this.cboDocStaff_Mat.Name = "cboDocStaff_Mat";
-            this.cboDocStaff_Mat.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_Mat.TabIndex = 2;
-            this.cboDocStaff_Mat.ValueMember = "DocStaffGUID";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(36, 38);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(42, 13);
-            this.label22.TabIndex = 82;
-            this.label22.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_HoHap
-            // 
-            this.cboDocStaff_HoHap.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_HoHap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_HoHap.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_HoHap.DisplayMember = "FullName";
-            this.cboDocStaff_HoHap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_HoHap.Enabled = false;
-            this.cboDocStaff_HoHap.FormattingEnabled = true;
-            this.cboDocStaff_HoHap.Location = new System.Drawing.Point(484, 35);
-            this.cboDocStaff_HoHap.Name = "cboDocStaff_HoHap";
-            this.cboDocStaff_HoHap.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_HoHap.TabIndex = 7;
-            this.cboDocStaff_HoHap.ValueMember = "DocStaffGUID";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(427, 38);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(42, 13);
-            this.label23.TabIndex = 84;
-            this.label23.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_TimMach
-            // 
-            this.cboDocStaff_TimMach.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_TimMach.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_TimMach.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_TimMach.DisplayMember = "FullName";
-            this.cboDocStaff_TimMach.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_TimMach.Enabled = false;
-            this.cboDocStaff_TimMach.FormattingEnabled = true;
-            this.cboDocStaff_TimMach.Location = new System.Drawing.Point(93, 100);
-            this.cboDocStaff_TimMach.Name = "cboDocStaff_TimMach";
-            this.cboDocStaff_TimMach.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_TimMach.TabIndex = 12;
-            this.cboDocStaff_TimMach.ValueMember = "DocStaffGUID";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(36, 103);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(42, 13);
-            this.label24.TabIndex = 86;
-            this.label24.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_TieuHoa
-            // 
-            this.cboDocStaff_TieuHoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_TieuHoa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_TieuHoa.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_TieuHoa.DisplayMember = "FullName";
-            this.cboDocStaff_TieuHoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_TieuHoa.Enabled = false;
-            this.cboDocStaff_TieuHoa.FormattingEnabled = true;
-            this.cboDocStaff_TieuHoa.Location = new System.Drawing.Point(484, 100);
-            this.cboDocStaff_TieuHoa.Name = "cboDocStaff_TieuHoa";
-            this.cboDocStaff_TieuHoa.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_TieuHoa.TabIndex = 17;
-            this.cboDocStaff_TieuHoa.ValueMember = "DocStaffGUID";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(427, 103);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(42, 13);
-            this.label25.TabIndex = 88;
-            this.label25.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_TietNieuSinhDuc
-            // 
-            this.cboDocStaff_TietNieuSinhDuc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_TietNieuSinhDuc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_TietNieuSinhDuc.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_TietNieuSinhDuc.DisplayMember = "FullName";
-            this.cboDocStaff_TietNieuSinhDuc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_TietNieuSinhDuc.Enabled = false;
-            this.cboDocStaff_TietNieuSinhDuc.FormattingEnabled = true;
-            this.cboDocStaff_TietNieuSinhDuc.Location = new System.Drawing.Point(93, 166);
-            this.cboDocStaff_TietNieuSinhDuc.Name = "cboDocStaff_TietNieuSinhDuc";
-            this.cboDocStaff_TietNieuSinhDuc.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_TietNieuSinhDuc.TabIndex = 22;
-            this.cboDocStaff_TietNieuSinhDuc.ValueMember = "DocStaffGUID";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(36, 169);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(42, 13);
-            this.label26.TabIndex = 90;
-            this.label26.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_CoXuongKhop
-            // 
-            this.cboDocStaff_CoXuongKhop.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_CoXuongKhop.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_CoXuongKhop.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_CoXuongKhop.DisplayMember = "FullName";
-            this.cboDocStaff_CoXuongKhop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_CoXuongKhop.Enabled = false;
-            this.cboDocStaff_CoXuongKhop.FormattingEnabled = true;
-            this.cboDocStaff_CoXuongKhop.Location = new System.Drawing.Point(484, 166);
-            this.cboDocStaff_CoXuongKhop.Name = "cboDocStaff_CoXuongKhop";
-            this.cboDocStaff_CoXuongKhop.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_CoXuongKhop.TabIndex = 27;
-            this.cboDocStaff_CoXuongKhop.ValueMember = "DocStaffGUID";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(427, 169);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(42, 13);
-            this.label27.TabIndex = 92;
-            this.label27.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_DaLieu
-            // 
-            this.cboDocStaff_DaLieu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_DaLieu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_DaLieu.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_DaLieu.DisplayMember = "FullName";
-            this.cboDocStaff_DaLieu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_DaLieu.Enabled = false;
-            this.cboDocStaff_DaLieu.FormattingEnabled = true;
-            this.cboDocStaff_DaLieu.Location = new System.Drawing.Point(93, 232);
-            this.cboDocStaff_DaLieu.Name = "cboDocStaff_DaLieu";
-            this.cboDocStaff_DaLieu.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_DaLieu.TabIndex = 32;
-            this.cboDocStaff_DaLieu.ValueMember = "DocStaffGUID";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(36, 235);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(42, 13);
-            this.label28.TabIndex = 94;
-            this.label28.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_ThanKinh
-            // 
-            this.cboDocStaff_ThanKinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_ThanKinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_ThanKinh.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_ThanKinh.DisplayMember = "FullName";
-            this.cboDocStaff_ThanKinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_ThanKinh.Enabled = false;
-            this.cboDocStaff_ThanKinh.FormattingEnabled = true;
-            this.cboDocStaff_ThanKinh.Location = new System.Drawing.Point(484, 232);
-            this.cboDocStaff_ThanKinh.Name = "cboDocStaff_ThanKinh";
-            this.cboDocStaff_ThanKinh.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_ThanKinh.TabIndex = 37;
-            this.cboDocStaff_ThanKinh.ValueMember = "DocStaffGUID";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(427, 235);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(42, 13);
-            this.label29.TabIndex = 96;
-            this.label29.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_NoiTiet
-            // 
-            this.cboDocStaff_NoiTiet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_NoiTiet.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_NoiTiet.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_NoiTiet.DisplayMember = "FullName";
-            this.cboDocStaff_NoiTiet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_NoiTiet.Enabled = false;
-            this.cboDocStaff_NoiTiet.FormattingEnabled = true;
-            this.cboDocStaff_NoiTiet.Location = new System.Drawing.Point(93, 297);
-            this.cboDocStaff_NoiTiet.Name = "cboDocStaff_NoiTiet";
-            this.cboDocStaff_NoiTiet.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_NoiTiet.TabIndex = 42;
-            this.cboDocStaff_NoiTiet.ValueMember = "DocStaffGUID";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(36, 300);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(42, 13);
-            this.label30.TabIndex = 98;
-            this.label30.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_CoQuanKhac
-            // 
-            this.cboDocStaff_CoQuanKhac.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_CoQuanKhac.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_CoQuanKhac.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_CoQuanKhac.DisplayMember = "FullName";
-            this.cboDocStaff_CoQuanKhac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_CoQuanKhac.Enabled = false;
-            this.cboDocStaff_CoQuanKhac.FormattingEnabled = true;
-            this.cboDocStaff_CoQuanKhac.Location = new System.Drawing.Point(484, 297);
-            this.cboDocStaff_CoQuanKhac.Name = "cboDocStaff_CoQuanKhac";
-            this.cboDocStaff_CoQuanKhac.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_CoQuanKhac.TabIndex = 47;
-            this.cboDocStaff_CoQuanKhac.ValueMember = "DocStaffGUID";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(427, 300);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(42, 13);
-            this.label31.TabIndex = 100;
-            this.label31.Text = "Bác sĩ:";
-            // 
-            // cboDocStaff_KhamPhuKhoa
-            // 
-            this.cboDocStaff_KhamPhuKhoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff_KhamPhuKhoa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff_KhamPhuKhoa.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff_KhamPhuKhoa.DisplayMember = "FullName";
-            this.cboDocStaff_KhamPhuKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff_KhamPhuKhoa.Enabled = false;
-            this.cboDocStaff_KhamPhuKhoa.FormattingEnabled = true;
-            this.cboDocStaff_KhamPhuKhoa.Location = new System.Drawing.Point(93, 361);
-            this.cboDocStaff_KhamPhuKhoa.Name = "cboDocStaff_KhamPhuKhoa";
-            this.cboDocStaff_KhamPhuKhoa.Size = new System.Drawing.Size(310, 21);
-            this.cboDocStaff_KhamPhuKhoa.TabIndex = 50;
-            this.cboDocStaff_KhamPhuKhoa.ValueMember = "DocStaffGUID";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(36, 364);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(42, 13);
-            this.label32.TabIndex = 102;
-            this.label32.Text = "Bác sĩ:";
-            // 
-            // chkTaiMuiHong
-            // 
-            this.chkTaiMuiHong.AutoSize = true;
-            this.chkTaiMuiHong.Location = new System.Drawing.Point(20, 16);
-            this.chkTaiMuiHong.Name = "chkTaiMuiHong";
-            this.chkTaiMuiHong.Size = new System.Drawing.Size(186, 17);
-            this.chkTaiMuiHong.TabIndex = 1;
-            this.chkTaiMuiHong.Text = "Ear, Nose, Throat (Tai, mũi, họng)";
-            this.chkTaiMuiHong.UseVisualStyleBackColor = true;
-            this.chkTaiMuiHong.CheckedChanged += new System.EventHandler(this.chkTaiMuiHong_CheckedChanged);
-            // 
-            // chkRangHamMat
-            // 
-            this.chkRangHamMat.AutoSize = true;
-            this.chkRangHamMat.Location = new System.Drawing.Point(411, 16);
-            this.chkRangHamMat.Name = "chkRangHamMat";
-            this.chkRangHamMat.Size = new System.Drawing.Size(164, 17);
-            this.chkRangHamMat.TabIndex = 6;
-            this.chkRangHamMat.Text = "Odontology (Răng, hàm, mặt)";
-            this.chkRangHamMat.UseVisualStyleBackColor = true;
-            this.chkRangHamMat.CheckedChanged += new System.EventHandler(this.chkRangHamMat_CheckedChanged);
-            // 
-            // chkMat
-            // 
-            this.chkMat.AutoSize = true;
-            this.chkMat.Location = new System.Drawing.Point(20, 16);
-            this.chkMat.Name = "chkMat";
-            this.chkMat.Size = new System.Drawing.Size(76, 17);
-            this.chkMat.TabIndex = 1;
-            this.chkMat.Text = "Eyes (Mắt)";
-            this.chkMat.UseVisualStyleBackColor = true;
-            this.chkMat.CheckedChanged += new System.EventHandler(this.chkMat_CheckedChanged);
-            // 
-            // chkHoHap
-            // 
-            this.chkHoHap.AutoSize = true;
-            this.chkHoHap.Location = new System.Drawing.Point(411, 16);
-            this.chkHoHap.Name = "chkHoHap";
-            this.chkHoHap.Size = new System.Drawing.Size(158, 17);
-            this.chkHoHap.TabIndex = 6;
-            this.chkHoHap.Text = "Respiratory system (Hô hấp)";
-            this.chkHoHap.UseVisualStyleBackColor = true;
-            this.chkHoHap.CheckedChanged += new System.EventHandler(this.chkHoHap_CheckedChanged);
-            // 
-            // chkTimMach
-            // 
-            this.chkTimMach.AutoSize = true;
-            this.chkTimMach.Location = new System.Drawing.Point(20, 81);
-            this.chkTimMach.Name = "chkTimMach";
-            this.chkTimMach.Size = new System.Drawing.Size(186, 17);
-            this.chkTimMach.TabIndex = 11;
-            this.chkTimMach.Text = "Cardiovascular system (Tim mạch)";
-            this.chkTimMach.UseVisualStyleBackColor = true;
-            this.chkTimMach.CheckedChanged += new System.EventHandler(this.chkTimMach_CheckedChanged);
-            // 
-            // chkTieuHoa
-            // 
-            this.chkTieuHoa.AutoSize = true;
-            this.chkTieuHoa.Location = new System.Drawing.Point(411, 81);
-            this.chkTieuHoa.Name = "chkTieuHoa";
-            this.chkTieuHoa.Size = new System.Drawing.Size(193, 17);
-            this.chkTieuHoa.TabIndex = 16;
-            this.chkTieuHoa.Text = "Gastro - intestinal system (Tiêu hóa)";
-            this.chkTieuHoa.UseVisualStyleBackColor = true;
-            this.chkTieuHoa.CheckedChanged += new System.EventHandler(this.chkTieuHoa_CheckedChanged);
-            // 
-            // chkTietNieuSinhDuc
-            // 
-            this.chkTietNieuSinhDuc.AutoSize = true;
-            this.chkTietNieuSinhDuc.Location = new System.Drawing.Point(20, 146);
-            this.chkTietNieuSinhDuc.Name = "chkTietNieuSinhDuc";
-            this.chkTietNieuSinhDuc.Size = new System.Drawing.Size(219, 17);
-            this.chkTietNieuSinhDuc.TabIndex = 21;
-            this.chkTietNieuSinhDuc.Text = "Genitourinary system (Tiết niệu, sinh dục)";
-            this.chkTietNieuSinhDuc.UseVisualStyleBackColor = true;
-            this.chkTietNieuSinhDuc.CheckedChanged += new System.EventHandler(this.chkTietNieuSinhDuc_CheckedChanged);
-            // 
-            // chkCoXuongKhop
-            // 
-            this.chkCoXuongKhop.AutoSize = true;
-            this.chkCoXuongKhop.Location = new System.Drawing.Point(411, 146);
-            this.chkCoXuongKhop.Name = "chkCoXuongKhop";
-            this.chkCoXuongKhop.Size = new System.Drawing.Size(224, 17);
-            this.chkCoXuongKhop.TabIndex = 26;
-            this.chkCoXuongKhop.Text = "Musculoskeletal system (Cơ, xương, khớp)";
-            this.chkCoXuongKhop.UseVisualStyleBackColor = true;
-            this.chkCoXuongKhop.CheckedChanged += new System.EventHandler(this.chkCoXuongKhop_CheckedChanged);
-            // 
-            // chkDaLieu
-            // 
-            this.chkDaLieu.AutoSize = true;
-            this.chkDaLieu.Location = new System.Drawing.Point(20, 212);
-            this.chkDaLieu.Name = "chkDaLieu";
-            this.chkDaLieu.Size = new System.Drawing.Size(127, 17);
-            this.chkDaLieu.TabIndex = 31;
-            this.chkDaLieu.Text = "Dermatology (Da liễu)";
-            this.chkDaLieu.UseVisualStyleBackColor = true;
-            this.chkDaLieu.CheckedChanged += new System.EventHandler(this.chkDaLieu_CheckedChanged);
-            // 
-            // chkThanKinh
-            // 
-            this.chkThanKinh.AutoSize = true;
-            this.chkThanKinh.Location = new System.Drawing.Point(411, 212);
-            this.chkThanKinh.Name = "chkThanKinh";
-            this.chkThanKinh.Size = new System.Drawing.Size(177, 17);
-            this.chkThanKinh.TabIndex = 36;
-            this.chkThanKinh.Text = "Neurological system (Thần kinh)";
-            this.chkThanKinh.UseVisualStyleBackColor = true;
-            this.chkThanKinh.CheckedChanged += new System.EventHandler(this.chkThanKinh_CheckedChanged);
-            // 
-            // chkNoiTiet
-            // 
-            this.chkNoiTiet.AutoSize = true;
-            this.chkNoiTiet.Location = new System.Drawing.Point(20, 277);
-            this.chkNoiTiet.Name = "chkNoiTiet";
-            this.chkNoiTiet.Size = new System.Drawing.Size(151, 17);
-            this.chkNoiTiet.TabIndex = 41;
-            this.chkNoiTiet.Text = "Endocrine system (Nội tiết)";
-            this.chkNoiTiet.UseVisualStyleBackColor = true;
-            this.chkNoiTiet.CheckedChanged += new System.EventHandler(this.chkNoiTiet_CheckedChanged);
-            // 
-            // chkCacCoQuanKhac
-            // 
-            this.chkCacCoQuanKhac.AutoSize = true;
-            this.chkCacCoQuanKhac.Location = new System.Drawing.Point(411, 277);
-            this.chkCacCoQuanKhac.Name = "chkCacCoQuanKhac";
-            this.chkCacCoQuanKhac.Size = new System.Drawing.Size(157, 17);
-            this.chkCacCoQuanKhac.TabIndex = 46;
-            this.chkCacCoQuanKhac.Text = "Orthers (Các cơ quan khác)";
-            this.chkCacCoQuanKhac.UseVisualStyleBackColor = true;
-            this.chkCacCoQuanKhac.CheckedChanged += new System.EventHandler(this.chkCacCoQuanKhac_CheckedChanged);
-            // 
-            // chkKhamPhuKhoa
-            // 
-            this.chkKhamPhuKhoa.AutoSize = true;
-            this.chkKhamPhuKhoa.Location = new System.Drawing.Point(20, 341);
-            this.chkKhamPhuKhoa.Name = "chkKhamPhuKhoa";
-            this.chkKhamPhuKhoa.Size = new System.Drawing.Size(166, 17);
-            this.chkKhamPhuKhoa.TabIndex = 49;
-            this.chkKhamPhuKhoa.Text = "Gynecology (Khám phụ khoa)";
-            this.chkKhamPhuKhoa.UseVisualStyleBackColor = true;
-            this.chkKhamPhuKhoa.CheckedChanged += new System.EventHandler(this.chkKhamPhuKhoa_CheckedChanged);
-            // 
             // dlgAddMultiKhamLamSang
             // 
             this.AcceptButton = this.btnOK;
@@ -1400,9 +1413,9 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
