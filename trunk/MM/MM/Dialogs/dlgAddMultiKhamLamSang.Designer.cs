@@ -684,6 +684,7 @@
             // txtSoiTuoiHuyetTrang
             // 
             this.txtSoiTuoiHuyetTrang.Location = new System.Drawing.Point(476, 407);
+            this.txtSoiTuoiHuyetTrang.MaxLength = 100;
             this.txtSoiTuoiHuyetTrang.Name = "txtSoiTuoiHuyetTrang";
             this.txtSoiTuoiHuyetTrang.ReadOnly = true;
             this.txtSoiTuoiHuyetTrang.Size = new System.Drawing.Size(220, 20);
@@ -737,6 +738,7 @@
             // txtPARA
             // 
             this.txtPARA.Location = new System.Drawing.Point(93, 385);
+            this.txtPARA.MaxLength = 50;
             this.txtPARA.Name = "txtPARA";
             this.txtPARA.ReadOnly = true;
             this.txtPARA.Size = new System.Drawing.Size(107, 20);
