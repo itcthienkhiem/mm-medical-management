@@ -1139,6 +1139,7 @@
     <None Include="Resources\Stethoscope-icon2.png" />
     <None Include="Resources\Notepad-Bloc-notes-icon.png" />
     <None Include="Resources\page-excel-icon.png" />
+    <None Include="Resources\Stethoscope-icon3.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-11_2012-01-15.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-06_2012-01-10.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-03_2012-01-05.sql" />

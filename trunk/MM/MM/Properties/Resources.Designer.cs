@@ -732,6 +732,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Stethoscope_icon3 {
+            get {
+                object obj = ResourceManager.GetObject("Stethoscope_icon3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap users_2 {
             get {
                 object obj = ResourceManager.GetObject("users_2", resourceCulture);
