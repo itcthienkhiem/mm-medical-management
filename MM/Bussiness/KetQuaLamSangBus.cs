@@ -255,5 +255,81 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result InsertKetQuaLamSang(List<KetQuaLamSang> ketQuaLamSangList)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    //Insert
+                    foreach (var ketQuaLamSang in ketQuaLamSangList)
+                    {
+                        ketQuaLamSang.KetQuaLamSangGUID = Guid.NewGuid();
+                        db.KetQuaLamSangs.InsertOnSubmit(ketQuaLamSang);
+                        db.SubmitChanges();
+
+                        //Tracking
+                        string ketQua = string.Empty;
+                        if (ketQuaLamSang.Normal) ketQua += "Bình thường, ";
+                        if (ketQuaLamSang.Abnormal) ketQua += "Bất thường, ";
+
+                        if (ketQua != string.Empty) ketQua = ketQua.Substring(0, ketQua.Length - 2);
+
+                        if (ketQuaLamSang.CoQuan != (byte)CoQuan.KhamPhuKhoa)
+                        {
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'\n",
+                            ketQuaLamSang.KetQuaLamSangGUID.ToString(), ketQuaLamSang.Patient.Contact.FullName, ketQuaLamSang.DocStaff.Contact.FullName,
+                            Utility.ParseCoQuanEnumToName((CoQuan)ketQuaLamSang.CoQuan), ketQua, ketQuaLamSang.Note);
+                        }
+                        else
+                        {
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', PARA: '{4}', Ngày kinh chót: '{5}', Kết quả khám phụ khoa: '{6}', Soi tươi huyết trắng: '{7}', Kết quả Pap: '{8}'\n",
+                            ketQuaLamSang.KetQuaLamSangGUID.ToString(), ketQuaLamSang.Patient.Contact.FullName, ketQuaLamSang.DocStaff.Contact.FullName,
+                            Utility.ParseCoQuanEnumToName((CoQuan)ketQuaLamSang.CoQuan), ketQuaLamSang.PARA, ketQuaLamSang.NgayKinhChot.Value.ToString("dd/MM/yyyy"),
+                            ketQuaLamSang.Note, ketQuaLamSang.SoiTuoiHuyetTrang, ketQua);
+                        }    
+                    }
+
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Add;
+                    tk.Action = "Thêm thông tin khám lâm sàng";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

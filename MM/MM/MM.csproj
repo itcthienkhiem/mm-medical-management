@@ -469,6 +469,12 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddMultiKhamLamSang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddMultiKhamLamSang.Designer.cs">
+      <DependentUpon>dlgAddMultiKhamLamSang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgActionDescription.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -871,6 +877,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddMultiKhamLamSang.resx">
+      <DependentUpon>dlgAddMultiKhamLamSang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgActionDescription.resx">
       <DependentUpon>dlgActionDescription.cs</DependentUpon>
