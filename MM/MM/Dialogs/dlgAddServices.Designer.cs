@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServices));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboType = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtEnglishName = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,10 +47,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.txtEnglishName = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cboType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +74,46 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // cboType
+            // 
+            this.cboType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboType.FormattingEnabled = true;
+            this.cboType.Items.AddRange(new object[] {
+            "Cận lâm sàng",
+            "Lâm sàng"});
+            this.cboType.Location = new System.Drawing.Point(139, 93);
+            this.cboType.Name = "cboType";
+            this.cboType.Size = new System.Drawing.Size(121, 21);
+            this.cboType.TabIndex = 7;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(105, 96);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 13);
+            this.label8.TabIndex = 47;
+            this.label8.Text = "Loại:";
+            // 
+            // txtEnglishName
+            // 
+            this.txtEnglishName.Location = new System.Drawing.Point(139, 69);
+            this.txtEnglishName.MaxLength = 200;
+            this.txtEnglishName.Name = "txtEnglishName";
+            this.txtEnglishName.Size = new System.Drawing.Size(325, 20);
+            this.txtEnglishName.TabIndex = 6;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(10, 72);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(125, 13);
+            this.label7.TabIndex = 45;
+            this.label7.Text = "Tên dịch vụ (Tiếng Anh):";
             // 
             // label6
             // 
@@ -211,46 +251,6 @@
             this.btnOK.TabIndex = 5;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // txtEnglishName
-            // 
-            this.txtEnglishName.Location = new System.Drawing.Point(139, 69);
-            this.txtEnglishName.MaxLength = 200;
-            this.txtEnglishName.Name = "txtEnglishName";
-            this.txtEnglishName.Size = new System.Drawing.Size(325, 20);
-            this.txtEnglishName.TabIndex = 6;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 72);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(125, 13);
-            this.label7.TabIndex = 45;
-            this.label7.Text = "Tên dịch vụ (Tiếng Anh):";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(105, 96);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(30, 13);
-            this.label8.TabIndex = 47;
-            this.label8.Text = "Loại:";
-            // 
-            // cboType
-            // 
-            this.cboType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboType.FormattingEnabled = true;
-            this.cboType.Items.AddRange(new object[] {
-            "Lâm sàng",
-            "Cận lâm sàng"});
-            this.cboType.Location = new System.Drawing.Point(139, 93);
-            this.cboType.Name = "cboType";
-            this.cboType.Size = new System.Drawing.Size(121, 21);
-            this.cboType.TabIndex = 7;
             // 
             // dlgAddServices
             // 

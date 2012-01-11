@@ -60,3 +60,5 @@ spDichVuHopDong
 2012-01-10
 - Create table: LoiKhuyen, KetQuaLamSang
 - Create view: LoiKhuyenView, KetQuaLamSangView
+2012-01-11
+- UPdate table: KetQuaLamSang(Add column: PARA, NgayKinhChot, SoiTuoiHetTrang)

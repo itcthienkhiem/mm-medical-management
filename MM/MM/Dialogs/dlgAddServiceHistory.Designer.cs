@@ -135,16 +135,20 @@
             this.chkPositive.TabIndex = 3;
             this.chkPositive.Text = "Dương tính";
             this.chkPositive.UseVisualStyleBackColor = true;
+            this.chkPositive.CheckedChanged += new System.EventHandler(this.chkPositive_CheckedChanged);
             // 
             // chkNegative
             // 
             this.chkNegative.AutoSize = true;
+            this.chkNegative.Checked = true;
+            this.chkNegative.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkNegative.Location = new System.Drawing.Point(20, 19);
             this.chkNegative.Name = "chkNegative";
             this.chkNegative.Size = new System.Drawing.Size(63, 17);
             this.chkNegative.TabIndex = 2;
             this.chkNegative.Text = "Âm tính";
             this.chkNegative.UseVisualStyleBackColor = true;
+            this.chkNegative.CheckedChanged += new System.EventHandler(this.chkNegative_CheckedChanged);
             // 
             // gbNormal
             // 
@@ -165,16 +169,20 @@
             this.chkAbnormal.TabIndex = 1;
             this.chkAbnormal.Text = "Bất thường";
             this.chkAbnormal.UseVisualStyleBackColor = true;
+            this.chkAbnormal.CheckedChanged += new System.EventHandler(this.chkAbnormal_CheckedChanged);
             // 
             // chkNormal
             // 
             this.chkNormal.AutoSize = true;
+            this.chkNormal.Checked = true;
+            this.chkNormal.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkNormal.Location = new System.Drawing.Point(20, 19);
             this.chkNormal.Name = "chkNormal";
             this.chkNormal.Size = new System.Drawing.Size(83, 17);
             this.chkNormal.TabIndex = 0;
             this.chkNormal.Text = "Bình thường";
             this.chkNormal.UseVisualStyleBackColor = true;
+            this.chkNormal.CheckedChanged += new System.EventHandler(this.chkNormal_CheckedChanged);
             // 
             // label5
             // 
