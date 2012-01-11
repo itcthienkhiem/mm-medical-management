@@ -222,7 +222,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_Mat.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkTaiMuiHong.Checked)
+
+                    if (chkTaiMuiHong.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -236,7 +237,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_TaiMuiHong.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkRangHamMat.Checked)
+
+                    if (chkRangHamMat.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -250,7 +252,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_RangHamMat.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkHoHap.Checked)
+
+                    if (chkHoHap.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -264,7 +267,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_HoHap.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkTimMach.Checked)
+
+                    if (chkTimMach.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -278,7 +282,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_TimMach.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkTieuHoa.Checked)
+
+                    if (chkTieuHoa.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -292,7 +297,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_TieuHoa.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkTietNieuSinhDuc.Checked)
+
+                    if (chkTietNieuSinhDuc.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -306,7 +312,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_TietNieuSinhDuc.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkCoXuongKhop.Checked)
+
+                    if (chkCoXuongKhop.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -320,7 +327,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_CoXuongKhop.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkDaLieu.Checked)
+
+                    if (chkDaLieu.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -334,7 +342,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_DaLieu.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkThanKinh.Checked)
+
+                    if (chkThanKinh.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -348,7 +357,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_ThanKinh.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkNoiTiet.Checked)
+
+                    if (chkNoiTiet.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -362,7 +372,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_NoiTiet.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkCacCoQuanKhac.Checked)
+
+                    if (chkCacCoQuanKhac.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;
@@ -376,7 +387,8 @@ namespace MM.Dialogs
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_CoQuanKhac.SelectedValue.ToString());
                         ketQuaLamSangList.Add(kq);
                     }
-                    else if (chkKhamPhuKhoa.Checked)
+
+                    if (chkKhamPhuKhoa.Checked)
                     {
                         KetQuaLamSang kq = new KetQuaLamSang();
                         kq.CreatedDate = DateTime.Now;

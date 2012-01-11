@@ -105,7 +105,7 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-            dlgAddKhamLamSang dlg = new dlgAddKhamLamSang(_patientGUID);
+            dlgAddMultiKhamLamSang dlg = new dlgAddMultiKhamLamSang(_patientGUID);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
