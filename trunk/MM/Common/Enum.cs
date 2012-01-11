@@ -7,8 +7,8 @@ namespace MM.Common
 {
     public enum ServiceType : byte
     {
-        LamSang = 0,
-        CanLamSang
+        CanLamSang = 0,
+        LamSang
     };
 
     public enum ActionType : byte
@@ -126,6 +126,7 @@ namespace MM.Common
         DaLieu,
         ThanKinh,
         NoiTiet,
-        Khac
+        Khac, 
+        KhamPhuKhoa
     };
 }

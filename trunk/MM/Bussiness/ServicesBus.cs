@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE Type WHEN 0 THEN N'Lâm sàng' WHEN 1 THEN N'Cận lâm sàng' END AS TypeStr FROM Services WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE Type WHEN 1 THEN N'Lâm sàng' WHEN 0 THEN N'Cận lâm sàng' END AS TypeStr FROM Services WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

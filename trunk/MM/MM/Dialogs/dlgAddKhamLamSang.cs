@@ -82,6 +82,17 @@ namespace MM.Dialogs
                 bool normal = Convert.ToBoolean(drKetQuaLamSang["Normal"]);
                 bool abnormal = Convert.ToBoolean(drKetQuaLamSang["Abnormal"]);
                 string nhanXet = drKetQuaLamSang["Note"].ToString();
+                string para = string.Empty;
+                if (drKetQuaLamSang["PARA"] != null && drKetQuaLamSang["PARA"] != DBNull.Value)
+                    para = drKetQuaLamSang["PARA"].ToString();
+
+                DateTime ngayKinhChot = DateTime.Now;
+                if (drKetQuaLamSang["NgayKinhChot"] != null && drKetQuaLamSang["NgayKinhChot"] != DBNull.Value)
+                    ngayKinhChot = Convert.ToDateTime(drKetQuaLamSang["NgayKinhChot"]);
+
+                string soiTuoiHuyetTrang = string.Empty;
+                if (drKetQuaLamSang["SoiTuoiHuyetTrang"] != null && drKetQuaLamSang["SoiTuoiHuyetTrang"] != DBNull.Value)
+                    soiTuoiHuyetTrang = drKetQuaLamSang["SoiTuoiHuyetTrang"].ToString();
 
                 switch (coQuan)
                 {
@@ -152,7 +163,17 @@ namespace MM.Dialogs
                         txtNhanXet_NoiTiet.Text = nhanXet;
                         break;
                     case CoQuan.Khac:
+                        raCacCoQuanKhac.Checked = true;
                         txtNhanXet_CoQuanKhac.Text = nhanXet;
+                        break;
+                    case CoQuan.KhamPhuKhoa:
+                        raKhamPhuKhoa.Checked = true;
+                        txtPARA.Text = para;
+                        dtpkNgayKinhChot.Value = ngayKinhChot;
+                        txtKetQuaKhamPhuKhoa.Text = nhanXet;
+                        txtSoiTuoiHuyetTrang.Text = soiTuoiHuyetTrang;
+                        chkNormal_KhamPhuKhoa.Checked = normal;
+                        chkAbnormal_KhamPhuKhoa.Checked = abnormal;
                         break;
                 }
 
@@ -193,7 +214,8 @@ namespace MM.Dialogs
             }
 
             if (!raMat.Checked && !raTaiMuiHong.Checked && !raRangHamMat.Checked && !raHoHap.Checked && !raTimMach.Checked && !raTieuHoa.Checked && 
-                !raTietNieuSinhDuc.Checked && !raCoXuongKhop.Checked && !raDaLieu.Checked && !raThanKinh.Checked && !raNoiTiet.Checked && !raCacCoQuanKhac.Checked)
+                !raTietNieuSinhDuc.Checked && !raCoXuongKhop.Checked && !raDaLieu.Checked && !raThanKinh.Checked && !raNoiTiet.Checked &&
+                !raCacCoQuanKhac.Checked && !raKhamPhuKhoa.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn 1 cơ quan để khám.", IconType.Information);
                 raMat.Focus();
@@ -326,6 +348,15 @@ namespace MM.Dialogs
                         _ketQuaLamSang.Abnormal = false;
                         _ketQuaLamSang.Note = txtNhanXet_CoQuanKhac.Text;
                     }
+                    else if (raKhamPhuKhoa.Checked)
+                    {
+                        _ketQuaLamSang.CoQuan = (byte)CoQuan.KhamPhuKhoa;
+                        _ketQuaLamSang.PARA = txtPARA.Text;
+                        _ketQuaLamSang.NgayKinhChot = dtpkNgayKinhChot.Value;
+                        _ketQuaLamSang.Note = txtKetQuaKhamPhuKhoa.Text;
+                        _ketQuaLamSang.Normal = chkNormal_KhamPhuKhoa.Checked;
+                        _ketQuaLamSang.Abnormal = chkAbnormal_KhamPhuKhoa.Checked;
+                    }
 
                     Result result = KetQuaLamSangBus.InsertKetQuaLamSang(_ketQuaLamSang);
                     if (!result.IsOK)
@@ -457,6 +488,209 @@ namespace MM.Dialogs
         {
             txtNhanXet_CoQuanKhac.ReadOnly = !raCacCoQuanKhac.Checked;
         }
+
+        private void raKhamPhuKhoa_CheckedChanged(object sender, EventArgs e)
+        {
+            txtPARA.ReadOnly = !raKhamPhuKhoa.Checked;
+            dtpkNgayKinhChot.Enabled = raKhamPhuKhoa.Checked;
+            txtKetQuaKhamPhuKhoa.ReadOnly = !raKhamPhuKhoa.Checked;
+            txtSoiTuoiHuyetTrang.ReadOnly = !raKhamPhuKhoa.Checked;
+            chkNormal_KhamPhuKhoa.Enabled = raKhamPhuKhoa.Checked;
+            chkAbnormal_KhamPhuKhoa.Enabled = raKhamPhuKhoa.Checked;
+        }
+
+        private void chkNormal_TaiMuiHong_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_TaiMuiHong.Checked && !chkAbnormal_TaiMuiHong.Checked)
+                chkNormal_TaiMuiHong.Checked = true;
+
+            if (chkNormal_TaiMuiHong.Checked) chkAbnormal_TaiMuiHong.Checked = false;
+        }
+
+        private void chkAbnormal_TaiMuiHong_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_TaiMuiHong.Checked && !chkNormal_TaiMuiHong.Checked)
+                chkAbnormal_TaiMuiHong.Checked = true;
+
+            if (chkAbnormal_TaiMuiHong.Checked) chkNormal_TaiMuiHong.Checked = false;
+        }
+
+        private void chkNormal_RangHamMat_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_RangHamMat.Checked && !chkAbnormal_RangHamMat.Checked)
+                chkNormal_RangHamMat.Checked = true;
+
+            if (chkNormal_RangHamMat.Checked) chkAbnormal_RangHamMat.Checked = false;
+        }
+
+        private void chkAbnormal_RangHamMat_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_RangHamMat.Checked && !chkNormal_RangHamMat.Checked)
+                chkAbnormal_RangHamMat.Checked = true;
+
+            if (chkAbnormal_RangHamMat.Checked) chkNormal_RangHamMat.Checked = false;
+        }
+
+        private void chkNormal_Mat_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_Mat.Checked && !chkAbnormal_Mat.Checked)
+                chkNormal_Mat.Checked = true;
+
+            if (chkNormal_Mat.Checked) chkAbnormal_Mat.Checked = false;
+        }
+
+        private void chkAbnormal_Mat_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_Mat.Checked && !chkNormal_Mat.Checked)
+                chkAbnormal_Mat.Checked = true;
+
+            if (chkAbnormal_Mat.Checked) chkNormal_Mat.Checked = false;
+        }
+
+        private void chkNormal_HoHap_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_HoHap.Checked && !chkAbnormal_HoHap.Checked)
+                chkNormal_HoHap.Checked = true;
+
+            if (chkNormal_HoHap.Checked) chkAbnormal_HoHap.Checked = false;
+        }
+
+        private void chkAbnormal_HoHap_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_HoHap.Checked && !chkNormal_HoHap.Checked)
+                chkAbnormal_HoHap.Checked = true;
+
+            if (chkAbnormal_HoHap.Checked) chkNormal_HoHap.Checked = false;
+        }
+
+        private void chkNormal_TimMach_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_TimMach.Checked && !chkAbnormal_TimMach.Checked)
+                chkNormal_TimMach.Checked = true;
+
+            if (chkNormal_TimMach.Checked) chkAbnormal_TimMach.Checked = false;
+        }
+
+        private void chkAbnormal_TimMach_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_TimMach.Checked && !chkNormal_TimMach.Checked)
+                chkAbnormal_TimMach.Checked = true;
+
+            if (chkAbnormal_TimMach.Checked) chkNormal_TimMach.Checked = false;
+        }
+
+        private void chkNormal_TieuHoa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_TieuHoa.Checked && !chkAbnormal_TieuHoa.Checked)
+                chkNormal_TieuHoa.Checked = true;
+
+            if (chkNormal_TieuHoa.Checked) chkAbnormal_TieuHoa.Checked = false;
+        }
+
+        private void chkAbnormal_TieuHoa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_TieuHoa.Checked && !chkNormal_TieuHoa.Checked)
+                chkAbnormal_TieuHoa.Checked = true;
+
+            if (chkAbnormal_TieuHoa.Checked) chkNormal_TieuHoa.Checked = false;
+        }
+
+        private void chkNormal_TietNieuSinhDuc_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_TietNieuSinhDuc.Checked && !chkAbnormal_TietNieuSinhDuc.Checked)
+                chkNormal_TietNieuSinhDuc.Checked = true;
+
+            if (chkNormal_TietNieuSinhDuc.Checked) chkAbnormal_TietNieuSinhDuc.Checked = false;
+        }
+
+        private void chkAbnormal_TietNieuSinhDuc_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_TietNieuSinhDuc.Checked && !chkNormal_TietNieuSinhDuc.Checked)
+                chkAbnormal_TietNieuSinhDuc.Checked = true;
+
+            if (chkAbnormal_TietNieuSinhDuc.Checked) chkNormal_TietNieuSinhDuc.Checked = false;
+        }
+
+        private void chkNormal_CoXuongKhop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_CoXuongKhop.Checked && !chkAbnormal_CoXuongKhop.Checked)
+                chkNormal_CoXuongKhop.Checked = true;
+
+            if (chkNormal_CoXuongKhop.Checked) chkAbnormal_CoXuongKhop.Checked = false;
+        }
+
+        private void chkAbnormal_CoXuongKhop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_CoXuongKhop.Checked && !chkNormal_CoXuongKhop.Checked)
+                chkAbnormal_CoXuongKhop.Checked = true;
+
+            if (chkAbnormal_CoXuongKhop.Checked) chkNormal_CoXuongKhop.Checked = false;
+        }
+
+        private void chkNormal_DaLieu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_DaLieu.Checked && !chkAbnormal_DaLieu.Checked)
+                chkNormal_DaLieu.Checked = true;
+
+            if (chkNormal_DaLieu.Checked) chkAbnormal_DaLieu.Checked = false;
+        }
+
+        private void chkAbnormal_DaLieu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_DaLieu.Checked && !chkNormal_DaLieu.Checked)
+                chkAbnormal_DaLieu.Checked = true;
+
+            if (chkAbnormal_DaLieu.Checked) chkNormal_DaLieu.Checked = false;
+        }
+
+        private void chkNormal_ThanKinh_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_ThanKinh.Checked && !chkAbnormal_ThanKinh.Checked)
+                chkNormal_ThanKinh.Checked = true;
+
+            if (chkNormal_ThanKinh.Checked) chkAbnormal_ThanKinh.Checked = false;
+        }
+
+        private void chkAbnormal_ThanKinh_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_ThanKinh.Checked && !chkNormal_ThanKinh.Checked)
+                chkAbnormal_ThanKinh.Checked = true;
+
+            if (chkAbnormal_ThanKinh.Checked) chkNormal_ThanKinh.Checked = false;
+        }
+
+        private void chkNormal_NoiTiet_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_NoiTiet.Checked && !chkAbnormal_NoiTiet.Checked)
+                chkNormal_NoiTiet.Checked = true;
+
+            if (chkNormal_NoiTiet.Checked) chkAbnormal_NoiTiet.Checked = false;
+        }
+
+        private void chkAbnormal_NoiTiet_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_NoiTiet.Checked && !chkNormal_NoiTiet.Checked)
+                chkAbnormal_NoiTiet.Checked = true;
+
+            if (chkAbnormal_NoiTiet.Checked) chkNormal_NoiTiet.Checked = false;
+        }
+
+        private void chkNormal_KhamPhuKhoa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal_KhamPhuKhoa.Checked && !chkAbnormal_KhamPhuKhoa.Checked)
+                chkNormal_KhamPhuKhoa.Checked = true;
+
+            if (chkNormal_KhamPhuKhoa.Checked) chkAbnormal_KhamPhuKhoa.Checked = false;
+        }
+
+        private void chkAbnormal_KhamPhuKhoa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal_KhamPhuKhoa.Checked && !chkNormal_KhamPhuKhoa.Checked)
+                chkAbnormal_KhamPhuKhoa.Checked = true;
+
+            if (chkAbnormal_KhamPhuKhoa.Checked) chkNormal_KhamPhuKhoa.Checked = false;
+        }
+
         #endregion
 
         #region Working Thread
@@ -477,5 +711,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

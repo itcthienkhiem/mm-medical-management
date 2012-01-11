@@ -68,9 +68,20 @@ namespace MM.Bussiness
 
                             if (ketQua != string.Empty) ketQua = ketQua.Substring(0, ketQua.Length - 2);
 
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'\n",
+
+                            if (kqls.CoQuan != (byte)CoQuan.KhamPhuKhoa)
+                            {
+                                desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'\n",
                                 kqls.KetQuaLamSangGUID.ToString(), kqls.Patient.Contact.FullName, kqls.DocStaff.Contact.FullName,
                                 Utility.ParseCoQuanEnumToName((CoQuan)kqls.CoQuan), ketQua, kqls.Note);
+                            }
+                            else
+                            {
+                                desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', PARA: '{4}', Ngày kinh chót: '{5}', Kết quả khám phụ khoa: '{6}', Soi tươi huyết trắng: '{7}', Kết quả Pap: '{8}'\n",
+                                kqls.KetQuaLamSangGUID.ToString(), kqls.Patient.Contact.FullName, kqls.DocStaff.Contact.FullName,
+                                Utility.ParseCoQuanEnumToName((CoQuan)kqls.CoQuan), kqls.PARA, kqls.NgayKinhChot.Value.ToString("dd/MM/yyyy"),
+                                kqls.Note, kqls.SoiTuoiHuyetTrang, ketQua);
+                            }
                         }
                     }
 
@@ -137,9 +148,20 @@ namespace MM.Bussiness
 
                         if (ketQua != string.Empty) ketQua = ketQua.Substring(0, ketQua.Length - 2);
 
-                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'\n",
+                        if (ketQuaLamSang.CoQuan != (byte)CoQuan.KhamPhuKhoa)
+                        {
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'",
                             ketQuaLamSang.KetQuaLamSangGUID.ToString(), ketQuaLamSang.Patient.Contact.FullName, ketQuaLamSang.DocStaff.Contact.FullName,
                             Utility.ParseCoQuanEnumToName((CoQuan)ketQuaLamSang.CoQuan), ketQua, ketQuaLamSang.Note);
+                        }
+                        else
+                        {
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', PARA: '{4}', Ngày kinh chót: '{5}', Kết quả khám phụ khoa: '{6}', Soi tươi huyết trắng: '{7}', Kết quả Pap: '{8}'",
+                            ketQuaLamSang.KetQuaLamSangGUID.ToString(), ketQuaLamSang.Patient.Contact.FullName, ketQuaLamSang.DocStaff.Contact.FullName,
+                            Utility.ParseCoQuanEnumToName((CoQuan)ketQuaLamSang.CoQuan), ketQuaLamSang.PARA, ketQuaLamSang.NgayKinhChot.Value.ToString("dd/MM/yyyy"), 
+                            ketQuaLamSang.Note, ketQuaLamSang.SoiTuoiHuyetTrang, ketQua);
+                        }
+                        
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -181,9 +203,19 @@ namespace MM.Bussiness
 
                             if (ketQua != string.Empty) ketQua = ketQua.Substring(0, ketQua.Length - 2);
 
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'\n",
+                            if (kqls.CoQuan != (byte)CoQuan.KhamPhuKhoa)
+                            {
+                                desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', Kết quả: '{4}', Nhận xét: '{5}'",
                                 kqls.KetQuaLamSangGUID.ToString(), kqls.Patient.Contact.FullName, kqls.DocStaff.Contact.FullName,
                                 Utility.ParseCoQuanEnumToName((CoQuan)kqls.CoQuan), ketQua, kqls.Note);
+                            }
+                            else
+                            {
+                                desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', PARA: '{4}', Ngày kinh chót: '{5}', Kết quả khám phụ khoa: '{6}', Soi tươi huyết trắng: '{7}', Kết quả Pap: '{8}'",
+                                kqls.KetQuaLamSangGUID.ToString(), kqls.Patient.Contact.FullName, kqls.DocStaff.Contact.FullName,
+                                Utility.ParseCoQuanEnumToName((CoQuan)kqls.CoQuan), kqls.PARA, kqls.NgayKinhChot.Value.ToString("dd/MM/yyyy"),
+                                kqls.Note, kqls.SoiTuoiHuyetTrang, ketQua);
+                            }
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();

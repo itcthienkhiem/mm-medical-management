@@ -727,6 +727,8 @@ namespace MM.Common
                     return "Endocrine system (Nội tiết)";
                 case CoQuan.Khac:
                     return "Orthers (Các cơ quan khác)";
+                case CoQuan.KhamPhuKhoa:
+                    return "Gynecology (Khám phụ khoa)";
             }
 
             return string.Empty;

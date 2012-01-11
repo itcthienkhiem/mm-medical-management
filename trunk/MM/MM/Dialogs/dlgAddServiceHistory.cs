@@ -324,6 +324,37 @@ namespace MM.Dialogs
         {
             gbNegative.Enabled = raNegative.Checked;
         }
+
+        private void chkNormal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNormal.Checked && !chkAbnormal.Checked)
+                chkNormal.Checked = true;
+
+            if (chkNormal.Checked) chkAbnormal.Checked = false;
+        }
+
+        private void chkAbnormal_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkAbnormal.Checked && !chkNormal.Checked) chkAbnormal.Checked = true;
+
+            if (chkAbnormal.Checked) chkNormal.Checked = false;
+        }
+
+        private void chkNegative_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNegative.Checked && !chkPositive.Checked)
+                chkNegative.Checked = true;
+
+            if (chkNegative.Checked) chkPositive.Checked = false;
+        }
+
+        private void chkPositive_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!chkNegative.Checked && !chkPositive.Checked)
+                chkPositive.Checked = true;
+
+            if (chkPositive.Checked) chkNegative.Checked = false;
+        }
         #endregion
 
         #region Working Thread
@@ -344,5 +375,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+       
     }
 }
