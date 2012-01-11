@@ -215,8 +215,6 @@
             // chkNormal_KhamPhuKhoa
             // 
             this.chkNormal_KhamPhuKhoa.AutoSize = true;
-            this.chkNormal_KhamPhuKhoa.Checked = true;
-            this.chkNormal_KhamPhuKhoa.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkNormal_KhamPhuKhoa.Enabled = false;
             this.chkNormal_KhamPhuKhoa.Location = new System.Drawing.Point(115, 429);
             this.chkNormal_KhamPhuKhoa.Name = "chkNormal_KhamPhuKhoa";
