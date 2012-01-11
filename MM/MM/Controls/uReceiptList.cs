@@ -207,6 +207,33 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu cần in.", IconType.Information);
         }
 
+        private void OnExportExcel()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<string> checkedReceiptList = new List<string>();
+            DataTable dt = dgReceipt.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedReceiptList.Add(row["ReceiptGUID"].ToString());
+                }
+            }
+
+            if (checkedReceiptList.Count > 0)
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Title = "Export Excel";
+                dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    ExportExcel.ExportChiTietPhieuThuToExcel(dlg.FileName, checkedReceiptList);
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu cần in.", IconType.Information);
+        }
+
         private void DisplayReceiptDetail()
         {
             if (dgReceipt.SelectedRows == null || dgReceipt.SelectedRows.Count <= 0)
@@ -343,6 +370,11 @@ namespace MM.Controls
                 DisplayAsThread();
             }
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -364,6 +396,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

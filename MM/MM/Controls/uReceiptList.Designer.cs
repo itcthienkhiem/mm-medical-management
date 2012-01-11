@@ -38,6 +38,10 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.raDaXoa = new System.Windows.Forms.RadioButton();
+            this.raChuaXoa = new System.Windows.Forms.RadioButton();
+            this.raTatCa = new System.Windows.Forms.RadioButton();
             this.btnView = new System.Windows.Forms.Button();
             this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
             this.raTenBenhNhan = new System.Windows.Forms.RadioButton();
@@ -57,20 +61,18 @@
             this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.raTatCa = new System.Windows.Forms.RadioButton();
-            this.raChuaXoa = new System.Windows.Forms.RadioButton();
-            this.raDaXoa = new System.Windows.Forms.RadioButton();
+            this.btnExportExcel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.receiptViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnExportExcel);
             this.panel1.Controls.Add(this.btnExportInvoice);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnDelete);
@@ -131,6 +133,49 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(998, 137);
             this.panel2.TabIndex = 2;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.raDaXoa);
+            this.groupBox1.Controls.Add(this.raChuaXoa);
+            this.groupBox1.Controls.Add(this.raTatCa);
+            this.groupBox1.Location = new System.Drawing.Point(16, 56);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(359, 43);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            // 
+            // raDaXoa
+            // 
+            this.raDaXoa.AutoSize = true;
+            this.raDaXoa.Location = new System.Drawing.Point(271, 15);
+            this.raDaXoa.Name = "raDaXoa";
+            this.raDaXoa.Size = new System.Drawing.Size(59, 17);
+            this.raDaXoa.TabIndex = 3;
+            this.raDaXoa.Text = "Đã xóa";
+            this.raDaXoa.UseVisualStyleBackColor = true;
+            // 
+            // raChuaXoa
+            // 
+            this.raChuaXoa.AutoSize = true;
+            this.raChuaXoa.Checked = true;
+            this.raChuaXoa.Location = new System.Drawing.Point(137, 15);
+            this.raChuaXoa.Name = "raChuaXoa";
+            this.raChuaXoa.Size = new System.Drawing.Size(70, 17);
+            this.raChuaXoa.TabIndex = 2;
+            this.raChuaXoa.TabStop = true;
+            this.raChuaXoa.Text = "Chưa xóa";
+            this.raChuaXoa.UseVisualStyleBackColor = true;
+            // 
+            // raTatCa
+            // 
+            this.raTatCa.AutoSize = true;
+            this.raTatCa.Location = new System.Drawing.Point(20, 15);
+            this.raTatCa.Name = "raTatCa";
+            this.raTatCa.Size = new System.Drawing.Size(56, 17);
+            this.raTatCa.TabIndex = 1;
+            this.raTatCa.Text = "Tất cả";
+            this.raTatCa.UseVisualStyleBackColor = true;
             // 
             // btnView
             // 
@@ -341,48 +386,17 @@
             this.panel3.Size = new System.Drawing.Size(998, 280);
             this.panel3.TabIndex = 4;
             // 
-            // groupBox1
+            // btnExportExcel
             // 
-            this.groupBox1.Controls.Add(this.raDaXoa);
-            this.groupBox1.Controls.Add(this.raChuaXoa);
-            this.groupBox1.Controls.Add(this.raTatCa);
-            this.groupBox1.Location = new System.Drawing.Point(16, 56);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(359, 43);
-            this.groupBox1.TabIndex = 14;
-            this.groupBox1.TabStop = false;
-            // 
-            // raTatCa
-            // 
-            this.raTatCa.AutoSize = true;
-            this.raTatCa.Location = new System.Drawing.Point(20, 15);
-            this.raTatCa.Name = "raTatCa";
-            this.raTatCa.Size = new System.Drawing.Size(56, 17);
-            this.raTatCa.TabIndex = 1;
-            this.raTatCa.Text = "Tất cả";
-            this.raTatCa.UseVisualStyleBackColor = true;
-            // 
-            // raChuaXoa
-            // 
-            this.raChuaXoa.AutoSize = true;
-            this.raChuaXoa.Checked = true;
-            this.raChuaXoa.Location = new System.Drawing.Point(137, 15);
-            this.raChuaXoa.Name = "raChuaXoa";
-            this.raChuaXoa.Size = new System.Drawing.Size(70, 17);
-            this.raChuaXoa.TabIndex = 2;
-            this.raChuaXoa.TabStop = true;
-            this.raChuaXoa.Text = "Chưa xóa";
-            this.raChuaXoa.UseVisualStyleBackColor = true;
-            // 
-            // raDaXoa
-            // 
-            this.raDaXoa.AutoSize = true;
-            this.raDaXoa.Location = new System.Drawing.Point(271, 15);
-            this.raDaXoa.Name = "raDaXoa";
-            this.raDaXoa.Size = new System.Drawing.Size(59, 17);
-            this.raDaXoa.TabIndex = 3;
-            this.raDaXoa.Text = "Đã xóa";
-            this.raDaXoa.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(300, 6);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
+            this.btnExportExcel.TabIndex = 15;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // uReceiptList
             // 
@@ -396,12 +410,12 @@
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.receiptViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -439,5 +453,6 @@
         private System.Windows.Forms.RadioButton raDaXoa;
         private System.Windows.Forms.RadioButton raChuaXoa;
         private System.Windows.Forms.RadioButton raTatCa;
+        private System.Windows.Forms.Button btnExportExcel;
     }
 }

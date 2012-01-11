@@ -1200,5 +1200,108 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportChiTietPhieuThuToExcel(string exportFileName, List<string> phieuThuKeyList)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\ChiTietPhieuThuTemplate.xls", Application.StartupPath);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                IRange range;
+                foreach (string key in phieuThuKeyList)
+                {
+                    Result result = ReceiptBus.GetReceipt(key);
+
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.GetReceipt"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetReceipt"));
+                        return false;
+                    }
+
+                    ReceiptView receipt = result.QueryResult as ReceiptView;
+                    if (receipt == null) continue;
+
+                    result = CompanyBus.GetTenCongTy(key);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetTenCongTy"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetTenCongTy"));
+                        return false;
+                    }
+
+                    string tenCongTy = receipt.CompanyName;
+                    if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
+                        tenCongTy = result.QueryResult.ToString();
+
+                    result = ReceiptBus.GetReceiptDetailList(key);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.GetReceiptDetailList"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetReceiptDetailList"));
+                        return false;
+                    }
+
+                    DataTable dtSource = result.QueryResult as DataTable;
+                   
+                    foreach (DataRow row in dtSource.Rows)
+                    {
+                        range = workSheet.Cells[rowIndex, 0];
+                        range.Value = receipt.ReceiptCode;
+
+                        range = workSheet.Cells[rowIndex, 1];
+                        range.Value = receipt.ReceiptDate.ToString("dd/MM/yyyy");
+
+                        range = workSheet.Cells[rowIndex, 2];
+                        range.Value = tenCongTy;
+                        range.WrapText = true;
+
+                        range = workSheet.Cells[rowIndex, 3];
+                        range.Value = receipt.FullName;
+                        range.WrapText = true;
+
+                        range = workSheet.Cells[rowIndex, 4];
+                        range.Value = row["Name"].ToString();
+                        range.WrapText = true;
+
+                        range = workSheet.Cells[rowIndex, 5];
+                        range.Value = Convert.ToDouble(row["Price"]) - (Convert.ToDouble(row["Price"]) * Convert.ToDouble(row["Discount"]) / 100);
+
+                        rowIndex++;
+                    }
+                }
+
+                range = workSheet.Cells[string.Format("A3:F{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
