@@ -631,18 +631,18 @@ namespace MM.Dialogs
 
         private void chkNormal_KhamPhuKhoa_CheckedChanged(object sender, EventArgs e)
         {
-            if (!chkNormal_KhamPhuKhoa.Checked && !chkAbnormal_KhamPhuKhoa.Checked)
-                chkNormal_KhamPhuKhoa.Checked = true;
+            //if (!chkNormal_KhamPhuKhoa.Checked && !chkAbnormal_KhamPhuKhoa.Checked)
+            //    chkNormal_KhamPhuKhoa.Checked = true;
 
-            if (chkNormal_KhamPhuKhoa.Checked) chkAbnormal_KhamPhuKhoa.Checked = false;
+            //if (chkNormal_KhamPhuKhoa.Checked) chkAbnormal_KhamPhuKhoa.Checked = false;
         }
 
         private void chkAbnormal_KhamPhuKhoa_CheckedChanged(object sender, EventArgs e)
         {
-            if (!chkAbnormal_KhamPhuKhoa.Checked && !chkNormal_KhamPhuKhoa.Checked)
-                chkAbnormal_KhamPhuKhoa.Checked = true;
+            //if (!chkAbnormal_KhamPhuKhoa.Checked && !chkNormal_KhamPhuKhoa.Checked)
+            //    chkAbnormal_KhamPhuKhoa.Checked = true;
 
-            if (chkAbnormal_KhamPhuKhoa.Checked) chkNormal_KhamPhuKhoa.Checked = false;
+            //if (chkAbnormal_KhamPhuKhoa.Checked) chkNormal_KhamPhuKhoa.Checked = false;
         }
 
         private void chkTaiMuiHong_CheckedChanged(object sender, EventArgs e)
