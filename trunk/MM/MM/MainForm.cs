@@ -1187,25 +1187,6 @@ namespace MM
         
         #endregion
 
-        #region Working Thread
-        private void OnInitConfigProc(object state)
-        {
-            try
-            {
-                //Thread.Sleep(1000);
-                OnInitConfig();
-            }
-            catch (Exception e)
-            {
-                MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
-            }
-            finally
-            {
-                base.HideWaiting();
-            }
-        }
-        #endregion
-
         #region AutoUpdate
         private bool IsServerMachine
         {
@@ -1333,6 +1314,23 @@ namespace MM
             {
                 MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnInitConfigProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(1000);
+                OnInitConfig();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
             }
             finally
             {
