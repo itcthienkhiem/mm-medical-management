@@ -221,5 +221,44 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetLastCanDo(string patientGUID, DateTime fromDate, DateTime toDate)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                CanDo canDo = (from cd in db.CanDos
+                            where cd.PatientGUID.ToString() == patientGUID &&
+                            cd.NgayCanDo >= fromDate && cd.NgayCanDo <= toDate &&
+                            cd.Status == (byte)Status.Actived
+                            orderby cd.NgayCanDo descending
+                            select cd).FirstOrDefault<CanDo>();
+
+                result.QueryResult = canDo;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

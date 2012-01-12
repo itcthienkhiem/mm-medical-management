@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.Linq;
 using System.Transactions;
+using System.Collections;
 using MM.Common;
 using MM.Databasae;
 
@@ -309,6 +310,53 @@ namespace MM.Bussiness
                     db.SubmitChanges();
                     t.Complete();
                 }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetLastKetQuaLamSang(string patientGUID, DateTime fromDate, DateTime toDate)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                Hashtable htKetQuaLamSang = new Hashtable();
+
+                CoQuan[] coQuanList = (CoQuan[])Enum.GetValues(typeof(CoQuan));
+                foreach (CoQuan coQuan in coQuanList)
+                {
+                    KetQuaLamSang kq = (from k in db.KetQuaLamSangs
+                                        where k.PatientGUID.ToString() == patientGUID &&
+                                        k.NgayKham >= fromDate && k.NgayKham <= toDate &&
+                                        k.CoQuan == (byte)coQuan &&
+                                        k.Status == (byte)Status.Actived
+                                        orderby k.NgayKham descending
+                                        select k).FirstOrDefault<KetQuaLamSang>();
+                    if (kq != null) htKetQuaLamSang.Add(coQuan, kq);    
+                }
+
+                result.QueryResult = htKetQuaLamSang;
             }
             catch (System.Data.SqlClient.SqlException se)
             {

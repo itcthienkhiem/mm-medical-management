@@ -63,3 +63,5 @@ spDichVuHopDong
 2012-01-11
 - Update table: KetQuaLamSang(Add column: PARA, NgayKinhChot, SoiTuoiHetTrang)
 - Update view: ReceiptView
+2012-01-12
+- Insert: Function(InKetQuaKhamSucKhoeTongQuat)

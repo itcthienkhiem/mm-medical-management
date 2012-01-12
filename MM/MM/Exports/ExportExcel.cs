@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -1280,6 +1281,133 @@ namespace MM.Exports
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportKhamSucKhoeTongQuatToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string patientGUID = patientRow["PatientGUID"].ToString();
+                string tenBenhNhan = patientRow["FullName"].ToString();
+                string gioiTinh = patientRow["GenderAsStr"].ToString();
+                string ngaySinh = patientRow["DobStr"].ToString();
+                string diaChi = patientRow["Address"].ToString();
+
+                Result result = CompanyBus.GetTenCongTy(patientGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetTenCongTy"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetTenCongTy"));
+                    return false;
+                }
+
+                string tenCongTy = patientRow["CompanyName"].ToString();
+                if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
+                {
+                    tenCongTy = result.QueryResult.ToString();
+                }
+
+                result = CanDoBus.GetLastCanDo(patientGUID, fromDate, toDate);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CanDoBus.GetLastCanDo"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CanDoBus.GetLastCanDo"));
+                    return false;
+                }
+
+                CanDo canDo = result.QueryResult as CanDo;
+
+                result = KetQuaLamSangBus.GetLastKetQuaLamSang(patientGUID, fromDate, toDate);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaLamSangBus.GetLastKetQuaLamSang"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaLamSangBus.GetLastKetQuaLamSang"));
+                    return false;
+                }
+
+                Hashtable htKetQuaLamSang = result.QueryResult as Hashtable;
+
+                string excelTemplateName = string.Format("{0}\\Templates\\KhamSucKhoeTongQuatTemplate.xls", Application.StartupPath);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["B2"].Value = tenBenhNhan;
+                workSheet.Cells["F2"].Value = gioiTinh;
+                workSheet.Cells["I2"].Value = ngaySinh;
+                workSheet.Cells["B4"].Value = diaChi;
+                workSheet.Cells["F4"].Value = tenCongTy;
+
+                if (canDo != null)
+                {
+                    workSheet.Cells["A8"].Value = canDo.ChieuCao;
+                    workSheet.Cells["B8"].Value = canDo.CanNang;
+                    workSheet.Cells["C8"].Value = canDo.BMI;
+                    workSheet.Cells["D8"].Value = canDo.HuyetAp;
+                    workSheet.Cells["E8"].Value = canDo.TimMach;
+                    workSheet.Cells["F8"].Value = canDo.HoHap;
+                    workSheet.Cells["G8"].Value = canDo.MuMau;
+                    workSheet.Cells["H7"].Value = string.Format("R(P): {0}\nL(T): {1}", canDo.MatTrai, canDo.MatTrai);
+
+                    if (!canDo.HieuChinh) workSheet.Shapes[0].ControlFormat.Value = 1;
+                    else workSheet.Shapes[1].ControlFormat.Value = 1;
+                }
+
+                CoQuan[] coQuanList = (CoQuan[])Enum.GetValues(typeof(CoQuan));
+                int checkIndex = 4;
+                int rowIndex = 10;
+                foreach (CoQuan coQuan in coQuanList)
+                {
+                    if (htKetQuaLamSang.ContainsKey(coQuan))
+                    {
+                        KetQuaLamSang kq = (KetQuaLamSang)htKetQuaLamSang[coQuan];
+                        if (coQuan != CoQuan.Khac && coQuan != CoQuan.KhamPhuKhoa)
+                        {
+                            if (kq.Normal) workSheet.Shapes[checkIndex].ControlFormat.Value = 1;
+                            if (kq.Abnormal) workSheet.Shapes[checkIndex + 1].ControlFormat.Value = 1;
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = kq.Note;
+                        }
+                        else if (coQuan == CoQuan.Khac)
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = kq.Note;
+                        else
+                        {
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("PARA: {0}", kq.PARA);
+                            workSheet.Cells[string.Format("I{0}", rowIndex)].Value = kq.NgayKinhChot.Value.ToString("dd/MM/yyyy");
+                            rowIndex++;
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Kết quả khám phụ khoa: {0}", kq.Note);
+                            rowIndex++;
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Soi tươi huyết trắng: {0}", kq.SoiTuoiHuyetTrang);
+                            if (kq.Normal) workSheet.Shapes[2].ControlFormat.Value = 1;
+                            if (kq.Abnormal) workSheet.Shapes[3].ControlFormat.Value = 1;
+                        }
+                    }
+
+                    checkIndex += 2;
+                    rowIndex += 2;
+                }
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
