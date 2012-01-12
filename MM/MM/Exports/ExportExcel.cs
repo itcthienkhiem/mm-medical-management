@@ -1270,7 +1270,7 @@ namespace MM.Exports
                         range.WrapText = true;
 
                         range = workSheet.Cells[rowIndex, 5];
-                        range.Value = Convert.ToDouble(row["Price"]) - (Convert.ToDouble(row["Price"]) * Convert.ToDouble(row["Discount"]) / 100);
+                        range.Value = Convert.ToDouble(row["Amount"]);
 
                         rowIndex++;
                     }
