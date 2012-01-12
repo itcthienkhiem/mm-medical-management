@@ -1237,6 +1237,7 @@ namespace MM.Exports
                     }
 
                     string tenCongTy = receipt.CompanyName;
+                    if (tenCongTy == null) tenCongTy = string.Empty;
                     if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
                         tenCongTy = result.QueryResult.ToString();
 
@@ -1312,6 +1313,7 @@ namespace MM.Exports
 
             try
             {
+                //Lấy thông tin bệnh nhân
                 string patientGUID = patientRow["PatientGUID"].ToString();
                 string tenBenhNhan = patientRow["FullName"].ToString();
                 string gioiTinh = patientRow["GenderAsStr"].ToString();
@@ -1326,12 +1328,16 @@ namespace MM.Exports
                     return false;
                 }
 
-                string tenCongTy = patientRow["CompanyName"].ToString();
+                string tenCongTy = string.Empty;
+                if (patientRow["CompanyName"] != null && patientRow["CompanyName"] != DBNull.Value)
+                    tenCongTy = patientRow["CompanyName"].ToString();
+
                 if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
                 {
                     tenCongTy = result.QueryResult.ToString();
                 }
 
+                //Lấy thông tin cân đo
                 result = CanDoBus.GetLastCanDo(patientGUID, fromDate, toDate);
                 if (!result.IsOK)
                 {
@@ -1342,6 +1348,7 @@ namespace MM.Exports
 
                 CanDo canDo = result.QueryResult as CanDo;
 
+                //Lấy thông tin khám lâm sàng
                 result = KetQuaLamSangBus.GetLastKetQuaLamSang(patientGUID, fromDate, toDate);
                 if (!result.IsOK)
                 {
@@ -1352,15 +1359,41 @@ namespace MM.Exports
 
                 Hashtable htKetQuaLamSang = result.QueryResult as Hashtable;
 
+                //Lấy thông tin dịch vụ sử dụng lâm sàng
+                result = ServiceHistoryBus.GetServiceHistory(patientGUID, fromDate, toDate, ServiceType.LamSang);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceHistoryBus.GetServiceHistory"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.GetServiceHistory"));
+                    return false;
+                }
+
+                List<ServiceHistoryView> serviceLamSangList = (List<ServiceHistoryView>)result.QueryResult;
+
+                //Lấy thông tin dịch vụ sử dụng cận lâm sàng
+                result = ServiceHistoryBus.GetServiceHistory(patientGUID, fromDate, toDate, ServiceType.CanLamSang);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceHistoryBus.GetServiceHistory"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.GetServiceHistory"));
+                    return false;
+                }
+
+                List<ServiceHistoryView> serviceCanLamSangList = (List<ServiceHistoryView>)result.QueryResult;
+
                 string excelTemplateName = string.Format("{0}\\Templates\\KhamSucKhoeTongQuatTemplate.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
+                IRange range;
+
+                //Fill thông tin bệnh nhân
                 workSheet.Cells["B2"].Value = tenBenhNhan;
                 workSheet.Cells["F2"].Value = gioiTinh;
                 workSheet.Cells["I2"].Value = ngaySinh;
                 workSheet.Cells["B4"].Value = diaChi;
                 workSheet.Cells["F4"].Value = tenCongTy;
 
+                //Fill thông tin cân đo
                 if (canDo != null)
                 {
                     workSheet.Cells["A8"].Value = canDo.ChieuCao;
@@ -1376,6 +1409,7 @@ namespace MM.Exports
                     else workSheet.Shapes[1].ControlFormat.Value = 1;
                 }
 
+                //Fill thông tin khám lâm sàng
                 CoQuan[] coQuanList = (CoQuan[])Enum.GetValues(typeof(CoQuan));
                 int checkIndex = 4;
                 int rowIndex = 10;
@@ -1384,22 +1418,25 @@ namespace MM.Exports
                     if (htKetQuaLamSang.ContainsKey(coQuan))
                     {
                         KetQuaLamSang kq = (KetQuaLamSang)htKetQuaLamSang[coQuan];
+                        if (kq.Note == null) kq.Note = string.Empty;
+                        if (kq.SoiTuoiHuyetTrang == null) kq.SoiTuoiHuyetTrang = string.Empty;
+
                         if (coQuan != CoQuan.Khac && coQuan != CoQuan.KhamPhuKhoa)
                         {
                             if (kq.Normal) workSheet.Shapes[checkIndex].ControlFormat.Value = 1;
                             if (kq.Abnormal) workSheet.Shapes[checkIndex + 1].ControlFormat.Value = 1;
-                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = kq.Note;
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = kq.Note.Replace("\r", "").Replace("\t", "");
                         }
                         else if (coQuan == CoQuan.Khac)
-                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = kq.Note;
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = kq.Note.Replace("\r", "").Replace("\t", "");
                         else
                         {
                             workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("PARA: {0}", kq.PARA);
                             workSheet.Cells[string.Format("I{0}", rowIndex)].Value = kq.NgayKinhChot.Value.ToString("dd/MM/yyyy");
                             rowIndex++;
-                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Kết quả khám phụ khoa: {0}", kq.Note);
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Kết quả khám phụ khoa: {0}", kq.Note.Replace("\r", "").Replace("\t", ""));
                             rowIndex++;
-                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Soi tươi huyết trắng: {0}", kq.SoiTuoiHuyetTrang);
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Soi tươi huyết trắng: {0}", kq.SoiTuoiHuyetTrang.Replace("\r", "").Replace("\t", ""));
                             if (kq.Normal) workSheet.Shapes[2].ControlFormat.Value = 1;
                             if (kq.Abnormal) workSheet.Shapes[3].ControlFormat.Value = 1;
                         }
@@ -1408,6 +1445,188 @@ namespace MM.Exports
                     checkIndex += 2;
                     rowIndex += 2;
                 }
+
+                //Fill thông tin dịch vụ sử dụng lâm sàng
+                rowIndex = 37;
+                foreach (ServiceHistoryView srvHistory in serviceLamSangList)
+                {
+                    if (srvHistory.Note == null) srvHistory.Note = string.Empty;
+                    string serviceName = string.Empty;
+                    if (srvHistory.EnglishName == null || srvHistory.EnglishName.Trim() == string.Empty)
+                        serviceName = srvHistory.Name;
+                    else
+                        serviceName = string.Format("{0} ({1})", srvHistory.EnglishName, srvHistory.Name);
+
+                    range = workSheet.Cells[string.Format("A{0}:E{1}", rowIndex + 1, rowIndex + 2)];
+                    range.Merge();
+                    range.WrapText = true;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                    range.Font.Bold = true;
+                    range.Value = serviceName;
+
+                    IShape shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(0) + 1, workSheet.WindowInfo.RowToPoints(rowIndex) + 15.5, 100, 15);
+                    shape.Line.Visible = false;
+                    shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                    shape.TextFrame.VerticalAlignment = VAlign.Center;
+
+                    if (srvHistory.IsNormalOrNegative)
+                    {
+                        shape.TextFrame.Characters.Text = "Normal (Bình thường)";
+                        shape.ControlFormat.Value = srvHistory.Normal ? 1 : 0;
+                    }
+                    else
+                    {
+                        shape.TextFrame.Characters.Text = "Negative (Âm tính)";
+                        shape.ControlFormat.Value = srvHistory.Negative ? 1 : 0;
+                    }
+
+                    shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(0) + 119, workSheet.WindowInfo.RowToPoints(rowIndex) + 15.5, 110, 15);
+                    shape.Line.Visible = false;
+                    shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                    shape.TextFrame.VerticalAlignment = VAlign.Center;
+
+                    if (srvHistory.IsNormalOrNegative)
+                    {
+                        shape.TextFrame.Characters.Text = "Abnormal (Bất thường)";
+                        shape.ControlFormat.Value = srvHistory.Abnormal ? 1 : 0;
+                    }
+                    else
+                    {
+                        shape.TextFrame.Characters.Text = "Positive (Dương tính)";
+                        shape.ControlFormat.Value = srvHistory.Positive ? 1 : 0;
+                    }
+
+                    range = workSheet.Cells[string.Format("F{0}:I{1}", rowIndex + 1, rowIndex + 2)];
+                    range.Merge();
+                    range.WrapText = true;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                    range.Value = srvHistory.Note.Replace("\r", "").Replace("\t", "");
+
+                    rowIndex += 2;
+                }
+
+                //Fill thông tin dịch vụ sử dụng cận lâm sàng
+                rowIndex = serviceLamSangList.Count * 2 + 38;
+                range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex)];
+                range.Merge();
+                range.WrapText = true;
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+                range.Font.Bold = true;
+                range.Value = "PARACLINICAL RESULTS\nKẾT QUẢ CẬN LÂM SÀNG";
+                range.RowHeight = 33.75;
+
+                range = workSheet.Cells[string.Format("F{0}:I{0}", rowIndex)];
+                range.Merge();
+                range.WrapText = true;
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+                range.Font.Bold = true;
+                range.Value = "COMMENTS\nNHẬN XÉT";
+
+                foreach (ServiceHistoryView srvHistory in serviceCanLamSangList)
+                {
+                    if (srvHistory.Note == null) srvHistory.Note = string.Empty;
+                    string serviceName = string.Empty;
+                    if (srvHistory.EnglishName == null || srvHistory.EnglishName.Trim() == string.Empty)
+                        serviceName = srvHistory.Name;
+                    else
+                        serviceName = string.Format("{0} ({1})", srvHistory.EnglishName, srvHistory.Name);
+
+                    range = workSheet.Cells[string.Format("A{0}:E{1}", rowIndex + 1, rowIndex + 2)];
+                    range.Merge();
+                    range.WrapText = true;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                    range.Font.Bold = true;
+                    range.Value = serviceName;
+
+                    IShape shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(0) + 1, workSheet.WindowInfo.RowToPoints(rowIndex) + 15.5, 100, 15);
+                    shape.Line.Visible = false;
+                    shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                    shape.TextFrame.VerticalAlignment = VAlign.Center;
+
+                    if (srvHistory.IsNormalOrNegative)
+                    {
+                        shape.TextFrame.Characters.Text = "Normal (Bình thường)";
+                        shape.ControlFormat.Value = srvHistory.Normal ? 1 : 0;
+                    }
+                    else
+                    {
+                        shape.TextFrame.Characters.Text = "Negative (Âm tính)";
+                        shape.ControlFormat.Value = srvHistory.Negative ? 1 : 0;
+                    }
+
+                    shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(0) + 119, workSheet.WindowInfo.RowToPoints(rowIndex) + 15.5, 110, 15);
+                    shape.Line.Visible = false;
+                    shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                    shape.TextFrame.VerticalAlignment = VAlign.Center;
+
+                    if (srvHistory.IsNormalOrNegative)
+                    {
+                        shape.TextFrame.Characters.Text = "Abnormal (Bất thường)";
+                        shape.ControlFormat.Value = srvHistory.Abnormal ? 1 : 0;
+                    }
+                    else
+                    {
+                        shape.TextFrame.Characters.Text = "Positive (Dương tính)";
+                        shape.ControlFormat.Value = srvHistory.Positive ? 1 : 0;
+                    }
+
+                    range = workSheet.Cells[string.Format("F{0}:I{1}", rowIndex + 1, rowIndex + 2)];
+                    range.Merge();
+                    range.WrapText = true;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                    range.Value = srvHistory.Note.Replace("\r", "").Replace("\t", "");
+
+                    rowIndex += 2;
+                }
+
+                
+                range = workSheet.Cells[string.Format("A{0}:E{1}", rowIndex + 1, rowIndex + 2)];
+                range.Merge();
+                range.WrapText = true;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+                range.Font.Bold = true;
+                range.Value = "Others (Cận lâm sàng khác)";
+
+                range = workSheet.Cells[string.Format("F{0}:I{1}", rowIndex + 1, rowIndex + 2)];
+                range.Merge();
+                range.WrapText = true;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))

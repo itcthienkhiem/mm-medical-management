@@ -470,7 +470,9 @@ namespace MM.Bussiness
                                                                                     mm.Status == (byte)Status.Actived &&
                                                                                     mm.Company.Status == (byte)Status.Actived);
                 if (m != null)
+                {
                     result.QueryResult = m.Company.TenCty;
+                }
             }
             catch (System.Data.SqlClient.SqlException se)
             {
