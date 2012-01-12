@@ -41,6 +41,7 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
+            btnExportExcel.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -256,6 +257,33 @@ namespace MM.Controls
             dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc(drPhieuThu);
             dlg.ShowDialog(this);
         }
+
+        private void OnExportExcel()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<string> checkedPhieuThuThuocKeys = new List<string>();
+            DataTable dt = dgPhieuThu.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedPhieuThuThuocKeys.Add(row["PhieuThuThuocGUID"].ToString());
+                }
+            }
+
+            if (checkedPhieuThuThuocKeys.Count > 0)
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Title = "Export Excel";
+                dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    ExportExcel.ExportChiTietPhieuThuThuocToExcel(dlg.FileName, checkedPhieuThuThuocKeys);
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu thuốc cần in.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -341,6 +369,11 @@ namespace MM.Controls
                 DisplayAsThread();
             }
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -362,5 +395,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

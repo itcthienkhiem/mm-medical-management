@@ -1237,7 +1237,7 @@ namespace MM.Exports
                     }
 
                     string tenCongTy = receipt.CompanyName;
-                    if (tenCongTy == null) tenCongTy = string.Empty;
+                    if (tenCongTy == null) tenCongTy = "Tự túc";
                     if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
                         tenCongTy = result.QueryResult.ToString();
 
@@ -1306,6 +1306,98 @@ namespace MM.Exports
             return true;
         }
 
+        public static bool ExportChiTietPhieuThuThuocToExcel(string exportFileName, List<string> phieuThuKeyList)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\ChiTietPhieuThuThuocTemplate.xls", Application.StartupPath);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                IRange range;
+                foreach (string key in phieuThuKeyList)
+                {
+                    Result result = PhieuThuThuocBus.GetPhieuThuThuoc(key);
+
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuoc"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuoc"));
+                        return false;
+                    }
+
+                    PhieuThuThuoc phieuThuThuoc = result.QueryResult as PhieuThuThuoc;
+                    if (phieuThuThuoc == null) continue;
+                    if (phieuThuThuoc.TenCongTy == null) phieuThuThuoc.TenCongTy = "Tự túc";
+
+                    result = PhieuThuThuocBus.GetChiTietPhieuThuThuoc(key);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.GetChiTietPhieuThuThuoc"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.GetChiTietPhieuThuThuoc"));
+                        return false;
+                    }
+
+                    DataTable dtSource = result.QueryResult as DataTable;
+
+                    foreach (DataRow row in dtSource.Rows)
+                    {
+                        range = workSheet.Cells[rowIndex, 0];
+                        range.Value = phieuThuThuoc.MaPhieuThuThuoc;
+
+                        range = workSheet.Cells[rowIndex, 1];
+                        range.Value = phieuThuThuoc.NgayThu.ToString("dd/MM/yyyy");
+
+                        range = workSheet.Cells[rowIndex, 2];
+                        range.Value = phieuThuThuoc.TenCongTy;
+                        range.WrapText = true;
+
+                        range = workSheet.Cells[rowIndex, 3];
+                        range.Value = phieuThuThuoc.TenBenhNhan;
+                        range.WrapText = true;
+
+                        range = workSheet.Cells[rowIndex, 4];
+                        range.Value = row["TenThuoc"].ToString();
+                        range.WrapText = true;
+
+                        range = workSheet.Cells[rowIndex, 5];
+                        range.Value = Convert.ToDouble(row["ThanhTien"]);
+
+                        rowIndex++;
+                    }
+                }
+
+                range = workSheet.Cells[string.Format("A3:F{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
         public static bool ExportKhamSucKhoeTongQuatToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -1328,14 +1420,12 @@ namespace MM.Exports
                     return false;
                 }
 
-                string tenCongTy = string.Empty;
+                string tenCongTy = "Tự túc";
                 if (patientRow["CompanyName"] != null && patientRow["CompanyName"] != DBNull.Value)
                     tenCongTy = patientRow["CompanyName"].ToString();
 
                 if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
-                {
                     tenCongTy = result.QueryResult.ToString();
-                }
 
                 //Lấy thông tin cân đo
                 result = CanDoBus.GetLastCanDo(patientGUID, fromDate, toDate);
@@ -1462,6 +1552,10 @@ namespace MM.Exports
                 rowIndex = 37;
                 foreach (ServiceHistoryView srvHistory in serviceLamSangList)
                 {
+                    range = workSheet.Cells["A38"].EntireRow;
+                    range.Insert(InsertShiftDirection.Down);
+                    range.Insert(InsertShiftDirection.Down);
+
                     if (srvHistory.Note == null) srvHistory.Note = string.Empty;
                     string serviceName = string.Empty;
                     if (srvHistory.EnglishName == null || srvHistory.EnglishName.Trim() == string.Empty)
@@ -1529,6 +1623,9 @@ namespace MM.Exports
 
                 //Fill thông tin dịch vụ sử dụng cận lâm sàng
                 rowIndex = serviceLamSangList.Count * 2 + 38;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex)].EntireRow;
+                range.Insert(InsertShiftDirection.Down);
+
                 range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex)];
                 range.Merge();
                 range.WrapText = true;
@@ -1554,6 +1651,10 @@ namespace MM.Exports
 
                 foreach (ServiceHistoryView srvHistory in serviceCanLamSangList)
                 {
+                    range = workSheet.Cells[string.Format("A{0}", rowIndex + 2)].EntireRow;
+                    range.Insert(InsertShiftDirection.Down);
+                    range.Insert(InsertShiftDirection.Down);
+
                     if (srvHistory.Note == null) srvHistory.Note = string.Empty;
                     string serviceName = string.Empty;
                     if (srvHistory.EnglishName == null || srvHistory.EnglishName.Trim() == string.Empty)
@@ -1619,6 +1720,9 @@ namespace MM.Exports
                     rowIndex += 2;
                 }
 
+                range = workSheet.Cells[string.Format("A{0}", rowIndex + 2)].EntireRow;
+                range.Insert(InsertShiftDirection.Down);
+                range.Insert(InsertShiftDirection.Down);
                 
                 range = workSheet.Cells[string.Format("A{0}:E{1}", rowIndex + 1, rowIndex + 2)];
                 range.Merge();
@@ -1641,6 +1745,14 @@ namespace MM.Exports
                 range.Borders.Weight = BorderWeight.Thin;
 
                 rowIndex += 3;
+
+                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
+                range.Insert(InsertShiftDirection.Down);
+                range.Insert(InsertShiftDirection.Down);
+                range.Insert(InsertShiftDirection.Down);
+                range.Insert(InsertShiftDirection.Down);
+                range.Insert(InsertShiftDirection.Down);
+
                 range = workSheet.Cells[string.Format("A{0}", rowIndex)];
                 range.Font.Bold = true;
                 range.Value = "1. CÁC XÉT NGHIỆM LÀM THÊM";
@@ -1716,44 +1828,61 @@ namespace MM.Exports
                 range.Value = "        Lý do:………….";
 
                 //Fill thông tin lời khuyên
-                rowIndex +=2;
-                range = workSheet.Cells[string.Format("A{0}", rowIndex)];
-                range.Value = "ĐỀ NGHỊ THEO DÕI THÊM";
-                range.Font.Bold = true;
-                range.Font.Underline = UnderlineStyle.Single;
-
-                rowIndex += 1;
-                foreach (LoiKhuyenView loiKhuyen in loiKhuyenList)
+                if (loiKhuyenList.Count > 0)
                 {
-                    string symptomName = loiKhuyen.SymptomName.Replace("\r", "").Replace("\t", "");
-                    string advice = loiKhuyen.Advice.Replace("\r", "").Replace("\t", "");
-                    range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
-                    range.Merge();
-                    range.WrapText = true;
-                    range.HorizontalAlignment = HAlign.Left;
-                    range.VerticalAlignment = VAlign.Center;
-                    range.Borders.Color = Color.Black;
-                    range.Borders.LineStyle = LineStyle.Continuous;
-                    range.Borders.Weight = BorderWeight.Thin;
-                    range.Value = symptomName;
-                    
-                    range = workSheet.Cells[string.Format("F{0}:I{0}", rowIndex + 1)];
-                    range.Merge();
-                    range.WrapText = true;
-                    range.WrapText = true;
-                    range.HorizontalAlignment = HAlign.Left;
-                    range.VerticalAlignment = VAlign.Top;
-                    range.Borders.Color = Color.Black;
-                    range.Borders.LineStyle = LineStyle.Continuous;
-                    range.Borders.Weight = BorderWeight.Thin;
-                    range.Value = advice;
+                    rowIndex += 2;
+                    range = workSheet.Cells[string.Format("A{0}", rowIndex)].EntireRow;
+                    range.Insert(InsertShiftDirection.Down);
+                    range.Insert(InsertShiftDirection.Down);
 
-                    int lineCount = advice.Length / 45;
-                    if (lineCount % 40 != 0) lineCount++;
+                    range = workSheet.Cells[string.Format("A{0}", rowIndex)];
+                    range.Value = "ĐỀ NGHỊ THEO DÕI THÊM";
+                    range.Font.Bold = true;
+                    range.Font.Underline = UnderlineStyle.Single;
 
-                    range.RowHeight = 15.75 * lineCount;
                     rowIndex += 1;
+                    range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
+                    range.Insert(InsertShiftDirection.Down);
+
+                    foreach (LoiKhuyenView loiKhuyen in loiKhuyenList)
+                    {
+                        string symptomName = loiKhuyen.SymptomName.Replace("\r", "").Replace("\t", "");
+                        string advice = loiKhuyen.Advice.Replace("\r", "").Replace("\t", "");
+                        range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                        range.Merge();
+                        range.WrapText = true;
+                        range.HorizontalAlignment = HAlign.Left;
+                        range.VerticalAlignment = VAlign.Center;
+                        range.Borders.Color = Color.Black;
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Weight = BorderWeight.Thin;
+                        range.Value = symptomName;
+
+                        range = workSheet.Cells[string.Format("F{0}:I{0}", rowIndex + 1)];
+                        range.Merge();
+                        range.WrapText = true;
+                        range.WrapText = true;
+                        range.HorizontalAlignment = HAlign.Left;
+                        range.VerticalAlignment = VAlign.Top;
+                        range.Borders.Color = Color.Black;
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Weight = BorderWeight.Thin;
+                        range.Value = advice;
+
+                        int lineCount = advice.Length / 45;
+                        if (lineCount % 40 != 0) lineCount++;
+
+                        range.RowHeight = 15.75 * lineCount;
+                        rowIndex += 1;
+                        range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
+                        range.Insert(InsertShiftDirection.Down);
+                        range.RowHeight = 15.75;
+                    }
                 }
+
+                rowIndex += 7;
+                range = workSheet.Cells[string.Format("G{0}", rowIndex)];
+                range.Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy"));
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
