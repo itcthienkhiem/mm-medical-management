@@ -42,6 +42,45 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetLoiKhuyenList2(string patientGUID, DateTime fromDate, DateTime toDate)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+            try
+            {
+                db = new MMOverride();
+                List<LoiKhuyenView> loiKhuyenList = (from lk in db.LoiKhuyenViews
+                                                     where lk.PatientGUID.ToString() == patientGUID &&
+                                                     lk.Ngay >= fromDate && lk.Ngay <= toDate &&
+                                                     lk.LoiKhuyenStatus == (byte)Status.Actived &&
+                                                     lk.SymptomStatus == (byte)Status.Actived
+                                                     orderby lk.SymptomName descending
+                                                     select lk).ToList<LoiKhuyenView>();
+
+                result.QueryResult = loiKhuyenList;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result DeleteLoiKhuyen(List<String> loiKhuyenKeys)
         {
             Result result = new Result();
