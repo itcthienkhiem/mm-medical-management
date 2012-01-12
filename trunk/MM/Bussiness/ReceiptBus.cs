@@ -110,7 +110,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                ReceiptView receipt = db.ReceiptViews.SingleOrDefault<ReceiptView>(r => r.ReceiptGUID.ToString() == receiptGUID && r.Status == (byte)Status.Actived);
+                ReceiptView receipt = db.ReceiptViews.SingleOrDefault<ReceiptView>(r => r.ReceiptGUID.ToString() == receiptGUID);
                 result.QueryResult = receipt;
             }
             catch (System.Data.SqlClient.SqlException se)
