@@ -167,6 +167,8 @@ namespace MM
                 _uTrackingList.InitData();
             else if (ctrl.GetType() == typeof(uServiceGroupList))
                 _uServiceGroupList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uInKetQuaKhamSucKhoeTongQuat))
+                _uInKetQuaKhamSucKhoeTongQuat.InitData();
         }
 
         private void SaveAppConfig()
@@ -505,6 +507,16 @@ namespace MM
                             _uServiceGroupList.AllowExport = isExport;
                             _uServiceGroupList.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.InKetQuaKhamSucKhoeTongQuat)
+                        {
+                            inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Enabled = isView && isLogin;
+                            _uInKetQuaKhamSucKhoeTongQuat.AllowAdd = isAdd;
+                            _uInKetQuaKhamSucKhoeTongQuat.AllowEdit = isEdit;
+                            _uInKetQuaKhamSucKhoeTongQuat.AllowDelete = isDelete;
+                            _uInKetQuaKhamSucKhoeTongQuat.AllowPrint = isPrint;
+                            _uInKetQuaKhamSucKhoeTongQuat.AllowExport = isExport;
+                            _uInKetQuaKhamSucKhoeTongQuat.AllowImport = isImport;
+                        }
                     }
                 }
                 else
@@ -606,6 +618,7 @@ namespace MM
                 trackingToolStripMenuItem.Enabled = isLogin;
 
                 serviceGroupToolStripMenuItem.Enabled = isLogin;
+                inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -753,7 +766,18 @@ namespace MM
                 case "ServiceGroup":
                     OnServiceGroup();
                     break;
+
+                case "InKetQuaKhamSucKhoeTongQuat":
+                    OnInKetQuaKhamSucKhoeTongQuat();
+                    break;
             }
+        }
+
+        private void OnInKetQuaKhamSucKhoeTongQuat()
+        {
+            this.Text = string.Format("{0} - In ket qua kham suc khoe tong quat", Application.ProductName);
+            ViewControl(_uInKetQuaKhamSucKhoeTongQuat);
+            _uInKetQuaKhamSucKhoeTongQuat.InitData();
         }
 
         private void OnServiceGroup()
@@ -1157,7 +1181,7 @@ namespace MM
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitConfigAsThread();
-            AutoDetectUpdateAsThread();
+            //AutoDetectUpdateAsThread();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

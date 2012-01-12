@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uServiceGroupList = new MM.Controls.uServiceGroupList();
             this._uTrackingList = new MM.Controls.uTrackingList();
             this._uDichVuTuTuc = new MM.Controls.uDichVuTuTuc();
             this._uPhieuThuThuocList = new MM.Controls.uPhieuThuThuocList();
@@ -151,6 +152,8 @@
             this.thuocHetHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
             this.thuocTonKhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
+            this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -186,7 +189,7 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._uServiceGroupList = new MM.Controls.uServiceGroupList();
+            this._uInKetQuaKhamSucKhoeTongQuat = new MM.Controls.uInKetQuaKhamSucKhoeTongQuat();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -204,6 +207,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uInKetQuaKhamSucKhoeTongQuat);
             this._mainPanel.Controls.Add(this._uServiceGroupList);
             this._mainPanel.Controls.Add(this._uTrackingList);
             this._mainPanel.Controls.Add(this._uDichVuTuTuc);
@@ -231,6 +235,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uServiceGroupList
+            // 
+            resources.ApplyResources(this._uServiceGroupList, "_uServiceGroupList");
+            this._uServiceGroupList.Name = "_uServiceGroupList";
             // 
             // _uTrackingList
             // 
@@ -967,7 +976,9 @@
             this.toolStripSeparator26,
             this.thuocHetHanToolStripMenuItem,
             this.toolStripSeparator23,
-            this.thuocTonKhoToolStripMenuItem});
+            this.thuocTonKhoToolStripMenuItem,
+            this.toolStripSeparator29,
+            this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem});
             resources.ApplyResources(this.reportToolStripMenuItem, "reportToolStripMenuItem");
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             // 
@@ -1030,6 +1041,19 @@
             resources.ApplyResources(this.thuocTonKhoToolStripMenuItem, "thuocTonKhoToolStripMenuItem");
             this.thuocTonKhoToolStripMenuItem.Tag = "ThuocTonKho";
             this.thuocTonKhoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator29
+            // 
+            this.toolStripSeparator29.Name = "toolStripSeparator29";
+            resources.ApplyResources(this.toolStripSeparator29, "toolStripSeparator29");
+            // 
+            // inKetQuaKhamSucKhoeTongQuatToolStripMenuItem
+            // 
+            this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Image = global::MM.Properties.Resources.Stethoscope_icon3;
+            this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Name = "inKetQuaKhamSucKhoeTongQuatToolStripMenuItem";
+            resources.ApplyResources(this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem, "inKetQuaKhamSucKhoeTongQuatToolStripMenuItem");
+            this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Tag = "InKetQuaKhamSucKhoeTongQuat";
+            this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -1368,10 +1392,10 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
-            // _uServiceGroupList
+            // _uInKetQuaKhamSucKhoeTongQuat
             // 
-            resources.ApplyResources(this._uServiceGroupList, "_uServiceGroupList");
-            this._uServiceGroupList.Name = "_uServiceGroupList";
+            resources.ApplyResources(this._uInKetQuaKhamSucKhoeTongQuat, "_uInKetQuaKhamSucKhoeTongQuat");
+            this._uInKetQuaKhamSucKhoeTongQuat.Name = "_uInKetQuaKhamSucKhoeTongQuat";
             // 
             // MainForm
             // 
@@ -1561,6 +1585,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator28;
         private System.Windows.Forms.ToolStripMenuItem serviceGroupToolStripMenuItem;
         private Controls.uServiceGroupList _uServiceGroupList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
+        private System.Windows.Forms.ToolStripMenuItem inKetQuaKhamSucKhoeTongQuatToolStripMenuItem;
+        private Controls.uInKetQuaKhamSucKhoeTongQuat _uInKetQuaKhamSucKhoeTongQuat;
 
     }
 }
