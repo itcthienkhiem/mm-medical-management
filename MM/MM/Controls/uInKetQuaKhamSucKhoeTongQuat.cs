@@ -97,7 +97,45 @@ namespace MM.Controls
 
         private void OnPrint(bool isPreview)
         {
+            if (!CheckInfo()) return;
 
+            string exportFileName = string.Format("{0}\\Temp\\KhamSucKhoeTongQuat.xls", Application.StartupPath);
+            if (isPreview)
+            {
+                DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
+                if (ExportExcel.ExportKhamSucKhoeTongQuatToExcel(exportFileName, _patientRow, tuNgay, denNgay))
+                {
+                    try
+                    {
+                        ExcelPrintPreview.PrintPreview(exportFileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                    }
+                }
+            }
+            else
+            {
+                if (_printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                    DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
+                    if (ExportExcel.ExportKhamSucKhoeTongQuatToExcel(exportFileName, _patientRow, tuNgay, denNgay))
+                    {
+                        try
+                        {
+                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
+                        }
+                    }
+                }
+            }
         }
         #endregion
 

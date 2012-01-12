@@ -65,3 +65,5 @@ spDichVuHopDong
 - Update view: ReceiptView
 2012-01-12
 - Insert: Function(InKetQuaKhamSucKhoeTongQuat)
+- Update table: PhieuThuThuoc(Add column: TenCongTy)
+- Update view: ToaThuocView

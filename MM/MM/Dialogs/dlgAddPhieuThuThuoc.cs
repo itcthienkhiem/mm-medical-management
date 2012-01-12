@@ -20,6 +20,7 @@ namespace MM.Dialogs
         private bool _flag = true;
         private PhieuThuThuoc _phieuThuThuoc = new PhieuThuThuoc();
         private DataRow _drPhieuThu = null;
+        private string _tenCongTy = string.Empty;
         #endregion
 
         #region Constructor
@@ -439,6 +440,7 @@ namespace MM.Dialogs
                     _phieuThuThuoc.MaBenhNhan = txtMaBenhNhan.Text;
                     _phieuThuThuoc.TenBenhNhan = txtTenBenhNhan.Text;
                     _phieuThuThuoc.DiaChi = txtDiaChi.Text;
+                    _phieuThuThuoc.TenCongTy = _tenCongTy;
                     _phieuThuThuoc.Status = (byte)Status.Actived;
 
                     if (_isNew)
@@ -529,6 +531,7 @@ namespace MM.Dialogs
             {
                 txtMaBenhNhan.ReadOnly = true;
                 txtMaBenhNhan.Text = string.Empty;
+                _tenCongTy = "Tự túc";
             }
             else
             {
@@ -539,9 +542,15 @@ namespace MM.Dialogs
                     txtMaBenhNhan.Text = row["FileNum"].ToString();
                     txtTenBenhNhan.Text = row["TenBenhNhan"].ToString();
                     txtDiaChi.Text = row["Address"].ToString();
+                    if (row["CompanyName"] != null && row["CompanyName"] != DBNull.Value)
+                        _tenCongTy = row["CompanyName"].ToString();
+                    else
+                        _tenCongTy = "Tự túc";
 
                     OnDisplayChiTietToaThuoc(toaThuocGUID);
                 }
+                else
+                    _tenCongTy = "Tự túc";
             }
         }
 

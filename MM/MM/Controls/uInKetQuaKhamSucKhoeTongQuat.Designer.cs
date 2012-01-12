@@ -45,6 +45,7 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.btnExportExcel = new System.Windows.Forms.Button();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -225,6 +226,14 @@
             this.btnExportExcel.UseVisualStyleBackColor = true;
             this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
+            // 
             // uInKetQuaKhamSucKhoeTongQuat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,5 +269,6 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnPrintPreview;
         private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }

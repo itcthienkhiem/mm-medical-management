@@ -1093,6 +1093,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="Templates\ChiTietPhieuThuTemplate.xls" />
+    <None Include="Templates\ChiTietPhieuThuThuocTemplate.xls" />
     <None Include="Templates\DanhSachBenhNhanTemplate.xls" />
     <None Include="Templates\DichVuHopDongTemplate.xls" />
     <None Include="Templates\DichVuTuTucTemplate.xls" />
