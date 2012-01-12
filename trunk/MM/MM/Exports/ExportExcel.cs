@@ -1381,10 +1381,22 @@ namespace MM.Exports
 
                 List<ServiceHistoryView> serviceCanLamSangList = (List<ServiceHistoryView>)result.QueryResult;
 
+                //Lấy thông tin lời khuyên
+                result = LoiKhuyenBus.GetLoiKhuyenList2(patientGUID, fromDate, toDate);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("LoiKhuyenBus.GetLoiKhuyenList2"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LoiKhuyenBus.GetLoiKhuyenList2"));
+                    return false;
+                }
+
+                List<LoiKhuyenView> loiKhuyenList = (List<LoiKhuyenView>)result.QueryResult;
+
                 string excelTemplateName = string.Format("{0}\\Templates\\KhamSucKhoeTongQuatTemplate.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 IRange range;
+                IShape shape;
 
                 //Fill thông tin bệnh nhân
                 workSheet.Cells["B2"].Value = tenBenhNhan;
@@ -1468,7 +1480,7 @@ namespace MM.Exports
                     range.Font.Bold = true;
                     range.Value = serviceName;
 
-                    IShape shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                    shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
                             workSheet.WindowInfo.ColumnToPoints(0) + 1, workSheet.WindowInfo.RowToPoints(rowIndex) + 15.5, 100, 15);
                     shape.Line.Visible = false;
                     shape.TextFrame.HorizontalAlignment = HAlign.Left;
@@ -1560,7 +1572,7 @@ namespace MM.Exports
                     range.Font.Bold = true;
                     range.Value = serviceName;
 
-                    IShape shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                    shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
                             workSheet.WindowInfo.ColumnToPoints(0) + 1, workSheet.WindowInfo.RowToPoints(rowIndex) + 15.5, 100, 15);
                     shape.Line.Visible = false;
                     shape.TextFrame.HorizontalAlignment = HAlign.Left;
@@ -1627,6 +1639,121 @@ namespace MM.Exports
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
+
+                rowIndex += 3;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex)];
+                range.Font.Bold = true;
+                range.Value = "1. CÁC XÉT NGHIỆM LÀM THÊM";
+
+                shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(5) + 25, workSheet.WindowInfo.RowToPoints(rowIndex - 1), 40, 15);
+                shape.Line.Visible = false;
+                shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                shape.TextFrame.VerticalAlignment = VAlign.Center;
+                shape.TextFrame.Characters.Text = "Có";
+
+                shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(6) + 15, workSheet.WindowInfo.RowToPoints(rowIndex - 1), 50, 15);
+                shape.Line.Visible = false;
+                shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                shape.TextFrame.VerticalAlignment = VAlign.Center;
+                shape.TextFrame.Characters.Text = "Không";
+
+                rowIndex++;
+                range = workSheet.Cells[string.Format("A{0}:I{0}", rowIndex)];
+                range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+                range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dot;
+                range.Borders[BordersIndex.EdgeBottom].Weight = BorderWeight.Thin;
+
+                rowIndex++;
+                range = workSheet.Cells[string.Format("A{0}:I{0}", rowIndex)];
+                range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+                range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dot;
+                range.Borders[BordersIndex.EdgeBottom].Weight = BorderWeight.Thin;
+
+                rowIndex++;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex)];
+                range.Font.Bold = true;
+                range.Value = "2. ĐÃ LÀM ĐỦ CẬN LÂM SÀNG TRONG GÓI KHÁM";
+
+                shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(5) + 25, workSheet.WindowInfo.RowToPoints(rowIndex - 1), 40, 15);
+                shape.Line.Visible = false;
+                shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                shape.TextFrame.VerticalAlignment = VAlign.Center;
+                shape.TextFrame.Characters.Text = "Có";
+
+                shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(6) + 15, workSheet.WindowInfo.RowToPoints(rowIndex - 1), 50, 15);
+                shape.Line.Visible = false;
+                shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                shape.TextFrame.VerticalAlignment = VAlign.Center;
+                shape.TextFrame.Characters.Text = "Không";
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex)];
+                range.Value = "        Lý do:………….";
+
+                rowIndex++;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex)];
+                range.Font.Bold = true;
+                range.Value = "3. ĐỦ SỨC KHỎE LÀM VIỆC";
+
+                shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(5) + 25, workSheet.WindowInfo.RowToPoints(rowIndex - 1), 40, 15);
+                shape.Line.Visible = false;
+                shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                shape.TextFrame.VerticalAlignment = VAlign.Center;
+                shape.TextFrame.Characters.Text = "Có";
+
+                shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                            workSheet.WindowInfo.ColumnToPoints(6) + 15, workSheet.WindowInfo.RowToPoints(rowIndex - 1), 50, 15);
+                shape.Line.Visible = false;
+                shape.TextFrame.HorizontalAlignment = HAlign.Left;
+                shape.TextFrame.VerticalAlignment = VAlign.Center;
+                shape.TextFrame.Characters.Text = "Không";
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex)];
+                range.Value = "        Lý do:………….";
+
+                //Fill thông tin lời khuyên
+                rowIndex +=2;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex)];
+                range.Value = "ĐỀ NGHỊ THEO DÕI THÊM";
+                range.Font.Bold = true;
+                range.Font.Underline = UnderlineStyle.Single;
+
+                rowIndex += 1;
+                foreach (LoiKhuyenView loiKhuyen in loiKhuyenList)
+                {
+                    string symptomName = loiKhuyen.SymptomName.Replace("\r", "").Replace("\t", "");
+                    string advice = loiKhuyen.Advice.Replace("\r", "").Replace("\t", "");
+                    range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                    range.Merge();
+                    range.WrapText = true;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Center;
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                    range.Value = symptomName;
+                    
+                    range = workSheet.Cells[string.Format("F{0}:I{0}", rowIndex + 1)];
+                    range.Merge();
+                    range.WrapText = true;
+                    range.WrapText = true;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                    range.Value = advice;
+
+                    int lineCount = advice.Length / 45;
+                    if (lineCount % 40 != 0) lineCount++;
+
+                    range.RowHeight = 15.75 * lineCount;
+                    rowIndex += 1;
+                }
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
