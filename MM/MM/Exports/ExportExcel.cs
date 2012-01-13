@@ -1880,28 +1880,32 @@ namespace MM.Exports
                 range = workSheet.Cells[string.Format("H{0}", rowIndex)];
                 range.Value = "        Lý do:………….";
 
-                
-                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
-                for (int i = 0; i < 16; i++)
+
+                if (rowIndex < 90)
                 {
-                    range.Insert(InsertShiftDirection.Down);
+                    int count = 90 - rowIndex;
+                    range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
+                    for (int i = 0; i < count - 1; i++)
+                    {
+                        range.Insert(InsertShiftDirection.Down);
+                    }
+
+                    rowIndex += count - 1;    
                 }
 
-                rowIndex += 16;
-
                 //Fill thông tin lời khuyên
+                rowIndex += 2;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex)].EntireRow;
+                range.Insert(InsertShiftDirection.Down);
+                range.Insert(InsertShiftDirection.Down);
+
+                range = workSheet.Cells[string.Format("A{0}", rowIndex)];
+                range.Value = "ĐỀ NGHỊ THEO DÕI THÊM";
+                range.Font.Bold = true;
+                range.Font.Underline = UnderlineStyle.Single;
+                
                 if (loiKhuyenList.Count > 0)
                 {
-                    rowIndex += 2;
-                    range = workSheet.Cells[string.Format("A{0}", rowIndex)].EntireRow;
-                    range.Insert(InsertShiftDirection.Down);
-                    range.Insert(InsertShiftDirection.Down);
-
-                    range = workSheet.Cells[string.Format("A{0}", rowIndex)];
-                    range.Value = "ĐỀ NGHỊ THEO DÕI THÊM";
-                    range.Font.Bold = true;
-                    range.Font.Underline = UnderlineStyle.Single;
-
                     rowIndex += 1;
                     range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
                     range.Insert(InsertShiftDirection.Down);
