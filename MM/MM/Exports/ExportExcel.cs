@@ -1552,7 +1552,7 @@ namespace MM.Exports
                 rowIndex = 37;
                 foreach (ServiceHistoryView srvHistory in serviceLamSangList)
                 {
-                    range = workSheet.Cells["A38"].EntireRow;
+                    range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
                     range.Insert(InsertShiftDirection.Down);
                     range.Insert(InsertShiftDirection.Down);
 
