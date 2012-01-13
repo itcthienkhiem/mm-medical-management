@@ -1214,7 +1214,12 @@ namespace MM
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitConfigAsThread();
-            AutoDetectUpdateAsThread();
+
+            #if DEBUG
+                
+            #else
+                AutoDetectUpdateAsThread();
+            #endif
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
