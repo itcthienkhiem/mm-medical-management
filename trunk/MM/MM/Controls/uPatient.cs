@@ -50,6 +50,7 @@ namespace MM.Controls
                 _uCanDoList.PatientRow = (DataRow)value;
                 _uLoiKhuyenList.PatientRow = (DataRow)value;
                 _uKetQuaLamSangList.PatientRow = (DataRow)value;
+                _uKetLuanList.PatientRow = (DataRow)value;
             }
         }
         #endregion
@@ -102,6 +103,8 @@ namespace MM.Controls
                 _uKetQuaLamSangList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 6)
                 _uLoiKhuyenList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 7)
+                _uKetLuanList.DisplayAsThread();
         }
 
         public void DisplayCheckListAsThread()
@@ -194,6 +197,8 @@ namespace MM.Controls
                 _uKetQuaLamSangList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 6)
                 _uLoiKhuyenList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 7)
+                _uKetLuanList.DisplayAsThread();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

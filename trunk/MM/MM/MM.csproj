@@ -349,6 +349,12 @@
     <Compile Include="Controls\uInvoiceList.Designer.cs">
       <DependentUpon>uInvoiceList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetLuanList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetLuanList.Designer.cs">
+      <DependentUpon>uKetLuanList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKetQuaLamSangList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -486,6 +492,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddGiaVonDichVu.Designer.cs">
       <DependentUpon>dlgAddGiaVonDichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKetLuan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKetLuan.Designer.cs">
+      <DependentUpon>dlgAddKetLuan.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddMultiKhamLamSang.cs">
       <SubType>Form</SubType>
@@ -836,6 +848,9 @@
     <EmbeddedResource Include="Controls\uInvoiceList.resx">
       <DependentUpon>uInvoiceList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetLuanList.resx">
+      <DependentUpon>uKetLuanList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaLamSangList.resx">
       <DependentUpon>uKetQuaLamSangList.cs</DependentUpon>
     </EmbeddedResource>
@@ -904,6 +919,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddGiaVonDichVu.resx">
       <DependentUpon>dlgAddGiaVonDichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddKetLuan.resx">
+      <DependentUpon>dlgAddKetLuan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddMultiKhamLamSang.resx">
       <DependentUpon>dlgAddMultiKhamLamSang.cs</DependentUpon>
@@ -1078,6 +1096,7 @@
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaVonDichVuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.KetLuanView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
@@ -1171,6 +1190,7 @@
     <None Include="Resources\page-excel-icon.png" />
     <None Include="Resources\Stethoscope-icon3.png" />
     <None Include="Resources\US-dollar-icon.png" />
+    <None Include="Resources\clipboard-search-result-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-14_2012-01-15.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-13_2012-01-13.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-11_2012-01-12.sql" />
