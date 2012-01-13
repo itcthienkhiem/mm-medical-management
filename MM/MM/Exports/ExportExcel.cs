@@ -1649,7 +1649,46 @@ namespace MM.Exports
                 range.Font.Bold = true;
                 range.Value = "COMMENTS\nNHẬN XÉT";
 
+                List<ServiceHistoryView> serviceNoGroupList = new List<ServiceHistoryView>();
+                Hashtable htServiceGroup = new Hashtable();
                 foreach (ServiceHistoryView srvHistory in serviceCanLamSangList)
+                {
+                    result = ServiceGroupBus.GetServiceGroup(srvHistory.ServiceGUID.ToString());
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceGroupBus.GetServiceGroup"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ServiceGroupBus.GetServiceGroup"));
+                        return false;
+                    }
+
+                    ServiceGroup serviceGroup = result.QueryResult as ServiceGroup;
+                    if (serviceGroup == null)
+                        serviceNoGroupList.Add(srvHistory);
+                    else
+                    {
+                        if (!htServiceGroup.ContainsKey(serviceGroup.ServiceGroupGUID.ToString()))
+                        {
+                            List<ServiceHistoryView> serviceGroupList = new List<ServiceHistoryView>();
+                            serviceGroupList.Add(srvHistory);
+                            htServiceGroup.Add(serviceGroup.ServiceGroupGUID.ToString(), serviceGroupList);
+                        }
+                        else
+                        {
+                            List<ServiceHistoryView> serviceGroupList = (List<ServiceHistoryView>)htServiceGroup[serviceGroup.ServiceGroupGUID.ToString()];
+                            serviceGroupList.Add(srvHistory);
+                        }
+                    }
+                }
+
+                foreach (List<ServiceHistoryView> serviceGroupList in htServiceGroup.Values)
+                {
+                    foreach (ServiceHistoryView srvHistory in serviceGroupList)
+                    {
+                        serviceNoGroupList.Add(srvHistory);
+                    }
+                }
+
+                foreach (ServiceHistoryView srvHistory in serviceNoGroupList)
                 {
                     range = workSheet.Cells[string.Format("A{0}", rowIndex + 2)].EntireRow;
                     range.Insert(InsertShiftDirection.Down);
