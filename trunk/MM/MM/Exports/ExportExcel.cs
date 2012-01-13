@@ -1482,6 +1482,17 @@ namespace MM.Exports
 
                 List<LoiKhuyenView> loiKhuyenList = (List<LoiKhuyenView>)result.QueryResult;
 
+                //Lấy thông tin kết luận
+                result = KetLuanBus.GetLastKetLuan(patientGUID, fromDate, toDate);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetLuanBus.GetLastKetLuan"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("KetLuanBus.GetLastKetLuan"));
+                    return false;
+                }
+
+                KetLuan ketLuan = result.QueryResult as KetLuan;
+
                 string excelTemplateName = string.Format("{0}\\Templates\\KhamSucKhoeTongQuatTemplate.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -1534,7 +1545,8 @@ namespace MM.Exports
                         else
                         {
                             workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("PARA: {0}", kq.PARA);
-                            workSheet.Cells[string.Format("I{0}", rowIndex)].Value = kq.NgayKinhChot.Value.ToString("dd/MM/yyyy");
+                            if (kq.NgayKinhChot.HasValue)
+                                workSheet.Cells[string.Format("I{0}", rowIndex)].Value = kq.NgayKinhChot.Value.ToString("dd/MM/yyyy");
                             rowIndex++;
                             workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Kết quả khám phụ khoa: {0}", kq.Note.Replace("\r", "").Replace("\t", ""));
                             rowIndex++;
@@ -1816,6 +1828,7 @@ namespace MM.Exports
                 shape.TextFrame.HorizontalAlignment = HAlign.Left;
                 shape.TextFrame.VerticalAlignment = VAlign.Center;
                 shape.TextFrame.Characters.Text = "Có";
+                if (ketLuan != null) shape.ControlFormat.Value = ketLuan.HasLamThemXetNghiem ? 1 : 0;
 
                 shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
                             workSheet.WindowInfo.ColumnToPoints(6) + 15, workSheet.WindowInfo.RowToPoints(rowIndex - 1), 50, 15);
@@ -1823,20 +1836,27 @@ namespace MM.Exports
                 shape.TextFrame.HorizontalAlignment = HAlign.Left;
                 shape.TextFrame.VerticalAlignment = VAlign.Center;
                 shape.TextFrame.Characters.Text = "Không";
+                if (ketLuan != null) shape.ControlFormat.Value = ketLuan.HasLamThemXetNghiem ? 0 : 1;
 
                 rowIndex++;
-                range = workSheet.Cells[string.Format("A{0}:I{0}", rowIndex)];
-                range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
-                range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dot;
-                range.Borders[BordersIndex.EdgeBottom].Weight = BorderWeight.Thin;
+                range = workSheet.Cells[string.Format("A{0}:I{1}", rowIndex, rowIndex + 1)];
+                range.Merge();
+                range.WrapText = true;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Top;
+                range.Value = ketLuan.CacXetNghiemLamThem;
 
-                rowIndex++;
-                range = workSheet.Cells[string.Format("A{0}:I{0}", rowIndex)];
-                range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
-                range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dot;
-                range.Borders[BordersIndex.EdgeBottom].Weight = BorderWeight.Thin;
+                //range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+                //range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dot;
+                //range.Borders[BordersIndex.EdgeBottom].Weight = BorderWeight.Thin;
 
-                rowIndex++;
+                //rowIndex++;
+                //range = workSheet.Cells[string.Format("A{0}:I{0}", rowIndex)];
+                //range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+                //range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dot;
+                //range.Borders[BordersIndex.EdgeBottom].Weight = BorderWeight.Thin;
+
+                rowIndex += 2;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex)];
                 range.Font.Bold = true;
                 range.Value = "2. ĐÃ LÀM ĐỦ CẬN LÂM SÀNG TRONG GÓI KHÁM";
@@ -1847,6 +1867,7 @@ namespace MM.Exports
                 shape.TextFrame.HorizontalAlignment = HAlign.Left;
                 shape.TextFrame.VerticalAlignment = VAlign.Center;
                 shape.TextFrame.Characters.Text = "Có";
+                if (ketLuan != null) shape.ControlFormat.Value = ketLuan.HasLamDuCanLamSang ? 1 : 0;
 
                 shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
                             workSheet.WindowInfo.ColumnToPoints(6) + 15, workSheet.WindowInfo.RowToPoints(rowIndex - 1), 50, 15);
@@ -1854,9 +1875,13 @@ namespace MM.Exports
                 shape.TextFrame.HorizontalAlignment = HAlign.Left;
                 shape.TextFrame.VerticalAlignment = VAlign.Center;
                 shape.TextFrame.Characters.Text = "Không";
+                if (ketLuan != null) shape.ControlFormat.Value = ketLuan.HasLamDuCanLamSang ? 0 : 1;
 
                 range = workSheet.Cells[string.Format("H{0}", rowIndex)];
-                range.Value = "        Lý do:………….";
+                if (ketLuan == null)
+                    range.Value = "      Lý do:………….";
+                else
+                    range.Value = string.Format("      Lý do: {0}", ketLuan.LyDo_CanLamSang);
 
                 rowIndex++;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex)];
@@ -1869,6 +1894,7 @@ namespace MM.Exports
                 shape.TextFrame.HorizontalAlignment = HAlign.Left;
                 shape.TextFrame.VerticalAlignment = VAlign.Center;
                 shape.TextFrame.Characters.Text = "Có";
+                if (ketLuan != null) shape.ControlFormat.Value = ketLuan.HasDuSucKhoe ? 1 : 0;
 
                 shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
                             workSheet.WindowInfo.ColumnToPoints(6) + 15, workSheet.WindowInfo.RowToPoints(rowIndex - 1), 50, 15);
@@ -1876,10 +1902,14 @@ namespace MM.Exports
                 shape.TextFrame.HorizontalAlignment = HAlign.Left;
                 shape.TextFrame.VerticalAlignment = VAlign.Center;
                 shape.TextFrame.Characters.Text = "Không";
+                if (ketLuan != null) shape.ControlFormat.Value = ketLuan.HasDuSucKhoe ? 0 : 1;
 
                 range = workSheet.Cells[string.Format("H{0}", rowIndex)];
-                range.Value = "        Lý do:………….";
 
+                if (ketLuan == null)
+                    range.Value = "      Lý do:………….";
+                else
+                    range.Value = string.Format("      Lý do: {0}", ketLuan.LyDo_SucKhoe);
 
                 if (rowIndex < 90)
                 {
