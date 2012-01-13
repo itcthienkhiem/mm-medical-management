@@ -97,7 +97,7 @@ namespace MM.Dialogs
                 if (drGiaVonDichVu["DeletedBy"] != null && drGiaVonDichVu["DeletedBy"] != DBNull.Value)
                     _giaVonDichVu.DeletedBy = Guid.Parse(drGiaVonDichVu["DeletedBy"].ToString());
 
-                _giaVonDichVu.Status = Convert.ToByte(drGiaVonDichVu["GiaThuocStatus"]);
+                _giaVonDichVu.Status = Convert.ToByte(drGiaVonDichVu["GiaVonDichVuStatus"]);
             }
             catch (Exception e)
             {

@@ -70,3 +70,4 @@ spDichVuHopDong
 2012-01-13
 - Create table: GiaVonDichVu
 - Create view: GiaVonDichVuView
+- Insert: Function(GiaVonDichVu)

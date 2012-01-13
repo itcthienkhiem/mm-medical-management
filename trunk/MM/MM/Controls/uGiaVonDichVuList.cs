@@ -206,7 +206,7 @@ namespace MM.Controls
                 return;
             }
 
-            string giaVonDichGUID = (dgGiaVonDichVu.SelectedRows[0].DataBoundItem as DataRowView).Row["GiaVonDichGUID"].ToString();
+            string giaVonDichGUID = (dgGiaVonDichVu.SelectedRows[0].DataBoundItem as DataRowView).Row["GiaVonDichVuGUID"].ToString();
             DataRow drGiaVonDichVu = GetDataRow(giaVonDichGUID);
             if (drGiaVonDichVu == null) return;
             dlgAddGiaVonDichVu dlg = new dlgAddGiaVonDichVu(drGiaVonDichVu);

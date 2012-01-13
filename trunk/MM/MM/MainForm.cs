@@ -169,6 +169,8 @@ namespace MM
                 _uServiceGroupList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uInKetQuaKhamSucKhoeTongQuat))
                 _uInKetQuaKhamSucKhoeTongQuat.InitData();
+            else if (ctrl.GetType() == typeof(uGiaVonDichVuList))
+                _uGiaVonDichVuList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -500,6 +502,7 @@ namespace MM
                         else if (functionCode == Const.ServiceGroup)
                         {
                             serviceGroupToolStripMenuItem.Enabled = isView && isLogin;
+                            tbNhomDichVu.Enabled = isView && isLogin;
                             _uServiceGroupList.AllowAdd = isAdd;
                             _uServiceGroupList.AllowEdit = isEdit;
                             _uServiceGroupList.AllowDelete = isDelete;
@@ -516,6 +519,17 @@ namespace MM
                             _uInKetQuaKhamSucKhoeTongQuat.AllowPrint = isPrint;
                             _uInKetQuaKhamSucKhoeTongQuat.AllowExport = isExport;
                             _uInKetQuaKhamSucKhoeTongQuat.AllowImport = isImport;
+                        }
+                        else if (functionCode == Const.GiaVonDichVu)
+                        {
+                            giaVonDichVuToolStripMenuItem.Enabled = isView & isLogin;
+                            tbGiaVonDichVu.Enabled = isView & isLogin;
+                            _uGiaVonDichVuList.AllowAdd = isAdd;
+                            _uGiaVonDichVuList.AllowEdit = isEdit;
+                            _uGiaVonDichVuList.AllowDelete = isDelete;
+                            _uGiaVonDichVuList.AllowPrint = isPrint;
+                            _uGiaVonDichVuList.AllowExport = isExport;
+                            _uGiaVonDichVuList.AllowImport = isImport;
                         }
                     }
                 }
@@ -551,6 +565,10 @@ namespace MM
                 servicesToolStripMenuItem.Enabled = isLogin;
                 serviceListToolStripMenuItem.Enabled = isLogin;
                 tbServiceList.Enabled = isLogin;
+                serviceGroupToolStripMenuItem.Enabled = isLogin;
+                tbNhomDichVu.Enabled = isLogin;
+                giaVonDichVuToolStripMenuItem.Enabled = isLogin;
+                tbGiaVonDichVu.Enabled = isLogin;
 
                 doctorToolStripMenuItem.Enabled = isLogin;
                 doctorListToolStripMenuItem.Enabled = isLogin;
@@ -770,7 +788,18 @@ namespace MM
                 case "InKetQuaKhamSucKhoeTongQuat":
                     OnInKetQuaKhamSucKhoeTongQuat();
                     break;
+
+                case "GiaVonDichVu":
+                    OnGiaVonDichVu();
+                    break;
             }
+        }
+
+        private void OnGiaVonDichVu()
+        {
+            this.Text = string.Format("{0} - Gia von dich vu", Application.ProductName);
+            ViewControl(_uGiaVonDichVuList);
+            _uGiaVonDichVuList.DisplayAsThread();
         }
 
         private void OnInKetQuaKhamSucKhoeTongQuat()
@@ -1047,6 +1076,10 @@ namespace MM
                 _uPhieuThuThuocList.ClearData();
             else if (ctrl.GetType() == typeof(uServiceGroupList))
                 _uServiceGroupList.ClearData();
+            else if (ctrl.GetType() == typeof(uGiaThuocList))
+                _uGiaThuocList.ClearData();
+            else if (ctrl.GetType() == typeof(uGiaVonDichVuList))
+                _uGiaVonDichVuList.ClearData();
         }
 
         private void OnDoctorList()
