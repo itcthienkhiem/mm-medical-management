@@ -90,11 +90,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(398, 214);
+            this.label4.Location = new System.Drawing.Point(404, 214);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 13);
+            this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 41;
-            this.label4.Text = "Lý do:";
+            this.label4.Text = "Loại:";
             // 
             // chkKhong_3
             // 

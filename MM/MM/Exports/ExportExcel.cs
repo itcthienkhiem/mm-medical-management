@@ -1907,9 +1907,9 @@ namespace MM.Exports
                 range = workSheet.Cells[string.Format("H{0}", rowIndex)];
 
                 if (ketLuan == null)
-                    range.Value = "      Lý do:………….";
+                    range.Value = "      Loại:………….";
                 else
-                    range.Value = string.Format("      Lý do: {0}", ketLuan.LyDo_SucKhoe);
+                    range.Value = string.Format("      Loại: {0}", ketLuan.LyDo_SucKhoe);
 
                 if (rowIndex < 90)
                 {
