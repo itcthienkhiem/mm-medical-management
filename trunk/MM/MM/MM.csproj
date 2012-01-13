@@ -82,6 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uGiaVonDichVuList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uGiaVonDichVuList.Designer.cs">
+      <DependentUpon>uGiaVonDichVuList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DataGridViewDisableCheckBoxColumn.cs" />
     <Compile Include="Controls\DICOM\DicomDecoder.cs" />
     <Compile Include="Controls\DICOM\DicomDictionary.cs" />
@@ -475,6 +481,12 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddGiaVonDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddGiaVonDichVu.Designer.cs">
+      <DependentUpon>dlgAddGiaVonDichVu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddMultiKhamLamSang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -755,6 +767,9 @@
     <Compile Include="Controls\uChiDinhList.Designer.cs">
       <DependentUpon>uChiDinhList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uGiaVonDichVuList.resx">
+      <DependentUpon>uGiaVonDichVuList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DICOM\DicomTagsForm.resx">
       <DependentUpon>DicomTagsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -886,6 +901,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddGiaVonDichVu.resx">
+      <DependentUpon>dlgAddGiaVonDichVu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddMultiKhamLamSang.resx">
       <DependentUpon>dlgAddMultiKhamLamSang.cs</DependentUpon>
@@ -1058,6 +1076,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.GiaVonDichVuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
