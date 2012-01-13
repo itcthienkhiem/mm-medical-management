@@ -36,6 +36,9 @@
             this.pageServiceHistory = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabServiceHistory = new DevComponents.DotNetBar.TabControl();
+            this.tabControlPanel8 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uKetLuanList = new MM.Controls.uKetLuanList();
+            this.pageKetLuan = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel7 = new DevComponents.DotNetBar.TabControlPanel();
             this._uLoiKhuyenList = new MM.Controls.uLoiKhuyenList();
             this.pageLoiKhuyen = new DevComponents.DotNetBar.TabItem(this.components);
@@ -43,6 +46,7 @@
             this._uDailyServiceHistory = new MM.Controls.uServiceHistory();
             this.pageDailyService = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel6 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uKetQuaLamSangList = new MM.Controls.uKetQuaLamSangList();
             this.pageKhamLamSang = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel5 = new DevComponents.DotNetBar.TabControlPanel();
             this._uCanDoList = new MM.Controls.uCanDoList();
@@ -75,11 +79,11 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this._uKetQuaLamSangList = new MM.Controls.uKetQuaLamSangList();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
             this.tabServiceHistory.SuspendLayout();
+            this.tabControlPanel8.SuspendLayout();
             this.tabControlPanel7.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
             this.tabControlPanel6.SuspendLayout();
@@ -144,10 +148,11 @@
             // tabServiceHistory
             // 
             this.tabServiceHistory.CanReorderTabs = true;
-            this.tabServiceHistory.Controls.Add(this.tabControlPanel6);
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel8);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel1);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel2);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel7);
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel6);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel5);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel4);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel3);
@@ -167,7 +172,42 @@
             this.tabServiceHistory.Tabs.Add(this.pageCanDo);
             this.tabServiceHistory.Tabs.Add(this.pageKhamLamSang);
             this.tabServiceHistory.Tabs.Add(this.pageLoiKhuyen);
+            this.tabServiceHistory.Tabs.Add(this.pageKetLuan);
             this.tabServiceHistory.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabServiceHistory_SelectedTabChanged);
+            // 
+            // tabControlPanel8
+            // 
+            this.tabControlPanel8.Controls.Add(this._uKetLuanList);
+            this.tabControlPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel8.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel8.Name = "tabControlPanel8";
+            this.tabControlPanel8.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel8.Size = new System.Drawing.Size(1177, 425);
+            this.tabControlPanel8.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel8.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel8.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel8.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel8.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel8.Style.GradientAngle = 90;
+            this.tabControlPanel8.TabIndex = 8;
+            this.tabControlPanel8.TabItem = this.pageKetLuan;
+            // 
+            // _uKetLuanList
+            // 
+            this._uKetLuanList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetLuanList.Location = new System.Drawing.Point(1, 1);
+            this._uKetLuanList.Name = "_uKetLuanList";
+            this._uKetLuanList.PatientRow = null;
+            this._uKetLuanList.Size = new System.Drawing.Size(1175, 423);
+            this._uKetLuanList.TabIndex = 0;
+            // 
+            // pageKetLuan
+            // 
+            this.pageKetLuan.AttachedControl = this.tabControlPanel8;
+            this.pageKetLuan.Image = global::MM.Properties.Resources.clipboard_search_result_icon;
+            this.pageKetLuan.Name = "pageKetLuan";
+            this.pageKetLuan.Text = "Kết luận";
             // 
             // tabControlPanel7
             // 
@@ -255,6 +295,15 @@
             this.tabControlPanel6.Style.GradientAngle = 90;
             this.tabControlPanel6.TabIndex = 6;
             this.tabControlPanel6.TabItem = this.pageKhamLamSang;
+            // 
+            // _uKetQuaLamSangList
+            // 
+            this._uKetQuaLamSangList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaLamSangList.Location = new System.Drawing.Point(1, 1);
+            this._uKetQuaLamSangList.Name = "_uKetQuaLamSangList";
+            this._uKetQuaLamSangList.PatientRow = null;
+            this._uKetQuaLamSangList.Size = new System.Drawing.Size(1175, 423);
+            this._uKetQuaLamSangList.TabIndex = 0;
             // 
             // pageKhamLamSang
             // 
@@ -577,14 +626,6 @@
             this.panel3.Size = new System.Drawing.Size(1177, 5);
             this.panel3.TabIndex = 0;
             // 
-            // _uKetQuaLamSangList
-            // 
-            this._uKetQuaLamSangList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uKetQuaLamSangList.Location = new System.Drawing.Point(1, 1);
-            this._uKetQuaLamSangList.Name = "_uKetQuaLamSangList";
-            this._uKetQuaLamSangList.Size = new System.Drawing.Size(1175, 423);
-            this._uKetQuaLamSangList.TabIndex = 0;
-            // 
             // uPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -598,6 +639,7 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).EndInit();
             this.tabServiceHistory.ResumeLayout(false);
+            this.tabControlPanel8.ResumeLayout(false);
             this.tabControlPanel7.ResumeLayout(false);
             this.tabControlPanel2.ResumeLayout(false);
             this.tabControlPanel6.ResumeLayout(false);
@@ -659,5 +701,8 @@
         private DevComponents.DotNetBar.TabItem pageLoiKhuyen;
         private uLoiKhuyenList _uLoiKhuyenList;
         private uKetQuaLamSangList _uKetQuaLamSangList;
+        private DevComponents.DotNetBar.TabControlPanel tabControlPanel8;
+        private DevComponents.DotNetBar.TabItem pageKetLuan;
+        private uKetLuanList _uKetLuanList;
     }
 }

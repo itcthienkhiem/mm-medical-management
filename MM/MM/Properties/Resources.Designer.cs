@@ -284,6 +284,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap clipboard_search_result_icon {
+            get {
+                object obj = ResourceManager.GetObject("clipboard_search_result_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap connect_info {
             get {
                 object obj = ResourceManager.GetObject("connect_info", resourceCulture);

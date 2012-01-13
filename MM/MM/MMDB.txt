@@ -68,6 +68,6 @@ spDichVuHopDong
 - Update table: PhieuThuThuoc(Add column: TenCongTy)
 - Update view: ToaThuocView
 2012-01-13
-- Create table: GiaVonDichVu
-- Create view: GiaVonDichVuView
+- Create table: GiaVonDichVu, KetLuan
+- Create view: GiaVonDichVuView, KetLuanView
 - Insert: Function(GiaVonDichVu)
