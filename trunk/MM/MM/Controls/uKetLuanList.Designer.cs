@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pFilter = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -197,14 +197,14 @@
             this.dgKetLuan.AllowUserToDeleteRows = false;
             this.dgKetLuan.AllowUserToOrderColumns = true;
             this.dgKetLuan.AutoGenerateColumns = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgKetLuan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgKetLuan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgKetLuan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgKetLuan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -217,14 +217,14 @@
             this.hasDuSucKhoeDataGridViewCheckBoxColumn,
             this.lyDoSucKhoeDataGridViewTextBoxColumn});
             this.dgKetLuan.DataSource = this.ketLuanViewBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgKetLuan.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgKetLuan.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgKetLuan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgKetLuan.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgKetLuan.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -249,8 +249,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
             this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
@@ -262,10 +262,10 @@
             // ngayKetLuanDataGridViewTextBoxColumn
             // 
             this.ngayKetLuanDataGridViewTextBoxColumn.DataPropertyName = "NgayKetLuan";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle7.NullValue = null;
-            this.ngayKetLuanDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ngayKetLuanDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.ngayKetLuanDataGridViewTextBoxColumn.HeaderText = "Ngày kết luận";
             this.ngayKetLuanDataGridViewTextBoxColumn.Name = "ngayKetLuanDataGridViewTextBoxColumn";
             this.ngayKetLuanDataGridViewTextBoxColumn.ReadOnly = true;
@@ -321,7 +321,7 @@
             // lyDoSucKhoeDataGridViewTextBoxColumn
             // 
             this.lyDoSucKhoeDataGridViewTextBoxColumn.DataPropertyName = "LyDo_SucKhoe";
-            this.lyDoSucKhoeDataGridViewTextBoxColumn.HeaderText = "Lý do";
+            this.lyDoSucKhoeDataGridViewTextBoxColumn.HeaderText = "Loại";
             this.lyDoSucKhoeDataGridViewTextBoxColumn.Name = "lyDoSucKhoeDataGridViewTextBoxColumn";
             this.lyDoSucKhoeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
@@ -360,6 +360,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgKetLuan;
+        private System.Windows.Forms.BindingSource ketLuanViewBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayKetLuanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
@@ -369,6 +370,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lyDoCanLamSangDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn hasDuSucKhoeDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lyDoSucKhoeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource ketLuanViewBindingSource;
     }
 }
