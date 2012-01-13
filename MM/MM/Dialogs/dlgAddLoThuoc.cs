@@ -261,6 +261,7 @@ namespace MM.Dialogs
                 {
                     _loThuoc.MaLoThuoc = txtMaLoThuoc.Text;
                     _loThuoc.TenLoThuoc = txtTenLoThuoc.Text;
+                    if (_isNew) _loThuoc.TenLoThuoc += string.Format("-{0}", DateTime.Now.ToString("yyyyMMdd"));
                     _loThuoc.ThuocGUID = Guid.Parse(cboThuoc.SelectedValue.ToString());
                     _loThuoc.SoDangKy = txtSoDangKy.Text;
                     _loThuoc.NgaySanXuat = dtpkNgaySanXuat.Value;
