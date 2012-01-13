@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uInKetQuaKhamSucKhoeTongQuat = new MM.Controls.uInKetQuaKhamSucKhoeTongQuat();
             this._uServiceGroupList = new MM.Controls.uServiceGroupList();
             this._uTrackingList = new MM.Controls.uTrackingList();
             this._uDichVuTuTuc = new MM.Controls.uDichVuTuTuc();
@@ -70,6 +71,8 @@
             this.tbLogin = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tbServiceList = new System.Windows.Forms.ToolStripButton();
+            this.tbNhomDichVu = new System.Windows.Forms.ToolStripButton();
+            this.tbGiaVonDichVu = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.tbSpecialityList = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -110,6 +113,8 @@
             this.serviceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
             this.serviceGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
+            this.giaVonDichVuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.specialityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.specialityListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doctorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -189,7 +194,7 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._uInKetQuaKhamSucKhoeTongQuat = new MM.Controls.uInKetQuaKhamSucKhoeTongQuat();
+            this._uGiaVonDichVuList = new MM.Controls.uGiaVonDichVuList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -207,6 +212,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uGiaVonDichVuList);
             this._mainPanel.Controls.Add(this._uInKetQuaKhamSucKhoeTongQuat);
             this._mainPanel.Controls.Add(this._uServiceGroupList);
             this._mainPanel.Controls.Add(this._uTrackingList);
@@ -235,6 +241,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uInKetQuaKhamSucKhoeTongQuat
+            // 
+            resources.ApplyResources(this._uInKetQuaKhamSucKhoeTongQuat, "_uInKetQuaKhamSucKhoeTongQuat");
+            this._uInKetQuaKhamSucKhoeTongQuat.Name = "_uInKetQuaKhamSucKhoeTongQuat";
             // 
             // _uServiceGroupList
             // 
@@ -376,6 +387,8 @@
             this.tbLogin,
             this.toolStripSeparator8,
             this.tbServiceList,
+            this.tbNhomDichVu,
+            this.tbGiaVonDichVu,
             this.toolStripSeparator6,
             this.tbSpecialityList,
             this.toolStripSeparator9,
@@ -424,6 +437,22 @@
             this.tbServiceList.Image = global::MM.Properties.Resources.Service_icon__1_;
             this.tbServiceList.Name = "tbServiceList";
             this.tbServiceList.Tag = "Services List";
+            // 
+            // tbNhomDichVu
+            // 
+            this.tbNhomDichVu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbNhomDichVu, "tbNhomDichVu");
+            this.tbNhomDichVu.Image = global::MM.Properties.Resources.Freelance_icon;
+            this.tbNhomDichVu.Name = "tbNhomDichVu";
+            this.tbNhomDichVu.Tag = "ServiceGroup";
+            // 
+            // tbGiaVonDichVu
+            // 
+            this.tbGiaVonDichVu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tbGiaVonDichVu, "tbGiaVonDichVu");
+            this.tbGiaVonDichVu.Image = global::MM.Properties.Resources.US_dollar_icon;
+            this.tbGiaVonDichVu.Name = "tbGiaVonDichVu";
+            this.tbGiaVonDichVu.Tag = "GiaVonDichVu";
             // 
             // toolStripSeparator6
             // 
@@ -700,7 +729,9 @@
             this.servicesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.serviceListToolStripMenuItem,
             this.toolStripSeparator28,
-            this.serviceGroupToolStripMenuItem});
+            this.serviceGroupToolStripMenuItem,
+            this.toolStripSeparator30,
+            this.giaVonDichVuToolStripMenuItem});
             resources.ApplyResources(this.servicesToolStripMenuItem, "servicesToolStripMenuItem");
             this.servicesToolStripMenuItem.Name = "servicesToolStripMenuItem";
             // 
@@ -724,6 +755,19 @@
             resources.ApplyResources(this.serviceGroupToolStripMenuItem, "serviceGroupToolStripMenuItem");
             this.serviceGroupToolStripMenuItem.Tag = "ServiceGroup";
             this.serviceGroupToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator30
+            // 
+            this.toolStripSeparator30.Name = "toolStripSeparator30";
+            resources.ApplyResources(this.toolStripSeparator30, "toolStripSeparator30");
+            // 
+            // giaVonDichVuToolStripMenuItem
+            // 
+            this.giaVonDichVuToolStripMenuItem.Image = global::MM.Properties.Resources.US_dollar_icon;
+            this.giaVonDichVuToolStripMenuItem.Name = "giaVonDichVuToolStripMenuItem";
+            resources.ApplyResources(this.giaVonDichVuToolStripMenuItem, "giaVonDichVuToolStripMenuItem");
+            this.giaVonDichVuToolStripMenuItem.Tag = "GiaVonDichVu";
+            this.giaVonDichVuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // specialityToolStripMenuItem
             // 
@@ -1392,10 +1436,10 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
-            // _uInKetQuaKhamSucKhoeTongQuat
+            // _uGiaVonDichVuList
             // 
-            resources.ApplyResources(this._uInKetQuaKhamSucKhoeTongQuat, "_uInKetQuaKhamSucKhoeTongQuat");
-            this._uInKetQuaKhamSucKhoeTongQuat.Name = "_uInKetQuaKhamSucKhoeTongQuat";
+            resources.ApplyResources(this._uGiaVonDichVuList, "_uGiaVonDichVuList");
+            this._uGiaVonDichVuList.Name = "_uGiaVonDichVuList";
             // 
             // MainForm
             // 
@@ -1588,6 +1632,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator29;
         private System.Windows.Forms.ToolStripMenuItem inKetQuaKhamSucKhoeTongQuatToolStripMenuItem;
         private Controls.uInKetQuaKhamSucKhoeTongQuat _uInKetQuaKhamSucKhoeTongQuat;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator30;
+        private System.Windows.Forms.ToolStripMenuItem giaVonDichVuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton tbNhomDichVu;
+        private System.Windows.Forms.ToolStripButton tbGiaVonDichVu;
+        private Controls.uGiaVonDichVuList _uGiaVonDichVuList;
 
     }
 }
