@@ -65,7 +65,7 @@ namespace MM.Bussiness
                                                                where s.PatientGUID.ToString() == patientGUID &&
                                                                s.ActivedDate.Value >= fromDate && s.ActivedDate.Value <= toDate &&
                                                                s.Status == (byte)Status.Actived && s.Type == (byte)type
-                                                               orderby s.Name descending
+                                                               orderby s.Name ascending
                                                                select s).ToList<ServiceHistoryView>();
                 result.QueryResult = serviceHistoryList;
             }
