@@ -1844,7 +1844,7 @@ namespace MM.Exports
                 range.WrapText = true;
                 range.HorizontalAlignment = HAlign.Left;
                 range.VerticalAlignment = VAlign.Top;
-                range.Value = ketLuan.CacXetNghiemLamThem;
+                if (ketLuan != null) range.Value = ketLuan.CacXetNghiemLamThem;
 
                 //range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
                 //range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dot;
