@@ -397,7 +397,8 @@ namespace MM.Dialogs
                         kq.NgayKham = dtpkNgay.Value;
                         kq.CoQuan = (byte)CoQuan.KhamPhuKhoa;
                         kq.PARA = txtPARA.Text;
-                        kq.NgayKinhChot = dtpkNgayKinhChot.Value;
+                        if (chkKinhChot.Checked) kq.NgayKinhChot = dtpkNgayKinhChot.Value;
+                        else kq.NgayKinhChot = null;
                         kq.Note = txtKetQuaKhamPhuKhoa.Text;
                         kq.Normal = chkNormal_KhamPhuKhoa.Checked;
                         kq.Abnormal = chkAbnormal_KhamPhuKhoa.Checked;
@@ -742,12 +743,18 @@ namespace MM.Dialogs
         private void chkKhamPhuKhoa_CheckedChanged(object sender, EventArgs e)
         {
             txtPARA.ReadOnly = !chkKhamPhuKhoa.Checked;
-            dtpkNgayKinhChot.Enabled = chkKhamPhuKhoa.Checked;
+            chkKinhChot.Enabled = chkKhamPhuKhoa.Checked;
+            dtpkNgayKinhChot.Enabled = chkKhamPhuKhoa.Checked && chkKinhChot.Checked;
             txtKetQuaKhamPhuKhoa.ReadOnly = !chkKhamPhuKhoa.Checked;
             txtSoiTuoiHuyetTrang.ReadOnly = !chkKhamPhuKhoa.Checked;
             chkNormal_KhamPhuKhoa.Enabled = chkKhamPhuKhoa.Checked;
             chkAbnormal_KhamPhuKhoa.Enabled = chkKhamPhuKhoa.Checked;
             cboDocStaff_KhamPhuKhoa.Enabled = chkKhamPhuKhoa.Checked && Global.StaffType != StaffType.BacSi;
+        }
+
+        private void chkKinhChot_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkNgayKinhChot.Enabled = chkKinhChot.Checked && chkKhamPhuKhoa.Checked;
         }
         #endregion
 
@@ -769,5 +776,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

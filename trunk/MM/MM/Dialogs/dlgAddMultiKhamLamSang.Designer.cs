@@ -74,7 +74,6 @@
             this.txtKetQuaKhamPhuKhoa = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.dtpkNgayKinhChot = new System.Windows.Forms.DateTimePicker();
-            this.label16 = new System.Windows.Forms.Label();
             this.txtPARA = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.chkAbnormal_Mat = new System.Windows.Forms.CheckBox();
@@ -135,6 +134,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkKinhChot = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
@@ -157,6 +157,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.chkKinhChot);
             this.groupBox3.Controls.Add(this.chkKhamPhuKhoa);
             this.groupBox3.Controls.Add(this.chkCacCoQuanKhac);
             this.groupBox3.Controls.Add(this.chkNoiTiet);
@@ -198,7 +199,6 @@
             this.groupBox3.Controls.Add(this.txtKetQuaKhamPhuKhoa);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.dtpkNgayKinhChot);
-            this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.txtPARA);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.chkAbnormal_Mat);
@@ -719,19 +719,10 @@
             this.dtpkNgayKinhChot.CustomFormat = "dd/MM/yyyy";
             this.dtpkNgayKinhChot.Enabled = false;
             this.dtpkNgayKinhChot.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayKinhChot.Location = new System.Drawing.Point(260, 384);
+            this.dtpkNgayKinhChot.Location = new System.Drawing.Point(297, 384);
             this.dtpkNgayKinhChot.Name = "dtpkNgayKinhChot";
             this.dtpkNgayKinhChot.Size = new System.Drawing.Size(106, 20);
             this.dtpkNgayKinhChot.TabIndex = 52;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(206, 388);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 13);
-            this.label16.TabIndex = 72;
-            this.label16.Text = "Kinh chót:";
             // 
             // txtPARA
             // 
@@ -1390,6 +1381,18 @@
             this.panel1.Size = new System.Drawing.Size(841, 639);
             this.panel1.TabIndex = 7;
             // 
+            // chkKinhChot
+            // 
+            this.chkKinhChot.AutoSize = true;
+            this.chkKinhChot.Enabled = false;
+            this.chkKinhChot.Location = new System.Drawing.Point(222, 387);
+            this.chkKinhChot.Name = "chkKinhChot";
+            this.chkKinhChot.Size = new System.Drawing.Size(71, 17);
+            this.chkKinhChot.TabIndex = 103;
+            this.chkKinhChot.Text = "Kinh chót";
+            this.chkKinhChot.UseVisualStyleBackColor = true;
+            this.chkKinhChot.CheckedChanged += new System.EventHandler(this.chkKinhChot_CheckedChanged);
+            // 
             // dlgAddMultiKhamLamSang
             // 
             this.AcceptButton = this.btnOK;
@@ -1485,7 +1488,6 @@
         private System.Windows.Forms.TextBox txtKetQuaKhamPhuKhoa;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DateTimePicker dtpkNgayKinhChot;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtPARA;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Panel panel1;
@@ -1528,5 +1530,6 @@
         private System.Windows.Forms.CheckBox chkMat;
         private System.Windows.Forms.CheckBox chkRangHamMat;
         private System.Windows.Forms.CheckBox chkTaiMuiHong;
+        private System.Windows.Forms.CheckBox chkKinhChot;
     }
 }

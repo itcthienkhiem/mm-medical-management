@@ -88,7 +88,12 @@ namespace MM.Dialogs
 
                 DateTime ngayKinhChot = DateTime.Now;
                 if (drKetQuaLamSang["NgayKinhChot"] != null && drKetQuaLamSang["NgayKinhChot"] != DBNull.Value)
+                {
+                    chkKinhChot.Checked = true;
                     ngayKinhChot = Convert.ToDateTime(drKetQuaLamSang["NgayKinhChot"]);
+                }
+                else
+                    chkKinhChot.Checked = false;
 
                 string soiTuoiHuyetTrang = string.Empty;
                 if (drKetQuaLamSang["SoiTuoiHuyetTrang"] != null && drKetQuaLamSang["SoiTuoiHuyetTrang"] != DBNull.Value)
@@ -352,7 +357,11 @@ namespace MM.Dialogs
                     {
                         _ketQuaLamSang.CoQuan = (byte)CoQuan.KhamPhuKhoa;
                         _ketQuaLamSang.PARA = txtPARA.Text;
-                        _ketQuaLamSang.NgayKinhChot = dtpkNgayKinhChot.Value;
+                        if (chkKinhChot.Checked)
+                            _ketQuaLamSang.NgayKinhChot = dtpkNgayKinhChot.Value;
+                        else
+                            _ketQuaLamSang.NgayKinhChot = null;
+
                         _ketQuaLamSang.Note = txtKetQuaKhamPhuKhoa.Text;
                         _ketQuaLamSang.Normal = chkNormal_KhamPhuKhoa.Checked;
                         _ketQuaLamSang.Abnormal = chkAbnormal_KhamPhuKhoa.Checked;
@@ -492,7 +501,8 @@ namespace MM.Dialogs
         private void raKhamPhuKhoa_CheckedChanged(object sender, EventArgs e)
         {
             txtPARA.ReadOnly = !raKhamPhuKhoa.Checked;
-            dtpkNgayKinhChot.Enabled = raKhamPhuKhoa.Checked;
+            chkKinhChot.Enabled = raKhamPhuKhoa.Checked;
+            dtpkNgayKinhChot.Enabled = raKhamPhuKhoa.Checked && chkKinhChot.Checked;
             txtKetQuaKhamPhuKhoa.ReadOnly = !raKhamPhuKhoa.Checked;
             txtSoiTuoiHuyetTrang.ReadOnly = !raKhamPhuKhoa.Checked;
             chkNormal_KhamPhuKhoa.Enabled = raKhamPhuKhoa.Checked;
@@ -691,6 +701,10 @@ namespace MM.Dialogs
             //if (chkAbnormal_KhamPhuKhoa.Checked) chkNormal_KhamPhuKhoa.Checked = false;
         }
 
+        private void chkKinhChot_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkNgayKinhChot.Enabled = chkKinhChot.Checked && raKhamPhuKhoa.Checked;
+        }
         #endregion
 
         #region Working Thread
@@ -711,7 +725,6 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
         
     }
 }
