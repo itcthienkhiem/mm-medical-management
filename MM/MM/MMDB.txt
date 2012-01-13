@@ -67,3 +67,6 @@ spDichVuHopDong
 - Insert: Function(InKetQuaKhamSucKhoeTongQuat)
 - Update table: PhieuThuThuoc(Add column: TenCongTy)
 - Update view: ToaThuocView
+2012-01-13
+- Create table: GiaVonDichVu
+- Create view: GiaVonDichVuView

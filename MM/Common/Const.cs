@@ -44,5 +44,6 @@ namespace MM.Common
         public static string Tracking = "Tracking";
         public static string ServiceGroup = "ServiceGroup";
         public static string InKetQuaKhamSucKhoeTongQuat = "InKetQuaKhamSucKhoeTongQuat";
+        public static string GiaVonDichVu = "GiaVonDichVu";
     }
 }
