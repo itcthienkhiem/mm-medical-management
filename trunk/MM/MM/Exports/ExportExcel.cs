@@ -1621,8 +1621,22 @@ namespace MM.Exports
                     rowIndex += 2;
                 }
 
+                if (rowIndex < 41)
+                {
+                    int count = 41 - rowIndex;
+                    range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
+                    for (int i = 0; i < count; i++)
+                    {
+                        range.Insert(InsertShiftDirection.Down);
+                    }
+
+                    rowIndex = serviceLamSangList.Count * 2 + 38 + count;
+                }
+                else
+                    rowIndex = serviceLamSangList.Count * 2 + 38;
+
                 //Fill thông tin dịch vụ sử dụng cận lâm sàng
-                rowIndex = serviceLamSangList.Count * 2 + 38;
+                //rowIndex = serviceLamSangList.Count * 2 + 38;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex)].EntireRow;
                 range.Insert(InsertShiftDirection.Down);
 
@@ -1865,6 +1879,15 @@ namespace MM.Exports
 
                 range = workSheet.Cells[string.Format("H{0}", rowIndex)];
                 range.Value = "        Lý do:………….";
+
+                
+                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
+                for (int i = 0; i < 16; i++)
+                {
+                    range.Insert(InsertShiftDirection.Down);
+                }
+
+                rowIndex += 16;
 
                 //Fill thông tin lời khuyên
                 if (loiKhuyenList.Count > 0)
