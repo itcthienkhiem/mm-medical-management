@@ -46,18 +46,22 @@ namespace MM.Dialogs
             {
                 DataTable dt = result.QueryResult as DataTable;
                 cboDocStaff_TaiMuiHong.DataSource = dt;
-                cboDocStaff_Mat.DataSource = dt.Copy();
-                cboDocStaff_RangHamMat.DataSource = dt.Copy();
-                cboDocStaff_HoHap.DataSource = dt.Copy();
-                cboDocStaff_TimMach.DataSource = dt.Copy();
-                cboDocStaff_TieuHoa.DataSource = dt.Copy();
-                cboDocStaff_TietNieuSinhDuc.DataSource = dt.Copy();
-                cboDocStaff_CoXuongKhop.DataSource = dt.Copy();
-                cboDocStaff_DaLieu.DataSource = dt.Copy();
-                cboDocStaff_ThanKinh.DataSource = dt.Copy();
-                cboDocStaff_NoiTiet.DataSource = dt.Copy();
-                cboDocStaff_CoQuanKhac.DataSource = dt.Copy();
-                cboDocStaff_KhamPhuKhoa.DataSource = dt.Copy();
+                cboDocStaff_RangHamMat.DataSource = dt;
+
+                DataTable dtNoiKhoa = dt.Copy();
+                cboDocStaff_Mat.DataSource = dtNoiKhoa;
+                cboDocStaff_HoHap.DataSource = dtNoiKhoa;
+                cboDocStaff_TimMach.DataSource = dtNoiKhoa;
+                cboDocStaff_TieuHoa.DataSource = dtNoiKhoa;
+                cboDocStaff_TietNieuSinhDuc.DataSource = dtNoiKhoa;
+                cboDocStaff_CoXuongKhop.DataSource = dtNoiKhoa;
+                cboDocStaff_DaLieu.DataSource = dtNoiKhoa;
+                cboDocStaff_ThanKinh.DataSource = dtNoiKhoa;
+                cboDocStaff_NoiTiet.DataSource = dtNoiKhoa;
+                cboDocStaff_CoQuanKhac.DataSource = dtNoiKhoa;
+
+                DataTable dtPhuKhoa = dt.Copy();
+                cboDocStaff_KhamPhuKhoa.DataSource = dtPhuKhoa;
             }
 
             if (Global.StaffType == StaffType.BacSi)
