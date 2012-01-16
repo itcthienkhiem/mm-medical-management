@@ -775,7 +775,10 @@ namespace MM.Dialogs
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin hợp đồng ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (CheckInfo())
+                    {
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
                         SaveInfoAsThread();
+                    }
                     else
                         e.Cancel = true;
                 }

@@ -102,6 +102,8 @@ namespace MM.Controls
                 newRow["EnglishName"] = dlg.Service.EnglishName;
                 newRow["Type"] = dlg.Service.Type;
                 newRow["TypeStr"] = dlg.Service.Type == (byte)ServiceType.LamSang ? "Lâm sàng" : "Cận lâm sàng";
+                newRow["StaffType"] = dlg.Service.StaffType.Value;
+                newRow["StaffTypeStr"] = Utility.ParseStaffTypeEnumToName((StaffType)dlg.Service.StaffType.Value);
 
                 if (dlg.Service.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.Service.CreatedDate;
@@ -152,6 +154,8 @@ namespace MM.Controls
                 drService["EnglishName"] = dlg.Service.EnglishName;
                 drService["Type"] = dlg.Service.Type;
                 drService["TypeStr"] = dlg.Service.Type == (byte)ServiceType.LamSang ? "Lâm sàng" : "Cận lâm sàng";
+                drService["StaffType"] = dlg.Service.StaffType.Value;
+                drService["StaffTypeStr"] = Utility.ParseStaffTypeEnumToName((StaffType)dlg.Service.StaffType.Value);
 
                 if (dlg.Service.CreatedDate.HasValue)
                     drService["CreatedDate"] = dlg.Service.CreatedDate;

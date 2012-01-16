@@ -733,6 +733,35 @@ namespace MM.Common
 
             return string.Empty;
         }
+
+        public static string ParseStaffTypeEnumToName(StaffType type)
+        {
+            switch (type)
+            {
+                case StaffType.BacSi:
+                    return "Bác sĩ";
+                case StaffType.DieuDuong:
+                    return "Điều dưỡng";
+                case StaffType.LeTan:
+                    return "Lễ tân";
+                case StaffType.BenhNhan:
+                    return "Bệnh nhân";
+                case StaffType.Admin:
+                    return "Admin";
+                case StaffType.XetNghiem:
+                    return "Xét nghiệm";
+                case StaffType.ThuKyYKhoa:
+                    return "Thư ký y khoa";
+                case StaffType.Sale:
+                    return "Sale";
+                case StaffType.KeToan:
+                    return "Kế toán";
+                case StaffType.None:
+                    return string.Empty;
+            }
+
+            return string.Empty;
+        }
     }
 }
 

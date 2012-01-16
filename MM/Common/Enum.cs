@@ -91,14 +91,14 @@ namespace MM.Common
         XetNghiem,
         ThuKyYKhoa,
         Sale,
-        KeToan
+        KeToan,
+        None
     };
 
     public enum Status : byte
     {
         Actived = 0,
         Deactived
-
     };
 
     public enum WorkType : int

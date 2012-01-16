@@ -19,13 +19,15 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private ServiceHistory _serviceHistory = new ServiceHistory();
         private string _patientGUID = string.Empty;
+        private DataRow _drServiceHistory = null;
+        private StaffType _staffType = StaffType.None;
         #endregion
 
         #region Constructor
         public dlgAddServiceHistory(string patientGUID)
         {
             InitializeComponent();
-            InitData();
+            //InitData();
             _patientGUID = patientGUID;
         }
 
@@ -33,10 +35,11 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             _isNew = false;
-            InitData();
+            //InitData();
             _patientGUID = patientGUID;
             this.Text = "Sua su dung dich vu";
-            DisplayInfo(drServiceHistory);
+            _drServiceHistory = drServiceHistory;
+            //DisplayInfo(drServiceHistory);
         }
         #endregion
 
@@ -95,11 +98,22 @@ namespace MM.Dialogs
             {
                 cboService.DataSource = result.QueryResult;
             }
+        }
 
+        private void DisplayDocStaffList()
+        {
             //DocStaff
             List<byte> staffTypes = new List<byte>();
-            staffTypes.Add((byte)StaffType.BacSi);
-            result = DocStaffBus.GetDocStaffList(staffTypes);
+            if (_staffType != StaffType.None)
+                staffTypes.Add((byte)_staffType);
+            else
+            {
+                staffTypes.Add((byte)StaffType.BacSi);
+                staffTypes.Add((byte)StaffType.DieuDuong);
+                staffTypes.Add((byte)StaffType.XetNghiem);
+            }
+
+            Result result = DocStaffBus.GetDocStaffList(staffTypes);
             if (!result.IsOK)
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
@@ -111,11 +125,13 @@ namespace MM.Dialogs
                 cboDocStaff.DataSource = result.QueryResult;
             }
 
-            if (Global.StaffType == StaffType.BacSi)
+            if (Global.StaffType == _staffType)
             {
                 cboDocStaff.SelectedValue = Global.UserGUID;
                 cboDocStaff.Enabled = false;
             }
+            else
+                cboDocStaff.Enabled = true;
         }
 
         private void DisplayInfo(DataRow drServiceHistory)
@@ -289,7 +305,10 @@ namespace MM.Dialogs
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin dịch vụ sử dụng ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (CheckInfo())
+                    {
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
                         SaveInfoAsThread();
+                    }
                     else
                         e.Cancel = true;
                 }
@@ -305,11 +324,24 @@ namespace MM.Dialogs
             string serviceGUID = cboService.SelectedValue.ToString();
             DataRow[] rows = dt.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
             if (rows != null && rows.Length > 0)
-                 numPrice.Value = (decimal)Double.Parse(rows[0]["Price"].ToString());
+            {
+                numPrice.Value = (decimal)Double.Parse(rows[0]["Price"].ToString());
+
+                if (rows[0]["StaffType"] != null && rows[0]["StaffType"] != DBNull.Value)
+                    _staffType = (StaffType)Convert.ToByte(rows[0]["StaffType"]);
+                else
+                    _staffType = StaffType.None;
+
+                DisplayDocStaffList();
+            }
         }
 
         private void dlgAddServiceHistory_Load(object sender, EventArgs e)
         {
+            InitData();
+
+            if (!_isNew) DisplayInfo(_drServiceHistory);
+
             lbPrice.Visible = Global.AllowShowServiePrice;
             lbUnit.Visible = Global.AllowShowServiePrice;
             numPrice.Visible = Global.AllowShowServiePrice;
