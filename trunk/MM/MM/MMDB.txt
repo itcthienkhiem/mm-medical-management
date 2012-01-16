@@ -71,3 +71,6 @@ spDichVuHopDong
 - Create table: GiaVonDichVu, KetLuan
 - Create view: GiaVonDichVuView, KetLuanView
 - Insert: Function(GiaVonDichVu)
+2012-01-16
+- Update table: Services(Add column: StaffType)
+- Create view: ServiceView

@@ -51,6 +51,7 @@ namespace MM.Dialogs
         private void InitData()
         {
             cboType.SelectedIndex = 0;
+            cboStaffType.SelectedIndex = 0;
         }
 
         private void GenerateCode()
@@ -77,6 +78,26 @@ namespace MM.Dialogs
                 txtName.Text = drService["Name"] as string;
                 numPrice.Value = (decimal)Double.Parse(drService["Price"].ToString());
                 txtDescription.Text = drService["Description"] as string;
+
+                if (drService["StaffType"] != null && drService["StaffType"] != DBNull.Value)
+                {
+                    StaffType staffType = (StaffType)Convert.ToByte(drService["StaffType"]);
+                    switch (staffType)
+                    {
+                        case StaffType.BacSi:
+                            cboStaffType.SelectedIndex = 1;
+                            break;
+                        case StaffType.DieuDuong:
+                            cboStaffType.SelectedIndex = 2;
+                            break;
+                        case StaffType.XetNghiem:
+                            cboStaffType.SelectedIndex = 3;
+                            break;
+                        case StaffType.None:
+                            cboStaffType.SelectedIndex = 0;
+                            break;
+                    }
+                }
 
                 if (drService["EnglishName"] != null && drService["EnglishName"] != DBNull.Value)
                     txtEnglishName.Text = drService["EnglishName"].ToString();
@@ -192,6 +213,22 @@ namespace MM.Dialogs
                 {
                     _service.Type = (byte)cboType.SelectedIndex;
 
+                    switch (cboStaffType.SelectedIndex)
+                    {
+                        case 0:
+                            _service.StaffType = (byte)StaffType.None;
+                            break;
+                        case 1:
+                            _service.StaffType = (byte)StaffType.BacSi;
+                            break;
+                        case 2:
+                            _service.StaffType = (byte)StaffType.DieuDuong;
+                            break;
+                        case 3:
+                            _service.StaffType = (byte)StaffType.XetNghiem;
+                            break;
+                    }
+
                     Result result = ServicesBus.InsertService(_service);
                     if (!result.IsOK)
                     {
@@ -227,7 +264,10 @@ namespace MM.Dialogs
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin dịch vụ ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (CheckInfo())
+                    {
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
                         SaveInfoAsThread();
+                    }
                     else
                         e.Cancel = true;
                 }

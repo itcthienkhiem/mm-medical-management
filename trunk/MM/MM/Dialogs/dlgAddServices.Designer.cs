@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServices));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboStaffType = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.cboType = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtEnglishName = new System.Windows.Forms.TextBox();
@@ -53,6 +55,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboStaffType);
+            this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.cboType);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtEnglishName);
@@ -70,10 +74,35 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(497, 280);
+            this.groupBox1.Size = new System.Drawing.Size(497, 305);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // cboStaffType
+            // 
+            this.cboStaffType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboStaffType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboStaffType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStaffType.FormattingEnabled = true;
+            this.cboStaffType.Items.AddRange(new object[] {
+            "",
+            "Bác sĩ",
+            "Điều dưỡng",
+            "Xét nghiệm"});
+            this.cboStaffType.Location = new System.Drawing.Point(139, 118);
+            this.cboStaffType.Name = "cboStaffType";
+            this.cboStaffType.Size = new System.Drawing.Size(121, 21);
+            this.cboStaffType.TabIndex = 8;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(55, 121);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(80, 13);
+            this.label21.TabIndex = 49;
+            this.label21.Text = "Loại nhân viên:";
             // 
             // cboType
             // 
@@ -138,7 +167,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(264, 121);
+            this.label5.Location = new System.Drawing.Point(264, 147);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 8;
@@ -146,12 +175,12 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(139, 144);
+            this.txtDescription.Location = new System.Drawing.Point(139, 170);
             this.txtDescription.MaxLength = 500;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(325, 121);
-            this.txtDescription.TabIndex = 9;
+            this.txtDescription.TabIndex = 10;
             // 
             // numPrice
             // 
@@ -160,7 +189,7 @@
             0,
             0,
             0});
-            this.numPrice.Location = new System.Drawing.Point(139, 118);
+            this.numPrice.Location = new System.Drawing.Point(139, 144);
             this.numPrice.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -168,7 +197,7 @@
             0});
             this.numPrice.Name = "numPrice";
             this.numPrice.Size = new System.Drawing.Size(121, 20);
-            this.numPrice.TabIndex = 8;
+            this.numPrice.TabIndex = 9;
             this.numPrice.ThousandsSeparator = true;
             this.numPrice.Value = new decimal(new int[] {
             50000,
@@ -195,7 +224,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(88, 147);
+            this.label4.Location = new System.Drawing.Point(88, 173);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 3;
@@ -204,7 +233,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(109, 121);
+            this.label3.Location = new System.Drawing.Point(109, 147);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 2;
@@ -233,7 +262,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(257, 291);
+            this.btnCancel.Location = new System.Drawing.Point(257, 316);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 6;
@@ -245,7 +274,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(178, 291);
+            this.btnOK.Location = new System.Drawing.Point(178, 316);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 5;
@@ -258,10 +287,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(510, 322);
+            this.ClientSize = new System.Drawing.Size(510, 346);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -298,5 +327,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtEnglishName;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cboStaffType;
+        private System.Windows.Forms.Label label21;
     }
 }

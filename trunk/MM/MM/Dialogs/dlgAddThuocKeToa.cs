@@ -242,7 +242,11 @@ namespace MM.Dialogs
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin kê toa thuốc ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (!CheckInfo()) e.Cancel = true;
-                    else SetInfo();
+                    else
+                    {
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                        SetInfo();
+                    }
                 }
             }
         }

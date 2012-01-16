@@ -30,11 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -49,6 +50,7 @@
             this.EnglishName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TypeStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StaffType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -64,7 +66,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 435);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(834, 38);
+            this.panel1.Size = new System.Drawing.Size(965, 38);
             this.panel1.TabIndex = 0;
             // 
             // btnDelete
@@ -110,7 +112,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(834, 435);
+            this.panel2.Size = new System.Drawing.Size(965, 435);
             this.panel2.TabIndex = 1;
             // 
             // chkChecked
@@ -145,16 +147,17 @@
             this.EnglishName,
             this.priceDataGridViewTextBoxColumn,
             this.TypeStr,
+            this.StaffType,
             this.descriptionDataGridViewTextBoxColumn});
             this.dgService.DataSource = this.serviceBindingSource;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgService.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgService.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgService.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgService.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -165,7 +168,7 @@
             this.dgService.ReadOnly = true;
             this.dgService.RowHeadersWidth = 30;
             this.dgService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgService.Size = new System.Drawing.Size(834, 435);
+            this.dgService.Size = new System.Drawing.Size(965, 435);
             this.dgService.TabIndex = 0;
             this.dgService.DoubleClick += new System.EventHandler(this.dgService_DoubleClick);
             // 
@@ -230,9 +233,19 @@
             this.TypeStr.DataPropertyName = "TypeStr";
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.TypeStr.DefaultCellStyle = dataGridViewCellStyle5;
-            this.TypeStr.HeaderText = "Loại";
+            this.TypeStr.HeaderText = "Loại DV";
             this.TypeStr.Name = "TypeStr";
             this.TypeStr.ReadOnly = true;
+            // 
+            // StaffType
+            // 
+            this.StaffType.DataPropertyName = "StaffTypeStr";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.StaffType.DefaultCellStyle = dataGridViewCellStyle6;
+            this.StaffType.HeaderText = "Loại nhân viên";
+            this.StaffType.Name = "StaffType";
+            this.StaffType.ReadOnly = true;
+            this.StaffType.Width = 120;
             // 
             // descriptionDataGridViewTextBoxColumn
             // 
@@ -249,7 +262,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uServicesList";
-            this.Size = new System.Drawing.Size(834, 473);
+            this.Size = new System.Drawing.Size(965, 473);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -275,6 +288,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn EnglishName;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TypeStr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StaffType;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
     }
 }
