@@ -1215,11 +1215,8 @@ namespace MM
         {
             InitConfigAsThread();
 
-            #if DEBUG
-                
-            #else
+            if (!System.Diagnostics.Debugger.IsAttached)
                 AutoDetectUpdateAsThread();
-            #endif
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

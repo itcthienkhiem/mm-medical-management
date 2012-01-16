@@ -513,12 +513,15 @@ namespace MM.Dialogs
             }
             else
             {
-                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin phiếu thu thuốc ?") == System.Windows.Forms.DialogResult.Yes)
+                if (_isNew)
                 {
-                    if (CheckInfo())
-                        SaveInfoAsThread();
-                    else
-                        e.Cancel = true;
+                    if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin phiếu thu thuốc ?") == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        if (CheckInfo())
+                            SaveInfoAsThread();
+                        else
+                            e.Cancel = true;
+                    }
                 }
             }
         }
