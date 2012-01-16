@@ -242,7 +242,7 @@
             this.StaffType.DataPropertyName = "StaffTypeStr";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.StaffType.DefaultCellStyle = dataGridViewCellStyle6;
-            this.StaffType.HeaderText = "Loại nhân viên";
+            this.StaffType.HeaderText = "Nhóm thực hiện";
             this.StaffType.Name = "StaffType";
             this.StaffType.ReadOnly = true;
             this.StaffType.Width = 120;
