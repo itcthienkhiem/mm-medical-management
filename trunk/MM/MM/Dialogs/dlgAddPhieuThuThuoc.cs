@@ -355,7 +355,10 @@ namespace MM.Dialogs
                         return false;
                     }
 
-                    int soLuong = Convert.ToInt32(row.Cells[3].Value);
+                    int soLuong = 1;
+                    if (row.Cells[3].Value != null && row.Cells[3].Value != DBNull.Value)
+                       soLuong = Convert.ToInt32(row.Cells[3].Value);
+
                     r = LoThuocBus.CheckThuocTonKho(thuocGUID, soLuong);
                     if (r.IsOK)
                     {
@@ -460,7 +463,12 @@ namespace MM.Dialogs
 
                         ctptt.ThuocGUID = Guid.Parse(row["ThuocGUID"].ToString());
                         ctptt.DonGia = Convert.ToDouble(row["DonGia"]);
-                        ctptt.SoLuong = Convert.ToDouble(row["SoLuong"]);
+
+                        if (row["SoLuong"] != null && row["SoLuong"] != DBNull.Value)
+                            ctptt.SoLuong = Convert.ToDouble(row["SoLuong"]);
+                        else
+                            ctptt.SoLuong = 1;
+
                         if (row["Giam"] != null && row["Giam"] != DBNull.Value)
                             ctptt.Giam = Convert.ToDouble(row["Giam"]);
                         else
@@ -666,7 +674,7 @@ namespace MM.Dialogs
         {
             if (e.ColumnIndex >= 3 && e.ColumnIndex <= 6)
             {
-                if (e.Value == null || e.Value.ToString() == string.Empty)
+                if (e.Value == null || e.Value.ToString() == string.Empty || e.Value == DBNull.Value)
                 {
                     if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
                         e.Value = "0";
