@@ -98,11 +98,11 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(55, 121);
+            this.label21.Location = new System.Drawing.Point(50, 121);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(80, 13);
+            this.label21.Size = new System.Drawing.Size(85, 13);
             this.label21.TabIndex = 49;
-            this.label21.Text = "Loại nhân viên:";
+            this.label21.Text = "Nhóm thực hiện:";
             // 
             // cboType
             // 
