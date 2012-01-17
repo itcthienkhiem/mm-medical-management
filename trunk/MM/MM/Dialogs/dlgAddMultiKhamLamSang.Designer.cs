@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddMultiKhamLamSang));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtPhuKhoaNote = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.chkKinhChot = new System.Windows.Forms.CheckBox();
             this.chkKhamPhuKhoa = new System.Windows.Forms.CheckBox();
             this.chkCacCoQuanKhac = new System.Windows.Forms.CheckBox();
             this.chkNoiTiet = new System.Windows.Forms.CheckBox();
@@ -134,7 +137,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.chkKinhChot = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
@@ -157,6 +159,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtPhuKhoaNote);
+            this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.chkKinhChot);
             this.groupBox3.Controls.Add(this.chkKhamPhuKhoa);
             this.groupBox3.Controls.Add(this.chkCacCoQuanKhac);
@@ -245,6 +249,36 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Khám nội khoa";
+            // 
+            // txtPhuKhoaNote
+            // 
+            this.txtPhuKhoaNote.Location = new System.Drawing.Point(476, 384);
+            this.txtPhuKhoaNote.MaxLength = 100;
+            this.txtPhuKhoaNote.Name = "txtPhuKhoaNote";
+            this.txtPhuKhoaNote.ReadOnly = true;
+            this.txtPhuKhoaNote.Size = new System.Drawing.Size(220, 20);
+            this.txtPhuKhoaNote.TabIndex = 53;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(423, 388);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(47, 13);
+            this.label2.TabIndex = 104;
+            this.label2.Text = "Ghi chú:";
+            // 
+            // chkKinhChot
+            // 
+            this.chkKinhChot.AutoSize = true;
+            this.chkKinhChot.Enabled = false;
+            this.chkKinhChot.Location = new System.Drawing.Point(222, 387);
+            this.chkKinhChot.Name = "chkKinhChot";
+            this.chkKinhChot.Size = new System.Drawing.Size(71, 17);
+            this.chkKinhChot.TabIndex = 103;
+            this.chkKinhChot.Text = "Kinh chót";
+            this.chkKinhChot.UseVisualStyleBackColor = true;
+            this.chkKinhChot.CheckedChanged += new System.EventHandler(this.chkKinhChot_CheckedChanged);
             // 
             // chkKhamPhuKhoa
             // 
@@ -653,7 +687,7 @@
             this.chkAbnormal_KhamPhuKhoa.Location = new System.Drawing.Point(213, 432);
             this.chkAbnormal_KhamPhuKhoa.Name = "chkAbnormal_KhamPhuKhoa";
             this.chkAbnormal_KhamPhuKhoa.Size = new System.Drawing.Size(78, 17);
-            this.chkAbnormal_KhamPhuKhoa.TabIndex = 56;
+            this.chkAbnormal_KhamPhuKhoa.TabIndex = 57;
             this.chkAbnormal_KhamPhuKhoa.Text = "Bất thường";
             this.chkAbnormal_KhamPhuKhoa.UseVisualStyleBackColor = true;
             this.chkAbnormal_KhamPhuKhoa.CheckedChanged += new System.EventHandler(this.chkAbnormal_KhamPhuKhoa_CheckedChanged);
@@ -665,7 +699,7 @@
             this.chkNormal_KhamPhuKhoa.Location = new System.Drawing.Point(115, 432);
             this.chkNormal_KhamPhuKhoa.Name = "chkNormal_KhamPhuKhoa";
             this.chkNormal_KhamPhuKhoa.Size = new System.Drawing.Size(83, 17);
-            this.chkNormal_KhamPhuKhoa.TabIndex = 55;
+            this.chkNormal_KhamPhuKhoa.TabIndex = 56;
             this.chkNormal_KhamPhuKhoa.Text = "Bình thường";
             this.chkNormal_KhamPhuKhoa.UseVisualStyleBackColor = true;
             this.chkNormal_KhamPhuKhoa.CheckedChanged += new System.EventHandler(this.chkNormal_KhamPhuKhoa_CheckedChanged);
@@ -686,7 +720,7 @@
             this.txtSoiTuoiHuyetTrang.Name = "txtSoiTuoiHuyetTrang";
             this.txtSoiTuoiHuyetTrang.ReadOnly = true;
             this.txtSoiTuoiHuyetTrang.Size = new System.Drawing.Size(220, 20);
-            this.txtSoiTuoiHuyetTrang.TabIndex = 54;
+            this.txtSoiTuoiHuyetTrang.TabIndex = 55;
             // 
             // label18
             // 
@@ -703,7 +737,7 @@
             this.txtKetQuaKhamPhuKhoa.Name = "txtKetQuaKhamPhuKhoa";
             this.txtKetQuaKhamPhuKhoa.ReadOnly = true;
             this.txtKetQuaKhamPhuKhoa.Size = new System.Drawing.Size(202, 20);
-            this.txtKetQuaKhamPhuKhoa.TabIndex = 53;
+            this.txtKetQuaKhamPhuKhoa.TabIndex = 54;
             // 
             // label17
             // 
@@ -1381,18 +1415,6 @@
             this.panel1.Size = new System.Drawing.Size(841, 639);
             this.panel1.TabIndex = 7;
             // 
-            // chkKinhChot
-            // 
-            this.chkKinhChot.AutoSize = true;
-            this.chkKinhChot.Enabled = false;
-            this.chkKinhChot.Location = new System.Drawing.Point(222, 387);
-            this.chkKinhChot.Name = "chkKinhChot";
-            this.chkKinhChot.Size = new System.Drawing.Size(71, 17);
-            this.chkKinhChot.TabIndex = 103;
-            this.chkKinhChot.Text = "Kinh chót";
-            this.chkKinhChot.UseVisualStyleBackColor = true;
-            this.chkKinhChot.CheckedChanged += new System.EventHandler(this.chkKinhChot_CheckedChanged);
-            // 
             // dlgAddMultiKhamLamSang
             // 
             this.AcceptButton = this.btnOK;
@@ -1531,5 +1553,7 @@
         private System.Windows.Forms.CheckBox chkRangHamMat;
         private System.Windows.Forms.CheckBox chkTaiMuiHong;
         private System.Windows.Forms.CheckBox chkKinhChot;
+        private System.Windows.Forms.TextBox txtPhuKhoaNote;
+        private System.Windows.Forms.Label label2;
     }
 }

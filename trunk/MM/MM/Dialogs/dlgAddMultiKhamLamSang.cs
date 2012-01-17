@@ -417,6 +417,7 @@ namespace MM.Dialogs
                         if (chkKinhChot.Checked) kq.NgayKinhChot = dtpkNgayKinhChot.Value;
                         else kq.NgayKinhChot = null;
                         kq.Note = txtKetQuaKhamPhuKhoa.Text;
+                        kq.PhuKhoaNote = txtPhuKhoaNote.Text;
                         kq.Normal = chkNormal_KhamPhuKhoa.Checked;
                         kq.Abnormal = chkAbnormal_KhamPhuKhoa.Checked;
                         kq.DocStaffGUID = Guid.Parse(cboDocStaff_KhamPhuKhoa.SelectedValue.ToString());
@@ -789,6 +790,7 @@ namespace MM.Dialogs
             txtPARA.ReadOnly = !chkKhamPhuKhoa.Checked;
             chkKinhChot.Enabled = chkKhamPhuKhoa.Checked;
             dtpkNgayKinhChot.Enabled = chkKhamPhuKhoa.Checked && chkKinhChot.Checked;
+            txtPhuKhoaNote.ReadOnly = !chkKhamPhuKhoa.Checked;
             txtKetQuaKhamPhuKhoa.ReadOnly = !chkKhamPhuKhoa.Checked;
             txtSoiTuoiHuyetTrang.ReadOnly = !chkKhamPhuKhoa.Checked;
             chkNormal_KhamPhuKhoa.Enabled = chkKhamPhuKhoa.Checked;

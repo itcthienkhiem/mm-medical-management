@@ -136,6 +136,10 @@ namespace MM.Dialogs
                 if (drKetQuaLamSang["PARA"] != null && drKetQuaLamSang["PARA"] != DBNull.Value)
                     para = drKetQuaLamSang["PARA"].ToString();
 
+                string phuKhoaNote = string.Empty;
+                if (drKetQuaLamSang["PhuKhoaNote"] != null && drKetQuaLamSang["PhuKhoaNote"] != DBNull.Value)
+                    phuKhoaNote = drKetQuaLamSang["PhuKhoaNote"].ToString();
+
                 DateTime ngayKinhChot = DateTime.Now;
                 if (drKetQuaLamSang["NgayKinhChot"] != null && drKetQuaLamSang["NgayKinhChot"] != DBNull.Value)
                 {
@@ -238,6 +242,7 @@ namespace MM.Dialogs
                         txtPARA.Text = para;
                         dtpkNgayKinhChot.Value = ngayKinhChot;
                         txtKetQuaKhamPhuKhoa.Text = nhanXet;
+                        txtPhuKhoaNote.Text = phuKhoaNote;
                         txtSoiTuoiHuyetTrang.Text = soiTuoiHuyetTrang;
                         chkNormal_KhamPhuKhoa.Checked = normal;
                         chkAbnormal_KhamPhuKhoa.Checked = abnormal;
@@ -430,6 +435,7 @@ namespace MM.Dialogs
                             _ketQuaLamSang.NgayKinhChot = null;
 
                         _ketQuaLamSang.Note = txtKetQuaKhamPhuKhoa.Text;
+                        _ketQuaLamSang.PhuKhoaNote = txtPhuKhoaNote.Text;
                         _ketQuaLamSang.Normal = chkNormal_KhamPhuKhoa.Checked;
                         _ketQuaLamSang.Abnormal = chkAbnormal_KhamPhuKhoa.Checked;
                     }
@@ -736,6 +742,7 @@ namespace MM.Dialogs
             chkKinhChot.Enabled = raKhamPhuKhoa.Checked;
             dtpkNgayKinhChot.Enabled = raKhamPhuKhoa.Checked && chkKinhChot.Checked;
             txtKetQuaKhamPhuKhoa.ReadOnly = !raKhamPhuKhoa.Checked;
+            txtPhuKhoaNote.ReadOnly = !raKhamPhuKhoa.Checked;
             txtSoiTuoiHuyetTrang.ReadOnly = !raKhamPhuKhoa.Checked;
             chkNormal_KhamPhuKhoa.Enabled = raKhamPhuKhoa.Checked;
             chkAbnormal_KhamPhuKhoa.Enabled = raKhamPhuKhoa.Checked;

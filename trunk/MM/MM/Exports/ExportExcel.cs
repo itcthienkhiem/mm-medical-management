@@ -1533,6 +1533,7 @@ namespace MM.Exports
                         KetQuaLamSang kq = (KetQuaLamSang)htKetQuaLamSang[coQuan];
                         if (kq.Note == null) kq.Note = string.Empty;
                         if (kq.SoiTuoiHuyetTrang == null) kq.SoiTuoiHuyetTrang = string.Empty;
+                        if (kq.PhuKhoaNote == null) kq.PhuKhoaNote = string.Empty;
 
                         if (coQuan != CoQuan.Khac && coQuan != CoQuan.KhamPhuKhoa)
                         {
@@ -1548,6 +1549,8 @@ namespace MM.Exports
                             if (kq.NgayKinhChot.HasValue)
                                 workSheet.Cells[string.Format("I{0}", rowIndex)].Value = kq.NgayKinhChot.Value.ToString("dd/MM/yyyy");
                             rowIndex++;
+                            workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Ghi chú: {0}", kq.PhuKhoaNote.Replace("\r", "").Replace("\t", ""));
+                            rowIndex++;
                             workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Kết quả khám phụ khoa: {0}", kq.Note.Replace("\r", "").Replace("\t", ""));
                             rowIndex++;
                             workSheet.Cells[string.Format("F{0}", rowIndex)].Value = string.Format("Soi tươi huyết trắng: {0}", kq.SoiTuoiHuyetTrang.Replace("\r", "").Replace("\t", ""));
@@ -1561,7 +1564,7 @@ namespace MM.Exports
                 }
 
                 //Fill thông tin dịch vụ sử dụng lâm sàng
-                rowIndex = 37;
+                rowIndex = 38;
                 foreach (ServiceHistoryView srvHistory in serviceLamSangList)
                 {
                     range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
@@ -1642,13 +1645,13 @@ namespace MM.Exports
                         range.Insert(InsertShiftDirection.Down);
                     }
 
-                    rowIndex = serviceLamSangList.Count * 2 + 38 + count;
+                    rowIndex = serviceLamSangList.Count * 2 + 39 + count;
                 }
                 else
-                    rowIndex = serviceLamSangList.Count * 2 + 38;
+                    rowIndex = serviceLamSangList.Count * 2 + 39;
 
                 //Fill thông tin dịch vụ sử dụng cận lâm sàng
-                //rowIndex = serviceLamSangList.Count * 2 + 38;
+                //rowIndex = serviceLamSangList.Count * 2 + 39;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex)].EntireRow;
                 range.Insert(InsertShiftDirection.Down);
 
