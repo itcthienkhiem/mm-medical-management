@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddKhamLamSang));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dtpkNgayKinhChot = new System.Windows.Forms.DateTimePicker();
+            this.chkKinhChot = new System.Windows.Forms.CheckBox();
             this.chkAbnormal_KhamPhuKhoa = new System.Windows.Forms.CheckBox();
             this.chkNormal_KhamPhuKhoa = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -39,7 +41,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.txtKetQuaKhamPhuKhoa = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.dtpkNgayKinhChot = new System.Windows.Forms.DateTimePicker();
             this.txtPARA = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.raKhamPhuKhoa = new System.Windows.Forms.RadioButton();
@@ -109,7 +110,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.chkKinhChot = new System.Windows.Forms.CheckBox();
+            this.txtPhuKhoaNote = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -133,6 +135,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtPhuKhoaNote);
+            this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.dtpkNgayKinhChot);
             this.groupBox3.Controls.Add(this.chkKinhChot);
             this.groupBox3.Controls.Add(this.chkAbnormal_KhamPhuKhoa);
@@ -199,6 +203,28 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Khám nội khoa";
+            // 
+            // dtpkNgayKinhChot
+            // 
+            this.dtpkNgayKinhChot.CustomFormat = "dd/MM/yyyy";
+            this.dtpkNgayKinhChot.Enabled = false;
+            this.dtpkNgayKinhChot.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkNgayKinhChot.Location = new System.Drawing.Point(261, 379);
+            this.dtpkNgayKinhChot.Name = "dtpkNgayKinhChot";
+            this.dtpkNgayKinhChot.Size = new System.Drawing.Size(106, 20);
+            this.dtpkNgayKinhChot.TabIndex = 73;
+            // 
+            // chkKinhChot
+            // 
+            this.chkKinhChot.AutoSize = true;
+            this.chkKinhChot.Enabled = false;
+            this.chkKinhChot.Location = new System.Drawing.Point(191, 382);
+            this.chkKinhChot.Name = "chkKinhChot";
+            this.chkKinhChot.Size = new System.Drawing.Size(71, 17);
+            this.chkKinhChot.TabIndex = 81;
+            this.chkKinhChot.Text = "Kinh chót";
+            this.chkKinhChot.UseVisualStyleBackColor = true;
+            this.chkKinhChot.CheckedChanged += new System.EventHandler(this.chkKinhChot_CheckedChanged);
             // 
             // chkAbnormal_KhamPhuKhoa
             // 
@@ -267,16 +293,6 @@
             this.label17.Size = new System.Drawing.Size(124, 13);
             this.label17.TabIndex = 74;
             this.label17.Text = "Kết quả khám phụ khoa:";
-            // 
-            // dtpkNgayKinhChot
-            // 
-            this.dtpkNgayKinhChot.CustomFormat = "dd/MM/yyyy";
-            this.dtpkNgayKinhChot.Enabled = false;
-            this.dtpkNgayKinhChot.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayKinhChot.Location = new System.Drawing.Point(261, 379);
-            this.dtpkNgayKinhChot.Name = "dtpkNgayKinhChot";
-            this.dtpkNgayKinhChot.Size = new System.Drawing.Size(106, 20);
-            this.dtpkNgayKinhChot.TabIndex = 73;
             // 
             // txtPARA
             // 
@@ -1043,17 +1059,23 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // chkKinhChot
+            // txtPhuKhoaNote
             // 
-            this.chkKinhChot.AutoSize = true;
-            this.chkKinhChot.Enabled = false;
-            this.chkKinhChot.Location = new System.Drawing.Point(191, 382);
-            this.chkKinhChot.Name = "chkKinhChot";
-            this.chkKinhChot.Size = new System.Drawing.Size(71, 17);
-            this.chkKinhChot.TabIndex = 81;
-            this.chkKinhChot.Text = "Kinh chót";
-            this.chkKinhChot.UseVisualStyleBackColor = true;
-            this.chkKinhChot.CheckedChanged += new System.EventHandler(this.chkKinhChot_CheckedChanged);
+            this.txtPhuKhoaNote.Location = new System.Drawing.Point(476, 379);
+            this.txtPhuKhoaNote.MaxLength = 100;
+            this.txtPhuKhoaNote.Name = "txtPhuKhoaNote";
+            this.txtPhuKhoaNote.ReadOnly = true;
+            this.txtPhuKhoaNote.Size = new System.Drawing.Size(220, 20);
+            this.txtPhuKhoaNote.TabIndex = 74;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(423, 383);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(47, 13);
+            this.label16.TabIndex = 82;
+            this.label16.Text = "Ghi chú:";
             // 
             // dlgAddKhamLamSang
             // 
@@ -1169,5 +1191,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.RadioButton raKhamPhuKhoa;
         private System.Windows.Forms.CheckBox chkKinhChot;
+        private System.Windows.Forms.TextBox txtPhuKhoaNote;
+        private System.Windows.Forms.Label label16;
     }
 }
