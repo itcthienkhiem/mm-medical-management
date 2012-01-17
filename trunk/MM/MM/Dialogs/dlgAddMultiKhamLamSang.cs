@@ -32,9 +32,9 @@ namespace MM.Dialogs
         {
             dtpkNgay.Value = DateTime.Now;
 
-            //DocStaff
+            //Bác sĩ ngoại khoa tổng quát
             List<byte> staffTypes = new List<byte>();
-            staffTypes.Add((byte)StaffType.BacSi);
+            staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
             Result result = DocStaffBus.GetDocStaffList(staffTypes);
             if (!result.IsOK)
             {
@@ -47,8 +47,21 @@ namespace MM.Dialogs
                 DataTable dt = result.QueryResult as DataTable;
                 cboDocStaff_TaiMuiHong.DataSource = dt;
                 cboDocStaff_RangHamMat.DataSource = dt;
+            }
 
-                DataTable dtNoiKhoa = dt.Copy();
+            //Bác sĩ ngoại khoa tổng quát
+            staffTypes.Clear();
+            staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            result = DocStaffBus.GetDocStaffList(staffTypes);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                return;
+            }
+            else
+            {
+                DataTable dtNoiKhoa = result.QueryResult as DataTable;
                 cboDocStaff_Mat.DataSource = dtNoiKhoa;
                 cboDocStaff_HoHap.DataSource = dtNoiKhoa;
                 cboDocStaff_TimMach.DataSource = dtNoiKhoa;
@@ -60,7 +73,7 @@ namespace MM.Dialogs
                 cboDocStaff_NoiTiet.DataSource = dtNoiKhoa;
                 cboDocStaff_CoQuanKhac.DataSource = dtNoiKhoa;
 
-                DataTable dtPhuKhoa = dt.Copy();
+                DataTable dtPhuKhoa = dtNoiKhoa.Copy();
                 cboDocStaff_KhamPhuKhoa.DataSource = dtPhuKhoa;
             }
 
@@ -658,7 +671,9 @@ namespace MM.Dialogs
             chkNormal_TaiMuiHong.Enabled = chkTaiMuiHong.Checked;
             chkAbnormal_TaiMuiHong.Enabled = chkTaiMuiHong.Checked;
             txtNhanXet_TaiMuiHong.ReadOnly = !chkTaiMuiHong.Checked;
-            cboDocStaff_TaiMuiHong.Enabled = chkTaiMuiHong.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_TaiMuiHong.Enabled = chkTaiMuiHong.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat && 
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkRangHamMat_CheckedChanged(object sender, EventArgs e)
@@ -666,7 +681,9 @@ namespace MM.Dialogs
             chkNormal_RangHamMat.Enabled = chkRangHamMat.Checked;
             chkAbnormal_RangHamMat.Enabled = chkRangHamMat.Checked;
             txtNhanXet_RangHamMat.ReadOnly = !chkRangHamMat.Checked;
-            cboDocStaff_RangHamMat.Enabled = chkRangHamMat.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_RangHamMat.Enabled = chkRangHamMat.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkMat_CheckedChanged(object sender, EventArgs e)
@@ -674,7 +691,9 @@ namespace MM.Dialogs
             chkNormal_Mat.Enabled = chkMat.Checked;
             chkAbnormal_Mat.Enabled = chkMat.Checked;
             txtNhanXet_Mat.ReadOnly = !chkMat.Checked;
-            cboDocStaff_Mat.Enabled = chkMat.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_Mat.Enabled = chkMat.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkHoHap_CheckedChanged(object sender, EventArgs e)
@@ -682,7 +701,9 @@ namespace MM.Dialogs
             chkNormal_HoHap.Enabled = chkHoHap.Checked;
             chkAbnormal_HoHap.Enabled = chkHoHap.Checked;
             txtNhanXet_HoHap.ReadOnly = !chkHoHap.Checked;
-            cboDocStaff_HoHap.Enabled = chkHoHap.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_HoHap.Enabled = chkHoHap.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkTimMach_CheckedChanged(object sender, EventArgs e)
@@ -690,7 +711,9 @@ namespace MM.Dialogs
             chkNormal_TimMach.Enabled = chkTimMach.Checked;
             chkAbnormal_TimMach.Enabled = chkTimMach.Checked;
             txtNhanXet_TimMach.ReadOnly = !chkTimMach.Checked;
-            cboDocStaff_TimMach.Enabled = chkTimMach.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_TimMach.Enabled = chkTimMach.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkTieuHoa_CheckedChanged(object sender, EventArgs e)
@@ -698,7 +721,9 @@ namespace MM.Dialogs
             chkNormal_TieuHoa.Enabled = chkTieuHoa.Checked;
             chkAbnormal_TieuHoa.Enabled = chkTieuHoa.Checked;
             txtNhanXet_TieuHoa.ReadOnly = !chkTieuHoa.Checked;
-            cboDocStaff_TieuHoa.Enabled = chkTieuHoa.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_TieuHoa.Enabled = chkTieuHoa.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkTietNieuSinhDuc_CheckedChanged(object sender, EventArgs e)
@@ -706,7 +731,9 @@ namespace MM.Dialogs
             chkNormal_TietNieuSinhDuc.Enabled = chkTietNieuSinhDuc.Checked;
             chkAbnormal_TietNieuSinhDuc.Enabled = chkTietNieuSinhDuc.Checked;
             txtNhanXet_TietNieuSinhDuc.ReadOnly = !chkTietNieuSinhDuc.Checked;
-            cboDocStaff_TietNieuSinhDuc.Enabled = chkTietNieuSinhDuc.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_TietNieuSinhDuc.Enabled = chkTietNieuSinhDuc.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkCoXuongKhop_CheckedChanged(object sender, EventArgs e)
@@ -714,7 +741,9 @@ namespace MM.Dialogs
             chkNormal_CoXuongKhop.Enabled = chkCoXuongKhop.Checked;
             chkAbnormal_CoXuongKhop.Enabled = chkCoXuongKhop.Checked;
             txtNhanXet_CoXuongKhop.ReadOnly = !chkCoXuongKhop.Checked;
-            cboDocStaff_CoXuongKhop.Enabled = chkCoXuongKhop.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_CoXuongKhop.Enabled = chkCoXuongKhop.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkDaLieu_CheckedChanged(object sender, EventArgs e)
@@ -722,7 +751,9 @@ namespace MM.Dialogs
             chkNormal_DaLieu.Enabled = chkDaLieu.Checked;
             chkAbnormal_DaLieu.Enabled = chkDaLieu.Checked;
             txtNhanXet_DaLieu.ReadOnly = !chkDaLieu.Checked;
-            cboDocStaff_DaLieu.Enabled = chkDaLieu.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_DaLieu.Enabled = chkDaLieu.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkThanKinh_CheckedChanged(object sender, EventArgs e)
@@ -730,7 +761,9 @@ namespace MM.Dialogs
             chkNormal_ThanKinh.Enabled = chkThanKinh.Checked;
             chkAbnormal_ThanKinh.Enabled = chkThanKinh.Checked;
             txtNhanXet_ThanKinh.ReadOnly = !chkThanKinh.Checked;
-            cboDocStaff_ThanKinh.Enabled = chkThanKinh.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_ThanKinh.Enabled = chkThanKinh.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkNoiTiet_CheckedChanged(object sender, EventArgs e)
@@ -738,13 +771,17 @@ namespace MM.Dialogs
             chkNormal_NoiTiet.Enabled = chkNoiTiet.Checked;
             chkAbnormal_NoiTiet.Enabled = chkNoiTiet.Checked;
             txtNhanXet_NoiTiet.ReadOnly = !chkNoiTiet.Checked;
-            cboDocStaff_NoiTiet.Enabled = chkNoiTiet.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_NoiTiet.Enabled = chkNoiTiet.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkCacCoQuanKhac_CheckedChanged(object sender, EventArgs e)
         {
             txtNhanXet_CoQuanKhac.ReadOnly = !chkCacCoQuanKhac.Checked;
-            cboDocStaff_CoQuanKhac.Enabled = chkCacCoQuanKhac.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_CoQuanKhac.Enabled = chkCacCoQuanKhac.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkKhamPhuKhoa_CheckedChanged(object sender, EventArgs e)
@@ -756,7 +793,9 @@ namespace MM.Dialogs
             txtSoiTuoiHuyetTrang.ReadOnly = !chkKhamPhuKhoa.Checked;
             chkNormal_KhamPhuKhoa.Enabled = chkKhamPhuKhoa.Checked;
             chkAbnormal_KhamPhuKhoa.Enabled = chkKhamPhuKhoa.Checked;
-            cboDocStaff_KhamPhuKhoa.Enabled = chkKhamPhuKhoa.Checked && Global.StaffType != StaffType.BacSi;
+            cboDocStaff_KhamPhuKhoa.Enabled = chkKhamPhuKhoa.Checked && Global.StaffType != StaffType.BacSi &&
+                Global.StaffType != StaffType.BacSiSieuAm && Global.StaffType != StaffType.BacSiNgoaiTongQuat &&
+                Global.StaffType != StaffType.BacSiNoiTongQuat;
         }
 
         private void chkKinhChot_CheckedChanged(object sender, EventArgs e)

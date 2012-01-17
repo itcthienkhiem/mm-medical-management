@@ -114,18 +114,24 @@ namespace MM.Dialogs
             {
                 case StaffType.BacSi:
                     return 0;
-                case StaffType.DieuDuong:
+                case StaffType.BacSiSieuAm:
                     return 1;
-                case StaffType.LeTan:
+                case StaffType.BacSiNgoaiTongQuat:
                     return 2;
-                case StaffType.ThuKyYKhoa:
+                case StaffType.BacSiNoiTongQuat:
                     return 3;
-                case StaffType.XetNghiem:
+                case StaffType.DieuDuong:
                     return 4;
-                case StaffType.Sale:
+                case StaffType.LeTan:
                     return 5;
-                case StaffType.KeToan:
+                case StaffType.ThuKyYKhoa:
                     return 6;
+                case StaffType.XetNghiem:
+                    return 7;
+                case StaffType.Sale:
+                    return 8;
+                case StaffType.KeToan:
+                    return 9;
                 default:
                     return 0;
             }
@@ -138,16 +144,22 @@ namespace MM.Dialogs
                 case 0:
                     return StaffType.BacSi;
                 case 1:
-                    return StaffType.DieuDuong;
+                    return StaffType.BacSiSieuAm;
                 case 2:
-                    return StaffType.LeTan;
+                    return StaffType.BacSiNgoaiTongQuat;
                 case 3:
-                    return StaffType.ThuKyYKhoa;
+                    return StaffType.BacSiNoiTongQuat;
                 case 4:
-                    return StaffType.XetNghiem;
+                    return StaffType.DieuDuong;
                 case 5:
-                    return StaffType.Sale;
+                    return StaffType.LeTan;
                 case 6:
+                    return StaffType.ThuKyYKhoa;
+                case 7:
+                    return StaffType.XetNghiem;
+                case 8:
+                    return StaffType.Sale;
+                case 9:
                     return StaffType.KeToan;
                 default:
                     return StaffType.BacSi;
@@ -272,21 +284,30 @@ namespace MM.Dialogs
                             _contact.Occupation = "Bác sĩ";
                             break;
                         case 1:
-                            _contact.Occupation = "Điều dưỡng";
+                            _contact.Occupation = "Bác sĩ siêu âm";
                             break;
                         case 2:
-                            _contact.Occupation = "Lễ tân";
+                            _contact.Occupation = "Bác sĩ ngoại tổng quát";
                             break;
                         case 3:
-                            _contact.Occupation = "Thư ký y khoa";
+                            _contact.Occupation = "Bác sĩ nội tổng quát";
                             break;
                         case 4:
-                            _contact.Occupation = "Xét nghiệm";
+                            _contact.Occupation = "Điều dưỡng";
                             break;
                         case 5:
-                            _contact.Occupation = "Sale";
+                            _contact.Occupation = "Lễ tân";
                             break;
                         case 6:
+                            _contact.Occupation = "Thư ký y khoa";
+                            break;
+                        case 7:
+                            _contact.Occupation = "Xét nghiệm";
+                            break;
+                        case 8:
+                            _contact.Occupation = "Sale";
+                            break;
+                        case 9:
                             _contact.Occupation = "Kế toán";
                             break;
                     }

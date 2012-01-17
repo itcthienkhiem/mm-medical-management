@@ -740,6 +740,12 @@ namespace MM.Common
             {
                 case StaffType.BacSi:
                     return "Bác sĩ";
+                case StaffType.BacSiSieuAm:
+                    return "Bác sĩ siêu âm";
+                case StaffType.BacSiNgoaiTongQuat:
+                    return "Bác sĩ ngoại tổng quát";
+                case StaffType.BacSiNoiTongQuat:
+                    return "Bác sĩ nội tổng quát";
                 case StaffType.DieuDuong:
                     return "Điều dưỡng";
                 case StaffType.LeTan:

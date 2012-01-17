@@ -19,7 +19,8 @@ namespace MM.Bussiness
             try
             {
                 string query = string.Empty;
-                if (Global.StaffType != StaffType.BacSi)
+                if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
+                    Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat)
                     query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM LoiKhuyenView WHERE PatientGUID = '{0}' AND Ngay BETWEEN '{1}' AND '{2}' AND LoiKhuyenStatus = {3} AND SymptomStatus = {3} AND Archived = 'False' ORDER BY Ngay DESC",
                         patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
                 else
