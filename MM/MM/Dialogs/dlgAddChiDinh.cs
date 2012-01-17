@@ -98,6 +98,9 @@ namespace MM.Dialogs
             //DocStaff
             List<byte> staffTypes = new List<byte>();
             staffTypes.Add((byte)StaffType.BacSi);
+            staffTypes.Add((byte)StaffType.BacSiSieuAm);
+            staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
             Result result = DocStaffBus.GetDocStaffList(staffTypes);
             if (!result.IsOK)
             {
@@ -110,7 +113,8 @@ namespace MM.Dialogs
                 cboDocStaff.DataSource = result.QueryResult;
             }
 
-            if (Global.StaffType == StaffType.BacSi)
+            if (Global.StaffType == StaffType.BacSi || Global.StaffType == StaffType.BacSiSieuAm ||
+                Global.StaffType == StaffType.BacSiNgoaiTongQuat || Global.StaffType == StaffType.BacSiNoiTongQuat)
             {
                 cboDocStaff.SelectedValue = Global.UserGUID;
                 cboDocStaff.Enabled = false;

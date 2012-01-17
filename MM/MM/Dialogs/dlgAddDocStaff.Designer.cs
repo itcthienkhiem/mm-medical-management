@@ -151,6 +151,9 @@
             this.cboStaffType.FormattingEnabled = true;
             this.cboStaffType.Items.AddRange(new object[] {
             "Bác sĩ",
+            "Bác sĩ siêu âm",
+            "Bác sĩ ngoại tổng quát",
+            "Bác sĩ nội tổng quát",
             "Điều dưỡng",
             "Lễ tân",
             "Thư ký y khoa",
@@ -159,7 +162,7 @@
             "Kế toán"});
             this.cboStaffType.Location = new System.Drawing.Point(106, 239);
             this.cboStaffType.Name = "cboStaffType";
-            this.cboStaffType.Size = new System.Drawing.Size(109, 21);
+            this.cboStaffType.Size = new System.Drawing.Size(157, 21);
             this.cboStaffType.TabIndex = 10;
             // 
             // label21

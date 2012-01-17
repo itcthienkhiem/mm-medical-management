@@ -92,8 +92,11 @@ namespace MM.Dialogs
                     txtDiaChi.Text = _patientRow["Address"].ToString();
                     btnChonBenhNhan.Visible = false;
 
-                    if (Global.StaffType != StaffType.Admin)
+                    if (Global.StaffType == StaffType.BacSi || Global.StaffType == StaffType.BacSiSieuAm ||
+                        Global.StaffType == StaffType.BacSiNgoaiTongQuat || Global.StaffType == StaffType.BacSiNoiTongQuat)
+                    {
                         cboBacSi.Enabled = false;
+                    }
                 }
             }
         }
@@ -111,7 +114,12 @@ namespace MM.Dialogs
 
         private void OnDisplayBacSi()
         {
-            Result result = DocStaffBus.GetDocStaffList();
+            List<byte> staffTypes = new List<byte>();
+            staffTypes.Add((byte)StaffType.BacSi);
+            staffTypes.Add((byte)StaffType.BacSiSieuAm);
+            staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            Result result = DocStaffBus.GetDocStaffList(staffTypes);
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;

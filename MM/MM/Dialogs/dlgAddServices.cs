@@ -87,11 +87,20 @@ namespace MM.Dialogs
                         case StaffType.BacSi:
                             cboStaffType.SelectedIndex = 1;
                             break;
-                        case StaffType.DieuDuong:
+                        case StaffType.BacSiSieuAm:
                             cboStaffType.SelectedIndex = 2;
                             break;
-                        case StaffType.XetNghiem:
+                        case StaffType.BacSiNgoaiTongQuat:
                             cboStaffType.SelectedIndex = 3;
+                            break;
+                        case StaffType.BacSiNoiTongQuat:
+                            cboStaffType.SelectedIndex = 4;
+                            break;
+                        case StaffType.DieuDuong:
+                            cboStaffType.SelectedIndex = 5;
+                            break;
+                        case StaffType.XetNghiem:
+                            cboStaffType.SelectedIndex = 6;
                             break;
                         case StaffType.None:
                             cboStaffType.SelectedIndex = 0;
@@ -222,9 +231,18 @@ namespace MM.Dialogs
                             _service.StaffType = (byte)StaffType.BacSi;
                             break;
                         case 2:
-                            _service.StaffType = (byte)StaffType.DieuDuong;
+                            _service.StaffType = (byte)StaffType.BacSiSieuAm;
                             break;
                         case 3:
+                            _service.StaffType = (byte)StaffType.BacSiNgoaiTongQuat;
+                            break;
+                        case 4:
+                            _service.StaffType = (byte)StaffType.BacSiNoiTongQuat;
+                            break;
+                        case 5:
+                            _service.StaffType = (byte)StaffType.DieuDuong;
+                            break;
+                        case 6:
                             _service.StaffType = (byte)StaffType.XetNghiem;
                             break;
                     }

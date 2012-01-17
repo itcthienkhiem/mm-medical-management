@@ -92,7 +92,10 @@ namespace MM.Common
         ThuKyYKhoa,
         Sale,
         KeToan,
-        None
+        None,
+        BacSiSieuAm,
+        BacSiNgoaiTongQuat,
+        BacSiNoiTongQuat
     };
 
     public enum Status : byte
