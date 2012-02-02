@@ -60,6 +60,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetGiaVonDichVuMoiNhat(string serviceGUID, DateTime ngayThu)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT TOP 1 * FROM GiaVonDichVu WHERE ServiceGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
+                    serviceGUID, (byte)Status.Actived, ngayThu.ToString("yyyy-MM-dd HH:mm:ss"));
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result DeleteGiaVonDichVu(List<string> giaVonDichVuKeys)
         {
             Result result = new Result();
