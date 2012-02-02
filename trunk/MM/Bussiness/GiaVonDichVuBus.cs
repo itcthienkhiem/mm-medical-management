@@ -42,7 +42,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TOP 1 * FROM GiaVonDichDu WHERE ServiceGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
+                string query = string.Format("SELECT TOP 1 * FROM GiaVonDichVu WHERE ServiceGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
                     serviceGUID, (byte)Status.Actived, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 return ExcuteQuery(query);
             }
