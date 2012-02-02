@@ -1254,7 +1254,7 @@ namespace MM.Exports
                     foreach (DataRow row in dtSource.Rows)
                     {
                         string serviceGUID = row["ServiceGUID"].ToString();
-                        result = GiaVonDichVuBus.GetGiaVonDichVuMoiNhat(serviceGUID);
+                        result = GiaVonDichVuBus.GetGiaVonDichVuMoiNhat(serviceGUID, receipt.ReceiptDate);
                         double giaVon = 0;
                         if (!result.IsOK)
                         {
