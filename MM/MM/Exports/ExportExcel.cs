@@ -1253,6 +1253,22 @@ namespace MM.Exports
                    
                     foreach (DataRow row in dtSource.Rows)
                     {
+                        string serviceGUID = row["ServiceGUID"].ToString();
+                        result = GiaVonDichVuBus.GetGiaVonDichVuMoiNhat(serviceGUID);
+                        double giaVon = 0;
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("GiaVonDichVuBus.GetGiaVonDichVuMoiNhat"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("GiaVonDichVuBus.GetGiaVonDichVuMoiNhat"));
+                            return false;
+                        }
+                        else
+                        {
+                            DataTable dt = result.QueryResult as DataTable;
+                            if (dt.Rows.Count > 0)
+                                giaVon = Convert.ToDouble(dt.Rows[0]["GiaVon"]);
+                        }
+
                         range = workSheet.Cells[rowIndex, 0];
                         range.Value = receipt.ReceiptCode;
 
@@ -1274,11 +1290,14 @@ namespace MM.Exports
                         range = workSheet.Cells[rowIndex, 5];
                         range.Value = Convert.ToDouble(row["Amount"]);
 
+                        range = workSheet.Cells[rowIndex, 6];
+                        range.Value = giaVon;
+
                         rowIndex++;
                     }
                 }
 
-                range = workSheet.Cells[string.Format("A3:F{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:G{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
