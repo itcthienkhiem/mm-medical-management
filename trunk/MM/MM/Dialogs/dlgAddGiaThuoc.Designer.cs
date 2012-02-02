@@ -40,10 +40,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.cboThuoc = new System.Windows.Forms.ComboBox();
+            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAppDungQuiTacTinhThuocVien = new System.Windows.Forms.Button();
+            this.btnQuiTacTinhVacxinDichTruyen = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGiaBan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
@@ -63,7 +65,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(7, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(389, 130);
+            this.groupBox1.Size = new System.Drawing.Size(499, 130);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin giá thuốc";
@@ -144,7 +146,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.ForeColor = System.Drawing.Color.Red;
-            this.label28.Location = new System.Drawing.Point(362, 24);
+            this.label28.Location = new System.Drawing.Point(471, 24);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(17, 13);
             this.label28.TabIndex = 71;
@@ -160,10 +162,14 @@
             this.cboThuoc.FormattingEnabled = true;
             this.cboThuoc.Location = new System.Drawing.Point(90, 21);
             this.cboThuoc.Name = "cboThuoc";
-            this.cboThuoc.Size = new System.Drawing.Size(266, 21);
+            this.cboThuoc.Size = new System.Drawing.Size(377, 21);
             this.cboThuoc.TabIndex = 70;
             this.cboThuoc.ValueMember = "ThuocGUID";
             this.cboThuoc.SelectedIndexChanged += new System.EventHandler(this.cboThuoc_SelectedIndexChanged);
+            // 
+            // thuocBindingSource
+            // 
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
             // 
             // label3
             // 
@@ -179,7 +185,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(203, 140);
+            this.btnCancel.Location = new System.Drawing.Point(431, 140);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 15;
@@ -191,16 +197,36 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(124, 140);
+            this.btnOK.Location = new System.Drawing.Point(352, 140);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 14;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // thuocBindingSource
+            // btnAppDungQuiTacTinhThuocVien
             // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            this.btnAppDungQuiTacTinhThuocVien.Image = global::MM.Properties.Resources.pills_5_icon;
+            this.btnAppDungQuiTacTinhThuocVien.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAppDungQuiTacTinhThuocVien.Location = new System.Drawing.Point(7, 140);
+            this.btnAppDungQuiTacTinhThuocVien.Name = "btnAppDungQuiTacTinhThuocVien";
+            this.btnAppDungQuiTacTinhThuocVien.Size = new System.Drawing.Size(155, 25);
+            this.btnAppDungQuiTacTinhThuocVien.TabIndex = 16;
+            this.btnAppDungQuiTacTinhThuocVien.Text = "    Qui tắc tính thuốc viên";
+            this.btnAppDungQuiTacTinhThuocVien.UseVisualStyleBackColor = true;
+            this.btnAppDungQuiTacTinhThuocVien.Click += new System.EventHandler(this.btnAppDungQuiTacTinhThuocVien_Click);
+            // 
+            // btnQuiTacTinhVacxinDichTruyen
+            // 
+            this.btnQuiTacTinhVacxinDichTruyen.Image = global::MM.Properties.Resources.Medicine_icon;
+            this.btnQuiTacTinhVacxinDichTruyen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnQuiTacTinhVacxinDichTruyen.Location = new System.Drawing.Point(166, 140);
+            this.btnQuiTacTinhVacxinDichTruyen.Name = "btnQuiTacTinhVacxinDichTruyen";
+            this.btnQuiTacTinhVacxinDichTruyen.Size = new System.Drawing.Size(182, 25);
+            this.btnQuiTacTinhVacxinDichTruyen.TabIndex = 17;
+            this.btnQuiTacTinhVacxinDichTruyen.Text = "      Qui tắc tính vắcxin-dịch truyền";
+            this.btnQuiTacTinhVacxinDichTruyen.UseVisualStyleBackColor = true;
+            this.btnQuiTacTinhVacxinDichTruyen.Click += new System.EventHandler(this.btnQuiTacTinhVacxinDichTruyen_Click);
             // 
             // dlgAddGiaThuoc
             // 
@@ -208,7 +234,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(402, 171);
+            this.ClientSize = new System.Drawing.Size(515, 171);
+            this.Controls.Add(this.btnQuiTacTinhVacxinDichTruyen);
+            this.Controls.Add(this.btnAppDungQuiTacTinhThuocVien);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -246,5 +274,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.BindingSource thuocBindingSource;
+        private System.Windows.Forms.Button btnAppDungQuiTacTinhThuocVien;
+        private System.Windows.Forms.Button btnQuiTacTinhVacxinDichTruyen;
     }
 }

@@ -398,5 +398,46 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetGiaThuocNhap(string maThuocGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                LoThuoc loThuoc = (from l in db.LoThuocs
+                                   where l.ThuocGUID.ToString() == maThuocGUID &&
+                                   l.Status == (byte)Status.Actived
+                                   orderby l.CreatedDate descending
+                                   select l).FirstOrDefault();
+
+                if (loThuoc != null)
+                    result.QueryResult = loThuoc.GiaNhapQuiDoi;
+                else
+                    result.QueryResult = 0;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }
