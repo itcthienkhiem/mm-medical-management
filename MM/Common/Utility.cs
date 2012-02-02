@@ -762,6 +762,8 @@ namespace MM.Common
                     return "Sale";
                 case StaffType.KeToan:
                     return "Kế toán";
+                case StaffType.BacSiPhuKhoa:
+                    return "Bác sĩ phụ khoa";
                 case StaffType.None:
                     return string.Empty;
             }

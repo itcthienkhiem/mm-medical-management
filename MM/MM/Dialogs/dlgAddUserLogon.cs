@@ -76,6 +76,14 @@ namespace MM.Dialogs
                             return "Xét nghiệm";
                         case StaffType.Sale:
                             return "Sale";
+                        case StaffType.BacSiSieuAm:
+                            return "Bác sĩ siêu âm";
+                        case StaffType.BacSiNgoaiTongQuat:
+                            return "Bác sĩ ngoại tổng quát";
+                        case StaffType.BacSiNoiTongQuat:
+                            return "Bác sĩ nội tổng quát";
+                        case StaffType.BacSiPhuKhoa:
+                            return "Bác sĩ phụ khoa";
                         default:
                             return string.Empty;
                     }

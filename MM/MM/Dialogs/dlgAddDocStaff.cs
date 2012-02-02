@@ -120,18 +120,20 @@ namespace MM.Dialogs
                     return 2;
                 case StaffType.BacSiNoiTongQuat:
                     return 3;
-                case StaffType.DieuDuong:
+                case StaffType.BacSiPhuKhoa:
                     return 4;
-                case StaffType.LeTan:
+                case StaffType.DieuDuong:
                     return 5;
-                case StaffType.ThuKyYKhoa:
+                case StaffType.LeTan:
                     return 6;
-                case StaffType.XetNghiem:
+                case StaffType.ThuKyYKhoa:
                     return 7;
-                case StaffType.Sale:
+                case StaffType.XetNghiem:
                     return 8;
-                case StaffType.KeToan:
+                case StaffType.Sale:
                     return 9;
+                case StaffType.KeToan:
+                    return 10;
                 default:
                     return 0;
             }
@@ -150,16 +152,18 @@ namespace MM.Dialogs
                 case 3:
                     return StaffType.BacSiNoiTongQuat;
                 case 4:
-                    return StaffType.DieuDuong;
+                    return StaffType.BacSiPhuKhoa;
                 case 5:
-                    return StaffType.LeTan;
+                    return StaffType.DieuDuong;
                 case 6:
-                    return StaffType.ThuKyYKhoa;
+                    return StaffType.LeTan;
                 case 7:
-                    return StaffType.XetNghiem;
+                    return StaffType.ThuKyYKhoa;
                 case 8:
-                    return StaffType.Sale;
+                    return StaffType.XetNghiem;
                 case 9:
+                    return StaffType.Sale;
+                case 10:
                     return StaffType.KeToan;
                 default:
                     return StaffType.BacSi;
@@ -278,7 +282,7 @@ namespace MM.Dialogs
                     _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
                     _docStaff.StaffType = (byte)GetStaffType(cboStaffType.SelectedIndex);
 
-                    switch (_docStaff.StaffType)
+                    switch (cboStaffType.SelectedIndex)
                     {
                         case 0:
                             _contact.Occupation = "Bác sĩ";
@@ -293,21 +297,24 @@ namespace MM.Dialogs
                             _contact.Occupation = "Bác sĩ nội tổng quát";
                             break;
                         case 4:
-                            _contact.Occupation = "Điều dưỡng";
+                            _contact.Occupation = "Bác sĩ phụ khoa";
                             break;
                         case 5:
-                            _contact.Occupation = "Lễ tân";
+                            _contact.Occupation = "Điều dưỡng";
                             break;
                         case 6:
-                            _contact.Occupation = "Thư ký y khoa";
+                            _contact.Occupation = "Lễ tân";
                             break;
                         case 7:
-                            _contact.Occupation = "Xét nghiệm";
+                            _contact.Occupation = "Thư ký y khoa";
                             break;
                         case 8:
-                            _contact.Occupation = "Sale";
+                            _contact.Occupation = "Xét nghiệm";
                             break;
                         case 9:
+                            _contact.Occupation = "Sale";
+                            break;
+                        case 10:
                             _contact.Occupation = "Kế toán";
                             break;
                     }

@@ -93,7 +93,8 @@ namespace MM.Dialogs
                     btnChonBenhNhan.Visible = false;
 
                     if (Global.StaffType == StaffType.BacSi || Global.StaffType == StaffType.BacSiSieuAm ||
-                        Global.StaffType == StaffType.BacSiNgoaiTongQuat || Global.StaffType == StaffType.BacSiNoiTongQuat)
+                        Global.StaffType == StaffType.BacSiNgoaiTongQuat || Global.StaffType == StaffType.BacSiNoiTongQuat ||
+                        Global.StaffType == StaffType.BacSiPhuKhoa)
                     {
                         cboBacSi.Enabled = false;
                     }
@@ -119,6 +120,7 @@ namespace MM.Dialogs
             staffTypes.Add((byte)StaffType.BacSiSieuAm);
             staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
             staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
             Result result = DocStaffBus.GetDocStaffList(staffTypes);
             if (result.IsOK)
             {

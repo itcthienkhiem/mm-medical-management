@@ -154,6 +154,7 @@
             "Bác sĩ siêu âm",
             "Bác sĩ ngoại tổng quát",
             "Bác sĩ nội tổng quát",
+            "Bác sĩ phụ khoa",
             "Điều dưỡng",
             "Lễ tân",
             "Thư ký y khoa",
