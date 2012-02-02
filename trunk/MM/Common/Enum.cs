@@ -95,7 +95,8 @@ namespace MM.Common
         None,
         BacSiSieuAm,
         BacSiNgoaiTongQuat,
-        BacSiNoiTongQuat
+        BacSiNoiTongQuat,
+        BacSiPhuKhoa
     };
 
     public enum Status : byte

@@ -91,6 +91,7 @@
             "Bác sĩ siêu âm",
             "Bác sĩ ngoại tổng quát",
             "Bác sĩ nội tổng quát",
+            "Bác sĩ phụ khoa",
             "Điều dưỡng",
             "Xét nghiệm"});
             this.cboStaffType.Location = new System.Drawing.Point(139, 118);

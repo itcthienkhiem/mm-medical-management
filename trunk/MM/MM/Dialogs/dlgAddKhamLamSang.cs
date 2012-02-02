@@ -20,7 +20,8 @@ namespace MM.Dialogs
         private string _patientGUID = string.Empty;
         private KetQuaLamSang _ketQuaLamSang = new KetQuaLamSang();
         private DataRow _drKetQuaLamSang = null;
-        private bool _isNgoaiKhoa = true;
+        //private bool _isNgoaiKhoa = true;
+        private int _type = 0; //0: Ngoại khoa; 1: Nội khoa; 2: Phụ khoa
         #endregion
 
         #region Constructor
@@ -75,10 +76,12 @@ namespace MM.Dialogs
         {
             //DocStaff
             List<byte> staffTypes = new List<byte>();
-            if (_isNgoaiKhoa)
+            if (_type == 0)
                 staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
-            else
+            else if (_type == 1)
                 staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            else
+                staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
 
             Result result = DocStaffBus.GetDocStaffList(staffTypes);
             if (!result.IsOK)
@@ -92,7 +95,7 @@ namespace MM.Dialogs
                 cboDocStaff.DataSource = result.QueryResult;
             }
 
-            if (_isNgoaiKhoa)
+            if (_type == 0)
             {
                 if (Global.StaffType == StaffType.BacSiNgoaiTongQuat)
                 {
@@ -102,9 +105,19 @@ namespace MM.Dialogs
                 else
                     cboDocStaff.Enabled = true;
             }
-            else
+            else if (_type == 1)
             {
                 if (Global.StaffType == StaffType.BacSiNoiTongQuat)
+                {
+                    cboDocStaff.SelectedValue = Global.UserGUID;
+                    cboDocStaff.Enabled = false;
+                }
+                else
+                    cboDocStaff.Enabled = true;
+            }
+            else
+            {
+                if (Global.StaffType == StaffType.BacSiPhuKhoa)
                 {
                     cboDocStaff.SelectedValue = Global.UserGUID;
                     cboDocStaff.Enabled = false;
@@ -160,82 +173,94 @@ namespace MM.Dialogs
                         chkNormal_Mat.Checked = normal;
                         chkAbnormal_Mat.Checked = abnormal;
                         txtNhanXet_Mat.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.TaiMuiHong:
                         raTaiMuiHong.Checked = true;
                         chkNormal_TaiMuiHong.Checked = normal;
                         chkAbnormal_TaiMuiHong.Checked = abnormal;
                         txtNhanXet_TaiMuiHong.Text = nhanXet;
-                        _isNgoaiKhoa = true;
+                        //_isNgoaiKhoa = true;
+                        _type = 0;
                         break;
                     case CoQuan.RangHamMat:
                         raRangHamMat.Checked = true;
                         chkNormal_RangHamMat.Checked = normal;
                         chkAbnormal_RangHamMat.Checked = abnormal;
                         txtNhanXet_RangHamMat.Text = nhanXet;
-                        _isNgoaiKhoa = true;
+                        //_isNgoaiKhoa = true;
+                        _type = 0;
                         break;
                     case CoQuan.HoHap:
                         raHoHap.Checked = true;
                         chkNormal_HoHap.Checked = normal;
                         chkAbnormal_HoHap.Checked = abnormal;
                         txtNhanXet_HoHap.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.TimMach:
                         raTimMach.Checked = true;
                         chkNormal_TimMach.Checked = normal;
                         chkAbnormal_TimMach.Checked = abnormal;
                         txtNhanXet_TimMach.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.TieuHoa:
                         raTieuHoa.Checked = true;
                         chkNormal_TieuHoa.Checked = normal;
                         chkAbnormal_TieuHoa.Checked = abnormal;
                         txtNhanXet_TieuHoa.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.TietNieuSinhDuc:
                         raTietNieuSinhDuc.Checked = true;
                         chkNormal_TietNieuSinhDuc.Checked = normal;
                         chkAbnormal_TietNieuSinhDuc.Checked = abnormal;
                         txtNhanXet_TietNieuSinhDuc.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.CoXuongKhop:
                         raCoXuongKhop.Checked = true;
                         chkNormal_CoXuongKhop.Checked = normal;
                         chkAbnormal_CoXuongKhop.Checked = abnormal;
                         txtNhanXet_CoXuongKhop.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.DaLieu:
                         raDaLieu.Checked = true;
                         chkNormal_DaLieu.Checked = normal;
                         chkAbnormal_DaLieu.Checked = abnormal;
                         txtNhanXet_DaLieu.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.ThanKinh:
                         raThanKinh.Checked = true;
                         chkNormal_ThanKinh.Checked = normal;
                         chkAbnormal_ThanKinh.Checked = abnormal;
                         txtNhanXet_ThanKinh.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.NoiTiet:
                         raNoiTiet.Checked = true;
                         chkNormal_NoiTiet.Checked = normal;
                         chkAbnormal_NoiTiet.Checked = abnormal;
                         txtNhanXet_NoiTiet.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.Khac:
                         raCacCoQuanKhac.Checked = true;
                         txtNhanXet_CoQuanKhac.Text = nhanXet;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 1;
                         break;
                     case CoQuan.KhamPhuKhoa:
                         raKhamPhuKhoa.Checked = true;
@@ -246,7 +271,8 @@ namespace MM.Dialogs
                         txtSoiTuoiHuyetTrang.Text = soiTuoiHuyetTrang;
                         chkNormal_KhamPhuKhoa.Checked = normal;
                         chkAbnormal_KhamPhuKhoa.Checked = abnormal;
-                        _isNgoaiKhoa = false;
+                        //_isNgoaiKhoa = false;
+                        _type = 2;
                         break;
                 }
 
@@ -498,9 +524,9 @@ namespace MM.Dialogs
             chkAbnormal_Mat.Enabled = raMat.Checked;
             txtNhanXet_Mat.ReadOnly = !raMat.Checked;
 
-            if (raMat.Checked && _isNgoaiKhoa)
+            if (raMat.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -517,9 +543,9 @@ namespace MM.Dialogs
             chkAbnormal_TaiMuiHong.Enabled = raTaiMuiHong.Checked;
             txtNhanXet_TaiMuiHong.ReadOnly = !raTaiMuiHong.Checked;
 
-            if (raTaiMuiHong.Checked && !_isNgoaiKhoa)
+            if (raTaiMuiHong.Checked && _type != 0)
             {
-                _isNgoaiKhoa = true;
+                _type = 0;
                 DisplayBacSi();
             }
 
@@ -545,9 +571,9 @@ namespace MM.Dialogs
             chkAbnormal_RangHamMat.Enabled = raRangHamMat.Checked;
             txtNhanXet_RangHamMat.ReadOnly = !raRangHamMat.Checked;
 
-            if (raRangHamMat.Checked && !_isNgoaiKhoa)
+            if (raRangHamMat.Checked && _type != 0)
             {
-                _isNgoaiKhoa = true;
+                _type = 0;
                 DisplayBacSi();
             }
 
@@ -573,9 +599,9 @@ namespace MM.Dialogs
             chkAbnormal_HoHap.Enabled = raHoHap.Checked;
             txtNhanXet_HoHap.ReadOnly = !raHoHap.Checked;
 
-            if (raHoHap.Checked && _isNgoaiKhoa)
+            if (raHoHap.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -592,9 +618,9 @@ namespace MM.Dialogs
             chkAbnormal_TimMach.Enabled = raTimMach.Checked;
             txtNhanXet_TimMach.ReadOnly = !raTimMach.Checked;
 
-            if (raTimMach.Checked && _isNgoaiKhoa)
+            if (raTimMach.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -611,9 +637,9 @@ namespace MM.Dialogs
             chkAbnormal_TieuHoa.Enabled = raTieuHoa.Checked;
             txtNhanXet_TieuHoa.ReadOnly = !raTieuHoa.Checked;
 
-            if (raTieuHoa.Checked && _isNgoaiKhoa)
+            if (raTieuHoa.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -630,9 +656,9 @@ namespace MM.Dialogs
             chkAbnormal_TietNieuSinhDuc.Enabled = raTietNieuSinhDuc.Checked;
             txtNhanXet_TietNieuSinhDuc.ReadOnly = !raTietNieuSinhDuc.Checked;
 
-            if (raTietNieuSinhDuc.Checked && _isNgoaiKhoa)
+            if (raTietNieuSinhDuc.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -649,9 +675,9 @@ namespace MM.Dialogs
             chkAbnormal_CoXuongKhop.Enabled = raCoXuongKhop.Checked;
             txtNhanXet_CoXuongKhop.ReadOnly = !raCoXuongKhop.Checked;
 
-            if (raCoXuongKhop.Checked && _isNgoaiKhoa)
+            if (raCoXuongKhop.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -668,9 +694,9 @@ namespace MM.Dialogs
             chkAbnormal_DaLieu.Enabled = raDaLieu.Checked;
             txtNhanXet_DaLieu.ReadOnly = !raDaLieu.Checked;
 
-            if (raDaLieu.Checked && _isNgoaiKhoa)
+            if (raDaLieu.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -687,9 +713,9 @@ namespace MM.Dialogs
             chkAbnormal_ThanKinh.Enabled = raThanKinh.Checked;
             txtNhanXet_ThanKinh.ReadOnly = !raThanKinh.Checked;
 
-            if (raThanKinh.Checked && _isNgoaiKhoa)
+            if (raThanKinh.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -706,9 +732,9 @@ namespace MM.Dialogs
             chkAbnormal_NoiTiet.Enabled = raNoiTiet.Checked;
             txtNhanXet_NoiTiet.ReadOnly = !raNoiTiet.Checked;
 
-            if (raNoiTiet.Checked && _isNgoaiKhoa)
+            if (raNoiTiet.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -723,9 +749,9 @@ namespace MM.Dialogs
         {
             txtNhanXet_CoQuanKhac.ReadOnly = !raCacCoQuanKhac.Checked;
 
-            if (raCacCoQuanKhac.Checked && _isNgoaiKhoa)
+            if (raCacCoQuanKhac.Checked && _type != 1)
             {
-                _isNgoaiKhoa = false;
+                _type = 1;
                 DisplayBacSi();
             }
 
@@ -747,9 +773,9 @@ namespace MM.Dialogs
             chkNormal_KhamPhuKhoa.Enabled = raKhamPhuKhoa.Checked;
             chkAbnormal_KhamPhuKhoa.Enabled = raKhamPhuKhoa.Checked;
 
-            if (raKhamPhuKhoa.Checked && _isNgoaiKhoa)
+            if (raKhamPhuKhoa.Checked && _type != 2)
             {
-                _isNgoaiKhoa = false;
+                _type = 2;
                 DisplayBacSi();
             }
 

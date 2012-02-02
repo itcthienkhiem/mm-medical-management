@@ -109,6 +109,10 @@ namespace MM.Dialogs
             else
             {
                 staffTypes.Add((byte)StaffType.BacSi);
+                staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+                staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+                staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
+                staffTypes.Add((byte)StaffType.BacSiSieuAm);
                 staffTypes.Add((byte)StaffType.DieuDuong);
                 staffTypes.Add((byte)StaffType.XetNghiem);
             }

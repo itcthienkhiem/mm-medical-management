@@ -73,9 +73,9 @@ spDichVuHopDong
 - Insert: Function(GiaVonDichVu)
 2012-01-16
 - Update table: Services(Add column: StaffType)
-- Create view: ServiceView
+- Create view: ServiceView, UserView
 2012-01-17
 - Update table: KetQuaLamSang(Add column: PhuKhoaNote)
-- Update view; KetQuaLamSangView
-
-test
+- Update view: KetQuaLamSangView
+2012-02-02
+- Update view: UserView, ServiceView

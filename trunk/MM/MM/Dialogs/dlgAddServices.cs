@@ -96,11 +96,14 @@ namespace MM.Dialogs
                         case StaffType.BacSiNoiTongQuat:
                             cboStaffType.SelectedIndex = 4;
                             break;
-                        case StaffType.DieuDuong:
+                        case StaffType.BacSiPhuKhoa:
                             cboStaffType.SelectedIndex = 5;
                             break;
-                        case StaffType.XetNghiem:
+                        case StaffType.DieuDuong:
                             cboStaffType.SelectedIndex = 6;
+                            break;
+                        case StaffType.XetNghiem:
+                            cboStaffType.SelectedIndex = 7;
                             break;
                         case StaffType.None:
                             cboStaffType.SelectedIndex = 0;
@@ -240,9 +243,12 @@ namespace MM.Dialogs
                             _service.StaffType = (byte)StaffType.BacSiNoiTongQuat;
                             break;
                         case 5:
-                            _service.StaffType = (byte)StaffType.DieuDuong;
+                            _service.StaffType = (byte)StaffType.BacSiPhuKhoa;
                             break;
                         case 6:
+                            _service.StaffType = (byte)StaffType.DieuDuong;
+                            break;
+                        case 7:
                             _service.StaffType = (byte)StaffType.XetNghiem;
                             break;
                     }

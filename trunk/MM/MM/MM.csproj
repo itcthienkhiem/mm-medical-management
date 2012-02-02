@@ -1191,6 +1191,7 @@
     <None Include="Resources\Stethoscope-icon3.png" />
     <None Include="Resources\US-dollar-icon.png" />
     <None Include="Resources\clipboard-search-result-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-02-02_2012-02-02.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-16_2012-01-17.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-14_2012-01-15.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-13_2012-01-13.sql" />
