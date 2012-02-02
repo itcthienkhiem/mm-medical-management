@@ -195,6 +195,23 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(e.Message);
             }
         }
+
+        private double GetGiaThuocNhap()
+        {
+            double giaThuocNhap = 0;
+            string maThuocGUID = cboThuoc.SelectedValue.ToString();
+            Result result = LoThuocBus.GetGiaThuocNhap(maThuocGUID);
+
+            if (result.IsOK)
+                giaThuocNhap = Convert.ToDouble(result.QueryResult);
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetGiaThuocNhap"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetGiaThuocNhap"));
+            }
+
+            return giaThuocNhap;
+        }
         #endregion
 
         #region Window Event Handlers
@@ -232,6 +249,39 @@ namespace MM.Dialogs
                         e.Cancel = true;
                 }
             }
+        }
+
+        private void btnAppDungQuiTacTinhThuocVien_Click(object sender, EventArgs e)
+        {
+            if (!CheckInfo()) return;
+            double giaThuocNhap = GetGiaThuocNhap();
+
+            if (giaThuocNhap == 0)
+            {
+                numGiaBan.Value = (Decimal)giaThuocNhap;
+                return;
+            }
+
+            double delta = giaThuocNhap * 35 / 100;
+            if (delta < 1500) delta = 1500;
+
+            giaThuocNhap += delta;
+            numGiaBan.Value = (Decimal)giaThuocNhap;
+        }
+
+        private void btnQuiTacTinhVacxinDichTruyen_Click(object sender, EventArgs e)
+        {
+            if (!CheckInfo()) return;
+            double giaThuocNhap = GetGiaThuocNhap();
+
+            if (giaThuocNhap == 0)
+            {
+                numGiaBan.Value = (Decimal)giaThuocNhap;
+                return;
+            }
+
+            giaThuocNhap += 100000;
+            numGiaBan.Value = (Decimal)giaThuocNhap;
         }
         #endregion
 
