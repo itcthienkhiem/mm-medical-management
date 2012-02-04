@@ -86,7 +86,7 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-            dlgAddLoiKhuyen dlg = new dlgAddLoiKhuyen(_patientGUID);
+            dlgAddMultiLoiKhuyen dlg = new dlgAddMultiLoiKhuyen(_patientGUID);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
