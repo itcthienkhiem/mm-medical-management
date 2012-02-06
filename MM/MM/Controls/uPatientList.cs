@@ -697,7 +697,7 @@ namespace MM.Controls
                                                     }
                                                 }
                                                 break;
-
+                                                //check code
                                             case "code":
                                             case "companycode":
                                                 if (curCellValue != string.Empty)
