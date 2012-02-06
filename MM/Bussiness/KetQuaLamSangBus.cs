@@ -168,7 +168,7 @@ namespace MM.Bussiness
                         }
                         else
                         {
-                            if (ketQuaLamSang.NgayKinhChot.HasValue)
+                            if (ketQuaLamSang.NgayKinhChot != null && ketQuaLamSang.NgayKinhChot.HasValue)
                             {
                                 desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', PARA: '{4}', Ngày kinh chót: '{5}', Ghi chú: '{6}', Kết quả khám phụ khoa: '{7}', Soi tươi huyết trắng: '{8}', Kết quả Pap: '{9}'",
                                 ketQuaLamSang.KetQuaLamSangGUID.ToString(), ketQuaLamSang.Patient.Contact.FullName, ketQuaLamSang.DocStaff.Contact.FullName,
@@ -237,7 +237,7 @@ namespace MM.Bussiness
                             }
                             else
                             {
-                                if (kqls.NgayKinhChot.HasValue)
+                                if (kqls.NgayKinhChot != null && kqls.NgayKinhChot.HasValue)
                                 {
                                     desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', PARA: '{4}', Ngày kinh chót: '{5}', Ghi chú: '{6}', Kết quả khám phụ khoa: '{7}', Soi tươi huyết trắng: '{8}', Kết quả Pap: '{9}'",
                                     kqls.KetQuaLamSangGUID.ToString(), kqls.Patient.Contact.FullName, kqls.DocStaff.Contact.FullName,
@@ -324,10 +324,20 @@ namespace MM.Bussiness
                         }
                         else
                         {
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', PARA: '{4}', Ngày kinh chót: '{5}', Kết quả khám phụ khoa: '{6}', Soi tươi huyết trắng: '{7}', Kết quả Pap: '{8}'\n",
-                            ketQuaLamSang.KetQuaLamSangGUID.ToString(), ketQuaLamSang.Patient.Contact.FullName, ketQuaLamSang.DocStaff.Contact.FullName,
-                            Utility.ParseCoQuanEnumToName((CoQuan)ketQuaLamSang.CoQuan), ketQuaLamSang.PARA, ketQuaLamSang.NgayKinhChot.Value.ToString("dd/MM/yyyy"),
-                            ketQuaLamSang.Note, ketQuaLamSang.SoiTuoiHuyetTrang, ketQua);
+                            if (ketQuaLamSang.NgayKham != null && ketQuaLamSang.NgayKinhChot.HasValue)
+                            {
+                                desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', PARA: '{4}', Ngày kinh chót: '{5}', Ghi chú: '{6}', Kết quả khám phụ khoa: '{7}', Soi tươi huyết trắng: '{8}', Kết quả Pap: '{9}'",
+                                ketQuaLamSang.KetQuaLamSangGUID.ToString(), ketQuaLamSang.Patient.Contact.FullName, ketQuaLamSang.DocStaff.Contact.FullName,
+                                Utility.ParseCoQuanEnumToName((CoQuan)ketQuaLamSang.CoQuan), ketQuaLamSang.PARA, ketQuaLamSang.NgayKinhChot.Value.ToString("dd/MM/yyyy"),
+                                ketQuaLamSang.PhuKhoaNote, ketQuaLamSang.Note, ketQuaLamSang.SoiTuoiHuyetTrang, ketQua);
+                            }
+                            else
+                            {
+                                desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Cơ quan: '{3}', PARA: '{4}', Ghi chú: '{5}', Kết quả khám phụ khoa: '{6}', Soi tươi huyết trắng: '{7}', Kết quả Pap: '{8}'",
+                                ketQuaLamSang.KetQuaLamSangGUID.ToString(), ketQuaLamSang.Patient.Contact.FullName, ketQuaLamSang.DocStaff.Contact.FullName,
+                                Utility.ParseCoQuanEnumToName((CoQuan)ketQuaLamSang.CoQuan), ketQuaLamSang.PARA, ketQuaLamSang.PhuKhoaNote, ketQuaLamSang.Note,
+                                ketQuaLamSang.SoiTuoiHuyetTrang, ketQua);
+                            }
                         }    
                     }
 
