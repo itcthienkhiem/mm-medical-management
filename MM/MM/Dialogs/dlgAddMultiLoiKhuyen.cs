@@ -17,6 +17,7 @@ namespace MM.Dialogs
     {
         #region Members
         private string _patientGUID = string.Empty;
+        private DataTable _dataSource = null;
         #endregion
 
         #region Constructor
@@ -70,14 +71,16 @@ namespace MM.Dialogs
             else
             {
                 dgSymptom.DataSource = result.QueryResult;
+                _dataSource = result.QueryResult as DataTable;
             }
         }
 
         private List<string> GetCheckedSymptomList()
         {
+            UpdateChecked();
             List<string> checkedSympList = new List<string>();
-            DataTable dt = dgSymptom.DataSource as DataTable;
-            foreach (DataRow row in dt.Rows)
+            //DataTable dt = dgSymptom.DataSource as DataTable;
+            foreach (DataRow row in _dataSource.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
@@ -164,6 +167,99 @@ namespace MM.Dialogs
             }
 
         }
+
+        private void OnSearchTrieuChung()
+        {
+            UpdateChecked();
+            chkChecked.Checked = false;
+            List<DataRow> results = null;
+            DataTable newDataSource = null;
+
+            if (txtTimTrieuChung.Text.Trim() == string.Empty)
+            {
+                results = (from p in _dataSource.AsEnumerable()
+                           orderby p.Field<string>("SymptomName")
+                           select p).ToList<DataRow>();
+
+                newDataSource = _dataSource.Clone();
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgSymptom.DataSource = newDataSource;
+                if (dgSymptom.RowCount > 0) dgSymptom.Rows[0].Selected = true;
+                return;
+            }
+
+            string str = txtTimTrieuChung.Text.ToLower();
+            newDataSource = _dataSource.Clone();
+
+            if (chkTheoMaTrieuChung.Checked)
+            {
+                //Code
+                results = (from p in _dataSource.AsEnumerable()
+                           where p.Field<string>("Code") != null &&
+                             p.Field<string>("Code").Trim() != string.Empty &&
+                             (p.Field<string>("Code").ToLower().IndexOf(str) >= 0 ||
+                           str.IndexOf(p.Field<string>("Code").ToLower()) >= 0)
+                           orderby p.Field<string>("SymptomName")
+                           select p).ToList<DataRow>();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                if (newDataSource.Rows.Count > 0)
+                {
+                    dgSymptom.DataSource = newDataSource;
+                    return;
+                }
+            }
+            else
+            {
+                //FullName
+                results = (from p in _dataSource.AsEnumerable()
+                           where (p.Field<string>("SymptomName").ToLower().IndexOf(str) >= 0 ||
+                           str.IndexOf(p.Field<string>("SymptomName").ToLower()) >= 0) &&
+                           p.Field<string>("SymptomName") != null &&
+                           p.Field<string>("SymptomName").Trim() != string.Empty
+                           orderby p.Field<string>("SymptomName")
+                           select p).ToList<DataRow>();
+
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                if (newDataSource.Rows.Count > 0)
+                {
+                    dgSymptom.DataSource = newDataSource;
+                    return;
+                }
+            }
+
+            dgSymptom.DataSource = newDataSource;
+        }
+
+        private void UpdateChecked()
+        {
+            DataTable dt = dgSymptom.DataSource as DataTable;
+            if (dt == null) return;
+
+            foreach (DataRow row1 in dt.Rows)
+            {
+                string patientGUID1 = row1["SymptomGUID"].ToString();
+                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+                foreach (DataRow row2 in _dataSource.Rows)
+                {
+                    string patientGUID2 = row2["SymptomGUID"].ToString();
+                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+
+                    if (patientGUID1 == patientGUID2)
+                    {
+                        row2["Checked"] = row1["Checked"];
+                        break;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -205,6 +301,16 @@ namespace MM.Dialogs
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void txtTimTrieuChung_TextChanged(object sender, EventArgs e)
+        {
+            OnSearchTrieuChung();
+        }
+
+        private void chkTheoMaTrieuChung_CheckedChanged(object sender, EventArgs e)
+        {
+            OnSearchTrieuChung();
+        }
         #endregion
 
         #region Working Thread
@@ -225,7 +331,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-       
     }
 }
