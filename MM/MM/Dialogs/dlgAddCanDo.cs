@@ -228,6 +228,35 @@ namespace MM.Dialogs
                 base.HideWaiting();
             }
         }
+
+        private void CalculateBMI()
+        {
+            if (txtChieuCao.Text.Trim() == string.Empty || txtCanNang.Text.Trim() == string.Empty)
+            {
+                txtBMI.Text = string.Empty;
+                return;
+            }
+
+            double canNang = 0;
+            if (!Double.TryParse(txtCanNang.Text, out canNang))
+            {
+                txtBMI.Text = string.Empty;
+                return;
+            }
+
+            double chieuCao = 0;
+            if (!Double.TryParse(txtChieuCao.Text, out chieuCao))
+            {
+                txtBMI.Text = string.Empty;
+                return;
+            }
+
+            chieuCao = chieuCao / 100;
+
+            double BMI = canNang / (chieuCao * chieuCao);
+            BMI = Math.Round(BMI, 2);
+            txtBMI.Text = BMI.ToString();
+        }
         #endregion
 
         #region Window Event Handlers
@@ -261,6 +290,16 @@ namespace MM.Dialogs
                 }
             }
         }
+
+        private void txtChieuCao_TextChanged(object sender, EventArgs e)
+        {
+            CalculateBMI();
+        }
+
+        private void txtCanNang_TextChanged(object sender, EventArgs e)
+        {
+            CalculateBMI();
+        }
         #endregion
 
         #region Working Thread
@@ -281,8 +320,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
-        
     }
 }
