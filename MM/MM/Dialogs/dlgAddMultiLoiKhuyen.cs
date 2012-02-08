@@ -199,8 +199,8 @@ namespace MM.Dialogs
                 results = (from p in _dataSource.AsEnumerable()
                            where p.Field<string>("Code") != null &&
                              p.Field<string>("Code").Trim() != string.Empty &&
-                             (p.Field<string>("Code").ToLower().IndexOf(str) >= 0 ||
-                           str.IndexOf(p.Field<string>("Code").ToLower()) >= 0)
+                             (p.Field<string>("Code").ToLower().IndexOf(str) == 0 ||
+                           str.IndexOf(p.Field<string>("Code").ToLower()) == 0)
                            orderby p.Field<string>("SymptomName")
                            select p).ToList<DataRow>();
 
@@ -217,8 +217,8 @@ namespace MM.Dialogs
             {
                 //FullName
                 results = (from p in _dataSource.AsEnumerable()
-                           where (p.Field<string>("SymptomName").ToLower().IndexOf(str) >= 0 ||
-                           str.IndexOf(p.Field<string>("SymptomName").ToLower()) >= 0) &&
+                           where (p.Field<string>("SymptomName").ToLower().IndexOf(str) == 0 ||
+                           str.IndexOf(p.Field<string>("SymptomName").ToLower()) == 0) &&
                            p.Field<string>("SymptomName") != null &&
                            p.Field<string>("SymptomName").Trim() != string.Empty
                            orderby p.Field<string>("SymptomName")
