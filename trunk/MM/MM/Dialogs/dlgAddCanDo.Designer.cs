@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddCanDo));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboDocStaff = new System.Windows.Forms.ComboBox();
+            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label8 = new System.Windows.Forms.Label();
             this.raHieuChinh = new System.Windows.Forms.RadioButton();
             this.raKhongHieuChinh = new System.Windows.Forms.RadioButton();
             this.txtMatTrai = new System.Windows.Forms.TextBox();
@@ -56,9 +59,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cboDocStaff = new System.Windows.Forms.ComboBox();
-            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -96,6 +96,33 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin cân đo";
+            // 
+            // cboDocStaff
+            // 
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff.DisplayMember = "FullName";
+            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff.FormattingEnabled = true;
+            this.cboDocStaff.Location = new System.Drawing.Point(96, 46);
+            this.cboDocStaff.Name = "cboDocStaff";
+            this.cboDocStaff.Size = new System.Drawing.Size(242, 21);
+            this.cboDocStaff.TabIndex = 2;
+            this.cboDocStaff.ValueMember = "DocStaffGUID";
+            // 
+            // docStaffViewBindingSource
+            // 
+            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(21, 49);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 13);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Người khám:";
             // 
             // raHieuChinh
             // 
@@ -194,6 +221,7 @@
             this.txtCanNang.Name = "txtCanNang";
             this.txtCanNang.Size = new System.Drawing.Size(242, 20);
             this.txtCanNang.TabIndex = 13;
+            this.txtCanNang.TextChanged += new System.EventHandler(this.txtCanNang_TextChanged);
             // 
             // txtChieuCao
             // 
@@ -202,6 +230,7 @@
             this.txtChieuCao.Name = "txtChieuCao";
             this.txtChieuCao.Size = new System.Drawing.Size(242, 20);
             this.txtChieuCao.TabIndex = 12;
+            this.txtChieuCao.TextChanged += new System.EventHandler(this.txtChieuCao_TextChanged);
             // 
             // txtHoHap
             // 
@@ -322,33 +351,6 @@
             this.btnOK.TabIndex = 12;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 49);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(67, 13);
-            this.label8.TabIndex = 25;
-            this.label8.Text = "Người khám:";
-            // 
-            // cboDocStaff
-            // 
-            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff.DisplayMember = "FullName";
-            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff.FormattingEnabled = true;
-            this.cboDocStaff.Location = new System.Drawing.Point(96, 46);
-            this.cboDocStaff.Name = "cboDocStaff";
-            this.cboDocStaff.Size = new System.Drawing.Size(242, 21);
-            this.cboDocStaff.TabIndex = 2;
-            this.cboDocStaff.ValueMember = "DocStaffGUID";
-            // 
-            // docStaffViewBindingSource
-            // 
-            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
             // 
             // dlgAddCanDo
             // 
