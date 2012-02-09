@@ -20,23 +20,26 @@ namespace MM.Dialogs
         private Contact _contact = new Contact();
         private Patient _patient = new Patient();
         private PatientHistory _patientHistory = new PatientHistory();
+        private DataRow _drPatient = null;
+        private bool _flag = false;
         #endregion
 
         #region Constructor
         public dlgAddPatient()
         {
             InitializeComponent();
-            InitData();
-            GenerateCode();
+            //InitData();
+            //GenerateCode();
         }
 
         public dlgAddPatient(DataRow drPatient)
         {
             InitializeComponent();
-            InitData();
+            //InitData();
             _isNew = false;
             this.Text = "Sua benh nhan";
-            DisplayInfo(drPatient);
+            _drPatient = drPatient;
+            //DisplayInfo(drPatient);
         }
         #endregion
 
@@ -61,6 +64,7 @@ namespace MM.Dialogs
         private void InitData()
         {
             cboGender.SelectedIndex = 0;
+            //cboTinhTrangGiaDinh.SelectedIndex = 0;
             tabPatient.SelectedTabIndex = 0;
         }
 
@@ -272,7 +276,7 @@ namespace MM.Dialogs
                     chkUongRuou.Checked = Convert.ToBoolean(drPatient["Uong_Ruou"]);
 
                 if (drPatient["Tinh_Trang_Gia_Dinh"] != null && drPatient["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
-                    txtTinhTrangGiaDinh.Text = drPatient["Tinh_Trang_Gia_Dinh"].ToString();
+                    cboTinhTrangGiaDinh.Text = drPatient["Tinh_Trang_Gia_Dinh"].ToString();
 
                 if (drPatient["Chich_Ngua_Viem_Gan_B"] != null && drPatient["Chich_Ngua_Viem_Gan_B"] != DBNull.Value)
                     chkChichNguaViemGanB.Checked = Convert.ToBoolean(drPatient["Chich_Ngua_Viem_Gan_B"]);
@@ -395,7 +399,7 @@ namespace MM.Dialogs
                     }
 
 
-                    _patientHistory.Tinh_Trang_Gia_Dinh = txtTinhTrangGiaDinh.Text;
+                    _patientHistory.Tinh_Trang_Gia_Dinh = cboTinhTrangGiaDinh.Text;
 
                     Result result = PatientBus.InsertPatient(_contact, _patient, _patientHistory);
                     if (!result.IsOK)
@@ -418,6 +422,16 @@ namespace MM.Dialogs
         #endregion
 
         #region Window Event Handlers
+        private void dlgAddPatient_Load(object sender, EventArgs e)
+        {
+            InitData();
+
+            if (_isNew)
+                GenerateCode();
+            else
+                DisplayInfo(_drPatient);
+        }
+
         private void dlgAddPatient_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
@@ -484,6 +498,20 @@ namespace MM.Dialogs
         {
             barCode.BarCode = txtFileNum.Text;
         }
+
+        private void tabPatient_SelectedTabChanged(object sender, DevComponents.DotNetBar.TabStripTabChangedEventArgs e)
+        {
+            if (tabPatient.SelectedTabIndex == 1)
+            {
+                if (!_flag && !_isNew)
+                {
+                    if (_drPatient["Tinh_Trang_Gia_Dinh"] != null && _drPatient["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
+                        cboTinhTrangGiaDinh.Text = _drPatient["Tinh_Trang_Gia_Dinh"].ToString();
+
+                    _flag = true;
+                }
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -504,5 +532,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
