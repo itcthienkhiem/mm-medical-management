@@ -64,18 +64,12 @@
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPatient = new DevComponents.DotNetBar.TabControl();
-            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
-            this.txtTenCongTy = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.barCode = new DSBarCode.BarCodeCtrl();
-            this.label23 = new System.Windows.Forms.Label();
-            this.pagePatientInfo = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
+            this.cboTinhTrangGiaDinh = new System.Windows.Forms.ComboBox();
             this.chkDangCoThai = new System.Windows.Forms.CheckBox();
             this.chkChichNguaCum = new System.Windows.Forms.CheckBox();
             this.chkChichNguaUonVan = new System.Windows.Forms.CheckBox();
             this.chkChichNguaViemGanB = new System.Windows.Forms.CheckBox();
-            this.txtTinhTrangGiaDinh = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.chkUongRuou = new System.Windows.Forms.CheckBox();
             this.chkHutThuoc = new System.Windows.Forms.CheckBox();
@@ -101,10 +95,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkDiUngThuoc = new System.Windows.Forms.CheckBox();
             this.pagePatientHistory = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.txtTenCongTy = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.barCode = new DSBarCode.BarCodeCtrl();
+            this.label23 = new System.Windows.Forms.Label();
+            this.pagePatientInfo = new DevComponents.DotNetBar.TabItem(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tabPatient)).BeginInit();
             this.tabPatient.SuspendLayout();
-            this.tabControlPanel1.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
+            this.tabControlPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOK
@@ -447,120 +447,15 @@
             this.tabPatient.Tabs.Add(this.pagePatientHistory);
             this.tabPatient.TabStop = false;
             this.tabPatient.Text = "tabControl1";
-            // 
-            // tabControlPanel1
-            // 
-            this.tabControlPanel1.Controls.Add(this.txtTenCongTy);
-            this.tabControlPanel1.Controls.Add(this.label24);
-            this.tabControlPanel1.Controls.Add(this.barCode);
-            this.tabControlPanel1.Controls.Add(this.label23);
-            this.tabControlPanel1.Controls.Add(this.label2);
-            this.tabControlPanel1.Controls.Add(this.txtFullName);
-            this.tabControlPanel1.Controls.Add(this.txtDOB);
-            this.tabControlPanel1.Controls.Add(this.label1);
-            this.tabControlPanel1.Controls.Add(this.label19);
-            this.tabControlPanel1.Controls.Add(this.label4);
-            this.tabControlPanel1.Controls.Add(this.txtFileNum);
-            this.tabControlPanel1.Controls.Add(this.txtAddress);
-            this.tabControlPanel1.Controls.Add(this.label20);
-            this.tabControlPanel1.Controls.Add(this.label8);
-            this.tabControlPanel1.Controls.Add(this.label22);
-            this.tabControlPanel1.Controls.Add(this.cboGender);
-            this.tabControlPanel1.Controls.Add(this.txtOccupation);
-            this.tabControlPanel1.Controls.Add(this.label9);
-            this.tabControlPanel1.Controls.Add(this.label18);
-            this.tabControlPanel1.Controls.Add(this.txtWorkPhone);
-            this.tabControlPanel1.Controls.Add(this.txtPreferredName);
-            this.tabControlPanel1.Controls.Add(this.label10);
-            this.tabControlPanel1.Controls.Add(this.label17);
-            this.tabControlPanel1.Controls.Add(this.txtIdentityCard);
-            this.tabControlPanel1.Controls.Add(this.txtKnownAs);
-            this.tabControlPanel1.Controls.Add(this.label11);
-            this.tabControlPanel1.Controls.Add(this.label16);
-            this.tabControlPanel1.Controls.Add(this.txtHomePhone);
-            this.tabControlPanel1.Controls.Add(this.txtEmail);
-            this.tabControlPanel1.Controls.Add(this.label12);
-            this.tabControlPanel1.Controls.Add(this.label15);
-            this.tabControlPanel1.Controls.Add(this.txtMobile);
-            this.tabControlPanel1.Controls.Add(this.txtFax);
-            this.tabControlPanel1.Controls.Add(this.label13);
-            this.tabControlPanel1.Controls.Add(this.label14);
-            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel1.Name = "tabControlPanel1";
-            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(446, 460);
-            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel1.Style.GradientAngle = 90;
-            this.tabControlPanel1.TabIndex = 1;
-            this.tabControlPanel1.TabItem = this.pagePatientInfo;
-            // 
-            // txtTenCongTy
-            // 
-            this.txtTenCongTy.Location = new System.Drawing.Point(110, 264);
-            this.txtTenCongTy.MaxLength = 255;
-            this.txtTenCongTy.Name = "txtTenCongTy";
-            this.txtTenCongTy.Size = new System.Drawing.Size(303, 20);
-            this.txtTenCongTy.TabIndex = 10;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label24.Location = new System.Drawing.Point(29, 267);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(67, 13);
-            this.label24.TabIndex = 59;
-            this.label24.Text = "Tên công ty:";
-            // 
-            // barCode
-            // 
-            this.barCode.BarCode = "";
-            this.barCode.BarCodeHeight = 40;
-            this.barCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.barCode.FooterFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.barCode.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.barCode.HeaderText = "";
-            this.barCode.LeftMargin = 10;
-            this.barCode.Location = new System.Drawing.Point(110, 38);
-            this.barCode.Name = "barCode";
-            this.barCode.ShowFooter = false;
-            this.barCode.ShowHeader = false;
-            this.barCode.Size = new System.Drawing.Size(324, 53);
-            this.barCode.TabIndex = 57;
-            this.barCode.TopMargin = 5;
-            this.barCode.VertAlign = DSBarCode.BarCodeCtrl.AlignType.Left;
-            this.barCode.Weight = DSBarCode.BarCodeCtrl.BarCodeWeight.Small;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label23.Location = new System.Drawing.Point(48, 40);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(52, 13);
-            this.label23.TabIndex = 56;
-            this.label23.Text = "Mã vạch:";
-            // 
-            // pagePatientInfo
-            // 
-            this.pagePatientInfo.AttachedControl = this.tabControlPanel1;
-            this.pagePatientInfo.Image = global::MM.Properties.Resources.personal_information_icon;
-            this.pagePatientInfo.Name = "pagePatientInfo";
-            this.pagePatientInfo.Text = "Thông tin bệnh nhân";
+            this.tabPatient.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabPatient_SelectedTabChanged);
             // 
             // tabControlPanel2
             // 
+            this.tabControlPanel2.Controls.Add(this.cboTinhTrangGiaDinh);
             this.tabControlPanel2.Controls.Add(this.chkDangCoThai);
             this.tabControlPanel2.Controls.Add(this.chkChichNguaCum);
             this.tabControlPanel2.Controls.Add(this.chkChichNguaUonVan);
             this.tabControlPanel2.Controls.Add(this.chkChichNguaViemGanB);
-            this.tabControlPanel2.Controls.Add(this.txtTinhTrangGiaDinh);
             this.tabControlPanel2.Controls.Add(this.label21);
             this.tabControlPanel2.Controls.Add(this.chkUongRuou);
             this.tabControlPanel2.Controls.Add(this.chkHutThuoc);
@@ -599,6 +494,19 @@
             this.tabControlPanel2.Style.GradientAngle = 90;
             this.tabControlPanel2.TabIndex = 2;
             this.tabControlPanel2.TabItem = this.pagePatientHistory;
+            // 
+            // cboTinhTrangGiaDinh
+            // 
+            this.cboTinhTrangGiaDinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboTinhTrangGiaDinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboTinhTrangGiaDinh.FormattingEnabled = true;
+            this.cboTinhTrangGiaDinh.Items.AddRange(new object[] {
+            "Độc thân",
+            "Đã kết hôn"});
+            this.cboTinhTrangGiaDinh.Location = new System.Drawing.Point(124, 426);
+            this.cboTinhTrangGiaDinh.Name = "cboTinhTrangGiaDinh";
+            this.cboTinhTrangGiaDinh.Size = new System.Drawing.Size(308, 21);
+            this.cboTinhTrangGiaDinh.TabIndex = 78;
             // 
             // chkDangCoThai
             // 
@@ -643,14 +551,6 @@
             this.chkChichNguaViemGanB.TabIndex = 67;
             this.chkChichNguaViemGanB.Text = "Chích ngừa viêm gan B";
             this.chkChichNguaViemGanB.UseVisualStyleBackColor = false;
-            // 
-            // txtTinhTrangGiaDinh
-            // 
-            this.txtTinhTrangGiaDinh.Location = new System.Drawing.Point(125, 426);
-            this.txtTinhTrangGiaDinh.MaxLength = 50;
-            this.txtTinhTrangGiaDinh.Name = "txtTinhTrangGiaDinh";
-            this.txtTinhTrangGiaDinh.Size = new System.Drawing.Size(307, 20);
-            this.txtTinhTrangGiaDinh.TabIndex = 78;
             // 
             // label21
             // 
@@ -915,6 +815,112 @@
             this.pagePatientHistory.Name = "pagePatientHistory";
             this.pagePatientHistory.Text = "Bệnh sử";
             // 
+            // tabControlPanel1
+            // 
+            this.tabControlPanel1.Controls.Add(this.txtTenCongTy);
+            this.tabControlPanel1.Controls.Add(this.label24);
+            this.tabControlPanel1.Controls.Add(this.barCode);
+            this.tabControlPanel1.Controls.Add(this.label23);
+            this.tabControlPanel1.Controls.Add(this.label2);
+            this.tabControlPanel1.Controls.Add(this.txtFullName);
+            this.tabControlPanel1.Controls.Add(this.txtDOB);
+            this.tabControlPanel1.Controls.Add(this.label1);
+            this.tabControlPanel1.Controls.Add(this.label19);
+            this.tabControlPanel1.Controls.Add(this.label4);
+            this.tabControlPanel1.Controls.Add(this.txtFileNum);
+            this.tabControlPanel1.Controls.Add(this.txtAddress);
+            this.tabControlPanel1.Controls.Add(this.label20);
+            this.tabControlPanel1.Controls.Add(this.label8);
+            this.tabControlPanel1.Controls.Add(this.label22);
+            this.tabControlPanel1.Controls.Add(this.cboGender);
+            this.tabControlPanel1.Controls.Add(this.txtOccupation);
+            this.tabControlPanel1.Controls.Add(this.label9);
+            this.tabControlPanel1.Controls.Add(this.label18);
+            this.tabControlPanel1.Controls.Add(this.txtWorkPhone);
+            this.tabControlPanel1.Controls.Add(this.txtPreferredName);
+            this.tabControlPanel1.Controls.Add(this.label10);
+            this.tabControlPanel1.Controls.Add(this.label17);
+            this.tabControlPanel1.Controls.Add(this.txtIdentityCard);
+            this.tabControlPanel1.Controls.Add(this.txtKnownAs);
+            this.tabControlPanel1.Controls.Add(this.label11);
+            this.tabControlPanel1.Controls.Add(this.label16);
+            this.tabControlPanel1.Controls.Add(this.txtHomePhone);
+            this.tabControlPanel1.Controls.Add(this.txtEmail);
+            this.tabControlPanel1.Controls.Add(this.label12);
+            this.tabControlPanel1.Controls.Add(this.label15);
+            this.tabControlPanel1.Controls.Add(this.txtMobile);
+            this.tabControlPanel1.Controls.Add(this.txtFax);
+            this.tabControlPanel1.Controls.Add(this.label13);
+            this.tabControlPanel1.Controls.Add(this.label14);
+            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel1.Name = "tabControlPanel1";
+            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel1.Size = new System.Drawing.Size(446, 460);
+            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel1.Style.GradientAngle = 90;
+            this.tabControlPanel1.TabIndex = 1;
+            this.tabControlPanel1.TabItem = this.pagePatientInfo;
+            // 
+            // txtTenCongTy
+            // 
+            this.txtTenCongTy.Location = new System.Drawing.Point(110, 264);
+            this.txtTenCongTy.MaxLength = 255;
+            this.txtTenCongTy.Name = "txtTenCongTy";
+            this.txtTenCongTy.Size = new System.Drawing.Size(303, 20);
+            this.txtTenCongTy.TabIndex = 10;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label24.Location = new System.Drawing.Point(29, 267);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(67, 13);
+            this.label24.TabIndex = 59;
+            this.label24.Text = "Tên công ty:";
+            // 
+            // barCode
+            // 
+            this.barCode.BarCode = "";
+            this.barCode.BarCodeHeight = 40;
+            this.barCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.barCode.FooterFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.barCode.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.barCode.HeaderText = "";
+            this.barCode.LeftMargin = 10;
+            this.barCode.Location = new System.Drawing.Point(110, 38);
+            this.barCode.Name = "barCode";
+            this.barCode.ShowFooter = false;
+            this.barCode.ShowHeader = false;
+            this.barCode.Size = new System.Drawing.Size(324, 53);
+            this.barCode.TabIndex = 57;
+            this.barCode.TopMargin = 5;
+            this.barCode.VertAlign = DSBarCode.BarCodeCtrl.AlignType.Left;
+            this.barCode.Weight = DSBarCode.BarCodeCtrl.BarCodeWeight.Small;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label23.Location = new System.Drawing.Point(48, 40);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(52, 13);
+            this.label23.TabIndex = 56;
+            this.label23.Text = "Mã vạch:";
+            // 
+            // pagePatientInfo
+            // 
+            this.pagePatientInfo.AttachedControl = this.tabControlPanel1;
+            this.pagePatientInfo.Image = global::MM.Properties.Resources.personal_information_icon;
+            this.pagePatientInfo.Name = "pagePatientInfo";
+            this.pagePatientInfo.Text = "Thông tin bệnh nhân";
+            // 
             // dlgAddPatient
             // 
             this.AcceptButton = this.btnOK;
@@ -934,12 +940,13 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them benh nhan";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddPatient_FormClosing);
+            this.Load += new System.EventHandler(this.dlgAddPatient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tabPatient)).EndInit();
             this.tabPatient.ResumeLayout(false);
-            this.tabControlPanel1.ResumeLayout(false);
-            this.tabControlPanel1.PerformLayout();
             this.tabControlPanel2.ResumeLayout(false);
             this.tabControlPanel2.PerformLayout();
+            this.tabControlPanel1.ResumeLayout(false);
+            this.tabControlPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -991,7 +998,6 @@
         private System.Windows.Forms.CheckBox chkChichNguaCum;
         private System.Windows.Forms.CheckBox chkChichNguaUonVan;
         private System.Windows.Forms.CheckBox chkChichNguaViemGanB;
-        private System.Windows.Forms.TextBox txtTinhTrangGiaDinh;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.CheckBox chkUongRuou;
         private System.Windows.Forms.CheckBox chkHutThuoc;
@@ -1017,5 +1023,6 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtTenCongTy;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox cboTinhTrangGiaDinh;
     }
 }
