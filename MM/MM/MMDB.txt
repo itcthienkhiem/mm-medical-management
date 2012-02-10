@@ -79,3 +79,12 @@ spDichVuHopDong
 - Update view: KetQuaLamSangView
 2012-02-02
 - Update view: UserView, ServiceView
+
+
+1. Unicode
+2. Format DateTime
+3. Xác nhận chỉ định
+4. Ngày tái khám của kê toa thuốc allow null
+5. Chọn thuốc nhanh
+6. Chọn bệnh nhân từ danh sách bệnh trong phiếu thu thuốc
+7. Report Doanh thu theo ngày
