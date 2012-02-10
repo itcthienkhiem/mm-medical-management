@@ -21,6 +21,7 @@ namespace MM.Dialogs
         private string _patientGUID = string.Empty;
         private DataRow _drServiceHistory = null;
         private StaffType _staffType = StaffType.None;
+        private string _serviceGUID = string.Empty;
         #endregion
 
         #region Constructor
@@ -46,7 +47,7 @@ namespace MM.Dialogs
         #region Properties
         public string ServiceGUID
         {
-            set { cboService.SelectedValue = value; }
+            set { _serviceGUID = value; }
         }
 
         public ServiceHistory ServiceHistory
@@ -343,6 +344,12 @@ namespace MM.Dialogs
         private void dlgAddServiceHistory_Load(object sender, EventArgs e)
         {
             InitData();
+
+            if (_serviceGUID != string.Empty)
+            {
+                cboService.SelectedValue = _serviceGUID;
+                cboService.Enabled = false;
+            }
 
             if (!_isNew) DisplayInfo(_drServiceHistory);
 
