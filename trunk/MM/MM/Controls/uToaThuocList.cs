@@ -119,7 +119,12 @@ namespace MM.Controls
                 newRow["MaToaThuoc"] = dlg.ToaThuoc.MaToaThuoc;
                 newRow["NgayKeToa"] = dlg.ToaThuoc.NgayKeToa;
                 newRow["NgayKham"] = dlg.ToaThuoc.NgayKham;
-                newRow["NgayTaiKham"] = dlg.ToaThuoc.NgayTaiKham;
+
+                if (dlg.ToaThuoc.NgayTaiKham != null && dlg.ToaThuoc.NgayTaiKham.HasValue)
+                    newRow["NgayTaiKham"] = dlg.ToaThuoc.NgayTaiKham;
+                else
+                    newRow["NgayTaiKham"] = DBNull.Value;
+
                 newRow["BacSiKeToa"] = dlg.ToaThuoc.BacSiKeToa;
                 newRow["BenhNhan"] = dlg.ToaThuoc.BenhNhan;
                 newRow["TenBacSi"] = dlg.TenBacSi;
@@ -173,7 +178,10 @@ namespace MM.Controls
                 drToaThuoc["MaToaThuoc"] = dlg.ToaThuoc.MaToaThuoc;
                 drToaThuoc["NgayKeToa"] = dlg.ToaThuoc.NgayKeToa;
                 drToaThuoc["NgayKham"] = dlg.ToaThuoc.NgayKham;
-                drToaThuoc["NgayTaiKham"] = dlg.ToaThuoc.NgayTaiKham;
+                if (dlg.ToaThuoc.NgayTaiKham != null && dlg.ToaThuoc.NgayTaiKham.HasValue)
+                    drToaThuoc["NgayTaiKham"] = dlg.ToaThuoc.NgayTaiKham;
+                else
+                    drToaThuoc["NgayTaiKham"] = DBNull.Value;
                 drToaThuoc["BacSiKeToa"] = dlg.ToaThuoc.BacSiKeToa;
                 drToaThuoc["BenhNhan"] = dlg.ToaThuoc.BenhNhan;
                 drToaThuoc["TenBacSi"] = dlg.TenBacSi;

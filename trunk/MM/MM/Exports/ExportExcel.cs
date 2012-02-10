@@ -782,7 +782,11 @@ namespace MM.Exports
                     rowIndex += 3;
 
                     range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                    range.Value = string.Format("* Tái khám ngày (Re-examination date): {0}", toaThuoc.NgayTaiKham.Value.ToString("dd/MM/yyyy"));
+
+                    string ngayTaiKhamStr = string.Empty;
+                    if (toaThuoc.NgayTaiKham != null && toaThuoc.NgayTaiKham.HasValue)
+                        ngayTaiKhamStr = toaThuoc.NgayTaiKham.Value.ToString("dd/MM/yyyy");
+                    range.Value = string.Format("* Tái khám ngày (Re-examination date): {0}", ngayTaiKhamStr);
                     rowIndex++;
 
                     range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
