@@ -108,7 +108,7 @@ namespace MM.Dialogs
         {
             Cursor.Current = Cursors.WaitCursor;
             dtpkNgayKham.Value = DateTime.Now;
-            dtpkNgayTaiKham.Value = DateTime.Now.AddDays(1);
+            dtpkNgayTaiKham.Value = DateTime.Now.AddDays(7);
             OnDisplayBacSi();
             OnDisplayBenhNhan();
         }
@@ -192,7 +192,12 @@ namespace MM.Dialogs
                     dtpkNgayKham.Value = Convert.ToDateTime(drToaThuoc["NgayKham"]);
 
                 if (drToaThuoc["NgayTaiKham"] != null && drToaThuoc["NgayTaiKham"] != DBNull.Value)
+                {
                     dtpkNgayTaiKham.Value = Convert.ToDateTime(drToaThuoc["NgayTaiKham"]);
+                    chkNgayTaiKham.Checked = true;
+                }
+                else
+                    chkNgayTaiKham.Checked = false;
 
                 LoaiToaThuoc loai = (LoaiToaThuoc)Convert.ToByte(drToaThuoc["Loai"]);
                 if (loai == LoaiToaThuoc.Chung) raToaChung.Checked = true;
@@ -322,7 +327,12 @@ namespace MM.Dialogs
                     _toaThuoc.MaToaThuoc = txtMaToaThuoc.Text;
                     _toaThuoc.NgayKeToa = DateTime.Now;
                     _toaThuoc.NgayKham = dtpkNgayKham.Value;
-                    _toaThuoc.NgayTaiKham = dtpkNgayTaiKham.Value;
+
+                    if (chkNgayTaiKham.Checked)
+                        _toaThuoc.NgayTaiKham = dtpkNgayTaiKham.Value;
+                    else
+                        _toaThuoc.NgayTaiKham = null;
+
                     _toaThuoc.BacSiKeToa = Guid.Parse(cboBacSi.SelectedValue.ToString());
                     _toaThuoc.BenhNhan = Guid.Parse(txtTenBenhNhan.Tag.ToString());
                     _toaThuoc.ChanDoan = txtChanDoan.Text;
@@ -647,6 +657,11 @@ namespace MM.Dialogs
         private void dgChiTiet_DoubleClick(object sender, EventArgs e)
         {
             OnEditThuoc();
+        }
+
+        private void chkNgayTaiKham_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkNgayTaiKham.Enabled = chkNgayTaiKham.Checked;
         }
         #endregion
 

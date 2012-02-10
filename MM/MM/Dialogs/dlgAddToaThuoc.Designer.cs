@@ -45,7 +45,6 @@
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dtpkNgayTaiKham = new System.Windows.Forms.DateTimePicker();
-            this.label9 = new System.Windows.Forms.Label();
             this.dtpkNgayKham = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.txtGioiTinh = new System.Windows.Forms.TextBox();
@@ -76,6 +75,7 @@
             this.btnAddMember = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.chkNgayTaiKham = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
@@ -84,6 +84,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkNgayTaiKham);
             this.groupBox1.Controls.Add(this.raToaSanKhoa);
             this.groupBox1.Controls.Add(this.raToaChung);
             this.groupBox1.Controls.Add(this.label12);
@@ -94,7 +95,6 @@
             this.groupBox1.Controls.Add(this.txtDiaChi);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.dtpkNgayTaiKham);
-            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.dtpkNgayKham);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtGioiTinh);
@@ -206,19 +206,10 @@
             // 
             this.dtpkNgayTaiKham.CustomFormat = "dd/MM/yyyy";
             this.dtpkNgayTaiKham.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayTaiKham.Location = new System.Drawing.Point(300, 45);
+            this.dtpkNgayTaiKham.Location = new System.Drawing.Point(314, 45);
             this.dtpkNgayTaiKham.Name = "dtpkNgayTaiKham";
             this.dtpkNgayTaiKham.Size = new System.Drawing.Size(115, 20);
             this.dtpkNgayTaiKham.TabIndex = 3;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(219, 49);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(78, 13);
-            this.label9.TabIndex = 56;
-            this.label9.Text = "Ngày tái khám:";
             // 
             // dtpkNgayKham
             // 
@@ -301,7 +292,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(419, 73);
+            this.label6.Location = new System.Drawing.Point(434, 72);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(17, 13);
             this.label6.TabIndex = 46;
@@ -328,7 +319,7 @@
             this.cboBacSi.FormattingEnabled = true;
             this.cboBacSi.Location = new System.Drawing.Point(93, 69);
             this.cboBacSi.Name = "cboBacSi";
-            this.cboBacSi.Size = new System.Drawing.Size(322, 21);
+            this.cboBacSi.Size = new System.Drawing.Size(335, 21);
             this.cboBacSi.TabIndex = 4;
             this.cboBacSi.ValueMember = "DocStaffGUID";
             // 
@@ -544,6 +535,19 @@
             this.chkChecked.TabIndex = 15;
             this.chkChecked.UseVisualStyleBackColor = true;
             // 
+            // chkNgayTaiKham
+            // 
+            this.chkNgayTaiKham.AutoSize = true;
+            this.chkNgayTaiKham.Checked = true;
+            this.chkNgayTaiKham.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkNgayTaiKham.Location = new System.Drawing.Point(221, 47);
+            this.chkNgayTaiKham.Name = "chkNgayTaiKham";
+            this.chkNgayTaiKham.Size = new System.Drawing.Size(94, 17);
+            this.chkNgayTaiKham.TabIndex = 65;
+            this.chkNgayTaiKham.Text = "Ngày tái khám";
+            this.chkNgayTaiKham.UseVisualStyleBackColor = true;
+            this.chkNgayTaiKham.CheckedChanged += new System.EventHandler(this.chkNgayTaiKham_CheckedChanged);
+            // 
             // dlgAddToaThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -600,7 +604,6 @@
         private System.Windows.Forms.TextBox txtNgaySinh;
         private System.Windows.Forms.TextBox txtTenBenhNhan;
         private System.Windows.Forms.DateTimePicker dtpkNgayTaiKham;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dtpkNgayKham;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RadioButton raToaSanKhoa;
@@ -624,5 +627,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lieuDungDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckBox chkNgayTaiKham;
     }
 }
