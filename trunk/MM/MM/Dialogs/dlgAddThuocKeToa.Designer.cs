@@ -38,6 +38,8 @@
             this.txtLieuDung = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gbToaChung = new System.Windows.Forms.GroupBox();
+            this.txtKhac_CachDungNote = new System.Windows.Forms.TextBox();
+            this.txtKhac_TruocSauAnNote = new System.Windows.Forms.TextBox();
             this.chkUong = new System.Windows.Forms.CheckBox();
             this.chkTruocAn = new System.Windows.Forms.CheckBox();
             this.txtBoiNote = new System.Windows.Forms.TextBox();
@@ -65,8 +67,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.txtKhac_TruocSauAnNote = new System.Windows.Forms.TextBox();
-            this.txtKhac_CachDungNote = new System.Windows.Forms.TextBox();
+            this.btnChonThuoc = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbToaSanKhoa.SuspendLayout();
             this.gbToaChung.SuspendLayout();
@@ -76,6 +77,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnChonThuoc);
             this.groupBox1.Controls.Add(this.btnThuocThayThe);
             this.groupBox1.Controls.Add(this.gbToaSanKhoa);
             this.groupBox1.Controls.Add(this.gbToaChung);
@@ -92,7 +94,7 @@
             // 
             // btnThuocThayThe
             // 
-            this.btnThuocThayThe.Location = new System.Drawing.Point(381, 21);
+            this.btnThuocThayThe.Location = new System.Drawing.Point(460, 21);
             this.btnThuocThayThe.Name = "btnThuocThayThe";
             this.btnThuocThayThe.Size = new System.Drawing.Size(97, 23);
             this.btnThuocThayThe.TabIndex = 6;
@@ -176,6 +178,24 @@
             this.gbToaChung.TabIndex = 4;
             this.gbToaChung.TabStop = false;
             this.gbToaChung.Text = "Toa chung";
+            // 
+            // txtKhac_CachDungNote
+            // 
+            this.txtKhac_CachDungNote.Location = new System.Drawing.Point(464, 96);
+            this.txtKhac_CachDungNote.MaxLength = 100;
+            this.txtKhac_CachDungNote.Name = "txtKhac_CachDungNote";
+            this.txtKhac_CachDungNote.ReadOnly = true;
+            this.txtKhac_CachDungNote.Size = new System.Drawing.Size(105, 20);
+            this.txtKhac_CachDungNote.TabIndex = 21;
+            // 
+            // txtKhac_TruocSauAnNote
+            // 
+            this.txtKhac_TruocSauAnNote.Location = new System.Drawing.Point(273, 72);
+            this.txtKhac_TruocSauAnNote.MaxLength = 100;
+            this.txtKhac_TruocSauAnNote.Name = "txtKhac_TruocSauAnNote";
+            this.txtKhac_TruocSauAnNote.ReadOnly = true;
+            this.txtKhac_TruocSauAnNote.Size = new System.Drawing.Size(105, 20);
+            this.txtKhac_TruocSauAnNote.TabIndex = 13;
             // 
             // chkUong
             // 
@@ -472,23 +492,15 @@
             this.btnOK.Text = "    &Đồng ý";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // txtKhac_TruocSauAnNote
+            // btnChonThuoc
             // 
-            this.txtKhac_TruocSauAnNote.Location = new System.Drawing.Point(273, 72);
-            this.txtKhac_TruocSauAnNote.MaxLength = 100;
-            this.txtKhac_TruocSauAnNote.Name = "txtKhac_TruocSauAnNote";
-            this.txtKhac_TruocSauAnNote.ReadOnly = true;
-            this.txtKhac_TruocSauAnNote.Size = new System.Drawing.Size(105, 20);
-            this.txtKhac_TruocSauAnNote.TabIndex = 13;
-            // 
-            // txtKhac_CachDungNote
-            // 
-            this.txtKhac_CachDungNote.Location = new System.Drawing.Point(464, 96);
-            this.txtKhac_CachDungNote.MaxLength = 100;
-            this.txtKhac_CachDungNote.Name = "txtKhac_CachDungNote";
-            this.txtKhac_CachDungNote.ReadOnly = true;
-            this.txtKhac_CachDungNote.Size = new System.Drawing.Size(105, 20);
-            this.txtKhac_CachDungNote.TabIndex = 21;
+            this.btnChonThuoc.Location = new System.Drawing.Point(381, 21);
+            this.btnChonThuoc.Name = "btnChonThuoc";
+            this.btnChonThuoc.Size = new System.Drawing.Size(75, 23);
+            this.btnChonThuoc.TabIndex = 7;
+            this.btnChonThuoc.Text = "&Chọn thuốc";
+            this.btnChonThuoc.UseVisualStyleBackColor = true;
+            this.btnChonThuoc.Click += new System.EventHandler(this.btnChonThuoc_Click);
             // 
             // dlgAddThuocKeToa
             // 
@@ -561,5 +573,6 @@
         private System.Windows.Forms.Button btnThuocThayThe;
         private System.Windows.Forms.TextBox txtKhac_CachDungNote;
         private System.Windows.Forms.TextBox txtKhac_TruocSauAnNote;
+        private System.Windows.Forms.Button btnChonThuoc;
     }
 }
