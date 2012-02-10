@@ -21,6 +21,7 @@ namespace MM.Dialogs
         private PhieuThuThuoc _phieuThuThuoc = new PhieuThuThuoc();
         private DataRow _drPhieuThu = null;
         private string _tenCongTy = string.Empty;
+        private DataTable _dataSourceBenhNhan = null;
         #endregion
 
         #region Constructor
@@ -78,6 +79,19 @@ namespace MM.Dialogs
             dtpkNgayThu.Value = DateTime.Now;
             OnDisplayToaThuocList();
             OnDisplayThuoc();
+            OnGetSanhSachBenhNhan();
+        }
+
+        private void OnGetSanhSachBenhNhan()
+        {
+            Result result = PatientBus.GetPatientList();
+            if (result.IsOK)
+                _dataSourceBenhNhan = result.QueryResult as DataTable;
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+            }
         }
 
         private void DisplayInfo(DataRow drPhieuThu)
@@ -545,6 +559,8 @@ namespace MM.Dialogs
             {
                 txtMaBenhNhan.ReadOnly = true;
                 txtMaBenhNhan.Text = string.Empty;
+                txtTenBenhNhan.Text = string.Empty;
+                txtDiaChi.Text = string.Empty;
                 _tenCongTy = "Tự túc";
             }
             else
@@ -703,6 +719,21 @@ namespace MM.Dialogs
         private void dgChiTiet_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             RefreshNo();
+        }
+
+        private void btnChonBenhNhan_Click(object sender, EventArgs e)
+        {
+            dlgSelectPatient dlg = new dlgSelectPatient(_dataSourceBenhNhan);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                DataRow patientRow = dlg.PatientRow;
+                if (patientRow != null)
+                {
+                    txtMaBenhNhan.Text = patientRow["FileNum"].ToString();
+                    txtTenBenhNhan.Text = patientRow["FullName"].ToString();
+                    txtDiaChi.Text = patientRow["Address"].ToString();
+                }
+            }
         }
         #endregion
 

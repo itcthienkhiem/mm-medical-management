@@ -327,8 +327,11 @@ namespace MM.Dialogs
                 cboThuoc.SelectedValue = dlg.ThuocThayThe;
             }
         }
-        #endregion
 
-       
+        private void btnChonThuoc_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
     }
 }

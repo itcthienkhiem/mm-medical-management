@@ -63,22 +63,24 @@
             this.donGiaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.giamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.thanhTienDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmToaThuoc = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.thuocThayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chiTietPhieuThuThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.lbTongTien = new System.Windows.Forms.Label();
-            this.ctmToaThuoc = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.thuocThayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnChonBenhNhan = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chiTietPhieuThuThuocViewBindingSource)).BeginInit();
             this.ctmToaThuoc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chiTietPhieuThuThuocViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnChonBenhNhan);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Controls.Add(this.txtMaPhieuThu);
@@ -369,6 +371,20 @@
             this.thanhTienDataGridViewTextBoxColumn.ReadOnly = true;
             this.thanhTienDataGridViewTextBoxColumn.Width = 120;
             // 
+            // ctmToaThuoc
+            // 
+            this.ctmToaThuoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thuocThayTheToolStripMenuItem});
+            this.ctmToaThuoc.Name = "ctmToaThuoc";
+            this.ctmToaThuoc.Size = new System.Drawing.Size(155, 26);
+            // 
+            // thuocThayTheToolStripMenuItem
+            // 
+            this.thuocThayTheToolStripMenuItem.Name = "thuocThayTheToolStripMenuItem";
+            this.thuocThayTheToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.thuocThayTheToolStripMenuItem.Text = "Thuốc thay thế";
+            this.thuocThayTheToolStripMenuItem.Click += new System.EventHandler(this.thuocThayTheToolStripMenuItem_Click);
+            // 
             // chiTietPhieuThuThuocViewBindingSource
             // 
             this.chiTietPhieuThuThuocViewBindingSource.DataSource = typeof(MM.Databasae.ChiTietPhieuThuThuocView);
@@ -408,19 +424,15 @@
             this.lbTongTien.Text = "Tổng tiền: 0 VNĐ";
             this.lbTongTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // ctmToaThuoc
+            // btnChonBenhNhan
             // 
-            this.ctmToaThuoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thuocThayTheToolStripMenuItem});
-            this.ctmToaThuoc.Name = "ctmToaThuoc";
-            this.ctmToaThuoc.Size = new System.Drawing.Size(155, 26);
-            // 
-            // thuocThayTheToolStripMenuItem
-            // 
-            this.thuocThayTheToolStripMenuItem.Name = "thuocThayTheToolStripMenuItem";
-            this.thuocThayTheToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.thuocThayTheToolStripMenuItem.Text = "Thuốc thay thế";
-            this.thuocThayTheToolStripMenuItem.Click += new System.EventHandler(this.thuocThayTheToolStripMenuItem_Click);
+            this.btnChonBenhNhan.Location = new System.Drawing.Point(470, 120);
+            this.btnChonBenhNhan.Name = "btnChonBenhNhan";
+            this.btnChonBenhNhan.Size = new System.Drawing.Size(105, 22);
+            this.btnChonBenhNhan.TabIndex = 48;
+            this.btnChonBenhNhan.Text = "Chọn bệnh nhân...";
+            this.btnChonBenhNhan.UseVisualStyleBackColor = true;
+            this.btnChonBenhNhan.Click += new System.EventHandler(this.btnChonBenhNhan_Click);
             // 
             // dlgAddPhieuThuThuoc
             // 
@@ -448,8 +460,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chiTietPhieuThuThuocViewBindingSource)).EndInit();
             this.ctmToaThuoc.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chiTietPhieuThuThuocViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -487,5 +499,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ContextMenuStrip ctmToaThuoc;
         private System.Windows.Forms.ToolStripMenuItem thuocThayTheToolStripMenuItem;
+        private System.Windows.Forms.Button btnChonBenhNhan;
     }
 }
