@@ -330,7 +330,12 @@ namespace MM.Dialogs
 
         private void btnChonThuoc_Click(object sender, EventArgs e)
         {
-
+            DataTable dtThuoc = cboThuoc.DataSource as DataTable;
+            dlgSelectSingleThuoc dlg = new dlgSelectSingleThuoc(dtThuoc);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                cboThuoc.SelectedValue = dlg.MaThuocGUID;
+            }
         }
         #endregion
     }
