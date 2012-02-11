@@ -733,6 +733,12 @@
     <Compile Include="Dialogs\dlgSelectPatient.Designer.cs">
       <DependentUpon>dlgSelectPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgSelectSingleThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgSelectSingleThuoc.Designer.cs">
+      <DependentUpon>dlgSelectSingleThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgSelectThuoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1045,6 +1051,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectPatient.resx">
       <DependentUpon>dlgSelectPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgSelectSingleThuoc.resx">
+      <DependentUpon>dlgSelectSingleThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectThuoc.resx">
       <DependentUpon>dlgSelectThuoc.cs</DependentUpon>
