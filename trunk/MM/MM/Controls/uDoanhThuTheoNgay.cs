@@ -22,7 +22,8 @@ namespace MM.Controls
         public uDoanhThuTheoNgay()
         {
             InitializeComponent();
-            dtpkNgay.Value = DateTime.Now;
+            dtpkTuNgay.Value = DateTime.Now;
+            dtpkDenNgay.Value = DateTime.Now;
         }
         #endregion
 
@@ -32,8 +33,8 @@ namespace MM.Controls
             string exportFileName = string.Format("{0}\\Temp\\DoanhThuTheoNgay.xls", Application.StartupPath);
             if (isPreview)
             {
-                DateTime tuNgay = new DateTime(dtpkNgay.Value.Year, dtpkNgay.Value.Month, dtpkNgay.Value.Day, 0, 0, 0);
-                DateTime denNgay = new DateTime(dtpkNgay.Value.Year, dtpkNgay.Value.Month, dtpkNgay.Value.Day, 23, 59, 59);
+                DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 if (ExportExcel.ExportDoanhThuTheoNgayToExcel(exportFileName, tuNgay, denNgay))
                 {
                     try
@@ -50,8 +51,8 @@ namespace MM.Controls
             {
                 if (_printDialog.ShowDialog() == DialogResult.OK)
                 {
-                    DateTime tuNgay = new DateTime(dtpkNgay.Value.Year, dtpkNgay.Value.Month, dtpkNgay.Value.Day, 0, 0, 0);
-                    DateTime denNgay = new DateTime(dtpkNgay.Value.Year, dtpkNgay.Value.Month, dtpkNgay.Value.Day, 23, 59, 59);
+                    DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                    DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                     if (ExportExcel.ExportDoanhThuTheoNgayToExcel(exportFileName, tuNgay, denNgay))
                     {
                         try
@@ -75,27 +76,42 @@ namespace MM.Controls
             dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                DateTime tuNgay = new DateTime(dtpkNgay.Value.Year, dtpkNgay.Value.Month, dtpkNgay.Value.Day, 0, 0, 0);
-                DateTime denNgay = new DateTime(dtpkNgay.Value.Year, dtpkNgay.Value.Month, dtpkNgay.Value.Day, 23, 59, 59);
+                DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 ExportExcel.ExportDoanhThuTheoNgayToExcel(dlg.FileName, tuNgay, denNgay);
             }
+        }
+
+        private bool CheckInfo()
+        {
+            if (dtpkTuNgay.Value > dtpkDenNgay.Value)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
+                dtpkTuNgay.Focus();
+                return false;
+            }
+
+            return true;
         }
         #endregion
 
         #region Window Event Handlers
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
-            OnPrint(true);
+            if (CheckInfo())
+                OnPrint(true);
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            OnPrint(false);
+            if (CheckInfo())
+                OnPrint(false);
         }
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
-            OnExportExcel();
+            if (CheckInfo())
+                OnExportExcel();
         }
         #endregion
     }
