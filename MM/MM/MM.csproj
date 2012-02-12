@@ -82,6 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uDoanhThuTheoNgay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uDoanhThuTheoNgay.Designer.cs">
+      <DependentUpon>uDoanhThuTheoNgay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uGiaVonDichVuList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -791,6 +797,9 @@
     <Compile Include="Controls\uChiDinhList.Designer.cs">
       <DependentUpon>uChiDinhList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uDoanhThuTheoNgay.resx">
+      <DependentUpon>uDoanhThuTheoNgay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uGiaVonDichVuList.resx">
       <DependentUpon>uGiaVonDichVuList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1153,6 +1162,7 @@
     <None Include="Templates\DanhSachBenhNhanTemplate.xls" />
     <None Include="Templates\DichVuHopDongTemplate.xls" />
     <None Include="Templates\DichVuTuTucTemplate.xls" />
+    <None Include="Templates\DoanhThuTheoNgayTemplate.xls" />
     <None Include="Templates\HDGTGTTemplate.xls" />
     <None Include="Templates\KhamSucKhoeTongQuatTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
@@ -1211,6 +1221,9 @@
     <None Include="Resources\clipboard-search-result-icon.png" />
     <None Include="Resources\Medicine-icon.png" />
     <None Include="Resources\pills-5-icon.png" />
+    <None Include="Resources\event-search-icon %281%29.png" />
+    <None Include="Resources\event-search-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-02-11.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-02_2012-02-02.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-16_2012-01-17.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-14_2012-01-15.sql" />

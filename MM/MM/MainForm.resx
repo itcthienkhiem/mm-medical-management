@@ -1064,6 +1064,34 @@
   <data name="_mainPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
+  <data name="_uDoanhThuTheoNgay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDoanhThuTheoNgay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDoanhThuTheoNgay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>924, 249</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_uDoanhThuTheoNgay.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="_uDoanhThuTheoNgay.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuTheoNgay.Name" xml:space="preserve">
+    <value>_uDoanhThuTheoNgay</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuTheoNgay.Type" xml:space="preserve">
+    <value>MM.Controls.uDoanhThuTheoNgay, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuTheoNgay.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuTheoNgay.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="_uGiaVonDichVuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -1073,7 +1101,6 @@
   <data name="_uGiaVonDichVuList.Size" type="System.Drawing.Size, System.Drawing">
     <value>924, 249</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="_uGiaVonDichVuList.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
   </data>
@@ -1090,7 +1117,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uGiaVonDichVuList.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="_uInKetQuaKhamSucKhoeTongQuat.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1117,7 +1144,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uInKetQuaKhamSucKhoeTongQuat.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="_uServiceGroupList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1144,7 +1171,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uServiceGroupList.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="_uTrackingList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1171,7 +1198,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uTrackingList.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="_uDichVuTuTuc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1198,7 +1225,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDichVuTuTuc.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="_uPhieuThuThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1225,7 +1252,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPhieuThuThuocList.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="_uBaoCaoThuocTonKho.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1252,7 +1279,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoThuocTonKho.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="_uBaoCaoThuocHetHan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1279,7 +1306,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoThuocHetHan.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="_uToaThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1306,7 +1333,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uToaThuocList.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="_uGiaThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1333,7 +1360,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uGiaThuocList.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="_uLoThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1360,7 +1387,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uLoThuocList.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="_uNhomThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1387,7 +1414,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uNhomThuocList.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="_uThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1414,7 +1441,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uThuocList.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="_uDichVuHopDong.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1441,7 +1468,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDichVuHopDong.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="_uDoanhThuNhanVien.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1468,7 +1495,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDoanhThuNhanVien.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="_uInvoiceList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1495,7 +1522,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uInvoiceList.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="_uReceiptList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1522,7 +1549,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uReceiptList.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="_uPrintLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1549,7 +1576,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPrintLabel.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="_uPermission.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1576,7 +1603,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPermission.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="_uContractList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1603,7 +1630,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uContractList.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="_uCompanyList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1630,7 +1657,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uCompanyList.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="_uSymptomList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1657,7 +1684,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uSymptomList.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="_uSpecialityList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1684,7 +1711,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uSpecialityList.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="_uPatientHistory.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1711,7 +1738,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPatientHistory.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="_uPatientList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1738,7 +1765,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPatientList.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="_uDuplicatePatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1765,7 +1792,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDuplicatePatient.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="_uDocStaffList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1792,7 +1819,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDocStaffList.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="_uServicesList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1819,7 +1846,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uServicesList.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="_mainPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -2179,19 +2206,19 @@
     <value>592, 17</value>
   </metadata>
   <data name="databaseConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="databaseConfigurationToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình CSDL</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>150, 6</value>
   </data>
   <data name="permissionToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="permissionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="permissionToolStripMenuItem.Text" xml:space="preserve">
     <value>Phân quyền</value>
@@ -2200,55 +2227,55 @@
     <value>False</value>
   </data>
   <data name="changePasswordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="changePasswordToolStripMenuItem.Text" xml:space="preserve">
     <value>Đổi mật khẩu</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>150, 6</value>
   </data>
   <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="loginToolStripMenuItem.Text" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 6</value>
+    <value>150, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>155, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Thoát</value>
   </data>
   <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
+    <value>69, 20</value>
   </data>
   <data name="systemToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Hệ thống</value>
   </data>
   <data name="serviceListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 22</value>
+    <value>171, 22</value>
   </data>
   <data name="serviceListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục dịch vụ</value>
   </data>
   <data name="toolStripSeparator28.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 6</value>
+    <value>168, 6</value>
   </data>
   <data name="serviceGroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 22</value>
+    <value>171, 22</value>
   </data>
   <data name="serviceGroupToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhóm dịch vụ</value>
   </data>
   <data name="toolStripSeparator30.Size" type="System.Drawing.Size, System.Drawing">
-    <value>166, 6</value>
+    <value>168, 6</value>
   </data>
   <data name="giaVonDichVuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 22</value>
+    <value>171, 22</value>
   </data>
   <data name="giaVonDichVuToolStripMenuItem.Text" xml:space="preserve">
     <value>Giá vốn dịch vụ</value>
@@ -2257,13 +2284,13 @@
     <value>False</value>
   </data>
   <data name="servicesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 20</value>
+    <value>59, 20</value>
   </data>
   <data name="servicesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Dịch vụ</value>
   </data>
   <data name="specialityListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>200, 22</value>
   </data>
   <data name="specialityListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục chuyên khoa</value>
@@ -2272,13 +2299,13 @@
     <value>False</value>
   </data>
   <data name="specialityToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 20</value>
+    <value>89, 20</value>
   </data>
   <data name="specialityToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Chuyên khoa</value>
   </data>
   <data name="doctorListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
+    <value>184, 22</value>
   </data>
   <data name="doctorListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục nhân viên</value>
@@ -2287,7 +2314,7 @@
     <value>False</value>
   </data>
   <data name="doctorToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 20</value>
+    <value>73, 20</value>
   </data>
   <data name="doctorToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Nhân viên</value>
@@ -2320,22 +2347,22 @@
     <value>False</value>
   </data>
   <data name="patientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
+    <value>76, 20</value>
   </data>
   <data name="patientToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Bệnh nhân</value>
   </data>
   <data name="companyListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>184, 22</value>
   </data>
   <data name="companyListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục công ty</value>
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="contractListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>184, 22</value>
   </data>
   <data name="contractListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục hợp đồng</value>
@@ -2344,13 +2371,13 @@
     <value>False</value>
   </data>
   <data name="companyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
+    <value>61, 20</value>
   </data>
   <data name="companyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Công ty</value>
   </data>
   <data name="symptomListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>190, 22</value>
+    <value>193, 22</value>
   </data>
   <data name="symptomListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục triệu chứng</value>
@@ -2359,13 +2386,13 @@
     <value>False</value>
   </data>
   <data name="symptomToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
+    <value>83, 20</value>
   </data>
   <data name="symptomToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Triệu chứng</value>
   </data>
   <data name="receiptListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>183, 22</value>
   </data>
   <data name="receiptListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục phiếu thu</value>
@@ -2374,13 +2401,13 @@
     <value>False</value>
   </data>
   <data name="receiptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 20</value>
+    <value>70, 20</value>
   </data>
   <data name="receiptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Phiếu thu</value>
   </data>
   <data name="invoiceListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 22</value>
+    <value>176, 22</value>
   </data>
   <data name="invoiceListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục hóa đơn</value>
@@ -2389,58 +2416,58 @@
     <value>False</value>
   </data>
   <data name="invoiceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
+    <value>65, 20</value>
   </data>
   <data name="invoiceToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Hóa đơn</value>
   </data>
   <data name="danhMucThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="danhMucThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục thuốc</value>
   </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 6</value>
+    <value>160, 6</value>
   </data>
   <data name="nhomThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="nhomThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhóm thuốc</value>
   </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 6</value>
+    <value>160, 6</value>
   </data>
   <data name="loThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="loThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Lô thuốc</value>
   </data>
   <data name="toolStripSeparator20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 6</value>
+    <value>160, 6</value>
   </data>
   <data name="giaThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="giaThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Giá thuốc</value>
   </data>
   <data name="toolStripSeparator21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 6</value>
+    <value>160, 6</value>
   </data>
   <data name="keToaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="keToaToolStripMenuItem.Text" xml:space="preserve">
     <value>Kê toa</value>
   </data>
   <data name="toolStripSeparator24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>159, 6</value>
+    <value>160, 6</value>
   </data>
   <data name="phieuThuThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 22</value>
+    <value>163, 22</value>
   </data>
   <data name="phieuThuThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Phiếu thu thuốc</value>
@@ -2449,58 +2476,67 @@
     <value>False</value>
   </data>
   <data name="thuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
+    <value>53, 20</value>
   </data>
   <data name="thuocToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Thuốc</value>
   </data>
   <data name="doanhThuNhanVienToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="doanhThuNhanVienToolStripMenuItem.Text" xml:space="preserve">
     <value>Doanh thu nhân viên</value>
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 6</value>
+    <value>261, 6</value>
+  </data>
+  <data name="doanhThuTheoNgayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 22</value>
+  </data>
+  <data name="doanhThuTheoNgayToolStripMenuItem.Text" xml:space="preserve">
+    <value>Doanh thu theo ngày</value>
+  </data>
+  <data name="toolStripSeparator31.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 6</value>
   </data>
   <data name="dichVuHopDongToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="dichVuHopDongToolStripMenuItem.Text" xml:space="preserve">
     <value>Dịch vụ hợp đồng</value>
   </data>
   <data name="toolStripSeparator22.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 6</value>
+    <value>261, 6</value>
   </data>
   <data name="dichVuTuTucToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="dichVuTuTucToolStripMenuItem.Text" xml:space="preserve">
     <value>Dịch vụ tự túc</value>
   </data>
   <data name="toolStripSeparator26.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 6</value>
+    <value>261, 6</value>
   </data>
   <data name="thuocHetHanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="thuocHetHanToolStripMenuItem.Text" xml:space="preserve">
     <value>Thuốc hết hạn</value>
   </data>
   <data name="toolStripSeparator23.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 6</value>
+    <value>261, 6</value>
   </data>
   <data name="thuocTonKhoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="thuocTonKhoToolStripMenuItem.Text" xml:space="preserve">
     <value>Thuốc tồn kho</value>
   </data>
   <data name="toolStripSeparator29.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 6</value>
+    <value>261, 6</value>
   </data>
   <data name="inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>258, 22</value>
+    <value>264, 22</value>
   </data>
   <data name="inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Text" xml:space="preserve">
     <value>In kết quả khám sức khỏe tổng quát</value>
@@ -2509,28 +2545,28 @@
     <value>False</value>
   </data>
   <data name="reportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
+    <value>61, 20</value>
   </data>
   <data name="reportToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Báo cáo</value>
   </data>
   <data name="dICOMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="dICOMToolStripMenuItem.Text" xml:space="preserve">
     <value>DICOM</value>
   </data>
   <data name="printLabelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="printLabelToolStripMenuItem.Text" xml:space="preserve">
     <value>In nhãn</value>
   </data>
   <data name="toolStripSeparator27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 6</value>
+    <value>114, 6</value>
   </data>
   <data name="trackingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 22</value>
+    <value>117, 22</value>
   </data>
   <data name="trackingToolStripMenuItem.Text" xml:space="preserve">
     <value>Truy vết</value>
@@ -2539,37 +2575,37 @@
     <value>False</value>
   </data>
   <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
+    <value>64, 20</value>
   </data>
   <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Công cụ</value>
   </data>
   <data name="medicalManagementHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="medicalManagementHelpToolStripMenuItem.Text" xml:space="preserve">
     <value>Giúp đỡ</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 6</value>
+    <value>150, 6</value>
   </data>
   <data name="aboutMedicalManagementToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="aboutMedicalManagementToolStripMenuItem.Text" xml:space="preserve">
     <value>Giới thiệu</value>
   </data>
   <data name="toolStripSeparator25.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 6</value>
+    <value>150, 6</value>
   </data>
   <data name="templateExcelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>156, 22</value>
+    <value>153, 22</value>
   </data>
   <data name="templateExcelToolStripMenuItem.Text" xml:space="preserve">
     <value>Biểu mẫu Excel</value>
   </data>
   <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
+    <value>64, 20</value>
   </data>
   <data name="helpToolStripMenuItem.Text" xml:space="preserve">
     <value>Trợ giúp</value>
@@ -4993,6 +5029,18 @@
     <value>toolStripSeparator16</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;doanhThuTheoNgayToolStripMenuItem.Name" xml:space="preserve">
+    <value>doanhThuTheoNgayToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;doanhThuTheoNgayToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator31.Name" xml:space="preserve">
+    <value>toolStripSeparator31</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator31.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;dichVuHopDongToolStripMenuItem.Name" xml:space="preserve">
