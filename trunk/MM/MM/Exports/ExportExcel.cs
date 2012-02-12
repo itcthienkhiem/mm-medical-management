@@ -2121,6 +2121,43 @@ namespace MM.Exports
                 }
 
                 rowIndex++;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
+                range.Value = "STT";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Center;
+
+                range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
+                range.Value = "Thuốc";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Center;
+
+                range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
+                range.Value = "Số lượng";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Center;
+
+                range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
+                range.Value = "Giá (VNĐ)";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Center;
+
+                range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
+                range.Value = "Giảm (%)";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Center;
+
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.Value = "Thành tiền (VNĐ)";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Center;
+
+                range = workSheet.Cells[string.Format("A{0}:F{0}", rowIndex + 1)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+
+                rowIndex++;
+                no = 1;
+
                 foreach (ChiTietPhieuThuThuocView detail in chiTietPhieuThuThuocList)
                 {
                     string tenThuoc = detail.TenThuoc;
