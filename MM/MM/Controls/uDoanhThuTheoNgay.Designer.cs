@@ -32,9 +32,11 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dtpkNgay = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,31 +78,15 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dtpkNgay);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.dtpkTuNgay);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.dtpkDenNgay);
             this.groupBox1.Location = new System.Drawing.Point(8, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(259, 54);
+            this.groupBox1.Size = new System.Drawing.Size(365, 54);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            // 
-            // dtpkNgay
-            // 
-            this.dtpkNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgay.Location = new System.Drawing.Point(57, 20);
-            this.dtpkNgay.Name = "dtpkNgay";
-            this.dtpkNgay.Size = new System.Drawing.Size(115, 20);
-            this.dtpkNgay.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Ngày:";
             // 
             // _printDialog
             // 
@@ -109,6 +95,42 @@
             this._printDialog.AllowSomePages = true;
             this._printDialog.ShowHelp = true;
             this._printDialog.UseEXDialog = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 24);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 21;
+            this.label2.Text = "Từ ngày:";
+            // 
+            // dtpkTuNgay
+            // 
+            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkTuNgay.Location = new System.Drawing.Point(68, 20);
+            this.dtpkTuNgay.Name = "dtpkTuNgay";
+            this.dtpkTuNgay.Size = new System.Drawing.Size(106, 20);
+            this.dtpkTuNgay.TabIndex = 19;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(180, 24);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Đến ngày:";
+            // 
+            // dtpkDenNgay
+            // 
+            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkDenNgay.Location = new System.Drawing.Point(242, 20);
+            this.dtpkDenNgay.Name = "dtpkDenNgay";
+            this.dtpkDenNgay.Size = new System.Drawing.Size(106, 20);
+            this.dtpkDenNgay.TabIndex = 20;
             // 
             // uDoanhThuTheoNgay
             // 
@@ -119,7 +141,7 @@
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.groupBox1);
             this.Name = "uDoanhThuTheoNgay";
-            this.Size = new System.Drawing.Size(362, 145);
+            this.Size = new System.Drawing.Size(579, 145);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -129,11 +151,13 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dtpkNgay;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnPrintPreview;
         private System.Windows.Forms.PrintDialog _printDialog;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dtpkTuNgay;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DateTimePicker dtpkDenNgay;
     }
 }

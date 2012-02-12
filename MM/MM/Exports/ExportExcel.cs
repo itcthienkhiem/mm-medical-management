@@ -2120,7 +2120,20 @@ namespace MM.Exports
                     rowIndex++;
                 }
 
-                rowIndex++;
+                range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
+                range.Value = "Tổng tiền dịch vụ:";
+                range.Font.Bold = true;
+
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                if (totalPrice > 0)
+                    range.Value = string.Format("{0} VNĐ", totalPrice.ToString("#,###"));
+                else
+                    range.Value = string.Format("{0} VNĐ", totalPrice.ToString());
+
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+
+                rowIndex += 2;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
                 range.Value = "STT";
                 range.Font.Bold = true;
@@ -2157,6 +2170,7 @@ namespace MM.Exports
 
                 rowIndex++;
                 no = 1;
+                double tongTienThuoc = 0.0;
 
                 foreach (ChiTietPhieuThuThuocView detail in chiTietPhieuThuThuocList)
                 {
@@ -2167,6 +2181,7 @@ namespace MM.Exports
                     double thanhTien = detail.ThanhTien;
 
                     totalPrice += thanhTien;
+                    tongTienThuoc += thanhTien;
                     workSheet.Cells[rowIndex, 0].Value = no++;
                     workSheet.Cells[rowIndex, 0].HorizontalAlignment = HAlign.Center;
 
@@ -2215,6 +2230,20 @@ namespace MM.Exports
                     rowIndex++;
                 }
 
+                range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
+                range.Value = "Tổng tiền thuốc:";
+                range.Font.Bold = true;
+
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                if (tongTienThuoc > 0)
+                    range.Value = string.Format("{0} VNĐ", tongTienThuoc.ToString("#,###"));
+                else
+                    range.Value = string.Format("{0} VNĐ", tongTienThuoc.ToString());
+
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+
+                rowIndex++;
                 range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
                 range.Value = "Tổng cộng:";
                 range.Font.Bold = true;
