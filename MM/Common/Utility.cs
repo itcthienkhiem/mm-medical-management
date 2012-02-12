@@ -770,6 +770,21 @@ namespace MM.Common
 
             return string.Empty;
         }
+
+        public static int FixedPrice(int price)
+        {
+            int fixedPrice = 0;
+
+            int div = price / 1000;
+            int mod = price % 1000;
+
+            if (mod == 0 || mod == 500) return price;
+
+            if (mod < 500) fixedPrice = div * 1000 + 500;
+            if (mod > 500) fixedPrice = (div + 1) * 1000;
+
+            return fixedPrice;
+        }
     }
 }
 
