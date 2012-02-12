@@ -266,6 +266,7 @@ namespace MM.Dialogs
             if (delta < 1500) delta = 1500;
 
             giaThuocNhap += delta;
+            giaThuocNhap = Utility.FixedPrice(Convert.ToInt32(giaThuocNhap));
             numGiaBan.Value = (Decimal)giaThuocNhap;
         }
 
@@ -281,6 +282,7 @@ namespace MM.Dialogs
             }
 
             giaThuocNhap += 100000;
+            giaThuocNhap = Utility.FixedPrice(Convert.ToInt32(giaThuocNhap));
             numGiaBan.Value = (Decimal)giaThuocNhap;
         }
         #endregion
