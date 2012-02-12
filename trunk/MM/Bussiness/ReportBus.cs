@@ -224,5 +224,81 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetChiTietPhieuThuDichVu(DateTime tuNgay, DateTime denNgay)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<ReceiptDetailView> chiTietPhieuThuList = (from pt in db.Receipts
+                                                  join ctpt in db.ReceiptDetailViews on pt.ReceiptGUID equals ctpt.ReceiptGUID
+                                                  where pt.Status == (byte)Status.Actived && 
+                                                  pt.ReceiptDate >= tuNgay && pt.ReceiptDate <= denNgay
+                                                  select ctpt).ToList<ReceiptDetailView>();
+
+                result.QueryResult = chiTietPhieuThuList;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetChiTietPhieuThuThuoc(DateTime tuNgay, DateTime denNgay)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<ChiTietPhieuThuThuocView> chiTietPhieuThuList = (from pt in db.PhieuThuThuocs
+                                                               join ctpt in db.ChiTietPhieuThuThuocViews on pt.PhieuThuThuocGUID equals ctpt.PhieuThuThuocGUID
+                                                               where pt.Status == (byte)Status.Actived &&
+                                                               pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay
+                                                                      select ctpt).ToList<ChiTietPhieuThuThuocView>();
+
+                result.QueryResult = chiTietPhieuThuList;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

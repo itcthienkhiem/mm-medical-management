@@ -361,6 +361,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap event_search_icon {
+            get {
+                object obj = ResourceManager.GetObject("event_search_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap event_search_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("event_search_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Excel_icon {
             get {
                 object obj = ResourceManager.GetObject("Excel_icon", resourceCulture);

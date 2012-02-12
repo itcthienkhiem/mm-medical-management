@@ -2028,5 +2028,190 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportDoanhThuTheoNgayToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                Result result = ReportBus.GetChiTietPhieuThuDichVu(tuNgay, denNgay);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetChiTietPhieuThuDichVu"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetChiTietPhieuThuDichVu"));
+                    return false;
+                }
+
+                List<ReceiptDetailView> receiptDetailList = (List<ReceiptDetailView>)result.QueryResult;
+                if (receiptDetailList == null) return false;
+
+                result = ReportBus.GetChiTietPhieuThuThuoc(tuNgay, denNgay);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetChiTietPhieuThuThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetChiTietPhieuThuThuoc"));
+                    return false;
+                }
+
+                List<ChiTietPhieuThuThuocView> chiTietPhieuThuThuocList = (List<ChiTietPhieuThuThuocView>)result.QueryResult;
+                if (chiTietPhieuThuThuocList == null) return false;
+
+                string excelTemplateName = string.Format("{0}\\Templates\\DoanhThuTheoNgayTemplate.xls", Application.StartupPath);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A2"].Value = string.Format("Ngày: {0}", tuNgay.ToString("dd/MM/yyyy"));
+
+                int rowIndex = 3;
+                int no = 1;
+                double totalPrice = 0;
+                IRange range;
+                foreach (ReceiptDetailView detail in receiptDetailList)
+                {
+                    string serviceName = detail.Name;
+                    double price = detail.Price.Value;
+                    double disCount = detail.Discount;
+                    double amount = price - (price * disCount) / 100;
+                    totalPrice += amount;
+                    workSheet.Cells[rowIndex,0].Value = no++;
+                    workSheet.Cells[rowIndex, 0].HorizontalAlignment = HAlign.Center;
+
+                    workSheet.Cells[rowIndex, 1].Value = serviceName;
+
+                    workSheet.Cells[rowIndex, 2].Value = 1;
+                    workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Right;
+
+                    if (price > 0)
+                        workSheet.Cells[rowIndex, 3].Value = price.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 3].Value = price.ToString();
+
+                    workSheet.Cells[rowIndex, 3].HorizontalAlignment = HAlign.Right;
+
+                    if (disCount > 0)
+                        workSheet.Cells[rowIndex, 4].Value = disCount.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 4].Value = disCount.ToString();
+
+                    workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+
+                    if (amount > 0)
+                        workSheet.Cells[rowIndex, 5].Value = amount.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 5].Value = amount.ToString();
+
+                    workSheet.Cells[rowIndex, 5].HorizontalAlignment = HAlign.Right;
+
+                    range = workSheet.Cells[string.Format("A{0}:F{0}", rowIndex + 1)];
+                    range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+
+                    range.Borders[BordersIndex.EdgeLeft].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeLeft].Color = Color.Black;
+
+                    range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
+
+                    range.Borders[BordersIndex.InsideVertical].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.InsideVertical].Color = Color.Black;
+
+                    rowIndex++;
+                }
+
+                rowIndex++;
+                foreach (ChiTietPhieuThuThuocView detail in chiTietPhieuThuThuocList)
+                {
+                    string tenThuoc = detail.TenThuoc;
+                    int soLuong = Convert.ToInt32(detail.SoLuong);
+                    double donGia = detail.DonGia;
+                    double giam = detail.Giam;
+                    double thanhTien = detail.ThanhTien;
+
+                    totalPrice += thanhTien;
+                    workSheet.Cells[rowIndex, 0].Value = no++;
+                    workSheet.Cells[rowIndex, 0].HorizontalAlignment = HAlign.Center;
+
+                    workSheet.Cells[rowIndex, 1].Value = tenThuoc;
+
+                    workSheet.Cells[rowIndex, 2].Value = soLuong;
+                    workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Right;
+
+                    if (donGia > 0)
+                        workSheet.Cells[rowIndex, 3].Value = donGia.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 3].Value = donGia.ToString();
+
+                    workSheet.Cells[rowIndex, 3].HorizontalAlignment = HAlign.Right;
+
+                    if (giam > 0)
+                        workSheet.Cells[rowIndex, 4].Value = giam.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 4].Value = giam.ToString();
+
+                    workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+
+                    if (thanhTien > 0)
+                        workSheet.Cells[rowIndex, 5].Value = thanhTien.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 5].Value = thanhTien.ToString();
+
+                    workSheet.Cells[rowIndex, 5].HorizontalAlignment = HAlign.Right;
+
+                    range = workSheet.Cells[string.Format("A{0}:F{0}", rowIndex + 1)];
+                    range.Borders[BordersIndex.EdgeTop].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeTop].Color = Color.Black;
+
+                    range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+
+                    range.Borders[BordersIndex.EdgeLeft].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeLeft].Color = Color.Black;
+
+                    range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
+
+                    range.Borders[BordersIndex.InsideVertical].LineStyle = LineStyle.Continuous;
+                    range.Borders[BordersIndex.InsideVertical].Color = Color.Black;
+
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
+                range.Value = "Tổng cộng:";
+                range.Font.Bold = true;
+
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                if (totalPrice > 0)
+                    range.Value = string.Format("{0} VNĐ", totalPrice.ToString("#,###"));
+                else
+                    range.Value = string.Format("{0} VNĐ", totalPrice.ToString());
+
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }

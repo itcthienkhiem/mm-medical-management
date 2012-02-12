@@ -364,8 +364,8 @@ namespace MM.Dialogs
                     }
                     else
                     {
-                        MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"));
+                        MsgBox.Show(this.Text, r.GetErrorAsString("LoThuocBus.CheckThuocHetHan"), IconType.Error);
+                        Utility.WriteToTraceLog(r.GetErrorAsString("LoThuocBus.CheckThuocHetHan"));
                         return false;
                     }
 
@@ -384,8 +384,8 @@ namespace MM.Dialogs
                     }
                     else
                     {
-                        MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.CheckThuocTonKho"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.CheckThuocTonKho"));
+                        MsgBox.Show(this.Text, r.GetErrorAsString("LoThuocBus.CheckThuocTonKho"), IconType.Error);
+                        Utility.WriteToTraceLog(r.GetErrorAsString("LoThuocBus.CheckThuocTonKho"));
                         return false;
                     }
                 }

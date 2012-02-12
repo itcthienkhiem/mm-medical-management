@@ -79,6 +79,8 @@ spDichVuHopDong
 - Update view: KetQuaLamSangView
 2012-02-02
 - Update view: UserView, ServiceView
+2012-02-11
+- Insert: Function(DoanhThuTheoNgay)
 
 
 1. Unicode

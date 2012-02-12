@@ -531,6 +531,11 @@ namespace MM
                             _uGiaVonDichVuList.AllowExport = isExport;
                             _uGiaVonDichVuList.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.DoanhThuTheoNgay)
+                        {
+                            doanhThuTheoNgayToolStripMenuItem.Enabled = isView & isLogin;
+
+                        }
                     }
                 }
                 else
@@ -637,6 +642,7 @@ namespace MM
 
                 serviceGroupToolStripMenuItem.Enabled = isLogin;
                 inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Enabled = isLogin;
+                doanhThuTheoNgayToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -792,7 +798,17 @@ namespace MM
                 case "GiaVonDichVu":
                     OnGiaVonDichVu();
                     break;
+
+                case "DoanhThuTheoNgay":
+                    OnDoanhThuTheoNgay();
+                    break;
             }
+        }
+
+        private void OnDoanhThuTheoNgay()
+        {
+            this.Text = string.Format("{0} - Bao cao doanh thu theo ngay", Application.ProductName);
+            ViewControl(_uDoanhThuTheoNgay);
         }
 
         private void OnGiaVonDichVu()
