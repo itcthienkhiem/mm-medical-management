@@ -19,12 +19,17 @@ namespace MM.Controls
     {
         #region Members
         private DataRow _patientRow = null;
+        private DateTime _fromDate = DateTime.Now;
+        private DateTime _toDate = DateTime.Now;
+        private bool _isAll = true;
         #endregion
 
         #region Constructor
         public uToaThuocList()
         {
             InitializeComponent();
+            dtpkFromDate.Value = DateTime.Now.AddDays(-1);
+            dtpkToDate.Value = DateTime.Now;
         }
         #endregion
 
@@ -57,6 +62,11 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+
+                _isAll = raAll.Checked;
+                _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
+                _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayToaThuocListProc));
                 base.ShowWaiting();
             }
@@ -75,11 +85,11 @@ namespace MM.Controls
         {
             Result result = null;
             if (_patientRow == null)
-                result = KeToaBus.GetToaThuocList();
+                result = KeToaBus.GetToaThuocList(_isAll, _fromDate, _toDate);
             else
             {
                 string patientGUID = _patientRow["PatientGUID"].ToString();
-                result = KeToaBus.GetToaThuocList(patientGUID, Global.UserGUID);
+                result = KeToaBus.GetToaThuocList(patientGUID, Global.UserGUID, _isAll, _fromDate, _toDate);
             }
 
             if (result.IsOK)
@@ -111,7 +121,8 @@ namespace MM.Controls
             if (_patientRow != null) dlg.PatientRow = _patientRow;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgToaThuoc.DataSource as DataTable;
+                DisplayAsThread();
+                /*DataTable dt = dgToaThuoc.DataSource as DataTable;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -158,7 +169,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.ToaThuoc.Status;
                 dt.Rows.Add(newRow);
-                //SelectLastedRow();
+                //SelectLastedRow();*/
             }
         }
 
@@ -175,7 +186,7 @@ namespace MM.Controls
             if (_patientRow != null) dlg.PatientRow = _patientRow;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                drToaThuoc["MaToaThuoc"] = dlg.ToaThuoc.MaToaThuoc;
+                /*drToaThuoc["MaToaThuoc"] = dlg.ToaThuoc.MaToaThuoc;
                 drToaThuoc["NgayKeToa"] = dlg.ToaThuoc.NgayKeToa;
                 drToaThuoc["NgayKham"] = dlg.ToaThuoc.NgayKham;
                 if (dlg.ToaThuoc.NgayTaiKham != null && dlg.ToaThuoc.NgayTaiKham.HasValue)
@@ -213,7 +224,9 @@ namespace MM.Controls
                 if (dlg.ToaThuoc.DeletedBy.HasValue)
                     drToaThuoc["DeletedBy"] = dlg.ToaThuoc.DeletedBy.ToString();
 
-                drToaThuoc["Status"] = dlg.ToaThuoc.Status;
+                drToaThuoc["Status"] = dlg.ToaThuoc.Status;*/
+
+                DisplayAsThread();
             }
         }
 
@@ -361,6 +374,20 @@ namespace MM.Controls
         private void btnPrint_Click(object sender, EventArgs e)
         {
             OnPrint(false);
+        }
+
+        private void raAll_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkFromDate.Enabled = !raAll.Checked;
+            dtpkToDate.Enabled = !raAll.Checked;
+            btnSearch.Enabled = !raAll.Checked;
+
+            DisplayAsThread();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            DisplayAsThread();
         }
         #endregion
 

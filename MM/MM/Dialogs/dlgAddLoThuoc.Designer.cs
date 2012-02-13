@@ -481,7 +481,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(226, 23);
+            this.label22.Location = new System.Drawing.Point(314, 23);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(17, 13);
             this.label22.TabIndex = 49;
@@ -500,7 +500,7 @@
             this.txtMaLoThuoc.Location = new System.Drawing.Point(102, 20);
             this.txtMaLoThuoc.MaxLength = 50;
             this.txtMaLoThuoc.Name = "txtMaLoThuoc";
-            this.txtMaLoThuoc.Size = new System.Drawing.Size(121, 20);
+            this.txtMaLoThuoc.Size = new System.Drawing.Size(208, 20);
             this.txtMaLoThuoc.TabIndex = 47;
             // 
             // label2

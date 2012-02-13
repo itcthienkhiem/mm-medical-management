@@ -316,6 +316,11 @@ namespace MM.Dialogs
             lbGiaNhapQuiDoi.Text = string.Format("Giá nhập mỗi {0}:", txtDonViTinhQuiDoi.Text.ToLower());
             numGiaNhapQuiDoi.Value = (Decimal)giaQuiDoi;
         }
+
+        private void GenerateTenLoThuoc()
+        {
+            txtTenLoThuoc.Text = string.Format("{0}-{1}", cboThuoc.Text, DateTime.Now.ToString("dd-MM-yyyy"));
+        }
         #endregion
 
         #region Window Event Handlers
@@ -330,6 +335,9 @@ namespace MM.Dialogs
         {
             RefreshDonViTinh();
             RefreshGiaNhapQuiDoi();
+
+            if (_isNew)
+                GenerateTenLoThuoc();
         }
 
         private void cboDonViTinhNhap_SelectedIndexChanged(object sender, EventArgs e)
