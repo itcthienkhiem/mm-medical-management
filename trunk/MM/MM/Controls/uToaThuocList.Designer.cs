@@ -43,6 +43,12 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
+            this.lbToDate = new System.Windows.Forms.Label();
+            this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
+            this.raFromDateToDate = new System.Windows.Forms.RadioButton();
+            this.raAll = new System.Windows.Forms.RadioButton();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgToaThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
@@ -61,6 +67,7 @@
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgToaThuoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
@@ -141,12 +148,81 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnSearch);
+            this.panel2.Controls.Add(this.dtpkToDate);
+            this.panel2.Controls.Add(this.lbToDate);
+            this.panel2.Controls.Add(this.dtpkFromDate);
+            this.panel2.Controls.Add(this.raFromDateToDate);
+            this.panel2.Controls.Add(this.raAll);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(839, 66);
+            this.panel2.Size = new System.Drawing.Size(839, 60);
             this.panel2.TabIndex = 3;
-            this.panel2.Visible = false;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(340, 28);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(64, 21);
+            this.btnSearch.TabIndex = 12;
+            this.btnSearch.Text = "    &Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // dtpkToDate
+            // 
+            this.dtpkToDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkToDate.Enabled = false;
+            this.dtpkToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkToDate.Location = new System.Drawing.Point(238, 28);
+            this.dtpkToDate.Name = "dtpkToDate";
+            this.dtpkToDate.Size = new System.Drawing.Size(96, 20);
+            this.dtpkToDate.TabIndex = 11;
+            // 
+            // lbToDate
+            // 
+            this.lbToDate.AutoSize = true;
+            this.lbToDate.Location = new System.Drawing.Point(180, 32);
+            this.lbToDate.Name = "lbToDate";
+            this.lbToDate.Size = new System.Drawing.Size(52, 13);
+            this.lbToDate.TabIndex = 10;
+            this.lbToDate.Text = "đến ngày";
+            // 
+            // dtpkFromDate
+            // 
+            this.dtpkFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkFromDate.Enabled = false;
+            this.dtpkFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkFromDate.Location = new System.Drawing.Point(80, 28);
+            this.dtpkFromDate.Name = "dtpkFromDate";
+            this.dtpkFromDate.Size = new System.Drawing.Size(96, 20);
+            this.dtpkFromDate.TabIndex = 9;
+            // 
+            // raFromDateToDate
+            // 
+            this.raFromDateToDate.AutoSize = true;
+            this.raFromDateToDate.Location = new System.Drawing.Point(13, 30);
+            this.raFromDateToDate.Name = "raFromDateToDate";
+            this.raFromDateToDate.Size = new System.Drawing.Size(64, 17);
+            this.raFromDateToDate.TabIndex = 8;
+            this.raFromDateToDate.Text = "Từ ngày";
+            this.raFromDateToDate.UseVisualStyleBackColor = true;
+            // 
+            // raAll
+            // 
+            this.raAll.AutoSize = true;
+            this.raAll.Checked = true;
+            this.raAll.Location = new System.Drawing.Point(13, 8);
+            this.raAll.Name = "raAll";
+            this.raAll.Size = new System.Drawing.Size(56, 17);
+            this.raAll.TabIndex = 7;
+            this.raAll.TabStop = true;
+            this.raAll.Text = "Tất cả";
+            this.raAll.UseVisualStyleBackColor = true;
+            this.raAll.CheckedChanged += new System.EventHandler(this.raAll_CheckedChanged);
             // 
             // chkChecked
             // 
@@ -205,7 +281,7 @@
             this.dgToaThuoc.ReadOnly = true;
             this.dgToaThuoc.RowHeadersWidth = 30;
             this.dgToaThuoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgToaThuoc.Size = new System.Drawing.Size(839, 365);
+            this.dgToaThuoc.Size = new System.Drawing.Size(839, 371);
             this.dgToaThuoc.TabIndex = 4;
             this.dgToaThuoc.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
             // 
@@ -335,9 +411,9 @@
             this.panel3.Controls.Add(this.chkChecked);
             this.panel3.Controls.Add(this.dgToaThuoc);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 66);
+            this.panel3.Location = new System.Drawing.Point(0, 60);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(839, 365);
+            this.panel3.Size = new System.Drawing.Size(839, 371);
             this.panel3.TabIndex = 4;
             // 
             // uToaThuocList
@@ -350,6 +426,8 @@
             this.Name = "uToaThuocList";
             this.Size = new System.Drawing.Size(839, 469);
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgToaThuoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -384,5 +462,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenBacSiDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.DateTimePicker dtpkToDate;
+        private System.Windows.Forms.Label lbToDate;
+        private System.Windows.Forms.DateTimePicker dtpkFromDate;
+        private System.Windows.Forms.RadioButton raFromDateToDate;
+        private System.Windows.Forms.RadioButton raAll;
     }
 }
