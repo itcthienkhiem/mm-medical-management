@@ -127,8 +127,8 @@ namespace MM.Controls
 
             //FullName
             List<DataRow> results = (from p in _dataSource.AsEnumerable()
-                                     where (p.Field<string>("TenThuoc").ToLower().IndexOf(str) >= 0 ||
-                                     str.IndexOf(p.Field<string>("TenThuoc").ToLower()) >= 0) &&
+                                     where (p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0 ||
+                                     str.IndexOf(p.Field<string>("TenThuoc").ToLower()) == 0) &&
                                      p.Field<string>("TenThuoc") != null &&
                                      p.Field<string>("TenThuoc").Trim() != string.Empty
                                      orderby p.Field<string>("TenThuoc") ascending, p.Field<DateTime>("NgayApDung") descending 
