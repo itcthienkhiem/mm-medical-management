@@ -133,4 +133,13 @@ namespace MM.Common
         Khac, 
         KhamPhuKhoa
     };
+
+    public enum LoaiNoiSoi : byte
+    {
+        Tai = 0,
+        Mui,
+        Hong_ThanhQuan,
+        TaiMuiHong,
+        TongQuat
+    };
 }
