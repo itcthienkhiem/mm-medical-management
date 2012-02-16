@@ -193,12 +193,43 @@ namespace MM.Dialogs
             if (result.IsOK)
             {
                 dgChiTiet.DataSource = result.QueryResult;
+
+                UpdateDataSourceDonGia();
+
                 RefreshNo();
             }
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("PhieuThuThuocBus.GetChiTietPhieuThuThuoc"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.GetChiTietPhieuThuThuoc"));
+            }
+        }
+
+        private void UpdateDataSourceDonGia()
+        {
+            foreach (DataGridViewRow row in dgChiTiet.Rows)
+            {
+                if (row.DataBoundItem == null) continue;
+                DataRow dr = (row.DataBoundItem as DataRowView).Row;
+
+                DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)row.Cells[4];
+                DataTable dtDonGia = cell.DataSource as DataTable;
+                if (dtDonGia == null)
+                {
+                    dtDonGia = new DataTable();
+                    dtDonGia.Columns.Add("DonGia", typeof(double));
+                }
+                else
+                    dtDonGia.Rows.Clear();
+                
+                DataRow newRow = dtDonGia.NewRow();
+                newRow[0] = dr["DonGia"];
+                dtDonGia.Rows.Add(newRow);
+                cell.DataSource = dtDonGia;
+                cell.DisplayMember = "DonGia";
+                cell.ValueMember = "DonGia";
+
+                row.Cells[4].Value = dr["DonGia"];
             }
         }
 
@@ -225,6 +256,8 @@ namespace MM.Dialogs
                     newRow["ThanhTien"] = soLuong * donGia;
                     dtChiTiet.Rows.Add(newRow);
                 }
+
+                UpdateDataSourceDonGia();
 
                 CalculateTongTien();
                 RefreshNo();
@@ -603,7 +636,7 @@ namespace MM.Dialogs
         {
             _flag = false;
             if (e.RowIndex < 0) return;
-            dgChiTiet.CurrentCell = dgChiTiet[1, e.RowIndex];
+            dgChiTiet.CurrentCell = dgChiTiet[e.ColumnIndex, e.RowIndex];
             dgChiTiet.Rows[e.RowIndex].Selected = true;
             _flag = true;
         }
@@ -620,11 +653,14 @@ namespace MM.Dialogs
             {
                 TextBox textBox = e.Control as TextBox;
 
-                textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
-                textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
+                if (textBox != null)
+                {
+                    textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
+                    textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
 
-                textBox.TextChanged -= new EventHandler(textBox_TextChanged);
-                textBox.TextChanged += new EventHandler(textBox_TextChanged);
+                    textBox.TextChanged -= new EventHandler(textBox_TextChanged);
+                    textBox.TextChanged += new EventHandler(textBox_TextChanged);
+                }
             }
         }
 
@@ -681,6 +717,24 @@ namespace MM.Dialogs
             string donViTinh = GetDonViTinh(thuocGUID);
             double giaThuoc = GetGiaThuoc(thuocGUID);
             dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
+
+            DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4];
+            DataTable dt = cell.DataSource as DataTable;
+            if (dt == null)
+            {
+                dt = new DataTable();
+                dt.Columns.Add("DonGia", typeof(double));
+            }
+            else
+                dt.Rows.Clear();
+            
+            DataRow newRow = dt.NewRow();
+            newRow[0] = giaThuoc;
+            dt.Rows.Add(newRow);
+            cell.DataSource = dt;
+            cell.DisplayMember = "DonGia";
+            cell.ValueMember = "DonGia";
+
             dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4].Value = giaThuoc;
             CalculateThanhTien();
             _flag = true;
@@ -755,5 +809,10 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        private void dgChiTiet_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel = true;
+        }
     }
 }
