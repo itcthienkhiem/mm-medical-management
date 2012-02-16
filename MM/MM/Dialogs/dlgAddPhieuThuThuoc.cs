@@ -22,6 +22,7 @@ namespace MM.Dialogs
         private DataRow _drPhieuThu = null;
         private string _tenCongTy = string.Empty;
         private DataTable _dataSourceBenhNhan = null;
+        private ComboBox _cboBox = null;
         #endregion
 
         #region Constructor
@@ -221,10 +222,27 @@ namespace MM.Dialogs
                 }
                 else
                     dtDonGia.Rows.Clear();
+
+                string thuocGUID = dr["ThuocGUID"].ToString();
+                List<double> donGiaList = GetGiaThuoc(thuocGUID);
+                double donGia = 0;
+                if (donGiaList != null && donGiaList.Count > 0)
+                {
+                    donGia = donGiaList[0];
+                    foreach (double gt in donGiaList)
+                    {
+                        DataRow newRow = dtDonGia.NewRow();
+                        newRow[0] = gt;
+                        dtDonGia.Rows.Add(newRow);
+                    }
+                }
+                else
+                {
+                    DataRow newRow = dtDonGia.NewRow();
+                    newRow[0] = 0;
+                    dtDonGia.Rows.Add(newRow);
+                }
                 
-                DataRow newRow = dtDonGia.NewRow();
-                newRow[0] = dr["DonGia"];
-                dtDonGia.Rows.Add(newRow);
                 cell.DataSource = dtDonGia;
                 cell.DisplayMember = "DonGia";
                 cell.ValueMember = "DonGia";
@@ -247,7 +265,11 @@ namespace MM.Dialogs
                     string thuocGUID = row["ThuocGUID"].ToString();
                     newRow["ThuocGUID"] = thuocGUID;
                     string donViTinh = GetDonViTinh(thuocGUID);
-                    double donGia = GetGiaThuoc(thuocGUID);
+                    List<double> donGiaList = GetGiaThuoc(thuocGUID);
+                    double donGia = 0;
+                    if (donGiaList != null && donGiaList.Count > 0)
+                        donGia = donGiaList[0];
+
                     int soLuong = Convert.ToInt32(row["SoLuong"]);
                     newRow["DonViTinh"] = donViTinh;
                     newRow["SoLuong"] = soLuong;
@@ -311,14 +333,20 @@ namespace MM.Dialogs
             CalculateTongTien();
         }
 
-        private double GetGiaThuoc(string thuocGUID)
+        private List<double> GetGiaThuoc(string thuocGUID)
         {
             Result result = GiaThuocBus.GetGiaThuocMoiNhat(thuocGUID);
+            List<double> giaThuocList = new List<double>();
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
                 if (dt != null && dt.Rows.Count > 0)
-                    return Convert.ToDouble(dt.Rows[0]["GiaBan"]);
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        giaThuocList.Add(Convert.ToDouble(row["GiaBan"]));
+                    }
+                }
             }
             else
             {
@@ -326,7 +354,7 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(result.GetErrorAsString("GiaThuocBus.GetGiaThuocMoiNhat"));
             }
 
-            return 0;
+            return giaThuocList;
         }
 
         private bool CheckInfo()
@@ -634,6 +662,7 @@ namespace MM.Dialogs
 
         private void dgChiTiet_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
             _flag = false;
             if (e.RowIndex < 0) return;
             dgChiTiet.CurrentCell = dgChiTiet[e.ColumnIndex, e.RowIndex];
@@ -643,11 +672,11 @@ namespace MM.Dialogs
 
         private void dgChiTiet_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dgChiTiet.CurrentCell.ColumnIndex == 1)
+            if (dgChiTiet.CurrentCell.ColumnIndex == 1 || dgChiTiet.CurrentCell.ColumnIndex == 4)
             {
-                ComboBox cmbox = e.Control as ComboBox;
-                cmbox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
-                cmbox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
+                _cboBox = e.Control as ComboBox;
+                _cboBox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
+                _cboBox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
             }
             else if (dgChiTiet.CurrentCell.ColumnIndex >= 3 && dgChiTiet.CurrentCell.ColumnIndex <= 5)
             {
@@ -710,34 +739,62 @@ namespace MM.Dialogs
         {
             if (!_flag) return;
 
-            _flag = false;
-            DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
-            if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
-            string thuocGUID = cbo.SelectedValue.ToString();
-            string donViTinh = GetDonViTinh(thuocGUID);
-            double giaThuoc = GetGiaThuoc(thuocGUID);
-            dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
-
-            DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4];
-            DataTable dt = cell.DataSource as DataTable;
-            if (dt == null)
+            if (dgChiTiet.CurrentCell.ColumnIndex == 1)
             {
-                dt = new DataTable();
-                dt.Columns.Add("DonGia", typeof(double));
+                _flag = false;
+                DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
+                if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
+                string thuocGUID = cbo.SelectedValue.ToString();
+                string donViTinh = GetDonViTinh(thuocGUID);
+                List<double> giaThuocList = GetGiaThuoc(thuocGUID);
+                double giaThuoc = 0;
+                if (giaThuocList != null && giaThuocList.Count > 0)
+                    giaThuoc = giaThuocList[0];
+
+                dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
+
+                DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4];
+                DataTable dt = cell.DataSource as DataTable;
+                if (dt == null)
+                {
+                    dt = new DataTable();
+                    dt.Columns.Add("DonGia", typeof(double));
+                }
+                else
+                    dt.Rows.Clear();
+
+                if (giaThuocList != null && giaThuocList.Count > 0)
+                {
+                    foreach (double gt in giaThuocList)
+                    {
+                        DataRow newRow = dt.NewRow();
+                        newRow[0] = gt;
+                        dt.Rows.Add(newRow);
+                    }
+                }
+                else
+                {
+                    DataRow newRow = dt.NewRow();
+                    newRow[0] = giaThuoc;
+                    dt.Rows.Add(newRow);
+                }
+
+                cell.DataSource = dt;
+                cell.DisplayMember = "DonGia";
+                cell.ValueMember = "DonGia";
+
+                dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4].Value = giaThuoc;
+                CalculateThanhTien();
+                _flag = true;
             }
             else
-                dt.Rows.Clear();
-            
-            DataRow newRow = dt.NewRow();
-            newRow[0] = giaThuoc;
-            dt.Rows.Add(newRow);
-            cell.DataSource = dt;
-            cell.DisplayMember = "DonGia";
-            cell.ValueMember = "DonGia";
-
-            dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4].Value = giaThuoc;
-            CalculateThanhTien();
-            _flag = true;
+            {
+                //DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
+                //double giaThuoc = Convert.ToDouble(cbo.SelectedValue);
+                //dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4].Value = giaThuoc;
+                CalculateThanhTien();
+            }
+           
         }
 
         private void dgChiTiet_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -789,6 +846,11 @@ namespace MM.Dialogs
                 }
             }
         }
+
+        private void dgChiTiet_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel = true;
+        }
         #endregion
 
         #region Working Thread
@@ -809,10 +871,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        private void dgChiTiet_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.Cancel = true;
-        }
     }
 }

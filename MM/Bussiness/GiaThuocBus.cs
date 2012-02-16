@@ -44,7 +44,21 @@ namespace MM.Bussiness
             {
                 string query = string.Format("SELECT TOP 1 * FROM GiaThuoc WHERE ThuocGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
                     thuocGUID, (byte)Status.Actived, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                return ExcuteQuery(query);
+                result = ExcuteQuery(query);
+                if (result.IsOK)
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        DateTime ngayApDung =  Convert.ToDateTime(dt.Rows[0]["NgayApDung"]);
+
+                        query = string.Format("SELECT * FROM GiaThuoc WHERE ThuocGUID = '{0}' AND Status = {1} AND NgayApDung BETWEEN '{2}' AND '{3}' ORDER BY NgayApDung DESC",
+                                thuocGUID, (byte)Status.Actived, ngayApDung.ToString("yyyy-MM-dd 00:00:00"), ngayApDung.ToString("yyyy-MM-dd 23:59:59"));
+                        return ExcuteQuery(query);
+                    }
+                    else return result;
+                }
+                else return result;
             }
             catch (System.Data.SqlClient.SqlException se)
             {

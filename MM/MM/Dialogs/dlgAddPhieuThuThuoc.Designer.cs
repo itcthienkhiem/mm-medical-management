@@ -372,7 +372,6 @@
             this.thuocGUIDDataGridViewTextBoxColumn.HeaderText = "Tên thuốc";
             this.thuocGUIDDataGridViewTextBoxColumn.Name = "thuocGUIDDataGridViewTextBoxColumn";
             this.thuocGUIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.thuocGUIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.thuocGUIDDataGridViewTextBoxColumn.ValueMember = "ThuocGUID";
             this.thuocGUIDDataGridViewTextBoxColumn.Width = 200;
             // 
@@ -384,6 +383,7 @@
             this.donViTinhDataGridViewTextBoxColumn.HeaderText = "ĐVT";
             this.donViTinhDataGridViewTextBoxColumn.Name = "donViTinhDataGridViewTextBoxColumn";
             this.donViTinhDataGridViewTextBoxColumn.ReadOnly = true;
+            this.donViTinhDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.donViTinhDataGridViewTextBoxColumn.Width = 80;
             // 
             // soLuongDataGridViewTextBoxColumn
@@ -396,6 +396,7 @@
             this.soLuongDataGridViewTextBoxColumn.HeaderText = "Số lượng";
             this.soLuongDataGridViewTextBoxColumn.Name = "soLuongDataGridViewTextBoxColumn";
             this.soLuongDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.soLuongDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.soLuongDataGridViewTextBoxColumn.Width = 75;
             // 
             // donGiaDataGridViewTextBoxColumn
@@ -408,7 +409,6 @@
             this.donGiaDataGridViewTextBoxColumn.HeaderText = "Đơn giá";
             this.donGiaDataGridViewTextBoxColumn.Name = "donGiaDataGridViewTextBoxColumn";
             this.donGiaDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.donGiaDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.donGiaDataGridViewTextBoxColumn.Width = 90;
             // 
             // giamDataGridViewTextBoxColumn
@@ -421,6 +421,7 @@
             this.giamDataGridViewTextBoxColumn.HeaderText = "Giảm (%)";
             this.giamDataGridViewTextBoxColumn.Name = "giamDataGridViewTextBoxColumn";
             this.giamDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.giamDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.giamDataGridViewTextBoxColumn.Width = 80;
             // 
             // thanhTienDataGridViewTextBoxColumn
@@ -433,6 +434,7 @@
             this.thanhTienDataGridViewTextBoxColumn.HeaderText = "Thành tiền";
             this.thanhTienDataGridViewTextBoxColumn.Name = "thanhTienDataGridViewTextBoxColumn";
             this.thanhTienDataGridViewTextBoxColumn.ReadOnly = true;
+            this.thanhTienDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.thanhTienDataGridViewTextBoxColumn.Width = 120;
             // 
             // dlgAddPhieuThuThuoc
