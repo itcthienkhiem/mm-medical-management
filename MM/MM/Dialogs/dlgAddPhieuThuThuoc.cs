@@ -324,7 +324,10 @@ namespace MM.Dialogs
             int rowIndex = dgChiTiet.CurrentCell.RowIndex;
             int colIndex = dgChiTiet.CurrentCell.ColumnIndex;
             int soLuong = Convert.ToInt32(dgChiTiet[3, rowIndex].EditedFormattedValue.ToString().Replace(",", ""));
-            int donGia = Convert.ToInt32(dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", ""));
+            string strValue = dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            int donGia = 0;
+            if (strValue != string.Empty)
+                donGia = Convert.ToInt32(strValue);
             int giam = Convert.ToInt32(dgChiTiet[5, rowIndex].EditedFormattedValue.ToString().Replace(",", ""));
             double tienGiam = Math.Round((soLuong * donGia * giam / (double)100));
             double thanhTien = soLuong * donGia - tienGiam;
@@ -815,7 +818,11 @@ namespace MM.Dialogs
         {
             if (dgChiTiet.SelectedRows == null || dgChiTiet.SelectedRows.Count <= 0) return;
             int rowIndex = dgChiTiet.SelectedRows[0].Index;
-            if (rowIndex == dgChiTiet.RowCount - 1) return;
+            if (rowIndex == dgChiTiet.RowCount - 1)
+            {
+                dgChiTiet.EndEdit();
+                return;
+            }
             dgChiTiet.EndEdit();
             if (dgChiTiet.SelectedRows[0].Cells[1].Value == null || dgChiTiet.SelectedRows[0].Cells[1].Value == DBNull.Value) return;
             string thuocGUID = dgChiTiet.SelectedRows[0].Cells[1].Value.ToString();
