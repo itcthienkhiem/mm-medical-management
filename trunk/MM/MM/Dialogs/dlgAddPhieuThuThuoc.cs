@@ -306,7 +306,7 @@ namespace MM.Dialogs
 
         private void CalculateTongTien()
         {
-            int rowCount = _isNew ? dgChiTiet.RowCount - 1 : dgChiTiet.RowCount;
+            int rowCount = dgChiTiet.RowCount;//_isNew ? dgChiTiet.RowCount - 1 : dgChiTiet.RowCount;
             double tongTien = 0;
             for (int i = 0; i < rowCount; i++)
             {
@@ -725,7 +725,7 @@ namespace MM.Dialogs
             int colIndex = dgChiTiet.CurrentCell.ColumnIndex;
             if (textBox.Text == string.Empty)
             {
-                if (colIndex == 5)
+                if (colIndex == 5 || colIndex == 6)
                     textBox.Text = "0";
                 else
                     textBox.Text = "1";
