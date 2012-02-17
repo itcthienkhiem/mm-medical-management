@@ -81,7 +81,9 @@ spDichVuHopDong
 - Update view: UserView, ServiceView
 2012-02-11
 - Insert: Function(DoanhThuTheoNgay)
-
+2012-02-17
+- Create table: KetQuaNoiSoi
+- Create view: BacSiChiDinhView, BacSiNoiSoiView, KetQuaNoiSoiViews
 
 1. Unicode
 2. Format DateTime
