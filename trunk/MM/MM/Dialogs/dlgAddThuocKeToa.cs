@@ -169,24 +169,8 @@ namespace MM.Dialogs
             }
 
             string maThuocGUID = cboThuoc.SelectedValue.ToString();
-            Result result = LoThuocBus.CheckThuocHetHan(maThuocGUID);
-            if (result.IsOK)
-            {
-                if (Convert.ToBoolean(result.QueryResult))
-                {
-                    MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết hạn sử dụng. Vui lòng chọn thuốc khác.", cboThuoc.Text), IconType.Information);
-                    return false;
-                }
-            }
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"));
-                return false;
-            }
-
             int soLuong = (int)numSoLuong.Value;
-            result = LoThuocBus.CheckThuocTonKho(maThuocGUID, soLuong);
+            Result result = LoThuocBus.CheckThuocTonKho(maThuocGUID, soLuong);
             if (result.IsOK)
             {
                 if (!Convert.ToBoolean(result.QueryResult))
@@ -199,6 +183,22 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.CheckThuocTonKho"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.CheckThuocTonKho"));
+                return false;
+            }
+            
+            result = LoThuocBus.CheckThuocHetHan(maThuocGUID);
+            if (result.IsOK)
+            {
+                if (Convert.ToBoolean(result.QueryResult))
+                {
+                    MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết hạn sử dụng. Vui lòng chọn thuốc khác.", cboThuoc.Text), IconType.Information);
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"));
                 return false;
             }
 
