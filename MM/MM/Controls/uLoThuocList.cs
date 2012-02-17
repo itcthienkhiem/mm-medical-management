@@ -17,13 +17,16 @@ namespace MM.Controls
     public partial class uLoThuocList : uBase
     {
         #region Members
-
+        private DataTable _dataSource = null;
         #endregion
 
         #region Constructor
         public uLoThuocList()
         {
             InitializeComponent();
+
+            dtpkTuNgay.Value = DateTime.Now;
+            dtpkDenNgay.Value = DateTime.Now;
         }
         #endregion
 
@@ -71,7 +74,9 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    dgLoThuoc.DataSource = result.QueryResult;
+                    _dataSource = result.QueryResult as DataTable;
+                    OnSearchLoThuoc();
+                    //dgLoThuoc.DataSource = result.QueryResult;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -82,6 +87,105 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("LoThuocBus.GetLoThuocList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetLoThuocList"));
             }
+        }
+
+        private void UpdateChecked()
+        {
+            DataTable dt = dgLoThuoc.DataSource as DataTable;
+            if (dt == null) return;
+
+            foreach (DataRow row1 in dt.Rows)
+            {
+                string loThuocGUID1 = row1["LoThuocGUID"].ToString();
+                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+                foreach (DataRow row2 in _dataSource.Rows)
+                {
+                    string loThuocGUID2 = row2["LoThuocGUID"].ToString();
+                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+
+                    if (loThuocGUID1 == loThuocGUID2)
+                    {
+                        row2["Checked"] = row1["Checked"];
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void OnSearchLoThuoc()
+        {
+            if (_dataSource == null) return;
+            UpdateChecked();
+            List<DataRow> results = null;
+            DataTable newDataSource = null;
+
+            if (raTenThuoc.Checked)
+            {
+                if (txtTenThuoc.Text.Trim() == string.Empty)
+                {
+                    DataTable dtSource = _dataSource as DataTable;
+                    results = (from p in dtSource.AsEnumerable()
+                               orderby p.Field<string>("TenThuoc")
+                               select p).ToList<DataRow>();
+
+                    newDataSource = dtSource.Clone();
+
+                    foreach (DataRow row in results)
+                        newDataSource.ImportRow(row);
+
+                    dgLoThuoc.DataSource = newDataSource;
+                    return;
+                }
+
+                string str = txtTenThuoc.Text.ToLower();
+                DataTable dt = _dataSource as DataTable;
+                newDataSource = dt.Clone();
+
+                //Ten Thuoc
+                results = (from p in dt.AsEnumerable()
+                           where p.Field<string>("TenThuoc") != null &&
+                           p.Field<string>("TenThuoc").Trim() != string.Empty &&
+                           (p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0 ||
+                           str.IndexOf(p.Field<string>("TenThuoc").ToLower()) == 0)
+                           orderby p.Field<string>("TenThuoc")
+                           select p).ToList<DataRow>();
+
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                if (newDataSource.Rows.Count > 0)
+                {
+                    dgLoThuoc.DataSource = newDataSource;
+                    return;
+                }
+            }
+            else
+            {
+                DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
+
+                DataTable dt = _dataSource as DataTable;
+                newDataSource = dt.Clone();
+
+                results = (from p in dt.AsEnumerable()
+                           where p.Field<DateTime>("CreatedDate") != null &&
+                           p.Field<DateTime>("CreatedDate") >= tuNgay &&
+                           p.Field<DateTime>("CreatedDate") <= denNgay
+                           orderby p.Field<string>("TenThuoc")
+                           select p).ToList<DataRow>();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                if (newDataSource.Rows.Count > 0)
+                {
+                    dgLoThuoc.DataSource = newDataSource;
+                    return;
+                }
+            }
+
+            dgLoThuoc.DataSource = newDataSource;
         }
 
         private void SelectLastedRow()
@@ -137,6 +241,7 @@ namespace MM.Controls
 
                 newRow["LoThuocStatus"] = dlg.LoThuoc.Status;
                 dt.Rows.Add(newRow);
+                OnSearchLoThuoc();
                 //SelectLastedRow();
             }
         }
@@ -189,6 +294,7 @@ namespace MM.Controls
                     drLoThuoc["DeletedBy"] = dlg.LoThuoc.DeletedBy.ToString();
 
                 drLoThuoc["LoThuocStatus"] = dlg.LoThuoc.Status;
+                OnSearchLoThuoc();
             }
         }
 
@@ -217,6 +323,8 @@ namespace MM.Controls
                         {
                             dt.Rows.Remove(row);
                         }
+
+                        OnSearchLoThuoc();
                     }
                     else
                     {
@@ -261,6 +369,35 @@ namespace MM.Controls
             if (!AllowEdit) return;
             OnEditLoThuoc();
         }
+
+        private void raTenThuoc_CheckedChanged(object sender, EventArgs e)
+        {
+            txtTenThuoc.ReadOnly = !raTenThuoc.Checked;
+            dtpkTuNgay.Enabled = !raTenThuoc.Checked;
+            dtpkDenNgay.Enabled = !raTenThuoc.Checked;
+
+            OnSearchLoThuoc();
+        }
+
+        private void raTuNgayDenNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            OnSearchLoThuoc();
+        }
+
+        private void dtpkTuNgay_ValueChanged(object sender, EventArgs e)
+        {
+            OnSearchLoThuoc();
+        }
+
+        private void dtpkDenNgay_ValueChanged(object sender, EventArgs e)
+        {
+            OnSearchLoThuoc();
+        }
+
+        private void txtTenThuoc_TextChanged(object sender, EventArgs e)
+        {
+            OnSearchLoThuoc();
+        }
         #endregion
 
         #region Working Thread
@@ -283,6 +420,6 @@ namespace MM.Controls
         }
         #endregion
 
-       
+        
     }
 }
