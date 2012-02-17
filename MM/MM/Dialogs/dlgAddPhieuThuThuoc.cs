@@ -426,7 +426,27 @@ namespace MM.Dialogs
                     }
 
 
-                    Result r = LoThuocBus.CheckThuocHetHan(thuocGUID);
+                    int soLuong = 1;
+                    if (row.Cells[3].Value != null && row.Cells[3].Value != DBNull.Value)
+                        soLuong = Convert.ToInt32(row.Cells[3].Value);
+
+                    Result r = LoThuocBus.CheckThuocTonKho(thuocGUID, soLuong);
+                    if (r.IsOK)
+                    {
+                        if (!Convert.ToBoolean(r.QueryResult))
+                        {
+                            MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết hoặc không đủ số lượng để bán. Vui lòng chọn thuốc khác.", tenThuoc), IconType.Information);
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(this.Text, r.GetErrorAsString("LoThuocBus.CheckThuocTonKho"), IconType.Error);
+                        Utility.WriteToTraceLog(r.GetErrorAsString("LoThuocBus.CheckThuocTonKho"));
+                        return false;
+                    }
+
+                    r = LoThuocBus.CheckThuocHetHan(thuocGUID);
                     if (r.IsOK)
                     {
                         if (Convert.ToBoolean(r.QueryResult))
@@ -442,25 +462,7 @@ namespace MM.Dialogs
                         return false;
                     }
 
-                    int soLuong = 1;
-                    if (row.Cells[3].Value != null && row.Cells[3].Value != DBNull.Value)
-                       soLuong = Convert.ToInt32(row.Cells[3].Value);
-
-                    r = LoThuocBus.CheckThuocTonKho(thuocGUID, soLuong);
-                    if (r.IsOK)
-                    {
-                        if (!Convert.ToBoolean(r.QueryResult))
-                        {
-                            MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết hoặc không đủ số lượng để bán. Vui lòng chọn thuốc khác.", tenThuoc), IconType.Information);
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        MsgBox.Show(this.Text, r.GetErrorAsString("LoThuocBus.CheckThuocTonKho"), IconType.Error);
-                        Utility.WriteToTraceLog(r.GetErrorAsString("LoThuocBus.CheckThuocTonKho"));
-                        return false;
-                    }
+                    
                 }
             }
 
