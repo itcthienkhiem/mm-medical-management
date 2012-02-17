@@ -229,7 +229,7 @@ namespace MM.Dialogs
                 double donGia = 0;
                 if (donGiaList != null && donGiaList.Count > 0)
                 {
-                    donGia = donGiaList[0];
+                    donGia = donGiaList[donGiaList.Count - 1];
                     foreach (double gt in donGiaList)
                     {
                         DataRow newRow = dtDonGia.NewRow();
@@ -269,7 +269,7 @@ namespace MM.Dialogs
                     List<double> donGiaList = GetGiaThuoc(thuocGUID);
                     double donGia = 0;
                     if (donGiaList != null && donGiaList.Count > 0)
-                        donGia = donGiaList[0];
+                        donGia = donGiaList[donGiaList.Count - 1];
 
                     int soLuong = Convert.ToInt32(row["SoLuong"]);
                     newRow["DonViTinh"] = donViTinh;
@@ -358,6 +358,8 @@ namespace MM.Dialogs
                     {
                         giaThuocList.Add(Convert.ToDouble(row["GiaBan"]));
                     }
+
+                    giaThuocList.Sort();
                 }
             }
             else
@@ -772,7 +774,7 @@ namespace MM.Dialogs
                 List<double> giaThuocList = GetGiaThuoc(thuocGUID);
                 double giaThuoc = 0;
                 if (giaThuocList != null && giaThuocList.Count > 0)
-                    giaThuoc = giaThuocList[0];
+                    giaThuoc = giaThuocList[giaThuocList.Count - 1];
 
                 dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
 
