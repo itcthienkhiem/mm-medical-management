@@ -342,6 +342,7 @@ namespace MM.Dialogs
             double thanhTien = soLuong * donGia - tienGiam;
             dgChiTiet[6, rowIndex].Value = thanhTien;
 
+
             CalculateTongTien();
         }
 
@@ -823,7 +824,7 @@ namespace MM.Dialogs
             {
                 if (e.Value == null || e.Value.ToString() == string.Empty || e.Value == DBNull.Value)
                 {
-                    if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                    if (e.ColumnIndex == 4 || e.ColumnIndex == 5 || e.ColumnIndex == 6)
                         e.Value = "0";
                     else
                         e.Value = "1";
@@ -892,5 +893,22 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        private void dgChiTiet_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            //int i = 0;
+        }
+
+        private void dgChiTiet_Leave(object sender, EventArgs e)
+        {
+            if (_isNew)
+            {
+                int rowIndex = dgChiTiet.CurrentRow.Index;
+                if (rowIndex < 0) return;
+                dgChiTiet.CurrentCell = dgChiTiet[0, rowIndex];
+                dgChiTiet.Rows[rowIndex].Selected = true;
+                
+            }
+        }
     }
 }
