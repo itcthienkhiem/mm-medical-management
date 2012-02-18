@@ -312,7 +312,7 @@ namespace MM.Dialogs
         {
             double giaQuiDoi = (double)numGiaNhap.Value / (double)numSoLuongQuiDoi.Value;
             giaQuiDoi = Math.Round(giaQuiDoi, 0);
-            giaQuiDoi = Utility.FixedPrice(Convert.ToInt32(giaQuiDoi));
+            //giaQuiDoi = Utility.FixedPrice(Convert.ToInt32(giaQuiDoi));
             lbGiaNhapQuiDoi.Text = string.Format("Giá nhập mỗi {0}:", txtDonViTinhQuiDoi.Text.ToLower());
             numGiaNhapQuiDoi.Value = (Decimal)giaQuiDoi;
         }
