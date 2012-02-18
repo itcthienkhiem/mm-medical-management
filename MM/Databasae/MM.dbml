@@ -1607,76 +1607,6 @@
       <Column Name="PhuKhoaNote" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.KetQuaNoiSoi" Member="KetQuaNoiSois">
-    <Type Name="KetQuaNoiSoi">
-      <Column Name="KetQuaNoiSoiGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SoPhieu" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="NgayKham" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="LyDoKham" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="BacSiChiDinh" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="BacSiSoi" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="KetLuan" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="DeNghi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="LoaiNoiSoi" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="OngTaiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="OngTraiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MangNhiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MangNhiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CanBuaTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CanBuaPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="HomNhiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="HomNhiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ValsavaTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ValsavaPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="NiemMacTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="NiemMacPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="VachNganTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="VachNganPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="KheTrenTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="KheTrenPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="KheGiuaTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="KheGiuaPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CuonGiuaTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CuonGiuaPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CuonDuoiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CuonDuoiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MangMocTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MangMocPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="BongSangTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="BongSangPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="VomTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="VomPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Amydale" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="XoangLe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MiengThucQuan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="SunPheu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DayThanh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="BangThanhThat" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="OngTaiNgoai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MangNhi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="NiemMac" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="VachNgan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="KheTren" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="KheGiua" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MomMoc_BongSang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Vom" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="ThanhQuan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Hinh1" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Hinh2" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Hinh3" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="Hinh4" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_KetQuaNoiSoi" Member="DocStaff" ThisKey="BacSiSoi" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
-      <Association Name="Patient_KetQuaNoiSoi" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.BacSiChiDinhView" Member="BacSiChiDinhViews">
     <Type Name="BacSiChiDinhView">
       <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -1777,9 +1707,9 @@
       <Column Name="Source" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.KetQuaNoiSoiView" Member="KetQuaNoiSoiViews">
-    <Type Name="KetQuaNoiSoiView">
-      <Column Name="KetQuaNoiSoiGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.KetQuaNoiSoi" Member="KetQuaNoiSois">
+    <Type Name="KetQuaNoiSoi">
+      <Column Name="KetQuaNoiSoiGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoPhieu" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="NgayKham" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -1790,7 +1720,7 @@
       <Column Name="DeNghi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="LoaiNoiSoi" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="OngTaiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="OngTraiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="OngTaiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="MangNhiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="MangNhiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="CanBuaTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
@@ -1811,8 +1741,8 @@
       <Column Name="CuonGiuaPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="CuonDuoiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="CuonDuoiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MangMocTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MangMocPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MomMocTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MomMocPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="BongSangTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="BongSangPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="VomTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
@@ -1843,22 +1773,81 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="HomePhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="WorkPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="GenderAsStr" Type="System.String" DbType="NVarChar(14)" CanBeNull="true" />
-      <Column Name="Occupation" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="FileNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Archived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="DocStaff_KetQuaNoiSoi" Member="DocStaff" ThisKey="BacSiSoi" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
+      <Association Name="Patient_KetQuaNoiSoi" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KetQuaNoiSoiView" Member="KetQuaNoiSoiViews">
+    <Type Name="KetQuaNoiSoiView">
+      <Column Name="KetQuaNoiSoiGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SoPhieu" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NgayKham" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="LyDoKham" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BacSiChiDinh" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="BacSiSoi" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="KetLuan" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DeNghi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="LoaiNoiSoi" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="OngTaiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MangNhiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MangNhiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CanBuaTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CanBuaPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="HomNhiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="HomNhiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ValsavaTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ValsavaPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NiemMacTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NiemMacPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="VachNganTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="VachNganPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="KheTrenTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="KheTrenPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="KheGiuaTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="KheGiuaPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CuonGiuaTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CuonGiuaPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CuonDuoiTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CuonDuoiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="BongSangTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="BongSangPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="VomTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="VomPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Amydale" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="XoangLe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MiengThucQuan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SunPheu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DayThanh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="BangThanhThat" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="OngTaiNgoai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MangNhi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="NiemMac" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="VachNgan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="KheTren" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="KheGiua" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MomMoc_BongSang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Vom" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ThanhQuan" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Hinh1" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Hinh2" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Hinh3" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Hinh4" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="TenBacSiChiDinh" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="TenBacSiNoiSoi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="BSCDArchived" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="BSCDAvailableToWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="BSNSArchived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="BCNSAvailableToWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="LoaiNoiSoiStr" Type="System.String" DbType="NVarChar(17)" CanBeNull="true" />
+      <Column Name="OngTaiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MomMocTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MomMocPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

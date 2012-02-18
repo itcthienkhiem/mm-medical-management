@@ -91,11 +91,15 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebCam_Capture">
+      <HintPath>..\MM\Components\WebCam_Capture.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompanyInfo.cs" />
@@ -114,6 +118,7 @@
     <Compile Include="Result.cs" />
     <Compile Include="RijndaelCrypto.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="WebCam.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -771,6 +771,25 @@ namespace MM.Common
             return string.Empty;
         }
 
+        public static string ParseLoaiNoiSoiEnumToName(LoaiNoiSoi type)
+        {
+            switch (type)
+            {
+                case LoaiNoiSoi.Tai:
+                    return "Tai";
+                case LoaiNoiSoi.Mui:
+                    return "Mũi";
+                case LoaiNoiSoi.Hong_ThanhQuan:
+                    return "Họng - Thanh quản";
+                case LoaiNoiSoi.TaiMuiHong:
+                    return "Tai - Mũi - Họng";
+                case LoaiNoiSoi.TongQuat:
+                    return "Tổng quát";
+            }
+
+            return string.Empty;
+        }
+
         public static int FixedPrice(int price)
         {
             int fixedPrice = 0;

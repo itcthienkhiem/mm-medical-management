@@ -367,6 +367,12 @@
     <Compile Include="Controls\uKetQuaLamSangList.Designer.cs">
       <DependentUpon>uKetQuaLamSangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiList.Designer.cs">
+      <DependentUpon>uKetQuaNoiSoiList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uLoiKhuyenList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -875,6 +881,9 @@
     <EmbeddedResource Include="Controls\uKetQuaLamSangList.resx">
       <DependentUpon>uKetQuaLamSangList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaNoiSoiList.resx">
+      <DependentUpon>uKetQuaNoiSoiList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uLoiKhuyenList.resx">
       <DependentUpon>uLoiKhuyenList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1125,6 +1134,7 @@
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetLuanView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaLamSangView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.KetQuaNoiSoiView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
@@ -1201,6 +1211,7 @@
     <Content Include="Components\SpreadsheetGear.Design.dll" />
     <Content Include="Components\SpreadsheetGear.dll" />
     <Content Include="Components\uninstall.ico" />
+    <Content Include="Components\WebCam_Capture.dll" />
     <Content Include="Controls\Excel\Office\Excel\MetaData\EscherRecordTypes.txt" />
     <Content Include="Controls\Excel\Office\Excel\MetaData\Excel.xml" />
     <Content Include="Controls\Excel\Office\Excel\MetaData\Record Identifier.txt" />
@@ -1223,6 +1234,8 @@
     <None Include="Resources\pills-5-icon.png" />
     <None Include="Resources\event-search-icon %281%29.png" />
     <None Include="Resources\event-search-icon.png" />
+    <None Include="Resources\Device-WebCam-icon %281%29.png" />
+    <None Include="Resources\Device-WebCam-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-11.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-02_2012-02-02.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-16_2012-01-17.sql" />

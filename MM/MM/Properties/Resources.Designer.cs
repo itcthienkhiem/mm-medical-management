@@ -333,6 +333,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Device_WebCam_icon {
+            get {
+                object obj = ResourceManager.GetObject("Device_WebCam_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Device_WebCam_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("Device_WebCam_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Doctor_32 {
             get {
                 object obj = ResourceManager.GetObject("Doctor_32", resourceCulture);
