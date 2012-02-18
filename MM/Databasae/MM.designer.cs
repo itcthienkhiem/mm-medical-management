@@ -150,6 +150,9 @@ namespace MM.Databasae
     partial void InsertKetQuaNoiSoi(KetQuaNoiSoi instance);
     partial void UpdateKetQuaNoiSoi(KetQuaNoiSoi instance);
     partial void DeleteKetQuaNoiSoi(KetQuaNoiSoi instance);
+    partial void InsertPhongCho(PhongCho instance);
+    partial void UpdatePhongCho(PhongCho instance);
+    partial void DeletePhongCho(PhongCho instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -755,6 +758,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<KetQuaNoiSoiView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PhongCho> PhongChos
+		{
+			get
+			{
+				return this.GetTable<PhongCho>();
 			}
 		}
 		
@@ -4152,6 +4163,8 @@ namespace MM.Databasae
 		
 		private EntitySet<KetQuaNoiSoi> _KetQuaNoiSois;
 		
+		private EntitySet<PhongCho> _PhongChos;
+		
 		private EntityRef<Contact> _Contact;
 		
     #region Extensibility Method Definitions
@@ -4195,6 +4208,7 @@ namespace MM.Databasae
 			this._KetLuans = new EntitySet<KetLuan>(new Action<KetLuan>(this.attach_KetLuans), new Action<KetLuan>(this.detach_KetLuans));
 			this._KetQuaLamSangs = new EntitySet<KetQuaLamSang>(new Action<KetQuaLamSang>(this.attach_KetQuaLamSangs), new Action<KetQuaLamSang>(this.detach_KetQuaLamSangs));
 			this._KetQuaNoiSois = new EntitySet<KetQuaNoiSoi>(new Action<KetQuaNoiSoi>(this.attach_KetQuaNoiSois), new Action<KetQuaNoiSoi>(this.detach_KetQuaNoiSois));
+			this._PhongChos = new EntitySet<PhongCho>(new Action<PhongCho>(this.attach_PhongChos), new Action<PhongCho>(this.detach_PhongChos));
 			this._Contact = default(EntityRef<Contact>);
 			OnCreated();
 		}
@@ -4566,6 +4580,19 @@ namespace MM.Databasae
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_PhongCho", Storage="_PhongChos", ThisKey="PatientGUID", OtherKey="PatientGUID")]
+		public EntitySet<PhongCho> PhongChos
+		{
+			get
+			{
+				return this._PhongChos;
+			}
+			set
+			{
+				this._PhongChos.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_Patient", Storage="_Contact", ThisKey="ContactGUID", OtherKey="ContactGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Contact Contact
 		{
@@ -4747,6 +4774,18 @@ namespace MM.Databasae
 		}
 		
 		private void detach_KetQuaNoiSois(KetQuaNoiSoi entity)
+		{
+			this.SendPropertyChanging();
+			entity.Patient = null;
+		}
+		
+		private void attach_PhongChos(PhongCho entity)
+		{
+			this.SendPropertyChanging();
+			entity.Patient = this;
+		}
+		
+		private void detach_PhongChos(PhongCho entity)
 		{
 			this.SendPropertyChanging();
 			entity.Patient = null;
@@ -36107,6 +36146,157 @@ namespace MM.Databasae
 				{
 					this._MomMocPhai = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PhongCho")]
+	public partial class PhongCho : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _PhongChoGUID;
+		
+		private System.Guid _PatientGUID;
+		
+		private System.DateTime _Ngay;
+		
+		private EntityRef<Patient> _Patient;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPhongChoGUIDChanging(System.Guid value);
+    partial void OnPhongChoGUIDChanged();
+    partial void OnPatientGUIDChanging(System.Guid value);
+    partial void OnPatientGUIDChanged();
+    partial void OnNgayChanging(System.DateTime value);
+    partial void OnNgayChanged();
+    #endregion
+		
+		public PhongCho()
+		{
+			this._Patient = default(EntityRef<Patient>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhongChoGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid PhongChoGUID
+		{
+			get
+			{
+				return this._PhongChoGUID;
+			}
+			set
+			{
+				if ((this._PhongChoGUID != value))
+				{
+					this.OnPhongChoGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._PhongChoGUID = value;
+					this.SendPropertyChanged("PhongChoGUID");
+					this.OnPhongChoGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PatientGUID
+		{
+			get
+			{
+				return this._PatientGUID;
+			}
+			set
+			{
+				if ((this._PatientGUID != value))
+				{
+					if (this._Patient.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPatientGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientGUID = value;
+					this.SendPropertyChanged("PatientGUID");
+					this.OnPatientGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Ngay", DbType="DateTime NOT NULL")]
+		public System.DateTime Ngay
+		{
+			get
+			{
+				return this._Ngay;
+			}
+			set
+			{
+				if ((this._Ngay != value))
+				{
+					this.OnNgayChanging(value);
+					this.SendPropertyChanging();
+					this._Ngay = value;
+					this.SendPropertyChanged("Ngay");
+					this.OnNgayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_PhongCho", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Patient Patient
+		{
+			get
+			{
+				return this._Patient.Entity;
+			}
+			set
+			{
+				Patient previousValue = this._Patient.Entity;
+				if (((previousValue != value) 
+							|| (this._Patient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Patient.Entity = null;
+						previousValue.PhongChos.Remove(this);
+					}
+					this._Patient.Entity = value;
+					if ((value != null))
+					{
+						value.PhongChos.Add(this);
+						this._PatientGUID = value.PatientGUID;
+					}
+					else
+					{
+						this._PatientGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

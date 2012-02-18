@@ -84,6 +84,9 @@ spDichVuHopDong
 2012-02-17
 - Create table: KetQuaNoiSoi
 - Create view: BacSiChiDinhView, BacSiNoiSoiView, KetQuaNoiSoiViews
+2012-02-18
+- Create table: PhongCho
+- Insert Function(PhongCho);
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

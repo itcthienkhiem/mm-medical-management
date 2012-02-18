@@ -101,6 +101,7 @@
     <Compile Include="NhomThuocBus.cs" />
     <Compile Include="PatientBus.cs" />
     <Compile Include="PhieuThuThuocBus.cs" />
+    <Compile Include="PhongChoBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiptBus.cs" />
     <Compile Include="ReportBus.cs" />

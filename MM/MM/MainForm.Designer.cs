@@ -193,6 +193,7 @@
             this.dockContainerItem1 = new DevComponents.DotNetBar.DockContainerItem();
             this.bar2 = new DevComponents.DotNetBar.Bar();
             this.panelDockContainer2 = new DevComponents.DotNetBar.PanelDockContainer();
+            this._uPhongChoList = new MM.Controls.uPhongChoList();
             this.dockContainerItem2 = new DevComponents.DotNetBar.DockContainerItem();
             this.dockSite1 = new DevComponents.DotNetBar.DockSite();
             this.dockSite2 = new DevComponents.DotNetBar.DockSite();
@@ -213,6 +214,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar2)).BeginInit();
             this.bar2.SuspendLayout();
+            this.panelDockContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // _mainPanel
@@ -1246,8 +1248,8 @@
             this.dockSite4.Controls.Add(this.bar2);
             resources.ApplyResources(this.dockSite4, "dockSite4");
             this.dockSite4.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer(new DevComponents.DotNetBar.DocumentBaseContainer[] {
-            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar1, 928, 172))),
-            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar2, 928, 150)))}, DevComponents.DotNetBar.eOrientation.Vertical);
+            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar1, 928, 193))),
+            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar2, 928, 222)))}, DevComponents.DotNetBar.eOrientation.Vertical);
             this.dockSite4.Name = "dockSite4";
             this.dockSite4.TabStop = false;
             // 
@@ -1440,6 +1442,7 @@
             // panelDockContainer2
             // 
             this.panelDockContainer2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            this.panelDockContainer2.Controls.Add(this._uPhongChoList);
             resources.ApplyResources(this.panelDockContainer2, "panelDockContainer2");
             this.panelDockContainer2.Name = "panelDockContainer2";
             this.panelDockContainer2.Style.Alignment = System.Drawing.StringAlignment.Center;
@@ -1447,6 +1450,11 @@
             this.panelDockContainer2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
             this.panelDockContainer2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
             this.panelDockContainer2.Style.GradientAngle = 90;
+            // 
+            // _uPhongChoList
+            // 
+            resources.ApplyResources(this._uPhongChoList, "_uPhongChoList");
+            this._uPhongChoList.Name = "_uPhongChoList";
             // 
             // dockContainerItem2
             // 
@@ -1541,6 +1549,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bar2)).EndInit();
             this.bar2.ResumeLayout(false);
+            this.panelDockContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1710,6 +1719,7 @@
         private DevComponents.DotNetBar.Bar bar2;
         private DevComponents.DotNetBar.PanelDockContainer panelDockContainer2;
         private DevComponents.DotNetBar.DockContainerItem dockContainerItem2;
+        private Controls.uPhongChoList _uPhongChoList;
 
     }
 }

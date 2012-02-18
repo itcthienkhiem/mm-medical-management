@@ -291,6 +291,13 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap conference_icon {
+            get {
+                object obj = ResourceManager.GetObject("conference_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap connect_info {
             get {
                 object obj = ResourceManager.GetObject("connect_info", resourceCulture);

@@ -55,6 +55,7 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnOpenPatient.Enabled = AllowOpenPatient;
             btnImportExcel.Enabled = AllowImport;
+            btnVaoPhongCho.Enabled = Global.AllowAddPhongCho;
         }
 
         public void ClearData()
@@ -884,6 +885,36 @@ namespace MM.Controls
         {
             OnSearchPatient();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (_dataSource == null) return;
+            UpdateChecked();
+            List<string> addedPatientList = new List<string>();
+            foreach (DataRow row in _dataSource.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    string patientGUID = row["PatientGUID"].ToString();
+                    addedPatientList.Add(patientGUID);
+                }
+            }
+
+            if (addedPatientList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn thêm những bệnh nhân đã đánh dấu vào phòng chờ ?") == DialogResult.Yes)
+                {
+                    Result result = PhongChoBus.AddPhongCho(addedPatientList);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhongChoBus.AddPhongCho"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PhongChoBus.AddPhongCho"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần đưa vào phòng chờ.", IconType.Information);
+        }
         #endregion
 
         #region Working Thread
@@ -905,5 +936,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
