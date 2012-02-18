@@ -16,13 +16,26 @@ namespace MM.Dialogs
     public partial class dlgAddKetQuaNoiSoi : dlgBase
     {
         #region Members
-
+        private bool _isNew = true;
+        private string _patientGUID = string.Empty;
+        private KetQuaNoiSoi _ketQuaNoiSoi = new KetQuaNoiSoi();
+        private DataRow _drKetQuaNoiSoi = null;
         #endregion
 
         #region Constructor
-        public dlgAddKetQuaNoiSoi()
+        public dlgAddKetQuaNoiSoi(string patientGUID)
         {
             InitializeComponent();
+            _patientGUID = patientGUID;
+        }
+
+        public dlgAddKetQuaNoiSoi(string patientGUID, DataRow drKetQuaNoiSoi)
+        {
+            InitializeComponent();
+            _patientGUID = patientGUID;
+            _drKetQuaNoiSoi = drKetQuaNoiSoi;
+            _isNew = false;
+            this.Text = "Sua kham noi soi";
         }
         #endregion
 
