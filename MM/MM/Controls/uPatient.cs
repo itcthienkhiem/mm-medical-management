@@ -105,6 +105,8 @@ namespace MM.Controls
                 _uLoiKhuyenList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 7)
                 _uKetLuanList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 8)
+                _uKetQuaNoiSoiList.DisplayAsThread();
         }
 
         public void DisplayCheckListAsThread()
@@ -199,6 +201,8 @@ namespace MM.Controls
                 _uLoiKhuyenList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 7)
                 _uKetLuanList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 8)
+                _uKetQuaNoiSoiList.DisplayAsThread();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

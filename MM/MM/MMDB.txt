@@ -85,10 +85,11 @@ spDichVuHopDong
 - Create table: KetQuaNoiSoi
 - Create view: BacSiChiDinhView, BacSiNoiSoiView, KetQuaNoiSoiViews
 
-1. Unicode
-2. Format DateTime
-3. Xác nhận chỉ định
-4. Ngày tái khám của kê toa thuốc allow null
-5. Chọn thuốc nhanh
-6. Chọn bệnh nhân từ danh sách bệnh trong phiếu thu thuốc
-7. Report Doanh thu theo ngày
+1. Waiting room
+2. Fixed số thứ tự của mã bệnh nhân kô cho sửa
+3. In danh sách checklist của danh sách nhân viên của hợp đồng
+4. Thêm column Tình trạng hôn nhân vào phần in danh sách nhân viên của hợp đồng
+5. Phát sinh mã bệnh nhân
+
+
+
