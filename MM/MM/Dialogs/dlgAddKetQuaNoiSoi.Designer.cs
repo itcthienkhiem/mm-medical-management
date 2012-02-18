@@ -43,7 +43,7 @@
             this.Name = "dlgAddKetQuaNoiSoi";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Them ket qua noi soi";
+            this.Text = "Them kham noi soi";
             this.ResumeLayout(false);
 
         }
