@@ -175,6 +175,7 @@
       <Association Name="Patient_KetLuan" Member="KetLuans" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="KetLuan" />
       <Association Name="Patient_KetQuaLamSang" Member="KetQuaLamSangs" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="KetQuaLamSang" />
       <Association Name="Patient_KetQuaNoiSoi" Member="KetQuaNoiSois" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="KetQuaNoiSoi" />
+      <Association Name="Patient_PhongCho" Member="PhongChos" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="PhongCho" />
       <Association Name="Contact_Patient" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -1848,6 +1849,14 @@
       <Column Name="OngTaiPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="MomMocTrai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="MomMocPhai" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhongCho" Member="PhongChos">
+    <Type Name="PhongCho">
+      <Column Name="PhongChoGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Ngay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Patient_PhongCho" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

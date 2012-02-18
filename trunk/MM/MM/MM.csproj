@@ -433,6 +433,12 @@
     <Compile Include="Controls\uPhieuThuThuocList.Designer.cs">
       <DependentUpon>uPhieuThuThuocList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPhongChoList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPhongChoList.Designer.cs">
+      <DependentUpon>uPhongChoList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPrintLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -920,6 +926,9 @@
     <EmbeddedResource Include="Controls\uPhieuThuThuocList.resx">
       <DependentUpon>uPhieuThuThuocList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPhongChoList.resx">
+      <DependentUpon>uPhongChoList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPrintLabel.resx">
       <DependentUpon>uPrintLabel.cs</DependentUpon>
     </EmbeddedResource>
@@ -1245,6 +1254,7 @@
     <None Include="Resources\event-search-icon.png" />
     <None Include="Resources\Device-WebCam-icon %281%29.png" />
     <None Include="Resources\Device-WebCam-icon.png" />
+    <None Include="Resources\conference-icon.png" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-11.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-02_2012-02-02.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-01-16_2012-01-17.sql" />

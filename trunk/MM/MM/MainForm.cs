@@ -31,6 +31,7 @@ namespace MM
             _uPatientList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uCompanyList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uContractList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            _uPhongChoList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
         }
         #endregion
 
@@ -536,6 +537,17 @@ namespace MM
                             doanhThuTheoNgayToolStripMenuItem.Enabled = isView & isLogin;
 
                         }
+                        else if (functionCode == Const.PhongCho)
+                        {
+                            _uPhongChoList.AllowAdd = isAdd;
+                            _uPhongChoList.AllowEdit = isEdit;
+                            _uPhongChoList.AllowDelete = isDelete;
+                            _uPhongChoList.AllowPrint = isPrint;
+                            _uPhongChoList.AllowExport = isExport;
+                            _uPhongChoList.AllowImport = isImport;
+                            Global.AllowAddPhongCho = isAdd;
+                            _uPhongChoList.IsEnableBtnRaPhongCho = isDelete & isLogin;
+                        }
                     }
                 }
                 else
@@ -556,6 +568,7 @@ namespace MM
                 Global.AllowEditChiDinh = true;
                 Global.AllowDeleteChiDinh = true;
                 Global.AllowConfirmChiDinh = true;
+                Global.AllowAddPhongCho = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
@@ -643,6 +656,8 @@ namespace MM
                 serviceGroupToolStripMenuItem.Enabled = isLogin;
                 inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Enabled = isLogin;
                 doanhThuTheoNgayToolStripMenuItem.Enabled = isLogin;
+
+                _uPhongChoList.IsEnableBtnRaPhongCho = isLogin;
             }
         }
 

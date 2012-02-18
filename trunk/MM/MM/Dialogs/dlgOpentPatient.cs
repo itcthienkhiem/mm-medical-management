@@ -24,6 +24,7 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             _uSearchPatient.OnOpenPatient += new OpenPatientHandler(_uSearchPatient_OnOpenPatient);
+            btnVaoPhongCho.Enabled = Global.AllowAddPhongCho;
         }
         #endregion
 
@@ -68,6 +69,27 @@ namespace MM.Dialogs
 
         private void dlgOpentPatient_Load(object sender, EventArgs e)
         {
+        }
+
+        private void btnVaoPhongCho_Click(object sender, EventArgs e)
+        {
+            _patientRow = _uSearchPatient.PatientRow;
+            if (_patientRow != null)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn thêm bệnh nhân đã chọn vào phòng chờ ?") == DialogResult.Yes)
+                {
+                    List<string> addedPatientList = new List<string>();
+                    addedPatientList.Add(((DataRow)_patientRow)["PatientGUID"].ToString());
+                    Result result = PhongChoBus.AddPhongCho(addedPatientList);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhongChoBus.AddPhongCho"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PhongChoBus.AddPhongCho"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn bệnh nhân mà bạn muốn đưa vào phòng chờ.", IconType.Information);
         }
         #endregion
     }

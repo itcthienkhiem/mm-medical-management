@@ -34,12 +34,14 @@
             this.btnOpenPatient = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this._uSearchPatient = new MM.Controls.uSearchPatient();
+            this.btnVaoPhongCho = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnVaoPhongCho);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnOpenPatient);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -90,6 +92,18 @@
             this._uSearchPatient.Size = new System.Drawing.Size(853, 399);
             this._uSearchPatient.TabIndex = 0;
             // 
+            // btnVaoPhongCho
+            // 
+            this.btnVaoPhongCho.Image = global::MM.Properties.Resources.conference_icon;
+            this.btnVaoPhongCho.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVaoPhongCho.Location = new System.Drawing.Point(200, 6);
+            this.btnVaoPhongCho.Name = "btnVaoPhongCho";
+            this.btnVaoPhongCho.Size = new System.Drawing.Size(115, 25);
+            this.btnVaoPhongCho.TabIndex = 25;
+            this.btnVaoPhongCho.Text = "      &Vào phòng chờ";
+            this.btnVaoPhongCho.UseVisualStyleBackColor = true;
+            this.btnVaoPhongCho.Click += new System.EventHandler(this.btnVaoPhongCho_Click);
+            // 
             // dlgOpentPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -116,5 +130,6 @@
         private System.Windows.Forms.Button btnOpenPatient;
         private System.Windows.Forms.Button btnCancel;
         private Controls.uSearchPatient _uSearchPatient;
+        private System.Windows.Forms.Button btnVaoPhongCho;
     }
 }
