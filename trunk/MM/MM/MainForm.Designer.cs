@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uDoanhThuTheoNgay = new MM.Controls.uDoanhThuTheoNgay();
             this._uGiaVonDichVuList = new MM.Controls.uGiaVonDichVuList();
             this._uInKetQuaKhamSucKhoeTongQuat = new MM.Controls.uInKetQuaKhamSucKhoeTongQuat();
             this._uServiceGroupList = new MM.Controls.uServiceGroupList();
@@ -190,6 +191,9 @@
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dockContainerItem1 = new DevComponents.DotNetBar.DockContainerItem();
+            this.bar2 = new DevComponents.DotNetBar.Bar();
+            this.panelDockContainer2 = new DevComponents.DotNetBar.PanelDockContainer();
+            this.dockContainerItem2 = new DevComponents.DotNetBar.DockContainerItem();
             this.dockSite1 = new DevComponents.DotNetBar.DockSite();
             this.dockSite2 = new DevComponents.DotNetBar.DockSite();
             this.dockSite8 = new DevComponents.DotNetBar.DockSite();
@@ -197,7 +201,6 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._uDoanhThuTheoNgay = new MM.Controls.uDoanhThuTheoNgay();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -208,6 +211,8 @@
             this.panelDockContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bar2)).BeginInit();
+            this.bar2.SuspendLayout();
             this.SuspendLayout();
             // 
             // _mainPanel
@@ -245,6 +250,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uDoanhThuTheoNgay
+            // 
+            resources.ApplyResources(this._uDoanhThuTheoNgay, "_uDoanhThuTheoNgay");
+            this._uDoanhThuTheoNgay.Name = "_uDoanhThuTheoNgay";
             // 
             // _uGiaVonDichVuList
             // 
@@ -1233,9 +1243,11 @@
             // 
             this.dockSite4.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
             this.dockSite4.Controls.Add(this.bar1);
+            this.dockSite4.Controls.Add(this.bar2);
             resources.ApplyResources(this.dockSite4, "dockSite4");
             this.dockSite4.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer(new DevComponents.DotNetBar.DocumentBaseContainer[] {
-            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar1, 928, 227)))}, DevComponents.DotNetBar.eOrientation.Vertical);
+            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar1, 928, 172))),
+            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar2, 928, 150)))}, DevComponents.DotNetBar.eOrientation.Vertical);
             this.dockSite4.Name = "dockSite4";
             this.dockSite4.TabStop = false;
             // 
@@ -1408,6 +1420,40 @@
             this.dockContainerItem1.Name = "dockContainerItem1";
             resources.ApplyResources(this.dockContainerItem1, "dockContainerItem1");
             // 
+            // bar2
+            // 
+            resources.ApplyResources(this.bar2, "bar2");
+            this.bar2.AccessibleRole = System.Windows.Forms.AccessibleRole.ToolBar;
+            this.bar2.AutoHide = true;
+            this.bar2.AutoSyncBarCaption = true;
+            this.bar2.CloseSingleTab = true;
+            this.bar2.Controls.Add(this.panelDockContainer2);
+            this.bar2.GrabHandleStyle = DevComponents.DotNetBar.eGrabHandleStyle.Caption;
+            this.bar2.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.dockContainerItem2});
+            this.bar2.LayoutType = DevComponents.DotNetBar.eLayoutType.DockContainer;
+            this.bar2.Name = "bar2";
+            this.bar2.Stretch = true;
+            this.bar2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            this.bar2.TabStop = false;
+            // 
+            // panelDockContainer2
+            // 
+            this.panelDockContainer2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
+            resources.ApplyResources(this.panelDockContainer2, "panelDockContainer2");
+            this.panelDockContainer2.Name = "panelDockContainer2";
+            this.panelDockContainer2.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.panelDockContainer2.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarBackground;
+            this.panelDockContainer2.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
+            this.panelDockContainer2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.panelDockContainer2.Style.GradientAngle = 90;
+            // 
+            // dockContainerItem2
+            // 
+            this.dockContainerItem2.Control = this.panelDockContainer2;
+            this.dockContainerItem2.Name = "dockContainerItem2";
+            resources.ApplyResources(this.dockContainerItem2, "dockContainerItem2");
+            // 
             // dockSite1
             // 
             this.dockSite1.AccessibleRole = System.Windows.Forms.AccessibleRole.Window;
@@ -1460,11 +1506,6 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
-            // _uDoanhThuTheoNgay
-            // 
-            resources.ApplyResources(this._uDoanhThuTheoNgay, "_uDoanhThuTheoNgay");
-            this._uDoanhThuTheoNgay.Name = "_uDoanhThuTheoNgay";
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1498,6 +1539,8 @@
             this.panelDockContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bar2)).EndInit();
+            this.bar2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1664,6 +1707,9 @@
         private System.Windows.Forms.ToolStripMenuItem doanhThuTheoNgayToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator31;
         private Controls.uDoanhThuTheoNgay _uDoanhThuTheoNgay;
+        private DevComponents.DotNetBar.Bar bar2;
+        private DevComponents.DotNetBar.PanelDockContainer panelDockContainer2;
+        private DevComponents.DotNetBar.DockContainerItem dockContainerItem2;
 
     }
 }
