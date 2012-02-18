@@ -499,6 +499,12 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddKetQuaNoiSoi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKetQuaNoiSoi.Designer.cs">
+      <DependentUpon>dlgAddKetQuaNoiSoi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddMultiLoiKhuyen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -946,6 +952,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddKetQuaNoiSoi.resx">
+      <DependentUpon>dlgAddKetQuaNoiSoi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddMultiLoiKhuyen.resx">
       <DependentUpon>dlgAddMultiLoiKhuyen.cs</DependentUpon>
