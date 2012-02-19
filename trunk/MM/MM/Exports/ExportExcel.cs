@@ -1153,17 +1153,19 @@ namespace MM.Exports
                     string tenBenhNhan = row["FullName"].ToString();
                     string ngaySinh = row["DobStr"].ToString();
                     string gioiTinh = row["GenderAsStr"].ToString();
+                    string tinhTrangGiaDinh = row["Tinh_Trang_Gia_Dinh"].ToString();
 
                     workSheet.Cells[rowIndex, 0].Value = stt;
                     workSheet.Cells[rowIndex, 1].Value = maBenhNhan;
                     workSheet.Cells[rowIndex, 2].Value = tenBenhNhan;
                     workSheet.Cells[rowIndex, 3].Value = ngaySinh;
                     workSheet.Cells[rowIndex, 4].Value = gioiTinh;
+                    workSheet.Cells[rowIndex, 5].Value = tinhTrangGiaDinh;
                     rowIndex++;
                     stt++;
                 }
 
-                IRange range = workSheet.Cells[string.Format("A3:G{0}", checkedRows.Count + 2)];
+                IRange range = workSheet.Cells[string.Format("A3:H{0}", checkedRows.Count + 2)];
                 range.WrapText = false;
                 range.HorizontalAlignment = HAlign.General;
                 range.VerticalAlignment = VAlign.Top;
