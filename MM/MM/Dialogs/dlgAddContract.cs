@@ -940,6 +940,21 @@ namespace MM.Dialogs
         {
             OnExportExcel();
         }
+
+        private void btnPrintPreviewCheckList_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrintCheckList_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportExcelCheckList_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Working Thread
@@ -978,5 +993,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

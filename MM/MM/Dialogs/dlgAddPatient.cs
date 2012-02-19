@@ -75,7 +75,8 @@ namespace MM.Dialogs
             if (result.IsOK)
             {
                 int count = Convert.ToInt32(result.QueryResult);
-                txtFileNum.Text = Utility.GetCode("VGH", count + 1, 5);
+                txtFileNum.Text = "VGH";
+                txtNo.Text = Utility.GetCode(string.Empty, count + 1, 5);
             }
             else
             {
@@ -86,12 +87,12 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (txtFileNum.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập mã bệnh nhân.", IconType.Information);
-                txtFileNum.Focus();
-                return false;
-            }
+            //if (txtFileNum.Text.Trim() == string.Empty)
+            //{
+            //    MsgBox.Show(this.Text, "Vui lòng nhập mã bệnh nhân.", IconType.Information);
+            //    txtFileNum.Focus();
+            //    return false;
+            //}
 
             if (txtFullName.Text.Trim() == string.Empty)
             {
@@ -170,11 +171,30 @@ namespace MM.Dialogs
             return true;
         }
 
+        private void DisplayFileNum(string fileNum)
+        {
+            string refix = string.Empty;
+            string no = string.Empty;
+            for (int i = 0; i < fileNum.Length; i++)
+            {
+                char c = fileNum[i];
+                if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' &&
+                    c != '5' && c != '6' && c != '7' && c != '8' && c != '9')
+                    refix += c.ToString();
+                else
+                    no += c.ToString();
+            }
+
+            txtFileNum.Text = refix;
+            txtNo.Text = no;
+        }
+
         private void DisplayInfo(DataRow drPatient)
         {
             try
             {
-                txtFileNum.Text = drPatient["FileNum"] as string;
+                DisplayFileNum(drPatient["FileNum"].ToString());
+                //txtFileNum.Text = drPatient["FileNum"] as string;
                 txtFullName.Text = drPatient["FullName"] as string;
                 txtKnownAs.Text = drPatient["KnownAs"] as string;
                 txtPreferredName.Text = drPatient["PreferredName"] as string;
@@ -340,7 +360,7 @@ namespace MM.Dialogs
                 _contact.FAX = txtFax.Text;
                 _contact.Address = txtAddress.Text;
 
-                _patient.FileNum = txtFileNum.Text;
+                _patient.FileNum = txtFileNum.Text + txtNo.Text;
 
                 if (_isNew)
                 {
