@@ -95,6 +95,7 @@ spDichVuHopDong
 3. Thêm column Tình trạng hôn nhân vào phần in danh sách nhân viên của hợp đồng
 4. In danh sách checklist của danh sách nhân viên của hợp đồng
 5. Khám nội soi
+6. Thêm trên bs điều trị vào phần ký tên của in toa thuốc
 
 
 
