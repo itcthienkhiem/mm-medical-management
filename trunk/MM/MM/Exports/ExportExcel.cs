@@ -500,6 +500,12 @@ namespace MM.Exports
                     range.Value = "                    (BS điều trị)";
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
+
+
+                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 15)];
+                    range.Value = string.Format("                    {0}", toaThuoc.TenBacSi);
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.VerticalAlignment = VAlign.Top;
                 }
                 else
                 {
@@ -813,6 +819,12 @@ namespace MM.Exports
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
                     range.Value = "(BS điều trị)";
+
+                    range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 4)];
+                    range.Merge();
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.VerticalAlignment = VAlign.Top;
+                    range.Value = toaThuoc.TenBacSi;
                 }
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
