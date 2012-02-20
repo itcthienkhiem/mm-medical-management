@@ -1185,6 +1185,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Templates\CheckListTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuThuocTemplate.xls" />
     <None Include="Templates\DanhSachBenhNhanTemplate.xls" />
@@ -1255,6 +1256,7 @@
     <None Include="Resources\Device-WebCam-icon %281%29.png" />
     <None Include="Resources\Device-WebCam-icon.png" />
     <None Include="Resources\conference-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-02-20.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-17_2012-02-19.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-11.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-02_2012-02-02.sql" />

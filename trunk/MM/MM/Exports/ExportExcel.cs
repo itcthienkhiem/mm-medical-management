@@ -1208,6 +1208,206 @@ namespace MM.Exports
             return true;
         }
 
+        public static bool ExportCheckListToExcel(string exportFileName, DataRow drMember, DataTable dtCheckList)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\CheckListTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+
+                string tenBenhNhan = drMember["FullName"].ToString();
+                string gioiTinh = drMember["GenderAsStr"].ToString();
+                string ngaySinh = drMember["DobStr"].ToString();
+                string diaChi = drMember["Address"].ToString();
+                string mobile = drMember["Mobile"].ToString();
+                string email = drMember["Email"].ToString();
+
+                workSheet.Cells["B2"].Value = tenBenhNhan;
+                workSheet.Cells["D2"].Value = gioiTinh;
+                workSheet.Cells["F2"].Value = ngaySinh;
+                workSheet.Cells["B4"].Value = diaChi;
+                workSheet.Cells["B6"].Value = mobile;
+                workSheet.Cells["D6"].Value = email;
+
+                
+                List<string> servicesNameList = new List<string>();
+                Hashtable htServiceGroup = new Hashtable();
+                foreach (DataRow row in dtCheckList.Rows)
+                {
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    string nativeServiceName = row["Name"].ToString();
+                    string englishServiceName = string.Empty;
+                    if (row["EnglishName"] != null && row["EnglishName"] != DBNull.Value)
+                        englishServiceName = row["EnglishName"].ToString();
+
+                    string fullServiceName = string.Empty;
+                    if (englishServiceName.Trim() == string.Empty)
+                        fullServiceName = nativeServiceName;
+                    else
+                        fullServiceName = string.Format("{0} ({1})", englishServiceName, nativeServiceName);
+
+                    Result result = ServiceGroupBus.GetServiceGroup(serviceGUID);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceGroupBus.GetServiceGroup"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ServiceGroupBus.GetServiceGroup"));
+                        return false;
+                    }
+                    else
+                    {
+                        if (result.QueryResult == null)
+                            servicesNameList.Add(fullServiceName);
+                        else
+                        {
+                            ServiceGroup serviceGroup = result.QueryResult as ServiceGroup;
+                            string groupName = serviceGroup.Name;
+                            if (htServiceGroup.ContainsKey(groupName))
+                            {
+                                List<string> serviceList = (List<string>)htServiceGroup[groupName];
+                                serviceList.Add(fullServiceName);
+                            }
+                            else
+                            {
+                                List<string> serviceList = new List<string>();
+                                serviceList.Add(fullServiceName);
+                                htServiceGroup.Add(groupName, serviceList);
+                            }
+                        }
+                    }
+                }
+
+                servicesNameList.Sort();
+
+                int rowIndex = 10;
+                IRange range = null;
+                int stt = 2;
+
+                foreach (string groupName in htServiceGroup.Keys)
+                {
+                    List<string> serviceList = (List<string>)htServiceGroup[groupName];
+                    string strValue = string.Format("   {0}. {1}\n", stt++, groupName);
+                    int chr = 65;
+                    foreach (string serviceName in serviceList)
+                    {
+                        strValue += string.Format("       {0}. {1}\n", ((char)chr++).ToString().ToLower(), serviceName);
+                    }
+
+                    range = workSheet.Cells[string.Format("A{0}:D{0}", rowIndex + 1)];
+                    range.Merge();
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+                    range.RowHeight = 16.50 * (serviceList.Count + 1);
+                    range.Value = strValue;
+                    range.Font.Bold = true;
+
+                    range = workSheet.Cells[string.Format("E{0}:F{0}", rowIndex + 1)];
+                    range.Merge();
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+
+                    range = workSheet.Cells[string.Format("A{0}:F{0}", rowIndex + 1)];
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+
+                    rowIndex++;
+                }
+
+                foreach (string serviceName in servicesNameList)
+                {
+                    string strValue = string.Format("   {0}. {1}\n", stt++, serviceName);
+
+                    range = workSheet.Cells[string.Format("A{0}:D{0}", rowIndex + 1)];
+                    range.Merge();
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+                    range.Value = strValue;
+                    range.Font.Bold = true;
+
+                    range = workSheet.Cells[string.Format("E{0}:F{0}", rowIndex + 1)];
+                    range.Merge();
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+
+                    range = workSheet.Cells[string.Format("A{0}:F{0}", rowIndex + 1)];
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("A{0}:D{0}", rowIndex + 1)];
+                range.Merge();
+                range.RowHeight = 16.50 * 3;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.Value = string.Format("   {0}. Others (Khác)\n", stt);
+                range.Font.Bold = true;
+
+                range = workSheet.Cells[string.Format("E{0}:F{0}", rowIndex + 1)];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Top;
+
+                range = workSheet.Cells[string.Format("A{0}:F{0}", rowIndex + 1)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                rowIndex++;
+
+                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
+                range.Value = "Notes:";
+                range.Font.Bold = true;
+
+                range = workSheet.Cells[string.Format("B{0}:F{0}", rowIndex + 1)];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Top;
+                range.Value = "Please kindly return this medical report to the reception desk.";
+                range.Font.Bold = true;
+
+                rowIndex++;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
+                range.Value = "Lưu ý:";
+                range.Font.Bold = true;
+
+                range = workSheet.Cells[string.Format("B{0}:F{1}", rowIndex + 1, rowIndex + 2)];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Top;
+                range.WrapText = true;
+                range.Value = "Sau khi hoàn tất các mục khám xin quý khách vui lòng nộp lại hồ sơ tại bàn hướng dẫn.";
+                range.Font.Bold = true;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
         public static bool ExportChiTietPhieuThuToExcel(string exportFileName, List<string> phieuThuKeyList)
         {
             Cursor.Current = Cursors.WaitCursor;
