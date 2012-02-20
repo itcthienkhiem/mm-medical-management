@@ -1231,6 +1231,7 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
+                string maBenhNham = drMember["FileNum"].ToString();
                 string tenBenhNhan = drMember["FullName"].ToString();
                 string gioiTinh = drMember["GenderAsStr"].ToString();
                 string ngaySinh = drMember["DobStr"].ToString();
@@ -1238,14 +1239,14 @@ namespace MM.Exports
                 string mobile = drMember["Mobile"].ToString();
                 string email = drMember["Email"].ToString();
 
-                workSheet.Cells["B2"].Value = tenBenhNhan;
-                workSheet.Cells["D2"].Value = gioiTinh;
-                workSheet.Cells["F2"].Value = ngaySinh;
-                workSheet.Cells["B4"].Value = diaChi;
-                workSheet.Cells["B6"].Value = mobile;
-                workSheet.Cells["D6"].Value = email;
+                workSheet.Cells["A1"].Value = maBenhNham;
+                workSheet.Cells["B3"].Value = tenBenhNhan;
+                workSheet.Cells["D3"].Value = gioiTinh;
+                workSheet.Cells["F3"].Value = ngaySinh;
+                workSheet.Cells["B5"].Value = diaChi;
+                workSheet.Cells["B7"].Value = mobile;
+                workSheet.Cells["D7"].Value = email;
 
-                
                 List<string> servicesNameList = new List<string>();
                 Hashtable htServiceGroup = new Hashtable();
                 foreach (DataRow row in dtCheckList.Rows)
@@ -1294,7 +1295,7 @@ namespace MM.Exports
 
                 servicesNameList.Sort();
 
-                int rowIndex = 10;
+                int rowIndex = 11;
                 IRange range = null;
                 int stt = 2;
 
