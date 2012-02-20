@@ -63,6 +63,22 @@ namespace MM.Dialogs
         {
             get { return cboCompany.Text; }
         }
+
+        public List<DataRow> CheckedMemberRows
+        {
+            get
+            {
+                List<DataRow> checkedRows = new List<DataRow>();
+                DataTable dt = dgMembers.DataSource as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (Boolean.Parse(row["Checked"].ToString()))
+                        checkedRows.Add(row);
+                }
+
+                return checkedRows;
+            }
+        }
         #endregion
 
         #region UI Command
@@ -619,14 +635,7 @@ namespace MM.Dialogs
         private void OnPrint(bool isPreview)
         {
             Cursor.Current = Cursors.WaitCursor;
-            List<DataRow> checkedRows = new List<DataRow>();
-            DataTable dt = dgMembers.DataSource as DataTable;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                    checkedRows.Add(row);
-            }
-
+            List<DataRow> checkedRows = CheckedMemberRows;
             if (checkedRows.Count > 0)
             {
                 string exportFileName = string.Format("{0}\\Temp\\DanhSachBenhNhan.xls", Application.StartupPath);
@@ -653,14 +662,7 @@ namespace MM.Dialogs
         private void OnExportExcel()
         {
             Cursor.Current = Cursors.WaitCursor;
-            List<DataRow> checkedRows = new List<DataRow>();
-            DataTable dt = dgMembers.DataSource as DataTable;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                    checkedRows.Add(row);
-            }
-
+            List<DataRow> checkedRows = CheckedMemberRows;
             if (checkedRows.Count > 0)
             {
                 SaveFileDialog dlg = new SaveFileDialog();
@@ -668,6 +670,117 @@ namespace MM.Dialogs
                 dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
                 if (dlg.ShowDialog() == DialogResult.OK)
                     ExportExcel.ExportDanhSachBenhNhanToExcel(dlg.FileName, checkedRows);
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần in.", IconType.Information);
+        }
+
+        private DataTable GetCheckList(DataRow drMember)
+        {
+            if (_selectedCompanyInfo == null) return null;
+
+            string companyMemberGUID = drMember["CompanyMemberGUID"].ToString();
+            string contractMemberGUID = drMember["ContractMemberGUID"].ToString();
+            string patientGUID = drMember["PatientGUID"].ToString();
+
+            DataTable dtCheckList = null;
+            if (_selectedCompanyInfo.AddedMembers.ContainsKey(companyMemberGUID))
+                dtCheckList = ((Member)_selectedCompanyInfo.AddedMembers[companyMemberGUID]).DataSource;
+            else
+            {
+                Result result = null;
+                if (_isNew)
+                    result = CompanyContractBus.GetCheckList(contractMemberGUID);
+                else
+                    result = CompanyContractBus.GetCheckList(_contract.CompanyContractGUID.ToString(), patientGUID);
+
+                if (result.IsOK)
+                    dtCheckList = result.QueryResult as DataTable;
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
+                }
+            }
+
+
+            return dtCheckList;
+        }
+
+        private void OnPrintCheckList(bool isPreview)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = CheckedMemberRows;
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\CheckList.xls", Application.StartupPath);
+                if (isPreview)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        DataTable dtCheckList = GetCheckList(row);
+                        if (ExportExcel.ExportCheckListToExcel(exportFileName, row, dtCheckList))
+                        {
+                            try
+                            {
+                                ExcelPrintPreview.PrintPreview(exportFileName);
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                return;
+                            }
+                        }
+                        else
+                            return;
+                    }
+                }
+                else
+                {
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach (DataRow row in checkedRows)
+                        {
+                            DataTable dtCheckList = GetCheckList(row);
+                            if (ExportExcel.ExportCheckListToExcel(exportFileName, row, dtCheckList))
+                            {
+                                try
+                                {
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                    return;
+                                }
+                            }
+                            else
+                                return;
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần in.", IconType.Information);
+        }
+
+        private void OnExportExcelCheckList()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = CheckedMemberRows;
+            if (checkedRows.Count > 0)
+            {
+                foreach (DataRow row in checkedRows)
+                {
+                    SaveFileDialog dlg = new SaveFileDialog();
+                    dlg.Title = "Export Excel";
+                    dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        DataTable dtCheckList = GetCheckList(row);
+                        ExportExcel.ExportCheckListToExcel(dlg.FileName, row, dtCheckList);
+                    }
+                }
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần in.", IconType.Information);
@@ -943,17 +1056,17 @@ namespace MM.Dialogs
 
         private void btnPrintPreviewCheckList_Click(object sender, EventArgs e)
         {
-
+            OnPrintCheckList(true);
         }
 
         private void btnPrintCheckList_Click(object sender, EventArgs e)
         {
-
+            OnPrintCheckList(false);
         }
 
         private void btnExportExcelCheckList_Click(object sender, EventArgs e)
         {
-
+            OnExportExcelCheckList();
         }
         #endregion
 
