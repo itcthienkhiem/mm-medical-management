@@ -39,6 +39,8 @@ namespace MM.Dialogs
         }
         #endregion
 
+       
+
         #region Properties
 
         #endregion
@@ -48,7 +50,10 @@ namespace MM.Dialogs
         #endregion
 
         #region Window Event Handlers
-
+        private void dlgAddKetQuaNoiSoi_Load(object sender, EventArgs e)
+        {
+            //_uKetQuaNoiSoiTai.InitData();
+        }
         #endregion
     }
 }

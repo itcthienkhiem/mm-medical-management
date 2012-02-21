@@ -367,11 +367,41 @@
     <Compile Include="Controls\uKetQuaLamSangList.Designer.cs">
       <DependentUpon>uKetQuaLamSangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiHongThanhQuan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiHongThanhQuan.Designer.cs">
+      <DependentUpon>uKetQuaNoiSoiHongThanhQuan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiMui.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiMui.Designer.cs">
+      <DependentUpon>uKetQuaNoiSoiMui.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiTai.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiTai.Designer.cs">
+      <DependentUpon>uKetQuaNoiSoiTai.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKetQuaNoiSoiList.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\uKetQuaNoiSoiList.Designer.cs">
       <DependentUpon>uKetQuaNoiSoiList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiTaiMuiHong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiTaiMuiHong.Designer.cs">
+      <DependentUpon>uKetQuaNoiSoiTaiMuiHong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiTongQuat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaNoiSoiTongQuat.Designer.cs">
+      <DependentUpon>uKetQuaNoiSoiTongQuat.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\uLoiKhuyenList.cs">
       <SubType>UserControl</SubType>
@@ -893,8 +923,23 @@
     <EmbeddedResource Include="Controls\uKetQuaLamSangList.resx">
       <DependentUpon>uKetQuaLamSangList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaNoiSoiHongThanhQuan.resx">
+      <DependentUpon>uKetQuaNoiSoiHongThanhQuan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaNoiSoiMui.resx">
+      <DependentUpon>uKetQuaNoiSoiMui.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaNoiSoiTai.resx">
+      <DependentUpon>uKetQuaNoiSoiTai.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaNoiSoiList.resx">
       <DependentUpon>uKetQuaNoiSoiList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaNoiSoiTaiMuiHong.resx">
+      <DependentUpon>uKetQuaNoiSoiTaiMuiHong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaNoiSoiTongQuat.resx">
+      <DependentUpon>uKetQuaNoiSoiTongQuat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uLoiKhuyenList.resx">
       <DependentUpon>uLoiKhuyenList.cs</DependentUpon>

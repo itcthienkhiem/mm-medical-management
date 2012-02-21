@@ -86,7 +86,11 @@ namespace MM.Controls
 
         private void OnAdd()
         {
+            dlgAddKetQuaNoiSoi dlg = new dlgAddKetQuaNoiSoi(_patientGUID);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
 
+            }
         }
 
         private void OnEdit()
