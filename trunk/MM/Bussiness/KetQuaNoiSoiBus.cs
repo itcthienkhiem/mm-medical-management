@@ -45,6 +45,77 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetKetQuaNoiSoiCount()
+        {
+            Result result = null;
+            try
+            {
+                string query = "SELECT Count(*) FROM KetQuaNoiSoi";
+                result = ExcuteQuery(query);
+                if (result.IsOK)
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                        result.QueryResult = Convert.ToInt32(dt.Rows[0][0]);
+                    else result.QueryResult = 0;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result CheckSoPhieuExistCode(string ketQuaNoiSoiGUID, string code)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                KetQuaNoiSoi kqns = null;
+                if (ketQuaNoiSoiGUID == null || ketQuaNoiSoiGUID == string.Empty)
+                    kqns = db.KetQuaNoiSois.SingleOrDefault<KetQuaNoiSoi>(k => k.SoPhieu.ToLower() == code.ToLower());
+                else
+                    kqns = db.KetQuaNoiSois.SingleOrDefault<KetQuaNoiSoi>(k => k.SoPhieu.ToLower() == code.ToLower() &&
+                                                                k.KetQuaNoiSoiGUID.ToString() != ketQuaNoiSoiGUID);
+
+                if (kqns == null)
+                    result.Error.Code = ErrorCode.NOT_EXIST;
+                else
+                    result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result DeleteKetQuaNoiSoi(List<String> ketQuaNoiSoiKeys)
         {
             Result result = new Result();

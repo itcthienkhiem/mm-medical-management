@@ -44,7 +44,7 @@
             this.dtpkNgayKham = new System.Windows.Forms.DateTimePicker();
             this.cboBSCD = new System.Windows.Forms.ComboBox();
             this.cboBSSoi = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtLyDoKham = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.picHinh1 = new System.Windows.Forms.PictureBox();
             this.picHinh2 = new System.Windows.Forms.PictureBox();
@@ -60,13 +60,13 @@
             this.tabKhamNoiSoi = new System.Windows.Forms.TabControl();
             this.pageKetQuaNoiSoi = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this._uKetQuaNoiSoiTaiMuiHong = new MM.Controls.uKetQuaNoiSoiTaiMuiHong();
             this._uKetQuaNoiSoiHongThanhQuan = new MM.Controls.uKetQuaNoiSoiHongThanhQuan();
             this._uKetQuaNoiSoiTongQuat = new MM.Controls.uKetQuaNoiSoiTongQuat();
             this._uKetQuaNoiSoiMui = new MM.Controls.uKetQuaNoiSoiMui();
             this._uKetQuaNoiSoiTai = new MM.Controls.uKetQuaNoiSoiTai();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pageChupHinh = new System.Windows.Forms.TabPage();
-            this._uKetQuaNoiSoiTaiMuiHong = new MM.Controls.uKetQuaNoiSoiTaiMuiHong();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh2)).BeginInit();
@@ -109,9 +109,10 @@
             this.cboKetLuan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKetLuan.FormattingEnabled = true;
             this.cboKetLuan.Location = new System.Drawing.Point(60, 7);
+            this.cboKetLuan.MaxLength = 500;
             this.cboKetLuan.Name = "cboKetLuan";
             this.cboKetLuan.Size = new System.Drawing.Size(766, 21);
-            this.cboKetLuan.TabIndex = 19;
+            this.cboKetLuan.TabIndex = 6;
             // 
             // cboDeNghi
             // 
@@ -119,9 +120,10 @@
             this.cboDeNghi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDeNghi.FormattingEnabled = true;
             this.cboDeNghi.Location = new System.Drawing.Point(60, 32);
+            this.cboDeNghi.MaxLength = 500;
             this.cboDeNghi.Name = "cboDeNghi";
             this.cboDeNghi.Size = new System.Drawing.Size(766, 21);
-            this.cboDeNghi.TabIndex = 20;
+            this.cboDeNghi.TabIndex = 7;
             // 
             // label1
             // 
@@ -171,9 +173,10 @@
             // txtSoPhieu
             // 
             this.txtSoPhieu.Location = new System.Drawing.Point(98, 12);
+            this.txtSoPhieu.MaxLength = 50;
             this.txtSoPhieu.Name = "txtSoPhieu";
             this.txtSoPhieu.Size = new System.Drawing.Size(223, 20);
-            this.txtSoPhieu.TabIndex = 7;
+            this.txtSoPhieu.TabIndex = 0;
             // 
             // dtpkNgayKham
             // 
@@ -182,7 +185,7 @@
             this.dtpkNgayKham.Location = new System.Drawing.Point(399, 12);
             this.dtpkNgayKham.Name = "dtpkNgayKham";
             this.dtpkNgayKham.Size = new System.Drawing.Size(105, 20);
-            this.dtpkNgayKham.TabIndex = 8;
+            this.dtpkNgayKham.TabIndex = 1;
             // 
             // cboBSCD
             // 
@@ -195,7 +198,7 @@
             this.cboBSCD.Location = new System.Drawing.Point(98, 36);
             this.cboBSCD.Name = "cboBSCD";
             this.cboBSCD.Size = new System.Drawing.Size(223, 21);
-            this.cboBSCD.TabIndex = 9;
+            this.cboBSCD.TabIndex = 2;
             this.cboBSCD.ValueMember = "DocStaffGUID";
             // 
             // cboBSSoi
@@ -209,15 +212,16 @@
             this.cboBSSoi.Location = new System.Drawing.Point(399, 36);
             this.cboBSSoi.Name = "cboBSSoi";
             this.cboBSSoi.Size = new System.Drawing.Size(223, 21);
-            this.cboBSSoi.TabIndex = 10;
+            this.cboBSSoi.TabIndex = 3;
             this.cboBSSoi.ValueMember = "DocStaffGUID";
             // 
-            // textBox1
+            // txtLyDoKham
             // 
-            this.textBox1.Location = new System.Drawing.Point(98, 61);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(524, 20);
-            this.textBox1.TabIndex = 11;
+            this.txtLyDoKham.Location = new System.Drawing.Point(98, 61);
+            this.txtLyDoKham.MaxLength = 500;
+            this.txtLyDoKham.Name = "txtLyDoKham";
+            this.txtLyDoKham.Size = new System.Drawing.Size(524, 20);
+            this.txtLyDoKham.TabIndex = 4;
             // 
             // label8
             // 
@@ -293,7 +297,8 @@
             this.cboLoaiNoiSoi.Location = new System.Drawing.Point(98, 85);
             this.cboLoaiNoiSoi.Name = "cboLoaiNoiSoi";
             this.cboLoaiNoiSoi.Size = new System.Drawing.Size(223, 21);
-            this.cboLoaiNoiSoi.TabIndex = 18;
+            this.cboLoaiNoiSoi.TabIndex = 5;
+            this.cboLoaiNoiSoi.SelectedIndexChanged += new System.EventHandler(this.cboLoaiNoiSoi_SelectedIndexChanged);
             // 
             // panel2
             // 
@@ -305,7 +310,7 @@
             this.panel2.Controls.Add(this.picHinh2);
             this.panel2.Controls.Add(this.picHinh1);
             this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.txtLyDoKham);
             this.panel2.Controls.Add(this.cboBSSoi);
             this.panel2.Controls.Add(this.cboBSCD);
             this.panel2.Controls.Add(this.dtpkNgayKham);
@@ -353,7 +358,8 @@
             this.panel1.Location = new System.Drawing.Point(0, 673);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(848, 39);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 5;
+            this.panel1.TabStop = true;
             // 
             // panel3
             // 
@@ -362,7 +368,7 @@
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(848, 673);
-            this.panel3.TabIndex = 21;
+            this.panel3.TabIndex = 0;
             // 
             // tabKhamNoiSoi
             // 
@@ -374,6 +380,7 @@
             this.tabKhamNoiSoi.SelectedIndex = 0;
             this.tabKhamNoiSoi.Size = new System.Drawing.Size(848, 673);
             this.tabKhamNoiSoi.TabIndex = 0;
+            this.tabKhamNoiSoi.TabStop = false;
             // 
             // pageKetQuaNoiSoi
             // 
@@ -401,37 +408,100 @@
             this.panel5.Size = new System.Drawing.Size(834, 245);
             this.panel5.TabIndex = 3;
             // 
+            // _uKetQuaNoiSoiTaiMuiHong
+            // 
+            this._uKetQuaNoiSoiTaiMuiHong.Amydale = "";
+            this._uKetQuaNoiSoiTaiMuiHong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiTaiMuiHong.KheGiua = "";
+            this._uKetQuaNoiSoiTaiMuiHong.KheTren = "";
+            this._uKetQuaNoiSoiTaiMuiHong.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaNoiSoiTaiMuiHong.MangNhi = "";
+            this._uKetQuaNoiSoiTaiMuiHong.MomMocBongSang = "";
+            this._uKetQuaNoiSoiTaiMuiHong.Name = "_uKetQuaNoiSoiTaiMuiHong";
+            this._uKetQuaNoiSoiTaiMuiHong.NiemMacMui = "";
+            this._uKetQuaNoiSoiTaiMuiHong.OngTaiNgoai = "";
+            this._uKetQuaNoiSoiTaiMuiHong.Size = new System.Drawing.Size(834, 245);
+            this._uKetQuaNoiSoiTaiMuiHong.TabIndex = 11;
+            this._uKetQuaNoiSoiTaiMuiHong.ThanhQuan = "";
+            this._uKetQuaNoiSoiTaiMuiHong.Visible = false;
+            this._uKetQuaNoiSoiTaiMuiHong.Vom = "";
+            // 
             // _uKetQuaNoiSoiHongThanhQuan
             // 
+            this._uKetQuaNoiSoiHongThanhQuan.Amydale = "";
+            this._uKetQuaNoiSoiHongThanhQuan.BangThanhThat = "";
+            this._uKetQuaNoiSoiHongThanhQuan.DayThanh = "";
             this._uKetQuaNoiSoiHongThanhQuan.Dock = System.Windows.Forms.DockStyle.Fill;
             this._uKetQuaNoiSoiHongThanhQuan.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaNoiSoiHongThanhQuan.MiengThucQuan = "";
             this._uKetQuaNoiSoiHongThanhQuan.Name = "_uKetQuaNoiSoiHongThanhQuan";
             this._uKetQuaNoiSoiHongThanhQuan.Size = new System.Drawing.Size(834, 245);
-            this._uKetQuaNoiSoiHongThanhQuan.TabIndex = 3;
+            this._uKetQuaNoiSoiHongThanhQuan.SunPheu = "";
+            this._uKetQuaNoiSoiHongThanhQuan.TabIndex = 9;
+            this._uKetQuaNoiSoiHongThanhQuan.Visible = false;
+            this._uKetQuaNoiSoiHongThanhQuan.XoangLe = "";
             // 
             // _uKetQuaNoiSoiTongQuat
             // 
+            this._uKetQuaNoiSoiTongQuat.CanBuaPhai = "";
+            this._uKetQuaNoiSoiTongQuat.CanBuaTrai = "";
             this._uKetQuaNoiSoiTongQuat.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiTongQuat.HomNhiPhai = "";
+            this._uKetQuaNoiSoiTongQuat.HomNhiTrai = "";
             this._uKetQuaNoiSoiTongQuat.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaNoiSoiTongQuat.MangNhiPhai = "";
+            this._uKetQuaNoiSoiTongQuat.MangNhiTrai = "";
             this._uKetQuaNoiSoiTongQuat.Name = "_uKetQuaNoiSoiTongQuat";
+            this._uKetQuaNoiSoiTongQuat.OngTaiPhai = "";
+            this._uKetQuaNoiSoiTongQuat.OngTaiTrai = "";
             this._uKetQuaNoiSoiTongQuat.Size = new System.Drawing.Size(834, 245);
-            this._uKetQuaNoiSoiTongQuat.TabIndex = 2;
+            this._uKetQuaNoiSoiTongQuat.TabIndex = 12;
+            this._uKetQuaNoiSoiTongQuat.Visible = false;
             // 
             // _uKetQuaNoiSoiMui
             // 
+            this._uKetQuaNoiSoiMui.BongSangPhai = "";
+            this._uKetQuaNoiSoiMui.BongSangTrai = "";
+            this._uKetQuaNoiSoiMui.CuonDuoiPhai = "";
+            this._uKetQuaNoiSoiMui.CuonDuoiTrai = "";
+            this._uKetQuaNoiSoiMui.CuonGiuaPhai = "";
+            this._uKetQuaNoiSoiMui.CuonGiuaTrai = "";
             this._uKetQuaNoiSoiMui.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiMui.KheGiuaPhai = "";
+            this._uKetQuaNoiSoiMui.KheGiuaTrai = "";
+            this._uKetQuaNoiSoiMui.KheTrenPhai = "";
+            this._uKetQuaNoiSoiMui.KheTrenTrai = "";
             this._uKetQuaNoiSoiMui.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaNoiSoiMui.MomMocPhai = "";
+            this._uKetQuaNoiSoiMui.MomMocTrai = "";
             this._uKetQuaNoiSoiMui.Name = "_uKetQuaNoiSoiMui";
+            this._uKetQuaNoiSoiMui.NiemMacPhai = "";
+            this._uKetQuaNoiSoiMui.NiemMacTrai = "";
             this._uKetQuaNoiSoiMui.Size = new System.Drawing.Size(834, 245);
-            this._uKetQuaNoiSoiMui.TabIndex = 1;
+            this._uKetQuaNoiSoiMui.TabIndex = 10;
+            this._uKetQuaNoiSoiMui.VachNganPhai = "";
+            this._uKetQuaNoiSoiMui.VachNganTrai = "";
+            this._uKetQuaNoiSoiMui.Visible = false;
+            this._uKetQuaNoiSoiMui.VomPhai = "";
+            this._uKetQuaNoiSoiMui.VomTrai = "";
             // 
             // _uKetQuaNoiSoiTai
             // 
+            this._uKetQuaNoiSoiTai.CanBuaPhai = "";
+            this._uKetQuaNoiSoiTai.CanBuaTrai = "";
             this._uKetQuaNoiSoiTai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiTai.HomNhiPhai = "";
+            this._uKetQuaNoiSoiTai.HomNhiTrai = "";
             this._uKetQuaNoiSoiTai.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaNoiSoiTai.MangNhiPhai = "";
+            this._uKetQuaNoiSoiTai.MangNhiTrai = "";
             this._uKetQuaNoiSoiTai.Name = "_uKetQuaNoiSoiTai";
+            this._uKetQuaNoiSoiTai.OngTaiPhai = "";
+            this._uKetQuaNoiSoiTai.OngTaiTrai = "";
             this._uKetQuaNoiSoiTai.Size = new System.Drawing.Size(834, 245);
-            this._uKetQuaNoiSoiTai.TabIndex = 0;
+            this._uKetQuaNoiSoiTai.TabIndex = 8;
+            this._uKetQuaNoiSoiTai.ValsavaPhai = "";
+            this._uKetQuaNoiSoiTai.ValsavaTrai = "";
             // 
             // panel4
             // 
@@ -443,7 +513,7 @@
             this.panel4.Location = new System.Drawing.Point(3, 587);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(834, 57);
-            this.panel4.TabIndex = 2;
+            this.panel4.TabIndex = 4;
             // 
             // pageChupHinh
             // 
@@ -451,22 +521,16 @@
             this.pageChupHinh.Location = new System.Drawing.Point(4, 22);
             this.pageChupHinh.Name = "pageChupHinh";
             this.pageChupHinh.Padding = new System.Windows.Forms.Padding(3);
-            this.pageChupHinh.Size = new System.Drawing.Size(840, 626);
+            this.pageChupHinh.Size = new System.Drawing.Size(840, 647);
             this.pageChupHinh.TabIndex = 1;
             this.pageChupHinh.Text = "Chụp hình";
             // 
-            // _uKetQuaNoiSoiTaiMuiHong
-            // 
-            this._uKetQuaNoiSoiTaiMuiHong.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uKetQuaNoiSoiTaiMuiHong.Location = new System.Drawing.Point(0, 0);
-            this._uKetQuaNoiSoiTaiMuiHong.Name = "_uKetQuaNoiSoiTaiMuiHong";
-            this._uKetQuaNoiSoiTaiMuiHong.Size = new System.Drawing.Size(834, 245);
-            this._uKetQuaNoiSoiTaiMuiHong.TabIndex = 4;
-            // 
             // dlgAddKetQuaNoiSoi
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(848, 712);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -478,6 +542,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them kham noi soi";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddKetQuaNoiSoi_FormClosing);
             this.Load += new System.EventHandler(this.dlgAddKetQuaNoiSoi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).EndInit();
@@ -513,7 +578,7 @@
         private System.Windows.Forms.DateTimePicker dtpkNgayKham;
         private System.Windows.Forms.ComboBox cboBSCD;
         private System.Windows.Forms.ComboBox cboBSSoi;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtLyDoKham;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox picHinh1;
         private System.Windows.Forms.PictureBox picHinh2;

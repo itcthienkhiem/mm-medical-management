@@ -41,6 +41,12 @@ namespace MM.Controls
             set { SetValue(2, 1, value); }
         }
 
+        public string VachNgan
+        {
+            get { return GetValue(3, 1); }
+            set { SetValue(3, 1, value); }
+        }
+
         public string KheTren
         {
             get { return GetValue(4, 1); }
