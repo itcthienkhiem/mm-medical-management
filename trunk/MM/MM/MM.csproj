@@ -709,6 +709,12 @@
     <Compile Include="Dialogs\dlgChangePassword.Designer.cs">
       <DependentUpon>dlgChangePassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgChonHinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgChonHinh.Designer.cs">
+      <DependentUpon>dlgChonHinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgDanhSachNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1093,6 +1099,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgChangePassword.resx">
       <DependentUpon>dlgChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgChonHinh.resx">
+      <DependentUpon>dlgChonHinh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgDanhSachNhanVien.resx">
       <DependentUpon>dlgDanhSachNhanVien.cs</DependentUpon>

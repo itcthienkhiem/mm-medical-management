@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace MM.Common
 {
     //Design by Pongsakorn Poosankam
-    class WebCam
+    public class WebCam
     {
         private WebCamCapture webcam;
         private System.Windows.Forms.PictureBox _FrameImage;

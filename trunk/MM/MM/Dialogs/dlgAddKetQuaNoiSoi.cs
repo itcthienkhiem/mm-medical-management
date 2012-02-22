@@ -22,6 +22,8 @@ namespace MM.Dialogs
         private KetQuaNoiSoi _ketQuaNoiSoi = new KetQuaNoiSoi();
         private DataRow _drKetQuaNoiSoi = null;
         private bool _isContinue = false;
+        private WebCam _webCam = null;
+        private int _imgCount = 0;
         #endregion
 
         #region Constructor
@@ -53,6 +55,9 @@ namespace MM.Dialogs
 
             DisplayDSBacSiChiDinh();
             DisplayDSBasSiSoi();
+
+            _webCam = new WebCam();
+            _webCam.InitializeWebCam(ref picWebCam);
         }
 
         private void ViewControl(Control view)
@@ -376,32 +381,100 @@ namespace MM.Dialogs
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (!_isContinue)
+                {
+                    _webCam.Start();
+                    _isContinue = true;
+                }
+                else
+                    _webCam.Continue();
 
+                btnStop.Enabled = true;
+                btnCapture.Enabled = true;
+                btnPlay.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
+            try
+            {
+                _webCam.Stop();
 
+                btnStop.Enabled = false;
+                btnCapture.Enabled = false;
+                btnPlay.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                 MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
         }
 
         private void btnCapture_Click(object sender, EventArgs e)
         {
+            if (picWebCam.Image == null) return;
 
+            Image img = picWebCam.Image;
+            imgList.Images.Add(img);
+
+            _imgCount++;
+            ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgList.Images.Count - 1);
+            lvCapture.Items.Add(item);
         }
 
         private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (lvCapture.SelectedItems == null || lvCapture.SelectedItems.Count <= 0) return;
 
+            foreach (ListViewItem item in lvCapture.SelectedItems)
+            {
+                int imgIndex = item.ImageIndex;
+                lvCapture.Items.Remove(item);
+                imgListCapture.Images.RemoveAt(imgIndex);
+            }
         }
 
         private void xóaTấtCảToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            lvCapture.Items.Clear();
+            imgListCapture.Images.Clear();
+            _imgCount = 0;
         }
 
         private void lvCapture_DoubleClick(object sender, EventArgs e)
         {
+            if (lvCapture.SelectedItems == null || lvCapture.SelectedItems.Count <= 0) return;
 
+            dlgChonHinh dlg = new dlgChonHinh();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                Image img = imgListCapture.Images[lvCapture.SelectedItems[0].ImageIndex];
+
+                switch (dlg.ImageIndex)
+                {
+                    case 1:
+                        picHinh1.Image = img;
+                        break;
+                    case 2:
+                        picHinh2.Image = img;
+                        break;
+                    case 3:
+                        picHinh3.Image = img;
+                        break;
+                    case 4:
+                        picHinh4.Image = img;
+                        break;
+                }
+            }
         }
         #endregion
     }
