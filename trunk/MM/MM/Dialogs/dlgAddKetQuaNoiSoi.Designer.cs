@@ -67,6 +67,19 @@
             this._uKetQuaNoiSoiTai = new MM.Controls.uKetQuaNoiSoiTai();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pageChupHinh = new System.Windows.Forms.TabPage();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.lvCapture = new System.Windows.Forms.ListView();
+            this.ctmCapture = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.xóaTấtCảToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.imgListCapture = new System.Windows.Forms.ImageList(this.components);
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.picWebCam = new System.Windows.Forms.PictureBox();
+            this.btnCapture = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
+            this.btnPlay = new System.Windows.Forms.Button();
+            this.imgList = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh2)).BeginInit();
@@ -79,6 +92,11 @@
             this.pageKetQuaNoiSoi.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.pageChupHinh.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.ctmCapture.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picWebCam)).BeginInit();
             this.SuspendLayout();
             // 
             // docStaffViewBindingSource
@@ -375,6 +393,7 @@
             this.tabKhamNoiSoi.Controls.Add(this.pageKetQuaNoiSoi);
             this.tabKhamNoiSoi.Controls.Add(this.pageChupHinh);
             this.tabKhamNoiSoi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabKhamNoiSoi.ImageList = this.imgList;
             this.tabKhamNoiSoi.Location = new System.Drawing.Point(0, 0);
             this.tabKhamNoiSoi.Name = "tabKhamNoiSoi";
             this.tabKhamNoiSoi.SelectedIndex = 0;
@@ -388,10 +407,11 @@
             this.pageKetQuaNoiSoi.Controls.Add(this.panel5);
             this.pageKetQuaNoiSoi.Controls.Add(this.panel4);
             this.pageKetQuaNoiSoi.Controls.Add(this.panel2);
-            this.pageKetQuaNoiSoi.Location = new System.Drawing.Point(4, 22);
+            this.pageKetQuaNoiSoi.ImageIndex = 1;
+            this.pageKetQuaNoiSoi.Location = new System.Drawing.Point(4, 23);
             this.pageKetQuaNoiSoi.Name = "pageKetQuaNoiSoi";
             this.pageKetQuaNoiSoi.Padding = new System.Windows.Forms.Padding(3);
-            this.pageKetQuaNoiSoi.Size = new System.Drawing.Size(840, 647);
+            this.pageKetQuaNoiSoi.Size = new System.Drawing.Size(840, 646);
             this.pageKetQuaNoiSoi.TabIndex = 0;
             this.pageKetQuaNoiSoi.Text = "Kết quả nội soi";
             // 
@@ -405,7 +425,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 342);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(834, 245);
+            this.panel5.Size = new System.Drawing.Size(834, 244);
             this.panel5.TabIndex = 3;
             // 
             // _uKetQuaNoiSoiTaiMuiHong
@@ -420,9 +440,10 @@
             this._uKetQuaNoiSoiTaiMuiHong.Name = "_uKetQuaNoiSoiTaiMuiHong";
             this._uKetQuaNoiSoiTaiMuiHong.NiemMacMui = "";
             this._uKetQuaNoiSoiTaiMuiHong.OngTaiNgoai = "";
-            this._uKetQuaNoiSoiTaiMuiHong.Size = new System.Drawing.Size(834, 245);
+            this._uKetQuaNoiSoiTaiMuiHong.Size = new System.Drawing.Size(834, 244);
             this._uKetQuaNoiSoiTaiMuiHong.TabIndex = 11;
             this._uKetQuaNoiSoiTaiMuiHong.ThanhQuan = "";
+            this._uKetQuaNoiSoiTaiMuiHong.VachNgan = "";
             this._uKetQuaNoiSoiTaiMuiHong.Visible = false;
             this._uKetQuaNoiSoiTaiMuiHong.Vom = "";
             // 
@@ -435,7 +456,7 @@
             this._uKetQuaNoiSoiHongThanhQuan.Location = new System.Drawing.Point(0, 0);
             this._uKetQuaNoiSoiHongThanhQuan.MiengThucQuan = "";
             this._uKetQuaNoiSoiHongThanhQuan.Name = "_uKetQuaNoiSoiHongThanhQuan";
-            this._uKetQuaNoiSoiHongThanhQuan.Size = new System.Drawing.Size(834, 245);
+            this._uKetQuaNoiSoiHongThanhQuan.Size = new System.Drawing.Size(834, 244);
             this._uKetQuaNoiSoiHongThanhQuan.SunPheu = "";
             this._uKetQuaNoiSoiHongThanhQuan.TabIndex = 9;
             this._uKetQuaNoiSoiHongThanhQuan.Visible = false;
@@ -454,7 +475,7 @@
             this._uKetQuaNoiSoiTongQuat.Name = "_uKetQuaNoiSoiTongQuat";
             this._uKetQuaNoiSoiTongQuat.OngTaiPhai = "";
             this._uKetQuaNoiSoiTongQuat.OngTaiTrai = "";
-            this._uKetQuaNoiSoiTongQuat.Size = new System.Drawing.Size(834, 245);
+            this._uKetQuaNoiSoiTongQuat.Size = new System.Drawing.Size(834, 244);
             this._uKetQuaNoiSoiTongQuat.TabIndex = 12;
             this._uKetQuaNoiSoiTongQuat.Visible = false;
             // 
@@ -477,7 +498,7 @@
             this._uKetQuaNoiSoiMui.Name = "_uKetQuaNoiSoiMui";
             this._uKetQuaNoiSoiMui.NiemMacPhai = "";
             this._uKetQuaNoiSoiMui.NiemMacTrai = "";
-            this._uKetQuaNoiSoiMui.Size = new System.Drawing.Size(834, 245);
+            this._uKetQuaNoiSoiMui.Size = new System.Drawing.Size(834, 244);
             this._uKetQuaNoiSoiMui.TabIndex = 10;
             this._uKetQuaNoiSoiMui.VachNganPhai = "";
             this._uKetQuaNoiSoiMui.VachNganTrai = "";
@@ -498,7 +519,7 @@
             this._uKetQuaNoiSoiTai.Name = "_uKetQuaNoiSoiTai";
             this._uKetQuaNoiSoiTai.OngTaiPhai = "";
             this._uKetQuaNoiSoiTai.OngTaiTrai = "";
-            this._uKetQuaNoiSoiTai.Size = new System.Drawing.Size(834, 245);
+            this._uKetQuaNoiSoiTai.Size = new System.Drawing.Size(834, 244);
             this._uKetQuaNoiSoiTai.TabIndex = 8;
             this._uKetQuaNoiSoiTai.ValsavaPhai = "";
             this._uKetQuaNoiSoiTai.ValsavaTrai = "";
@@ -510,7 +531,7 @@
             this.panel4.Controls.Add(this.cboDeNghi);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(3, 587);
+            this.panel4.Location = new System.Drawing.Point(3, 586);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(834, 57);
             this.panel4.TabIndex = 4;
@@ -518,12 +539,134 @@
             // pageChupHinh
             // 
             this.pageChupHinh.BackColor = System.Drawing.SystemColors.Control;
-            this.pageChupHinh.Location = new System.Drawing.Point(4, 22);
+            this.pageChupHinh.Controls.Add(this.panel7);
+            this.pageChupHinh.Controls.Add(this.panel6);
+            this.pageChupHinh.ImageIndex = 0;
+            this.pageChupHinh.Location = new System.Drawing.Point(4, 23);
             this.pageChupHinh.Name = "pageChupHinh";
             this.pageChupHinh.Padding = new System.Windows.Forms.Padding(3);
-            this.pageChupHinh.Size = new System.Drawing.Size(840, 647);
+            this.pageChupHinh.Size = new System.Drawing.Size(840, 646);
             this.pageChupHinh.TabIndex = 1;
             this.pageChupHinh.Text = "Chụp hình";
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.lvCapture);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel7.Location = new System.Drawing.Point(3, 267);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(834, 376);
+            this.panel7.TabIndex = 1;
+            // 
+            // lvCapture
+            // 
+            this.lvCapture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lvCapture.ContextMenuStrip = this.ctmCapture;
+            this.lvCapture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvCapture.LargeImageList = this.imgListCapture;
+            this.lvCapture.Location = new System.Drawing.Point(0, 0);
+            this.lvCapture.Name = "lvCapture";
+            this.lvCapture.Size = new System.Drawing.Size(834, 376);
+            this.lvCapture.SmallImageList = this.imgListCapture;
+            this.lvCapture.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lvCapture.TabIndex = 0;
+            this.lvCapture.UseCompatibleStateImageBehavior = false;
+            this.lvCapture.DoubleClick += new System.EventHandler(this.lvCapture_DoubleClick);
+            // 
+            // ctmCapture
+            // 
+            this.ctmCapture.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xóaToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.xóaTấtCảToolStripMenuItem});
+            this.ctmCapture.Name = "ctmCapture";
+            this.ctmCapture.Size = new System.Drawing.Size(135, 54);
+            // 
+            // xóaToolStripMenuItem
+            // 
+            this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xóaToolStripMenuItem.Text = "Xóa";
+            this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(131, 6);
+            // 
+            // xóaTấtCảToolStripMenuItem
+            // 
+            this.xóaTấtCảToolStripMenuItem.Name = "xóaTấtCảToolStripMenuItem";
+            this.xóaTấtCảToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xóaTấtCảToolStripMenuItem.Text = "Xóa tất cả";
+            this.xóaTấtCảToolStripMenuItem.Click += new System.EventHandler(this.xóaTấtCảToolStripMenuItem_Click);
+            // 
+            // imgListCapture
+            // 
+            this.imgListCapture.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imgListCapture.ImageSize = new System.Drawing.Size(200, 200);
+            this.imgListCapture.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.picWebCam);
+            this.panel6.Controls.Add(this.btnCapture);
+            this.panel6.Controls.Add(this.btnStop);
+            this.panel6.Controls.Add(this.btnPlay);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(3, 3);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(834, 264);
+            this.panel6.TabIndex = 0;
+            // 
+            // picWebCam
+            // 
+            this.picWebCam.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picWebCam.Location = new System.Drawing.Point(317, 8);
+            this.picWebCam.Name = "picWebCam";
+            this.picWebCam.Size = new System.Drawing.Size(200, 200);
+            this.picWebCam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picWebCam.TabIndex = 14;
+            this.picWebCam.TabStop = false;
+            // 
+            // btnCapture
+            // 
+            this.btnCapture.Enabled = false;
+            this.btnCapture.Image = ((System.Drawing.Image)(resources.GetObject("btnCapture.Image")));
+            this.btnCapture.Location = new System.Drawing.Point(443, 214);
+            this.btnCapture.Name = "btnCapture";
+            this.btnCapture.Size = new System.Drawing.Size(42, 42);
+            this.btnCapture.TabIndex = 2;
+            this.btnCapture.UseVisualStyleBackColor = true;
+            this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
+            // 
+            // btnStop
+            // 
+            this.btnStop.Enabled = false;
+            this.btnStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStop.Image")));
+            this.btnStop.Location = new System.Drawing.Point(395, 214);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(42, 42);
+            this.btnStop.TabIndex = 1;
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
+            this.btnPlay.Location = new System.Drawing.Point(347, 214);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(42, 42);
+            this.btnPlay.TabIndex = 0;
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
+            // imgList
+            // 
+            this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
+            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgList.Images.SetKeyName(0, "camera-icon (1).png");
+            this.imgList.Images.SetKeyName(1, "clipboard-search-result-icon.png");
             // 
             // dlgAddKetQuaNoiSoi
             // 
@@ -558,6 +701,11 @@
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.pageChupHinh.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.ctmCapture.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picWebCam)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -601,6 +749,19 @@
         private Controls.uKetQuaNoiSoiTongQuat _uKetQuaNoiSoiTongQuat;
         private Controls.uKetQuaNoiSoiHongThanhQuan _uKetQuaNoiSoiHongThanhQuan;
         private Controls.uKetQuaNoiSoiTaiMuiHong _uKetQuaNoiSoiTaiMuiHong;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.ImageList imgList;
+        private System.Windows.Forms.Button btnStop;
+        private System.Windows.Forms.Button btnCapture;
+        private System.Windows.Forms.PictureBox picWebCam;
+        private System.Windows.Forms.ListView lvCapture;
+        private System.Windows.Forms.ImageList imgListCapture;
+        private System.Windows.Forms.ContextMenuStrip ctmCapture;
+        private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem xóaTấtCảToolStripMenuItem;
 
     }
 }
