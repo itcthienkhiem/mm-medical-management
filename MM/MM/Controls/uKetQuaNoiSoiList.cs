@@ -89,7 +89,7 @@ namespace MM.Controls
             dlgAddKetQuaNoiSoi dlg = new dlgAddKetQuaNoiSoi(_patientGUID);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-
+                DisplayAsThread();
             }
         }
 
@@ -102,7 +102,11 @@ namespace MM.Controls
             }
 
             DataRow drKetQuaNoiSoi = (dgKhamNoiSoi.SelectedRows[0].DataBoundItem as DataRowView).Row;
-
+            dlgAddKetQuaNoiSoi dlg = new dlgAddKetQuaNoiSoi(_patientGUID, drKetQuaNoiSoi);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                DisplayAsThread();
+            }
         }
 
         private void OnDelete()

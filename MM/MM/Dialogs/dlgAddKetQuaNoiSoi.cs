@@ -320,10 +320,11 @@ namespace MM.Dialogs
         private Image ParseImage(byte[] buffer)
         {
             Bitmap bmp = null;
+            MemoryStream ms = null;
 
             try
             {
-                MemoryStream ms = new MemoryStream(buffer);
+                ms = new MemoryStream(buffer);
                 bmp = new Bitmap(ms);
                 return bmp;
             }
@@ -332,8 +333,206 @@ namespace MM.Dialogs
                 MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
+            finally
+            {
+                if (ms != null)
+                {
+                    ms.Close();
+                    ms = null;
+                }
+            }
             
             return bmp;
+        }
+
+        private byte[] GetBinaryFromImage(Image img)
+        {
+            MemoryStream ms = null;
+            try
+            {
+                ms = new MemoryStream();
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.GetBuffer();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                if (ms != null)
+                {
+                    ms.Close();
+                    ms = null;
+                }
+            }
+
+            return null;
+        }
+
+        private void ChonHinh()
+        {
+            if (lvCapture.SelectedItems == null || lvCapture.SelectedItems.Count <= 0) return;
+
+            dlgChonHinh dlg = new dlgChonHinh();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                Image img = imgListCapture.Images[lvCapture.SelectedItems[0].ImageIndex];
+
+                switch (dlg.ImageIndex)
+                {
+                    case 1:
+                        picHinh1.Image = img;
+                        break;
+                    case 2:
+                        picHinh2.Image = img;
+                        break;
+                    case 3:
+                        picHinh3.Image = img;
+                        break;
+                    case 4:
+                        picHinh4.Image = img;
+                        break;
+                }
+            }
+        }
+
+        private void SaveInfoAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSaveInfoProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnSaveInfo()
+        {
+            try
+            {
+                _ketQuaNoiSoi.PatientGUID = Guid.Parse(_patientGUID);
+                _ketQuaNoiSoi.Status = (byte)Status.Actived;
+
+                if (_isNew)
+                {
+                    _ketQuaNoiSoi.CreatedDate = DateTime.Now;
+                    _ketQuaNoiSoi.CreatedBy = Guid.Parse(Global.UserGUID);
+                }
+                else
+                {
+                    _ketQuaNoiSoi.UpdatedDate = DateTime.Now;
+                    _ketQuaNoiSoi.UpdatedBy = Guid.Parse(Global.UserGUID);
+                }
+
+                MethodInvoker method = delegate
+                {
+                    _ketQuaNoiSoi.SoPhieu = txtSoPhieu.Text;
+                    _ketQuaNoiSoi.NgayKham = dtpkNgayKham.Value;
+                    _ketQuaNoiSoi.BacSiChiDinh = Guid.Parse(cboBSCD.SelectedValue.ToString());
+                    _ketQuaNoiSoi.BacSiSoi = Guid.Parse(cboBSSoi.SelectedValue.ToString());
+                    _ketQuaNoiSoi.LyDoKham = txtLyDoKham.Text;
+                    _ketQuaNoiSoi.LoaiNoiSoi = Convert.ToByte(cboLoaiNoiSoi.SelectedIndex);
+                    _ketQuaNoiSoi.KetLuan = cboKetLuan.Text;
+                    _ketQuaNoiSoi.DeNghi = cboDeNghi.Text;
+
+                    _ketQuaNoiSoi.Hinh1 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh1.Image));
+                    _ketQuaNoiSoi.Hinh2 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh2.Image));
+                    _ketQuaNoiSoi.Hinh3 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh3.Image));
+                    _ketQuaNoiSoi.Hinh4 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh4.Image));
+
+                    LoaiNoiSoi type = (LoaiNoiSoi)cboLoaiNoiSoi.SelectedIndex;
+                    switch (type)
+                    {
+                        case LoaiNoiSoi.Tai:
+                            _ketQuaNoiSoi.OngTaiTrai = _uKetQuaNoiSoiTai.OngTaiTrai;
+                            _ketQuaNoiSoi.OngTaiPhai = _uKetQuaNoiSoiTai.OngTaiPhai;
+                            _ketQuaNoiSoi.MangNhiTrai = _uKetQuaNoiSoiTai.MangNhiTrai;
+                            _ketQuaNoiSoi.MangNhiPhai = _uKetQuaNoiSoiTai.MangNhiPhai;
+                            _ketQuaNoiSoi.CanBuaTrai =  _uKetQuaNoiSoiTai.CanBuaTrai;
+                            _ketQuaNoiSoi.CanBuaPhai = _uKetQuaNoiSoiTai.CanBuaPhai;
+                            _ketQuaNoiSoi.HomNhiTrai = _uKetQuaNoiSoiTai.HomNhiTrai;
+                            _ketQuaNoiSoi.HomNhiPhai = _uKetQuaNoiSoiTai.HomNhiPhai;
+                            _ketQuaNoiSoi.ValsavaTrai = _uKetQuaNoiSoiTai.ValsavaTrai;
+                            _ketQuaNoiSoi.ValsavaPhai = _uKetQuaNoiSoiTai.ValsavaPhai;
+                            break;
+                        case LoaiNoiSoi.Mui:
+                             _ketQuaNoiSoi.NiemMacTrai = _uKetQuaNoiSoiMui.NiemMacTrai;
+                            _ketQuaNoiSoi.NiemMacPhai = _uKetQuaNoiSoiMui.NiemMacPhai;
+                            _ketQuaNoiSoi.VachNganTrai = _uKetQuaNoiSoiMui.VachNganTrai;
+                            _ketQuaNoiSoi.VachNganPhai = _uKetQuaNoiSoiMui.VachNganPhai;
+                            _ketQuaNoiSoi.KheTrenTrai = _uKetQuaNoiSoiMui.KheTrenTrai;
+                            _ketQuaNoiSoi.KheTrenPhai = _uKetQuaNoiSoiMui.KheTrenPhai;
+                            _ketQuaNoiSoi.KheGiuaTrai = _uKetQuaNoiSoiMui.KheGiuaTrai;
+                            _ketQuaNoiSoi.KheGiuaPhai = _uKetQuaNoiSoiMui.KheGiuaPhai;
+                            _ketQuaNoiSoi.CuonGiuaTrai = _uKetQuaNoiSoiMui.CuonGiuaTrai;
+                            _ketQuaNoiSoi.CuonGiuaPhai = _uKetQuaNoiSoiMui.CuonGiuaPhai;
+                            _ketQuaNoiSoi.CuonDuoiTrai = _uKetQuaNoiSoiMui.CuonDuoiTrai;
+                            _ketQuaNoiSoi.CuonDuoiPhai = _uKetQuaNoiSoiMui.CuonDuoiPhai;
+                            _ketQuaNoiSoi.MomMocTrai = _uKetQuaNoiSoiMui.MomMocTrai;
+                            _ketQuaNoiSoi.MomMocPhai = _uKetQuaNoiSoiMui.MomMocPhai;
+                            _ketQuaNoiSoi.BongSangTrai = _uKetQuaNoiSoiMui.BongSangTrai;
+                            _ketQuaNoiSoi.BongSangPhai = _uKetQuaNoiSoiMui.BongSangPhai;
+                            _ketQuaNoiSoi.VomTrai = _uKetQuaNoiSoiMui.VomTrai;
+                            _ketQuaNoiSoi.VomPhai = _uKetQuaNoiSoiMui.VomPhai;
+                            break;
+                        case LoaiNoiSoi.Hong_ThanhQuan:
+                            _ketQuaNoiSoi.Amydale = _uKetQuaNoiSoiHongThanhQuan.Amydale;
+                            _ketQuaNoiSoi.XoangLe = _uKetQuaNoiSoiHongThanhQuan.XoangLe;
+                            _ketQuaNoiSoi.MiengThucQuan = _uKetQuaNoiSoiHongThanhQuan.MiengThucQuan;
+                            _ketQuaNoiSoi.SunPheu = _uKetQuaNoiSoiHongThanhQuan.SunPheu;
+                            _ketQuaNoiSoi.DayThanh = _uKetQuaNoiSoiHongThanhQuan.DayThanh;
+                            _ketQuaNoiSoi.BangThanhThat = _uKetQuaNoiSoiHongThanhQuan.BangThanhThat;
+                            break;
+                        case LoaiNoiSoi.TaiMuiHong:
+                            _ketQuaNoiSoi.OngTaiNgoai = _uKetQuaNoiSoiTaiMuiHong.OngTaiNgoai;
+                            _ketQuaNoiSoi.MangNhi = _uKetQuaNoiSoiTaiMuiHong.MangNhi;
+                            _ketQuaNoiSoi.NiemMac = _uKetQuaNoiSoiTaiMuiHong.NiemMacMui;
+                            _ketQuaNoiSoi.VachNgan = _uKetQuaNoiSoiTaiMuiHong.VachNgan;
+                            _ketQuaNoiSoi.KheTren = _uKetQuaNoiSoiTaiMuiHong.KheTren;
+                            _ketQuaNoiSoi.KheGiua = _uKetQuaNoiSoiTaiMuiHong.KheGiua;
+                            _ketQuaNoiSoi.MomMoc_BongSang = _uKetQuaNoiSoiTaiMuiHong.MomMocBongSang;
+                            _ketQuaNoiSoi.Vom = _uKetQuaNoiSoiTaiMuiHong.Vom;
+                            _ketQuaNoiSoi.Amydale = _uKetQuaNoiSoiTaiMuiHong.Amydale;
+                            _ketQuaNoiSoi.ThanhQuan = _uKetQuaNoiSoiTaiMuiHong.ThanhQuan;
+                            break;
+                        case LoaiNoiSoi.TongQuat:
+                            _ketQuaNoiSoi.OngTaiTrai = _uKetQuaNoiSoiTongQuat.OngTaiTrai;
+                            _ketQuaNoiSoi.OngTaiPhai = _uKetQuaNoiSoiTongQuat.OngTaiPhai;
+                            _ketQuaNoiSoi.MangNhiTrai = _uKetQuaNoiSoiTongQuat.MangNhiTrai;
+                            _ketQuaNoiSoi.MangNhiPhai = _uKetQuaNoiSoiTongQuat.MangNhiPhai;
+                            _ketQuaNoiSoi.CanBuaTrai = _uKetQuaNoiSoiTongQuat.CanBuaTrai;
+                            _ketQuaNoiSoi.CanBuaPhai = _uKetQuaNoiSoiTongQuat.CanBuaPhai;
+                            _ketQuaNoiSoi.HomNhiTrai = _uKetQuaNoiSoiTongQuat.HomNhiTrai;
+                            _ketQuaNoiSoi.HomNhiPhai = _uKetQuaNoiSoiTongQuat.HomNhiPhai;
+                            break;
+                    }
+
+                    Result result = KetQuaNoiSoiBus.InsertKetQuaNoiSoi(_ketQuaNoiSoi);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("KetQuaNoiSoiBus.InsertKetQuaNoiSoi"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaNoiSoiBus.InsertKetQuaNoiSoi"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
         }
         #endregion
 
@@ -375,7 +574,23 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-
+                if (CheckInfo())
+                    SaveInfoAsThread();
+                else
+                    e.Cancel = true;
+            }
+            else
+            {
+                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông khám nội soi ?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (CheckInfo())
+                    {
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                        SaveInfoAsThread();
+                    }
+                    else
+                        e.Cancel = true;
+                }
             }
         }
 
@@ -424,10 +639,10 @@ namespace MM.Dialogs
             if (picWebCam.Image == null) return;
 
             Image img = picWebCam.Image;
-            imgList.Images.Add(img);
+            imgListCapture.Images.Add(img);
 
             _imgCount++;
-            ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgList.Images.Count - 1);
+            ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
             lvCapture.Items.Add(item);
         }
 
@@ -452,28 +667,30 @@ namespace MM.Dialogs
 
         private void lvCapture_DoubleClick(object sender, EventArgs e)
         {
-            if (lvCapture.SelectedItems == null || lvCapture.SelectedItems.Count <= 0) return;
+            ChonHinh();
+        }
 
-            dlgChonHinh dlg = new dlgChonHinh();
-            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+        private void chọnHìnhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChonHinh();
+        }
+        #endregion
+
+        #region Working Thread
+        private void OnSaveInfoProc(object state)
+        {
+            try
             {
-                Image img = imgListCapture.Images[lvCapture.SelectedItems[0].ImageIndex];
-
-                switch (dlg.ImageIndex)
-                {
-                    case 1:
-                        picHinh1.Image = img;
-                        break;
-                    case 2:
-                        picHinh2.Image = img;
-                        break;
-                    case 3:
-                        picHinh3.Image = img;
-                        break;
-                    case 4:
-                        picHinh4.Image = img;
-                        break;
-                }
+                //Thread.Sleep(500);
+                OnSaveInfo();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+            }
+            finally
+            {
+                base.HideWaiting();
             }
         }
         #endregion
