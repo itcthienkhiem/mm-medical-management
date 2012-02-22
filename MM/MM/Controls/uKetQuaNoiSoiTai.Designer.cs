@@ -90,6 +90,7 @@
             // Column1
             // 
             this.Column1.HeaderText = "TAI TRÁI";
+            this.Column1.MaxInputLength = 255;
             this.Column1.Name = "Column1";
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -109,6 +110,7 @@
             // Column3
             // 
             this.Column3.HeaderText = "TAI PHẢI";
+            this.Column3.MaxInputLength = 255;
             this.Column3.Name = "Column3";
             this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;

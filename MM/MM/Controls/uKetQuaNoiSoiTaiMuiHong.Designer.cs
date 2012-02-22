@@ -96,6 +96,7 @@
             // Column2
             // 
             this.Column2.HeaderText = "KẾT QUẢ";
+            this.Column2.MaxInputLength = 255;
             this.Column2.Name = "Column2";
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
