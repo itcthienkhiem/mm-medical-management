@@ -23,7 +23,59 @@ namespace MM.Controls
         #endregion
 
         #region Properties
-       
+        public string OngTaiNgoai
+        {
+            get { return GetValue(0, 1); }
+            set { SetValue(0, 1, value); }
+        }
+
+        public string MangNhi
+        {
+            get { return GetValue(1, 1); }
+            set { SetValue(1, 1, value); }
+        }
+
+        public string NiemMacMui
+        {
+            get { return GetValue(2, 1); }
+            set { SetValue(2, 1, value); }
+        }
+
+        public string KheTren
+        {
+            get { return GetValue(4, 1); }
+            set { SetValue(4, 1, value); }
+        }
+
+        public string KheGiua
+        {
+            get { return GetValue(5, 1); }
+            set { SetValue(5, 1, value); }
+        }
+
+        public string MomMocBongSang
+        {
+            get { return GetValue(6, 1); }
+            set { SetValue(6, 1, value); }
+        }
+
+        public string Vom
+        {
+            get { return GetValue(7, 1); }
+            set { SetValue(7, 1, value); }
+        }
+
+        public string Amydale
+        {
+            get { return GetValue(8, 1); }
+            set { SetValue(8, 1, value); }
+        }
+
+        public string ThanhQuan
+        {
+            get { return GetValue(9, 1); }
+            set { SetValue(9, 1, value); }
+        }
         #endregion
 
         #region UI Command
@@ -39,6 +91,19 @@ namespace MM.Controls
             dgKetQuaNoiSoi.Rows.Add("VÒM", "");
             dgKetQuaNoiSoi.Rows.Add("AMYDALE", "");
             dgKetQuaNoiSoi.Rows.Add("THANH QUẢN", "");
+        }
+
+        private string GetValue(int rowIndex, int colIndex)
+        {
+            if (dgKetQuaNoiSoi.Rows[rowIndex].Cells[colIndex].Value != null && dgKetQuaNoiSoi.Rows[rowIndex].Cells[colIndex].Value != DBNull.Value)
+                return dgKetQuaNoiSoi.Rows[rowIndex].Cells[colIndex].Value.ToString();
+            else
+                return string.Empty;
+        }
+
+        private void SetValue(int rowIndex, int colIndex, string value)
+        {
+            dgKetQuaNoiSoi.Rows[rowIndex].Cells[colIndex].Value = value;
         }
         #endregion
 
