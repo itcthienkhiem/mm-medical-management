@@ -21,6 +21,7 @@ namespace MM.Dialogs
         private string _patientGUID = string.Empty;
         private KetQuaNoiSoi _ketQuaNoiSoi = new KetQuaNoiSoi();
         private DataRow _drKetQuaNoiSoi = null;
+        private bool _isContinue = false;
         #endregion
 
         #region Constructor
@@ -371,6 +372,36 @@ namespace MM.Dialogs
             {
 
             }
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCapture_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void xóaTấtCảToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvCapture_DoubleClick(object sender, EventArgs e)
+        {
+
         }
         #endregion
     }
