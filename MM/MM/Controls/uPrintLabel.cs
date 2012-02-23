@@ -141,45 +141,49 @@ namespace MM.Controls
             }
 
             string str = txtSearchPatient.Text.ToLower();
-
-            //FullName
-            results = (from p in _dataSource.AsEnumerable()
-                          where p.Field<string>("FullName") != null &&
-                          p.Field<string>("FullName").Trim() != string.Empty &&
-                          (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
-                          str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0)
-                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                          select p).ToList<DataRow>();
-
             newDataSource = _dataSource.Clone();
-            foreach (DataRow row in results)
-                newDataSource.Rows.Add(row.ItemArray);
 
-            if (newDataSource.Rows.Count > 0)
+            if (!chkMaBenhNhan.Checked)
             {
-                dgMembers.DataSource = newDataSource;
-                return;
+                //FullName
+                results = (from p in _dataSource.AsEnumerable()
+                           where p.Field<string>("FullName") != null &&
+                           p.Field<string>("FullName").Trim() != string.Empty &&
+                           (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
+                           str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0)
+                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                           select p).ToList<DataRow>();
+
+                foreach (DataRow row in results)
+                    newDataSource.Rows.Add(row.ItemArray);
+
+                if (newDataSource.Rows.Count > 0)
+                {
+                    dgMembers.DataSource = newDataSource;
+                    return;
+                }
             }
-
-
-            //FileNum
-            results = (from p in _dataSource.AsEnumerable()
-                      where p.Field<string>("FileNum") != null &&
-                          p.Field<string>("FileNum").Trim() != string.Empty &&
-                          (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                      str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                      select p).ToList<DataRow>();
-
-            foreach (DataRow row in results)
-                newDataSource.Rows.Add(row.ItemArray);
-
-            if (newDataSource.Rows.Count > 0)
+            else
             {
-                dgMembers.DataSource = newDataSource;
-                return;
-            }
+                //FileNum
+                results = (from p in _dataSource.AsEnumerable()
+                           where p.Field<string>("FileNum") != null &&
+                               p.Field<string>("FileNum").Trim() != string.Empty &&
+                               (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
+                           str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                           select p).ToList<DataRow>();
 
+                foreach (DataRow row in results)
+                    newDataSource.Rows.Add(row.ItemArray);
+
+                if (newDataSource.Rows.Count > 0)
+                {
+                    dgMembers.DataSource = newDataSource;
+                    return;
+                }
+            }
+            
             dgMembers.DataSource = newDataSource;
         }
 
@@ -771,6 +775,11 @@ namespace MM.Controls
             }
             else
                 _isAscending2 = false;
+        }
+
+        private void chkMaBenhNhan_CheckedChanged(object sender, EventArgs e)
+        {
+            OnSearchPatient();
         }
         #endregion
 
