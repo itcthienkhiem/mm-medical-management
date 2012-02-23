@@ -50,6 +50,7 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
+            Cursor.Current = Cursors.WaitCursor;
             dtpkNgayKham.Value = DateTime.Now;
             cboLoaiNoiSoi.SelectedIndex = 0;
 
@@ -58,6 +59,8 @@ namespace MM.Dialogs
 
             _webCam = new WebCam();
             _webCam.InitializeWebCam(ref picWebCam);
+
+            OnPlayWebCam();
         }
 
         private void ViewControl(Control view)
@@ -158,27 +161,10 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (picHinh1.Image == null)
+            if (picHinh1.Image == null && picHinh2.Image == null &&
+                picHinh3.Image == null && picHinh4.Image == null)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn hình 1.", IconType.Information);
-                return false;
-            }
-
-            if (picHinh2.Image == null)
-            {
-                MsgBox.Show(this.Text, "Vui lòng chọn hình 2.", IconType.Information);
-                return false;
-            }
-
-            if (picHinh3.Image == null)
-            {
-                MsgBox.Show(this.Text, "Vui lòng chọn hình 3.", IconType.Information);
-                return false;
-            }
-
-            if (picHinh4.Image == null)
-            {
-                MsgBox.Show(this.Text, "Vui lòng chọn hình 4.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng chọn ít nhất 1 hình nội soi.", IconType.Information);
                 return false;
             }
 
@@ -216,10 +202,17 @@ namespace MM.Dialogs
                 cboKetLuan.Text = drKetQuaNoiSoi["KetLuan"].ToString();
                 cboDeNghi.Text = drKetQuaNoiSoi["DeNghi"].ToString();
 
-                picHinh1.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh1"]);
-                picHinh2.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh2"]);
-                picHinh3.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh3"]);
-                picHinh4.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh4"]);
+                if (drKetQuaNoiSoi["Hinh1"] != null && drKetQuaNoiSoi["Hinh1"] != DBNull.Value)
+                    picHinh1.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh1"]);
+
+                if (drKetQuaNoiSoi["Hinh2"] != null && drKetQuaNoiSoi["Hinh2"] != DBNull.Value)
+                    picHinh2.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh2"]);
+
+                if (drKetQuaNoiSoi["Hinh3"] != null && drKetQuaNoiSoi["Hinh3"] != DBNull.Value)
+                    picHinh3.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh3"]);
+
+                if (drKetQuaNoiSoi["Hinh4"] != null && drKetQuaNoiSoi["Hinh4"] != DBNull.Value)
+                    picHinh4.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh4"]);
 
                 LoaiNoiSoi type = (LoaiNoiSoi)cboLoaiNoiSoi.SelectedIndex;
                 switch (type)
@@ -444,10 +437,17 @@ namespace MM.Dialogs
                     _ketQuaNoiSoi.KetLuan = cboKetLuan.Text;
                     _ketQuaNoiSoi.DeNghi = cboDeNghi.Text;
 
-                    _ketQuaNoiSoi.Hinh1 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh1.Image));
-                    _ketQuaNoiSoi.Hinh2 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh2.Image));
-                    _ketQuaNoiSoi.Hinh3 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh3.Image));
-                    _ketQuaNoiSoi.Hinh4 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh4.Image));
+                    if (picHinh1.Image != null)
+                        _ketQuaNoiSoi.Hinh1 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh1.Image));
+
+                    if (picHinh2.Image != null)
+                        _ketQuaNoiSoi.Hinh2 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh2.Image));
+
+                    if (picHinh3.Image != null)
+                        _ketQuaNoiSoi.Hinh3 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh3.Image));
+
+                    if (picHinh4.Image != null)
+                        _ketQuaNoiSoi.Hinh4 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh4.Image));
 
                     LoaiNoiSoi type = (LoaiNoiSoi)cboLoaiNoiSoi.SelectedIndex;
                     switch (type)
@@ -534,6 +534,46 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(e.Message);
             }
         }
+
+        private void OnPlayWebCam()
+        {
+            try
+            {
+                if (!_isContinue)
+                {
+                    _webCam.Start();
+                    _isContinue = true;
+                }
+                else
+                    _webCam.Continue();
+
+                btnStop.Enabled = true;
+                btnCapture.Enabled = true;
+                btnPlay.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
+        }
+
+        private void OnStopWebCam()
+        {
+            try
+            {
+                _webCam.Stop();
+
+                btnStop.Enabled = false;
+                btnCapture.Enabled = false;
+                btnPlay.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -575,7 +615,10 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (CheckInfo())
+                {
                     SaveInfoAsThread();
+                    OnStopWebCam();
+                }
                 else
                     e.Cancel = true;
             }
@@ -587,51 +630,26 @@ namespace MM.Dialogs
                     {
                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
                         SaveInfoAsThread();
+                        OnStopWebCam();
                     }
                     else
                         e.Cancel = true;
                 }
+                else
+                    OnStopWebCam();
             }
+
+            
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!_isContinue)
-                {
-                    _webCam.Start();
-                    _isContinue = true;
-                }
-                else
-                    _webCam.Continue();
-
-                btnStop.Enabled = true;
-                btnCapture.Enabled = true;
-                btnPlay.Enabled = false;
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(this.Text, ex.Message, IconType.Error);
-                Utility.WriteToTraceLog(ex.Message);
-            }
+            OnPlayWebCam();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            try
-            {
-                _webCam.Stop();
-
-                btnStop.Enabled = false;
-                btnCapture.Enabled = false;
-                btnPlay.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                 MsgBox.Show(this.Text, ex.Message, IconType.Error);
-                Utility.WriteToTraceLog(ex.Message);
-            }
+            OnStopWebCam();
         }
 
         private void btnCapture_Click(object sender, EventArgs e)
