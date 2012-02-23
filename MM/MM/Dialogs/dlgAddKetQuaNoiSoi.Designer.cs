@@ -77,6 +77,8 @@
             this.xóaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.xóaTấtCảToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.chọnHìnhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imgListCapture = new System.Windows.Forms.ImageList(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
@@ -85,8 +87,6 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.chọnHìnhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh2)).BeginInit();
@@ -456,6 +456,7 @@
             this.tabKhamNoiSoi.Size = new System.Drawing.Size(848, 675);
             this.tabKhamNoiSoi.TabIndex = 0;
             this.tabKhamNoiSoi.TabStop = false;
+            this.tabKhamNoiSoi.SelectedIndexChanged += new System.EventHandler(this.tabKhamNoiSoi_SelectedIndexChanged);
             // 
             // pageKetQuaNoiSoi
             // 
@@ -659,6 +660,18 @@
             this.xóaTấtCảToolStripMenuItem.Text = "Xóa tất cả";
             this.xóaTấtCảToolStripMenuItem.Click += new System.EventHandler(this.xóaTấtCảToolStripMenuItem_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // chọnHìnhToolStripMenuItem
+            // 
+            this.chọnHìnhToolStripMenuItem.Name = "chọnHìnhToolStripMenuItem";
+            this.chọnHìnhToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chọnHìnhToolStripMenuItem.Text = "Chọn hình";
+            this.chọnHìnhToolStripMenuItem.Click += new System.EventHandler(this.chọnHìnhToolStripMenuItem_Click);
+            // 
             // imgListCapture
             // 
             this.imgListCapture.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
@@ -738,18 +751,6 @@
             this.imgList.TransparentColor = System.Drawing.Color.Transparent;
             this.imgList.Images.SetKeyName(0, "camera-icon (1).png");
             this.imgList.Images.SetKeyName(1, "clipboard-search-result-icon.png");
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // chọnHìnhToolStripMenuItem
-            // 
-            this.chọnHìnhToolStripMenuItem.Name = "chọnHìnhToolStripMenuItem";
-            this.chọnHìnhToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.chọnHìnhToolStripMenuItem.Text = "Chọn hình";
-            this.chọnHìnhToolStripMenuItem.Click += new System.EventHandler(this.chọnHìnhToolStripMenuItem_Click);
             // 
             // dlgAddKetQuaNoiSoi
             // 

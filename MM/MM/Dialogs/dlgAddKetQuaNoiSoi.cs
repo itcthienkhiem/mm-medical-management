@@ -60,7 +60,7 @@ namespace MM.Dialogs
             _webCam = new WebCam();
             _webCam.InitializeWebCam(ref picWebCam);
 
-            OnPlayWebCam();
+            //OnPlayWebCam();
         }
 
         private void ViewControl(Control view)
@@ -539,6 +539,10 @@ namespace MM.Dialogs
         {
             try
             {
+                btnStop.Enabled = true;
+                btnCapture.Enabled = true;
+                btnPlay.Enabled = false;
+
                 if (!_isContinue)
                 {
                     _webCam.Start();
@@ -547,9 +551,6 @@ namespace MM.Dialogs
                 else
                     _webCam.Continue();
 
-                btnStop.Enabled = true;
-                btnCapture.Enabled = true;
-                btnPlay.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -562,11 +563,11 @@ namespace MM.Dialogs
         {
             try
             {
-                _webCam.Stop();
-
                 btnStop.Enabled = false;
                 btnCapture.Enabled = false;
                 btnPlay.Enabled = true;
+
+                _webCam.Stop();
             }
             catch (Exception ex)
             {
@@ -712,5 +713,14 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        private void tabKhamNoiSoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabKhamNoiSoi.SelectedIndex == 1)
+            {
+                if (btnPlay.Enabled)
+                    OnPlayWebCam();
+            }
+        }
     }
 }
