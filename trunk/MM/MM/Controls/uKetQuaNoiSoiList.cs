@@ -11,6 +11,7 @@ using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -145,6 +146,275 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả nội soi.", IconType.Information);
         }
+
+        private List<DataRow> GetCheckedRows()
+        {
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgKhamNoiSoi.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedRows.Add(row);
+                }
+            }
+
+            return checkedRows;
+        }
+
+        private void OnPrint(bool isPreview)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetCheckedRows();
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\KetQuaNoiSoi.xls", Application.StartupPath);
+                if (isPreview)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        LoaiNoiSoi type = (LoaiNoiSoi)Convert.ToByte(row["LoaiNoiSoi"]);
+                        switch (type)
+                        {
+                            case LoaiNoiSoi.Tai:
+                                if (!ExportExcel.ExportKetQuaNoiSoiTaiToExcel(exportFileName, _patientRow, row))
+                                    return;
+                                else
+                                {
+                                    try
+                                    {
+                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                        return;
+                                    }
+
+                                    break;
+                                }
+                            case LoaiNoiSoi.Mui:
+                                if (!ExportExcel.ExportKetQuaNoiSoiMuiToExcel(exportFileName, _patientRow, row))
+                                    return;
+                                else
+                                {
+                                    try
+                                    {
+                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                        return;
+                                    }
+
+                                    break;
+                                }
+                            case LoaiNoiSoi.Hong_ThanhQuan:
+                                if (!ExportExcel.ExportKetQuaNoiSoiHongThanhQuanToExcel(exportFileName, _patientRow, row))
+                                    return;
+                                else
+                                {
+                                    try
+                                    {
+                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                        return;
+                                    }
+
+                                    break;
+                                }
+                            case LoaiNoiSoi.TaiMuiHong:
+                                if (!ExportExcel.ExportKetQuaNoiSoiTaiMuiHongToExcel(exportFileName, _patientRow, row))
+                                    return;
+                                else
+                                {
+                                    try
+                                    {
+                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                        return;
+                                    }
+
+                                    break;
+                                }
+                            case LoaiNoiSoi.TongQuat:
+                                if (!ExportExcel.ExportKetQuaNoiSoiTongQuatToExcel(exportFileName, _patientRow, row))
+                                    return;
+                                else
+                                {
+                                    try
+                                    {
+                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                        return;
+                                    }
+
+                                    break;
+                                }
+                        }
+                    }
+                }
+                else
+                {
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach (DataRow row in checkedRows)
+                        {
+                            LoaiNoiSoi type = (LoaiNoiSoi)Convert.ToByte(row["LoaiNoiSoi"]);
+                            switch (type)
+                            {
+                                case LoaiNoiSoi.Tai:
+                                    if (!ExportExcel.ExportKetQuaNoiSoiTaiToExcel(exportFileName, _patientRow, row))
+                                        return;
+                                    else
+                                    {
+                                        try
+                                        {
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                            return;
+                                        }
+
+                                        break;
+                                    }
+                                case LoaiNoiSoi.Mui:
+                                    if (!ExportExcel.ExportKetQuaNoiSoiMuiToExcel(exportFileName, _patientRow, row))
+                                        return;
+                                    else
+                                    {
+                                        try
+                                        {
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                            return;
+                                        }
+
+                                        break;
+                                    }
+                                case LoaiNoiSoi.Hong_ThanhQuan:
+                                    if (!ExportExcel.ExportKetQuaNoiSoiHongThanhQuanToExcel(exportFileName, _patientRow, row))
+                                        return;
+                                    else
+                                    {
+                                        try
+                                        {
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                            return;
+                                        }
+
+                                        break;
+                                    }
+                                case LoaiNoiSoi.TaiMuiHong:
+                                    if (!ExportExcel.ExportKetQuaNoiSoiTaiMuiHongToExcel(exportFileName, _patientRow, row))
+                                        return;
+                                    else
+                                    {
+                                        try
+                                        {
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                            return;
+                                        }
+
+                                        break;
+                                    }
+                                case LoaiNoiSoi.TongQuat:
+                                    if (!ExportExcel.ExportKetQuaNoiSoiTongQuatToExcel(exportFileName, _patientRow, row))
+                                        return;
+                                    else
+                                    {
+                                        try
+                                        {
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                            return;
+                                        }
+
+                                        break;
+                                    }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả nội soi cần in.", IconType.Information);
+        }
+
+        private void OnExportExcel()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetCheckedRows();
+            if (checkedRows.Count > 0)
+            {
+                foreach (DataRow row in checkedRows)
+                {
+                    SaveFileDialog dlg = new SaveFileDialog();
+                    dlg.Title = "Export Excel";
+                    dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        LoaiNoiSoi type = (LoaiNoiSoi)Convert.ToByte(row["LoaiNoiSoi"]);
+                        switch (type)
+                        {
+                            case LoaiNoiSoi.Tai:
+                                if (!ExportExcel.ExportKetQuaNoiSoiTaiToExcel(dlg.FileName, _patientRow, row))
+                                    return;
+                                else
+                                    break;
+                            case LoaiNoiSoi.Mui:
+                                if (!ExportExcel.ExportKetQuaNoiSoiMuiToExcel(dlg.FileName, _patientRow, row))
+                                    return;
+                                else
+                                    break;
+                            case LoaiNoiSoi.Hong_ThanhQuan:
+                                if (!ExportExcel.ExportKetQuaNoiSoiHongThanhQuanToExcel(dlg.FileName, _patientRow, row))
+                                    return;
+                                else
+                                    break;
+                            case LoaiNoiSoi.TaiMuiHong:
+                                if (!ExportExcel.ExportKetQuaNoiSoiTaiMuiHongToExcel(dlg.FileName, _patientRow, row))
+                                    return;
+                                else
+                                    break;
+                            case LoaiNoiSoi.TongQuat:
+                                if (!ExportExcel.ExportKetQuaNoiSoiTongQuatToExcel(dlg.FileName, _patientRow, row))
+                                    return;
+                                else
+                                    break;
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả nội soi cần xuất excel.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -182,6 +452,21 @@ namespace MM.Controls
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -203,7 +488,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }

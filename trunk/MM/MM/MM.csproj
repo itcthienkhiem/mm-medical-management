@@ -1247,6 +1247,11 @@
     <None Include="Templates\DichVuTuTucTemplate.xls" />
     <None Include="Templates\DoanhThuTheoNgayTemplate.xls" />
     <None Include="Templates\HDGTGTTemplate.xls" />
+    <None Include="Templates\KetQuaNoiSoiHongThanhQuanTemplate.xls" />
+    <None Include="Templates\KetQuaNoiSoiMuiTemplate.xls" />
+    <None Include="Templates\KetQuaNoiSoiTaiMuiHongTemplate.xls" />
+    <None Include="Templates\KetQuaNoiSoiTaiTemplate.xls" />
+    <None Include="Templates\KetQuaNoiSoiTongQuatTemplate.xls" />
     <None Include="Templates\KhamSucKhoeTongQuatTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
