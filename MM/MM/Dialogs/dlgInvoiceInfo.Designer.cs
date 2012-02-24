@@ -31,6 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -69,13 +74,6 @@
             this.lbPatientName = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.dgDetail = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receiptDetailViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel8 = new System.Windows.Forms.Panel();
             this.lbTotalPayment = new System.Windows.Forms.Label();
             this.lbVAT = new System.Windows.Forms.Label();
@@ -87,15 +85,30 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.receiptDetailViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtMaSoThue = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgDetail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.receiptDetailViewBindingSource)).BeginInit();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVAT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptDetailViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -107,7 +120,7 @@
             this.panel1.Controls.Add(this.btnExportInvoice);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 652);
+            this.panel1.Location = new System.Drawing.Point(0, 663);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(708, 38);
             this.panel1.TabIndex = 7;
@@ -321,6 +334,8 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.txtMaSoThue);
+            this.panel6.Controls.Add(this.label16);
             this.panel6.Controls.Add(this.txtAddress);
             this.panel6.Controls.Add(this.cboHinhThucThanhToan);
             this.panel6.Controls.Add(this.label11);
@@ -333,12 +348,12 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 190);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(708, 120);
+            this.panel6.Size = new System.Drawing.Size(708, 137);
             this.panel6.TabIndex = 0;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(164, 43);
+            this.txtAddress.Location = new System.Drawing.Point(143, 65);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.ReadOnly = true;
             this.txtAddress.Size = new System.Drawing.Size(342, 20);
@@ -353,7 +368,7 @@
             this.cboHinhThucThanhToan.Items.AddRange(new object[] {
             "Tiền mặt",
             "Chuyển khoản"});
-            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(164, 87);
+            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(143, 109);
             this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
             this.cboHinhThucThanhToan.Size = new System.Drawing.Size(178, 21);
             this.cboHinhThucThanhToan.TabIndex = 22;
@@ -362,7 +377,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(5, 90);
+            this.label11.Location = new System.Drawing.Point(5, 112);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(127, 15);
             this.label11.TabIndex = 21;
@@ -370,7 +385,7 @@
             // 
             // txtSoTaiKhoan
             // 
-            this.txtSoTaiKhoan.Location = new System.Drawing.Point(164, 65);
+            this.txtSoTaiKhoan.Location = new System.Drawing.Point(143, 87);
             this.txtSoTaiKhoan.Name = "txtSoTaiKhoan";
             this.txtSoTaiKhoan.Size = new System.Drawing.Size(178, 20);
             this.txtSoTaiKhoan.TabIndex = 20;
@@ -379,7 +394,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(5, 68);
+            this.label10.Location = new System.Drawing.Point(5, 90);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 15);
             this.label10.TabIndex = 19;
@@ -389,7 +404,7 @@
             // 
             this.lbAddress.AutoSize = true;
             this.lbAddress.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAddress.Location = new System.Drawing.Point(5, 45);
+            this.lbAddress.Location = new System.Drawing.Point(5, 67);
             this.lbAddress.Name = "lbAddress";
             this.lbAddress.Size = new System.Drawing.Size(47, 15);
             this.lbAddress.TabIndex = 18;
@@ -397,7 +412,7 @@
             // 
             // txtTenDonVi
             // 
-            this.txtTenDonVi.Location = new System.Drawing.Point(164, 21);
+            this.txtTenDonVi.Location = new System.Drawing.Point(143, 21);
             this.txtTenDonVi.Name = "txtTenDonVi";
             this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
             this.txtTenDonVi.TabIndex = 17;
@@ -426,7 +441,7 @@
             // 
             this.panel7.Controls.Add(this.dgDetail);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 310);
+            this.panel7.Location = new System.Drawing.Point(0, 327);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(708, 187);
             this.panel7.TabIndex = 18;
@@ -477,78 +492,6 @@
             this.dgDetail.TabStop = false;
             this.dgDetail.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgDetail_ColumnHeaderMouseClick);
             // 
-            // STT
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.STT.DefaultCellStyle = dataGridViewCellStyle2;
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
-            this.STT.ReadOnly = true;
-            this.STT.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.STT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.STT.Width = 40;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên hàng hóa, dịch vụ";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.nameDataGridViewTextBoxColumn.Width = 220;
-            // 
-            // DonViTinh
-            // 
-            this.DonViTinh.DataPropertyName = "DonViTinh";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DonViTinh.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DonViTinh.HeaderText = "Đơn vị tính";
-            this.DonViTinh.Name = "DonViTinh";
-            this.DonViTinh.ReadOnly = true;
-            this.DonViTinh.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DonViTinh.Width = 85;
-            // 
-            // SoLuong
-            // 
-            this.SoLuong.DataPropertyName = "SoLuong";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.SoLuong.DefaultCellStyle = dataGridViewCellStyle4;
-            this.SoLuong.HeaderText = "Số lượng";
-            this.SoLuong.Name = "SoLuong";
-            this.SoLuong.ReadOnly = true;
-            this.SoLuong.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SoLuong.Width = 75;
-            // 
-            // DonGia
-            // 
-            this.DonGia.DataPropertyName = "DonGia";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.DonGia.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DonGia.HeaderText = "Đơn giá";
-            this.DonGia.Name = "DonGia";
-            this.DonGia.ReadOnly = true;
-            this.DonGia.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DonGia.Width = 110;
-            // 
-            // ThanhTien
-            // 
-            this.ThanhTien.DataPropertyName = "ThanhTien";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.ThanhTien.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ThanhTien.HeaderText = "Thành tiền";
-            this.ThanhTien.Name = "ThanhTien";
-            this.ThanhTien.ReadOnly = true;
-            this.ThanhTien.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ThanhTien.Width = 120;
-            // 
-            // receiptDetailViewBindingSource
-            // 
-            this.receiptDetailViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptDetailView);
-            // 
             // panel8
             // 
             this.panel8.Controls.Add(this.lbTotalPayment);
@@ -561,9 +504,9 @@
             this.panel8.Controls.Add(this.label13);
             this.panel8.Controls.Add(this.label12);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(0, 497);
+            this.panel8.Location = new System.Drawing.Point(0, 514);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(708, 155);
+            this.panel8.Size = new System.Drawing.Size(708, 149);
             this.panel8.TabIndex = 6;
             // 
             // lbTotalPayment
@@ -661,13 +604,170 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
+            // receiptDetailViewBindingSource
+            // 
+            this.receiptDetailViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptDetailView);
+            // 
+            // txtMaSoThue
+            // 
+            this.txtMaSoThue.Location = new System.Drawing.Point(143, 43);
+            this.txtMaSoThue.Name = "txtMaSoThue";
+            this.txtMaSoThue.Size = new System.Drawing.Size(178, 20);
+            this.txtMaSoThue.TabIndex = 18;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(5, 46);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(71, 15);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "Mã số thuế:";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewTextBoxColumn1.HeaderText = "STT";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tên hàng hóa, dịch vụ";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn2.Width = 220;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "DonViTinh";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Đơn vị tính";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn3.Width = 85;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "SoLuong";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Số lượng";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn4.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "DonGia";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            dataGridViewCellStyle11.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Đơn giá";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn5.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "ThanhTien";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Thành tiền";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewTextBoxColumn6.Width = 120;
+            // 
+            // STT
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.STT.DefaultCellStyle = dataGridViewCellStyle2;
+            this.STT.HeaderText = "STT";
+            this.STT.Name = "STT";
+            this.STT.ReadOnly = true;
+            this.STT.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.STT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.STT.Width = 40;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên hàng hóa, dịch vụ";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nameDataGridViewTextBoxColumn.Width = 220;
+            // 
+            // DonViTinh
+            // 
+            this.DonViTinh.DataPropertyName = "DonViTinh";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DonViTinh.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DonViTinh.HeaderText = "Đơn vị tính";
+            this.DonViTinh.Name = "DonViTinh";
+            this.DonViTinh.ReadOnly = true;
+            this.DonViTinh.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DonViTinh.Width = 85;
+            // 
+            // SoLuong
+            // 
+            this.SoLuong.DataPropertyName = "SoLuong";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.SoLuong.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SoLuong.HeaderText = "Số lượng";
+            this.SoLuong.Name = "SoLuong";
+            this.SoLuong.ReadOnly = true;
+            this.SoLuong.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SoLuong.Width = 75;
+            // 
+            // DonGia
+            // 
+            this.DonGia.DataPropertyName = "DonGia";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.DonGia.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DonGia.HeaderText = "Đơn giá";
+            this.DonGia.Name = "DonGia";
+            this.DonGia.ReadOnly = true;
+            this.DonGia.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DonGia.Width = 110;
+            // 
+            // ThanhTien
+            // 
+            this.ThanhTien.DataPropertyName = "ThanhTien";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.ThanhTien.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ThanhTien.HeaderText = "Thành tiền";
+            this.ThanhTien.Name = "ThanhTien";
+            this.ThanhTien.ReadOnly = true;
+            this.ThanhTien.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ThanhTien.Width = 120;
+            // 
             // dlgInvoiceInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(708, 690);
+            this.ClientSize = new System.Drawing.Size(708, 701);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
@@ -695,10 +795,10 @@
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgDetail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.receiptDetailViewBindingSource)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVAT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.receiptDetailViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -755,6 +855,14 @@
         private System.Windows.Forms.Button btnClose2;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.TextBox txtMaSoThue;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
 
 
     }

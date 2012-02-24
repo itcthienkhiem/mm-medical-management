@@ -89,6 +89,9 @@ spDichVuHopDong
 - Insert Function(PhongCho);
 2012-02-20
 - Update store: spGetCheckListByContract
+2012-02-24
+- Update table: Invoice(Add col: MaSoThue)
+- Update view: InvoiceView
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa
