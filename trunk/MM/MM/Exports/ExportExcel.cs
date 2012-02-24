@@ -2279,7 +2279,7 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A2"].Value = string.Format("Ngày: {0}", tuNgay.ToString("dd/MM/yyyy"));
+                workSheet.Cells["A2"].Value = string.Format("Từ ngày: {0} - Đến ngày: {1}", tuNgay.ToString("dd/MM/yyyy"), denNgay.ToString("dd/MM/yyyy"));
 
                 int rowIndex = 3;
                 int no = 1;
