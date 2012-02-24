@@ -693,6 +693,15 @@ namespace MM.Dialogs
         {
             ChonHinh();
         }
+
+        private void tabKhamNoiSoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabKhamNoiSoi.SelectedIndex == 1)
+            {
+                if (btnPlay.Enabled)
+                    OnPlayWebCam();
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -713,14 +722,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        private void tabKhamNoiSoi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabKhamNoiSoi.SelectedIndex == 1)
-            {
-                if (btnPlay.Enabled)
-                    OnPlayWebCam();
-            }
-        }
     }
 }
