@@ -2508,32 +2508,32 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B7"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["D7"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["F7"].Value = patientRow["GenderAsStr"].ToString();
-
-                if (patientRow["Address"] != null && patientRow["Address"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = patientRow["Address"].ToString();
-
-                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["D8"].Value = patientRow["Mobile"].ToString();
-
-                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = patientRow["Occupation"].ToString();
-
-                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B9"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
+                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
+                workSheet.Cells["D6"].Value = patientRow["DobStr"].ToString();
+                workSheet.Cells["F6"].Value = patientRow["GenderAsStr"].ToString();
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["D9"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+
+                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
+                    workSheet.Cells["D7"].Value = patientRow["Mobile"].ToString();
+
+                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
+                    workSheet.Cells["F7"].Value = patientRow["Occupation"].ToString();
+
+                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
+                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+
+                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
+                //    workSheet.Cells["D8"].Value = patientRow["FileNum"].ToString();
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F9"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
+                    workSheet.Cells["F8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
 
 
                 double left = 0.85527559055118108;
-                double top = 249.97732283464566;
+                double top = 183;//249.97732283464566;
                 double width = 147.62606857863705;
                 double height = 135.0;
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -2551,28 +2551,28 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     workSheet.Shapes.AddPicture((byte[])ketQuaNoiSoi["Hinh4"], left, top, width, height);
 
-                workSheet.Cells["A14"].Value = ketQuaNoiSoi["OngTaiPhai"].ToString();
-                workSheet.Cells["E14"].Value = ketQuaNoiSoi["OngTaiTrai"].ToString();
+                workSheet.Cells["A13"].Value = ketQuaNoiSoi["OngTaiPhai"].ToString();
+                workSheet.Cells["E13"].Value = ketQuaNoiSoi["OngTaiTrai"].ToString();
 
-                workSheet.Cells["A15"].Value = ketQuaNoiSoi["MangNhiPhai"].ToString();
-                workSheet.Cells["E15"].Value = ketQuaNoiSoi["MangNhiTrai"].ToString();
+                workSheet.Cells["A14"].Value = ketQuaNoiSoi["MangNhiPhai"].ToString();
+                workSheet.Cells["E14"].Value = ketQuaNoiSoi["MangNhiTrai"].ToString();
 
-                workSheet.Cells["A16"].Value = ketQuaNoiSoi["CanBuaPhai"].ToString();
-                workSheet.Cells["E16"].Value = ketQuaNoiSoi["CanBuaTrai"].ToString();
+                workSheet.Cells["A15"].Value = ketQuaNoiSoi["CanBuaPhai"].ToString();
+                workSheet.Cells["E15"].Value = ketQuaNoiSoi["CanBuaTrai"].ToString();
 
-                workSheet.Cells["A17"].Value = ketQuaNoiSoi["HomNhiPhai"].ToString();
-                workSheet.Cells["E17"].Value = ketQuaNoiSoi["HomNhiTrai"].ToString();
+                workSheet.Cells["A16"].Value = ketQuaNoiSoi["HomNhiPhai"].ToString();
+                workSheet.Cells["E16"].Value = ketQuaNoiSoi["HomNhiTrai"].ToString();
 
-                workSheet.Cells["A18"].Value = ketQuaNoiSoi["ValsavaPhai"].ToString();
-                workSheet.Cells["E18"].Value = ketQuaNoiSoi["ValsavaTrai"].ToString();
+                workSheet.Cells["A17"].Value = ketQuaNoiSoi["ValsavaPhai"].ToString();
+                workSheet.Cells["E17"].Value = ketQuaNoiSoi["ValsavaTrai"].ToString();
 
-                workSheet.Cells["B20"].Value = ketQuaNoiSoi["KetLuan"].ToString();
-                workSheet.Cells["B22"].Value = ketQuaNoiSoi["DeNghi"].ToString();
+                workSheet.Cells["B19"].Value = ketQuaNoiSoi["KetLuan"].ToString();
+                workSheet.Cells["B21"].Value = ketQuaNoiSoi["DeNghi"].ToString();
 
-                workSheet.Cells["E24"].Value = string.Format("Ngày: {0}", 
+                workSheet.Cells["E23"].Value = string.Format("Ngày: {0}", 
                     Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
 
-                workSheet.Cells["E28"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+                workSheet.Cells["E27"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
@@ -2608,32 +2608,32 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B7"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["D7"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["F7"].Value = patientRow["GenderAsStr"].ToString();
-
-                if (patientRow["Address"] != null && patientRow["Address"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = patientRow["Address"].ToString();
-
-                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["D8"].Value = patientRow["Mobile"].ToString();
-
-                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = patientRow["Occupation"].ToString();
-
-                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B9"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
+                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
+                workSheet.Cells["D6"].Value = patientRow["DobStr"].ToString();
+                workSheet.Cells["F6"].Value = patientRow["GenderAsStr"].ToString();
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["D9"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+
+                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
+                    workSheet.Cells["D7"].Value = patientRow["Mobile"].ToString();
+
+                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
+                    workSheet.Cells["F7"].Value = patientRow["Occupation"].ToString();
+
+                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
+                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+
+                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
+                //    workSheet.Cells["D8"].Value = patientRow["FileNum"].ToString();
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F9"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
+                    workSheet.Cells["F8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
 
 
                 double left = 0.85527559055118108;
-                double top = 249.97732283464566;
+                double top = 183;
                 double width = 147.62606857863705;
                 double height = 135.0;
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -2651,40 +2651,40 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     workSheet.Shapes.AddPicture((byte[])ketQuaNoiSoi["Hinh4"], left, top, width, height);
 
-                workSheet.Cells["A14"].Value = ketQuaNoiSoi["NiemMacPhai"].ToString();
-                workSheet.Cells["E14"].Value = ketQuaNoiSoi["NiemMacTrai"].ToString();
+                workSheet.Cells["A13"].Value = ketQuaNoiSoi["NiemMacPhai"].ToString();
+                workSheet.Cells["E13"].Value = ketQuaNoiSoi["NiemMacTrai"].ToString();
 
-                workSheet.Cells["A15"].Value = ketQuaNoiSoi["VachNganPhai"].ToString();
-                workSheet.Cells["E15"].Value = ketQuaNoiSoi["VachNganTrai"].ToString();
+                workSheet.Cells["A14"].Value = ketQuaNoiSoi["VachNganPhai"].ToString();
+                workSheet.Cells["E14"].Value = ketQuaNoiSoi["VachNganTrai"].ToString();
 
-                workSheet.Cells["A16"].Value = ketQuaNoiSoi["KheTrenPhai"].ToString();
-                workSheet.Cells["E16"].Value = ketQuaNoiSoi["KheTrenTrai"].ToString();
+                workSheet.Cells["A15"].Value = ketQuaNoiSoi["KheTrenPhai"].ToString();
+                workSheet.Cells["E15"].Value = ketQuaNoiSoi["KheTrenTrai"].ToString();
 
-                workSheet.Cells["A17"].Value = ketQuaNoiSoi["KheGiuaPhai"].ToString();
-                workSheet.Cells["E17"].Value = ketQuaNoiSoi["KheGiuaTrai"].ToString();
+                workSheet.Cells["A16"].Value = ketQuaNoiSoi["KheGiuaPhai"].ToString();
+                workSheet.Cells["E16"].Value = ketQuaNoiSoi["KheGiuaTrai"].ToString();
 
-                workSheet.Cells["A18"].Value = ketQuaNoiSoi["CuonGiuaPhai"].ToString();
-                workSheet.Cells["E18"].Value = ketQuaNoiSoi["CuonGiuaTrai"].ToString();
+                workSheet.Cells["A17"].Value = ketQuaNoiSoi["CuonGiuaPhai"].ToString();
+                workSheet.Cells["E17"].Value = ketQuaNoiSoi["CuonGiuaTrai"].ToString();
 
-                workSheet.Cells["A19"].Value = ketQuaNoiSoi["CuonDuoiPhai"].ToString();
-                workSheet.Cells["E19"].Value = ketQuaNoiSoi["CuonDuoiTrai"].ToString();
+                workSheet.Cells["A18"].Value = ketQuaNoiSoi["CuonDuoiPhai"].ToString();
+                workSheet.Cells["E18"].Value = ketQuaNoiSoi["CuonDuoiTrai"].ToString();
 
-                workSheet.Cells["A20"].Value = ketQuaNoiSoi["MomMocPhai"].ToString();
-                workSheet.Cells["E20"].Value = ketQuaNoiSoi["MomMocTrai"].ToString();
+                workSheet.Cells["A19"].Value = ketQuaNoiSoi["MomMocPhai"].ToString();
+                workSheet.Cells["E19"].Value = ketQuaNoiSoi["MomMocTrai"].ToString();
 
-                workSheet.Cells["A21"].Value = ketQuaNoiSoi["BongSangPhai"].ToString();
-                workSheet.Cells["E21"].Value = ketQuaNoiSoi["BongSangTrai"].ToString();
+                workSheet.Cells["A20"].Value = ketQuaNoiSoi["BongSangPhai"].ToString();
+                workSheet.Cells["E20"].Value = ketQuaNoiSoi["BongSangTrai"].ToString();
 
-                workSheet.Cells["A22"].Value = ketQuaNoiSoi["VomPhai"].ToString();
-                workSheet.Cells["E22"].Value = ketQuaNoiSoi["VomTrai"].ToString();
+                workSheet.Cells["A21"].Value = ketQuaNoiSoi["VomPhai"].ToString();
+                workSheet.Cells["E21"].Value = ketQuaNoiSoi["VomTrai"].ToString();
 
-                workSheet.Cells["B24"].Value = ketQuaNoiSoi["KetLuan"].ToString();
-                workSheet.Cells["B26"].Value = ketQuaNoiSoi["DeNghi"].ToString();
+                workSheet.Cells["B23"].Value = ketQuaNoiSoi["KetLuan"].ToString();
+                workSheet.Cells["B25"].Value = ketQuaNoiSoi["DeNghi"].ToString();
 
-                workSheet.Cells["E28"].Value = string.Format("Ngày: {0}",
+                workSheet.Cells["E27"].Value = string.Format("Ngày: {0}",
                     Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
 
-                workSheet.Cells["E32"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+                workSheet.Cells["E31"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
@@ -2720,32 +2720,32 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B7"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["D7"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["F7"].Value = patientRow["GenderAsStr"].ToString();
-
-                if (patientRow["Address"] != null && patientRow["Address"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = patientRow["Address"].ToString();
-
-                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["D8"].Value = patientRow["Mobile"].ToString();
-
-                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = patientRow["Occupation"].ToString();
-
-                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B9"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
+                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
+                workSheet.Cells["D6"].Value = patientRow["DobStr"].ToString();
+                workSheet.Cells["F6"].Value = patientRow["GenderAsStr"].ToString();
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["D9"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+
+                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
+                    workSheet.Cells["D7"].Value = patientRow["Mobile"].ToString();
+
+                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
+                    workSheet.Cells["F7"].Value = patientRow["Occupation"].ToString();
+
+                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
+                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+
+                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
+                //    workSheet.Cells["D8"].Value = patientRow["FileNum"].ToString();
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F9"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
+                    workSheet.Cells["F8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
 
 
                 double left = 0.85527559055118108;
-                double top = 249.97732283464566;
+                double top = 183;
                 double width = 147.62606857863705;
                 double height = 135.0;
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -2763,25 +2763,25 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     workSheet.Shapes.AddPicture((byte[])ketQuaNoiSoi["Hinh4"], left, top, width, height);
 
-                workSheet.Cells["A14"].Value = ketQuaNoiSoi["OngTaiPhai"].ToString();
-                workSheet.Cells["E14"].Value = ketQuaNoiSoi["OngTaiTrai"].ToString();
+                workSheet.Cells["A13"].Value = ketQuaNoiSoi["OngTaiPhai"].ToString();
+                workSheet.Cells["E13"].Value = ketQuaNoiSoi["OngTaiTrai"].ToString();
 
-                workSheet.Cells["A15"].Value = ketQuaNoiSoi["MangNhiPhai"].ToString();
-                workSheet.Cells["E15"].Value = ketQuaNoiSoi["MangNhiTrai"].ToString();
+                workSheet.Cells["A14"].Value = ketQuaNoiSoi["MangNhiPhai"].ToString();
+                workSheet.Cells["E14"].Value = ketQuaNoiSoi["MangNhiTrai"].ToString();
 
-                workSheet.Cells["A16"].Value = ketQuaNoiSoi["CanBuaPhai"].ToString();
-                workSheet.Cells["E16"].Value = ketQuaNoiSoi["CanBuaTrai"].ToString();
+                workSheet.Cells["A15"].Value = ketQuaNoiSoi["CanBuaPhai"].ToString();
+                workSheet.Cells["E15"].Value = ketQuaNoiSoi["CanBuaTrai"].ToString();
 
-                workSheet.Cells["A17"].Value = ketQuaNoiSoi["HomNhiPhai"].ToString();
-                workSheet.Cells["E17"].Value = ketQuaNoiSoi["HomNhiTrai"].ToString();
+                workSheet.Cells["A16"].Value = ketQuaNoiSoi["HomNhiPhai"].ToString();
+                workSheet.Cells["E16"].Value = ketQuaNoiSoi["HomNhiTrai"].ToString();
 
-                workSheet.Cells["B19"].Value = ketQuaNoiSoi["KetLuan"].ToString();
-                workSheet.Cells["B21"].Value = ketQuaNoiSoi["DeNghi"].ToString();
+                workSheet.Cells["B18"].Value = ketQuaNoiSoi["KetLuan"].ToString();
+                workSheet.Cells["B20"].Value = ketQuaNoiSoi["DeNghi"].ToString();
 
-                workSheet.Cells["E23"].Value = string.Format("Ngày: {0}",
+                workSheet.Cells["E22"].Value = string.Format("Ngày: {0}",
                     Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
 
-                workSheet.Cells["E27"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+                workSheet.Cells["E26"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
@@ -2817,34 +2817,35 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B7"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["E7"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["G7"].Value = patientRow["GenderAsStr"].ToString();
-
-                if (patientRow["Address"] != null && patientRow["Address"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = patientRow["Address"].ToString();
-
-                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["E8"].Value = patientRow["Mobile"].ToString();
-
-                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["G8"].Value = patientRow["Occupation"].ToString();
-
-                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B9"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
+                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
+                workSheet.Cells["E6"].Value = patientRow["DobStr"].ToString();
+                workSheet.Cells["G6"].Value = patientRow["GenderAsStr"].ToString();
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["E9"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+
+                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
+                    workSheet.Cells["E7"].Value = patientRow["Mobile"].ToString();
+
+                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
+                    workSheet.Cells["G7"].Value = patientRow["Occupation"].ToString();
+
+                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
+                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+
+                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
+                //    workSheet.Cells["E8"].Value = patientRow["FileNum"].ToString();
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["G9"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
+                    workSheet.Cells["G8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
 
 
                 double left = 0.85527559055118108;
-                double top = 249.97732283464566;
+                double top = 183;
                 double width = 147.62606857863705;
                 double height = 135.0;
+
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
                     workSheet.Shapes.AddPicture((byte[])ketQuaNoiSoi["Hinh1"], left, top, width, height);
 
@@ -2860,20 +2861,20 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     workSheet.Shapes.AddPicture((byte[])ketQuaNoiSoi["Hinh4"], left, top, width, height);
 
-                workSheet.Cells["C14"].Value = ketQuaNoiSoi["Amydale"].ToString();
-                workSheet.Cells["C15"].Value = ketQuaNoiSoi["XoangLe"].ToString();
-                workSheet.Cells["C16"].Value = ketQuaNoiSoi["MiengThucQuan"].ToString();
-                workSheet.Cells["C17"].Value = ketQuaNoiSoi["SunPheu"].ToString();
-                workSheet.Cells["C18"].Value = ketQuaNoiSoi["DayThanh"].ToString();
-                workSheet.Cells["C19"].Value = ketQuaNoiSoi["BangThanhThat"].ToString();
+                workSheet.Cells["C13"].Value = ketQuaNoiSoi["Amydale"].ToString();
+                workSheet.Cells["C14"].Value = ketQuaNoiSoi["XoangLe"].ToString();
+                workSheet.Cells["C15"].Value = ketQuaNoiSoi["MiengThucQuan"].ToString();
+                workSheet.Cells["C16"].Value = ketQuaNoiSoi["SunPheu"].ToString();
+                workSheet.Cells["C17"].Value = ketQuaNoiSoi["DayThanh"].ToString();
+                workSheet.Cells["C18"].Value = ketQuaNoiSoi["BangThanhThat"].ToString();
 
-                workSheet.Cells["B21"].Value = ketQuaNoiSoi["KetLuan"].ToString();
-                workSheet.Cells["B23"].Value = ketQuaNoiSoi["DeNghi"].ToString();
+                workSheet.Cells["B20"].Value = ketQuaNoiSoi["KetLuan"].ToString();
+                workSheet.Cells["B22"].Value = ketQuaNoiSoi["DeNghi"].ToString();
 
-                workSheet.Cells["F25"].Value = string.Format("Ngày: {0}",
+                workSheet.Cells["F24"].Value = string.Format("Ngày: {0}",
                     Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
 
-                workSheet.Cells["F29"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+                workSheet.Cells["F28"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
@@ -2909,32 +2910,32 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B7"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["E7"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["G7"].Value = patientRow["GenderAsStr"].ToString();
-
-                if (patientRow["Address"] != null && patientRow["Address"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = patientRow["Address"].ToString();
-
-                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["E8"].Value = patientRow["Mobile"].ToString();
-
-                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["G8"].Value = patientRow["Occupation"].ToString();
-
-                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B9"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
+                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
+                workSheet.Cells["E6"].Value = patientRow["DobStr"].ToString();
+                workSheet.Cells["G6"].Value = patientRow["GenderAsStr"].ToString();
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["E9"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+
+                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
+                    workSheet.Cells["E7"].Value = patientRow["Mobile"].ToString();
+
+                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
+                    workSheet.Cells["G7"].Value = patientRow["Occupation"].ToString();
+
+                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
+                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
+
+                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
+                //    workSheet.Cells["E8"].Value = patientRow["FileNum"].ToString();
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["G9"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
+                    workSheet.Cells["G8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
 
 
                 double left = 0.85527559055118108;
-                double top = 249.97732283464566;
+                double top = 183;
                 double width = 147.62606857863705;
                 double height = 135.0;
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -2952,24 +2953,24 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     workSheet.Shapes.AddPicture((byte[])ketQuaNoiSoi["Hinh4"], left, top, width, height);
 
-                workSheet.Cells["C14"].Value = ketQuaNoiSoi["OngTaiNgoai"].ToString();
-                workSheet.Cells["C15"].Value = ketQuaNoiSoi["MangNhi"].ToString();
-                workSheet.Cells["C16"].Value = ketQuaNoiSoi["NiemMac"].ToString();
-                workSheet.Cells["C17"].Value = ketQuaNoiSoi["VachNgan"].ToString();
-                workSheet.Cells["C18"].Value = ketQuaNoiSoi["KheTren"].ToString();
-                workSheet.Cells["C19"].Value = ketQuaNoiSoi["KheGiua"].ToString();
-                workSheet.Cells["C20"].Value = ketQuaNoiSoi["MomMoc_BongSang"].ToString();
-                workSheet.Cells["C21"].Value = ketQuaNoiSoi["Vom"].ToString();
-                workSheet.Cells["C22"].Value = ketQuaNoiSoi["Amydale"].ToString();
-                workSheet.Cells["C23"].Value = ketQuaNoiSoi["ThanhQuan"].ToString();
+                workSheet.Cells["C13"].Value = ketQuaNoiSoi["OngTaiNgoai"].ToString();
+                workSheet.Cells["C14"].Value = ketQuaNoiSoi["MangNhi"].ToString();
+                workSheet.Cells["C15"].Value = ketQuaNoiSoi["NiemMac"].ToString();
+                workSheet.Cells["C16"].Value = ketQuaNoiSoi["VachNgan"].ToString();
+                workSheet.Cells["C17"].Value = ketQuaNoiSoi["KheTren"].ToString();
+                workSheet.Cells["C18"].Value = ketQuaNoiSoi["KheGiua"].ToString();
+                workSheet.Cells["C19"].Value = ketQuaNoiSoi["MomMoc_BongSang"].ToString();
+                workSheet.Cells["C20"].Value = ketQuaNoiSoi["Vom"].ToString();
+                workSheet.Cells["C21"].Value = ketQuaNoiSoi["Amydale"].ToString();
+                workSheet.Cells["C22"].Value = ketQuaNoiSoi["ThanhQuan"].ToString();
 
-                workSheet.Cells["B25"].Value = ketQuaNoiSoi["KetLuan"].ToString();
-                workSheet.Cells["B27"].Value = ketQuaNoiSoi["DeNghi"].ToString();
+                workSheet.Cells["B24"].Value = ketQuaNoiSoi["KetLuan"].ToString();
+                workSheet.Cells["B26"].Value = ketQuaNoiSoi["DeNghi"].ToString();
 
-                workSheet.Cells["F29"].Value = string.Format("Ngày: {0}",
+                workSheet.Cells["F28"].Value = string.Format("Ngày: {0}",
                     Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
 
-                workSheet.Cells["F33"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+                workSheet.Cells["F32"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
