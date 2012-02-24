@@ -267,22 +267,23 @@ namespace MM.Exports
 
                 workSheet.Cells["A3"].Value = lien;
                 workSheet.Cells["A4"].Value = string.Format("                                   Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
-                workSheet.Cells["A11"].Value = string.Format("  Họ tên người mua hàng: {0}", invoice.FullName);
-                workSheet.Cells["A12"].Value = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
-                workSheet.Cells["A14"].Value = string.Format("  Địa chỉ: {0}", invoice.Address);
-                workSheet.Cells["A15"].Value = string.Format("  Số tài khoản: {0}", invoice.SoTaiKhoan);
-                workSheet.Cells["A16"].Value = string.Format("  Hình thức thanh toán: {0}", invoice.HinhThucThanhToanStr);
+                workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", invoice.FullName);
+                workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
+                workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", invoice.MaSoThue);
+                workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", invoice.Address);
+                workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", invoice.SoTaiKhoan);
+                workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", invoice.HinhThucThanhToanStr);
 
                 IRange range = null;
                 DataTable dataSource = result.QueryResult as DataTable;
                 foreach (DataRow row in dataSource.Rows)
                 {
-                    range = workSheet.Cells["A20"].EntireRow;
+                    range = workSheet.Cells["A19"].EntireRow;
                     range.Insert(InsertShiftDirection.Down);
                 }
 
                 int no = 1;
-                int rowIndex = 19;
+                int rowIndex = 18;
                 double totalPrice = 0;
                 foreach (DataRow row in dataSource.Rows)
                 {

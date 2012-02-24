@@ -51,6 +51,7 @@ namespace MM.Dialogs
                 btnPrint.Visible = true;
                 btnClose2.Visible = true;
                 txtTenDonVi.ReadOnly = true;
+                txtMaSoThue.ReadOnly = true;
                 //txtAddress.ReadOnly = true;
                 txtSoTaiKhoan.ReadOnly = true;
                 cboHinhThucThanhToan.Enabled = false;
@@ -102,6 +103,10 @@ namespace MM.Dialogs
                 string strYear = dt.Year.ToString();
                 lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
                 txtTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
+
+                if (_drInvoice["MaSoThue"] != null && _drInvoice["MaSoThue"] != DBNull.Value)
+                    txtMaSoThue.Text = _drInvoice["MaSoThue"].ToString();
+
                 txtSoTaiKhoan.Text = _drInvoice["SoTaiKhoan"].ToString();
                 cboHinhThucThanhToan.SelectedIndex = Convert.ToInt32(_drInvoice["HinhThucThanhToan"]);
                 numVAT.Value = (Decimal)Convert.ToDouble(_drInvoice["VAT"]);
@@ -116,7 +121,7 @@ namespace MM.Dialogs
                 lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
             }
             
-            lbPatientName.Text = string.Format("Họ tên người mua hàng: {0}", _drInvoice["FullName"].ToString());
+            lbPatientName.Text = string.Format("Họ tên người mua hàng:   {0}", _drInvoice["FullName"].ToString());
             //lbAddress.Text = string.Format("Địa chỉ: {0}", _drInvoice["Address"].ToString());
             txtAddress.Text = string.Format("{0}", _drInvoice["Address"].ToString());
 
@@ -229,6 +234,7 @@ namespace MM.Dialogs
                 invoice.InvoiceCode = _invoiceCode;
                 invoice.InvoiceDate = DateTime.Now;
                 invoice.TenDonVi = txtTenDonVi.Text;
+                invoice.MaSoThue = txtMaSoThue.Text;
                 invoice.SoTaiKhoan = txtSoTaiKhoan.Text;
                 invoice.HinhThucThanhToan = (byte)cboHinhThucThanhToan.SelectedIndex;
                 invoice.VAT = (double)numVAT.Value;
