@@ -96,6 +96,7 @@ spDichVuHopDong
 4. In danh sách checklist của danh sách nhân viên của hợp đồng
 5. Khám nội soi
 6. Thêm trên bs điều trị vào phần ký tên của in toa thuốc
+7. HDGTGT thêm 2 dòng: Mã số thuế và số tứ tự column
 
 
 
