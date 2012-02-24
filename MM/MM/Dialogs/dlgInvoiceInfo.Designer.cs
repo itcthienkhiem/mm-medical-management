@@ -58,6 +58,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtSoTaiKhoan = new System.Windows.Forms.TextBox();
@@ -86,7 +87,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.txtAddress = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -180,7 +180,7 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(204, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(279, 22);
+            this.label1.Size = new System.Drawing.Size(277, 22);
             this.label1.TabIndex = 8;
             this.label1.Text = "HÓA ĐƠN GIÁ TRỊ GIA TĂNG";
             // 
@@ -210,7 +210,7 @@
             this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(540, 27);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 15);
+            this.label4.Size = new System.Drawing.Size(98, 15);
             this.label4.TabIndex = 11;
             this.label4.Text = "Ký hiệu: AA/11T";
             // 
@@ -286,7 +286,7 @@
             this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(5, 41);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(429, 15);
+            this.label6.Size = new System.Drawing.Size(428, 15);
             this.label6.TabIndex = 12;
             this.label6.Text = "Địa chỉ: Lầu 2, Tòa nhà Miss Áo dài, 21 Nguyễn Trung Ngạn, P. Bến Nghé, Q. 1";
             // 
@@ -306,7 +306,7 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(5, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(306, 15);
+            this.label2.Size = new System.Drawing.Size(305, 15);
             this.label2.TabIndex = 10;
             this.label2.Text = "Đơn vị bán hàng: CÔNG TY CỔ PHẦN VIGOR HEALTH";
             // 
@@ -335,6 +335,14 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(708, 120);
             this.panel6.TabIndex = 0;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(164, 43);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ReadOnly = true;
+            this.txtAddress.Size = new System.Drawing.Size(342, 20);
+            this.txtAddress.TabIndex = 23;
             // 
             // cboHinhThucThanhToan
             // 
@@ -614,7 +622,7 @@
             this.label14.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(167, 33);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(113, 15);
+            this.label14.Size = new System.Drawing.Size(112, 15);
             this.label14.TabIndex = 19;
             this.label14.Text = "%, Tiền thuế GTGT:";
             // 
@@ -625,11 +633,6 @@
             this.numVAT.Name = "numVAT";
             this.numVAT.Size = new System.Drawing.Size(52, 20);
             this.numVAT.TabIndex = 18;
-            this.numVAT.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             this.numVAT.ValueChanged += new System.EventHandler(this.numVAT_ValueChanged);
             this.numVAT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numVAT_KeyUp);
             this.numVAT.Leave += new System.EventHandler(this.numVAT_Leave);
@@ -640,7 +643,7 @@
             this.label13.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(6, 32);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(99, 15);
+            this.label13.Size = new System.Drawing.Size(98, 15);
             this.label13.TabIndex = 17;
             this.label13.Text = "Thuế suất GTGT:";
             // 
@@ -657,14 +660,6 @@
             // _printDialog
             // 
             this._printDialog.UseEXDialog = true;
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Location = new System.Drawing.Point(164, 43);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.ReadOnly = true;
-            this.txtAddress.Size = new System.Drawing.Size(342, 20);
-            this.txtAddress.TabIndex = 23;
             // 
             // dlgInvoiceInfo
             // 
