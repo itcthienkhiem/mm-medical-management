@@ -423,7 +423,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result UpdateChiDinh(ChiDinh chiDinh)
+        public static Result UpdateChiDinh(ChiDinh chiDinh, string serverGUID)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -446,6 +446,13 @@ namespace MM.Bussiness
                     cd.DeletedDate = chiDinh.DeletedDate;
                     cd.DeletedBy = chiDinh.DeletedBy;
                     cd.Status = chiDinh.Status;
+
+                    ChiTietChiDinh ctcd = db.ChiTietChiDinhs.SingleOrDefault(c => c.ChiDinhGUID == cd.ChiDinhGUID &&
+                        c.Status == (byte)Status.Actived);
+
+                    if (ctcd != null)
+                        ctcd.ServiceGUID = Guid.Parse(serverGUID);
+
                     db.SubmitChanges();
 
                     desc += string.Format("- Chỉ định: GUID: '{0}', Mã chỉ định: '{1}', Ngày chỉ định: '{2}', Bác sĩ chỉ định: '{3}', Bệnh nhân: '{4}'\n",
@@ -535,14 +542,11 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                List<DichVuChiDinh> dvcdList = (from d in db.DichVuChiDinhs
+                DichVuChiDinh dvcd = (from d in db.DichVuChiDinhs
                                                 where d.ServiceHistoryGUID.ToString() == serviceHistoryGUID &&
                                                 d.Status == (byte)Status.Actived
-                                               select d).ToList<DichVuChiDinh>();
-
-                DichVuChiDinh dvcd = null;
-                if (dvcdList != null && dvcdList.Count > 0)
-                    dvcd = dvcdList[0];
+                                                orderby d.CreatedDate descending
+                                               select d).FirstOrDefault<DichVuChiDinh>();
 
                 if (dvcd != null)
                 {
