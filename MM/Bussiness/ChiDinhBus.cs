@@ -535,8 +535,15 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                DichVuChiDinh dvcd = db.DichVuChiDinhs.SingleOrDefault(d => d.ServiceHistoryGUID.ToString() == serviceHistoryGUID &&
-                    d.Status == (byte)Status.Actived);
+                List<DichVuChiDinh> dvcdList = (from d in db.DichVuChiDinhs
+                                                where d.ServiceHistoryGUID.ToString() == serviceHistoryGUID &&
+                                                d.Status == (byte)Status.Actived
+                                               select d).ToList<DichVuChiDinh>();
+
+                DichVuChiDinh dvcd = null;
+                if (dvcdList != null && dvcdList.Count > 0)
+                    dvcd = dvcdList[0];
+
                 if (dvcd != null)
                 {
                     ChiTietChiDinh ctcd = db.ChiTietChiDinhs.SingleOrDefault(c => c.ChiTietChiDinhGUID == dvcd.ChiTietChiDinhGUID &&
