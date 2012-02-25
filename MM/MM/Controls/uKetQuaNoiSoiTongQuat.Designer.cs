@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgKetQuaNoiSoi = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,16 +95,19 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn1.HeaderText = "TAI TRÁI";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn1.Width = 320;
             // 
             // dataGridViewTextBoxColumn2
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxColumn2.HeaderText = "BỆNH LÝ TAI";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -126,8 +130,9 @@
             this.Column1.DropDownHeight = 106;
             this.Column1.DropDownWidth = 121;
             this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Column1.HeaderText = "TAI TRÁI";
+            this.Column1.HeaderText = "TAI PHẢI";
             this.Column1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Column1.IntegralHeight = false;
             this.Column1.ItemHeight = 15;
             this.Column1.MaxLength = 255;
             this.Column1.Name = "Column1";
@@ -154,8 +159,9 @@
             this.Column3.DropDownHeight = 106;
             this.Column3.DropDownWidth = 121;
             this.Column3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Column3.HeaderText = "TAI PHẢI";
+            this.Column3.HeaderText = "TAI TRÁI";
             this.Column3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Column3.IntegralHeight = false;
             this.Column3.ItemHeight = 15;
             this.Column3.MaxLength = 255;
             this.Column3.Name = "Column3";
@@ -171,6 +177,7 @@
             this.Controls.Add(this.dgKetQuaNoiSoi);
             this.Name = "uKetQuaNoiSoiTongQuat";
             this.Size = new System.Drawing.Size(834, 205);
+            this.Load += new System.EventHandler(this.uKetQuaNoiSoiTongQuat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgKetQuaNoiSoi)).EndInit();
             this.ResumeLayout(false);
 

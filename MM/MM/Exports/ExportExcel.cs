@@ -49,13 +49,12 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A2"].Value = string.Format("Số: {0}", receipt.ReceiptCode);
-                workSheet.Cells["B6"].Value = string.Format("Họ tên: {0}", receipt.FullName);
-                workSheet.Cells["B7"].Value = string.Format("Mã bệnh nhân: {0}", receipt.FileNum);
-                workSheet.Cells["B8"].Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
-                if (receipt.Address != null) workSheet.Cells["B9"].Value = string.Format("Địa chỉ: {0}", receipt.Address);
-                else workSheet.Cells["B9"].Value = "Địa chỉ:";
+                workSheet.Cells["B5"].Value = string.Format("Người nộp tiền: {0} - {1}", receipt.FullName, receipt.FileNum);
+                workSheet.Cells["B6"].Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                if (receipt.Address != null) workSheet.Cells["B7"].Value = string.Format("Địa chỉ: {0}", receipt.Address);
+                else workSheet.Cells["B7"].Value = "Địa chỉ:";
 
-                int rowIndex = 11;
+                int rowIndex = 9;
                 int no = 1;
                 double totalPrice = 0;
                 IRange range;
@@ -258,7 +257,7 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["E3"].Value = string.Format("Số: {0}", invoice.InvoiceCode);
+                workSheet.Cells["E3"].Value = string.Format("          Số: {0}", invoice.InvoiceCode);
 
                 DateTime dt = DateTime.Now;
                 string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
@@ -311,7 +310,7 @@ namespace MM.Exports
 
                     range = workSheet.Cells[rowIndex, 3];
                     range.Value = soLuong;
-                    range.HorizontalAlignment = HAlign.Right;
+                    range.HorizontalAlignment = HAlign.Center;
                     range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 4];
@@ -343,7 +342,10 @@ namespace MM.Exports
 
                 rowIndex++;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                range.Value = string.Format("  Thuế suất GTGT: {0}%, Tiền thuế GTGT:", invoice.VAT);
+                if (invoice.VAT > 0)
+                    range.Value = string.Format("  Thuế suất GTGT: {0}%, Tiền thuế GTGT:", invoice.VAT);
+                else
+                    range.Value = string.Format("  Thuế suất GTGT: ....., Tiền thuế GTGT:", invoice.VAT);
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
                 double vat = (invoice.VAT.Value * totalPrice) / 100;
@@ -363,7 +365,7 @@ namespace MM.Exports
 
                 rowIndex++;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                range.Value = string.Format("  Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment).ToUpper());
+                range.Value = string.Format("  Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment));
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))

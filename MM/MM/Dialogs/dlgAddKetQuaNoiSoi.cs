@@ -1231,6 +1231,14 @@ namespace MM.Dialogs
 
             if (!_isNew)
                 DisplayInfo(_drKetQuaNoiSoi);
+            else
+            {
+                _uKetQuaNoiSoiTai.SetDefault();
+                _uKetQuaNoiSoiMui.SetDefault();
+                _uKetQuaNoiSoiHongThanhQuan.SetDefault();
+                _uKetQuaNoiSoiTaiMuiHong.SetDefault();
+                _uKetQuaNoiSoiTongQuat.SetDefault();
+            }
         }
 
         private void cboLoaiNoiSoi_SelectedIndexChanged(object sender, EventArgs e)
