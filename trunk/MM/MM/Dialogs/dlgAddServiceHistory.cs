@@ -128,7 +128,15 @@ namespace MM.Dialogs
                 return;
             }
             else
-                cboBacSiChiDinh.DataSource = result.QueryResult;
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["Fullname"] = string.Empty;
+                newRow["DocStaffGUID"] = Guid.Empty.ToString();
+                dt.Rows.InsertAt(newRow, 0);
+
+                cboBacSiChiDinh.DataSource = dt;
+            }
         }
 
         private void DisplayDocStaffList()
