@@ -465,7 +465,7 @@ namespace MM.Dialogs
                             _ketQuaNoiSoi.ValsavaPhai = _uKetQuaNoiSoiTai.ValsavaPhai;
                             break;
                         case LoaiNoiSoi.Mui:
-                             _ketQuaNoiSoi.NiemMacTrai = _uKetQuaNoiSoiMui.NiemMacTrai;
+                            _ketQuaNoiSoi.NiemMacTrai = _uKetQuaNoiSoiMui.NiemMacTrai;
                             _ketQuaNoiSoi.NiemMacPhai = _uKetQuaNoiSoiMui.NiemMacPhai;
                             _ketQuaNoiSoi.VachNganTrai = _uKetQuaNoiSoiMui.VachNganTrai;
                             _ketQuaNoiSoi.VachNganPhai = _uKetQuaNoiSoiMui.VachNganPhai;
@@ -523,6 +523,39 @@ namespace MM.Dialogs
                         Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaNoiSoiBus.InsertKetQuaNoiSoi"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                     }
+                    else
+                    {
+                        List<Bookmark> bookmarkList = null;
+                        switch (type)
+                        {
+                            case LoaiNoiSoi.Tai:
+                                bookmarkList = GetBoommarkTai();
+                                break;
+                            case LoaiNoiSoi.Mui:
+                                bookmarkList = GetBoommarkMui();
+                                break;
+                            case LoaiNoiSoi.Hong_ThanhQuan:
+                                bookmarkList = GetBoommarkHongThanhQuan();
+                                break;
+                            case LoaiNoiSoi.TaiMuiHong:
+                                bookmarkList = GetBoommarkTaiMuiHong();
+                                break;
+                            case LoaiNoiSoi.TongQuat:
+                                bookmarkList = GetBoommarkTongQuat();
+                                break;
+                        }
+
+                        if (bookmarkList != null && bookmarkList.Count > 0)
+                        {
+                            result = BookmarkBus.InsertBookmark(bookmarkList);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(this.Text, result.GetErrorAsString("BookmarkBus.InsertBookmark"), IconType.Error);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("BookmarkBus.InsertBookmark"));
+                                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                            }
+                        }
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -533,6 +566,560 @@ namespace MM.Dialogs
                 MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
+        }
+
+        private List<Bookmark> GetBoommarkTai()
+        {
+            List<Bookmark> bookmarkList = new List<Bookmark>();
+            Bookmark bookmark = null;
+
+            if (_uKetQuaNoiSoiTai.OngTaiPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiOngTai;
+                bookmark.Value = _uKetQuaNoiSoiTai.OngTaiPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTai.OngTaiTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiTai.OngTaiTrai.Trim().ToUpper() != _uKetQuaNoiSoiTai.OngTaiPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiOngTai;
+                bookmark.Value = _uKetQuaNoiSoiTai.OngTaiTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTai.MangNhiPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMangNhi;
+                bookmark.Value = _uKetQuaNoiSoiTai.MangNhiPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTai.MangNhiTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiTai.MangNhiTrai.Trim().ToUpper() != _uKetQuaNoiSoiTai.MangNhiPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMangNhi;
+                bookmark.Value = _uKetQuaNoiSoiTai.MangNhiTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTai.CanBuaPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiCanBua;
+                bookmark.Value = _uKetQuaNoiSoiTai.CanBuaPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTai.CanBuaTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiTai.CanBuaTrai.Trim().ToUpper() != _uKetQuaNoiSoiTai.CanBuaPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiCanBua;
+                bookmark.Value = _uKetQuaNoiSoiTai.CanBuaTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTai.HomNhiPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiHomNhi;
+                bookmark.Value = _uKetQuaNoiSoiTai.HomNhiPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTai.HomNhiTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiTai.HomNhiTrai.Trim().ToUpper() != _uKetQuaNoiSoiTai.HomNhiPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiHomNhi;
+                bookmark.Value = _uKetQuaNoiSoiTai.HomNhiTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTai.ValsavaPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiValsava;
+                bookmark.Value = _uKetQuaNoiSoiTai.ValsavaPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTai.ValsavaTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiTai.ValsavaTrai.Trim().ToUpper() != _uKetQuaNoiSoiTai.ValsavaPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiValsava;
+                bookmark.Value = _uKetQuaNoiSoiTai.ValsavaTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboKetLuan.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetLuanNoiSoiTai;
+                bookmark.Value = cboKetLuan.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboDeNghi.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.DeNghiNoiSoiTai;
+                bookmark.Value = cboDeNghi.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            return bookmarkList;
+        }
+
+        private List<Bookmark> GetBoommarkTongQuat()
+        {
+            List<Bookmark> bookmarkList = new List<Bookmark>();
+            Bookmark bookmark = null;
+
+            if (_uKetQuaNoiSoiTongQuat.OngTaiPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiOngTai;
+                bookmark.Value = _uKetQuaNoiSoiTongQuat.OngTaiPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTongQuat.OngTaiTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiTongQuat.OngTaiTrai.Trim().ToUpper() != _uKetQuaNoiSoiTongQuat.OngTaiPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiOngTai;
+                bookmark.Value = _uKetQuaNoiSoiTongQuat.OngTaiTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTongQuat.MangNhiPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMangNhi;
+                bookmark.Value = _uKetQuaNoiSoiTongQuat.MangNhiPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTongQuat.MangNhiTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiTongQuat.MangNhiTrai.Trim().ToUpper() != _uKetQuaNoiSoiTongQuat.MangNhiPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMangNhi;
+                bookmark.Value = _uKetQuaNoiSoiTongQuat.MangNhiTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTongQuat.CanBuaPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiCanBua;
+                bookmark.Value = _uKetQuaNoiSoiTongQuat.CanBuaPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTongQuat.CanBuaTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiTongQuat.CanBuaTrai.Trim().ToUpper() != _uKetQuaNoiSoiTongQuat.CanBuaPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiCanBua;
+                bookmark.Value = _uKetQuaNoiSoiTongQuat.CanBuaTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTongQuat.HomNhiPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiHomNhi;
+                bookmark.Value = _uKetQuaNoiSoiTongQuat.HomNhiPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTongQuat.HomNhiTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiTongQuat.HomNhiTrai.Trim().ToUpper() != _uKetQuaNoiSoiTongQuat.HomNhiPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiHomNhi;
+                bookmark.Value = _uKetQuaNoiSoiTongQuat.HomNhiTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboKetLuan.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetLuanNoiSoiTongQuat;
+                bookmark.Value = cboKetLuan.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboDeNghi.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.DeNghiNoiSoiTongQuat;
+                bookmark.Value = cboDeNghi.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            return bookmarkList;
+        }
+
+        private List<Bookmark> GetBoommarkMui()
+        {
+            List<Bookmark> bookmarkList = new List<Bookmark>();
+            Bookmark bookmark = null;
+
+            if (_uKetQuaNoiSoiMui.NiemMacPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiNiemMac;
+                bookmark.Value = _uKetQuaNoiSoiMui.NiemMacPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.NiemMacTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiMui.NiemMacTrai.Trim().ToUpper() != _uKetQuaNoiSoiMui.NiemMacPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiNiemMac;
+                bookmark.Value = _uKetQuaNoiSoiMui.NiemMacTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.VachNganPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiVachNgan;
+                bookmark.Value = _uKetQuaNoiSoiMui.VachNganPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.VachNganTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiMui.VachNganTrai.Trim().ToUpper() != _uKetQuaNoiSoiMui.VachNganPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiVachNgan;
+                bookmark.Value = _uKetQuaNoiSoiMui.VachNganTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.KheTrenPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiKheTren;
+                bookmark.Value = _uKetQuaNoiSoiMui.KheTrenPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.KheTrenTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiMui.KheTrenTrai.Trim().ToUpper() != _uKetQuaNoiSoiMui.KheTrenPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiKheTren;
+                bookmark.Value = _uKetQuaNoiSoiMui.KheTrenTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.KheGiuaPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiKheGiua;
+                bookmark.Value = _uKetQuaNoiSoiMui.KheGiuaPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.KheGiuaTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiMui.KheGiuaTrai.Trim().ToUpper() != _uKetQuaNoiSoiMui.KheGiuaPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiKheGiua;
+                bookmark.Value = _uKetQuaNoiSoiMui.KheGiuaTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.CuonGiuaPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiCuonGiua;
+                bookmark.Value = _uKetQuaNoiSoiMui.CuonGiuaPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.CuonGiuaTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiMui.CuonGiuaTrai.Trim().ToUpper() != _uKetQuaNoiSoiMui.CuonGiuaPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiCuonGiua;
+                bookmark.Value = _uKetQuaNoiSoiMui.CuonGiuaTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.CuonDuoiPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiCuonDuoi;
+                bookmark.Value = _uKetQuaNoiSoiMui.CuonDuoiPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.CuonDuoiTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiMui.CuonDuoiTrai.Trim().ToUpper() != _uKetQuaNoiSoiMui.CuonDuoiPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiCuonDuoi;
+                bookmark.Value = _uKetQuaNoiSoiMui.CuonDuoiTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.MomMocPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMomMoc;
+                bookmark.Value = _uKetQuaNoiSoiMui.MomMocPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.MomMocTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiMui.MomMocTrai.Trim().ToUpper() != _uKetQuaNoiSoiMui.MomMocPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMomMoc;
+                bookmark.Value = _uKetQuaNoiSoiMui.MomMocTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.BongSangPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiBongSang;
+                bookmark.Value = _uKetQuaNoiSoiMui.BongSangPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.BongSangTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiMui.BongSangTrai.Trim().ToUpper() != _uKetQuaNoiSoiMui.BongSangPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiBongSang;
+                bookmark.Value = _uKetQuaNoiSoiMui.BongSangTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.VomPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiVom;
+                bookmark.Value = _uKetQuaNoiSoiMui.VomPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiMui.VomTrai.Trim() != string.Empty &&
+                _uKetQuaNoiSoiMui.VomTrai.Trim().ToUpper() != _uKetQuaNoiSoiMui.VomPhai.Trim().ToUpper())
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiVom;
+                bookmark.Value = _uKetQuaNoiSoiMui.VomTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboKetLuan.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetLuanNoiSoiMui;
+                bookmark.Value = cboKetLuan.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboDeNghi.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.DeNghiNoiSoiMui;
+                bookmark.Value = cboDeNghi.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            return bookmarkList;
+        }
+
+        private List<Bookmark> GetBoommarkHongThanhQuan()
+        {
+            List<Bookmark> bookmarkList = new List<Bookmark>();
+            Bookmark bookmark = null;
+
+            if (_uKetQuaNoiSoiHongThanhQuan.Amydale.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiAmydale;
+                bookmark.Value = _uKetQuaNoiSoiHongThanhQuan.Amydale;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiHongThanhQuan.XoangLe.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiXoangLe;
+                bookmark.Value = _uKetQuaNoiSoiHongThanhQuan.XoangLe;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiHongThanhQuan.MiengThucQuan.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMiengThucQuan;
+                bookmark.Value = _uKetQuaNoiSoiHongThanhQuan.MiengThucQuan;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiHongThanhQuan.SunPheu.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiSunPheu;
+                bookmark.Value = _uKetQuaNoiSoiHongThanhQuan.SunPheu;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiHongThanhQuan.DayThanh.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiDayThanh;
+                bookmark.Value = _uKetQuaNoiSoiHongThanhQuan.DayThanh;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiHongThanhQuan.BangThanhThat.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiBangThanhThat;
+                bookmark.Value = _uKetQuaNoiSoiHongThanhQuan.BangThanhThat;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboKetLuan.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetLuanNoiSoiHongThanhQuan;
+                bookmark.Value = cboKetLuan.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboDeNghi.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.DeNghiNoiSoiHongThanhQuan;
+                bookmark.Value = cboDeNghi.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            return bookmarkList;
+        }
+
+        private List<Bookmark> GetBoommarkTaiMuiHong()
+        {
+            List<Bookmark> bookmarkList = new List<Bookmark>();
+            Bookmark bookmark = null;
+
+            if (_uKetQuaNoiSoiTaiMuiHong.OngTaiNgoai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiOngTai;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.OngTaiNgoai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTaiMuiHong.MangNhi.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMangNhi;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.MangNhi;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTaiMuiHong.NiemMacMui.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiNiemMac;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.NiemMacMui;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTaiMuiHong.VachNgan.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiVachNgan;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.VachNgan;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTaiMuiHong.KheTren.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiKheTren;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.KheTren;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTaiMuiHong.KheGiua.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiKheGiua;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.KheGiua;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTaiMuiHong.MomMocBongSang.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMomMoc_BongSang;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.MomMocBongSang;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTaiMuiHong.Vom.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiVom;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.Vom;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTaiMuiHong.Amydale.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiAmydale;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.Amydale;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTaiMuiHong.ThanhQuan.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiThanhQuan;
+                bookmark.Value = _uKetQuaNoiSoiTaiMuiHong.ThanhQuan;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboKetLuan.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetLuanNoiSoiTaiMuiHong;
+                bookmark.Value = cboKetLuan.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboDeNghi.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.DeNghiNoiSoiTaiMuiHong;
+                bookmark.Value = cboDeNghi.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            return bookmarkList;
         }
 
         private void OnPlayWebCam()
@@ -575,6 +1162,66 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(ex.Message);
             }
         }
+
+        private void DisplayBookmarkKetLuanDeNghi(LoaiNoiSoi type)
+        {
+            Result result = null;
+            DataTable dtKetLuan = null;
+            DataTable dtDeNghi = null;
+
+            switch (type)
+            {
+                case LoaiNoiSoi.Tai:
+                    result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiTai);
+                    if (result.IsOK) dtKetLuan = result.QueryResult as DataTable;
+
+                    result = BookmarkBus.GetBookmark(BookMarkType.DeNghiNoiSoiTai);
+                    if (result.IsOK) dtDeNghi = result.QueryResult as DataTable;
+                    break;
+                case LoaiNoiSoi.Mui:
+                    result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiMui);
+                    if (result.IsOK) dtKetLuan = result.QueryResult as DataTable;
+
+                    result = BookmarkBus.GetBookmark(BookMarkType.DeNghiNoiSoiMui);
+                    if (result.IsOK) dtDeNghi = result.QueryResult as DataTable;
+                    break;
+                case LoaiNoiSoi.Hong_ThanhQuan:
+                    result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiHongThanhQuan);
+                    if (result.IsOK) dtKetLuan = result.QueryResult as DataTable;
+
+                    result = BookmarkBus.GetBookmark(BookMarkType.DeNghiNoiSoiHongThanhQuan);
+                    if (result.IsOK) dtDeNghi = result.QueryResult as DataTable;
+                    break;
+                case LoaiNoiSoi.TaiMuiHong:
+                    result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiTaiMuiHong);
+                    if (result.IsOK) dtKetLuan = result.QueryResult as DataTable;
+
+                    result = BookmarkBus.GetBookmark(BookMarkType.DeNghiNoiSoiTaiMuiHong);
+                    if (result.IsOK) dtDeNghi = result.QueryResult as DataTable;
+                    break;
+                case LoaiNoiSoi.TongQuat:
+                    result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiTongQuat);
+                    if (result.IsOK) dtKetLuan = result.QueryResult as DataTable;
+
+                    result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiTongQuat);
+                    if (result.IsOK) dtDeNghi = result.QueryResult as DataTable;
+                    break;
+            }
+
+            if (dtKetLuan != null && dtKetLuan.Rows.Count > 0)
+            {
+                cboKetLuan.Items.Clear();
+                foreach (DataRow row in dtKetLuan.Rows)
+                    cboKetLuan.Items.Add(row["Value"].ToString());
+            }
+
+            if (dtDeNghi != null && dtDeNghi.Rows.Count > 0)
+            {
+                cboDeNghi.Items.Clear();
+                foreach (DataRow row in dtDeNghi.Rows)
+                    cboDeNghi.Items.Add(row["Value"].ToString());
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -607,6 +1254,8 @@ namespace MM.Dialogs
                     ViewControl(_uKetQuaNoiSoiTongQuat);
                     break;
             }
+
+            DisplayBookmarkKetLuanDeNghi(type);
         }
 
         private void dlgAddKetQuaNoiSoi_FormClosing(object sender, FormClosingEventArgs e)

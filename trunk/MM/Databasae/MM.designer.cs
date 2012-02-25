@@ -153,6 +153,9 @@ namespace MM.Databasae
     partial void InsertInvoice(Invoice instance);
     partial void UpdateInvoice(Invoice instance);
     partial void DeleteInvoice(Invoice instance);
+    partial void InsertBookmark(Bookmark instance);
+    partial void UpdateBookmark(Bookmark instance);
+    partial void DeleteBookmark(Bookmark instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -766,6 +769,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<InvoiceView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Bookmark> Bookmarks
+		{
+			get
+			{
+				return this.GetTable<Bookmark>();
 			}
 		}
 		
@@ -36339,6 +36350,116 @@ namespace MM.Databasae
 				{
 					this._MaSoThue = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Bookmark")]
+	public partial class Bookmark : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _BookmarkGUID;
+		
+		private string _Value;
+		
+		private int _Type;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBookmarkGUIDChanging(System.Guid value);
+    partial void OnBookmarkGUIDChanged();
+    partial void OnValueChanging(string value);
+    partial void OnValueChanged();
+    partial void OnTypeChanging(int value);
+    partial void OnTypeChanged();
+    #endregion
+		
+		public Bookmark()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookmarkGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid BookmarkGUID
+		{
+			get
+			{
+				return this._BookmarkGUID;
+			}
+			set
+			{
+				if ((this._BookmarkGUID != value))
+				{
+					this.OnBookmarkGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._BookmarkGUID = value;
+					this.SendPropertyChanged("BookmarkGUID");
+					this.OnBookmarkGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string Value
+		{
+			get
+			{
+				return this._Value;
+			}
+			set
+			{
+				if ((this._Value != value))
+				{
+					this.OnValueChanging(value);
+					this.SendPropertyChanging();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Int NOT NULL")]
+		public int Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

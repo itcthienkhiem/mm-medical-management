@@ -33,9 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgKetQuaNoiSoi = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgKetQuaNoiSoi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,13 +86,23 @@
             this.dgKetQuaNoiSoi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgKetQuaNoiSoi.Size = new System.Drawing.Size(834, 205);
             this.dgKetQuaNoiSoi.TabIndex = 1;
+            this.dgKetQuaNoiSoi.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgKetQuaNoiSoi_EditingControlShowing);
             // 
             // Column1
             // 
+            this.Column1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Column1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Column1.DropDownHeight = 106;
+            this.Column1.DropDownWidth = 121;
+            this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Column1.HeaderText = "TAI TRÁI";
-            this.Column1.MaxInputLength = 255;
+            this.Column1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Column1.IntegralHeight = false;
+            this.Column1.ItemHeight = 13;
+            this.Column1.MaxLength = 255;
             this.Column1.Name = "Column1";
             this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column1.Width = 320;
             // 
@@ -109,10 +119,18 @@
             // 
             // Column3
             // 
+            this.Column3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Column3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Column3.DropDownHeight = 106;
+            this.Column3.DropDownWidth = 121;
+            this.Column3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Column3.HeaderText = "TAI PHẢI";
-            this.Column3.MaxInputLength = 255;
+            this.Column3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Column3.ItemHeight = 15;
+            this.Column3.MaxLength = 255;
             this.Column3.Name = "Column3";
             this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column3.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column3.Width = 320;
             // 
@@ -131,8 +149,8 @@
         #endregion
 
         private DevComponents.DotNetBar.Controls.DataGridViewX dgKetQuaNoiSoi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn Column3;
     }
 }

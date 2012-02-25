@@ -15,7 +15,15 @@ namespace MM.Controls
     public partial class uKetQuaNoiSoiMui : UserControl
     {
         #region Members
-
+        private DataTable _dtKetQuaNiemMac = null;
+        private DataTable _dtKetQuaVachNgan = null;
+        private DataTable _dtKetQuaKheTren = null;
+        private DataTable _dtKetQuaKheGiua = null;
+        private DataTable _dtKetQuaCuonGiua = null;
+        private DataTable _dtKetQuaCuonDuoi = null;
+        private DataTable _dtKetQuaMomMoc = null;
+        private DataTable _dtKetQuaBongSang = null;
+        private DataTable _dtKetQuaVom = null;
         #endregion
 
         #region Constructor
@@ -148,6 +156,33 @@ namespace MM.Controls
             dgKetQuaNoiSoi.Rows.Add("", "MÕM MÓC", "");
             dgKetQuaNoiSoi.Rows.Add("", "BÓNG SÀNG", "");
             dgKetQuaNoiSoi.Rows.Add("", "VÒM", "");
+
+            Result result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiNiemMac);
+            if (result.IsOK) _dtKetQuaNiemMac = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiVachNgan);
+            if (result.IsOK) _dtKetQuaVachNgan = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiKheTren);
+            if (result.IsOK) _dtKetQuaKheTren = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiKheGiua);
+            if (result.IsOK) _dtKetQuaKheGiua = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiCuonGiua);
+            if (result.IsOK) _dtKetQuaCuonGiua = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiCuonDuoi);
+            if (result.IsOK) _dtKetQuaCuonDuoi = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiMomMoc);
+            if (result.IsOK) _dtKetQuaMomMoc = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiBongSang);
+            if (result.IsOK) _dtKetQuaBongSang = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiVom);
+            if (result.IsOK) _dtKetQuaVom = result.QueryResult as DataTable;
         }
 
         private string GetValue(int rowIndex, int colIndex)
@@ -165,7 +200,87 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dgKetQuaNoiSoi_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            ComboBox cbo = e.Control as ComboBox;
+            if (cbo == null) return;
 
+            int rowIndex = dgKetQuaNoiSoi.CurrentRow.Index;
+            if (rowIndex < 0) return;
+
+            if (rowIndex == 0)
+            {
+                if (_dtKetQuaNiemMac != null && _dtKetQuaNiemMac.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaNiemMac.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 1)
+            {
+                if (_dtKetQuaVachNgan != null && _dtKetQuaVachNgan.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaVachNgan.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 2)
+            {
+                if (_dtKetQuaKheTren != null && _dtKetQuaKheTren.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaKheTren.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 3)
+            {
+                if (_dtKetQuaKheGiua != null && _dtKetQuaKheGiua.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaKheGiua.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 4)
+            {
+                if (_dtKetQuaCuonGiua != null && _dtKetQuaCuonGiua.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaCuonGiua.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 5)
+            {
+                if (_dtKetQuaCuonDuoi != null && _dtKetQuaCuonDuoi.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaCuonDuoi.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 6)
+            {
+                if (_dtKetQuaMomMoc != null && _dtKetQuaMomMoc.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaMomMoc.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 7)
+            {
+                if (_dtKetQuaBongSang != null && _dtKetQuaBongSang.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaBongSang.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 8)
+            {
+                if (_dtKetQuaVom != null && _dtKetQuaVom.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaVom.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+        }
         #endregion
     }
 }

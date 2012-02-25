@@ -142,4 +142,45 @@ namespace MM.Common
         TaiMuiHong,
         TongQuat
     };
+
+    public enum BookMarkType : int
+    {
+        KetLuanNoiSoiTai = 0,
+        KetLuanNoiSoiMui,
+        KetLuanNoiSoiHongThanhQuan,
+        KetLuanNoiSoiTaiMuiHong,
+        KetLuanNoiSoiTongQuat,
+
+        DeNghiNoiSoiTai,
+        DeNghiNoiSoiMui,
+        DeNghiNoiSoiHongThanhQuan,
+        DeNghiNoiSoiTaiMuiHong,
+        DeNghiNoiSoiTongQuat,
+
+        KetQuaNoiSoiOngTai,
+        KetQuaNoiSoiMangNhi,
+        KetQuaNoiSoiCanBua,
+        KetQuaNoiSoiHomNhi,
+        KetQuaNoiSoiValsava,
+
+        KetQuaNoiSoiNiemMac,
+        KetQuaNoiSoiVachNgan,
+        KetQuaNoiSoiKheTren,
+        KetQuaNoiSoiKheGiua,
+        KetQuaNoiSoiCuonGiua,
+        KetQuaNoiSoiCuonDuoi,
+        KetQuaNoiSoiMomMoc,
+        KetQuaNoiSoiBongSang,
+        KetQuaNoiSoiVom,
+
+        KetQuaNoiSoiAmydale,
+        KetQuaNoiSoiXoangLe,
+        KetQuaNoiSoiMiengThucQuan,
+        KetQuaNoiSoiSunPheu,
+        KetQuaNoiSoiDayThanh,
+        KetQuaNoiSoiBangThanhThat,
+
+        KetQuaNoiSoiMomMoc_BongSang,
+        KetQuaNoiSoiThanhQuan
+    };
 }

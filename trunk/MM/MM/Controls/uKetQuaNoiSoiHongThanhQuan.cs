@@ -6,12 +6,21 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MM.Databasae;
+using MM.Common;
+using MM.Bussiness;
 
 namespace MM.Controls
 {
     public partial class uKetQuaNoiSoiHongThanhQuan : UserControl
     {
         #region Members
+        private DataTable _dtKetQuaAmydale = null;
+        private DataTable _dtKetQuaXoangLe = null;
+        private DataTable _dtKetQuaMiengThucQuan = null;
+        private DataTable _dtKetQuaSunPheu = null;
+        private DataTable _dtKetQuaDayThanh = null;
+        private DataTable _dtKetQuaBangThanhThat = null;
         #endregion
 
         #region Constructor
@@ -69,6 +78,24 @@ namespace MM.Controls
             dgKetQuaNoiSoi.Rows.Add("SỤN PHỂU", "");
             dgKetQuaNoiSoi.Rows.Add("DÂY THANH", "");
             dgKetQuaNoiSoi.Rows.Add("BĂNG THANH THẤT", "");
+
+            Result result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiAmydale);
+            if (result.IsOK) _dtKetQuaAmydale = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiXoangLe);
+            if (result.IsOK) _dtKetQuaXoangLe = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiMiengThucQuan);
+            if (result.IsOK) _dtKetQuaMiengThucQuan = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiSunPheu);
+            if (result.IsOK) _dtKetQuaSunPheu = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiDayThanh);
+            if (result.IsOK) _dtKetQuaDayThanh = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiBangThanhThat);
+            if (result.IsOK) _dtKetQuaBangThanhThat = result.QueryResult as DataTable;
         }
 
         private string GetValue(int rowIndex, int colIndex)
@@ -86,7 +113,63 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dgKetQuaNoiSoi_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            ComboBox cbo = e.Control as ComboBox;
+            if (cbo == null) return;
 
+            int rowIndex = dgKetQuaNoiSoi.CurrentRow.Index;
+            if (rowIndex < 0) return;
+
+            if (rowIndex == 0)
+            {
+                if (_dtKetQuaAmydale != null && _dtKetQuaAmydale.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaAmydale.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 1)
+            {
+                if (_dtKetQuaXoangLe != null && _dtKetQuaXoangLe.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaXoangLe.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 2)
+            {
+                if (_dtKetQuaMiengThucQuan != null && _dtKetQuaMiengThucQuan.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaMiengThucQuan.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 3)
+            {
+                if (_dtKetQuaSunPheu != null && _dtKetQuaSunPheu.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaSunPheu.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 4)
+            {
+                if (_dtKetQuaDayThanh != null && _dtKetQuaDayThanh.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaDayThanh.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 5)
+            {
+                if (_dtKetQuaBangThanhThat != null && _dtKetQuaBangThanhThat.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaBangThanhThat.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+        }
         #endregion
     }
 }

@@ -9,12 +9,18 @@ using System.Windows.Forms;
 using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
+using DevComponents.DotNetBar.Controls;
 
 namespace MM.Controls
 {
     public partial class uKetQuaNoiSoiTai : uBase
     {
         #region Members
+        private DataTable _dtKetQuaOngTai = null;
+        private DataTable _dtKetQuaMangNhi = null;
+        private DataTable _dtKetQuaCanBua = null;
+        private DataTable _dtKetQuaHomNhi = null;
+        private DataTable _dtKetQuaValsava = null;
         #endregion
 
         #region Constructor
@@ -32,7 +38,7 @@ namespace MM.Controls
             set { SetValue(0, 0, value); }
         }
 
-        public string OngTaiPhai
+        public string   OngTaiPhai
         {
             get { return GetValue(0, 2); }
             set { SetValue(0, 2, value); }
@@ -95,6 +101,21 @@ namespace MM.Controls
             dgKetQuaNoiSoi.Rows.Add("", "CÁN BÚA", "");
             dgKetQuaNoiSoi.Rows.Add("", "HÒM NHĨ", "");
             dgKetQuaNoiSoi.Rows.Add("", "VALSAVA", "");
+
+            Result result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiOngTai);
+            if (result.IsOK) _dtKetQuaOngTai = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiMangNhi);
+            if (result.IsOK) _dtKetQuaMangNhi = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiCanBua);
+            if (result.IsOK) _dtKetQuaCanBua = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiHomNhi);
+            if (result.IsOK) _dtKetQuaHomNhi = result.QueryResult as DataTable;
+
+            result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiValsava);
+            if (result.IsOK) _dtKetQuaValsava = result.QueryResult as DataTable;
         }
 
         private string GetValue(int rowIndex, int colIndex)
@@ -110,8 +131,59 @@ namespace MM.Controls
             dgKetQuaNoiSoi.Rows[rowIndex].Cells[colIndex].Value = value;
         }
         #endregion
-
+       
         #region Window Event Handlers
+        private void dgKetQuaNoiSoi_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            ComboBox cbo = e.Control as ComboBox;
+            if (cbo == null) return;
+
+            if (cbo.Items.Count > 0) return;
+
+            int rowIndex = dgKetQuaNoiSoi.CurrentRow.Index;
+            if (rowIndex < 0) return;
+
+            if (rowIndex == 0)
+            {
+                if (_dtKetQuaOngTai != null && _dtKetQuaOngTai.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaOngTai.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 1)
+            {
+                if (_dtKetQuaOngTai != null && _dtKetQuaMangNhi.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaMangNhi.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 2)
+            {
+                if (_dtKetQuaOngTai != null && _dtKetQuaCanBua.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaCanBua.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else if (rowIndex == 3)
+            {
+                if (_dtKetQuaOngTai != null && _dtKetQuaHomNhi.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaHomNhi.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+            else
+            {
+                if (_dtKetQuaOngTai != null && _dtKetQuaValsava.Rows.Count > 0)
+                {
+                    foreach (DataRow row in _dtKetQuaValsava.Rows)
+                        cbo.Items.Add(row["Value"].ToString());
+                }
+            }
+        }
 
         #endregion
     }

@@ -35,7 +35,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgKetQuaNoiSoi)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,6 +85,7 @@
             this.dgKetQuaNoiSoi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgKetQuaNoiSoi.Size = new System.Drawing.Size(834, 205);
             this.dgKetQuaNoiSoi.TabIndex = 3;
+            this.dgKetQuaNoiSoi.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgKetQuaNoiSoi_EditingControlShowing);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -114,10 +115,18 @@
             // 
             // Column2
             // 
+            this.Column2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.Column2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.Column2.DropDownHeight = 106;
+            this.Column2.DropDownWidth = 121;
+            this.Column2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Column2.HeaderText = "KẾT QUẢ";
-            this.Column2.MaxInputLength = 255;
+            this.Column2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Column2.ItemHeight = 15;
+            this.Column2.MaxLength = 255;
             this.Column2.Name = "Column2";
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column2.Width = 621;
             // 
@@ -136,9 +145,9 @@
         #endregion
 
         private DevComponents.DotNetBar.Controls.DataGridViewX dgKetQuaNoiSoi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn Column2;
     }
 }
