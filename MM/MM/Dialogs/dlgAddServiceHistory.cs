@@ -22,6 +22,8 @@ namespace MM.Dialogs
         private DataRow _drServiceHistory = null;
         private StaffType _staffType = StaffType.None;
         private string _serviceGUID = string.Empty;
+        private string _bacSiChiDinhGUID = string.Empty;
+        private ChiDinh _chiDinh = null;
         #endregion
 
         #region Constructor
@@ -80,6 +82,12 @@ namespace MM.Dialogs
                 return string.Empty;
             }
         }
+
+        public string BacSiChiDinhGUID
+        {
+            get { return _bacSiChiDinhGUID; }
+            set { _bacSiChiDinhGUID = value; }
+        }
         #endregion
 
         #region UI Command
@@ -99,6 +107,28 @@ namespace MM.Dialogs
             {
                 cboService.DataSource = result.QueryResult;
             }
+
+            DisplayBacSiChiDinhList();
+        }
+
+        private void DisplayBacSiChiDinhList()
+        {
+            //DocStaff
+            List<byte> staffTypes = new List<byte>();
+            staffTypes.Add((byte)StaffType.BacSi);
+            staffTypes.Add((byte)StaffType.BacSiSieuAm);
+            staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
+            Result result = DocStaffBus.GetDocStaffList(staffTypes);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                return;
+            }
+            else
+                cboBacSiChiDinh.DataSource = result.QueryResult;
         }
 
         private void DisplayDocStaffList()
@@ -188,6 +218,20 @@ namespace MM.Dialogs
                     _serviceHistory.DeletedBy = Guid.Parse(drServiceHistory["DeletedBy"].ToString());
 
                 _serviceHistory.Status = Convert.ToByte(drServiceHistory["Status"]);
+
+                Result result = ChiDinhBus.GetChiDinh(_serviceHistory.ServiceHistoryGUID.ToString());
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("ChiDinhBus.GetBacSiChiDinh"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetBacSiChiDinh"));
+                    return;
+                }
+                else if (result.QueryResult != null)
+                {
+                    _chiDinh = (ChiDinh)result.QueryResult;
+                    cboBacSiChiDinh.SelectedValue = _chiDinh.BacSiChiDinhGUID.ToString();
+                    chkBSCD.Checked = true;
+                }
             }
             catch (Exception e)
             {
@@ -212,7 +256,32 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (chkBSCD.Checked && cboBacSiChiDinh.Text == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ chỉ định", IconType.Information);
+                cboBacSiChiDinh.Focus();
+                return false;
+            }
+
             return true;
+        }
+
+        private string GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = ChiDinhBus.GetChiDinhCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                return Utility.GetCode("CD", count + 1, 5);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ChiDinhBus.GetChiDinhCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetChiDinhCount"));
+            }
+
+            return string.Empty;
         }
 
         private void OnSaveInfo()
@@ -263,6 +332,87 @@ namespace MM.Dialogs
                         MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
+                    else if (_serviceGUID == string.Empty)
+                    {
+                        if (chkBSCD.Checked)
+                        {
+                            if (_chiDinh == null)
+                            {
+                                _chiDinh = new ChiDinh();
+                                string maChiDinh = GenerateCode();
+                                if (maChiDinh == string.Empty) return;
+
+                                //Insert chỉ định
+                                _chiDinh.CreatedDate = DateTime.Now;
+                                _chiDinh.CreatedBy = Guid.Parse(Global.UserGUID);
+                                _chiDinh.MaChiDinh = maChiDinh;
+                                _chiDinh.BenhNhanGUID = Guid.Parse(_patientGUID);
+                                _chiDinh.BacSiChiDinhGUID = Guid.Parse(cboBacSiChiDinh.SelectedValue.ToString());
+                                _chiDinh.NgayChiDinh = DateTime.Now;
+                                _chiDinh.Status = (byte)Status.Actived;
+
+                                List<ChiTietChiDinh> addedList = new List<ChiTietChiDinh>();
+                                List<string> deletedKeys = new List<string>();
+                                ChiTietChiDinh ctcd = new ChiTietChiDinh();
+                                ctcd.CreatedDate = DateTime.Now;
+                                ctcd.CreatedBy = Guid.Parse(Global.UserGUID);
+                                ctcd.ServiceGUID = _serviceHistory.ServiceGUID.Value;
+                                addedList.Add(ctcd);
+
+                                result = ChiDinhBus.InsertChiDinh(_chiDinh, addedList, deletedKeys);
+                                if (!result.IsOK)
+                                {
+                                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.InsertChiDinh"), IconType.Error);
+                                    Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.InsertChiDinh"));
+                                    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                                }
+                                else
+                                {
+                                    DichVuChiDinh dichVuChiDinh = new DichVuChiDinh();
+                                    dichVuChiDinh.ServiceHistoryGUID = _serviceHistory.ServiceHistoryGUID;
+                                    dichVuChiDinh.ChiTietChiDinhGUID = ctcd.ChiTietChiDinhGUID;
+                                    dichVuChiDinh.CreatedDate = DateTime.Now;
+                                    dichVuChiDinh.CraetedBy = Guid.Parse(Global.UserGUID);
+                                    dichVuChiDinh.Status = (byte)Status.Actived;
+
+                                    result = ChiDinhBus.InsertDichVuChiDinh(dichVuChiDinh);
+                                    if (!result.IsOK)
+                                    {
+                                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.InsertDichVuChiDinh"), IconType.Error);
+                                        Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.InsertDichVuChiDinh"));
+                                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                _chiDinh.UpdatedDate = DateTime.Now;
+                                _chiDinh.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                _chiDinh.Status = (byte)Status.Actived;
+
+                                _chiDinh.BacSiChiDinhGUID = Guid.Parse(cboBacSiChiDinh.SelectedValue.ToString());
+                                result = ChiDinhBus.UpdateChiDinh(_chiDinh);
+                                if (!result.IsOK)
+                                {
+                                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.UpdateChiDinh"), IconType.Error);
+                                    Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.UpdateChiDinh"));
+                                    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                                }
+                            }
+                        }
+                        else if (_chiDinh != null)
+                        {
+                            List<string> keys = new List<string>();
+                            keys.Add(_chiDinh.ChiDinhGUID.ToString());
+                            result = ChiDinhBus.DeleteChiDinhs(keys);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.DeleteChiDinhs"), IconType.Error);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.DeleteChiDinhs"));
+                                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                            }
+                        }
                     }
                 };
 
@@ -349,6 +499,8 @@ namespace MM.Dialogs
             {
                 cboService.SelectedValue = _serviceGUID;
                 cboService.Enabled = false;
+                chkBSCD.Checked = true;
+                cboBacSiChiDinh.SelectedValue = _bacSiChiDinhGUID;
             }
 
             if (!_isNew) DisplayInfo(_drServiceHistory);
@@ -398,6 +550,11 @@ namespace MM.Dialogs
 
             if (chkPositive.Checked) chkNegative.Checked = false;
         }
+
+        private void chkBSCD_CheckedChanged(object sender, EventArgs e)
+        {
+            cboBacSiChiDinh.Enabled = chkBSCD.Checked;
+        }
         #endregion
 
         #region Working Thread
@@ -418,7 +575,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-       
     }
 }

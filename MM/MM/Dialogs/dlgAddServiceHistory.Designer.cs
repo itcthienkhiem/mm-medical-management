@@ -57,6 +57,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.cboBacSiChiDinh = new System.Windows.Forms.ComboBox();
+            this.chkBSCD = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.gbNegative.SuspendLayout();
             this.gbNormal.SuspendLayout();
@@ -68,6 +70,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkBSCD);
+            this.groupBox1.Controls.Add(this.cboBacSiChiDinh);
             this.groupBox1.Controls.Add(this.raNegative);
             this.groupBox1.Controls.Add(this.raNormal);
             this.groupBox1.Controls.Add(this.gbNegative);
@@ -88,7 +92,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(380, 363);
+            this.groupBox1.Size = new System.Drawing.Size(380, 385);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
@@ -96,7 +100,7 @@
             // raNegative
             // 
             this.raNegative.AutoSize = true;
-            this.raNegative.Location = new System.Drawing.Point(89, 195);
+            this.raNegative.Location = new System.Drawing.Point(89, 219);
             this.raNegative.Name = "raNegative";
             this.raNegative.Size = new System.Drawing.Size(14, 13);
             this.raNegative.TabIndex = 10;
@@ -107,7 +111,7 @@
             // 
             this.raNormal.AutoSize = true;
             this.raNormal.Checked = true;
-            this.raNormal.Location = new System.Drawing.Point(89, 143);
+            this.raNormal.Location = new System.Drawing.Point(89, 167);
             this.raNormal.Name = "raNormal";
             this.raNormal.Size = new System.Drawing.Size(14, 13);
             this.raNormal.TabIndex = 9;
@@ -120,7 +124,7 @@
             this.gbNegative.Controls.Add(this.chkPositive);
             this.gbNegative.Controls.Add(this.chkNegative);
             this.gbNegative.Enabled = false;
-            this.gbNegative.Location = new System.Drawing.Point(94, 195);
+            this.gbNegative.Location = new System.Drawing.Point(94, 219);
             this.gbNegative.Name = "gbNegative";
             this.gbNegative.Size = new System.Drawing.Size(269, 47);
             this.gbNegative.TabIndex = 12;
@@ -154,7 +158,7 @@
             // 
             this.gbNormal.Controls.Add(this.chkAbnormal);
             this.gbNormal.Controls.Add(this.chkNormal);
-            this.gbNormal.Location = new System.Drawing.Point(94, 141);
+            this.gbNormal.Location = new System.Drawing.Point(94, 165);
             this.gbNormal.Name = "gbNormal";
             this.gbNormal.Size = new System.Drawing.Size(269, 47);
             this.gbNormal.TabIndex = 11;
@@ -187,7 +191,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(168, 95);
+            this.label5.Location = new System.Drawing.Point(168, 119);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(21, 13);
             this.label5.TabIndex = 12;
@@ -196,7 +200,7 @@
             // numDiscount
             // 
             this.numDiscount.DecimalPlaces = 1;
-            this.numDiscount.Location = new System.Drawing.Point(94, 92);
+            this.numDiscount.Location = new System.Drawing.Point(94, 116);
             this.numDiscount.Name = "numDiscount";
             this.numDiscount.Size = new System.Drawing.Size(69, 20);
             this.numDiscount.TabIndex = 7;
@@ -205,7 +209,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 95);
+            this.label3.Location = new System.Drawing.Point(11, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 10;
@@ -215,7 +219,7 @@
             // 
             this.dtpkActiveDate.CustomFormat = "dd/MM/yyyy";
             this.dtpkActiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkActiveDate.Location = new System.Drawing.Point(94, 115);
+            this.dtpkActiveDate.Location = new System.Drawing.Point(94, 139);
             this.dtpkActiveDate.Name = "dtpkActiveDate";
             this.dtpkActiveDate.Size = new System.Drawing.Size(122, 20);
             this.dtpkActiveDate.TabIndex = 8;
@@ -223,7 +227,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 119);
+            this.label6.Location = new System.Drawing.Point(11, 143);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 13);
             this.label6.TabIndex = 9;
@@ -269,7 +273,7 @@
             // lbUnit
             // 
             this.lbUnit.AutoSize = true;
-            this.lbUnit.Location = new System.Drawing.Point(219, 72);
+            this.lbUnit.Location = new System.Drawing.Point(219, 96);
             this.lbUnit.Name = "lbUnit";
             this.lbUnit.Size = new System.Drawing.Size(36, 13);
             this.lbUnit.TabIndex = 8;
@@ -277,7 +281,7 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(94, 253);
+            this.txtDescription.Location = new System.Drawing.Point(94, 277);
             this.txtDescription.MaxLength = 4000;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -291,7 +295,7 @@
             0,
             0,
             0});
-            this.numPrice.Location = new System.Drawing.Point(94, 69);
+            this.numPrice.Location = new System.Drawing.Point(94, 93);
             this.numPrice.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -310,7 +314,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(11, 256);
+            this.label4.Location = new System.Drawing.Point(11, 280);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
@@ -319,7 +323,7 @@
             // lbPrice
             // 
             this.lbPrice.AutoSize = true;
-            this.lbPrice.Location = new System.Drawing.Point(11, 72);
+            this.lbPrice.Location = new System.Drawing.Point(11, 96);
             this.lbPrice.Name = "lbPrice";
             this.lbPrice.Size = new System.Drawing.Size(26, 13);
             this.lbPrice.TabIndex = 2;
@@ -348,7 +352,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(199, 375);
+            this.btnCancel.Location = new System.Drawing.Point(199, 397);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 11;
@@ -360,19 +364,45 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(120, 375);
+            this.btnOK.Location = new System.Drawing.Point(120, 397);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 10;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // cboBacSiChiDinh
+            // 
+            this.cboBacSiChiDinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBacSiChiDinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboBacSiChiDinh.DataSource = this.docStaffViewBindingSource;
+            this.cboBacSiChiDinh.DisplayMember = "Fullname";
+            this.cboBacSiChiDinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBacSiChiDinh.Enabled = false;
+            this.cboBacSiChiDinh.FormattingEnabled = true;
+            this.cboBacSiChiDinh.Location = new System.Drawing.Point(94, 69);
+            this.cboBacSiChiDinh.Name = "cboBacSiChiDinh";
+            this.cboBacSiChiDinh.Size = new System.Drawing.Size(269, 21);
+            this.cboBacSiChiDinh.TabIndex = 2;
+            this.cboBacSiChiDinh.ValueMember = "DocStaffGUID";
+            // 
+            // chkBSCD
+            // 
+            this.chkBSCD.AutoSize = true;
+            this.chkBSCD.Location = new System.Drawing.Point(14, 71);
+            this.chkBSCD.Name = "chkBSCD";
+            this.chkBSCD.Size = new System.Drawing.Size(58, 17);
+            this.chkBSCD.TabIndex = 14;
+            this.chkBSCD.Text = "BSCĐ:";
+            this.chkBSCD.UseVisualStyleBackColor = true;
+            this.chkBSCD.CheckedChanged += new System.EventHandler(this.chkBSCD_CheckedChanged);
+            // 
             // dlgAddServiceHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(395, 406);
+            this.ClientSize = new System.Drawing.Size(395, 429);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -428,5 +458,7 @@
         private System.Windows.Forms.GroupBox gbNormal;
         private System.Windows.Forms.CheckBox chkAbnormal;
         private System.Windows.Forms.CheckBox chkNormal;
+        private System.Windows.Forms.ComboBox cboBacSiChiDinh;
+        private System.Windows.Forms.CheckBox chkBSCD;
     }
 }
