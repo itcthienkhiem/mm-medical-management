@@ -1321,6 +1321,7 @@
     <None Include="Resources\clipboard-search-result-icon %281%29.png" />
     <None Include="Resources\Pause-icon.png" />
     <None Include="Resources\Play-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-02-25.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-24.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-20.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-17_2012-02-19.sql" />
