@@ -95,7 +95,7 @@
             this.Column1.DropDownHeight = 106;
             this.Column1.DropDownWidth = 121;
             this.Column1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Column1.HeaderText = "TAI TRÁI";
+            this.Column1.HeaderText = "TAI PHẢI";
             this.Column1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Column1.IntegralHeight = false;
             this.Column1.ItemHeight = 13;
@@ -124,8 +124,9 @@
             this.Column3.DropDownHeight = 106;
             this.Column3.DropDownWidth = 121;
             this.Column3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Column3.HeaderText = "TAI PHẢI";
+            this.Column3.HeaderText = "TAI TRÁI";
             this.Column3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Column3.IntegralHeight = false;
             this.Column3.ItemHeight = 15;
             this.Column3.MaxLength = 255;
             this.Column3.Name = "Column3";

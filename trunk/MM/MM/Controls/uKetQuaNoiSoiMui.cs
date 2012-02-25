@@ -35,109 +35,109 @@ namespace MM.Controls
         #endregion
 
         #region Properties
-        public string NiemMacTrai
+        public string NiemMacPhai
         {
             get { return GetValue(0, 0); }
             set { SetValue(0, 0, value); }
         }
 
-        public string NiemMacPhai
+        public string NiemMacTrai
         {
             get { return GetValue(0, 2); }
             set { SetValue(0, 2, value); }
         }
 
-        public string VachNganTrai
+        public string VachNganPhai
         {
             get { return GetValue(1, 0); }
             set { SetValue(1, 0, value); }
         }
 
-        public string VachNganPhai
+        public string VachNganTrai
         {
             get { return GetValue(1, 2); }
             set { SetValue(1, 2, value); }
         }
 
-        public string KheTrenTrai
+        public string KheTrenPhai
         {
             get { return GetValue(2, 0); }
             set { SetValue(2, 0, value); }
         }
 
-        public string KheTrenPhai
+        public string KheTrenTrai
         {
             get { return GetValue(2, 2); }
             set { SetValue(2, 2, value); }
         }
 
-        public string KheGiuaTrai
+        public string KheGiuaPhai
         {
             get { return GetValue(3, 0); }
             set { SetValue(3, 0, value); }
         }
 
-        public string KheGiuaPhai
+        public string KheGiuaTrai
         {
             get { return GetValue(3, 2); }
             set { SetValue(3, 2, value); }
         }
 
-        public string CuonGiuaTrai
+        public string CuonGiuaPhai
         {
             get { return GetValue(4, 0); }
             set { SetValue(4, 0, value); }
         }
 
-        public string CuonGiuaPhai
+        public string CuonGiuaTrai
         {
             get { return GetValue(4, 2); }
             set { SetValue(4, 2, value); }
         }
 
-        public string CuonDuoiTrai
+        public string CuonDuoiPhai
         {
             get { return GetValue(5, 0); }
             set { SetValue(5, 0, value); }
         }
 
-        public string CuonDuoiPhai
+        public string CuonDuoiTrai
         {
             get { return GetValue(5, 2); }
             set { SetValue(5, 2, value); }
         }
 
-        public string MomMocTrai
+        public string MomMocPhai
         {
             get { return GetValue(6, 0); }
             set { SetValue(6, 0, value); }
         }
 
-        public string MomMocPhai
+        public string MomMocTrai
         {
             get { return GetValue(6, 2); }
             set { SetValue(6, 2, value); }
         }
 
-        public string BongSangTrai
+        public string BongSangPhai
         {
             get { return GetValue(7, 0); }
             set { SetValue(7, 0, value); }
         }
 
-        public string BongSangPhai
+        public string BongSangTrai
         {
             get { return GetValue(7, 2); }
             set { SetValue(7, 2, value); }
         }
 
-        public string VomTrai
+        public string VomPhai
         {
             get { return GetValue(8, 0); }
             set { SetValue(8, 0, value); }
         }
 
-        public string VomPhai
+        public string VomTrai
         {
             get { return GetValue(8, 2); }
             set { SetValue(8, 2, value); }
@@ -145,17 +145,39 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void SetDefault()
+        {
+            NiemMacPhai = "Hồng";
+            NiemMacTrai = "Hồng";
+            VachNganPhai = "Thẳng";
+            VachNganTrai = "Thẳng";
+            KheTrenPhai = "Thông Thoáng";
+            KheTrenTrai = "Thông Thoáng";
+            KheGiuaPhai = "Thông Thoáng";
+            KheGiuaTrai = "Thông Thoáng";
+            CuonGiuaPhai = "Không Phì Đại";
+            CuonGiuaTrai = "Không Phì Đại";
+            CuonDuoiPhai = "Không Phì Đại";
+            CuonDuoiTrai = "Không Phì Đại";
+            MomMocPhai = "Chưa Thoái Hóa";
+            MomMocTrai = "Chưa Thoái Hóa";
+            BongSangPhai = "Chưa Thoái Hóa";
+            BongSangTrai = "Chưa Thoái Hóa";
+            VomPhai = "Thoáng";
+            VomTrai = "Thoáng";
+        }
+
         private void InitData()
         {
-            dgKetQuaNoiSoi.Rows.Add("", "NIÊM MẠC", "");
-            dgKetQuaNoiSoi.Rows.Add("", "VÁCH NGĂN", "");
-            dgKetQuaNoiSoi.Rows.Add("", "KHE TRÊN", "");
-            dgKetQuaNoiSoi.Rows.Add("", "KHE GIỮA", "");
-            dgKetQuaNoiSoi.Rows.Add("", "CUỐN GIỮA", "");
-            dgKetQuaNoiSoi.Rows.Add("", "CUỐN DƯỚI", "");
-            dgKetQuaNoiSoi.Rows.Add("", "MÕM MÓC", "");
-            dgKetQuaNoiSoi.Rows.Add("", "BÓNG SÀNG", "");
-            dgKetQuaNoiSoi.Rows.Add("", "VÒM", "");
+            dgKetQuaNoiSoi.Rows.Add("Hồng", "NIÊM MẠC", "Hồng");
+            dgKetQuaNoiSoi.Rows.Add("Thẳng", "VÁCH NGĂN", "Thẳng");
+            dgKetQuaNoiSoi.Rows.Add("Thông Thoáng", "KHE TRÊN", "Thông Thoáng");
+            dgKetQuaNoiSoi.Rows.Add("Thông Thoáng", "KHE GIỮA", "Thông Thoáng");
+            dgKetQuaNoiSoi.Rows.Add("Không Phì Đại", "CUỐN GIỮA", "Không Phì Đại");
+            dgKetQuaNoiSoi.Rows.Add("Không Phì Đại", "CUỐN DƯỚI", "Không Phì Đại");
+            dgKetQuaNoiSoi.Rows.Add("Chưa Thoái Hóa", "MÕM MÓC", "Chưa Thoái Hóa");
+            dgKetQuaNoiSoi.Rows.Add("Chưa Thoái Hóa", "BÓNG SÀNG", "Chưa Thoái Hóa");
+            dgKetQuaNoiSoi.Rows.Add("Thoáng", "VÒM", "Thoáng");
 
             Result result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiNiemMac);
             if (result.IsOK) _dtKetQuaNiemMac = result.QueryResult as DataTable;

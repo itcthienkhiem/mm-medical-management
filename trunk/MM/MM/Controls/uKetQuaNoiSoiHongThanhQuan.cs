@@ -70,14 +70,24 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void SetDefault()
+        {
+            Amydale = "Teo hốc";
+            XoangLe = "Thông Thoáng";
+            MiengThucQuan = "Niêm Mạc Hồng";
+            SunPheu = "Niêm Mạc Hồng, Di Động Tốt";
+            DayThanh = "Trơn láng, Di Động Tốt";
+            BangThanhThat = "Thông Thoáng";
+        }
+
         private void InitData()
         {
-            dgKetQuaNoiSoi.Rows.Add("AMYDALE", "");
-            dgKetQuaNoiSoi.Rows.Add("XOANG LÊ", "");
-            dgKetQuaNoiSoi.Rows.Add("MIỆNG THỰC QUẢN", "");
-            dgKetQuaNoiSoi.Rows.Add("SỤN PHỂU", "");
-            dgKetQuaNoiSoi.Rows.Add("DÂY THANH", "");
-            dgKetQuaNoiSoi.Rows.Add("BĂNG THANH THẤT", "");
+            dgKetQuaNoiSoi.Rows.Add("AMYDALE", "Teo hốc");
+            dgKetQuaNoiSoi.Rows.Add("XOANG LÊ", "Thông Thoáng");
+            dgKetQuaNoiSoi.Rows.Add("MIỆNG THỰC QUẢN", "Niêm Mạc Hồng");
+            dgKetQuaNoiSoi.Rows.Add("SỤN PHỂU", "Niêm Mạc Hồng, Di Động Tốt");
+            dgKetQuaNoiSoi.Rows.Add("DÂY THANH", "Trơn láng, Di Động Tốt");
+            dgKetQuaNoiSoi.Rows.Add("BĂNG THANH THẤT", "Thông Thoáng");
 
             Result result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiAmydale);
             if (result.IsOK) _dtKetQuaAmydale = result.QueryResult as DataTable;

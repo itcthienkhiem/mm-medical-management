@@ -32,61 +32,61 @@ namespace MM.Controls
         #endregion
 
         #region Properties
-        public string OngTaiTrai
+        public string OngTaiPhai
         {
             get { return GetValue(0, 0); }
             set { SetValue(0, 0, value); }
         }
 
-        public string   OngTaiPhai
+        public string   OngTaiTrai
         {
             get { return GetValue(0, 2); }
             set { SetValue(0, 2, value); }
         }
 
-        public string MangNhiTrai
+        public string MangNhiPhai
         {
             get { return GetValue(1, 0); }
             set { SetValue(1, 0, value); }
         }
 
-        public string MangNhiPhai
+        public string MangNhiTrai
         {
             get { return GetValue(1, 2); }
             set { SetValue(1, 2, value); }
         }
 
-        public string CanBuaTrai
+        public string CanBuaPhai
         {
             get { return GetValue(2, 0); }
             set { SetValue(2, 0, value); }
         }
 
-        public string CanBuaPhai
+        public string CanBuaTrai
         {
             get { return GetValue(2, 2); }
             set { SetValue(2, 2, value); }
         }
 
-        public string HomNhiTrai
+        public string HomNhiPhai
         {
             get { return GetValue(3, 0); }
             set { SetValue(3, 0, value); }
         }
 
-        public string HomNhiPhai
+        public string HomNhiTrai
         {
             get { return GetValue(3, 2); }
             set { SetValue(3, 2, value); }
         }
 
-        public string ValsavaTrai
+        public string ValsavaPhai
         {
             get { return GetValue(4, 0); }
             set { SetValue(4, 0, value); }
         }
 
-        public string ValsavaPhai
+        public string ValsavaTrai
         {
             get { return GetValue(4, 2); }
             set { SetValue(4, 2, value); }
@@ -94,12 +94,24 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void SetDefault()
+        {
+            OngTaiPhai = "Khô";
+            OngTaiTrai = "Khô";
+            MangNhiPhai = "Còn";
+            MangNhiTrai = "Còn";
+            CanBuaPhai = "Đúng Vị Trí";
+            CanBuaTrai = "Đúng Vị Trí";
+            HomNhiPhai = "Khô";
+            HomNhiTrai = "Khô";
+        }
+
         private void InitData()
         {
-            dgKetQuaNoiSoi.Rows.Add("", "ỐNG TAI", "");
-            dgKetQuaNoiSoi.Rows.Add("", "MÀNG NHĨ", "");
-            dgKetQuaNoiSoi.Rows.Add("", "CÁN BÚA", "");
-            dgKetQuaNoiSoi.Rows.Add("", "HÒM NHĨ", "");
+            dgKetQuaNoiSoi.Rows.Add("Khô", "ỐNG TAI", "Khô");
+            dgKetQuaNoiSoi.Rows.Add("Còn", "MÀNG NHĨ", "Còn");
+            dgKetQuaNoiSoi.Rows.Add("Đúng Vị Trí", "CÁN BÚA", "Đúng Vị Trí");
+            dgKetQuaNoiSoi.Rows.Add("Khô", "HÒM NHĨ", "Khô");
             dgKetQuaNoiSoi.Rows.Add("", "VALSAVA", "");
 
             Result result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiOngTai);

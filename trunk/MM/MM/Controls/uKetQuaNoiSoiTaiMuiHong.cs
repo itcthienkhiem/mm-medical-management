@@ -98,18 +98,32 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void SetDefault()
+        {
+            OngTaiNgoai = "Khô";
+            MangNhi = "Còn";
+            NiemMacMui = "Hồng";
+            VachNgan = "Thẳng";
+            KheTren = "Thông Thoáng";
+            KheGiua = "Thông Thoáng";
+            MomMocBongSang = "Chưa Thoái Hóa";
+            Vom = "Thoáng";
+            Amydale = "Teo hốc";
+            ThanhQuan = "Không phát hiện bất thường";
+        }
+
         private void InitData()
         {
-            dgKetQuaNoiSoi.Rows.Add("ỐNG TAI NGOÀI", "");
-            dgKetQuaNoiSoi.Rows.Add("MÀNG NHĨ", "");
-            dgKetQuaNoiSoi.Rows.Add("NIÊM MẠC MŨI", "");
-            dgKetQuaNoiSoi.Rows.Add("VÁCH NGĂN", "");
-            dgKetQuaNoiSoi.Rows.Add("KHE TRÊN", "");
-            dgKetQuaNoiSoi.Rows.Add("KHE GIỮA", "");
-            dgKetQuaNoiSoi.Rows.Add("MÕM MÓC-BÓNG SÀNG", "");
-            dgKetQuaNoiSoi.Rows.Add("VÒM", "");
-            dgKetQuaNoiSoi.Rows.Add("AMYDALE", "");
-            dgKetQuaNoiSoi.Rows.Add("THANH QUẢN", "");
+            dgKetQuaNoiSoi.Rows.Add("ỐNG TAI NGOÀI", "Khô");
+            dgKetQuaNoiSoi.Rows.Add("MÀNG NHĨ", "Còn");
+            dgKetQuaNoiSoi.Rows.Add("NIÊM MẠC MŨI", "Hồng");
+            dgKetQuaNoiSoi.Rows.Add("VÁCH NGĂN", "Thẳng");
+            dgKetQuaNoiSoi.Rows.Add("KHE TRÊN", "Thông Thoáng");
+            dgKetQuaNoiSoi.Rows.Add("KHE GIỮA", "Thông Thoáng");
+            dgKetQuaNoiSoi.Rows.Add("MÕM MÓC-BÓNG SÀNG", "Chưa Thoái Hóa");
+            dgKetQuaNoiSoi.Rows.Add("VÒM", "Thoáng");
+            dgKetQuaNoiSoi.Rows.Add("AMYDALE", "Teo hốc");
+            dgKetQuaNoiSoi.Rows.Add("THANH QUẢN", "Không phát hiện bất thường");
 
             Result result = BookmarkBus.GetBookmark(BookMarkType.KetQuaNoiSoiOngTai);
             if (result.IsOK) _dtKetQuaOngTai = result.QueryResult as DataTable;

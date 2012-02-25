@@ -103,12 +103,12 @@ spDichVuHopDong
 6. Thêm trên bs điều trị vào phần ký tên của in toa thuốc
 7. HDGTGT thêm 2 dòng: Mã số thuế và số tứ tự column
 
-8. Sửa in nội soi, set default
+8. Sửa in nội soi, set default, swap trái -> phải
 9. Sửa template phiếu thu dịch vụ receipt
 10. Sửa template HDGTGT kô viết hoa số tiền bằng chữ, Số lượng cho nằm giữa, nếu %0 -> ..., góc trái cho ra chút xíu
 11. Thêm giá nhập khi bán thuốc
 12. Thêm TenNguoiMuaHang và Địa chỉ
-
+13. Chữ kí điện tử
 
 
 
