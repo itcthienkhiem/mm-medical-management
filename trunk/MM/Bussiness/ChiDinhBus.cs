@@ -423,6 +423,71 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result UpdateChiDinh(ChiDinh chiDinh)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+            db = new MMOverride();
+            string desc = string.Empty;
+                ChiDinh cd = db.ChiDinhs.SingleOrDefault<ChiDinh>(c => c.ChiDinhGUID.ToString() == chiDinh.ChiDinhGUID.ToString());
+                if (cd != null)
+                {
+                    cd.MaChiDinh = chiDinh.MaChiDinh;
+                    cd.NgayChiDinh = chiDinh.NgayChiDinh;
+                    cd.BacSiChiDinhGUID = chiDinh.BacSiChiDinhGUID;
+                    cd.BenhNhanGUID = chiDinh.BenhNhanGUID;
+                    cd.CreatedDate = chiDinh.CreatedDate;
+                    cd.CreatedBy = chiDinh.CreatedBy;
+                    cd.UpdatedDate = chiDinh.UpdatedDate;
+                    cd.UpdatedBy = chiDinh.UpdatedBy;
+                    cd.DeletedDate = chiDinh.DeletedDate;
+                    cd.DeletedBy = chiDinh.DeletedBy;
+                    cd.Status = chiDinh.Status;
+                    db.SubmitChanges();
+
+                    desc += string.Format("- Chỉ định: GUID: '{0}', Mã chỉ định: '{1}', Ngày chỉ định: '{2}', Bác sĩ chỉ định: '{3}', Bệnh nhân: '{4}'\n",
+                            cd.ChiDinhGUID.ToString(), cd.MaChiDinh, cd.NgayChiDinh.ToString("dd/MM/yyyy HH:mm:ss"),
+                            cd.DocStaff.Contact.FullName, cd.Patient.Contact.FullName);
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Edit;
+                    tk.Action = "Sửa thông tin chỉ định";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+                    db.SubmitChanges();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result InsertDichVuChiDinh(DichVuChiDinh dichVuChiDinh)
         {
             Result result = new Result();
@@ -439,6 +504,50 @@ namespace MM.Bussiness
                     tnx.Complete();
                 }
 
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetChiDinh(string serviceHistoryGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                DichVuChiDinh dvcd = db.DichVuChiDinhs.SingleOrDefault(d => d.ServiceHistoryGUID.ToString() == serviceHistoryGUID &&
+                    d.Status == (byte)Status.Actived);
+                if (dvcd != null)
+                {
+                    ChiTietChiDinh ctcd = db.ChiTietChiDinhs.SingleOrDefault(c => c.ChiTietChiDinhGUID == dvcd.ChiTietChiDinhGUID &&
+                        c.Status == (byte)Status.Actived);
+
+                    if (ctcd != null)
+                    {
+                        ChiDinh cd = db.ChiDinhs.SingleOrDefault(c => c.ChiDinhGUID == ctcd.ChiDinhGUID && c.Status == (byte)Status.Actived);
+                        result.QueryResult = cd;
+                    }
+                }
             }
             catch (System.Data.SqlClient.SqlException se)
             {

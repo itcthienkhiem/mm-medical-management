@@ -338,10 +338,13 @@ namespace MM.Controls
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xác nhận những dịch vụ chỉ định mà bạn đánh dấu ?") == DialogResult.Yes)
                 {
+                    DataRow drChiDinh = (dgChiDinh.SelectedRows[0].DataBoundItem as DataRowView).Row;
+
                     foreach (DataRow row in checkedRows)
                     {
                         dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientRow["PatientGUID"].ToString());
                         dlg.ServiceGUID = row["ServiceGUID"].ToString();
+                        dlg.BacSiChiDinhGUID = drChiDinh["BacSiChiDinhGUID"].ToString();
                         if (dlg.ShowDialog(this) == DialogResult.OK)
                         {
                             if (dlg.ServiceHistory.ServiceHistoryGUID == Guid.Empty) return;

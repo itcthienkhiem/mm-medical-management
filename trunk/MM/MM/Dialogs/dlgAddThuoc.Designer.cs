@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboDonViTinh = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtHoatChat = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtHamLuong = new System.Windows.Forms.TextBox();
@@ -46,8 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.cboDonViTinh = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this.numGoi_Nhom6 = new System.Windows.Forms.NumericUpDown();
             this.label21 = new System.Windows.Forms.Label();
@@ -80,6 +80,33 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin thuốc";
+            // 
+            // cboDonViTinh
+            // 
+            this.cboDonViTinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDonViTinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDonViTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDonViTinh.FormattingEnabled = true;
+            this.cboDonViTinh.Items.AddRange(new object[] {
+            "Viên",
+            "Chai",
+            "Ống",
+            "Miếng",
+            "Gói",
+            "Tuýp"});
+            this.cboDonViTinh.Location = new System.Drawing.Point(75, 93);
+            this.cboDonViTinh.Name = "cboDonViTinh";
+            this.cboDonViTinh.Size = new System.Drawing.Size(121, 21);
+            this.cboDonViTinh.TabIndex = 7;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 96);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 49;
+            this.label8.Text = "Đơn vị tính:";
             // 
             // txtHoatChat
             // 
@@ -230,32 +257,33 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // label8
+            // label20
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 96);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(63, 13);
-            this.label8.TabIndex = 49;
-            this.label8.Text = "Đơn vị tính:";
+            this.label20.Location = new System.Drawing.Point(0, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(100, 23);
+            this.label20.TabIndex = 0;
             // 
-            // cboDonViTinh
+            // numGoi_Nhom6
             // 
-            this.cboDonViTinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDonViTinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDonViTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDonViTinh.FormattingEnabled = true;
-            this.cboDonViTinh.Items.AddRange(new object[] {
-            "Viên",
-            "Chai",
-            "Ống",
-            "Miếng",
-            "Gói"});
-            this.cboDonViTinh.Location = new System.Drawing.Point(75, 93);
-            this.cboDonViTinh.Name = "cboDonViTinh";
-            this.cboDonViTinh.Size = new System.Drawing.Size(121, 21);
-            this.cboDonViTinh.TabIndex = 7;
-
+            this.numGoi_Nhom6.Location = new System.Drawing.Point(0, 0);
+            this.numGoi_Nhom6.Name = "numGoi_Nhom6";
+            this.numGoi_Nhom6.Size = new System.Drawing.Size(120, 20);
+            this.numGoi_Nhom6.TabIndex = 0;
+            // 
+            // label21
+            // 
+            this.label21.Location = new System.Drawing.Point(0, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(100, 23);
+            this.label21.TabIndex = 0;
+            // 
+            // raNhom6
+            // 
+            this.raNhom6.Location = new System.Drawing.Point(0, 0);
+            this.raNhom6.Name = "raNhom6";
+            this.raNhom6.Size = new System.Drawing.Size(104, 24);
+            this.raNhom6.TabIndex = 0;
             // 
             // dlgAddThuoc
             // 
