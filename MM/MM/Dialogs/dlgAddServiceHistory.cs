@@ -400,7 +400,7 @@ namespace MM.Dialogs
                                 _chiDinh.Status = (byte)Status.Actived;
 
                                 _chiDinh.BacSiChiDinhGUID = Guid.Parse(cboBacSiChiDinh.SelectedValue.ToString());
-                                result = ChiDinhBus.UpdateChiDinh(_chiDinh);
+                                result = ChiDinhBus.UpdateChiDinh(_chiDinh, cboService.SelectedValue.ToString());
                                 if (!result.IsOK)
                                 {
                                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.UpdateChiDinh"), IconType.Error);
