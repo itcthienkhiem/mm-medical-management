@@ -371,7 +371,7 @@ namespace MM.Dialogs
             dlgChonHinh dlg = new dlgChonHinh();
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                Image img = imgListCapture.Images[lvCapture.SelectedItems[0].ImageIndex];
+                Image img = (Image)lvCapture.SelectedItems[0].Tag;//imgListCapture.Images[lvCapture.SelectedItems[0].ImageIndex];
 
                 switch (dlg.ImageIndex)
                 {
@@ -1322,6 +1322,7 @@ namespace MM.Dialogs
 
             _imgCount++;
             ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
+            item.Tag = picWebCam.Image;
             lvCapture.Items.Add(item);
         }
 
