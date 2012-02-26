@@ -2519,32 +2519,27 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["D6"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["F6"].Value = patientRow["GenderAsStr"].ToString();
+                workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
+                workSheet.Cells["C6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["E6"].Value = string.Format("          Giới tính: {0}", patientRow["GenderAsStr"].ToString());
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
 
                 if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["D7"].Value = patientRow["Mobile"].ToString();
+                    workSheet.Cells["C7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
 
                 if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["F7"].Value = patientRow["Occupation"].ToString();
+                    workSheet.Cells["E7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
 
                 if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
-
-                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                //    workSheet.Cells["D8"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
-
+                    workSheet.Cells["E8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString()); 
 
                 double left = 0.85527559055118108;
-                double top = 183;//249.97732283464566;
+                double top = 175;
                 double width = 147.62606857863705;
                 double height = 135.0;
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -2619,32 +2614,27 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["D6"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["F6"].Value = patientRow["GenderAsStr"].ToString();
+                workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
+                workSheet.Cells["C6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["E6"].Value = string.Format("          Giới tính: {0}", patientRow["GenderAsStr"].ToString());
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
 
                 if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["D7"].Value = patientRow["Mobile"].ToString();
+                    workSheet.Cells["C7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
 
                 if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["F7"].Value = patientRow["Occupation"].ToString();
+                    workSheet.Cells["E7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
 
                 if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
-
-                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                //    workSheet.Cells["D8"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
-
+                    workSheet.Cells["E8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString()); 
 
                 double left = 0.85527559055118108;
-                double top = 183;
+                double top = 175;
                 double width = 147.62606857863705;
                 double height = 135.0;
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -2731,32 +2721,27 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["D6"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["F6"].Value = patientRow["GenderAsStr"].ToString();
+                workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
+                workSheet.Cells["C6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["E6"].Value = string.Format("         Giới tính: {0}", patientRow["GenderAsStr"].ToString());
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
 
                 if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["D7"].Value = patientRow["Mobile"].ToString();
+                    workSheet.Cells["C7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
 
                 if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["F7"].Value = patientRow["Occupation"].ToString();
+                    workSheet.Cells["E7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
 
                 if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
-
-                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                //    workSheet.Cells["D8"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
-
+                    workSheet.Cells["E8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString()); 
 
                 double left = 0.85527559055118108;
-                double top = 183;
+                double top = 175;
                 double width = 147.62606857863705;
                 double height = 135.0;
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -2828,32 +2813,27 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["E6"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["G6"].Value = patientRow["GenderAsStr"].ToString();
+                workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
+                workSheet.Cells["D6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["F6"].Value = string.Format("          Giới tính: {0}", patientRow["GenderAsStr"].ToString());
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
 
                 if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["E7"].Value = patientRow["Mobile"].ToString();
+                    workSheet.Cells["D7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
 
                 if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["G7"].Value = patientRow["Occupation"].ToString();
+                    workSheet.Cells["F7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
 
                 if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
-
-                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                //    workSheet.Cells["E8"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["G8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
-
+                    workSheet.Cells["F8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString()); 
 
                 double left = 0.85527559055118108;
-                double top = 183;
+                double top = 175;
                 double width = 147.62606857863705;
                 double height = 135.0;
 
@@ -2921,32 +2901,27 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                //workSheet.Cells["A6"].Value = string.Format("Số phiếu: {0}", ketQuaNoiSoi["SoPhieu"].ToString());
-                workSheet.Cells["B6"].Value = patientRow["FullName"].ToString();
-                workSheet.Cells["E6"].Value = patientRow["DobStr"].ToString();
-                workSheet.Cells["G6"].Value = patientRow["GenderAsStr"].ToString();
+                workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
+                workSheet.Cells["D6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["F6"].Value = string.Format("          Giới tính: {0}", patientRow["GenderAsStr"].ToString());
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                    workSheet.Cells["B7"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
 
                 if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["E7"].Value = patientRow["Mobile"].ToString();
+                    workSheet.Cells["D7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
 
                 if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["G7"].Value = patientRow["Occupation"].ToString();
+                    workSheet.Cells["F7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
 
                 if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
-                    workSheet.Cells["B8"].Value = ketQuaNoiSoi["LyDoKham"].ToString();
-
-                //if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
-                //    workSheet.Cells["E8"].Value = patientRow["FileNum"].ToString();
+                    workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["G8"].Value = ketQuaNoiSoi["TenBacSiChiDinh"].ToString();
-
+                    workSheet.Cells["F8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString()); 
 
                 double left = 0.85527559055118108;
-                double top = 183;
+                double top = 175;
                 double width = 147.62606857863705;
                 double height = 135.0;
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
