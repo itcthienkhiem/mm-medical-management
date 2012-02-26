@@ -341,16 +341,14 @@ namespace MM.Controls
             UpdateChecked();
             List<string> deletedPatientList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            //List<DataRow> deletedRows2 = new List<DataRow>();
-            foreach (DataRow row in _dataSource.Rows)
+            DataRow[] rows = _dataSource.Select("Checked='True'");
+            if (rows != null && rows.Length > 0)
             {
-                if (Boolean.Parse(row["Checked"].ToString()))
+                foreach (DataRow row in rows)
                 {
                     string patientGUID = row["PatientGUID"].ToString();
                     deletedPatientList.Add(patientGUID);
                     deletedRows.Add(row);
-                    //DataRow r = GetDataRow(patientGUID);
-                    //if (r != null) deletedRows2.Add(r);
                 }
             }
 
@@ -367,22 +365,6 @@ namespace MM.Controls
                         }
 
                         OnSearchPatient();
-
-                        /*try
-                        {
-                            DataTable dt = dgPatient.DataSource as DataTable;
-                            foreach (DataRow row in deletedRows2)
-                            {
-                                if (row.RowState != DataRowState.Detached && row.RowState != DataRowState.Deleted) 
-                                    dt.Rows.Remove(row);
-                            }
-
-                            
-                        }
-                        catch (Exception ex)
-                        {
-                        }*/
-                        
                     }
                     else
                     {
@@ -413,21 +395,16 @@ namespace MM.Controls
             DataTable dt = dgPatient.DataSource as DataTable;
             if (dt == null) return;
 
-            foreach (DataRow row1 in dt.Rows)
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
+
+            foreach (DataRow row1 in rows1)
             {
                 string patientGUID1 = row1["PatientGUID"].ToString();
-                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-                foreach (DataRow row2 in _dataSource.Rows)
-                {
-                    string patientGUID2 = row2["PatientGUID"].ToString();
-                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+                DataRow[] rows2 = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
 
-                    if (patientGUID1 == patientGUID2)
-                    {
-                        row2["Checked"] = row1["Checked"];
-                        break;
-                    }
-                }
+                rows2[0]["Checked"] = row1["Checked"];
             }
         }
 

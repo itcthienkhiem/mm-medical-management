@@ -94,22 +94,37 @@ namespace MM.Controls
             DataTable dt = dgLoThuoc.DataSource as DataTable;
             if (dt == null) return;
 
-            foreach (DataRow row1 in dt.Rows)
-            {
-                string loThuocGUID1 = row1["LoThuocGUID"].ToString();
-                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-                foreach (DataRow row2 in _dataSource.Rows)
-                {
-                    string loThuocGUID2 = row2["LoThuocGUID"].ToString();
-                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
 
-                    if (loThuocGUID1 == loThuocGUID2)
-                    {
-                        row2["Checked"] = row1["Checked"];
-                        break;
-                    }
-                }
+            foreach (DataRow row1 in rows1)
+            {
+                string patientGUID1 = row1["LoThuocGUID"].ToString();
+                DataRow[] rows2 = _dataSource.Select(string.Format("LoThuocGUID='{0}'", patientGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
+
+                rows2[0]["Checked"] = row1["Checked"];
             }
+
+            //DataTable dt = dgLoThuoc.DataSource as DataTable;
+            //if (dt == null) return;
+
+            //foreach (DataRow row1 in dt.Rows)
+            //{
+            //    string loThuocGUID1 = row1["LoThuocGUID"].ToString();
+            //    bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+            //    foreach (DataRow row2 in _dataSource.Rows)
+            //    {
+            //        string loThuocGUID2 = row2["LoThuocGUID"].ToString();
+            //        bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+
+            //        if (loThuocGUID1 == loThuocGUID2)
+            //        {
+            //            row2["Checked"] = row1["Checked"];
+            //            break;
+            //        }
+            //    }
+            //}
         }
 
         private void OnSearchLoThuoc()
