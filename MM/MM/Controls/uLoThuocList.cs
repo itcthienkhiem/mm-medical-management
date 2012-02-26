@@ -214,7 +214,7 @@ namespace MM.Controls
             dlgAddLoThuoc dlg = new dlgAddLoThuoc();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgLoThuoc.DataSource as DataTable;
+                DataTable dt = _dataSource;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -261,6 +261,15 @@ namespace MM.Controls
             }
         }
 
+        private DataRow GetDataRow(string loThuocGUID)
+        {
+            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
+            DataRow[] rows = _dataSource.Select(string.Format("LoThuocGUID = '{0}'", loThuocGUID));
+            if (rows == null || rows.Length <= 0) return null;
+
+            return rows[0];
+        }
+
         private void OnEditLoThuoc()
         {
             if (dgLoThuoc.SelectedRows == null || dgLoThuoc.SelectedRows.Count <= 0)
@@ -269,7 +278,9 @@ namespace MM.Controls
                 return;
             }
 
-            DataRow drLoThuoc = (dgLoThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string loThuocGUID = (dgLoThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row["LoThuocGUID"].ToString();
+            DataRow drLoThuoc = GetDataRow(loThuocGUID);
+            if (drLoThuoc == null) return;
             dlgAddLoThuoc dlg = new dlgAddLoThuoc(drLoThuoc);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {

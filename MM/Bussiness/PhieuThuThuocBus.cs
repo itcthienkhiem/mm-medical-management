@@ -321,22 +321,47 @@ namespace MM.Bussiness
                         {
                             ctptt.PhieuThuThuocGUID = ptthuoc.PhieuThuThuocGUID;
                             ctptt.ChiTietPhieuThuThuocGUID = Guid.NewGuid();
-                            
 
                             int soLuong = Convert.ToInt32(ctptt.SoLuong);
-                            LoThuoc loThuoc = (from t in db.Thuocs
-                                               join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
-                                               where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
-                                               l.SoLuongNhap * l.SoLuongQuiDoi >= l.SoLuongXuat + soLuong &&
-                                               l.NgayHetHan > dt && t.ThuocGUID == ctptt.ThuocGUID
-                                               orderby l.NgayHetHan
-                                               select l).FirstOrDefault();
-                            if (loThuoc != null)
+
+                            var loThuocList = from l in db.LoThuocs
+                                              where l.Status == (byte)Status.Actived &&
+                                              l.ThuocGUID == ctptt.ThuocGUID &&
+                                              l.NgayHetHan > dt &&
+                                              l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0
+                                              orderby l.NgayHetHan ascending
+                                              select l; 
+
+                            double giaNhapTB = 0;
+                            if (loThuocList != null)
                             {
-                                loThuoc.SoLuongXuat += soLuong;
-                                ctptt.DonGiaNhap = loThuoc.GiaNhapQuiDoi;
+                                double tongGiaNhap = 0;
+                                int count = 0;
+                                foreach (var lt in loThuocList)
+                                {
+                                    tongGiaNhap += lt.GiaNhapQuiDoi;
+                                    count++;
+
+                                    if (soLuong > 0)
+                                    {
+                                        int soLuongTon = lt.SoLuongNhap * lt.SoLuongQuiDoi - lt.SoLuongXuat;
+                                        if (soLuongTon >= soLuong)
+                                        {
+                                            lt.SoLuongXuat += soLuong;
+                                            soLuong = 0;
+                                        }
+                                        else
+                                        {
+                                            lt.SoLuongXuat += soLuongTon;
+                                            soLuong -= soLuongTon;
+                                        }
+                                    }
+                                }
+
+                                giaNhapTB = Math.Round(tongGiaNhap / count, 0);
                             }
 
+                            ctptt.DonGiaNhap = giaNhapTB;
                             db.ChiTietPhieuThuThuocs.InsertOnSubmit(ctptt);
                             db.SubmitChanges();
 
