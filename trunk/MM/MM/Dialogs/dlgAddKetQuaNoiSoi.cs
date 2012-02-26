@@ -437,6 +437,11 @@ namespace MM.Dialogs
                     _ketQuaNoiSoi.KetLuan = cboKetLuan.Text;
                     _ketQuaNoiSoi.DeNghi = cboDeNghi.Text;
 
+                    _ketQuaNoiSoi.Hinh1 = null;
+                    _ketQuaNoiSoi.Hinh2 = null;
+                    _ketQuaNoiSoi.Hinh3 = null;
+                    _ketQuaNoiSoi.Hinh4 = null;
+
                     if (picHinh1.Image != null)
                         _ketQuaNoiSoi.Hinh1 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh1.Image));
 
@@ -1357,6 +1362,30 @@ namespace MM.Dialogs
                     OnPlayWebCam();
             }
         }
+
+        private void xóaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (picHinh1.Image == null) return;
+            picHinh1.Image = null;
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (picHinh2.Image == null) return;
+            picHinh2.Image = null;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (picHinh3.Image == null) return;
+            picHinh3.Image = null;
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (picHinh4.Image == null) return;
+            picHinh4.Image = null;
+        }
         #endregion
 
         #region Working Thread
@@ -1377,5 +1406,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

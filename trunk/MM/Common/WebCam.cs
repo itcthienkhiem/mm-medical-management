@@ -17,8 +17,8 @@ namespace MM.Common
         public void InitializeWebCam(ref System.Windows.Forms.PictureBox ImageControl)
         {
             webcam = new WebCamCapture();
-            webcam.CaptureWidth = 200;
-            webcam.CaptureHeight = 200;
+            webcam.CaptureWidth = 300;
+            webcam.CaptureHeight = 300;
             webcam.FrameNumber = ((ulong)(0ul));
             webcam.TimeToCapture_milliseconds = FrameNumber;
             webcam.ImageCaptured += new WebCamCapture.WebCamEventHandler(webcam_ImageCaptured);
