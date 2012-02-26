@@ -2294,7 +2294,8 @@ namespace MM.Exports
 
                 int rowIndex = 3;
                 int no = 1;
-                double totalPrice = 0;
+                double totalPrice = 0.0;
+                double totalLaiLoDV = 0.0;
                 IRange range;
                 foreach (ReceiptDetailView detail in receiptDetailList)
                 {
@@ -2302,7 +2303,12 @@ namespace MM.Exports
                     double price = detail.Price.Value;
                     double disCount = detail.Discount;
                     double amount = price - (price * disCount) / 100;
+                    double giaVon = detail.GiaVon;
+                    double laiLo = amount - giaVon;
+
                     totalPrice += amount;
+                    totalLaiLoDV += laiLo;
+
                     workSheet.Cells[rowIndex,0].Value = no++;
                     workSheet.Cells[rowIndex, 0].HorizontalAlignment = HAlign.Center;
 
@@ -2332,7 +2338,21 @@ namespace MM.Exports
 
                     workSheet.Cells[rowIndex, 5].HorizontalAlignment = HAlign.Right;
 
-                    range = workSheet.Cells[string.Format("A{0}:F{0}", rowIndex + 1)];
+                    if (giaVon > 0)
+                        workSheet.Cells[rowIndex, 6].Value = giaVon.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 6].Value = giaVon.ToString();
+
+                    workSheet.Cells[rowIndex, 6].HorizontalAlignment = HAlign.Right;
+
+                    if (laiLo > 0)
+                        workSheet.Cells[rowIndex, 7].Value = laiLo.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 7].Value = laiLo.ToString();
+
+                    workSheet.Cells[rowIndex, 7].HorizontalAlignment = HAlign.Right;
+
+                    range = workSheet.Cells[string.Format("A{0}:H{0}", rowIndex + 1)];
                     range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Continuous;
                     range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
 
@@ -2361,6 +2381,15 @@ namespace MM.Exports
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Right;
 
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
+                if (totalLaiLoDV > 0)
+                    range.Value = string.Format("{0} VNĐ", totalLaiLoDV.ToString("#,###"));
+                else
+                    range.Value = string.Format("{0} VNĐ", totalLaiLoDV.ToString());
+
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+
                 rowIndex += 2;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
                 range.Value = "STT";
@@ -2378,7 +2407,7 @@ namespace MM.Exports
                 range.HorizontalAlignment = HAlign.Center;
 
                 range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
-                range.Value = "Giá (VNĐ)";
+                range.Value = "Giá";
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Center;
 
@@ -2388,17 +2417,28 @@ namespace MM.Exports
                 range.HorizontalAlignment = HAlign.Center;
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
-                range.Value = "Thành tiền (VNĐ)";
+                range.Value = "Thành tiền";
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Center;
 
-                range = workSheet.Cells[string.Format("A{0}:F{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
+                range.Value = "Giá nhập";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Center;
+
+                range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
+                range.Value = "Lãi/Lỗ";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Center;
+
+                range = workSheet.Cells[string.Format("A{0}:H{0}", rowIndex + 1)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
 
                 rowIndex++;
                 no = 1;
                 double tongTienThuoc = 0.0;
+                double totalLaiLoThuoc = 0.0;
 
                 foreach (ChiTietPhieuThuThuocView detail in chiTietPhieuThuThuocList)
                 {
@@ -2407,9 +2447,13 @@ namespace MM.Exports
                     double donGia = detail.DonGia;
                     double giam = detail.Giam;
                     double thanhTien = detail.ThanhTien;
+                    double giaNhap = detail.DonGiaNhap;
+                    double laiLo = thanhTien - (giaNhap * soLuong);
 
                     totalPrice += thanhTien;
                     tongTienThuoc += thanhTien;
+                    totalLaiLoThuoc += laiLo;
+
                     workSheet.Cells[rowIndex, 0].Value = no++;
                     workSheet.Cells[rowIndex, 0].HorizontalAlignment = HAlign.Center;
 
@@ -2439,7 +2483,21 @@ namespace MM.Exports
 
                     workSheet.Cells[rowIndex, 5].HorizontalAlignment = HAlign.Right;
 
-                    range = workSheet.Cells[string.Format("A{0}:F{0}", rowIndex + 1)];
+                    if (giaNhap > 0)
+                        workSheet.Cells[rowIndex, 6].Value = giaNhap.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 6].Value = giaNhap.ToString();
+
+                    workSheet.Cells[rowIndex, 6].HorizontalAlignment = HAlign.Right;
+
+                    if (laiLo > 0)
+                        workSheet.Cells[rowIndex, 7].Value = laiLo.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 7].Value = laiLo.ToString();
+
+                    workSheet.Cells[rowIndex, 7].HorizontalAlignment = HAlign.Right;
+
+                    range = workSheet.Cells[string.Format("A{0}:H{0}", rowIndex + 1)];
                     range.Borders[BordersIndex.EdgeTop].LineStyle = LineStyle.Continuous;
                     range.Borders[BordersIndex.EdgeTop].Color = Color.Black;
 
@@ -2471,6 +2529,15 @@ namespace MM.Exports
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Right;
 
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
+                if (totalLaiLoThuoc > 0)
+                    range.Value = string.Format("{0} VNĐ", totalLaiLoThuoc.ToString("#,###"));
+                else
+                    range.Value = string.Format("{0} VNĐ", totalLaiLoThuoc.ToString());
+
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+
                 rowIndex++;
                 range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
                 range.Value = "Tổng cộng:";
@@ -2481,6 +2548,16 @@ namespace MM.Exports
                     range.Value = string.Format("{0} VNĐ", totalPrice.ToString("#,###"));
                 else
                     range.Value = string.Format("{0} VNĐ", totalPrice.ToString());
+
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
+                totalLaiLoDV += totalLaiLoThuoc;
+                if (totalLaiLoDV > 0)
+                    range.Value = string.Format("{0} VNĐ", totalLaiLoDV.ToString("#,###"));
+                else
+                    range.Value = string.Format("{0} VNĐ", totalLaiLoDV.ToString());
 
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Right;
