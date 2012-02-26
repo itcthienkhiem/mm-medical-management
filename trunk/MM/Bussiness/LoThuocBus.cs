@@ -86,18 +86,45 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                List<Thuoc> thuocResults = (from t in db.Thuocs
-                                            join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
-                                            where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
-                                            l.SoLuongNhap * l.SoLuongQuiDoi >= l.SoLuongXuat + soLuong &&
-                                            t.ThuocGUID.ToString() == thuocGUID
-                                            select t).ToList<Thuoc>();
+                DateTime dt = DateTime.Now;
 
+                //List<Thuoc> thuocResults = (from t in db.Thuocs
+                //                            join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
+                //                            where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
+                //                            l.SoLuongNhap * l.SoLuongQuiDoi >= l.SoLuongXuat + soLuong &&
+                //                            t.ThuocGUID.ToString() == thuocGUID
+                //                            select t).ToList<Thuoc>();
 
-                if (thuocResults != null && thuocResults.Count > 0)
-                    result.QueryResult = true;
-                else
+                List<LoThuoc> loThuocList = (from l in db.LoThuocs
+                                            where l.Status == (byte)Status.Actived && 
+                                            l.ThuocGUID.ToString() == thuocGUID &&
+                                            l.NgayHetHan > dt &&
+                                            l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0
+                                            select l).ToList<LoThuoc>();
+
+                if (loThuocList == null || loThuocList.Count <= 0)
                     result.QueryResult = false;
+                else
+                {
+                    int tongSLNhap = 0;
+                    int tongSLXuat = 0;
+
+                    foreach (LoThuoc lt in loThuocList)
+                    {
+                        tongSLNhap += lt.SoLuongNhap * lt.SoLuongQuiDoi;
+                        tongSLXuat += lt.SoLuongXuat;
+                    }
+
+                    if (tongSLNhap >= tongSLXuat + soLuong)
+                        result.QueryResult = true;
+                    else
+                        result.QueryResult = false;
+                }
+
+                //if (thuocResults != null && thuocResults.Count > 0)
+                //    result.QueryResult = true;
+                //else
+                //    result.QueryResult = false;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
