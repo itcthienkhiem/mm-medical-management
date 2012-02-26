@@ -85,6 +85,14 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
+            this.ctmHinh1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xóaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmHinh2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmHinh3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmHinh4 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh2)).BeginInit();
@@ -102,6 +110,10 @@
             this.ctmCapture.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picWebCam)).BeginInit();
+            this.ctmHinh1.SuspendLayout();
+            this.ctmHinh2.SuspendLayout();
+            this.ctmHinh3.SuspendLayout();
+            this.ctmHinh4.SuspendLayout();
             this.SuspendLayout();
             // 
             // docStaffViewBindingSource
@@ -243,6 +255,7 @@
             // picHinh1
             // 
             this.picHinh1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picHinh1.ContextMenuStrip = this.ctmHinh1;
             this.picHinh1.Location = new System.Drawing.Point(8, 98);
             this.picHinh1.Name = "picHinh1";
             this.picHinh1.Size = new System.Drawing.Size(200, 200);
@@ -253,6 +266,7 @@
             // picHinh2
             // 
             this.picHinh2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picHinh2.ContextMenuStrip = this.ctmHinh2;
             this.picHinh2.Location = new System.Drawing.Point(214, 98);
             this.picHinh2.Name = "picHinh2";
             this.picHinh2.Size = new System.Drawing.Size(200, 200);
@@ -263,6 +277,7 @@
             // picHinh3
             // 
             this.picHinh3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picHinh3.ContextMenuStrip = this.ctmHinh3;
             this.picHinh3.Location = new System.Drawing.Point(420, 98);
             this.picHinh3.Name = "picHinh3";
             this.picHinh3.Size = new System.Drawing.Size(200, 200);
@@ -273,6 +288,7 @@
             // picHinh4
             // 
             this.picHinh4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picHinh4.ContextMenuStrip = this.ctmHinh4;
             this.picHinh4.Location = new System.Drawing.Point(626, 98);
             this.picHinh4.Name = "picHinh4";
             this.picHinh4.Size = new System.Drawing.Size(200, 200);
@@ -731,6 +747,62 @@
             this.imgList.Images.SetKeyName(0, "camera-icon (1).png");
             this.imgList.Images.SetKeyName(1, "clipboard-search-result-icon.png");
             // 
+            // ctmHinh1
+            // 
+            this.ctmHinh1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xóaToolStripMenuItem1});
+            this.ctmHinh1.Name = "ctmHinh1";
+            this.ctmHinh1.Size = new System.Drawing.Size(95, 26);
+            // 
+            // xóaToolStripMenuItem1
+            // 
+            this.xóaToolStripMenuItem1.Name = "xóaToolStripMenuItem1";
+            this.xóaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.xóaToolStripMenuItem1.Text = "Xóa";
+            this.xóaToolStripMenuItem1.Click += new System.EventHandler(this.xóaToolStripMenuItem1_Click);
+            // 
+            // ctmHinh2
+            // 
+            this.ctmHinh2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.ctmHinh2.Name = "ctmHinh1";
+            this.ctmHinh2.Size = new System.Drawing.Size(95, 26);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "Xóa";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // ctmHinh3
+            // 
+            this.ctmHinh3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2});
+            this.ctmHinh3.Name = "ctmHinh1";
+            this.ctmHinh3.Size = new System.Drawing.Size(95, 26);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Text = "Xóa";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // ctmHinh4
+            // 
+            this.ctmHinh4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3});
+            this.ctmHinh4.Name = "ctmHinh1";
+            this.ctmHinh4.Size = new System.Drawing.Size(95, 26);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(94, 22);
+            this.toolStripMenuItem3.Text = "Xóa";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            // 
             // dlgAddKetQuaNoiSoi
             // 
             this.AcceptButton = this.btnOK;
@@ -770,6 +842,10 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picWebCam)).EndInit();
+            this.ctmHinh1.ResumeLayout(false);
+            this.ctmHinh2.ResumeLayout(false);
+            this.ctmHinh3.ResumeLayout(false);
+            this.ctmHinh4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -831,6 +907,14 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem chọnHìnhToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip ctmHinh1;
+        private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem1;
+        private System.Windows.Forms.ContextMenuStrip ctmHinh2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ContextMenuStrip ctmHinh3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ContextMenuStrip ctmHinh4;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
 
     }
 }
