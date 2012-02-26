@@ -188,7 +188,7 @@ namespace MM.Bussiness
 
                             desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
                                 invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"), 
-                                invoice.Receipt.Patient.Contact.FullName, invoice.TenDonVi, invoice.Receipt.Patient.Contact.Address, invoice.SoTaiKhoan, 
+                                invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan, 
                                 invoice.HinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản");
                         }
                     }
@@ -248,7 +248,7 @@ namespace MM.Bussiness
 
                     desc += string.Format("- Hóa đơn: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
                                 invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"),
-                                invoice.Receipt.Patient.Contact.FullName, invoice.TenDonVi, invoice.Receipt.Patient.Contact.Address, invoice.SoTaiKhoan,
+                                invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan,
                                 invoice.HinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản");
 
 

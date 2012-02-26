@@ -284,8 +284,6 @@
             this.dtpkToDate.Name = "dtpkToDate";
             this.dtpkToDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkToDate.TabIndex = 4;
-            this.dtpkToDate.ValueChanged += new System.EventHandler(this.dtpk_ValueChanged);
-            this.dtpkToDate.Leave += new System.EventHandler(this.dtpk_Leave);
             // 
             // lbToDate
             // 
@@ -305,8 +303,6 @@
             this.dtpkFromDate.Name = "dtpkFromDate";
             this.dtpkFromDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkFromDate.TabIndex = 2;
-            this.dtpkFromDate.ValueChanged += new System.EventHandler(this.dtpk_ValueChanged);
-            this.dtpkFromDate.Leave += new System.EventHandler(this.dtpk_Leave);
             // 
             // raFromDateToDate
             // 
@@ -469,7 +465,6 @@
             this.Controls.Add(this.pFilter);
             this.Name = "uServiceHistory";
             this.Size = new System.Drawing.Size(1020, 580);
-            this.Load += new System.EventHandler(this.uServiceHistory_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).EndInit();

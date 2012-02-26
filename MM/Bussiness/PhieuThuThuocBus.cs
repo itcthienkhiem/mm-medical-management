@@ -321,7 +321,7 @@ namespace MM.Bussiness
                         {
                             ctptt.PhieuThuThuocGUID = ptthuoc.PhieuThuThuocGUID;
                             ctptt.ChiTietPhieuThuThuocGUID = Guid.NewGuid();
-                            db.ChiTietPhieuThuThuocs.InsertOnSubmit(ctptt);
+                            
 
                             int soLuong = Convert.ToInt32(ctptt.SoLuong);
                             LoThuoc loThuoc = (from t in db.Thuocs
@@ -332,12 +332,16 @@ namespace MM.Bussiness
                                                orderby l.NgayHetHan
                                                select l).FirstOrDefault();
                             if (loThuoc != null)
+                            {
                                 loThuoc.SoLuongXuat += soLuong;
+                                ctptt.DonGiaNhap = loThuoc.GiaNhapQuiDoi;
+                            }
 
+                            db.ChiTietPhieuThuThuocs.InsertOnSubmit(ctptt);
                             db.SubmitChanges();
 
-                            desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Đơn giá: '{2}', Số lượng: '{3}', Giảm: '{4}', Thành tiền: '{5}'\n",
-                                ctptt.ChiTietPhieuThuThuocGUID.ToString(), ctptt.Thuoc.TenThuoc, ctptt.DonGia, ctptt.SoLuong, ctptt.Giam, ctptt.ThanhTien);
+                            desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Đơn giá: '{2}', Số lượng: '{3}', Giảm: '{4}', Thành tiền: '{5}', Đơn giá nhập: '{6}'\n",
+                                ctptt.ChiTietPhieuThuThuocGUID.ToString(), ctptt.Thuoc.TenThuoc, ctptt.DonGia, ctptt.SoLuong, ctptt.Giam, ctptt.ThanhTien, ctptt.DonGiaNhap);
                         }
 
                         //Tracking
