@@ -41,8 +41,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgInvoice = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.invoiceViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.invoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -162,13 +162,13 @@
             this.dgInvoice.TabIndex = 4;
             this.dgInvoice.DoubleClick += new System.EventHandler(this.dgInvoice_DoubleClick);
             // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
-            // 
             // invoiceViewBindingSource
             // 
             this.invoiceViewBindingSource.DataSource = typeof(MM.Databasae.InvoiceView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
             // 
             // colChecked
             // 
@@ -206,7 +206,7 @@
             // 
             // fullNameDataGridViewTextBoxColumn
             // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "TenNguoiMuaHang";
             this.fullNameDataGridViewTextBoxColumn.HeaderText = "Người mua hàng";
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
@@ -230,7 +230,7 @@
             // 
             // addressDataGridViewTextBoxColumn
             // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
             this.addressDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             this.addressDataGridViewTextBoxColumn.ReadOnly = true;

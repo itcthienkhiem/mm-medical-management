@@ -50,9 +50,10 @@ namespace MM.Dialogs
                 btnCancel.Visible = false;
                 btnPrint.Visible = true;
                 btnClose2.Visible = true;
+                txtTenNguoiMuaHang.ReadOnly = true;
                 txtTenDonVi.ReadOnly = true;
                 txtMaSoThue.ReadOnly = true;
-                //txtAddress.ReadOnly = true;
+                txtAddress.ReadOnly = true;
                 txtSoTaiKhoan.ReadOnly = true;
                 cboHinhThucThanhToan.Enabled = false;
                 numVAT.ReadOnly = true;
@@ -110,6 +111,17 @@ namespace MM.Dialogs
                 txtSoTaiKhoan.Text = _drInvoice["SoTaiKhoan"].ToString();
                 cboHinhThucThanhToan.SelectedIndex = Convert.ToInt32(_drInvoice["HinhThucThanhToan"]);
                 numVAT.Value = (Decimal)Convert.ToDouble(_drInvoice["VAT"]);
+
+                if (_drInvoice["TenNguoiMuaHang"] != null && _drInvoice["TenNguoiMuaHang"] != DBNull.Value && 
+                    _drInvoice["TenNguoiMuaHang"].ToString().Trim() != string.Empty)
+                    txtTenNguoiMuaHang.Text = _drInvoice["TenNguoiMuaHang"].ToString();
+                else
+                    txtTenNguoiMuaHang.Text = _drInvoice["FullName"].ToString();
+
+                if (_drInvoice["DiaChi"] != null && _drInvoice["DiaChi"] != DBNull.Value)
+                    txtAddress.Text = _drInvoice["DiaChi"].ToString();
+                else
+                    txtAddress.Text = _drInvoice["Address"].ToString();
             }
             else
             {
@@ -119,11 +131,10 @@ namespace MM.Dialogs
                 string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
                 string strYear = dt.Year.ToString();
                 lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+
+                txtTenNguoiMuaHang.Text = _drInvoice["FullName"].ToString();
+                txtAddress.Text = _drInvoice["Address"].ToString();
             }
-            
-            lbPatientName.Text = string.Format("Họ tên người mua hàng:   {0}", _drInvoice["FullName"].ToString());
-            //lbAddress.Text = string.Format("Địa chỉ: {0}", _drInvoice["Address"].ToString());
-            txtAddress.Text = string.Format("{0}", _drInvoice["Address"].ToString());
 
             Result result = InvoiceBus.GetInvoiceDetailList(_drInvoice["ReceiptGUID"].ToString());
             if (result.IsOK)
@@ -229,10 +240,19 @@ namespace MM.Dialogs
         {
             try
             {
+                if (txtTenNguoiMuaHang.Text.Trim() == string.Empty)
+                {
+                    MsgBox.Show(this.Text, "Vui lòng nhập tên người mua hàng.", IconType.Information);
+                    txtTenNguoiMuaHang.Focus();
+                    return false;
+                }
+
                 Invoice invoice = new Invoice();
                 invoice.ReceiptGUID = Guid.Parse(_drInvoice["ReceiptGUID"].ToString());
                 invoice.InvoiceCode = _invoiceCode;
                 invoice.InvoiceDate = DateTime.Now;
+                invoice.TenNguoiMuaHang = txtTenNguoiMuaHang.Text;
+                invoice.DiaChi = txtAddress.Text;
                 invoice.TenDonVi = txtTenDonVi.Text;
                 invoice.MaSoThue = txtMaSoThue.Text;
                 invoice.SoTaiKhoan = txtSoTaiKhoan.Text;

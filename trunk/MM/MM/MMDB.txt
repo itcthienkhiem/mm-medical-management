@@ -94,6 +94,9 @@ spDichVuHopDong
 - Update view: InvoiceView
 2012-02-25
 - Create table Bookmark
+2012-02-26
+- Update table: Invoice(Add col: TenNguoiMuaHang, DiaChi), ServiceHistory(Add col: GiaVon), ChiTietPhieuThuThuoc(Add col: DonGiaNhap)
+- Update view: InvoiceView, ServiceHistoryView, ChiTietPhieuThuThuocView
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

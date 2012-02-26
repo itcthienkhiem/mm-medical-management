@@ -63,6 +63,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.txtMaSoThue = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -86,8 +88,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.receiptDetailViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtMaSoThue = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.txtTenNguoiMuaHang = new System.Windows.Forms.TextBox();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -211,7 +212,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(540, 8);
+            this.label3.Location = new System.Drawing.Point(560, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 15);
             this.label3.TabIndex = 10;
@@ -221,7 +222,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(540, 27);
+            this.label4.Location = new System.Drawing.Point(560, 27);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 15);
             this.label4.TabIndex = 11;
@@ -231,7 +232,7 @@
             // 
             this.lbInvoiceCode.AutoSize = true;
             this.lbInvoiceCode.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbInvoiceCode.Location = new System.Drawing.Point(540, 48);
+            this.lbInvoiceCode.Location = new System.Drawing.Point(560, 48);
             this.lbInvoiceCode.Name = "lbInvoiceCode";
             this.lbInvoiceCode.Size = new System.Drawing.Size(69, 15);
             this.lbInvoiceCode.TabIndex = 12;
@@ -334,6 +335,7 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.txtTenNguoiMuaHang);
             this.panel6.Controls.Add(this.txtMaSoThue);
             this.panel6.Controls.Add(this.label16);
             this.panel6.Controls.Add(this.txtAddress);
@@ -348,14 +350,30 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 190);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(708, 137);
+            this.panel6.Size = new System.Drawing.Size(708, 144);
             this.panel6.TabIndex = 0;
+            // 
+            // txtMaSoThue
+            // 
+            this.txtMaSoThue.Location = new System.Drawing.Point(143, 49);
+            this.txtMaSoThue.Name = "txtMaSoThue";
+            this.txtMaSoThue.Size = new System.Drawing.Size(178, 20);
+            this.txtMaSoThue.TabIndex = 18;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(5, 52);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(71, 15);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "Mã số thuế:";
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(143, 65);
+            this.txtAddress.Location = new System.Drawing.Point(143, 71);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.ReadOnly = true;
             this.txtAddress.Size = new System.Drawing.Size(342, 20);
             this.txtAddress.TabIndex = 23;
             // 
@@ -368,7 +386,7 @@
             this.cboHinhThucThanhToan.Items.AddRange(new object[] {
             "Tiền mặt",
             "Chuyển khoản"});
-            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(143, 109);
+            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(143, 115);
             this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
             this.cboHinhThucThanhToan.Size = new System.Drawing.Size(178, 21);
             this.cboHinhThucThanhToan.TabIndex = 22;
@@ -377,7 +395,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(5, 112);
+            this.label11.Location = new System.Drawing.Point(5, 118);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(127, 15);
             this.label11.TabIndex = 21;
@@ -385,7 +403,7 @@
             // 
             // txtSoTaiKhoan
             // 
-            this.txtSoTaiKhoan.Location = new System.Drawing.Point(143, 87);
+            this.txtSoTaiKhoan.Location = new System.Drawing.Point(143, 93);
             this.txtSoTaiKhoan.Name = "txtSoTaiKhoan";
             this.txtSoTaiKhoan.Size = new System.Drawing.Size(178, 20);
             this.txtSoTaiKhoan.TabIndex = 20;
@@ -394,7 +412,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(5, 90);
+            this.label10.Location = new System.Drawing.Point(5, 96);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 15);
             this.label10.TabIndex = 19;
@@ -404,7 +422,7 @@
             // 
             this.lbAddress.AutoSize = true;
             this.lbAddress.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAddress.Location = new System.Drawing.Point(5, 67);
+            this.lbAddress.Location = new System.Drawing.Point(5, 73);
             this.lbAddress.Name = "lbAddress";
             this.lbAddress.Size = new System.Drawing.Size(47, 15);
             this.lbAddress.TabIndex = 18;
@@ -412,7 +430,7 @@
             // 
             // txtTenDonVi
             // 
-            this.txtTenDonVi.Location = new System.Drawing.Point(143, 21);
+            this.txtTenDonVi.Location = new System.Drawing.Point(143, 27);
             this.txtTenDonVi.Name = "txtTenDonVi";
             this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
             this.txtTenDonVi.TabIndex = 17;
@@ -421,7 +439,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(5, 24);
+            this.label9.Location = new System.Drawing.Point(5, 30);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 15);
             this.label9.TabIndex = 16;
@@ -431,7 +449,7 @@
             // 
             this.lbPatientName.AutoSize = true;
             this.lbPatientName.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPatientName.Location = new System.Drawing.Point(5, 4);
+            this.lbPatientName.Location = new System.Drawing.Point(5, 6);
             this.lbPatientName.Name = "lbPatientName";
             this.lbPatientName.Size = new System.Drawing.Size(135, 15);
             this.lbPatientName.TabIndex = 15;
@@ -441,7 +459,7 @@
             // 
             this.panel7.Controls.Add(this.dgDetail);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 327);
+            this.panel7.Location = new System.Drawing.Point(0, 334);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(708, 187);
             this.panel7.TabIndex = 18;
@@ -504,9 +522,9 @@
             this.panel8.Controls.Add(this.label13);
             this.panel8.Controls.Add(this.label12);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(0, 514);
+            this.panel8.Location = new System.Drawing.Point(0, 521);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(708, 149);
+            this.panel8.Size = new System.Drawing.Size(708, 142);
             this.panel8.TabIndex = 6;
             // 
             // lbTotalPayment
@@ -608,22 +626,12 @@
             // 
             this.receiptDetailViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptDetailView);
             // 
-            // txtMaSoThue
+            // txtTenNguoiMuaHang
             // 
-            this.txtMaSoThue.Location = new System.Drawing.Point(143, 43);
-            this.txtMaSoThue.Name = "txtMaSoThue";
-            this.txtMaSoThue.Size = new System.Drawing.Size(178, 20);
-            this.txtMaSoThue.TabIndex = 18;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(5, 46);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(71, 15);
-            this.label16.TabIndex = 24;
-            this.label16.Text = "Mã số thuế:";
+            this.txtTenNguoiMuaHang.Location = new System.Drawing.Point(143, 4);
+            this.txtTenNguoiMuaHang.Name = "txtTenNguoiMuaHang";
+            this.txtTenNguoiMuaHang.Size = new System.Drawing.Size(342, 20);
+            this.txtTenNguoiMuaHang.TabIndex = 16;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -863,6 +871,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.TextBox txtTenNguoiMuaHang;
 
 
     }
