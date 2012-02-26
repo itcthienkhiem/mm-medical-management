@@ -243,22 +243,37 @@ namespace MM.Dialogs
             DataTable dt = dgSymptom.DataSource as DataTable;
             if (dt == null) return;
 
-            foreach (DataRow row1 in dt.Rows)
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
+
+            foreach (DataRow row1 in rows1)
             {
                 string patientGUID1 = row1["SymptomGUID"].ToString();
-                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-                foreach (DataRow row2 in _dataSource.Rows)
-                {
-                    string patientGUID2 = row2["SymptomGUID"].ToString();
-                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+                DataRow[] rows2 = _dataSource.Select(string.Format("SymptomGUID='{0}'", patientGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
 
-                    if (patientGUID1 == patientGUID2)
-                    {
-                        row2["Checked"] = row1["Checked"];
-                        break;
-                    }
-                }
+                rows2[0]["Checked"] = row1["Checked"];
             }
+
+            //DataTable dt = dgSymptom.DataSource as DataTable;
+            //if (dt == null) return;
+
+            //foreach (DataRow row1 in dt.Rows)
+            //{
+            //    string patientGUID1 = row1["SymptomGUID"].ToString();
+            //    bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+            //    foreach (DataRow row2 in _dataSource.Rows)
+            //    {
+            //        string patientGUID2 = row2["SymptomGUID"].ToString();
+            //        bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+
+            //        if (patientGUID1 == patientGUID2)
+            //        {
+            //            row2["Checked"] = row1["Checked"];
+            //            break;
+            //        }
+            //    }
+            //}
         }
         #endregion
 
