@@ -339,101 +339,6 @@ namespace MM.Controls
                     Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
                 }
             }
-            /*else
-            {
-                if (noPaidServiceList.Count <= 0)
-                {
-                    if (MsgBox.Question(Application.ProductName, "Những dịch vụ này đã xuất phiếu thu rồi. Bạn có muốn xuất lại phiếu thu ?") == DialogResult.Yes)
-                    {
-                        List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
-                        foreach (DataRow row in paidServiceList)
-                        {
-                            ReceiptDetail detail = new ReceiptDetail();
-                            detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
-                            detail.CreatedDate = DateTime.Now;
-                            detail.CreatedBy = Guid.Parse(Global.UserGUID);
-                            detail.Status = (byte)Status.Actived;
-                            receiptDetails.Add(detail);
-                        }
-
-                        Receipt receipt = new Receipt();
-                        receipt.ReceiptCode = GenerateCode();
-                        receipt.PatientGUID = Guid.Parse(_patientGUID);
-                        receipt.ReceiptDate = DateTime.Now;
-                        receipt.Status = (byte)Status.Actived;
-                        receipt.CreatedDate = DateTime.Now;
-                        receipt.CreatedBy = Guid.Parse(Global.UserGUID);
-                        receipt.IsExportedInVoice = false;
-
-                        Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
-                        if (result.IsOK)
-                        {
-                            DisplayAsThread();
-                            if (Global.AllowPrintReceipt)
-                            {
-                                if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
-                                    OnPrint(receipt.ReceiptGUID.ToString());
-                            }
-                        }
-                        else
-                        {
-                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.InsertReceipt"), IconType.Error);
-                            Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
-                        }
-                    }
-                }
-                else
-                {
-                    List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
-                    foreach (DataRow row in noPaidServiceList)
-                    {
-                        ReceiptDetail detail = new ReceiptDetail();
-                        detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
-                        detail.CreatedDate = DateTime.Now;
-                        detail.CreatedBy = Guid.Parse(Global.UserGUID);
-                        detail.Status = (byte)Status.Actived;
-                        receiptDetails.Add(detail);
-                    }
-
-                    if (MsgBox.Question(Application.ProductName, "Có 1 số dịch vụ đã xuất phiếu thu rồi. Bạn có muốn xuất phiếu thu lần nữa ?") == DialogResult.Yes)
-                    {
-                        foreach (DataRow row in paidServiceList)
-                        {
-                            ReceiptDetail detail = new ReceiptDetail();
-                            detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
-                            detail.CreatedDate = DateTime.Now;
-                            detail.CreatedBy = Guid.Parse(Global.UserGUID);
-                            detail.Status = (byte)Status.Actived;
-                            receiptDetails.Add(detail);
-                        }
-                    }
-
-                    Receipt receipt = new Receipt();
-                    receipt.ReceiptCode = GenerateCode();
-                    receipt.PatientGUID = Guid.Parse(_patientGUID);
-                    receipt.ReceiptDate = DateTime.Now;
-                    receipt.Status = (byte)Status.Actived;
-                    receipt.CreatedDate = DateTime.Now;
-                    receipt.CreatedBy = Guid.Parse(Global.UserGUID);
-                    receipt.IsExportedInVoice = false;
-
-                    Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
-                    if (result.IsOK)
-                    {
-                        DisplayAsThread();
-                        if (Global.AllowPrintReceipt)
-                        {
-                            if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
-                                OnPrint(receipt.ReceiptGUID.ToString());
-                        }
-                    }
-                    else
-                    {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.InsertReceipt"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
-                    }
-                }
-            }*/
         }
         #endregion
 
@@ -486,35 +391,14 @@ namespace MM.Controls
             OnDelete();
         }
 
-        private void dtpk_ValueChanged(object sender, EventArgs e)
-        {
-            //if (_fromDate.ToString("dd/MM/yyyy") == dtpkFromDate.Value.ToString("dd/MM/yyyy") &&
-            //    _toDate.ToString("dd/MM/yyyy") == dtpkToDate.Value.ToString("dd/MM/yyyy")) return;
-
-            //DisplayAsThread();
-        }
-
         private void dgServiceHistory_DoubleClick(object sender, EventArgs e)
         {
             OnEdit();
         }
 
-        private void dtpk_Leave(object sender, EventArgs e)
-        {
-            //if (_fromDate.ToString("dd/MM/yyyy") == dtpkFromDate.Value.ToString("dd/MM/yyyy") &&
-            //    _toDate.ToString("dd/MM/yyyy") == dtpkToDate.Value.ToString("dd/MM/yyyy")) return;
-
-            //DisplayAsThread();
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             DisplayAsThread();
-        }
-
-        private void uServiceHistory_Load(object sender, EventArgs e)
-        {
-            //DisplayAsThread();
         }
         
         private void dgServiceHistory_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)

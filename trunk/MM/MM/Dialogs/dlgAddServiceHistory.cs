@@ -334,7 +334,20 @@ namespace MM.Dialogs
                         _serviceHistory.Positive = chkPositive.Checked;
                     }
 
-                    Result result = ServiceHistoryBus.InsertServiceHistory(_serviceHistory);
+                    Result result = GiaVonDichVuBus.GetGiaVonDichVuMoiNhat(_serviceHistory.ServiceGUID.ToString(), _serviceHistory.ActivedDate.Value);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("GiaVonDichVuBus.GetGiaVonDichVuMoiNhat"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("GiaVonDichVuBus.GetGiaVonDichVuMoiNhat"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                        return;
+                    }
+
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                        _serviceHistory.GiaVon = Convert.ToDouble(dt.Rows[0]["GiaVon"]);
+
+                    result = ServiceHistoryBus.InsertServiceHistory(_serviceHistory);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.InsertServiceHistory"), IconType.Error);
