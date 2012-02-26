@@ -2426,7 +2426,7 @@ namespace MM.Exports
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Center;
 
-                range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
                 range.Value = "Lãi/Lỗ";
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Center;
