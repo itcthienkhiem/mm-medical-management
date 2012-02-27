@@ -163,6 +163,8 @@
             this.thuocTonKhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
             this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator32 = new System.Windows.Forms.ToolStripSeparator();
+            this.dichVuChuaXuatPhieuThuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -202,6 +204,7 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
+            this._uBaoCaoDichVuChuaXuatPhieuThu = new MM.Controls.uBaoCaoDichVuChuaXuatPhieuThu();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -222,6 +225,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uBaoCaoDichVuChuaXuatPhieuThu);
             this._mainPanel.Controls.Add(this._uDoanhThuTheoNgay);
             this._mainPanel.Controls.Add(this._uGiaVonDichVuList);
             this._mainPanel.Controls.Add(this._uInKetQuaKhamSucKhoeTongQuat);
@@ -1045,7 +1049,9 @@
             this.toolStripSeparator23,
             this.thuocTonKhoToolStripMenuItem,
             this.toolStripSeparator29,
-            this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem});
+            this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem,
+            this.toolStripSeparator32,
+            this.dichVuChuaXuatPhieuThuToolStripMenuItem});
             resources.ApplyResources(this.reportToolStripMenuItem, "reportToolStripMenuItem");
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             // 
@@ -1134,6 +1140,19 @@
             resources.ApplyResources(this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem, "inKetQuaKhamSucKhoeTongQuatToolStripMenuItem");
             this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Tag = "InKetQuaKhamSucKhoeTongQuat";
             this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator32
+            // 
+            this.toolStripSeparator32.Name = "toolStripSeparator32";
+            resources.ApplyResources(this.toolStripSeparator32, "toolStripSeparator32");
+            // 
+            // dichVuChuaXuatPhieuThuToolStripMenuItem
+            // 
+            this.dichVuChuaXuatPhieuThuToolStripMenuItem.Image = global::MM.Properties.Resources.Process_Warning_icon;
+            this.dichVuChuaXuatPhieuThuToolStripMenuItem.Name = "dichVuChuaXuatPhieuThuToolStripMenuItem";
+            resources.ApplyResources(this.dichVuChuaXuatPhieuThuToolStripMenuItem, "dichVuChuaXuatPhieuThuToolStripMenuItem");
+            this.dichVuChuaXuatPhieuThuToolStripMenuItem.Tag = "DichVuChuaXuatPhieuThu";
+            this.dichVuChuaXuatPhieuThuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -1514,6 +1533,11 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
+            // _uBaoCaoDichVuChuaXuatPhieuThu
+            // 
+            resources.ApplyResources(this._uBaoCaoDichVuChuaXuatPhieuThu, "_uBaoCaoDichVuChuaXuatPhieuThu");
+            this._uBaoCaoDichVuChuaXuatPhieuThu.Name = "_uBaoCaoDichVuChuaXuatPhieuThu";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1720,6 +1744,9 @@
         private DevComponents.DotNetBar.PanelDockContainer panelDockContainer2;
         private DevComponents.DotNetBar.DockContainerItem dockContainerItem2;
         private Controls.uPhongChoList _uPhongChoList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator32;
+        private System.Windows.Forms.ToolStripMenuItem dichVuChuaXuatPhieuThuToolStripMenuItem;
+        private Controls.uBaoCaoDichVuChuaXuatPhieuThu _uBaoCaoDichVuChuaXuatPhieuThu;
 
     }
 }
