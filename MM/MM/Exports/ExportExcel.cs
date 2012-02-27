@@ -354,7 +354,7 @@ namespace MM.Exports
                 if (invoice.VAT > 0)
                     range.Value = string.Format("  Thuế suất GTGT: {0}%, Tiền thuế GTGT:", invoice.VAT);
                 else
-                    range.Value = string.Format("  Thuế suất GTGT: ....., Tiền thuế GTGT:", invoice.VAT);
+                    range.Value = string.Format("  Thuế suất GTGT: .....%, Tiền thuế GTGT:", invoice.VAT);
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
                 double vat = (invoice.VAT.Value * totalPrice) / 100;
