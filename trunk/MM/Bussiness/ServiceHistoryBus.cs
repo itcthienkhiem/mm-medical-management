@@ -14,7 +14,7 @@ namespace MM.Bussiness
     {
         public static Result GetServiceHistory(string patientGUID, bool isAll, DateTime fromDate, DateTime toDate)
         {
-            Result result = null;
+            Result result = new Result();
 
             try
             {
@@ -72,6 +72,39 @@ namespace MM.Bussiness
                                                                orderby s.Name ascending
                                                                select s).ToList<ServiceHistoryView>();
                 result.QueryResult = serviceHistoryList;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetDSDichVuChuaXuatPhieu(DateTime fromDate, DateTime toDate)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+            try
+            {
+                string query = string.Format("SELECT S.*, P.FullName AS TenBenhNhan FROM ServiceHistoryView S, PatientView P WHERE S.PatientGUID = P.PatientGUID AND S.ActivedDate BETWEEN '{0}' AND '{1}' AND S.IsExported = 'False' AND S.Status = {2} ORDER BY S.ActivedDate",
+                    fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
+
+                return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
             {

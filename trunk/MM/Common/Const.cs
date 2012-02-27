@@ -47,5 +47,6 @@ namespace MM.Common
         public static string GiaVonDichVu = "GiaVonDichVu";
         public static string DoanhThuTheoNgay = "DoanhThuTheoNgay";
         public static string PhongCho = "PhongCho";
+        public static string DichVuChuaXuatPhieuThu = "DichVuChuaXuatPhieuThu";
     }
 }

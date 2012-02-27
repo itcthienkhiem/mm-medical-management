@@ -548,6 +548,16 @@ namespace MM
                             Global.AllowAddPhongCho = isAdd;
                             _uPhongChoList.IsEnableBtnRaPhongCho = isDelete & isLogin;
                         }
+                        else if (functionCode == Const.DichVuChuaXuatPhieuThu)
+                        {
+                            dichVuChuaXuatPhieuThuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBaoCaoDichVuChuaXuatPhieuThu.AllowAdd = isAdd;
+                            _uBaoCaoDichVuChuaXuatPhieuThu.AllowEdit = isEdit;
+                            _uBaoCaoDichVuChuaXuatPhieuThu.AllowDelete = isDelete;
+                            _uBaoCaoDichVuChuaXuatPhieuThu.AllowPrint = isPrint;
+                            _uBaoCaoDichVuChuaXuatPhieuThu.AllowExport = isExport;
+                            _uBaoCaoDichVuChuaXuatPhieuThu.AllowImport = isImport;
+                        }
                     }
                 }
                 else
@@ -658,6 +668,8 @@ namespace MM
                 doanhThuTheoNgayToolStripMenuItem.Enabled = isLogin;
 
                 _uPhongChoList.IsEnableBtnRaPhongCho = isLogin;
+
+                _uBaoCaoDichVuChuaXuatPhieuThu.Enabled = isLogin;
             }
         }
 
@@ -817,7 +829,18 @@ namespace MM
                 case "DoanhThuTheoNgay":
                     OnDoanhThuTheoNgay();
                     break;
+
+                case "DichVuChuaXuatPhieuThu":
+                    OnBaoCaoDichVuChuaXuatPhieuThu();
+                    break;
+
             }
+        }
+
+        private void OnBaoCaoDichVuChuaXuatPhieuThu()
+        {
+            this.Text = string.Format("{0} - Dich vu chua xuat phieu thu.", Application.ProductName);
+            ViewControl(_uBaoCaoDichVuChuaXuatPhieuThu);
         }
 
         private void OnDoanhThuTheoNgay()

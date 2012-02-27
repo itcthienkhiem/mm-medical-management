@@ -82,6 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uBaoCaoDichVuChuaXuatPhieuThu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBaoCaoDichVuChuaXuatPhieuThu.Designer.cs">
+      <DependentUpon>uBaoCaoDichVuChuaXuatPhieuThu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uDoanhThuTheoNgay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -851,6 +857,9 @@
     <Compile Include="Controls\uChiDinhList.Designer.cs">
       <DependentUpon>uChiDinhList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uBaoCaoDichVuChuaXuatPhieuThu.resx">
+      <DependentUpon>uBaoCaoDichVuChuaXuatPhieuThu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDoanhThuTheoNgay.resx">
       <DependentUpon>uDoanhThuTheoNgay.cs</DependentUpon>
     </EmbeddedResource>
@@ -1321,6 +1330,8 @@
     <None Include="Resources\clipboard-search-result-icon %281%29.png" />
     <None Include="Resources\Pause-icon.png" />
     <None Include="Resources\Play-icon.png" />
+    <None Include="Resources\Process-Warning-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-02-28.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-25_2012_02_27.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-24.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-20.sql" />
