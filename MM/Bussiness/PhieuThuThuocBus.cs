@@ -348,6 +348,7 @@ namespace MM.Bussiness
                                             tongGiaNhap += (soLuong*lt.GiaNhapQuiDoi);
                                             count += soLuong;
                                             soLuong = 0;
+                                            break;
                                         }
                                         else
                                         {
