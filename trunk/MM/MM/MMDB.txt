@@ -114,6 +114,8 @@ spDichVuHopDong
 11. Thêm giá nhập khi bán thuốc
 12. Thêm TenNguoiMuaHang và Địa chỉ
 13. Chữ kí điện tử
+14. Số hóa đơn bắt đầu
+15. Bình quân gia quyền (tính lại cách tính);
 
 
 
