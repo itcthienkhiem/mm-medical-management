@@ -145,7 +145,7 @@ namespace MM.Dialogs
         {
             Result result = ThuocBus.GetThuocList();
             if (result.IsOK)
-                thuocGUIDDataGridViewTextBoxColumn.DataSource = result.QueryResult;
+                ThuocGUID.DataSource = result.QueryResult;
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("ThuocBus.GetThuocList"), IconType.Error);
@@ -295,7 +295,7 @@ namespace MM.Dialogs
 
         private string GetDonViTinh(string thuocGUID)
         {
-            DataTable dt = thuocGUIDDataGridViewTextBoxColumn.DataSource as DataTable;
+            DataTable dt = ThuocGUID.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0) return string.Empty;
 
             DataRow[] rows = dt.Select(string.Format("ThuocGUID='{0}'", thuocGUID));
@@ -412,8 +412,8 @@ namespace MM.Dialogs
                 for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
                 {
                     DataGridViewRow row = dgChiTiet.Rows[i];
-                    
-                    
+
+
                     if (row.Cells[1].Value == null || row.Cells[1].Value == DBNull.Value || row.Cells[1].Value.ToString() == string.Empty)
                     {
                         MsgBox.Show(this.Text, "Vui lòng chọn thuốc để xuất phiếu thu.", IconType.Information);
@@ -466,8 +466,13 @@ namespace MM.Dialogs
                         return false;
                     }
 
-                    
+
                 }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, "Vui lòng chọn ít nhất 1 thuốc.", IconType.Information);
+                return false;
             }
 
             if (dgChiTiet.RowCount > 2)
@@ -493,7 +498,7 @@ namespace MM.Dialogs
 
         private string GetTenThuoc(string thuocGUID)
         {
-            DataTable dt = thuocGUIDDataGridViewTextBoxColumn.DataSource as DataTable;
+            DataTable dt = ThuocGUID.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0) return string.Empty;
 
             DataRow[] rows = dt.Select(string.Format("ThuocGUID='{0}'", thuocGUID));
@@ -545,29 +550,28 @@ namespace MM.Dialogs
                         _phieuThuThuoc.CreatedBy = Guid.Parse(Global.UserGUID);
                     }
 
-                    DataTable dt = dgChiTiet.DataSource as DataTable;
                     List<ChiTietPhieuThuThuoc> addedList = new List<ChiTietPhieuThuThuoc>();
-                    foreach (DataRow row in dt.Rows)
+                    for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
                     {
-                        if (row.RowState == DataRowState.Deleted || row.RowState == DataRowState.Detached) continue;
+                        DataGridViewRow row = dgChiTiet.Rows[i];    
                         ChiTietPhieuThuThuoc ctptt = new ChiTietPhieuThuThuoc();
                         ctptt.CreatedDate = DateTime.Now;
                         ctptt.CreatedBy = Guid.Parse(Global.UserGUID);
 
-                        ctptt.ThuocGUID = Guid.Parse(row["ThuocGUID"].ToString());
-                        ctptt.DonGia = Convert.ToDouble(row["DonGia"]);
+                        ctptt.ThuocGUID = Guid.Parse(row.Cells["ThuocGUID"].Value.ToString());
+                        ctptt.DonGia = Convert.ToDouble(row.Cells["DonGia"].Value);
 
-                        if (row["SoLuong"] != null && row["SoLuong"] != DBNull.Value)
-                            ctptt.SoLuong = Convert.ToDouble(row["SoLuong"]);
+                        if (row.Cells["SoLuong"].Value != null && row.Cells["SoLuong"].Value != DBNull.Value)
+                            ctptt.SoLuong = Convert.ToDouble(row.Cells["SoLuong"].Value);
                         else
                             ctptt.SoLuong = 1;
 
-                        if (row["Giam"] != null && row["Giam"] != DBNull.Value)
-                            ctptt.Giam = Convert.ToDouble(row["Giam"]);
+                        if (row.Cells["Giam"].Value != null && row.Cells["Giam"].Value != DBNull.Value)
+                            ctptt.Giam = Convert.ToDouble(row.Cells["Giam"].Value);
                         else
                             ctptt.Giam = 0;
 
-                        ctptt.ThanhTien = Convert.ToDouble(row["ThanhTien"]);
+                        ctptt.ThanhTien = Convert.ToDouble(row.Cells["ThanhTien"].Value);
                         ctptt.Status = (byte)Status.Actived;
                         addedList.Add(ctptt);
                     }
