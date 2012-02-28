@@ -56,7 +56,7 @@ namespace MM.Dialogs
                 txtAddress.ReadOnly = true;
                 txtSoTaiKhoan.ReadOnly = true;
                 cboHinhThucThanhToan.Enabled = false;
-                numVAT.ReadOnly = true;
+                numVAT.Enabled = false;
             }
         }
         #endregion
@@ -157,7 +157,7 @@ namespace MM.Dialogs
 
                 double totalPayment = _totalPrice + vat;
                 lbTotalPayment.Text = string.Format("{0}", totalPayment.ToString("#,###"));
-                lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment).ToUpper());
+                lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment));
 
                 RefreshNo();
             }
@@ -341,7 +341,7 @@ namespace MM.Dialogs
 
             double totalPayment = _totalPrice + vat;
             lbTotalPayment.Text = string.Format("{0}", totalPayment.ToString("#,###"));
-            lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment).ToUpper());
+            lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment));
         }
 
         private void numVAT_KeyUp(object sender, KeyEventArgs e)
