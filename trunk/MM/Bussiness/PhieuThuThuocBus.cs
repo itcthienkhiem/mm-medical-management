@@ -339,21 +339,22 @@ namespace MM.Bussiness
                                 int count = 0;
                                 foreach (var lt in loThuocList)
                                 {
-                                    tongGiaNhap += lt.GiaNhapQuiDoi;
-                                    count++;
-
                                     if (soLuong > 0)
                                     {
                                         int soLuongTon = lt.SoLuongNhap * lt.SoLuongQuiDoi - lt.SoLuongXuat;
                                         if (soLuongTon >= soLuong)
                                         {
                                             lt.SoLuongXuat += soLuong;
+                                            tongGiaNhap += (soLuong*lt.GiaNhapQuiDoi);
+                                            count += soLuong;
                                             soLuong = 0;
                                         }
                                         else
                                         {
                                             lt.SoLuongXuat += soLuongTon;
                                             soLuong -= soLuongTon;
+                                            tongGiaNhap += (soLuongTon * lt.GiaNhapQuiDoi);
+                                            count += soLuongTon;
                                         }
                                     }
                                 }
