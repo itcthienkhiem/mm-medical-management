@@ -184,8 +184,40 @@ namespace MM.Bussiness
                             var ctptts = ptthuoc.ChiTietPhieuThuThuocs;
                             foreach (var ctptt in ctptts)
                             {
-                                int soLuong = Convert.ToInt32(ctptt.SoLuong);    
-                                LoThuoc loThuoc = (from th in db.Thuocs
+                                int soLuong = Convert.ToInt32(ctptt.SoLuong);
+
+                                var loThuocList = from l in db.LoThuocs
+                                                  where l.Status == (byte)Status.Actived &&
+                                                  l.ThuocGUID == ctptt.ThuocGUID &&
+                                                  l.NgayHetHan > dt &&
+                                                  l.SoLuongXuat > 0
+                                                  orderby l.NgayHetHan ascending
+                                                  select l;
+
+                                if (loThuocList != null)
+                                {
+                                    foreach (var lt in loThuocList)
+                                    {
+                                        if (soLuong > 0)
+                                        {
+                                            if (lt.SoLuongXuat >= soLuong)
+                                            {
+                                                lt.SoLuongXuat -= soLuong;
+                                                soLuong = 0;
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                soLuong -= lt.SoLuongXuat;
+                                                lt.SoLuongXuat = 0;
+                                            }
+                                        }
+                                    }
+
+                                    db.SubmitChanges();
+                                }
+
+                                /*LoThuoc loThuoc = (from th in db.Thuocs
                                                    join l in db.LoThuocs on th.ThuocGUID equals l.ThuocGUID
                                                    where th.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
                                                    l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
@@ -194,7 +226,7 @@ namespace MM.Bussiness
                                                    orderby l.NgayHetHan descending
                                                    select l).FirstOrDefault();
                                 if (loThuoc != null)
-                                    loThuoc.SoLuongXuat -= soLuong;    
+                                    loThuoc.SoLuongXuat -= soLuong;    */
                             }
 
                             string maToaThuoc = string.Empty;
