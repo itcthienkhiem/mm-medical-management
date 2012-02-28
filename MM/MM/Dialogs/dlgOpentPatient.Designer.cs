@@ -30,11 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgOpentPatient));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnVaoPhongCho = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOpenPatient = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this._uSearchPatient = new MM.Controls.uSearchPatient();
-            this.btnVaoPhongCho = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -50,15 +50,27 @@
             this.panel1.Size = new System.Drawing.Size(853, 36);
             this.panel1.TabIndex = 3;
             // 
+            // btnVaoPhongCho
+            // 
+            this.btnVaoPhongCho.Image = global::MM.Properties.Resources.conference_icon;
+            this.btnVaoPhongCho.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVaoPhongCho.Location = new System.Drawing.Point(119, 6);
+            this.btnVaoPhongCho.Name = "btnVaoPhongCho";
+            this.btnVaoPhongCho.Size = new System.Drawing.Size(115, 25);
+            this.btnVaoPhongCho.TabIndex = 24;
+            this.btnVaoPhongCho.Text = "      &Vào phòng chờ";
+            this.btnVaoPhongCho.UseVisualStyleBackColor = true;
+            this.btnVaoPhongCho.Click += new System.EventHandler(this.btnVaoPhongCho_Click);
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(120, 6);
+            this.btnCancel.Location = new System.Drawing.Point(238, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 24;
+            this.btnCancel.TabIndex = 25;
             this.btnCancel.Text = "   &Đóng";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -91,18 +103,6 @@
             this._uSearchPatient.Name = "_uSearchPatient";
             this._uSearchPatient.Size = new System.Drawing.Size(853, 399);
             this._uSearchPatient.TabIndex = 0;
-            // 
-            // btnVaoPhongCho
-            // 
-            this.btnVaoPhongCho.Image = global::MM.Properties.Resources.conference_icon;
-            this.btnVaoPhongCho.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVaoPhongCho.Location = new System.Drawing.Point(200, 6);
-            this.btnVaoPhongCho.Name = "btnVaoPhongCho";
-            this.btnVaoPhongCho.Size = new System.Drawing.Size(115, 25);
-            this.btnVaoPhongCho.TabIndex = 25;
-            this.btnVaoPhongCho.Text = "      &Vào phòng chờ";
-            this.btnVaoPhongCho.UseVisualStyleBackColor = true;
-            this.btnVaoPhongCho.Click += new System.EventHandler(this.btnVaoPhongCho_Click);
             // 
             // dlgOpentPatient
             // 
