@@ -326,17 +326,23 @@ namespace MM.Controls
 
         private void OnDeleteLoThuoc()
         {
+            if (_dataSource == null) return;
+            UpdateChecked();
             List<string> deletedLoThuocList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = dgLoThuoc.DataSource as DataTable;
-            foreach (DataRow row in dt.Rows)
+            DataRow[] rows = _dataSource.Select("Checked='True'");
+            if (rows != null && rows.Length > 0)
             {
-                if (Boolean.Parse(row["Checked"].ToString()))
+                foreach (DataRow row in rows)
                 {
-                    deletedLoThuocList.Add(row["LoThuocGUID"].ToString());
-                    deletedRows.Add(row);
+                    if (Boolean.Parse(row["Checked"].ToString()))
+                    {
+                        deletedLoThuocList.Add(row["LoThuocGUID"].ToString());
+                        deletedRows.Add(row);
+                    }
                 }
             }
+            
 
             if (deletedLoThuocList.Count > 0)
             {
@@ -347,7 +353,7 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
-                            dt.Rows.Remove(row);
+                            _dataSource.Rows.Remove(row);
                         }
 
                         OnSearchLoThuoc();
