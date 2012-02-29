@@ -10,15 +10,15 @@ using MM.Databasae;
 
 namespace MM.Bussiness
 {
-    public class InvoiceBus : BusBase
+    public class HoaDonThuocBus : BusBase
     {
-        public static Result GetInvoiceList()
+        public static Result GetHoaDonThuocList()
         {
             Result result = new Result();
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM InvoiceView WHERE Status={0} ORDER BY InvoiceDate DESC", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM HoaDonThuocView WHERE Status={0} ORDER BY NgayXuatHoaDon DESC", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -35,7 +35,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetInvoiceList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
+        public static Result GetHoaDonThuocList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
         {
             Result result = new Result();
 
@@ -46,17 +46,17 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM InvoiceView WHERE InvoiceDate BETWEEN '{0}' AND '{1}' ORDER BY InvoiceDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM HoaDonThuocView WHERE NgayXuatHoaDon BETWEEN '{0}' AND '{1}' ORDER BY NgayXuatHoaDon DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM InvoiceView WHERE Status={0} AND InvoiceDate BETWEEN '{1}' AND '{2}' ORDER BY InvoiceDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM HoaDonThuocView WHERE Status={0} AND NgayXuatHoaDon BETWEEN '{1}' AND '{2}' ORDER BY NgayXuatHoaDon DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM InvoiceView WHERE Status={0} AND InvoiceDate BETWEEN '{1}' AND '{2}' ORDER BY InvoiceDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM HoaDonThuocView WHERE Status={0} AND NgayXuatHoaDon BETWEEN '{1}' AND '{2}' ORDER BY NgayXuatHoaDon DESC",
                         (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
 
@@ -65,16 +65,16 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM InvoiceView WHERE TenNguoiMuaHang LIKE N'%{0}%' ORDER BY InvoiceDate DESC", tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM HoaDonThuocView WHERE TenNguoiMuaHang LIKE N'%{0}%' ORDER BY NgayXuatHoaDon DESC", tenBenhNhan);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM InvoiceView WHERE Status={0} AND TenNguoiMuaHang LIKE N'%{1}%' ORDER BY InvoiceDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM HoaDonThuocView WHERE Status={0} AND TenNguoiMuaHang LIKE N'%{1}%' ORDER BY NgayXuatHoaDon DESC",
                         (byte)Status.Actived, tenBenhNhan);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM InvoiceView WHERE Status={0} AND TenNguoiMuaHang LIKE N'%{1}%' ORDER BY InvoiceDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM HoaDonThuocView WHERE Status={0} AND TenNguoiMuaHang LIKE N'%{1}%' ORDER BY NgayXuatHoaDon DESC",
                         (byte)Status.Deactived, tenBenhNhan);
                     }
 
@@ -96,109 +96,14 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetInvoiceDetail(string invoiceGUID)
-        {
-            Result result = new Result();
-
-            try
-            {
-                string query = string.Format("SELECT TenDichVu, SoLuong, DonViTinh, DonGia, ThanhTien FROM InvoiceDetail WHERE InvoiceGUID='{0}' AND Status={1} ORDER BY TenDichVu", 
-                    invoiceGUID, (byte)Status.Actived);
-                return ExcuteQuery(query);
-            }
-            catch (System.Data.SqlClient.SqlException se)
-            {
-                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
-                result.Error.Description = se.ToString();
-            }
-            catch (Exception e)
-            {
-                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
-                result.Error.Description = e.ToString();
-            }
-
-            return result;
-        }
-
-        public static Result GetInvoiceCount()
+        public static Result GetChiTietHoaDonThuoc(string hoaDonThuocGUID)
         {
             Result result = null;
-            try
-            {
-                string query = "SELECT Count(*) FROM Invoice";
-                result = ExcuteQuery(query);
-                if (result.IsOK)
-                {
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (dt != null && dt.Rows.Count > 0)
-                        result.QueryResult = Convert.ToInt32(dt.Rows[0][0]);
-                    else result.QueryResult = 0;
-                }
-            }
-            catch (System.Data.SqlClient.SqlException se)
-            {
-                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
-                result.Error.Description = se.ToString();
-            }
-            catch (Exception e)
-            {
-                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
-                result.Error.Description = e.ToString();
-            }
-
-            return result;
-        }
-
-        public static Result CheckInvoiceExistCode(string invoiceGUID, string code)
-        {
-            Result result = new Result();
-            MMOverride db = null;
 
             try
             {
-                db = new MMOverride();
-                Invoice invoice = null;
-                if (invoiceGUID == null || invoiceGUID == string.Empty)
-                    invoice = db.Invoices.SingleOrDefault<Invoice>(i => i.InvoiceCode.ToLower() == code.ToLower());
-                else
-                    invoice = db.Invoices.SingleOrDefault<Invoice>(i => i.InvoiceCode.ToLower() == code.ToLower() &&
-                                                                i.InvoiceGUID.ToString() != invoiceGUID);
-
-                if (invoice == null)
-                    result.Error.Code = ErrorCode.NOT_EXIST;
-                else
-                    result.Error.Code = ErrorCode.EXIST;
-            }
-            catch (System.Data.SqlClient.SqlException se)
-            {
-                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
-                result.Error.Description = se.ToString();
-            }
-            catch (Exception e)
-            {
-                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
-                result.Error.Description = e.ToString();
-            }
-            finally
-            {
-                if (db != null)
-                {
-                    db.Dispose();
-                    db = null;
-                }
-            }
-
-            return result;
-        }
-
-        public static Result GetChiTietPhieuThuDichVuList(string receiptGUID)
-        {
-            Result result = new Result();
-
-            try
-            {
-                string query = string.Format("SELECT Name AS TenDichVu, CAST(N'Lần' AS nvarchar(5)) AS DonViTinh, CAST(1 AS int) AS SoLuong, CAST((Price - (Price * Discount)/100) AS float) AS DonGia, CAST((Price - (Price * Discount)/100) AS float) AS ThanhTien FROM ReceiptDetailView WHERE ReceiptGUID='{0}' AND ReceiptDetailStatus={1} ORDER BY Code",
-                    receiptGUID, (byte)Status.Actived);
+                string query = string.Format("SELECT TenThuoc, SoLuong, DonViTinh, DonGia, ThanhTien FROM ChiTietHoaDonThuoc WHERE HoaDonThuocGUID='{0}' AND Status={1} ORDER BY TenThuoc",
+                    hoaDonThuocGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -215,7 +120,31 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetInvoice(string invoiceGUID)
+        public static Result GetChiTietPhieuThuThuoc(string phieuThuThuocGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT TenThuoc, DonViTinh, SoLuong, DonGia, ThanhTien FROM ChiTietPhieuThuThuocView WHERE PhieuThuThuocGUID='{0}' AND CTPTTStatus={1} ORDER BY TenThuoc",
+                    phieuThuThuocGUID, (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetHoaDonThuoc(string hoaDonThuocGUID)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -223,8 +152,9 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                InvoiceView invoice = db.InvoiceViews.SingleOrDefault<InvoiceView>(i => i.InvoiceGUID.ToString() == invoiceGUID && i.Status == (byte)Status.Actived);
-                result.QueryResult = invoice;
+                HoaDonThuocView hdt = db.HoaDonThuocViews.SingleOrDefault<HoaDonThuocView>(h => h.HoaDonThuocGUID.ToString() == hoaDonThuocGUID && 
+                    h.Status == (byte)Status.Actived);
+                result.QueryResult = hdt;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -248,7 +178,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteInvoices(List<string> invoiceKeys)
+        public static Result DeleteHoaDonThuoc(List<string> keys)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -259,22 +189,22 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     string desc = string.Empty;
-                    foreach (string key in invoiceKeys)
+                    foreach (string key in keys)
                     {
-                        Invoice invoice = db.Invoices.SingleOrDefault<Invoice>(i => i.InvoiceGUID.ToString() == key);
-                        if (invoice != null)
+                        HoaDonThuoc hdt = db.HoaDonThuocs.SingleOrDefault<HoaDonThuoc>(i => i.HoaDonThuocGUID.ToString() == key);
+                        if (hdt != null)
                         {
-                            invoice.DeletedDate = DateTime.Now;
-                            invoice.DeletedBy = Guid.Parse(Global.UserGUID);
-                            invoice.Status = (byte)Status.Deactived;
+                            hdt.DeletedDate = DateTime.Now;
+                            hdt.DeletedBy = Guid.Parse(Global.UserGUID);
+                            hdt.Status = (byte)Status.Deactived;
 
                             //Update Exported Invoice
-                            invoice.Receipt.IsExportedInVoice = false;
+                            hdt.PhieuThuThuoc.IsExported = false;
 
                             desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
-                                invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"), 
-                                invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan, 
-                                invoice.HinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản");
+                                hdt.HoaDonThuocGUID.ToString(), hdt.SoHoaDon, hdt.NgayXuatHoaDon.Value.ToString("dd/MM/yyyy HH:mm:ss"),
+                                hdt.TenNguoiMuaHang, hdt.TenDonVi, hdt.DiaChi, hdt.SoTaiKhoan,
+                                hdt.HinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản");
                         }
                     }
 
@@ -285,7 +215,7 @@ namespace MM.Bussiness
                     tk.TrackingDate = DateTime.Now;
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Delete;
-                    tk.Action = "Xóa thông tin hóa đơn dịch vụ";
+                    tk.Action = "Xóa thông tin hóa đơn thuốc";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.Price;
                     db.Trackings.InsertOnSubmit(tk);
@@ -316,7 +246,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertInvoice(Invoice invoice, List<InvoiceDetail> addedDetails)
+        public static Result InsertHoaDonThuoc(HoaDonThuoc hdt, List<ChiTietHoaDonThuoc> addedDetails)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -327,43 +257,42 @@ namespace MM.Bussiness
                 string desc = string.Empty;
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    invoice.InvoiceGUID = Guid.NewGuid();
-                    db.Invoices.InsertOnSubmit(invoice);
+                    hdt.HoaDonThuocGUID = Guid.NewGuid();
+                    db.HoaDonThuocs.InsertOnSubmit(hdt);
                     db.SubmitChanges();
 
-                    desc += string.Format("- Hóa đơn dịch vụ: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
-                                invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"),
-                                invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan,
-                                invoice.HinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản");
+                    desc += string.Format("- Hóa đơn thuốc: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
+                                hdt.HoaDonThuocGUID.ToString(), hdt.SoHoaDon, hdt.NgayXuatHoaDon.Value.ToString("dd/MM/yyyy HH:mm:ss"),
+                                hdt.TenNguoiMuaHang, hdt.TenDonVi, hdt.DiaChi, hdt.SoTaiKhoan, hdt.HinhThucThanhToan == 0 ? "Tiền mặt" : "Chuyển khoản");
 
                     if (addedDetails != null && addedDetails.Count > 0)
                     {
                         desc += "- Chi tiết hóa đơn:\n";
 
-                        foreach (InvoiceDetail detail in addedDetails)
+                        foreach (ChiTietHoaDonThuoc detail in addedDetails)
                         {
-                            detail.InvoiceDetailGUID = Guid.NewGuid();
-                            detail.InvoiceGUID = invoice.InvoiceGUID;
-                            db.InvoiceDetails.InsertOnSubmit(detail);
+                            detail.ChiTietHoaDonThuocGUID = Guid.NewGuid();
+                            detail.HoaDonThuocGUID = hdt.HoaDonThuocGUID;
+                            db.ChiTietHoaDonThuocs.InsertOnSubmit(detail);
 
                             desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}', ĐVT: '{2}', Số lượng: '{3}', Đơn giá: '{4}', Thành tiền: '{5}'\n",
-                                detail.InvoiceDetailGUID.ToString(), detail.TenDichVu, detail.DonViTinh, detail.SoLuong, detail.DonGia, detail.ThanhTien);
+                                detail.ChiTietHoaDonThuocGUID.ToString(), detail.TenThuoc, detail.DonViTinh, detail.SoLuong, detail.DonGia, detail.ThanhTien);
                         }
 
                         db.SubmitChanges();
                     }
 
                     //Update Exported Invoice
-                    Receipt receipt = db.Receipts.SingleOrDefault<Receipt>(r => r.ReceiptGUID == invoice.ReceiptGUID);
-                    if (receipt != null) receipt.IsExportedInVoice = true;
+                    PhieuThuThuoc ptt = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(r => r.PhieuThuThuocGUID == hdt.PhieuThuThuocGUID);
+                    if (ptt != null) ptt.IsExported = true;
 
                     var settings = from s in db.Settings
-                                      select s;
+                                   select s;
                     if (settings != null)
                     {
                         foreach (var setting in settings)
                         {
-                            setting.SoHoaDonBatDau = Convert.ToInt32(invoice.InvoiceCode);
+                            setting.SoHoaDonBatDau = Convert.ToInt32(hdt.SoHoaDon);
                         }
                     }
 
@@ -374,7 +303,7 @@ namespace MM.Bussiness
                     tk.TrackingDate = DateTime.Now;
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Add;
-                    tk.Action = "Thêm thông tin hóa đơn dịch vụ";
+                    tk.Action = "Thêm thông tin hóa đơn thuốc";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.Price;
                     db.Trackings.InsertOnSubmit(tk);

@@ -17,7 +17,7 @@ using SpreadsheetGear;
 
 namespace MM.Controls
 {
-    public partial class uInvoiceList : uBase
+    public partial class uHoaDonThuocList : uBase
     {
         #region Members
         private bool _isFromDateToDate = true;
@@ -28,7 +28,7 @@ namespace MM.Controls
         #endregion
 
         #region Constructor
-        public uInvoiceList()
+        public uHoaDonThuocList()
         {
             InitializeComponent();
 
@@ -80,7 +80,7 @@ namespace MM.Controls
 
         private void OnDisplayInvoiceList()
         {
-            Result result = InvoiceBus.GetInvoiceList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
+            Result result = HoaDonThuocBus.GetHoaDonThuocList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -93,8 +93,8 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.GetInvoiceList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.GetInvoiceList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetHoaDonThuocList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetHoaDonThuocList"));
             }
         }
 
@@ -121,7 +121,7 @@ namespace MM.Controls
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những hóa đơn mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = InvoiceBus.DeleteInvoices(deletedInvoiceList);
+                    Result result = HoaDonThuocBus.DeleteHoaDonThuoc(deletedInvoiceList);
                     if (result.IsOK)
                     {
                         foreach (DataRow row in deletedRows)
@@ -131,8 +131,8 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.DeleteInvoices"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.DeleteInvoices"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.DeleteHoaDonThuoc"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.DeleteHoaDonThuoc"));
                     }
                 }
             }
@@ -148,7 +148,7 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    checkedInvoicetList.Add(row["invoiceGUID"].ToString());
+                    checkedInvoicetList.Add(row["HoaDonThuocGUID"].ToString());
                 }
             }
 
@@ -162,11 +162,11 @@ namespace MM.Controls
                         if (_printDialog.ShowDialog() == DialogResult.OK)
                         {
                             string exportFileName = string.Format("{0}\\Temp\\HDGTGT.xls", Application.StartupPath);
-                            foreach (string invoiceGUID in checkedInvoicetList)
+                            foreach (string hoaDonThuocGUID in checkedInvoicetList)
                             {
                                 if (dlg.Lien1)
                                 {
-                                    if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                                   Liên 1: Lưu"))
+                                    if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 1: Lưu"))
                                     {
                                         try
                                         {
@@ -183,7 +183,7 @@ namespace MM.Controls
 
                                 if (dlg.Lien2)
                                 {
-                                    if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                                   Liên 2: Giao người mua"))
+                                    if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
                                     {
                                         try
                                         {
@@ -200,7 +200,7 @@ namespace MM.Controls
 
                                 if (dlg.Lien3)
                                 {
-                                    if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                                   Liên 3: Nội bộ"))
+                                    if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 3: Nội bộ"))
                                     {
                                         try
                                         {
@@ -232,7 +232,7 @@ namespace MM.Controls
             }
 
             DataRow drInvoice = (dgInvoice.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgInvoiceInfo dlg = new dlgInvoiceInfo(drInvoice, true);
+            dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(drInvoice, true);
             dlg.ShowDialog();
         }
         #endregion

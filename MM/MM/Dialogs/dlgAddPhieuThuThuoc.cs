@@ -23,7 +23,7 @@ namespace MM.Dialogs
         private string _tenCongTy = string.Empty;
         private DataTable _dataSourceBenhNhan = null;
         private ComboBox _cboBox = null;
-        private TextBox _textBox = null;
+        private bool _isExportedInvoice = false;
         #endregion
 
         #region Constructor
@@ -58,9 +58,25 @@ namespace MM.Dialogs
         {
             get { return _phieuThuThuoc; }
         }
+
+        public bool IsExportedInvoice
+        {
+            get { return _isExportedInvoice; }
+        }
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            if (_isNew)
+                btnExportInvoice.Enabled = false;
+            else
+            {
+                bool isExportedInvoice = Convert.ToBoolean(_drPhieuThu["IsExported"]);
+                btnExportInvoice.Enabled = Global.AllowExportInvoice && !isExportedInvoice;
+            }
+        }
+
         private void GenerateCode()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -330,14 +346,20 @@ namespace MM.Dialogs
 
             if (rowIndex < 0 || colIndex < 0) return;
 
-            int soLuong = Convert.ToInt32(dgChiTiet[3, rowIndex].EditedFormattedValue.ToString().Replace(",", ""));
+            int soLuong = 1;
+            string strValue = dgChiTiet[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+                soLuong = Convert.ToInt32(strValue);
 
-            string strValue = dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            strValue = dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
             int donGia = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 donGia = Convert.ToInt32(strValue);
 
-            int giam = Convert.ToInt32(dgChiTiet[5, rowIndex].EditedFormattedValue.ToString().Replace(",", ""));
+            int giam = 0;
+            strValue = dgChiTiet[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+                giam = Convert.ToInt32(strValue);
 
             double tienGiam = Math.Round((soLuong * donGia * giam / (double)100));
             double thanhTien = soLuong * donGia - tienGiam;
@@ -465,8 +487,6 @@ namespace MM.Dialogs
                         Utility.WriteToTraceLog(r.GetErrorAsString("LoThuocBus.CheckThuocHetHan"));
                         return false;
                     }
-
-
                 }
             }
             else
@@ -595,6 +615,16 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(e.Message);
             }
         }
+
+        private void OnExportInvoice()
+        {
+            dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(_drPhieuThu);
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                _isExportedInvoice = true;
+                btnExportInvoice.Enabled = false;
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -605,6 +635,8 @@ namespace MM.Dialogs
                 OnGetChiTietPhieuThuThuoc(Guid.Empty.ToString());
             else
                 DisplayInfo(_drPhieuThu);
+
+            UpdateGUI();
         }
 
         private void dlgAddPhieuThuThuoc_FormClosing(object sender, FormClosingEventArgs e)
@@ -709,7 +741,7 @@ namespace MM.Dialogs
                 _cboBox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
                 _cboBox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
             }
-            else if (dgChiTiet.CurrentCell.ColumnIndex >= 3 && dgChiTiet.CurrentCell.ColumnIndex <= 5)
+            else if (dgChiTiet.CurrentCell.ColumnIndex == 3 || dgChiTiet.CurrentCell.ColumnIndex == 5)
             {
                 TextBox textBox = e.Control as TextBox;
 
@@ -729,6 +761,9 @@ namespace MM.Dialogs
             TextBox textBox = (TextBox)sender;
             
             int colIndex = dgChiTiet.CurrentCell.ColumnIndex;
+            if (colIndex == 1 || colIndex == 4) return;
+
+
             if (textBox.Text == string.Empty)
             {
                 if (colIndex == 5 || colIndex == 6)
@@ -737,9 +772,11 @@ namespace MM.Dialogs
                     textBox.Text = "1";
             }
 
+            string strValue = textBox.Text.Replace(",", "");
+
             try
             {
-                int value = int.Parse(textBox.Text);
+                int value = int.Parse(strValue);
                 if (colIndex == 5 && value > 100)
                     textBox.Text = "100";
             }
@@ -756,6 +793,9 @@ namespace MM.Dialogs
 
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
+            int colIndex = dgChiTiet.CurrentCell.ColumnIndex;
+            if (colIndex != 3 && colIndex != 5) return;
+
             DataGridViewTextBoxEditingControl textBox = (DataGridViewTextBoxEditingControl)sender;
             if (!(char.IsDigit(e.KeyChar)))
             {
@@ -878,6 +918,28 @@ namespace MM.Dialogs
         {
             e.Cancel = true;
         }
+
+        private void dgChiTiet_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            //int i = 0;
+        }
+
+        private void dgChiTiet_Leave(object sender, EventArgs e)
+        {
+            if (_isNew)
+            {
+                int rowIndex = dgChiTiet.CurrentRow.Index;
+                if (rowIndex < 0) return;
+                dgChiTiet.CurrentCell = dgChiTiet[0, rowIndex];
+                dgChiTiet.Rows[rowIndex].Selected = true;
+
+            }
+        }
+
+        private void btnExportInvoice_Click(object sender, EventArgs e)
+        {
+            OnExportInvoice();
+        }
         #endregion
 
         #region Working Thread
@@ -899,21 +961,8 @@ namespace MM.Dialogs
         }
         #endregion
 
-        private void dgChiTiet_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            //int i = 0;
-        }
+        
 
-        private void dgChiTiet_Leave(object sender, EventArgs e)
-        {
-            if (_isNew)
-            {
-                int rowIndex = dgChiTiet.CurrentRow.Index;
-                if (rowIndex < 0) return;
-                dgChiTiet.CurrentCell = dgChiTiet[0, rowIndex];
-                dgChiTiet.Rows[rowIndex].Selected = true;
-                
-            }
-        }
+        
     }
 }

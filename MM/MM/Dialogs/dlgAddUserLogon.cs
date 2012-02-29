@@ -465,6 +465,16 @@ namespace MM.Dialogs
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
+                else if (functionCode == Const.HoaDonThuoc)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
             }
         }
 

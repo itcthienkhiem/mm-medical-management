@@ -1,6 +1,6 @@
 ﻿namespace MM.Dialogs
 {
-    partial class dlgInvoiceInfo
+    partial class dlgHoaDonThuoc
     {
         /// <summary>
         /// Required designer variable.
@@ -40,7 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgInvoiceInfo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgHoaDonThuoc));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose2 = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
@@ -94,7 +94,7 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenThuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -481,7 +481,7 @@
             this.dgDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
-            this.TenDichVu,
+            this.TenThuoc,
             this.DonViTinh,
             this.SoLuong,
             this.DonGia,
@@ -703,13 +703,13 @@
             this.STT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.STT.Width = 40;
             // 
-            // TenDichVu
+            // TenThuoc
             // 
-            this.TenDichVu.DataPropertyName = "TenDichVu";
-            this.TenDichVu.HeaderText = "Tên hàng hóa, dịch vụ";
-            this.TenDichVu.Name = "TenDichVu";
-            this.TenDichVu.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TenDichVu.Width = 225;
+            this.TenThuoc.DataPropertyName = "TenThuoc";
+            this.TenThuoc.HeaderText = "Tên hàng hóa, dịch vụ";
+            this.TenThuoc.Name = "TenThuoc";
+            this.TenThuoc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TenThuoc.Width = 225;
             // 
             // DonViTinh
             // 
@@ -756,7 +756,7 @@
             this.ThanhTien.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.ThanhTien.Width = 120;
             // 
-            // dlgInvoiceInfo
+            // dlgHoaDonThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -775,7 +775,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "dlgInvoiceInfo";
+            this.Name = "dlgHoaDonThuoc";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thong tin hoa don";
@@ -845,18 +845,18 @@
         private System.Windows.Forms.TextBox txtMaSoThue;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox txtTenNguoiMuaHang;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenDichVu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenThuoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
 
 
     }

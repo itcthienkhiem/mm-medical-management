@@ -172,6 +172,8 @@ namespace MM
                 _uInKetQuaKhamSucKhoeTongQuat.InitData();
             else if (ctrl.GetType() == typeof(uGiaVonDichVuList))
                 _uGiaVonDichVuList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uHoaDonThuocList))
+                _uHoaDonThuocList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -558,6 +560,21 @@ namespace MM
                             _uBaoCaoDichVuChuaXuatPhieuThu.AllowExport = isExport;
                             _uBaoCaoDichVuChuaXuatPhieuThu.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.HoaDonThuoc)
+                        {
+                            invoiceToolStripMenuItem.Enabled = isLogin;
+                            hoaDonThuocToolStripMenuItem.Enabled = isView && isLogin;
+
+                            _uHoaDonThuocList.AllowAdd = isAdd;
+                            _uHoaDonThuocList.AllowEdit = isEdit;
+                            _uHoaDonThuocList.AllowDelete = isDelete;
+                            _uHoaDonThuocList.AllowPrint = isPrint;
+                            _uHoaDonThuocList.AllowExport = isExport;
+                            _uHoaDonThuocList.AllowImport = isImport;
+
+                            Global.AllowPrintInvoice = isPrint;
+                            Global.AllowExportInvoice = isExport;
+                        }
                     }
                 }
                 else
@@ -670,6 +687,8 @@ namespace MM
                 _uPhongChoList.IsEnableBtnRaPhongCho = isLogin;
 
                 _uBaoCaoDichVuChuaXuatPhieuThu.Enabled = isLogin;
+
+                hoaDonThuocToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -834,7 +853,18 @@ namespace MM
                     OnBaoCaoDichVuChuaXuatPhieuThu();
                     break;
 
+                case "HoaDonThuoc":
+                    OnHoaDonThuoc();
+                    break;
+
             }
+        }
+
+        private void OnHoaDonThuoc()
+        {
+            this.Text = string.Format("{0} - Hoa don thuoc", Application.ProductName);
+            ViewControl(_uHoaDonThuocList);
+            _uHoaDonThuocList.DisplayAsThread();
         }
 
         private void OnBaoCaoDichVuChuaXuatPhieuThu()
@@ -957,14 +987,14 @@ namespace MM
 
         private void OnInvoiceList()
         {
-            this.Text = string.Format("{0} - Danh muc hoa don", Application.ProductName);
+            this.Text = string.Format("{0} - Hoa don dich vu", Application.ProductName);
             ViewControl(_uInvoiceList);
             _uInvoiceList.DisplayAsThread();
         }
 
         private void OnReceiptList()
         {
-            this.Text = string.Format("{0} - Danh muc phieu thu", Application.ProductName);
+            this.Text = string.Format("{0} - Phieu thu dich vu", Application.ProductName);
             ViewControl(_uReceiptList);
             _uReceiptList.DisplayAsThread();
         }

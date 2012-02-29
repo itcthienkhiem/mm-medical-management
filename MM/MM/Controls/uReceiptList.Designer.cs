@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnExportInvoice = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@
             this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.btnExportExcel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -82,14 +82,26 @@
             this.panel1.Size = new System.Drawing.Size(998, 38);
             this.panel1.TabIndex = 1;
             // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(188, 6);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
+            this.btnExportExcel.TabIndex = 15;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
             // btnExportInvoice
             // 
             this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
             this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportInvoice.Location = new System.Drawing.Point(189, 6);
+            this.btnExportInvoice.Location = new System.Drawing.Point(285, 6);
             this.btnExportInvoice.Name = "btnExportInvoice";
             this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
-            this.btnExportInvoice.TabIndex = 6;
+            this.btnExportInvoice.TabIndex = 16;
             this.btnExportInvoice.Text = "      &Xuất hóa đơn";
             this.btnExportInvoice.UseVisualStyleBackColor = true;
             this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
@@ -131,7 +143,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(998, 137);
+            this.panel2.Size = new System.Drawing.Size(998, 111);
             this.panel2.TabIndex = 2;
             // 
             // groupBox1
@@ -181,7 +193,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(300, 105);
+            this.btnView.Location = new System.Drawing.Point(381, 76);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 13;
@@ -299,7 +311,7 @@
             this.dgReceipt.ReadOnly = true;
             this.dgReceipt.RowHeadersWidth = 30;
             this.dgReceipt.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgReceipt.Size = new System.Drawing.Size(998, 280);
+            this.dgReceipt.Size = new System.Drawing.Size(998, 306);
             this.dgReceipt.TabIndex = 2;
             this.dgReceipt.DoubleClick += new System.EventHandler(this.dgReceipt_DoubleClick);
             // 
@@ -381,22 +393,10 @@
             this.panel3.Controls.Add(this.chkChecked);
             this.panel3.Controls.Add(this.dgReceipt);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 137);
+            this.panel3.Location = new System.Drawing.Point(0, 111);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(998, 280);
+            this.panel3.Size = new System.Drawing.Size(998, 306);
             this.panel3.TabIndex = 4;
-            // 
-            // btnExportExcel
-            // 
-            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
-            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(300, 6);
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
-            this.btnExportExcel.TabIndex = 15;
-            this.btnExportExcel.Text = "      &Xuất Excel";
-            this.btnExportExcel.UseVisualStyleBackColor = true;
-            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // uReceiptList
             // 

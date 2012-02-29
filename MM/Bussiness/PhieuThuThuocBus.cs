@@ -14,7 +14,7 @@ namespace MM.Bussiness
     {
         public static Result GetPhieuThuThuocList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
         {
-            Result result = null;
+            Result result = new Result();
 
             try
             {
@@ -42,16 +42,16 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE TenBenhNhan LIKE '%{0}%' ORDER BY NgayThu DESC", tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE TenBenhNhan LIKE N'%{0}%' ORDER BY NgayThu DESC", tenBenhNhan);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND TenBenhNhan LIKE '%{1}%' ORDER BY NgayThu DESC", 
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND TenBenhNhan LIKE N'%{1}%' ORDER BY NgayThu DESC", 
                         (byte)Status.Actived, tenBenhNhan);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND TenBenhNhan LIKE '%{1}%' ORDER BY NgayThu DESC", 
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PhieuThuThuoc WHERE Status={0} AND TenBenhNhan LIKE N'%{1}%' ORDER BY NgayThu DESC", 
                         (byte)Status.Deactived, tenBenhNhan);
                     }
                     
