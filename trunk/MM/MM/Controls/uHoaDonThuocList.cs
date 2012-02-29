@@ -112,7 +112,7 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedInvoiceList.Add(row["invoiceGUID"].ToString());
+                    deletedInvoiceList.Add(row["HoaDonThuocGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
