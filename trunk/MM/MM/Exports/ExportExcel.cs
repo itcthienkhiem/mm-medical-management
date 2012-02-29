@@ -48,7 +48,7 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A2"].Value = string.Format("Số: {0}", receipt.ReceiptCode);
+                workSheet.Cells["B2"].Value = string.Format("Số: {0}", receipt.ReceiptCode);
                 workSheet.Cells["B5"].Value = string.Format("Người nộp tiền: {0} - {1}", receipt.FullName, receipt.FileNum);
                 workSheet.Cells["B6"].Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 if (receipt.Address != null) workSheet.Cells["B7"].Value = string.Format("Địa chỉ: {0}", receipt.Address);
@@ -1057,7 +1057,7 @@ namespace MM.Exports
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A2"].Value = string.Format("Số: {0}", ptThuoc.MaPhieuThuThuoc);
+                workSheet.Cells["B2"].Value = string.Format("Số: {0}", ptThuoc.MaPhieuThuThuoc);
                 if (ptThuoc.MaBenhNhan != null && ptThuoc.MaBenhNhan.Trim() != string.Empty)
                     workSheet.Cells["B5"].Value = string.Format("Người nộp tiền: {0} - {1}", ptThuoc.TenBenhNhan, ptThuoc.MaBenhNhan);
                 else
