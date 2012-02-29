@@ -42,16 +42,16 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE FullName LIKE '%{0}%' ORDER BY ReceiptDate DESC", tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE FullName LIKE N'%{0}%' ORDER BY ReceiptDate DESC", tenBenhNhan);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND FullName LIKE '%{1}%' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
                         (byte)Status.Actived, tenBenhNhan);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND FullName LIKE '%{1}%' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
                         (byte)Status.Deactived, tenBenhNhan);
                     }
                     

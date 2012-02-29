@@ -245,11 +245,11 @@ namespace MM.Exports
                 InvoiceView invoice = result.QueryResult as InvoiceView;
                 if (invoice == null) return false;
 
-                result = InvoiceBus.GetInvoiceDetailList(invoice.ReceiptGUID.ToString());
+                result = InvoiceBus.GetInvoiceDetail(invoice.InvoiceGUID.ToString());
                 if (!result.IsOK)
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.GetInvoiceDetailList"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.GetInvoiceDetailList"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.GetInvoiceDetail"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.GetInvoiceDetail"));
                     return false;
                 }
 
@@ -295,7 +295,7 @@ namespace MM.Exports
                 double totalPrice = 0;
                 foreach (DataRow row in dataSource.Rows)
                 {
-                    string serviceName = row["Name"].ToString();
+                    string serviceName = row["TenDichVu"].ToString();
                     string donViTinh = row["DonViTinh"].ToString();
                     int soLuong = Convert.ToInt32(row["SoLuong"]);
                     int donGia = Convert.ToInt32(row["DonGia"]);
@@ -358,6 +358,170 @@ namespace MM.Exports
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
                 double vat = (invoice.VAT.Value * totalPrice) / 100;
+                vat = Math.Round(vat + 0.05);
+                if (vat > 0)
+                    range.Value = vat.ToString("#,###");
+                else
+                    range.Value = vat.ToString();
+
+                rowIndex++;
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                double totalPayment = totalPrice + vat;
+                if (totalPayment > 0)
+                    range.Value = totalPayment.ToString("#,###");
+                else
+                    range.Value = totalPayment.ToString();
+
+                rowIndex++;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
+                range.Value = string.Format("  Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment));
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportHoaDonThuocToExcel(string exportFileName, string hoaDonThuocGUID, string lien)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                Result result = HoaDonThuocBus.GetHoaDonThuoc(hoaDonThuocGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetHoaDonThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetHoaDonThuoc"));
+                    return false;
+                }
+
+                HoaDonThuocView hdt = result.QueryResult as HoaDonThuocView;
+                if (hdt == null) return false;
+
+                result = HoaDonThuocBus.GetChiTietHoaDonThuoc(hdt.HoaDonThuocGUID.ToString());
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetChiTietHoaDonThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetChiTietHoaDonThuoc"));
+                    return false;
+                }
+
+                string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
+
+                DateTime dt = DateTime.Now;
+                string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
+                string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
+                string strYear = dt.Year.ToString();
+
+                workSheet.Cells["A3"].Value = lien;
+                workSheet.Cells["A4"].Value = string.Format("                                   Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+                workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", hdt.TenNguoiMuaHang);
+
+                workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
+                workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", hdt.MaSoThue);
+                workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
+                workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", hdt.SoTaiKhoan);
+                workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", hdt.HinhThucThanhToanStr);
+
+                IRange range = null;
+                DataTable dataSource = result.QueryResult as DataTable;
+                foreach (DataRow row in dataSource.Rows)
+                {
+                    range = workSheet.Cells["A19"].EntireRow;
+                    range.Insert(InsertShiftDirection.Down);
+                }
+
+                int no = 1;
+                int rowIndex = 18;
+                double totalPrice = 0;
+                foreach (DataRow row in dataSource.Rows)
+                {
+                    string serviceName = row["TenThuoc"].ToString();
+                    string donViTinh = row["DonViTinh"].ToString();
+                    int soLuong = Convert.ToInt32(row["SoLuong"]);
+                    int donGia = Convert.ToInt32(row["DonGia"]);
+                    double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                    totalPrice += thanhTien;
+
+                    range = workSheet.Cells[rowIndex, 0];
+                    range.Value = no++;
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.Font.Bold = false;
+
+                    range = workSheet.Cells[rowIndex, 1];
+                    range.Value = serviceName;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.Font.Bold = false;
+
+                    range = workSheet.Cells[rowIndex, 2];
+                    range.Value = donViTinh;
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.Font.Bold = false;
+
+                    range = workSheet.Cells[rowIndex, 3];
+                    range.Value = soLuong;
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.Font.Bold = false;
+
+                    range = workSheet.Cells[rowIndex, 4];
+                    if (donGia > 0)
+                        range.Value = donGia.ToString("#,###");
+                    else
+                        range.Value = donGia.ToString();
+
+                    range.HorizontalAlignment = HAlign.Right;
+                    range.Font.Bold = false;
+
+                    range = workSheet.Cells[rowIndex, 5];
+                    if (thanhTien > 0)
+                        range.Value = thanhTien.ToString("#,###");
+                    else
+                        range.Value = thanhTien.ToString();
+
+                    range.HorizontalAlignment = HAlign.Right;
+                    range.Font.Bold = false;
+
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                if (totalPrice > 0)
+                    range.Value = totalPrice.ToString("#,###");
+                else
+                    range.Value = totalPrice.ToString();
+
+                rowIndex++;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
+                if (hdt.VAT > 0)
+                    range.Value = string.Format("  Thuế suất GTGT: {0}%, Tiền thuế GTGT:", hdt.VAT);
+                else
+                    range.Value = string.Format("  Thuế suất GTGT: .....%, Tiền thuế GTGT:", hdt.VAT);
+
+                range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                double vat = (hdt.VAT.Value * totalPrice) / 100;
                 vat = Math.Round(vat + 0.05);
                 if (vat > 0)
                     range.Value = vat.ToString("#,###");

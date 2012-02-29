@@ -82,6 +82,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uHoaDonThuocList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uHoaDonThuocList.Designer.cs">
+      <DependentUpon>uHoaDonThuocList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uBaoCaoDichVuChuaXuatPhieuThu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -541,6 +547,12 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgHoaDonThuoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgHoaDonThuoc.Designer.cs">
+      <DependentUpon>dlgHoaDonThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddKetQuaNoiSoi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -857,6 +869,9 @@
     <Compile Include="Controls\uChiDinhList.Designer.cs">
       <DependentUpon>uChiDinhList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uHoaDonThuocList.resx">
+      <DependentUpon>uHoaDonThuocList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uBaoCaoDichVuChuaXuatPhieuThu.resx">
       <DependentUpon>uBaoCaoDichVuChuaXuatPhieuThu.cs</DependentUpon>
     </EmbeddedResource>
@@ -1021,6 +1036,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgHoaDonThuoc.resx">
+      <DependentUpon>dlgHoaDonThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddKetQuaNoiSoi.resx">
       <DependentUpon>dlgAddKetQuaNoiSoi.cs</DependentUpon>
@@ -1212,6 +1230,7 @@
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaVonDichVuView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.HoaDonThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetLuanView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaLamSangView.datasource" />
@@ -1331,7 +1350,7 @@
     <None Include="Resources\Pause-icon.png" />
     <None Include="Resources\Play-icon.png" />
     <None Include="Resources\Process-Warning-icon.png" />
-    <Content Include="Scripts\ScriptUpdate_KH_2012-02-28.sql" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-02-28_2012-02-29.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-25_2012_02_27.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-24.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-02-20.sql" />

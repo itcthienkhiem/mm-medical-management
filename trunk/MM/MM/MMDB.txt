@@ -97,8 +97,12 @@ spDichVuHopDong
 2012-02-26
 - Update table: Invoice(Add col: TenNguoiMuaHang, DiaChi), ServiceHistory(Add col: GiaVon), ChiTietPhieuThuThuoc(Add col: DonGiaNhap)
 - Update view: InvoiceView, ServiceHistoryView, ChiTietPhieuThuThuocView, ReceiptDetailView
-2012-02-27
+2012-02-28
 - Insert data: Function (DichVuChuaXuatPhieuThu)
+2012-02-29
+- Update table: PhieuThuThuoc(Add col: IsExported)
+- Create table: InvoiceDetail, HoaDonThuoc, ChiTietHoaDonThuoc, Settings
+- Create view: HoaDonThuocView
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

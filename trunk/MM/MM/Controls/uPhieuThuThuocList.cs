@@ -34,6 +34,25 @@ namespace MM.Controls
         }
         #endregion
 
+        #region Properties
+        public List<DataRow> CheckedPTRows
+        {
+            get
+            {
+                if (dgPhieuThu.RowCount <= 0) return null;
+                List<DataRow> checkedRows = new List<DataRow>();
+                DataTable dt = dgPhieuThu.DataSource as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (Boolean.Parse(row["Checked"].ToString()))
+                        checkedRows.Add(row);
+                }
+
+                return checkedRows;
+            }
+        }
+        #endregion
+
         #region UI Command
         private void UpdateGUI()
         {
@@ -42,6 +61,7 @@ namespace MM.Controls
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
+            btnExportInvoice.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -79,6 +99,17 @@ namespace MM.Controls
             }
         }
 
+        public void HighlightExportedInvoice()
+        {
+            foreach (DataGridViewRow row in dgPhieuThu.Rows)
+            {
+                DataRow dr = (row.DataBoundItem as DataRowView).Row;
+                bool isExported = Convert.ToBoolean(dr["IsExported"]);
+                if (isExported)
+                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+            }
+        }
+
         private void OnDisplayPhieuThuThuocList()
         {
             Result result = PhieuThuThuocBus.GetPhieuThuThuocList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
@@ -87,6 +118,7 @@ namespace MM.Controls
                 MethodInvoker method = delegate
                 {
                     dgPhieuThu.DataSource = result.QueryResult;
+                    HighlightExportedInvoice();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -255,7 +287,11 @@ namespace MM.Controls
 
             DataRow drPhieuThu = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
             dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc(drPhieuThu);
-            dlg.ShowDialog(this);
+            if (dlg.ShowDialog(this) == DialogResult.Cancel)
+            {
+                if (dlg.IsExportedInvoice)
+                    HighlightExportedInvoice();
+            }
         }
 
         private void OnExportExcel()
@@ -283,6 +319,39 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu thuốc cần in.", IconType.Information);
+        }
+
+        private void OnExportInvoice()
+        {
+            List<DataRow> exportedInvoiceList = new List<DataRow>();
+            List<DataRow> noExportedInvoiceList = new List<DataRow>();
+            List<DataRow> checkedRows = CheckedPTRows;
+
+            foreach (DataRow row in checkedRows)
+            {
+
+                bool isExported = Convert.ToBoolean(row["IsExported"]);
+                if (!isExported)
+                    noExportedInvoiceList.Add(row);
+                else
+                    exportedInvoiceList.Add(row);
+            }
+
+            if (exportedInvoiceList.Count > 0)
+            {
+                MsgBox.Show(Application.ProductName, "(Một số) phiếu thu đã xuất hóa đơn rồi. Vui lòng kiểm tra lại.", IconType.Information);
+                return;
+            }
+
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất hóa đơn ?") == DialogResult.No) return;
+
+            foreach (DataRow row in noExportedInvoiceList)
+            {
+                dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(row);
+                dlg.ShowDialog();
+            }
+
+            HighlightExportedInvoice();
         }
         #endregion
 
@@ -374,6 +443,17 @@ namespace MM.Controls
         {
             OnExportExcel();
         }
+
+        private void btnExportInvoice_Click(object sender, EventArgs e)
+        {
+            if (dgPhieuThu.RowCount <= 0 || CheckedPTRows == null || CheckedPTRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 phiếu thu cần xuất hóa đơn.", IconType.Information);
+                return;
+            }
+
+            OnExportInvoice();
+        }
         #endregion
 
         #region Working Thread
@@ -395,7 +475,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
