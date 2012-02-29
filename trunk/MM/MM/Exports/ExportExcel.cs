@@ -1058,13 +1058,15 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A2"].Value = string.Format("Số: {0}", ptThuoc.MaPhieuThuThuoc);
-                workSheet.Cells["B6"].Value = string.Format("Họ tên: {0}", ptThuoc.TenBenhNhan);
-                workSheet.Cells["B7"].Value = string.Format("Mã bệnh nhân: {0}", ptThuoc.MaBenhNhan);
-                workSheet.Cells["B8"].Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
-                if (ptThuoc.DiaChi != null) workSheet.Cells["B9"].Value = string.Format("Địa chỉ: {0}", ptThuoc.DiaChi);
-                else workSheet.Cells["B9"].Value = "Địa chỉ:";
+                if (ptThuoc.MaBenhNhan != null && ptThuoc.MaBenhNhan.Trim() != string.Empty)
+                    workSheet.Cells["B5"].Value = string.Format("Người nộp tiền: {0} - {1}", ptThuoc.TenBenhNhan, ptThuoc.MaBenhNhan);
+                else
+                    workSheet.Cells["B5"].Value = string.Format("Người nộp tiền: {0}", ptThuoc.TenBenhNhan);
+                workSheet.Cells["B6"].Value = string.Format("Ngày: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                if (ptThuoc.DiaChi != null) workSheet.Cells["B7"].Value = string.Format("Địa chỉ: {0}", ptThuoc.DiaChi);
+                else workSheet.Cells["B7"].Value = "Địa chỉ:";
 
-                int rowIndex = 11;
+                int rowIndex = 9;
                 int no = 1;
                 double totalPrice = 0;
                 IRange range;
