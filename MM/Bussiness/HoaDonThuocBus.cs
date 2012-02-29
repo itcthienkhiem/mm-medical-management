@@ -201,6 +201,15 @@ namespace MM.Bussiness
                             //Update Exported Invoice
                             hdt.PhieuThuThuoc.IsExported = false;
 
+                            var settings = from s in db.Settings select s;
+                            if (settings != null)
+                            {
+                                foreach (var setting in settings)
+                                {
+                                    setting.SoHoaDonBatDau -= 1;
+                                }
+                            }
+
                             desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
                                 hdt.HoaDonThuocGUID.ToString(), hdt.SoHoaDon, hdt.NgayXuatHoaDon.Value.ToString("dd/MM/yyyy HH:mm:ss"),
                                 hdt.TenNguoiMuaHang, hdt.TenDonVi, hdt.DiaChi, hdt.SoTaiKhoan,
