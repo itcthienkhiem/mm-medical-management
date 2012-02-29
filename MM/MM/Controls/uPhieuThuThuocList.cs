@@ -172,6 +172,7 @@ namespace MM.Controls
                     newRow["DeletedBy"] = dlg.PhieuThuThuoc.DeletedBy.ToString();
 
                 newRow["Status"] = dlg.PhieuThuThuoc.Status;
+                newRow["IsExported"] = false;
                 dt.Rows.Add(newRow);
                 //SelectLastedRow();
             }
