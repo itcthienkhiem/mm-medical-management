@@ -2794,60 +2794,60 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 0.85527559055118108;
+                double left = 6.5590551181102361;
                 double top = 175.206062992126;
-                double width = 147.62606857863705;
-                double height = 135.0;
+                double width = 138.66776077766588;
+                double height = 127.26858267716534;
 
                 if (hinhList.Count == 4)
                 {
-                    left = 0.85527559055118108;
-                    top = 175;
-                    width = 147.62606857863705;
-                    height = 135.0;
+                    left = 6.5590551181102361;
+                    top = 175.206062992126;
+                    width = 138.66776077766588;
+                    height = 127.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 150.8249662164323;
+                    left = 149.27965054144539;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 300.96461246184242;
+                    left = 291.97978920584586;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 451.0369100041101;
+                    left = 434.69525694033877;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 180.75;
-                    left = 0.85527559055118108;
-                    width = 196.91783951782335;
-                    height = 180.043937007874;
+                    workSheet.Cells["A10"].RowHeight = 168.75;
+                    left = 3.3107086614173227;
+                    width = 184.51114660443753;
+                    height = 168.0907874015748;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 201.03059542333517;
+                    left = 191.84193400601231;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 401.03107300861262;
+                    left = 380.57241159128978;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 10.693858267716536;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    workSheet.Cells["A10"].RowHeight = 251.25;
+                    left = 6.5590551181102361;
+                    width = 274.75875488041896;
+                    height = 250.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 303.47448566295265;
+                    left = 287.03733755758429;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
                     workSheet.Cells["A10"].RowHeight = 258;
-                    left = 155.85836517172652;
+                    left = 145.1328001477446;
                     width = 282.07818645035422;
                     height = 257.71874015748028;
 
@@ -2943,60 +2943,60 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 0.85527559055118108;
+                double left = 6.5590551181102361;
                 double top = 175.206062992126;
-                double width = 147.62606857863705;
-                double height = 135.0;
+                double width = 138.66776077766588;
+                double height = 127.26858267716534;
 
                 if (hinhList.Count == 4)
                 {
-                    left = 0.85527559055118108;
-                    top = 175;
-                    width = 147.62606857863705;
-                    height = 135.0;
+                    left = 6.5590551181102361;
+                    top = 175.206062992126;
+                    width = 138.66776077766588;
+                    height = 127.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 150.8249662164323;
+                    left = 149.27965054144539;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 300.96461246184242;
+                    left = 291.97978920584586;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 451.0369100041101;
+                    left = 434.69525694033877;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 180.75;
-                    left = 0.85527559055118108;
-                    width = 196.91783951782335;
-                    height = 180.043937007874;
+                    workSheet.Cells["A10"].RowHeight = 168.75;
+                    left = 3.3107086614173227;
+                    width = 184.51114660443753;
+                    height = 168.0907874015748;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 201.03059542333517;
+                    left = 191.84193400601231;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 401.03107300861262;
+                    left = 380.57241159128978;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 10.693858267716536;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    workSheet.Cells["A10"].RowHeight = 251.25;
+                    left = 6.5590551181102361;
+                    width = 274.75875488041896;
+                    height = 250.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 303.47448566295265;
+                    left = 287.03733755758429;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
                     workSheet.Cells["A10"].RowHeight = 258;
-                    left = 155.85836517172652;
+                    left = 145.1328001477446;
                     width = 282.07818645035422;
                     height = 257.71874015748028;
 
@@ -3104,60 +3104,60 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 0.85527559055118108;
+                double left = 6.5590551181102361;
                 double top = 175.206062992126;
-                double width = 147.62606857863705;
-                double height = 135.0;
+                double width = 138.66776077766588;
+                double height = 127.26858267716534;
 
                 if (hinhList.Count == 4)
                 {
-                    left = 0.85527559055118108;
-                    top = 175;
-                    width = 147.62606857863705;
-                    height = 135.0;
+                    left = 6.5590551181102361;
+                    top = 175.206062992126;
+                    width = 138.66776077766588;
+                    height = 127.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 150.8249662164323;
+                    left = 149.27965054144539;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 300.96461246184242;
+                    left = 291.97978920584586;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 451.0369100041101;
+                    left = 434.69525694033877;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 180.75;
-                    left = 0.85527559055118108;
-                    width = 196.91783951782335;
-                    height = 180.043937007874;
+                    workSheet.Cells["A10"].RowHeight = 168.75;
+                    left = 3.3107086614173227;
+                    width = 184.51114660443753;
+                    height = 168.0907874015748;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 201.03059542333517;
+                    left = 191.84193400601231;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 401.03107300861262;
+                    left = 380.57241159128978;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 10.693858267716536;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    workSheet.Cells["A10"].RowHeight = 251.25;
+                    left = 6.5590551181102361;
+                    width = 274.75875488041896;
+                    height = 250.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 303.47448566295265;
+                    left = 287.03733755758429;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
                     workSheet.Cells["A10"].RowHeight = 258;
-                    left = 155.85836517172652;
+                    left = 145.1328001477446;
                     width = 282.07818645035422;
                     height = 257.71874015748028;
 
@@ -3250,60 +3250,60 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 0.85527559055118108;
+                double left = 6.5590551181102361;
                 double top = 175.206062992126;
-                double width = 147.62606857863705;
-                double height = 135.0;
+                double width = 138.66776077766588;
+                double height = 127.26858267716534;
 
                 if (hinhList.Count == 4)
                 {
-                    left = 0.85527559055118108;
-                    top = 175;
-                    width = 147.62606857863705;
-                    height = 135.0;
+                    left = 6.5590551181102361;
+                    top = 175.206062992126;
+                    width = 138.66776077766588;
+                    height = 127.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 150.8249662164323;
+                    left = 149.27965054144539;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 300.96461246184242;
+                    left = 291.97978920584586;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 451.0369100041101;
+                    left = 434.69525694033877;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 180.75;
-                    left = 0.85527559055118108;
-                    width = 196.91783951782335;
-                    height = 180.043937007874;
+                    workSheet.Cells["A10"].RowHeight = 168.75;
+                    left = 3.3107086614173227;
+                    width = 184.51114660443753;
+                    height = 168.0907874015748;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 201.03059542333517;
+                    left = 191.84193400601231;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 401.03107300861262;
+                    left = 380.57241159128978;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 10.693858267716536;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    workSheet.Cells["A10"].RowHeight = 251.25;
+                    left = 6.5590551181102361;
+                    width = 274.75875488041896;
+                    height = 250.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 303.47448566295265;
+                    left = 287.03733755758429;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
                     workSheet.Cells["A10"].RowHeight = 258;
-                    left = 155.85836517172652;
+                    left = 145.1328001477446;
                     width = 282.07818645035422;
                     height = 257.71874015748028;
 
@@ -3391,60 +3391,61 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 0.85527559055118108;
+                double left = 6.5590551181102361;
                 double top = 175.206062992126;
-                double width = 147.62606857863705;
-                double height = 135.0;
+                double width = 138.66776077766588;
+                double height = 127.26858267716534;
 
                 if (hinhList.Count == 4)
                 {
-                    left = 0.85527559055118108;
-                    top = 175;
-                    width = 147.62606857863705;
-                    height = 135.0;
+                    workSheet.Cells["A10"].RowHeight = 128.25;
+                    left = 6.5590551181102361;
+                    top = 175.206062992126;
+                    width = 138.66776077766588;
+                    height = 127.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 150.8249662164323;
+                    left = 149.27965054144539;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 300.96461246184242;
+                    left = 291.97978920584586;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 451.0369100041101;
+                    left = 434.69525694033877;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 180.75;
-                    left = 0.85527559055118108;
-                    width = 196.91783951782335;
-                    height = 180.043937007874;
+                    workSheet.Cells["A10"].RowHeight = 168.75;
+                    left = 3.3107086614173227;
+                    width = 184.51114660443753;
+                    height = 168.0907874015748;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 201.03059542333517;
+                    left = 191.84193400601231;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 401.03107300861262;
+                    left = 380.57241159128978;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 10.693858267716536;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    workSheet.Cells["A10"].RowHeight = 251.25;
+                    left = 6.5590551181102361;
+                    width = 274.75875488041896;
+                    height = 250.26858267716534;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 303.47448566295265;
+                    left = 287.03733755758429;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
                     workSheet.Cells["A10"].RowHeight = 258;
-                    left = 155.85836517172652;
+                    left = 145.1328001477446;
                     width = 282.07818645035422;
                     height = 257.71874015748028;
 
