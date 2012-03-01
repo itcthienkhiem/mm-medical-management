@@ -144,6 +144,57 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetChiTietPhieuThuThuoc(List<DataRow> phieuThuThuocList)
+        {
+            Result result = new Result();
+
+            try
+            {
+                if (phieuThuThuocList == null || phieuThuThuocList.Count <= 0) return result;
+                DataTable dtAll = null;
+
+                foreach (DataRow row in phieuThuThuocList)
+                {
+                    string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
+                    string query = string.Format("SELECT TenThuoc, DonViTinh, SoLuong, DonGia, ThanhTien FROM ChiTietPhieuThuThuocView WHERE PhieuThuThuocGUID='{0}' AND CTPTTStatus={1} ORDER BY TenThuoc",
+                    phieuThuThuocGUID, (byte)Status.Actived);
+
+                    result = ExcuteQuery(query);
+
+                    if (!result.IsOK) return result;
+
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dtAll == null)
+                    {
+                        dtAll = new DataTable();
+                        dtAll = dt;
+                    }
+                    else
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            dtAll.ImportRow(dr);
+                        }
+                    }
+                }
+
+                result.QueryResult = dtAll;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+
         public static Result GetHoaDonThuoc(string hoaDonThuocGUID)
         {
             Result result = new Result();
@@ -199,7 +250,16 @@ namespace MM.Bussiness
                             hdt.Status = (byte)Status.Deactived;
 
                             //Update Exported Invoice
-                            hdt.PhieuThuThuoc.IsExported = false;
+                            if (hdt.PhieuThuThuocGUIDList != null && hdt.PhieuThuThuocGUIDList.Trim() != string.Empty)
+                            {
+                                string[] pttkeys = hdt.PhieuThuThuocGUIDList.Split(',');
+                                foreach (string pttKey in pttkeys)
+                                {
+                                    PhieuThuThuoc ptt = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(r => r.PhieuThuThuocGUID.ToString() == pttKey);
+                                    if (ptt != null) ptt.IsExported = false;
+                                }
+
+                            }
 
                             var settings = from s in db.Settings select s;
                             if (settings != null)
@@ -292,8 +352,16 @@ namespace MM.Bussiness
                     }
 
                     //Update Exported Invoice
-                    PhieuThuThuoc ptt = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(r => r.PhieuThuThuocGUID == hdt.PhieuThuThuocGUID);
-                    if (ptt != null) ptt.IsExported = true;
+                    if (hdt.PhieuThuThuocGUIDList != null && hdt.PhieuThuThuocGUIDList.Trim() != string.Empty)
+                    {
+                        string[] pttkeys = hdt.PhieuThuThuocGUIDList.Split(',');
+                        foreach (string pttKey in pttkeys)
+                        {
+                            PhieuThuThuoc ptt = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(r => r.PhieuThuThuocGUID.ToString() == pttKey);
+                            if (ptt != null) ptt.IsExported = true;
+                        }
+
+                    }
 
                     var settings = from s in db.Settings
                                    select s;

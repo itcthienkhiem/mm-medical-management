@@ -46,6 +46,7 @@ namespace MM.Controls
         {
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
+            btnExportInvoice.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -287,6 +288,50 @@ namespace MM.Controls
             }
 
             DisplayAsThread();
+        }
+
+        private void btnExportInvoice_Click(object sender, EventArgs e)
+        {
+            dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(null);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                DataTable dt = dgInvoice.DataSource as DataTable;
+                if (dt == null) return;
+                DataRow newRow = dt.NewRow();
+                newRow["Checked"] = false;
+                newRow["HoaDonThuocGUID"] = dlg.HoaDonThuoc.HoaDonThuocGUID.ToString();
+                newRow["SoHoaDon"] = dlg.HoaDonThuoc.SoHoaDon;
+                newRow["NgayXuatHoaDon"] = dlg.HoaDonThuoc.NgayXuatHoaDon;
+                newRow["TenNguoiMuaHang"] = dlg.HoaDonThuoc.TenNguoiMuaHang;
+                newRow["TenDonVi"] = dlg.HoaDonThuoc.TenDonVi;
+                newRow["MaSoThue"] = dlg.HoaDonThuoc.MaSoThue;
+                newRow["DiaChi"] = dlg.HoaDonThuoc.DiaChi;
+                newRow["SoTaiKhoan"] = dlg.HoaDonThuoc.SoTaiKhoan;
+                newRow["HinhThucThanhToan"] = dlg.HoaDonThuoc.HinhThucThanhToan;
+                newRow["VAT"] = dlg.HoaDonThuoc.VAT;
+                newRow["HinhThucThanhToanStr"] = ((PaymentType)dlg.HoaDonThuoc.HinhThucThanhToan) == PaymentType.TienMat ? "TM" : "CK";
+
+                if (dlg.HoaDonThuoc.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.HoaDonThuoc.CreatedDate;
+
+                if (dlg.HoaDonThuoc.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.HoaDonThuoc.CreatedBy.ToString();
+
+                if (dlg.HoaDonThuoc.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.HoaDonThuoc.UpdatedDate;
+
+                if (dlg.HoaDonThuoc.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.HoaDonThuoc.UpdatedBy.ToString();
+
+                if (dlg.HoaDonThuoc.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.HoaDonThuoc.DeletedDate;
+
+                if (dlg.HoaDonThuoc.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.HoaDonThuoc.DeletedBy.ToString();
+
+                newRow["Status"] = dlg.HoaDonThuoc.Status;
+                dt.Rows.Add(newRow);
+            }
         }
         #endregion
 

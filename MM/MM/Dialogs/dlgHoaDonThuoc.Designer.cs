@@ -379,7 +379,7 @@
             this.txtAddress.Location = new System.Drawing.Point(143, 71);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(342, 20);
-            this.txtAddress.TabIndex = 23;
+            this.txtAddress.TabIndex = 20;
             // 
             // cboHinhThucThanhToan
             // 
@@ -410,7 +410,7 @@
             this.txtSoTaiKhoan.Location = new System.Drawing.Point(143, 93);
             this.txtSoTaiKhoan.Name = "txtSoTaiKhoan";
             this.txtSoTaiKhoan.Size = new System.Drawing.Size(178, 20);
-            this.txtSoTaiKhoan.TabIndex = 20;
+            this.txtSoTaiKhoan.TabIndex = 21;
             // 
             // label10
             // 

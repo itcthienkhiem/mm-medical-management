@@ -175,8 +175,8 @@ namespace MM.Dialogs
 
                 if (_receiptList != null && _receiptList.Count == 1)
                 {
-                    txtTenNguoiMuaHang.Text = _drInvoice["FullName"].ToString();
-                    txtAddress.Text = _drInvoice["Address"].ToString();
+                    txtTenNguoiMuaHang.Text = _receiptList[0]["FullName"].ToString();
+                    txtAddress.Text = _receiptList[0]["Address"].ToString();
                 }
 
                 Result result = InvoiceBus.GetChiTietPhieuThuDichVuList(_receiptList);
