@@ -103,6 +103,9 @@ spDichVuHopDong
 - Update table: PhieuThuThuoc(Add col: IsExported)
 - Create table: InvoiceDetail, HoaDonThuoc, ChiTietHoaDonThuoc, Settings
 - Create view: HoaDonThuocView
+2012-03-01
+- Update table: Invoice(Delete col: ReceiptGUID, Add col: ReceiptGUIDList), HoaDonThuoc(Delete col: PhieuThuThuocGUID, Add col: PhieuThuThuocGUIDList)
+- Update view: InvoiceView, HoaDonThuocView
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

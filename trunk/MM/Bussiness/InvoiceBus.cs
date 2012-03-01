@@ -215,6 +215,56 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetChiTietPhieuThuDichVuList(List<DataRow> receiptList)
+        {
+            Result result = new Result();
+
+            try
+            {
+                if (receiptList == null || receiptList.Count <= 0) return result;
+
+                DataTable dtAll = null;
+
+                foreach (DataRow row in receiptList)
+                {
+                    string receiptGUID = row["ReceiptGUID"].ToString();
+                    string query = string.Format("SELECT Name AS TenDichVu, CAST(N'Lần' AS nvarchar(5)) AS DonViTinh, CAST(1 AS int) AS SoLuong, CAST((Price - (Price * Discount)/100) AS float) AS DonGia, CAST((Price - (Price * Discount)/100) AS float) AS ThanhTien FROM ReceiptDetailView WHERE ReceiptGUID='{0}' AND ReceiptDetailStatus={1} ORDER BY Code",
+                        receiptGUID, (byte)Status.Actived);
+                    result = ExcuteQuery(query);
+
+                    if (!result.IsOK) return result;
+
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dtAll == null)
+                    {
+                        dtAll = new DataTable();
+                        dtAll = dt;
+                    }
+                    else
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            dtAll.ImportRow(dr);
+                        }
+                    }
+                }
+
+                result.QueryResult = dtAll;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetInvoice(string invoiceGUID)
         {
             Result result = new Result();
@@ -269,7 +319,16 @@ namespace MM.Bussiness
                             invoice.Status = (byte)Status.Deactived;
 
                             //Update Exported Invoice
-                            invoice.Receipt.IsExportedInVoice = false;
+                            if (invoice.ReceiptGUIDList != null && invoice.ReceiptGUIDList.Trim() != string.Empty)
+                            {
+                                string[] keys = invoice.ReceiptGUIDList.Split(',');
+                                foreach (string receiptGUID in keys)
+                                {
+                                    Receipt receipt = db.Receipts.SingleOrDefault<Receipt>(r => r.ReceiptGUID.ToString() == receiptGUID);
+                                    if (receipt != null) receipt.IsExportedInVoice = false;
+                                }
+
+                            }
 
                             desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
                                 invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"), 
@@ -354,8 +413,16 @@ namespace MM.Bussiness
                     }
 
                     //Update Exported Invoice
-                    Receipt receipt = db.Receipts.SingleOrDefault<Receipt>(r => r.ReceiptGUID == invoice.ReceiptGUID);
-                    if (receipt != null) receipt.IsExportedInVoice = true;
+                    if (invoice.ReceiptGUIDList != null && invoice.ReceiptGUIDList.Trim() != string.Empty)
+                    {
+                        string[] keys = invoice.ReceiptGUIDList.Split(',');
+                        foreach (string key in keys)
+                        {
+                            Receipt receipt = db.Receipts.SingleOrDefault<Receipt>(r => r.ReceiptGUID.ToString() == key);
+                            if (receipt != null) receipt.IsExportedInVoice = true;    
+                        }
+                        
+                    }
 
                     var settings = from s in db.Settings
                                       select s;

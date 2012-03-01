@@ -27,13 +27,15 @@ namespace MM.Dialogs
         private bool _flag = true;
         private double _oldTotalPayment = 0;
         private double _totalPayment = 0;
+        private List<DataRow> _receiptList = null;
+        private Invoice _invoice = new Invoice();
         #endregion
 
         #region Constructor
-        public dlgInvoiceInfo(DataRow drInvoice)
+        public dlgInvoiceInfo(List<DataRow> receiptList)
         {
             InitializeComponent();
-            _drInvoice = drInvoice;
+            _receiptList = receiptList;
             cboHinhThucThanhToan.SelectedIndex = 0;
             btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
         }
@@ -65,7 +67,11 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
-
+        public Invoice Invoice
+        {
+            get { return _invoice; }
+            set { _invoice = value; }
+        }
         #endregion
 
         #region UI Command
@@ -122,13 +128,9 @@ namespace MM.Dialogs
                 if (_drInvoice["TenNguoiMuaHang"] != null && _drInvoice["TenNguoiMuaHang"] != DBNull.Value && 
                     _drInvoice["TenNguoiMuaHang"].ToString().Trim() != string.Empty)
                     txtTenNguoiMuaHang.Text = _drInvoice["TenNguoiMuaHang"].ToString();
-                else
-                    txtTenNguoiMuaHang.Text = _drInvoice["FullName"].ToString();
 
                 if (_drInvoice["DiaChi"] != null && _drInvoice["DiaChi"] != DBNull.Value)
                     txtAddress.Text = _drInvoice["DiaChi"].ToString();
-                else
-                    txtAddress.Text = _drInvoice["Address"].ToString();
 
                 Result result = InvoiceBus.GetInvoiceDetail(_drInvoice["InvoiceGUID"].ToString());
                 if (result.IsOK)
@@ -171,23 +173,29 @@ namespace MM.Dialogs
                 string strYear = dt.Year.ToString();
                 lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
 
-                txtTenNguoiMuaHang.Text = _drInvoice["FullName"].ToString();
-                txtAddress.Text = _drInvoice["Address"].ToString();
+                if (_receiptList != null && _receiptList.Count == 1)
+                {
+                    txtTenNguoiMuaHang.Text = _drInvoice["FullName"].ToString();
+                    txtAddress.Text = _drInvoice["Address"].ToString();
+                }
 
-                Result result = InvoiceBus.GetChiTietPhieuThuDichVuList(_drInvoice["ReceiptGUID"].ToString());
+                Result result = InvoiceBus.GetChiTietPhieuThuDichVuList(_receiptList);
                 if (result.IsOK)
                 {
                     DataTable dataSource = result.QueryResult as DataTable;
                     dgDetail.DataSource = dataSource;
 
-                    foreach (DataRow row in dataSource.Rows)
+                    if (dataSource != null)
                     {
-                        double thanhTien = Convert.ToDouble(row["ThanhTien"]);
-                        _totalPrice += thanhTien;
+                        foreach (DataRow row in dataSource.Rows)
+                        {
+                            double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                            _totalPrice += thanhTien;
+                        }
                     }
 
                     if (_totalPrice > 0)
-                        lbTotalAmount.Text = string.Format("{0}", _totalPrice.ToString("#,###"));
+                    lbTotalAmount.Text = string.Format("{0}", _totalPrice.ToString("#,###"));
 
                     double vat = ((double)numVAT.Value * _totalPrice) / 100;
                     if (vat > 0)
@@ -374,13 +382,28 @@ namespace MM.Dialogs
                 }
             }
 
-            if (_totalPayment > _oldTotalPayment)
+            if (_receiptList != null && _receiptList.Count > 0 && _totalPayment > _oldTotalPayment)
             {
                 MsgBox.Show(this.Text, "Tổng số tiền xuất hóa đơn không được vượt quá tổng số tiền trong phiếu thu.", IconType.Information);
                 return false;
             }
 
             return true;
+        }
+
+        private string GetReceiptGUIDListStr()
+        {
+            if (_receiptList == null || _receiptList.Count <= 0) return string.Empty;
+
+            string str = string.Empty;
+            foreach (DataRow row in _receiptList)
+            {
+                str += string.Format("{0},", row["ReceiptGUID"].ToString());
+            }
+
+            str = str.Substring(0, str.Length - 1);
+
+            return str;
         }
 
         private bool ExportInvoice()
@@ -390,7 +413,7 @@ namespace MM.Dialogs
                 if (!CheckInfo()) return false;
 
                 Invoice invoice = new Invoice();
-                invoice.ReceiptGUID = Guid.Parse(_drInvoice["ReceiptGUID"].ToString());
+                invoice.ReceiptGUIDList = GetReceiptGUIDListStr();
                 invoice.InvoiceCode = _invoiceCode;
                 invoice.InvoiceDate = DateTime.Now;
                 invoice.TenNguoiMuaHang = txtTenNguoiMuaHang.Text;
@@ -437,6 +460,7 @@ namespace MM.Dialogs
                 Result result = InvoiceBus.InsertInvoice(invoice, addedDetails);
                 if (result.IsOK)
                 {
+                    _invoice = invoice;
                     if (!_isPrinted) return true;
                     OnPrint(invoice.InvoiceGUID.ToString());
                     return true;
@@ -468,8 +492,13 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (!ExportInvoice()) e.Cancel = true;
-                else
-                    _drInvoice["IsExportedInvoice"] = true;
+                else if (_receiptList != null && _receiptList.Count > 0)
+                {
+                    foreach (DataRow row in _receiptList)
+                    {
+                        row["IsExportedInvoice"] = true;
+                    }
+                }
             }
         }
 

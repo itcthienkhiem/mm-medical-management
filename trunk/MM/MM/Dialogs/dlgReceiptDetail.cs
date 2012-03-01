@@ -108,7 +108,9 @@ namespace MM.Dialogs
 
         private void OnExportInvoice()
         {
-            dlgInvoiceInfo dlg = new dlgInvoiceInfo(_drReceipt);
+            List<DataRow> receiptList = new List<DataRow>();
+            receiptList.Add(_drReceipt);
+            dlgInvoiceInfo dlg = new dlgInvoiceInfo(receiptList);
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 _isExportedInvoice = true;
