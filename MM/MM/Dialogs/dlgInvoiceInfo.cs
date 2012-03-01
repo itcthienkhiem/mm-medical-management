@@ -675,14 +675,16 @@ namespace MM.Dialogs
 
         private void dgDetail_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 5)
+            if (e.ColumnIndex >= 2 && e.ColumnIndex <= 5)
             {
                 if (e.Value == null || e.Value.ToString() == string.Empty || e.Value == DBNull.Value)
                 {
                     if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
                         e.Value = "0";
-                    else
+                    else if (e.ColumnIndex == 3)
                         e.Value = "1";
+                    else
+                        e.Value = "Lần";
                 }
             }
         }
