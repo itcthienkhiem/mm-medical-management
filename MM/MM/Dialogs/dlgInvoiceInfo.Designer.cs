@@ -379,7 +379,7 @@
             this.txtAddress.Location = new System.Drawing.Point(143, 71);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(342, 20);
-            this.txtAddress.TabIndex = 23;
+            this.txtAddress.TabIndex = 19;
             // 
             // cboHinhThucThanhToan
             // 

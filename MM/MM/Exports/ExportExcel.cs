@@ -269,7 +269,7 @@ namespace MM.Exports
                 if (invoice.TenNguoiMuaHang != null && invoice.TenNguoiMuaHang != string.Empty)
                     workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", invoice.TenNguoiMuaHang);
                 else
-                    workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", invoice.FullName);
+                    workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", string.Empty);
 
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
                 workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", invoice.MaSoThue);
@@ -277,7 +277,7 @@ namespace MM.Exports
                 if (invoice.DiaChi != null)
                     workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", invoice.DiaChi);
                 else
-                    workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", invoice.Address);
+                    workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", string.Empty);
 
                 workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", invoice.SoTaiKhoan);
                 workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", invoice.HinhThucThanhToanStr);
