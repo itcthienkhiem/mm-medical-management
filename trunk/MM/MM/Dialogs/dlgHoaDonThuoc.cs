@@ -27,13 +27,15 @@ namespace MM.Dialogs
         private bool _flag = true;
         private double _oldTotalPayment = 0;
         private double _totalPayment = 0;
+        private List<DataRow> _phieuThuThuocList = null;
+        private HoaDonThuoc _hoaDonThuoc = new HoaDonThuoc();
         #endregion
 
         #region Constructor
-        public dlgHoaDonThuoc(DataRow drInvoice)
+        public dlgHoaDonThuoc(List<DataRow> phieuThuThuocList)
         {
             InitializeComponent();
-            _drInvoice = drInvoice;
+            _phieuThuThuocList = phieuThuThuocList;
             cboHinhThucThanhToan.SelectedIndex = 0;
             btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
         }
@@ -65,7 +67,11 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
-
+        public HoaDonThuoc HoaDonThuoc
+        {
+            get { return _hoaDonThuoc; }
+            set { _hoaDonThuoc = value; }
+        }
         #endregion
 
         #region UI Command
@@ -167,19 +173,25 @@ namespace MM.Dialogs
                 string strYear = dt.Year.ToString();
                 lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
 
-                txtTenNguoiMuaHang.Text = _drInvoice["TenBenhNhan"].ToString();
-                txtAddress.Text = _drInvoice["DiaChi"].ToString();
+                if (_phieuThuThuocList != null && _phieuThuThuocList.Count == 1)
+                {
+                    txtTenNguoiMuaHang.Text = _phieuThuThuocList[0]["TenBenhNhan"].ToString();
+                    txtAddress.Text = _phieuThuThuocList[0]["DiaChi"].ToString();
+                }
 
-                Result result = HoaDonThuocBus.GetChiTietPhieuThuThuoc(_drInvoice["PhieuThuThuocGUID"].ToString());
+                Result result = HoaDonThuocBus.GetChiTietPhieuThuThuoc(_phieuThuThuocList);
                 if (result.IsOK)
                 {
                     DataTable dataSource = result.QueryResult as DataTable;
                     dgDetail.DataSource = dataSource;
 
-                    foreach (DataRow row in dataSource.Rows)
+                    if (dataSource != null)
                     {
-                        double thanhTien = Convert.ToDouble(row["ThanhTien"]);
-                        _totalPrice += thanhTien;
+                        foreach (DataRow row in dataSource.Rows)
+                        {
+                            double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                            _totalPrice += thanhTien;
+                        }
                     }
 
                     if (_totalPrice > 0)
@@ -370,13 +382,28 @@ namespace MM.Dialogs
                 }
             }
 
-            if (_totalPayment > _oldTotalPayment)
+            if (_phieuThuThuocList != null && _phieuThuThuocList.Count > 0 && _totalPayment > _oldTotalPayment)
             {
                 MsgBox.Show(this.Text, "Tổng số tiền xuất hóa đơn không được vượt quá tổng số tiền trong phiếu thu.", IconType.Information);
                 return false;
             }
 
             return true;
+        }
+
+        private string GetPhieuThuThuocGUIDListStr()
+        {
+            if (_phieuThuThuocList == null || _phieuThuThuocList.Count <= 0) return string.Empty;
+
+            string str = string.Empty;
+            foreach (DataRow row in _phieuThuThuocList)
+            {
+                str += string.Format("{0},", row["PhieuThuThuocGUID"].ToString());
+            }
+
+            str = str.Substring(0, str.Length - 1);
+
+            return str;
         }
 
         private bool ExportInvoice()
@@ -386,7 +413,7 @@ namespace MM.Dialogs
                 if (!CheckInfo()) return false;
 
                 HoaDonThuoc invoice = new HoaDonThuoc();
-                invoice.PhieuThuThuocGUID = Guid.Parse(_drInvoice["PhieuThuThuocGUID"].ToString());
+                invoice.PhieuThuThuocGUIDList = GetPhieuThuThuocGUIDListStr();
                 invoice.SoHoaDon = _invoiceCode;
                 invoice.NgayXuatHoaDon = DateTime.Now;
                 invoice.TenNguoiMuaHang = txtTenNguoiMuaHang.Text;
@@ -433,6 +460,7 @@ namespace MM.Dialogs
                 Result result = HoaDonThuocBus.InsertHoaDonThuoc(invoice, addedDetails);
                 if (result.IsOK)
                 {
+                    _hoaDonThuoc = invoice;
                     if (!_isPrinted) return true;
                     OnPrint(invoice.HoaDonThuocGUID.ToString());
                     return true;
@@ -464,8 +492,13 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (!ExportInvoice()) e.Cancel = true;
-                else
-                    _drInvoice["IsExported"] = true;
+                else if (_phieuThuThuocList != null && _phieuThuThuocList.Count > 0)
+                {
+                    foreach (DataRow row in _phieuThuThuocList)
+                    {
+                        row["IsExported"] = true;
+                    }
+                }
             }
         }
 

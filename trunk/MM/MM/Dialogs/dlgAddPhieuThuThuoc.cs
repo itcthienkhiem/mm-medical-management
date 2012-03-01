@@ -618,7 +618,9 @@ namespace MM.Dialogs
 
         private void OnExportInvoice()
         {
-            dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(_drPhieuThu);
+            List<DataRow> phieuThuThuocList = new List<DataRow>();
+            phieuThuThuocList.Add(_drPhieuThu);
+            dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(phieuThuThuocList);
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 _isExportedInvoice = true;

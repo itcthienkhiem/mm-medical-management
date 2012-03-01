@@ -346,11 +346,8 @@ namespace MM.Controls
 
             if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất hóa đơn ?") == DialogResult.No) return;
 
-            foreach (DataRow row in noExportedInvoiceList)
-            {
-                dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(row);
-                dlg.ShowDialog();
-            }
+            dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(noExportedInvoiceList);
+            dlg.ShowDialog();
 
             HighlightExportedInvoice();
         }
