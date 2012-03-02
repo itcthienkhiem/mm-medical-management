@@ -318,7 +318,7 @@ namespace MM.Dialogs
 
         private void UpdateCheckedServices()
         {
-            DataTable dt = dgService.DataSource as DataTable;
+            /*DataTable dt = dgService.DataSource as DataTable;
             if (dt == null) return;
 
             foreach (DataRow row1 in dt.Rows)
@@ -336,12 +336,27 @@ namespace MM.Dialogs
                         break;
                     }
                 }
+            }*/
+
+            DataTable dt = dgService.DataSource as DataTable;
+            if (dt == null) return;
+
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
+
+            foreach (DataRow row1 in rows1)
+            {
+                string patientGUID1 = row1["ServiceGUID"].ToString();
+                DataRow[] rows2 = _dataSourceService.Select(string.Format("ServiceGUID='{0}'", patientGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
+
+                rows2[0]["Checked"] = row1["Checked"];
             }
         }
 
         private void UpdateCheckedMembers()
         {
-            DataTable dt = dgMembers.DataSource as DataTable;
+            /*DataTable dt = dgMembers.DataSource as DataTable;
             if (dt == null) return;
 
             foreach (DataRow row1 in dt.Rows)
@@ -359,6 +374,21 @@ namespace MM.Dialogs
                         break;
                     }
                 }
+            }*/
+
+            DataTable dt = dgMembers.DataSource as DataTable;
+            if (dt == null) return;
+
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
+
+            foreach (DataRow row1 in rows1)
+            {
+                string patientGUID1 = row1["PatientGUID"].ToString();
+                DataRow[] rows2 = _dataSourceMember.Select(string.Format("PatientGUID='{0}'", patientGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
+
+                rows2[0]["Checked"] = row1["Checked"];
             }
         }
 
