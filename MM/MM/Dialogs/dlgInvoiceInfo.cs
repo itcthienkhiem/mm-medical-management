@@ -62,6 +62,7 @@ namespace MM.Dialogs
                 txtSoTaiKhoan.ReadOnly = true;
                 cboHinhThucThanhToan.Enabled = false;
                 numVAT.Enabled = false;
+                dtpkNgay.Enabled = false;
             }
         }
         #endregion
