@@ -399,7 +399,7 @@ namespace MM.Dialogs
                     return false;
                 }
 
-                if (row.Cells[2].Value == null || row.Cells[2].Value == DBNull.Value || row.Cells[2].Value.ToString().Trim() == string.Empty)
+                if (row.Cells[2].Value != null && (row.Cells[2].Value == DBNull.Value || row.Cells[2].Value.ToString().Trim() == string.Empty))
                 {
                     MsgBox.Show(this.Text, "Vui lòng nhập đơn vị tính.", IconType.Information);
                     return false;
@@ -469,7 +469,11 @@ namespace MM.Dialogs
                     detail.CreatedDate = DateTime.Now;
                     detail.CreateBy = Guid.Parse(Global.UserGUID);
                     detail.TenDichVu = row.Cells["TenDichVu"].Value.ToString();
-                    detail.DonViTinh = row.Cells["DonViTinh"].Value.ToString();
+
+                    if (row.Cells["DonViTinh"].Value != null)
+                        detail.DonViTinh = row.Cells["DonViTinh"].Value.ToString();
+                    else
+                        detail.DonViTinh = "Lần";
 
                     int soLuong = 1;
                     if (row.Cells["SoLuong"].Value != null && row.Cells["SoLuong"].Value != DBNull.Value)
