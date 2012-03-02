@@ -110,7 +110,7 @@
     <Compile Include="ServiceGroupBus.cs" />
     <Compile Include="ServiceHistoryBus.cs" />
     <Compile Include="ServicesBus.cs" />
-    <Compile Include="SettingBus.cs" />
+    <Compile Include="QuanLySoHoaDonBus.cs" />
     <Compile Include="SpecialityBus.cs" />
     <Compile Include="SymptomBus.cs" />
     <Compile Include="ThuocBus.cs" />

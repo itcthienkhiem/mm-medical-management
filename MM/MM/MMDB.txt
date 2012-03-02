@@ -106,6 +106,9 @@ spDichVuHopDong
 2012-03-01
 - Update table: Invoice(Delete col: ReceiptGUID, Add col: ReceiptGUIDList), HoaDonThuoc(Delete col: PhieuThuThuocGUID, Add col: PhieuThuThuocGUIDList)
 - Update view: InvoiceView, HoaDonThuocView
+2012-03-03
+- Delete table: Settings
+- Create table: QuanLySoHoaSon
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

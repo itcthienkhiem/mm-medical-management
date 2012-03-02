@@ -159,15 +159,15 @@ namespace MM.Databasae
     partial void InsertChiTietHoaDonThuoc(ChiTietHoaDonThuoc instance);
     partial void UpdateChiTietHoaDonThuoc(ChiTietHoaDonThuoc instance);
     partial void DeleteChiTietHoaDonThuoc(ChiTietHoaDonThuoc instance);
-    partial void InsertSetting(Setting instance);
-    partial void UpdateSetting(Setting instance);
-    partial void DeleteSetting(Setting instance);
     partial void InsertInvoice(Invoice instance);
     partial void UpdateInvoice(Invoice instance);
     partial void DeleteInvoice(Invoice instance);
     partial void InsertHoaDonThuoc(HoaDonThuoc instance);
     partial void UpdateHoaDonThuoc(HoaDonThuoc instance);
     partial void DeleteHoaDonThuoc(HoaDonThuoc instance);
+    partial void InsertQuanLySoHoaDon(QuanLySoHoaDon instance);
+    partial void UpdateQuanLySoHoaDon(QuanLySoHoaDon instance);
+    partial void DeleteQuanLySoHoaDon(QuanLySoHoaDon instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -792,14 +792,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		public System.Data.Linq.Table<Setting> Settings
-		{
-			get
-			{
-				return this.GetTable<Setting>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Invoice> Invoices
 		{
 			get
@@ -829,6 +821,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<HoaDonThuocView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<QuanLySoHoaDon> QuanLySoHoaDons
+		{
+			get
+			{
+				return this.GetTable<QuanLySoHoaDon>();
 			}
 		}
 		
@@ -36612,92 +36612,6 @@ namespace MM.Databasae
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Settings")]
-	public partial class Setting : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _SettingGUID;
-		
-		private long _SoHoaDonBatDau;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnSettingGUIDChanging(System.Guid value);
-    partial void OnSettingGUIDChanged();
-    partial void OnSoHoaDonBatDauChanging(long value);
-    partial void OnSoHoaDonBatDauChanged();
-    #endregion
-		
-		public Setting()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SettingGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid SettingGUID
-		{
-			get
-			{
-				return this._SettingGUID;
-			}
-			set
-			{
-				if ((this._SettingGUID != value))
-				{
-					this.OnSettingGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._SettingGUID = value;
-					this.SendPropertyChanged("SettingGUID");
-					this.OnSettingGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoHoaDonBatDau", DbType="BigInt NOT NULL")]
-		public long SoHoaDonBatDau
-		{
-			get
-			{
-				return this._SoHoaDonBatDau;
-			}
-			set
-			{
-				if ((this._SoHoaDonBatDau != value))
-				{
-					this.OnSoHoaDonBatDauChanging(value);
-					this.SendPropertyChanging();
-					this._SoHoaDonBatDau = value;
-					this.SendPropertyChanged("SoHoaDonBatDau");
-					this.OnSoHoaDonBatDauChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Invoice")]
 	public partial class Invoice : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -38392,6 +38306,140 @@ namespace MM.Databasae
 				{
 					this._PhieuThuThuocGUIDList = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.QuanLySoHoaDon")]
+	public partial class QuanLySoHoaDon : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _QuanLySoHoaDonGUID;
+		
+		private int _SoHoaDon;
+		
+		private bool _DaXuat;
+		
+		private bool _XuatTruoc;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnQuanLySoHoaDonGUIDChanging(System.Guid value);
+    partial void OnQuanLySoHoaDonGUIDChanged();
+    partial void OnSoHoaDonChanging(int value);
+    partial void OnSoHoaDonChanged();
+    partial void OnDaXuatChanging(bool value);
+    partial void OnDaXuatChanged();
+    partial void OnXuatTruocChanging(bool value);
+    partial void OnXuatTruocChanged();
+    #endregion
+		
+		public QuanLySoHoaDon()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuanLySoHoaDonGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid QuanLySoHoaDonGUID
+		{
+			get
+			{
+				return this._QuanLySoHoaDonGUID;
+			}
+			set
+			{
+				if ((this._QuanLySoHoaDonGUID != value))
+				{
+					this.OnQuanLySoHoaDonGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._QuanLySoHoaDonGUID = value;
+					this.SendPropertyChanged("QuanLySoHoaDonGUID");
+					this.OnQuanLySoHoaDonGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoHoaDon", DbType="Int NOT NULL")]
+		public int SoHoaDon
+		{
+			get
+			{
+				return this._SoHoaDon;
+			}
+			set
+			{
+				if ((this._SoHoaDon != value))
+				{
+					this.OnSoHoaDonChanging(value);
+					this.SendPropertyChanging();
+					this._SoHoaDon = value;
+					this.SendPropertyChanged("SoHoaDon");
+					this.OnSoHoaDonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaXuat", DbType="Bit NOT NULL")]
+		public bool DaXuat
+		{
+			get
+			{
+				return this._DaXuat;
+			}
+			set
+			{
+				if ((this._DaXuat != value))
+				{
+					this.OnDaXuatChanging(value);
+					this.SendPropertyChanging();
+					this._DaXuat = value;
+					this.SendPropertyChanged("DaXuat");
+					this.OnDaXuatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XuatTruoc", DbType="Bit NOT NULL")]
+		public bool XuatTruoc
+		{
+			get
+			{
+				return this._XuatTruoc;
+			}
+			set
+			{
+				if ((this._XuatTruoc != value))
+				{
+					this.OnXuatTruocChanging(value);
+					this.SendPropertyChanging();
+					this._XuatTruoc = value;
+					this.SendPropertyChanged("XuatTruoc");
+					this.OnXuatTruocChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
