@@ -113,11 +113,12 @@ namespace MM.Dialogs
                 dgDetail.ReadOnly = true;
 
                 lbInvoiceCode.Text = string.Format("Số: {0}", _drInvoice["SoHoaDon"].ToString());
-                DateTime dt = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
-                string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
-                string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
-                string strYear = dt.Year.ToString();
-                lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+                //DateTime dt = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
+                //string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
+                //string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
+                //string strYear = dt.Year.ToString();
+                //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+                dtpkNgay.Value = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
                 txtTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
 
                 if (_drInvoice["MaSoThue"] != null && _drInvoice["MaSoThue"] != DBNull.Value)
@@ -169,11 +170,24 @@ namespace MM.Dialogs
             else
             {
                 GenerateCode();
-                DateTime dt = DateTime.Now;
-                string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
-                string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
-                string strYear = dt.Year.ToString();
-                lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+
+                Result result = HoaDonThuocBus.GetNgayXuatHoaDon(_invoiceCode);
+                if (result.IsOK)
+                {
+                    if (result.QueryResult != null)
+                        dtpkNgay.Value = Convert.ToDateTime(result.QueryResult);
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetNgayXuatHoaDon"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetNgayXuatHoaDon"));
+                }
+
+                //DateTime dt = DateTime.Now;
+                //string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
+                //string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
+                //string strYear = dt.Year.ToString();
+                //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
 
                 if (_phieuThuThuocList != null && _phieuThuThuocList.Count == 1)
                 {
@@ -181,7 +195,7 @@ namespace MM.Dialogs
                     txtAddress.Text = _phieuThuThuocList[0]["DiaChi"].ToString();
                 }
 
-                Result result = HoaDonThuocBus.GetChiTietPhieuThuThuoc(_phieuThuThuocList);
+                result = HoaDonThuocBus.GetChiTietPhieuThuThuoc(_phieuThuThuocList);
                 if (result.IsOK)
                 {
                     DataTable dataSource = result.QueryResult as DataTable;
@@ -434,7 +448,7 @@ namespace MM.Dialogs
                 HoaDonThuoc invoice = new HoaDonThuoc();
                 invoice.PhieuThuThuocGUIDList = GetPhieuThuThuocGUIDListStr();
                 invoice.SoHoaDon = _invoiceCode;
-                invoice.NgayXuatHoaDon = DateTime.Now;
+                invoice.NgayXuatHoaDon = dtpkNgay.Value;
                 invoice.TenNguoiMuaHang = txtTenNguoiMuaHang.Text;
                 invoice.DiaChi = txtAddress.Text;
                 invoice.TenDonVi = txtTenDonVi.Text;
@@ -503,6 +517,7 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgInvoiceInfo_Load(object sender, EventArgs e)
         {
+            dtpkNgay.Value = DateTime.Now;
             DisplayInfo();
         }
 

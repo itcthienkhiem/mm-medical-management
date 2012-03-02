@@ -259,7 +259,7 @@ namespace MM.Exports
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", invoice.InvoiceCode);
 
-                DateTime dt = DateTime.Now;
+                DateTime dt = invoice.InvoiceDate;
                 string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
                 string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
                 string strYear = dt.Year.ToString();
@@ -431,7 +431,7 @@ namespace MM.Exports
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
 
-                DateTime dt = DateTime.Now;
+                DateTime dt = hdt.NgayXuatHoaDon.Value;
                 string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
                 string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
                 string strYear = dt.Year.ToString();

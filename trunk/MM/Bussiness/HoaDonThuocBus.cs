@@ -229,6 +229,45 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetNgayXuatHoaDon(string soHoaDon)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                HoaDonThuoc hdt = (from i in db.HoaDonThuocs
+                                   where i.SoHoaDon == soHoaDon &&
+                                   i.Status == (byte)Status.Deactived
+                                   orderby i.NgayXuatHoaDon descending
+                                   select i).FirstOrDefault();
+
+                if (hdt != null)
+                    result.QueryResult = hdt.NgayXuatHoaDon.Value;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result CheckHoaDonThuocExistCode(int soHoaDon)
         {
             Result result = new Result();

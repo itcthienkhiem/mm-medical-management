@@ -48,7 +48,6 @@
             this.btnExportInvoice = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbDate = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lbInvoiceCode = new System.Windows.Forms.Label();
@@ -99,6 +98,7 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtpkNgay = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -195,16 +195,6 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "HÓA ĐƠN GIÁ TRỊ GIA TĂNG";
             // 
-            // lbDate
-            // 
-            this.lbDate.AutoSize = true;
-            this.lbDate.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDate.Location = new System.Drawing.Point(262, 34);
-            this.lbDate.Name = "lbDate";
-            this.lbDate.Size = new System.Drawing.Size(152, 15);
-            this.lbDate.TabIndex = 9;
-            this.lbDate.Text = "Ngày 08 tháng 12 năm 2011";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -238,11 +228,11 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.dtpkNgay);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.lbInvoiceCode);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.lbDate);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -756,6 +746,15 @@
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn6.Width = 120;
             // 
+            // dtpkNgay
+            // 
+            this.dtpkNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkNgay.Location = new System.Drawing.Point(281, 33);
+            this.dtpkNgay.Name = "dtpkNgay";
+            this.dtpkNgay.Size = new System.Drawing.Size(109, 20);
+            this.dtpkNgay.TabIndex = 14;
+            // 
             // dlgHoaDonThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -804,7 +803,6 @@
         private System.Windows.Forms.Button btnExportAndPrint;
         private System.Windows.Forms.Button btnExportInvoice;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lbDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbInvoiceCode;
@@ -857,6 +855,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
+        private System.Windows.Forms.DateTimePicker dtpkNgay;
 
 
     }
