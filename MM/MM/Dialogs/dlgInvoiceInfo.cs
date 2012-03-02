@@ -113,11 +113,12 @@ namespace MM.Dialogs
                 dgDetail.ReadOnly = true;
 
                 lbInvoiceCode.Text = string.Format("Số: {0}", _drInvoice["InvoiceCode"].ToString());
-                DateTime dt = Convert.ToDateTime(_drInvoice["InvoiceDate"]);
-                string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
-                string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
-                string strYear = dt.Year.ToString();
-                lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+                dtpkNgay.Value = Convert.ToDateTime(_drInvoice["InvoiceDate"]);
+                //DateTime dt = Convert.ToDateTime(_drInvoice["InvoiceDate"]);
+                //string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
+                //string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
+                //string strYear = dt.Year.ToString();
+                //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
                 txtTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
 
                 if (_drInvoice["MaSoThue"] != null && _drInvoice["MaSoThue"] != DBNull.Value)
@@ -169,11 +170,24 @@ namespace MM.Dialogs
             else
             {
                 GenerateCode();
-                DateTime dt = DateTime.Now;
-                string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
-                string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
-                string strYear = dt.Year.ToString();
-                lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+
+                Result result = InvoiceBus.GetNgayXuatHoaDon(_invoiceCode);
+                if (result.IsOK)
+                {
+                    if (result.QueryResult != null)
+                        dtpkNgay.Value = Convert.ToDateTime(result.QueryResult);
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.GetNgayXuatHoaDon"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.GetNgayXuatHoaDon"));
+                }
+
+                //DateTime dt = DateTime.Now;
+                //string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
+                //string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
+                //string strYear = dt.Year.ToString();
+                //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
 
                 if (_receiptList != null && _receiptList.Count == 1)
                 {
@@ -181,7 +195,7 @@ namespace MM.Dialogs
                     txtAddress.Text = _receiptList[0]["Address"].ToString();
                 }
 
-                Result result = InvoiceBus.GetChiTietPhieuThuDichVuList(_receiptList);
+                result = InvoiceBus.GetChiTietPhieuThuDichVuList(_receiptList);
                 if (result.IsOK)
                 {
                     DataTable dataSource = result.QueryResult as DataTable;
@@ -434,7 +448,7 @@ namespace MM.Dialogs
                 Invoice invoice = new Invoice();
                 invoice.ReceiptGUIDList = GetReceiptGUIDListStr();
                 invoice.InvoiceCode = _invoiceCode;
-                invoice.InvoiceDate = DateTime.Now;
+                invoice.InvoiceDate = dtpkNgay.Value;
                 invoice.TenNguoiMuaHang = txtTenNguoiMuaHang.Text;
                 invoice.DiaChi = txtAddress.Text;
                 invoice.TenDonVi = txtTenDonVi.Text;
@@ -503,6 +517,7 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgInvoiceInfo_Load(object sender, EventArgs e)
         {
+            dtpkNgay.Value = DateTime.Now;
             DisplayInfo();
         }
 
