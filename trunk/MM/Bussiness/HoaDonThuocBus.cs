@@ -229,6 +229,45 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result CheckHoaDonThuocExistCode(int soHoaDon)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                   (q.DaXuat == true || q.XuatTruoc == true));
+
+                if (qlshd == null)
+                    result.Error.Code = ErrorCode.NOT_EXIST;
+                else
+                    result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+
         public static Result DeleteHoaDonThuoc(List<string> keys)
         {
             Result result = new Result();
@@ -261,13 +300,17 @@ namespace MM.Bussiness
 
                             }
 
-                            var settings = from s in db.Settings select s;
-                            if (settings != null)
+                            int soHoaDon = Convert.ToInt32(hdt.SoHoaDon);
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            if (qlshd != null) qlshd.DaXuat = false;
+                            else
                             {
-                                foreach (var setting in settings)
-                                {
-                                    setting.SoHoaDonBatDau -= 1;
-                                }
+                                qlshd = new QuanLySoHoaDon();
+                                qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                                qlshd.SoHoaDon = soHoaDon;
+                                qlshd.DaXuat = false;
+                                qlshd.XuatTruoc = false;
+                                db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                             }
 
                             desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
@@ -363,14 +406,17 @@ namespace MM.Bussiness
 
                     }
 
-                    var settings = from s in db.Settings
-                                   select s;
-                    if (settings != null)
+                    int soHoaDon = Convert.ToInt32(hdt.SoHoaDon);
+                    QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                    if (qlshd != null) qlshd.DaXuat = true;
+                    else
                     {
-                        foreach (var setting in settings)
-                        {
-                            setting.SoHoaDonBatDau = Convert.ToInt32(hdt.SoHoaDon);
-                        }
+                        qlshd = new QuanLySoHoaDon();
+                        qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                        qlshd.SoHoaDon = soHoaDon;
+                        qlshd.DaXuat = true;
+                        qlshd.XuatTruoc = false;
+                        db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                     }
 
                     //Tracking

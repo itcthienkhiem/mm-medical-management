@@ -149,7 +149,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CheckInvoiceExistCode(string invoiceGUID, string code)
+        public static Result CheckInvoiceExistCode(int soHoaDon)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -157,14 +157,10 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                Invoice invoice = null;
-                if (invoiceGUID == null || invoiceGUID == string.Empty)
-                    invoice = db.Invoices.SingleOrDefault<Invoice>(i => i.InvoiceCode.ToLower() == code.ToLower());
-                else
-                    invoice = db.Invoices.SingleOrDefault<Invoice>(i => i.InvoiceCode.ToLower() == code.ToLower() &&
-                                                                i.InvoiceGUID.ToString() != invoiceGUID);
+                QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon && 
+                    (q.DaXuat == true || q.XuatTruoc == true));
 
-                if (invoice == null)
+                if (qlshd == null)
                     result.Error.Code = ErrorCode.NOT_EXIST;
                 else
                     result.Error.Code = ErrorCode.EXIST;
@@ -330,6 +326,10 @@ namespace MM.Bussiness
 
                             }
 
+                            int soHoaDon = Convert.ToInt32(invoice.InvoiceCode);
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            if (qlshd != null) qlshd.DaXuat = false;
+
                             desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
                                 invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"), 
                                 invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan, 
@@ -424,14 +424,17 @@ namespace MM.Bussiness
                         
                     }
 
-                    var settings = from s in db.Settings
-                                      select s;
-                    if (settings != null)
+                    int soHoaDon = Convert.ToInt32(invoice.InvoiceCode);
+                    QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                    if (qlshd != null) qlshd.DaXuat = true;
+                    else
                     {
-                        foreach (var setting in settings)
-                        {
-                            setting.SoHoaDonBatDau = Convert.ToInt32(invoice.InvoiceCode);
-                        }
+                        qlshd = new QuanLySoHoaDon();
+                        qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                        qlshd.SoHoaDon = soHoaDon;
+                        qlshd.DaXuat = true;
+                        qlshd.XuatTruoc = false;
+                        db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                     }
 
                     //Tracking

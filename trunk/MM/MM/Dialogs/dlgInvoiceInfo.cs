@@ -78,17 +78,19 @@ namespace MM.Dialogs
         private void GenerateCode()
         {
             Cursor.Current = Cursors.WaitCursor;
-            Result result = SettingBus.GetSoHoaDonBatDau();
+            Result result = QuanLySoHoaDonBus.GetSoHoaDon();
             if (result.IsOK)
             {
                 int count = Convert.ToInt32(result.QueryResult);
-                _invoiceCode = Utility.GetCode(string.Empty, count + 1, 7);
+                _invoiceCode = Utility.GetCode(string.Empty, count, 7);
                 lbInvoiceCode.Text = string.Format("Số: {0}", _invoiceCode);
             }
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("SettingBus.GetSoHoaDonBatDau"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("SettingBus.GetSoHoaDonBatDau"));
+                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                this.Close();
             }
         }
 
@@ -342,6 +344,23 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
+            Result result = InvoiceBus.CheckInvoiceExistCode(Convert.ToInt32(_invoiceCode));
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
+                    MsgBox.Show(this.Text, "Số hóa đơn này đã được xuất rồi. Vui lòng xuất lại.", IconType.Information);
+                    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    this.Close();
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("InvoiceBus.CheckInvoiceExistCode"), IconType.Error);
+                return false;
+            }
+
             if (txtTenNguoiMuaHang.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập tên người mua hàng.", IconType.Information);
