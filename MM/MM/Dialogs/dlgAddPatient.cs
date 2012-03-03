@@ -116,7 +116,7 @@ namespace MM.Dialogs
             }
 
             string patientGUID = _isNew ? string.Empty : _patient.PatientGUID.ToString();
-            Result result = PatientBus.CheckPatientExistFileNum(patientGUID, txtFileNum.Text);
+            Result result = PatientBus.CheckPatientExistFileNum(patientGUID, txtFileNum.Text + txtNo.Text);
 
             if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
             {
