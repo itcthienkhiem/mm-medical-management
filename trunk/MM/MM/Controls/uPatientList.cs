@@ -39,10 +39,8 @@ namespace MM.Controls
         {
             get
             {
-                if (dgPatient.RowCount <= 0)
-                    DisplayAsThread();
-
-                return dgPatient.DataSource;
+                DisplayAsThread();
+                return _dataSource;
             }
         }
         #endregion
