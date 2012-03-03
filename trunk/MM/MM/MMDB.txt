@@ -109,6 +109,9 @@ spDichVuHopDong
 2012-03-03
 - Delete table: Settings
 - Create table: QuanLySoHoaSon
+2012-03-04
+- Create table: HoaDonXuatTruoc, ChiTietHoaDonXuatTruoc
+- Create view: HoaDonXuatTruocView
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa
