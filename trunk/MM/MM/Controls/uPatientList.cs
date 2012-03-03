@@ -636,7 +636,7 @@ namespace MM.Controls
 
                                     //process "'" character
                                     curCellValue = curCellValue.Replace("'", "''");
-                                    if(sheet.Cells.Font.Name.ToLower().IndexOf("vni")==0)
+                                    if(sheet.Cells[i,j].Font.Name.ToLower().IndexOf("vni")==0)
                                         curCellValue = Utility.ConvertVNI2Unicode(curCellValue);
                                     if (sheet.Cells[0, j].Value != null && sheet.Cells[0, j].Value.ToString().Trim() != null)
                                     {
