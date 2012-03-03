@@ -115,8 +115,9 @@ namespace MM.Controls
                 results = (from p in _dataSource.AsEnumerable()
                            where p.Field<string>("FileNum") != null &&
                                p.Field<string>("FileNum").Trim() != string.Empty &&
-                               (p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                           str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                               //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
+                           //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                           p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0
                            orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                            select p).ToList<DataRow>();
 
@@ -133,8 +134,9 @@ namespace MM.Controls
             {
                 //FullName
                 results = (from p in _dataSource.AsEnumerable()
-                           where (p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
-                           str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) &&
+                           where //(p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
+                           //str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) &&
+                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
                            p.Field<string>("FullName") != null &&
                            p.Field<string>("FullName").Trim() != string.Empty
                            orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
@@ -151,7 +153,7 @@ namespace MM.Controls
                 }
 
                 //HomePhone
-                results = (from p in _dataSource.AsEnumerable()
+                /*results = (from p in _dataSource.AsEnumerable()
                            where p.Field<string>("HomePhone") != null &&
                            p.Field<string>("HomePhone").Trim() != string.Empty &&
                            (p.Field<string>("HomePhone").ToLower().IndexOf(str) >= 0 ||
@@ -203,7 +205,7 @@ namespace MM.Controls
                 {
                     dgDuplicatePatient.DataSource = newDataSource;
                     return;
-                }
+                }*/
             }
 
             dgDuplicatePatient.DataSource = newDataSource;

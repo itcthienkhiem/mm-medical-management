@@ -184,8 +184,9 @@ namespace MM.Dialogs
             List<DataRow> results = (from p in _dataSource.AsEnumerable()
                                      where p.Field<string>("Code") != null &&
                                      p.Field<string>("Code").Trim() != string.Empty &&
-                                     (p.Field<string>("Code").ToLower().IndexOf(str) >= 0 ||
-                                     str.IndexOf(p.Field<string>("Code").ToLower()) >= 0)
+                                     //(p.Field<string>("Code").ToLower().IndexOf(str) >= 0 ||
+                                     //str.IndexOf(p.Field<string>("Code").ToLower()) >= 0)
+                                     p.Field<string>("Code").ToLower().IndexOf(str) >= 0
                                      select p).ToList<DataRow>();
 
             DataTable newDataSource = _dataSource.Clone();
@@ -204,8 +205,9 @@ namespace MM.Dialogs
             results = (from p in _dataSource.AsEnumerable()
                        where p.Field<string>("Name") != null &&
                            p.Field<string>("Name").Trim() != string.Empty &&
-                           (p.Field<string>("Name").ToLower().IndexOf(str) >= 0 ||
-                       str.IndexOf(p.Field<string>("Name").ToLower()) >= 0)
+                           //(p.Field<string>("Name").ToLower().IndexOf(str) >= 0 ||
+                       //str.IndexOf(p.Field<string>("Name").ToLower()) >= 0)
+                       p.Field<string>("Name").ToLower().IndexOf(str) >= 0
                        select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
