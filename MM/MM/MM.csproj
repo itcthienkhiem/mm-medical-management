@@ -355,6 +355,12 @@
     <Compile Include="Controls\uGiaThuocList.Designer.cs">
       <DependentUpon>uGiaThuocList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uHoaDonXuatTruoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uHoaDonXuatTruoc.Designer.cs">
+      <DependentUpon>uHoaDonXuatTruoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uInKetQuaKhamSucKhoeTongQuat.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -946,6 +952,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uGiaThuocList.resx">
       <DependentUpon>uGiaThuocList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uHoaDonXuatTruoc.resx">
+      <DependentUpon>uHoaDonXuatTruoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uInKetQuaKhamSucKhoeTongQuat.resx">
       <DependentUpon>uInKetQuaKhamSucKhoeTongQuat.cs</DependentUpon>
