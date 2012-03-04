@@ -2509,28 +2509,34 @@
     <value>&amp;Phiếu thu</value>
   </data>
   <data name="invoiceListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>184, 30</value>
   </data>
   <data name="invoiceListToolStripMenuItem.Text" xml:space="preserve">
     <value>Hóa đơn dịch vụ</value>
   </data>
   <data name="toolStripSeparator33.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="hoaDonThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>184, 30</value>
   </data>
   <data name="hoaDonThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Hóa đơn thuốc</value>
   </data>
   <data name="toolStripSeparator34.Size" type="System.Drawing.Size, System.Drawing">
-    <value>173, 6</value>
+    <value>181, 6</value>
+  </data>
+  <data name="toolStripSeparator34.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="hoaDonXuatTruocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>184, 30</value>
   </data>
   <data name="hoaDonXuatTruocToolStripMenuItem.Text" xml:space="preserve">
     <value>Hóa đơn xuất trước</value>
+  </data>
+  <data name="hoaDonXuatTruocToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="invoiceToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
