@@ -174,6 +174,8 @@ namespace MM
                 _uGiaVonDichVuList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uHoaDonThuocList))
                 _uHoaDonThuocList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uHoaDonXuatTruoc))
+                _uHoaDonXuatTruoc.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -575,6 +577,27 @@ namespace MM
                             Global.AllowPrintInvoice = isPrint;
                             Global.AllowExportInvoice = isExport;
                         }
+                        else if (functionCode == Const.HoaDonXuatTruoc)
+                        {
+                            invoiceToolStripMenuItem.Enabled = isLogin;
+                            hoaDonXuatTruocToolStripMenuItem.Enabled = isView && isLogin;
+
+                            _uHoaDonXuatTruoc.AllowAdd = isAdd;
+                            _uHoaDonXuatTruoc.AllowEdit = isEdit;
+                            _uHoaDonXuatTruoc.AllowDelete = isDelete;
+                            _uHoaDonXuatTruoc.AllowPrint = isPrint;
+                            _uHoaDonXuatTruoc.AllowExport = isExport;
+                            _uHoaDonXuatTruoc.AllowImport = isImport;
+
+                            Global.AllowPrintInvoice = isPrint;
+                            Global.AllowExportInvoice = isExport;
+                        }
+                        else if (functionCode == Const.DangKyHoaDonXuatTruoc)
+                        {
+                            _uHoaDonXuatTruoc.AllowAddDangKy = isAdd;
+                            _uHoaDonXuatTruoc.AllowEditDangKy = isEdit;
+                            _uHoaDonXuatTruoc.AllowDeleteDangKy = isDelete;
+                        }
                     }
                 }
                 else
@@ -689,6 +712,8 @@ namespace MM
                 _uBaoCaoDichVuChuaXuatPhieuThu.Enabled = isLogin;
 
                 hoaDonThuocToolStripMenuItem.Enabled = isLogin;
+
+                hoaDonXuatTruocToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -857,7 +882,18 @@ namespace MM
                     OnHoaDonThuoc();
                     break;
 
+                case "HoaDonXuatTruoc":
+                    OnHoaDonXuatTruoc();
+                    break;
+
             }
+        }
+
+        private void OnHoaDonXuatTruoc()
+        {
+            this.Text = string.Format("{0} - Hoa don xuat truoc", Application.ProductName);
+            ViewControl(_uHoaDonXuatTruoc);
+            _uHoaDonXuatTruoc.DisplayAsThread();
         }
 
         private void OnHoaDonThuoc()

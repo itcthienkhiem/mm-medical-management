@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uHoaDonThuocList = new MM.Controls.uHoaDonThuocList();
             this._uBaoCaoDichVuChuaXuatPhieuThu = new MM.Controls.uBaoCaoDichVuChuaXuatPhieuThu();
             this._uDoanhThuTheoNgay = new MM.Controls.uDoanhThuTheoNgay();
             this._uGiaVonDichVuList = new MM.Controls.uGiaVonDichVuList();
@@ -142,6 +143,8 @@
             this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
             this.hoaDonThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator34 = new System.Windows.Forms.ToolStripSeparator();
+            this.hoaDonXuatTruocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.danhMucThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
@@ -207,7 +210,7 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._uHoaDonThuocList = new MM.Controls.uHoaDonThuocList();
+            this._uHoaDonXuatTruoc = new MM.Controls.uHoaDonXuatTruoc();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -228,6 +231,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uHoaDonXuatTruoc);
             this._mainPanel.Controls.Add(this._uHoaDonThuocList);
             this._mainPanel.Controls.Add(this._uBaoCaoDichVuChuaXuatPhieuThu);
             this._mainPanel.Controls.Add(this._uDoanhThuTheoNgay);
@@ -260,6 +264,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uHoaDonThuocList
+            // 
+            resources.ApplyResources(this._uHoaDonThuocList, "_uHoaDonThuocList");
+            this._uHoaDonThuocList.Name = "_uHoaDonThuocList";
             // 
             // _uBaoCaoDichVuChuaXuatPhieuThu
             // 
@@ -958,7 +967,9 @@
             this.invoiceToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.invoiceListToolStripMenuItem,
             this.toolStripSeparator33,
-            this.hoaDonThuocToolStripMenuItem});
+            this.hoaDonThuocToolStripMenuItem,
+            this.toolStripSeparator34,
+            this.hoaDonXuatTruocToolStripMenuItem});
             resources.ApplyResources(this.invoiceToolStripMenuItem, "invoiceToolStripMenuItem");
             this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
             // 
@@ -982,6 +993,19 @@
             resources.ApplyResources(this.hoaDonThuocToolStripMenuItem, "hoaDonThuocToolStripMenuItem");
             this.hoaDonThuocToolStripMenuItem.Tag = "HoaDonThuoc";
             this.hoaDonThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator34
+            // 
+            this.toolStripSeparator34.Name = "toolStripSeparator34";
+            resources.ApplyResources(this.toolStripSeparator34, "toolStripSeparator34");
+            // 
+            // hoaDonXuatTruocToolStripMenuItem
+            // 
+            this.hoaDonXuatTruocToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
+            this.hoaDonXuatTruocToolStripMenuItem.Name = "hoaDonXuatTruocToolStripMenuItem";
+            resources.ApplyResources(this.hoaDonXuatTruocToolStripMenuItem, "hoaDonXuatTruocToolStripMenuItem");
+            this.hoaDonXuatTruocToolStripMenuItem.Tag = "HoaDonXuatTruoc";
+            this.hoaDonXuatTruocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // thuocToolStripMenuItem
             // 
@@ -1557,10 +1581,10 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
-            // _uHoaDonThuocList
+            // _uHoaDonXuatTruoc
             // 
-            resources.ApplyResources(this._uHoaDonThuocList, "_uHoaDonThuocList");
-            this._uHoaDonThuocList.Name = "_uHoaDonThuocList";
+            resources.ApplyResources(this._uHoaDonXuatTruoc, "_uHoaDonXuatTruoc");
+            this._uHoaDonXuatTruoc.Name = "_uHoaDonXuatTruoc";
             // 
             // MainForm
             // 
@@ -1774,6 +1798,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator33;
         private System.Windows.Forms.ToolStripMenuItem hoaDonThuocToolStripMenuItem;
         private Controls.uHoaDonThuocList _uHoaDonThuocList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator34;
+        private System.Windows.Forms.ToolStripMenuItem hoaDonXuatTruocToolStripMenuItem;
+        private Controls.uHoaDonXuatTruoc _uHoaDonXuatTruoc;
 
     }
 }

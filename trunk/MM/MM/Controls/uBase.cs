@@ -38,6 +38,9 @@ namespace MM.Controls
         public bool AllowConfirm = true;
         public bool AllowShowServicePrice = true;
         public bool AllowOpenPatient = true;
+        public bool AllowAddDangKy = true;
+        public bool AllowEditDangKy = true;
+        public bool AllowDeleteDangKy = true;
         #endregion
 
         #region Constructor
