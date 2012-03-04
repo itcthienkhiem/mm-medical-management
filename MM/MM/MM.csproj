@@ -553,6 +553,12 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddSoHoaDonXuatTruoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddSoHoaDonXuatTruoc.Designer.cs">
+      <DependentUpon>dlgAddSoHoaDonXuatTruoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgHoaDonXuatTruoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1052,6 +1058,9 @@
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddSoHoaDonXuatTruoc.resx">
+      <DependentUpon>dlgAddSoHoaDonXuatTruoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgHoaDonXuatTruoc.resx">
       <DependentUpon>dlgHoaDonXuatTruoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -1259,6 +1268,7 @@
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PhieuThuThuoc.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.QuanLySoHoaDon.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ReceiptDetailView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ReceiptView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service.datasource" />

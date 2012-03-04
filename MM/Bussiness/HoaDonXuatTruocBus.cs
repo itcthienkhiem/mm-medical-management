@@ -37,6 +37,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetSoHoaDonXuatTruocList()
+        {
+            Result result = new Result();
+
+            try
+            {
+
+                string query = "SELECT CAST(0 AS Bit) AS Checked, * FROM QuanLySoHoaDon WHERE XuatTruoc='True' ORDER BY SoHoaDon";
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetHoaDonXuatTruocList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
         {
             Result result = new Result();
@@ -370,6 +394,223 @@ namespace MM.Bussiness
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.Price;
                     db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result DeleteQuanLySoHoaDon(List<string> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    string desc = string.Empty;
+                    foreach (string key in keys)
+                    {
+                        QuanLySoHoaDon s = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(ss => ss.QuanLySoHoaDonGUID.ToString() == key);
+                        if (s != null)
+                        {
+                            desc += string.Format("- GUID: '{0}', Số hóa dơn: '{1}', Đã xuất: '{2}', Xuất trước: '{3}'\n",
+                                s.QuanLySoHoaDonGUID.ToString(), s.SoHoaDon, s.DaXuat, s.XuatTruoc);
+
+                            db.QuanLySoHoaDons.DeleteOnSubmit(s);
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa số hóa đơn xuất trước";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result InsertQuanLySoHoaDon(QuanLySoHoaDon qlshd)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    //Insert
+                    if (qlshd.QuanLySoHoaDonGUID == null || qlshd.QuanLySoHoaDonGUID == Guid.Empty)
+                    {
+                        qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                        db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                        db.SubmitChanges();
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Số hóa dơn: '{1}', Đã xuất: '{2}', Xuất trước: '{3}'",
+                                 qlshd.QuanLySoHoaDonGUID.ToString(), qlshd.SoHoaDon, qlshd.DaXuat, qlshd.XuatTruoc);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm số hóa đơn xuất trước";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+                    else //Update
+                    {
+                        QuanLySoHoaDon q = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(s => s.QuanLySoHoaDonGUID.ToString() == qlshd.QuanLySoHoaDonGUID.ToString());
+                        if (q != null)
+                        {
+                            q.SoHoaDon = qlshd.SoHoaDon;
+                            q.DaXuat = qlshd.DaXuat;
+                            q.XuatTruoc = qlshd.XuatTruoc;
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Số hóa dơn: '{1}', Đã xuất: '{2}', Xuất trước: '{3}'",
+                                 q.QuanLySoHoaDonGUID.ToString(), q.SoHoaDon, q.DaXuat, q.XuatTruoc);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa số hóa đơn xuất trước";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+
+                            db.SubmitChanges();
+                        }
+                    }
+
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result InsertQuanLySoHoaDon(List<QuanLySoHoaDon> qlshdList)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    foreach (QuanLySoHoaDon qlshd in qlshdList)
+                    {
+                        QuanLySoHoaDon q = db.QuanLySoHoaDons.SingleOrDefault(qq => qq.SoHoaDon == qlshd.SoHoaDon);
+                        if (q == null)
+                        {
+                            qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                            db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                        }
+                        else
+                        {
+                            q.DaXuat = qlshd.DaXuat;
+                            q.XuatTruoc = qlshd.XuatTruoc;
+                        }
+                        
+                        db.SubmitChanges();
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Số hóa dơn: '{1}', Đã xuất: '{2}', Xuất trước: '{3}'",
+                                 qlshd.QuanLySoHoaDonGUID.ToString(), qlshd.SoHoaDon, qlshd.DaXuat, qlshd.XuatTruoc);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm số hóa đơn xuất trước";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+                    }
 
                     db.SubmitChanges();
                     t.Complete();

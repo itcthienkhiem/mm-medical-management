@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uHoaDonXuatTruoc = new MM.Controls.uHoaDonXuatTruoc();
             this._uHoaDonThuocList = new MM.Controls.uHoaDonThuocList();
             this._uBaoCaoDichVuChuaXuatPhieuThu = new MM.Controls.uBaoCaoDichVuChuaXuatPhieuThu();
             this._uDoanhThuTheoNgay = new MM.Controls.uDoanhThuTheoNgay();
@@ -210,7 +211,6 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._uHoaDonXuatTruoc = new MM.Controls.uHoaDonXuatTruoc();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -264,6 +264,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uHoaDonXuatTruoc
+            // 
+            resources.ApplyResources(this._uHoaDonXuatTruoc, "_uHoaDonXuatTruoc");
+            this._uHoaDonXuatTruoc.Name = "_uHoaDonXuatTruoc";
             // 
             // _uHoaDonThuocList
             // 
@@ -1580,11 +1585,6 @@
             this.dockSite3.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer();
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
-            // 
-            // _uHoaDonXuatTruoc
-            // 
-            resources.ApplyResources(this._uHoaDonXuatTruoc, "_uHoaDonXuatTruoc");
-            this._uHoaDonXuatTruoc.Name = "_uHoaDonXuatTruoc";
             // 
             // MainForm
             // 
