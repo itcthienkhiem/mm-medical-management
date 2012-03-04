@@ -547,6 +547,12 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgHoaDonXuatTruoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgHoaDonXuatTruoc.Designer.cs">
+      <DependentUpon>dlgHoaDonXuatTruoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgHoaDonThuoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1037,6 +1043,9 @@
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgHoaDonXuatTruoc.resx">
+      <DependentUpon>dlgHoaDonXuatTruoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgHoaDonThuoc.resx">
       <DependentUpon>dlgHoaDonThuoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -1350,6 +1359,7 @@
     <None Include="Resources\Pause-icon.png" />
     <None Include="Resources\Play-icon.png" />
     <None Include="Resources\Process-Warning-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-03-04.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-03.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-02.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-01.sql" />
