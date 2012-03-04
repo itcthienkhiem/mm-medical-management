@@ -38834,7 +38834,7 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HoaDonXuatTruoc_ChiTietHoaDonXuatTruoc", Storage="_HoaDonXuatTruoc", ThisKey="HoaDonXuatTruocGUID", OtherKey="HoaDonXuatTruoc1", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HoaDonXuatTruoc_ChiTietHoaDonXuatTruoc", Storage="_HoaDonXuatTruoc", ThisKey="HoaDonXuatTruocGUID", OtherKey="HoaDonXuatTruocGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public HoaDonXuatTruoc HoaDonXuatTruoc
 		{
 			get
@@ -38857,7 +38857,7 @@ namespace MM.Databasae
 					if ((value != null))
 					{
 						value.ChiTietHoaDonXuatTruocs.Add(this);
-						this._HoaDonXuatTruocGUID = value.HoaDonXuatTruoc1;
+						this._HoaDonXuatTruocGUID = value.HoaDonXuatTruocGUID;
 					}
 					else
 					{
@@ -38895,7 +38895,7 @@ namespace MM.Databasae
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private System.Guid _HoaDonXuatTruoc1;
+		private System.Guid _HoaDonXuatTruocGUID;
 		
 		private string _SoHoaDon;
 		
@@ -38935,8 +38935,8 @@ namespace MM.Databasae
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnHoaDonXuatTruoc1Changing(System.Guid value);
-    partial void OnHoaDonXuatTruoc1Changed();
+    partial void OnHoaDonXuatTruocGUIDChanging(System.Guid value);
+    partial void OnHoaDonXuatTruocGUIDChanged();
     partial void OnSoHoaDonChanging(string value);
     partial void OnSoHoaDonChanged();
     partial void OnNgayXuatHoaDonChanging(System.DateTime value);
@@ -38977,22 +38977,22 @@ namespace MM.Databasae
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="HoaDonXuatTruoc", Storage="_HoaDonXuatTruoc1", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid HoaDonXuatTruoc1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoaDonXuatTruocGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid HoaDonXuatTruocGUID
 		{
 			get
 			{
-				return this._HoaDonXuatTruoc1;
+				return this._HoaDonXuatTruocGUID;
 			}
 			set
 			{
-				if ((this._HoaDonXuatTruoc1 != value))
+				if ((this._HoaDonXuatTruocGUID != value))
 				{
-					this.OnHoaDonXuatTruoc1Changing(value);
+					this.OnHoaDonXuatTruocGUIDChanging(value);
 					this.SendPropertyChanging();
-					this._HoaDonXuatTruoc1 = value;
-					this.SendPropertyChanged("HoaDonXuatTruoc1");
-					this.OnHoaDonXuatTruoc1Changed();
+					this._HoaDonXuatTruocGUID = value;
+					this.SendPropertyChanged("HoaDonXuatTruocGUID");
+					this.OnHoaDonXuatTruocGUIDChanged();
 				}
 			}
 		}
@@ -39317,7 +39317,7 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HoaDonXuatTruoc_ChiTietHoaDonXuatTruoc", Storage="_ChiTietHoaDonXuatTruocs", ThisKey="HoaDonXuatTruoc1", OtherKey="HoaDonXuatTruocGUID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HoaDonXuatTruoc_ChiTietHoaDonXuatTruoc", Storage="_ChiTietHoaDonXuatTruocs", ThisKey="HoaDonXuatTruocGUID", OtherKey="HoaDonXuatTruocGUID")]
 		public EntitySet<ChiTietHoaDonXuatTruoc> ChiTietHoaDonXuatTruocs
 		{
 			get
@@ -39367,8 +39367,6 @@ namespace MM.Databasae
 	public partial class HoaDonXuatTruocView
 	{
 		
-		private System.Guid _HoaDonXuatTruoc;
-		
 		private string _SoHoaDon;
 		
 		private System.DateTime _NgayXuatHoaDon;
@@ -39403,24 +39401,10 @@ namespace MM.Databasae
 		
 		private string _HinhThucThanhToanStr;
 		
+		private System.Guid _HoaDonXuatTruocGUID;
+		
 		public HoaDonXuatTruocView()
 		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoaDonXuatTruoc", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid HoaDonXuatTruoc
-		{
-			get
-			{
-				return this._HoaDonXuatTruoc;
-			}
-			set
-			{
-				if ((this._HoaDonXuatTruoc != value))
-				{
-					this._HoaDonXuatTruoc = value;
-				}
-			}
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoHoaDon", DbType="NVarChar(50)")]
@@ -39691,6 +39675,22 @@ namespace MM.Databasae
 				if ((this._HinhThucThanhToanStr != value))
 				{
 					this._HinhThucThanhToanStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HoaDonXuatTruocGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid HoaDonXuatTruocGUID
+		{
+			get
+			{
+				return this._HoaDonXuatTruocGUID;
+			}
+			set
+			{
+				if ((this._HoaDonXuatTruocGUID != value))
+				{
+					this._HoaDonXuatTruocGUID = value;
 				}
 			}
 		}

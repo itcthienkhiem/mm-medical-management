@@ -16,31 +16,31 @@ using SpreadsheetGear.Windows.Forms;
 
 namespace MM.Dialogs
 {
-    public partial class dlgHoaDonThuoc : Form
+    public partial class dlgHoaDonXuatTruoc : Form
     {
         #region Members
         private DataRow _drInvoice;
         private double _totalPrice = 0;
         private bool _isPrinted = false;
+        private int _soHoaDon = 0;
         private string _invoiceCode = string.Empty;
         private bool _isView = false;
         private bool _flag = true;
         private double _oldTotalPayment = 0;
         private double _totalPayment = 0;
-        private List<DataRow> _phieuThuThuocList = null;
-        private HoaDonThuoc _hoaDonThuoc = new HoaDonThuoc();
+        private HoaDonXuatTruoc _hoaDonXuatTruoc = new HoaDonXuatTruoc();
         #endregion
 
         #region Constructor
-        public dlgHoaDonThuoc(List<DataRow> phieuThuThuocList)
+        public dlgHoaDonXuatTruoc(int soHoaDon)
         {
             InitializeComponent();
-            _phieuThuThuocList = phieuThuThuocList;
+            _soHoaDon = soHoaDon;
             cboHinhThucThanhToan.SelectedIndex = 0;
             btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
         }
 
-        public dlgHoaDonThuoc(DataRow drInvoice, bool isView)
+        public dlgHoaDonXuatTruoc(DataRow drInvoice, bool isView)
         {
             InitializeComponent();
             _drInvoice = drInvoice;
@@ -68,17 +68,20 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
-        public HoaDonThuoc HoaDonThuoc
+        public HoaDonXuatTruoc HoaDonXuatTruoc
         {
-            get { return _hoaDonThuoc; }
-            set { _hoaDonThuoc = value; }
+            get { return _hoaDonXuatTruoc; }
+            set { _hoaDonXuatTruoc = value; }
         }
         #endregion
 
         #region UI Command
         private void GenerateCode()
         {
-            Cursor.Current = Cursors.WaitCursor;
+            _invoiceCode = Utility.GetCode(string.Empty, _soHoaDon, 7);
+            lbInvoiceCode.Text = string.Format("Số: {0}", _invoiceCode);
+
+            /*Cursor.Current = Cursors.WaitCursor;
             Result result = QuanLySoHoaDonBus.GetSoHoaDon();
             if (result.IsOK)
             {
@@ -92,7 +95,7 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetSoHoaDon"));
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 this.Close();
-            }
+            }*/
         }
 
         private void RefreshNo()
@@ -136,7 +139,7 @@ namespace MM.Dialogs
                 if (_drInvoice["DiaChi"] != null && _drInvoice["DiaChi"] != DBNull.Value)
                     txtAddress.Text = _drInvoice["DiaChi"].ToString();
                 
-                Result result = HoaDonThuocBus.GetChiTietHoaDonThuoc(_drInvoice["HoaDonThuocGUID"].ToString());
+                Result result = HoaDonXuatTruocBus.GetChiTietHoaDonXuatTruoc(_drInvoice["HoaDonXuatTruocGUID"].ToString());
                 if (result.IsOK)
                 {
                     DataTable dataSource = result.QueryResult as DataTable;
@@ -164,15 +167,15 @@ namespace MM.Dialogs
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetChiTietHoaDonThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetChiTietHoaDonThuoc"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonXuatTruocBus.GetChiTietHoaDonXuatTruoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonXuatTruocBus.GetChiTietHoaDonXuatTruoc"));
                 }
             }
             else
             {
                 GenerateCode();
 
-                Result result = HoaDonThuocBus.GetNgayXuatHoaDon(_invoiceCode);
+                Result result = HoaDonXuatTruocBus.GetNgayXuatHoaDon(_invoiceCode);
                 if (result.IsOK)
                 {
                     if (result.QueryResult != null)
@@ -180,8 +183,8 @@ namespace MM.Dialogs
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetNgayXuatHoaDon"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetNgayXuatHoaDon"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonXuatTruocBus.GetNgayXuatHoaDon"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonXuatTruocBus.GetNgayXuatHoaDon"));
                 }
 
                 //DateTime dt = DateTime.Now;
@@ -190,46 +193,7 @@ namespace MM.Dialogs
                 //string strYear = dt.Year.ToString();
                 //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
 
-                if (_phieuThuThuocList != null && _phieuThuThuocList.Count == 1)
-                {
-                    txtTenNguoiMuaHang.Text = _phieuThuThuocList[0]["TenBenhNhan"].ToString();
-                    txtAddress.Text = _phieuThuThuocList[0]["DiaChi"].ToString();
-                }
-
-                result = HoaDonThuocBus.GetChiTietPhieuThuThuoc(_phieuThuThuocList);
-                if (result.IsOK)
-                {
-                    DataTable dataSource = result.QueryResult as DataTable;
-                    dgDetail.DataSource = dataSource;
-
-                    if (dataSource != null)
-                    {
-                        foreach (DataRow row in dataSource.Rows)
-                        {
-                            double thanhTien = Convert.ToDouble(row["ThanhTien"]);
-                            _totalPrice += thanhTien;
-                        }
-                    }
-
-                    if (_totalPrice > 0)
-                        lbTotalAmount.Text = string.Format("{0}", _totalPrice.ToString("#,###"));
-
-                    double vat = ((double)numVAT.Value * _totalPrice) / 100;
-                    if (vat > 0)
-                        lbVAT.Text = string.Format("{0}", vat.ToString("#,###"));
-
-                    _totalPayment = _totalPrice + vat;
-                    _oldTotalPayment = _totalPayment;
-                    lbTotalPayment.Text = string.Format("{0}", _totalPayment.ToString("#,###"));
-                    lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)_totalPayment));
-
-                    RefreshNo();
-                }
-                else
-                {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetChiTietPhieuThuThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetChiTietPhieuThuThuoc"));
-                }
+                lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)_totalPayment));
             }
         }
 
@@ -289,7 +253,7 @@ namespace MM.Dialogs
             lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)_totalPayment));
         }
 
-        private bool OnPrint(string hoaDonThuocGUID)
+        private bool OnPrint(string hoaDonXuatTruocGUID)
         {
             Cursor.Current = Cursors.WaitCursor;
             dlgPrintType dlg = new dlgPrintType();
@@ -300,7 +264,7 @@ namespace MM.Dialogs
                 {
                     if (dlg.Lien1)
                     {
-                        if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 1: Lưu"))
+                        if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonXuatTruocGUID, "                                   Liên 1: Lưu"))
                         {
                             try
                             {
@@ -318,7 +282,7 @@ namespace MM.Dialogs
 
                     if (dlg.Lien2)
                     {
-                        if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
+                        if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonXuatTruocGUID, "                                   Liên 2: Giao người mua"))
                         {
                             try
                             {
@@ -336,7 +300,7 @@ namespace MM.Dialogs
 
                     if (dlg.Lien3)
                     {
-                        if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 3: Nội bộ"))
+                        if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonXuatTruocGUID, "                                   Liên 3: Nội bộ"))
                         {
                             try
                             {
@@ -359,7 +323,7 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            Result result = HoaDonThuocBus.CheckHoaDonThuocExistCode(Convert.ToInt32(_invoiceCode));
+            Result result = HoaDonXuatTruocBus.CheckHoaDonXuatTruocExistCode(Convert.ToInt32(_invoiceCode));
             if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
             {
                 if (result.Error.Code == ErrorCode.EXIST)
@@ -372,7 +336,7 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("HoaDonThuocBus.CheckHoaDonThuocExistCode"), IconType.Error);
+                MsgBox.Show(this.Text, result.GetErrorAsString("HoaDonXuatTruocBus.CheckHoaDonXuatTruocExistCode"), IconType.Error);
                 return false;
             }
 
@@ -416,28 +380,7 @@ namespace MM.Dialogs
                 }
             }
 
-            if (_phieuThuThuocList != null && _phieuThuThuocList.Count > 0 && _totalPayment > _oldTotalPayment)
-            {
-                MsgBox.Show(this.Text, "Tổng số tiền xuất hóa đơn không được vượt quá tổng số tiền trong phiếu thu.", IconType.Information);
-                return false;
-            }
-
             return true;
-        }
-
-        private string GetPhieuThuThuocGUIDListStr()
-        {
-            if (_phieuThuThuocList == null || _phieuThuThuocList.Count <= 0) return string.Empty;
-
-            string str = string.Empty;
-            foreach (DataRow row in _phieuThuThuocList)
-            {
-                str += string.Format("{0},", row["PhieuThuThuocGUID"].ToString());
-            }
-
-            str = str.Substring(0, str.Length - 1);
-
-            return str;
         }
 
         private bool ExportInvoice()
@@ -446,8 +389,7 @@ namespace MM.Dialogs
             {
                 if (!CheckInfo()) return false;
 
-                HoaDonThuoc invoice = new HoaDonThuoc();
-                invoice.PhieuThuThuocGUIDList = GetPhieuThuThuocGUIDListStr();
+                HoaDonXuatTruoc invoice = new HoaDonXuatTruoc();
                 invoice.SoHoaDon = _invoiceCode;
                 invoice.NgayXuatHoaDon = dtpkNgay.Value;
                 invoice.TenNguoiMuaHang = txtTenNguoiMuaHang.Text;
@@ -461,14 +403,14 @@ namespace MM.Dialogs
                 invoice.CreatedBy = Guid.Parse(Global.UserGUID);
                 invoice.Status = (byte)Status.Actived;
 
-                List<ChiTietHoaDonThuoc> addedDetails = new List<ChiTietHoaDonThuoc>();
+                List<ChiTietHoaDonXuatTruoc> addedDetails = new List<ChiTietHoaDonXuatTruoc>();
                 for (int i = 0; i < dgDetail.RowCount - 1; i++)
                 {
                     DataGridViewRow row = dgDetail.Rows[i];
-                    ChiTietHoaDonThuoc detail = new ChiTietHoaDonThuoc();
+                    ChiTietHoaDonXuatTruoc detail = new ChiTietHoaDonXuatTruoc();
                     detail.CreatedDate = DateTime.Now;
                     detail.CreatedBy = Guid.Parse(Global.UserGUID);
-                    detail.TenThuoc = row.Cells["TenThuoc"].Value.ToString();
+                    detail.TenMatHang = row.Cells["TenMatHang"].Value.ToString();
                     detail.DonViTinh = row.Cells["DonViTinh"].Value.ToString();
 
                     int soLuong = 1;
@@ -491,18 +433,18 @@ namespace MM.Dialogs
                     addedDetails.Add(detail);
                 }
 
-                Result result = HoaDonThuocBus.InsertHoaDonThuoc(invoice, addedDetails);
+                Result result = HoaDonXuatTruocBus.InsertHoaDonXuatTruoc(invoice, addedDetails);
                 if (result.IsOK)
                 {
-                    _hoaDonThuoc = invoice;
+                    _hoaDonXuatTruoc = invoice;
                     if (!_isPrinted) return true;
-                    OnPrint(invoice.HoaDonThuocGUID.ToString());
+                    OnPrint(invoice.HoaDonXuatTruocGUID.ToString());
                     return true;
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.InsertHoaDonThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.InsertHoaDonThuoc"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonXuatTruocBus.InsertHoaDonXuatTruoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonXuatTruocBus.InsertHoaDonXuatTruoc"));
                 }
             }
             catch (Exception ex)
@@ -527,13 +469,6 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (!ExportInvoice()) e.Cancel = true;
-                else if (_phieuThuThuocList != null && _phieuThuThuocList.Count > 0)
-                {
-                    foreach (DataRow row in _phieuThuThuocList)
-                    {
-                        row["IsExported"] = true;
-                    }
-                }
             }
         }
 
@@ -597,7 +532,7 @@ namespace MM.Dialogs
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            OnPrint(_drInvoice["HoaDonThuocGUID"].ToString());
+            OnPrint(_drInvoice["HoaDonXuatTruocGUID"].ToString());
         }
 
         private void dgDetail_UserAddedRow(object sender, DataGridViewRowEventArgs e)

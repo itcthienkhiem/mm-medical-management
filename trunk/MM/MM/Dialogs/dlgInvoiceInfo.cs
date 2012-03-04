@@ -88,8 +88,8 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("SettingBus.GetSoHoaDonBatDau"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("SettingBus.GetSoHoaDonBatDau"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("QuanLySoHoaDonBus.GetSoHoaDon"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetSoHoaDon"));
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 this.Close();
             }
