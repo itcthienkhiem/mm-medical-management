@@ -309,7 +309,7 @@ namespace MM.Controls
                 newRow["SoTaiKhoan"] = dlg.HoaDonThuoc.SoTaiKhoan;
                 newRow["HinhThucThanhToan"] = dlg.HoaDonThuoc.HinhThucThanhToan;
                 newRow["VAT"] = dlg.HoaDonThuoc.VAT;
-                newRow["HinhThucThanhToanStr"] = ((PaymentType)dlg.HoaDonThuoc.HinhThucThanhToan) == PaymentType.TienMat ? "TM" : "CK";
+                newRow["HinhThucThanhToanStr"] = Utility.ParseHinhThucThanhToanToStr((PaymentType)dlg.HoaDonThuoc.HinhThucThanhToan);
 
                 if (dlg.HoaDonThuoc.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.HoaDonThuoc.CreatedDate;

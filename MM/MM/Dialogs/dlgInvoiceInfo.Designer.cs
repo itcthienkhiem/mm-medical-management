@@ -52,6 +52,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lbInvoiceCode = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dtpkNgay = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
@@ -98,7 +99,6 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtpkNgay = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -191,7 +191,7 @@
             this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(204, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(277, 22);
+            this.label1.Size = new System.Drawing.Size(279, 22);
             this.label1.TabIndex = 8;
             this.label1.Text = "HÓA ĐƠN GIÁ TRỊ GIA TĂNG";
             // 
@@ -211,7 +211,7 @@
             this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(560, 27);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 15);
+            this.label4.Size = new System.Drawing.Size(99, 15);
             this.label4.TabIndex = 11;
             this.label4.Text = "Ký hiệu: AA/11T";
             // 
@@ -238,6 +238,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(708, 71);
             this.panel2.TabIndex = 13;
+            // 
+            // dtpkNgay
+            // 
+            this.dtpkNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkNgay.Location = new System.Drawing.Point(280, 33);
+            this.dtpkNgay.Name = "dtpkNgay";
+            this.dtpkNgay.Size = new System.Drawing.Size(109, 20);
+            this.dtpkNgay.TabIndex = 13;
             // 
             // panel3
             // 
@@ -287,7 +296,7 @@
             this.label6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(5, 41);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(428, 15);
+            this.label6.Size = new System.Drawing.Size(429, 15);
             this.label6.TabIndex = 12;
             this.label6.Text = "Địa chỉ: Lầu 2, Tòa nhà Miss Áo dài, 21 Nguyễn Trung Ngạn, P. Bến Nghé, Q. 1";
             // 
@@ -307,7 +316,7 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(5, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(305, 15);
+            this.label2.Size = new System.Drawing.Size(306, 15);
             this.label2.TabIndex = 10;
             this.label2.Text = "Đơn vị bán hàng: CÔNG TY CỔ PHẦN VIGOR HEALTH";
             // 
@@ -379,7 +388,8 @@
             this.cboHinhThucThanhToan.FormattingEnabled = true;
             this.cboHinhThucThanhToan.Items.AddRange(new object[] {
             "TM",
-            "CK"});
+            "CK",
+            "TM/CK"});
             this.cboHinhThucThanhToan.Location = new System.Drawing.Point(143, 115);
             this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
             this.cboHinhThucThanhToan.Size = new System.Drawing.Size(178, 21);
@@ -642,7 +652,7 @@
             this.label14.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.Location = new System.Drawing.Point(167, 33);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(112, 15);
+            this.label14.Size = new System.Drawing.Size(113, 15);
             this.label14.TabIndex = 19;
             this.label14.Text = "%, Tiền thuế GTGT:";
             // 
@@ -663,7 +673,7 @@
             this.label13.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(6, 32);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(98, 15);
+            this.label13.Size = new System.Drawing.Size(99, 15);
             this.label13.TabIndex = 17;
             this.label13.Text = "Thuế suất GTGT:";
             // 
@@ -745,15 +755,6 @@
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn6.Width = 120;
-            // 
-            // dtpkNgay
-            // 
-            this.dtpkNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgay.Location = new System.Drawing.Point(280, 33);
-            this.dtpkNgay.Name = "dtpkNgay";
-            this.dtpkNgay.Size = new System.Drawing.Size(109, 20);
-            this.dtpkNgay.TabIndex = 13;
             // 
             // dlgInvoiceInfo
             // 
