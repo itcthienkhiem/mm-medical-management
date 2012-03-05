@@ -67,7 +67,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TOP {0} * FROM QuanLySoHoaDon WHERE XuatTruoc = 'False' AND DaXuat = 'False' ORDER BY SoHoaDon", count);
+                string query = string.Format("SELECT TOP {0} CAST(0 AS Bit) AS Checked, * FROM QuanLySoHoaDon WHERE XuatTruoc = 'False' AND DaXuat = 'False' ORDER BY SoHoaDon", count);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

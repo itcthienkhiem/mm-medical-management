@@ -149,7 +149,7 @@
             this.txtDOB.MaxLength = 50;
             this.txtDOB.Name = "txtDOB";
             this.txtDOB.Size = new System.Drawing.Size(104, 20);
-            this.txtDOB.TabIndex = 2;
+            this.txtDOB.TabIndex = 3;
             // 
             // label19
             // 
@@ -216,7 +216,7 @@
             this.txtPreferredName.MaxLength = 50;
             this.txtPreferredName.Name = "txtPreferredName";
             this.txtPreferredName.Size = new System.Drawing.Size(104, 20);
-            this.txtPreferredName.TabIndex = 5;
+            this.txtPreferredName.TabIndex = 6;
             // 
             // label17
             // 
@@ -234,7 +234,7 @@
             this.txtKnownAs.MaxLength = 50;
             this.txtKnownAs.Name = "txtKnownAs";
             this.txtKnownAs.Size = new System.Drawing.Size(104, 20);
-            this.txtKnownAs.TabIndex = 4;
+            this.txtKnownAs.TabIndex = 5;
             // 
             // label16
             // 
@@ -337,7 +337,7 @@
             this.txtIdentityCard.MaxLength = 15;
             this.txtIdentityCard.Name = "txtIdentityCard";
             this.txtIdentityCard.Size = new System.Drawing.Size(157, 20);
-            this.txtIdentityCard.TabIndex = 8;
+            this.txtIdentityCard.TabIndex = 7;
             this.txtIdentityCard.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentityCard_KeyPress);
             // 
             // label10
@@ -375,6 +375,7 @@
             this.cboGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGender.FormattingEnabled = true;
+            this.cboGender.ItemHeight = 13;
             this.cboGender.Items.AddRange(new object[] {
             "Nam",
             "Nữ",
@@ -418,7 +419,7 @@
             this.txtFullName.MaxLength = 255;
             this.txtFullName.Name = "txtFullName";
             this.txtFullName.Size = new System.Drawing.Size(303, 20);
-            this.txtFullName.TabIndex = 1;
+            this.txtFullName.TabIndex = 2;
             // 
             // label1
             // 
@@ -509,7 +510,7 @@
             this.txtNo.MaxLength = 50;
             this.txtNo.Name = "txtNo";
             this.txtNo.Size = new System.Drawing.Size(67, 20);
-            this.txtNo.TabIndex = 60;
+            this.txtNo.TabIndex = 1;
             // 
             // txtTenCongTy
             // 

@@ -110,13 +110,13 @@ spDichVuHopDong
 - Delete table: Settings
 - Create table: QuanLySoHoaSon
 
-2012-03-04
+2012-03-05
+- Update view: InvoiceView, HoaDonThuocView
+
+2012-03-06
 - Create table: HoaDonXuatTruoc, ChiTietHoaDonXuatTruoc
 - Create view: HoaDonXuatTruocView
 - Insert table: Function(Add Col: HoaDonXuatTruoc, DangKyHoaDonXuatTruoc
-
-2012-03-05
-- Update view: InvoiceView, HoaDonThuocView
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa
