@@ -804,6 +804,13 @@ namespace MM.Common
 
             return fixedPrice;
         }
+
+        public static string ParseHinhThucThanhToanToStr(PaymentType type)
+        {
+            if (type == PaymentType.TienMat) return "TM";
+            else if (type == PaymentType.ChuyenKhoan) return "CK";
+            else return "TM/CK";
+        }
     }
 }
 

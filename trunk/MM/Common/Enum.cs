@@ -114,7 +114,8 @@ namespace MM.Common
     public enum PaymentType : int
     {
         TienMat = 0,
-        ChuyenKhoan
+        ChuyenKhoan,
+        TienMat_ChuyenKhoan
     };
 
     public enum CoQuan : int

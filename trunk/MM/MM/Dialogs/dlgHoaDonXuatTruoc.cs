@@ -340,9 +340,9 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (txtTenNguoiMuaHang.Text.Trim() == string.Empty)
+            if (txtTenNguoiMuaHang.Text.Trim() == string.Empty && txtTenDonVi.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên người mua hàng.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng nhập tên người mua hàng hoặc tên đơn vị.", IconType.Information);
                 txtTenNguoiMuaHang.Focus();
                 return false;
             }
