@@ -1448,6 +1448,8 @@ namespace MM
                 int ind = strServerName.IndexOf("\\");
                 strServerName = strServerName.Substring(0, ind);
             }
+            //hard code servername
+            strServerName = "192.168.5.250";
             string fileOnServer = string.Format("\\\\{0}\\MMupdate\\updatedDate.txt", strServerName);
             if (!File.Exists(fileOnServer))
                 return;
