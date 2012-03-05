@@ -626,6 +626,7 @@ namespace MM.Dialogs
                     textBox.TextChanged -= new EventHandler(textBox_TextChanged);
                     textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
                     textBox.TextChanged += new EventHandler(textBox_TextChanged);
+                    _flag = true;
                 }
             }
         }
@@ -727,10 +728,12 @@ namespace MM.Dialogs
                 }
             }
         }
+
+        private void dgDetail_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+            _flag = false;
+        }
         #endregion
-
-       
-
-        
     }
 }

@@ -48,7 +48,6 @@
             this.quanLySoHoaDonBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel9 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -86,6 +85,7 @@
             this.btnExportInvoice = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDeleteHoaDon = new System.Windows.Forms.Button();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -179,12 +179,10 @@
             this.dgSoHoaDon.Location = new System.Drawing.Point(0, 0);
             this.dgSoHoaDon.MultiSelect = false;
             this.dgSoHoaDon.Name = "dgSoHoaDon";
-            this.dgSoHoaDon.ReadOnly = true;
             this.dgSoHoaDon.RowHeadersWidth = 30;
             this.dgSoHoaDon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSoHoaDon.Size = new System.Drawing.Size(306, 347);
             this.dgSoHoaDon.TabIndex = 6;
-            this.dgSoHoaDon.DoubleClick += new System.EventHandler(this.dgSoHoaDon_DoubleClick);
             // 
             // colChecked
             // 
@@ -192,7 +190,6 @@
             this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
@@ -221,7 +218,6 @@
             // panel9
             // 
             this.panel9.Controls.Add(this.btnDelete);
-            this.panel9.Controls.Add(this.btnEdit);
             this.panel9.Controls.Add(this.btnAdd);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel9.Location = new System.Drawing.Point(0, 368);
@@ -233,25 +229,13 @@
             // 
             this.btnDelete.Image = global::MM.Properties.Resources.del;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(165, 6);
+            this.btnDelete.Location = new System.Drawing.Point(86, 6);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 25);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "    &Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(86, 6);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
-            this.btnEdit.TabIndex = 4;
-            this.btnEdit.Text = "    &Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnAdd
             // 
@@ -669,6 +653,10 @@
             this.btnDeleteHoaDon.UseVisualStyleBackColor = true;
             this.btnDeleteHoaDon.Click += new System.EventHandler(this.btnDeleteHoaDon_Click);
             // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
             // uHoaDonXuatTruoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,11 +735,11 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnDeleteHoaDon;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
         private DataGridViewDisableCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn soHoaDonDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaXuat;
+        private System.Windows.Forms.PrintDialog _printDialog;
 
     }
 }

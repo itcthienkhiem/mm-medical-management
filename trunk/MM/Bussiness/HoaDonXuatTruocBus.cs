@@ -128,7 +128,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TenThuoc, SoLuong, DonViTinh, DonGia, ThanhTien FROM ChiTietHoaDonXuatTruoc WHERE HoaDonXuatTruocGUID='{0}' AND Status={1} ORDER BY TenMatHang",
+                string query = string.Format("SELECT TenMatHang, SoLuong, DonViTinh, DonGia, ThanhTien FROM ChiTietHoaDonXuatTruoc WHERE HoaDonXuatTruocGUID='{0}' AND Status={1} ORDER BY TenMatHang",
                     hoaDonXuatTruocGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -443,7 +443,8 @@ namespace MM.Bussiness
                             desc += string.Format("- GUID: '{0}', Số hóa dơn: '{1}', Đã xuất: '{2}', Xuất trước: '{3}'\n",
                                 s.QuanLySoHoaDonGUID.ToString(), s.SoHoaDon, s.DaXuat, s.XuatTruoc);
 
-                            db.QuanLySoHoaDons.DeleteOnSubmit(s);
+                            s.DaXuat = false;
+                            s.XuatTruoc = false;
                         }
                     }
 
