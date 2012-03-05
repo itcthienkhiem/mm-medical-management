@@ -58,6 +58,21 @@ namespace MM.Controls
 
         public void ClearData()
         {
+            if (_dataSource != null)
+            {
+                _dataSource.Rows.Clear();
+                _dataSource.Clear();
+                _dataSource = null;
+            }
+
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+            }
+
             dgPatient.DataSource = null;
         }
 
@@ -88,6 +103,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     _dataSource = result.QueryResult as DataTable;
                     OnSearchPatient();
                 };
