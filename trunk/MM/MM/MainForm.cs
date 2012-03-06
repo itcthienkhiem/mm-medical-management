@@ -1335,7 +1335,7 @@ namespace MM
         {
             InitConfigAsThread();
 
-            //if (!System.Diagnostics.Debugger.IsAttached)
+            if (!System.Diagnostics.Debugger.IsAttached)
                 AutoDetectUpdateAsThread();
         }
 
