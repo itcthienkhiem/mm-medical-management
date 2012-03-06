@@ -49,8 +49,18 @@ namespace MM.Controls
             {
                 DataRow row = _patientRow as DataRow;
                 _patientGUID = row["PatientGUID"].ToString();
-                _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
-                _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+
+                if (raAll.Checked)
+                {
+                    _fromDate = Global.MinDateTime;
+                    _toDate = Global.MaxDateTime;
+                }
+                else
+                {
+                    _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
+                    _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+                }
+                
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayKetLuanProc));
                 base.ShowWaiting();
@@ -184,6 +194,15 @@ namespace MM.Controls
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void raAll_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkFromDate.Enabled = !raAll.Checked;
+            dtpkToDate.Enabled = !raAll.Checked;
+            btnSearch.Enabled = !raAll.Checked;
+
+            DisplayAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -205,5 +224,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
