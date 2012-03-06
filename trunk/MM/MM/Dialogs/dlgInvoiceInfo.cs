@@ -393,13 +393,16 @@ namespace MM.Dialogs
             {
                 DataGridViewRow row = dgDetail.Rows[i];
 
+                if (row.Cells[2].Value == null || row.Cells[2].Value == DBNull.Value)
+                    row.Cells[2].Value = "Lần";
+
                 if (row.Cells[1].Value == null || row.Cells[1].Value == DBNull.Value || row.Cells[1].Value.ToString().Trim() == string.Empty)
                 {
                     MsgBox.Show(this.Text, "Vui lòng nhập tên dịch vụ.", IconType.Information);
                     return false;
                 }
 
-                if (row.Cells[2].Value != null && (row.Cells[2].Value == DBNull.Value || row.Cells[2].Value.ToString().Trim() == string.Empty))
+                if (row.Cells[2].Value.ToString().Trim() == string.Empty)
                 {
                     MsgBox.Show(this.Text, "Vui lòng nhập đơn vị tính.", IconType.Information);
                     return false;
