@@ -295,7 +295,7 @@ namespace MM.Controls
             dlgInvoiceInfo dlg = new dlgInvoiceInfo(null);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                DataTable dt = dgInvoice.DataSource as DataTable;
+                /*DataTable dt = dgInvoice.DataSource as DataTable;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -330,7 +330,8 @@ namespace MM.Controls
                     newRow["DeletedBy"] = dlg.Invoice.DeletedBy.ToString();
 
                 newRow["Status"] = dlg.Invoice.Status;
-                dt.Rows.Add(newRow);
+                dt.Rows.Add(newRow);*/
+                DisplayAsThread();
             }
         }
         #endregion

@@ -142,7 +142,8 @@ namespace MM.Controls
             dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgPhieuThu.DataSource as DataTable;
+                DisplayAsThread();
+                /*DataTable dt = dgPhieuThu.DataSource as DataTable;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -174,7 +175,7 @@ namespace MM.Controls
                 newRow["Status"] = dlg.PhieuThuThuoc.Status;
                 newRow["IsExported"] = false;
                 dt.Rows.Add(newRow);
-                //SelectLastedRow();
+                //SelectLastedRow();*/
             }
         }
 
