@@ -311,6 +311,12 @@ namespace MM.Exports
                     range.Value = serviceName;
                     range.HorizontalAlignment = HAlign.Left;
                     range.Font.Bold = false;
+                    range.WrapText = true;
+
+                    int div = serviceName.Length / 32;
+                    int mod = serviceName.Length % 32;
+                    if (mod != 0) div++;
+                    range.RowHeight = 15 * div;
 
                     range = workSheet.Cells[rowIndex, 2];
                     range.Value = donViTinh;
@@ -475,6 +481,11 @@ namespace MM.Exports
                     range.Value = serviceName;
                     range.HorizontalAlignment = HAlign.Left;
                     range.Font.Bold = false;
+                    range.WrapText = true;
+                    int div = serviceName.Length / 32;
+                    int mod = serviceName.Length % 32;
+                    if (mod != 0) div++;
+                    range.RowHeight = 15 * div;
 
                     range = workSheet.Cells[rowIndex, 2];
                     range.Value = donViTinh;
@@ -639,6 +650,11 @@ namespace MM.Exports
                     range.Value = serviceName;
                     range.HorizontalAlignment = HAlign.Left;
                     range.Font.Bold = false;
+                    range.WrapText = true;
+                    int div = serviceName.Length / 32;
+                    int mod = serviceName.Length % 32;
+                    if (mod != 0) div++;
+                    range.RowHeight = 15 * div;
 
                     range = workSheet.Cells[rowIndex, 2];
                     range.Value = donViTinh;
