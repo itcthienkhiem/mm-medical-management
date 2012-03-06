@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceHistory));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkBSCD = new System.Windows.Forms.CheckBox();
+            this.cboBacSiChiDinh = new System.Windows.Forms.ComboBox();
+            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.raNegative = new System.Windows.Forms.RadioButton();
             this.raNormal = new System.Windows.Forms.RadioButton();
             this.gbNegative = new System.Windows.Forms.GroupBox();
@@ -45,7 +48,6 @@
             this.dtpkActiveDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.cboDocStaff = new System.Windows.Forms.ComboBox();
-            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboService = new System.Windows.Forms.ComboBox();
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbUnit = new System.Windows.Forms.Label();
@@ -57,19 +59,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.cboBacSiChiDinh = new System.Windows.Forms.ComboBox();
-            this.chkBSCD = new System.Windows.Forms.CheckBox();
+            this.btnChonDichVu = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.gbNegative.SuspendLayout();
             this.gbNormal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnChonDichVu);
             this.groupBox1.Controls.Add(this.chkBSCD);
             this.groupBox1.Controls.Add(this.cboBacSiChiDinh);
             this.groupBox1.Controls.Add(this.raNegative);
@@ -92,10 +94,40 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(380, 385);
+            this.groupBox1.Size = new System.Drawing.Size(471, 385);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // chkBSCD
+            // 
+            this.chkBSCD.AutoSize = true;
+            this.chkBSCD.Location = new System.Drawing.Point(14, 71);
+            this.chkBSCD.Name = "chkBSCD";
+            this.chkBSCD.Size = new System.Drawing.Size(58, 17);
+            this.chkBSCD.TabIndex = 14;
+            this.chkBSCD.Text = "BSCĐ:";
+            this.chkBSCD.UseVisualStyleBackColor = true;
+            this.chkBSCD.CheckedChanged += new System.EventHandler(this.chkBSCD_CheckedChanged);
+            // 
+            // cboBacSiChiDinh
+            // 
+            this.cboBacSiChiDinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBacSiChiDinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboBacSiChiDinh.DataSource = this.docStaffViewBindingSource;
+            this.cboBacSiChiDinh.DisplayMember = "Fullname";
+            this.cboBacSiChiDinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBacSiChiDinh.Enabled = false;
+            this.cboBacSiChiDinh.FormattingEnabled = true;
+            this.cboBacSiChiDinh.Location = new System.Drawing.Point(94, 69);
+            this.cboBacSiChiDinh.Name = "cboBacSiChiDinh";
+            this.cboBacSiChiDinh.Size = new System.Drawing.Size(269, 21);
+            this.cboBacSiChiDinh.TabIndex = 2;
+            this.cboBacSiChiDinh.ValueMember = "DocStaffGUID";
+            // 
+            // docStaffViewBindingSource
+            // 
+            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
             // 
             // raNegative
             // 
@@ -247,10 +279,6 @@
             this.cboDocStaff.TabIndex = 1;
             this.cboDocStaff.ValueMember = "DocStaffGUID";
             // 
-            // docStaffViewBindingSource
-            // 
-            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
-            // 
             // cboService
             // 
             this.cboService.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -352,7 +380,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(199, 397);
+            this.btnCancel.Location = new System.Drawing.Point(244, 397);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 11;
@@ -364,45 +392,29 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(120, 397);
+            this.btnOK.Location = new System.Drawing.Point(165, 397);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 10;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // cboBacSiChiDinh
+            // btnChonDichVu
             // 
-            this.cboBacSiChiDinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboBacSiChiDinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboBacSiChiDinh.DataSource = this.docStaffViewBindingSource;
-            this.cboBacSiChiDinh.DisplayMember = "Fullname";
-            this.cboBacSiChiDinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBacSiChiDinh.Enabled = false;
-            this.cboBacSiChiDinh.FormattingEnabled = true;
-            this.cboBacSiChiDinh.Location = new System.Drawing.Point(94, 69);
-            this.cboBacSiChiDinh.Name = "cboBacSiChiDinh";
-            this.cboBacSiChiDinh.Size = new System.Drawing.Size(269, 21);
-            this.cboBacSiChiDinh.TabIndex = 2;
-            this.cboBacSiChiDinh.ValueMember = "DocStaffGUID";
-            // 
-            // chkBSCD
-            // 
-            this.chkBSCD.AutoSize = true;
-            this.chkBSCD.Location = new System.Drawing.Point(14, 71);
-            this.chkBSCD.Name = "chkBSCD";
-            this.chkBSCD.Size = new System.Drawing.Size(58, 17);
-            this.chkBSCD.TabIndex = 14;
-            this.chkBSCD.Text = "BSCĐ:";
-            this.chkBSCD.UseVisualStyleBackColor = true;
-            this.chkBSCD.CheckedChanged += new System.EventHandler(this.chkBSCD_CheckedChanged);
+            this.btnChonDichVu.Location = new System.Drawing.Point(367, 20);
+            this.btnChonDichVu.Name = "btnChonDichVu";
+            this.btnChonDichVu.Size = new System.Drawing.Size(92, 23);
+            this.btnChonDichVu.TabIndex = 51;
+            this.btnChonDichVu.Text = "Chọn dịch vụ...";
+            this.btnChonDichVu.UseVisualStyleBackColor = true;
+            this.btnChonDichVu.Click += new System.EventHandler(this.btnChonDichVu_Click);
             // 
             // dlgAddServiceHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(395, 429);
+            this.ClientSize = new System.Drawing.Size(485, 429);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -417,12 +429,12 @@
             this.Load += new System.EventHandler(this.dlgAddServiceHistory_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             this.gbNegative.ResumeLayout(false);
             this.gbNegative.PerformLayout();
             this.gbNormal.ResumeLayout(false);
             this.gbNormal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             this.ResumeLayout(false);
@@ -460,5 +472,6 @@
         private System.Windows.Forms.CheckBox chkNormal;
         private System.Windows.Forms.ComboBox cboBacSiChiDinh;
         private System.Windows.Forms.CheckBox chkBSCD;
+        private System.Windows.Forms.Button btnChonDichVu;
     }
 }

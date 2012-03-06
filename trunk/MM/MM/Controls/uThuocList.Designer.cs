@@ -38,19 +38,23 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtTenThuoc = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HamLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -62,7 +66,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 399);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(796, 38);
-            this.panel1.TabIndex = 1;
+            this.panel1.TabIndex = 2;
             // 
             // btnDelete
             // 
@@ -102,13 +106,31 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.chkChecked);
-            this.panel2.Controls.Add(this.dgThuoc);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Controls.Add(this.txtTenThuoc);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(796, 399);
-            this.panel2.TabIndex = 2;
+            this.panel2.Size = new System.Drawing.Size(796, 35);
+            this.panel2.TabIndex = 0;
+            // 
+            // txtTenThuoc
+            // 
+            this.txtTenThuoc.Location = new System.Drawing.Point(73, 7);
+            this.txtTenThuoc.Name = "txtTenThuoc";
+            this.txtTenThuoc.Size = new System.Drawing.Size(303, 20);
+            this.txtTenThuoc.TabIndex = 5;
+            this.txtTenThuoc.TextChanged += new System.EventHandler(this.txtTenThuoc_TextChanged);
+            this.txtTenThuoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTenThuoc_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Tìm thuốc:";
             // 
             // chkChecked
             // 
@@ -161,13 +183,9 @@
             this.dgThuoc.ReadOnly = true;
             this.dgThuoc.RowHeadersWidth = 30;
             this.dgThuoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgThuoc.Size = new System.Drawing.Size(796, 399);
+            this.dgThuoc.Size = new System.Drawing.Size(796, 364);
             this.dgThuoc.TabIndex = 2;
             this.dgThuoc.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
-            // 
-            // thuocBindingSource
-            // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
             // 
             // colChecked
             // 
@@ -225,10 +243,25 @@
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 250;
             // 
+            // thuocBindingSource
+            // 
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgThuoc);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 35);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(796, 364);
+            this.panel3.TabIndex = 1;
+            // 
             // uThuocList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uThuocList";
@@ -238,6 +271,8 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -258,5 +293,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HamLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox txtTenThuoc;
+        private System.Windows.Forms.Label label1;
     }
 }

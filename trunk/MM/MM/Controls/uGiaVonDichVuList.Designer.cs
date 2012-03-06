@@ -44,11 +44,11 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgGiaVonDichVu = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.giaVonDichVuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.giaVonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayApDungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaVonDichVuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -68,7 +68,7 @@
             // 
             // txtDichVu
             // 
-            this.txtDichVu.Location = new System.Drawing.Point(66, 13);
+            this.txtDichVu.Location = new System.Drawing.Point(81, 13);
             this.txtDichVu.Name = "txtDichVu";
             this.txtDichVu.Size = new System.Drawing.Size(375, 20);
             this.txtDichVu.TabIndex = 1;
@@ -80,9 +80,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Dịch vụ:";
+            this.label1.Text = "Tìm dịch vụ:";
             // 
             // panel2
             // 
@@ -194,10 +194,6 @@
             this.dgGiaVonDichVu.TabIndex = 4;
             this.dgGiaVonDichVu.DoubleClick += new System.EventHandler(this.dgGiaThuoc_DoubleClick);
             // 
-            // giaVonDichVuViewBindingSource
-            // 
-            this.giaVonDichVuViewBindingSource.DataSource = typeof(MM.Databasae.GiaVonDichVuView);
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -244,6 +240,10 @@
             this.ngayApDungDataGridViewTextBoxColumn.HeaderText = "Ngày áp dụng";
             this.ngayApDungDataGridViewTextBoxColumn.Name = "ngayApDungDataGridViewTextBoxColumn";
             this.ngayApDungDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // giaVonDichVuViewBindingSource
+            // 
+            this.giaVonDichVuViewBindingSource.DataSource = typeof(MM.Databasae.GiaVonDichVuView);
             // 
             // uGiaVonDichVuList
             // 

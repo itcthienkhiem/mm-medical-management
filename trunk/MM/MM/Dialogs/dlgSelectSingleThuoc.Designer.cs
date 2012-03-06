@@ -33,21 +33,21 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgSelectSingleThuoc));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.txtTimThuoc = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
             this.dgThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.maThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
+            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -60,16 +60,6 @@
             this.panel1.Size = new System.Drawing.Size(553, 38);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnCancel);
-            this.panel2.Controls.Add(this.btnOK);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 409);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(553, 38);
-            this.panel2.TabIndex = 1;
-            // 
             // txtTimThuoc
             // 
             this.txtTimThuoc.Location = new System.Drawing.Point(71, 9);
@@ -77,6 +67,7 @@
             this.txtTimThuoc.Size = new System.Drawing.Size(314, 20);
             this.txtTimThuoc.TabIndex = 5;
             this.txtTimThuoc.TextChanged += new System.EventHandler(this.txtTimThuoc_TextChanged);
+            this.txtTimThuoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTimThuoc_KeyDown);
             // 
             // label1
             // 
@@ -87,9 +78,15 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Tìm thuốc:";
             // 
-            // thuocBindingSource
+            // panel2
             // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            this.panel2.Controls.Add(this.btnCancel);
+            this.panel2.Controls.Add(this.btnOK);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 409);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(553, 38);
+            this.panel2.TabIndex = 1;
             // 
             // dgThuoc
             // 
@@ -132,6 +129,39 @@
             this.dgThuoc.TabIndex = 9;
             this.dgThuoc.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dgThuoc);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 38);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(553, 371);
+            this.panel3.TabIndex = 2;
+            // 
+            // btnOK
+            // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Image = global::MM.Properties.Resources.check;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(199, 6);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 17;
+            this.btnOK.Text = "    &Đồng ý";
+            this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(278, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 18;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
             // maThuocDataGridViewTextBoxColumn
             // 
             this.maThuocDataGridViewTextBoxColumn.DataPropertyName = "MaThuoc";
@@ -148,38 +178,9 @@
             this.tenThuocDataGridViewTextBoxColumn.ReadOnly = true;
             this.tenThuocDataGridViewTextBoxColumn.Width = 350;
             // 
-            // panel3
+            // thuocBindingSource
             // 
-            this.panel3.Controls.Add(this.dgThuoc);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 38);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(553, 371);
-            this.panel3.TabIndex = 2;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(278, 6);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 18;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Image = global::MM.Properties.Resources.check;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(199, 6);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 17;
-            this.btnOK.Text = "    &Đồng ý";
-            this.btnOK.UseVisualStyleBackColor = true;
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
             // 
             // dlgSelectSingleThuoc
             // 
@@ -204,9 +205,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).EndInit();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

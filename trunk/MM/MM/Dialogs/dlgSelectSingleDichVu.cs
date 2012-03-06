@@ -12,14 +12,14 @@ using MM.Databasae;
 
 namespace MM.Dialogs
 {
-    public partial class dlgSelectSingleThuoc : Form
+    public partial class dlgSelectSingleDichVu : Form
     {
         #region Members
         private DataTable _dataSource = null;
         #endregion
 
         #region Constructor
-        public dlgSelectSingleThuoc(DataTable dataSource)
+        public dlgSelectSingleDichVu(DataTable dataSource)
         {
             InitializeComponent();
             _dataSource = dataSource;
@@ -27,13 +27,13 @@ namespace MM.Dialogs
         #endregion
 
         #region Members
-        public string MaThuocGUID
+        public string ServiceGUID
         {
             get
             {
-                DataRow drThuoc = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
-                if (drThuoc == null) return string.Empty;
-                return drThuoc["ThuocGUID"].ToString();
+                DataRow drService = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row;
+                if (drService == null) return string.Empty;
+                return drService["ServiceGUID"].ToString();
             }
         }
         #endregion
@@ -44,17 +44,17 @@ namespace MM.Dialogs
             List<DataRow> results = null;
             DataTable newDataSource = null;
 
-            if (txtTimThuoc.Text.Trim() == string.Empty)
+            if (txtTimDichVu.Text.Trim() == string.Empty)
             {
-                dgThuoc.DataSource = null;
+                dgService.DataSource = null;
                 return;
             }
 
-            if (txtTimThuoc.Text.Trim() == "*")
+            if (txtTimDichVu.Text.Trim() == "*")
             {
                 DataTable dtSource = _dataSource as DataTable;
                 results = (from p in dtSource.AsEnumerable()
-                           orderby p.Field<string>("TenThuoc")
+                           orderby p.Field<string>("Name")
                            select p).ToList<DataRow>();
 
                 newDataSource = dtSource.Clone();
@@ -62,22 +62,22 @@ namespace MM.Dialogs
                 foreach (DataRow row in results)
                     newDataSource.ImportRow(row);
 
-                dgThuoc.DataSource = newDataSource;
+                dgService.DataSource = newDataSource;
                 return;
             }
 
-            string str = txtTimThuoc.Text.ToLower();
+            string str = txtTimDichVu.Text.ToLower();
             DataTable dt = _dataSource as DataTable;
             newDataSource = dt.Clone();
 
-            //Ten Thuoc
+            //Ten dịch vụ
             results = (from p in dt.AsEnumerable()
-                       where p.Field<string>("TenThuoc") != null &&
-                       p.Field<string>("TenThuoc").Trim() != string.Empty &&
+                       where p.Field<string>("Name") != null &&
+                       p.Field<string>("Name").Trim() != string.Empty &&
                        //(p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0 ||
                        //str.IndexOf(p.Field<string>("TenThuoc").ToLower()) == 0)
-                       p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0
-                       orderby p.Field<string>("TenThuoc")
+                       p.Field<string>("Name").ToLower().IndexOf(str) == 0
+                       orderby p.Field<string>("Name")
                        select p).ToList<DataRow>();
 
 
@@ -86,11 +86,11 @@ namespace MM.Dialogs
 
             if (newDataSource.Rows.Count > 0)
             {
-                dgThuoc.DataSource = newDataSource;
+                dgService.DataSource = newDataSource;
                 return;
             }
 
-            dgThuoc.DataSource = newDataSource;
+            dgService.DataSource = newDataSource;
         }
         #endregion
 
@@ -102,9 +102,9 @@ namespace MM.Dialogs
 
         private void dgThuoc_DoubleClick(object sender, EventArgs e)
         {
-            if (dgThuoc.SelectedRows == null || dgThuoc.SelectedRows.Count <= 0)
+            if (dgService.SelectedRows == null || dgService.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn chọn 1 thuốc.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng chọn chọn 1 dịch vụ.", IconType.Information);
                 return;
             }
 
@@ -116,9 +116,9 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                if (dgThuoc.SelectedRows == null || dgThuoc.SelectedRows.Count <= 0)
+                if (dgService.SelectedRows == null || dgService.SelectedRows.Count <= 0)
                 {
-                    MsgBox.Show(this.Text, "Vui lòng chọn chọn 1 thuốc.", IconType.Information);
+                    MsgBox.Show(this.Text, "Vui lòng chọn chọn 1 dịch vụ.", IconType.Information);
                     e.Cancel = true;
                 }
             }
@@ -129,42 +129,42 @@ namespace MM.Dialogs
             OnSearch();
         }
 
-        private void txtTimThuoc_KeyDown(object sender, KeyEventArgs e)
+        private void txtTimDichVu_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Down)
             {
-                dgThuoc.Focus();
+                dgService.Focus();
 
-                if (dgThuoc.SelectedRows != null && dgThuoc.SelectedRows.Count > 0)
+                if (dgService.SelectedRows != null && dgService.SelectedRows.Count > 0)
                 {
-                    int index = dgThuoc.SelectedRows[0].Index;
-                    if (index < dgThuoc.RowCount - 1)
+                    int index = dgService.SelectedRows[0].Index;
+                    if (index < dgService.RowCount - 1)
                     {
                         index++;
-                        dgThuoc.CurrentCell = dgThuoc[1, index];
-                        dgThuoc.Rows[index].Selected = true;
+                        dgService.CurrentCell = dgService[1, index];
+                        dgService.Rows[index].Selected = true;
                     }
                 }
             }
 
             if (e.KeyCode == Keys.Up)
             {
-                dgThuoc.Focus();
+                dgService.Focus();
 
-                if (dgThuoc.SelectedRows != null && dgThuoc.SelectedRows.Count > 0)
+                if (dgService.SelectedRows != null && dgService.SelectedRows.Count > 0)
                 {
-                    int index = dgThuoc.SelectedRows[0].Index;
+                    int index = dgService.SelectedRows[0].Index;
                     if (index > 0)
                     {
                         index--;
-                        dgThuoc.CurrentCell = dgThuoc[1, index];
-                        dgThuoc.Rows[index].Selected = true;
+                        dgService.CurrentCell = dgService[1, index];
+                        dgService.Rows[index].Selected = true;
                     }
                 }
             }
         }
         #endregion
 
-        
+       
     }
 }

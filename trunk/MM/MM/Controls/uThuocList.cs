@@ -18,6 +18,7 @@ namespace MM.Controls
     {
         #region Members
         private bool _isReport = false;
+        private DataTable _dataSource = null;
         #endregion
 
         #region Constructor
@@ -42,8 +43,9 @@ namespace MM.Controls
         {
             get
             {
+                UpdateChecked();
                 List<DataRow> checkedRows = new List<DataRow>();
-                DataTable dt = dgThuoc.DataSource as DataTable;
+                DataTable dt = _dataSource;
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     foreach (DataRow row in dt.Rows)
@@ -59,6 +61,24 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateChecked()
+        {
+            DataTable dt = dgThuoc.DataSource as DataTable;
+            if (dt == null) return;
+
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
+
+            foreach (DataRow row1 in rows1)
+            {
+                string thuocGUID1 = row1["ThuocGUID"].ToString();
+                DataRow[] rows2 = _dataSource.Select(string.Format("ThuocGUID='{0}'", thuocGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
+
+                rows2[0]["Checked"] = row1["Checked"];
+            }
+        }
+
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
@@ -98,7 +118,8 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    dgThuoc.DataSource = result.QueryResult;
+                    _dataSource = result.QueryResult as DataTable;
+                    OnSearchThuoc();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -113,10 +134,11 @@ namespace MM.Controls
 
         private void OnAddThuoc()
         {
+            if (_dataSource == null) return;
             dlgAddThuoc dlg = new dlgAddThuoc();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgThuoc.DataSource as DataTable;
+                DataTable dt = _dataSource;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -150,7 +172,17 @@ namespace MM.Controls
                 newRow["Status"] = dlg.Thuoc.Status;
                 dt.Rows.Add(newRow);
                 //SelectLastedRow();
+                OnSearchThuoc();
             }
+        }
+
+        private DataRow GetDataRow(string thuocGUID)
+        {
+            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
+            DataRow[] rows = _dataSource.Select(string.Format("ThuocGUID = '{0}'", thuocGUID));
+            if (rows == null || rows.Length <= 0) return null;
+
+            return rows[0];
         }
 
         private void SelectLastedRow()
@@ -161,13 +193,16 @@ namespace MM.Controls
 
         private void OnEditThuoc()
         {
+            if (_dataSource == null) return;
             if (dgThuoc.SelectedRows == null || dgThuoc.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thuốc.", IconType.Information);
                 return;
             }
 
-            DataRow drThuoc = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string thuocGUID = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row["ThuocGUID"].ToString();
+            DataRow drThuoc = GetDataRow(thuocGUID);
+            if (drThuoc == null) return;
             dlgAddThuoc dlg = new dlgAddThuoc(drThuoc);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -198,14 +233,18 @@ namespace MM.Controls
                     drThuoc["DeletedBy"] = dlg.Thuoc.DeletedBy.ToString();
 
                 drThuoc["Status"] = dlg.Thuoc.Status;
+
+                OnSearchThuoc();
             }
         }
 
         private void OnDeleteThuoc()
         {
+            if (_dataSource == null) return;
+            UpdateChecked();
             List<string> deletedThuocList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = dgThuoc.DataSource as DataTable;
+            DataTable dt = _dataSource;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
@@ -224,8 +263,10 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
-                            dt.Rows.Remove(row);
+                            _dataSource.Rows.Remove(row);
                         }
+
+                        OnSearchThuoc();
                     }
                     else
                     {
@@ -236,6 +277,54 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thuốc cần xóa.", IconType.Information);
+        }
+
+        private void OnSearchThuoc()
+        {
+            UpdateChecked();
+            chkChecked.Checked = false;
+            List<DataRow> results = null;
+            DataTable newDataSource = null;
+
+            if (txtTenThuoc.Text.Trim() == string.Empty)
+            {
+                results = (from p in _dataSource.AsEnumerable()
+                           orderby p.Field<string>("TenThuoc")
+                           select p).ToList<DataRow>();
+
+                newDataSource = _dataSource.Clone();
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgThuoc.DataSource = newDataSource;
+                if (dgThuoc.RowCount > 0) dgThuoc.Rows[0].Selected = true;
+                return;
+            }
+
+            string str = txtTenThuoc.Text.ToLower();
+
+            newDataSource = _dataSource.Clone();
+
+            //Name
+            results = (from p in _dataSource.AsEnumerable()
+                       where p.Field<string>("TenThuoc") != null &&
+                           p.Field<string>("TenThuoc").Trim() != string.Empty &&
+                           p.Field<string>("TenThuoc").ToLower().IndexOf(str) >= 0
+                       //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
+                       //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                       orderby p.Field<string>("TenThuoc")
+                       select p).ToList<DataRow>();
+
+            foreach (DataRow row in results)
+                newDataSource.ImportRow(row);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgThuoc.DataSource = newDataSource;
+                return;
+            }
+
+            dgThuoc.DataSource = newDataSource;
         }
         #endregion
 
@@ -271,6 +360,46 @@ namespace MM.Controls
             if (!AllowEdit) return;
             OnEditThuoc();
         }
+
+        private void txtTenThuoc_TextChanged(object sender, EventArgs e)
+        {
+            OnSearchThuoc();
+        }
+
+        private void txtTenThuoc_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                dgThuoc.Focus();
+
+                if (dgThuoc.SelectedRows != null && dgThuoc.SelectedRows.Count > 0)
+                {
+                    int index = dgThuoc.SelectedRows[0].Index;
+                    if (index < dgThuoc.RowCount - 1)
+                    {
+                        index++;
+                        dgThuoc.CurrentCell = dgThuoc[1, index];
+                        dgThuoc.Rows[index].Selected = true;
+                    }
+                }
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                dgThuoc.Focus();
+
+                if (dgThuoc.SelectedRows != null && dgThuoc.SelectedRows.Count > 0)
+                {
+                    int index = dgThuoc.SelectedRows[0].Index;
+                    if (index > 0)
+                    {
+                        index--;
+                        dgThuoc.CurrentCell = dgThuoc[1, index];
+                        dgThuoc.Rows[index].Selected = true;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -292,5 +421,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
     }
 }
