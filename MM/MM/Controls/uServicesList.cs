@@ -17,7 +17,7 @@ namespace MM.Controls
     public partial class uServicesList : uBase
     {
         #region Members
-
+        DataTable _dataSource = null;
         #endregion
 
         #region Constructor
@@ -72,7 +72,9 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    dgService.DataSource = result.QueryResult; 
+                    //dgService.DataSource = result.QueryResult; 
+                    _dataSource = result.QueryResult as DataTable;
+                    OnSearchDichVu();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -87,10 +89,11 @@ namespace MM.Controls
 
         private void OnAddService()
         {
+            if (_dataSource == null) return;
             dlgAddServices dlg = new dlgAddServices();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgService.DataSource as DataTable;
+                DataTable dt = _dataSource;//dgService.DataSource as DataTable;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -126,6 +129,7 @@ namespace MM.Controls
                 newRow["Status"] = dlg.Service.Status;
                 dt.Rows.Add(newRow);
                 //SelectLastedRow();
+                OnSearchDichVu();
             }
         }
 
@@ -135,15 +139,29 @@ namespace MM.Controls
             dgService.Rows[dgService.RowCount - 1].Selected = true;
         }
 
+        private DataRow GetDataRow(string serviceGUID)
+        {
+            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
+            DataRow[] rows = _dataSource.Select(string.Format("ServiceGUID = '{0}'", serviceGUID));
+            if (rows == null || rows.Length <= 0) return null;
+
+            return rows[0];
+        }
+
         private void OnEditService()
         {
+            if (_dataSource == null) return;
+
             if (dgService.SelectedRows == null || dgService.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 dịch vụ.", IconType.Information);
                 return;
             }
 
-            DataRow drService = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string serviceGUID = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row["ServiceGUID"].ToString();
+            DataRow drService = GetDataRow(serviceGUID);
+            if (drService == null) return;
+            //DataRow drService = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row;
             dlgAddServices dlg = new dlgAddServices(drService);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -176,14 +194,36 @@ namespace MM.Controls
                     drService["DeletedBy"] = dlg.Service.DeletedBy.ToString();
 
                 drService["Status"] = dlg.Service.Status;
+
+                OnSearchDichVu();
+            }
+        }
+
+        private void UpdateChecked()
+        {
+            DataTable dt = dgService.DataSource as DataTable;
+            if (dt == null) return;
+
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
+
+            foreach (DataRow row1 in rows1)
+            {
+                string serviceGUID1 = row1["ServiceGUID"].ToString();
+                DataRow[] rows2 = _dataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
+
+                rows2[0]["Checked"] = row1["Checked"];
             }
         }
 
         private void OnDeleteService()
         {
+            if (_dataSource == null) return;
+            UpdateChecked();
             List<string> deletedServiceList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = dgService.DataSource as DataTable;
+            DataTable dt = _dataSource;//dgService.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
@@ -202,8 +242,11 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
-                            dt.Rows.Remove(row);
+                            _dataSource.Rows.Remove(row);
+                            //dt.Rows.Remove(row);
                         }
+
+                        OnSearchDichVu();
                     }
                     else
                     {
@@ -214,6 +257,54 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
+        }
+
+        private void OnSearchDichVu()
+        {
+            UpdateChecked();
+            chkChecked.Checked = false;
+            List<DataRow> results = null;
+            DataTable newDataSource = null;
+
+            if (txtTenDichVu.Text.Trim() == string.Empty)
+            {
+                results = (from p in _dataSource.AsEnumerable()
+                           orderby p.Field<string>("Name")
+                           select p).ToList<DataRow>();
+
+                newDataSource = _dataSource.Clone();
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgService.DataSource = newDataSource;
+                if (dgService.RowCount > 0) dgService.Rows[0].Selected = true;
+                return;
+            }
+
+            string str = txtTenDichVu.Text.ToLower();
+
+            newDataSource = _dataSource.Clone();
+
+            //Name
+            results = (from p in _dataSource.AsEnumerable()
+                        where p.Field<string>("Name") != null &&
+                            p.Field<string>("Name").Trim() != string.Empty &&
+                            p.Field<string>("Name").ToLower().IndexOf(str) >= 0
+                        //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
+                        //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                        orderby p.Field<string>("Name")
+                        select p).ToList<DataRow>();
+
+            foreach (DataRow row in results)
+                newDataSource.ImportRow(row);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgService.DataSource = newDataSource;
+                return;
+            }
+
+            dgService.DataSource = newDataSource;
         }
         #endregion
 
@@ -248,6 +339,46 @@ namespace MM.Controls
             if (!AllowEdit) return;
             OnEditService();
         }
+
+        private void txtTenDichVu_TextChanged(object sender, EventArgs e)
+        {
+            OnSearchDichVu();
+        }
+
+        private void txtTenDichVu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                dgService.Focus();
+
+                if (dgService.SelectedRows != null && dgService.SelectedRows.Count > 0)
+                {
+                    int index = dgService.SelectedRows[0].Index;
+                    if (index < dgService.RowCount - 1)
+                    {
+                        index++;
+                        dgService.CurrentCell = dgService[1, index];
+                        dgService.Rows[index].Selected = true;
+                    }
+                }
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                dgService.Focus();
+
+                if (dgService.SelectedRows != null && dgService.SelectedRows.Count > 0)
+                {
+                    int index = dgService.SelectedRows[0].Index;
+                    if (index > 0)
+                    {
+                        index--;
+                        dgService.CurrentCell = dgService[1, index];
+                        dgService.Rows[index].Selected = true;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -269,5 +400,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
     }
 }

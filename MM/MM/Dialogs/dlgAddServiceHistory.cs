@@ -520,6 +520,7 @@ namespace MM.Dialogs
             {
                 cboService.SelectedValue = _serviceGUID;
                 cboService.Enabled = false;
+                btnChonDichVu.Enabled = false;
                 chkBSCD.Checked = true;
                 cboBacSiChiDinh.SelectedValue = _bacSiChiDinhGUID;
             }
@@ -575,6 +576,16 @@ namespace MM.Dialogs
         private void chkBSCD_CheckedChanged(object sender, EventArgs e)
         {
             cboBacSiChiDinh.Enabled = chkBSCD.Checked;
+        }
+
+        private void btnChonDichVu_Click(object sender, EventArgs e)
+        {
+            DataTable dtService = cboService.DataSource as DataTable;
+            dlgSelectSingleDichVu dlg = new dlgSelectSingleDichVu(dtService);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                cboService.SelectedValue = dlg.ServiceGUID;
+            }
         }
         #endregion
 

@@ -45,12 +45,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgGiaThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.giaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.giaBanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayApDungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.donViTinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -82,9 +82,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Tên thuốc:";
+            this.label1.Text = "Tìm thuốc:";
             // 
             // panel2
             // 
@@ -197,10 +197,6 @@
             this.dgGiaThuoc.TabIndex = 4;
             this.dgGiaThuoc.DoubleClick += new System.EventHandler(this.dgGiaThuoc_DoubleClick);
             // 
-            // giaThuocViewBindingSource
-            // 
-            this.giaThuocViewBindingSource.DataSource = typeof(MM.Databasae.GiaThuocView);
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -256,6 +252,10 @@
             this.donViTinhDataGridViewTextBoxColumn.HeaderText = "ĐVT";
             this.donViTinhDataGridViewTextBoxColumn.Name = "donViTinhDataGridViewTextBoxColumn";
             this.donViTinhDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // giaThuocViewBindingSource
+            // 
+            this.giaThuocViewBindingSource.DataSource = typeof(MM.Databasae.GiaThuocView);
             // 
             // uGiaThuocList
             // 
