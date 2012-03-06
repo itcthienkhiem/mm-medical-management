@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pFilter = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.lbToDate = new System.Windows.Forms.Label();
@@ -50,8 +49,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgKhamNoiSoi = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.ketQuaNoiSoiViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayKhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBacSiChiDinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +57,10 @@
             this.ketLuanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deNghiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.loaiNoiSoiStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ketQuaNoiSoiViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.raFromDateToDate = new System.Windows.Forms.RadioButton();
+            this.raAll = new System.Windows.Forms.RadioButton();
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -69,7 +70,8 @@
             // 
             // pFilter
             // 
-            this.pFilter.Controls.Add(this.label1);
+            this.pFilter.Controls.Add(this.raFromDateToDate);
+            this.pFilter.Controls.Add(this.raAll);
             this.pFilter.Controls.Add(this.btnSearch);
             this.pFilter.Controls.Add(this.dtpkToDate);
             this.pFilter.Controls.Add(this.lbToDate);
@@ -77,23 +79,15 @@
             this.pFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.pFilter.Location = new System.Drawing.Point(0, 0);
             this.pFilter.Name = "pFilter";
-            this.pFilter.Size = new System.Drawing.Size(722, 42);
+            this.pFilter.Size = new System.Drawing.Size(722, 60);
             this.pFilter.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Từ ngày";
             // 
             // btnSearch
             // 
+            this.btnSearch.Enabled = false;
             this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(325, 10);
+            this.btnSearch.Location = new System.Drawing.Point(346, 31);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(64, 21);
             this.btnSearch.TabIndex = 6;
@@ -104,8 +98,9 @@
             // dtpkToDate
             // 
             this.dtpkToDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkToDate.Enabled = false;
             this.dtpkToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkToDate.Location = new System.Drawing.Point(223, 10);
+            this.dtpkToDate.Location = new System.Drawing.Point(244, 31);
             this.dtpkToDate.Name = "dtpkToDate";
             this.dtpkToDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkToDate.TabIndex = 4;
@@ -113,7 +108,7 @@
             // lbToDate
             // 
             this.lbToDate.AutoSize = true;
-            this.lbToDate.Location = new System.Drawing.Point(166, 13);
+            this.lbToDate.Location = new System.Drawing.Point(187, 34);
             this.lbToDate.Name = "lbToDate";
             this.lbToDate.Size = new System.Drawing.Size(53, 13);
             this.lbToDate.TabIndex = 3;
@@ -122,8 +117,9 @@
             // dtpkFromDate
             // 
             this.dtpkFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkFromDate.Enabled = false;
             this.dtpkFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkFromDate.Location = new System.Drawing.Point(65, 10);
+            this.dtpkFromDate.Location = new System.Drawing.Point(86, 31);
             this.dtpkFromDate.Name = "dtpkFromDate";
             this.dtpkFromDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkFromDate.TabIndex = 2;
@@ -219,9 +215,9 @@
             this.panel1.Controls.Add(this.chkChecked);
             this.panel1.Controls.Add(this.dgKhamNoiSoi);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 42);
+            this.panel1.Location = new System.Drawing.Point(0, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(722, 381);
+            this.panel1.Size = new System.Drawing.Size(722, 363);
             this.panel1.TabIndex = 15;
             // 
             // chkChecked
@@ -240,14 +236,14 @@
             this.dgKhamNoiSoi.AllowUserToDeleteRows = false;
             this.dgKhamNoiSoi.AllowUserToOrderColumns = true;
             this.dgKhamNoiSoi.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgKhamNoiSoi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgKhamNoiSoi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgKhamNoiSoi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgKhamNoiSoi.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -259,14 +255,14 @@
             this.deNghiDataGridViewTextBoxColumn,
             this.loaiNoiSoiStrDataGridViewTextBoxColumn});
             this.dgKhamNoiSoi.DataSource = this.ketQuaNoiSoiViewBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgKhamNoiSoi.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgKhamNoiSoi.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgKhamNoiSoi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgKhamNoiSoi.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgKhamNoiSoi.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -277,21 +273,9 @@
             this.dgKhamNoiSoi.ReadOnly = true;
             this.dgKhamNoiSoi.RowHeadersWidth = 30;
             this.dgKhamNoiSoi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgKhamNoiSoi.Size = new System.Drawing.Size(722, 381);
+            this.dgKhamNoiSoi.Size = new System.Drawing.Size(722, 363);
             this.dgKhamNoiSoi.TabIndex = 9;
             this.dgKhamNoiSoi.DoubleClick += new System.EventHandler(this.dgKhamNoiSoi_DoubleClick);
-            // 
-            // ketQuaNoiSoiViewBindingSource
-            // 
-            this.ketQuaNoiSoiViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaNoiSoiView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.AllowCurrentPage = true;
-            this._printDialog.AllowSelection = true;
-            this._printDialog.AllowSomePages = true;
-            this._printDialog.ShowHelp = true;
-            this._printDialog.UseEXDialog = true;
             // 
             // colChecked
             // 
@@ -299,8 +283,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle7;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.ReadOnly = true;
@@ -311,10 +295,10 @@
             // ngayKhamDataGridViewTextBoxColumn
             // 
             this.ngayKhamDataGridViewTextBoxColumn.DataPropertyName = "NgayKham";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = "dd/MM/yyyy";
-            this.ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Format = "d";
+            dataGridViewCellStyle8.NullValue = "dd/MM/yyyy";
+            this.ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
             this.ngayKhamDataGridViewTextBoxColumn.HeaderText = "Ngày khám";
             this.ngayKhamDataGridViewTextBoxColumn.Name = "ngayKhamDataGridViewTextBoxColumn";
             this.ngayKhamDataGridViewTextBoxColumn.ReadOnly = true;
@@ -362,12 +346,47 @@
             // loaiNoiSoiStrDataGridViewTextBoxColumn
             // 
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.DataPropertyName = "LoaiNoiSoiStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.loaiNoiSoiStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.loaiNoiSoiStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.HeaderText = "Loại nội soi";
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.Name = "loaiNoiSoiStrDataGridViewTextBoxColumn";
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.ReadOnly = true;
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // ketQuaNoiSoiViewBindingSource
+            // 
+            this.ketQuaNoiSoiViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaNoiSoiView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
+            // 
+            // raFromDateToDate
+            // 
+            this.raFromDateToDate.AutoSize = true;
+            this.raFromDateToDate.Location = new System.Drawing.Point(18, 31);
+            this.raFromDateToDate.Name = "raFromDateToDate";
+            this.raFromDateToDate.Size = new System.Drawing.Size(64, 17);
+            this.raFromDateToDate.TabIndex = 17;
+            this.raFromDateToDate.Text = "Từ ngày";
+            this.raFromDateToDate.UseVisualStyleBackColor = true;
+            // 
+            // raAll
+            // 
+            this.raAll.AutoSize = true;
+            this.raAll.Checked = true;
+            this.raAll.Location = new System.Drawing.Point(18, 9);
+            this.raAll.Name = "raAll";
+            this.raAll.Size = new System.Drawing.Size(56, 17);
+            this.raAll.TabIndex = 16;
+            this.raAll.TabStop = true;
+            this.raAll.Text = "Tất cả";
+            this.raAll.UseVisualStyleBackColor = true;
+            this.raAll.CheckedChanged += new System.EventHandler(this.raAll_CheckedChanged);
             // 
             // uKetQuaNoiSoiList
             // 
@@ -392,7 +411,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pFilter;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DateTimePicker dtpkToDate;
         private System.Windows.Forms.Label lbToDate;
@@ -417,5 +435,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ketLuanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deNghiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn loaiNoiSoiStrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.RadioButton raFromDateToDate;
+        private System.Windows.Forms.RadioButton raAll;
     }
 }

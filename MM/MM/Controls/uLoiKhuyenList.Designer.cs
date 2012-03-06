@@ -34,7 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pFilter = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.lbToDate = new System.Windows.Forms.Label();
@@ -46,12 +45,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgLoiKhuyen = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.loiKhuyenViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.symptomNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adviceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loiKhuyenViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.raFromDateToDate = new System.Windows.Forms.RadioButton();
+            this.raAll = new System.Windows.Forms.RadioButton();
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -61,7 +62,8 @@
             // 
             // pFilter
             // 
-            this.pFilter.Controls.Add(this.label1);
+            this.pFilter.Controls.Add(this.raFromDateToDate);
+            this.pFilter.Controls.Add(this.raAll);
             this.pFilter.Controls.Add(this.btnSearch);
             this.pFilter.Controls.Add(this.dtpkToDate);
             this.pFilter.Controls.Add(this.lbToDate);
@@ -69,23 +71,15 @@
             this.pFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.pFilter.Location = new System.Drawing.Point(0, 0);
             this.pFilter.Name = "pFilter";
-            this.pFilter.Size = new System.Drawing.Size(845, 42);
+            this.pFilter.Size = new System.Drawing.Size(845, 60);
             this.pFilter.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Từ ngày";
             // 
             // btnSearch
             // 
+            this.btnSearch.Enabled = false;
             this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(325, 10);
+            this.btnSearch.Location = new System.Drawing.Point(340, 31);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(64, 21);
             this.btnSearch.TabIndex = 6;
@@ -96,8 +90,9 @@
             // dtpkToDate
             // 
             this.dtpkToDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkToDate.Enabled = false;
             this.dtpkToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkToDate.Location = new System.Drawing.Point(223, 10);
+            this.dtpkToDate.Location = new System.Drawing.Point(238, 31);
             this.dtpkToDate.Name = "dtpkToDate";
             this.dtpkToDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkToDate.TabIndex = 4;
@@ -105,7 +100,7 @@
             // lbToDate
             // 
             this.lbToDate.AutoSize = true;
-            this.lbToDate.Location = new System.Drawing.Point(165, 14);
+            this.lbToDate.Location = new System.Drawing.Point(180, 35);
             this.lbToDate.Name = "lbToDate";
             this.lbToDate.Size = new System.Drawing.Size(52, 13);
             this.lbToDate.TabIndex = 3;
@@ -114,8 +109,9 @@
             // dtpkFromDate
             // 
             this.dtpkFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkFromDate.Enabled = false;
             this.dtpkFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkFromDate.Location = new System.Drawing.Point(65, 10);
+            this.dtpkFromDate.Location = new System.Drawing.Point(80, 31);
             this.dtpkFromDate.Name = "dtpkFromDate";
             this.dtpkFromDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkFromDate.TabIndex = 2;
@@ -172,9 +168,9 @@
             this.panel1.Controls.Add(this.chkChecked);
             this.panel1.Controls.Add(this.dgLoiKhuyen);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 42);
+            this.panel1.Location = new System.Drawing.Point(0, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(845, 393);
+            this.panel1.Size = new System.Drawing.Size(845, 375);
             this.panel1.TabIndex = 13;
             // 
             // chkChecked
@@ -227,13 +223,9 @@
             this.dgLoiKhuyen.ReadOnly = true;
             this.dgLoiKhuyen.RowHeadersWidth = 30;
             this.dgLoiKhuyen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgLoiKhuyen.Size = new System.Drawing.Size(845, 393);
+            this.dgLoiKhuyen.Size = new System.Drawing.Size(845, 375);
             this.dgLoiKhuyen.TabIndex = 5;
             this.dgLoiKhuyen.DoubleClick += new System.EventHandler(this.dgLoiKhuyen_DoubleClick);
-            // 
-            // loiKhuyenViewBindingSource
-            // 
-            this.loiKhuyenViewBindingSource.DataSource = typeof(MM.Databasae.LoiKhuyenView);
             // 
             // colChecked
             // 
@@ -286,6 +278,33 @@
             this.adviceDataGridViewTextBoxColumn.ReadOnly = true;
             this.adviceDataGridViewTextBoxColumn.Width = 300;
             // 
+            // loiKhuyenViewBindingSource
+            // 
+            this.loiKhuyenViewBindingSource.DataSource = typeof(MM.Databasae.LoiKhuyenView);
+            // 
+            // raFromDateToDate
+            // 
+            this.raFromDateToDate.AutoSize = true;
+            this.raFromDateToDate.Location = new System.Drawing.Point(12, 31);
+            this.raFromDateToDate.Name = "raFromDateToDate";
+            this.raFromDateToDate.Size = new System.Drawing.Size(64, 17);
+            this.raFromDateToDate.TabIndex = 13;
+            this.raFromDateToDate.Text = "Từ ngày";
+            this.raFromDateToDate.UseVisualStyleBackColor = true;
+            // 
+            // raAll
+            // 
+            this.raAll.AutoSize = true;
+            this.raAll.Checked = true;
+            this.raAll.Location = new System.Drawing.Point(12, 9);
+            this.raAll.Name = "raAll";
+            this.raAll.Size = new System.Drawing.Size(56, 17);
+            this.raAll.TabIndex = 12;
+            this.raAll.TabStop = true;
+            this.raAll.Text = "Tất cả";
+            this.raAll.UseVisualStyleBackColor = true;
+            this.raAll.CheckedChanged += new System.EventHandler(this.raAll_CheckedChanged);
+            // 
             // uLoiKhuyenList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,7 +328,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pFilter;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DateTimePicker dtpkToDate;
         private System.Windows.Forms.Label lbToDate;
@@ -327,5 +345,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn symptomNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn adviceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.RadioButton raFromDateToDate;
+        private System.Windows.Forms.RadioButton raAll;
     }
 }

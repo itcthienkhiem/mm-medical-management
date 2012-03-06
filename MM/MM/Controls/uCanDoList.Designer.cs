@@ -29,12 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pFilter = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.lbToDate = new System.Windows.Forms.Label();
@@ -46,7 +45,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgCanDo = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.canDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayCanDoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +56,9 @@
             this.bMIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MuMau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThiLuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.canDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.raFromDateToDate = new System.Windows.Forms.RadioButton();
+            this.raAll = new System.Windows.Forms.RadioButton();
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -67,7 +68,8 @@
             // 
             // pFilter
             // 
-            this.pFilter.Controls.Add(this.label1);
+            this.pFilter.Controls.Add(this.raFromDateToDate);
+            this.pFilter.Controls.Add(this.raAll);
             this.pFilter.Controls.Add(this.btnSearch);
             this.pFilter.Controls.Add(this.dtpkToDate);
             this.pFilter.Controls.Add(this.lbToDate);
@@ -75,23 +77,14 @@
             this.pFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.pFilter.Location = new System.Drawing.Point(0, 0);
             this.pFilter.Name = "pFilter";
-            this.pFilter.Size = new System.Drawing.Size(1195, 42);
+            this.pFilter.Size = new System.Drawing.Size(1195, 60);
             this.pFilter.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Từ ngày";
             // 
             // btnSearch
             // 
             this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(325, 10);
+            this.btnSearch.Location = new System.Drawing.Point(338, 30);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(64, 21);
             this.btnSearch.TabIndex = 6;
@@ -102,8 +95,9 @@
             // dtpkToDate
             // 
             this.dtpkToDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkToDate.Enabled = false;
             this.dtpkToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkToDate.Location = new System.Drawing.Point(223, 10);
+            this.dtpkToDate.Location = new System.Drawing.Point(236, 30);
             this.dtpkToDate.Name = "dtpkToDate";
             this.dtpkToDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkToDate.TabIndex = 4;
@@ -111,7 +105,7 @@
             // lbToDate
             // 
             this.lbToDate.AutoSize = true;
-            this.lbToDate.Location = new System.Drawing.Point(165, 14);
+            this.lbToDate.Location = new System.Drawing.Point(178, 34);
             this.lbToDate.Name = "lbToDate";
             this.lbToDate.Size = new System.Drawing.Size(52, 13);
             this.lbToDate.TabIndex = 3;
@@ -120,8 +114,9 @@
             // dtpkFromDate
             // 
             this.dtpkFromDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkFromDate.Enabled = false;
             this.dtpkFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkFromDate.Location = new System.Drawing.Point(65, 10);
+            this.dtpkFromDate.Location = new System.Drawing.Point(78, 30);
             this.dtpkFromDate.Name = "dtpkFromDate";
             this.dtpkFromDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkFromDate.TabIndex = 2;
@@ -178,9 +173,9 @@
             this.panel1.Controls.Add(this.chkChecked);
             this.panel1.Controls.Add(this.dgCanDo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 42);
+            this.panel1.Location = new System.Drawing.Point(0, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1195, 325);
+            this.panel1.Size = new System.Drawing.Size(1195, 307);
             this.panel1.TabIndex = 12;
             // 
             // chkChecked
@@ -199,14 +194,14 @@
             this.dgCanDo.AllowUserToDeleteRows = false;
             this.dgCanDo.AllowUserToOrderColumns = true;
             this.dgCanDo.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCanDo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCanDo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgCanDo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCanDo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -221,14 +216,14 @@
             this.MuMau,
             this.ThiLuc});
             this.dgCanDo.DataSource = this.canDoBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgCanDo.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgCanDo.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgCanDo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgCanDo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgCanDo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -239,13 +234,9 @@
             this.dgCanDo.ReadOnly = true;
             this.dgCanDo.RowHeadersWidth = 30;
             this.dgCanDo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCanDo.Size = new System.Drawing.Size(1195, 325);
+            this.dgCanDo.Size = new System.Drawing.Size(1195, 307);
             this.dgCanDo.TabIndex = 3;
             this.dgCanDo.DoubleClick += new System.EventHandler(this.dgCanDo_DoubleClick);
-            // 
-            // canDoBindingSource
-            // 
-            this.canDoBindingSource.DataSource = typeof(MM.Databasae.CanDo);
             // 
             // colChecked
             // 
@@ -253,8 +244,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle6;
             this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
@@ -266,9 +257,9 @@
             // ngayCanDoDataGridViewTextBoxColumn
             // 
             this.ngayCanDoDataGridViewTextBoxColumn.DataPropertyName = "NgayCanDo";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
-            this.ngayCanDoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.Format = "dd/MM/yyyy HH:mm:ss";
+            this.ngayCanDoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.ngayCanDoDataGridViewTextBoxColumn.HeaderText = "Ngày cân đo";
             this.ngayCanDoDataGridViewTextBoxColumn.Name = "ngayCanDoDataGridViewTextBoxColumn";
             this.ngayCanDoDataGridViewTextBoxColumn.ReadOnly = true;
@@ -346,6 +337,33 @@
             this.ThiLuc.ReadOnly = true;
             this.ThiLuc.Width = 200;
             // 
+            // canDoBindingSource
+            // 
+            this.canDoBindingSource.DataSource = typeof(MM.Databasae.CanDo);
+            // 
+            // raFromDateToDate
+            // 
+            this.raFromDateToDate.AutoSize = true;
+            this.raFromDateToDate.Location = new System.Drawing.Point(12, 31);
+            this.raFromDateToDate.Name = "raFromDateToDate";
+            this.raFromDateToDate.Size = new System.Drawing.Size(64, 17);
+            this.raFromDateToDate.TabIndex = 9;
+            this.raFromDateToDate.Text = "Từ ngày";
+            this.raFromDateToDate.UseVisualStyleBackColor = true;
+            // 
+            // raAll
+            // 
+            this.raAll.AutoSize = true;
+            this.raAll.Checked = true;
+            this.raAll.Location = new System.Drawing.Point(12, 9);
+            this.raAll.Name = "raAll";
+            this.raAll.Size = new System.Drawing.Size(56, 17);
+            this.raAll.TabIndex = 8;
+            this.raAll.TabStop = true;
+            this.raAll.Text = "Tất cả";
+            this.raAll.UseVisualStyleBackColor = true;
+            this.raAll.CheckedChanged += new System.EventHandler(this.raAll_CheckedChanged);
+            // 
             // uCanDoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -369,7 +387,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pFilter;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DateTimePicker dtpkToDate;
         private System.Windows.Forms.Label lbToDate;
@@ -393,5 +410,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn bMIDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn MuMau;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThiLuc;
+        private System.Windows.Forms.RadioButton raFromDateToDate;
+        private System.Windows.Forms.RadioButton raAll;
     }
 }
