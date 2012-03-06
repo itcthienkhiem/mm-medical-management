@@ -295,7 +295,8 @@ namespace MM.Controls
             dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(null);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                DataTable dt = dgInvoice.DataSource as DataTable;
+                DisplayAsThread();
+                /*DataTable dt = dgInvoice.DataSource as DataTable;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -330,7 +331,7 @@ namespace MM.Controls
                     newRow["DeletedBy"] = dlg.HoaDonThuoc.DeletedBy.ToString();
 
                 newRow["Status"] = dlg.HoaDonThuoc.Status;
-                dt.Rows.Add(newRow);
+                dt.Rows.Add(newRow);*/
             }
         }
         #endregion
