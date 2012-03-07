@@ -188,27 +188,47 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedPTThuocList.Add(row["PhieuThuThuocGUID"].ToString());
+                    //deletedPTThuocList.Add(row["PhieuThuThuocGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
 
-            if (deletedPTThuocList.Count > 0)
+            if (deletedRows.Count > 0)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những phiếu thu mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = PhieuThuThuocBus.DeletePhieuThuThuoc(deletedPTThuocList);
-                    if (result.IsOK)
+                    List<string> noteList = new List<string>();
+
+                    foreach (DataRow row in deletedRows)
                     {
-                        foreach (DataRow row in deletedRows)
+                        string maPhieuThuThuoc = row["MaPhieuThuThuoc"].ToString();
+                        string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
+
+                        dlgLyDoXoa dlg = new dlgLyDoXoa(maPhieuThuThuoc, 0);
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
                         {
-                            dt.Rows.Remove(row);
+                            noteList.Add(dlg.Notes);
+                            deletedPTThuocList.Add(phieuThuThuocGUID);
                         }
                     }
-                    else
+
+                    if (deletedPTThuocList.Count > 0)
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"));
+                        Result result = PhieuThuThuocBus.DeletePhieuThuThuoc(deletedPTThuocList, noteList);
+                        if (result.IsOK)
+                        {
+                            foreach (DataRow row in deletedRows)
+                            {
+                                string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
+                                if (deletedPTThuocList.Contains(phieuThuThuocGUID))
+                                    dt.Rows.Remove(row);
+                            }
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"));
+                        }
                     }
                 }
             }

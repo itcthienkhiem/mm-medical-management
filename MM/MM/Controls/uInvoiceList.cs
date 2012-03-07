@@ -113,27 +113,47 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedInvoiceList.Add(row["invoiceGUID"].ToString());
+                    //deletedInvoiceList.Add(row["invoiceGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
 
-            if (deletedInvoiceList.Count > 0)
+            if (deletedRows.Count > 0)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những hóa đơn mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = InvoiceBus.DeleteInvoices(deletedInvoiceList);
-                    if (result.IsOK)
+                    List<string> noteList = new List<string>();
+
+                    foreach (DataRow row in deletedRows)
                     {
-                        foreach (DataRow row in deletedRows)
+                        string invoiceCode = row["InvoiceCode"].ToString();
+                        string invoiceGUID = row["InvoiceGUID"].ToString();
+
+                        dlgLyDoXoa dlg = new dlgLyDoXoa(invoiceCode, 1);
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
                         {
-                            dt.Rows.Remove(row);
+                            noteList.Add(dlg.Notes);
+                            deletedInvoiceList.Add(invoiceGUID);
                         }
                     }
-                    else
+
+                    if (deletedInvoiceList.Count > 0)
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.DeleteInvoices"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.DeleteInvoices"));
+                        Result result = InvoiceBus.DeleteInvoices(deletedInvoiceList, noteList);
+                        if (result.IsOK)
+                        {
+                            foreach (DataRow row in deletedRows)
+                            {
+                                string invoiceGUID = row["InvoiceGUID"].ToString();
+                                if (deletedInvoiceList.Contains(invoiceGUID))
+                                    dt.Rows.Remove(row);
+                            }
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.DeleteInvoices"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.DeleteInvoices"));
+                        }
                     }
                 }
             }

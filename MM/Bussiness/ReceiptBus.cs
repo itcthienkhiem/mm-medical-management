@@ -159,7 +159,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteReceipts(List<string> receiptKeys)
+        public static Result DeleteReceipts(List<string> receiptKeys, List<string> noteList)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -170,11 +170,13 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     string desc = string.Empty;
+                    int index = 0;
                     foreach (string key in receiptKeys)
                     {
                         Receipt r = db.Receipts.SingleOrDefault<Receipt>(rr => rr.ReceiptGUID.ToString() == key);
                         if (r != null)
                         {
+                            r.Notes = noteList[index];
                             r.DeletedDate = DateTime.Now;
                             r.DeletedBy = Guid.Parse(Global.UserGUID);
                             r.Status = (byte)Status.Deactived;
@@ -190,10 +192,12 @@ namespace MM.Bussiness
                                 }
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}'\n",
                                 r.ReceiptGUID.ToString(), r.ReceiptCode, r.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), r.Patient.FileNum, 
-                                r.Patient.Contact.FullName, r.Patient.Contact.Address);
+                                r.Patient.Contact.FullName, r.Patient.Contact.Address, noteList[index]);
                         }
+
+                        index++;
                     }
 
                     //Tracking
@@ -249,9 +253,9 @@ namespace MM.Bussiness
                     db.Receipts.InsertOnSubmit(receipt);
                     db.SubmitChanges();
 
-                    desc += string.Format("- Phiếu thu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}'\n",
+                    desc += string.Format("- Phiếu thu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}'\n",
                                receipt.ReceiptGUID.ToString(), receipt.ReceiptCode, receipt.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), receipt.Patient.FileNum,
-                               receipt.Patient.Contact.FullName, receipt.Patient.Contact.Address);
+                               receipt.Patient.Contact.FullName, receipt.Patient.Contact.Address, receipt.Notes);
 
                     desc += "- Chi tiết phiếu thu được thêm:\n";
 

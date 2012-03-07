@@ -138,27 +138,47 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedReceiptList.Add(row["ReceiptGUID"].ToString());
+                    //deletedReceiptList.Add(row["ReceiptGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
 
-            if (deletedReceiptList.Count > 0)
+            if (deletedRows.Count > 0)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những phiếu thu mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = ReceiptBus.DeleteReceipts(deletedReceiptList);
-                    if (result.IsOK)
+                    List<string> noteList = new List<string>();
+
+                    foreach (DataRow row in deletedRows)
                     {
-                        foreach (DataRow row in deletedRows)
+                        string receiptCode = row["ReceiptCode"].ToString();
+                        string receiptGUID = row["ReceiptGUID"].ToString();
+
+                        dlgLyDoXoa dlg = new dlgLyDoXoa(receiptCode, 0);
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
                         {
-                            dt.Rows.Remove(row);
+                            noteList.Add(dlg.Notes);
+                            deletedReceiptList.Add(receiptGUID);
                         }
                     }
-                    else
+
+                    if (deletedReceiptList.Count > 0)
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.DeleteReceipts"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.DeleteReceipts"));
+                        Result result = ReceiptBus.DeleteReceipts(deletedReceiptList, noteList);
+                        if (result.IsOK)
+                        {
+                            foreach (DataRow row in deletedRows)
+                            {
+                                string receiptGUID = row["ReceiptGUID"].ToString();
+                                if (deletedReceiptList.Contains(receiptGUID))
+                                    dt.Rows.Remove(row);
+                            }
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.DeleteReceipts"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.DeleteReceipts"));
+                        }
                     }
                 }
             }
