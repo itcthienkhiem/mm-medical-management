@@ -109,14 +109,15 @@ spDichVuHopDong
 2012-03-03
 - Delete table: Settings
 - Create table: QuanLySoHoaSon
-
 2012-03-05
 - Update view: InvoiceView, HoaDonThuocView
-
 2012-03-06
 - Create table: HoaDonXuatTruoc, ChiTietHoaDonXuatTruoc
 - Create view: HoaDonXuatTruocView
 - Insert table: Function(Add Col: HoaDonXuatTruoc, DangKyHoaDonXuatTruoc
+2012-03-07
+- Update table: Receipt(Add col: Notes), PhieuThuThuoc(Add col: Notes), Invoice(Add col: Notes), HoaDonThuoc(Add col: Notes), HoaDonXuatTruoc(Add col: Notes)
+- Update view: ReceiptView, InvoiceView, HoaDonThuocView, HoaDonXuatTruocView
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

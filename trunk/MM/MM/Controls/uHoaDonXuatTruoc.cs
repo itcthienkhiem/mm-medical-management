@@ -231,29 +231,49 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedInvoiceList.Add(row["HoaDonXuatTruocGUID"].ToString());
+                    //deletedInvoiceList.Add(row["HoaDonXuatTruocGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
 
-            if (deletedInvoiceList.Count > 0)
+            if (deletedRows.Count > 0)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những hóa đơn mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc(deletedInvoiceList);
-                    if (result.IsOK)
-                    {
-                        foreach (DataRow row in deletedRows)
-                        {
-                            dt.Rows.Remove(row);
-                        }
+                    List<string> noteList = new List<string>();
 
-                        DisplayDSSoHoaDonXuatTruoc();
-                    }
-                    else
+                    foreach (DataRow row in deletedRows)
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc"));
+                        string soHoaDon = row["SoHoaDon"].ToString();
+                        string hoaDonXuatTruocGUID = row["HoaDonXuatTruocGUID"].ToString();
+
+                        dlgLyDoXoa dlg = new dlgLyDoXoa(soHoaDon, 1);
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                        {
+                            noteList.Add(dlg.Notes);
+                            deletedInvoiceList.Add(hoaDonXuatTruocGUID);
+                        }
+                    }
+
+                    if (deletedInvoiceList.Count > 0)
+                    {
+                        Result result = HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc(deletedInvoiceList, noteList);
+                        if (result.IsOK)
+                        {
+                            foreach (DataRow row in deletedRows)
+                            {
+                                string hoaDonXuatTruocGUID = row["HoaDonXuatTruocGUID"].ToString();
+                                if (deletedInvoiceList.Contains(hoaDonXuatTruocGUID))
+                                    dt.Rows.Remove(row);
+                            }
+
+                            DisplayDSSoHoaDonXuatTruoc();
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc"));
+                        }
                     }
                 }
             }

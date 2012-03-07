@@ -159,7 +159,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeletePhieuThuThuoc(List<string> phieuThuThuocKeys)
+        public static Result DeletePhieuThuThuoc(List<string> phieuThuThuocKeys, List<string> noteList)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -171,6 +171,7 @@ namespace MM.Bussiness
                 {
                     DateTime dt = DateTime.Now;
                     string desc = string.Empty;
+                    int index = 0;
                     foreach (string key in phieuThuThuocKeys)
                     {
                         PhieuThuThuoc ptthuoc = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(p => p.PhieuThuThuocGUID.ToString() == key);
@@ -179,6 +180,7 @@ namespace MM.Bussiness
                             ptthuoc.DeletedDate = DateTime.Now;
                             ptthuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             ptthuoc.Status = (byte)Status.Deactived;
+                            ptthuoc.Notes = noteList[index];
 
                             //Update So luong Lo thuoc
                             var ctptts = ptthuoc.ChiTietPhieuThuThuocs;
@@ -216,27 +218,18 @@ namespace MM.Bussiness
 
                                     db.SubmitChanges();
                                 }
-
-                                /*LoThuoc loThuoc = (from th in db.Thuocs
-                                                   join l in db.LoThuocs on th.ThuocGUID equals l.ThuocGUID
-                                                   where th.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
-                                                   l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
-                                                   l.SoLuongXuat - soLuong >= 0 &&
-                                                   l.NgayHetHan > dt && th.ThuocGUID == ctptt.ThuocGUID
-                                                   orderby l.NgayHetHan descending
-                                                   select l).FirstOrDefault();
-                                if (loThuoc != null)
-                                    loThuoc.SoLuongXuat -= soLuong;    */
                             }
 
                             string maToaThuoc = string.Empty;
                             if (ptthuoc.ToaThuocGUID.Value != Guid.Empty)
                                 maToaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID == ptthuoc.ToaThuocGUID.Value).MaToaThuoc;
 
-                            desc += string.Format("- GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}'\n",
                                 ptthuoc.PhieuThuThuocGUID.ToString(), maToaThuoc, ptthuoc.MaPhieuThuThuoc, ptthuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"), 
-                                ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi);
+                                ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi, noteList[index]);
                         }
+
+                        index++;
                     }
 
                     //Tracking
@@ -341,9 +334,9 @@ namespace MM.Bussiness
                         if (ptthuoc.ToaThuocGUID.Value != Guid.Empty)
                             maToaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID == ptthuoc.ToaThuocGUID.Value).MaToaThuoc;
 
-                        desc += string.Format("- Phiếu thu thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}'\n",
+                        desc += string.Format("- Phiếu thu thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}'\n",
                             ptthuoc.PhieuThuThuocGUID.ToString(), maToaThuoc, ptthuoc.MaPhieuThuThuoc, ptthuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                            ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi);
+                            ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi, ptthuoc.Notes);
 
                         desc += "- Chi tiết phiếu thu thuốc được thêm:\n";
 

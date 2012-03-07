@@ -565,6 +565,12 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgLyDoXoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgLyDoXoa.Designer.cs">
+      <DependentUpon>dlgLyDoXoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgSelectSingleDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1070,6 +1076,9 @@
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgLyDoXoa.resx">
+      <DependentUpon>dlgLyDoXoa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectSingleDichVu.resx">
       <DependentUpon>dlgSelectSingleDichVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -1387,6 +1396,7 @@
     <None Include="Resources\Pause-icon.png" />
     <None Include="Resources\Play-icon.png" />
     <None Include="Resources\Process-Warning-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-03-07.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-05.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-06.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-03.sql" />

@@ -333,7 +333,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteInvoices(List<string> invoiceKeys)
+        public static Result DeleteInvoices(List<string> invoiceKeys, List<string> nodeList)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -344,6 +344,7 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     string desc = string.Empty;
+                    int index = 0;
                     foreach (string key in invoiceKeys)
                     {
                         Invoice invoice = db.Invoices.SingleOrDefault<Invoice>(i => i.InvoiceGUID.ToString() == key);
@@ -352,6 +353,7 @@ namespace MM.Bussiness
                             invoice.DeletedDate = DateTime.Now;
                             invoice.DeletedBy = Guid.Parse(Global.UserGUID);
                             invoice.Status = (byte)Status.Deactived;
+                            invoice.Notes = nodeList[index];
 
                             //Update Exported Invoice
                             if (invoice.ReceiptGUIDList != null && invoice.ReceiptGUIDList.Trim() != string.Empty)
@@ -371,10 +373,12 @@ namespace MM.Bussiness
 
                             string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)invoice.HinhThucThanhToan);
 
-                            desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}', Ghi chú: '{8}'\n",
                                 invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"), 
-                                invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan, htttStr);
+                                invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan, htttStr, nodeList[index]);
                         }
+
+                        index++;
                     }
 
                     //Tracking
@@ -432,9 +436,9 @@ namespace MM.Bussiness
 
                     string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)invoice.HinhThucThanhToan);
                     
-                    desc += string.Format("- Hóa đơn dịch vụ: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}'\n",
+                    desc += string.Format("- Hóa đơn dịch vụ: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}', Ghi chú: '{8}'\n",
                                 invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"),
-                                invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan, htttStr);
+                                invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan, htttStr, invoice.Notes);
 
                     if (addedDetails != null && addedDetails.Count > 0)
                     {
