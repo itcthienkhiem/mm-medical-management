@@ -41,16 +41,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgInvoice = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.invoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenDonViDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaSoThue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soTaiKhoanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -66,6 +56,17 @@
             this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
             this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.invoiceCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenDonViDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaSoThue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soTaiKhoanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceViewBindingSource)).BeginInit();
@@ -156,7 +157,8 @@
             this.addressDataGridViewTextBoxColumn,
             this.soTaiKhoanDataGridViewTextBoxColumn,
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn,
-            this.vATDataGridViewTextBoxColumn});
+            this.vATDataGridViewTextBoxColumn,
+            this.Notes});
             this.dgInvoice.DataSource = this.invoiceViewBindingSource;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
@@ -179,99 +181,6 @@
             this.dgInvoice.Size = new System.Drawing.Size(886, 325);
             this.dgInvoice.TabIndex = 4;
             this.dgInvoice.DoubleClick += new System.EventHandler(this.dgInvoice_DoubleClick);
-            // 
-            // colChecked
-            // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // invoiceCodeDataGridViewTextBoxColumn
-            // 
-            this.invoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "InvoiceCode";
-            this.invoiceCodeDataGridViewTextBoxColumn.HeaderText = "Mã hóa đơn";
-            this.invoiceCodeDataGridViewTextBoxColumn.Name = "invoiceCodeDataGridViewTextBoxColumn";
-            this.invoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // invoiceDateDataGridViewTextBoxColumn
-            // 
-            this.invoiceDateDataGridViewTextBoxColumn.DataPropertyName = "InvoiceDate";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle3.NullValue = null;
-            this.invoiceDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.invoiceDateDataGridViewTextBoxColumn.HeaderText = "Ngày xuất";
-            this.invoiceDateDataGridViewTextBoxColumn.Name = "invoiceDateDataGridViewTextBoxColumn";
-            this.invoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "TenNguoiMuaHang";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Người mua hàng";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // tenDonViDataGridViewTextBoxColumn
-            // 
-            this.tenDonViDataGridViewTextBoxColumn.DataPropertyName = "TenDonVi";
-            this.tenDonViDataGridViewTextBoxColumn.HeaderText = "Tên đơn vị";
-            this.tenDonViDataGridViewTextBoxColumn.Name = "tenDonViDataGridViewTextBoxColumn";
-            this.tenDonViDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenDonViDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // MaSoThue
-            // 
-            this.MaSoThue.DataPropertyName = "MaSoThue";
-            this.MaSoThue.HeaderText = "Mã số thuế";
-            this.MaSoThue.Name = "MaSoThue";
-            this.MaSoThue.ReadOnly = true;
-            this.MaSoThue.Width = 120;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
-            this.addressDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // soTaiKhoanDataGridViewTextBoxColumn
-            // 
-            this.soTaiKhoanDataGridViewTextBoxColumn.DataPropertyName = "SoTaiKhoan";
-            this.soTaiKhoanDataGridViewTextBoxColumn.HeaderText = "Số tài khoản";
-            this.soTaiKhoanDataGridViewTextBoxColumn.Name = "soTaiKhoanDataGridViewTextBoxColumn";
-            this.soTaiKhoanDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // hinhThucThanhToanStrDataGridViewTextBoxColumn
-            // 
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.DataPropertyName = "HinhThucThanhToanStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.HeaderText = "Hình thức thanh toán";
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Name = "hinhThucThanhToanStrDataGridViewTextBoxColumn";
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // vATDataGridViewTextBoxColumn
-            // 
-            this.vATDataGridViewTextBoxColumn.DataPropertyName = "VAT";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.vATDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.vATDataGridViewTextBoxColumn.HeaderText = "GTGT (%)";
-            this.vATDataGridViewTextBoxColumn.Name = "vATDataGridViewTextBoxColumn";
-            this.vATDataGridViewTextBoxColumn.ReadOnly = true;
-            this.vATDataGridViewTextBoxColumn.Width = 80;
             // 
             // invoiceViewBindingSource
             // 
@@ -419,6 +328,107 @@
             this.panel2.Size = new System.Drawing.Size(886, 325);
             this.panel2.TabIndex = 6;
             // 
+            // colChecked
+            // 
+            this.colChecked.Checked = true;
+            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colChecked.CheckValue = "N";
+            this.colChecked.DataPropertyName = "Checked";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.ReadOnly = true;
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // invoiceCodeDataGridViewTextBoxColumn
+            // 
+            this.invoiceCodeDataGridViewTextBoxColumn.DataPropertyName = "InvoiceCode";
+            this.invoiceCodeDataGridViewTextBoxColumn.HeaderText = "Mã hóa đơn";
+            this.invoiceCodeDataGridViewTextBoxColumn.Name = "invoiceCodeDataGridViewTextBoxColumn";
+            this.invoiceCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceDateDataGridViewTextBoxColumn
+            // 
+            this.invoiceDateDataGridViewTextBoxColumn.DataPropertyName = "InvoiceDate";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle3.NullValue = null;
+            this.invoiceDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.invoiceDateDataGridViewTextBoxColumn.HeaderText = "Ngày xuất";
+            this.invoiceDateDataGridViewTextBoxColumn.Name = "invoiceDateDataGridViewTextBoxColumn";
+            this.invoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "TenNguoiMuaHang";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Người mua hàng";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // tenDonViDataGridViewTextBoxColumn
+            // 
+            this.tenDonViDataGridViewTextBoxColumn.DataPropertyName = "TenDonVi";
+            this.tenDonViDataGridViewTextBoxColumn.HeaderText = "Tên đơn vị";
+            this.tenDonViDataGridViewTextBoxColumn.Name = "tenDonViDataGridViewTextBoxColumn";
+            this.tenDonViDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenDonViDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // MaSoThue
+            // 
+            this.MaSoThue.DataPropertyName = "MaSoThue";
+            this.MaSoThue.HeaderText = "Mã số thuế";
+            this.MaSoThue.Name = "MaSoThue";
+            this.MaSoThue.ReadOnly = true;
+            this.MaSoThue.Width = 120;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            this.addressDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // soTaiKhoanDataGridViewTextBoxColumn
+            // 
+            this.soTaiKhoanDataGridViewTextBoxColumn.DataPropertyName = "SoTaiKhoan";
+            this.soTaiKhoanDataGridViewTextBoxColumn.HeaderText = "Số tài khoản";
+            this.soTaiKhoanDataGridViewTextBoxColumn.Name = "soTaiKhoanDataGridViewTextBoxColumn";
+            this.soTaiKhoanDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // hinhThucThanhToanStrDataGridViewTextBoxColumn
+            // 
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.DataPropertyName = "HinhThucThanhToanStr";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.HeaderText = "Hình thức thanh toán";
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Name = "hinhThucThanhToanStrDataGridViewTextBoxColumn";
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // vATDataGridViewTextBoxColumn
+            // 
+            this.vATDataGridViewTextBoxColumn.DataPropertyName = "VAT";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.vATDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.vATDataGridViewTextBoxColumn.HeaderText = "GTGT (%)";
+            this.vATDataGridViewTextBoxColumn.Name = "vATDataGridViewTextBoxColumn";
+            this.vATDataGridViewTextBoxColumn.ReadOnly = true;
+            this.vATDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // Notes
+            // 
+            this.Notes.DataPropertyName = "Notes";
+            this.Notes.HeaderText = "Ghi chú";
+            this.Notes.Name = "Notes";
+            this.Notes.ReadOnly = true;
+            this.Notes.Width = 250;
+            // 
             // uInvoiceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,16 +460,6 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgInvoice;
         private System.Windows.Forms.BindingSource invoiceViewBindingSource;
         private System.Windows.Forms.PrintDialog _printDialog;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn invoiceCodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenDonViDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaSoThue;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn soTaiKhoanDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hinhThucThanhToanStrDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -474,5 +474,16 @@
         private System.Windows.Forms.DateTimePicker dtpkTuNgay;
         private System.Windows.Forms.RadioButton raTuNgayToiNgay;
         private System.Windows.Forms.Button btnExportInvoice;
+        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invoiceCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenDonViDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaSoThue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soTaiKhoanDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hinhThucThanhToanStrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
     }
 }

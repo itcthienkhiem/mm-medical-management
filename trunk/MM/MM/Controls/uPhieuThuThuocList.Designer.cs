@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgPhieuThu = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.phieuThuThuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.raDaXoa = new System.Windows.Forms.RadioButton();
@@ -58,25 +58,26 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.phieuThuThuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maPhieuThuThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayThuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExported = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPhieuThu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phieuThuThuocBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.phieuThuThuocBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // _printDialog
@@ -109,14 +110,14 @@
             this.dgPhieuThu.AllowUserToDeleteRows = false;
             this.dgPhieuThu.AllowUserToOrderColumns = true;
             this.dgPhieuThu.AutoGenerateColumns = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPhieuThu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPhieuThu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgPhieuThu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPhieuThu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -125,16 +126,17 @@
             this.maBenhNhanDataGridViewTextBoxColumn,
             this.tenBenhNhanDataGridViewTextBoxColumn,
             this.diaChiDataGridViewTextBoxColumn,
+            this.Notes,
             this.IsExported});
             this.dgPhieuThu.DataSource = this.phieuThuThuocBindingSource;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPhieuThu.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPhieuThu.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgPhieuThu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgPhieuThu.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPhieuThu.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -149,21 +151,9 @@
             this.dgPhieuThu.TabIndex = 6;
             this.dgPhieuThu.DoubleClick += new System.EventHandler(this.dgPhieuThu_DoubleClick);
             // 
-            // colChecked
+            // phieuThuThuocBindingSource
             // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
+            this.phieuThuThuocBindingSource.DataSource = typeof(MM.Databasae.PhieuThuThuoc);
             // 
             // panel2
             // 
@@ -380,10 +370,6 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // phieuThuThuocBindingSource
-            // 
-            this.phieuThuThuocBindingSource.DataSource = typeof(MM.Databasae.PhieuThuThuoc);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "MaPhieuThuThuoc";
@@ -394,10 +380,10 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "NgayThu";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle10.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn2.HeaderText = "Ngày thu";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
@@ -433,6 +419,22 @@
             this.dataGridViewCheckBoxColumn1.ReadOnly = true;
             this.dataGridViewCheckBoxColumn1.Width = 80;
             // 
+            // colChecked
+            // 
+            this.colChecked.Checked = true;
+            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colChecked.CheckValue = "N";
+            this.colChecked.DataPropertyName = "Checked";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.ReadOnly = true;
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
             // maPhieuThuThuocDataGridViewTextBoxColumn
             // 
             this.maPhieuThuThuocDataGridViewTextBoxColumn.DataPropertyName = "MaPhieuThuThuoc";
@@ -443,10 +445,10 @@
             // ngayThuDataGridViewTextBoxColumn
             // 
             this.ngayThuDataGridViewTextBoxColumn.DataPropertyName = "NgayThu";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle8.NullValue = null;
-            this.ngayThuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ngayThuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.ngayThuDataGridViewTextBoxColumn.HeaderText = "Ngày thu";
             this.ngayThuDataGridViewTextBoxColumn.Name = "ngayThuDataGridViewTextBoxColumn";
             this.ngayThuDataGridViewTextBoxColumn.ReadOnly = true;
@@ -474,6 +476,14 @@
             this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
             this.diaChiDataGridViewTextBoxColumn.Width = 300;
             // 
+            // Notes
+            // 
+            this.Notes.DataPropertyName = "Notes";
+            this.Notes.HeaderText = "Ghi chú";
+            this.Notes.Name = "Notes";
+            this.Notes.ReadOnly = true;
+            this.Notes.Width = 250;
+            // 
             // IsExported
             // 
             this.IsExported.DataPropertyName = "IsExported";
@@ -494,12 +504,12 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPhieuThu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.phieuThuThuocBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.phieuThuThuocBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -530,18 +540,19 @@
         private System.Windows.Forms.RadioButton raTatCa;
         private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.Button btnExportInvoice;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maPhieuThuThuocDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngayThuDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maBenhNhanDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenBenhNhanDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsExported;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maPhieuThuThuocDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ngayThuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maBenhNhanDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenBenhNhanDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsExported;
     }
 }
