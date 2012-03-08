@@ -114,8 +114,38 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedServiceHistoryList.Add(row["ServiceHistoryGUID"].ToString());
-                    deletedRows.Add(row);
+                    bool isExported = Convert.ToBoolean(row["IsExported"]);
+
+                    if (!isExported)
+                    {
+                        deletedServiceHistoryList.Add(row["ServiceHistoryGUID"].ToString());
+                        deletedRows.Add(row);
+                    }
+                    else
+                    {
+                        string srvHistoryGUID = row["ServiceHistoryGUID"].ToString();
+                        Result r = ServiceHistoryBus.GetPhieuThuByServiceHistoryGUID(srvHistoryGUID);
+                        if (r.IsOK)
+                        {
+                            string soPhieuThu = string.Empty;
+                            if (r.QueryResult != null)
+                            {
+                                Receipt receipt = r.QueryResult as Receipt;
+                                soPhieuThu = receipt.ReceiptCode;
+                            }
+
+                            string srvName = row["Name"].ToString();
+                            MsgBox.Show(Application.ProductName, string.Format("Dịch vụ: '{0}' không thể xóa vì đã xuất phiếu thu ({1})", srvName, soPhieuThu), 
+                                IconType.Information);
+                            row["Checked"] = false;
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, r.GetErrorAsString("ServiceHistoryBus.GetPhieuThuByServiceHistoryGUID"), IconType.Error);
+                            Utility.WriteToTraceLog(r.GetErrorAsString("ServiceHistoryBus.GetPhieuThuByServiceHistoryGUID"));
+                            return;
+                        }
+                    }
                 }
             }
 
