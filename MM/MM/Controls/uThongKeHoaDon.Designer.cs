@@ -358,6 +358,7 @@
             this.maSoThueDataGridViewTextBoxColumn.HeaderText = "Mã số thuế";
             this.maSoThueDataGridViewTextBoxColumn.Name = "maSoThueDataGridViewTextBoxColumn";
             this.maSoThueDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maSoThueDataGridViewTextBoxColumn.Visible = false;
             this.maSoThueDataGridViewTextBoxColumn.Width = 120;
             // 
             // diaChiDataGridViewTextBoxColumn
@@ -366,6 +367,7 @@
             this.diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
             this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
             this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diaChiDataGridViewTextBoxColumn.Visible = false;
             this.diaChiDataGridViewTextBoxColumn.Width = 200;
             // 
             // soTaiKhoanDataGridViewTextBoxColumn
@@ -374,6 +376,7 @@
             this.soTaiKhoanDataGridViewTextBoxColumn.HeaderText = "Số tài khoản";
             this.soTaiKhoanDataGridViewTextBoxColumn.Name = "soTaiKhoanDataGridViewTextBoxColumn";
             this.soTaiKhoanDataGridViewTextBoxColumn.ReadOnly = true;
+            this.soTaiKhoanDataGridViewTextBoxColumn.Visible = false;
             // 
             // hinhThucThanhToanStrDataGridViewTextBoxColumn
             // 
@@ -393,6 +396,7 @@
             this.vATDataGridViewTextBoxColumn.HeaderText = "GTGT (%)";
             this.vATDataGridViewTextBoxColumn.Name = "vATDataGridViewTextBoxColumn";
             this.vATDataGridViewTextBoxColumn.ReadOnly = true;
+            this.vATDataGridViewTextBoxColumn.Visible = false;
             this.vATDataGridViewTextBoxColumn.Width = 80;
             // 
             // Notes

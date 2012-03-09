@@ -382,7 +382,15 @@ namespace MM.Bussiness
                     dtAll.Rows.Add(newRow);
                 }
 
-                result.QueryResult = dtAll;
+                DataTable newDataSource = dtAll.Clone();
+                List<DataRow> results = (from p in dtAll.AsEnumerable()
+                           orderby p.Field<DateTime>("NgayXuatHoaDon") descending
+                           select p).ToList<DataRow>();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                result.QueryResult = newDataSource;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
