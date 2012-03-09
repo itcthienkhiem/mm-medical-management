@@ -184,4 +184,11 @@ namespace MM.Common
         KetQuaNoiSoiMomMoc_BongSang,
         KetQuaNoiSoiThanhQuan
     };
+
+    public enum LoaiHoaDon : int
+    {
+        HoaDonThuoc = 0,
+        HoaDonDichVu,
+        HoaDonXuatTruoc
+    };
 }
