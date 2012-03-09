@@ -31,8 +31,7 @@ namespace MM.Controls
             InitializeComponent();
 
             dtpkTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
-            dtpkDenNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 
-                DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month), 23, 59, 59);
+            dtpkDenNgay.Value = DateTime.Now;
         }
         #endregion
 
