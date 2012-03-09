@@ -176,6 +176,8 @@ namespace MM
                 _uHoaDonThuocList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uHoaDonXuatTruoc))
                 _uHoaDonXuatTruoc.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uThongKeHoaDon))
+                _uThongKeHoaDon.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -598,6 +600,10 @@ namespace MM
                             _uHoaDonXuatTruoc.AllowEditDangKy = isEdit;
                             _uHoaDonXuatTruoc.AllowDeleteDangKy = isDelete;
                         }
+                        else if (functionCode == Const.ThongKeHoaDon)
+                        {
+                            thongKeHoaDonToolStripMenuItem.Enabled = isView && isLogin;
+                        }
                     }
                 }
                 else
@@ -714,6 +720,8 @@ namespace MM
                 hoaDonThuocToolStripMenuItem.Enabled = isLogin;
 
                 hoaDonXuatTruocToolStripMenuItem.Enabled = isLogin;
+
+                thongKeHoaDonToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -886,7 +894,18 @@ namespace MM
                     OnHoaDonXuatTruoc();
                     break;
 
+                case "ThongKeHoaDon":
+                    OnThongKeHoaDon();
+                    break;
+
             }
+        }
+
+        private void OnThongKeHoaDon()
+        {
+            this.Text = string.Format("{0} - Thong ke hoa don", Application.ProductName);
+            ViewControl(_uThongKeHoaDon);
+            _uThongKeHoaDon.DisplayAsThread();
         }
 
         private void OnHoaDonXuatTruoc()

@@ -81,6 +81,7 @@ namespace MM.Dialogs
             _invoiceCode = Utility.GetCode(string.Empty, _soHoaDon, 7);
             lbInvoiceCode.Text = string.Format("Số: {0}", _invoiceCode);
 
+            SetMinMaxNgayXuatHoaDon(_soHoaDon);
             /*Cursor.Current = Cursors.WaitCursor;
             Result result = QuanLySoHoaDonBus.GetSoHoaDon();
             if (result.IsOK)
@@ -96,6 +97,21 @@ namespace MM.Dialogs
                 this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 this.Close();
             }*/
+        }
+
+        private void SetMinMaxNgayXuatHoaDon(int soHoaDon)
+        {
+            DateTime minDate = DateTime.Now;
+            DateTime maxDate = DateTime.Now;
+            Result result = QuanLySoHoaDonBus.GetMinMaxNgayXuatHoaDon(soHoaDon, ref minDate, ref maxDate);
+            if (result.IsOK)
+            {
+                if (dtpkNgay.Value < minDate) dtpkNgay.Value = minDate;
+                if (dtpkNgay.Value > maxDate) dtpkNgay.Value = maxDate;
+
+                dtpkNgay.MinDate = minDate;
+                dtpkNgay.MaxDate = maxDate;
+            }
         }
 
         private void RefreshNo()
