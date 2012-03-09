@@ -20,7 +20,7 @@ namespace MM.Controls
     public partial class uSymptomList : uBase
     {
         #region Members
-
+        DataTable _dataSource = null;
         #endregion
 
         #region Constructor
@@ -76,7 +76,8 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    dgSymptom.DataSource = result.QueryResult;
+                    _dataSource = result.QueryResult as DataTable;
+                    OnSearchTrieuChung();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -91,10 +92,11 @@ namespace MM.Controls
 
         private void OnAddSymptom()
         {
+            if (_dataSource == null) return;
             dlgAddSymptom dlg = new dlgAddSymptom();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgSymptom.DataSource as DataTable;
+                DataTable dt = _dataSource;//dgSymptom.DataSource as DataTable;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -124,6 +126,7 @@ namespace MM.Controls
                 newRow["Status"] = dlg.Symptom.Status;
                 dt.Rows.Add(newRow);
                 //SelectLastedRow();
+                OnSearchTrieuChung();
             }
         }
 
@@ -133,15 +136,26 @@ namespace MM.Controls
             dgSymptom.Rows[dgSymptom.RowCount - 1].Selected = true;
         }
 
+        private DataRow GetDataRow(string symptomGUID)
+        {
+            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
+            DataRow[] rows = _dataSource.Select(string.Format("SymptomGUID = '{0}'", symptomGUID));
+            if (rows == null || rows.Length <= 0) return null;
+
+            return rows[0];
+        }
+
         private void OnEditSymptom()
         {
+            if (_dataSource == null) return;
             if (dgSymptom.SelectedRows == null || dgSymptom.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 triệu chứng.", IconType.Information);
                 return;
             }
 
-            DataRow drSymp = (dgSymptom.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string symptomGUID = (dgSymptom.SelectedRows[0].DataBoundItem as DataRowView).Row["SymptomGUID"].ToString();
+            DataRow drSymp = GetDataRow(symptomGUID);
             dlgAddSymptom dlg = new dlgAddSymptom(drSymp);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -168,14 +182,18 @@ namespace MM.Controls
                     drSymp["DeletedBy"] = dlg.Symptom.DeletedBy.ToString();
 
                 drSymp["Status"] = dlg.Symptom.Status;
+
+                OnSearchTrieuChung();
             }
         }
 
         private void OnDeleteSymptom()
         {
+            if (_dataSource == null) return;
+            UpdateChecked();
             List<string> deletedSympList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = dgSymptom.DataSource as DataTable;
+            DataTable dt = _dataSource;//dgSymptom.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
@@ -194,8 +212,10 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
-                            dt.Rows.Remove(row);
+                            _dataSource.Rows.Remove(row);
                         }
+
+                        OnSearchTrieuChung();
                     }
                     else
                     {
@@ -206,6 +226,72 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần xóa.", IconType.Information);
+        }
+
+        private void UpdateChecked()
+        {
+            DataTable dt = dgSymptom.DataSource as DataTable;
+            if (dt == null) return;
+
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
+
+            foreach (DataRow row1 in rows1)
+            {
+                string serviceGUID1 = row1["SymptomGUID"].ToString();
+                DataRow[] rows2 = _dataSource.Select(string.Format("SymptomGUID='{0}'", serviceGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
+
+                rows2[0]["Checked"] = row1["Checked"];
+            }
+        }
+
+        private void OnSearchTrieuChung()
+        {
+            UpdateChecked();
+            chkChecked.Checked = false;
+            List<DataRow> results = null;
+            DataTable newDataSource = null;
+
+            if (txtTrieuChung.Text.Trim() == string.Empty)
+            {
+                results = (from p in _dataSource.AsEnumerable()
+                           orderby p.Field<string>("SymptomName")
+                           select p).ToList<DataRow>();
+
+                newDataSource = _dataSource.Clone();
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgSymptom.DataSource = newDataSource;
+                if (dgSymptom.RowCount > 0) dgSymptom.Rows[0].Selected = true;
+                return;
+            }
+
+            string str = txtTrieuChung.Text.ToLower();
+
+            newDataSource = _dataSource.Clone();
+
+            //Name
+            results = (from p in _dataSource.AsEnumerable()
+                       where p.Field<string>("SymptomName") != null &&
+                           p.Field<string>("SymptomName").Trim() != string.Empty &&
+                           p.Field<string>("SymptomName").ToLower().IndexOf(str) >= 0
+                       //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
+                       //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                       orderby p.Field<string>("SymptomName")
+                       select p).ToList<DataRow>();
+
+            foreach (DataRow row in results)
+                newDataSource.ImportRow(row);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgSymptom.DataSource = newDataSource;
+                return;
+            }
+
+            dgSymptom.DataSource = newDataSource;
         }
 
         private void OnPrint(bool isPreview)
@@ -284,6 +370,46 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+            }
+        }
+
+        private void txtTrieuChung_TextChanged(object sender, EventArgs e)
+        {
+            OnSearchTrieuChung();
+        }
+
+        private void txtTrieuChung_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                dgSymptom.Focus();
+
+                if (dgSymptom.SelectedRows != null && dgSymptom.SelectedRows.Count > 0)
+                {
+                    int index = dgSymptom.SelectedRows[0].Index;
+                    if (index < dgSymptom.RowCount - 1)
+                    {
+                        index++;
+                        dgSymptom.CurrentCell = dgSymptom[1, index];
+                        dgSymptom.Rows[index].Selected = true;
+                    }
+                }
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                dgSymptom.Focus();
+
+                if (dgSymptom.SelectedRows != null && dgSymptom.SelectedRows.Count > 0)
+                {
+                    int index = dgSymptom.SelectedRows[0].Index;
+                    if (index > 0)
+                    {
+                        index--;
+                        dgSymptom.CurrentCell = dgSymptom[1, index];
+                        dgSymptom.Rows[index].Selected = true;
+                    }
+                }
             }
         }
         #endregion
