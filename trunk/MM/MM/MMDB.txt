@@ -118,6 +118,8 @@ spDichVuHopDong
 2012-03-07
 - Update table: Receipt(Add col: Notes), PhieuThuThuoc(Add col: Notes), Invoice(Add col: Notes), HoaDonThuoc(Add col: Notes), HoaDonXuatTruoc(Add col: Notes)
 - Update view: ReceiptView, InvoiceView, HoaDonThuocView, HoaDonXuatTruocView
+2012-03-09
+- Insert data: Function(Add row: ThongKeHoaDon)
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

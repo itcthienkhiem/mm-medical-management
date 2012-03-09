@@ -130,5 +130,56 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetMinMaxNgayXuatHoaDon(int soHoaDon, ref DateTime minDate, ref DateTime maxDate)
+        {
+            Result result = new Result();
+            minDate = Global.MinDateTime;
+            maxDate = Global.MaxDateTime;
+
+            try
+            {
+                string query = string.Format("SELECT MAX(InvoiceDate) AS MinDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) < {0} SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} SELECT MIN(InvoiceDate) AS MaxDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) > {0} SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0}", soHoaDon);
+                result = ExcuteQueryDataSet(query);
+                if (!result.IsOK) return result;
+
+                DataSet ds = result.QueryResult as DataSet;
+                object obj = ds.Tables[0].Rows[0]["MinDate"];
+                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
+                    minDate = Convert.ToDateTime(obj);
+
+                obj = ds.Tables[1].Rows[0]["MinDate"];
+                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
+                    minDate = Convert.ToDateTime(obj);
+
+                obj = ds.Tables[2].Rows[0]["MinDate"];
+                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
+                    minDate = Convert.ToDateTime(obj);
+
+                obj = ds.Tables[3].Rows[0]["MaxDate"];
+                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
+                    maxDate = Convert.ToDateTime(obj);
+
+                obj = ds.Tables[4].Rows[0]["MaxDate"];
+                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
+                    maxDate = Convert.ToDateTime(obj);
+
+                obj = ds.Tables[5].Rows[0]["MaxDate"];
+                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
+                    maxDate = Convert.ToDateTime(obj);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            
+            return result;
+        }
     }
 }
