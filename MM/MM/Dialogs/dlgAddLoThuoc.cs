@@ -211,7 +211,7 @@ namespace MM.Dialogs
 
             if (dtpkNgaySanXuat.Value >= dtpkNgayHetHan.Value)
             {
-                MsgBox.Show(this.Text, "Ngày sản xuất phải lớn hơn ngày hết hạn", IconType.Information);
+                MsgBox.Show(this.Text, "Ngày sản xuất phải nhỏ hơn ngày hết hạn", IconType.Information);
                 dtpkNgaySanXuat.Focus();
                 return false;
             }
