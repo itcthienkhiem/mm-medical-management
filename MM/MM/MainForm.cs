@@ -603,6 +603,8 @@ namespace MM
                         else if (functionCode == Const.ThongKeHoaDon)
                         {
                             thongKeHoaDonToolStripMenuItem.Enabled = isView && isLogin;
+                            _uThongKeHoaDon.AllowPrint = isPrint;
+                            Global.AllowPrintInvoice = isPrint;
                         }
                     }
                 }
