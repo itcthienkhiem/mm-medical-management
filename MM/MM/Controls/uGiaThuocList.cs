@@ -127,21 +127,27 @@ namespace MM.Controls
         {
             UpdateChecked();
             chkChecked.Checked = false;
+            List<DataRow> results = null;
+            DataTable newDataSource = null;
             if (txtTenThuoc.Text.Trim() == string.Empty)
             {
-                dgGiaThuoc.DataSource = _dataSource;
-                if (dgGiaThuoc.RowCount > 0)
-                {
-                    dgGiaThuoc.CurrentCell = dgGiaThuoc[1, 0];
-                    dgGiaThuoc.Rows[0].Selected = true;
-                }
+                results = (from p in _dataSource.AsEnumerable()
+                           orderby p.Field<string>("TenThuoc") ascending, p.Field<DateTime>("NgayApDung") descending 
+                           select p).ToList<DataRow>();
+
+                newDataSource = _dataSource.Clone();
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgGiaThuoc.DataSource = newDataSource;
+                if (dgGiaThuoc.RowCount > 0) dgGiaThuoc.Rows[0].Selected = true;
                 return;
             }
 
             string str = txtTenThuoc.Text.ToLower();
 
             //FullName
-            List<DataRow> results = (from p in _dataSource.AsEnumerable()
+            results = (from p in _dataSource.AsEnumerable()
                                      where //(p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0 ||
                                      //str.IndexOf(p.Field<string>("TenThuoc").ToLower()) == 0) &&
                                      p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0 &&
@@ -150,7 +156,7 @@ namespace MM.Controls
                                      orderby p.Field<string>("TenThuoc") ascending, p.Field<DateTime>("NgayApDung") descending 
                                      select p).ToList<DataRow>();
 
-            DataTable newDataSource = _dataSource.Clone();
+            newDataSource = _dataSource.Clone();
             foreach (DataRow row in results)
                 newDataSource.Rows.Add(row.ItemArray);
 
