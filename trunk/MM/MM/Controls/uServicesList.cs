@@ -228,30 +228,48 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedServiceList.Add(row["ServiceGUID"].ToString());
+                    //deletedServiceList.Add(row["ServiceGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
 
-            if (deletedServiceList.Count > 0)
+            if (deletedRows.Count > 0)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những dịch vụ mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = ServicesBus.DeleteServices(deletedServiceList);
-                    if (result.IsOK)
-                    {
-                        foreach (DataRow row in deletedRows)
-                        {
-                            _dataSource.Rows.Remove(row);
-                            //dt.Rows.Remove(row);
-                        }
+                    List<string> noteList = new List<string>();
 
-                        OnSearchDichVu();
-                    }
-                    else
+                    foreach (DataRow row in deletedRows)
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.DeleteServices"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.DeleteServices"));
+                        string serviceCode = row["Code"].ToString();
+                        string serviceGUID = row["ServiceGUID"].ToString();
+
+                        dlgLyDoXoa dlg = new dlgLyDoXoa(serviceCode, 2);
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                        {
+                            noteList.Add(dlg.Notes);
+                            deletedServiceList.Add(serviceGUID);
+                        }
+                    }
+
+                    if (deletedServiceList.Count > 0)
+                    {
+                        Result result = ServicesBus.DeleteServices(deletedServiceList, noteList);
+                        if (result.IsOK)
+                        {
+                            foreach (DataRow row in deletedRows)
+                            {
+                                _dataSource.Rows.Remove(row);
+                                //dt.Rows.Remove(row);
+                            }
+
+                            OnSearchDichVu();
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.DeleteServices"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.DeleteServices"));
+                        }
                     }
                 }
             }

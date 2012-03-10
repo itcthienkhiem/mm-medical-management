@@ -93,7 +93,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteServices(List<string> serviceKeys)
+        public static Result DeleteServices(List<string> serviceKeys, List<string> noteList)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -104,6 +104,7 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     string desc = string.Empty;
+                    int index = 0;
                     foreach (string key in serviceKeys)
                     {
                         Service s = db.Services.SingleOrDefault<Service>(ss => ss.ServiceGUID.ToString() == key);
@@ -112,13 +113,16 @@ namespace MM.Bussiness
                             s.DeletedDate = DateTime.Now;
                             s.DeletedBy = Guid.Parse(Global.UserGUID);
                             s.Status = (byte)Status.Deactived;
+                            s.Description = noteList[index];
 
                             string staffTypeStr = string.Empty;
                             if (s.StaffType.HasValue) staffTypeStr = Utility.ParseStaffTypeEnumToName((StaffType)s.StaffType.Value);
 
-                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}', Loại nhân viên: '{6}'\n",
-                                s.ServiceGUID.ToString(), s.Code, s.Name, s.EnglishName, s.Price, s.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr);
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}', Loại nhân viên: '{6}', Ghi chú: '{7}'\n",
+                                s.ServiceGUID.ToString(), s.Code, s.Name, s.EnglishName, s.Price, s.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr, noteList[index]);
                         }
+
+                        index++;
                     }
 
                     //Tracking
@@ -223,9 +227,9 @@ namespace MM.Bussiness
                         string staffTypeStr = string.Empty;
                         if (service.StaffType.HasValue) staffTypeStr = Utility.ParseStaffTypeEnumToName((StaffType)service.StaffType.Value);
 
-                        desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}', Loại nhân viên: '{6}'",
+                        desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}', Loại nhân viên: '{6}', Ghi chú: '{7}'",
                                 service.ServiceGUID.ToString(), service.Code, service.Name, service.EnglishName, service.Price, 
-                                service.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr);
+                                service.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr, service.Description);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -264,9 +268,9 @@ namespace MM.Bussiness
                             string staffTypeStr = string.Empty;
                             if (srv.StaffType.HasValue) staffTypeStr = Utility.ParseStaffTypeEnumToName((StaffType)srv.StaffType.Value);
 
-                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}', Loại nhân viên: '{6}'",
-                                srv.ServiceGUID.ToString(), srv.Code, srv.Name, srv.EnglishName, srv.Price, 
-                                srv.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr);
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}', Loại nhân viên: '{6}', Ghi chú: '{7}'",
+                                srv.ServiceGUID.ToString(), srv.Code, srv.Name, srv.EnglishName, srv.Price,
+                                srv.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr, srv.Description);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
