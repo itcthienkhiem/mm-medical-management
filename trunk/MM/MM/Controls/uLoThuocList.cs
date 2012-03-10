@@ -18,6 +18,7 @@ namespace MM.Controls
     {
         #region Members
         private DataTable _dataSource = null;
+        private int _currentRowIndex = 0;
         #endregion
 
         #region Constructor
@@ -130,6 +131,9 @@ namespace MM.Controls
         private void OnSearchLoThuoc()
         {
             if (_dataSource == null) return;
+            if (dgLoThuoc.CurrentRow != null)
+                _currentRowIndex = dgLoThuoc.CurrentRow.Index;
+
             UpdateChecked();
             List<DataRow> results = null;
             DataTable newDataSource = null;
@@ -149,6 +153,13 @@ namespace MM.Controls
                         newDataSource.ImportRow(row);
 
                     dgLoThuoc.DataSource = newDataSource;
+
+                    if (_currentRowIndex < newDataSource.Rows.Count)
+                    {
+                        dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
+                        dgLoThuoc.Rows[_currentRowIndex].Selected = true;
+                    }
+
                     return;
                 }
 
@@ -172,6 +183,13 @@ namespace MM.Controls
                 if (newDataSource.Rows.Count > 0)
                 {
                     dgLoThuoc.DataSource = newDataSource;
+
+                    if (_currentRowIndex < newDataSource.Rows.Count)
+                    {
+                        dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
+                        dgLoThuoc.Rows[_currentRowIndex].Selected = true;
+                    }
+
                     return;
                 }
             }
@@ -196,11 +214,24 @@ namespace MM.Controls
                 if (newDataSource.Rows.Count > 0)
                 {
                     dgLoThuoc.DataSource = newDataSource;
+
+                    if (_currentRowIndex < newDataSource.Rows.Count)
+                    {
+                        dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
+                        dgLoThuoc.Rows[_currentRowIndex].Selected = true;
+                    }
+
                     return;
                 }
             }
 
             dgLoThuoc.DataSource = newDataSource;
+
+            if (_currentRowIndex < newDataSource.Rows.Count)
+            {
+                dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
+                dgLoThuoc.Rows[_currentRowIndex].Selected = true;
+            }
         }
 
         private void SelectLastedRow()
