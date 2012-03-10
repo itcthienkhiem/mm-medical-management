@@ -165,7 +165,12 @@ namespace MM.Dialogs
             }
             else
             {
-                cboDocStaff.DataSource = result.QueryResult;
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["DocStaffGUID"] = Guid.Empty.ToString();
+                newRow["FullName"] = string.Empty;
+                dt.Rows.InsertAt(newRow, 0);
+                cboDocStaff.DataSource = dt;
             }
 
             if (Global.StaffType == _staffType)

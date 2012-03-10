@@ -139,14 +139,12 @@ spDichVuHopDong
 15. Bình quân gia quyền (tính lại cách tính);
 
 
-
-
->> 1. In phieu thu lay ngay xuat phieu the khong lay ngay hien tai
->> 2. Giu lay order lo thuoc khi refresh
 >> 3. Show ngay het han va so luong ton trong phieu thu thuoc
 >> 4. Cho xuat excel bao cao ton kho.
->> 5. Them don vi tinh thuoc la : Lo
->  6. Bac si thuc hien them rong.
 >> 7. Cho phep phuc hoi benh nhan da xoa
-> 8. Disable nhan vien khi edit login
-9. Hide bac si thuc hien trong dich vu su dung va bao cao dich vu
+>> 2. Giu lay order lo thuoc khi refresh (OK)
+>> 1. In phieu thu lay ngay xuat phieu the khong lay ngay hien tai (OK)
+>> 5. Them don vi tinh thuoc la : Lo (OK)
+>  6. Bac si thuc hien them rong. (OK)
+> 8. Disable nhan vien khi edit login (OK)
+9. Hide bac si thuc hien trong dich vu su dung va bao cao dich vu (OK)

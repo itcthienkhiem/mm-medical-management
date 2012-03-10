@@ -36,6 +36,7 @@ namespace MM.Dialogs
             _isNew = false;
             this.Text = "Sua nguoi su dung";
             _drLogon = drLogon;
+            cboDocStaff.Enabled = false;
             InitData();
         }
         #endregion

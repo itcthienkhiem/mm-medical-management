@@ -268,6 +268,7 @@
             this.FullName.HeaderText = "Bác sĩ thực hiện";
             this.FullName.Name = "FullName";
             this.FullName.ReadOnly = true;
+            this.FullName.Visible = false;
             this.FullName.Width = 150;
             // 
             // noteDataGridViewTextBoxColumn
