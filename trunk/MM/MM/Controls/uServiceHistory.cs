@@ -135,9 +135,9 @@ namespace MM.Controls
                             }
 
                             string srvName = row["Name"].ToString();
-                            MsgBox.Show(Application.ProductName, string.Format("Dịch vụ: '{0}' không thể xóa vì đã xuất phiếu thu ({1})", srvName, soPhieuThu), 
+                            MsgBox.Show(Application.ProductName, string.Format("Dịch vụ: '{0}' không thể xóa vì đã xuất phiếu thu ({1}). Vui lòng chọn lại.", srvName, soPhieuThu), 
                                 IconType.Information);
-                            row["Checked"] = false;
+                            return;
                         }
                         else
                         {
