@@ -1356,7 +1356,7 @@ namespace MM
         {
             InitConfigAsThread();
 
-            if (!System.Diagnostics.Debugger.IsAttached)
+            //if (!System.Diagnostics.Debugger.IsAttached)
                 AutoDetectUpdateAsThread();
         }
 
@@ -1488,7 +1488,7 @@ namespace MM
                     if (localUpdatedDate != serverUpdatedDate)
                     {
                         //call update here
-                        RunUpdateFile(Path.Combine(string.Format("\\\\{0}\\MMupdatedDate\\", strServerName), "MMSetup.exe"));
+                        RunUpdateFile(Path.Combine(string.Format("\\\\{0}\\MMupdatedDate\\MMSetup.exe", strServerName)));
                         //copy the file from server tolocal
                         File.Copy(fileOnServer, storagePath, true);
                     }
