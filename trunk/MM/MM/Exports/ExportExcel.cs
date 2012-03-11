@@ -1331,6 +1331,12 @@ namespace MM.Exports
                 range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Dash;
                 range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
 
+                rowIndex++;
+                range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
+                range.Value = "Thuốc mua rồi miễn đổi hoặc trả lại.";
+                range.Font.Italic = true;
+                range.Font.Size = 9;
+
                 rowIndex += 2;
                 range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
                 range.Value = "Người lập phiếu";
@@ -3654,6 +3660,88 @@ namespace MM.Exports
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportThuocTonKhoToExcel(string exportFileName, List<ThuocResult> results)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\ThuocTonKhoTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+
+                Hashtable htThuoc = new Hashtable();
+                foreach (var result in results)
+                {
+                    if (htThuoc.ContainsKey(result.MaThuoc))
+                    {
+                        List<ThuocResult> thuocResuts = (List<ThuocResult>)htThuoc[result.MaThuoc];
+                        thuocResuts.Add(result);
+                    }
+                    else
+                    {
+                        List<ThuocResult> thuocResults = new List<ThuocResult>();
+                        thuocResults.Add(result);
+                        htThuoc.Add(result.MaThuoc, thuocResults);
+                    }
+                }
+
+                List<string> keys = new List<string>();
+                foreach (string key in htThuoc.Keys)
+                {
+                    keys.Add(key);
+                }
+
+                keys.Sort();
+
+                int rowIndex = 2;
+                IRange range = null;
+                foreach (string key in keys)
+                {
+                    List<ThuocResult> thuocResults = (List<ThuocResult>)htThuoc[key];
+                    range = workSheet.Cells[string.Format("A{0}:A{1}", rowIndex + 1, rowIndex + thuocResults.Count)];
+
+                    foreach (var thuocResult in thuocResults)
+                    {
+                        workSheet.Cells[rowIndex, 1].Value = thuocResult.TenLoThuoc;
+                        workSheet.Cells[rowIndex, 2].Value = thuocResult.DonViTinh;
+
+                        workSheet.Cells[rowIndex, 3].Value = thuocResult.SoLuongNhap;
+                        workSheet.Cells[rowIndex, 4].Value = thuocResult.SoLuongXuat;
+                        workSheet.Cells[rowIndex, 5].Value = thuocResult.SoLuongTon;
+                        rowIndex++;
+                    }
+
+                    range.Merge();
+                    range.Value = thuocResults[0].TenThuoc;
+                    range.HorizontalAlignment = HAlign.Left;
+                }
+
+                range = workSheet.Cells[string.Format("A3:F{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
             }

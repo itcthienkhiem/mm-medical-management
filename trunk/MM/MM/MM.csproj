@@ -499,6 +499,12 @@
     <Compile Include="Controls\uPhongChoList.Designer.cs">
       <DependentUpon>uPhongChoList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPhucHoiBenhNhan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPhucHoiBenhNhan.Designer.cs">
+      <DependentUpon>uPhucHoiBenhNhan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPrintLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1049,6 +1055,9 @@
     <EmbeddedResource Include="Controls\uPhongChoList.resx">
       <DependentUpon>uPhongChoList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPhucHoiBenhNhan.resx">
+      <DependentUpon>uPhucHoiBenhNhan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPrintLabel.resx">
       <DependentUpon>uPrintLabel.cs</DependentUpon>
     </EmbeddedResource>
@@ -1339,6 +1348,7 @@
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
     <None Include="Templates\SymptomTemplate.xls" />
+    <None Include="Templates\ThuocTonKhoTemplate.xls" />
     <None Include="Templates\ToaThuocChungTemplate.xls" />
     <None Include="Templates\ToaThuocSanKhoaTemplate.xls" />
     <None Include="Templates\ToaThuocTemplate.xls" />
@@ -1405,6 +1415,9 @@
     <None Include="Resources\Pause-icon.png" />
     <None Include="Resources\Play-icon.png" />
     <None Include="Resources\Process-Warning-icon.png" />
+    <None Include="Resources\backup-restore-icon %281%29.png" />
+    <None Include="Resources\backup-restore-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-03-11.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-09.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-07.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-05.sql" />

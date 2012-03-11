@@ -35,6 +35,30 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetPatientBiXoaList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'True' ORDER BY FirstName, FullName";
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetDuplicatePatientList()
         {
             Result result = null;
@@ -181,6 +205,81 @@ namespace MM.Bussiness
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Delete;
                     tk.Action = "Xóa thông tin bệnh nhân";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result PhucHoiPatient(List<String> patientKeys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    string desc = string.Empty;
+                    foreach (string key in patientKeys)
+                    {
+                        Patient patient = db.Patients.SingleOrDefault<Patient>(p => p.PatientGUID.ToString() == key);
+                        if (patient != null)
+                        {
+                            Contact contact = patient.Contact;
+                            if (contact != null)
+                            {
+                                contact.Archived = false;
+                                contact.DateArchived = null;
+                                contact.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                contact.UpdatedDate = DateTime.Now;
+                                contact.DeletedBy = null;
+                                contact.DeletedDate = null;
+
+                                string genderStr = string.Empty;
+                                if (contact.Gender == 0) genderStr = "Nam";
+                                else if (contact.Gender == 1) genderStr = "Nữ";
+                                else genderStr = "Không xác định";
+
+                                desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'\n",
+                                    patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, genderStr, contact.IdentityCard);
+                            }
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Phục hồi thông tin bệnh nhân";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
                     db.Trackings.InsertOnSubmit(tk);

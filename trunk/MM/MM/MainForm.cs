@@ -178,6 +178,8 @@ namespace MM
                 _uHoaDonXuatTruoc.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uThongKeHoaDon))
                 _uThongKeHoaDon.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uPhucHoiBenhNhan))
+                _uPhucHoiBenhNhan.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -606,6 +608,16 @@ namespace MM
                             _uThongKeHoaDon.AllowPrint = isPrint;
                             Global.AllowPrintInvoice = isPrint;
                         }
+                        else if (functionCode == Const.PhucHoiBenhNhan)
+                        {
+                            phucHoiBenhNhanToolStripMenuItem.Enabled = isView && isLogin;
+                            _uPhucHoiBenhNhan.AllowAdd = isAdd;
+                            _uPhucHoiBenhNhan.AllowEdit = isEdit;
+                            _uPhucHoiBenhNhan.AllowDelete = isDelete;
+                            _uPhucHoiBenhNhan.AllowPrint = isPrint;
+                            _uPhucHoiBenhNhan.AllowExport = isExport;
+                            _uPhucHoiBenhNhan.AllowImport = isImport;
+                        }
                     }
                 }
                 else
@@ -716,14 +728,11 @@ namespace MM
                 doanhThuTheoNgayToolStripMenuItem.Enabled = isLogin;
 
                 _uPhongChoList.IsEnableBtnRaPhongCho = isLogin;
-
                 _uBaoCaoDichVuChuaXuatPhieuThu.Enabled = isLogin;
-
                 hoaDonThuocToolStripMenuItem.Enabled = isLogin;
-
                 hoaDonXuatTruocToolStripMenuItem.Enabled = isLogin;
-
                 thongKeHoaDonToolStripMenuItem.Enabled = isLogin;
+                phucHoiBenhNhanToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -900,7 +909,18 @@ namespace MM
                     OnThongKeHoaDon();
                     break;
 
+                case "PhucHoiBenhNhan":
+                    OnPhucHoiBenhNhan();
+                    break;
+
             }
+        }
+
+        private void OnPhucHoiBenhNhan()
+        {
+            this.Text = string.Format("{0} - Phuc hoi benh nhan da xoa.", Application.ProductName);
+            ViewControl(_uPhucHoiBenhNhan);
+            _uPhucHoiBenhNhan.DisplayAsThread();
         }
 
         private void OnThongKeHoaDon()

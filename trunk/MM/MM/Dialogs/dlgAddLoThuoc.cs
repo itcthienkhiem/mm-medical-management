@@ -261,7 +261,7 @@ namespace MM.Dialogs
                 {
                     _loThuoc.MaLoThuoc = txtMaLoThuoc.Text;
                     _loThuoc.TenLoThuoc = txtTenLoThuoc.Text;
-                    if (_isNew) _loThuoc.TenLoThuoc += string.Format("-{0}", DateTime.Now.ToString("yyyyMMdd"));
+                    //if (_isNew) _loThuoc.TenLoThuoc += string.Format("-{0}", DateTime.Now.ToString("yyyyMMdd"));
                     _loThuoc.ThuocGUID = Guid.Parse(cboThuoc.SelectedValue.ToString());
                     _loThuoc.SoDangKy = txtSoDangKy.Text;
                     _loThuoc.NgaySanXuat = dtpkNgaySanXuat.Value;
@@ -319,7 +319,7 @@ namespace MM.Dialogs
 
         private void GenerateTenLoThuoc()
         {
-            txtTenLoThuoc.Text = string.Format("{0}-{1}", cboThuoc.Text, DateTime.Now.ToString("dd-MM-yyyy"));
+            txtTenLoThuoc.Text = string.Format("{0}-{1}", cboThuoc.Text, DateTime.Now.ToString("yyyyMMdd"));
         }
         #endregion
 

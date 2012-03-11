@@ -375,72 +375,29 @@
               </TablixMembers>
             </TablixMember>
             <TablixMember>
-              <Group Name="TenThuoc">
+              <Group Name="MaThuoc">
                 <GroupExpressions>
-                  <GroupExpression>=Fields!TenThuoc.Value</GroupExpression>
+                  <GroupExpression>=Fields!MaThuoc.Value</GroupExpression>
                 </GroupExpressions>
               </Group>
               <SortExpressions>
                 <SortExpression>
-                  <Value>=Fields!TenThuoc.Value</Value>
+                  <Value>=Fields!MaThuoc.Value</Value>
                 </SortExpression>
               </SortExpressions>
-              <TablixHeader>
-                <Size>1.67188in</Size>
-                <CellContents>
-                  <Textbox Name="TenThuoc">
-                    <CanGrow>true</CanGrow>
-                    <KeepTogether>true</KeepTogether>
-                    <Paragraphs>
-                      <Paragraph>
-                        <TextRuns>
-                          <TextRun>
-                            <Value>=Fields!TenThuoc.Value</Value>
-                            <Style>
-                              <FontFamily>Times New Roman</FontFamily>
-                              <FontSize>12pt</FontSize>
-                            </Style>
-                          </TextRun>
-                        </TextRuns>
-                        <Style />
-                      </Paragraph>
-                    </Paragraphs>
-                    <rd:DefaultName>TenThuoc</rd:DefaultName>
-                    <Style>
-                      <Border>
-                        <Style>Solid</Style>
-                      </Border>
-                      <PaddingLeft>2pt</PaddingLeft>
-                      <PaddingRight>2pt</PaddingRight>
-                      <PaddingTop>2pt</PaddingTop>
-                      <PaddingBottom>2pt</PaddingBottom>
-                    </Style>
-                  </Textbox>
-                </CellContents>
-              </TablixHeader>
               <TablixMembers>
                 <TablixMember>
-                  <Group Name="TenLoThuoc">
-                    <GroupExpressions>
-                      <GroupExpression>=Fields!TenLoThuoc.Value</GroupExpression>
-                    </GroupExpressions>
-                  </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!TenLoThuoc.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
                   <TablixHeader>
-                    <Size>1.35938in</Size>
+                    <Size>1.67188in</Size>
                     <CellContents>
-                      <Textbox Name="TenLoThuoc">
+                      <Textbox Name="TenThuoc">
                         <CanGrow>true</CanGrow>
                         <KeepTogether>true</KeepTogether>
                         <Paragraphs>
                           <Paragraph>
                             <TextRuns>
                               <TextRun>
-                                <Value>=Fields!TenLoThuoc.Value</Value>
+                                <Value>=Fields!TenThuoc.Value</Value>
                                 <Style>
                                   <FontFamily>Times New Roman</FontFamily>
                                   <FontSize>12pt</FontSize>
@@ -450,7 +407,7 @@
                             <Style />
                           </Paragraph>
                         </Paragraphs>
-                        <rd:DefaultName>TenLoThuoc</rd:DefaultName>
+                        <rd:DefaultName>TenThuoc</rd:DefaultName>
                         <Style>
                           <Border>
                             <Style>Solid</Style>
@@ -465,87 +422,39 @@
                   </TablixHeader>
                   <TablixMembers>
                     <TablixMember>
-                      <Group Name="DonViTinh">
+                      <Group Name="MaLoThuoc">
                         <GroupExpressions>
-                          <GroupExpression>=Fields!DonViTinh.Value</GroupExpression>
+                          <GroupExpression>=Fields!MaLoThuoc.Value</GroupExpression>
                         </GroupExpressions>
                       </Group>
                       <SortExpressions>
                         <SortExpression>
-                          <Value>=Fields!DonViTinh.Value</Value>
+                          <Value>=Fields!MaLoThuoc.Value</Value>
                         </SortExpression>
                       </SortExpressions>
-                      <TablixHeader>
-                        <Size>0.86458in</Size>
-                        <CellContents>
-                          <Textbox Name="DonViTinh">
-                            <CanGrow>true</CanGrow>
-                            <KeepTogether>true</KeepTogether>
-                            <Paragraphs>
-                              <Paragraph>
-                                <TextRuns>
-                                  <TextRun>
-                                    <Value>=Fields!DonViTinh.Value</Value>
-                                    <Style>
-                                      <FontFamily>Times New Roman</FontFamily>
-                                      <FontSize>12pt</FontSize>
-                                    </Style>
-                                  </TextRun>
-                                </TextRuns>
-                                <Style>
-                                  <TextAlign>Center</TextAlign>
-                                </Style>
-                              </Paragraph>
-                            </Paragraphs>
-                            <rd:DefaultName>DonViTinh</rd:DefaultName>
-                            <Style>
-                              <Border>
-                                <Style>Solid</Style>
-                              </Border>
-                              <PaddingLeft>2pt</PaddingLeft>
-                              <PaddingRight>2pt</PaddingRight>
-                              <PaddingTop>2pt</PaddingTop>
-                              <PaddingBottom>2pt</PaddingBottom>
-                            </Style>
-                          </Textbox>
-                        </CellContents>
-                      </TablixHeader>
                       <TablixMembers>
                         <TablixMember>
-                          <Group Name="SoLuongNhap">
-                            <GroupExpressions>
-                              <GroupExpression>=Fields!SoLuongNhap.Value</GroupExpression>
-                            </GroupExpressions>
-                          </Group>
-                          <SortExpressions>
-                            <SortExpression>
-                              <Value>=Fields!SoLuongNhap.Value</Value>
-                            </SortExpression>
-                          </SortExpressions>
                           <TablixHeader>
-                            <Size>0.875in</Size>
+                            <Size>1.35938in</Size>
                             <CellContents>
-                              <Textbox Name="SoLuongNhap">
+                              <Textbox Name="TenLoThuoc">
                                 <CanGrow>true</CanGrow>
                                 <KeepTogether>true</KeepTogether>
                                 <Paragraphs>
                                   <Paragraph>
                                     <TextRuns>
                                       <TextRun>
-                                        <Value>=Fields!SoLuongNhap.Value</Value>
+                                        <Value>=Fields!TenLoThuoc.Value</Value>
                                         <Style>
                                           <FontFamily>Times New Roman</FontFamily>
                                           <FontSize>12pt</FontSize>
-                                          <Format>#,0;(#,0)</Format>
                                         </Style>
                                       </TextRun>
                                     </TextRuns>
-                                    <Style>
-                                      <TextAlign>Right</TextAlign>
-                                    </Style>
+                                    <Style />
                                   </Paragraph>
                                 </Paragraphs>
-                                <rd:DefaultName>SoLuongNhap</rd:DefaultName>
+                                <rd:DefaultName>TenLoThuoc</rd:DefaultName>
                                 <Style>
                                   <Border>
                                     <Style>Solid</Style>
@@ -560,40 +469,39 @@
                           </TablixHeader>
                           <TablixMembers>
                             <TablixMember>
-                              <Group Name="NgaySanXuat">
+                              <Group Name="DonViTinh">
                                 <GroupExpressions>
-                                  <GroupExpression>=Fields!NgaySanXuat.Value</GroupExpression>
+                                  <GroupExpression>=Fields!DonViTinh.Value</GroupExpression>
                                 </GroupExpressions>
                               </Group>
                               <SortExpressions>
                                 <SortExpression>
-                                  <Value>=Fields!NgaySanXuat.Value</Value>
+                                  <Value>=Fields!DonViTinh.Value</Value>
                                 </SortExpression>
                               </SortExpressions>
                               <TablixHeader>
-                                <Size>0.82292in</Size>
+                                <Size>0.86458in</Size>
                                 <CellContents>
-                                  <Textbox Name="NgaySanXuat">
+                                  <Textbox Name="DonViTinh">
                                     <CanGrow>true</CanGrow>
                                     <KeepTogether>true</KeepTogether>
                                     <Paragraphs>
                                       <Paragraph>
                                         <TextRuns>
                                           <TextRun>
-                                            <Value>=Fields!SoLuongXuat.Value</Value>
+                                            <Value>=Fields!DonViTinh.Value</Value>
                                             <Style>
                                               <FontFamily>Times New Roman</FontFamily>
                                               <FontSize>12pt</FontSize>
-                                              <Format>#,0;(#,0)</Format>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
                                         <Style>
-                                          <TextAlign>Right</TextAlign>
+                                          <TextAlign>Center</TextAlign>
                                         </Style>
                                       </Paragraph>
                                     </Paragraphs>
-                                    <rd:DefaultName>NgaySanXuat</rd:DefaultName>
+                                    <rd:DefaultName>DonViTinh</rd:DefaultName>
                                     <Style>
                                       <Border>
                                         <Style>Solid</Style>
@@ -607,7 +515,107 @@
                                 </CellContents>
                               </TablixHeader>
                               <TablixMembers>
-                                <TablixMember />
+                                <TablixMember>
+                                  <Group Name="SoLuongNhap">
+                                    <GroupExpressions>
+                                      <GroupExpression>=Fields!SoLuongNhap.Value</GroupExpression>
+                                    </GroupExpressions>
+                                  </Group>
+                                  <SortExpressions>
+                                    <SortExpression>
+                                      <Value>=Fields!SoLuongNhap.Value</Value>
+                                    </SortExpression>
+                                  </SortExpressions>
+                                  <TablixHeader>
+                                    <Size>0.875in</Size>
+                                    <CellContents>
+                                      <Textbox Name="SoLuongNhap">
+                                        <CanGrow>true</CanGrow>
+                                        <KeepTogether>true</KeepTogether>
+                                        <Paragraphs>
+                                          <Paragraph>
+                                            <TextRuns>
+                                              <TextRun>
+                                                <Value>=Fields!SoLuongNhap.Value</Value>
+                                                <Style>
+                                                  <FontFamily>Times New Roman</FontFamily>
+                                                  <FontSize>12pt</FontSize>
+                                                  <Format>#,0;(#,0)</Format>
+                                                </Style>
+                                              </TextRun>
+                                            </TextRuns>
+                                            <Style>
+                                              <TextAlign>Right</TextAlign>
+                                            </Style>
+                                          </Paragraph>
+                                        </Paragraphs>
+                                        <rd:DefaultName>SoLuongNhap</rd:DefaultName>
+                                        <Style>
+                                          <Border>
+                                            <Style>Solid</Style>
+                                          </Border>
+                                          <PaddingLeft>2pt</PaddingLeft>
+                                          <PaddingRight>2pt</PaddingRight>
+                                          <PaddingTop>2pt</PaddingTop>
+                                          <PaddingBottom>2pt</PaddingBottom>
+                                        </Style>
+                                      </Textbox>
+                                    </CellContents>
+                                  </TablixHeader>
+                                  <TablixMembers>
+                                    <TablixMember>
+                                      <Group Name="NgaySanXuat">
+                                        <GroupExpressions>
+                                          <GroupExpression>=Fields!NgaySanXuat.Value</GroupExpression>
+                                        </GroupExpressions>
+                                      </Group>
+                                      <SortExpressions>
+                                        <SortExpression>
+                                          <Value>=Fields!NgaySanXuat.Value</Value>
+                                        </SortExpression>
+                                      </SortExpressions>
+                                      <TablixHeader>
+                                        <Size>0.82292in</Size>
+                                        <CellContents>
+                                          <Textbox Name="NgaySanXuat">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!SoLuongXuat.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Times New Roman</FontFamily>
+                                                      <FontSize>12pt</FontSize>
+                                                      <Format>#,0;(#,0)</Format>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style>
+                                                  <TextAlign>Right</TextAlign>
+                                                </Style>
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>NgaySanXuat</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixHeader>
+                                      <TablixMembers>
+                                        <TablixMember />
+                                      </TablixMembers>
+                                    </TablixMember>
+                                  </TablixMembers>
+                                </TablixMember>
                               </TablixMembers>
                             </TablixMember>
                           </TablixMembers>
@@ -624,7 +632,7 @@
         <Top>0.5in</Top>
         <Left>0.0625in</Left>
         <Height>0.5in</Height>
-        <Width>6.375in</Width>
+        <Width>6.37501in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -672,7 +680,7 @@
     <Height>1.09375in</Height>
     <Style />
   </Body>
-  <Width>6.5in</Width>
+  <Width>7.43751in</Width>
   <Page>
     <LeftMargin>1in</LeftMargin>
     <RightMargin>1in</RightMargin>

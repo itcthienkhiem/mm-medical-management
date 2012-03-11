@@ -11,6 +11,7 @@ using Microsoft.Reporting.WinForms;
 using MM.Bussiness;
 using MM.Common;
 using MM.Databasae;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -96,12 +97,51 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
+
+        private void OnExportToExcel()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            if (_uThuocList.CheckedRows == null || _uThuocList.CheckedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 1 thuốc để xuất excel.", IconType.Information);
+                return;
+            }
+
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "Export Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _thuocKeyList.Clear();
+                foreach (DataRow row in _uThuocList.CheckedRows)
+                {
+                    _thuocKeyList.Add(row["ThuocGUID"].ToString());
+                }
+
+                Result result = ReportBus.GetThuocTonKhoList(_thuocKeyList);
+                if (result.IsOK)
+                {
+                    List<ThuocResult> thuocList = (List<ThuocResult>)result.QueryResult;
+                    ExportExcel.ExportThuocTonKhoToExcel(dlg.FileName, thuocList);
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetThuocTonKhoList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetThuocTonKhoList"));
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
         private void btnView_Click(object sender, EventArgs e)
         {
             ViewAsThread();
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportToExcel();
         }
         #endregion
 
@@ -124,5 +164,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

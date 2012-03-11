@@ -196,6 +196,7 @@ namespace MM.Bussiness
                                                   where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
                                                   l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
                                                   thuocList.Contains(t.ThuocGUID.ToString())
+                                                  orderby t.MaThuoc, l.TenLoThuoc
                                                   select new ThuocResult(0, t.MaThuoc, t.TenThuoc,
                                                       l.MaLoThuoc, l.TenLoThuoc, l.NgaySanXuat, l.NgayHetHan,
                                                       l.SoLuongNhap * l.SoLuongQuiDoi, l.SoLuongXuat,
