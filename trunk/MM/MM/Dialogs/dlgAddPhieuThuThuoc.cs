@@ -214,6 +214,7 @@ namespace MM.Dialogs
                 dgChiTiet.DataSource = result.QueryResult;
 
                 UpdateDataSourceDonGia();
+                UpdateNgayHetHanVaSoLuongTon();
 
                 RefreshNo();
             }
@@ -298,6 +299,7 @@ namespace MM.Dialogs
                 }
 
                 UpdateDataSourceDonGia();
+                UpdateNgayHetHanVaSoLuongTon();
 
                 CalculateTongTien();
                 RefreshNo();
@@ -306,6 +308,50 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("KeToaBus.GetChiTietToaThuocList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("KeToaBus.GetChiTietToaThuocList"));
+            }
+        }
+
+        private void UpdateNgayHetHanVaSoLuongTon()
+        {
+            foreach (DataGridViewRow row in dgChiTiet.Rows)
+            {
+                if (row.Cells["ThuocGUID"].Value == null || row.Cells["ThuocGUID"].Value == DBNull.Value)
+                    continue;
+
+                string thuocGUID = row.Cells["ThuocGUID"].Value.ToString();
+                Result result = LoThuocBus.GetNgayHetHanCuaThuoc(thuocGUID);
+                if (result.IsOK)
+                {
+                    if (result.QueryResult != null)
+                    {
+                        DateTime ngayHetHan = Convert.ToDateTime(result.QueryResult);
+                        row.Cells[7].Value = ngayHetHan;
+                    }
+                    else
+                        row.Cells[7].Value = DBNull.Value;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
+                }
+
+                result = LoThuocBus.GetThuocTonKho(thuocGUID);
+                if (result.IsOK)
+                {
+                    if (result.QueryResult != null)
+                    {
+                        int soLuongTon = Convert.ToInt32(result.QueryResult);
+                        row.Cells[8].Value = soLuongTon;
+                    }
+                    else
+                        row.Cells[8].Value = DBNull.Value;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
+                }
             }
         }
 
@@ -347,17 +393,17 @@ namespace MM.Dialogs
             if (rowIndex < 0 || colIndex < 0) return;
 
             int soLuong = 1;
-            string strValue = dgChiTiet[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            string strValue = dgChiTiet[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 soLuong = Convert.ToInt32(strValue);
 
-            strValue = dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            strValue = dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             int donGia = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 donGia = Convert.ToInt32(strValue);
 
             int giam = 0;
-            strValue = dgChiTiet[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            strValue = dgChiTiet[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 giam = Convert.ToInt32(strValue);
 
@@ -774,7 +820,7 @@ namespace MM.Dialogs
                     textBox.Text = "1";
             }
 
-            string strValue = textBox.Text.Replace(",", "");
+            string strValue = textBox.Text.Replace(",", "").Replace(".", "");
 
             try
             {
@@ -857,6 +903,40 @@ namespace MM.Dialogs
                 cell.ValueMember = "DonGia";
 
                 dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4].Value = giaThuoc;
+
+                Result result = LoThuocBus.GetNgayHetHanCuaThuoc(thuocGUID);
+                if (result.IsOK)
+                {
+                    if (result.QueryResult != null)
+                    {
+                        DateTime ngayHetHan = Convert.ToDateTime(result.QueryResult);
+                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[7].Value = ngayHetHan;
+                    }
+                    else
+                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[7].Value = DBNull.Value;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
+                }
+
+                result = LoThuocBus.GetThuocTonKho(thuocGUID);
+                if (result.IsOK)
+                {
+                    if (result.QueryResult != null)
+                    {
+                        int soLuongTon = Convert.ToInt32(result.QueryResult);
+                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[8].Value = soLuongTon;
+                    }
+                    else
+                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[8].Value = DBNull.Value;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
+                }
 
                 CalculateThanhTien();
                 _flag = true;

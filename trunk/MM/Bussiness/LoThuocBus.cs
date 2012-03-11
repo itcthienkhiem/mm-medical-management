@@ -78,6 +78,98 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetNgayHetHanCuaThuoc(string thuocGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+            try
+            {
+                DateTime dt = DateTime.Now;
+                db = new MMOverride();
+                LoThuoc loThuoc = (from t in db.Thuocs
+                                        join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
+                                        where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
+                                        t.ThuocGUID.ToString() == thuocGUID
+                                        orderby l.NgayHetHan descending
+                                        select l).FirstOrDefault<LoThuoc>();
+
+                if (loThuoc != null)
+                    result.QueryResult = loThuoc.NgayHetHan;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetThuocTonKho(string thuocGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                DateTime dt = DateTime.Now;
+                List<LoThuoc> loThuocList = (from l in db.LoThuocs
+                                             where l.Status == (byte)Status.Actived &&
+                                             l.ThuocGUID.ToString() == thuocGUID &&
+                                             l.NgayHetHan > dt &&
+                                             l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0
+                                             select l).ToList<LoThuoc>();
+
+                if (loThuocList != null && loThuocList.Count > 0)
+                {
+                    int tongSLNhap = 0;
+                    int tongSLXuat = 0;
+
+                    foreach (LoThuoc lt in loThuocList)
+                    {
+                        tongSLNhap += lt.SoLuongNhap * lt.SoLuongQuiDoi;
+                        tongSLXuat += lt.SoLuongXuat;
+                    }
+
+                    result.QueryResult = tongSLNhap - tongSLXuat;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result CheckThuocTonKho(string thuocGUID, int soLuong)
         {
             Result result = new Result();
@@ -87,13 +179,6 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 DateTime dt = DateTime.Now;
-
-                //List<Thuoc> thuocResults = (from t in db.Thuocs
-                //                            join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
-                //                            where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
-                //                            l.SoLuongNhap * l.SoLuongQuiDoi >= l.SoLuongXuat + soLuong &&
-                //                            t.ThuocGUID.ToString() == thuocGUID
-                //                            select t).ToList<Thuoc>();
 
                 List<LoThuoc> loThuocList = (from l in db.LoThuocs
                                             where l.Status == (byte)Status.Actived && 

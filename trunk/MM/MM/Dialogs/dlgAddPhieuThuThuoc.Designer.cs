@@ -30,13 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddPhieuThuThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnChonBenhNhan = new System.Windows.Forms.Button();
@@ -56,14 +58,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ThuocGUID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DonGia = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Giam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctmToaThuoc = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.thuocThayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chiTietPhieuThuThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -71,6 +66,15 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lbTongTien = new System.Windows.Forms.Label();
             this.btnExportInvoice = new System.Windows.Forms.Button();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ThuocGUID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonGia = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Giam = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayHetHan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoLuongTon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
@@ -98,7 +102,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(741, 180);
+            this.groupBox1.Size = new System.Drawing.Size(870, 180);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
@@ -267,17 +271,19 @@
             this.SoLuong,
             this.DonGia,
             this.Giam,
-            this.ThanhTien});
+            this.ThanhTien,
+            this.NgayHetHan,
+            this.SoLuongTon});
             this.dgChiTiet.ContextMenuStrip = this.ctmToaThuoc;
             this.dgChiTiet.DataSource = this.chiTietPhieuThuThuocViewBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgChiTiet.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgChiTiet.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgChiTiet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgChiTiet.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgChiTiet.HighlightSelectedColumnHeaders = false;
@@ -285,7 +291,7 @@
             this.dgChiTiet.Name = "dgChiTiet";
             this.dgChiTiet.RowHeadersWidth = 30;
             this.dgChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgChiTiet.Size = new System.Drawing.Size(741, 320);
+            this.dgChiTiet.Size = new System.Drawing.Size(870, 320);
             this.dgChiTiet.TabIndex = 12;
             this.dgChiTiet.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgChiTiet_CellFormatting);
             this.dgChiTiet.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_CellMouseDown);
@@ -297,6 +303,75 @@
             this.dgChiTiet.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgChiTiet_UserDeletedRow);
             this.dgChiTiet.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgChiTiet_UserDeletingRow);
             this.dgChiTiet.Leave += new System.EventHandler(this.dgChiTiet_Leave);
+            // 
+            // thuocBindingSource
+            // 
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            // 
+            // ctmToaThuoc
+            // 
+            this.ctmToaThuoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thuocThayTheToolStripMenuItem});
+            this.ctmToaThuoc.Name = "ctmToaThuoc";
+            this.ctmToaThuoc.Size = new System.Drawing.Size(159, 26);
+            // 
+            // thuocThayTheToolStripMenuItem
+            // 
+            this.thuocThayTheToolStripMenuItem.Name = "thuocThayTheToolStripMenuItem";
+            this.thuocThayTheToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.thuocThayTheToolStripMenuItem.Text = "Thuốc thay thế";
+            this.thuocThayTheToolStripMenuItem.Click += new System.EventHandler(this.thuocThayTheToolStripMenuItem_Click);
+            // 
+            // chiTietPhieuThuThuocViewBindingSource
+            // 
+            this.chiTietPhieuThuThuocViewBindingSource.DataSource = typeof(MM.Databasae.ChiTietPhieuThuThuocView);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(497, 538);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(308, 538);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 13;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // lbTongTien
+            // 
+            this.lbTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongTien.ForeColor = System.Drawing.Color.Red;
+            this.lbTongTien.Location = new System.Drawing.Point(565, 515);
+            this.lbTongTien.Name = "lbTongTien";
+            this.lbTongTien.Size = new System.Drawing.Size(308, 21);
+            this.lbTongTien.TabIndex = 15;
+            this.lbTongTien.Text = "Tổng tiền: 0 VNĐ";
+            this.lbTongTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // btnExportInvoice
+            // 
+            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
+            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportInvoice.Location = new System.Drawing.Point(387, 538);
+            this.btnExportInvoice.Name = "btnExportInvoice";
+            this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
+            this.btnExportInvoice.TabIndex = 14;
+            this.btnExportInvoice.Text = "      &Xuất hóa đơn";
+            this.btnExportInvoice.UseVisualStyleBackColor = true;
+            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
             // 
             // STT
             // 
@@ -320,10 +395,6 @@
             this.ThuocGUID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ThuocGUID.ValueMember = "ThuocGUID";
             this.ThuocGUID.Width = 200;
-            // 
-            // thuocBindingSource
-            // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
             // 
             // DonViTinh
             // 
@@ -387,77 +458,36 @@
             this.ThanhTien.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ThanhTien.Width = 120;
             // 
-            // ctmToaThuoc
+            // NgayHetHan
             // 
-            this.ctmToaThuoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thuocThayTheToolStripMenuItem});
-            this.ctmToaThuoc.Name = "ctmToaThuoc";
-            this.ctmToaThuoc.Size = new System.Drawing.Size(159, 26);
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle8.NullValue = null;
+            this.NgayHetHan.DefaultCellStyle = dataGridViewCellStyle8;
+            this.NgayHetHan.HeaderText = "Ngày hết hạn";
+            this.NgayHetHan.Name = "NgayHetHan";
+            this.NgayHetHan.ReadOnly = true;
+            this.NgayHetHan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NgayHetHan.Width = 80;
             // 
-            // thuocThayTheToolStripMenuItem
+            // SoLuongTon
             // 
-            this.thuocThayTheToolStripMenuItem.Name = "thuocThayTheToolStripMenuItem";
-            this.thuocThayTheToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.thuocThayTheToolStripMenuItem.Text = "Thuốc thay thế";
-            this.thuocThayTheToolStripMenuItem.Click += new System.EventHandler(this.thuocThayTheToolStripMenuItem_Click);
-            // 
-            // chiTietPhieuThuThuocViewBindingSource
-            // 
-            this.chiTietPhieuThuThuocViewBindingSource.DataSource = typeof(MM.Databasae.ChiTietPhieuThuThuocView);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(434, 538);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 16;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Image = global::MM.Properties.Resources.save;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(245, 538);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 13;
-            this.btnOK.Text = "   &Lưu";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // lbTongTien
-            // 
-            this.lbTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTongTien.ForeColor = System.Drawing.Color.Red;
-            this.lbTongTien.Location = new System.Drawing.Point(422, 515);
-            this.lbTongTien.Name = "lbTongTien";
-            this.lbTongTien.Size = new System.Drawing.Size(308, 21);
-            this.lbTongTien.TabIndex = 15;
-            this.lbTongTien.Text = "Tổng tiền: 0 VNĐ";
-            this.lbTongTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // btnExportInvoice
-            // 
-            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
-            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportInvoice.Location = new System.Drawing.Point(324, 538);
-            this.btnExportInvoice.Name = "btnExportInvoice";
-            this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
-            this.btnExportInvoice.TabIndex = 14;
-            this.btnExportInvoice.Text = "      &Xuất hóa đơn";
-            this.btnExportInvoice.UseVisualStyleBackColor = true;
-            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N0";
+            dataGridViewCellStyle9.NullValue = null;
+            this.SoLuongTon.DefaultCellStyle = dataGridViewCellStyle9;
+            this.SoLuongTon.HeaderText = "SL tồn";
+            this.SoLuongTon.Name = "SoLuongTon";
+            this.SoLuongTon.ReadOnly = true;
+            this.SoLuongTon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.SoLuongTon.Width = 70;
             // 
             // dlgAddPhieuThuThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(754, 568);
+            this.ClientSize = new System.Drawing.Size(880, 568);
             this.Controls.Add(this.btnExportInvoice);
             this.Controls.Add(this.lbTongTien);
             this.Controls.Add(this.btnCancel);
@@ -512,6 +542,7 @@
         private System.Windows.Forms.ContextMenuStrip ctmToaThuoc;
         private System.Windows.Forms.ToolStripMenuItem thuocThayTheToolStripMenuItem;
         private System.Windows.Forms.Button btnChonBenhNhan;
+        private System.Windows.Forms.Button btnExportInvoice;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridViewComboBoxColumn ThuocGUID;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
@@ -519,6 +550,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn DonGia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Giam;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
-        private System.Windows.Forms.Button btnExportInvoice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgayHetHan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongTon;
     }
 }

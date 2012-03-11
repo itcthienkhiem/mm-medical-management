@@ -213,7 +213,7 @@ namespace MM.Dialogs
                 textBox.Text = "1";
             }
 
-            string strValue = textBox.Text.Replace(",", "");
+            string strValue = textBox.Text.Replace(",", "").Replace(".", "");
 
             try
             {

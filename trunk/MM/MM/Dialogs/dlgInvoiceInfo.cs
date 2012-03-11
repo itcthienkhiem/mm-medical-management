@@ -258,16 +258,16 @@ namespace MM.Dialogs
             if (rowIndex < 0 || colIndex < 0) return;
 
             int soLuong = 1;
-            string strValue = dgDetail[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            string strValue = dgDetail[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 soLuong = Convert.ToInt32(strValue);
 
-            strValue = dgDetail[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            strValue = dgDetail[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             int donGia = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 donGia = Convert.ToInt32(strValue);
 
-            strValue = dgDetail[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "");
+            strValue = dgDetail[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             int giam = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 giam = Convert.ToInt32(strValue);
@@ -666,7 +666,7 @@ namespace MM.Dialogs
                     textBox.Text = "0";
             }
 
-            string strValue = textBox.Text.Replace(",", "");
+            string strValue = textBox.Text.Replace(",", "").Replace(".", "");
 
             try
             {
