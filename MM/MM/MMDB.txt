@@ -141,7 +141,7 @@ spDichVuHopDong
 15. Bình quân gia quyền (tính lại cách tính);
 
 
->> 3. Show ngay het han va so luong ton trong phieu thu thuoc
+>> 3. Show ngay het han va so luong ton trong phieu thu thuoc (OK)
 >> 10. Them excel phieu thu thong bao: Thuốc mua rồi miễn trả lại (OK).
 >> 7. Cho phep phuc hoi benh nhan da xoa (OK)
 >> 4. Cho xuat excel bao cao ton kho. (OK)
