@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tabReport = new DevComponents.DotNetBar.TabControl();
+            this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
+            this._ucReportViewer = new MM.Controls.ucReportViewer();
+            this.pageBaoCao = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this._uThuocList = new MM.Controls.uThuocList();
@@ -37,22 +40,20 @@
             this.btnView = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pageFilter = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
-            this.pageBaoCao = new DevComponents.DotNetBar.TabItem(this.components);
-            this._ucReportViewer = new MM.Controls.ucReportViewer();
+            this.btnExportExcel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tabReport)).BeginInit();
             this.tabReport.SuspendLayout();
+            this.tabControlPanel2.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tabControlPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabReport
             // 
             this.tabReport.CanReorderTabs = true;
-            this.tabReport.Controls.Add(this.tabControlPanel2);
             this.tabReport.Controls.Add(this.tabControlPanel1);
+            this.tabReport.Controls.Add(this.tabControlPanel2);
             this.tabReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabReport.Location = new System.Drawing.Point(0, 0);
             this.tabReport.Name = "tabReport";
@@ -65,6 +66,39 @@
             this.tabReport.Tabs.Add(this.pageFilter);
             this.tabReport.Tabs.Add(this.pageBaoCao);
             this.tabReport.Text = "tabControl1";
+            // 
+            // tabControlPanel2
+            // 
+            this.tabControlPanel2.Controls.Add(this._ucReportViewer);
+            this.tabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel2.Name = "tabControlPanel2";
+            this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel2.Size = new System.Drawing.Size(768, 460);
+            this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel2.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel2.Style.GradientAngle = 90;
+            this.tabControlPanel2.TabIndex = 2;
+            this.tabControlPanel2.TabItem = this.pageBaoCao;
+            // 
+            // _ucReportViewer
+            // 
+            this._ucReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ucReportViewer.Location = new System.Drawing.Point(1, 1);
+            this._ucReportViewer.Name = "_ucReportViewer";
+            this._ucReportViewer.Size = new System.Drawing.Size(766, 458);
+            this._ucReportViewer.TabIndex = 1;
+            // 
+            // pageBaoCao
+            // 
+            this.pageBaoCao.AttachedControl = this.tabControlPanel2;
+            this.pageBaoCao.Image = global::MM.Properties.Resources.product_sales_report_icon;
+            this.pageBaoCao.Name = "pageBaoCao";
+            this.pageBaoCao.Text = "Báo cáo";
             // 
             // tabControlPanel1
             // 
@@ -106,6 +140,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnExportExcel);
             this.panel2.Controls.Add(this.btnView);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(1, 423);
@@ -117,9 +152,9 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(6, 6);
+            this.btnView.Location = new System.Drawing.Point(6, 5);
             this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 23);
+            this.btnView.Size = new System.Drawing.Size(75, 25);
             this.btnView.TabIndex = 8;
             this.btnView.Text = "   &Xem";
             this.btnView.UseVisualStyleBackColor = true;
@@ -141,38 +176,17 @@
             this.pageFilter.Name = "pageFilter";
             this.pageFilter.Text = "Điều kiện xem báo cáo";
             // 
-            // tabControlPanel2
+            // btnExportExcel
             // 
-            this.tabControlPanel2.Controls.Add(this._ucReportViewer);
-            this.tabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel2.Name = "tabControlPanel2";
-            this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(768, 460);
-            this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel2.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel2.Style.GradientAngle = 90;
-            this.tabControlPanel2.TabIndex = 2;
-            this.tabControlPanel2.TabItem = this.pageBaoCao;
-            // 
-            // pageBaoCao
-            // 
-            this.pageBaoCao.AttachedControl = this.tabControlPanel2;
-            this.pageBaoCao.Image = global::MM.Properties.Resources.product_sales_report_icon;
-            this.pageBaoCao.Name = "pageBaoCao";
-            this.pageBaoCao.Text = "Báo cáo";
-            // 
-            // _ucReportViewer
-            // 
-            this._ucReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ucReportViewer.Location = new System.Drawing.Point(1, 1);
-            this._ucReportViewer.Name = "_ucReportViewer";
-            this._ucReportViewer.Size = new System.Drawing.Size(766, 458);
-            this._ucReportViewer.TabIndex = 1;
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(85, 5);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
+            this.btnExportExcel.TabIndex = 76;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // uBaoCaoThuocTonKho
             // 
@@ -183,10 +197,10 @@
             this.Size = new System.Drawing.Size(768, 485);
             ((System.ComponentModel.ISupportInitialize)(this.tabReport)).EndInit();
             this.tabReport.ResumeLayout(false);
+            this.tabControlPanel2.ResumeLayout(false);
             this.tabControlPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.tabControlPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -204,5 +218,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnView;
         private ucReportViewer _ucReportViewer;
+        private System.Windows.Forms.Button btnExportExcel;
     }
 }

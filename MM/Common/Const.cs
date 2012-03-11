@@ -52,5 +52,6 @@ namespace MM.Common
         public static string HoaDonXuatTruoc = "HoaDonXuatTruoc";
         public static string DangKyHoaDonXuatTruoc = "DangKyHoaDonXuatTruoc";
         public static string ThongKeHoaDon = "ThongKeHoaDon";
+        public static string PhucHoiBenhNhan = "PhucHoiBenhNhan";
     }
 }
