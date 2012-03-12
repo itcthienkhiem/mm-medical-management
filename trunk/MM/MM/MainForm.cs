@@ -1494,7 +1494,7 @@ namespace MM
             string fileOnServer = string.Format("\\\\{0}\\MMupdatedDate\\updatedDate.txt", strServerName);
             if (!File.Exists(fileOnServer))
             {
-                MsgBox.Show("Cap nhat chuong trinh", "Vui cập nhật chương trình trên server.(\\192.168.5.250)", IconType.Information);
+                //MsgBox.Show("Cap nhat chuong trinh", "Vui cập nhật chương trình trên server.(\\192.168.5.250)", IconType.Information);
                 return;
             }
             string serverUpdatedDate = ReadInforFromFile(fileOnServer);
