@@ -152,9 +152,16 @@ namespace MM.Bussiness
                             if (srvHistory.DocStaff != null)
                                 bacSiThucHien = srvHistory.DocStaff.Contact.FullName;
 
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}'\n",
+                            string nguoiChuyenNhuong = string.Empty;
+                            if (srvHistory.RootPatientGUID != null && srvHistory.RootPatientGUID.HasValue)
+                            {
+                                PatientView patient = db.PatientViews.FirstOrDefault(p => p.PatientGUID == srvHistory.RootPatientGUID.Value);
+                                if (patient != null) nguoiChuyenNhuong = patient.FullName;
+                            }
+
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Nguuời chuyển nhượng: '{7}'\n",
                                 srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, bacSiThucHien,
-                                srvHistory.Service.Name, srvHistory.Price.Value, srvHistory.Discount, srvHistory.GiaVon);
+                                srvHistory.Service.Name, srvHistory.Price.Value, srvHistory.Discount, srvHistory.GiaVon, nguoiChuyenNhuong);
                         }
                     }
 
@@ -218,10 +225,17 @@ namespace MM.Bussiness
                         if (serviceHistory.DocStaff != null)
                             bacSiThucHien = serviceHistory.DocStaff.Contact.FullName;
 
+                        string nguoiChuyenNhuong = string.Empty;
+                        if (serviceHistory.RootPatientGUID != null && serviceHistory.RootPatientGUID.HasValue)
+                        {
+                            PatientView patient = db.PatientViews.FirstOrDefault(p => p.PatientGUID == serviceHistory.RootPatientGUID.Value);
+                            if (patient != null) nguoiChuyenNhuong = patient.FullName;
+                        }
+
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}'",
+                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}'",
                                 serviceHistory.ServiceHistoryGUID.ToString(), serviceHistory.Patient.Contact.FullName, bacSiThucHien,
-                                serviceHistory.Service.Name, serviceHistory.Price.Value, serviceHistory.Discount, serviceHistory.GiaVon);
+                                serviceHistory.Service.Name, serviceHistory.Price.Value, serviceHistory.Discount, serviceHistory.GiaVon, nguoiChuyenNhuong);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -263,15 +277,23 @@ namespace MM.Bussiness
                             srvHistory.Abnormal = serviceHistory.Abnormal;
                             srvHistory.Negative = serviceHistory.Negative;
                             srvHistory.Positive = serviceHistory.Positive;
+                            srvHistory.RootPatientGUID = serviceHistory.RootPatientGUID;
 
                             string bacSiThucHien = string.Empty;
                             if (srvHistory.DocStaff != null)
                                 bacSiThucHien = srvHistory.DocStaff.Contact.FullName;
 
+                            string nguoiChuyenNhuong = string.Empty;
+                            if (srvHistory.RootPatientGUID != null && srvHistory.RootPatientGUID.HasValue)
+                            {
+                                PatientView patient = db.PatientViews.FirstOrDefault(p => p.PatientGUID == srvHistory.RootPatientGUID.Value);
+                                if (patient != null) nguoiChuyenNhuong = patient.FullName;
+                            }
+
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: cũ: '{4}' - mới: '{5}', Giảm: cũ: '{6}' - mới: '{7}', Giá vốn cũ: '{8}' - mới: '{9}'",
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: cũ: '{4}' - mới: '{5}', Giảm: cũ: '{6}' - mới: '{7}', Giá vốn cũ: '{8}' - mới: '{9}', Người chuyển nhượng: '{10}'",
                                     srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, bacSiThucHien,
-                                    srvHistory.Service.Name, giaCu, srvHistory.Price.Value, giamCu, srvHistory.Discount, giaVonCu, srvHistory.GiaVon);
+                                    srvHistory.Service.Name, giaCu, srvHistory.Price.Value, giamCu, srvHistory.Discount, giaVonCu, srvHistory.GiaVon, nguoiChuyenNhuong);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
