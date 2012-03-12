@@ -93,6 +93,7 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
+            Cursor.Current = Cursors.WaitCursor;
             dtpkActiveDate.Value = DateTime.Now;
 
             //Service
@@ -109,6 +110,7 @@ namespace MM.Dialogs
             }
 
             DisplayBacSiChiDinhList();
+            DisplayPatientList();
         }
 
         private void DisplayBacSiChiDinhList()
@@ -182,12 +184,33 @@ namespace MM.Dialogs
                 cboDocStaff.Enabled = true;
         }
 
+        private void DisplayPatientList()
+        {
+            Result result = PatientBus.GetPatientList();
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                return;
+            }
+            else
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["PatientGUID"] = Guid.Empty.ToString();
+                newRow["FullName"] = string.Empty;
+                dt.Rows.InsertAt(newRow, 0);
+                cboChuyenNhuong.DataSource = dt;
+            }
+        }
+
         private void DisplayInfo(DataRow drServiceHistory)
         {
             try
             {
                 cboService.SelectedValue = drServiceHistory["ServiceGUID"].ToString();
                 cboDocStaff.SelectedValue = drServiceHistory["DocStaffGUID"].ToString();
+                cboChuyenNhuong.SelectedValue = drServiceHistory["RootPatientGUID"].ToString();
                 numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
                 numDiscount.Value = (decimal)Double.Parse(drServiceHistory["Discount"].ToString());
                 txtDescription.Text = drServiceHistory["Note"] as string;
@@ -322,6 +345,11 @@ namespace MM.Dialogs
                         _serviceHistory.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
                     else
                         _serviceHistory.DocStaffGUID = null;
+
+                    if (cboChuyenNhuong.Text != string.Empty)
+                        _serviceHistory.RootPatientGUID = Guid.Parse(cboChuyenNhuong.SelectedValue.ToString());
+                    else
+                        _serviceHistory.RootPatientGUID = null;
 
                     _serviceHistory.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
                     _serviceHistory.Price = (double)numPrice.Value;
@@ -596,6 +624,17 @@ namespace MM.Dialogs
                 cboService.SelectedValue = dlg.ServiceGUID;
             }
         }
+
+        private void btnChonBenhNhan_Click(object sender, EventArgs e)
+        {
+            DataTable dtPatient = (cboChuyenNhuong.DataSource as DataTable).Copy();
+            dtPatient.Rows.RemoveAt(0);
+            dlgSelectPatient dlg = new dlgSelectPatient(dtPatient);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                cboChuyenNhuong.SelectedValue = dlg.PatientRow["PatientGUID"].ToString();
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -616,5 +655,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
