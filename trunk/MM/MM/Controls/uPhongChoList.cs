@@ -69,10 +69,6 @@ namespace MM.Controls
                 MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
-            finally
-            {
-                base.HideWaiting();
-            }
         }
 
         private void RefreshNo()
@@ -192,7 +188,7 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
+                Thread.Sleep(500);
                 OnDisplayPhongChoList();
             }
             catch (Exception e)
