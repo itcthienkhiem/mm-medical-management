@@ -122,6 +122,10 @@ spDichVuHopDong
 - Insert data: Function(Add row: ThongKeHoaDon)
 2012-03-11
 - Insert data: Function(Add row: PhucHoiBenhNha)
+2012-03-12
+- Update table: ServiceHistory(Add col: RootPatientGUID)
+- Update view: ServiceHistoryView
+- Create table: PhieuThuHopDong, ChiTietPhieuThuHopDong
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

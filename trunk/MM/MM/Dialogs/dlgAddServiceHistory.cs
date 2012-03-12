@@ -186,8 +186,8 @@ namespace MM.Dialogs
         {
             try
             {
-                cboDocStaff.SelectedValue = drServiceHistory["DocStaffGUID"].ToString();
                 cboService.SelectedValue = drServiceHistory["ServiceGUID"].ToString();
+                cboDocStaff.SelectedValue = drServiceHistory["DocStaffGUID"].ToString();
                 numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
                 numDiscount.Value = (decimal)Double.Parse(drServiceHistory["Discount"].ToString());
                 txtDescription.Text = drServiceHistory["Note"] as string;
@@ -262,12 +262,12 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboDocStaff.Text == null || cboDocStaff.Text == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ", IconType.Information);
-                cboDocStaff.Focus();
-                return false;
-            }
+            //if (cboDocStaff.Text == null || cboDocStaff.Text == string.Empty)
+            //{
+            //    MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ", IconType.Information);
+            //    cboDocStaff.Focus();
+            //    return false;
+            //}
 
             if (chkBSCD.Checked && cboBacSiChiDinh.Text == string.Empty)
             {
@@ -318,7 +318,11 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _serviceHistory.ActivedDate = dtpkActiveDate.Value;
-                    _serviceHistory.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
+                    if (cboDocStaff.Text != string.Empty)
+                        _serviceHistory.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
+                    else
+                        _serviceHistory.DocStaffGUID = null;
+
                     _serviceHistory.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
                     _serviceHistory.Price = (double)numPrice.Value;
                     _serviceHistory.Discount = (double)numDiscount.Value;
