@@ -27,7 +27,14 @@ namespace MM.Controls
             InitializeComponent();
             _uServiceHistory.OnServiceHistoryChanged += new ServiceHistoryChangedHandler(_uServiceHistory_OnServiceHistoryChanged);
             _uDailyServiceHistory.OnServiceHistoryChanged += new ServiceHistoryChangedHandler(_uServiceHistory_OnServiceHistoryChanged);
+            _uServiceHistory.OnExportReceiptChanged += new ExportReceiptChangedHandler(_uServiceHistory_OnExportReceiptChanged);
+            _uDailyServiceHistory.OnExportReceiptChanged += new ExportReceiptChangedHandler(_uServiceHistory_OnExportReceiptChanged);
             this.HandleCreated += new EventHandler(uPatient_HandleCreated);
+        }
+
+        private void _uServiceHistory_OnExportReceiptChanged()
+        {
+            DisplayCheckListAsThread();
         }
 
         private void uPatient_HandleCreated(object sender, EventArgs e)
@@ -139,6 +146,9 @@ namespace MM.Controls
                 {
                     DataTable dt = result.QueryResult as DataTable;
                     lvService.Visible = dt.Rows.Count > 0 ? true : false;
+
+                    _uServiceHistory.CheckListDataSource = dt;
+                    _uDailyServiceHistory.CheckListDataSource = dt;
 
                     foreach (DataRow row in dt.Rows)
                     {

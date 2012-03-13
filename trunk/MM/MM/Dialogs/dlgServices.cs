@@ -114,8 +114,8 @@ namespace MM.Dialogs
                 newRow["ServiceGUID"] = key;
                 newRow["Code"] = row["Code"];
                 newRow["Name"] = row["Name"];
-                newRow["Price"] = row["Price"];
-                newRow["Description"] = row["Description"];
+                //newRow["Price"] = row["Price"];
+                //newRow["Description"] = row["Description"];
                 dt.Rows.Add(newRow);
             }
 

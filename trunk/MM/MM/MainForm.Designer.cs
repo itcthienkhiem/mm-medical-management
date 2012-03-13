@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uPhucHoiBenhNhan = new MM.Controls.uPhucHoiBenhNhan();
             this._uThongKeHoaDon = new MM.Controls.uThongKeHoaDon();
             this._uHoaDonXuatTruoc = new MM.Controls.uHoaDonXuatTruoc();
             this._uHoaDonThuocList = new MM.Controls.uHoaDonThuocList();
@@ -216,7 +217,9 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._uPhucHoiBenhNhan = new MM.Controls.uPhucHoiBenhNhan();
+            this.toolStripSeparator37 = new System.Windows.Forms.ToolStripSeparator();
+            this.phieuThuHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uPhieuThuHopDongList = new MM.Controls.uPhieuThuHopDongList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -237,6 +240,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uPhieuThuHopDongList);
             this._mainPanel.Controls.Add(this._uPhucHoiBenhNhan);
             this._mainPanel.Controls.Add(this._uThongKeHoaDon);
             this._mainPanel.Controls.Add(this._uHoaDonXuatTruoc);
@@ -272,6 +276,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uPhucHoiBenhNhan
+            // 
+            resources.ApplyResources(this._uPhucHoiBenhNhan, "_uPhucHoiBenhNhan");
+            this._uPhucHoiBenhNhan.Name = "_uPhucHoiBenhNhan";
             // 
             // _uThongKeHoaDon
             // 
@@ -970,7 +979,9 @@
             this.receiptToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.receiptListToolStripMenuItem,
             this.toolStripSeparator24,
-            this.phieuThuThuocToolStripMenuItem});
+            this.phieuThuThuocToolStripMenuItem,
+            this.toolStripSeparator37,
+            this.phieuThuHopDongToolStripMenuItem});
             resources.ApplyResources(this.receiptToolStripMenuItem, "receiptToolStripMenuItem");
             this.receiptToolStripMenuItem.Name = "receiptToolStripMenuItem";
             // 
@@ -1405,7 +1416,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1426,7 +1437,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -1629,10 +1640,23 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
-            // _uPhucHoiBenhNhan
+            // toolStripSeparator37
             // 
-            resources.ApplyResources(this._uPhucHoiBenhNhan, "_uPhucHoiBenhNhan");
-            this._uPhucHoiBenhNhan.Name = "_uPhucHoiBenhNhan";
+            this.toolStripSeparator37.Name = "toolStripSeparator37";
+            resources.ApplyResources(this.toolStripSeparator37, "toolStripSeparator37");
+            // 
+            // phieuThuHopDongToolStripMenuItem
+            // 
+            this.phieuThuHopDongToolStripMenuItem.Image = global::MM.Properties.Resources.check_icon;
+            this.phieuThuHopDongToolStripMenuItem.Name = "phieuThuHopDongToolStripMenuItem";
+            resources.ApplyResources(this.phieuThuHopDongToolStripMenuItem, "phieuThuHopDongToolStripMenuItem");
+            this.phieuThuHopDongToolStripMenuItem.Tag = "PhieuThuHopDong";
+            this.phieuThuHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // _uPhieuThuHopDongList
+            // 
+            resources.ApplyResources(this._uPhieuThuHopDongList, "_uPhieuThuHopDongList");
+            this._uPhieuThuHopDongList.Name = "_uPhieuThuHopDongList";
             // 
             // MainForm
             // 
@@ -1855,6 +1879,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator36;
         private System.Windows.Forms.ToolStripMenuItem phucHoiBenhNhanToolStripMenuItem;
         private Controls.uPhucHoiBenhNhan _uPhucHoiBenhNhan;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator37;
+        private System.Windows.Forms.ToolStripMenuItem phieuThuHopDongToolStripMenuItem;
+        private Controls.uPhieuThuHopDongList _uPhieuThuHopDongList;
 
     }
 }

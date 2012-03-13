@@ -858,14 +858,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		public System.Data.Linq.Table<ServiceHistoryView> ServiceHistoryViews
-		{
-			get
-			{
-				return this.GetTable<ServiceHistoryView>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ServiceHistory> ServiceHistories
 		{
 			get
@@ -911,6 +903,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<HoaDonHopDongView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ServiceHistoryView> ServiceHistoryViews
+		{
+			get
+			{
+				return this.GetTable<ServiceHistoryView>();
 			}
 		}
 		
@@ -38674,609 +38674,6 @@ namespace MM.Databasae
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ServiceHistoryView")]
-	public partial class ServiceHistoryView
-	{
-		
-		private System.Nullable<System.Guid> _PatientGUID;
-		
-		private System.Nullable<double> _FixedPrice;
-		
-		private string _Note;
-		
-		private System.Guid _ServiceGUID;
-		
-		private string _Code;
-		
-		private string _Name;
-		
-		private double _Price;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		private System.Nullable<bool> _AvailableToWork;
-		
-		private System.Guid _ServiceHistoryGUID;
-		
-		private byte _Status;
-		
-		private System.Nullable<System.DateTime> _ActivedDate;
-		
-		private string _FullName;
-		
-		private bool _IsExported;
-		
-		private double _Discount;
-		
-		private bool _IsNormalOrNegative;
-		
-		private bool _Normal;
-		
-		private bool _Abnormal;
-		
-		private bool _Negative;
-		
-		private bool _Positive;
-		
-		private string _EnglishName;
-		
-		private byte _Type;
-		
-		private double _GiaVon;
-		
-		private System.Nullable<bool> _Archived;
-		
-		private string _TenBenhNhanChuyenNhuong;
-		
-		private string _MaBenhNhanChuyenNhuong;
-		
-		private System.Nullable<System.Guid> _RootPatientGUID;
-		
-		private System.Nullable<System.Guid> _DocStaffGUID;
-		
-		public ServiceHistoryView()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> PatientGUID
-		{
-			get
-			{
-				return this._PatientGUID;
-			}
-			set
-			{
-				if ((this._PatientGUID != value))
-				{
-					this._PatientGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FixedPrice", DbType="Float")]
-		public System.Nullable<double> FixedPrice
-		{
-			get
-			{
-				return this._FixedPrice;
-			}
-			set
-			{
-				if ((this._FixedPrice != value))
-				{
-					this._FixedPrice = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="NVarChar(MAX)")]
-		public string Note
-		{
-			get
-			{
-				return this._Note;
-			}
-			set
-			{
-				if ((this._Note != value))
-				{
-					this._Note = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ServiceGUID
-		{
-			get
-			{
-				return this._ServiceGUID;
-			}
-			set
-			{
-				if ((this._ServiceGUID != value))
-				{
-					this._ServiceGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Code
-		{
-			get
-			{
-				return this._Code;
-			}
-			set
-			{
-				if ((this._Code != value))
-				{
-					this._Code = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this._Name = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
-		public double Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this._Price = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this._CreatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this._CreatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this._UpdatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this._UpdatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this._DeletedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this._DeletedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit")]
-		public System.Nullable<bool> AvailableToWork
-		{
-			get
-			{
-				return this._AvailableToWork;
-			}
-			set
-			{
-				if ((this._AvailableToWork != value))
-				{
-					this._AvailableToWork = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceHistoryGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ServiceHistoryGUID
-		{
-			get
-			{
-				return this._ServiceHistoryGUID;
-			}
-			set
-			{
-				if ((this._ServiceHistoryGUID != value))
-				{
-					this._ServiceHistoryGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
-		public byte Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActivedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ActivedDate
-		{
-			get
-			{
-				return this._ActivedDate;
-			}
-			set
-			{
-				if ((this._ActivedDate != value))
-				{
-					this._ActivedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255)")]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this._FullName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExported", DbType="Bit NOT NULL")]
-		public bool IsExported
-		{
-			get
-			{
-				return this._IsExported;
-			}
-			set
-			{
-				if ((this._IsExported != value))
-				{
-					this._IsExported = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Discount", DbType="Float NOT NULL")]
-		public double Discount
-		{
-			get
-			{
-				return this._Discount;
-			}
-			set
-			{
-				if ((this._Discount != value))
-				{
-					this._Discount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsNormalOrNegative", DbType="Bit NOT NULL")]
-		public bool IsNormalOrNegative
-		{
-			get
-			{
-				return this._IsNormalOrNegative;
-			}
-			set
-			{
-				if ((this._IsNormalOrNegative != value))
-				{
-					this._IsNormalOrNegative = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Normal", DbType="Bit NOT NULL")]
-		public bool Normal
-		{
-			get
-			{
-				return this._Normal;
-			}
-			set
-			{
-				if ((this._Normal != value))
-				{
-					this._Normal = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Abnormal", DbType="Bit NOT NULL")]
-		public bool Abnormal
-		{
-			get
-			{
-				return this._Abnormal;
-			}
-			set
-			{
-				if ((this._Abnormal != value))
-				{
-					this._Abnormal = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Negative", DbType="Bit NOT NULL")]
-		public bool Negative
-		{
-			get
-			{
-				return this._Negative;
-			}
-			set
-			{
-				if ((this._Negative != value))
-				{
-					this._Negative = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Positive", DbType="Bit NOT NULL")]
-		public bool Positive
-		{
-			get
-			{
-				return this._Positive;
-			}
-			set
-			{
-				if ((this._Positive != value))
-				{
-					this._Positive = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnglishName", DbType="NVarChar(200)")]
-		public string EnglishName
-		{
-			get
-			{
-				return this._EnglishName;
-			}
-			set
-			{
-				if ((this._EnglishName != value))
-				{
-					this._EnglishName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="TinyInt NOT NULL")]
-		public byte Type
-		{
-			get
-			{
-				return this._Type;
-			}
-			set
-			{
-				if ((this._Type != value))
-				{
-					this._Type = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaVon", DbType="Float NOT NULL")]
-		public double GiaVon
-		{
-			get
-			{
-				return this._GiaVon;
-			}
-			set
-			{
-				if ((this._GiaVon != value))
-				{
-					this._GiaVon = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Archived", DbType="Bit")]
-		public System.Nullable<bool> Archived
-		{
-			get
-			{
-				return this._Archived;
-			}
-			set
-			{
-				if ((this._Archived != value))
-				{
-					this._Archived = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenBenhNhanChuyenNhuong", DbType="NVarChar(255)")]
-		public string TenBenhNhanChuyenNhuong
-		{
-			get
-			{
-				return this._TenBenhNhanChuyenNhuong;
-			}
-			set
-			{
-				if ((this._TenBenhNhanChuyenNhuong != value))
-				{
-					this._TenBenhNhanChuyenNhuong = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaBenhNhanChuyenNhuong", DbType="NVarChar(50)")]
-		public string MaBenhNhanChuyenNhuong
-		{
-			get
-			{
-				return this._MaBenhNhanChuyenNhuong;
-			}
-			set
-			{
-				if ((this._MaBenhNhanChuyenNhuong != value))
-				{
-					this._MaBenhNhanChuyenNhuong = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RootPatientGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> RootPatientGUID
-		{
-			get
-			{
-				return this._RootPatientGUID;
-			}
-			set
-			{
-				if ((this._RootPatientGUID != value))
-				{
-					this._RootPatientGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DocStaffGUID
-		{
-			get
-			{
-				return this._DocStaffGUID;
-			}
-			set
-			{
-				if ((this._DocStaffGUID != value))
-				{
-					this._DocStaffGUID = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ServiceHistory")]
 	public partial class ServiceHistory : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -42253,6 +41650,645 @@ namespace MM.Databasae
 				if ((this._HinhThucThanhToanStr != value))
 				{
 					this._HinhThucThanhToanStr = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ServiceHistoryView")]
+	public partial class ServiceHistoryView
+	{
+		
+		private System.Nullable<System.Guid> _PatientGUID;
+		
+		private System.Nullable<double> _FixedPrice;
+		
+		private string _Note;
+		
+		private System.Guid _ServiceGUID;
+		
+		private string _Code;
+		
+		private string _Name;
+		
+		private double _Price;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private System.Nullable<bool> _AvailableToWork;
+		
+		private System.Guid _ServiceHistoryGUID;
+		
+		private byte _Status;
+		
+		private System.Nullable<System.DateTime> _ActivedDate;
+		
+		private string _FullName;
+		
+		private bool _IsExported;
+		
+		private double _Discount;
+		
+		private bool _IsNormalOrNegative;
+		
+		private bool _Normal;
+		
+		private bool _Abnormal;
+		
+		private bool _Negative;
+		
+		private bool _Positive;
+		
+		private string _EnglishName;
+		
+		private byte _Type;
+		
+		private double _GiaVon;
+		
+		private System.Nullable<bool> _Archived;
+		
+		private string _TenBenhNhanChuyenNhuong;
+		
+		private string _MaBenhNhanChuyenNhuong;
+		
+		private System.Nullable<System.Guid> _RootPatientGUID;
+		
+		private System.Nullable<System.Guid> _DocStaffGUID;
+		
+		private string _NguoiTao;
+		
+		private string _NguoiCapNhat;
+		
+		public ServiceHistoryView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> PatientGUID
+		{
+			get
+			{
+				return this._PatientGUID;
+			}
+			set
+			{
+				if ((this._PatientGUID != value))
+				{
+					this._PatientGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FixedPrice", DbType="Float")]
+		public System.Nullable<double> FixedPrice
+		{
+			get
+			{
+				return this._FixedPrice;
+			}
+			set
+			{
+				if ((this._FixedPrice != value))
+				{
+					this._FixedPrice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="NVarChar(MAX)")]
+		public string Note
+		{
+			get
+			{
+				return this._Note;
+			}
+			set
+			{
+				if ((this._Note != value))
+				{
+					this._Note = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ServiceGUID
+		{
+			get
+			{
+				return this._ServiceGUID;
+			}
+			set
+			{
+				if ((this._ServiceGUID != value))
+				{
+					this._ServiceGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this._Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
+		public double Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this._UpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this._DeletedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit")]
+		public System.Nullable<bool> AvailableToWork
+		{
+			get
+			{
+				return this._AvailableToWork;
+			}
+			set
+			{
+				if ((this._AvailableToWork != value))
+				{
+					this._AvailableToWork = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceHistoryGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ServiceHistoryGUID
+		{
+			get
+			{
+				return this._ServiceHistoryGUID;
+			}
+			set
+			{
+				if ((this._ServiceHistoryGUID != value))
+				{
+					this._ServiceHistoryGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActivedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ActivedDate
+		{
+			get
+			{
+				return this._ActivedDate;
+			}
+			set
+			{
+				if ((this._ActivedDate != value))
+				{
+					this._ActivedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExported", DbType="Bit NOT NULL")]
+		public bool IsExported
+		{
+			get
+			{
+				return this._IsExported;
+			}
+			set
+			{
+				if ((this._IsExported != value))
+				{
+					this._IsExported = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Discount", DbType="Float NOT NULL")]
+		public double Discount
+		{
+			get
+			{
+				return this._Discount;
+			}
+			set
+			{
+				if ((this._Discount != value))
+				{
+					this._Discount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsNormalOrNegative", DbType="Bit NOT NULL")]
+		public bool IsNormalOrNegative
+		{
+			get
+			{
+				return this._IsNormalOrNegative;
+			}
+			set
+			{
+				if ((this._IsNormalOrNegative != value))
+				{
+					this._IsNormalOrNegative = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Normal", DbType="Bit NOT NULL")]
+		public bool Normal
+		{
+			get
+			{
+				return this._Normal;
+			}
+			set
+			{
+				if ((this._Normal != value))
+				{
+					this._Normal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Abnormal", DbType="Bit NOT NULL")]
+		public bool Abnormal
+		{
+			get
+			{
+				return this._Abnormal;
+			}
+			set
+			{
+				if ((this._Abnormal != value))
+				{
+					this._Abnormal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Negative", DbType="Bit NOT NULL")]
+		public bool Negative
+		{
+			get
+			{
+				return this._Negative;
+			}
+			set
+			{
+				if ((this._Negative != value))
+				{
+					this._Negative = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Positive", DbType="Bit NOT NULL")]
+		public bool Positive
+		{
+			get
+			{
+				return this._Positive;
+			}
+			set
+			{
+				if ((this._Positive != value))
+				{
+					this._Positive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnglishName", DbType="NVarChar(200)")]
+		public string EnglishName
+		{
+			get
+			{
+				return this._EnglishName;
+			}
+			set
+			{
+				if ((this._EnglishName != value))
+				{
+					this._EnglishName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="TinyInt NOT NULL")]
+		public byte Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this._Type = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaVon", DbType="Float NOT NULL")]
+		public double GiaVon
+		{
+			get
+			{
+				return this._GiaVon;
+			}
+			set
+			{
+				if ((this._GiaVon != value))
+				{
+					this._GiaVon = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Archived", DbType="Bit")]
+		public System.Nullable<bool> Archived
+		{
+			get
+			{
+				return this._Archived;
+			}
+			set
+			{
+				if ((this._Archived != value))
+				{
+					this._Archived = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenBenhNhanChuyenNhuong", DbType="NVarChar(255)")]
+		public string TenBenhNhanChuyenNhuong
+		{
+			get
+			{
+				return this._TenBenhNhanChuyenNhuong;
+			}
+			set
+			{
+				if ((this._TenBenhNhanChuyenNhuong != value))
+				{
+					this._TenBenhNhanChuyenNhuong = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaBenhNhanChuyenNhuong", DbType="NVarChar(50)")]
+		public string MaBenhNhanChuyenNhuong
+		{
+			get
+			{
+				return this._MaBenhNhanChuyenNhuong;
+			}
+			set
+			{
+				if ((this._MaBenhNhanChuyenNhuong != value))
+				{
+					this._MaBenhNhanChuyenNhuong = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RootPatientGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> RootPatientGUID
+		{
+			get
+			{
+				return this._RootPatientGUID;
+			}
+			set
+			{
+				if ((this._RootPatientGUID != value))
+				{
+					this._RootPatientGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DocStaffGUID
+		{
+			get
+			{
+				return this._DocStaffGUID;
+			}
+			set
+			{
+				if ((this._DocStaffGUID != value))
+				{
+					this._DocStaffGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NguoiTao", DbType="NVarChar(255)")]
+		public string NguoiTao
+		{
+			get
+			{
+				return this._NguoiTao;
+			}
+			set
+			{
+				if ((this._NguoiTao != value))
+				{
+					this._NguoiTao = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NguoiCapNhat", DbType="NVarChar(255)")]
+		public string NguoiCapNhat
+		{
+			get
+			{
+				return this._NguoiCapNhat;
+			}
+			set
+			{
+				if ((this._NguoiCapNhat != value))
+				{
+					this._NguoiCapNhat = value;
 				}
 			}
 		}

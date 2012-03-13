@@ -19,7 +19,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyContractView WHERE ContractStatus={0} AND CompanyStatus={0} ORDER BY ContractName", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyContractView WHERE ContractStatus={0} AND CompanyStatus={0} ORDER BY BeginDate DESC", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

@@ -31,13 +31,21 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgPhieuThu = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.maPhieuThuThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayThuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsExported = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.phieuThuThuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -64,14 +72,6 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.maPhieuThuThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngayThuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsExported = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPhieuThu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuThuThuocBindingSource)).BeginInit();
@@ -97,7 +97,7 @@
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 4);
+            this.chkChecked.Location = new System.Drawing.Point(45, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 7;
@@ -150,6 +150,79 @@
             this.dgPhieuThu.Size = new System.Drawing.Size(971, 374);
             this.dgPhieuThu.TabIndex = 6;
             this.dgPhieuThu.DoubleClick += new System.EventHandler(this.dgPhieuThu_DoubleClick);
+            // 
+            // colChecked
+            // 
+            this.colChecked.Checked = true;
+            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.colChecked.CheckValue = "N";
+            this.colChecked.DataPropertyName = "Checked";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.ReadOnly = true;
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // maPhieuThuThuocDataGridViewTextBoxColumn
+            // 
+            this.maPhieuThuThuocDataGridViewTextBoxColumn.DataPropertyName = "MaPhieuThuThuoc";
+            this.maPhieuThuThuocDataGridViewTextBoxColumn.HeaderText = "Mã phiếu thu";
+            this.maPhieuThuThuocDataGridViewTextBoxColumn.Name = "maPhieuThuThuocDataGridViewTextBoxColumn";
+            this.maPhieuThuThuocDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ngayThuDataGridViewTextBoxColumn
+            // 
+            this.ngayThuDataGridViewTextBoxColumn.DataPropertyName = "NgayThu";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ngayThuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ngayThuDataGridViewTextBoxColumn.HeaderText = "Ngày thu";
+            this.ngayThuDataGridViewTextBoxColumn.Name = "ngayThuDataGridViewTextBoxColumn";
+            this.ngayThuDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // maBenhNhanDataGridViewTextBoxColumn
+            // 
+            this.maBenhNhanDataGridViewTextBoxColumn.DataPropertyName = "MaBenhNhan";
+            this.maBenhNhanDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
+            this.maBenhNhanDataGridViewTextBoxColumn.Name = "maBenhNhanDataGridViewTextBoxColumn";
+            this.maBenhNhanDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tenBenhNhanDataGridViewTextBoxColumn
+            // 
+            this.tenBenhNhanDataGridViewTextBoxColumn.DataPropertyName = "TenBenhNhan";
+            this.tenBenhNhanDataGridViewTextBoxColumn.HeaderText = "Tên bệnh nhân";
+            this.tenBenhNhanDataGridViewTextBoxColumn.Name = "tenBenhNhanDataGridViewTextBoxColumn";
+            this.tenBenhNhanDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenBenhNhanDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // diaChiDataGridViewTextBoxColumn
+            // 
+            this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
+            this.diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
+            this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
+            this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diaChiDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // Notes
+            // 
+            this.Notes.DataPropertyName = "Notes";
+            this.Notes.HeaderText = "Ghi chú";
+            this.Notes.Name = "Notes";
+            this.Notes.ReadOnly = true;
+            this.Notes.Width = 250;
+            // 
+            // IsExported
+            // 
+            this.IsExported.DataPropertyName = "IsExported";
+            this.IsExported.HeaderText = "Đã Xuất HĐ";
+            this.IsExported.Name = "IsExported";
+            this.IsExported.ReadOnly = true;
+            this.IsExported.Width = 80;
             // 
             // phieuThuThuocBindingSource
             // 
@@ -418,79 +491,6 @@
             this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
             this.dataGridViewCheckBoxColumn1.ReadOnly = true;
             this.dataGridViewCheckBoxColumn1.Width = 80;
-            // 
-            // colChecked
-            // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // maPhieuThuThuocDataGridViewTextBoxColumn
-            // 
-            this.maPhieuThuThuocDataGridViewTextBoxColumn.DataPropertyName = "MaPhieuThuThuoc";
-            this.maPhieuThuThuocDataGridViewTextBoxColumn.HeaderText = "Mã phiếu thu";
-            this.maPhieuThuThuocDataGridViewTextBoxColumn.Name = "maPhieuThuThuocDataGridViewTextBoxColumn";
-            this.maPhieuThuThuocDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ngayThuDataGridViewTextBoxColumn
-            // 
-            this.ngayThuDataGridViewTextBoxColumn.DataPropertyName = "NgayThu";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ngayThuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ngayThuDataGridViewTextBoxColumn.HeaderText = "Ngày thu";
-            this.ngayThuDataGridViewTextBoxColumn.Name = "ngayThuDataGridViewTextBoxColumn";
-            this.ngayThuDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // maBenhNhanDataGridViewTextBoxColumn
-            // 
-            this.maBenhNhanDataGridViewTextBoxColumn.DataPropertyName = "MaBenhNhan";
-            this.maBenhNhanDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
-            this.maBenhNhanDataGridViewTextBoxColumn.Name = "maBenhNhanDataGridViewTextBoxColumn";
-            this.maBenhNhanDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tenBenhNhanDataGridViewTextBoxColumn
-            // 
-            this.tenBenhNhanDataGridViewTextBoxColumn.DataPropertyName = "TenBenhNhan";
-            this.tenBenhNhanDataGridViewTextBoxColumn.HeaderText = "Tên bệnh nhân";
-            this.tenBenhNhanDataGridViewTextBoxColumn.Name = "tenBenhNhanDataGridViewTextBoxColumn";
-            this.tenBenhNhanDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenBenhNhanDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // diaChiDataGridViewTextBoxColumn
-            // 
-            this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
-            this.diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
-            this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
-            this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
-            this.diaChiDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // Notes
-            // 
-            this.Notes.DataPropertyName = "Notes";
-            this.Notes.HeaderText = "Ghi chú";
-            this.Notes.Name = "Notes";
-            this.Notes.ReadOnly = true;
-            this.Notes.Width = 250;
-            // 
-            // IsExported
-            // 
-            this.IsExported.DataPropertyName = "IsExported";
-            this.IsExported.HeaderText = "Đã Xuất HĐ";
-            this.IsExported.Name = "IsExported";
-            this.IsExported.ReadOnly = true;
-            this.IsExported.Width = 80;
             // 
             // uPhieuThuThuocList
             // 

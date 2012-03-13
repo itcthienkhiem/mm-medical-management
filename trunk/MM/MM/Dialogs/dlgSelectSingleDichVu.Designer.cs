@@ -42,9 +42,9 @@
             this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgService = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
@@ -169,10 +169,6 @@
             this.dgService.TabIndex = 1;
             this.dgService.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
             // 
-            // serviceBindingSource
-            // 
-            this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
-            // 
             // codeDataGridViewTextBoxColumn
             // 
             this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
@@ -191,6 +187,10 @@
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 350;
             // 
+            // serviceBindingSource
+            // 
+            this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
+            // 
             // dlgSelectSingleDichVu
             // 
             this.AcceptButton = this.btnOK;
@@ -208,7 +208,7 @@
             this.Name = "dlgSelectSingleDichVu";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Chọn dịch vụ";
+            this.Text = "Chon dich vu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgSelectSingleThuoc_FormClosing);
             this.Load += new System.EventHandler(this.dlgSelectSingleThuoc_Load);
             this.panel1.ResumeLayout(false);

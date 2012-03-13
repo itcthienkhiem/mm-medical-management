@@ -16,6 +16,7 @@ namespace MM.Controls
     public delegate void DrawTypeClickedHandler(DrawType type, int width);
     public delegate void OpenPatientHandler(object patientRow);
     public delegate void ServiceHistoryChangedHandler();
+    public delegate void ExportReceiptChangedHandler();
     #endregion
 
     public partial class uBase : UserControl
@@ -25,6 +26,7 @@ namespace MM.Controls
         public event DrawTypeClickedHandler OnDrawTypeClicked;
         public event OpenPatientHandler OnOpenPatient;
         public event ServiceHistoryChangedHandler OnServiceHistoryChanged;
+        public event ExportReceiptChangedHandler OnExportReceiptChanged;
         #endregion
 
         #region Members
@@ -72,6 +74,12 @@ namespace MM.Controls
         public void RaiseServiceHistoryChanged()
         {
             if (OnServiceHistoryChanged != null)
+                OnServiceHistoryChanged();
+        }
+
+        public void RaiseExportReceiptChanged()
+        {
+            if (OnExportReceiptChanged != null)
                 OnServiceHistoryChanged();
         }
         #endregion

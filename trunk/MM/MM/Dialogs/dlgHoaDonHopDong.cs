@@ -16,7 +16,7 @@ using SpreadsheetGear.Windows.Forms;
 
 namespace MM.Dialogs
 {
-    public partial class dlgHoaDonThuoc : Form
+    public partial class dlgHoaDonHopDong : Form
     {
         #region Members
         private DataRow _drInvoice;
@@ -27,21 +27,20 @@ namespace MM.Dialogs
         private bool _flag = true;
         private double _oldTotalPayment = 0;
         private double _totalPayment = 0;
-        private List<DataRow> _phieuThuThuocList = null;
-        private HoaDonThuoc _hoaDonThuoc = new HoaDonThuoc();
-        private LoaiHoaDon _loaiHoaDon = LoaiHoaDon.HoaDonThuoc;
+        private HoaDonHopDong _hoaDonHopDong = new HoaDonHopDong();
+        private List<DataRow> _phieuThuHopDongList = null;
         #endregion
 
         #region Constructor
-        public dlgHoaDonThuoc(List<DataRow> phieuThuThuocList)
+        public dlgHoaDonHopDong(List<DataRow> phieuThuHopDongList)
         {
             InitializeComponent();
-            _phieuThuThuocList = phieuThuThuocList;
+            _phieuThuHopDongList = phieuThuHopDongList;
             cboHinhThucThanhToan.SelectedIndex = 0;
             btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
         }
 
-        public dlgHoaDonThuoc(DataRow drInvoice, bool isView)
+        public dlgHoaDonHopDong(DataRow drInvoice, bool isView)
         {
             InitializeComponent();
             _drInvoice = drInvoice;
@@ -69,16 +68,10 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
-        public HoaDonThuoc HoaDonThuoc
+        public HoaDonHopDong HoaDonHopDong
         {
-            get { return _hoaDonThuoc; }
-            set { _hoaDonThuoc = value; }
-        }
-
-        public LoaiHoaDon LoaiHoaDon
-        {
-            get { return _loaiHoaDon; }
-            set { _loaiHoaDon = value; }
+            get { return _hoaDonHopDong; }
+            set { _hoaDonHopDong = value; }
         }
         #endregion
 
@@ -139,13 +132,6 @@ namespace MM.Dialogs
 
                 lbInvoiceCode.Text = string.Format("Số: {0}", _drInvoice["SoHoaDon"].ToString());
                 dtpkNgay.Value = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
-
-                //DateTime dt = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
-                //string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
-                //string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
-                //string strYear = dt.Year.ToString();
-                //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
-                
                 txtTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
 
                 if (_drInvoice["MaSoThue"] != null && _drInvoice["MaSoThue"] != DBNull.Value)
@@ -161,26 +147,8 @@ namespace MM.Dialogs
                 
                 if (_drInvoice["DiaChi"] != null && _drInvoice["DiaChi"] != DBNull.Value)
                     txtAddress.Text = _drInvoice["DiaChi"].ToString();
-
-                Result result = null;
-                if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonThuoc)
-                    result = HoaDonThuocBus.GetChiTietHoaDonThuoc(_drInvoice["HoaDonThuocGUID"].ToString());
-                else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonDichVu)
-                {
-                    TenThuoc.DataPropertyName = "TenDichVu";
-                    result = InvoiceBus.GetInvoiceDetail(_drInvoice["HoaDonThuocGUID"].ToString());
-                }
-                else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonXuatTruoc)
-                {
-                    TenThuoc.DataPropertyName = "TenMatHang";
-                    result = HoaDonXuatTruocBus.GetChiTietHoaDonXuatTruoc(_drInvoice["HoaDonThuocGUID"].ToString());
-                }
-                else
-                {
-                    TenThuoc.DataPropertyName = "TenMatHang";
-                    result = HoaDonHopDongBus.GetChiTietHoaDonHopDong(_drInvoice["HoaDonThuocGUID"].ToString());
-                }
-
+                
+                Result result = HoaDonHopDongBus.GetChiTietHoaDonHopDong(_drInvoice["HoaDonHopDongGUID"].ToString());
                 if (result.IsOK)
                 {
                     DataTable dataSource = result.QueryResult as DataTable;
@@ -208,15 +176,15 @@ namespace MM.Dialogs
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetChiTietHoaDonThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetChiTietHoaDonThuoc"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonHopDongBus.GetChiTietHoaDonHopDong"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonHopDongBus.GetChiTietHoaDonHopDong"));
                 }
             }
             else
             {
                 GenerateCode();
 
-                Result result = HoaDonThuocBus.GetNgayXuatHoaDon(_invoiceCode);
+                Result result = HoaDonHopDongBus.GetNgayXuatHoaDon(_invoiceCode);
                 if (result.IsOK)
                 {
                     if (result.QueryResult != null)
@@ -224,23 +192,17 @@ namespace MM.Dialogs
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetNgayXuatHoaDon"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetNgayXuatHoaDon"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonHopDongBus.GetNgayXuatHoaDon"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonHopDongBus.GetNgayXuatHoaDon"));
                 }
 
-                //DateTime dt = DateTime.Now;
-                //string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
-                //string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
-                //string strYear = dt.Year.ToString();
-                //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
-
-                if (_phieuThuThuocList != null && _phieuThuThuocList.Count == 1)
+                if (_phieuThuHopDongList != null && _phieuThuHopDongList.Count == 1)
                 {
-                    txtTenNguoiMuaHang.Text = _phieuThuThuocList[0]["TenBenhNhan"].ToString();
-                    txtAddress.Text = _phieuThuThuocList[0]["DiaChi"].ToString();
+                    txtTenNguoiMuaHang.Text = _phieuThuHopDongList[0]["TenNguoiNop"].ToString();
+                    txtAddress.Text = _phieuThuHopDongList[0]["DiaChi"].ToString();
                 }
 
-                result = HoaDonThuocBus.GetChiTietPhieuThuThuoc(_phieuThuThuocList);
+                result = HoaDonHopDongBus.GetChiTietPhieuThuHopDong(_phieuThuHopDongList);
                 if (result.IsOK)
                 {
                     DataTable dataSource = result.QueryResult as DataTable;
@@ -271,9 +233,11 @@ namespace MM.Dialogs
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetChiTietPhieuThuThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetChiTietPhieuThuThuoc"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonHopDongBus.GetChiTietPhieuThuHopDong"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonHopDongBus.GetChiTietPhieuThuHopDong"));
                 }
+
+                lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)_totalPayment));
             }
         }
 
@@ -333,7 +297,7 @@ namespace MM.Dialogs
             lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)_totalPayment));
         }
 
-        private bool OnPrint(string hoaDonThuocGUID)
+        private bool OnPrint(string hoaDonHopDongGUID)
         {
             Cursor.Current = Cursors.WaitCursor;
             dlgPrintType dlg = new dlgPrintType();
@@ -344,221 +308,56 @@ namespace MM.Dialogs
                 {
                     if (dlg.Lien1)
                     {
-                        if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonThuoc)
+                        if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonHopDongGUID, "                                   Liên 1: Lưu"))
                         {
-                            if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 1: Lưu"))
+                            try
                             {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
                             }
-                            else
-                                return false;
-                        }
-                        else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonDichVu)
-                        {
-                            if (ExportExcel.ExportInvoiceToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 1: Lưu"))
+                            catch (Exception ex)
                             {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
-                            }
-                            else
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
                                 return false;
-                        }
-                        else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonXuatTruoc)
-                        {
-                            if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 1: Lưu"))
-                            {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
                             }
-                            else
-                                return false;
                         }
                         else
-                        {
-                            if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 1: Lưu"))
-                            {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
-                            }
-                            else
-                                return false;
-                        }
-                        
+                            return false;
                     }
 
                     if (dlg.Lien2)
                     {
-                        if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonThuoc)
+                        if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonHopDongGUID, "                                   Liên 2: Giao người mua"))
                         {
-                            if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
+                            try
                             {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
                             }
-                            else
-                                return false;
-                        }
-                        else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonDichVu)
-                        {
-                            if (ExportExcel.ExportInvoiceToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
+                            catch (Exception ex)
                             {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
-                            }
-                            else
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
                                 return false;
-                        }
-                        else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonXuatTruoc)
-                        {
-                            if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
-                            {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
                             }
-                            else
-                                return false;
                         }
                         else
-                        {
-                            if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
-                            {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
-                            }
-                            else
-                                return false;
-                        }
-                        
+                            return false;
                     }
 
                     if (dlg.Lien3)
                     {
-                        if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonThuoc)
+                        if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonHopDongGUID, "                                   Liên 3: Nội bộ"))
                         {
-                            if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 3: Nội bộ"))
+                            try
                             {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
                             }
-                            else
-                                return false;
-                        }
-                        else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonDichVu)
-                        {
-                            if (ExportExcel.ExportInvoiceToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 3: Nội bộ"))
+                            catch (Exception ex)
                             {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
-                            }
-                            else
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
                                 return false;
-                        }
-                        else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonXuatTruoc)
-                        {
-                            if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 3: Nội bộ"))
-                            {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
                             }
-                            else
-                                return false;
                         }
                         else
-                        {
-                            if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 3: Nội bộ"))
-                            {
-                                try
-                                {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
-                                }
-                                catch (Exception ex)
-                                {
-                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                    return false;
-                                }
-                            }
-                            else
-                                return false;
-                        }
-                        
+                            return false;
                     }
                 }
             }
@@ -568,7 +367,7 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            Result result = HoaDonThuocBus.CheckHoaDonThuocExistCode(Convert.ToInt32(_invoiceCode));
+            Result result = HoaDonHopDongBus.CheckHoaDonHopDongExistCode(Convert.ToInt32(_invoiceCode));
             if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
             {
                 if (result.Error.Code == ErrorCode.EXIST)
@@ -581,13 +380,13 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("HoaDonThuocBus.CheckHoaDonThuocExistCode"), IconType.Error);
+                MsgBox.Show(this.Text, result.GetErrorAsString("HoaDonHopDongBus.CheckHoaDonHopDongExistCode"), IconType.Error);
                 return false;
             }
 
             if (txtTenNguoiMuaHang.Text.Trim() == string.Empty && txtTenDonVi.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên người mua hàng hoặc đơn vị.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng nhập tên người mua hàng hoặc tên đơn vị.", IconType.Information);
                 txtTenNguoiMuaHang.Focus();
                 return false;
             }
@@ -602,13 +401,16 @@ namespace MM.Dialogs
             {
                 DataGridViewRow row = dgDetail.Rows[i];
 
+                if (row.Cells[2].Value == null || row.Cells[2].Value == DBNull.Value)
+                    row.Cells[2].Value = "Lần";
+
                 if (row.Cells[1].Value == null || row.Cells[1].Value == DBNull.Value || row.Cells[1].Value.ToString().Trim() == string.Empty)
                 {
                     MsgBox.Show(this.Text, "Vui lòng nhập tên dịch vụ.", IconType.Information);
                     return false;
                 }
 
-                if (row.Cells[2].Value == null || row.Cells[2].Value == DBNull.Value || row.Cells[2].Value.ToString().Trim() == string.Empty)
+                if (row.Cells[2].Value.ToString().Trim() == string.Empty)
                 {
                     MsgBox.Show(this.Text, "Vui lòng nhập đơn vị tính.", IconType.Information);
                     return false;
@@ -625,23 +427,17 @@ namespace MM.Dialogs
                 }
             }
 
-            if (_phieuThuThuocList != null && _phieuThuThuocList.Count > 0 && _totalPayment > _oldTotalPayment)
-            {
-                MsgBox.Show(this.Text, "Tổng số tiền xuất hóa đơn không được vượt quá tổng số tiền trong phiếu thu.", IconType.Information);
-                return false;
-            }
-
             return true;
         }
 
-        private string GetPhieuThuThuocGUIDListStr()
+        private string GetPhieuThuHopDongGUIDListStr()
         {
-            if (_phieuThuThuocList == null || _phieuThuThuocList.Count <= 0) return string.Empty;
+            if (_phieuThuHopDongList == null || _phieuThuHopDongList.Count <= 0) return string.Empty;
 
             string str = string.Empty;
-            foreach (DataRow row in _phieuThuThuocList)
+            foreach (DataRow row in _phieuThuHopDongList)
             {
-                str += string.Format("{0},", row["PhieuThuThuocGUID"].ToString());
+                str += string.Format("{0},", row["PhieuThuHopDongGUID"].ToString());
             }
 
             str = str.Substring(0, str.Length - 1);
@@ -655,8 +451,8 @@ namespace MM.Dialogs
             {
                 if (!CheckInfo()) return false;
 
-                HoaDonThuoc invoice = new HoaDonThuoc();
-                invoice.PhieuThuThuocGUIDList = GetPhieuThuThuocGUIDListStr();
+                HoaDonHopDong invoice = new HoaDonHopDong();
+                invoice.PhieuThuHopDongGUIDList = GetPhieuThuHopDongGUIDListStr();
                 invoice.SoHoaDon = _invoiceCode;
                 invoice.NgayXuatHoaDon = dtpkNgay.Value;
                 invoice.TenNguoiMuaHang = txtTenNguoiMuaHang.Text;
@@ -670,15 +466,19 @@ namespace MM.Dialogs
                 invoice.CreatedBy = Guid.Parse(Global.UserGUID);
                 invoice.Status = (byte)Status.Actived;
 
-                List<ChiTietHoaDonThuoc> addedDetails = new List<ChiTietHoaDonThuoc>();
+                List<ChiTietHoaDonHopDong> addedDetails = new List<ChiTietHoaDonHopDong>();
                 for (int i = 0; i < dgDetail.RowCount - 1; i++)
                 {
                     DataGridViewRow row = dgDetail.Rows[i];
-                    ChiTietHoaDonThuoc detail = new ChiTietHoaDonThuoc();
+                    ChiTietHoaDonHopDong detail = new ChiTietHoaDonHopDong();
                     detail.CreatedDate = DateTime.Now;
                     detail.CreatedBy = Guid.Parse(Global.UserGUID);
-                    detail.TenThuoc = row.Cells["TenThuoc"].Value.ToString();
-                    detail.DonViTinh = row.Cells["DonViTinh"].Value.ToString();
+                    detail.TenMatHang = row.Cells["TenMatHang"].Value.ToString();
+                    
+                    if (row.Cells["DonViTinh"].Value != null)
+                        detail.DonViTinh = row.Cells["DonViTinh"].Value.ToString();
+                    else
+                        detail.DonViTinh = "Lần";
 
                     int soLuong = 1;
                     if (row.Cells["SoLuong"].Value != null && row.Cells["SoLuong"].Value != DBNull.Value)
@@ -700,18 +500,18 @@ namespace MM.Dialogs
                     addedDetails.Add(detail);
                 }
 
-                Result result = HoaDonThuocBus.InsertHoaDonThuoc(invoice, addedDetails);
+                Result result = HoaDonHopDongBus.InsertHoaDonHopDong(invoice, addedDetails);
                 if (result.IsOK)
                 {
-                    _hoaDonThuoc = invoice;
+                    _hoaDonHopDong = invoice;
                     if (!_isPrinted) return true;
-                    OnPrint(invoice.HoaDonThuocGUID.ToString());
+                    OnPrint(invoice.HoaDonHopDongGUID.ToString());
                     return true;
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.InsertHoaDonThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.InsertHoaDonThuoc"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonHopDongBus.InsertHoaDonHopDong"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonHopDongBus.InsertHoaDonHopDong"));
                 }
             }
             catch (Exception ex)
@@ -736,13 +536,6 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (!ExportInvoice()) e.Cancel = true;
-                else if (_phieuThuThuocList != null && _phieuThuThuocList.Count > 0)
-                {
-                    foreach (DataRow row in _phieuThuThuocList)
-                    {
-                        row["IsExported"] = true;
-                    }
-                }
             }
         }
 
@@ -806,7 +599,7 @@ namespace MM.Dialogs
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            OnPrint(_drInvoice["HoaDonThuocGUID"].ToString());
+            OnPrint(_drInvoice["HoaDonHopDongGUID"].ToString());
         }
 
         private void dgDetail_UserAddedRow(object sender, DataGridViewRowEventArgs e)
@@ -926,8 +719,10 @@ namespace MM.Dialogs
                 {
                     if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
                         e.Value = "0";
-                    else
+                    else if (e.ColumnIndex == 3)
                         e.Value = "1";
+                    else
+                        e.Value = "Lần";
                 }
             }
         }
@@ -938,5 +733,7 @@ namespace MM.Dialogs
             _flag = false;
         }
         #endregion
+
+        
     }
 }

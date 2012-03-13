@@ -26,6 +26,7 @@ namespace MM.Controls
         private DateTime _toDate = DateTime.Now;
         private bool _isAll = true;
         private bool _isDailyService = false;
+        private DataTable _dtCheckList = null;
         #endregion
 
         #region Constructor
@@ -69,6 +70,12 @@ namespace MM.Controls
 
                 return checkedRows;
             }
+        }
+
+        public DataTable CheckListDataSource
+        {
+            get { return _dtCheckList; }
+            set { _dtCheckList = value; }
         }
         #endregion
 
@@ -356,7 +363,9 @@ namespace MM.Controls
                 Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
                 if (result.IsOK)
                 {
+                    base.RaiseExportReceiptChanged();
                     DisplayAsThread();
+
                     if (Global.AllowPrintReceipt)
                     {
                         if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
