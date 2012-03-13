@@ -352,6 +352,38 @@ namespace MM.Bussiness
                     dtAll.Rows.Add(newRow);
                 }
 
+                result = HoaDonHopDongBus.GetHoaDonHopDongList(isFromDateToDate, fromDate, toDate, tenBenhNhan, type);
+                if (!result.IsOK) return result;
+
+                dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    DataRow newRow = dtAll.NewRow();
+                    newRow["Checked"] = false;
+                    newRow["HoaDonThuocGUID"] = row["HoaDonHopDongGUID"];
+                    newRow["SoHoaDon"] = row["SoHoaDon"];
+                    newRow["NgayXuatHoaDon"] = row["NgayXuatHoaDon"];
+                    newRow["TenNguoiMuaHang"] = row["TenNguoiMuaHang"];
+                    newRow["DiaChi"] = row["DiaChi"];
+                    newRow["TenDonVi"] = row["TenDonVi"];
+                    newRow["MaSoThue"] = row["MaSoThue"];
+                    newRow["SoTaiKhoan"] = row["SoTaiKhoan"];
+                    newRow["HinhThucThanhToan"] = row["HinhThucThanhToan"];
+                    newRow["HinhThucThanhToanStr"] = row["HinhThucThanhToanStr"];
+                    newRow["VAT"] = row["VAT"];
+                    newRow["CreatedDate"] = row["CreatedDate"];
+                    newRow["CreatedBy"] = row["CreatedBy"];
+                    newRow["UpdatedDate"] = row["UpdatedDate"];
+                    newRow["UpdatedBy"] = row["UpdatedBy"];
+                    newRow["DeletedDate"] = row["DeletedDate"];
+                    newRow["DeletedBy"] = row["DeletedBy"];
+                    newRow["Status"] = row["Status"];
+                    newRow["PhieuThuThuocGUIDList"] = string.Empty;
+                    newRow["Notes"] = row["Notes"];
+                    newRow["LoaiHoaDon"] = "Hóa đơn hợp đồng";
+                    dtAll.Rows.Add(newRow);
+                }
+
                 result = InvoiceBus.GetInvoiceList(isFromDateToDate, fromDate, toDate, tenBenhNhan, type);
                 if (!result.IsOK) return result;
                 dt = result.QueryResult as DataTable;

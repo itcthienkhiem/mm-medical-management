@@ -15,18 +15,18 @@ using MM.Exports;
 
 namespace MM.Controls
 {
-    public partial class uPhieuThuThuocList : uBase
+    public partial class uPhieuThuHopDongList : uBase
     {
         #region Members
         private bool _isFromDateToDate = true;
-        private string _tenBenhNhan = string.Empty;
+        private string _tenNguoiNop = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private int _type = 1; //0: TatCa; 1: ChuaXoa; 2: DaXoa
         #endregion
 
         #region Constructor
-        public uPhieuThuThuocList()
+        public uPhieuThuHopDongList()
         {
             InitializeComponent();
             dtpkDenNgay.Value = DateTime.Now;
@@ -50,7 +50,7 @@ namespace MM.Controls
 
                 return checkedRows;
             }
-        }
+        }   
         #endregion
 
         #region UI Command
@@ -60,7 +60,6 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
-            btnExportExcel.Enabled = AllowExport;
             btnExportInvoice.Enabled = AllowExport;
         }
 
@@ -78,14 +77,14 @@ namespace MM.Controls
                 _isFromDateToDate = raTuNgayToiNgay.Checked;
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-                _tenBenhNhan = txtTenBenhNhan.Text;
+                _tenNguoiNop = txtTenBenhNhan.Text;
 
                 if (raTatCa.Checked) _type = 0;
                 else if (raChuaXoa.Checked) _type = 1;
                 else _type = 2;
 
                 chkChecked.Checked = false;
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPhieuThuThuocListProc));
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPhieuThuHopDongListProc));
                 base.ShowWaiting();
             }
             catch (Exception e)
@@ -110,9 +109,9 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayPhieuThuThuocList()
+        private void OnDisplayPhieuThuHopDongList()
         {
-            Result result = PhieuThuThuocBus.GetPhieuThuThuocList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
+            Result result = PhieuThuHopDongBus.GetPhieuThuHopDongList(_isFromDateToDate, _fromDate, _toDate, _tenNguoiNop, _type);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -126,57 +125,18 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuocList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuocList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuHopDongBus.GetPhieuThuHopDongList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuHopDongBus.GetPhieuThuHopDongList"));
             }
-        }
-
-        private void SelectLastedRow()
-        {
-            dgPhieuThu.CurrentCell = dgPhieuThu[1, dgPhieuThu.RowCount - 1];
-            dgPhieuThu.Rows[dgPhieuThu.RowCount - 1].Selected = true;
         }
 
         private void OnAddPhieuThu()
         {
-            dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc();
-            if (dlg.ShowDialog(this) == DialogResult.OK)
-            {
-                DisplayAsThread();
-                /*DataTable dt = dgPhieuThu.DataSource as DataTable;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["PhieuThuThuocGUID"] = dlg.PhieuThuThuoc.PhieuThuThuocGUID.ToString();
-                newRow["MaPhieuThuThuoc"] = dlg.PhieuThuThuoc.MaPhieuThuThuoc;
-                newRow["NgayThu"] = dlg.PhieuThuThuoc.NgayThu;
-                newRow["MaBenhNhan"] = dlg.PhieuThuThuoc.MaBenhNhan;
-                newRow["TenBenhNhan"] = dlg.PhieuThuThuoc.TenBenhNhan;
-                newRow["DiaChi"] = dlg.PhieuThuThuoc.DiaChi;
-
-                if (dlg.PhieuThuThuoc.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.PhieuThuThuoc.CreatedDate;
-
-                if (dlg.PhieuThuThuoc.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.PhieuThuThuoc.CreatedBy.ToString();
-
-                if (dlg.PhieuThuThuoc.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.PhieuThuThuoc.UpdatedDate;
-
-                if (dlg.PhieuThuThuoc.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.PhieuThuThuoc.UpdatedBy.ToString();
-
-                if (dlg.PhieuThuThuoc.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.PhieuThuThuoc.DeletedDate;
-
-                if (dlg.PhieuThuThuoc.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.PhieuThuThuoc.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.PhieuThuThuoc.Status;
-                newRow["IsExported"] = false;
-                dt.Rows.Add(newRow);
-                //SelectLastedRow();*/
-            }
+            //dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc();
+            //if (dlg.ShowDialog(this) == DialogResult.OK)
+            //{
+            //    DisplayAsThread();
+            //}
         }
 
         private void OnDeletePhieuThu()
@@ -188,7 +148,6 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    //deletedPTThuocList.Add(row["PhieuThuThuocGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
@@ -201,33 +160,33 @@ namespace MM.Controls
 
                     foreach (DataRow row in deletedRows)
                     {
-                        string maPhieuThuThuoc = row["MaPhieuThuThuoc"].ToString();
-                        string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
+                        string maPhieuThuHopDong = row["MaPhieuThuHopDong"].ToString();
+                        string phieuThuHopDongGUID = row["PhieuThuHopDongGUID"].ToString();
 
-                        dlgLyDoXoa dlg = new dlgLyDoXoa(maPhieuThuThuoc, 0);
+                        dlgLyDoXoa dlg = new dlgLyDoXoa(maPhieuThuHopDong, 0);
                         if (dlg.ShowDialog(this) == DialogResult.OK)
                         {
                             noteList.Add(dlg.Notes);
-                            deletedPTThuocList.Add(phieuThuThuocGUID);
+                            deletedPTThuocList.Add(phieuThuHopDongGUID);
                         }
                     }
 
                     if (deletedPTThuocList.Count > 0)
                     {
-                        Result result = PhieuThuThuocBus.DeletePhieuThuThuoc(deletedPTThuocList, noteList);
+                        Result result = PhieuThuHopDongBus.DeletePhieuThuHopDong(deletedPTThuocList, noteList);
                         if (result.IsOK)
                         {
                             foreach (DataRow row in deletedRows)
                             {
-                                string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
-                                if (deletedPTThuocList.Contains(phieuThuThuocGUID))
+                                string phieuThuHopDongGUID = row["PhieuThuHopDongGUID"].ToString();
+                                if (deletedPTThuocList.Contains(phieuThuHopDongGUID))
                                     dt.Rows.Remove(row);
                             }
                         }
                         else
                         {
-                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"), IconType.Error);
-                            Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"));
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuHopDongBus.DeletePhieuThuHopDong"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuHopDongBus.DeletePhieuThuHopDong"));
                         }
                     }
                 }
@@ -251,13 +210,13 @@ namespace MM.Controls
 
             if (checkedRows.Count > 0)
             {
-                string exportFileName = string.Format("{0}\\Temp\\PhieuThuThuoc.xls", Application.StartupPath);
+                string exportFileName = string.Format("{0}\\Temp\\PhieuThuHopDong.xls", Application.StartupPath);
                 if (isPreview)
                 {
                     foreach (DataRow row in checkedRows)
                     {
-                        string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
-                        if (ExportExcel.ExportPhieuThuThuocToExcel(exportFileName, phieuThuThuocGUID))
+                        string phieuThuHopDongGUID = row["PhieuThuHopDongGUID"].ToString();
+                        if (ExportExcel.ExportPhieuThuHopDongToExcel(exportFileName, phieuThuHopDongGUID))
                         {
                             try
                             {
@@ -279,8 +238,8 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in checkedRows)
                         {
-                            string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
-                            if (ExportExcel.ExportPhieuThuThuocToExcel(exportFileName, phieuThuThuocGUID))
+                            string phieuThuHopDongGUID = row["PhieuThuHopDongGUID"].ToString();
+                            if (ExportExcel.ExportPhieuThuHopDongToExcel(exportFileName, phieuThuHopDongGUID))
                             {
                                 try
                                 {
@@ -302,45 +261,18 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu cần in.", IconType.Information);
         }
 
-        private void OnViewPhieuThuThuoc()
+        private void OnViewPhieuThuHopDong()
         {
-            if (dgPhieuThu.SelectedRows == null || dgPhieuThu.SelectedRows.Count <= 0)
-                return;
+            //if (dgPhieuThu.SelectedRows == null || dgPhieuThu.SelectedRows.Count <= 0)
+            //    return;
 
-            DataRow drPhieuThu = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc(drPhieuThu);
-            if (dlg.ShowDialog(this) == DialogResult.Cancel)
-            {
-                if (dlg.IsExportedInvoice)
-                    HighlightExportedInvoice();
-            }
-        }
-
-        private void OnExportExcel()
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            List<string> checkedPhieuThuThuocKeys = new List<string>();
-            DataTable dt = dgPhieuThu.DataSource as DataTable;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    checkedPhieuThuThuocKeys.Add(row["PhieuThuThuocGUID"].ToString());
-                }
-            }
-
-            if (checkedPhieuThuThuocKeys.Count > 0)
-            {
-                SaveFileDialog dlg = new SaveFileDialog();
-                dlg.Title = "Export Excel";
-                dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    ExportExcel.ExportChiTietPhieuThuThuocToExcel(dlg.FileName, checkedPhieuThuThuocKeys);
-                }
-            }
-            else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu thuốc cần in.", IconType.Information);
+            //DataRow drPhieuThu = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            //dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc(drPhieuThu);
+            //if (dlg.ShowDialog(this) == DialogResult.Cancel)
+            //{
+            //    if (dlg.IsExportedInvoice)
+            //        HighlightExportedInvoice();
+            //}
         }
 
         private void OnExportInvoice()
@@ -367,7 +299,7 @@ namespace MM.Controls
 
             if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất hóa đơn ?") == DialogResult.No) return;
 
-            dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(noExportedInvoiceList);
+            dlgHoaDonHopDong dlg = new dlgHoaDonHopDong(noExportedInvoiceList);
             dlg.ShowDialog();
 
             HighlightExportedInvoice();
@@ -375,41 +307,6 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            OnAddPhieuThu();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            OnDeletePhieuThu();
-        }
-
-        private void btnPrintPreview_Click(object sender, EventArgs e)
-        {
-            OnPrint(true);
-        }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            OnPrint(false);
-        }
-        
-        private void chkChecked_CheckedChanged(object sender, EventArgs e)
-        {
-            DataTable dt = dgPhieuThu.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return;
-            foreach (DataRow row in dt.Rows)
-            {
-                row["Checked"] = chkChecked.Checked;
-            }
-        }
-
-        private void dgPhieuThu_DoubleClick(object sender, EventArgs e)
-        {
-            OnViewPhieuThuThuoc();
-        }
-
         private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
         {
             dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
@@ -436,31 +333,24 @@ namespace MM.Controls
             DisplayAsThread();
         }
 
-        private void txtTenBenhNhan_KeyDown(object sender, KeyEventArgs e)
+        private void btnAdd_Click(object sender, EventArgs e)
         {
-            //if (raTenBenhNhan.Checked && e.KeyCode == Keys.Enter)
-            //{
-            //    if (raTuNgayToiNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
-            //    {
-            //        MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
-            //        dtpkTuNgay.Focus();
-            //        return;
-            //    }
-
-            //    if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
-            //    {
-            //        MsgBox.Show(Application.ProductName, "Vui lòng nhập tên bệnh nhân.", IconType.Information);
-            //        txtTenBenhNhan.Focus();
-            //        return;
-            //    }
-
-            //    DisplayAsThread();
-            //}
+            OnAddPhieuThu();
         }
 
-        private void btnExportExcel_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            OnExportExcel();
+            OnDeletePhieuThu();
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
         }
 
         private void btnExportInvoice_Click(object sender, EventArgs e)
@@ -473,15 +363,30 @@ namespace MM.Controls
 
             OnExportInvoice();
         }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgPhieuThu.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
+
+        private void dgPhieuThu_DoubleClick(object sender, EventArgs e)
+        {
+            OnViewPhieuThuHopDong();
+        }
         #endregion
 
         #region Working Thread
-        private void OnDisplayPhieuThuThuocListProc(object state)
+        private void OnDisplayPhieuThuHopDongListProc(object state)
         {
             try
             {
                 //Thread.Sleep(500);
-                OnDisplayPhieuThuThuocList();
+                OnDisplayPhieuThuHopDongList();
             }
             catch (Exception e)
             {
@@ -494,5 +399,9 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
+
+       
     }
 }

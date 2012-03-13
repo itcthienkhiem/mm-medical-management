@@ -70,6 +70,7 @@
             this.IsExported = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).BeginInit();
@@ -127,7 +128,8 @@
             this.noteDataGridViewTextBoxColumn,
             this.IsExported,
             this.createdDateDataGridViewTextBoxColumn,
-            this.DocStaffFullname});
+            this.DocStaffFullname,
+            this.NguoiCapNhat});
             this.dgServiceHistory.DataSource = this.serviceHistoryViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
@@ -451,11 +453,19 @@
             // 
             // DocStaffFullname
             // 
-            this.DocStaffFullname.DataPropertyName = "CreatedName";
+            this.DocStaffFullname.DataPropertyName = "NguoiTao";
             this.DocStaffFullname.HeaderText = "Người tạo";
             this.DocStaffFullname.Name = "DocStaffFullname";
             this.DocStaffFullname.ReadOnly = true;
             this.DocStaffFullname.Width = 150;
+            // 
+            // NguoiCapNhat
+            // 
+            this.NguoiCapNhat.DataPropertyName = "NguoiCapNhat";
+            this.NguoiCapNhat.HeaderText = "Người cập nhật";
+            this.NguoiCapNhat.Name = "NguoiCapNhat";
+            this.NguoiCapNhat.ReadOnly = true;
+            this.NguoiCapNhat.Width = 150;
             // 
             // uServiceHistory
             // 
@@ -515,5 +525,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsExported;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DocStaffFullname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
     }
 }

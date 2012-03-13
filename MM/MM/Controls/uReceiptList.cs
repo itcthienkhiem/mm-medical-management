@@ -369,24 +369,24 @@ namespace MM.Controls
 
         private void txtTenBenhNhan_KeyDown(object sender, KeyEventArgs e)
         {
-            if (raTenBenhNhan.Checked && e.KeyCode == Keys.Enter)
-            {
-                if (raTuNgayToiNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
-                {
-                    MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
-                    dtpkTuNgay.Focus();
-                    return;
-                }
+            //if (raTenBenhNhan.Checked && e.KeyCode == Keys.Enter)
+            //{
+            //    if (raTuNgayToiNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
+            //    {
+            //        MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
+            //        dtpkTuNgay.Focus();
+            //        return;
+            //    }
 
-                if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
-                {
-                    MsgBox.Show(Application.ProductName, "Vui lòng nhập tên bệnh nhân.", IconType.Information);
-                    txtTenBenhNhan.Focus();
-                    return;
-                }
+            //    if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
+            //    {
+            //        MsgBox.Show(Application.ProductName, "Vui lòng nhập tên bệnh nhân.", IconType.Information);
+            //        txtTenBenhNhan.Focus();
+            //        return;
+            //    }
 
-                DisplayAsThread();
-            }
+            //    DisplayAsThread();
+            //}
         }
 
         private void btnExportExcel_Click(object sender, EventArgs e)

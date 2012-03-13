@@ -189,6 +189,7 @@ namespace MM.Common
     {
         HoaDonThuoc = 0,
         HoaDonDichVu,
-        HoaDonXuatTruoc
+        HoaDonXuatTruoc,
+        HoaDonHopDong
     };
 }

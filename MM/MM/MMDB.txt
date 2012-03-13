@@ -127,10 +127,11 @@ spDichVuHopDong
 - Update view: ServiceHistoryView
 - Create table: PhieuThuHopDong, ChiTietPhieuThuHopDong
 2012-03-13
+- Update store: spGetCheckListByContract, spGetCheckList, spCheckMember
 - Create table: PhieuThuHopDong, ChiTietPhieuThuHopDong, HoaDonHopDong, ChiTietHoaDonHopDong
 - Create view: HoaDonHopDongView
 - Insert Data: Function(Add row: PhieuThuHopDong, HoaDonHopDong)
-
+- Update view: ServiceHistoryView
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

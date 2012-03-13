@@ -487,6 +487,12 @@
     <Compile Include="Controls\uPermission.Designer.cs">
       <DependentUpon>uPermission.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPhieuThuHopDongList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPhieuThuHopDongList.Designer.cs">
+      <DependentUpon>uPhieuThuHopDongList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPhieuThuThuocList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -576,6 +582,18 @@
     </Compile>
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuThuHopDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuThuHopDong.Designer.cs">
+      <DependentUpon>dlgAddPhieuThuHopDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgHoaDonHopDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgHoaDonHopDong.Designer.cs">
+      <DependentUpon>dlgHoaDonHopDong.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgLyDoXoa.cs">
       <SubType>Form</SubType>
@@ -1049,6 +1067,9 @@
     <EmbeddedResource Include="Controls\uPermission.resx">
       <DependentUpon>uPermission.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPhieuThuHopDongList.resx">
+      <DependentUpon>uPhieuThuHopDongList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPhieuThuThuocList.resx">
       <DependentUpon>uPhieuThuThuocList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1093,6 +1114,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddPhieuThuHopDong.resx">
+      <DependentUpon>dlgAddPhieuThuHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgHoaDonHopDong.resx">
+      <DependentUpon>dlgHoaDonHopDong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgLyDoXoa.resx">
       <DependentUpon>dlgLyDoXoa.cs</DependentUpon>
@@ -1303,6 +1330,7 @@
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.PhieuThuHopDong.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PhieuThuThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.QuanLySoHoaDon.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ReceiptDetailView.datasource" />
