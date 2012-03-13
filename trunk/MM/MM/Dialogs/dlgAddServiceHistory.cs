@@ -24,6 +24,7 @@ namespace MM.Dialogs
         private string _serviceGUID = string.Empty;
         private string _bacSiChiDinhGUID = string.Empty;
         private ChiDinh _chiDinh = null;
+        private bool _isExported = false;
         #endregion
 
         #region Constructor
@@ -515,7 +516,7 @@ namespace MM.Dialogs
             }
             else
             {
-                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin dịch vụ sử dụng ?") == System.Windows.Forms.DialogResult.Yes)
+                if (!_isExported && MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin dịch vụ sử dụng ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (CheckInfo())
                     {
@@ -562,7 +563,32 @@ namespace MM.Dialogs
                 cboBacSiChiDinh.SelectedValue = _bacSiChiDinhGUID;
             }
 
-            if (!_isNew) DisplayInfo(_drServiceHistory);
+            if (!_isNew)
+            {
+                DisplayInfo(_drServiceHistory);
+                _isExported = Convert.ToBoolean(_drServiceHistory["IsExported"]);
+                if (_isExported)
+                {
+                    cboService.Enabled = false;
+                    btnChonDichVu.Enabled = false;
+                    cboDocStaff.Enabled = false;
+                    chkBSCD.Enabled = false;
+                    cboBacSiChiDinh.Enabled = false;
+                    cboChuyenNhuong.Enabled = false;
+                    btnChonBenhNhan.Enabled = false;
+                    numPrice.Enabled = false;
+                    numDiscount.Enabled = false;
+                    dtpkActiveDate.Enabled = false;
+                    raNegative.Enabled = false;
+                    raNormal.Enabled = false;
+                    chkAbnormal.Enabled = false;
+                    chkNormal.Enabled = false;
+                    chkPositive.Enabled = false;
+                    chkNegative.Enabled = false;
+                    txtDescription.Enabled = false;
+                    btnOK.Enabled = false;
+                }
+            }
 
             lbPrice.Visible = Global.AllowShowServiePrice;
             lbUnit.Visible = Global.AllowShowServiePrice;
