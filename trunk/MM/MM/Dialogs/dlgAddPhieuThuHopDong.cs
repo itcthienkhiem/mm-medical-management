@@ -31,6 +31,10 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        
+        #endregion
+
+        #region Window Event Handlers
         private void cboMaHopDong_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -50,10 +54,6 @@ namespace MM.Dialogs
         {
 
         }
-        #endregion
-
-        #region Window Event Handlers
-
         #endregion
     }
 }
