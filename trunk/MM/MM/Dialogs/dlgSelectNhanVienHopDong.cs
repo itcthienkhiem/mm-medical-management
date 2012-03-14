@@ -19,14 +19,16 @@ namespace MM.Dialogs
         private DateTime _activedDate = DateTime.Now;
         private string _hopDongGUID = string.Empty;
         private string _serviceGUID = string.Empty;
+        private string _patientGUID = string.Empty;
         #endregion
 
         #region Constructor
-        public dlgSelectNhanVienHopDong(DateTime activedDate, string serviceGUID)
+        public dlgSelectNhanVienHopDong(DateTime activedDate, string serviceGUID, string patientGUID)
         {
             InitializeComponent();
             _activedDate = activedDate;
             _serviceGUID = serviceGUID;
+            _patientGUID = patientGUID;
             _uSearchPatient.OnOpenPatient += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
         }
         #endregion
@@ -64,7 +66,7 @@ namespace MM.Dialogs
 
         private void OnDisplayHopDong()
         {
-            Result result = CompanyContractBus.GetHopDongByDate(_activedDate);
+            Result result = CompanyContractBus.GetHopDongByDate(_activedDate, _serviceGUID);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -103,7 +105,15 @@ namespace MM.Dialogs
             Result result = CompanyContractBus.GetContractMemberList(_hopDongGUID, _serviceGUID);
             if (result.IsOK)
             {
-                _uSearchPatient.DataSource = result.QueryResult;
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", _patientGUID));
+                if (rows != null && rows.Length > 0)
+                {
+                    foreach (DataRow row in rows)
+                        dt.Rows.Remove(row);
+                }
+
+                _uSearchPatient.DataSource = dt;
                 _uSearchPatient.OnSearch();
             }
             else

@@ -126,7 +126,6 @@
             // 
             // _uServiceHistory
             // 
-            this._uServiceHistory.CheckListDataSource = null;
             this._uServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this._uServiceHistory.IsDailyService = false;
             this._uServiceHistory.Location = new System.Drawing.Point(1, 1);
@@ -203,7 +202,6 @@
             // 
             // _uDailyServiceHistory
             // 
-            this._uDailyServiceHistory.CheckListDataSource = null;
             this._uDailyServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this._uDailyServiceHistory.IsDailyService = true;
             this._uDailyServiceHistory.Location = new System.Drawing.Point(1, 1);

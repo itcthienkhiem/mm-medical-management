@@ -26,7 +26,6 @@ namespace MM.Controls
         private DateTime _toDate = DateTime.Now;
         private bool _isAll = true;
         private bool _isDailyService = false;
-        private DataTable _dtCheckList = null;
         #endregion
 
         #region Constructor
@@ -71,12 +70,6 @@ namespace MM.Controls
                 return checkedRows;
             }
         }
-
-        public DataTable CheckListDataSource
-        {
-            get { return _dtCheckList; }
-            set { _dtCheckList = value; }
-        }
         #endregion
 
         #region UI Command
@@ -90,7 +83,6 @@ namespace MM.Controls
         private void OnAdd()
         {
             dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID);
-            dlg.CheckListDataSource = _dtCheckList;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 base.RaiseServiceHistoryChanged();
@@ -107,7 +99,6 @@ namespace MM.Controls
 
             DataRow drServiceHistory = (dgServiceHistory.SelectedRows[0].DataBoundItem as DataRowView).Row;
             dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID, drServiceHistory);
-            dlg.CheckListDataSource = _dtCheckList;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 base.RaiseServiceHistoryChanged();

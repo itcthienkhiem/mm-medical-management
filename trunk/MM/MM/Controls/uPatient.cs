@@ -29,7 +29,14 @@ namespace MM.Controls
             _uDailyServiceHistory.OnServiceHistoryChanged += new ServiceHistoryChangedHandler(_uServiceHistory_OnServiceHistoryChanged);
             _uServiceHistory.OnExportReceiptChanged += new ExportReceiptChangedHandler(_uServiceHistory_OnExportReceiptChanged);
             _uDailyServiceHistory.OnExportReceiptChanged += new ExportReceiptChangedHandler(_uServiceHistory_OnExportReceiptChanged);
+            _uServiceHistory.OnRefreshCheckList += new RefreshCheckListHandler(_uServiceHistory_OnRefreshCheckList);
+            _uDailyServiceHistory.OnRefreshCheckList += new RefreshCheckListHandler(_uServiceHistory_OnRefreshCheckList);
             this.HandleCreated += new EventHandler(uPatient_HandleCreated);
+        }
+
+        private void _uServiceHistory_OnRefreshCheckList()
+        {
+            DisplayCheckListAsThread();
         }
 
         private void _uServiceHistory_OnExportReceiptChanged()
@@ -139,7 +146,6 @@ namespace MM.Controls
 
         private void OnDisplayCheckList(string patientGUID)
         {
-            bool hasCheckList = false;
             Result result = CompanyContractBus.GetCheckListByPatient(patientGUID);
             if (result.IsOK)
             {
@@ -147,9 +153,6 @@ namespace MM.Controls
                 {
                     DataTable dt = result.QueryResult as DataTable;
                     lvService.Visible = dt.Rows.Count > 0 ? true : false;
-
-                    _uServiceHistory.CheckListDataSource = dt;
-                    _uDailyServiceHistory.CheckListDataSource = dt;
 
                     foreach (DataRow row in dt.Rows)
                     {

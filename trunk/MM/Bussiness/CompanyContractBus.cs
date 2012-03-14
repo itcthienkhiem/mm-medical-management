@@ -636,7 +636,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetHopDongByDate(DateTime activedDate)
+        public static Result GetHopDongByDate(DateTime activedDate, string serviceGUID)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -651,7 +651,25 @@ namespace MM.Bussiness
                                                         (!h.Completed.Value && activedDate > h.BeginDate))
                                                         select h).ToList<CompanyContractView>();
 
-                result.QueryResult = hopDongList;
+                List<CompanyContractView> newHopDongList = null;
+                if (hopDongList != null && hopDongList.Count > 0)
+                {
+                    newHopDongList = new List<CompanyContractView>();
+                    foreach (CompanyContractView hopDong in hopDongList)
+                    {
+                        var aa = (from m in db.ContractMemberViews
+                                  join l in db.CompanyCheckLists on m.ContractMemberGUID equals l.ContractMemberGUID
+                                  where l.ServiceGUID.ToString() == serviceGUID && m.Status == (byte)Status.Actived &&
+                                  l.Status == (byte)Status.Actived && m.Archived == false &&
+                                  m.CompanyContractGUID == hopDong.CompanyContractGUID
+                                  select l).FirstOrDefault<CompanyCheckList>();
+
+                        if (aa != null)
+                            newHopDongList.Add(hopDong);
+                    }
+                }
+
+                result.QueryResult = newHopDongList;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
