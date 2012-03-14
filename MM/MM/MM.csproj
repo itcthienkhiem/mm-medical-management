@@ -601,6 +601,12 @@
     <Compile Include="Dialogs\dlgLyDoXoa.Designer.cs">
       <DependentUpon>dlgLyDoXoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgSelectNhanVienHopDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgSelectNhanVienHopDong.Designer.cs">
+      <DependentUpon>dlgSelectNhanVienHopDong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgSelectSingleDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1123,6 +1129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgLyDoXoa.resx">
       <DependentUpon>dlgLyDoXoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgSelectNhanVienHopDong.resx">
+      <DependentUpon>dlgSelectNhanVienHopDong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectSingleDichVu.resx">
       <DependentUpon>dlgSelectSingleDichVu.cs</DependentUpon>

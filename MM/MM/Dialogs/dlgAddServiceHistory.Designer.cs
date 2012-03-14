@@ -31,10 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceHistory));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtChuyenNhuong = new System.Windows.Forms.TextBox();
             this.btnChonBenhNhan = new System.Windows.Forms.Button();
-            this.cboChuyenNhuong = new System.Windows.Forms.ComboBox();
-            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label7 = new System.Windows.Forms.Label();
             this.btnChonDichVu = new System.Windows.Forms.Button();
             this.chkBSCD = new System.Windows.Forms.CheckBox();
             this.cboBacSiChiDinh = new System.Windows.Forms.ComboBox();
@@ -62,23 +60,25 @@
             this.lbPrice = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.chkChuyenNhuong = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.gbNegative.SuspendLayout();
             this.gbNormal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkChuyenNhuong);
+            this.groupBox1.Controls.Add(this.txtChuyenNhuong);
             this.groupBox1.Controls.Add(this.btnChonBenhNhan);
-            this.groupBox1.Controls.Add(this.cboChuyenNhuong);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.btnChonDichVu);
             this.groupBox1.Controls.Add(this.chkBSCD);
             this.groupBox1.Controls.Add(this.cboBacSiChiDinh);
@@ -102,51 +102,33 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(506, 411);
+            this.groupBox1.Size = new System.Drawing.Size(532, 411);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
             // 
+            // txtChuyenNhuong
+            // 
+            this.txtChuyenNhuong.Location = new System.Drawing.Point(135, 114);
+            this.txtChuyenNhuong.Name = "txtChuyenNhuong";
+            this.txtChuyenNhuong.ReadOnly = true;
+            this.txtChuyenNhuong.Size = new System.Drawing.Size(269, 20);
+            this.txtChuyenNhuong.TabIndex = 7;
+            // 
             // btnChonBenhNhan
             // 
-            this.btnChonBenhNhan.Location = new System.Drawing.Point(386, 92);
+            this.btnChonBenhNhan.Enabled = false;
+            this.btnChonBenhNhan.Location = new System.Drawing.Point(408, 113);
             this.btnChonBenhNhan.Name = "btnChonBenhNhan";
             this.btnChonBenhNhan.Size = new System.Drawing.Size(110, 23);
-            this.btnChonBenhNhan.TabIndex = 53;
+            this.btnChonBenhNhan.TabIndex = 8;
             this.btnChonBenhNhan.Text = "Chọn bệnh nhân...";
             this.btnChonBenhNhan.UseVisualStyleBackColor = true;
             this.btnChonBenhNhan.Click += new System.EventHandler(this.btnChonBenhNhan_Click);
             // 
-            // cboChuyenNhuong
-            // 
-            this.cboChuyenNhuong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboChuyenNhuong.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboChuyenNhuong.DataSource = this.patientViewBindingSource;
-            this.cboChuyenNhuong.DisplayMember = "FullName";
-            this.cboChuyenNhuong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboChuyenNhuong.FormattingEnabled = true;
-            this.cboChuyenNhuong.Location = new System.Drawing.Point(113, 93);
-            this.cboChuyenNhuong.Name = "cboChuyenNhuong";
-            this.cboChuyenNhuong.Size = new System.Drawing.Size(269, 21);
-            this.cboChuyenNhuong.TabIndex = 5;
-            this.cboChuyenNhuong.ValueMember = "PatientGUID";
-            // 
-            // patientViewBindingSource
-            // 
-            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(10, 96);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(97, 13);
-            this.label7.TabIndex = 52;
-            this.label7.Text = "Chuyển nhượng từ:";
-            // 
             // btnChonDichVu
             // 
-            this.btnChonDichVu.Location = new System.Drawing.Point(386, 20);
+            this.btnChonDichVu.Location = new System.Drawing.Point(408, 20);
             this.btnChonDichVu.Name = "btnChonDichVu";
             this.btnChonDichVu.Size = new System.Drawing.Size(110, 23);
             this.btnChonDichVu.TabIndex = 1;
@@ -157,10 +139,10 @@
             // chkBSCD
             // 
             this.chkBSCD.AutoSize = true;
-            this.chkBSCD.Location = new System.Drawing.Point(49, 71);
+            this.chkBSCD.Location = new System.Drawing.Point(71, 92);
             this.chkBSCD.Name = "chkBSCD";
             this.chkBSCD.Size = new System.Drawing.Size(58, 17);
-            this.chkBSCD.TabIndex = 3;
+            this.chkBSCD.TabIndex = 4;
             this.chkBSCD.Text = "BSCĐ:";
             this.chkBSCD.UseVisualStyleBackColor = true;
             this.chkBSCD.CheckedChanged += new System.EventHandler(this.chkBSCD_CheckedChanged);
@@ -174,10 +156,10 @@
             this.cboBacSiChiDinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBacSiChiDinh.Enabled = false;
             this.cboBacSiChiDinh.FormattingEnabled = true;
-            this.cboBacSiChiDinh.Location = new System.Drawing.Point(113, 69);
+            this.cboBacSiChiDinh.Location = new System.Drawing.Point(135, 90);
             this.cboBacSiChiDinh.Name = "cboBacSiChiDinh";
             this.cboBacSiChiDinh.Size = new System.Drawing.Size(269, 21);
-            this.cboBacSiChiDinh.TabIndex = 4;
+            this.cboBacSiChiDinh.TabIndex = 5;
             this.cboBacSiChiDinh.ValueMember = "DocStaffGUID";
             // 
             // docStaffViewBindingSource
@@ -187,10 +169,10 @@
             // raNegative
             // 
             this.raNegative.AutoSize = true;
-            this.raNegative.Location = new System.Drawing.Point(108, 243);
+            this.raNegative.Location = new System.Drawing.Point(130, 243);
             this.raNegative.Name = "raNegative";
             this.raNegative.Size = new System.Drawing.Size(14, 13);
-            this.raNegative.TabIndex = 10;
+            this.raNegative.TabIndex = 13;
             this.raNegative.UseVisualStyleBackColor = true;
             this.raNegative.CheckedChanged += new System.EventHandler(this.raNegative_CheckedChanged);
             // 
@@ -198,10 +180,10 @@
             // 
             this.raNormal.AutoSize = true;
             this.raNormal.Checked = true;
-            this.raNormal.Location = new System.Drawing.Point(108, 191);
+            this.raNormal.Location = new System.Drawing.Point(130, 191);
             this.raNormal.Name = "raNormal";
             this.raNormal.Size = new System.Drawing.Size(14, 13);
-            this.raNormal.TabIndex = 9;
+            this.raNormal.TabIndex = 11;
             this.raNormal.TabStop = true;
             this.raNormal.UseVisualStyleBackColor = true;
             this.raNormal.CheckedChanged += new System.EventHandler(this.raNormal_CheckedChanged);
@@ -211,10 +193,10 @@
             this.gbNegative.Controls.Add(this.chkPositive);
             this.gbNegative.Controls.Add(this.chkNegative);
             this.gbNegative.Enabled = false;
-            this.gbNegative.Location = new System.Drawing.Point(113, 243);
+            this.gbNegative.Location = new System.Drawing.Point(135, 243);
             this.gbNegative.Name = "gbNegative";
             this.gbNegative.Size = new System.Drawing.Size(269, 47);
-            this.gbNegative.TabIndex = 12;
+            this.gbNegative.TabIndex = 14;
             this.gbNegative.TabStop = false;
             // 
             // chkPositive
@@ -245,10 +227,10 @@
             // 
             this.gbNormal.Controls.Add(this.chkAbnormal);
             this.gbNormal.Controls.Add(this.chkNormal);
-            this.gbNormal.Location = new System.Drawing.Point(113, 189);
+            this.gbNormal.Location = new System.Drawing.Point(135, 189);
             this.gbNormal.Name = "gbNormal";
             this.gbNormal.Size = new System.Drawing.Size(269, 47);
-            this.gbNormal.TabIndex = 11;
+            this.gbNormal.TabIndex = 12;
             this.gbNormal.TabStop = false;
             // 
             // chkAbnormal
@@ -278,7 +260,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(187, 143);
+            this.label5.Location = new System.Drawing.Point(209, 164);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(21, 13);
             this.label5.TabIndex = 12;
@@ -287,16 +269,16 @@
             // numDiscount
             // 
             this.numDiscount.DecimalPlaces = 1;
-            this.numDiscount.Location = new System.Drawing.Point(113, 140);
+            this.numDiscount.Location = new System.Drawing.Point(135, 161);
             this.numDiscount.Name = "numDiscount";
             this.numDiscount.Size = new System.Drawing.Size(69, 20);
-            this.numDiscount.TabIndex = 7;
+            this.numDiscount.TabIndex = 10;
             this.numDiscount.ThousandsSeparator = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(73, 143);
+            this.label3.Location = new System.Drawing.Point(95, 164);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 10;
@@ -306,15 +288,15 @@
             // 
             this.dtpkActiveDate.CustomFormat = "dd/MM/yyyy";
             this.dtpkActiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkActiveDate.Location = new System.Drawing.Point(113, 163);
+            this.dtpkActiveDate.Location = new System.Drawing.Point(135, 44);
             this.dtpkActiveDate.Name = "dtpkActiveDate";
             this.dtpkActiveDate.Size = new System.Drawing.Size(122, 20);
-            this.dtpkActiveDate.TabIndex = 8;
+            this.dtpkActiveDate.TabIndex = 2;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(31, 167);
+            this.label6.Location = new System.Drawing.Point(53, 48);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 13);
             this.label6.TabIndex = 9;
@@ -328,10 +310,10 @@
             this.cboDocStaff.DisplayMember = "Fullname";
             this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff.FormattingEnabled = true;
-            this.cboDocStaff.Location = new System.Drawing.Point(113, 45);
+            this.cboDocStaff.Location = new System.Drawing.Point(135, 66);
             this.cboDocStaff.Name = "cboDocStaff";
             this.cboDocStaff.Size = new System.Drawing.Size(269, 21);
-            this.cboDocStaff.TabIndex = 2;
+            this.cboDocStaff.TabIndex = 3;
             this.cboDocStaff.ValueMember = "DocStaffGUID";
             // 
             // cboService
@@ -342,7 +324,7 @@
             this.cboService.DisplayMember = "Name";
             this.cboService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboService.FormattingEnabled = true;
-            this.cboService.Location = new System.Drawing.Point(113, 21);
+            this.cboService.Location = new System.Drawing.Point(135, 21);
             this.cboService.Name = "cboService";
             this.cboService.Size = new System.Drawing.Size(269, 21);
             this.cboService.TabIndex = 0;
@@ -356,7 +338,7 @@
             // lbUnit
             // 
             this.lbUnit.AutoSize = true;
-            this.lbUnit.Location = new System.Drawing.Point(238, 120);
+            this.lbUnit.Location = new System.Drawing.Point(260, 141);
             this.lbUnit.Name = "lbUnit";
             this.lbUnit.Size = new System.Drawing.Size(36, 13);
             this.lbUnit.TabIndex = 8;
@@ -364,12 +346,12 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(113, 301);
+            this.txtDescription.Location = new System.Drawing.Point(135, 301);
             this.txtDescription.MaxLength = 4000;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(269, 96);
-            this.txtDescription.TabIndex = 13;
+            this.txtDescription.TabIndex = 15;
             // 
             // numPrice
             // 
@@ -378,7 +360,7 @@
             0,
             0,
             0});
-            this.numPrice.Location = new System.Drawing.Point(113, 117);
+            this.numPrice.Location = new System.Drawing.Point(135, 138);
             this.numPrice.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -386,7 +368,7 @@
             0});
             this.numPrice.Name = "numPrice";
             this.numPrice.Size = new System.Drawing.Size(121, 20);
-            this.numPrice.TabIndex = 6;
+            this.numPrice.TabIndex = 9;
             this.numPrice.ThousandsSeparator = true;
             this.numPrice.Value = new decimal(new int[] {
             50000,
@@ -397,7 +379,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(54, 304);
+            this.label4.Location = new System.Drawing.Point(76, 304);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
@@ -406,7 +388,7 @@
             // lbPrice
             // 
             this.lbPrice.AutoSize = true;
-            this.lbPrice.Location = new System.Drawing.Point(81, 120);
+            this.lbPrice.Location = new System.Drawing.Point(103, 141);
             this.lbPrice.Name = "lbPrice";
             this.lbPrice.Size = new System.Drawing.Size(26, 13);
             this.lbPrice.TabIndex = 2;
@@ -415,7 +397,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(65, 48);
+            this.label2.Location = new System.Drawing.Point(87, 69);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 1;
@@ -424,18 +406,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(60, 24);
+            this.label1.Location = new System.Drawing.Point(82, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Dịch vụ:";
+            // 
+            // patientViewBindingSource
+            // 
+            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(261, 423);
+            this.btnCancel.Location = new System.Drawing.Point(274, 423);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 11;
@@ -447,19 +433,30 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(182, 423);
+            this.btnOK.Location = new System.Drawing.Point(195, 423);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 10;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // chkChuyenNhuong
+            // 
+            this.chkChuyenNhuong.AutoSize = true;
+            this.chkChuyenNhuong.Location = new System.Drawing.Point(13, 116);
+            this.chkChuyenNhuong.Name = "chkChuyenNhuong";
+            this.chkChuyenNhuong.Size = new System.Drawing.Size(116, 17);
+            this.chkChuyenNhuong.TabIndex = 6;
+            this.chkChuyenNhuong.Text = "Chuyển nhượng từ:";
+            this.chkChuyenNhuong.UseVisualStyleBackColor = true;
+            this.chkChuyenNhuong.CheckedChanged += new System.EventHandler(this.chkChuyenNhuong_CheckedChanged);
+            // 
             // dlgAddServiceHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(519, 453);
+            this.ClientSize = new System.Drawing.Size(545, 453);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -474,7 +471,6 @@
             this.Load += new System.EventHandler(this.dlgAddServiceHistory_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             this.gbNegative.ResumeLayout(false);
             this.gbNegative.PerformLayout();
@@ -483,6 +479,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -519,9 +516,9 @@
         private System.Windows.Forms.ComboBox cboBacSiChiDinh;
         private System.Windows.Forms.CheckBox chkBSCD;
         private System.Windows.Forms.Button btnChonDichVu;
-        private System.Windows.Forms.ComboBox cboChuyenNhuong;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.BindingSource patientViewBindingSource;
         private System.Windows.Forms.Button btnChonBenhNhan;
+        private System.Windows.Forms.TextBox txtChuyenNhuong;
+        private System.Windows.Forms.CheckBox chkChuyenNhuong;
     }
 }

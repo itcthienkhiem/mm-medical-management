@@ -66,6 +66,7 @@
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenBenhNhanChuyenNhuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExported = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -125,6 +126,7 @@
             this.Amount,
             this.ActivedDate,
             this.FullName,
+            this.TenBenhNhanChuyenNhuong,
             this.noteDataGridViewTextBoxColumn,
             this.IsExported,
             this.createdDateDataGridViewTextBoxColumn,
@@ -421,6 +423,14 @@
             this.FullName.Visible = false;
             this.FullName.Width = 150;
             // 
+            // TenBenhNhanChuyenNhuong
+            // 
+            this.TenBenhNhanChuyenNhuong.DataPropertyName = "TenBenhNhanChuyenNhuong";
+            this.TenBenhNhanChuyenNhuong.HeaderText = "Người chuyển nhượng";
+            this.TenBenhNhanChuyenNhuong.Name = "TenBenhNhanChuyenNhuong";
+            this.TenBenhNhanChuyenNhuong.ReadOnly = true;
+            this.TenBenhNhanChuyenNhuong.Width = 200;
+            // 
             // noteDataGridViewTextBoxColumn
             // 
             this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
@@ -521,6 +531,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActivedDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenBenhNhanChuyenNhuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsExported;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;

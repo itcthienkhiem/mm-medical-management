@@ -47,7 +47,7 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
-        private void OnSearch()
+        public void OnSearch()
         {
             List<DataRow> results = null;
             DataTable newDataSource = null;
@@ -77,6 +77,7 @@ namespace MM.Controls
 
             string str = txtSearchPatient.Text.ToLower();
             DataTable dt = _dataSource as DataTable;
+            if (dt == null) return;
             newDataSource = dt.Clone();
 
             if (chkMaBenhNhan.Checked)

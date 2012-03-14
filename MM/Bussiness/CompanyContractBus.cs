@@ -611,5 +611,44 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetHopDongByDate(DateTime activedDate)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<CompanyContractView> hopDongList = (from h in db.CompanyContractViews
+                                                        where h.CompanyStatus == (byte)Status.Actived &&
+                                                        h.ContractStatus == (byte)Status.Actived &&
+                                                        ((h.Completed.Value && activedDate > h.BeginDate && activedDate <= h.EndDate.Value) ||
+                                                        (!h.Completed.Value && activedDate > h.BeginDate))
+                                                        select h).ToList<CompanyContractView>();
+
+                result.QueryResult = hopDongList;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

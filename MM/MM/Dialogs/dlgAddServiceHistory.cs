@@ -111,7 +111,7 @@ namespace MM.Dialogs
             }
 
             DisplayBacSiChiDinhList();
-            DisplayPatientList();
+            //DisplayPatientList();
         }
 
         private void DisplayBacSiChiDinhList()
@@ -185,25 +185,25 @@ namespace MM.Dialogs
                 cboDocStaff.Enabled = true;
         }
 
-        private void DisplayPatientList()
-        {
-            Result result = PatientBus.GetPatientList();
-            if (!result.IsOK)
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-                return;
-            }
-            else
-            {
-                DataTable dt = result.QueryResult as DataTable;
-                DataRow newRow = dt.NewRow();
-                newRow["PatientGUID"] = Guid.Empty.ToString();
-                newRow["FullName"] = string.Empty;
-                dt.Rows.InsertAt(newRow, 0);
-                cboChuyenNhuong.DataSource = dt;
-            }
-        }
+        //private void DisplayPatientList()
+        //{
+        //    Result result = PatientBus.GetPatientList();
+        //    if (!result.IsOK)
+        //    {
+        //        MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
+        //        Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        DataTable dt = result.QueryResult as DataTable;
+        //        DataRow newRow = dt.NewRow();
+        //        newRow["PatientGUID"] = Guid.Empty.ToString();
+        //        newRow["FullName"] = string.Empty;
+        //        dt.Rows.InsertAt(newRow, 0);
+        //        cboChuyenNhuong.DataSource = dt;
+        //    }
+        //}
 
         private void DisplayInfo(DataRow drServiceHistory)
         {
@@ -211,7 +211,16 @@ namespace MM.Dialogs
             {
                 cboService.SelectedValue = drServiceHistory["ServiceGUID"].ToString();
                 cboDocStaff.SelectedValue = drServiceHistory["DocStaffGUID"].ToString();
-                cboChuyenNhuong.SelectedValue = drServiceHistory["RootPatientGUID"].ToString();
+
+                if (drServiceHistory["RootPatientGUID"] != null && drServiceHistory["RootPatientGUID"] != DBNull.Value)
+                {
+                    txtChuyenNhuong.Tag = drServiceHistory["RootPatientGUID"].ToString();
+                    chkChuyenNhuong.Checked = true;
+                }
+                
+                if (drServiceHistory["TenBenhNhanChuyenNhuong"] != null && drServiceHistory["TenBenhNhanChuyenNhuong"] != DBNull.Value)
+                    txtChuyenNhuong.Text = drServiceHistory["TenBenhNhanChuyenNhuong"].ToString();
+
                 numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
                 numDiscount.Value = (decimal)Double.Parse(drServiceHistory["Discount"].ToString());
                 txtDescription.Text = drServiceHistory["Note"] as string;
@@ -286,17 +295,17 @@ namespace MM.Dialogs
                 return false;
             }
 
-            //if (cboDocStaff.Text == null || cboDocStaff.Text == string.Empty)
-            //{
-            //    MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ", IconType.Information);
-            //    cboDocStaff.Focus();
-            //    return false;
-            //}
-
             if (chkBSCD.Checked && cboBacSiChiDinh.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ chỉ định", IconType.Information);
                 cboBacSiChiDinh.Focus();
+                return false;
+            }
+
+            if (chkChuyenNhuong.Checked && txtChuyenNhuong.Text == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng chọn người chuyển nhượng.", IconType.Information);
+                btnChonBenhNhan.Focus();
                 return false;
             }
 
@@ -347,11 +356,11 @@ namespace MM.Dialogs
                     else
                         _serviceHistory.DocStaffGUID = null;
 
-                    if (cboChuyenNhuong.Text != string.Empty)
-                        _serviceHistory.RootPatientGUID = Guid.Parse(cboChuyenNhuong.SelectedValue.ToString());
+                    if (chkChuyenNhuong.Checked)
+                        _serviceHistory.RootPatientGUID = Guid.Parse(txtChuyenNhuong.Tag.ToString());
                     else
                         _serviceHistory.RootPatientGUID = null;
-
+                    
                     _serviceHistory.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
                     _serviceHistory.Price = (double)numPrice.Value;
                     _serviceHistory.Discount = (double)numDiscount.Value;
@@ -574,7 +583,8 @@ namespace MM.Dialogs
                     cboDocStaff.Enabled = false;
                     chkBSCD.Enabled = false;
                     cboBacSiChiDinh.Enabled = false;
-                    cboChuyenNhuong.Enabled = false;
+                    chkChuyenNhuong.Enabled = false;
+                    txtChuyenNhuong.ReadOnly= true;
                     btnChonBenhNhan.Enabled = false;
                     numPrice.Enabled = false;
                     numDiscount.Enabled = false;
@@ -653,13 +663,26 @@ namespace MM.Dialogs
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
-            DataTable dtPatient = (cboChuyenNhuong.DataSource as DataTable).Copy();
-            dtPatient.Rows.RemoveAt(0);
-            dlgSelectPatient dlg = new dlgSelectPatient(dtPatient);
+            //DataTable dtPatient = (cboChuyenNhuong.DataSource as DataTable).Copy();
+            //dtPatient.Rows.RemoveAt(0);
+            //dlgSelectPatient dlg = new dlgSelectPatient(dtPatient);
+            //if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            //{
+            //    cboChuyenNhuong.SelectedValue = dlg.PatientRow["PatientGUID"].ToString();
+            //}
+
+            DateTime activedDate = dtpkActiveDate.Value;
+            dlgSelectNhanVienHopDong dlg = new dlgSelectNhanVienHopDong(activedDate);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                cboChuyenNhuong.SelectedValue = dlg.PatientRow["PatientGUID"].ToString();
+                txtChuyenNhuong.Tag = dlg.PatientRow["PatientGUID"].ToString();
+                txtChuyenNhuong.Text = dlg.PatientRow["FullName"].ToString();
             }
+        }
+
+        private void chkChuyenNhuong_CheckedChanged(object sender, EventArgs e)
+        {
+            btnChonBenhNhan.Enabled = chkChuyenNhuong.Checked;
         }
         #endregion
 
@@ -681,6 +704,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }
