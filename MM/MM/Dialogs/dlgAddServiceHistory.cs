@@ -87,12 +87,6 @@ namespace MM.Dialogs
             get { return _bacSiChiDinhGUID; }
             set { _bacSiChiDinhGUID = value; }
         }
-
-        public DataTable CheckListDataSource
-        {
-            get { return _dtCheckList; }
-            set { _dtCheckList = value; }
-        }
         #endregion
 
         #region UI Command
@@ -115,8 +109,26 @@ namespace MM.Dialogs
             }
 
             DisplayBacSiChiDinhList();
+        }
 
-            
+        private void GetCheckListByPatient()
+        {
+            Result result = CompanyContractBus.GetCheckListByPatient(_patientGUID);
+            if (result.IsOK)
+            {
+                if (_dtCheckList != null)
+                {
+                    _dtCheckList.Rows.Clear();
+                    _dtCheckList = null;
+                }
+
+                _dtCheckList = result.QueryResult as DataTable;
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.GetCompanyMemberList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
+            }
         }
 
         private void DisplayBacSiChiDinhList()
@@ -223,6 +235,8 @@ namespace MM.Dialogs
                 chkAbnormal.Checked = abnormal;
                 chkNegative.Checked = negative;
                 chkPositive.Checked = positive;
+                raKhamTuTuc.Checked = Convert.ToBoolean(drServiceHistory["KhamTuTuc"]);
+                raKhamTheoHopDong.Checked = !raKhamTuTuc.Checked;
 
                 if (drServiceHistory["ActivedDate"] != null && drServiceHistory["ActivedDate"] != DBNull.Value)
                 {
@@ -336,6 +350,7 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _serviceHistory.ActivedDate = dtpkActiveDate.Value;
+                    _serviceHistory.KhamTuTuc = raKhamTuTuc.Checked;
                     if (cboDocStaff.Text != string.Empty)
                         _serviceHistory.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
                     else
@@ -496,6 +511,70 @@ namespace MM.Dialogs
                 base.HideWaiting();
             }
         }
+
+        private void RefreshGUI()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            GetCheckListByPatient();
+            if (_dtCheckList == null || _dtCheckList.Rows.Count <= 0)
+            {
+                raKhamTuTuc.Checked = true;
+                raKhamTheoHopDong.Enabled = false;
+            }
+            else
+            {
+                string serviceGUID = cboService.SelectedValue.ToString();
+                DataRow[] rows = _dtCheckList.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                if (rows != null && rows.Length > 0)
+                {
+                    bool isOK = false;
+                    foreach (DataRow row in rows)
+                    {
+                        DateTime beginDate = Convert.ToDateTime(row["BeginDate"]);
+                        DateTime endDate = Global.MaxDateTime;
+                        if (row["EndDate"] != null && row["EndDate"] != DBNull.Value)
+                            endDate = Convert.ToDateTime(row["EndDate"]);
+
+                        bool isUsed = Convert.ToBoolean(row["Checked"]);
+
+                        if (!isUsed && dtpkActiveDate.Value >= beginDate && dtpkActiveDate.Value <= endDate)
+                        {
+                            isOK = true;
+                            break;
+                        }
+                    }
+
+                    if (isOK)
+                    {
+                        raKhamTheoHopDong.Enabled = true;
+                    }
+                    else
+                    {
+                        if (_isNew)
+                        {
+                            raKhamTuTuc.Checked = true;
+                            raKhamTheoHopDong.Enabled = false;
+                        }
+                        else
+                        {
+                            bool isKhamTuTuc = Convert.ToBoolean(_drServiceHistory["KhamTuTuc"]);
+                            if (isKhamTuTuc || _drServiceHistory["ServiceGUID"].ToString() != cboService.SelectedValue.ToString())
+                            {
+                                raKhamTuTuc.Checked = true;
+                                raKhamTheoHopDong.Enabled = false;
+                            }
+                            else 
+                                raKhamTheoHopDong.Enabled = true;
+                        }
+                    }
+                }
+                else
+                {
+                    raKhamTuTuc.Checked = true;
+                    raKhamTheoHopDong.Enabled = false;
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -541,6 +620,7 @@ namespace MM.Dialogs
                     _staffType = StaffType.None;
 
                 DisplayDocStaffList();
+                RefreshGUI();
             }
         }
 
@@ -565,6 +645,8 @@ namespace MM.Dialogs
                 {
                     cboService.Enabled = false;
                     btnChonDichVu.Enabled = false;
+                    raKhamTuTuc.Enabled = false;
+                    raKhamTheoHopDong.Enabled = false;
                     cboDocStaff.Enabled = false;
                     chkBSCD.Enabled = false;
                     cboBacSiChiDinh.Enabled = false;
@@ -656,7 +738,7 @@ namespace MM.Dialogs
             }
 
             DateTime activedDate = dtpkActiveDate.Value;
-            dlgSelectNhanVienHopDong dlg = new dlgSelectNhanVienHopDong(activedDate, cboService.SelectedValue.ToString());
+            dlgSelectNhanVienHopDong dlg = new dlgSelectNhanVienHopDong(activedDate, cboService.SelectedValue.ToString(), _patientGUID);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 txtChuyenNhuong.Tag = dlg.PatientRow["PatientGUID"].ToString();
@@ -667,17 +749,24 @@ namespace MM.Dialogs
         private void chkChuyenNhuong_CheckedChanged(object sender, EventArgs e)
         {
             btnChonBenhNhan.Enabled = chkChuyenNhuong.Checked;
-        }
-
-        private void chkKhamTheoHopDong_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkKhamTheoHopDong.Checked)
+            if (chkChuyenNhuong.Checked)
             {
-                chkChuyenNhuong.Checked = false;
-                chkChuyenNhuong.Enabled = false;
+                txtChuyenNhuong.Enabled = true;
+                txtChuyenNhuong.ReadOnly = true;
             }
             else
-                chkChuyenNhuong.Enabled = true;
+                txtChuyenNhuong.Enabled = false;
+        }
+
+        private void dtpkActiveDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (cboService.Text == string.Empty) return;
+            RefreshGUI();
+        }
+
+        private void raKhamTuTuc_CheckedChanged(object sender, EventArgs e)
+        {
+            chkChuyenNhuong.Enabled = raKhamTuTuc.Checked;
         }
         #endregion
 

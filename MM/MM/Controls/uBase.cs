@@ -17,6 +17,7 @@ namespace MM.Controls
     public delegate void OpenPatientHandler(object patientRow);
     public delegate void ServiceHistoryChangedHandler();
     public delegate void ExportReceiptChangedHandler();
+    public delegate void RefreshCheckListHandler();
     #endregion
 
     public partial class uBase : UserControl
@@ -27,6 +28,7 @@ namespace MM.Controls
         public event OpenPatientHandler OnOpenPatient;
         public event ServiceHistoryChangedHandler OnServiceHistoryChanged;
         public event ExportReceiptChangedHandler OnExportReceiptChanged;
+        public event RefreshCheckListHandler OnRefreshCheckList;
         #endregion
 
         #region Members
@@ -81,6 +83,12 @@ namespace MM.Controls
         {
             if (OnExportReceiptChanged != null)
                 OnServiceHistoryChanged();
+        }
+
+        public void RaiseRefreshCheckList()
+        {
+            if (OnRefreshCheckList != null)
+                OnRefreshCheckList();
         }
         #endregion
 
