@@ -132,6 +132,11 @@ spDichVuHopDong
 - Create view: HoaDonHopDongView
 - Insert Data: Function(Add row: PhieuThuHopDong, HoaDonHopDong)
 - Update view: ServiceHistoryView
+2012-03-14
+- Update table: ServiceHistory(Add col: KhamTuTuc)
+- Update view: ServiceHistoryView
+- Create store: spCheckMemberByService
+- Update store: spGetCheckList, spGetCheckListByContract, spCheckMember
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa

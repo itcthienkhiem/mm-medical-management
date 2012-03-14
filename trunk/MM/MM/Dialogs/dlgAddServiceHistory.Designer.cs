@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceHistory));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkChuyenNhuong = new System.Windows.Forms.CheckBox();
             this.txtChuyenNhuong = new System.Windows.Forms.TextBox();
             this.btnChonBenhNhan = new System.Windows.Forms.Button();
             this.btnChonDichVu = new System.Windows.Forms.Button();
@@ -63,7 +64,7 @@
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.chkChuyenNhuong = new System.Windows.Forms.CheckBox();
+            this.chkKhamTheoHopDong = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.gbNegative.SuspendLayout();
@@ -76,6 +77,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkKhamTheoHopDong);
             this.groupBox1.Controls.Add(this.chkChuyenNhuong);
             this.groupBox1.Controls.Add(this.txtChuyenNhuong);
             this.groupBox1.Controls.Add(this.btnChonBenhNhan);
@@ -107,13 +109,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
             // 
+            // chkChuyenNhuong
+            // 
+            this.chkChuyenNhuong.AutoSize = true;
+            this.chkChuyenNhuong.Location = new System.Drawing.Point(13, 116);
+            this.chkChuyenNhuong.Name = "chkChuyenNhuong";
+            this.chkChuyenNhuong.Size = new System.Drawing.Size(116, 17);
+            this.chkChuyenNhuong.TabIndex = 7;
+            this.chkChuyenNhuong.Text = "Chuyển nhượng từ:";
+            this.chkChuyenNhuong.UseVisualStyleBackColor = true;
+            this.chkChuyenNhuong.CheckedChanged += new System.EventHandler(this.chkChuyenNhuong_CheckedChanged);
+            // 
             // txtChuyenNhuong
             // 
             this.txtChuyenNhuong.Location = new System.Drawing.Point(135, 114);
             this.txtChuyenNhuong.Name = "txtChuyenNhuong";
             this.txtChuyenNhuong.ReadOnly = true;
             this.txtChuyenNhuong.Size = new System.Drawing.Size(269, 20);
-            this.txtChuyenNhuong.TabIndex = 7;
+            this.txtChuyenNhuong.TabIndex = 8;
             // 
             // btnChonBenhNhan
             // 
@@ -121,7 +134,7 @@
             this.btnChonBenhNhan.Location = new System.Drawing.Point(408, 113);
             this.btnChonBenhNhan.Name = "btnChonBenhNhan";
             this.btnChonBenhNhan.Size = new System.Drawing.Size(110, 23);
-            this.btnChonBenhNhan.TabIndex = 8;
+            this.btnChonBenhNhan.TabIndex = 9;
             this.btnChonBenhNhan.Text = "Chọn bệnh nhân...";
             this.btnChonBenhNhan.UseVisualStyleBackColor = true;
             this.btnChonBenhNhan.Click += new System.EventHandler(this.btnChonBenhNhan_Click);
@@ -142,7 +155,7 @@
             this.chkBSCD.Location = new System.Drawing.Point(71, 92);
             this.chkBSCD.Name = "chkBSCD";
             this.chkBSCD.Size = new System.Drawing.Size(58, 17);
-            this.chkBSCD.TabIndex = 4;
+            this.chkBSCD.TabIndex = 5;
             this.chkBSCD.Text = "BSCĐ:";
             this.chkBSCD.UseVisualStyleBackColor = true;
             this.chkBSCD.CheckedChanged += new System.EventHandler(this.chkBSCD_CheckedChanged);
@@ -159,7 +172,7 @@
             this.cboBacSiChiDinh.Location = new System.Drawing.Point(135, 90);
             this.cboBacSiChiDinh.Name = "cboBacSiChiDinh";
             this.cboBacSiChiDinh.Size = new System.Drawing.Size(269, 21);
-            this.cboBacSiChiDinh.TabIndex = 5;
+            this.cboBacSiChiDinh.TabIndex = 6;
             this.cboBacSiChiDinh.ValueMember = "DocStaffGUID";
             // 
             // docStaffViewBindingSource
@@ -172,7 +185,7 @@
             this.raNegative.Location = new System.Drawing.Point(130, 243);
             this.raNegative.Name = "raNegative";
             this.raNegative.Size = new System.Drawing.Size(14, 13);
-            this.raNegative.TabIndex = 13;
+            this.raNegative.TabIndex = 14;
             this.raNegative.UseVisualStyleBackColor = true;
             this.raNegative.CheckedChanged += new System.EventHandler(this.raNegative_CheckedChanged);
             // 
@@ -183,7 +196,7 @@
             this.raNormal.Location = new System.Drawing.Point(130, 191);
             this.raNormal.Name = "raNormal";
             this.raNormal.Size = new System.Drawing.Size(14, 13);
-            this.raNormal.TabIndex = 11;
+            this.raNormal.TabIndex = 12;
             this.raNormal.TabStop = true;
             this.raNormal.UseVisualStyleBackColor = true;
             this.raNormal.CheckedChanged += new System.EventHandler(this.raNormal_CheckedChanged);
@@ -196,7 +209,7 @@
             this.gbNegative.Location = new System.Drawing.Point(135, 243);
             this.gbNegative.Name = "gbNegative";
             this.gbNegative.Size = new System.Drawing.Size(269, 47);
-            this.gbNegative.TabIndex = 14;
+            this.gbNegative.TabIndex = 15;
             this.gbNegative.TabStop = false;
             // 
             // chkPositive
@@ -230,7 +243,7 @@
             this.gbNormal.Location = new System.Drawing.Point(135, 189);
             this.gbNormal.Name = "gbNormal";
             this.gbNormal.Size = new System.Drawing.Size(269, 47);
-            this.gbNormal.TabIndex = 12;
+            this.gbNormal.TabIndex = 13;
             this.gbNormal.TabStop = false;
             // 
             // chkAbnormal
@@ -272,7 +285,7 @@
             this.numDiscount.Location = new System.Drawing.Point(135, 161);
             this.numDiscount.Name = "numDiscount";
             this.numDiscount.Size = new System.Drawing.Size(69, 20);
-            this.numDiscount.TabIndex = 10;
+            this.numDiscount.TabIndex = 11;
             this.numDiscount.ThousandsSeparator = true;
             // 
             // label3
@@ -313,7 +326,7 @@
             this.cboDocStaff.Location = new System.Drawing.Point(135, 66);
             this.cboDocStaff.Name = "cboDocStaff";
             this.cboDocStaff.Size = new System.Drawing.Size(269, 21);
-            this.cboDocStaff.TabIndex = 3;
+            this.cboDocStaff.TabIndex = 4;
             this.cboDocStaff.ValueMember = "DocStaffGUID";
             // 
             // cboService
@@ -351,7 +364,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(269, 96);
-            this.txtDescription.TabIndex = 15;
+            this.txtDescription.TabIndex = 16;
             // 
             // numPrice
             // 
@@ -368,7 +381,7 @@
             0});
             this.numPrice.Name = "numPrice";
             this.numPrice.Size = new System.Drawing.Size(121, 20);
-            this.numPrice.TabIndex = 9;
+            this.numPrice.TabIndex = 10;
             this.numPrice.ThousandsSeparator = true;
             this.numPrice.Value = new decimal(new int[] {
             50000,
@@ -440,16 +453,16 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // chkChuyenNhuong
+            // chkKhamTheoHopDong
             // 
-            this.chkChuyenNhuong.AutoSize = true;
-            this.chkChuyenNhuong.Location = new System.Drawing.Point(13, 116);
-            this.chkChuyenNhuong.Name = "chkChuyenNhuong";
-            this.chkChuyenNhuong.Size = new System.Drawing.Size(116, 17);
-            this.chkChuyenNhuong.TabIndex = 6;
-            this.chkChuyenNhuong.Text = "Chuyển nhượng từ:";
-            this.chkChuyenNhuong.UseVisualStyleBackColor = true;
-            this.chkChuyenNhuong.CheckedChanged += new System.EventHandler(this.chkChuyenNhuong_CheckedChanged);
+            this.chkKhamTheoHopDong.AutoSize = true;
+            this.chkKhamTheoHopDong.Location = new System.Drawing.Point(267, 47);
+            this.chkKhamTheoHopDong.Name = "chkKhamTheoHopDong";
+            this.chkKhamTheoHopDong.Size = new System.Drawing.Size(126, 17);
+            this.chkKhamTheoHopDong.TabIndex = 3;
+            this.chkKhamTheoHopDong.Text = "Khám theo hợp đồng";
+            this.chkKhamTheoHopDong.UseVisualStyleBackColor = true;
+            this.chkKhamTheoHopDong.CheckedChanged += new System.EventHandler(this.chkKhamTheoHopDong_CheckedChanged);
             // 
             // dlgAddServiceHistory
             // 
@@ -520,5 +533,6 @@
         private System.Windows.Forms.Button btnChonBenhNhan;
         private System.Windows.Forms.TextBox txtChuyenNhuong;
         private System.Windows.Forms.CheckBox chkChuyenNhuong;
+        private System.Windows.Forms.CheckBox chkKhamTheoHopDong;
     }
 }

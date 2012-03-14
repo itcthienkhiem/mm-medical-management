@@ -90,6 +90,7 @@ namespace MM.Controls
         private void OnAdd()
         {
             dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID);
+            dlg.CheckListDataSource = _dtCheckList;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 base.RaiseServiceHistoryChanged();
@@ -106,6 +107,7 @@ namespace MM.Controls
 
             DataRow drServiceHistory = (dgServiceHistory.SelectedRows[0].DataBoundItem as DataRowView).Row;
             dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID, drServiceHistory);
+            dlg.CheckListDataSource = _dtCheckList;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 base.RaiseServiceHistoryChanged();

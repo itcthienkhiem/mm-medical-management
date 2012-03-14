@@ -171,9 +171,6 @@ namespace MM.Databasae
     partial void InsertPhieuThuThuoc(PhieuThuThuoc instance);
     partial void UpdatePhieuThuThuoc(PhieuThuThuoc instance);
     partial void DeletePhieuThuThuoc(PhieuThuThuoc instance);
-    partial void InsertServiceHistory(ServiceHistory instance);
-    partial void UpdateServiceHistory(ServiceHistory instance);
-    partial void DeleteServiceHistory(ServiceHistory instance);
     partial void InsertPhieuThuHopDong(PhieuThuHopDong instance);
     partial void UpdatePhieuThuHopDong(PhieuThuHopDong instance);
     partial void DeletePhieuThuHopDong(PhieuThuHopDong instance);
@@ -186,6 +183,9 @@ namespace MM.Databasae
     partial void InsertChiTietPhieuThuHopDong(ChiTietPhieuThuHopDong instance);
     partial void UpdateChiTietPhieuThuHopDong(ChiTietPhieuThuHopDong instance);
     partial void DeleteChiTietPhieuThuHopDong(ChiTietPhieuThuHopDong instance);
+    partial void InsertServiceHistory(ServiceHistory instance);
+    partial void UpdateServiceHistory(ServiceHistory instance);
+    partial void DeleteServiceHistory(ServiceHistory instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -858,14 +858,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		public System.Data.Linq.Table<ServiceHistory> ServiceHistories
-		{
-			get
-			{
-				return this.GetTable<ServiceHistory>();
-			}
-		}
-		
 		public System.Data.Linq.Table<PhieuThuHopDong> PhieuThuHopDongs
 		{
 			get
@@ -903,6 +895,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<HoaDonHopDongView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ServiceHistory> ServiceHistories
+		{
+			get
+			{
+				return this.GetTable<ServiceHistory>();
 			}
 		}
 		
@@ -38674,775 +38674,6 @@ namespace MM.Databasae
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ServiceHistory")]
-	public partial class ServiceHistory : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ServiceHistoryGUID;
-		
-		private System.Nullable<System.Guid> _PatientGUID;
-		
-		private System.Nullable<System.Guid> _ServiceGUID;
-		
-		private System.Nullable<System.Guid> _DocStaffGUID;
-		
-		private System.Nullable<System.Guid> _RootPatientGUID;
-		
-		private System.Nullable<System.DateTime> _ActivedDate;
-		
-		private System.Nullable<double> _Price;
-		
-		private double _Discount;
-		
-		private string _Note;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		private byte _Status;
-		
-		private bool _IsExported;
-		
-		private bool _IsNormalOrNegative;
-		
-		private bool _Normal;
-		
-		private bool _Abnormal;
-		
-		private bool _Negative;
-		
-		private bool _Positive;
-		
-		private double _GiaVon;
-		
-		private EntitySet<ReceiptDetail> _ReceiptDetails;
-		
-		private EntitySet<DichVuChiDinh> _DichVuChiDinhs;
-		
-		private EntityRef<DocStaff> _DocStaff;
-		
-		private EntityRef<Patient> _Patient;
-		
-		private EntityRef<Service> _Service;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnServiceHistoryGUIDChanging(System.Guid value);
-    partial void OnServiceHistoryGUIDChanged();
-    partial void OnPatientGUIDChanging(System.Nullable<System.Guid> value);
-    partial void OnPatientGUIDChanged();
-    partial void OnServiceGUIDChanging(System.Nullable<System.Guid> value);
-    partial void OnServiceGUIDChanged();
-    partial void OnDocStaffGUIDChanging(System.Nullable<System.Guid> value);
-    partial void OnDocStaffGUIDChanged();
-    partial void OnRootPatientGUIDChanging(System.Nullable<System.Guid> value);
-    partial void OnRootPatientGUIDChanged();
-    partial void OnActivedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnActivedDateChanged();
-    partial void OnPriceChanging(System.Nullable<double> value);
-    partial void OnPriceChanged();
-    partial void OnDiscountChanging(double value);
-    partial void OnDiscountChanged();
-    partial void OnNoteChanging(string value);
-    partial void OnNoteChanged();
-    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedDateChanged();
-    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnCreatedByChanged();
-    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdatedDateChanged();
-    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnUpdatedByChanged();
-    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDeletedDateChanged();
-    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
-    partial void OnDeletedByChanged();
-    partial void OnStatusChanging(byte value);
-    partial void OnStatusChanged();
-    partial void OnIsExportedChanging(bool value);
-    partial void OnIsExportedChanged();
-    partial void OnIsNormalOrNegativeChanging(bool value);
-    partial void OnIsNormalOrNegativeChanged();
-    partial void OnNormalChanging(bool value);
-    partial void OnNormalChanged();
-    partial void OnAbnormalChanging(bool value);
-    partial void OnAbnormalChanged();
-    partial void OnNegativeChanging(bool value);
-    partial void OnNegativeChanged();
-    partial void OnPositiveChanging(bool value);
-    partial void OnPositiveChanged();
-    partial void OnGiaVonChanging(double value);
-    partial void OnGiaVonChanged();
-    #endregion
-		
-		public ServiceHistory()
-		{
-			this._ReceiptDetails = new EntitySet<ReceiptDetail>(new Action<ReceiptDetail>(this.attach_ReceiptDetails), new Action<ReceiptDetail>(this.detach_ReceiptDetails));
-			this._DichVuChiDinhs = new EntitySet<DichVuChiDinh>(new Action<DichVuChiDinh>(this.attach_DichVuChiDinhs), new Action<DichVuChiDinh>(this.detach_DichVuChiDinhs));
-			this._DocStaff = default(EntityRef<DocStaff>);
-			this._Patient = default(EntityRef<Patient>);
-			this._Service = default(EntityRef<Service>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceHistoryGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ServiceHistoryGUID
-		{
-			get
-			{
-				return this._ServiceHistoryGUID;
-			}
-			set
-			{
-				if ((this._ServiceHistoryGUID != value))
-				{
-					this.OnServiceHistoryGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._ServiceHistoryGUID = value;
-					this.SendPropertyChanged("ServiceHistoryGUID");
-					this.OnServiceHistoryGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> PatientGUID
-		{
-			get
-			{
-				return this._PatientGUID;
-			}
-			set
-			{
-				if ((this._PatientGUID != value))
-				{
-					if (this._Patient.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPatientGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._PatientGUID = value;
-					this.SendPropertyChanged("PatientGUID");
-					this.OnPatientGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> ServiceGUID
-		{
-			get
-			{
-				return this._ServiceGUID;
-			}
-			set
-			{
-				if ((this._ServiceGUID != value))
-				{
-					if (this._Service.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnServiceGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._ServiceGUID = value;
-					this.SendPropertyChanged("ServiceGUID");
-					this.OnServiceGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DocStaffGUID
-		{
-			get
-			{
-				return this._DocStaffGUID;
-			}
-			set
-			{
-				if ((this._DocStaffGUID != value))
-				{
-					if (this._DocStaff.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDocStaffGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._DocStaffGUID = value;
-					this.SendPropertyChanged("DocStaffGUID");
-					this.OnDocStaffGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RootPatientGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> RootPatientGUID
-		{
-			get
-			{
-				return this._RootPatientGUID;
-			}
-			set
-			{
-				if ((this._RootPatientGUID != value))
-				{
-					this.OnRootPatientGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._RootPatientGUID = value;
-					this.SendPropertyChanged("RootPatientGUID");
-					this.OnRootPatientGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActivedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> ActivedDate
-		{
-			get
-			{
-				return this._ActivedDate;
-			}
-			set
-			{
-				if ((this._ActivedDate != value))
-				{
-					this.OnActivedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ActivedDate = value;
-					this.SendPropertyChanged("ActivedDate");
-					this.OnActivedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float")]
-		public System.Nullable<double> Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Discount", DbType="Float NOT NULL")]
-		public double Discount
-		{
-			get
-			{
-				return this._Discount;
-			}
-			set
-			{
-				if ((this._Discount != value))
-				{
-					this.OnDiscountChanging(value);
-					this.SendPropertyChanging();
-					this._Discount = value;
-					this.SendPropertyChanged("Discount");
-					this.OnDiscountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="NVarChar(MAX)")]
-		public string Note
-		{
-			get
-			{
-				return this._Note;
-			}
-			set
-			{
-				if ((this._Note != value))
-				{
-					this.OnNoteChanging(value);
-					this.SendPropertyChanging();
-					this._Note = value;
-					this.SendPropertyChanged("Note");
-					this.OnNoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this.OnUpdatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDate = value;
-					this.SendPropertyChanged("UpdatedDate");
-					this.OnUpdatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this.OnUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedBy = value;
-					this.SendPropertyChanged("UpdatedBy");
-					this.OnUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this.OnDeletedDateChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedDate = value;
-					this.SendPropertyChanged("DeletedDate");
-					this.OnDeletedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this.OnDeletedByChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedBy = value;
-					this.SendPropertyChanged("DeletedBy");
-					this.OnDeletedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
-		public byte Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExported", DbType="Bit NOT NULL")]
-		public bool IsExported
-		{
-			get
-			{
-				return this._IsExported;
-			}
-			set
-			{
-				if ((this._IsExported != value))
-				{
-					this.OnIsExportedChanging(value);
-					this.SendPropertyChanging();
-					this._IsExported = value;
-					this.SendPropertyChanged("IsExported");
-					this.OnIsExportedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsNormalOrNegative", DbType="Bit NOT NULL")]
-		public bool IsNormalOrNegative
-		{
-			get
-			{
-				return this._IsNormalOrNegative;
-			}
-			set
-			{
-				if ((this._IsNormalOrNegative != value))
-				{
-					this.OnIsNormalOrNegativeChanging(value);
-					this.SendPropertyChanging();
-					this._IsNormalOrNegative = value;
-					this.SendPropertyChanged("IsNormalOrNegative");
-					this.OnIsNormalOrNegativeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Normal", DbType="Bit NOT NULL")]
-		public bool Normal
-		{
-			get
-			{
-				return this._Normal;
-			}
-			set
-			{
-				if ((this._Normal != value))
-				{
-					this.OnNormalChanging(value);
-					this.SendPropertyChanging();
-					this._Normal = value;
-					this.SendPropertyChanged("Normal");
-					this.OnNormalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Abnormal", DbType="Bit NOT NULL")]
-		public bool Abnormal
-		{
-			get
-			{
-				return this._Abnormal;
-			}
-			set
-			{
-				if ((this._Abnormal != value))
-				{
-					this.OnAbnormalChanging(value);
-					this.SendPropertyChanging();
-					this._Abnormal = value;
-					this.SendPropertyChanged("Abnormal");
-					this.OnAbnormalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Negative", DbType="Bit NOT NULL")]
-		public bool Negative
-		{
-			get
-			{
-				return this._Negative;
-			}
-			set
-			{
-				if ((this._Negative != value))
-				{
-					this.OnNegativeChanging(value);
-					this.SendPropertyChanging();
-					this._Negative = value;
-					this.SendPropertyChanged("Negative");
-					this.OnNegativeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Positive", DbType="Bit NOT NULL")]
-		public bool Positive
-		{
-			get
-			{
-				return this._Positive;
-			}
-			set
-			{
-				if ((this._Positive != value))
-				{
-					this.OnPositiveChanging(value);
-					this.SendPropertyChanging();
-					this._Positive = value;
-					this.SendPropertyChanged("Positive");
-					this.OnPositiveChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaVon", DbType="Float NOT NULL")]
-		public double GiaVon
-		{
-			get
-			{
-				return this._GiaVon;
-			}
-			set
-			{
-				if ((this._GiaVon != value))
-				{
-					this.OnGiaVonChanging(value);
-					this.SendPropertyChanging();
-					this._GiaVon = value;
-					this.SendPropertyChanged("GiaVon");
-					this.OnGiaVonChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ServiceHistory_ReceiptDetail", Storage="_ReceiptDetails", ThisKey="ServiceHistoryGUID", OtherKey="ServiceHistoryGUID")]
-		public EntitySet<ReceiptDetail> ReceiptDetails
-		{
-			get
-			{
-				return this._ReceiptDetails;
-			}
-			set
-			{
-				this._ReceiptDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ServiceHistory_DichVuChiDinh", Storage="_DichVuChiDinhs", ThisKey="ServiceHistoryGUID", OtherKey="ServiceHistoryGUID")]
-		public EntitySet<DichVuChiDinh> DichVuChiDinhs
-		{
-			get
-			{
-				return this._DichVuChiDinhs;
-			}
-			set
-			{
-				this._DichVuChiDinhs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ServiceHistory", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.ServiceHistories.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.ServiceHistories.Add(this);
-						this._DocStaffGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._DocStaffGUID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_ServiceHistory", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Patient Patient
-		{
-			get
-			{
-				return this._Patient.Entity;
-			}
-			set
-			{
-				Patient previousValue = this._Patient.Entity;
-				if (((previousValue != value) 
-							|| (this._Patient.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Patient.Entity = null;
-						previousValue.ServiceHistories.Remove(this);
-					}
-					this._Patient.Entity = value;
-					if ((value != null))
-					{
-						value.ServiceHistories.Add(this);
-						this._PatientGUID = value.PatientGUID;
-					}
-					else
-					{
-						this._PatientGUID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("Patient");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_ServiceHistory", Storage="_Service", ThisKey="ServiceGUID", OtherKey="ServiceGUID", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Service Service
-		{
-			get
-			{
-				return this._Service.Entity;
-			}
-			set
-			{
-				Service previousValue = this._Service.Entity;
-				if (((previousValue != value) 
-							|| (this._Service.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Service.Entity = null;
-						previousValue.ServiceHistories.Remove(this);
-					}
-					this._Service.Entity = value;
-					if ((value != null))
-					{
-						value.ServiceHistories.Add(this);
-						this._ServiceGUID = value.ServiceGUID;
-					}
-					else
-					{
-						this._ServiceGUID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("Service");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ReceiptDetails(ReceiptDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ServiceHistory = this;
-		}
-		
-		private void detach_ReceiptDetails(ReceiptDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ServiceHistory = null;
-		}
-		
-		private void attach_DichVuChiDinhs(DichVuChiDinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.ServiceHistory = this;
-		}
-		
-		private void detach_DichVuChiDinhs(DichVuChiDinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.ServiceHistory = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PhieuThuHopDong")]
 	public partial class PhieuThuHopDong : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -41655,6 +40886,799 @@ namespace MM.Databasae
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ServiceHistory")]
+	public partial class ServiceHistory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ServiceHistoryGUID;
+		
+		private System.Nullable<System.Guid> _PatientGUID;
+		
+		private System.Nullable<System.Guid> _ServiceGUID;
+		
+		private System.Nullable<System.Guid> _DocStaffGUID;
+		
+		private System.Nullable<System.Guid> _RootPatientGUID;
+		
+		private System.Nullable<System.DateTime> _ActivedDate;
+		
+		private System.Nullable<double> _Price;
+		
+		private double _Discount;
+		
+		private string _Note;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+		private bool _IsExported;
+		
+		private bool _IsNormalOrNegative;
+		
+		private bool _Normal;
+		
+		private bool _Abnormal;
+		
+		private bool _Negative;
+		
+		private bool _Positive;
+		
+		private double _GiaVon;
+		
+		private bool _KhamTuTuc;
+		
+		private EntitySet<ReceiptDetail> _ReceiptDetails;
+		
+		private EntitySet<DichVuChiDinh> _DichVuChiDinhs;
+		
+		private EntityRef<DocStaff> _DocStaff;
+		
+		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<Service> _Service;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnServiceHistoryGUIDChanging(System.Guid value);
+    partial void OnServiceHistoryGUIDChanged();
+    partial void OnPatientGUIDChanging(System.Nullable<System.Guid> value);
+    partial void OnPatientGUIDChanged();
+    partial void OnServiceGUIDChanging(System.Nullable<System.Guid> value);
+    partial void OnServiceGUIDChanged();
+    partial void OnDocStaffGUIDChanging(System.Nullable<System.Guid> value);
+    partial void OnDocStaffGUIDChanged();
+    partial void OnRootPatientGUIDChanging(System.Nullable<System.Guid> value);
+    partial void OnRootPatientGUIDChanged();
+    partial void OnActivedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnActivedDateChanged();
+    partial void OnPriceChanging(System.Nullable<double> value);
+    partial void OnPriceChanged();
+    partial void OnDiscountChanging(double value);
+    partial void OnDiscountChanged();
+    partial void OnNoteChanging(string value);
+    partial void OnNoteChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    partial void OnIsExportedChanging(bool value);
+    partial void OnIsExportedChanged();
+    partial void OnIsNormalOrNegativeChanging(bool value);
+    partial void OnIsNormalOrNegativeChanged();
+    partial void OnNormalChanging(bool value);
+    partial void OnNormalChanged();
+    partial void OnAbnormalChanging(bool value);
+    partial void OnAbnormalChanged();
+    partial void OnNegativeChanging(bool value);
+    partial void OnNegativeChanged();
+    partial void OnPositiveChanging(bool value);
+    partial void OnPositiveChanged();
+    partial void OnGiaVonChanging(double value);
+    partial void OnGiaVonChanged();
+    partial void OnKhamTuTucChanging(bool value);
+    partial void OnKhamTuTucChanged();
+    #endregion
+		
+		public ServiceHistory()
+		{
+			this._ReceiptDetails = new EntitySet<ReceiptDetail>(new Action<ReceiptDetail>(this.attach_ReceiptDetails), new Action<ReceiptDetail>(this.detach_ReceiptDetails));
+			this._DichVuChiDinhs = new EntitySet<DichVuChiDinh>(new Action<DichVuChiDinh>(this.attach_DichVuChiDinhs), new Action<DichVuChiDinh>(this.detach_DichVuChiDinhs));
+			this._DocStaff = default(EntityRef<DocStaff>);
+			this._Patient = default(EntityRef<Patient>);
+			this._Service = default(EntityRef<Service>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceHistoryGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ServiceHistoryGUID
+		{
+			get
+			{
+				return this._ServiceHistoryGUID;
+			}
+			set
+			{
+				if ((this._ServiceHistoryGUID != value))
+				{
+					this.OnServiceHistoryGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._ServiceHistoryGUID = value;
+					this.SendPropertyChanged("ServiceHistoryGUID");
+					this.OnServiceHistoryGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> PatientGUID
+		{
+			get
+			{
+				return this._PatientGUID;
+			}
+			set
+			{
+				if ((this._PatientGUID != value))
+				{
+					if (this._Patient.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPatientGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientGUID = value;
+					this.SendPropertyChanged("PatientGUID");
+					this.OnPatientGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> ServiceGUID
+		{
+			get
+			{
+				return this._ServiceGUID;
+			}
+			set
+			{
+				if ((this._ServiceGUID != value))
+				{
+					if (this._Service.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnServiceGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._ServiceGUID = value;
+					this.SendPropertyChanged("ServiceGUID");
+					this.OnServiceGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DocStaffGUID
+		{
+			get
+			{
+				return this._DocStaffGUID;
+			}
+			set
+			{
+				if ((this._DocStaffGUID != value))
+				{
+					if (this._DocStaff.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDocStaffGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._DocStaffGUID = value;
+					this.SendPropertyChanged("DocStaffGUID");
+					this.OnDocStaffGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RootPatientGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> RootPatientGUID
+		{
+			get
+			{
+				return this._RootPatientGUID;
+			}
+			set
+			{
+				if ((this._RootPatientGUID != value))
+				{
+					this.OnRootPatientGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._RootPatientGUID = value;
+					this.SendPropertyChanged("RootPatientGUID");
+					this.OnRootPatientGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActivedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ActivedDate
+		{
+			get
+			{
+				return this._ActivedDate;
+			}
+			set
+			{
+				if ((this._ActivedDate != value))
+				{
+					this.OnActivedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ActivedDate = value;
+					this.SendPropertyChanged("ActivedDate");
+					this.OnActivedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float")]
+		public System.Nullable<double> Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Discount", DbType="Float NOT NULL")]
+		public double Discount
+		{
+			get
+			{
+				return this._Discount;
+			}
+			set
+			{
+				if ((this._Discount != value))
+				{
+					this.OnDiscountChanging(value);
+					this.SendPropertyChanging();
+					this._Discount = value;
+					this.SendPropertyChanged("Discount");
+					this.OnDiscountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="NVarChar(MAX)")]
+		public string Note
+		{
+			get
+			{
+				return this._Note;
+			}
+			set
+			{
+				if ((this._Note != value))
+				{
+					this.OnNoteChanging(value);
+					this.SendPropertyChanging();
+					this._Note = value;
+					this.SendPropertyChanged("Note");
+					this.OnNoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExported", DbType="Bit NOT NULL")]
+		public bool IsExported
+		{
+			get
+			{
+				return this._IsExported;
+			}
+			set
+			{
+				if ((this._IsExported != value))
+				{
+					this.OnIsExportedChanging(value);
+					this.SendPropertyChanging();
+					this._IsExported = value;
+					this.SendPropertyChanged("IsExported");
+					this.OnIsExportedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsNormalOrNegative", DbType="Bit NOT NULL")]
+		public bool IsNormalOrNegative
+		{
+			get
+			{
+				return this._IsNormalOrNegative;
+			}
+			set
+			{
+				if ((this._IsNormalOrNegative != value))
+				{
+					this.OnIsNormalOrNegativeChanging(value);
+					this.SendPropertyChanging();
+					this._IsNormalOrNegative = value;
+					this.SendPropertyChanged("IsNormalOrNegative");
+					this.OnIsNormalOrNegativeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Normal", DbType="Bit NOT NULL")]
+		public bool Normal
+		{
+			get
+			{
+				return this._Normal;
+			}
+			set
+			{
+				if ((this._Normal != value))
+				{
+					this.OnNormalChanging(value);
+					this.SendPropertyChanging();
+					this._Normal = value;
+					this.SendPropertyChanged("Normal");
+					this.OnNormalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Abnormal", DbType="Bit NOT NULL")]
+		public bool Abnormal
+		{
+			get
+			{
+				return this._Abnormal;
+			}
+			set
+			{
+				if ((this._Abnormal != value))
+				{
+					this.OnAbnormalChanging(value);
+					this.SendPropertyChanging();
+					this._Abnormal = value;
+					this.SendPropertyChanged("Abnormal");
+					this.OnAbnormalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Negative", DbType="Bit NOT NULL")]
+		public bool Negative
+		{
+			get
+			{
+				return this._Negative;
+			}
+			set
+			{
+				if ((this._Negative != value))
+				{
+					this.OnNegativeChanging(value);
+					this.SendPropertyChanging();
+					this._Negative = value;
+					this.SendPropertyChanged("Negative");
+					this.OnNegativeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Positive", DbType="Bit NOT NULL")]
+		public bool Positive
+		{
+			get
+			{
+				return this._Positive;
+			}
+			set
+			{
+				if ((this._Positive != value))
+				{
+					this.OnPositiveChanging(value);
+					this.SendPropertyChanging();
+					this._Positive = value;
+					this.SendPropertyChanged("Positive");
+					this.OnPositiveChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaVon", DbType="Float NOT NULL")]
+		public double GiaVon
+		{
+			get
+			{
+				return this._GiaVon;
+			}
+			set
+			{
+				if ((this._GiaVon != value))
+				{
+					this.OnGiaVonChanging(value);
+					this.SendPropertyChanging();
+					this._GiaVon = value;
+					this.SendPropertyChanged("GiaVon");
+					this.OnGiaVonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhamTuTuc", DbType="Bit NOT NULL")]
+		public bool KhamTuTuc
+		{
+			get
+			{
+				return this._KhamTuTuc;
+			}
+			set
+			{
+				if ((this._KhamTuTuc != value))
+				{
+					this.OnKhamTuTucChanging(value);
+					this.SendPropertyChanging();
+					this._KhamTuTuc = value;
+					this.SendPropertyChanged("KhamTuTuc");
+					this.OnKhamTuTucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ServiceHistory_ReceiptDetail", Storage="_ReceiptDetails", ThisKey="ServiceHistoryGUID", OtherKey="ServiceHistoryGUID")]
+		public EntitySet<ReceiptDetail> ReceiptDetails
+		{
+			get
+			{
+				return this._ReceiptDetails;
+			}
+			set
+			{
+				this._ReceiptDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ServiceHistory_DichVuChiDinh", Storage="_DichVuChiDinhs", ThisKey="ServiceHistoryGUID", OtherKey="ServiceHistoryGUID")]
+		public EntitySet<DichVuChiDinh> DichVuChiDinhs
+		{
+			get
+			{
+				return this._DichVuChiDinhs;
+			}
+			set
+			{
+				this._DichVuChiDinhs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ServiceHistory", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.ServiceHistories.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.ServiceHistories.Add(this);
+						this._DocStaffGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._DocStaffGUID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("DocStaff");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_ServiceHistory", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Patient Patient
+		{
+			get
+			{
+				return this._Patient.Entity;
+			}
+			set
+			{
+				Patient previousValue = this._Patient.Entity;
+				if (((previousValue != value) 
+							|| (this._Patient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Patient.Entity = null;
+						previousValue.ServiceHistories.Remove(this);
+					}
+					this._Patient.Entity = value;
+					if ((value != null))
+					{
+						value.ServiceHistories.Add(this);
+						this._PatientGUID = value.PatientGUID;
+					}
+					else
+					{
+						this._PatientGUID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_ServiceHistory", Storage="_Service", ThisKey="ServiceGUID", OtherKey="ServiceGUID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public Service Service
+		{
+			get
+			{
+				return this._Service.Entity;
+			}
+			set
+			{
+				Service previousValue = this._Service.Entity;
+				if (((previousValue != value) 
+							|| (this._Service.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Service.Entity = null;
+						previousValue.ServiceHistories.Remove(this);
+					}
+					this._Service.Entity = value;
+					if ((value != null))
+					{
+						value.ServiceHistories.Add(this);
+						this._ServiceGUID = value.ServiceGUID;
+					}
+					else
+					{
+						this._ServiceGUID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("Service");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ReceiptDetails(ReceiptDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ServiceHistory = this;
+		}
+		
+		private void detach_ReceiptDetails(ReceiptDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ServiceHistory = null;
+		}
+		
+		private void attach_DichVuChiDinhs(DichVuChiDinh entity)
+		{
+			this.SendPropertyChanging();
+			entity.ServiceHistory = this;
+		}
+		
+		private void detach_DichVuChiDinhs(DichVuChiDinh entity)
+		{
+			this.SendPropertyChanging();
+			entity.ServiceHistory = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ServiceHistoryView")]
 	public partial class ServiceHistoryView
 	{
@@ -41728,6 +41752,10 @@ namespace MM.Databasae
 		private string _NguoiTao;
 		
 		private string _NguoiCapNhat;
+		
+		private byte _ServiceStatus;
+		
+		private bool _KhamTuTuc;
 		
 		public ServiceHistoryView()
 		{
@@ -42289,6 +42317,38 @@ namespace MM.Databasae
 				if ((this._NguoiCapNhat != value))
 				{
 					this._NguoiCapNhat = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceStatus", DbType="TinyInt NOT NULL")]
+		public byte ServiceStatus
+		{
+			get
+			{
+				return this._ServiceStatus;
+			}
+			set
+			{
+				if ((this._ServiceStatus != value))
+				{
+					this._ServiceStatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhamTuTuc", DbType="Bit NOT NULL")]
+		public bool KhamTuTuc
+		{
+			get
+			{
+				return this._KhamTuTuc;
+			}
+			set
+			{
+				if ((this._KhamTuTuc != value))
+				{
+					this._KhamTuTuc = value;
 				}
 			}
 		}

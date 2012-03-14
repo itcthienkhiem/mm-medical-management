@@ -139,6 +139,7 @@ namespace MM.Controls
 
         private void OnDisplayCheckList(string patientGUID)
         {
+            bool hasCheckList = false;
             Result result = CompanyContractBus.GetCheckListByPatient(patientGUID);
             if (result.IsOK)
             {
@@ -154,12 +155,14 @@ namespace MM.Controls
                     {
                         string code = row["Code"].ToString();
                         string name = row["Name"].ToString();
+                        string nguoiNhanCN = row["NguoiChuyenNhuong"].ToString();
                         bool isChecked = Convert.ToBoolean(row["Checked"]);
                         int imgIndex = isChecked ? 0 : 1;
 
                         ListViewItem item = new ListViewItem(string.Empty, imgIndex);
                         item.SubItems.Add(code);
                         item.SubItems.Add(name);
+                        item.SubItems.Add(nguoiNhanCN);
                         lvService.Items.Add(item);
                     }
                 };

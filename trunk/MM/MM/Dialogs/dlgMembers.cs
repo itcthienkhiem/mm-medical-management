@@ -173,6 +173,12 @@ namespace MM.Dialogs
             //Add
             foreach (DataRow row in _deletedMemberRows)
             {
+                if (row.Table.Columns.Contains("CompanyMemberStatus"))
+                {
+                    byte status = Convert.ToByte(row["CompanyMemberStatus"]);
+                    if (status == (byte)Status.Deactived) continue;
+                }
+
                 string key = row[fieldName].ToString();
                 DataRow[] rows = dt.Select(string.Format("{0}='{1}'" , fieldName, key));
                 if (rows != null && rows.Length > 0) continue;

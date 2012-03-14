@@ -71,8 +71,32 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WHERE CompanyContractGUID='{0}' AND Status={1} AND CompanyMemberStatus={1} AND Archived='False' ORDER BY FirstName, FullName",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WHERE CompanyContractGUID='{0}' AND Status={1} AND Archived='False' ORDER BY FirstName, FullName",
                     contractGUID, (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetContractMemberList(string contractGUID, string serviceGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT DISTINCT C.* FROM ContractMemberView C, CompanyCheckList L WHERE C.CompanyContractGUID='{0}' AND  C.ContractMemberGUID = L.ContractMemberGUID AND L.Status = {2} AND C.Status={2} AND C.CompanyMemberStatus={2} AND C.Archived='False' AND L.ServiceGUID = '{1}' ORDER BY C.FirstName, C.FullName",
+                    contractGUID, serviceGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -646,6 +670,82 @@ namespace MM.Bussiness
                     db.Dispose();
                     db = null;
                 }
+            }
+
+            return result;
+        }
+
+        public static Result CheckNhanVienHopDongDaSuDungDichVu(string patientGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string spName = "spCheckMember";
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                SqlParameter param = new SqlParameter("@PatientGUID", patientGUID);
+                param.Direction = ParameterDirection.Input;
+                sqlParams.Add(param);
+
+                param = new SqlParameter("@Result", SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
+                sqlParams.Add(param);
+
+                result = ExcuteNonQuery(spName, sqlParams);
+
+                int count = Convert.ToInt32(param.Value);
+                if (count <= 0) result.Error.Code = ErrorCode.NOT_EXIST;
+                else result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result CheckDichVuHopDongDaSuDung(string patientGUID, string serviceGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string spName = "spCheckMemberByService";
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                SqlParameter param = new SqlParameter("@PatientGUID", patientGUID);
+                param.Direction = ParameterDirection.Input;
+                sqlParams.Add(param);
+
+                param = new SqlParameter("@ServiceGUID", serviceGUID);
+                param.Direction = ParameterDirection.Input;
+                sqlParams.Add(param);
+
+                param = new SqlParameter("@Result", SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
+                sqlParams.Add(param);
+
+                result = ExcuteNonQuery(spName, sqlParams);
+
+                int count = Convert.ToInt32(param.Value);
+                if (count <= 0) result.Error.Code = ErrorCode.NOT_EXIST;
+                else result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
             }
 
             return result;

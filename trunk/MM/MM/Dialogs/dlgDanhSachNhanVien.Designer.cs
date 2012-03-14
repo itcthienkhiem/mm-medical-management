@@ -33,25 +33,26 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgDanhSachNhanVien));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgDanhSachNhanVien));
             this.contractMemberViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgService = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Using = new System.Windows.Forms.DataGridViewImageColumn();
             this.companyCheckListViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgDSNV = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Using = new System.Windows.Forms.DataGridViewImageColumn();
+            this.NguoiChuyenNhuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -73,7 +74,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(564, 530);
+            this.panel2.Size = new System.Drawing.Size(650, 530);
             this.panel2.TabIndex = 1;
             // 
             // panel4
@@ -82,7 +83,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 333);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(564, 197);
+            this.panel4.Size = new System.Drawing.Size(650, 197);
             this.panel4.TabIndex = 9;
             // 
             // dgService
@@ -103,7 +104,8 @@
             this.dgService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codeDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
-            this.Using});
+            this.Using,
+            this.NguoiChuyenNhuong});
             this.dgService.DataSource = this.companyCheckListViewBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -123,32 +125,8 @@
             this.dgService.ReadOnly = true;
             this.dgService.RowHeadersWidth = 30;
             this.dgService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgService.Size = new System.Drawing.Size(564, 197);
+            this.dgService.Size = new System.Drawing.Size(650, 197);
             this.dgService.TabIndex = 15;
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã DV";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên DV";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 310;
-            // 
-            // Using
-            // 
-            this.Using.HeaderText = "Đã sử dụng";
-            this.Using.Name = "Using";
-            this.Using.ReadOnly = true;
-            this.Using.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Using.Width = 80;
             // 
             // companyCheckListViewBindingSource
             // 
@@ -160,7 +138,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(564, 333);
+            this.panel3.Size = new System.Drawing.Size(650, 333);
             this.panel3.TabIndex = 8;
             // 
             // dgDSNV
@@ -201,10 +179,70 @@
             this.dgDSNV.ReadOnly = true;
             this.dgDSNV.RowHeadersWidth = 30;
             this.dgDSNV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgDSNV.Size = new System.Drawing.Size(564, 333);
+            this.dgDSNV.Size = new System.Drawing.Size(650, 333);
             this.dgDSNV.TabIndex = 7;
             this.dgDSNV.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgDSNV_ColumnHeaderMouseClick);
             this.dgDSNV.SelectionChanged += new System.EventHandler(this.dgDSNV_SelectionChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 530);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(650, 42);
+            this.panel1.TabIndex = 0;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(288, 9);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 7;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // imgList
+            // 
+            this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
+            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgList.Images.SetKeyName(0, "1321864209_tick.png");
+            this.imgList.Images.SetKeyName(1, "1321864188_exclamation.png");
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã DV";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên DV";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // Using
+            // 
+            this.Using.HeaderText = "Đã sử dụng";
+            this.Using.Name = "Using";
+            this.Using.ReadOnly = true;
+            this.Using.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Using.Width = 80;
+            // 
+            // NguoiChuyenNhuong
+            // 
+            this.NguoiChuyenNhuong.DataPropertyName = "NguoiChuyenNhuong";
+            this.NguoiChuyenNhuong.HeaderText = "Chuyển nhượng cho";
+            this.NguoiChuyenNhuong.Name = "NguoiChuyenNhuong";
+            this.NguoiChuyenNhuong.ReadOnly = true;
+            this.NguoiChuyenNhuong.Width = 200;
             // 
             // STT
             // 
@@ -225,7 +263,7 @@
             this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
             this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
             this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fileNumDataGridViewTextBoxColumn.Width = 130;
+            this.fileNumDataGridViewTextBoxColumn.Width = 150;
             // 
             // fullNameDataGridViewTextBoxColumn
             // 
@@ -233,41 +271,13 @@
             this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 340;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnCancel);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 530);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(564, 42);
-            this.panel1.TabIndex = 0;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(245, 9);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // imgList
-            // 
-            this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
-            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgList.Images.SetKeyName(0, "1321864209_tick.png");
-            this.imgList.Images.SetKeyName(1, "1321864188_exclamation.png");
+            this.fullNameDataGridViewTextBoxColumn.Width = 410;
             // 
             // dlgDanhSachNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(564, 572);
+            this.ClientSize = new System.Drawing.Size(650, 572);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -302,14 +312,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgService;
         private System.Windows.Forms.BindingSource companyCheckListViewBindingSource;
+        private System.Windows.Forms.ImageList imgList;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewImageColumn Using;
-        private System.Windows.Forms.ImageList imgList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiChuyenNhuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
     }
 }

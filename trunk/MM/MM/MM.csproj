@@ -1454,6 +1454,7 @@
     <None Include="Resources\Process-Warning-icon.png" />
     <None Include="Resources\backup-restore-icon %281%29.png" />
     <None Include="Resources\backup-restore-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-03-14.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-13.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-12.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-11.sql" />
