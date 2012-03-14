@@ -372,6 +372,29 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetTongTienKhamChuyenNhuong(string hopDongGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT PV.PatientGUID, PV.FullName, S.ServiceGUID, S.Name, SH.Price, SH.Discount, SH.ActivedDate FROM CompanyContract HD, ContractMember CM, CompanyMember NV, PatientView PV, CompanyCheckList CL, ServiceHistory SH, Services S WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.PatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND NV.Status = 0 AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND (HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate OR HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate) ORDER BY PV.PatientGUID, SH.ActivedDate, S.ServiceGUID", hopDongGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetTongTienThuTheoHopDong(string hopDongGUID)
         {
             Result result = new Result();

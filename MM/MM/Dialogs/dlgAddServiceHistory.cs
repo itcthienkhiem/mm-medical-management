@@ -25,13 +25,13 @@ namespace MM.Dialogs
         private string _bacSiChiDinhGUID = string.Empty;
         private ChiDinh _chiDinh = null;
         private bool _isExported = false;
+        private DataTable _dtCheckList = null;
         #endregion
 
         #region Constructor
         public dlgAddServiceHistory(string patientGUID)
         {
             InitializeComponent();
-            //InitData();
             _patientGUID = patientGUID;
         }
 
@@ -39,11 +39,9 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             _isNew = false;
-            //InitData();
             _patientGUID = patientGUID;
             this.Text = "Sua su dung dich vu";
             _drServiceHistory = drServiceHistory;
-            //DisplayInfo(drServiceHistory);
         }
         #endregion
 
@@ -89,6 +87,12 @@ namespace MM.Dialogs
             get { return _bacSiChiDinhGUID; }
             set { _bacSiChiDinhGUID = value; }
         }
+
+        public DataTable CheckListDataSource
+        {
+            get { return _dtCheckList; }
+            set { _dtCheckList = value; }
+        }
         #endregion
 
         #region UI Command
@@ -111,7 +115,8 @@ namespace MM.Dialogs
             }
 
             DisplayBacSiChiDinhList();
-            //DisplayPatientList();
+
+            
         }
 
         private void DisplayBacSiChiDinhList()
@@ -184,26 +189,6 @@ namespace MM.Dialogs
             else
                 cboDocStaff.Enabled = true;
         }
-
-        //private void DisplayPatientList()
-        //{
-        //    Result result = PatientBus.GetPatientList();
-        //    if (!result.IsOK)
-        //    {
-        //        MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-        //        Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        DataTable dt = result.QueryResult as DataTable;
-        //        DataRow newRow = dt.NewRow();
-        //        newRow["PatientGUID"] = Guid.Empty.ToString();
-        //        newRow["FullName"] = string.Empty;
-        //        dt.Rows.InsertAt(newRow, 0);
-        //        cboChuyenNhuong.DataSource = dt;
-        //    }
-        //}
 
         private void DisplayInfo(DataRow drServiceHistory)
         {
@@ -663,16 +648,15 @@ namespace MM.Dialogs
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
-            //DataTable dtPatient = (cboChuyenNhuong.DataSource as DataTable).Copy();
-            //dtPatient.Rows.RemoveAt(0);
-            //dlgSelectPatient dlg = new dlgSelectPatient(dtPatient);
-            //if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            //{
-            //    cboChuyenNhuong.SelectedValue = dlg.PatientRow["PatientGUID"].ToString();
-            //}
+            if (cboService.Text == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng chọn dịch vụ.", IconType.Information);
+                cboService.Focus();
+                return;
+            }
 
             DateTime activedDate = dtpkActiveDate.Value;
-            dlgSelectNhanVienHopDong dlg = new dlgSelectNhanVienHopDong(activedDate);
+            dlgSelectNhanVienHopDong dlg = new dlgSelectNhanVienHopDong(activedDate, cboService.SelectedValue.ToString());
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 txtChuyenNhuong.Tag = dlg.PatientRow["PatientGUID"].ToString();
@@ -683,6 +667,17 @@ namespace MM.Dialogs
         private void chkChuyenNhuong_CheckedChanged(object sender, EventArgs e)
         {
             btnChonBenhNhan.Enabled = chkChuyenNhuong.Checked;
+        }
+
+        private void chkKhamTheoHopDong_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkKhamTheoHopDong.Checked)
+            {
+                chkChuyenNhuong.Checked = false;
+                chkChuyenNhuong.Enabled = false;
+            }
+            else
+                chkChuyenNhuong.Enabled = true;
         }
         #endregion
 
@@ -704,9 +699,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
-
-        
     }
 }

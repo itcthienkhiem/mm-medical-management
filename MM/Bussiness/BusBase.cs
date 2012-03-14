@@ -155,5 +155,57 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        protected static Result ExcuteNonQuery(string spName, List<SqlParameter> sqlParams)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+            SqlCommand cmd = null;
+
+            try
+            {
+                db = new MMOverride();
+                cmd = new SqlCommand();
+                cmd.Connection = (SqlConnection)db.Connection;
+                if (cmd.Connection.State == ConnectionState.Closed ||
+                    cmd.Connection.State == ConnectionState.Broken)
+                    cmd.Connection.Open();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = spName;
+
+                foreach (SqlParameter param in sqlParams)
+                {
+                    cmd.Parameters.Add(param);
+                }
+
+                cmd.ExecuteNonQuery();
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                }
+
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

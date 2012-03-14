@@ -18,13 +18,15 @@ namespace MM.Dialogs
         #region Members
         private DateTime _activedDate = DateTime.Now;
         private string _hopDongGUID = string.Empty;
+        private string _serviceGUID = string.Empty;
         #endregion
 
         #region Constructor
-        public dlgSelectNhanVienHopDong(DateTime activedDate)
+        public dlgSelectNhanVienHopDong(DateTime activedDate, string serviceGUID)
         {
             InitializeComponent();
             _activedDate = activedDate;
+            _serviceGUID = serviceGUID;
             _uSearchPatient.OnOpenPatient += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
         }
         #endregion
@@ -98,7 +100,7 @@ namespace MM.Dialogs
         private void GetDanhSachNhanVienTheoHopDong()
         {
             Cursor.Current = Cursors.WaitCursor;
-            Result result = CompanyContractBus.GetContractMemberList(_hopDongGUID);
+            Result result = CompanyContractBus.GetContractMemberList(_hopDongGUID, _serviceGUID);
             if (result.IsOK)
             {
                 _uSearchPatient.DataSource = result.QueryResult;

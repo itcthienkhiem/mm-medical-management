@@ -66,6 +66,7 @@
             this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActivedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KhamTuTuc = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.TenBenhNhanChuyenNhuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExported = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -126,6 +127,7 @@
             this.Amount,
             this.ActivedDate,
             this.FullName,
+            this.KhamTuTuc,
             this.TenBenhNhanChuyenNhuong,
             this.noteDataGridViewTextBoxColumn,
             this.IsExported,
@@ -423,6 +425,14 @@
             this.FullName.Visible = false;
             this.FullName.Width = 150;
             // 
+            // KhamTuTuc
+            // 
+            this.KhamTuTuc.DataPropertyName = "KhamTuTuc";
+            this.KhamTuTuc.HeaderText = "Khám tự túc";
+            this.KhamTuTuc.Name = "KhamTuTuc";
+            this.KhamTuTuc.ReadOnly = true;
+            this.KhamTuTuc.Width = 80;
+            // 
             // TenBenhNhanChuyenNhuong
             // 
             this.TenBenhNhanChuyenNhuong.DataPropertyName = "TenBenhNhanChuyenNhuong";
@@ -531,6 +541,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActivedDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn KhamTuTuc;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenBenhNhanChuyenNhuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsExported;

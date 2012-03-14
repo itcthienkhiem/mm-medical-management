@@ -348,75 +348,6 @@ namespace MM.Dialogs
                 _selectedCompanyInfo.AddedMemberKeys, _selectedCompanyInfo.DeletedMemberRows);
             dlg.OnAddMemberEvent += new AddMemberHandler(dlg_OnAddMember);
             dlg.ShowDialog(this);
-            /*if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                List<DataRow> checkedRows = dlg.CheckedMembers;
-                DataTable dataSource = dgMembers.DataSource as DataTable;
-                foreach (DataRow row in checkedRows)
-                {
-                    string companyMemberGUID = row["CompanyMemberGUID"].ToString();
-                    DataRow[] rows = dataSource.Select(string.Format("CompanyMemberGUID='{0}'", companyMemberGUID));
-                    if (rows == null || rows.Length <= 0)
-                    {
-                        if (!_selectedCompanyInfo.AddedMembers.ContainsKey(companyMemberGUID))
-                        {
-                            Member member = new Member();
-                            member.ConstractGUID = _contract.CompanyContractGUID.ToString();
-                            member.CompanyMemberGUID = companyMemberGUID;
-                            member.AddedServices = dlg.AddedServices.ToList<string>();
-                            member.DataSource = dlg.ServiceDataSource.Copy();
-                            _selectedCompanyInfo.AddedMembers.Add(companyMemberGUID, member);
-                        }
-
-                        if (_selectedCompanyInfo.DeletedMembers.Contains(companyMemberGUID))
-                        {
-                            _selectedCompanyInfo.DeletedMembers.Remove(companyMemberGUID);
-
-                            foreach (DataRow r in _selectedCompanyInfo.DeletedMemberRows)
-                            {
-                                if (r["CompanyMemberGUID"].ToString() == companyMemberGUID)
-                                {
-                                    _selectedCompanyInfo.DeletedMemberRows.Remove(r);
-
-                                    if (r["ContractMemberGUID"] != null && r["ContractMemberGUID"] != DBNull.Value)
-                                    {
-                                        string contractMemberGUID = r["ContractMemberGUID"].ToString();
-                                        Result result = CompanyContractBus.GetCheckList(contractMemberGUID);
-                                        if (result.IsOK)
-                                        {
-                                            DataTable dt = result.QueryResult as DataTable;
-                                            Member member = (Member)_selectedCompanyInfo.AddedMembers[companyMemberGUID];
-                                            foreach (DataRow clRow in dt.Rows)
-                                            {
-                                                string serviceGUID = clRow["ServiceGUID"].ToString();
-                                                if (!member.DeletedServices.Contains(serviceGUID))
-                                                    member.DeletedServices.Add(serviceGUID);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
-                                            Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
-                                        }
-                                    }
-
-                                    break;
-                                }
-                            }
-                        }
-
-                        DataRow newRow = dataSource.NewRow();
-                        newRow["Checked"] = false;
-                        newRow["CompanyMemberGUID"] = companyMemberGUID;
-                        newRow["FileNum"] = row["FileNum"];
-                        newRow["FullName"] = row["FullName"];
-                        newRow["DobStr"] = row["DobStr"];
-                        newRow["GenderAsStr"] = row["GenderAsStr"];
-                        dataSource.Rows.Add(newRow);
-                        
-                    }
-                }
-            }*/
         }
 
         private void OnDeleteMember()
@@ -433,6 +364,30 @@ namespace MM.Dialogs
                 }
             }
 
+            if (!_isNew)
+            {
+                foreach (DataRow row in deletedRows)
+                {
+                    string patientGUID = row["patientGUID"].ToString();
+                    Result result = CompanyContractBus.CheckNhanVienHopDongDaSuDungDichVu(patientGUID);
+                    if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+                    {
+                        if (result.Error.Code == ErrorCode.EXIST)
+                        {
+                            MsgBox.Show(this.Text, string.Format("Nhân viên: '{0}' đã sử dụng dịch vụ trong hợp đồng, nên không thể xóa.", row["FullName"].ToString()), 
+                                IconType.Information);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.CheckNhanVienHopDongDaSuDungDichVu"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.CheckNhanVienHopDongDaSuDungDichVu"));
+                        return;
+                    }
+                }
+            }
+            
             if (deletedMemList.Count > 0)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những nhân viên mà bạn đã đánh dấu ?") == DialogResult.Yes)
@@ -602,6 +557,31 @@ namespace MM.Dialogs
                 {
                     deletedSrvList.Add(row["ServiceGUID"].ToString());
                     deletedRows.Add(row);
+                }
+            }
+
+            if (!_isNew)
+            {
+                string patientGUID = drMember["PatientGUID"].ToString();
+                foreach (DataRow row in deletedRows)
+                {
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    Result result = CompanyContractBus.CheckDichVuHopDongDaSuDung(patientGUID, serviceGUID);
+                    if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+                    {
+                        if (result.Error.Code == ErrorCode.EXIST)
+                        {
+                            MsgBox.Show(this.Text, string.Format("Dịch vu: '{0}' đã được sử dụng trong hợp đồng, nên không thể xóa.", row["Name"].ToString()),
+                                IconType.Information);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.CheckDichVuHopDongDaSuDung"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.CheckDichVuHopDongDaSuDung"));
+                        return;
+                    }
                 }
             }
 
