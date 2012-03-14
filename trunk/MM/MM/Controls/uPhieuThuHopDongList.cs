@@ -132,11 +132,11 @@ namespace MM.Controls
 
         private void OnAddPhieuThu()
         {
-            //dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc();
-            //if (dlg.ShowDialog(this) == DialogResult.OK)
-            //{
-            //    DisplayAsThread();
-            //}
+            dlgAddPhieuThuHopDong dlg = new dlgAddPhieuThuHopDong();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                DisplayAsThread();
+            }
         }
 
         private void OnDeletePhieuThu()
