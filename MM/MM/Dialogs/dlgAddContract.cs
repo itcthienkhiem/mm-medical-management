@@ -1016,7 +1016,7 @@ namespace MM.Dialogs
 
         private void chkCompleted_CheckedChanged(object sender, EventArgs e)
         {
-            dtpkEndDate.Enabled = chkCompleted.Checked;
+            dtpkEndDate.Visible = chkCompleted.Checked;
         }
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
