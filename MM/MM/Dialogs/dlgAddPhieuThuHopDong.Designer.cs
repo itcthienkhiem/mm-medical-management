@@ -253,7 +253,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(382, 48);
+            this.label7.Location = new System.Drawing.Point(455, 48);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(17, 13);
             this.label7.TabIndex = 61;
@@ -261,7 +261,7 @@
             // 
             // btnChonHopDong
             // 
-            this.btnChonHopDong.Location = new System.Drawing.Point(273, 44);
+            this.btnChonHopDong.Location = new System.Drawing.Point(346, 44);
             this.btnChonHopDong.Name = "btnChonHopDong";
             this.btnChonHopDong.Size = new System.Drawing.Size(105, 22);
             this.btnChonHopDong.TabIndex = 2;
@@ -341,12 +341,12 @@
             // cboMaHopDong
             // 
             this.cboMaHopDong.DataSource = this.companyContractViewBindingSource;
-            this.cboMaHopDong.DisplayMember = "ContractCode";
+            this.cboMaHopDong.DisplayMember = "ContractName";
             this.cboMaHopDong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMaHopDong.FormattingEnabled = true;
             this.cboMaHopDong.Location = new System.Drawing.Point(103, 44);
             this.cboMaHopDong.Name = "cboMaHopDong";
-            this.cboMaHopDong.Size = new System.Drawing.Size(165, 21);
+            this.cboMaHopDong.Size = new System.Drawing.Size(237, 21);
             this.cboMaHopDong.TabIndex = 1;
             this.cboMaHopDong.ValueMember = "CompanyContractGUID";
             this.cboMaHopDong.SelectedIndexChanged += new System.EventHandler(this.cboMaHopDong_SelectedIndexChanged);
@@ -358,11 +358,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 47);
+            this.label1.Location = new System.Drawing.Point(21, 47);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 50;
-            this.label1.Text = "Mã hợp đồng:";
+            this.label1.Text = "Tên hợp đồng:";
             // 
             // label22
             // 
