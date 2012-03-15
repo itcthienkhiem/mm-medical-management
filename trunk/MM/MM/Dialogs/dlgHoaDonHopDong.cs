@@ -536,6 +536,13 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (!ExportInvoice()) e.Cancel = true;
+                else if (_phieuThuHopDongList != null && _phieuThuHopDongList.Count > 0)
+                {
+                    foreach (DataRow row in _phieuThuHopDongList)
+                    {
+                        row["IsExported"] = true;
+                    }
+                }
             }
         }
 

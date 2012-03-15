@@ -156,7 +156,7 @@ namespace MM.Bussiness
                 foreach (DataRow row in phieuThuHopDongList)
                 {
                     string phieuThuHopDongGUID = row["PhieuThuHopDongGUID"].ToString();
-                    string query = string.Format("SELECT DichVu, DonViTinh, SoLuong, DonGia, ThanhTien FROM ChiTietPhieuThuHopDong WHERE PhieuThuHopDongGUID='{0}' AND Status={1} ORDER BY DichVu",
+                    string query = string.Format("SELECT DichVu, N'Lần' AS DonViTinh , SoLuong, DonGia, ThanhTien FROM ChiTietPhieuThuHopDong WHERE PhieuThuHopDongGUID='{0}' AND Status={1} ORDER BY DichVu",
                     phieuThuHopDongGUID, (byte)Status.Actived);
 
                     result = ExcuteQuery(query);

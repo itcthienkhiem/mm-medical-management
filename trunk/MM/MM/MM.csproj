@@ -1347,6 +1347,7 @@
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaVonDichVuView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.HoaDonHopDongView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.HoaDonThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetLuanView.datasource" />
