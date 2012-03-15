@@ -364,7 +364,13 @@ namespace MM.Dialogs
 
         private void btnChonHopDong_Click(object sender, EventArgs e)
         {
-
+            DataTable dt = cboMaHopDong.DataSource as DataTable;
+            if (dt == null) return;
+            dlgSelectSingleHopDong dlg = new dlgSelectSingleHopDong(dt);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                cboMaHopDong.SelectedValue = dlg.HopDongGUID;
+            }
         }
 
         private void btnExportInvoice_Click(object sender, EventArgs e)

@@ -182,6 +182,8 @@ namespace MM
                 _uPhucHoiBenhNhan.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uPhieuThuHopDongList))
                 _uPhieuThuHopDongList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uHoaDonHopDongList))
+                _uHoaDonHopDongList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -630,6 +632,16 @@ namespace MM
                             _uPhieuThuHopDongList.AllowExport = isExport;
                             _uPhieuThuHopDongList.AllowImport = isImport;
                         }
+                        else if (functionCode == Const.HoaDonHopDong)
+                        {
+                            hoaDonHopDongToolStripMenuItem.Enabled = isView && isLogin;
+                            _uHoaDonHopDongList.AllowAdd = isAdd;
+                            _uHoaDonHopDongList.AllowEdit = isEdit;
+                            _uHoaDonHopDongList.AllowDelete = isDelete;
+                            _uHoaDonHopDongList.AllowPrint = isPrint;
+                            _uHoaDonHopDongList.AllowExport = isExport;
+                            _uHoaDonHopDongList.AllowImport = isImport;
+                        }
                     }
                 }
                 else
@@ -746,6 +758,7 @@ namespace MM
                 thongKeHoaDonToolStripMenuItem.Enabled = isLogin;
                 phucHoiBenhNhanToolStripMenuItem.Enabled = isLogin;
                 phieuThuHopDongToolStripMenuItem.Enabled = isLogin;
+                hoaDonHopDongToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -929,8 +942,19 @@ namespace MM
                 case "PhieuThuHopDong":
                     OnPhieuThuHopDong();
                     break;
+                    
+                case "HoaDonHopDong":
+                    OnHoaDonHopDong();
+                    break;
 
             }
+        }
+
+        private void OnHoaDonHopDong()
+        {
+            this.Text = string.Format("{0} - Hoa don hop dong.", Application.ProductName);
+            ViewControl(_uHoaDonHopDongList);
+            _uHoaDonHopDongList.DisplayAsThread();
         }
 
         private void OnPhieuThuHopDong()
@@ -1267,6 +1291,8 @@ namespace MM
                 _uGiaVonDichVuList.ClearData();
             else if (ctrl.GetType() == typeof(uPhieuThuHopDongList))
                 _uPhieuThuHopDongList.ClearData();
+            else if (ctrl.GetType() == typeof(uHoaDonHopDongList))
+                _uHoaDonHopDongList.ClearData();
         }
 
         private void OnDoctorList()
