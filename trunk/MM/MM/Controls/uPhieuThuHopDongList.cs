@@ -378,6 +378,11 @@ namespace MM.Controls
         {
             OnViewPhieuThuHopDong();
         }
+
+        private void dgPhieuThu_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            HighlightExportedInvoice();
+        }
         #endregion
 
         #region Working Thread
@@ -399,6 +404,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
 
     }
 }

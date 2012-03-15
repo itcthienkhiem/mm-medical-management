@@ -149,8 +149,10 @@ namespace MM.Dialogs
                     txtAddress.Text = _drInvoice["DiaChi"].ToString();
                 
                 Result result = HoaDonHopDongBus.GetChiTietHoaDonHopDong(_drInvoice["HoaDonHopDongGUID"].ToString());
+                
                 if (result.IsOK)
                 {
+                    TenMatHang.DataPropertyName = "TenMatHang";
                     DataTable dataSource = result.QueryResult as DataTable;
                     dgDetail.DataSource = dataSource;
 
@@ -200,6 +202,7 @@ namespace MM.Dialogs
                 {
                     txtTenNguoiMuaHang.Text = _phieuThuHopDongList[0]["TenNguoiNop"].ToString();
                     txtAddress.Text = _phieuThuHopDongList[0]["DiaChi"].ToString();
+                    txtTenDonVi.Text = _phieuThuHopDongList[0]["TenCongTy"].ToString();
                 }
 
                 result = HoaDonHopDongBus.GetChiTietPhieuThuHopDong(_phieuThuHopDongList);

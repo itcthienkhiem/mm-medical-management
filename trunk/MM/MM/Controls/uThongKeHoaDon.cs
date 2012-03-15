@@ -158,9 +158,25 @@ namespace MM.Controls
                                         }
                                         else return;
                                     }
-                                    else
+                                    else if (loaiHoaDon == "Hóa đơn xuất trước")
                                     {
                                         if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 1: Lưu"))
+                                        {
+                                            try
+                                            {
+                                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                                return;
+                                            }
+                                        }
+                                        else return;
+                                    }
+                                    else
+                                    {
+                                        if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 1: Lưu"))
                                         {
                                             try
                                             {
@@ -211,7 +227,7 @@ namespace MM.Controls
                                         }
                                         else return;
                                     }
-                                    else
+                                    else if (loaiHoaDon == "Hóa đơn xuất trước")
                                     {
                                         if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
                                         {
@@ -227,8 +243,22 @@ namespace MM.Controls
                                         }
                                         else return;
                                     }
-
-
+                                    else
+                                    {
+                                        if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
+                                        {
+                                            try
+                                            {
+                                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                                return;
+                                            }
+                                        }
+                                        else return;
+                                    }
                                 }
 
                                 if (dlg.Lien3)
@@ -265,9 +295,25 @@ namespace MM.Controls
                                         }
                                         else return;
                                     }
-                                    else
+                                    else if (loaiHoaDon == "Hóa đơn xuất trước")
                                     {
                                         if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 3: Nội bộ"))
+                                        {
+                                            try
+                                            {
+                                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                                return;
+                                            }
+                                        }
+                                        else return;
+                                    }
+                                    else
+                                    {
+                                        if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 3: Nội bộ"))
                                         {
                                             try
                                             {
@@ -308,8 +354,10 @@ namespace MM.Controls
                 lhd = Common.LoaiHoaDon.HoaDonThuoc;
             else if (loaiHoaDonStr == "Hóa đơn dịch vụ")
                 lhd = Common.LoaiHoaDon.HoaDonDichVu;
-            else
+            else if (loaiHoaDonStr == "Hóa đơn xuất trước")
                 lhd = Common.LoaiHoaDon.HoaDonXuatTruoc;
+            else
+                lhd = Common.LoaiHoaDon.HoaDonHopDong;
 
             dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(drInvoice, true);
             dlg.LoaiHoaDon = lhd;
