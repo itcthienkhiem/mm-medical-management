@@ -111,9 +111,9 @@ namespace MM.Dialogs
             DisplayBacSiChiDinhList();
         }
 
-        private void GetCheckListByPatient()
+        private void GetCheckListByPatient(string patientGUID)
         {
-            Result result = CompanyContractBus.GetCheckListByPatient(_patientGUID);
+            Result result = CompanyContractBus.GetCheckListByPatient(patientGUID);
             if (result.IsOK)
             {
                 if (_dtCheckList != null)
@@ -301,12 +301,16 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (raKhamTheoHopDong.Checked && !CheckDichVuTheoHopDongValid(_patientGUID)) return false;
+
             if (chkChuyenNhuong.Checked && txtChuyenNhuong.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn người chuyển nhượng.", IconType.Information);
                 btnChonBenhNhan.Focus();
                 return false;
             }
+
+            if (chkChuyenNhuong.Checked && !CheckDichVuChuyenNhuongValid(txtChuyenNhuong.Tag.ToString())) return false;
 
             return true;
         }
@@ -512,10 +516,143 @@ namespace MM.Dialogs
             }
         }
 
+        private bool CheckDichVuTheoHopDongValid(string patientGUID)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            GetCheckListByPatient(patientGUID);
+
+            if (_dtCheckList == null || _dtCheckList.Rows.Count <= 0)
+            {
+                MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' không thể khám theo hợp đồng vì bệnh nhân này không có trong hợp đồng.", 
+                    cboService.SelectedValue.ToString()), IconType.Information);
+                return false;
+            }
+            else
+            {
+                string serviceGUID = cboService.SelectedValue.ToString();
+                DataRow[] rows = _dtCheckList.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                if (rows != null && rows.Length > 0)
+                {
+                    bool isOK = false;
+                    foreach (DataRow row in rows)
+                    {
+                        DateTime beginDate = Convert.ToDateTime(row["BeginDate"]);
+                        DateTime endDate = Global.MaxDateTime;
+                        if (row["EndDate"] != null && row["EndDate"] != DBNull.Value)
+                            endDate = Convert.ToDateTime(row["EndDate"]);
+
+                        bool isUsed = Convert.ToBoolean(row["Checked"]);
+
+                        if (!isUsed && dtpkActiveDate.Value >= beginDate && dtpkActiveDate.Value <= endDate)
+                        {
+                            isOK = true;
+                            break;
+                        }
+                    }
+
+                    if (!isOK)
+                    {
+                        if (_isNew)
+                        {
+                            MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' không thể khám theo hợp đồng vì đã được sử dụng rồi.", 
+                                cboService.SelectedValue.ToString()), IconType.Information);
+                            return false;
+                        }
+                        else
+                        {
+                            bool isKhamTuTuc = Convert.ToBoolean(_drServiceHistory["KhamTuTuc"]);
+                            if (isKhamTuTuc || _drServiceHistory["ServiceGUID"].ToString() != cboService.SelectedValue.ToString())
+                            {
+                                MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' không thể khám theo hợp đồng vì đã được sử dụng rồi.",
+                                cboService.SelectedValue.ToString()), IconType.Information);
+                                return false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' không thể khám theo hợp đồng vì bệnh nhân này không có trong hợp đồng.",
+                    cboService.SelectedValue.ToString()), IconType.Information);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool CheckDichVuChuyenNhuongValid(string patientGUID)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            GetCheckListByPatient(patientGUID);
+
+            if (_dtCheckList == null || _dtCheckList.Rows.Count <= 0)
+            {
+                MsgBox.Show(this.Text, string.Format("Bệnh nhân: '{0}' không thể chuyển nhượng dịch vụ: '{1}' vì không có trong hợp đồng",
+                    txtChuyenNhuong.Text, cboService.SelectedValue.ToString()), IconType.Information);
+                return false;
+            }
+            else
+            {
+                string serviceGUID = cboService.SelectedValue.ToString();
+                DataRow[] rows = _dtCheckList.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                if (rows != null && rows.Length > 0)
+                {
+                    bool isOK = false;
+                    foreach (DataRow row in rows)
+                    {
+                        DateTime beginDate = Convert.ToDateTime(row["BeginDate"]);
+                        DateTime endDate = Global.MaxDateTime;
+                        if (row["EndDate"] != null && row["EndDate"] != DBNull.Value)
+                            endDate = Convert.ToDateTime(row["EndDate"]);
+
+                        bool isUsed = Convert.ToBoolean(row["Checked"]);
+
+                        if (!isUsed && dtpkActiveDate.Value >= beginDate && dtpkActiveDate.Value <= endDate)
+                        {
+                            isOK = true;
+                            break;
+                        }
+                    }
+
+                    if (!isOK)
+                    {
+                        if (_isNew)
+                        {
+                            MsgBox.Show(this.Text, string.Format("Bệnh nhân: '{0}' không thể chuyển nhượng dịch vụ: '{1}' vì dịch vụ này đã được sử dụng rồi.",
+                                txtChuyenNhuong.Text, cboService.SelectedValue.ToString()), IconType.Information);
+                            return false;
+                        }
+                        else
+                        {
+                            bool isChuyenNhuong = false;
+                            if (_drServiceHistory["RootPatientGUID"] != null && _drServiceHistory["RootPatientGUID"] != DBNull.Value)
+                                isChuyenNhuong = true;
+
+                            if (!isChuyenNhuong || _drServiceHistory["RootPatientGUID"].ToString() != txtChuyenNhuong.Tag.ToString())
+                            {
+                                MsgBox.Show(this.Text, string.Format("Bệnh nhân: '{0}' không thể chuyển nhượng dịch vụ: '{1}' vì dịch vụ này đã được sử dụng rồi.",
+                                txtChuyenNhuong.Text, cboService.SelectedValue.ToString()), IconType.Information);
+                                return false;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' không thể khám theo hợp đồng vì bệnh nhân này không có trong hợp đồng.",
+                    cboService.SelectedValue.ToString()), IconType.Information);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         private void RefreshGUI()
         {
             Cursor.Current = Cursors.WaitCursor;
-            GetCheckListByPatient();
+            GetCheckListByPatient(_patientGUID);
             if (_dtCheckList == null || _dtCheckList.Rows.Count <= 0)
             {
                 raKhamTuTuc.Checked = true;
