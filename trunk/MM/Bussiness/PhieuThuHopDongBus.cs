@@ -349,14 +349,22 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetDanhSachDichVuKhamTheoHopDong(string hopDongGUID)
+        public static Result GetTongTienDichVuKhamTheoHopDong(string hopDongGUID)
         {
             Result result = new Result();
 
             try
             {
-                string query = string.Format("SELECT PV.PatientGUID, PV.FullName, S.ServiceGUID, S.Name, SH.Price, SH.Discount, SH.ActivedDate FROM CompanyContract HD, ContractMember CM, CompanyMember NV, PatientView PV, CompanyCheckList CL, ServiceHistory SH, Services S WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.PatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND NV.Status = 0 AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND (HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate OR HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate) ORDER BY PV.PatientGUID, SH.ActivedDate, S.ServiceGUID", hopDongGUID);
-                return ExcuteQuery(query);
+                string query = string.Format("SELECT SUM(SH.Price) AS TongTien FROM CompanyContract HD, ContractMember CM, CompanyMember NV, PatientView PV, CompanyCheckList CL, ServiceHistory SH, Services S WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.PatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND SH.KhamTuTuc = 'False' AND (HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate OR HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate)", hopDongGUID);
+                result = ExcuteQuery(query);
+
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
+                    result.QueryResult = Convert.ToDouble(dt.Rows[0][0]);
+                else
+                    result.QueryResult = 0;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -378,8 +386,16 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT PV.PatientGUID, PV.FullName, S.ServiceGUID, S.Name, SH.Price, SH.Discount, SH.ActivedDate FROM CompanyContract HD, ContractMember CM, CompanyMember NV, PatientView PV, CompanyCheckList CL, ServiceHistory SH, Services S WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.PatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND NV.Status = 0 AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND (HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate OR HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate) ORDER BY PV.PatientGUID, SH.ActivedDate, S.ServiceGUID", hopDongGUID);
-                return ExcuteQuery(query);
+                string query = string.Format("SELECT SUM(SH.Price) AS TongTien FROM CompanyContract HD, ContractMember CM, CompanyMember NV, PatientView PV, CompanyCheckList CL, ServiceHistory SH, Services S WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.RootPatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND SH.KhamTuTuc = 'True' AND (HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate OR HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate)", hopDongGUID);
+                result = ExcuteQuery(query);
+
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
+                    result.QueryResult = Convert.ToDouble(dt.Rows[0][0]);
+                else
+                    result.QueryResult = 0;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -436,22 +452,13 @@ namespace MM.Bussiness
                 if (!result.IsOK) return result;
                 double tongTienThu = Convert.ToDouble(result.QueryResult);
 
-                result = GetDanhSachDichVuKhamTheoHopDong(hopDongGUID);
+                result = GetTongTienDichVuKhamTheoHopDong(hopDongGUID);
                 if (!result.IsOK) return result;
+                double tongTien = Convert.ToDouble(result.QueryResult);
 
-                DataTable dt = result.QueryResult as DataTable;
-                string key = string.Empty;
-                double tongTien = 0;
-                foreach (DataRow row in dt.Rows)
-                {
-                    string patientGUID = row["PatientGUID"].ToString();
-                    string serviceGUID = row["ServiceGUID"].ToString();
-                    if (key != string.Format("{0}-{1}", patientGUID, serviceGUID))
-                    {
-                        tongTien += Math.Round(((100 - Convert.ToDouble(row["Discount"]))/100) * Convert.ToDouble(row["Price"]), 0);
-                        key = string.Format("{0}-{1}", patientGUID, serviceGUID);
-                    }
-                }
+                result = GetTongTienKhamChuyenNhuong(hopDongGUID);
+                if (!result.IsOK) return result;
+                tongTien += Convert.ToDouble(result.QueryResult);
 
                 result.QueryResult = tongTien - tongTienThu;
             }
