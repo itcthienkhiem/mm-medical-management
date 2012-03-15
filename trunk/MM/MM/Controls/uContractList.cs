@@ -17,6 +17,7 @@ namespace MM.Controls
     public partial class uContractList : uBase
     {
         #region Members
+        private DataTable _dataSource = null;
 
         #endregion
 
@@ -71,7 +72,8 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    dgContract.DataSource = result.QueryResult;
+                    _dataSource = result.QueryResult as DataTable;
+                    OnSearchHopDong();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -86,10 +88,11 @@ namespace MM.Controls
 
         private void OnAddContract()
         {
+            if (_dataSource == null) return;
             dlgAddContract dlg = new dlgAddContract();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgContract.DataSource as DataTable;
+                DataTable dt = _dataSource;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -128,6 +131,7 @@ namespace MM.Controls
                 dt.Rows.Add(newRow);
 
                 //SelectLastedRow();
+                OnSearchHopDong();
             }
         }
 
@@ -137,15 +141,29 @@ namespace MM.Controls
             dgContract.Rows[dgContract.RowCount - 1].Selected = true;
         }
 
+        private DataRow GetDataRow(string hopDongGUID)
+        {
+            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
+            DataRow[] rows = _dataSource.Select(string.Format("CompanyContractGUID = '{0}'", hopDongGUID));
+            if (rows == null || rows.Length <= 0) return null;
+
+            return rows[0];
+        }
+
         private void OnEditContract()
         {
+            if (_dataSource == null) return;
+
             if (dgContract.SelectedRows == null || dgContract.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 hợp đồng.", IconType.Information);
                 return;
             }
 
-            DataRow drCon = (dgContract.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string hopDongGUID = (dgContract.SelectedRows[0].DataBoundItem as DataRowView).Row["CompanyContractGUID"].ToString();
+            DataRow drCon = GetDataRow(hopDongGUID);
+            if (drCon == null) return;
+
             dlgAddContract dlg = new dlgAddContract(drCon);
             dlg.OnOpenPatient += new OpenPatientHandler(dlg_OnOpenPatient);
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -182,14 +200,36 @@ namespace MM.Controls
                     drCon["DeletedBy"] = dlg.Contract.DeletedBy.ToString();
 
                 drCon["ContractStatus"] = dlg.Contract.Status;
+
+                OnSearchHopDong();
+            }
+        }
+
+        private void UpdateChecked()
+        {
+            DataTable dt = dgContract.DataSource as DataTable;
+            if (dt == null) return;
+
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
+
+            foreach (DataRow row1 in rows1)
+            {
+                string patientGUID1 = row1["CompanyContractGUID"].ToString();
+                DataRow[] rows2 = _dataSource.Select(string.Format("CompanyContractGUID='{0}'", patientGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
+
+                rows2[0]["Checked"] = row1["Checked"];
             }
         }
 
         private void OnDeleteContract()
         {
+            if (_dataSource == null) return;
+            UpdateChecked();
             List<string> deletedConList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = dgContract.DataSource as DataTable;
+            DataTable dt = _dataSource;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
@@ -208,8 +248,10 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
-                            dt.Rows.Remove(row);
+                            _dataSource.Rows.Remove(row);
                         }
+
+                        OnSearchHopDong();
                     }
                     else
                     {
@@ -220,6 +262,75 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần xóa.", IconType.Information);
+        }
+
+        private void OnSearchHopDong()
+        {
+            UpdateChecked();
+            chkChecked.Checked = false;
+            List<DataRow> results = null;
+            DataTable newDataSource = null;
+
+            if (txtHopDong.Text.Trim() == string.Empty)
+            {
+                results = (from p in _dataSource.AsEnumerable()
+                           orderby p.Field<DateTime>("BeginDate") descending
+                           select p).ToList<DataRow>();
+
+                newDataSource = _dataSource.Clone();
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                dgContract.DataSource = newDataSource;
+                if (dgContract.RowCount > 0) dgContract.Rows[0].Selected = true;
+                return;
+            }
+
+            string str = txtHopDong.Text.ToLower();
+
+            newDataSource = _dataSource.Clone();
+
+            if (chkMaHopDong.Checked)
+            {
+                //Ma hop dong
+                results = (from p in _dataSource.AsEnumerable()
+                           where p.Field<string>("ContractCode") != null &&
+                             p.Field<string>("ContractCode").Trim() != string.Empty &&
+                             p.Field<string>("ContractCode").ToLower().IndexOf(str) >= 0
+                           orderby p.Field<DateTime>("BeginDate") descending
+                           select p).ToList<DataRow>();
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                if (newDataSource.Rows.Count > 0)
+                {
+                    dgContract.DataSource = newDataSource;
+                    return;
+                }
+            }
+            else
+            {
+                //Ten hop dong
+                results = (from p in _dataSource.AsEnumerable()
+                           where p.Field<string>("ContractName").ToLower().IndexOf(str) >= 0 &&
+                           p.Field<string>("ContractName") != null &&
+                           p.Field<string>("ContractName").Trim() != string.Empty
+                           orderby p.Field<DateTime>("BeginDate") descending
+                           select p).ToList<DataRow>();
+
+
+                foreach (DataRow row in results)
+                    newDataSource.ImportRow(row);
+
+                if (newDataSource.Rows.Count > 0)
+                {
+                    dgContract.DataSource = newDataSource;
+                    return;
+                }
+            }
+
+            dgContract.DataSource = newDataSource;
         }
         #endregion
 
@@ -259,6 +370,51 @@ namespace MM.Controls
             if (!AllowEdit) return;
             OnEditContract();
         }
+
+        private void txtHopDong_TextChanged(object sender, EventArgs e)
+        {
+            OnSearchHopDong();
+        }
+
+        private void chkMaHopDong_CheckedChanged(object sender, EventArgs e)
+        {
+            OnSearchHopDong();
+        }
+
+        private void txtHopDong_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                dgContract.Focus();
+
+                if (dgContract.SelectedRows != null && dgContract.SelectedRows.Count > 0)
+                {
+                    int index = dgContract.SelectedRows[0].Index;
+                    if (index < dgContract.RowCount - 1)
+                    {
+                        index++;
+                        dgContract.CurrentCell = dgContract[1, index];
+                        dgContract.Rows[index].Selected = true;
+                    }
+                }
+            }
+
+            if (e.KeyCode == Keys.Up)
+            {
+                dgContract.Focus();
+
+                if (dgContract.SelectedRows != null && dgContract.SelectedRows.Count > 0)
+                {
+                    int index = dgContract.SelectedRows[0].Index;
+                    if (index > 0)
+                    {
+                        index--;
+                        dgContract.CurrentCell = dgContract[1, index];
+                        dgContract.Rows[index].Selected = true;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -280,5 +436,9 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
+
+        
     }
 }

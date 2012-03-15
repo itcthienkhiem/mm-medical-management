@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -41,17 +41,22 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgContract = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.contractCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.beginDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.chkMaHopDong = new System.Windows.Forms.CheckBox();
+            this.txtHopDong = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -63,7 +68,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 397);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(784, 38);
-            this.panel1.TabIndex = 5;
+            this.panel1.TabIndex = 2;
             // 
             // btnDelete
             // 
@@ -103,13 +108,14 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.chkChecked);
-            this.panel2.Controls.Add(this.dgContract);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Controls.Add(this.chkMaHopDong);
+            this.panel2.Controls.Add(this.txtHopDong);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(784, 397);
-            this.panel2.TabIndex = 6;
+            this.panel2.Size = new System.Drawing.Size(784, 39);
+            this.panel2.TabIndex = 0;
             // 
             // chkChecked
             // 
@@ -127,14 +133,14 @@
             this.dgContract.AllowUserToDeleteRows = false;
             this.dgContract.AllowUserToOrderColumns = true;
             this.dgContract.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgContract.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgContract.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle21;
             this.dgContract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgContract.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -144,14 +150,14 @@
             this.beginDateDataGridViewTextBoxColumn,
             this.EndDate});
             this.dgContract.DataSource = this.companyContractViewBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgContract.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgContract.DefaultCellStyle = dataGridViewCellStyle25;
             this.dgContract.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgContract.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgContract.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -162,13 +168,9 @@
             this.dgContract.ReadOnly = true;
             this.dgContract.RowHeadersWidth = 30;
             this.dgContract.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgContract.Size = new System.Drawing.Size(784, 397);
+            this.dgContract.Size = new System.Drawing.Size(784, 358);
             this.dgContract.TabIndex = 6;
             this.dgContract.DoubleClick += new System.EventHandler(this.dgContract_DoubleClick);
-            // 
-            // companyContractViewBindingSource
-            // 
-            this.companyContractViewBindingSource.DataSource = typeof(MM.Databasae.CompanyContractView);
             // 
             // colChecked
             // 
@@ -176,8 +178,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle22;
             this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
@@ -212,10 +214,10 @@
             // beginDateDataGridViewTextBoxColumn
             // 
             this.beginDateDataGridViewTextBoxColumn.DataPropertyName = "BeginDate";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle3.NullValue = null;
-            this.beginDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle23.NullValue = null;
+            this.beginDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
             this.beginDateDataGridViewTextBoxColumn.HeaderText = "Ngày bắt đầu";
             this.beginDateDataGridViewTextBoxColumn.Name = "beginDateDataGridViewTextBoxColumn";
             this.beginDateDataGridViewTextBoxColumn.ReadOnly = true;
@@ -223,18 +225,62 @@
             // EndDate
             // 
             this.EndDate.DataPropertyName = "EndDate";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle4.NullValue = null;
-            this.EndDate.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle24.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle24.NullValue = null;
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle24;
             this.EndDate.HeaderText = "Ngày kết thúc";
             this.EndDate.Name = "EndDate";
             this.EndDate.ReadOnly = true;
+            // 
+            // companyContractViewBindingSource
+            // 
+            this.companyContractViewBindingSource.DataSource = typeof(MM.Databasae.CompanyContractView);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgContract);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 39);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(784, 358);
+            this.panel3.TabIndex = 1;
+            // 
+            // chkMaHopDong
+            // 
+            this.chkMaHopDong.AutoSize = true;
+            this.chkMaHopDong.Location = new System.Drawing.Point(392, 12);
+            this.chkMaHopDong.Name = "chkMaHopDong";
+            this.chkMaHopDong.Size = new System.Drawing.Size(117, 17);
+            this.chkMaHopDong.TabIndex = 5;
+            this.chkMaHopDong.Text = "Theo mã hợp đồng";
+            this.chkMaHopDong.UseVisualStyleBackColor = true;
+            this.chkMaHopDong.CheckedChanged += new System.EventHandler(this.chkMaHopDong_CheckedChanged);
+            // 
+            // txtHopDong
+            // 
+            this.txtHopDong.Location = new System.Drawing.Point(91, 9);
+            this.txtHopDong.Name = "txtHopDong";
+            this.txtHopDong.Size = new System.Drawing.Size(291, 20);
+            this.txtHopDong.TabIndex = 4;
+            this.txtHopDong.TextChanged += new System.EventHandler(this.txtHopDong_TextChanged);
+            this.txtHopDong.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtHopDong_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Tìm hợp đồng:";
             // 
             // uContractList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uContractList";
@@ -244,6 +290,8 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgContract)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -264,5 +312,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tenCtyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn beginDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.CheckBox chkMaHopDong;
+        private System.Windows.Forms.TextBox txtHopDong;
+        private System.Windows.Forms.Label label1;
     }
 }
