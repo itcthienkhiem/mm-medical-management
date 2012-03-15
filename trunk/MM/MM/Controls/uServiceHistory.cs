@@ -209,9 +209,10 @@ namespace MM.Controls
             {
                 DataRow dr = (row.DataBoundItem as DataRowView).Row;
                 bool isExported = Convert.ToBoolean(dr["IsExported"]);
+                bool isTuTuc = Convert.ToBoolean(dr["KhamTuTuc"]);
                 if (isExported)
                     row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
-                else
+                else if (isTuTuc)
                     dr["Checked"] = true;
             }
         }
@@ -315,7 +316,14 @@ namespace MM.Controls
             
             foreach (DataRow row in checkedRows)
             {
-                
+                bool isKhamTuTuc = Convert.ToBoolean(row["KhamTuTuc"]);
+                string serviceName = row["Name"].ToString();
+                if (!isKhamTuTuc)
+                {
+                    MsgBox.Show(Application.ProductName, string.Format("Dich vụ: '{0}' được khám theo hợp đồng nên không thể xuất phiếu thu. Vui lòng kiểm tra lại.", serviceName), IconType.Information);
+                    return;
+                }
+
                 bool isExported = Convert.ToBoolean(row["IsExported"]);
                 if (!isExported)
                     noPaidServiceList.Add(row);
