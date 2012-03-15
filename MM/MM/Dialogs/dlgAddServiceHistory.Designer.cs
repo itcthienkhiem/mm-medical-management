@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceHistory));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.raKhamTheoHopDong = new System.Windows.Forms.RadioButton();
+            this.raKhamTuTuc = new System.Windows.Forms.RadioButton();
             this.chkChuyenNhuong = new System.Windows.Forms.CheckBox();
             this.txtChuyenNhuong = new System.Windows.Forms.TextBox();
             this.btnChonBenhNhan = new System.Windows.Forms.Button();
@@ -64,8 +66,6 @@
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.raKhamTuTuc = new System.Windows.Forms.RadioButton();
-            this.raKhamTheoHopDong = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.gbNegative.SuspendLayout();
@@ -110,6 +110,29 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // raKhamTheoHopDong
+            // 
+            this.raKhamTheoHopDong.AutoSize = true;
+            this.raKhamTheoHopDong.Location = new System.Drawing.Point(233, 69);
+            this.raKhamTheoHopDong.Name = "raKhamTheoHopDong";
+            this.raKhamTheoHopDong.Size = new System.Drawing.Size(125, 17);
+            this.raKhamTheoHopDong.TabIndex = 4;
+            this.raKhamTheoHopDong.Text = "Khám theo hợp đồng";
+            this.raKhamTheoHopDong.UseVisualStyleBackColor = true;
+            // 
+            // raKhamTuTuc
+            // 
+            this.raKhamTuTuc.AutoSize = true;
+            this.raKhamTuTuc.Checked = true;
+            this.raKhamTuTuc.Location = new System.Drawing.Point(135, 69);
+            this.raKhamTuTuc.Name = "raKhamTuTuc";
+            this.raKhamTuTuc.Size = new System.Drawing.Size(82, 17);
+            this.raKhamTuTuc.TabIndex = 3;
+            this.raKhamTuTuc.TabStop = true;
+            this.raKhamTuTuc.Text = "Khám tự túc";
+            this.raKhamTuTuc.UseVisualStyleBackColor = true;
+            this.raKhamTuTuc.CheckedChanged += new System.EventHandler(this.raKhamTuTuc_CheckedChanged);
             // 
             // chkChuyenNhuong
             // 
@@ -411,11 +434,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(87, 94);
+            this.label2.Location = new System.Drawing.Point(40, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.Size = new System.Drawing.Size(89, 13);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Bác sĩ:";
+            this.label2.Text = "Bác sĩ thực hiện:";
             // 
             // label1
             // 
@@ -453,29 +476,6 @@
             this.btnOK.TabIndex = 10;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // raKhamTuTuc
-            // 
-            this.raKhamTuTuc.AutoSize = true;
-            this.raKhamTuTuc.Checked = true;
-            this.raKhamTuTuc.Location = new System.Drawing.Point(135, 69);
-            this.raKhamTuTuc.Name = "raKhamTuTuc";
-            this.raKhamTuTuc.Size = new System.Drawing.Size(82, 17);
-            this.raKhamTuTuc.TabIndex = 3;
-            this.raKhamTuTuc.TabStop = true;
-            this.raKhamTuTuc.Text = "Khám tự túc";
-            this.raKhamTuTuc.UseVisualStyleBackColor = true;
-            this.raKhamTuTuc.CheckedChanged += new System.EventHandler(this.raKhamTuTuc_CheckedChanged);
-            // 
-            // raKhamTheoHopDong
-            // 
-            this.raKhamTheoHopDong.AutoSize = true;
-            this.raKhamTheoHopDong.Location = new System.Drawing.Point(233, 69);
-            this.raKhamTheoHopDong.Name = "raKhamTheoHopDong";
-            this.raKhamTheoHopDong.Size = new System.Drawing.Size(125, 17);
-            this.raKhamTheoHopDong.TabIndex = 4;
-            this.raKhamTheoHopDong.Text = "Khám theo hợp đồng";
-            this.raKhamTheoHopDong.UseVisualStyleBackColor = true;
             // 
             // dlgAddServiceHistory
             // 
