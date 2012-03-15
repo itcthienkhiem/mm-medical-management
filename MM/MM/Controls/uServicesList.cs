@@ -37,7 +37,7 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
-
+            priceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
         }
 
         public void ClearData()
