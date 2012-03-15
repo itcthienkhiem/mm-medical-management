@@ -263,16 +263,16 @@ namespace MM.Controls
 
         private void OnViewPhieuThuHopDong()
         {
-            //if (dgPhieuThu.SelectedRows == null || dgPhieuThu.SelectedRows.Count <= 0)
-            //    return;
+            if (dgPhieuThu.SelectedRows == null || dgPhieuThu.SelectedRows.Count <= 0)
+                return;
 
-            //DataRow drPhieuThu = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            //dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc(drPhieuThu);
-            //if (dlg.ShowDialog(this) == DialogResult.Cancel)
-            //{
-            //    if (dlg.IsExportedInvoice)
-            //        HighlightExportedInvoice();
-            //}
+            DataRow drPhieuThu = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddPhieuThuHopDong dlg = new dlgAddPhieuThuHopDong(drPhieuThu);
+            if (dlg.ShowDialog(this) == DialogResult.Cancel)
+            {
+                if (dlg.IsExportedInvoice)
+                    HighlightExportedInvoice();
+            }
         }
 
         private void OnExportInvoice()
@@ -400,8 +400,5 @@ namespace MM.Controls
         }
         #endregion
 
-       
-
-       
     }
 }
