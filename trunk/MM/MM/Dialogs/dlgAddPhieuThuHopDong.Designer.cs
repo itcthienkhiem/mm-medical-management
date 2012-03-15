@@ -38,7 +38,7 @@
             this.numThu = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDichVu = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.numCongNo = new System.Windows.Forms.NumericUpDown();
@@ -108,7 +108,7 @@
             this.groupBox1.Controls.Add(this.numThu);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtDichVu);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.numCongNo);
@@ -183,13 +183,13 @@
             this.label12.TabIndex = 68;
             this.label12.Text = "[*]";
             // 
-            // textBox1
+            // txtDichVu
             // 
-            this.textBox1.Location = new System.Drawing.Point(103, 165);
-            this.textBox1.MaxLength = 500;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(346, 20);
-            this.textBox1.TabIndex = 67;
+            this.txtDichVu.Location = new System.Drawing.Point(103, 165);
+            this.txtDichVu.MaxLength = 500;
+            this.txtDichVu.Name = "txtDichVu";
+            this.txtDichVu.Size = new System.Drawing.Size(346, 20);
+            this.txtDichVu.TabIndex = 67;
             // 
             // label11
             // 
@@ -451,7 +451,7 @@
         private System.Windows.Forms.NumericUpDown numThu;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDichVu;
         private System.Windows.Forms.Label label11;
     }
 }
