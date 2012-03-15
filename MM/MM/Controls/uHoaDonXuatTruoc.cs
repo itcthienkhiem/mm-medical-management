@@ -376,6 +376,11 @@ namespace MM.Controls
             dlgHoaDonXuatTruoc dlg = new dlgHoaDonXuatTruoc(drInvoice, true);
             dlg.ShowDialog();
         }
+
+        private void dgSoHoaDon_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            HighlightSoHoaDonDaXuat();
+        }
         #endregion
 
         #region Window Event Handlers
@@ -490,9 +495,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
     }
 }
