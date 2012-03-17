@@ -523,52 +523,7 @@ namespace MM.Bussiness
                                     con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"));
                             }
 
-                            //Delete Gia dịch vụ hợp đồng
-                            if (companyInfo.DeletedGiaDichVus != null && companyInfo.DeletedGiaDichVus.Count > 0)
-                            {
-                                foreach (string key in companyInfo.DeletedGiaDichVus)
-                                {
-                                    GiaDichVuHopDong gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == key);
-                                    if (gdvhd != null)
-                                    {
-                                        gdvhd.Status = (byte)Status.Deactived;
-                                        gdvhd.DeletedBy = Guid.Parse(Global.UserGUID);
-                                        gdvhd.DeletedDate = DateTime.Now;
-                                    }
-                                }
-                            }
-
-                            //Add giá dịch vụ hợp đồng
-                            if (companyInfo.GiaDichVuDataSource != null && companyInfo.GiaDichVuDataSource.Rows.Count > 0)
-                            {
-                                foreach (DataRow row in companyInfo.GiaDichVuDataSource.Rows)
-                                {
-                                    if (row["GiaDichVuHopDongGUID"] == null || row["GiaDichVuHopDongGUID"] == DBNull.Value)
-                                    {
-                                        GiaDichVuHopDong giaDichVuHopDong = new GiaDichVuHopDong();
-                                        giaDichVuHopDong.GiaDichVuHopDongGUID = Guid.NewGuid();
-                                        giaDichVuHopDong.HopDongGUID = contract.CompanyContractGUID;
-                                        giaDichVuHopDong.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                                        giaDichVuHopDong.Gia = Convert.ToDouble(row["Gia"]);
-                                        giaDichVuHopDong.CreatedBy = Guid.Parse(Global.UserGUID);
-                                        giaDichVuHopDong.CreatedDate = DateTime.Now;
-                                        db.GiaDichVuHopDongs.InsertOnSubmit(giaDichVuHopDong);
-                                    }
-                                    else
-                                    {
-                                        string giaDichVuHopDongGUID = row["GiaDichVuHopDongGUID"].ToString();
-                                        GiaDichVuHopDong gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == giaDichVuHopDongGUID);
-                                        if (gdvhd != null)
-                                        {
-                                            gdvhd.Gia = Convert.ToDouble(row["Gia"]);
-                                            gdvhd.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                                            gdvhd.UpdatedBy = Guid.Parse(Global.UserGUID);
-                                            gdvhd.UpdatedDate = DateTime.Now;
-                                            gdvhd.Status = (byte)Status.Actived;
-                                        }
-                                    }
-                                }
-                            }
+                            
 
                             //Members
                             if (companyInfo.DeletedMembers != null && companyInfo.DeletedMembers.Count > 0)
@@ -678,6 +633,67 @@ namespace MM.Bussiness
                                             }
 
                                             desc += string.Format("     * GUID: '{0}', Dịch vụ: {1}\n", c.CompanyCheckListGUID.ToString(), c.Service.Name);
+                                        }
+                                    }
+                                }
+                            }
+
+                            //Delete Gia dịch vụ hợp đồng
+                            if (companyInfo.DeletedGiaDichVus != null && companyInfo.DeletedGiaDichVus.Count > 0)
+                            {
+                                foreach (string key in companyInfo.DeletedGiaDichVus)
+                                {
+                                    GiaDichVuHopDong gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == key);
+                                    if (gdvhd != null)
+                                    {
+                                        gdvhd.Status = (byte)Status.Deactived;
+                                        gdvhd.DeletedBy = Guid.Parse(Global.UserGUID);
+                                        gdvhd.DeletedDate = DateTime.Now;
+
+                                        var checkList = from c in db.CompanyContracts
+                                                        join m in db.ContractMembers on c.CompanyContractGUID equals m.CompanyContractGUID
+                                                        join l in db.CompanyCheckLists on m.ContractMemberGUID equals l.ContractMemberGUID
+                                                        where c.Status == 0 && m.Status == 0 && l.Status == 0 && c.CompanyContractGUID == gdvhd.HopDongGUID &&
+                                                        l.ServiceGUID == gdvhd.ServiceGUID
+                                                        select l;
+
+                                        foreach (var cl in checkList)
+                                        {
+                                            cl.Status = 1;
+                                        }
+                                    }
+                                }
+
+                                db.SubmitChanges();
+                            }
+
+                            //Add giá dịch vụ hợp đồng
+                            if (companyInfo.GiaDichVuDataSource != null && companyInfo.GiaDichVuDataSource.Rows.Count > 0)
+                            {
+                                foreach (DataRow row in companyInfo.GiaDichVuDataSource.Rows)
+                                {
+                                    if (row["GiaDichVuHopDongGUID"] == null || row["GiaDichVuHopDongGUID"] == DBNull.Value)
+                                    {
+                                        GiaDichVuHopDong giaDichVuHopDong = new GiaDichVuHopDong();
+                                        giaDichVuHopDong.GiaDichVuHopDongGUID = Guid.NewGuid();
+                                        giaDichVuHopDong.HopDongGUID = contract.CompanyContractGUID;
+                                        giaDichVuHopDong.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                                        giaDichVuHopDong.Gia = Convert.ToDouble(row["Gia"]);
+                                        giaDichVuHopDong.CreatedBy = Guid.Parse(Global.UserGUID);
+                                        giaDichVuHopDong.CreatedDate = DateTime.Now;
+                                        db.GiaDichVuHopDongs.InsertOnSubmit(giaDichVuHopDong);
+                                    }
+                                    else
+                                    {
+                                        string giaDichVuHopDongGUID = row["GiaDichVuHopDongGUID"].ToString();
+                                        GiaDichVuHopDong gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == giaDichVuHopDongGUID);
+                                        if (gdvhd != null)
+                                        {
+                                            gdvhd.Gia = Convert.ToDouble(row["Gia"]);
+                                            gdvhd.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                                            gdvhd.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                            gdvhd.UpdatedDate = DateTime.Now;
+                                            gdvhd.Status = (byte)Status.Actived;
                                         }
                                     }
                                 }
