@@ -231,6 +231,7 @@ namespace MM
                         bool isImport = Convert.ToBoolean(row["IsImport"]);
                         bool isExport = Convert.ToBoolean(row["IsExport"]);
                         bool isConfirm = Convert.ToBoolean(row["IsConfirm"]);
+                        bool isLock = Convert.ToBoolean(row["IsLock"]);
 
                         if (functionCode == Const.DocStaff)
                         {
@@ -244,6 +245,7 @@ namespace MM
                             _uDocStaffList.AllowPrint = isPrint;
                             _uDocStaffList.AllowExport = isExport;
                             _uDocStaffList.AllowImport = isImport;
+                            _uDocStaffList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.Patient)
                         {
@@ -256,6 +258,7 @@ namespace MM
                             _uPatientList.AllowPrint = isPrint;
                             _uPatientList.AllowExport = isExport;
                             _uPatientList.AllowImport = isImport;
+                            _uPatientList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.Speciality)
                         {
@@ -268,6 +271,7 @@ namespace MM
                             _uSpecialityList.AllowPrint = isPrint;
                             _uSpecialityList.AllowExport = isExport;
                             _uSpecialityList.AllowImport = isImport;
+                            _uSpecialityList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.Company)
                         {
@@ -280,6 +284,7 @@ namespace MM
                             _uCompanyList.AllowPrint = isPrint;
                             _uCompanyList.AllowExport = isExport;
                             _uCompanyList.AllowImport = isImport;
+                            _uCompanyList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.Services)
                         {
@@ -292,6 +297,7 @@ namespace MM
                             _uServicesList.AllowPrint = isPrint;
                             _uServicesList.AllowExport = isExport;
                             _uServicesList.AllowImport = isImport;
+                            _uServicesList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.ServicePrice)
                         {
@@ -308,6 +314,7 @@ namespace MM
                             _uContractList.AllowPrint = isPrint;
                             _uContractList.AllowExport = isExport;
                             _uContractList.AllowImport = isImport;
+                            _uContractList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.OpenPatient)
                         {
@@ -324,6 +331,7 @@ namespace MM
                             _uPermission.AllowPrint = isPrint;
                             _uPermission.AllowExport = isExport;
                             _uPermission.AllowImport = isImport;
+                            _uPermission.AllowLock = isLock;
                         }
                         else if (functionCode == Const.Symptom)
                         {
@@ -336,6 +344,7 @@ namespace MM
                             _uSymptomList.AllowPrint = isPrint;
                             _uSymptomList.AllowExport = isExport;
                             _uSymptomList.AllowImport = isImport;
+                            _uSymptomList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.PrintLabel)
                         {
@@ -352,6 +361,7 @@ namespace MM
                             _uReceiptList.AllowPrint = isPrint;
                             _uReceiptList.AllowExport = isExport;
                             _uReceiptList.AllowImport = isImport;
+                            _uReceiptList.AllowLock = isLock;
 
                             Global.AllowPrintReceipt = isPrint;
                             Global.AllowExportReceipt = isExport;
@@ -367,6 +377,7 @@ namespace MM
                             _uInvoiceList.AllowPrint = isPrint;
                             _uInvoiceList.AllowExport = isExport;
                             _uInvoiceList.AllowImport = isImport;
+                            _uInvoiceList.AllowLock = isLock;
 
                             Global.AllowPrintInvoice = isPrint;
                             Global.AllowExportInvoice = isExport;
@@ -381,6 +392,7 @@ namespace MM
                             _uDuplicatePatient.AllowPrint = isPrint;
                             _uDuplicatePatient.AllowExport = isExport;
                             _uDuplicatePatient.AllowImport = isImport;
+                            _uDuplicatePatient.AllowLock = isLock;
                         }
                         else if (functionCode == Const.DoanhThuNhanVien)
                         {
@@ -392,6 +404,7 @@ namespace MM
                             _uDoanhThuNhanVien.AllowPrint = isPrint;
                             _uDoanhThuNhanVien.AllowExport = isExport;
                             _uDoanhThuNhanVien.AllowImport = isImport;
+                            _uDoanhThuNhanVien.AllowLock = isLock;
                         }
                         else if (functionCode == Const.DichVuHopDong)
                         {
@@ -402,6 +415,7 @@ namespace MM
                             _uDichVuHopDong.AllowPrint = isPrint;
                             _uDichVuHopDong.AllowExport = isExport;
                             _uDichVuHopDong.AllowImport = isImport;
+                            _uDichVuHopDong.AllowLock = isLock;
                         }
                         else if (functionCode == Const.Thuoc)
                         {
@@ -414,6 +428,7 @@ namespace MM
                             _uThuocList.AllowPrint = isPrint;
                             _uThuocList.AllowExport = isExport;
                             _uThuocList.AllowImport = isImport;
+                            _uThuocList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.NhomThuoc)
                         {
@@ -425,6 +440,7 @@ namespace MM
                             _uNhomThuocList.AllowPrint = isPrint;
                             _uNhomThuocList.AllowExport = isExport;
                             _uNhomThuocList.AllowImport = isImport;
+                            _uNhomThuocList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.LoThuoc)
                         {
@@ -436,6 +452,7 @@ namespace MM
                             _uLoThuocList.AllowPrint = isPrint;
                             _uLoThuocList.AllowExport = isExport;
                             _uLoThuocList.AllowImport = isImport;
+                            _uLoThuocList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.GiaThuoc)
                         {
@@ -447,6 +464,7 @@ namespace MM
                             _uGiaThuocList.AllowPrint = isPrint;
                             _uGiaThuocList.AllowExport = isExport;
                             _uGiaThuocList.AllowImport = isImport;
+                            _uGiaThuocList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.KeToa)
                         {
@@ -458,6 +476,7 @@ namespace MM
                             _uToaThuocList.AllowPrint = isPrint;
                             _uToaThuocList.AllowExport = isExport;
                             _uToaThuocList.AllowImport = isImport;
+                            _uToaThuocList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.ThuocHetHan)
                         {
@@ -468,6 +487,7 @@ namespace MM
                             _uBaoCaoThuocHetHan.AllowPrint = isPrint;
                             _uBaoCaoThuocHetHan.AllowExport = isExport;
                             _uBaoCaoThuocHetHan.AllowImport = isImport;
+                            _uBaoCaoThuocHetHan.AllowLock = isLock;
                         }
                         else if (functionCode == Const.ThuocTonKho)
                         {
@@ -478,6 +498,7 @@ namespace MM
                             _uBaoCaoThuocTonKho.AllowPrint = isPrint;
                             _uBaoCaoThuocTonKho.AllowExport = isExport;
                             _uBaoCaoThuocTonKho.AllowImport = isImport;
+                            _uBaoCaoThuocTonKho.AllowLock = isLock;
                         }
                         else if (functionCode == Const.PhieuThuThuoc)
                         {
@@ -489,6 +510,7 @@ namespace MM
                             _uPhieuThuThuocList.AllowPrint = isPrint;
                             _uPhieuThuThuocList.AllowExport = isExport;
                             _uPhieuThuThuocList.AllowImport = isImport;
+                            _uPhieuThuThuocList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.DichVuTuTuc)
                         {
@@ -499,6 +521,7 @@ namespace MM
                             _uDichVuTuTuc.AllowPrint = isPrint;
                             _uDichVuTuTuc.AllowExport = isExport;
                             _uDichVuTuTuc.AllowImport = isImport;
+                            _uDichVuTuTuc.AllowLock = isLock;
                         }
                         else if (functionCode == Const.ChiDinh)
                         {
@@ -522,6 +545,7 @@ namespace MM
                             _uServiceGroupList.AllowPrint = isPrint;
                             _uServiceGroupList.AllowExport = isExport;
                             _uServiceGroupList.AllowImport = isImport;
+                            _uServiceGroupList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.InKetQuaKhamSucKhoeTongQuat)
                         {
@@ -532,6 +556,7 @@ namespace MM
                             _uInKetQuaKhamSucKhoeTongQuat.AllowPrint = isPrint;
                             _uInKetQuaKhamSucKhoeTongQuat.AllowExport = isExport;
                             _uInKetQuaKhamSucKhoeTongQuat.AllowImport = isImport;
+                            _uInKetQuaKhamSucKhoeTongQuat.AllowLock = isLock;
                         }
                         else if (functionCode == Const.GiaVonDichVu)
                         {
@@ -543,6 +568,7 @@ namespace MM
                             _uGiaVonDichVuList.AllowPrint = isPrint;
                             _uGiaVonDichVuList.AllowExport = isExport;
                             _uGiaVonDichVuList.AllowImport = isImport;
+                            _uGiaVonDichVuList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.DoanhThuTheoNgay)
                         {
@@ -557,6 +583,7 @@ namespace MM
                             _uPhongChoList.AllowPrint = isPrint;
                             _uPhongChoList.AllowExport = isExport;
                             _uPhongChoList.AllowImport = isImport;
+                            _uPhongChoList.AllowLock = isLock;
                             Global.AllowAddPhongCho = isAdd;
                             _uPhongChoList.IsEnableBtnRaPhongCho = isDelete & isLogin;
                         }
@@ -569,6 +596,7 @@ namespace MM
                             _uBaoCaoDichVuChuaXuatPhieuThu.AllowPrint = isPrint;
                             _uBaoCaoDichVuChuaXuatPhieuThu.AllowExport = isExport;
                             _uBaoCaoDichVuChuaXuatPhieuThu.AllowImport = isImport;
+                            _uBaoCaoDichVuChuaXuatPhieuThu.AllowLock = isLock;
                         }
                         else if (functionCode == Const.HoaDonThuoc)
                         {
@@ -581,6 +609,7 @@ namespace MM
                             _uHoaDonThuocList.AllowPrint = isPrint;
                             _uHoaDonThuocList.AllowExport = isExport;
                             _uHoaDonThuocList.AllowImport = isImport;
+                            _uHoaDonThuocList.AllowLock = isLock;
 
                             Global.AllowPrintInvoice = isPrint;
                             Global.AllowExportInvoice = isExport;
@@ -596,6 +625,7 @@ namespace MM
                             _uHoaDonXuatTruoc.AllowPrint = isPrint;
                             _uHoaDonXuatTruoc.AllowExport = isExport;
                             _uHoaDonXuatTruoc.AllowImport = isImport;
+                            _uHoaDonXuatTruoc.AllowLock = isLock;
 
                             Global.AllowPrintInvoice = isPrint;
                             Global.AllowExportInvoice = isExport;
@@ -610,6 +640,7 @@ namespace MM
                         {
                             thongKeHoaDonToolStripMenuItem.Enabled = isView && isLogin;
                             _uThongKeHoaDon.AllowPrint = isPrint;
+                            _uThongKeHoaDon.AllowLock = isLock;
                             Global.AllowPrintInvoice = isPrint;
                         }
                         else if (functionCode == Const.PhucHoiBenhNhan)
@@ -621,6 +652,7 @@ namespace MM
                             _uPhucHoiBenhNhan.AllowPrint = isPrint;
                             _uPhucHoiBenhNhan.AllowExport = isExport;
                             _uPhucHoiBenhNhan.AllowImport = isImport;
+                            _uPhucHoiBenhNhan.AllowLock = isLock;
                         }
                         else if (functionCode == Const.PhieuThuHopDong)
                         {
@@ -631,6 +663,7 @@ namespace MM
                             _uPhieuThuHopDongList.AllowPrint = isPrint;
                             _uPhieuThuHopDongList.AllowExport = isExport;
                             _uPhieuThuHopDongList.AllowImport = isImport;
+                            _uPhieuThuHopDongList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.HoaDonHopDong)
                         {
@@ -641,6 +674,7 @@ namespace MM
                             _uHoaDonHopDongList.AllowPrint = isPrint;
                             _uHoaDonHopDongList.AllowExport = isExport;
                             _uHoaDonHopDongList.AllowImport = isImport;
+                            _uHoaDonHopDongList.AllowLock = isLock;
                         }
                     }
                 }
@@ -672,6 +706,7 @@ namespace MM
                     (ctrl as uBase).AllowPrint = true;
                     (ctrl as uBase).AllowExport = true;
                     (ctrl as uBase).AllowImport = true;
+                    (ctrl as uBase).AllowLock = true;
                 }
 
                 servicesToolStripMenuItem.Enabled = isLogin;
@@ -946,7 +981,6 @@ namespace MM
                 case "HoaDonHopDong":
                     OnHoaDonHopDong();
                     break;
-
             }
         }
 

@@ -599,6 +599,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap lock_icon {
+            get {
+                object obj = ResourceManager.GetObject("lock_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap lock_off_icon {
+            get {
+                object obj = ResourceManager.GetObject("lock_off_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap log_icon {
             get {
                 object obj = ResourceManager.GetObject("log_icon", resourceCulture);

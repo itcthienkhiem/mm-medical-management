@@ -192,4 +192,9 @@ namespace MM.Common
         HoaDonXuatTruoc,
         HoaDonHopDong
     };
+
+    public enum LockType : int
+    {
+        HopDong = 0
+    };
 }

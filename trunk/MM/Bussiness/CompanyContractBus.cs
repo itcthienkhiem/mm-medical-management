@@ -89,6 +89,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetDanhSachGiaDichVuList(string contractGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaDichVuHopDongView WHERE HopDongGUID='{0}' AND GiaDVHDStatus={1} ORDER BY Name",
+                    contractGUID, (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetContractMemberList(string contractGUID, string serviceGUID)
         {
             Result result = null;
@@ -369,6 +393,22 @@ namespace MM.Bussiness
                                 contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"));
                         }
 
+                        //Giá dịch vụ hợp đồng
+                        if (companyInfo.GiaDichVuDataSource != null && companyInfo.GiaDichVuDataSource.Rows.Count > 0)
+                        {
+                            foreach (DataRow row in companyInfo.GiaDichVuDataSource.Rows)
+                            {
+                                GiaDichVuHopDong giaDichVuHopDong = new GiaDichVuHopDong();
+                                giaDichVuHopDong.GiaDichVuHopDongGUID = Guid.NewGuid();
+                                giaDichVuHopDong.HopDongGUID = contract.CompanyContractGUID;
+                                giaDichVuHopDong.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                                giaDichVuHopDong.Gia = Convert.ToDouble(row["Gia"]);
+                                giaDichVuHopDong.CreatedBy = Guid.Parse(Global.UserGUID);
+                                giaDichVuHopDong.CreatedDate = DateTime.Now;
+                                db.GiaDichVuHopDongs.InsertOnSubmit(giaDichVuHopDong);
+                            }
+                        }
+
                         //Members
                         if (companyInfo.AddedMembers != null && companyInfo.AddedMembers.Count > 0)
                         {
@@ -481,6 +521,53 @@ namespace MM.Bussiness
                                 desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}'\n",
                                     con.CompanyContractGUID.ToString(), con.ContractCode, con.ContractName, con.Company.TenCty,
                                     con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"));
+                            }
+
+                            //Delete Gia dịch vụ hợp đồng
+                            if (companyInfo.DeletedGiaDichVus != null && companyInfo.DeletedGiaDichVus.Count > 0)
+                            {
+                                foreach (string key in companyInfo.DeletedGiaDichVus)
+                                {
+                                    GiaDichVuHopDong gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == key);
+                                    if (gdvhd != null)
+                                    {
+                                        gdvhd.Status = (byte)Status.Deactived;
+                                        gdvhd.DeletedBy = Guid.Parse(Global.UserGUID);
+                                        gdvhd.DeletedDate = DateTime.Now;
+                                    }
+                                }
+                            }
+
+                            //Add giá dịch vụ hợp đồng
+                            if (companyInfo.GiaDichVuDataSource != null && companyInfo.GiaDichVuDataSource.Rows.Count > 0)
+                            {
+                                foreach (DataRow row in companyInfo.GiaDichVuDataSource.Rows)
+                                {
+                                    if (row["GiaDichVuHopDongGUID"] == null || row["GiaDichVuHopDongGUID"] == DBNull.Value)
+                                    {
+                                        GiaDichVuHopDong giaDichVuHopDong = new GiaDichVuHopDong();
+                                        giaDichVuHopDong.GiaDichVuHopDongGUID = Guid.NewGuid();
+                                        giaDichVuHopDong.HopDongGUID = contract.CompanyContractGUID;
+                                        giaDichVuHopDong.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                                        giaDichVuHopDong.Gia = Convert.ToDouble(row["Gia"]);
+                                        giaDichVuHopDong.CreatedBy = Guid.Parse(Global.UserGUID);
+                                        giaDichVuHopDong.CreatedDate = DateTime.Now;
+                                        db.GiaDichVuHopDongs.InsertOnSubmit(giaDichVuHopDong);
+                                    }
+                                    else
+                                    {
+                                        string giaDichVuHopDongGUID = row["GiaDichVuHopDongGUID"].ToString();
+                                        GiaDichVuHopDong gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == giaDichVuHopDongGUID);
+                                        if (gdvhd != null)
+                                        {
+                                            gdvhd.Gia = Convert.ToDouble(row["Gia"]);
+                                            gdvhd.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                                            gdvhd.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                            gdvhd.UpdatedDate = DateTime.Now;
+                                            gdvhd.Status = (byte)Status.Actived;
+                                        }
+                                    }
+                                }
                             }
 
                             //Members
@@ -764,6 +851,222 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result CheckDichVuHopDongDaSuDungByGiaDichVu(string hopDongGUID, string serviceGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string spName = "spCheckContractByService";
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                SqlParameter param = new SqlParameter("@ContractGUID", hopDongGUID);
+                param.Direction = ParameterDirection.Input;
+                sqlParams.Add(param);
+
+                param = new SqlParameter("@ServiceGUID", serviceGUID);
+                param.Direction = ParameterDirection.Input;
+                sqlParams.Add(param);
+
+                param = new SqlParameter("@Result", SqlDbType.Int);
+                param.Direction = ParameterDirection.Output;
+                sqlParams.Add(param);
+
+                result = ExcuteNonQuery(spName, sqlParams);
+
+                int count = Convert.ToInt32(param.Value);
+                if (count <= 0) result.Error.Code = ErrorCode.NOT_EXIST;
+                else result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result LockHopDong(List<string> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                string desc = string.Empty;
+                db = new MMOverride();
+
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    foreach (string key in keys)
+                    {
+                        Lock l = db.Locks.SingleOrDefault(ll => ll.KeyGUID.ToString() == key && ll.Loai == (int)LockType.HopDong);
+
+                        if (l == null)
+                        {
+                            l = new Lock();
+                            l.LockGUID = Guid.NewGuid();
+                            l.KeyGUID = Guid.Parse(key);
+                            l.Loai = (int)LockType.HopDong;
+                            l.CreatedBy = Guid.Parse(Global.UserGUID);
+                            l.CreatedDate = DateTime.Now;
+                            l.Status = (byte)Status.Deactived;
+                            db.Locks.InsertOnSubmit(l);
+                        }
+                        else
+                        {
+                            l.Status = (byte)Status.Deactived;
+                        }
+
+                        CompanyContract contract = db.CompanyContracts.SingleOrDefault(c => c.CompanyContractGUID == l.KeyGUID);
+
+                        if (contract != null)
+                        {
+                            string strEndDate = string.Empty;
+                            if (contract.EndDate.HasValue)
+                                strEndDate = contract.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}'\n",
+                                       contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
+                                       contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), strEndDate);
+                        }
+
+
+                    }
+
+                    //Tracking
+                    if (desc != string.Empty)
+                        desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Khóa hợp đồng";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result UnlockHopDong(List<string> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                string desc = string.Empty;
+                db = new MMOverride();
+
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    foreach (string key in keys)
+                    {
+                        Lock l = db.Locks.SingleOrDefault(ll => ll.KeyGUID.ToString() == key && ll.Loai == (int)LockType.HopDong);
+
+                        if (l == null)
+                        {
+                            l = new Lock();
+                            l.LockGUID = Guid.NewGuid();
+                            l.KeyGUID = Guid.Parse(key);
+                            l.Loai = (int)LockType.HopDong;
+                            l.CreatedBy = Guid.Parse(Global.UserGUID);
+                            l.CreatedDate = DateTime.Now;
+                            l.Status = (byte)Status.Actived;
+                            db.Locks.InsertOnSubmit(l);
+                        }
+                        else
+                        {
+                            l.Status = (byte)Status.Actived;
+                        }
+
+                        CompanyContract contract = db.CompanyContracts.SingleOrDefault(c => c.CompanyContractGUID == l.KeyGUID);
+
+                        if (contract != null)
+                        {
+                            string strEndDate = string.Empty;
+                            if (contract.EndDate.HasValue)
+                                strEndDate = contract.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}'\n",
+                                       contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
+                                       contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), strEndDate);
+                        }
+
+                        
+                    }
+
+                    //Tracking
+                    if (desc != string.Empty)
+                        desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Mở khóa hợp đồng";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+                
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
             }
 
             return result;

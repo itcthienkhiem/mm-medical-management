@@ -24,15 +24,18 @@ namespace MM.Dialogs
         private List<string> _addedMembers = null;
         private List<DataRow> _deletedMemberRows = null;
         private bool _isAscending = true;
+        private DataTable _giaDichVuDataSource = null;
         #endregion
 
         #region Constructor
-        public dlgMembers(string companyGUID, string contractGUID, List<string> addedMembers, List<DataRow> deletedMemberRows)
+        public dlgMembers(string companyGUID, string contractGUID, List<string> addedMembers, 
+            List<DataRow> deletedMemberRows, DataTable giaDichVuDataSource)
         {
             InitializeComponent();
             _addedMembers = addedMembers;
             _deletedMemberRows = deletedMemberRows;
             _isContractMember = true;
+            _giaDichVuDataSource = giaDichVuDataSource;
             _companyGUID = companyGUID;
             _contractGUID = contractGUID;
             if (_companyGUID == string.Empty)
@@ -233,24 +236,33 @@ namespace MM.Dialogs
 
         private void OnDisplayServiceList()
         {
-            Result result = ServicesBus.GetServicesList();
-
-            if (result.IsOK)
+            MethodInvoker method = delegate
             {
-                MethodInvoker method = delegate
-                {
-                    _dataSourceService = (DataTable)result.QueryResult;
-                    dgService.DataSource = _dataSourceService;
-                };
+                _dataSourceService = _giaDichVuDataSource;
+                dgService.DataSource = _dataSourceService;
+            };
 
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
-            }
+            if (InvokeRequired) BeginInvoke(method);
+            else method.Invoke();
+
+            //Result result = ServicesBus.GetServicesList();
+
+            //if (result.IsOK)
+            //{
+            //    MethodInvoker method = delegate
+            //    {
+            //        _dataSourceService = (DataTable)result.QueryResult;
+            //        dgService.DataSource = _dataSourceService;
+            //    };
+
+            //    if (InvokeRequired) BeginInvoke(method);
+            //    else method.Invoke();
+            //}
+            //else
+            //{
+            //    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"), IconType.Error);
+            //    Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
+            //}
         }
 
         private void OnSearchPatient()

@@ -38,6 +38,8 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+            btnKhoa.Enabled = AllowLock;
+            btnMoKhoa.Enabled = AllowLock;
         }
 
         public void DisplayAsThread()
@@ -415,6 +417,88 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void btnKhoa_Click(object sender, EventArgs e)
+        {
+            if (_dataSource == null) return;
+            UpdateChecked();
+            List<string> deletedConList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = _dataSource;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedConList.Add(row["CompanyContractGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedConList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn khóa những hợp đồng mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = CompanyContractBus.LockHopDong(deletedConList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            row["Lock"] = 1;
+                        }
+
+                        OnSearchHopDong();
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.LockHopDong"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.LockHopDong"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần khóa.", IconType.Information);
+        }
+
+        private void btnMoKhoa_Click(object sender, EventArgs e)
+        {
+            if (_dataSource == null) return;
+            UpdateChecked();
+            List<string> deletedConList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = _dataSource;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedConList.Add(row["CompanyContractGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedConList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn mở khóa những hợp đồng mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = CompanyContractBus.UnlockHopDong(deletedConList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            row["Lock"] = 0;
+                        }
+
+                        OnSearchHopDong();
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.UnlockHopDong"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.UnlockHopDong"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần mở khóa.", IconType.Information);
+        }
         #endregion
 
         #region Working Thread
@@ -436,9 +520,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
     }
 }
