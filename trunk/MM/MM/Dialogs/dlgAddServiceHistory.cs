@@ -904,6 +904,44 @@ namespace MM.Dialogs
         private void raKhamTuTuc_CheckedChanged(object sender, EventArgs e)
         {
             chkChuyenNhuong.Enabled = raKhamTuTuc.Checked;
+
+            if (raKhamTuTuc.Checked)
+            {
+                numPrice.Enabled = true;
+                DataTable dt = cboService.DataSource as DataTable;
+                if (dt == null || dt.Rows.Count <= 0) return;
+
+                string serviceGUID = cboService.SelectedValue.ToString();
+                DataRow[] rows = dt.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                if (rows != null && rows.Length > 0)
+                {
+                    numPrice.Value = (decimal)Double.Parse(rows[0]["Price"].ToString());
+                }
+            }
+        }
+
+        private void raKhamTheoHopDong_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raKhamTheoHopDong.Checked && _dtCheckList != null && _dtCheckList.Rows.Count > 0)
+            {
+                numPrice.Enabled = false;
+                DataRow[] rows = _dtCheckList.Select(string.Format("ServiceGUID='{0}'", cboService.SelectedValue.ToString()));
+                if (rows != null && rows.Length > 0)
+                {
+                    string hopDongGUID = rows[0]["CompanyContractGUID"].ToString();
+                    Result result = CompanyContractBus.GetGiaDichVuHopDong(hopDongGUID, cboService.SelectedValue.ToString());
+                    if (result.IsOK)
+                    {
+                        if (result.QueryResult != null)
+                            numPrice.Value = (Decimal)Convert.ToDouble(result.QueryResult);
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetGiaDichVuHopDong"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetGiaDichVuHopDong"));
+                    }
+                }
+            }
         }
         #endregion
 
@@ -925,6 +963,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
     }
 }

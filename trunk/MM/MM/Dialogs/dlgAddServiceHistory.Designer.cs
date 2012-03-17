@@ -120,6 +120,7 @@
             this.raKhamTheoHopDong.TabIndex = 4;
             this.raKhamTheoHopDong.Text = "Khám theo hợp đồng";
             this.raKhamTheoHopDong.UseVisualStyleBackColor = true;
+            this.raKhamTheoHopDong.CheckedChanged += new System.EventHandler(this.raKhamTheoHopDong_CheckedChanged);
             // 
             // raKhamTuTuc
             // 
