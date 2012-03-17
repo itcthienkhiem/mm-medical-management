@@ -166,3 +166,7 @@ spDichVuHopDong
 >> 6. Bac si thuc hien them rong. (OK)
 >> 8. Disable nhan vien khi edit login (OK)
 >> 9. Hide bac si thuc hien trong dich vu su dung va bao cao dich vu (OK)
+
+>> 1. Xuat excel danh sach nv hop dong (mobile, ghi chu) in be ngang
+>> 2. Them chuc nang define gia dich vu hop dong va cho lock lai
+>> 3. Khi add dich vu su dung ma theo hop dong thi disable gia lay gia da define.
