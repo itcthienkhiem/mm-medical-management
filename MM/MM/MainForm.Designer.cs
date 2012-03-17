@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uHoaDonHopDongList = new MM.Controls.uHoaDonHopDongList();
             this._uPhieuThuHopDongList = new MM.Controls.uPhieuThuHopDongList();
             this._uPhucHoiBenhNhan = new MM.Controls.uPhucHoiBenhNhan();
             this._uThongKeHoaDon = new MM.Controls.uThongKeHoaDon();
@@ -222,7 +223,6 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._uHoaDonHopDongList = new MM.Controls.uHoaDonHopDongList();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -280,6 +280,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uHoaDonHopDongList
+            // 
+            resources.ApplyResources(this._uHoaDonHopDongList, "_uHoaDonHopDongList");
+            this._uHoaDonHopDongList.Name = "_uHoaDonHopDongList";
             // 
             // _uPhieuThuHopDongList
             // 
@@ -1453,7 +1458,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1474,7 +1479,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -1676,11 +1681,6 @@
             this.dockSite3.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer();
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
-            // 
-            // _uHoaDonHopDongList
-            // 
-            resources.ApplyResources(this._uHoaDonHopDongList, "_uHoaDonHopDongList");
-            this._uHoaDonHopDongList.Name = "_uHoaDonHopDongList";
             // 
             // MainForm
             // 

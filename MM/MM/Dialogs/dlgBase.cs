@@ -22,6 +22,7 @@ namespace MM.Dialogs
         #region Members
         private dlgWaiting _dlgWaiting = null;
         public bool AllowShowServicePrice = true;
+        public bool AllowLock = true;
         #endregion
 
         #region Constructor

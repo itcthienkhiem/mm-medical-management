@@ -28,6 +28,7 @@ namespace MM.Dialogs
         private bool _flag = true;
         private bool _isAscending = true;
         private DataRow _drContract = null;
+        private bool _isLock = false;
         #endregion
 
         #region Constructor
@@ -121,6 +122,27 @@ namespace MM.Dialogs
 
                 _contract.Status = Convert.ToByte(drContract["ContractStatus"]);
 
+                _isLock = Convert.ToBoolean(drContract["Lock"]);
+                if (_isLock)
+                {
+                    txtCode.Enabled = !_isLock;
+                    txtName.Enabled = !_isLock;
+                    cboCompany.Enabled = !_isLock;
+                    dtpkBeginDate.Enabled = !_isLock;
+                    chkCompleted.Enabled = !_isLock;
+                    dtpkEndDate.Enabled = !_isLock;
+                    dgGiaDichVu.ReadOnly = true;
+                    panel5.Enabled = !_isLock;
+                    dgMembers.ReadOnly = true;
+                    dgService.ReadOnly = true;
+                    btnAddMember.Enabled = !_isLock;
+                    btnDeleteMember.Enabled = !_isLock;
+                    btnAddService.Enabled = !_isLock;
+                    btnDeleteService.Enabled = !_isLock;
+                    btnOK.Enabled = !_isLock;
+
+                }
+
                 DisplayDetailAsThread(_contract.CompanyContractGUID.ToString());
             }
             catch (Exception e)
@@ -172,6 +194,14 @@ namespace MM.Dialogs
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.CheckContractExistCode"), IconType.Error);
+                return false;
+            }
+
+            if (dgGiaDichVu.RowCount <= 0)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập danh sách dịch vụ theo hợp đồng.", IconType.Information);
+                tabContract.SelectedTabIndex = 1;
+                btnAdd.Focus();
                 return false;
             }
 
@@ -333,6 +363,36 @@ namespace MM.Dialogs
             }
         }
 
+        private void OnDisplayGiaDichVuList(string contractGUID)
+        {
+            Result result = CompanyContractBus.GetDanhSachGiaDichVuList(contractGUID);
+            if (result.IsOK)
+            {
+                MethodInvoker method = delegate
+                {
+                    dgGiaDichVu.DataSource = result.QueryResult;
+
+                    if (cboCompany.Text == string.Empty) return;
+                    string companyGUID = cboCompany.SelectedValue.ToString();
+                    if (!_htCompany.ContainsKey(companyGUID))
+                    {
+                        _selectedCompanyInfo = new CompanyInfo();
+                        _selectedCompanyInfo.CompanyGUID = companyGUID;
+                        _selectedCompanyInfo.GiaDichVuDataSource = result.QueryResult as DataTable;
+                        _htCompany.Add(companyGUID, _selectedCompanyInfo);
+                    }
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetDanhSachGiaDichVuList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetDanhSachGiaDichVuList"));
+            }
+        }
+
         private void OnAddMember()
         {
             if (cboCompany.Text == string.Empty)
@@ -343,9 +403,16 @@ namespace MM.Dialogs
                 return;
             }
 
+            if (dgGiaDichVu.RowCount <= 0)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập nhập danh sách dịch vụ theo hợp đồng.", IconType.Information);
+                tabContract.SelectedTabIndex = 1;
+                btnAdd.Focus();
+                return;
+            }
 
             dlgMembers dlg = new dlgMembers(cboCompany.SelectedValue.ToString(), _contract.CompanyContractGUID.ToString(), 
-                _selectedCompanyInfo.AddedMemberKeys, _selectedCompanyInfo.DeletedMemberRows);
+                _selectedCompanyInfo.AddedMemberKeys, _selectedCompanyInfo.DeletedMemberRows, _selectedCompanyInfo.GiaDichVuDataSource);
             dlg.OnAddMemberEvent += new AddMemberHandler(dlg_OnAddMember);
             dlg.ShowDialog(this);
         }
@@ -466,7 +533,28 @@ namespace MM.Dialogs
                 }
             }
 
-            dgService.DataSource = member.DataSource;
+            DataTable dt = member.DataSource.Copy();
+            if (dgGiaDichVu.RowCount <= 0)
+                dt.Rows.Clear();
+            else
+            {
+                List<DataRow> deletedRows = new List<DataRow>();
+                DataTable giaDichVuDataSource = dgGiaDichVu.DataSource as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    DataRow[] rows = giaDichVuDataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                    if (rows == null || rows.Length <= 0)
+                        deletedRows.Add(row);
+                }
+
+                foreach (DataRow row in deletedRows)
+                {
+                    dt.Rows.Remove(row);
+                }
+            }
+
+            dgService.DataSource = dt;
             RefreshUsingService();
             pService.Enabled = true;
         }
@@ -488,14 +576,24 @@ namespace MM.Dialogs
 
         private void OnAddService()
         {
+            if (dgGiaDichVu.RowCount <= 0)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập danh sách dịch vụ cho hợp đồng.", IconType.Information);
+                tabContract.SelectedTabIndex = 1;
+                btnAdd.Focus();
+                return;
+            }
+
             if (_selectedCompanyInfo == null) return;
+
             if (dgMembers.SelectedRows == null || dgMembers.SelectedRows.Count <= 0) return;
             DataRow drMember = (dgMembers.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string companyMemberGUID = drMember["CompanyMemberGUID"].ToString();
             if (!_selectedCompanyInfo.AddedMembers.ContainsKey(companyMemberGUID)) return;
             Member member = (Member)_selectedCompanyInfo.AddedMembers[companyMemberGUID];
 
-            dlgServices dlg = new dlgServices(member.ConstractGUID, member.CompanyMemberGUID, member.AddedServices, member.DeletedServiceRows);
+            dlgServices dlg = new dlgServices(member.ConstractGUID, member.CompanyMemberGUID, member.AddedServices, 
+                member.DeletedServiceRows, _selectedCompanyInfo.GiaDichVuDataSource);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 List<DataRow> checkedRows = dlg.Services;
@@ -571,7 +669,7 @@ namespace MM.Dialogs
                     {
                         if (result.Error.Code == ErrorCode.EXIST)
                         {
-                            MsgBox.Show(this.Text, string.Format("Dịch vu: '{0}' đã được sử dụng trong hợp đồng, nên không thể xóa.", row["Name"].ToString()),
+                            MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' đã được sử dụng trong hợp đồng, nên không thể xóa.", row["Name"].ToString()),
                                 IconType.Information);
                             return;
                         }
@@ -675,7 +773,11 @@ namespace MM.Dialogs
                     result = CompanyContractBus.GetCheckList(_contract.CompanyContractGUID.ToString(), patientGUID);
 
                 if (result.IsOK)
-                    dtCheckList = result.QueryResult as DataTable;
+                {
+                    
+
+                    dtCheckList = dgGiaDichVu.DataSource as DataTable;
+                }
                 else
                 {
                     MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
@@ -764,6 +866,124 @@ namespace MM.Dialogs
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần in.", IconType.Information);
+        }
+
+        private void OnAddGiaDichVu()
+        {
+            if (_selectedCompanyInfo == null) return;
+            dlgAddGiaDichVuHopDong dlg = new dlgAddGiaDichVuHopDong(_selectedCompanyInfo.GiaDichVuDataSource);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                DataRow newRow = _selectedCompanyInfo.GiaDichVuDataSource.NewRow();
+                newRow["Checked"] = false;
+                newRow["ServiceGUID"] = dlg.ServiceGUID;
+                newRow["Code"] = dlg.MaDichVu;
+                newRow["Name"] = dlg.TenDichVu;
+                newRow["Gia"] = dlg.Gia;
+
+                _selectedCompanyInfo.GiaDichVuDataSource.Rows.Add(newRow);
+            }
+        }
+
+        private void OnEditGiaDichVu()
+        {
+            if (_selectedCompanyInfo == null) return;
+            if (dgGiaDichVu.SelectedRows == null || dgGiaDichVu.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 dịch vụ.", IconType.Information);
+                return;
+            }
+
+            DataRow drGiaDichVu = (dgGiaDichVu.SelectedRows[0].DataBoundItem as DataRowView).Row;
+
+            if (!_isNew)
+            {
+                string hopDongGUID = _drContract["CompanyContractGUID"].ToString();
+                string serviceGUID = drGiaDichVu["ServiceGUID"].ToString();
+                Result result = CompanyContractBus.CheckDichVuHopDongDaSuDungByGiaDichVu(hopDongGUID, serviceGUID);
+                if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+                {
+                    if (result.Error.Code == ErrorCode.EXIST)
+                    {
+                        MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' đã được sử dụng trong hợp đồng, nên không thể sửa.", drGiaDichVu["Name"].ToString()),
+                            IconType.Information);
+                        return;
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.CheckDichVuHopDongDaSuDungByGiaDichVu"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.CheckDichVuHopDongDaSuDungByGiaDichVu"));
+                    return;
+                }
+            }
+
+           
+            dlgAddGiaDichVuHopDong dlg = new dlgAddGiaDichVuHopDong(_selectedCompanyInfo.GiaDichVuDataSource, drGiaDichVu);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                drGiaDichVu["ServiceGUID"] = dlg.ServiceGUID;
+                drGiaDichVu["Code"] = dlg.MaDichVu;
+                drGiaDichVu["Name"] = dlg.TenDichVu;
+                drGiaDichVu["Gia"] = dlg.Gia;
+            }
+        }
+
+        private void OnDeleteGiaDichVu()
+        {
+            if (_selectedCompanyInfo == null) return;
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgGiaDichVu.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    deletedRows.Add(row);
+            }
+
+            if (!_isNew)
+            {
+                string hopDongGUID = _drContract["CompanyContractGUID"].ToString();
+                foreach (DataRow row in deletedRows)
+                {
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    Result result = CompanyContractBus.CheckDichVuHopDongDaSuDungByGiaDichVu(hopDongGUID, serviceGUID);
+                    if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+                    {
+                        if (result.Error.Code == ErrorCode.EXIST)
+                        {
+                            MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' đã được sử dụng trong hợp đồng, nên không thể xóa.", row["Name"].ToString()),
+                                IconType.Information);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.CheckDichVuHopDongDaSuDungByGiaDichVu"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.CheckDichVuHopDongDaSuDungByGiaDichVu"));
+                        return;
+                    }
+                }
+            }
+
+            if (deletedRows.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa dịch vụ mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    foreach (DataRow row in deletedRows)
+                    {
+                        if (row["GiaDichVuHopDongGUID"] != null && row["GiaDichVuHopDongGUID"] != DBNull.Value)
+                        {
+                            string giaDichVuHopDongGUID = row["GiaDichVuHopDongGUID"].ToString();
+                            if (!_selectedCompanyInfo.DeletedGiaDichVus.Contains(giaDichVuHopDongGUID))
+                                _selectedCompanyInfo.DeletedGiaDichVus.Add(giaDichVuHopDongGUID);
+                        }
+
+                        dt.Rows.Remove(row);
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -865,15 +1085,18 @@ namespace MM.Dialogs
                     return;
                 }
 
-                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin hợp đồng ?") == System.Windows.Forms.DialogResult.Yes)
+                if (!_isLock)
                 {
-                    if (CheckInfo())
+                    if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin hợp đồng ?") == System.Windows.Forms.DialogResult.Yes)
                     {
-                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                        SaveInfoAsThread();
+                        if (CheckInfo())
+                        {
+                            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                            SaveInfoAsThread();
+                        }
+                        else
+                            e.Cancel = true;
                     }
-                    else
-                        e.Cancel = true;
                 }
             }
         }
@@ -979,6 +1202,16 @@ namespace MM.Dialogs
             }
         }
 
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgGiaDichVu.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
+
         private void dgMembers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex == 2)
@@ -1048,6 +1281,35 @@ namespace MM.Dialogs
         {
             OnExportExcelCheckList();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            OnAddGiaDichVu();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            OnEditGiaDichVu();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            OnDeleteGiaDichVu();
+        }
+
+        private void dgGiaDichVu_DoubleClick(object sender, EventArgs e)
+        {
+            if (!_isNew && _isLock) return;
+            OnEditGiaDichVu();
+        }
+
+        private void tabContract_SelectedTabChanged(object sender, DevComponents.DotNetBar.TabStripTabChangedEventArgs e)
+        {
+            if (tabContract.SelectedTabIndex == 2)
+            {
+                OnDisplayCheckList();
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -1073,6 +1335,7 @@ namespace MM.Dialogs
             try
             {
                 //Thread.Sleep(500);
+                OnDisplayGiaDichVuList(state.ToString());
                 OnDisplayMembers(state.ToString());
             }
             catch (Exception e)
@@ -1086,7 +1349,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
     }
 }

@@ -137,6 +137,13 @@ spDichVuHopDong
 - Update view: ServiceHistoryView
 - Create store: spCheckMemberByService
 - Update store: spGetCheckList, spGetCheckListByContract, spCheckMember
+2012-03-17
+- Update table: Permission(Add col: Lock)
+- Create table: GiaDichVuHopDong, Lock
+- Update view: PermissionView, GiaDichVuHopDongView, CompanyContractView
+- Update store: spCheckMember, spCheckMemberByService, spGetCheckList, spGetCheckListByContract
+- Create store: spCheckContractByService
+
 
 1. Waiting room
 2. Fixed số thứ tự của mã bệnh nhân kô cho sửa
@@ -167,6 +174,6 @@ spDichVuHopDong
 >> 8. Disable nhan vien khi edit login (OK)
 >> 9. Hide bac si thuc hien trong dich vu su dung va bao cao dich vu (OK)
 
->> 1. Xuat excel danh sach nv hop dong (mobile, ghi chu) in be ngang
+>> 1. Xuat excel danh sach nv hop dong (mobile, ghi chu) in be ngang (OK)
 >> 2. Them chuc nang define gia dich vu hop dong va cho lock lai
 >> 3. Khi add dich vu su dung ma theo hop dong thi disable gia lay gia da define.

@@ -583,6 +583,12 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddGiaDichVuHopDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddGiaDichVuHopDong.Designer.cs">
+      <DependentUpon>dlgAddGiaDichVuHopDong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddPhieuThuHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -919,12 +925,6 @@
     <Compile Include="Dialogs\dlgThuocThayThe.Designer.cs">
       <DependentUpon>dlgThuocThayThe.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialogs\dlgUpdateCheckList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\dlgUpdateCheckList.Designer.cs">
-      <DependentUpon>dlgUpdateCheckList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Dialogs\dlgWaiting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1133,6 +1133,9 @@
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddGiaDichVuHopDong.resx">
+      <DependentUpon>dlgAddGiaDichVuHopDong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddPhieuThuHopDong.resx">
       <DependentUpon>dlgAddPhieuThuHopDong.cs</DependentUpon>
     </EmbeddedResource>
@@ -1301,9 +1304,6 @@
     <EmbeddedResource Include="Dialogs\dlgThuocThayThe.resx">
       <DependentUpon>dlgThuocThayThe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialogs\dlgUpdateCheckList.resx">
-      <DependentUpon>dlgUpdateCheckList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgWaiting.resx">
       <DependentUpon>dlgWaiting.cs</DependentUpon>
     </EmbeddedResource>
@@ -1345,6 +1345,7 @@
     <None Include="Properties\DataSources\MM.Databasae.CompanyMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.GiaDichVuHopDongView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaVonDichVuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.HoaDonHopDongView.datasource" />
@@ -1473,6 +1474,9 @@
     <None Include="Resources\Process-Warning-icon.png" />
     <None Include="Resources\backup-restore-icon %281%29.png" />
     <None Include="Resources\backup-restore-icon.png" />
+    <None Include="Resources\lock-icon.png" />
+    <None Include="Resources\lock-off-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-03-17.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-14.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-13.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-12.sql" />

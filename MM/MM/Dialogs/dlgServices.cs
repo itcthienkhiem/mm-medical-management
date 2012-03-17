@@ -22,16 +22,19 @@ namespace MM.Dialogs
         private string _companyMemberGUID = string.Empty;
         private string _contractGUID = string.Empty;
         private bool _isServiceGroup = false;
+        private DataTable _giaDichVuDataSource = null;
         #endregion
 
         #region Constructor
-        public dlgServices(string contractGUID, string companyMemberGUID, List<string> addedServices, List<DataRow> deletedServiceRows)
+        public dlgServices(string contractGUID, string companyMemberGUID, List<string> addedServices, 
+            List<DataRow> deletedServiceRows, DataTable giaDichVuDataSource)
         {
             InitializeComponent();
             _contractGUID = contractGUID;
             _companyMemberGUID = companyMemberGUID;
             _addedServices = addedServices;
             _deletedServiceRows = deletedServiceRows;
+            _giaDichVuDataSource = giaDichVuDataSource;
         }
 
         public dlgServices(List<string> addedServices, List<DataRow> deletedServiceRows)
@@ -117,6 +120,19 @@ namespace MM.Dialogs
                 //newRow["Price"] = row["Price"];
                 //newRow["Description"] = row["Description"];
                 dt.Rows.Add(newRow);
+            }
+
+            deletedRows.Clear();
+            foreach (DataRow row in dt.Rows)
+            {
+                DataRow[] rows = _giaDichVuDataSource.Select(string.Format("ServiceGUID='{0}'", row["ServiceGUID"].ToString()));
+                if (rows == null || rows.Length <= 0)
+                    deletedRows.Add(row);
+            }
+
+            foreach (DataRow row in deletedRows)
+            {
+                dt.Rows.Remove(row);
             }
 
             return dt;

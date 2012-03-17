@@ -14,6 +14,8 @@ namespace MM.Common
         public Hashtable AddedMembers = new Hashtable();
         public List<string> DeletedMembers = new List<string>();
         public List<DataRow> DeletedMemberRows = new List<DataRow>();
+        public DataTable GiaDichVuDataSource = null;
+        public List<string> DeletedGiaDichVus = new List<string>();
 
         public List<string> AddedMemberKeys
         {
