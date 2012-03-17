@@ -620,12 +620,20 @@ namespace MM.Controls
 
         private void ImportPatientFromExcel()
         {
+            bool generateCode = true;
             string message="Nhập dữ liệu từ Excel hoàn tất." + System.Environment.NewLine;
             Cursor.Current = Cursors.WaitCursor;
             try
             {
                 if (File.Exists(_fileName))
                 {
+                    //how to import CODE
+                    string sChoice = "Chọn 'Đồng ý' để tạo mã (code) tự động" + System.Environment.NewLine + System.Environment.NewLine + "Chọn 'Không' nếu muốn giữ nguyên mã (code) trong file Excel";
+                    if(MsgBox.Question("Nhap Benh Nhan", sChoice)==DialogResult.No)
+                    {
+                        generateCode = false;
+                    }
+                    //end code
                     IWorkbook book = SpreadsheetGear.Factory.GetWorkbook(_fileName);
                     
                     foreach (IWorksheet sheet in book.Worksheets)
@@ -700,7 +708,7 @@ namespace MM.Controls
                                                     ct.Gender = (byte)Gender.Female;
                                                     if (s == "mf")
                                                     {
-                                                        ph.Tinh_Trang_Gia_Dinh = "Đã kết hôn";
+                                                        ph.Tinh_Trang_Gia_Dinh = "Có gia đình";
                                                     }
                                                 }
                                                 break;
@@ -732,7 +740,14 @@ namespace MM.Controls
                                         ct.CreatedDate = DateTime.Now;
                                         int iCount = GetPatientQuantity();
                                         iCount++;
-                                        p.FileNum = Utility.GetCode(sCode, iCount, 5);
+                                        if (generateCode)
+                                        {
+                                            p.FileNum = Utility.GetCode(sCode, iCount, 5);
+                                        }
+                                        else
+                                        {
+                                            p.FileNum = sCode;
+                                        }
 
                                         Result result = PatientBus.InsertPatient(ct, p, ph);
                                         if (!result.IsOK)
