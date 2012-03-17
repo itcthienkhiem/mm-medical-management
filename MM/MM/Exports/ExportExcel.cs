@@ -1853,6 +1853,7 @@ namespace MM.Exports
                     string ngaySinh = row["DobStr"].ToString();
                     string gioiTinh = row["GenderAsStr"].ToString();
                     string tinhTrangGiaDinh = row["Tinh_Trang_Gia_Dinh"].ToString();
+                    string mobile = row["Mobile"].ToString();
 
                     workSheet.Cells[rowIndex, 0].Value = stt;
                     workSheet.Cells[rowIndex, 1].Value = maBenhNhan;
@@ -1860,11 +1861,12 @@ namespace MM.Exports
                     workSheet.Cells[rowIndex, 3].Value = ngaySinh;
                     workSheet.Cells[rowIndex, 4].Value = gioiTinh;
                     workSheet.Cells[rowIndex, 5].Value = tinhTrangGiaDinh;
+                    workSheet.Cells[rowIndex, 8].Value = mobile;
                     rowIndex++;
                     stt++;
                 }
 
-                IRange range = workSheet.Cells[string.Format("A3:H{0}", checkedRows.Count + 2)];
+                IRange range = workSheet.Cells[string.Format("A3:J{0}", checkedRows.Count + 2)];
                 range.WrapText = false;
                 range.HorizontalAlignment = HAlign.General;
                 range.VerticalAlignment = VAlign.Top;
@@ -1883,6 +1885,10 @@ namespace MM.Exports
                 range.HorizontalAlignment = HAlign.Center;
                 range.VerticalAlignment = VAlign.Top;
                 range.ShrinkToFit = true;
+
+                range = workSheet.Cells[string.Format("I3:I{0}", checkedRows.Count + 2)];
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
