@@ -621,8 +621,8 @@ namespace MM.Exports
                     string serviceName = row["TenThuoc"].ToString();
                     string donViTinh = row["DonViTinh"].ToString();
                     int soLuong = Convert.ToInt32(row["SoLuong"]);
-                    int donGia = Convert.ToInt32(row["DonGia"]);
                     double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                    int donGia = Convert.ToInt32(Math.Round(thanhTien / soLuong, 0));//Convert.ToInt32(row["DonGia"]);
                     totalPrice += thanhTien;
 
                     range = workSheet.Cells[rowIndex, 0];
