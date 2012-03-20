@@ -189,6 +189,10 @@ namespace MM.Dialogs
                     foreach (DataRow row in dataSource.Rows)
                     {
                         double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                        int soLuong = Convert.ToInt32(row["SoLuong"]);
+                        double donGia = Math.Round(thanhTien / soLuong, 0);
+                        row["DonGia"] = donGia;
+
                         _totalPrice += thanhTien;
                     }
 
@@ -251,6 +255,10 @@ namespace MM.Dialogs
                         foreach (DataRow row in dataSource.Rows)
                         {
                             double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                            int soLuong = Convert.ToInt32(row["SoLuong"]);
+                            double donGia = Math.Round(thanhTien / soLuong, 0);
+                            row["DonGia"] = donGia;
+
                             _totalPrice += thanhTien;
                         }
                     }
