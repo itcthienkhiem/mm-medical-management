@@ -41,12 +41,13 @@
             this.Mobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnMerge = new System.Windows.Forms.Button();
-            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
+            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgDuplicatePatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -151,6 +152,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkTheoSoDienThoai);
             this.panel1.Controls.Add(this.chkMaBenhNhan);
             this.panel1.Controls.Add(this.txtSearchPatient);
             this.panel1.Controls.Add(this.label1);
@@ -159,6 +161,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(867, 37);
             this.panel1.TabIndex = 4;
+            // 
+            // chkMaBenhNhan
+            // 
+            this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Location = new System.Drawing.Point(384, 12);
+            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
+            this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
+            this.chkMaBenhNhan.TabIndex = 4;
+            this.chkMaBenhNhan.Text = "Theo mã bệnh nhân";
+            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
+            this.chkMaBenhNhan.CheckedChanged += new System.EventHandler(this.chkMaBenhNhan_CheckedChanged);
             // 
             // txtSearchPatient
             // 
@@ -206,16 +219,15 @@
             this.btnMerge.UseVisualStyleBackColor = true;
             this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
-            // chkMaBenhNhan
+            // chkTheoSoDienThoai
             // 
-            this.chkMaBenhNhan.AutoSize = true;
-            this.chkMaBenhNhan.Location = new System.Drawing.Point(384, 12);
-            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
-            this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
-            this.chkMaBenhNhan.TabIndex = 4;
-            this.chkMaBenhNhan.Text = "Theo mã bệnh nhân";
-            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
-            this.chkMaBenhNhan.CheckedChanged += new System.EventHandler(this.chkMaBenhNhan_CheckedChanged);
+            this.chkTheoSoDienThoai.AutoSize = true;
+            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(512, 12);
+            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
+            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
+            this.chkTheoSoDienThoai.TabIndex = 7;
+            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
+            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
             // 
             // uDuplicatePatient
             // 
@@ -253,5 +265,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile;
         private System.Windows.Forms.CheckBox chkMaBenhNhan;
+        private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
     }
 }

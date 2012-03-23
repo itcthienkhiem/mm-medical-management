@@ -65,6 +65,7 @@
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
@@ -344,6 +345,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkTheoSoDienThoai);
             this.panel1.Controls.Add(this.chkMaBenhNhan);
             this.panel1.Controls.Add(this.txtSearchPatient);
             this.panel1.Controls.Add(this.label1);
@@ -381,6 +383,16 @@
             this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tìm bệnh nhân:";
+            // 
+            // chkTheoSoDienThoai
+            // 
+            this.chkTheoSoDienThoai.AutoSize = true;
+            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(521, 12);
+            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
+            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
+            this.chkTheoSoDienThoai.TabIndex = 6;
+            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
+            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
             // 
             // uPatientList
             // 
@@ -430,5 +442,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.CheckBox chkMaBenhNhan;
         private System.Windows.Forms.Button btnVaoPhongCho;
+        private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
     }
 }

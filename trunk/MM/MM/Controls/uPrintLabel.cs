@@ -143,35 +143,14 @@ namespace MM.Controls
             string str = txtSearchPatient.Text.ToLower();
             newDataSource = _dataSource.Clone();
 
-            if (!chkMaBenhNhan.Checked)
-            {
-                //FullName
-                results = (from p in _dataSource.AsEnumerable()
-                           where p.Field<string>("FullName") != null &&
-                           p.Field<string>("FullName").Trim() != string.Empty &&
-                           //(p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
-                           //str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0)
-                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-                foreach (DataRow row in results)
-                    newDataSource.Rows.Add(row.ItemArray);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgMembers.DataSource = newDataSource;
-                    return;
-                }
-            }
-            else
+            if (chkMaBenhNhan.Checked)
             {
                 //FileNum
                 results = (from p in _dataSource.AsEnumerable()
                            where p.Field<string>("FileNum") != null &&
                                p.Field<string>("FileNum").Trim() != string.Empty &&
                                //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                           //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                               //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
                            p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0
                            orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                            select p).ToList<DataRow>();
@@ -185,7 +164,48 @@ namespace MM.Controls
                     return;
                 }
             }
-            
+
+            if (chkTheoSoDienThoai.Checked)
+            {
+                //FileNum
+                results = (from p in _dataSource.AsEnumerable()
+                           where p.Field<string>("Mobile") != null &&
+                               p.Field<string>("Mobile").Trim() != string.Empty &&
+                               //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
+                               //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
+                           p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0
+                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                           select p).ToList<DataRow>();
+
+                foreach (DataRow row in results)
+                    newDataSource.Rows.Add(row.ItemArray);
+
+                if (newDataSource.Rows.Count > 0)
+                {
+                    dgMembers.DataSource = newDataSource;
+                    return;
+                }
+            }
+
+            //FullName
+            results = (from p in _dataSource.AsEnumerable()
+                       where p.Field<string>("FullName") != null &&
+                       p.Field<string>("FullName").Trim() != string.Empty &&
+                           //(p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
+                           //str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0)
+                       p.Field<string>("FullName").ToLower().IndexOf(str) >= 0
+                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                       select p).ToList<DataRow>();
+
+            foreach (DataRow row in results)
+                newDataSource.Rows.Add(row.ItemArray);
+
+            if (newDataSource.Rows.Count > 0)
+            {
+                dgMembers.DataSource = newDataSource;
+                return;
+            }
+
             dgMembers.DataSource = newDataSource;
         }
 

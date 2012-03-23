@@ -65,10 +65,11 @@
             this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
+            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
@@ -385,6 +386,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chkTheoSoDienThoai);
             this.panel2.Controls.Add(this.chkMaBenhNhan);
             this.panel2.Controls.Add(this.txtSearchPatient);
             this.panel2.Controls.Add(this.label1);
@@ -393,6 +395,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(681, 38);
             this.panel2.TabIndex = 0;
+            // 
+            // chkMaBenhNhan
+            // 
+            this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Location = new System.Drawing.Point(390, 12);
+            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
+            this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
+            this.chkMaBenhNhan.TabIndex = 5;
+            this.chkMaBenhNhan.Text = "Theo mã bệnh nhân";
+            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
+            this.chkMaBenhNhan.CheckedChanged += new System.EventHandler(this.chkMaBenhNhan_CheckedChanged);
             // 
             // txtSearchPatient
             // 
@@ -422,16 +435,15 @@
             this.panel1.Size = new System.Drawing.Size(681, 38);
             this.panel1.TabIndex = 4;
             // 
-            // chkMaBenhNhan
+            // chkTheoSoDienThoai
             // 
-            this.chkMaBenhNhan.AutoSize = true;
-            this.chkMaBenhNhan.Location = new System.Drawing.Point(390, 12);
-            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
-            this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
-            this.chkMaBenhNhan.TabIndex = 5;
-            this.chkMaBenhNhan.Text = "Theo mã bệnh nhân";
-            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
-            this.chkMaBenhNhan.CheckedChanged += new System.EventHandler(this.chkMaBenhNhan_CheckedChanged);
+            this.chkTheoSoDienThoai.AutoSize = true;
+            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(518, 12);
+            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
+            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
+            this.chkTheoSoDienThoai.TabIndex = 15;
+            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
+            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
             // 
             // dlgMembers
             // 
@@ -501,5 +513,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
         private System.Windows.Forms.CheckBox chkMaBenhNhan;
+        private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
     }
 }
