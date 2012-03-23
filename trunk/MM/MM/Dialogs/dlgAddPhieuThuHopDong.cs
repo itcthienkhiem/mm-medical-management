@@ -136,6 +136,7 @@ namespace MM.Dialogs
                 txtTenKhachHang.Text = drPhieuThu["TenNguoiNop"].ToString();
                 txtTenCongTy.Text = drPhieuThu["TenCongTy"] as string;
                 txtDiaChi.Text = drPhieuThu["DiaChi"] as string;
+                chkDaThuTien.Checked = Convert.ToBoolean(drPhieuThu["DaThuTien"]);
 
                 _phieuThuHopDong.PhieuThuHopDongGUID = Guid.Parse(drPhieuThu["PhieuThuHopDongGUID"].ToString());
 
@@ -271,6 +272,7 @@ namespace MM.Dialogs
                     _phieuThuHopDong.TenCongTy = txtTenCongTy.Text;
                     _phieuThuHopDong.DiaChi = txtDiaChi.Text;
                     _phieuThuHopDong.Status = (byte)Status.Actived;
+                    _phieuThuHopDong.ChuaThuTien = !chkDaThuTien.Checked;
 
                     if (_isNew)
                     {
@@ -342,6 +344,7 @@ namespace MM.Dialogs
                 numThu.Enabled = false;
                 btnOK.Enabled = false;
                 dtpkNgayThu.Enabled = false;
+                chkDaThuTien.Enabled = false;
             }
 
             UpdateGUI();

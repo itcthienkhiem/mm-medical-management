@@ -23,17 +23,17 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE ReceiptDate BETWEEN '{0}' AND '{1}' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE ReceiptDate BETWEEN '{0}' AND '{1}' ORDER BY ReceiptDate DESC",
                         fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
                         (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     
@@ -42,16 +42,16 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE FullName LIKE N'%{0}%' ORDER BY ReceiptDate DESC", tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE FullName LIKE N'%{0}%' ORDER BY ReceiptDate DESC", tenBenhNhan);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
                         (byte)Status.Actived, tenBenhNhan);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ReceiptView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
                         (byte)Status.Deactived, tenBenhNhan);
                     }
                     
@@ -192,9 +192,9 @@ namespace MM.Bussiness
                                 }
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}'\n",
                                 r.ReceiptGUID.ToString(), r.ReceiptCode, r.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), r.Patient.FileNum, 
-                                r.Patient.Contact.FullName, r.Patient.Contact.Address, noteList[index]);
+                                r.Patient.Contact.FullName, r.Patient.Contact.Address, noteList[index], !r.ChuaThuTien);
                         }
 
                         index++;
@@ -253,9 +253,9 @@ namespace MM.Bussiness
                     db.Receipts.InsertOnSubmit(receipt);
                     db.SubmitChanges();
 
-                    desc += string.Format("- Phiếu thu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}'\n",
+                    desc += string.Format("- Phiếu thu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}'\n",
                                receipt.ReceiptGUID.ToString(), receipt.ReceiptCode, receipt.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), receipt.Patient.FileNum,
-                               receipt.Patient.Contact.FullName, receipt.Patient.Contact.Address, receipt.Notes);
+                               receipt.Patient.Contact.FullName, receipt.Patient.Contact.Address, receipt.Notes, !receipt.ChuaThuTien);
 
                     desc += "- Chi tiết phiếu thu được thêm:\n";
 

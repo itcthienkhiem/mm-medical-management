@@ -184,6 +184,10 @@ namespace MM
                 _uPhieuThuHopDongList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uHoaDonHopDongList))
                 _uHoaDonHopDongList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uYKienKhachHangList))
+                _uYKienKhachHangList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uNhatKyLienHeCongTy))
+                _uNhatKyLienHeCongTy.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -667,6 +671,7 @@ namespace MM
                         }
                         else if (functionCode == Const.HoaDonHopDong)
                         {
+                            chamSocKhachHangToolStripMenuItem.Enabled = isLogin;
                             hoaDonHopDongToolStripMenuItem.Enabled = isView && isLogin;
                             _uHoaDonHopDongList.AllowAdd = isAdd;
                             _uHoaDonHopDongList.AllowEdit = isEdit;
@@ -675,6 +680,30 @@ namespace MM
                             _uHoaDonHopDongList.AllowExport = isExport;
                             _uHoaDonHopDongList.AllowImport = isImport;
                             _uHoaDonHopDongList.AllowLock = isLock;
+                        }
+                        else if (functionCode == Const.YKienKhachHang)
+                        {
+                            chamSocKhachHangToolStripMenuItem.Enabled = isLogin;
+                            yKienKhachHangToolStripMenuItem.Enabled = isView && isLogin;
+                            _uYKienKhachHangList.AllowAdd = isAdd;
+                            _uYKienKhachHangList.AllowEdit = isEdit;
+                            _uYKienKhachHangList.AllowDelete = isDelete;
+                            _uYKienKhachHangList.AllowPrint = isPrint;
+                            _uYKienKhachHangList.AllowExport = isExport;
+                            _uYKienKhachHangList.AllowImport = isImport;
+                            _uYKienKhachHangList.AllowLock = isLock;
+                        }
+                        else if (functionCode == Const.NhatKyLienHeCongTy)
+                        {
+                            chamSocKhachHangToolStripMenuItem.Enabled = isLogin;
+                            nhatKyLienHeCongTyToolStripMenuItem.Enabled = isView && isLogin;
+                            _uNhatKyLienHeCongTy.AllowAdd = isAdd;
+                            _uNhatKyLienHeCongTy.AllowEdit = isEdit;
+                            _uNhatKyLienHeCongTy.AllowDelete = isDelete;
+                            _uNhatKyLienHeCongTy.AllowPrint = isPrint;
+                            _uNhatKyLienHeCongTy.AllowExport = isExport;
+                            _uNhatKyLienHeCongTy.AllowImport = isImport;
+                            _uNhatKyLienHeCongTy.AllowLock = isLock;
                         }
                     }
                 }
@@ -794,6 +823,9 @@ namespace MM
                 phucHoiBenhNhanToolStripMenuItem.Enabled = isLogin;
                 phieuThuHopDongToolStripMenuItem.Enabled = isLogin;
                 hoaDonHopDongToolStripMenuItem.Enabled = isLogin;
+                chamSocKhachHangToolStripMenuItem.Enabled = isLogin;
+                yKienKhachHangToolStripMenuItem.Enabled = isLogin;
+                nhatKyLienHeCongTyToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -981,7 +1013,29 @@ namespace MM
                 case "HoaDonHopDong":
                     OnHoaDonHopDong();
                     break;
+
+                case "YKienKhachHang":
+                    OnYKienKhachHang();
+                    break;
+
+                case "NhatKyLienHeCongTy":
+                    OnNhatKyLienHeCongTy();
+                    break;
             }
+        }
+
+        private void OnNhatKyLienHeCongTy()
+        {
+            this.Text = string.Format("{0} - Nhat ky lien he cong ty.", Application.ProductName);
+            ViewControl(_uNhatKyLienHeCongTy);
+            _uNhatKyLienHeCongTy.DisplayAsThread();
+        }
+
+        private void OnYKienKhachHang()
+        {
+            this.Text = string.Format("{0} - Y kien khach hang.", Application.ProductName);
+            ViewControl(_uYKienKhachHangList);
+            _uYKienKhachHangList.DisplayAsThread();
         }
 
         private void OnHoaDonHopDong()
@@ -1327,6 +1381,10 @@ namespace MM
                 _uPhieuThuHopDongList.ClearData();
             else if (ctrl.GetType() == typeof(uHoaDonHopDongList))
                 _uHoaDonHopDongList.ClearData();
+            else if (ctrl.GetType() == typeof(uYKienKhachHangList))
+                _uYKienKhachHangList.ClearData();
+            else if (ctrl.GetType() == typeof(uNhatKyLienHeCongTy))
+                _uNhatKyLienHeCongTy.ClearData();
         }
 
         private void OnDoctorList()

@@ -34,6 +34,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.numThu = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
@@ -70,7 +71,7 @@
             // 
             this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
             this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportInvoice.Location = new System.Drawing.Point(195, 258);
+            this.btnExportInvoice.Location = new System.Drawing.Point(195, 273);
             this.btnExportInvoice.Name = "btnExportInvoice";
             this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
             this.btnExportInvoice.TabIndex = 18;
@@ -83,7 +84,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(305, 258);
+            this.btnCancel.Location = new System.Drawing.Point(305, 273);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 19;
@@ -95,7 +96,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(116, 258);
+            this.btnOK.Location = new System.Drawing.Point(116, 273);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 17;
@@ -104,6 +105,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkDaThuTien);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.numThu);
             this.groupBox1.Controls.Add(this.label13);
@@ -131,10 +133,22 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(7, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(481, 247);
+            this.groupBox1.Size = new System.Drawing.Size(481, 263);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
+            // 
+            // chkDaThuTien
+            // 
+            this.chkDaThuTien.AutoSize = true;
+            this.chkDaThuTien.Checked = true;
+            this.chkDaThuTien.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDaThuTien.Location = new System.Drawing.Point(103, 239);
+            this.chkDaThuTien.Name = "chkDaThuTien";
+            this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
+            this.chkDaThuTien.TabIndex = 72;
+            this.chkDaThuTien.Text = "Đã thu tiền";
+            this.chkDaThuTien.UseVisualStyleBackColor = true;
             // 
             // label14
             // 
@@ -223,6 +237,11 @@
             2,
             0,
             0});
+            this.numCongNo.Minimum = new decimal(new int[] {
+            1316134911,
+            2328,
+            0,
+            -2147483648});
             this.numCongNo.Name = "numCongNo";
             this.numCongNo.Size = new System.Drawing.Size(120, 20);
             this.numCongNo.TabIndex = 64;
@@ -397,7 +416,7 @@
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 288);
+            this.ClientSize = new System.Drawing.Size(497, 303);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnExportInvoice);
             this.Controls.Add(this.btnCancel);
@@ -453,5 +472,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtDichVu;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckBox chkDaThuTien;
     }
 }

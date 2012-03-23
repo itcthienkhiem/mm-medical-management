@@ -143,6 +143,12 @@ spDichVuHopDong
 - Update view: PermissionView, GiaDichVuHopDongView, CompanyContractView
 - Update store: spCheckMember, spCheckMemberByService, spGetCheckList, spGetCheckListByContract
 - Create store: spCheckContractByService
+2012-03-23
+- Update table: Receipt, PhieuThuThuoc, PhieuThuHopDong
+- Update view: ReceiptView
+- Create table: YKienKhachHang, NhatKyLienHeCongTy
+- Create view: NhatKyLienHeCongTy
+- Insert data (Function: YKienKhachHang, NhatKyLienHeCongTy
 
 
 1. Waiting room
