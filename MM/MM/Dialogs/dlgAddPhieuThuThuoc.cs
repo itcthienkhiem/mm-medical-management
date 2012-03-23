@@ -49,6 +49,7 @@ namespace MM.Dialogs
             txtTenBenhNhan.ReadOnly = true;
             txtDiaChi.ReadOnly = true;
             btnChonBenhNhan.Enabled = false;
+            chkDaThuTien.Enabled = false;
             this.Text = "Xem phieu thu";
         }
         #endregion
@@ -124,6 +125,7 @@ namespace MM.Dialogs
                 txtMaBenhNhan.Text = drPhieuThu["MaBenhNhan"] as string;
                 txtTenBenhNhan.Text = drPhieuThu["TenBenhNhan"] as string;
                 txtDiaChi.Text = drPhieuThu["DiaChi"] as string;
+                chkDaThuTien.Checked = Convert.ToBoolean(drPhieuThu["DaThuTien"]);
 
                 _phieuThuThuoc.PhieuThuThuocGUID = Guid.Parse(drPhieuThu["PhieuThuThuocGUID"].ToString());
 
@@ -609,6 +611,7 @@ namespace MM.Dialogs
                     _phieuThuThuoc.DiaChi = txtDiaChi.Text;
                     _phieuThuThuoc.TenCongTy = _tenCongTy;
                     _phieuThuThuoc.Status = (byte)Status.Actived;
+                    _phieuThuThuoc.ChuaThuTien = !chkDaThuTien.Checked;
 
                     if (_isNew)
                     {

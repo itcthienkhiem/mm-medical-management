@@ -445,6 +445,12 @@
     <Compile Include="Controls\uMergePatient.Designer.cs">
       <DependentUpon>uMergePatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uNhatKyLienHeCongTy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNhatKyLienHeCongTy.Designer.cs">
+      <DependentUpon>uNhatKyLienHeCongTy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uNhomThuocList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -583,17 +589,35 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uYKienKhachHangList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
+      <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddGiaDichVuHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\dlgAddGiaDichVuHopDong.Designer.cs">
       <DependentUpon>dlgAddGiaDichVuHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddNhatKyKienHeCongTy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddNhatKyKienHeCongTy.Designer.cs">
+      <DependentUpon>dlgAddNhatKyKienHeCongTy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddPhieuThuHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\dlgAddPhieuThuHopDong.Designer.cs">
       <DependentUpon>dlgAddPhieuThuHopDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddYKienKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddYKienKhachHang.Designer.cs">
+      <DependentUpon>dlgAddYKienKhachHang.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgHoaDonHopDong.cs">
       <SubType>Form</SubType>
@@ -1064,6 +1088,9 @@
     <EmbeddedResource Include="Controls\uMergePatient.resx">
       <DependentUpon>uMergePatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNhatKyLienHeCongTy.resx">
+      <DependentUpon>uNhatKyLienHeCongTy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uNhomThuocList.resx">
       <DependentUpon>uNhomThuocList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1133,11 +1160,20 @@
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
+      <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddGiaDichVuHopDong.resx">
       <DependentUpon>dlgAddGiaDichVuHopDong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddNhatKyKienHeCongTy.resx">
+      <DependentUpon>dlgAddNhatKyKienHeCongTy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddPhieuThuHopDong.resx">
       <DependentUpon>dlgAddPhieuThuHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddYKienKhachHang.resx">
+      <DependentUpon>dlgAddYKienKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgHoaDonHopDong.resx">
       <DependentUpon>dlgHoaDonHopDong.cs</DependentUpon>
@@ -1356,6 +1392,7 @@
     <None Include="Properties\DataSources\MM.Databasae.KetQuaNoiSoiView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.NhatKyLienHeCongTyView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
@@ -1379,6 +1416,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TrackingView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.YKienKhachHang.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -1476,6 +1514,7 @@
     <None Include="Resources\backup-restore-icon.png" />
     <None Include="Resources\lock-icon.png" />
     <None Include="Resources\lock-off-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-03-23.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-17.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-14.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-13.sql" />

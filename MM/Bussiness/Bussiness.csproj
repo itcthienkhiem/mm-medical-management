@@ -102,6 +102,7 @@
     <Compile Include="LogonBus.cs" />
     <Compile Include="LoiKhuyenBus.cs" />
     <Compile Include="LoThuocBus.cs" />
+    <Compile Include="NhatKyLienHeCongTyBus.cs" />
     <Compile Include="NhomThuocBus.cs" />
     <Compile Include="PatientBus.cs" />
     <Compile Include="PhieuThuHopDongBus.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="SymptomBus.cs" />
     <Compile Include="ThuocBus.cs" />
     <Compile Include="TrackingBus.cs" />
+    <Compile Include="YKienKhachHangBus.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
