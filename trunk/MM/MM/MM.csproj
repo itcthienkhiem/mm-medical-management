@@ -619,6 +619,12 @@
     <Compile Include="Dialogs\dlgAddYKienKhachHang.Designer.cs">
       <DependentUpon>dlgAddYKienKhachHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgConfirmThuTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgConfirmThuTien.Designer.cs">
+      <DependentUpon>dlgConfirmThuTien.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgHoaDonHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1174,6 +1180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddYKienKhachHang.resx">
       <DependentUpon>dlgAddYKienKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgConfirmThuTien.resx">
+      <DependentUpon>dlgConfirmThuTien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgHoaDonHopDong.resx">
       <DependentUpon>dlgHoaDonHopDong.cs</DependentUpon>

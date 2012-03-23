@@ -339,44 +339,49 @@ namespace MM.Controls
 
             if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất phiếu thu ?") == DialogResult.No) return;
 
-            if (paidServiceList.Count <= 0)
+            dlgConfirmThuTien dlg = new dlgConfirmThuTien();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
-                foreach (DataRow row in noPaidServiceList)
+                if (paidServiceList.Count <= 0)
                 {
-                    ReceiptDetail detail = new ReceiptDetail();
-                    detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
-                    detail.CreatedDate = DateTime.Now;
-                    detail.CreatedBy = Guid.Parse(Global.UserGUID);
-                    detail.Status = (byte)Status.Actived;
-                    receiptDetails.Add(detail);
-                }
-
-                Receipt receipt = new Receipt();
-                receipt.ReceiptCode = GenerateCode();
-                receipt.PatientGUID = Guid.Parse(_patientGUID);
-                receipt.ReceiptDate = DateTime.Now;
-                receipt.Status = (byte)Status.Actived;
-                receipt.CreatedDate = DateTime.Now;
-                receipt.CreatedBy = Guid.Parse(Global.UserGUID);
-                receipt.IsExportedInVoice = false;
-
-                Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
-                if (result.IsOK)
-                {
-                    base.RaiseExportReceiptChanged();
-                    DisplayAsThread();
-
-                    if (Global.AllowPrintReceipt)
+                    List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
+                    foreach (DataRow row in noPaidServiceList)
                     {
-                        if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
-                            OnPrint(receipt.ReceiptGUID.ToString());
+                        ReceiptDetail detail = new ReceiptDetail();
+                        detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
+                        detail.CreatedDate = DateTime.Now;
+                        detail.CreatedBy = Guid.Parse(Global.UserGUID);
+                        detail.Status = (byte)Status.Actived;
+                        receiptDetails.Add(detail);
                     }
-                }
-                else
-                {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.InsertReceipt"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
+
+                    Receipt receipt = new Receipt();
+                    receipt.ReceiptCode = GenerateCode();
+                    receipt.PatientGUID = Guid.Parse(_patientGUID);
+                    receipt.ReceiptDate = DateTime.Now;
+                    receipt.Status = (byte)Status.Actived;
+                    receipt.CreatedDate = DateTime.Now;
+                    receipt.CreatedBy = Guid.Parse(Global.UserGUID);
+                    receipt.IsExportedInVoice = false;
+                    receipt.ChuaThuTien = !dlg.DaThuTien;
+
+                    Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
+                    if (result.IsOK)
+                    {
+                        base.RaiseExportReceiptChanged();
+                        DisplayAsThread();
+
+                        if (Global.AllowPrintReceipt)
+                        {
+                            if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
+                                OnPrint(receipt.ReceiptGUID.ToString());
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.InsertReceipt"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
+                    }
                 }
             }
         }
