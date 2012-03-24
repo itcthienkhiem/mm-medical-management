@@ -147,8 +147,9 @@ spDichVuHopDong
 - Update table: Receipt, PhieuThuThuoc, PhieuThuHopDong
 - Update view: ReceiptView
 - Create table: YKienKhachHang, NhatKyLienHeCongTy
-- Create view: NhatKyLienHeCongTy
+- Create view: NhatKyLienHeCongTyView, YKienLienHeKhachHang
 - Insert data (Function: YKienKhachHang, NhatKyLienHeCongTy
+- Update view: NhatKyLienHeCongTyView
 
 
 1. Waiting room

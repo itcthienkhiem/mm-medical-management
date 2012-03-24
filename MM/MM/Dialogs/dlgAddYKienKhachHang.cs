@@ -28,6 +28,18 @@ namespace MM.Dialogs
             InitializeComponent();
         }
 
+        public dlgAddYKienKhachHang(object drPatient)
+        {
+            InitializeComponent();
+
+            DataRow patientRow = (DataRow)drPatient;
+
+            txtTenKhachHang.Tag = patientRow["PatientGUID"].ToString();
+            txtTenKhachHang.Text = patientRow["FullName"].ToString();
+            txtSoDienThoai.Text = patientRow["Mobile"].ToString();
+            txtDiaChi.Text = patientRow["Address"].ToString();
+        }
+
         public dlgAddYKienKhachHang(DataRow drYKienKhachHang)
         {
             InitializeComponent();

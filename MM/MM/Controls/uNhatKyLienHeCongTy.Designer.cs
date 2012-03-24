@@ -34,11 +34,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnView = new System.Windows.Forms.Button();
+            this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
+            this.raTenBenhNhan = new System.Windows.Forms.RadioButton();
+            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
+            this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgNhatKyLienHeCongTy = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.nhatKyLienHeCongTyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -47,13 +54,7 @@
             this.congTyLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noiDungLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnView = new System.Windows.Forms.Button();
-            this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
-            this.raTenBenhNhan = new System.Windows.Forms.RadioButton();
-            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
-            this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
+            this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -76,6 +77,76 @@
             this.panel1.Size = new System.Drawing.Size(800, 62);
             this.panel1.TabIndex = 0;
             // 
+            // btnView
+            // 
+            this.btnView.Image = global::MM.Properties.Resources.views_icon;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(377, 31);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 23);
+            this.btnView.TabIndex = 21;
+            this.btnView.Text = "   &Xem";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // txtTenBenhNhan
+            // 
+            this.txtTenBenhNhan.Location = new System.Drawing.Point(95, 33);
+            this.txtTenBenhNhan.Name = "txtTenBenhNhan";
+            this.txtTenBenhNhan.ReadOnly = true;
+            this.txtTenBenhNhan.Size = new System.Drawing.Size(277, 20);
+            this.txtTenBenhNhan.TabIndex = 20;
+            // 
+            // raTenBenhNhan
+            // 
+            this.raTenBenhNhan.AutoSize = true;
+            this.raTenBenhNhan.Location = new System.Drawing.Point(13, 34);
+            this.raTenBenhNhan.Name = "raTenBenhNhan";
+            this.raTenBenhNhan.Size = new System.Drawing.Size(82, 17);
+            this.raTenBenhNhan.TabIndex = 19;
+            this.raTenBenhNhan.Text = "Tên công ty";
+            this.raTenBenhNhan.UseVisualStyleBackColor = true;
+            // 
+            // dtpkDenNgay
+            // 
+            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkDenNgay.Location = new System.Drawing.Point(259, 9);
+            this.dtpkDenNgay.Name = "dtpkDenNgay";
+            this.dtpkDenNgay.Size = new System.Drawing.Size(113, 20);
+            this.dtpkDenNgay.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(202, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "đến ngày";
+            // 
+            // dtpkTuNgay
+            // 
+            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkTuNgay.Location = new System.Drawing.Point(81, 9);
+            this.dtpkTuNgay.Name = "dtpkTuNgay";
+            this.dtpkTuNgay.Size = new System.Drawing.Size(113, 20);
+            this.dtpkTuNgay.TabIndex = 16;
+            // 
+            // raTuNgayToiNgay
+            // 
+            this.raTuNgayToiNgay.AutoSize = true;
+            this.raTuNgayToiNgay.Checked = true;
+            this.raTuNgayToiNgay.Location = new System.Drawing.Point(13, 10);
+            this.raTuNgayToiNgay.Name = "raTuNgayToiNgay";
+            this.raTuNgayToiNgay.Size = new System.Drawing.Size(64, 17);
+            this.raTuNgayToiNgay.TabIndex = 15;
+            this.raTuNgayToiNgay.TabStop = true;
+            this.raTuNgayToiNgay.Text = "Từ ngày";
+            this.raTuNgayToiNgay.UseVisualStyleBackColor = true;
+            this.raTuNgayToiNgay.CheckedChanged += new System.EventHandler(this.raTuNgayToiNgay_CheckedChanged);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnDelete);
@@ -86,16 +157,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(800, 38);
             this.panel2.TabIndex = 1;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgNhatKyLienHeCongTy);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 62);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(800, 344);
-            this.panel3.TabIndex = 2;
             // 
             // btnDelete
             // 
@@ -133,6 +194,16 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgNhatKyLienHeCongTy);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 62);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(800, 344);
+            this.panel3.TabIndex = 2;
+            // 
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
@@ -163,7 +234,8 @@
             this.ngayGioLienHeDataGridViewTextBoxColumn,
             this.congTyLienHeDataGridViewTextBoxColumn,
             this.noiDungLienHeDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn});
+            this.fullNameDataGridViewTextBoxColumn,
+            this.NguoiCapNhat});
             this.dgNhatKyLienHeCongTy.DataSource = this.nhatKyLienHeCongTyViewBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -242,75 +314,13 @@
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fullNameDataGridViewTextBoxColumn.Width = 200;
             // 
-            // btnView
+            // NguoiCapNhat
             // 
-            this.btnView.Image = global::MM.Properties.Resources.views_icon;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(377, 31);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 23);
-            this.btnView.TabIndex = 21;
-            this.btnView.Text = "   &Xem";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // txtTenBenhNhan
-            // 
-            this.txtTenBenhNhan.Location = new System.Drawing.Point(95, 33);
-            this.txtTenBenhNhan.Name = "txtTenBenhNhan";
-            this.txtTenBenhNhan.ReadOnly = true;
-            this.txtTenBenhNhan.Size = new System.Drawing.Size(277, 20);
-            this.txtTenBenhNhan.TabIndex = 20;
-            // 
-            // raTenBenhNhan
-            // 
-            this.raTenBenhNhan.AutoSize = true;
-            this.raTenBenhNhan.Location = new System.Drawing.Point(13, 34);
-            this.raTenBenhNhan.Name = "raTenBenhNhan";
-            this.raTenBenhNhan.Size = new System.Drawing.Size(82, 17);
-            this.raTenBenhNhan.TabIndex = 19;
-            this.raTenBenhNhan.Text = "Tên công ty";
-            this.raTenBenhNhan.UseVisualStyleBackColor = true;
-            // 
-            // dtpkDenNgay
-            // 
-            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkDenNgay.Location = new System.Drawing.Point(259, 9);
-            this.dtpkDenNgay.Name = "dtpkDenNgay";
-            this.dtpkDenNgay.Size = new System.Drawing.Size(113, 20);
-            this.dtpkDenNgay.TabIndex = 18;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(202, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "đến ngày";
-            // 
-            // dtpkTuNgay
-            // 
-            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkTuNgay.Location = new System.Drawing.Point(81, 9);
-            this.dtpkTuNgay.Name = "dtpkTuNgay";
-            this.dtpkTuNgay.Size = new System.Drawing.Size(113, 20);
-            this.dtpkTuNgay.TabIndex = 16;
-            // 
-            // raTuNgayToiNgay
-            // 
-            this.raTuNgayToiNgay.AutoSize = true;
-            this.raTuNgayToiNgay.Checked = true;
-            this.raTuNgayToiNgay.Location = new System.Drawing.Point(13, 10);
-            this.raTuNgayToiNgay.Name = "raTuNgayToiNgay";
-            this.raTuNgayToiNgay.Size = new System.Drawing.Size(64, 17);
-            this.raTuNgayToiNgay.TabIndex = 15;
-            this.raTuNgayToiNgay.TabStop = true;
-            this.raTuNgayToiNgay.Text = "Từ ngày";
-            this.raTuNgayToiNgay.UseVisualStyleBackColor = true;
-            this.raTuNgayToiNgay.CheckedChanged += new System.EventHandler(this.raTuNgayToiNgay_CheckedChanged);
+            this.NguoiCapNhat.DataPropertyName = "NguoiCapNhat";
+            this.NguoiCapNhat.HeaderText = "Người cập nhật";
+            this.NguoiCapNhat.Name = "NguoiCapNhat";
+            this.NguoiCapNhat.ReadOnly = true;
+            this.NguoiCapNhat.Width = 200;
             // 
             // uNhatKyLienHeCongTy
             // 
@@ -342,11 +352,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgNhatKyLienHeCongTy;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ngayGioLienHeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn congTyLienHeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noiDungLienHeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource nhatKyLienHeCongTyViewBindingSource;
         private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.TextBox txtTenBenhNhan;
@@ -355,5 +360,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpkTuNgay;
         private System.Windows.Forms.RadioButton raTuNgayToiNgay;
+        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ngayGioLienHeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn congTyLienHeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noiDungLienHeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
     }
 }

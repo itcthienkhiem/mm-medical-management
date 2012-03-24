@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHang WHERE Status={0} ORDER BY ContactDate DESC", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WHERE Status={0} ORDER BY ContactDate DESC", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -44,12 +44,12 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (isFromDateToDate)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHang WHERE Status={0} AND ContactDate BETWEEN '{1}' AND '{2}' ORDER BY ContactDate DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WHERE Status={0} AND ContactDate BETWEEN '{1}' AND '{2}' ORDER BY ContactDate DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHang WHERE Status={0} AND TenKhachHang LIKE N'%{1}%' ORDER BY ContactDate DESC", 
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WHERE Status={0} AND TenKhachHang LIKE N'%{1}%' ORDER BY ContactDate DESC", 
                         (byte)Status.Actived, tenBenhNhan);
                 }
                 
