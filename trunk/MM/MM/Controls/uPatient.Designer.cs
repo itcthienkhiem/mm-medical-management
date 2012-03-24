@@ -83,6 +83,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnThemYKienKhachHang = new System.Windows.Forms.Button();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
@@ -470,6 +471,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnThemYKienKhachHang);
             this.groupBox1.Controls.Add(this.btnRefresh);
             this.groupBox1.Controls.Add(this.lvService);
             this.groupBox1.Controls.Add(this.txtAge);
@@ -673,6 +675,17 @@
             this.panel3.Size = new System.Drawing.Size(1177, 5);
             this.panel3.TabIndex = 0;
             // 
+            // btnThemYKienKhachHang
+            // 
+            this.btnThemYKienKhachHang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThemYKienKhachHang.Location = new System.Drawing.Point(134, 151);
+            this.btnThemYKienKhachHang.Name = "btnThemYKienKhachHang";
+            this.btnThemYKienKhachHang.Size = new System.Drawing.Size(135, 23);
+            this.btnThemYKienKhachHang.TabIndex = 79;
+            this.btnThemYKienKhachHang.Text = "&Thêm ý kiến khách hàng";
+            this.btnThemYKienKhachHang.UseVisualStyleBackColor = true;
+            this.btnThemYKienKhachHang.Click += new System.EventHandler(this.btnThemYKienKhachHang_Click);
+            // 
             // uPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -756,5 +769,6 @@
         private DevComponents.DotNetBar.TabItem pageKhamNoiSoi;
         private uKetQuaNoiSoiList _uKetQuaNoiSoiList;
         private System.Windows.Forms.ColumnHeader colNguoiDuocChuyenNhuong;
+        private System.Windows.Forms.Button btnThemYKienKhachHang;
     }
 }

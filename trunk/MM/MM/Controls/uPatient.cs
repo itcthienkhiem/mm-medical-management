@@ -180,6 +180,12 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberList"));
             }
         }
+
+        private void btnThemYKienKhachHang_Click(object sender, EventArgs e)
+        {
+            dlgAddYKienKhachHang dlg = new dlgAddYKienKhachHang(_patientRow);
+            dlg.ShowDialog(this);
+        }
         #endregion
 
         #region Window Event Handlers
