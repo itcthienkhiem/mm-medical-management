@@ -637,7 +637,24 @@ namespace MM.Controls
                 return false;
             }
         }
-
+        private string ReFormatDate(string type, string value)
+        {
+            string sRet = value;
+            if (type.ToLower().StartsWith("m"))
+            {
+                char[] split = new char[]{'/'};
+                string[] sTemp = value.Split(split, StringSplitOptions.None);
+                if (sTemp.Count() == 3)
+                {
+                    sRet = sTemp[1] + "/" + sTemp[0] + "/" + sTemp[2];
+                }
+                else
+                {
+                    sRet = value;
+                }
+            }
+            return sRet;
+        }
         private void ImportPatientFromExcel()
         {
             bool generateCode = true;
@@ -671,13 +688,21 @@ namespace MM.Controls
                                 for (int j = 0; j < ColumnCount; j++)
                                 {
                                     string curCellValue = string.Empty;
-                                    if (sheet.Cells[i, j] != null && sheet.Cells[i, j].Value != null)
-                                        curCellValue = sheet.Cells[i, j].Value.ToString().Trim();
-
+                                    if (sheet.Cells[i, j] != null && sheet.Cells[i, j].Value != null && sheet.Cells[i, j].Text!=null)
+                                    {
+                                        //get text, no need to get value
+                                        //curCellValue = sheet.Cells[i, j].Value.ToString().Trim();
+                                        curCellValue = sheet.Cells[i, j].Text.Trim();
+                                    }
                                     //process NULL text in excel 
                                     if (curCellValue.ToUpper() == "NULL")
                                         curCellValue = "";
 
+                                    string sType = sheet.Cells[i, j].NumberFormat.Trim();
+                                    if (sType.Contains("yy"))
+                                    {
+                                        curCellValue = ReFormatDate(sType, curCellValue);
+                                    }
                                     //process "'" character
                                     curCellValue = curCellValue.Replace("'", "''");
                                     if(sheet.Cells[i,j].Font.Name.ToLower().IndexOf("vni")==0)
@@ -721,15 +746,22 @@ namespace MM.Controls
                                             case "gender":
                                             case "sex":
                                                 string s = curCellValue.ToLower();
-                                                if (s == "nam" || s == "male" || s == "m")
-                                                    ct.Gender = (byte)Gender.Male;
+                                                if (s != string.Empty)
+                                                {
+                                                    if (s == "nam" || s == "male" || s == "m")
+                                                        ct.Gender = (byte)Gender.Male;
+                                                    else
+                                                    {
+                                                        ct.Gender = (byte)Gender.Female;
+                                                        if (s == "mf")
+                                                        {
+                                                            ph.Tinh_Trang_Gia_Dinh = "Có gia đình";
+                                                        }
+                                                    }
+                                                }
                                                 else
                                                 {
-                                                    ct.Gender = (byte)Gender.Female;
-                                                    if (s == "mf")
-                                                    {
-                                                        ph.Tinh_Trang_Gia_Dinh = "Có gia đình";
-                                                    }
+                                                    ct.Gender =(byte) Gender.None;
                                                 }
                                                 break;
                                                 //

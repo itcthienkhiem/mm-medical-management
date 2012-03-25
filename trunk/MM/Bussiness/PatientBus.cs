@@ -497,7 +497,7 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 Contact ct = null;
-                ct = db.Contacts.SingleOrDefault<Contact>(c => c.FullName.Trim().ToLower() == fullname.Trim().ToLower() &&
+                ct = db.Contacts.FirstOrDefault<Contact>(c => c.FullName.Trim().ToLower() == fullname.Trim().ToLower() &&
                                                                 c.DobStr.Trim().ToLower() == dobStr.Trim().ToLower() && 
                                                                 c.Gender == gender && c.Source == source && c.DeletedDate == null);
                     
