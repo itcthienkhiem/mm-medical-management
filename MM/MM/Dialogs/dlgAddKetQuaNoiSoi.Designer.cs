@@ -45,9 +45,17 @@
             this.txtLyDoKham = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.picHinh1 = new System.Windows.Forms.PictureBox();
+            this.ctmHinh1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xóaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.picHinh2 = new System.Windows.Forms.PictureBox();
+            this.ctmHinh2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.picHinh3 = new System.Windows.Forms.PictureBox();
+            this.ctmHinh3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.picHinh4 = new System.Windows.Forms.PictureBox();
+            this.ctmHinh4 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.label9 = new System.Windows.Forms.Label();
             this.cboLoaiNoiSoi = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -85,19 +93,16 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
-            this.ctmHinh1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.xóaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctmHinh2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctmHinh3 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctmHinh4 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSaveAndPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).BeginInit();
+            this.ctmHinh1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh2)).BeginInit();
+            this.ctmHinh2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh3)).BeginInit();
+            this.ctmHinh3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh4)).BeginInit();
+            this.ctmHinh4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -110,10 +115,6 @@
             this.ctmCapture.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picWebCam)).BeginInit();
-            this.ctmHinh1.SuspendLayout();
-            this.ctmHinh2.SuspendLayout();
-            this.ctmHinh3.SuspendLayout();
-            this.ctmHinh4.SuspendLayout();
             this.SuspendLayout();
             // 
             // docStaffViewBindingSource
@@ -263,6 +264,20 @@
             this.picHinh1.TabIndex = 13;
             this.picHinh1.TabStop = false;
             // 
+            // ctmHinh1
+            // 
+            this.ctmHinh1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xóaToolStripMenuItem1});
+            this.ctmHinh1.Name = "ctmHinh1";
+            this.ctmHinh1.Size = new System.Drawing.Size(95, 26);
+            // 
+            // xóaToolStripMenuItem1
+            // 
+            this.xóaToolStripMenuItem1.Name = "xóaToolStripMenuItem1";
+            this.xóaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.xóaToolStripMenuItem1.Text = "Xóa";
+            this.xóaToolStripMenuItem1.Click += new System.EventHandler(this.xóaToolStripMenuItem1_Click);
+            // 
             // picHinh2
             // 
             this.picHinh2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -273,6 +288,20 @@
             this.picHinh2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picHinh2.TabIndex = 14;
             this.picHinh2.TabStop = false;
+            // 
+            // ctmHinh2
+            // 
+            this.ctmHinh2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.ctmHinh2.Name = "ctmHinh1";
+            this.ctmHinh2.Size = new System.Drawing.Size(95, 26);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Text = "Xóa";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // picHinh3
             // 
@@ -285,6 +314,20 @@
             this.picHinh3.TabIndex = 15;
             this.picHinh3.TabStop = false;
             // 
+            // ctmHinh3
+            // 
+            this.ctmHinh3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2});
+            this.ctmHinh3.Name = "ctmHinh1";
+            this.ctmHinh3.Size = new System.Drawing.Size(95, 26);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Text = "Xóa";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // picHinh4
             // 
             this.picHinh4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -295,6 +338,20 @@
             this.picHinh4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picHinh4.TabIndex = 16;
             this.picHinh4.TabStop = false;
+            // 
+            // ctmHinh4
+            // 
+            this.ctmHinh4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem3});
+            this.ctmHinh4.Name = "ctmHinh1";
+            this.ctmHinh4.Size = new System.Drawing.Size(95, 26);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(94, 22);
+            this.toolStripMenuItem3.Text = "Xóa";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // label9
             // 
@@ -400,7 +457,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(347, 6);
+            this.btnOK.Location = new System.Drawing.Point(308, 6);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 16;
@@ -412,7 +469,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(426, 6);
+            this.btnCancel.Location = new System.Drawing.Point(466, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 17;
@@ -421,6 +478,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnSaveAndPrint);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnOK);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -747,61 +805,18 @@
             this.imgList.Images.SetKeyName(0, "camera-icon (1).png");
             this.imgList.Images.SetKeyName(1, "clipboard-search-result-icon.png");
             // 
-            // ctmHinh1
+            // btnSaveAndPrint
             // 
-            this.ctmHinh1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xóaToolStripMenuItem1});
-            this.ctmHinh1.Name = "ctmHinh1";
-            this.ctmHinh1.Size = new System.Drawing.Size(95, 26);
-            // 
-            // xóaToolStripMenuItem1
-            // 
-            this.xóaToolStripMenuItem1.Name = "xóaToolStripMenuItem1";
-            this.xóaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.xóaToolStripMenuItem1.Text = "Xóa";
-            this.xóaToolStripMenuItem1.Click += new System.EventHandler(this.xóaToolStripMenuItem1_Click);
-            // 
-            // ctmHinh2
-            // 
-            this.ctmHinh2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.ctmHinh2.Name = "ctmHinh1";
-            this.ctmHinh2.Size = new System.Drawing.Size(95, 26);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem1.Text = "Xóa";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // ctmHinh3
-            // 
-            this.ctmHinh3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2});
-            this.ctmHinh3.Name = "ctmHinh1";
-            this.ctmHinh3.Size = new System.Drawing.Size(95, 26);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItem2.Text = "Xóa";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // ctmHinh4
-            // 
-            this.ctmHinh4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem3});
-            this.ctmHinh4.Name = "ctmHinh1";
-            this.ctmHinh4.Size = new System.Drawing.Size(95, 26);
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(94, 22);
-            this.toolStripMenuItem3.Text = "Xóa";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
+            this.btnSaveAndPrint.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSaveAndPrint.Image = global::MM.Properties.Resources.save;
+            this.btnSaveAndPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveAndPrint.Location = new System.Drawing.Point(387, 6);
+            this.btnSaveAndPrint.Name = "btnSaveAndPrint";
+            this.btnSaveAndPrint.Size = new System.Drawing.Size(75, 25);
+            this.btnSaveAndPrint.TabIndex = 18;
+            this.btnSaveAndPrint.Text = "     &Lưu && In";
+            this.btnSaveAndPrint.UseVisualStyleBackColor = true;
+            this.btnSaveAndPrint.Click += new System.EventHandler(this.btnSaveAndPrint_Click);
             // 
             // dlgAddKetQuaNoiSoi
             // 
@@ -824,9 +839,13 @@
             this.Load += new System.EventHandler(this.dlgAddKetQuaNoiSoi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).EndInit();
+            this.ctmHinh1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picHinh2)).EndInit();
+            this.ctmHinh2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picHinh3)).EndInit();
+            this.ctmHinh3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picHinh4)).EndInit();
+            this.ctmHinh4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -842,10 +861,6 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picWebCam)).EndInit();
-            this.ctmHinh1.ResumeLayout(false);
-            this.ctmHinh2.ResumeLayout(false);
-            this.ctmHinh3.ResumeLayout(false);
-            this.ctmHinh4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -915,6 +930,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ContextMenuStrip ctmHinh4;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.Button btnSaveAndPrint;
 
     }
 }
