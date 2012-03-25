@@ -116,8 +116,13 @@ namespace MM.Bussiness
                                 fullName = s.DocStaff.Contact.FullName;
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Nội dung liên hệ: '{6}', Ghi chú: '{7}'\n",
-                                s.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, s.CongTyLienHe, s.TenNguoiLienHe, s.SoDienThoaiLienHe, s.NoiDungLienHe, s.Note);
+                            string thangKham = string.Empty;
+                            if (s.ThangKham.HasValue)
+                                thangKham = s.ThangKham.Value.ToString("MM/yyyy");
+
+                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Số người khám: '{6}', Tháng khám: '{7}', Nội dung liên hệ: '{8}', Ghi chú: '{9}'\n",
+                                s.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, s.CongTyLienHe, s.TenNguoiLienHe, s.SoDienThoaiLienHe,
+                                s.SoNguoiKham, thangKham, s.NoiDungLienHe, s.Note);
                         }
 
                         index++;
@@ -188,10 +193,14 @@ namespace MM.Bussiness
                             fullName = nhatKyLienHeCongTy.DocStaff.Contact.FullName;
                         }
 
-                        desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Nội dung liên hệ: '{6}', Ghi chú: '{7}'",
+                        string thangKham = string.Empty;
+                        if (nhatKyLienHeCongTy.ThangKham.HasValue)
+                            thangKham = nhatKyLienHeCongTy.ThangKham.Value.ToString("MM/yyyy");
+
+                        desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Số người khám: '{6}', Tháng khám: '{7}', Nội dung liên hệ: '{8}', Ghi chú: '{9}'",
                                  nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName,
-                                 nhatKyLienHeCongTy.CongTyLienHe, nhatKyLienHeCongTy.TenNguoiLienHe, nhatKyLienHeCongTy.SoDienThoaiLienHe, 
-                                 nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note);
+                                 nhatKyLienHeCongTy.CongTyLienHe, nhatKyLienHeCongTy.TenNguoiLienHe, nhatKyLienHeCongTy.SoDienThoaiLienHe, nhatKyLienHeCongTy.SoNguoiKham,
+                                 thangKham, nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -224,6 +233,8 @@ namespace MM.Bussiness
                             nklhct.Status = nhatKyLienHeCongTy.Status;
                             nklhct.TenNguoiLienHe = nhatKyLienHeCongTy.TenNguoiLienHe;
                             nklhct.SoDienThoaiLienHe = nhatKyLienHeCongTy.SoDienThoaiLienHe;
+                            nklhct.SoNguoiKham = nhatKyLienHeCongTy.SoNguoiKham;
+                            nklhct.ThangKham = nhatKyLienHeCongTy.ThangKham;
 
                             //Tracking
                             string docStaffGUID = string.Empty;
@@ -234,8 +245,13 @@ namespace MM.Bussiness
                                 fullName = nklhct.DocStaff.Contact.FullName;
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Nội dung liên hệ: '{6}', Ghi chú: '{7}'",
-                                  nklhct.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, nklhct.CongTyLienHe, nklhct.TenNguoiLienHe, nklhct.SoDienThoaiLienHe, nklhct.NoiDungLienHe, nklhct.Note);
+                            string thangKham = string.Empty;
+                            if (nhatKyLienHeCongTy.ThangKham.HasValue)
+                                thangKham = nklhct.ThangKham.Value.ToString("MM/yyyy");
+
+                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Số người khám: '{6}', Tháng khám: '{7}', Nội dung liên hệ: '{8}', Ghi chú: '{9}'",
+                                  nklhct.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, nklhct.CongTyLienHe, nklhct.TenNguoiLienHe, nklhct.SoDienThoaiLienHe, 
+                                  nklhct.SoNguoiKham, thangKham, nklhct.NoiDungLienHe, nklhct.Note);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
@@ -254,6 +270,50 @@ namespace MM.Bussiness
                     t.Complete();
                 }
 
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result CheckCongTyLienHeExist(string congTy, string nhatKyLienHeCongTyGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                NhatKyLienHeCongTy nklhct = null;
+                if (nhatKyLienHeCongTyGUID == null || nhatKyLienHeCongTyGUID == string.Empty)
+                    nklhct = db.NhatKyLienHeCongTies.SingleOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+                        n.CreatedBy.Value.ToString() == Global.UserGUID && n.Status == (byte)Status.Actived);
+                else
+                    nklhct = db.NhatKyLienHeCongTies.SingleOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+                        n.CreatedBy.Value.ToString() == Global.UserGUID && n.NhatKyLienHeCongTyGUID.ToString() != nhatKyLienHeCongTyGUID &&
+                        n.Status == (byte)Status.Actived);
+
+                if (nklhct == null)
+                    result.Error.Code = ErrorCode.NOT_EXIST;
+                else
+                    result.Error.Code = ErrorCode.EXIST;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
