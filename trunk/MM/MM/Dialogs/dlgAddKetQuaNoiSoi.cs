@@ -24,6 +24,7 @@ namespace MM.Dialogs
         private bool _isContinue = false;
         private WebCam _webCam = null;
         private int _imgCount = 0;
+        private bool _isPrint = false;
         #endregion
 
         #region Constructor
@@ -44,7 +45,15 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
+        public bool IsPrint
+        {
+            get { return _isPrint; }
+        }
 
+        public KetQuaNoiSoi KetQuaNoiSoi
+        {
+            get { return _ketQuaNoiSoi; }
+        }
         #endregion
 
         #region UI Command
@@ -1387,6 +1396,13 @@ namespace MM.Dialogs
             if (picHinh4.Image == null) return;
             picHinh4.Image = null;
         }
+
+        private void btnSaveAndPrint_Click(object sender, EventArgs e)
+        {
+            _isPrint = true;
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
+        }
         #endregion
 
         #region Working Thread
@@ -1407,7 +1423,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
     }
 }
