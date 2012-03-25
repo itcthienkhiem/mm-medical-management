@@ -44451,6 +44451,10 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
+		private int _SoNguoiKham;
+		
+		private System.Nullable<System.DateTime> _ThangKham;
+		
 		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
@@ -44487,6 +44491,10 @@ namespace MM.Databasae
     partial void OnDeletedByChanged();
     partial void OnStatusChanging(byte value);
     partial void OnStatusChanged();
+    partial void OnSoNguoiKhamChanging(int value);
+    partial void OnSoNguoiKhamChanged();
+    partial void OnThangKhamChanging(System.Nullable<System.DateTime> value);
+    partial void OnThangKhamChanged();
     #endregion
 		
 		public NhatKyLienHeCongTy()
@@ -44799,6 +44807,46 @@ namespace MM.Databasae
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNguoiKham", DbType="Int NOT NULL")]
+		public int SoNguoiKham
+		{
+			get
+			{
+				return this._SoNguoiKham;
+			}
+			set
+			{
+				if ((this._SoNguoiKham != value))
+				{
+					this.OnSoNguoiKhamChanging(value);
+					this.SendPropertyChanging();
+					this._SoNguoiKham = value;
+					this.SendPropertyChanged("SoNguoiKham");
+					this.OnSoNguoiKhamChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThangKham", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ThangKham
+		{
+			get
+			{
+				return this._ThangKham;
+			}
+			set
+			{
+				if ((this._ThangKham != value))
+				{
+					this.OnThangKhamChanging(value);
+					this.SendPropertyChanging();
+					this._ThangKham = value;
+					this.SendPropertyChanged("ThangKham");
+					this.OnThangKhamChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_NhatKyLienHeCongTy", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true, DeleteRule="CASCADE")]
 		public DocStaff DocStaff
 		{
@@ -44897,6 +44945,10 @@ namespace MM.Databasae
 		private string _TenNguoiLienHe;
 		
 		private string _SoDienThoaiLienHe;
+		
+		private int _SoNguoiKham;
+		
+		private System.Nullable<System.DateTime> _ThangKham;
 		
 		public NhatKyLienHeCongTyView()
 		{
@@ -45218,6 +45270,38 @@ namespace MM.Databasae
 				if ((this._SoDienThoaiLienHe != value))
 				{
 					this._SoDienThoaiLienHe = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNguoiKham", DbType="Int NOT NULL")]
+		public int SoNguoiKham
+		{
+			get
+			{
+				return this._SoNguoiKham;
+			}
+			set
+			{
+				if ((this._SoNguoiKham != value))
+				{
+					this._SoNguoiKham = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThangKham", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ThangKham
+		{
+			get
+			{
+				return this._ThangKham;
+			}
+			set
+			{
+				if ((this._ThangKham != value))
+				{
+					this._ThangKham = value;
 				}
 			}
 		}

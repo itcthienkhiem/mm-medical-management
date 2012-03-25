@@ -128,6 +128,13 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
+                    string userGUID = row["CreatedBy"].ToString();
+                    if (userGUID != Global.UserGUID)
+                    {
+                        MsgBox.Show(Application.ProductName, "Bạn không thể xóa nhật ký liên hệ công ty của người khác. Vui lòng kiểm tra lại.", IconType.Information);
+                        return;
+                    }
+
                     deletedSpecList.Add(row["NhatKyLienHeCongTyGUID"].ToString());
                     deletedRows.Add(row);
                 }

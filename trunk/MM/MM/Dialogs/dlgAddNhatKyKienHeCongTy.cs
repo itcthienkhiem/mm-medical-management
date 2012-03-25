@@ -19,7 +19,7 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private NhatKyLienHeCongTy _nhatKyLienHeCongTy = new NhatKyLienHeCongTy();
         private DataRow _drNhatKyLienHeCongTy = null;
-
+        private bool _isView = false;
         #endregion
 
         #region Constructor
@@ -46,6 +46,19 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void InitData()
+        {
+            //cboThang.SelectedIndex = DateTime.Now.Month - 1;
+
+            cboNam.Items.Add(string.Empty);
+            for (int i = 1990; i <= 2200; i++)
+            {
+                cboNam.Items.Add(i.ToString()); 
+            }
+
+            //cboNam.Text = DateTime.Now.Year.ToString();
+        }
+
         private void DisplayCongTyLienHeList()
         {
             dtpkNgayGioLienHe.Value = DateTime.Now;
@@ -74,6 +87,14 @@ namespace MM.Dialogs
                 txtNoiDungLienHe.Text = drNhatKyLienHeCongTy["NoiDungLienHe"] as string;
                 txtNguoiLienHe.Text = drNhatKyLienHeCongTy["TenNguoiLienHe"] as string;
                 txtSoDienThoaiLienHe.Text = drNhatKyLienHeCongTy["SoDienThoaiLienHe"] as string;
+                numSoNguoiKham.Value = Convert.ToInt32(drNhatKyLienHeCongTy["SoNguoiKham"]);
+                if (drNhatKyLienHeCongTy["ThangKham"] != null && drNhatKyLienHeCongTy["ThangKham"] != DBNull.Value)
+                {
+                    chkThangKham.Checked = true;
+                    DateTime dt = Convert.ToDateTime(drNhatKyLienHeCongTy["ThangKham"]);
+                    cboThang.SelectedIndex = dt.Month;
+                    cboNam.Text = dt.Year.ToString();
+                }
 
                 _nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID = Guid.Parse(drNhatKyLienHeCongTy["NhatKyLienHeCongTyGUID"].ToString());
 
@@ -96,6 +117,22 @@ namespace MM.Dialogs
                     _nhatKyLienHeCongTy.DeletedBy = Guid.Parse(drNhatKyLienHeCongTy["DeletedBy"].ToString());
 
                 _nhatKyLienHeCongTy.Status = Convert.ToByte(drNhatKyLienHeCongTy["Status"]);
+
+                string userGUID = drNhatKyLienHeCongTy["CreatedBy"].ToString();
+                if (userGUID != Global.UserGUID)
+                {
+                    dtpkNgayGioLienHe.Enabled = false;
+                    cboCongTyLienHe.Enabled = false;
+                    txtNguoiLienHe.Enabled = false;
+                    txtSoDienThoaiLienHe.Enabled = false;
+                    numSoNguoiKham.Enabled = false;
+                    chkThangKham.Enabled = false;
+                    cboThang.Enabled = false;
+                    cboNam.Enabled = false;
+                    txtNoiDungLienHe.Enabled = false;
+                    btnOK.Enabled = false;
+                    _isView = true;
+                }
             }
             catch (Exception e)
             {
@@ -127,6 +164,45 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (chkThangKham.Checked)
+            {
+                if (cboThang.Text == string.Empty)
+                {
+                    MsgBox.Show(this.Text, "Vui lòng nhập tháng.", IconType.Information);
+                    cboThang.Focus();
+                    return false;
+                }
+
+                if (cboNam.Text == string.Empty)
+                {
+                    MsgBox.Show(this.Text, "Vui lòng nhập năm.", IconType.Information);
+                    cboNam.Focus();
+                    return false;
+                }
+            }
+
+            string nhatKyLienHeCongTyGUID = string.Empty;
+            if (!_isNew) nhatKyLienHeCongTyGUID = _nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID.ToString();
+
+            Result result = NhatKyLienHeCongTyBus.CheckCongTyLienHeExist(cboCongTyLienHe.Text, nhatKyLienHeCongTyGUID);
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
+                    MsgBox.Show(this.Text, string.Format("Công ty: '{0}' đã liên hệ trước rồi. Vui lòng cập nhật thông tin cho công ty này.", cboCongTyLienHe.Text), 
+                        IconType.Information);
+
+                    _isView = true;
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.CheckCongTyLienHeExist"), IconType.Error);
+                return false;
+            }
+
+
             return true;
         }
 
@@ -157,7 +233,7 @@ namespace MM.Dialogs
                 if (_isNew)
                 {
                     _nhatKyLienHeCongTy.CreatedDate = DateTime.Now;
-                    _nhatKyLienHeCongTy.DeletedBy = Guid.Parse(Global.UserGUID);
+                    _nhatKyLienHeCongTy.CreatedBy = Guid.Parse(Global.UserGUID);
                 }
                 else
                 {
@@ -179,6 +255,12 @@ namespace MM.Dialogs
                     _nhatKyLienHeCongTy.Note = string.Empty;
                     _nhatKyLienHeCongTy.TenNguoiLienHe = txtNguoiLienHe.Text;
                     _nhatKyLienHeCongTy.SoDienThoaiLienHe = txtSoDienThoaiLienHe.Text;
+                    _nhatKyLienHeCongTy.SoNguoiKham = (int)numSoNguoiKham.Value;
+
+                    if (chkThangKham.Checked)
+                        _nhatKyLienHeCongTy.ThangKham = new DateTime(Convert.ToInt32(cboNam.Text), Convert.ToInt32(cboThang.Text), 1);
+                    else
+                        _nhatKyLienHeCongTy.ThangKham = null;
 
                     Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(_nhatKyLienHeCongTy);
                     if (!result.IsOK)
@@ -203,6 +285,7 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgAddNhatKyKienHeCongTy_Load(object sender, EventArgs e)
         {
+            InitData();
             DisplayCongTyLienHeList();
             if (!_isNew) DisplayInfo(_drNhatKyLienHeCongTy);
         }
@@ -213,10 +296,10 @@ namespace MM.Dialogs
             {
                 if (CheckInfo())
                     SaveInfoAsThread();
-                else
+                else if (!_isView)
                     e.Cancel = true;
             }
-            else
+            else if (!_isView)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu nhật ký liên hệ công ty ?") == System.Windows.Forms.DialogResult.Yes)
                 {
@@ -229,6 +312,15 @@ namespace MM.Dialogs
                         e.Cancel = true;
                 }
             }
+        }
+
+        private void chkThangKham_CheckedChanged(object sender, EventArgs e)
+        {
+            cboThang.Enabled = chkThangKham.Checked;
+            cboNam.Enabled = chkThangKham.Checked;
+
+            if (chkThangKham.Checked)
+                cboNam.Text = DateTime.Now.Year.ToString();
         }
         #endregion
 
@@ -250,5 +342,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

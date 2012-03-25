@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddNhatKyKienHeCongTy));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboNam = new System.Windows.Forms.ComboBox();
+            this.cboThang = new System.Windows.Forms.ComboBox();
+            this.numSoNguoiKham = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtSoDienThoaiLienHe = new System.Windows.Forms.TextBox();
+            this.txtNguoiLienHe = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.txtNoiDungLienHe = new System.Windows.Forms.TextBox();
             this.cboCongTyLienHe = new System.Windows.Forms.ComboBox();
             this.dtpkNgayGioLienHe = new System.Windows.Forms.DateTimePicker();
@@ -38,15 +46,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtNguoiLienHe = new System.Windows.Forms.TextBox();
-            this.txtSoDienThoaiLienHe = new System.Windows.Forms.TextBox();
+            this.chkThangKham = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoNguoiKham)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkThangKham);
+            this.groupBox1.Controls.Add(this.cboNam);
+            this.groupBox1.Controls.Add(this.cboThang);
+            this.groupBox1.Controls.Add(this.numSoNguoiKham);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtSoDienThoaiLienHe);
             this.groupBox1.Controls.Add(this.txtNguoiLienHe);
             this.groupBox1.Controls.Add(this.label5);
@@ -59,20 +70,116 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(4, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(404, 192);
+            this.groupBox1.Size = new System.Drawing.Size(404, 238);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // cboNam
+            // 
+            this.cboNam.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboNam.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboNam.DropDownHeight = 105;
+            this.cboNam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNam.DropDownWidth = 75;
+            this.cboNam.Enabled = false;
+            this.cboNam.FormattingEnabled = true;
+            this.cboNam.IntegralHeight = false;
+            this.cboNam.Location = new System.Drawing.Point(150, 129);
+            this.cboNam.Name = "cboNam";
+            this.cboNam.Size = new System.Drawing.Size(75, 21);
+            this.cboNam.TabIndex = 9;
+            // 
+            // cboThang
+            // 
+            this.cboThang.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboThang.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboThang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboThang.Enabled = false;
+            this.cboThang.FormattingEnabled = true;
+            this.cboThang.Items.AddRange(new object[] {
+            "",
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "06",
+            "07",
+            "08",
+            "09",
+            "10",
+            "11",
+            "12"});
+            this.cboThang.Location = new System.Drawing.Point(109, 129);
+            this.cboThang.Name = "cboThang";
+            this.cboThang.Size = new System.Drawing.Size(39, 21);
+            this.cboThang.TabIndex = 8;
+            // 
+            // numSoNguoiKham
+            // 
+            this.numSoNguoiKham.Location = new System.Drawing.Point(109, 106);
+            this.numSoNguoiKham.Maximum = new decimal(new int[] {
+            99999999,
+            0,
+            0,
+            0});
+            this.numSoNguoiKham.Name = "numSoNguoiKham";
+            this.numSoNguoiKham.Size = new System.Drawing.Size(88, 20);
+            this.numSoNguoiKham.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(25, 108);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 13);
+            this.label6.TabIndex = 8;
+            this.label6.Text = "Số người khám:";
+            // 
+            // txtSoDienThoaiLienHe
+            // 
+            this.txtSoDienThoaiLienHe.Location = new System.Drawing.Point(109, 84);
+            this.txtSoDienThoaiLienHe.Name = "txtSoDienThoaiLienHe";
+            this.txtSoDienThoaiLienHe.Size = new System.Drawing.Size(154, 20);
+            this.txtSoDienThoaiLienHe.TabIndex = 6;
+            // 
+            // txtNguoiLienHe
+            // 
+            this.txtNguoiLienHe.Location = new System.Drawing.Point(109, 62);
+            this.txtNguoiLienHe.Name = "txtNguoiLienHe";
+            this.txtNguoiLienHe.Size = new System.Drawing.Size(284, 20);
+            this.txtNguoiLienHe.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(31, 87);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(75, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Số ĐT liên hệ:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(34, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Người liên hệ:";
+            // 
             // txtNoiDungLienHe
             // 
-            this.txtNoiDungLienHe.Location = new System.Drawing.Point(109, 106);
+            this.txtNoiDungLienHe.Location = new System.Drawing.Point(109, 153);
             this.txtNoiDungLienHe.Multiline = true;
             this.txtNoiDungLienHe.Name = "txtNoiDungLienHe";
             this.txtNoiDungLienHe.Size = new System.Drawing.Size(284, 75);
-            this.txtNoiDungLienHe.TabIndex = 7;
+            this.txtNoiDungLienHe.TabIndex = 10;
             // 
             // cboCongTyLienHe
             // 
+            this.cboCongTyLienHe.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCongTyLienHe.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCongTyLienHe.FormattingEnabled = true;
             this.cboCongTyLienHe.Location = new System.Drawing.Point(109, 39);
             this.cboCongTyLienHe.MaxLength = 255;
@@ -92,7 +199,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 109);
+            this.label3.Location = new System.Drawing.Point(19, 156);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 13);
             this.label3.TabIndex = 2;
@@ -121,7 +228,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(208, 198);
+            this.btnCancel.Location = new System.Drawing.Point(208, 244);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 10;
@@ -133,44 +240,23 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(129, 198);
+            this.btnOK.Location = new System.Drawing.Point(129, 244);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 9;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // chkThangKham
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 66);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Người liên hệ:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 87);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(75, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Số ĐT liên hệ:";
-            // 
-            // txtNguoiLienHe
-            // 
-            this.txtNguoiLienHe.Location = new System.Drawing.Point(109, 62);
-            this.txtNguoiLienHe.Name = "txtNguoiLienHe";
-            this.txtNguoiLienHe.Size = new System.Drawing.Size(284, 20);
-            this.txtNguoiLienHe.TabIndex = 5;
-            // 
-            // txtSoDienThoaiLienHe
-            // 
-            this.txtSoDienThoaiLienHe.Location = new System.Drawing.Point(109, 84);
-            this.txtSoDienThoaiLienHe.Name = "txtSoDienThoaiLienHe";
-            this.txtSoDienThoaiLienHe.Size = new System.Drawing.Size(154, 20);
-            this.txtSoDienThoaiLienHe.TabIndex = 6;
+            this.chkThangKham.AutoSize = true;
+            this.chkThangKham.Location = new System.Drawing.Point(17, 131);
+            this.chkThangKham.Name = "chkThangKham";
+            this.chkThangKham.Size = new System.Drawing.Size(89, 17);
+            this.chkThangKham.TabIndex = 11;
+            this.chkThangKham.Text = "Tháng khám:";
+            this.chkThangKham.UseVisualStyleBackColor = true;
+            this.chkThangKham.CheckedChanged += new System.EventHandler(this.chkThangKham_CheckedChanged);
             // 
             // dlgAddNhatKyKienHeCongTy
             // 
@@ -178,7 +264,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(413, 228);
+            this.ClientSize = new System.Drawing.Size(413, 274);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -194,6 +280,7 @@
             this.Load += new System.EventHandler(this.dlgAddNhatKyKienHeCongTy_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoNguoiKham)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -213,5 +300,10 @@
         private System.Windows.Forms.TextBox txtNguoiLienHe;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cboNam;
+        private System.Windows.Forms.ComboBox cboThang;
+        private System.Windows.Forms.NumericUpDown numSoNguoiKham;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chkThangKham;
     }
 }
