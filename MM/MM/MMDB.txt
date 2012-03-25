@@ -150,6 +150,9 @@ spDichVuHopDong
 - Create view: NhatKyLienHeCongTyView, YKienLienHeKhachHang
 - Insert data (Function: YKienKhachHang, NhatKyLienHeCongTy
 - Update view: NhatKyLienHeCongTyView
+2012-03-25
+- Update table: NhatKyLienHeCongTy
+- Update view: NhatKyLienHeCongTyView
 
 
 1. Waiting room

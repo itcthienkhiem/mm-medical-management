@@ -52,6 +52,8 @@
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayGioLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.congTyLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNguoiLienHe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoDienThoaiLienHe = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noiDungLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,7 +76,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 62);
+            this.panel1.Size = new System.Drawing.Size(959, 62);
             this.panel1.TabIndex = 0;
             // 
             // btnView
@@ -155,7 +157,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 406);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 38);
+            this.panel2.Size = new System.Drawing.Size(959, 38);
             this.panel2.TabIndex = 1;
             // 
             // btnDelete
@@ -201,7 +203,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 62);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(800, 344);
+            this.panel3.Size = new System.Drawing.Size(959, 344);
             this.panel3.TabIndex = 2;
             // 
             // chkChecked
@@ -233,6 +235,8 @@
             this.colChecked,
             this.ngayGioLienHeDataGridViewTextBoxColumn,
             this.congTyLienHeDataGridViewTextBoxColumn,
+            this.TenNguoiLienHe,
+            this.SoDienThoaiLienHe,
             this.noiDungLienHeDataGridViewTextBoxColumn,
             this.fullNameDataGridViewTextBoxColumn,
             this.NguoiCapNhat});
@@ -255,7 +259,7 @@
             this.dgNhatKyLienHeCongTy.ReadOnly = true;
             this.dgNhatKyLienHeCongTy.RowHeadersWidth = 30;
             this.dgNhatKyLienHeCongTy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgNhatKyLienHeCongTy.Size = new System.Drawing.Size(800, 344);
+            this.dgNhatKyLienHeCongTy.Size = new System.Drawing.Size(959, 344);
             this.dgNhatKyLienHeCongTy.TabIndex = 4;
             this.dgNhatKyLienHeCongTy.DoubleClick += new System.EventHandler(this.dgYKienKhachHang_DoubleClick);
             // 
@@ -298,6 +302,21 @@
             this.congTyLienHeDataGridViewTextBoxColumn.ReadOnly = true;
             this.congTyLienHeDataGridViewTextBoxColumn.Width = 250;
             // 
+            // TenNguoiLienHe
+            // 
+            this.TenNguoiLienHe.DataPropertyName = "TenNguoiLienHe";
+            this.TenNguoiLienHe.HeaderText = "Người liên hệ";
+            this.TenNguoiLienHe.Name = "TenNguoiLienHe";
+            this.TenNguoiLienHe.ReadOnly = true;
+            this.TenNguoiLienHe.Width = 200;
+            // 
+            // SoDienThoaiLienHe
+            // 
+            this.SoDienThoaiLienHe.DataPropertyName = "SoDienThoaiLienHe";
+            this.SoDienThoaiLienHe.HeaderText = "Số ĐT liên hệ";
+            this.SoDienThoaiLienHe.Name = "SoDienThoaiLienHe";
+            this.SoDienThoaiLienHe.ReadOnly = true;
+            // 
             // noiDungLienHeDataGridViewTextBoxColumn
             // 
             this.noiDungLienHeDataGridViewTextBoxColumn.DataPropertyName = "NoiDungLienHe";
@@ -330,7 +349,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uNhatKyLienHeCongTy";
-            this.Size = new System.Drawing.Size(800, 444);
+            this.Size = new System.Drawing.Size(959, 444);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -363,6 +382,8 @@
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayGioLienHeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn congTyLienHeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNguoiLienHe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoDienThoaiLienHe;
         private System.Windows.Forms.DataGridViewTextBoxColumn noiDungLienHeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;

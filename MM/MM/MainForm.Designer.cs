@@ -455,7 +455,6 @@
             // 
             resources.ApplyResources(this._uPatientHistory, "_uPatientHistory");
             this._uPatientHistory.Name = "_uPatientHistory";
-            this._uPatientHistory.PatientRow = null;
             // 
             // _uPatientList
             // 
