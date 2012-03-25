@@ -72,6 +72,8 @@ namespace MM.Dialogs
                 dtpkNgayGioLienHe.Value = Convert.ToDateTime(drNhatKyLienHeCongTy["NgayGioLienHe"]);
                 cboCongTyLienHe.Text = drNhatKyLienHeCongTy["CongTyLienHe"] as string;
                 txtNoiDungLienHe.Text = drNhatKyLienHeCongTy["NoiDungLienHe"] as string;
+                txtNguoiLienHe.Text = drNhatKyLienHeCongTy["TenNguoiLienHe"] as string;
+                txtSoDienThoaiLienHe.Text = drNhatKyLienHeCongTy["SoDienThoaiLienHe"] as string;
 
                 _nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID = Guid.Parse(drNhatKyLienHeCongTy["NhatKyLienHeCongTyGUID"].ToString());
 
@@ -108,6 +110,20 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập công ty liên hệ.", IconType.Information);
                 cboCongTyLienHe.Focus();
+                return false;
+            }
+
+            if (txtNguoiLienHe.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập tên người liên hệ.", IconType.Information);
+                txtNguoiLienHe.Focus();
+                return false;
+            }
+
+            if (txtSoDienThoaiLienHe.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập số điện thoại liên hệ.", IconType.Information);
+                txtSoDienThoaiLienHe.Focus();
                 return false;
             }
 
@@ -161,6 +177,8 @@ namespace MM.Dialogs
                     _nhatKyLienHeCongTy.CongTyLienHe = cboCongTyLienHe.Text;
                     _nhatKyLienHeCongTy.NoiDungLienHe = txtNoiDungLienHe.Text;
                     _nhatKyLienHeCongTy.Note = string.Empty;
+                    _nhatKyLienHeCongTy.TenNguoiLienHe = txtNguoiLienHe.Text;
+                    _nhatKyLienHeCongTy.SoDienThoaiLienHe = txtSoDienThoaiLienHe.Text;
 
                     Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(_nhatKyLienHeCongTy);
                     if (!result.IsOK)

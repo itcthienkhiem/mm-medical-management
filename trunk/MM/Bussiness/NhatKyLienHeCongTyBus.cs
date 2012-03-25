@@ -116,8 +116,8 @@ namespace MM.Bussiness
                                 fullName = s.DocStaff.Contact.FullName;
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Nội dung liên hệ: '{4}', Ghi chú: '{5}'\n",
-                                s.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, s.CongTyLienHe, s.NoiDungLienHe, s.Note);
+                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Nội dung liên hệ: '{6}', Ghi chú: '{7}'\n",
+                                s.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, s.CongTyLienHe, s.TenNguoiLienHe, s.SoDienThoaiLienHe, s.NoiDungLienHe, s.Note);
                         }
 
                         index++;
@@ -188,9 +188,10 @@ namespace MM.Bussiness
                             fullName = nhatKyLienHeCongTy.DocStaff.Contact.FullName;
                         }
 
-                        desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Nội dung liên hệ: '{4}', Ghi chú: '{5}'",
+                        desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Nội dung liên hệ: '{6}', Ghi chú: '{7}'",
                                  nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName,
-                                 nhatKyLienHeCongTy.CongTyLienHe, nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note);
+                                 nhatKyLienHeCongTy.CongTyLienHe, nhatKyLienHeCongTy.TenNguoiLienHe, nhatKyLienHeCongTy.SoDienThoaiLienHe, 
+                                 nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -221,6 +222,8 @@ namespace MM.Bussiness
                             nklhct.DeletedDate = nhatKyLienHeCongTy.DeletedDate;
                             nklhct.DeletedBy = nhatKyLienHeCongTy.DeletedBy;
                             nklhct.Status = nhatKyLienHeCongTy.Status;
+                            nklhct.TenNguoiLienHe = nhatKyLienHeCongTy.TenNguoiLienHe;
+                            nklhct.SoDienThoaiLienHe = nhatKyLienHeCongTy.SoDienThoaiLienHe;
 
                             //Tracking
                             string docStaffGUID = string.Empty;
@@ -231,8 +234,8 @@ namespace MM.Bussiness
                                 fullName = nklhct.DocStaff.Contact.FullName;
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Nội dung liên hệ: '{4}', Ghi chú: '{5}'",
-                                  nklhct.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, nklhct.CongTyLienHe, nklhct.NoiDungLienHe, nklhct.Note);
+                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Nội dung liên hệ: '{6}', Ghi chú: '{7}'",
+                                  nklhct.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, nklhct.CongTyLienHe, nklhct.TenNguoiLienHe, nklhct.SoDienThoaiLienHe, nklhct.NoiDungLienHe, nklhct.Note);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();

@@ -16,7 +16,7 @@ namespace MM.Controls
     public partial class uPatientHistory : uBase
     {
         #region Members
-        private object _patientRow = null;
+        private DataRow _patientRow = null;
         private bool _isFirst = true;
         #endregion
 
@@ -27,38 +27,65 @@ namespace MM.Controls
         }
         #endregion
 
-        #region Properties
-        public object PatientRow
-        {
-            get { return _patientRow; }
-            set { _patientRow = value; }
-        }
-        #endregion
-
         #region UI Command
-        public void Display()
+        public void Display(string patientGUID, DataTable dtPatient)
         {
-            DataRow row = _patientRow as DataRow;
-            string fileNum = row["FileNum"] as string;
-            string fullName = row["Fullname"] as string;
-
-            DockContainerItem item = GetDockContainerItem(fileNum);
-            if (item == null)
-                AddDockContainerItem(fileNum, fullName);
+            if (dtPatient == null)
+                docBar.Visible = false;
             else
             {
-                PanelDockContainer p = item.Control as PanelDockContainer;
-                uPatient ctrl = p.Controls[0] as uPatient;
-                ctrl.PatientRow = _patientRow;
-                ctrl.DisplayInfo();
-                item.Visible = true;
-                item.Selected = true;
-            }
+                DataRow[] rows = null;
+                bool isAddNew = true;
+                //Update patient row to all doctab
+                foreach (DockContainerItem item in docBar.Items)
+                {
+                    if (item.Control.Tag == null) continue;
+                    string id = item.Control.Tag.ToString();
+                    rows = dtPatient.Select(string.Format("PatientGUID='{0}'", id));
 
-            docBar.Visible = true;
+                    if (id != patientGUID)
+                    {
+                        if (rows != null && rows.Length > 0)
+                        {
+                            PanelDockContainer p = item.Control as PanelDockContainer;
+                            uPatient ctrl = p.Controls[0] as uPatient;
+                            ctrl.PatientRow = rows[0];
+                            item.Visible = true;
+                        }
+                        else
+                            item.Visible = false;
+                    }
+                    else
+                    {
+                        PanelDockContainer p = item.Control as PanelDockContainer;
+                        uPatient ctrl = p.Controls[0] as uPatient;
+                        p.Tag = patientGUID;
+                        ctrl.PatientRow = rows[0];
+                        ctrl.DisplayInfo();
+                        item.Visible = true;
+                        item.Selected = true;
+                        isAddNew = false;
+                    }
+                }
+
+                if (isAddNew)
+                {
+                    rows = dtPatient.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                    if (rows != null && rows.Length > 0)
+                    {
+                        _patientRow = rows[0];
+
+                        string fileNum = _patientRow["FileNum"] as string;
+                        string fullName = _patientRow["Fullname"] as string;
+                        AddDockContainerItem(fileNum, fullName, patientGUID);
+                    }
+                }
+
+                docBar.Visible = true;
+            }
         }
 
-        private void AddDockContainerItem(string fileNum, string fullName)
+        private void AddDockContainerItem(string fileNum, string fullName, string patientGUID)
         {
             if (_isFirst)
             {
@@ -70,12 +97,14 @@ namespace MM.Controls
                 {
                     uPatient ctrl = new uPatient();
                     ctrl.PatientRow = _patientRow;
+                    panelDockContainer1.Tag = patientGUID;
                     panelDockContainer1.Controls.Add(ctrl);
                     ctrl.Dock = DockStyle.Fill;
                     ctrl.DisplayInfo();
                 }
                 else
                 {
+                    panelDockContainer1.Tag = patientGUID;
                     uPatient ctrl = panelDockContainer1.Controls[0] as uPatient;
                     ctrl.PatientRow = _patientRow;
                     ctrl.DisplayInfo();
@@ -93,6 +122,7 @@ namespace MM.Controls
                 p.Style.BorderColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.BarDockedBorder;
                 p.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
                 p.Style.GradientAngle = 90;
+                p.Tag = patientGUID;
 
                 uPatient ctrl = new uPatient();
                 ctrl.PatientRow = _patientRow;
@@ -107,11 +137,11 @@ namespace MM.Controls
             }
         }
 
-        private DockContainerItem GetDockContainerItem(string fileNum)
+        private DockContainerItem GetDockContainerItem(string patientGUID)
         {
             foreach (DockContainerItem item in docBar.Items)
             {
-                if (item.Name.Trim().ToLower() == fileNum.Trim().ToLower())
+                if (item.Control.Tag != null && item.Control.Tag.ToString() == patientGUID)
                     return item;
             }
 

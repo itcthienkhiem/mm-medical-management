@@ -1452,12 +1452,15 @@ namespace MM
 
         private void OnPatientHistory(object patientRow)
         {
+            if (_flag) AddPatientToList((DataRow)patientRow);
+
             this.Text = string.Format("{0} - Thong tin benh nhan", Application.ProductName);
             ViewControl(_uPatientHistory);
-            _uPatientHistory.PatientRow = patientRow;
-            _uPatientHistory.Display();
+            string patientGUID = (patientRow as DataRow)["PatientGUID"].ToString();
+            //_uPatientHistory.PatientRow = patientRow;
+            DataTable dtPatient = _uPatientList.DataSource as DataTable;
+            _uPatientHistory.Display(patientGUID, dtPatient);
 
-            if (_flag) AddPatientToList((DataRow)patientRow);
         }
 
         private void AddPatientToList(DataRow patientRow)
