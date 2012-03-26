@@ -1523,6 +1523,7 @@
     <None Include="Resources\backup-restore-icon.png" />
     <None Include="Resources\lock-icon.png" />
     <None Include="Resources\lock-off-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-03-26.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-25.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-23.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-03-17.sql" />

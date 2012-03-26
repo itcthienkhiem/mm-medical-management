@@ -20,25 +20,24 @@ namespace MM.Dialogs
         private string _patientGUID = string.Empty;
         private CanDo _canDo = new CanDo();
         private DataRow _drCanDo = null;
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
         public dlgAddCanDo(string patientGUID)
         {
             InitializeComponent();
-            //InitData();
             _patientGUID = patientGUID;
         }
 
-        public dlgAddCanDo(string patientGUID, DataRow drCanDo)
+        public dlgAddCanDo(string patientGUID, DataRow drCanDo, bool allowEdit)
         {
             InitializeComponent();
-            //InitData();
             _isNew = false;
+            _allowEdit = allowEdit;
             this.Text = "Sua can do";
             _patientGUID = patientGUID;
             _drCanDo = drCanDo;
-            //DisplayInfo(drCanDo);
         }
         #endregion
 
@@ -139,6 +138,12 @@ namespace MM.Dialogs
                     _canDo.DeletedBy = Guid.Parse(drCanDo["DeletedBy"].ToString());
 
                 _canDo.Status = Convert.ToByte(drCanDo["Status"]);
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    groupBox1.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -276,7 +281,7 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
+            else if (_allowEdit)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin cân đo ?") == System.Windows.Forms.DialogResult.Yes)
                 {

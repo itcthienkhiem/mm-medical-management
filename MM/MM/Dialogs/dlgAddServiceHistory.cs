@@ -26,6 +26,7 @@ namespace MM.Dialogs
         private ChiDinh _chiDinh = null;
         private bool _isExported = false;
         private DataTable _dtCheckList = null;
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
@@ -35,10 +36,11 @@ namespace MM.Dialogs
             _patientGUID = patientGUID;
         }
 
-        public dlgAddServiceHistory(string patientGUID, DataRow drServiceHistory)
+        public dlgAddServiceHistory(string patientGUID, DataRow drServiceHistory, bool allowEdit)
         {
             InitializeComponent();
             _isNew = false;
+            _allowEdit = allowEdit;
             _patientGUID = patientGUID;
             this.Text = "Sua su dung dich vu";
             _drServiceHistory = drServiceHistory;
@@ -276,6 +278,12 @@ namespace MM.Dialogs
                     _chiDinh = (ChiDinh)result.QueryResult;
                     cboBacSiChiDinh.SelectedValue = _chiDinh.BacSiChiDinhGUID.ToString();
                     chkBSCD.Checked = true;
+                }
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    groupBox1.Enabled = _allowEdit;
                 }
             }
             catch (Exception e)
@@ -726,7 +734,7 @@ namespace MM.Dialogs
             }
             else
             {
-                if (!_isExported && MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin dịch vụ sử dụng ?") == System.Windows.Forms.DialogResult.Yes)
+                if (!_isExported && _allowEdit && MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin dịch vụ sử dụng ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (CheckInfo())
                     {
@@ -780,26 +788,27 @@ namespace MM.Dialogs
                 _isExported = Convert.ToBoolean(_drServiceHistory["IsExported"]);
                 if (_isExported)
                 {
-                    cboService.Enabled = false;
-                    btnChonDichVu.Enabled = false;
-                    raKhamTuTuc.Enabled = false;
-                    raKhamTheoHopDong.Enabled = false;
-                    cboDocStaff.Enabled = false;
-                    chkBSCD.Enabled = false;
-                    cboBacSiChiDinh.Enabled = false;
-                    chkChuyenNhuong.Enabled = false;
-                    txtChuyenNhuong.ReadOnly= true;
-                    btnChonBenhNhan.Enabled = false;
-                    numPrice.Enabled = false;
-                    numDiscount.Enabled = false;
-                    dtpkActiveDate.Enabled = false;
-                    raNegative.Enabled = false;
-                    raNormal.Enabled = false;
-                    chkAbnormal.Enabled = false;
-                    chkNormal.Enabled = false;
-                    chkPositive.Enabled = false;
-                    chkNegative.Enabled = false;
-                    txtDescription.Enabled = false;
+                    //cboService.Enabled = false;
+                    //btnChonDichVu.Enabled = false;
+                    //raKhamTuTuc.Enabled = false;
+                    //raKhamTheoHopDong.Enabled = false;
+                    //cboDocStaff.Enabled = false;
+                    //chkBSCD.Enabled = false;
+                    //cboBacSiChiDinh.Enabled = false;
+                    //chkChuyenNhuong.Enabled = false;
+                    //txtChuyenNhuong.ReadOnly= true;
+                    //btnChonBenhNhan.Enabled = false;
+                    //numPrice.Enabled = false;
+                    //numDiscount.Enabled = false;
+                    //dtpkActiveDate.Enabled = false;
+                    //raNegative.Enabled = false;
+                    //raNormal.Enabled = false;
+                    //chkAbnormal.Enabled = false;
+                    //chkNormal.Enabled = false;
+                    //chkPositive.Enabled = false;
+                    //chkNegative.Enabled = false;
+                    //txtDescription.Enabled = false;
+                    groupBox1.Enabled = false;
                     btnOK.Enabled = false;
                 }
             }

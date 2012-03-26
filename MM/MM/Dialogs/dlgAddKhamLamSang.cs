@@ -20,8 +20,8 @@ namespace MM.Dialogs
         private string _patientGUID = string.Empty;
         private KetQuaLamSang _ketQuaLamSang = new KetQuaLamSang();
         private DataRow _drKetQuaLamSang = null;
-        //private bool _isNgoaiKhoa = true;
         private int _type = 0; //0: Ngoại khoa; 1: Nội khoa; 2: Phụ khoa
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
@@ -31,9 +31,10 @@ namespace MM.Dialogs
             _patientGUID = patientGUID;
         }
 
-        public dlgAddKhamLamSang(string patientGUID, DataRow drKetQuaLamSang)
+        public dlgAddKhamLamSang(string patientGUID, DataRow drKetQuaLamSang, bool allowEdit)
         {
             InitializeComponent();
+            _allowEdit = allowEdit;
             _patientGUID = patientGUID;
             _drKetQuaLamSang = drKetQuaLamSang;
             _isNew = false;
@@ -125,12 +126,6 @@ namespace MM.Dialogs
                 else
                     cboDocStaff.Enabled = true;
             }
-
-            /*if (Global.StaffType == StaffType.BacSi)
-            {
-                cboDocStaff.SelectedValue = Global.UserGUID;
-                cboDocStaff.Enabled = false;
-            }*/
         }
 
         private void DisplayInfo(DataRow drKetQuaLamSang)
@@ -139,7 +134,6 @@ namespace MM.Dialogs
             {
                 _ketQuaLamSang.KetQuaLamSangGUID = Guid.Parse(drKetQuaLamSang["KetQuaLamSangGUID"].ToString());
                 dtpkNgay.Value = Convert.ToDateTime(drKetQuaLamSang["NgayKham"]);
-                
 
                 CoQuan coQuan = (CoQuan)Convert.ToInt32(drKetQuaLamSang["CoQuan"]);
                 bool normal = Convert.ToBoolean(drKetQuaLamSang["Normal"]);
@@ -299,6 +293,12 @@ namespace MM.Dialogs
                     _ketQuaLamSang.DeletedBy = Guid.Parse(drKetQuaLamSang["DeletedBy"].ToString());
 
                 _ketQuaLamSang.Status = Convert.ToByte(drKetQuaLamSang["Status"]);
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    groupBox1.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -503,7 +503,7 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
+            else if (_allowEdit)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin khám lâm sàng ?") == System.Windows.Forms.DialogResult.Yes)
                 {

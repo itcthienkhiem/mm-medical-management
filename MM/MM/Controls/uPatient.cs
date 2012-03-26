@@ -96,8 +96,17 @@ namespace MM.Controls
             txtFullAddress.Text ="Địa chỉ: " + row["Address"].ToString();
             txtThuocDiUng.Text = row["Thuoc_Di_Ung"].ToString();
 
-            OnRefreshData();
+            pageDailyService.Visible = Global.AllowViewDichVuDaSuDung;
+            pageServiceHistory.Visible = Global.AllowViewDichVuDaSuDung;
+            pageKeToa.Visible = Global.AllowViewKeToa;
             pageChiDinh.Visible = Global.AllowViewChiDinh;
+            pageCanDo.Visible = Global.AllowViewCanDo;
+            pageKhamLamSang.Visible = Global.AllowViewKhamLamSang;
+            pageLoiKhuyen.Visible = Global.AllowViewLoiKhuyen;
+            pageKetLuan.Visible = Global.AllowViewKetLuan;
+            pageKhamNoiSoi.Visible = Global.AllowViewKhamNoiSoi;
+
+            OnRefreshData();
         }
 
         private void OnRefreshData()
