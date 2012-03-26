@@ -45,7 +45,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            btnEdit.Enabled = AllowEdit;
+            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
@@ -122,54 +122,6 @@ namespace MM.Controls
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
-                /*DataTable dt = dgToaThuoc.DataSource as DataTable;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["ToaThuocGUID"] = dlg.ToaThuoc.ToaThuocGUID.ToString();
-                newRow["MaToaThuoc"] = dlg.ToaThuoc.MaToaThuoc;
-                newRow["NgayKeToa"] = dlg.ToaThuoc.NgayKeToa;
-                newRow["NgayKham"] = dlg.ToaThuoc.NgayKham;
-
-                if (dlg.ToaThuoc.NgayTaiKham != null && dlg.ToaThuoc.NgayTaiKham.HasValue)
-                    newRow["NgayTaiKham"] = dlg.ToaThuoc.NgayTaiKham;
-                else
-                    newRow["NgayTaiKham"] = DBNull.Value;
-
-                newRow["BacSiKeToa"] = dlg.ToaThuoc.BacSiKeToa;
-                newRow["BenhNhan"] = dlg.ToaThuoc.BenhNhan;
-                newRow["TenBacSi"] = dlg.TenBacSi;
-                newRow["TenBenhNhan"] = dlg.TenBenhNhan;
-                newRow["DobStr"] = dlg.NgaySinh;
-                newRow["GenderAsStr"] = dlg.GioiTinh;
-                newRow["Address"] = dlg.DiaChi;
-                newRow["Mobile"] = dlg.DienThoai;
-                newRow["ChanDoan"] = dlg.ToaThuoc.ChanDoan;
-                newRow["Note"] = dlg.ToaThuoc.Note;
-                newRow["Loai"] = dlg.ToaThuoc.Loai;
-                newRow["LoaiStr"] = (LoaiToaThuoc)dlg.ToaThuoc.Loai == LoaiToaThuoc.Chung ? "Toa chung" : "Toa sản khoa";
-
-                if (dlg.ToaThuoc.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.ToaThuoc.CreatedDate;
-
-                if (dlg.ToaThuoc.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.ToaThuoc.CreatedBy.ToString();
-
-                if (dlg.ToaThuoc.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.ToaThuoc.UpdatedDate;
-
-                if (dlg.ToaThuoc.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.ToaThuoc.UpdatedBy.ToString();
-
-                if (dlg.ToaThuoc.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.ToaThuoc.DeletedDate;
-
-                if (dlg.ToaThuoc.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.ToaThuoc.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.ToaThuoc.Status;
-                dt.Rows.Add(newRow);
-                //SelectLastedRow();*/
             }
         }
 
@@ -182,50 +134,10 @@ namespace MM.Controls
             }
 
             DataRow drToaThuoc = (dgToaThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddToaThuoc dlg = new dlgAddToaThuoc(drToaThuoc);
+            dlgAddToaThuoc dlg = new dlgAddToaThuoc(drToaThuoc, AllowEdit);
             if (_patientRow != null) dlg.PatientRow = _patientRow;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                /*drToaThuoc["MaToaThuoc"] = dlg.ToaThuoc.MaToaThuoc;
-                drToaThuoc["NgayKeToa"] = dlg.ToaThuoc.NgayKeToa;
-                drToaThuoc["NgayKham"] = dlg.ToaThuoc.NgayKham;
-                if (dlg.ToaThuoc.NgayTaiKham != null && dlg.ToaThuoc.NgayTaiKham.HasValue)
-                    drToaThuoc["NgayTaiKham"] = dlg.ToaThuoc.NgayTaiKham;
-                else
-                    drToaThuoc["NgayTaiKham"] = DBNull.Value;
-                drToaThuoc["BacSiKeToa"] = dlg.ToaThuoc.BacSiKeToa;
-                drToaThuoc["BenhNhan"] = dlg.ToaThuoc.BenhNhan;
-                drToaThuoc["TenBacSi"] = dlg.TenBacSi;
-                drToaThuoc["TenBenhNhan"] = dlg.TenBenhNhan;
-                drToaThuoc["DobStr"] = dlg.NgaySinh;
-                drToaThuoc["GenderAsStr"] = dlg.GioiTinh;
-                drToaThuoc["Address"] = dlg.DiaChi;
-                drToaThuoc["Mobile"] = dlg.DienThoai;
-                drToaThuoc["ChanDoan"] = dlg.ToaThuoc.ChanDoan;
-                drToaThuoc["Note"] = dlg.ToaThuoc.Note;
-                drToaThuoc["Loai"] = dlg.ToaThuoc.Loai;
-                drToaThuoc["LoaiStr"] = (LoaiToaThuoc)dlg.ToaThuoc.Loai == LoaiToaThuoc.Chung ? "Toa chung" : "Toa sản khoa";
-
-                if (dlg.ToaThuoc.CreatedDate.HasValue)
-                    drToaThuoc["CreatedDate"] = dlg.ToaThuoc.CreatedDate;
-
-                if (dlg.ToaThuoc.CreatedBy.HasValue)
-                    drToaThuoc["CreatedBy"] = dlg.ToaThuoc.CreatedBy.ToString();
-
-                if (dlg.ToaThuoc.UpdatedDate.HasValue)
-                    drToaThuoc["UpdatedDate"] = dlg.ToaThuoc.UpdatedDate;
-
-                if (dlg.ToaThuoc.UpdatedBy.HasValue)
-                    drToaThuoc["UpdatedBy"] = dlg.ToaThuoc.UpdatedBy.ToString();
-
-                if (dlg.ToaThuoc.DeletedDate.HasValue)
-                    drToaThuoc["DeletedDate"] = dlg.ToaThuoc.DeletedDate;
-
-                if (dlg.ToaThuoc.DeletedBy.HasValue)
-                    drToaThuoc["DeletedBy"] = dlg.ToaThuoc.DeletedBy.ToString();
-
-                drToaThuoc["Status"] = dlg.ToaThuoc.Status;*/
-
                 DisplayAsThread();
             }
         }
@@ -352,7 +264,7 @@ namespace MM.Controls
 
         private void dgThuoc_DoubleClick(object sender, EventArgs e)
         {
-            if (!AllowEdit) return;
+            //if (!AllowEdit) return;
             OnEditToaThuoc();
         }
 

@@ -38,7 +38,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            btnEdit.Enabled = AllowEdit;
+            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
@@ -156,7 +156,7 @@ namespace MM.Controls
 
             string symptomGUID = (dgSymptom.SelectedRows[0].DataBoundItem as DataRowView).Row["SymptomGUID"].ToString();
             DataRow drSymp = GetDataRow(symptomGUID);
-            dlgAddSymptom dlg = new dlgAddSymptom(drSymp);
+            dlgAddSymptom dlg = new dlgAddSymptom(drSymp, AllowEdit);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 drSymp["Code"] = dlg.Symptom.Code;
@@ -334,7 +334,7 @@ namespace MM.Controls
         #region Window Event Handlers
         private void dgSymptom_DoubleClick(object sender, EventArgs e)
         {
-            if (!AllowEdit) return;
+            //if (!AllowEdit) return;
             OnEditSymptom();
         }
 

@@ -44,7 +44,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            btnEdit.Enabled = AllowEdit;
+            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
         }
 
@@ -312,7 +312,7 @@ namespace MM.Controls
             string loThuocGUID = (dgLoThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row["LoThuocGUID"].ToString();
             DataRow drLoThuoc = GetDataRow(loThuocGUID);
             if (drLoThuoc == null) return;
-            dlgAddLoThuoc dlg = new dlgAddLoThuoc(drLoThuoc);
+            dlgAddLoThuoc dlg = new dlgAddLoThuoc(drLoThuoc, AllowEdit);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 drLoThuoc["MaLoThuoc"] = dlg.LoThuoc.MaLoThuoc;
@@ -429,7 +429,7 @@ namespace MM.Controls
 
         private void dgLoThuoc_DoubleClick(object sender, EventArgs e)
         {
-            if (!AllowEdit) return;
+            //if (!AllowEdit) return;
             OnEditLoThuoc();
         }
 

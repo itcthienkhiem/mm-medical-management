@@ -22,24 +22,22 @@ namespace MM.Dialogs
         private PatientHistory _patientHistory = new PatientHistory();
         private DataRow _drPatient = null;
         private bool _flag = false;
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
         public dlgAddPatient()
         {
             InitializeComponent();
-            //InitData();
-            //GenerateCode();
         }
 
-        public dlgAddPatient(DataRow drPatient)
+        public dlgAddPatient(DataRow drPatient, bool allowEdit)
         {
             InitializeComponent();
-            //InitData();
             _isNew = false;
+            _allowEdit = allowEdit;
             this.Text = "Sua benh nhan";
             _drPatient = drPatient;
-            //DisplayInfo(drPatient);
         }
         #endregion
 
@@ -309,6 +307,13 @@ namespace MM.Dialogs
 
                 if (drPatient["Dang_Co_Thai"] != null && drPatient["Dang_Co_Thai"] != DBNull.Value)
                     chkDangCoThai.Checked = Convert.ToBoolean(drPatient["Dang_Co_Thai"]);
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    tabControlPanel1.Enabled = _allowEdit;
+                    tabControlPanel2.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -461,7 +466,7 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
+            else if (_allowEdit)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin bệnh nhân ?") == System.Windows.Forms.DialogResult.Yes)
                 {

@@ -19,6 +19,7 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private Contact _contact = new Contact();
         private DocStaff _docStaff = new DocStaff();
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
@@ -28,11 +29,12 @@ namespace MM.Dialogs
             InitData();
         }
 
-        public dlgAddDocStaff(DataRow drDocStaff)
+        public dlgAddDocStaff(DataRow drDocStaff, bool allowEdit)
         {
             InitializeComponent();
             InitData();
             _isNew = false;
+            _allowEdit = allowEdit;
             this.Text = "Sua nhan vien";
             DisplayInfo(drDocStaff);
         }       
@@ -212,6 +214,12 @@ namespace MM.Dialogs
 
                 if (drDocStaff["DeletedBy"] != null && drDocStaff["DeletedBy"] != DBNull.Value)
                     _contact.DeletedBy = Guid.Parse(drDocStaff["DeletedBy"].ToString());
+
+                if (!_allowEdit)
+                {
+                    groupBox1.Enabled = _allowEdit;
+                    btnOK.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -351,7 +359,7 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
+            else if (_allowEdit)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin nhân viên ?") == System.Windows.Forms.DialogResult.Yes)
                 {

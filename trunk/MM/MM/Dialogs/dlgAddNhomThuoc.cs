@@ -22,23 +22,23 @@ namespace MM.Dialogs
         private List<string> _deletedThuocs = new List<string>();
         private List<DataRow> _deletedThuocRows = new List<DataRow>();
         private DataRow _drNhomThuoc = null;
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
         public dlgAddNhomThuoc()
         {
             InitializeComponent();
-            //DisplayThuocListAsThread(Guid.Empty.ToString());
             GenerateCode();
         }
 
-        public dlgAddNhomThuoc(DataRow drNhomThuoc)
+        public dlgAddNhomThuoc(DataRow drNhomThuoc, bool allowEdit)
         {
             InitializeComponent();
             _isNew = false;
+            _allowEdit = allowEdit;
             this.Text = "Sua nhom thuoc";
             _drNhomThuoc = drNhomThuoc;
-            //DisplayInfo(drNhomThuoc);
         }
         #endregion
 
@@ -97,6 +97,13 @@ namespace MM.Dialogs
                 _nhomThuoc.Status = Convert.ToByte(drNhomThuoc["Status"]);
 
                 DisplayThuocListAsThread(_nhomThuoc.NhomThuocGUID.ToString());
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    tabControlPanel1.Enabled = _allowEdit;
+                    panel1.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -336,7 +343,7 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
+            else if (_allowEdit)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin nhóm thuốc ?") == System.Windows.Forms.DialogResult.Yes)
                 {

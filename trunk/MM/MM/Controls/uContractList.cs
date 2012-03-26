@@ -36,7 +36,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            btnEdit.Enabled = AllowEdit;
+            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnKhoa.Enabled = AllowLock;
             btnMoKhoa.Enabled = AllowLock;
@@ -166,7 +166,7 @@ namespace MM.Controls
             DataRow drCon = GetDataRow(hopDongGUID);
             if (drCon == null) return;
 
-            dlgAddContract dlg = new dlgAddContract(drCon);
+            dlgAddContract dlg = new dlgAddContract(drCon, AllowEdit);
             dlg.OnOpenPatient += new OpenPatientHandler(dlg_OnOpenPatient);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -369,7 +369,7 @@ namespace MM.Controls
 
         private void dgContract_DoubleClick(object sender, EventArgs e)
         {
-            if (!AllowEdit) return;
+            //if (!AllowEdit) return;
             OnEditContract();
         }
 

@@ -31,7 +31,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            btnEdit.Enabled = AllowEdit;
+            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
         }
 
@@ -157,7 +157,7 @@ namespace MM.Controls
             }
 
             DataRow drDocStaff = (dgDocStaff.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddDocStaff dlg = new dlgAddDocStaff(drDocStaff);
+            dlgAddDocStaff dlg = new dlgAddDocStaff(drDocStaff, AllowEdit);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 drDocStaff["FullName"] = dlg.Contact.FullName;
@@ -265,7 +265,7 @@ namespace MM.Controls
 
         private void dgDocStaff_DoubleClick(object sender, EventArgs e)
         {
-            if (!AllowEdit) return;
+            //if (!AllowEdit) return;
             OnEditDocStaff();
         }
 

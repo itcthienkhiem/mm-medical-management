@@ -25,22 +25,22 @@ namespace MM.Dialogs
         private bool _isAscending = true;
         private bool _flag = true;
         private DataRow _drCompany = null;
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
         public dlgAddCompany()
         {
             InitializeComponent();
-            //DisplayMembersAsThread(Guid.Empty.ToString());
             GenerateCode();
         }
 
-        public dlgAddCompany(DataRow drCompany)
+        public dlgAddCompany(DataRow drCompany, bool allowEdit)
         {
             InitializeComponent();
             _isNew  = false;
+            _allowEdit = allowEdit;
             this.Text = "Sua cong ty";
-            //DisplayInfo(drCompany);
             _drCompany = drCompany;
         }
         #endregion
@@ -104,6 +104,14 @@ namespace MM.Dialogs
                 _company.Status = Convert.ToByte(drCompany["Status"]);
 
                 DisplayMembersAsThread(_company.CompanyGUID.ToString());
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    tabControlPanel1.Enabled = _allowEdit;
+                    btnAdd.Enabled = _allowEdit;
+                    btnDelete.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -474,15 +482,18 @@ namespace MM.Dialogs
                     return;
                 }
 
-                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin công ty ?") == System.Windows.Forms.DialogResult.Yes)
+                if (_allowEdit)
                 {
-                    if (CheckInfo())
+                    if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin công ty ?") == System.Windows.Forms.DialogResult.Yes)
                     {
-                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                        SaveInfoAsThread();
+                        if (CheckInfo())
+                        {
+                            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                            SaveInfoAsThread();
+                        }
+                        else
+                            e.Cancel = true;
                     }
-                    else
-                        e.Cancel = true;
                 }
             }
         }

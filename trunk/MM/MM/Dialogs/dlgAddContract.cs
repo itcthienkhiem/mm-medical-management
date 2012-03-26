@@ -29,27 +29,25 @@ namespace MM.Dialogs
         private bool _isAscending = true;
         private DataRow _drContract = null;
         private bool _isLock = false;
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
         public dlgAddContract()
         {
             InitializeComponent();
-            //InitData();
-            //DisplayDetailAsThread(Guid.Empty.ToString());
             GenerateCode();
         }
 
-        public dlgAddContract(DataRow drContract)
+        public dlgAddContract(DataRow drContract, bool allowEdit)
         {
             InitializeComponent();
-            //InitData();
             _isNew = false;
+            _allowEdit = allowEdit;
             btnDSNVChuaKham.Visible = true;
             btnDSNVChuaKhamDu.Visible = true;
             btnDSNVKhamDu.Visible = true;
             this.Text = "Sua hop dong";
-            //DisplayInfo(drContract);
             _drContract = drContract;
         }
         #endregion
@@ -144,6 +142,22 @@ namespace MM.Dialogs
                 }
 
                 DisplayDetailAsThread(_contract.CompanyContractGUID.ToString());
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    txtCode.Enabled = _allowEdit;
+                    txtName.Enabled = _allowEdit;
+                    cboCompany.Enabled = _allowEdit;
+                    dtpkBeginDate.Enabled = _allowEdit;
+                    chkCompleted.Enabled = _allowEdit;
+                    dtpkEndDate.Enabled = _allowEdit;
+                    panel5.Enabled = _allowEdit;
+                    btnAddMember.Enabled = _allowEdit;
+                    btnDeleteMember.Enabled = _allowEdit;
+                    btnAddService.Enabled = _allowEdit;
+                    btnDeleteService.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -1085,7 +1099,7 @@ namespace MM.Dialogs
                     return;
                 }
 
-                if (!_isLock)
+                if (!_isLock && _allowEdit)
                 {
                     if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin hợp đồng ?") == System.Windows.Forms.DialogResult.Yes)
                     {
@@ -1300,6 +1314,7 @@ namespace MM.Dialogs
         private void dgGiaDichVu_DoubleClick(object sender, EventArgs e)
         {
             if (!_isNew && _isLock) return;
+            if (!_allowEdit) return;
             OnEditGiaDichVu();
         }
 
