@@ -41,8 +41,15 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            btnAdd.Enabled = Global.AllowAddCanDo;
+            btnDelete.Enabled = Global.AllowDeleteCanDo;
+        }
+
         public void DisplayAsThread()
         {
+            UpdateGUI();
             if (_patientRow == null) return;
 
             try
@@ -115,7 +122,7 @@ namespace MM.Controls
             }
 
             DataRow drCanDo = (dgCanDo.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddCanDo dlg = new dlgAddCanDo(_patientGUID, drCanDo);
+            dlgAddCanDo dlg = new dlgAddCanDo(_patientGUID, drCanDo, Global.AllowEditCanDo);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();

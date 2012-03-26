@@ -25,6 +25,7 @@ namespace MM.Dialogs
         private WebCam _webCam = null;
         private int _imgCount = 0;
         private bool _isPrint = false;
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
@@ -34,9 +35,10 @@ namespace MM.Dialogs
             _patientGUID = patientGUID;
         }
 
-        public dlgAddKetQuaNoiSoi(string patientGUID, DataRow drKetQuaNoiSoi)
+        public dlgAddKetQuaNoiSoi(string patientGUID, DataRow drKetQuaNoiSoi, bool allowEdit)
         {
             InitializeComponent();
+            _allowEdit = allowEdit;
             _patientGUID = patientGUID;
             _drKetQuaNoiSoi = drKetQuaNoiSoi;
             _isNew = false;
@@ -130,32 +132,8 @@ namespace MM.Dialogs
             }
         }
 
-        //private void GenerateCode()
-        //{
-        //    Cursor.Current = Cursors.WaitCursor;
-        //    Result result = KetQuaNoiSoiBus.GetKetQuaNoiSoiCount();
-        //    if (result.IsOK)
-        //    {
-        //        int count = Convert.ToInt32(result.QueryResult);
-        //        string strDate = DateTime.Now.ToString("yyyyMMdd");
-        //        txtSoPhieu.Text = Utility.GetCode(strDate, count + 1, 4);
-        //    }
-        //    else
-        //    {
-        //        MsgBox.Show(this.Text, result.GetErrorAsString("KetQuaNoiSoiBus.GetKetQuaNoiSoiCount"), IconType.Error);
-        //        Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaNoiSoiBus.GetKetQuaNoiSoiCount"));
-        //    }
-        //}
-
         private bool CheckInfo()
         {
-            //if (txtSoPhieu.Text.Trim() == string.Empty)
-            //{
-            //    MsgBox.Show(this.Text, "Vui lòng số phiếu.", IconType.Information);
-            //    txtSoPhieu.Focus();
-            //    return false;
-            //}
-
             if (cboBSCD.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập bác sĩ chỉ định.", IconType.Information);
@@ -177,24 +155,6 @@ namespace MM.Dialogs
                 return false;
             }
 
-            //string ketQuaNoiSoiGUID = _isNew ? string.Empty : _ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString();
-            //Result result = KetQuaNoiSoiBus.CheckSoPhieuExistCode(ketQuaNoiSoiGUID, txtSoPhieu.Text);
-
-            //if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
-            //{
-            //    if (result.Error.Code == ErrorCode.EXIST)
-            //    {
-            //        MsgBox.Show(this.Text, "Số phiếu này đã tồn tại rồi. Vui lòng nhập số phiếu khác.", IconType.Information);
-            //        txtSoPhieu.Focus();
-            //        return false;
-            //    }
-            //}
-            //else
-            //{
-            //    MsgBox.Show(this.Text, result.GetErrorAsString("KetQuaNoiSoiBus.CheckSoPhieuExistCode"), IconType.Error);
-            //    return false;
-            //}
-
             return true;
         }
 
@@ -202,7 +162,6 @@ namespace MM.Dialogs
         {
             try
             {
-                //txtSoPhieu.Text = drKetQuaNoiSoi["SoPhieu"].ToString();
                 dtpkNgayKham.Value = Convert.ToDateTime(drKetQuaNoiSoi["NgayKham"]);
                 cboBSCD.SelectedValue = drKetQuaNoiSoi["BacSiChiDinh"].ToString();
                 cboBSSoi.SelectedValue = drKetQuaNoiSoi["BacSiSoi"].ToString();
@@ -311,6 +270,16 @@ namespace MM.Dialogs
                     _ketQuaNoiSoi.DeletedBy = Guid.Parse(drKetQuaNoiSoi["DeletedBy"].ToString());
 
                 _ketQuaNoiSoi.Status = Convert.ToByte(drKetQuaNoiSoi["Status"]);
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    btnSaveAndPrint.Enabled = _allowEdit;
+                    panel2.Enabled = _allowEdit;
+                    panel4.Enabled = _allowEdit;
+                    panel5.Enabled = _allowEdit;
+                    panel6.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -1292,9 +1261,9 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
+            else 
             {
-                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông khám nội soi ?") == System.Windows.Forms.DialogResult.Yes)
+                if (_allowEdit && MsgBox.Question(this.Text, "Bạn có muốn lưu thông khám nội soi ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (CheckInfo())
                     {
@@ -1366,7 +1335,7 @@ namespace MM.Dialogs
 
         private void tabKhamNoiSoi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabKhamNoiSoi.SelectedIndex == 1)
+            if (_allowEdit && tabKhamNoiSoi.SelectedIndex == 1)
             {
                 if (btnPlay.Enabled)
                     OnPlayWebCam();

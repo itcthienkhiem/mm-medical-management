@@ -77,7 +77,10 @@ namespace MM.Controls
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
             pTotal.Visible = Global.AllowShowServiePrice;
-            btnExportReceipt.Visible = Global.AllowExportReceipt;
+
+            btnAdd.Enabled = Global.AllowAddDichVuDaSuDung;
+            btnDelete.Enabled = Global.AllowDeleteDichVuDaSuDung;
+            btnExportReceipt.Enabled = Global.AllowExportDichVuDaSuDung;
         }
 
         private void OnAdd()
@@ -98,7 +101,7 @@ namespace MM.Controls
             }
 
             DataRow drServiceHistory = (dgServiceHistory.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID, drServiceHistory);
+            dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID, drServiceHistory, Global.AllowEditDichVuDaSuDung);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 base.RaiseServiceHistoryChanged();

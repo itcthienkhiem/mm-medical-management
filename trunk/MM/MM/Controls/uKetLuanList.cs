@@ -41,8 +41,15 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            btnAdd.Enabled = Global.AllowAddKetLuan;
+            btnDelete.Enabled = Global.AllowDeleteKetLuan;
+        }
+
         public void DisplayAsThread()
         {
+            UpdateGUI();
             if (_patientRow == null) return;
 
             try
@@ -114,7 +121,7 @@ namespace MM.Controls
             }
 
             DataRow drKetLuan = (dgKetLuan.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddKetLuan dlg = new dlgAddKetLuan(_patientGUID, drKetLuan);
+            dlgAddKetLuan dlg = new dlgAddKetLuan(_patientGUID, drKetLuan, Global.AllowEditKetLuan);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();

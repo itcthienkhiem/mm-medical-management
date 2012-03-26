@@ -42,8 +42,18 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            btnAdd.Enabled = Global.AllowAddKhamNoiSoi;
+            btnDelete.Enabled = Global.AllowDeleteKhamNoiSoi;
+            btnPrint.Enabled = Global.AllowPrintKhamNoiSoi;
+            btnPrintPreview.Enabled = Global.AllowPrintKhamNoiSoi;
+            btnExportExcel.Enabled = Global.AllowExportKhamNoiSoi;
+        }
+
         public void DisplayAsThread()
         {
+            UpdateGUI();
             if (_patientRow == null) return;
 
             try
@@ -130,7 +140,7 @@ namespace MM.Controls
             }
 
             DataRow drKetQuaNoiSoi = (dgKhamNoiSoi.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddKetQuaNoiSoi dlg = new dlgAddKetQuaNoiSoi(_patientGUID, drKetQuaNoiSoi);
+            dlgAddKetQuaNoiSoi dlg = new dlgAddKetQuaNoiSoi(_patientGUID, drKetQuaNoiSoi, Global.AllowEditKhamNoiSoi);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 _isPrint = dlg.IsPrint;

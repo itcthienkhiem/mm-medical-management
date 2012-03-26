@@ -30,16 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uNhatKyLienHeCongTy = new MM.Controls.uNhatKyLienHeCongTy();
             this._uYKienKhachHangList = new MM.Controls.uYKienKhachHangList();
             this._uHoaDonHopDongList = new MM.Controls.uHoaDonHopDongList();
             this._uPhieuThuHopDongList = new MM.Controls.uPhieuThuHopDongList();
@@ -125,10 +126,6 @@
             this.serviceGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator30 = new System.Windows.Forms.ToolStripSeparator();
             this.giaVonDichVuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.specialityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.specialityListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.doctorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.doctorListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -141,8 +138,6 @@
             this.companyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.contractListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.symptomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.symptomListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
@@ -228,7 +223,12 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._uNhatKyLienHeCongTy = new MM.Controls.uNhatKyLienHeCongTy();
+            this.danhmụcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chuyenKhoaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
+            this.nhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator41 = new System.Windows.Forms.ToolStripSeparator();
+            this.trieuChungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainPanel.SuspendLayout();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
@@ -288,6 +288,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uNhatKyLienHeCongTy
+            // 
+            resources.ApplyResources(this._uNhatKyLienHeCongTy, "_uNhatKyLienHeCongTy");
+            this._uNhatKyLienHeCongTy.Name = "_uNhatKyLienHeCongTy";
             // 
             // _uYKienKhachHangList
             // 
@@ -736,12 +741,10 @@
             this._mainMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
             this._mainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.systemToolStripMenuItem,
+            this.danhmụcToolStripMenuItem,
             this.servicesToolStripMenuItem,
-            this.specialityToolStripMenuItem,
-            this.doctorToolStripMenuItem,
             this.patientToolStripMenuItem,
             this.companyToolStripMenuItem,
-            this.symptomToolStripMenuItem,
             this.receiptToolStripMenuItem,
             this.invoiceToolStripMenuItem,
             this.thuocToolStripMenuItem,
@@ -866,36 +869,6 @@
             this.giaVonDichVuToolStripMenuItem.Tag = "GiaVonDichVu";
             this.giaVonDichVuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // specialityToolStripMenuItem
-            // 
-            this.specialityToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.specialityListToolStripMenuItem});
-            resources.ApplyResources(this.specialityToolStripMenuItem, "specialityToolStripMenuItem");
-            this.specialityToolStripMenuItem.Name = "specialityToolStripMenuItem";
-            // 
-            // specialityListToolStripMenuItem
-            // 
-            this.specialityListToolStripMenuItem.Image = global::MM.Properties.Resources.stethoscope_icon;
-            this.specialityListToolStripMenuItem.Name = "specialityListToolStripMenuItem";
-            resources.ApplyResources(this.specialityListToolStripMenuItem, "specialityListToolStripMenuItem");
-            this.specialityListToolStripMenuItem.Tag = "Speciality List";
-            this.specialityListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // doctorToolStripMenuItem
-            // 
-            this.doctorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.doctorListToolStripMenuItem});
-            resources.ApplyResources(this.doctorToolStripMenuItem, "doctorToolStripMenuItem");
-            this.doctorToolStripMenuItem.Name = "doctorToolStripMenuItem";
-            // 
-            // doctorListToolStripMenuItem
-            // 
-            this.doctorListToolStripMenuItem.Image = global::MM.Properties.Resources.Doctor_32;
-            this.doctorListToolStripMenuItem.Name = "doctorListToolStripMenuItem";
-            resources.ApplyResources(this.doctorListToolStripMenuItem, "doctorListToolStripMenuItem");
-            this.doctorListToolStripMenuItem.Tag = "Doctor List";
-            this.doctorListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
             // patientToolStripMenuItem
             // 
             this.patientToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -985,21 +958,6 @@
             resources.ApplyResources(this.contractListToolStripMenuItem, "contractListToolStripMenuItem");
             this.contractListToolStripMenuItem.Tag = "Contract List";
             this.contractListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // symptomToolStripMenuItem
-            // 
-            this.symptomToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.symptomListToolStripMenuItem});
-            resources.ApplyResources(this.symptomToolStripMenuItem, "symptomToolStripMenuItem");
-            this.symptomToolStripMenuItem.Name = "symptomToolStripMenuItem";
-            // 
-            // symptomListToolStripMenuItem
-            // 
-            this.symptomListToolStripMenuItem.Image = global::MM.Properties.Resources.research;
-            this.symptomListToolStripMenuItem.Name = "symptomListToolStripMenuItem";
-            resources.ApplyResources(this.symptomListToolStripMenuItem, "symptomListToolStripMenuItem");
-            this.symptomListToolStripMenuItem.Tag = "Symptom List";
-            this.symptomListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // receiptToolStripMenuItem
             // 
@@ -1457,8 +1415,8 @@
             this.dockSite4.Controls.Add(this.bar2);
             resources.ApplyResources(this.dockSite4, "dockSite4");
             this.dockSite4.DocumentDockContainer = new DevComponents.DotNetBar.DocumentDockContainer(new DevComponents.DotNetBar.DocumentBaseContainer[] {
-            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar1, 1105, 193))),
-            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar2, 1105, 222)))}, DevComponents.DotNetBar.eOrientation.Vertical);
+            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar1, 1195, 193))),
+            ((DevComponents.DotNetBar.DocumentBaseContainer)(new DevComponents.DotNetBar.DocumentBarContainer(this.bar2, 1195, 222)))}, DevComponents.DotNetBar.eOrientation.Vertical);
             this.dockSite4.Name = "dockSite4";
             this.dockSite4.TabStop = false;
             // 
@@ -1497,14 +1455,14 @@
             this.dgPatient.AllowUserToDeleteRows = false;
             this.dgPatient.AllowUserToOrderColumns = true;
             this.dgPatient.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dgPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNumDataGridViewTextBoxColumn,
@@ -1518,14 +1476,14 @@
             this.mobileDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
             this.dgPatient.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle27;
             resources.ApplyResources(this.dgPatient, "dgPatient");
             this.dgPatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPatient.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -1539,8 +1497,8 @@
             // fileNumDataGridViewTextBoxColumn
             // 
             this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle20;
             resources.ApplyResources(this.fileNumDataGridViewTextBoxColumn, "fileNumDataGridViewTextBoxColumn");
             this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
             this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1562,8 +1520,8 @@
             // GenderAsStr
             // 
             this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle21;
             resources.ApplyResources(this.GenderAsStr, "GenderAsStr");
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
@@ -1571,9 +1529,9 @@
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = null;
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.NullValue = null;
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle22;
             resources.ApplyResources(this.dobDataGridViewTextBoxColumn, "dobDataGridViewTextBoxColumn");
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1581,8 +1539,8 @@
             // identityCardDataGridViewTextBoxColumn
             // 
             this.identityCardDataGridViewTextBoxColumn.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
             resources.ApplyResources(this.identityCardDataGridViewTextBoxColumn, "identityCardDataGridViewTextBoxColumn");
             this.identityCardDataGridViewTextBoxColumn.Name = "identityCardDataGridViewTextBoxColumn";
             this.identityCardDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1590,8 +1548,8 @@
             // homePhoneDataGridViewTextBoxColumn
             // 
             this.homePhoneDataGridViewTextBoxColumn.DataPropertyName = "HomePhone";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
             resources.ApplyResources(this.homePhoneDataGridViewTextBoxColumn, "homePhoneDataGridViewTextBoxColumn");
             this.homePhoneDataGridViewTextBoxColumn.Name = "homePhoneDataGridViewTextBoxColumn";
             this.homePhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1599,8 +1557,8 @@
             // workPhoneDataGridViewTextBoxColumn
             // 
             this.workPhoneDataGridViewTextBoxColumn.DataPropertyName = "WorkPhone";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle25;
             resources.ApplyResources(this.workPhoneDataGridViewTextBoxColumn, "workPhoneDataGridViewTextBoxColumn");
             this.workPhoneDataGridViewTextBoxColumn.Name = "workPhoneDataGridViewTextBoxColumn";
             this.workPhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1608,8 +1566,8 @@
             // mobileDataGridViewTextBoxColumn
             // 
             this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle26;
             resources.ApplyResources(this.mobileDataGridViewTextBoxColumn, "mobileDataGridViewTextBoxColumn");
             this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
             this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1723,10 +1681,50 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
-            // _uNhatKyLienHeCongTy
+            // danhmụcToolStripMenuItem
             // 
-            resources.ApplyResources(this._uNhatKyLienHeCongTy, "_uNhatKyLienHeCongTy");
-            this._uNhatKyLienHeCongTy.Name = "_uNhatKyLienHeCongTy";
+            this.danhmụcToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chuyenKhoaToolStripMenuItem,
+            this.toolStripSeparator40,
+            this.nhanVienToolStripMenuItem,
+            this.toolStripSeparator41,
+            this.trieuChungToolStripMenuItem});
+            resources.ApplyResources(this.danhmụcToolStripMenuItem, "danhmụcToolStripMenuItem");
+            this.danhmụcToolStripMenuItem.Name = "danhmụcToolStripMenuItem";
+            // 
+            // chuyenKhoaToolStripMenuItem
+            // 
+            this.chuyenKhoaToolStripMenuItem.Image = global::MM.Properties.Resources.stethoscope_icon;
+            this.chuyenKhoaToolStripMenuItem.Name = "chuyenKhoaToolStripMenuItem";
+            resources.ApplyResources(this.chuyenKhoaToolStripMenuItem, "chuyenKhoaToolStripMenuItem");
+            this.chuyenKhoaToolStripMenuItem.Tag = "Speciality List";
+            this.chuyenKhoaToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator40
+            // 
+            this.toolStripSeparator40.Name = "toolStripSeparator40";
+            resources.ApplyResources(this.toolStripSeparator40, "toolStripSeparator40");
+            // 
+            // nhanVienToolStripMenuItem
+            // 
+            this.nhanVienToolStripMenuItem.Image = global::MM.Properties.Resources.Doctor_32;
+            this.nhanVienToolStripMenuItem.Name = "nhanVienToolStripMenuItem";
+            resources.ApplyResources(this.nhanVienToolStripMenuItem, "nhanVienToolStripMenuItem");
+            this.nhanVienToolStripMenuItem.Tag = "Doctor List";
+            this.nhanVienToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator41
+            // 
+            this.toolStripSeparator41.Name = "toolStripSeparator41";
+            resources.ApplyResources(this.toolStripSeparator41, "toolStripSeparator41");
+            // 
+            // trieuChungToolStripMenuItem
+            // 
+            this.trieuChungToolStripMenuItem.Image = global::MM.Properties.Resources.research;
+            this.trieuChungToolStripMenuItem.Name = "trieuChungToolStripMenuItem";
+            resources.ApplyResources(this.trieuChungToolStripMenuItem, "trieuChungToolStripMenuItem");
+            this.trieuChungToolStripMenuItem.Tag = "Symptom List";
+            this.trieuChungToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1786,8 +1784,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem servicesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem serviceListToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem doctorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem doctorListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem patientToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openPatientToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -1807,13 +1803,9 @@
         private Controls.uPatientList _uPatientList;
         private Controls.uDuplicatePatient _uDuplicatePatient;
         private Controls.uPatientHistory _uPatientHistory;
-        private System.Windows.Forms.ToolStripMenuItem specialityToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem specialityListToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton tbSpecialityList;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
         private Controls.uSpecialityList _uSpecialityList;
-        private System.Windows.Forms.ToolStripMenuItem symptomToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem symptomListToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripButton tbSympton;
         private Controls.uSymptomList _uSymptomList;
@@ -1961,6 +1953,12 @@
         private System.Windows.Forms.ToolStripMenuItem nhatKyLienHeCongTyToolStripMenuItem;
         private Controls.uYKienKhachHangList _uYKienKhachHangList;
         private Controls.uNhatKyLienHeCongTy _uNhatKyLienHeCongTy;
+        private System.Windows.Forms.ToolStripMenuItem danhmụcToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chuyenKhoaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator40;
+        private System.Windows.Forms.ToolStripMenuItem nhanVienToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator41;
+        private System.Windows.Forms.ToolStripMenuItem trieuChungToolStripMenuItem;
 
     }
 }

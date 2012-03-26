@@ -20,6 +20,7 @@ namespace MM.Dialogs
         private string _patientGUID = string.Empty;
         private KetLuan _ketLuan = new KetLuan();
         private DataRow _drKetLuan = null;
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
@@ -29,11 +30,12 @@ namespace MM.Dialogs
             _patientGUID = patientGUID;
         }
 
-        public dlgAddKetLuan(string patientGUID, DataRow drKetLuan)
+        public dlgAddKetLuan(string patientGUID, DataRow drKetLuan, bool allowEdit)
         {
             InitializeComponent();
             _patientGUID = patientGUID;
             _drKetLuan = drKetLuan;
+            _allowEdit = allowEdit;
             _isNew = false;
             this.Text = "Sua can do";
         }
@@ -119,6 +121,12 @@ namespace MM.Dialogs
                     _ketLuan.DeletedBy = Guid.Parse(drKetLuan["DeletedBy"].ToString());
 
                 _ketLuan.Status = Convert.ToByte(drKetLuan["Status"]);
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    groupBox1.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -221,7 +229,7 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
+            else if (_allowEdit)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin kết luận ?") == System.Windows.Forms.DialogResult.Yes)
                 {

@@ -432,6 +432,7 @@ namespace MM.Controls
 
         private void dgChiDinh_DoubleClick(object sender, EventArgs e)
         {
+            if (!AllowEdit) return;
             OnEditChiDinh();
         }
 

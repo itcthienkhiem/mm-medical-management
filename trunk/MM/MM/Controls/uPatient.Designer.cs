@@ -114,7 +114,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(1177, 425);
+            this.tabControlPanel1.Size = new System.Drawing.Size(987, 425);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -132,7 +132,7 @@
             this._uServiceHistory.Location = new System.Drawing.Point(1, 1);
             this._uServiceHistory.Name = "_uServiceHistory";
             this._uServiceHistory.PatientRow = null;
-            this._uServiceHistory.Size = new System.Drawing.Size(1175, 423);
+            this._uServiceHistory.Size = new System.Drawing.Size(985, 423);
             this._uServiceHistory.TabIndex = 0;
             // 
             // pageServiceHistory
@@ -154,10 +154,10 @@
             // tabServiceHistory
             // 
             this.tabServiceHistory.CanReorderTabs = true;
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel8);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel2);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel1);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel9);
-            this.tabServiceHistory.Controls.Add(this.tabControlPanel8);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel7);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel6);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel5);

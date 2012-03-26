@@ -602,6 +602,78 @@ namespace MM.Dialogs
                     (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
+                else if (functionCode == Const.DichVuDaSuDung)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.CanDo)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.KhamLamSang)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.LoiKhuyen)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.KetLuan)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.KhamNoiSoi)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                }
             }
         }
 

@@ -219,6 +219,7 @@ namespace MM
                 Global.AllowEditChiDinh = false;
                 Global.AllowDeleteChiDinh = false;
                 Global.AllowConfirmChiDinh = false;
+                Global.AllowAddPhongCho = false;
 
                 Result result = LogonBus.GetPermission(Global.LogonGUID);
                 if (result.IsOK)
@@ -239,8 +240,8 @@ namespace MM
 
                         if (functionCode == Const.DocStaff)
                         {
-                            doctorListToolStripMenuItem.Enabled = isView && isLogin;
-                            doctorToolStripMenuItem.Enabled = isLogin;
+                            danhmụcToolStripMenuItem.Enabled = isLogin;
+                            nhanVienToolStripMenuItem.Enabled = isView && isLogin;
                             tbDoctorList.Enabled = isView && isLogin;
 
                             _uDocStaffList.AllowAdd = isAdd;
@@ -266,8 +267,7 @@ namespace MM
                         }
                         else if (functionCode == Const.Speciality)
                         {
-                            specialityListToolStripMenuItem.Enabled = isView && isLogin;
-                            specialityToolStripMenuItem.Enabled = isLogin;
+                            chuyenKhoaToolStripMenuItem.Enabled = isView && isLogin;
                             tbSpecialityList.Enabled = isView && isLogin;
                             _uSpecialityList.AllowAdd = isAdd;
                             _uSpecialityList.AllowEdit = isEdit;
@@ -339,8 +339,7 @@ namespace MM
                         }
                         else if (functionCode == Const.Symptom)
                         {
-                            symptomListToolStripMenuItem.Enabled = isView && isLogin;
-                            symptomToolStripMenuItem.Enabled = isLogin;
+                            trieuChungToolStripMenuItem.Enabled = isView && isLogin;
                             tbSympton.Enabled = isView && isLogin;
                             _uSymptomList.AllowAdd = isAdd;
                             _uSymptomList.AllowEdit = isEdit;
@@ -474,6 +473,7 @@ namespace MM
                         {
                             keToaToolStripMenuItem.Enabled = isView && isLogin;
                             tbKeToa.Enabled = isView && isLogin;
+                            Global.AllowViewKeToa = isView;
                             _uToaThuocList.AllowAdd = isAdd;
                             _uToaThuocList.AllowEdit = isEdit;
                             _uToaThuocList.AllowDelete = isDelete;
@@ -705,6 +705,51 @@ namespace MM
                             _uNhatKyLienHeCongTy.AllowImport = isImport;
                             _uNhatKyLienHeCongTy.AllowLock = isLock;
                         }
+                        else if (functionCode == Const.DichVuDaSuDung)
+                        {
+                            Global.AllowViewDichVuDaSuDung = isView;
+                            Global.AllowAddDichVuDaSuDung = isAdd;
+                            Global.AllowEditDichVuDaSuDung = isEdit;
+                            Global.AllowDeleteDichVuDaSuDung = isDelete;
+                            Global.AllowExportDichVuDaSuDung = isExport;
+                        }
+                        else if (functionCode == Const.CanDo)
+                        {
+                            Global.AllowViewCanDo = isView;
+                            Global.AllowAddCanDo = isAdd;
+                            Global.AllowEditCanDo = isEdit;
+                            Global.AllowDeleteCanDo = isDelete;
+                        }
+                        else if (functionCode == Const.KhamLamSang)
+                        {
+                            Global.AllowViewKhamLamSang = isView;
+                            Global.AllowAddKhamLamSang = isAdd;
+                            Global.AllowEditKhamLamSang = isEdit;
+                            Global.AllowDeleteKhamLamSang = isDelete;
+                        }
+                        else if (functionCode == Const.LoiKhuyen)
+                        {
+                            Global.AllowViewLoiKhuyen = isView;
+                            Global.AllowAddLoiKhuyen = isAdd;
+                            Global.AllowEditLoiKhuyen = isEdit;
+                            Global.AllowDeleteLoiKhuyen = isDelete;
+                        }
+                        else if (functionCode == Const.KetLuan)
+                        {
+                            Global.AllowViewKetLuan = isView;
+                            Global.AllowAddKetLuan = isAdd;
+                            Global.AllowEditKetLuan = isEdit;
+                            Global.AllowDeleteKetLuan = isDelete;
+                        }
+                        else if (functionCode == Const.KhamNoiSoi)
+                        {
+                            Global.AllowViewKhamNoiSoi = isView;
+                            Global.AllowAddKhamNoiSoi = isAdd;
+                            Global.AllowEditKhamNoiSoi = isEdit;
+                            Global.AllowDeleteKhamNoiSoi = isDelete;
+                            Global.AllowExportKhamNoiSoi = isExport;
+                            Global.AllowPrintKhamNoiSoi = isPrint;
+                        }
                     }
                 }
                 else
@@ -726,6 +771,34 @@ namespace MM
                 Global.AllowDeleteChiDinh = true;
                 Global.AllowConfirmChiDinh = true;
                 Global.AllowAddPhongCho = true;
+                Global.AllowViewDichVuDaSuDung = true;
+                Global.AllowAddDichVuDaSuDung = true;
+                Global.AllowEditDichVuDaSuDung = true;
+                Global.AllowDeleteDichVuDaSuDung = true;
+                Global.AllowExportDichVuDaSuDung = true;
+                Global.AllowViewCanDo = true;
+                Global.AllowAddCanDo = true;
+                Global.AllowEditCanDo = true;
+                Global.AllowDeleteCanDo = true;
+                Global.AllowViewKhamLamSang = true;
+                Global.AllowAddKhamLamSang = true;
+                Global.AllowEditKhamLamSang = true;
+                Global.AllowDeleteKhamLamSang = true;
+                Global.AllowViewLoiKhuyen = true;
+                Global.AllowAddLoiKhuyen = true;
+                Global.AllowEditLoiKhuyen = true;
+                Global.AllowDeleteLoiKhuyen = true;
+                Global.AllowViewKetLuan = true;
+                Global.AllowAddKetLuan = true;
+                Global.AllowEditKetLuan = true;
+                Global.AllowDeleteKetLuan = true;
+                Global.AllowViewKhamNoiSoi = true;
+                Global.AllowAddKhamNoiSoi = true;
+                Global.AllowEditKhamNoiSoi = true;
+                Global.AllowDeleteKhamNoiSoi = true;
+                Global.AllowExportKhamNoiSoi = true;
+                Global.AllowPrintKhamNoiSoi = true;
+                Global.AllowViewKeToa = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
@@ -746,8 +819,8 @@ namespace MM
                 giaVonDichVuToolStripMenuItem.Enabled = isLogin;
                 tbGiaVonDichVu.Enabled = isLogin;
 
-                doctorToolStripMenuItem.Enabled = isLogin;
-                doctorListToolStripMenuItem.Enabled = isLogin;
+                danhmụcToolStripMenuItem.Enabled = isLogin;
+                nhanVienToolStripMenuItem.Enabled = isLogin;
                 tbDoctorList.Enabled = isLogin;
 
                 patientToolStripMenuItem.Enabled = isLogin;
@@ -756,12 +829,10 @@ namespace MM
                 tbPatientList.Enabled = isLogin;
                 tbOpenPatient.Enabled = isLogin;
 
-                specialityToolStripMenuItem.Enabled = isLogin;
-                specialityListToolStripMenuItem.Enabled = isLogin;
+                chuyenKhoaToolStripMenuItem.Enabled = isLogin;
                 tbSpecialityList.Enabled = isLogin;
 
-                symptomToolStripMenuItem.Enabled = isLogin;
-                symptomListToolStripMenuItem.Enabled = isLogin;
+                trieuChungToolStripMenuItem.Enabled = isLogin;
                 tbSympton.Enabled = isLogin;
 
                 companyToolStripMenuItem.Enabled = isLogin;
