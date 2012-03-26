@@ -18,6 +18,7 @@ namespace MM.Dialogs
         #region Members
         private bool _isNew = true;
         private Symptom _symptom = new Symptom();
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
@@ -27,10 +28,11 @@ namespace MM.Dialogs
             GenerateCode();
         }
 
-        public dlgAddSymptom(DataRow drSymp)
+        public dlgAddSymptom(DataRow drSymp, bool allowEdit)
         {
             InitializeComponent();
             _isNew = false;
+            _allowEdit = allowEdit;
             this.Text = "Sua trieu chung";
             DisplayInfo(drSymp);
         }
@@ -90,6 +92,12 @@ namespace MM.Dialogs
                     _symptom.DeletedBy = Guid.Parse(drSymp["DeletedBy"].ToString());
 
                 _symptom.Status = Convert.ToByte(drSymp["Status"]);
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    groupBox1.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -207,7 +215,7 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
+            else if (_allowEdit)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin triệu chứng ?") == System.Windows.Forms.DialogResult.Yes)
                 {

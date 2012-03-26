@@ -18,6 +18,7 @@ namespace MM.Dialogs
         #region Members
         private bool _isNew = true;
         private Thuoc _thuoc = new Thuoc();
+        private bool _allowEdit = true;
         #endregion
 
         #region Constructor
@@ -28,11 +29,12 @@ namespace MM.Dialogs
             GenerateCode();
         }
 
-        public dlgAddThuoc(DataRow drThuoc)
+        public dlgAddThuoc(DataRow drThuoc, bool allowEdit)
         {
             InitializeComponent();
             cboDonViTinh.SelectedIndex = 0;
             _isNew = false;
+            _allowEdit = allowEdit;
             this.Text = "Sua thuoc";
             DisplayInfo(drThuoc);
         }
@@ -101,6 +103,12 @@ namespace MM.Dialogs
                     _thuoc.DeletedBy = Guid.Parse(drThuoc["DeletedBy"].ToString());
 
                 _thuoc.Status = Convert.ToByte(drThuoc["Status"]);
+
+                if (!_allowEdit)
+                {
+                    btnOK.Enabled = _allowEdit;
+                    groupBox1.Enabled = _allowEdit;
+                }
             }
             catch (Exception e)
             {
@@ -220,7 +228,7 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
+            else if (_allowEdit)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin thuốc ?") == System.Windows.Forms.DialogResult.Yes)
                 {

@@ -49,7 +49,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            btnEdit.Enabled = AllowEdit;
+            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnOpenPatient.Enabled = AllowOpenPatient;
             btnImportExcel.Enabled = AllowImport;
@@ -254,7 +254,7 @@ namespace MM.Controls
             DataRow drPatient = GetDataRow(patientGUID);
             if (drPatient == null) return;
 
-            dlgAddPatient dlg = new dlgAddPatient(drPatient);
+            dlgAddPatient dlg = new dlgAddPatient(drPatient, AllowEdit);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 drPatient["FileNum"] = dlg.Patient.FileNum;
@@ -858,7 +858,7 @@ namespace MM.Controls
 
         private void dgDocStaff_DoubleClick(object sender, EventArgs e)
         {
-            if (!AllowEdit) return;
+            //if (!AllowEdit) return;
             OnEditPatient();
         }
 
