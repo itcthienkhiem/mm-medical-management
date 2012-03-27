@@ -270,5 +270,49 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result CheckKhachHangExist(string tenKhachHang, string yKienKhachHangGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                YKienKhachHang ykkh = null;
+                if (yKienKhachHangGUID == null || yKienKhachHangGUID == string.Empty)
+                    ykkh = db.YKienKhachHangs.SingleOrDefault<YKienKhachHang>(n => n.TenKhachHang.ToLower() == tenKhachHang.ToLower() &&
+                        n.ContactBy.Value.ToString() == Global.UserGUID && n.Status == (byte)Status.Actived);
+                else
+                    ykkh = db.YKienKhachHangs.SingleOrDefault<YKienKhachHang>(n => n.TenKhachHang.ToLower() == tenKhachHang.ToLower() &&
+                        n.ContactBy.Value.ToString() == Global.UserGUID && n.YKienKhachHangGUID.ToString() != yKienKhachHangGUID &&
+                        n.Status == (byte)Status.Actived);
+
+                if (ykkh == null)
+                    result.Error.Code = ErrorCode.NOT_EXIST;
+                else
+                    result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }
