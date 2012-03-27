@@ -317,5 +317,43 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetBacSiChiDinh(string serviceHistoryGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                DichVuChiDinh dvcd = db.DichVuChiDinhs.SingleOrDefault(d => d.ServiceHistoryGUID.ToString() == serviceHistoryGUID && d.Status == (byte)Status.Actived);
+                if (dvcd != null && dvcd.ChiTietChiDinh.Status == (byte)Status.Actived && 
+                    dvcd.ChiTietChiDinh.ChiDinh.Status == (byte)Status.Actived &&
+                    dvcd.ChiTietChiDinh.ChiDinh.DocStaff.Contact.Archived == false)
+                {
+                    result.QueryResult = dvcd.ChiTietChiDinh.ChiDinh.DocStaff.Contact.FullName;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

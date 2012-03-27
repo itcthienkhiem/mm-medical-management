@@ -2181,6 +2181,17 @@ namespace MM.Exports
                                 giaVon = Convert.ToDouble(dt.Rows[0]["GiaVon"]);
                         }
 
+                        string bacSiChiDinh = string.Empty;
+                        result = ReceiptBus.GetBacSiChiDinh(row["ServiceHistoryGUID"].ToString());
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.GetBacSiChiDinh"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetBacSiChiDinh"));
+                            return false;
+                        }
+                        else if (result.QueryResult != null)
+                            bacSiChiDinh = result.QueryResult.ToString();
+
                         range = workSheet.Cells[rowIndex, 0];
                         range.Value = receipt.ReceiptCode;
 
@@ -2205,11 +2216,14 @@ namespace MM.Exports
                         range = workSheet.Cells[rowIndex, 6];
                         range.Value = giaVon;
 
+                        range = workSheet.Cells[rowIndex, 7];
+                        range.Value = bacSiChiDinh;
+
                         rowIndex++;
                     }
                 }
 
-                range = workSheet.Cells[string.Format("A3:G{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:H{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
