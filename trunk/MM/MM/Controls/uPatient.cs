@@ -107,11 +107,35 @@ namespace MM.Controls
             pageKhamNoiSoi.Visible = Global.AllowViewKhamNoiSoi;
 
             OnRefreshData();
+            
+        }
+
+        private void GetNgayLienHeBenhNhanGanNhat(string patientGUID)
+        {
+            Result result = YKienKhachHangBus.GetNgayLienHeBenhNhanGanNhat(patientGUID);
+            if (result.IsOK)
+            {
+                if (result.QueryResult != null)
+                {
+                    DateTime dt = Convert.ToDateTime(result.QueryResult);
+                    txtNgayLienHeGanNhat.Text = dt.ToString("dd/MM/yyyy HH:mm:ss");
+                }
+                else
+                    txtNgayLienHeGanNhat.Text = string.Empty;
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("YKienKhachHangBus.GetNgayLienHeBenhNhanGanNhat"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("YKienKhachHangBus.GetCompanyMemberList"));
+            }
         }
 
         private void OnRefreshData()
         {
             DisplayCheckListAsThread();
+
+            DataRow row = _patientRow as DataRow;
+            GetNgayLienHeBenhNhanGanNhat(row["PatientGUID"].ToString());
 
             if (tabServiceHistory.SelectedTabIndex == 0)
                 _uDailyServiceHistory.DisplayAsThread();

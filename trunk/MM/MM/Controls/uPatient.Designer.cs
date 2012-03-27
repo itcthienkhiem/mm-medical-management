@@ -39,12 +39,12 @@
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this._uDailyServiceHistory = new MM.Controls.uServiceHistory();
             this.pageDailyService = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel9 = new DevComponents.DotNetBar.TabControlPanel();
-            this._uKetQuaNoiSoiList = new MM.Controls.uKetQuaNoiSoiList();
-            this.pageKhamNoiSoi = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel8 = new DevComponents.DotNetBar.TabControlPanel();
             this._uKetLuanList = new MM.Controls.uKetLuanList();
             this.pageKetLuan = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel9 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uKetQuaNoiSoiList = new MM.Controls.uKetQuaNoiSoiList();
+            this.pageKhamNoiSoi = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel7 = new DevComponents.DotNetBar.TabControlPanel();
             this._uLoiKhuyenList = new MM.Controls.uLoiKhuyenList();
             this.pageLoiKhuyen = new DevComponents.DotNetBar.TabItem(this.components);
@@ -62,6 +62,7 @@
             this.pageKeToa = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnThemYKienKhachHang = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.lvService = new System.Windows.Forms.ListView();
@@ -84,13 +85,14 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtNgayLienHeGanNhat = new System.Windows.Forms.TextBox();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
             this.tabServiceHistory.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
-            this.tabControlPanel9.SuspendLayout();
             this.tabControlPanel8.SuspendLayout();
+            this.tabControlPanel9.SuspendLayout();
             this.tabControlPanel7.SuspendLayout();
             this.tabControlPanel6.SuspendLayout();
             this.tabControlPanel5.SuspendLayout();
@@ -154,8 +156,8 @@
             // tabServiceHistory
             // 
             this.tabServiceHistory.CanReorderTabs = true;
-            this.tabServiceHistory.Controls.Add(this.tabControlPanel8);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel2);
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel8);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel1);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel9);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel7);
@@ -218,40 +220,6 @@
             this.pageDailyService.Name = "pageDailyService";
             this.pageDailyService.Text = "Dịch vụ trong ngày";
             // 
-            // tabControlPanel9
-            // 
-            this.tabControlPanel9.Controls.Add(this._uKetQuaNoiSoiList);
-            this.tabControlPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel9.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel9.Name = "tabControlPanel9";
-            this.tabControlPanel9.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel9.Size = new System.Drawing.Size(987, 425);
-            this.tabControlPanel9.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel9.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel9.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel9.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel9.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel9.Style.GradientAngle = 90;
-            this.tabControlPanel9.TabIndex = 9;
-            this.tabControlPanel9.TabItem = this.pageKhamNoiSoi;
-            // 
-            // _uKetQuaNoiSoiList
-            // 
-            this._uKetQuaNoiSoiList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uKetQuaNoiSoiList.Location = new System.Drawing.Point(1, 1);
-            this._uKetQuaNoiSoiList.Name = "_uKetQuaNoiSoiList";
-            this._uKetQuaNoiSoiList.PatientRow = null;
-            this._uKetQuaNoiSoiList.Size = new System.Drawing.Size(985, 423);
-            this._uKetQuaNoiSoiList.TabIndex = 0;
-            // 
-            // pageKhamNoiSoi
-            // 
-            this.pageKhamNoiSoi.AttachedControl = this.tabControlPanel9;
-            this.pageKhamNoiSoi.Image = global::MM.Properties.Resources.Device_WebCam_icon;
-            this.pageKhamNoiSoi.Name = "pageKhamNoiSoi";
-            this.pageKhamNoiSoi.Text = "Khám nội soi";
-            // 
             // tabControlPanel8
             // 
             this.tabControlPanel8.Controls.Add(this._uKetLuanList);
@@ -285,6 +253,40 @@
             this.pageKetLuan.Image = global::MM.Properties.Resources.clipboard_search_result_icon;
             this.pageKetLuan.Name = "pageKetLuan";
             this.pageKetLuan.Text = "Kết luận";
+            // 
+            // tabControlPanel9
+            // 
+            this.tabControlPanel9.Controls.Add(this._uKetQuaNoiSoiList);
+            this.tabControlPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel9.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel9.Name = "tabControlPanel9";
+            this.tabControlPanel9.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel9.Size = new System.Drawing.Size(987, 425);
+            this.tabControlPanel9.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel9.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel9.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel9.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel9.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel9.Style.GradientAngle = 90;
+            this.tabControlPanel9.TabIndex = 9;
+            this.tabControlPanel9.TabItem = this.pageKhamNoiSoi;
+            // 
+            // _uKetQuaNoiSoiList
+            // 
+            this._uKetQuaNoiSoiList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiList.Location = new System.Drawing.Point(1, 1);
+            this._uKetQuaNoiSoiList.Name = "_uKetQuaNoiSoiList";
+            this._uKetQuaNoiSoiList.PatientRow = null;
+            this._uKetQuaNoiSoiList.Size = new System.Drawing.Size(985, 423);
+            this._uKetQuaNoiSoiList.TabIndex = 0;
+            // 
+            // pageKhamNoiSoi
+            // 
+            this.pageKhamNoiSoi.AttachedControl = this.tabControlPanel9;
+            this.pageKhamNoiSoi.Image = global::MM.Properties.Resources.Device_WebCam_icon;
+            this.pageKhamNoiSoi.Name = "pageKhamNoiSoi";
+            this.pageKhamNoiSoi.Text = "Khám nội soi";
             // 
             // tabControlPanel7
             // 
@@ -471,6 +473,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtNgayLienHeGanNhat);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnThemYKienKhachHang);
             this.groupBox1.Controls.Add(this.btnRefresh);
             this.groupBox1.Controls.Add(this.lvService);
@@ -492,6 +496,15 @@
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin bệnh nhân";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(293, 156);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(114, 13);
+            this.label2.TabIndex = 80;
+            this.label2.Text = "Ngày liên hệ gần nhất:";
             // 
             // btnThemYKienKhachHang
             // 
@@ -686,6 +699,14 @@
             this.panel3.Size = new System.Drawing.Size(987, 5);
             this.panel3.TabIndex = 0;
             // 
+            // txtNgayLienHeGanNhat
+            // 
+            this.txtNgayLienHeGanNhat.Location = new System.Drawing.Point(410, 151);
+            this.txtNgayLienHeGanNhat.Name = "txtNgayLienHeGanNhat";
+            this.txtNgayLienHeGanNhat.ReadOnly = true;
+            this.txtNgayLienHeGanNhat.Size = new System.Drawing.Size(133, 20);
+            this.txtNgayLienHeGanNhat.TabIndex = 81;
+            // 
             // uPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -700,8 +721,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).EndInit();
             this.tabServiceHistory.ResumeLayout(false);
             this.tabControlPanel2.ResumeLayout(false);
-            this.tabControlPanel9.ResumeLayout(false);
             this.tabControlPanel8.ResumeLayout(false);
+            this.tabControlPanel9.ResumeLayout(false);
             this.tabControlPanel7.ResumeLayout(false);
             this.tabControlPanel6.ResumeLayout(false);
             this.tabControlPanel5.ResumeLayout(false);
@@ -770,5 +791,7 @@
         private uKetQuaNoiSoiList _uKetQuaNoiSoiList;
         private System.Windows.Forms.ColumnHeader colNguoiDuocChuyenNhuong;
         private System.Windows.Forms.Button btnThemYKienKhachHang;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtNgayLienHeGanNhat;
     }
 }
