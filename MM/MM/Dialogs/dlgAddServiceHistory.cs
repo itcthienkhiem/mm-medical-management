@@ -220,11 +220,6 @@ namespace MM.Dialogs
                 if (drServiceHistory["TenBenhNhanChuyenNhuong"] != null && drServiceHistory["TenBenhNhanChuyenNhuong"] != DBNull.Value)
                     txtChuyenNhuong.Text = drServiceHistory["TenBenhNhanChuyenNhuong"].ToString();
 
-                numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
-                numDiscount.Value = (decimal)Double.Parse(drServiceHistory["Discount"].ToString());
-                txtDescription.Text = drServiceHistory["Note"] as string;
-                _serviceHistory.ServiceHistoryGUID = Guid.Parse(drServiceHistory["ServiceHistoryGUID"].ToString());
-
                 bool isNormalOrNegative = Convert.ToBoolean(drServiceHistory["IsNormalOrNegative"]);
                 bool normal = Convert.ToBoolean(drServiceHistory["Normal"]);
                 bool abnormal = Convert.ToBoolean(drServiceHistory["Abnormal"]);
@@ -239,6 +234,11 @@ namespace MM.Dialogs
                 chkPositive.Checked = positive;
                 raKhamTuTuc.Checked = Convert.ToBoolean(drServiceHistory["KhamTuTuc"]);
                 raKhamTheoHopDong.Checked = !raKhamTuTuc.Checked;
+
+                numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
+                numDiscount.Value = (decimal)Double.Parse(drServiceHistory["Discount"].ToString());
+                txtDescription.Text = drServiceHistory["Note"] as string;
+                _serviceHistory.ServiceHistoryGUID = Guid.Parse(drServiceHistory["ServiceHistoryGUID"].ToString());
 
                 if (drServiceHistory["ActivedDate"] != null && drServiceHistory["ActivedDate"] != DBNull.Value)
                 {
