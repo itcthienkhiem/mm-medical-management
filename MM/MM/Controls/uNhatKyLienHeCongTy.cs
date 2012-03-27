@@ -47,6 +47,9 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+            btnPrint.Enabled = AllowPrint;
+            btnPrintPreview.Enabled = AllowPrint;
+            btnExportExcel.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -206,6 +209,21 @@ namespace MM.Controls
         {
             OnDelete();
         }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Working Thread
@@ -227,5 +245,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

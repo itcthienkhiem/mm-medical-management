@@ -20,6 +20,7 @@ namespace MM.Dialogs
         private YKienKhachHang _yKienKhachHang = new YKienKhachHang();
         private DataRow _drYKienKhachHang = null;
         private DataTable _dataSourceBenhNhan = null;
+        private bool _isView = false;
         #endregion
 
         #region Constructor
@@ -89,6 +90,14 @@ namespace MM.Dialogs
                     _yKienKhachHang.DeletedBy = Guid.Parse(drYKienKhachHang["DeletedBy"].ToString());
 
                 _yKienKhachHang.Status = Convert.ToByte(drYKienKhachHang["Status"]);
+
+                string userGUID = drYKienKhachHang["ContactBy"].ToString();
+                if (userGUID != Global.UserGUID)
+                {
+                    groupBox1.Enabled = false;
+                    btnOK.Enabled = false;
+                    _isView = true;
+                }
             }
             catch (Exception e)
             {
@@ -103,6 +112,27 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập tên khách hàng.", IconType.Information);
                 txtTenKhachHang.Focus();
+                return false;
+            }
+
+            string yKienKhachHangGUID = string.Empty;
+            if (!_isNew) yKienKhachHangGUID = _yKienKhachHang.YKienKhachHangGUID.ToString();
+
+            Result result = YKienKhachHangBus.CheckKhachHangExist(txtTenKhachHang.Text, yKienKhachHangGUID);
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
+                    MsgBox.Show(this.Text, string.Format("Khách hàng: '{0}' đã lấy ý kiến trước rồi. Vui lòng cập nhật thông tin cho khách hàng này.", txtTenKhachHang.Text),
+                        IconType.Information);
+
+                    _isView = true;
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("YKienKhachHangBus.CheckKhachHangExist"), IconType.Error);
                 return false;
             }
 
@@ -203,10 +233,10 @@ namespace MM.Dialogs
             {
                 if (CheckInfo())
                     SaveInfoAsThread();
-                else
+                else if (!_isView)
                     e.Cancel = true;
             }
-            else
+            else if (!_isView)
             {
                 if (MsgBox.Question(this.Text, "Bạn có muốn lưu ý kiến khách hàng ?") == System.Windows.Forms.DialogResult.Yes)
                 {

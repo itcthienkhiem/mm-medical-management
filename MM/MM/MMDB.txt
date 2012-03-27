@@ -157,7 +157,7 @@ spDichVuHopDong
 - Insert table: Function (DichVuDaSuDung, CanDo, KhamLamSang, LoiKhuyen, KetLuan, KhamNoiSoi)
 
 
-1>> Xuất excel phiếu thu dịch vụ thêm col BSCD
+1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo
 3>> In và xuất excel ý kiến khách hàng và nhật ký liên hệ công ty
 4>> Phân quyền: Dịch vụ đã sử dụng (Thêm, xóa, sửa, xuất), Cân đo (Thêm, xóa, sửa), Khám lâm sàng (Thêm, xóa, sửa), Lời khuyên (Thêm, xóa, sửa), Kết luận (Thêm, xóa, sửa), 

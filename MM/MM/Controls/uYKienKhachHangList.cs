@@ -47,6 +47,9 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+            btnPrint.Enabled = AllowPrint;
+            btnPrintPreview.Enabled = AllowPrint;
+            btnExportExcel.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -138,6 +141,13 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
+                    string userGUID = row["ContactBy"].ToString();
+                    if (userGUID != Global.UserGUID)
+                    {
+                        MsgBox.Show(Application.ProductName, "Bạn không thể xóa ý kiến khách hàng của người khác. Vui lòng kiểm tra lại.", IconType.Information);
+                        return;
+                    }
+
                     deletedSpecList.Add(row["YKienKhachHangGUID"].ToString());
                     deletedRows.Add(row);
                 }
@@ -228,6 +238,21 @@ namespace MM.Controls
 
             DisplayAsThread();
         }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Working Thread
@@ -249,9 +274,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-       
     }
 }
