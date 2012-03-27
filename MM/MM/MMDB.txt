@@ -161,4 +161,6 @@ spDichVuHopDong
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo
 3>> In và xuất excel ý kiến khách hàng và nhật ký liên hệ công ty
 4>> Phân quyền: Dịch vụ đã sử dụng (Thêm, xóa, sửa, xuất), Cân đo (Thêm, xóa, sửa), Khám lâm sàng (Thêm, xóa, sửa), Lời khuyên (Thêm, xóa, sửa), Kết luận (Thêm, xóa, sửa), 
-Khám nội soi (Thêm, xóa, sửa, in, xuất)
+Khám nội soi (Thêm, xóa, sửa, in, xuất) (OK)
+5>> Thêm ngày xuất phiếu thu dịch vụ trong dialog confirm đã thu tiền hay chưa (OK)
+6>> Show ngày liên hệ khách hàng gần nhất 
