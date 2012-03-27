@@ -4198,7 +4198,11 @@ namespace MM.Exports
                     string nguoiLienHe = row["TenNguoiLienHe"].ToString();
                     string soDienThoaiLienHe = row["SoDienThoaiLienHe"].ToString();
                     int soNguoiKham = Convert.ToInt32(row["SoNguoiKham"]);
-                    string thangKham = Convert.ToDateTime(row["ThangKham"]).ToString("MM/yyyy");
+                    
+                    string thangKham = string.Empty;
+                    if (row["ThangKham"] != null && row["ThangKham"] != DBNull.Value)
+                        thangKham = Convert.ToDateTime(row["ThangKham"]).ToString("MM/yyyy");
+
                     string noiDungLienHe = row["NoiDungLienHe"].ToString();
                     string nhanVienLienHe = row["FullName"].ToString();
 
