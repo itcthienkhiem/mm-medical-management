@@ -361,7 +361,7 @@ namespace MM.Controls
                     Receipt receipt = new Receipt();
                     receipt.ReceiptCode = GenerateCode();
                     receipt.PatientGUID = Guid.Parse(_patientGUID);
-                    receipt.ReceiptDate = DateTime.Now;
+                    receipt.ReceiptDate = dlg.NgayXuat;
                     receipt.Status = (byte)Status.Actived;
                     receipt.CreatedDate = DateTime.Now;
                     receipt.CreatedBy = Guid.Parse(Global.UserGUID);

@@ -15,6 +15,7 @@ namespace MM.Dialogs
         public dlgConfirmThuTien()
         {
             InitializeComponent();
+            dtpkNgayXuat.Value = DateTime.Now;
         }
         #endregion
 
@@ -22,6 +23,11 @@ namespace MM.Dialogs
         public bool DaThuTien
         {
             get { return raDaThuTien.Checked; }
+        }
+
+        public DateTime NgayXuat
+        {
+            get { return dtpkNgayXuat.Value; }
         }
         #endregion
 
