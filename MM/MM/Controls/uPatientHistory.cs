@@ -50,7 +50,7 @@ namespace MM.Controls
                             PanelDockContainer p = item.Control as PanelDockContainer;
                             uPatient ctrl = p.Controls[0] as uPatient;
                             ctrl.PatientRow = rows[0];
-                            item.Visible = true;
+                            //item.Visible = true;
                         }
                         else
                             item.Visible = false;
