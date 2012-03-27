@@ -1449,6 +1449,7 @@
     <None Include="Templates\KetQuaNoiSoiTaiTemplate.xls" />
     <None Include="Templates\KetQuaNoiSoiTongQuatTemplate.xls" />
     <None Include="Templates\KhamSucKhoeTongQuatTemplate.xls" />
+    <None Include="Templates\NhatKyLienHeCongTyTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
     <None Include="Templates\SymptomTemplate.xls" />
@@ -1456,6 +1457,7 @@
     <None Include="Templates\ToaThuocChungTemplate.xls" />
     <None Include="Templates\ToaThuocSanKhoaTemplate.xls" />
     <None Include="Templates\ToaThuocTemplate.xls" />
+    <None Include="Templates\YKienKhachHangTemplate.xls" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bussiness\Bussiness.csproj">
