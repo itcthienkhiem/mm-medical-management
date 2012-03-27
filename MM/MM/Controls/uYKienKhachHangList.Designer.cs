@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnView = new System.Windows.Forms.Button();
             this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
@@ -43,6 +43,9 @@
             this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
             this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnExportExcel = new System.Windows.Forms.Button();
+            this.btnPrintPreview = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -60,9 +63,7 @@
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yKienKhachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnExportExcel = new System.Windows.Forms.Button();
-            this.btnPrintPreview = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -169,6 +170,42 @@
             this.panel2.Size = new System.Drawing.Size(747, 38);
             this.panel2.TabIndex = 1;
             // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(408, 6);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
+            this.btnExportExcel.TabIndex = 79;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // btnPrintPreview
+            // 
+            this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
+            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintPreview.Location = new System.Drawing.Point(243, 6);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
+            this.btnPrintPreview.TabIndex = 77;
+            this.btnPrintPreview.Text = "      &Xem bản in";
+            this.btnPrintPreview.UseVisualStyleBackColor = true;
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(340, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(64, 25);
+            this.btnPrint.TabIndex = 78;
+            this.btnPrint.Text = "   &In";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // btnDelete
             // 
             this.btnDelete.Image = global::MM.Properties.Resources.del;
@@ -231,14 +268,14 @@
             this.dgYKienKhachHang.AllowUserToDeleteRows = false;
             this.dgYKienKhachHang.AllowUserToOrderColumns = true;
             this.dgYKienKhachHang.AutoGenerateColumns = false;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgYKienKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgYKienKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgYKienKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgYKienKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -252,14 +289,14 @@
             this.NguoiTao,
             this.NguoiCapNhat});
             this.dgYKienKhachHang.DataSource = this.yKienKhachHangBindingSource;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgYKienKhachHang.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgYKienKhachHang.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgYKienKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgYKienKhachHang.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgYKienKhachHang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -281,8 +318,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.ReadOnly = true;
@@ -292,8 +329,8 @@
             // 
             // STT
             // 
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.STT.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.STT.DefaultCellStyle = dataGridViewCellStyle3;
             this.STT.HeaderText = "STT";
             this.STT.Name = "STT";
             this.STT.ReadOnly = true;
@@ -333,10 +370,10 @@
             // contactDateDataGridViewTextBoxColumn
             // 
             this.contactDateDataGridViewTextBoxColumn.DataPropertyName = "ContactDate";
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle19.NullValue = null;
-            this.contactDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle4.NullValue = null;
+            this.contactDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.contactDateDataGridViewTextBoxColumn.HeaderText = "Ngày liên hệ";
             this.contactDateDataGridViewTextBoxColumn.Name = "contactDateDataGridViewTextBoxColumn";
             this.contactDateDataGridViewTextBoxColumn.ReadOnly = true;
@@ -370,41 +407,13 @@
             // 
             this.yKienKhachHangBindingSource.DataSource = typeof(MM.Databasae.YKienKhachHang);
             // 
-            // btnExportExcel
+            // _printDialog
             // 
-            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
-            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(408, 6);
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
-            this.btnExportExcel.TabIndex = 79;
-            this.btnExportExcel.Text = "      &Xuất Excel";
-            this.btnExportExcel.UseVisualStyleBackColor = true;
-            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
-            // 
-            // btnPrintPreview
-            // 
-            this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
-            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintPreview.Location = new System.Drawing.Point(243, 6);
-            this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
-            this.btnPrintPreview.TabIndex = 77;
-            this.btnPrintPreview.Text = "      &Xem bản in";
-            this.btnPrintPreview.UseVisualStyleBackColor = true;
-            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(340, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(64, 25);
-            this.btnPrint.TabIndex = 78;
-            this.btnPrint.Text = "   &In";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
             // 
             // uYKienKhachHangList
             // 
@@ -457,5 +466,6 @@
         private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.Button btnPrintPreview;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }
