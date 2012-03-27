@@ -164,3 +164,6 @@ spDichVuHopDong
 Khám nội soi (Thêm, xóa, sửa, in, xuất) (OK)
 5>> Thêm ngày xuất phiếu thu dịch vụ trong dialog confirm đã thu tiền hay chưa (OK)
 6>> Show ngày liên hệ khách hàng gần nhất (OK)
+
+7>> Bỏ giới tính kô xác định
+
