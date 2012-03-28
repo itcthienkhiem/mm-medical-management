@@ -105,6 +105,7 @@ namespace MM.Controls
             pageLoiKhuyen.Visible = Global.AllowViewLoiKhuyen;
             pageKetLuan.Visible = Global.AllowViewKetLuan;
             pageKhamNoiSoi.Visible = Global.AllowViewKhamNoiSoi;
+            pageKhamCTC.Visible = Global.AllowViewKhamCTC;
 
             OnRefreshData();
             
@@ -155,6 +156,8 @@ namespace MM.Controls
                 _uKetLuanList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 8)
                 _uKetQuaNoiSoiList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 9)
+                _uKetQuaSoiCTCList.DisplayAsThread();
         }
 
         public void DisplayCheckListAsThread()
@@ -259,6 +262,8 @@ namespace MM.Controls
                 _uKetLuanList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 8)
                 _uKetQuaNoiSoiList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 9)
+                _uKetQuaSoiCTCList.DisplayAsThread();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
