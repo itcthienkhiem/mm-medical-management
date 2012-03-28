@@ -379,7 +379,7 @@
             this.cboGender.Items.AddRange(new object[] {
             "Nam",
             "Nữ",
-            "Không xác định"});
+            " "});
             this.cboGender.Location = new System.Drawing.Point(110, 143);
             this.cboGender.Name = "cboGender";
             this.cboGender.Size = new System.Drawing.Size(104, 21);
