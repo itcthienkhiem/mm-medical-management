@@ -62,7 +62,6 @@ namespace MM.Dialogs
         private void InitData()
         {
             cboGender.SelectedIndex = 0;
-            //cboTinhTrangGiaDinh.SelectedIndex = 0;
             tabPatient.SelectedTabIndex = 0;
         }
 
@@ -85,13 +84,6 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            //if (txtFileNum.Text.Trim() == string.Empty)
-            //{
-            //    MsgBox.Show(this.Text, "Vui lòng nhập mã bệnh nhân.", IconType.Information);
-            //    txtFileNum.Focus();
-            //    return false;
-            //}
-
             if (txtFullName.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập họ.", IconType.Information);
@@ -131,41 +123,6 @@ namespace MM.Dialogs
                 return false;
             }
 
-            /*if (chkDiUngThuoc.Checked && txtThuocDiUng.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập thuốc dị ứng.", IconType.Information);
-                tabPatient.SelectedTabIndex = 1;
-                txtThuocDiUng.Focus();
-                return false;
-            }
-
-            if (chkUngThu.Checked && txtCoQuanUngThu.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập cơ quan ung thư.", IconType.Information);
-                tabPatient.SelectedTabIndex = 1;
-                txtCoQuanUngThu.Focus();
-                return false;
-            }
-
-            if (chkBenhKhac.Checked)
-            {
-                if (txtBenhGi.Text.Trim() == string.Empty)
-                {
-                    MsgBox.Show(this.Text, "Vui lòng nhập tên bệnh.", IconType.Information);
-                    tabPatient.SelectedTabIndex = 1;
-                    txtBenhGi.Focus();
-                    return false;
-                }
-
-                if (txtThuocDangDung.Text.Trim() == string.Empty)
-                {
-                    MsgBox.Show(this.Text, "Vui lòng nhập thuốc đang dùng.", IconType.Information);
-                    tabPatient.SelectedTabIndex = 1;
-                    txtThuocDangDung.Focus();
-                    return false;
-                }
-            }*/
-
             return true;
         }
 
@@ -192,7 +149,6 @@ namespace MM.Dialogs
             try
             {
                 DisplayFileNum(drPatient["FileNum"].ToString());
-                //txtFileNum.Text = drPatient["FileNum"] as string;
                 txtFullName.Text = drPatient["FullName"] as string;
                 txtKnownAs.Text = drPatient["KnownAs"] as string;
                 txtPreferredName.Text = drPatient["PreferredName"] as string;
