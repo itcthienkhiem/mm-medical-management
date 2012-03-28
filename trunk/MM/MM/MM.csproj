@@ -601,6 +601,9 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DeviceSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\dlgAddGiaDichVuHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1184,6 +1187,9 @@
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DeviceSelector.resx">
+      <DependentUpon>DeviceSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddGiaDichVuHopDong.resx">
       <DependentUpon>dlgAddGiaDichVuHopDong.cs</DependentUpon>
     </EmbeddedResource>
@@ -1490,6 +1496,10 @@
     <ProjectReference Include="..\Databasae\Databasae.csproj">
       <Project>{3B05BCE2-9686-40F6-B65B-8A05C9DEA92C}</Project>
       <Name>Databasae</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DShowNET\DShowNET.csproj">
+      <Project>{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}</Project>
+      <Name>DShowNET</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
