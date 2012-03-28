@@ -750,6 +750,15 @@ namespace MM
                             Global.AllowExportKhamNoiSoi = isExport;
                             Global.AllowPrintKhamNoiSoi = isPrint;
                         }
+                        else if (functionCode == Const.KhamCTC)
+                        {
+                            Global.AllowViewKhamCTC = isView;
+                            Global.AllowAddKhamCTC = isAdd;
+                            Global.AllowEditKhamCTC = isEdit;
+                            Global.AllowDeleteKhamCTC = isDelete;
+                            Global.AllowExportKhamCTC = isExport;
+                            Global.AllowPrintKhamCTC = isPrint;
+                        }
                     }
                 }
                 else
@@ -799,6 +808,12 @@ namespace MM
                 Global.AllowExportKhamNoiSoi = true;
                 Global.AllowPrintKhamNoiSoi = true;
                 Global.AllowViewKeToa = true;
+                Global.AllowViewKhamCTC = true;
+                Global.AllowAddKhamCTC = true;
+                Global.AllowEditKhamCTC = true;
+                Global.AllowDeleteKhamCTC = true;
+                Global.AllowExportKhamCTC = true;
+                Global.AllowPrintKhamCTC = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   

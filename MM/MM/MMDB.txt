@@ -155,7 +155,11 @@ spDichVuHopDong
 - Update view: NhatKyLienHeCongTyView
 2012-03-26
 - Insert table: Function (DichVuDaSuDung, CanDo, KhamLamSang, LoiKhuyen, KetLuan, KhamNoiSoi)
-
+2012-03-28
+- Update view: PatientView
+- Create table: KetQuaSoiCTC
+- Create view: KetQuaSoiCTCView
+- Insert Data: Function(KhamCTC)
 
 1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo
