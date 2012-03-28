@@ -62,6 +62,7 @@
             this.pageKeToa = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNgayLienHeGanNhat = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnThemYKienKhachHang = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -85,7 +86,9 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.txtNgayLienHeGanNhat = new System.Windows.Forms.TextBox();
+            this.pageKhamCTC = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel10 = new DevComponents.DotNetBar.TabControlPanel();
+            this._uKetQuaSoiCTCList = new MM.Controls.uKetQuaSoiCTCList();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
@@ -100,6 +103,7 @@
             this.tabControlPanel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.tabControlPanel10.SuspendLayout();
             this.SuspendLayout();
             // 
             // imgList
@@ -156,8 +160,9 @@
             // tabServiceHistory
             // 
             this.tabServiceHistory.CanReorderTabs = true;
-            this.tabServiceHistory.Controls.Add(this.tabControlPanel2);
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel10);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel8);
+            this.tabServiceHistory.Controls.Add(this.tabControlPanel2);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel1);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel9);
             this.tabServiceHistory.Controls.Add(this.tabControlPanel7);
@@ -183,6 +188,7 @@
             this.tabServiceHistory.Tabs.Add(this.pageLoiKhuyen);
             this.tabServiceHistory.Tabs.Add(this.pageKetLuan);
             this.tabServiceHistory.Tabs.Add(this.pageKhamNoiSoi);
+            this.tabServiceHistory.Tabs.Add(this.pageKhamCTC);
             this.tabServiceHistory.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabServiceHistory_SelectedTabChanged);
             // 
             // tabControlPanel2
@@ -497,6 +503,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin bệnh nhân";
             // 
+            // txtNgayLienHeGanNhat
+            // 
+            this.txtNgayLienHeGanNhat.Location = new System.Drawing.Point(410, 151);
+            this.txtNgayLienHeGanNhat.Name = "txtNgayLienHeGanNhat";
+            this.txtNgayLienHeGanNhat.ReadOnly = true;
+            this.txtNgayLienHeGanNhat.Size = new System.Drawing.Size(133, 20);
+            this.txtNgayLienHeGanNhat.TabIndex = 81;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -699,13 +713,38 @@
             this.panel3.Size = new System.Drawing.Size(987, 5);
             this.panel3.TabIndex = 0;
             // 
-            // txtNgayLienHeGanNhat
+            // pageKhamCTC
             // 
-            this.txtNgayLienHeGanNhat.Location = new System.Drawing.Point(410, 151);
-            this.txtNgayLienHeGanNhat.Name = "txtNgayLienHeGanNhat";
-            this.txtNgayLienHeGanNhat.ReadOnly = true;
-            this.txtNgayLienHeGanNhat.Size = new System.Drawing.Size(133, 20);
-            this.txtNgayLienHeGanNhat.TabIndex = 81;
+            this.pageKhamCTC.AttachedControl = this.tabControlPanel10;
+            this.pageKhamCTC.Image = global::MM.Properties.Resources.Device_WebCam_icon;
+            this.pageKhamCTC.Name = "pageKhamCTC";
+            this.pageKhamCTC.Text = "Khám CTC";
+            // 
+            // tabControlPanel10
+            // 
+            this.tabControlPanel10.Controls.Add(this._uKetQuaSoiCTCList);
+            this.tabControlPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel10.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel10.Name = "tabControlPanel10";
+            this.tabControlPanel10.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel10.Size = new System.Drawing.Size(987, 425);
+            this.tabControlPanel10.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel10.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel10.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel10.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel10.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel10.Style.GradientAngle = 90;
+            this.tabControlPanel10.TabIndex = 10;
+            this.tabControlPanel10.TabItem = this.pageKhamCTC;
+            // 
+            // _uKetQuaSoiCTCList
+            // 
+            this._uKetQuaSoiCTCList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaSoiCTCList.Location = new System.Drawing.Point(1, 1);
+            this._uKetQuaSoiCTCList.Name = "_uKetQuaSoiCTCList";
+            this._uKetQuaSoiCTCList.Size = new System.Drawing.Size(985, 423);
+            this._uKetQuaSoiCTCList.TabIndex = 0;
             // 
             // uPatient
             // 
@@ -731,6 +770,7 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tabControlPanel10.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -793,5 +833,8 @@
         private System.Windows.Forms.Button btnThemYKienKhachHang;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNgayLienHeGanNhat;
+        private DevComponents.DotNetBar.TabControlPanel tabControlPanel10;
+        private DevComponents.DotNetBar.TabItem pageKhamCTC;
+        private uKetQuaSoiCTCList _uKetQuaSoiCTCList;
     }
 }

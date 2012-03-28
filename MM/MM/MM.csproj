@@ -1417,6 +1417,7 @@
     <None Include="Properties\DataSources\MM.Databasae.KetLuanView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaNoiSoiView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.KetQuaSoiCTCView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhatKyLienHeCongTyView.datasource" />
