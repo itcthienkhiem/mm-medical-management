@@ -1302,6 +1302,25 @@ namespace MM.Dialogs
             ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
             item.Tag = picWebCam.Image;
             lvCapture.Items.Add(item);
+
+            if (lvCapture.Items.Count <= 4)
+            {
+                switch (lvCapture.Items.Count)
+                {
+                    case 1:
+                        picHinh1.Image = (Image)lvCapture.Items[0].Tag;
+                        break;
+                    case 2:
+                        picHinh2.Image = (Image)lvCapture.Items[1].Tag;
+                        break;
+                    case 3:
+                        picHinh3.Image = (Image)lvCapture.Items[2].Tag;
+                        break;
+                    case 4:
+                        picHinh4.Image = (Image)lvCapture.Items[3].Tag;
+                        break;
+                }
+            }
         }
 
         private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
