@@ -99,6 +99,7 @@
     <Compile Include="KeToaBus.cs" />
     <Compile Include="KetQuaLamSangBus.cs" />
     <Compile Include="KetQuaNoiSoiBus.cs" />
+    <Compile Include="KetQuaSoiCTCBus.cs" />
     <Compile Include="LogonBus.cs" />
     <Compile Include="LoiKhuyenBus.cs" />
     <Compile Include="LoThuocBus.cs" />
