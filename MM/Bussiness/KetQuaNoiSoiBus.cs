@@ -143,8 +143,8 @@ namespace MM.Bussiness
                                 if (bscd != null) tenBSCD = bscd.FullName;
                             }
 
-                            desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}'\n",
-                                kqns.KetQuaNoiSoiGUID.ToString(), kqns.SoPhieu, kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"), kqns.Patient.Contact.FullName,
+                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}'\n",
+                                kqns.KetQuaNoiSoiGUID.ToString(), kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"), kqns.Patient.Contact.FullName,
                                 kqns.LyDoKham, tenBSCD, kqns.DocStaff.Contact.FullName, kqns.KetLuan, kqns.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)kqns.LoaiNoiSoi));
                         }
                     }
@@ -215,8 +215,8 @@ namespace MM.Bussiness
 
                         if ((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi == LoaiNoiSoi.Tai)
                         {
-                            desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Ống tai trái: '{10}', Ống tai phải: '{11}', Màng nhĩ trái: '{12}', Màng nhĩ phải: '{13}', Cán búa trái: '{14}', Cán búa phải: '{15}', Hòm nhĩ trái: '{16}', Hòm nhĩ phải: '{17}', Valsava trái: '{18}', Valsava phải: '{19}'\n",
-                                ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.SoPhieu, ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"), 
+                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Ống tai trái: '{9}', Ống tai phải: '{10}', Màng nhĩ trái: '{11}', Màng nhĩ phải: '{12}', Cán búa trái: '{13}', Cán búa phải: '{14}', Hòm nhĩ trái: '{15}', Hòm nhĩ phải: '{16}', Valsava trái: '{17}', Valsava phải: '{18}'\n",
+                                ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"), 
                                 ketQuaNoiSoi.Patient.Contact.FullName, ketQuaNoiSoi.LyDoKham, tenBSCD, ketQuaNoiSoi.DocStaff.Contact.FullName, 
                                 ketQuaNoiSoi.KetLuan, ketQuaNoiSoi.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi), ketQuaNoiSoi.OngTaiTrai,
                                 ketQuaNoiSoi.OngTaiPhai, ketQuaNoiSoi.MangNhiTrai, ketQuaNoiSoi.MangNhiPhai, ketQuaNoiSoi.CanBuaTrai, ketQuaNoiSoi.CanBuaPhai,
@@ -224,8 +224,8 @@ namespace MM.Bussiness
                         }
                         else if ((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi == LoaiNoiSoi.Mui)
                         {
-                            desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Niêm mạc trái: '{10}', Niêm mạc phải: '{11}', Vách ngăn trái: '{12}', Vách ngăn phải: '{13}', Khe trên trái: '{14}', Khe trên phải: '{15}', Khe giữa trái: '{16}', Khe giữa phải: '{17}', Cuốn giữa trái: '{18}', Cuốn giữa phải: '{19}', Cuốn dưới trái: '{20}', Cuốn dưới phải: '{21}', Mõm móc trái: '{22}', Mõm móc phải: '{23}', Bóng sàng trái: '{24}', Bóng sàng phải: '{25}', Vòm trái: '{26}', Vòm phải: '{27}'\n",
-                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.SoPhieu, ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Niêm mạc trái: '{9}', Niêm mạc phải: '{10}', Vách ngăn trái: '{11}', Vách ngăn phải: '{12}', Khe trên trái: '{13}', Khe trên phải: '{14}', Khe giữa trái: '{15}', Khe giữa phải: '{16}', Cuốn giữa trái: '{17}', Cuốn giữa phải: '{18}', Cuốn dưới trái: '{19}', Cuốn dưới phải: '{20}', Mõm móc trái: '{21}', Mõm móc phải: '{22}', Bóng sàng trái: '{23}', Bóng sàng phải: '{24}', Vòm trái: '{25}', Vòm phải: '{26}'\n",
+                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
                                ketQuaNoiSoi.Patient.Contact.FullName, ketQuaNoiSoi.LyDoKham, tenBSCD, ketQuaNoiSoi.DocStaff.Contact.FullName,
                                ketQuaNoiSoi.KetLuan, ketQuaNoiSoi.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi), ketQuaNoiSoi.NiemMacTrai,
                                ketQuaNoiSoi.NiemMacPhai, ketQuaNoiSoi.VachNganTrai, ketQuaNoiSoi.VachNganPhai, ketQuaNoiSoi.KheTrenTrai, ketQuaNoiSoi.KheTrenPhai,
@@ -235,16 +235,16 @@ namespace MM.Bussiness
                         }
                         else if ((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi == LoaiNoiSoi.Hong_ThanhQuan)
                         {
-                            desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Amydale: '{10}', Xoang lê: '{11}', Miệng thực quản: '{12}', Sụn phểu: '{13}', Dây thanh: '{14}', Băng thanh thất: '{15}'\n",
-                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.SoPhieu, ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Amydale: '{9}', Xoang lê: '{10}', Miệng thực quản: '{11}', Sụn phểu: '{12}', Dây thanh: '{13}', Băng thanh thất: '{14}'\n",
+                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
                                ketQuaNoiSoi.Patient.Contact.FullName, ketQuaNoiSoi.LyDoKham, tenBSCD, ketQuaNoiSoi.DocStaff.Contact.FullName,
                                ketQuaNoiSoi.KetLuan, ketQuaNoiSoi.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi), 
                                ketQuaNoiSoi.Amydale, ketQuaNoiSoi.XoangLe, ketQuaNoiSoi.MiengThucQuan, ketQuaNoiSoi.SunPheu, ketQuaNoiSoi.DayThanh, ketQuaNoiSoi.BangThanhThat);
                         }
                         else if ((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi == LoaiNoiSoi.TaiMuiHong)
                         {
-                            desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Ống tai ngoài: '{10}', Màng nhĩ: '{11}', Niêm mạc mũi: '{12}', Vách ngăn: '{13}', Khe trên: '{14}', Khe giữa: '{15}', Mõm móc - Bóng sàng: '{16}', Vòm: '{17}', Amydale: '{18}', Thanh quản: '{19}'\n",
-                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.SoPhieu, ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Ống tai ngoài: '{9}', Màng nhĩ: '{10}', Niêm mạc mũi: '{11}', Vách ngăn: '{12}', Khe trên: '{13}', Khe giữa: '{14}', Mõm móc - Bóng sàng: '{15}', Vòm: '{16}', Amydale: '{17}', Thanh quản: '{18}'\n",
+                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
                                ketQuaNoiSoi.Patient.Contact.FullName, ketQuaNoiSoi.LyDoKham, tenBSCD, ketQuaNoiSoi.DocStaff.Contact.FullName,
                                ketQuaNoiSoi.KetLuan, ketQuaNoiSoi.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi),
                                ketQuaNoiSoi.OngTaiNgoai, ketQuaNoiSoi.MangNhi, ketQuaNoiSoi.NiemMac, ketQuaNoiSoi.VachNgan, ketQuaNoiSoi.KheTren,
@@ -252,8 +252,8 @@ namespace MM.Bussiness
                         }
                         else if ((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi == LoaiNoiSoi.TongQuat)
                         {
-                            desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Ống tai trái: '{10}', Ống tai phải: '{11}', Màng nhĩ trái: '{12}', Màng nhĩ phải: '{13}', Cán búa trái: '{14}', Cán búa phải: '{15}', Hòm nhĩ trái: '{16}', Hòm nhĩ phải: '{17}'\n",
-                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.SoPhieu, ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Ống tai trái: '{9}', Ống tai phải: '{10}', Màng nhĩ trái: '{11}', Màng nhĩ phải: '{12}', Cán búa trái: '{13}', Cán búa phải: '{14}', Hòm nhĩ trái: '{15}', Hòm nhĩ phải: '{16}'\n",
+                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
                                ketQuaNoiSoi.Patient.Contact.FullName, ketQuaNoiSoi.LyDoKham, tenBSCD, ketQuaNoiSoi.DocStaff.Contact.FullName,
                                ketQuaNoiSoi.KetLuan, ketQuaNoiSoi.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi), ketQuaNoiSoi.OngTaiTrai,
                                ketQuaNoiSoi.OngTaiPhai, ketQuaNoiSoi.MangNhiTrai, ketQuaNoiSoi.MangNhiPhai, ketQuaNoiSoi.CanBuaTrai, ketQuaNoiSoi.CanBuaPhai,
@@ -352,8 +352,8 @@ namespace MM.Bussiness
 
                             if ((LoaiNoiSoi)kqns.LoaiNoiSoi == LoaiNoiSoi.Tai)
                             {
-                                desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Ống tai trái: '{10}', Ống tai phải: '{11}', Màng nhĩ trái: '{12}', Màng nhĩ phải: '{13}', Cán búa trái: '{14}', Cán búa phải: '{15}', Hòm nhĩ trái: '{16}', Hòm nhĩ phải: '{17}', Valsava trái: '{18}', Valsava phải: '{19}'\n",
-                                    kqns.KetQuaNoiSoiGUID.ToString(), kqns.SoPhieu, kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                                desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Ống tai trái: '{9}', Ống tai phải: '{10}', Màng nhĩ trái: '{11}', Màng nhĩ phải: '{12}', Cán búa trái: '{13}', Cán búa phải: '{14}', Hòm nhĩ trái: '{15}', Hòm nhĩ phải: '{16}', Valsava trái: '{17}', Valsava phải: '{18}'\n",
+                                    kqns.KetQuaNoiSoiGUID.ToString(), kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
                                     kqns.Patient.Contact.FullName, kqns.LyDoKham, tenBSCD, kqns.DocStaff.Contact.FullName,
                                     kqns.KetLuan, kqns.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)kqns.LoaiNoiSoi), kqns.OngTaiTrai,
                                     kqns.OngTaiPhai, kqns.MangNhiTrai, kqns.MangNhiPhai, kqns.CanBuaTrai, kqns.CanBuaPhai,
@@ -361,8 +361,8 @@ namespace MM.Bussiness
                             }
                             else if ((LoaiNoiSoi)kqns.LoaiNoiSoi == LoaiNoiSoi.Mui)
                             {
-                                desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Niêm mạc trái: '{10}', Niêm mạc phải: '{11}', Vách ngăn trái: '{12}', Vách ngăn phải: '{13}', Khe trên trái: '{14}', Khe trên phải: '{15}', Khe giữa trái: '{16}', Khe giữa phải: '{17}', Cuốn giữa trái: '{18}', Cuốn giữa phải: '{19}', Cuốn dưới trái: '{20}', Cuốn dưới phải: '{21}', Mõm móc trái: '{22}', Mõm móc phải: '{23}', Bóng sàng trái: '{24}', Bóng sàng phải: '{25}', Vòm trái: '{26}', Vòm phải: '{27}'\n",
-                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.SoPhieu, kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                                desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Niêm mạc trái: '{9}', Niêm mạc phải: '{10}', Vách ngăn trái: '{11}', Vách ngăn phải: '{12}', Khe trên trái: '{13}', Khe trên phải: '{14}', Khe giữa trái: '{15}', Khe giữa phải: '{16}', Cuốn giữa trái: '{17}', Cuốn giữa phải: '{18}', Cuốn dưới trái: '{19}', Cuốn dưới phải: '{20}', Mõm móc trái: '{21}', Mõm móc phải: '{22}', Bóng sàng trái: '{23}', Bóng sàng phải: '{24}', Vòm trái: '{25}', Vòm phải: '{26}'\n",
+                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
                                    kqns.Patient.Contact.FullName, kqns.LyDoKham, tenBSCD, kqns.DocStaff.Contact.FullName,
                                    kqns.KetLuan, kqns.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)kqns.LoaiNoiSoi), kqns.NiemMacTrai,
                                    kqns.NiemMacPhai, kqns.VachNganTrai, kqns.VachNganPhai, kqns.KheTrenTrai, kqns.KheTrenPhai,
@@ -371,16 +371,16 @@ namespace MM.Bussiness
                             }
                             else if ((LoaiNoiSoi)kqns.LoaiNoiSoi == LoaiNoiSoi.Hong_ThanhQuan)
                             {
-                                desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Amydale: '{10}', Xoang lê: '{11}', Miệng thực quản: '{12}', Sụn phểu: '{13}', Dây thanh: '{14}', Băng thanh thất: '{15}'\n",
-                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.SoPhieu, kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                                desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Amydale: '{9}', Xoang lê: '{10}', Miệng thực quản: '{11}', Sụn phểu: '{12}', Dây thanh: '{13}', Băng thanh thất: '{14}'\n",
+                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
                                    kqns.Patient.Contact.FullName, kqns.LyDoKham, tenBSCD, kqns.DocStaff.Contact.FullName,
                                    kqns.KetLuan, kqns.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)kqns.LoaiNoiSoi),
                                    kqns.Amydale, kqns.XoangLe, kqns.MiengThucQuan, kqns.SunPheu, kqns.DayThanh, kqns.BangThanhThat);
                             }
                             else if ((LoaiNoiSoi)kqns.LoaiNoiSoi == LoaiNoiSoi.TaiMuiHong)
                             {
-                                desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Ống tai ngoài: '{10}', Màng nhĩ: '{11}', Niêm mạc mũi: '{12}', Vách ngăn: '{13}', Khe trên: '{14}', Khe giữa: '{15}', Mõm móc - Bóng sàng: '{16}', Vòm: '{17}', Amydale: '{18}', Thanh quản: '{19}'\n",
-                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.SoPhieu, kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                                desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Ống tai ngoài: '{9}', Màng nhĩ: '{10}', Niêm mạc mũi: '{11}', Vách ngăn: '{12}', Khe trên: '{13}', Khe giữa: '{14}', Mõm móc - Bóng sàng: '{15}', Vòm: '{16}', Amydale: '{17}', Thanh quản: '{18}'\n",
+                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
                                    kqns.Patient.Contact.FullName, kqns.LyDoKham, tenBSCD, kqns.DocStaff.Contact.FullName,
                                    kqns.KetLuan, kqns.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)kqns.LoaiNoiSoi),
                                    kqns.OngTaiNgoai, kqns.MangNhi, kqns.NiemMac, kqns.VachNgan, kqns.KheTren,
@@ -388,8 +388,8 @@ namespace MM.Bussiness
                             }
                             else if ((LoaiNoiSoi)kqns.LoaiNoiSoi == LoaiNoiSoi.TongQuat)
                             {
-                                desc += string.Format("- GUID: '{0}', Số phiếu: '{1}', Ngày khám: '{2}', Bệnh nhân: '{3}', Lý do khám: '{4}', BSCD: '{5}', Bác sĩ soi: '{6}', Kết luận: '{7}', Đề nghị: '{8}', Loại nội soi: '{9}', Ống tai trái: '{10}', Ống tai phải: '{11}', Màng nhĩ trái: '{12}', Màng nhĩ phải: '{13}', Cán búa trái: '{14}', Cán búa phải: '{15}', Hòm nhĩ trái: '{16}', Hòm nhĩ phải: '{17}'\n",
-                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.SoPhieu, kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                                desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Ống tai trái: '{9}', Ống tai phải: '{10}', Màng nhĩ trái: '{11}', Màng nhĩ phải: '{12}', Cán búa trái: '{13}', Cán búa phải: '{14}', Hòm nhĩ trái: '{15}', Hòm nhĩ phải: '{16}'\n",
+                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
                                    kqns.Patient.Contact.FullName, kqns.LyDoKham, tenBSCD, kqns.DocStaff.Contact.FullName,
                                    kqns.KetLuan, kqns.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)kqns.LoaiNoiSoi), kqns.OngTaiTrai,
                                    kqns.OngTaiPhai, kqns.MangNhiTrai, kqns.MangNhiPhai, kqns.CanBuaTrai, kqns.CanBuaPhai,

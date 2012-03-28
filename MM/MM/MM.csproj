@@ -427,6 +427,12 @@
     <Compile Include="Controls\uKetQuaNoiSoiTongQuat.Designer.cs">
       <DependentUpon>uKetQuaNoiSoiTongQuat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaSoiCTCList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaSoiCTCList.Designer.cs">
+      <DependentUpon>uKetQuaSoiCTCList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uLoiKhuyenList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -600,6 +606,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddGiaDichVuHopDong.Designer.cs">
       <DependentUpon>dlgAddGiaDichVuHopDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKetQuaSoiCTC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKetQuaSoiCTC.Designer.cs">
+      <DependentUpon>dlgAddKetQuaSoiCTC.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddNhatKyKienHeCongTy.cs">
       <SubType>Form</SubType>
@@ -1085,6 +1097,9 @@
     <EmbeddedResource Include="Controls\uKetQuaNoiSoiTongQuat.resx">
       <DependentUpon>uKetQuaNoiSoiTongQuat.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaSoiCTCList.resx">
+      <DependentUpon>uKetQuaSoiCTCList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uLoiKhuyenList.resx">
       <DependentUpon>uLoiKhuyenList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1171,6 +1186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddGiaDichVuHopDong.resx">
       <DependentUpon>dlgAddGiaDichVuHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddKetQuaSoiCTC.resx">
+      <DependentUpon>dlgAddKetQuaSoiCTC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddNhatKyKienHeCongTy.resx">
       <DependentUpon>dlgAddNhatKyKienHeCongTy.cs</DependentUpon>
