@@ -66,6 +66,14 @@ namespace MM.Common
         public static bool AllowDeleteKhamNoiSoi = true;
         public static bool AllowExportKhamNoiSoi = true;
         public static bool AllowPrintKhamNoiSoi = true;
+
+        //Khám CTC
+        public static bool AllowViewKhamCTC = true;
+        public static bool AllowAddKhamCTC = true;
+        public static bool AllowEditKhamCTC = true;
+        public static bool AllowDeleteKhamCTC = true;
+        public static bool AllowExportKhamCTC = true;
+        public static bool AllowPrintKhamCTC = true;
         
         //Kê toa
         public static bool AllowViewKeToa = true;

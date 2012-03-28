@@ -63,5 +63,6 @@ namespace MM.Common
         public static string LoiKhuyen = "LoiKhuyen";
         public static string KetLuan = "KetLuan";
         public static string KhamNoiSoi = "KhamNoiSoi";
+        public static string KhamCTC = "Khám CTC";
     }
 }
