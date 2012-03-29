@@ -918,12 +918,14 @@ namespace MM.Dialogs
                 if (mediaCtrl != null)
                 {
                     hr = mediaCtrl.Stop();
+                    Marshal.ReleaseComObject(mediaCtrl);
                     mediaCtrl = null;
                 }
 
                 if (mediaEvt != null)
                 {
                     hr = mediaEvt.SetNotifyWindow(IntPtr.Zero, WM_GRAPHNOTIFY, IntPtr.Zero);
+                    Marshal.ReleaseComObject(mediaEvt);
                     mediaEvt = null;
                 }
 
@@ -931,6 +933,7 @@ namespace MM.Dialogs
                 {
                     hr = videoWin.put_Visible(DsHlp.OAFALSE);
                     hr = videoWin.put_Owner(IntPtr.Zero);
+                    Marshal.ReleaseComObject(videoWin);
                     videoWin = null;
                 }
 
