@@ -610,9 +610,8 @@ namespace MM.Dialogs
         #region TV Capture
         private void StartTVCapture()
         {
-            if (firstActive)
-                return;
-            firstActive = true;
+            //if (Global.IsStart) return;
+            //Global.IsStart = true;
 
             if (!DsUtils.IsCorrectDirectXVersion())
             {
@@ -833,6 +832,7 @@ namespace MM.Dialogs
             catch (Exception ee)
             {
                 MessageBox.Show(this, "Could not setup graph\r\n" + ee.Message, "DirectShow.NET", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                _allowEdit = false;
                 return false;
             }
         }
@@ -937,7 +937,13 @@ namespace MM.Dialogs
                     videoWin = null;
                 }
 
-                baseGrabFlt = null;
+                if (baseGrabFlt != null)
+                {
+                    baseGrabFlt.Stop();
+                    Marshal.ReleaseComObject(baseGrabFlt);
+                    baseGrabFlt = null;
+                }
+
                 if (sampGrabber != null)
                     Marshal.ReleaseComObject(sampGrabber); sampGrabber = null;
 
@@ -953,7 +959,11 @@ namespace MM.Dialogs
                 if (capDevices != null)
                 {
                     foreach (DsDevice d in capDevices)
+                    {
                         d.Dispose();
+                    }
+
+                    Marshal.ReleaseComObject(capDevices);
                     capDevices = null;
                 }
             }
