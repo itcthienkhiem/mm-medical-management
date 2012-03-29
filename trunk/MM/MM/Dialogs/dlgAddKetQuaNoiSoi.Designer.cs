@@ -66,6 +66,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSaveAndPrint = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabKhamNoiSoi = new System.Windows.Forms.TabControl();
             this.pageKetQuaNoiSoi = new System.Windows.Forms.TabPage();
@@ -93,7 +94,6 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
-            this.btnSaveAndPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).BeginInit();
             this.ctmHinh1.SuspendLayout();
@@ -269,12 +269,12 @@
             this.ctmHinh1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.xóaToolStripMenuItem1});
             this.ctmHinh1.Name = "ctmHinh1";
-            this.ctmHinh1.Size = new System.Drawing.Size(95, 26);
+            this.ctmHinh1.Size = new System.Drawing.Size(104, 26);
             // 
             // xóaToolStripMenuItem1
             // 
             this.xóaToolStripMenuItem1.Name = "xóaToolStripMenuItem1";
-            this.xóaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.xóaToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
             this.xóaToolStripMenuItem1.Text = "Xóa";
             this.xóaToolStripMenuItem1.Click += new System.EventHandler(this.xóaToolStripMenuItem1_Click);
             // 
@@ -488,6 +488,19 @@
             this.panel1.TabIndex = 5;
             this.panel1.TabStop = true;
             // 
+            // btnSaveAndPrint
+            // 
+            this.btnSaveAndPrint.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSaveAndPrint.Image = global::MM.Properties.Resources.save;
+            this.btnSaveAndPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveAndPrint.Location = new System.Drawing.Point(387, 6);
+            this.btnSaveAndPrint.Name = "btnSaveAndPrint";
+            this.btnSaveAndPrint.Size = new System.Drawing.Size(75, 25);
+            this.btnSaveAndPrint.TabIndex = 18;
+            this.btnSaveAndPrint.Text = "     &Lưu && In";
+            this.btnSaveAndPrint.UseVisualStyleBackColor = true;
+            this.btnSaveAndPrint.Click += new System.EventHandler(this.btnSaveAndPrint_Click);
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.tabKhamNoiSoi);
@@ -692,36 +705,36 @@
             this.toolStripSeparator2,
             this.chọnHìnhToolStripMenuItem});
             this.ctmCapture.Name = "ctmCapture";
-            this.ctmCapture.Size = new System.Drawing.Size(131, 82);
+            this.ctmCapture.Size = new System.Drawing.Size(153, 104);
             // 
             // xóaToolStripMenuItem
             // 
             this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
-            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.xóaToolStripMenuItem.Text = "Xóa";
             this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(127, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // xóaTấtCảToolStripMenuItem
             // 
             this.xóaTấtCảToolStripMenuItem.Name = "xóaTấtCảToolStripMenuItem";
-            this.xóaTấtCảToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.xóaTấtCảToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.xóaTấtCảToolStripMenuItem.Text = "Xóa tất cả";
             this.xóaTấtCảToolStripMenuItem.Click += new System.EventHandler(this.xóaTấtCảToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(127, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // chọnHìnhToolStripMenuItem
             // 
             this.chọnHìnhToolStripMenuItem.Name = "chọnHìnhToolStripMenuItem";
-            this.chọnHìnhToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.chọnHìnhToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.chọnHìnhToolStripMenuItem.Text = "Chọn hình";
             this.chọnHìnhToolStripMenuItem.Click += new System.EventHandler(this.chọnHìnhToolStripMenuItem_Click);
             // 
@@ -804,19 +817,6 @@
             this.imgList.TransparentColor = System.Drawing.Color.Transparent;
             this.imgList.Images.SetKeyName(0, "camera-icon (1).png");
             this.imgList.Images.SetKeyName(1, "clipboard-search-result-icon.png");
-            // 
-            // btnSaveAndPrint
-            // 
-            this.btnSaveAndPrint.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSaveAndPrint.Image = global::MM.Properties.Resources.save;
-            this.btnSaveAndPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveAndPrint.Location = new System.Drawing.Point(387, 6);
-            this.btnSaveAndPrint.Name = "btnSaveAndPrint";
-            this.btnSaveAndPrint.Size = new System.Drawing.Size(75, 25);
-            this.btnSaveAndPrint.TabIndex = 18;
-            this.btnSaveAndPrint.Text = "     &Lưu && In";
-            this.btnSaveAndPrint.UseVisualStyleBackColor = true;
-            this.btnSaveAndPrint.Click += new System.EventHandler(this.btnSaveAndPrint_Click);
             // 
             // dlgAddKetQuaNoiSoi
             // 

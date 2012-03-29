@@ -50,7 +50,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgSoCTC = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.ketQuaSoiCTCViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayKhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +63,8 @@
             this.ranhGioiLatTruDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sauAcidAceticDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sauLugolDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ketQuaSoiCTCViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -308,10 +309,6 @@
             this.dgSoCTC.TabIndex = 11;
             this.dgSoCTC.DoubleClick += new System.EventHandler(this.dgSoCTC_DoubleClick);
             // 
-            // ketQuaSoiCTCViewBindingSource
-            // 
-            this.ketQuaSoiCTCViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaSoiCTCView);
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -426,6 +423,18 @@
             this.sauLugolDataGridViewTextBoxColumn.ReadOnly = true;
             this.sauLugolDataGridViewTextBoxColumn.Width = 150;
             // 
+            // ketQuaSoiCTCViewBindingSource
+            // 
+            this.ketQuaSoiCTCViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaSoiCTCView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
+            // 
             // uKetQuaSoiCTCList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -479,5 +488,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ranhGioiLatTruDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sauAcidAceticDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sauLugolDataGridViewTextBoxColumn;
+        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }
