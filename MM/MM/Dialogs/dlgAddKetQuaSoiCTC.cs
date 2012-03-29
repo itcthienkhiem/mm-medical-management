@@ -610,9 +610,6 @@ namespace MM.Dialogs
         #region TV Capture
         private void StartTVCapture()
         {
-            //if (Global.IsStart) return;
-            //Global.IsStart = true;
-
             if (!DsUtils.IsCorrectDirectXVersion())
             {
                 MessageBox.Show(this, "DirectX 8.1 NOT installed!", "DirectShow.NET", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -924,15 +921,15 @@ namespace MM.Dialogs
 
                 if (mediaEvt != null)
                 {
-                    hr = mediaEvt.SetNotifyWindow(IntPtr.Zero, WM_GRAPHNOTIFY, IntPtr.Zero);
+                   //hr = mediaEvt.SetNotifyWindow(IntPtr.Zero, WM_GRAPHNOTIFY, IntPtr.Zero);
                     Marshal.ReleaseComObject(mediaEvt);
                     mediaEvt = null;
                 }
 
                 if (videoWin != null)
                 {
-                    hr = videoWin.put_Visible(DsHlp.OAFALSE);
-                    hr = videoWin.put_Owner(IntPtr.Zero);
+                    //hr = videoWin.put_Visible(DsHlp.OAFALSE);
+                   //hr = videoWin.put_Owner(IntPtr.Zero);
                     Marshal.ReleaseComObject(videoWin);
                     videoWin = null;
                 }
@@ -960,10 +957,12 @@ namespace MM.Dialogs
                 {
                     foreach (DsDevice d in capDevices)
                     {
+                        d.Name = string.Empty;
+                        Marshal.ReleaseComObject(d.Mon);
+                        d.Mon = null;
                         d.Dispose();
                     }
 
-                    Marshal.ReleaseComObject(capDevices);
                     capDevices = null;
                 }
             }
