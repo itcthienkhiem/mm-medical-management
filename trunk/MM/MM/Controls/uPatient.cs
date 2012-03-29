@@ -66,6 +66,7 @@ namespace MM.Controls
                 _uKetQuaLamSangList.PatientRow = (DataRow)value;
                 _uKetLuanList.PatientRow = (DataRow)value;
                 _uKetQuaNoiSoiList.PatientRow = (DataRow)value;
+                _uKetQuaSoiCTCList.PatientRow = (DataRow)value;
             }
         }
         #endregion
