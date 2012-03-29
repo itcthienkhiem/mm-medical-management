@@ -1263,7 +1263,7 @@ namespace MM.Dialogs
             }
             else 
             {
-                if (_allowEdit && MsgBox.Question(this.Text, "Bạn có muốn lưu thông khám nội soi ?") == System.Windows.Forms.DialogResult.Yes)
+                if (_allowEdit && MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin khám nội soi ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     if (CheckInfo())
                     {

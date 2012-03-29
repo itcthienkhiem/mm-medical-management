@@ -182,7 +182,17 @@ namespace MM.Common
         KetQuaNoiSoiBangThanhThat,
 
         KetQuaNoiSoiMomMoc_BongSang,
-        KetQuaNoiSoiThanhQuan
+        KetQuaNoiSoiThanhQuan,
+
+        KetQuaSoiAmHo,
+        KetQuaSoiAmDao,
+        KetQuaSoiCTC,
+        KetQuaSoiBieuMoLat,
+        KetQuaSoiMoDem,
+        KetQuaSoiRanhGioiLatTru,
+        KetQuaSoiSauAcidAcetic,
+        KetQuaSoiSauLugol,
+        KetLuanSoiCTCT
     };
 
     public enum LoaiHoaDon : int

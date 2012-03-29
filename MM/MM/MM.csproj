@@ -427,6 +427,12 @@
     <Compile Include="Controls\uKetQuaNoiSoiTongQuat.Designer.cs">
       <DependentUpon>uKetQuaNoiSoiTongQuat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaSoiCTC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaSoiCTC.Designer.cs">
+      <DependentUpon>uKetQuaSoiCTC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKetQuaSoiCTCList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1100,6 +1106,9 @@
     <EmbeddedResource Include="Controls\uKetQuaNoiSoiTongQuat.resx">
       <DependentUpon>uKetQuaNoiSoiTongQuat.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaSoiCTC.resx">
+      <DependentUpon>uKetQuaSoiCTC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaSoiCTCList.resx">
       <DependentUpon>uKetQuaSoiCTCList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1473,6 +1482,7 @@
     <None Include="Templates\KetQuaNoiSoiTaiMuiHongTemplate.xls" />
     <None Include="Templates\KetQuaNoiSoiTaiTemplate.xls" />
     <None Include="Templates\KetQuaNoiSoiTongQuatTemplate.xls" />
+    <None Include="Templates\KetQuaSoiCTCTemplate.xls" />
     <None Include="Templates\KhamSucKhoeTongQuatTemplate.xls" />
     <None Include="Templates\NhatKyLienHeCongTyTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />

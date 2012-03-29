@@ -29,6 +29,16 @@ namespace MM.Dialogs
                 return 4;
             }
         }
+
+        public bool EnableHinh3
+        {
+            set { raHinh3.Enabled = value; }
+        }
+
+        public bool EnableHinh4
+        {
+            set { raHinh4.Enabled = value; }
+        }
         #endregion
     }
 }

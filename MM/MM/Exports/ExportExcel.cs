@@ -4261,5 +4261,91 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportKetQuaSoiCTCToExcel(string exportFileName, DataRow patientRow, DataRow ketQuaSoiCTC)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\KetQuaSoiCTCTemplate.xls", Application.StartupPath);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
+                workSheet.Cells["D6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["F6"].Value = string.Format("          Giới tính: {0}", patientRow["GenderAsStr"].ToString());
+
+                if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
+                    workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
+
+                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
+                    workSheet.Cells["D7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
+
+                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
+                    workSheet.Cells["F7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
+
+                List<byte[]> hinhList = new List<byte[]>();
+                if (ketQuaSoiCTC["Hinh1"] != null && ketQuaSoiCTC["Hinh1"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaSoiCTC["Hinh1"]);
+
+                if (ketQuaSoiCTC["Hinh2"] != null && ketQuaSoiCTC["Hinh2"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaSoiCTC["Hinh2"]);
+
+                double left = 6.5590551181102361;
+                double top = 160.206062992126;
+                double width = 138.66776077766588;
+                double height = 127.26858267716534;
+
+                workSheet.Cells["A10"].RowHeight = 251.25;
+                left = 6.5590551181102361;
+                width = 274.75875488041896;
+                height = 250.26858267716534;
+
+                workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
+
+                left = 287.03733755758429;
+                workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
+
+                workSheet.Cells["C13"].Value = ketQuaSoiCTC["AmHo"].ToString();
+                workSheet.Cells["C14"].Value = ketQuaSoiCTC["AmDao"].ToString();
+                workSheet.Cells["C15"].Value = ketQuaSoiCTC["CTC"].ToString();
+                workSheet.Cells["C16"].Value = ketQuaSoiCTC["BieuMoLat"].ToString();
+                workSheet.Cells["C17"].Value = ketQuaSoiCTC["MoDem"].ToString();
+                workSheet.Cells["C18"].Value = ketQuaSoiCTC["RanhGioiLatTru"].ToString();
+                workSheet.Cells["C19"].Value = ketQuaSoiCTC["SauAcidAcetic"].ToString();
+                workSheet.Cells["C20"].Value = ketQuaSoiCTC["SauLugol"].ToString();
+
+                workSheet.Cells["B22"].Value = ketQuaSoiCTC["KetLuan"].ToString();
+                workSheet.Cells["B24"].Value = ketQuaSoiCTC["DeNghi"].ToString();
+
+                workSheet.Cells["F26"].Value = string.Format("Ngày: {0}",
+                    Convert.ToDateTime(ketQuaSoiCTC["NgayKham"]).ToString("dd/MM/yyyy"));
+
+                workSheet.Cells["F30"].Value = ketQuaSoiCTC["FullName"].ToString();
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }

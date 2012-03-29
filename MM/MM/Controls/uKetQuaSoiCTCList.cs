@@ -117,32 +117,188 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-
+            _isPrint = false;
+            _ketQuaSoiCTC = null;
+            dlgAddKetQuaSoiCTC dlg = new dlgAddKetQuaSoiCTC(_patientGUID);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _isPrint = dlg.IsPrint;
+                _ketQuaSoiCTC = dlg.KetQuaSoiCTC;
+                DisplayAsThread();
+            }
         }
 
         private void OnEdit()
         {
+            _isPrint = false;
+            _ketQuaSoiCTC = null;
+            if (dgSoCTC.SelectedRows == null || dgSoCTC.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 kết quả soi.", IconType.Information);
+                return;
+            }
 
+            DataRow drKetQuaSoiCTC = (dgSoCTC.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddKetQuaSoiCTC dlg = new dlgAddKetQuaSoiCTC(_patientGUID, drKetQuaSoiCTC, Global.AllowEditKhamCTC);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _isPrint = dlg.IsPrint;
+                _ketQuaSoiCTC = dlg.KetQuaSoiCTC;
+                DisplayAsThread();
+            }
         }
 
         private void OnDelete()
         {
+            List<string> deletedKQNSList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgSoCTC.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedKQNSList.Add(row["KetQuaSoiCTCGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
 
+            if (deletedKQNSList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những kết quả soi mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = KetQuaSoiCTCBus.DeleteKetQuaSoiCTC(deletedKQNSList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaSoiCTCBus.DeleteKetQuaSoiCTC"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaSoiCTCBus.DeleteKetQuaSoiCTC"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả soi.", IconType.Information);
+        }
+
+        private List<DataRow> GetCheckedRows()
+        {
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgSoCTC.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedRows.Add(row);
+                }
+            }
+
+            return checkedRows;
         }
 
         private void OnPrint(bool isPreview)
         {
-
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetCheckedRows();
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\KetQuaSoiCTC.xls", Application.StartupPath);
+                if (isPreview)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        if (!ExportExcel.ExportKetQuaSoiCTCToExcel(exportFileName, _patientRow, row))
+                            return;
+                        else
+                        {
+                            try
+                            {
+                                ExcelPrintPreview.PrintPreview(exportFileName);
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                return;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        foreach (DataRow row in checkedRows)
+                        {
+                            if (!ExportExcel.ExportKetQuaSoiCTCToExcel(exportFileName, _patientRow, row))
+                                return;
+                            else
+                            {
+                                try
+                                {
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                }
+                                catch (Exception ex)
+                                {
+                                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả soi cần in.", IconType.Information);
         }
 
         private void OnPrint(DataRow drKetQuaSoiCTC)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            if (_printDialog.ShowDialog() == DialogResult.OK)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\KetQuaSoiCTC.xls", Application.StartupPath);
 
+                if (!ExportExcel.ExportKetQuaSoiCTCToExcel(exportFileName, _patientRow, drKetQuaSoiCTC))
+                    return;
+                else
+                {
+                    try
+                    {
+                        ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                        return;
+                    }
+                }
+            }
         }
 
         private void OnExportExcel()
         {
-
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetCheckedRows();
+            if (checkedRows.Count > 0)
+            {
+                foreach (DataRow row in checkedRows)
+                {
+                    SaveFileDialog dlg = new SaveFileDialog();
+                    dlg.Title = "Export Excel";
+                    dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        if (!ExportExcel.ExportKetQuaSoiCTCToExcel(dlg.FileName, _patientRow, row))
+                            return;
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả soi cần xuất excel.", IconType.Information);
         }
         #endregion
 
