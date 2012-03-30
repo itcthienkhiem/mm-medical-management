@@ -12,6 +12,8 @@ using MM.Bussiness;
 using MM.Databasae;
 using MM.Dialogs;
 using MM.Exports;
+using System.IO;
+using SpreadsheetGear;
 
 namespace MM.Controls
 {
@@ -111,7 +113,7 @@ namespace MM.Controls
         {
             if (dgNhatKyLienHeCongTy.SelectedRows == null || dgNhatKyLienHeCongTy.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 nhật ký liên hệ công ty.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 nhật ký liên hệ.", IconType.Information);
                 return;
             }
 
@@ -135,7 +137,7 @@ namespace MM.Controls
                     string userGUID = row["CreatedBy"].ToString();
                     if (userGUID != Global.UserGUID)
                     {
-                        MsgBox.Show(Application.ProductName, "Bạn không thể xóa nhật ký liên hệ công ty của người khác. Vui lòng kiểm tra lại.", IconType.Information);
+                        MsgBox.Show(Application.ProductName, "Bạn không thể xóa nhật ký liên hệ của người khác. Vui lòng kiểm tra lại.", IconType.Information);
                         return;
                     }
 
@@ -146,7 +148,7 @@ namespace MM.Controls
 
             if (deletedSpecList.Count > 0)
             {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những nhật ký liên hệ công ty mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những nhật ký liên hệ mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
                     Result result = NhatKyLienHeCongTyBus.DeleteNhatKyLienHeCongTy(deletedSpecList);
                     if (result.IsOK)
@@ -164,7 +166,7 @@ namespace MM.Controls
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhật ký liên hệ công ty cần xóa.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhật ký liên hệ cần xóa.", IconType.Information);
         }
 
         private List<DataRow> GetCheckedRows()
@@ -228,7 +230,7 @@ namespace MM.Controls
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhật ký liên hệ công ty cần in.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhật ký liên hệ cần in.", IconType.Information);
         }
 
         private void OnExportToExcel()
@@ -247,7 +249,182 @@ namespace MM.Controls
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhật ký liên hệ công ty cần xuất excel.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhật ký liên hệ cần xuất excel.", IconType.Information);
+        }
+        private void OnImportExcel()
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Import Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            string filename;
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                filename = dlg.FileName;
+                ImportNhatKyFromExcel(filename);
+            }
+
+        }
+        private bool CheckNhatKyTemplate(IWorksheet ws, ref string message)
+        {
+            string s = string.Format("Sheet {0} không đúng định dạng nên không được nhập", ws.Name) + System.Environment.NewLine;
+            try
+            {
+                if (ws.Cells[0, 0].Value != null && ws.Cells[0, 0].Value.ToString().ToLower() != "district" ||
+                        ws.Cells[0, 1].Value != null && ws.Cells[0, 1].Value.ToString().ToLower() != "company name" ||
+                        ws.Cells[0, 2].Value != null && ws.Cells[0, 2].Value.ToString().ToLower() != "person contact" ||
+                        ws.Cells[0, 3].Value != null && ws.Cells[0, 3].Value.ToString().ToLower() != "tel" ||
+                        ws.Cells[0, 4].Value != null && ws.Cells[0, 4].Value.ToString().ToLower() != "quantity" ||
+                        ws.Cells[0, 5].Value != null && ws.Cells[0, 5].Value.ToString().ToLower() != "check-up month" ||
+                        ws.Cells[0, 6].Value != null && ws.Cells[0, 6].Value.ToString().ToLower() != "feedback" ||
+                        ws.Cells[0, 7].Value != null && ws.Cells[0, 7].Value.ToString().ToLower() != "email" ||
+                        ws.Cells[0, 8].Value != null && ws.Cells[0, 8].Value.ToString().ToLower() != "contact date")
+                {
+                    message += s;
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message += s;
+                Utility.WriteToTraceLog(ex.Message);
+                return false;
+            }
+        }
+        private string ReFormatDate(string type, string value)
+        {
+            string sRet = value;
+            if (type.ToLower().StartsWith("m"))
+            {
+                char[] split = new char[] { '/' };
+                string[] sTemp = value.Split(split, StringSplitOptions.None);
+                if (sTemp.Count() == 3)
+                {
+                    sRet = sTemp[1] + "/" + sTemp[0] + "/" + sTemp[2];
+                }
+                else
+                {
+                    sRet = value;
+                }
+            }
+            return sRet;
+        }
+        private void ImportNhatKyFromExcel(string filename)
+        {
+            string message = "Nhập dữ liệu từ Excel hoàn tất." + System.Environment.NewLine;
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                if (File.Exists(filename))
+                {
+                    IWorkbook book = SpreadsheetGear.Factory.GetWorkbook(filename);
+
+                    foreach (IWorksheet sheet in book.Worksheets)
+                    {
+                        if (CheckNhatKyTemplate(sheet, ref message))
+                        {
+                            int RowCount = sheet.UsedRange.RowCount + 1;
+                            int ColumnCount = sheet.UsedRange.ColumnCount + 1;
+                            for (int i = 1; i < RowCount; i++)
+                            {
+                                NhatKyLienHeCongTy diary = new NhatKyLienHeCongTy();
+                                for (int j = 0; j < ColumnCount; j++)
+                                {
+                                    string curCellValue = string.Empty;
+                                    if (sheet.Cells[i, j] != null && sheet.Cells[i, j].Value != null && sheet.Cells[i, j].Text != null)
+                                    {
+                                        curCellValue = sheet.Cells[i, j].Text.Trim();
+                                    }
+                                    //process NULL text in excel 
+                                    if (curCellValue.ToUpper() == "NULL")
+                                        curCellValue = "";
+
+                                    string sType = sheet.Cells[i, j].NumberFormat.Trim();
+                                    if (sType.Contains("yy"))
+                                    {
+                                        curCellValue = ReFormatDate(sType, curCellValue);
+                                    }
+                                    //process "'" character
+                                    curCellValue = curCellValue.Replace("'", "''");
+                                    if (sheet.Cells[i, j].Font.Name.ToLower().IndexOf("vni") == 0)
+                                        curCellValue = Utility.ConvertVNI2Unicode(curCellValue);
+                                    if (sheet.Cells[0, j].Value != null && sheet.Cells[0, j].Value.ToString().Trim() != null)
+                                    {
+                                        switch (sheet.Cells[0, j].Value.ToString().Trim().ToLower())
+                                        {
+                                            case "district":
+                                                //diary.district = curCellValue;
+                                                break;
+
+                                            case "company name":
+                                                diary.CongTyLienHe = curCellValue;
+                                                break;
+
+                                            case "tel":
+                                                diary.SoDienThoaiLienHe = curCellValue;
+                                                break;
+
+                                            case "quantity":
+                                                
+                                                int iquantity = -1;
+                                                if (Int32.TryParse(curCellValue, out iquantity))
+                                                {
+                                                    diary.SoNguoiKham = iquantity;
+                                                }
+                                                break;
+
+                                            case "check-up month":
+                                                //diary.ThangKham = curCellValue;
+                                                break;
+                                            //
+                                            case "feedback":
+                                                diary.NoiDungLienHe = curCellValue;
+                                                break;
+                                            case "email":
+                                                //diary.e
+                                                break;
+                                            case "contact date":
+                                                DateTime dt = new DateTime();
+                                                if (DateTime.TryParse(curCellValue, out dt))
+                                                {
+                                                    diary.CreatedDate = dt;
+                                                    diary.NgayGioLienHe = dt;
+                                                }
+                                                else
+                                                {
+                                                    diary.NgayGioLienHe = DateTime.Now;
+                                                }
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+
+                                }
+                                //add to db
+                                //if (ct.FirstName != null && ct.FirstName != string.Empty && ct.SurName != null && ct.SurName != string.Empty & ct.Gender.HasValue)
+                                {
+                                    diary.CreatedBy = Guid.Parse(Global.UserGUID);
+                                    Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
+                                    if (!result.IsOK)
+                                    {
+                                        MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"), IconType.Error);
+                                        Utility.WriteToTraceLog(result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                MsgBox.Show(Application.ProductName, message, IconType.Information);
+                DisplayAsThread();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
         }
         #endregion
 
@@ -308,6 +485,10 @@ namespace MM.Controls
         {
             OnExportToExcel();
         }
+        private void btnImportExcel_Click(object sender, EventArgs e)
+        {
+            OnImportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -329,6 +510,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }
