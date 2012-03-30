@@ -203,7 +203,7 @@ namespace MM.Controls
             string thuocGUID = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row["ThuocGUID"].ToString();
             DataRow drThuoc = GetDataRow(thuocGUID);
             if (drThuoc == null) return;
-            dlgAddThuoc dlg = new dlgAddThuoc(drThuoc, false);
+            dlgAddThuoc dlg = new dlgAddThuoc(drThuoc, AllowEdit);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 drThuoc["MaThuoc"] = dlg.Thuoc.MaThuoc;
