@@ -168,6 +168,13 @@ spDichVuHopDong
 Khám nội soi (Thêm, xóa, sửa, in, xuất) (OK)
 5>> Thêm ngày xuất phiếu thu dịch vụ trong dialog confirm đã thu tiền hay chưa (OK)
 6>> Show ngày liên hệ khách hàng gần nhất (OK)
-
 7>> Bỏ giới tính kô xác định
+------------------------------------
+1>> Thêm field Địa chỉ (Quận) vào chức năng nhật ký liên hệ công ty
+2>> Nhân viên liên hệ => Người khởi tạo
+3>> Liên hệ lần đầu => CreatedDate, Liên hệ cập nhật => UpdatedDate
+4>> Số dt liên hệ => Số ĐT or email
+5>> Xuất Excel => Xuất liên hệ cty (Nếu kô có quyền xuất full thì chỉ xuất thông tin của nhân viên đó thôi)
+6>> Thêm field Đã trả tiền vào toàn bộ hóa đơn
+
 

@@ -52,6 +52,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgYKienKhachHang = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.yKienKhachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenKhachHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,8 +64,6 @@
             this.nguonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.yKienKhachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -312,6 +312,18 @@
             this.dgYKienKhachHang.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgYKienKhachHang_ColumnHeaderMouseClick);
             this.dgYKienKhachHang.DoubleClick += new System.EventHandler(this.dgYKienKhachHang_DoubleClick);
             // 
+            // yKienKhachHangBindingSource
+            // 
+            this.yKienKhachHangBindingSource.DataSource = typeof(MM.Databasae.YKienKhachHang);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
+            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -401,19 +413,8 @@
             this.NguoiCapNhat.HeaderText = "Người cập nhật";
             this.NguoiCapNhat.Name = "NguoiCapNhat";
             this.NguoiCapNhat.ReadOnly = true;
+            this.NguoiCapNhat.Visible = false;
             this.NguoiCapNhat.Width = 200;
-            // 
-            // yKienKhachHangBindingSource
-            // 
-            this.yKienKhachHangBindingSource.DataSource = typeof(MM.Databasae.YKienKhachHang);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.AllowCurrentPage = true;
-            this._printDialog.AllowSelection = true;
-            this._printDialog.AllowSomePages = true;
-            this._printDialog.ShowHelp = true;
-            this._printDialog.UseEXDialog = true;
             // 
             // uYKienKhachHangList
             // 
@@ -453,6 +454,10 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgYKienKhachHang;
         private System.Windows.Forms.BindingSource yKienKhachHangBindingSource;
+        private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.Button btnPrintPreview;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.PrintDialog _printDialog;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenKhachHangDataGridViewTextBoxColumn;
@@ -463,9 +468,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nguonDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
-        private System.Windows.Forms.Button btnExportExcel;
-        private System.Windows.Forms.Button btnPrintPreview;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }
