@@ -64,6 +64,7 @@ namespace MM.Dialogs
                 cboHinhThucThanhToan.Enabled = false;
                 numVAT.Enabled = false;
                 dtpkNgay.Enabled = false;
+                chkDaThuTien.Enabled = false;
             }
         }
         #endregion
@@ -161,6 +162,8 @@ namespace MM.Dialogs
                 
                 if (_drInvoice["DiaChi"] != null && _drInvoice["DiaChi"] != DBNull.Value)
                     txtAddress.Text = _drInvoice["DiaChi"].ToString();
+
+                chkDaThuTien.Checked = Convert.ToBoolean(_drInvoice["DaThuTien"]);
 
                 Result result = null;
                 if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonThuoc)
@@ -677,6 +680,7 @@ namespace MM.Dialogs
                 invoice.CreatedDate = DateTime.Now;
                 invoice.CreatedBy = Guid.Parse(Global.UserGUID);
                 invoice.Status = (byte)Status.Actived;
+                invoice.ChuaThuTien = !chkDaThuTien.Checked;
 
                 List<ChiTietHoaDonThuoc> addedDetails = new List<ChiTietHoaDonThuoc>();
                 for (int i = 0; i < dgDetail.RowCount - 1; i++)

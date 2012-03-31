@@ -270,6 +270,7 @@ namespace MM.Bussiness
                             p.IsImport = Convert.ToBoolean(row["IsImport"]);
                             p.IsConfirm = Convert.ToBoolean(row["IsConfirm"]);
                             p.IsLock = Convert.ToBoolean(row["IsLock"]);
+                            p.IsExportAll = Convert.ToBoolean(row["IsExportAll"]);
                             p.CreatedDate = DateTime.Now;
                             p.CreatedBy = Guid.Parse(Global.UserGUID);
                             db.Permissions.InsertOnSubmit(p);
@@ -319,6 +320,7 @@ namespace MM.Bussiness
                                         p.IsImport = Convert.ToBoolean(row["IsImport"]);
                                         p.IsConfirm = Convert.ToBoolean(row["IsConfirm"]);
                                         p.IsLock = Convert.ToBoolean(row["IsLock"]);
+                                        p.IsExportAll = Convert.ToBoolean(row["IsExportAll"]);
                                         p.UpdatedDate = DateTime.Now;
                                         p.UpdatedBy = Guid.Parse(Global.UserGUID);
                                     }
@@ -338,6 +340,7 @@ namespace MM.Bussiness
                                     p.IsImport = Convert.ToBoolean(row["IsImport"]);
                                     p.IsConfirm = Convert.ToBoolean(row["IsConfirm"]);
                                     p.IsLock = Convert.ToBoolean(row["IsLock"]);
+                                    p.IsExportAll = Convert.ToBoolean(row["IsExportAll"]);
                                     p.CreatedDate = DateTime.Now;
                                     p.CreatedBy = Guid.Parse(Global.UserGUID);
                                     db.Permissions.InsertOnSubmit(p);

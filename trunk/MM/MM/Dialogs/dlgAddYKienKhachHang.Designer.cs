@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddYKienKhachHang));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtNguon = new System.Windows.Forms.TextBox();
             this.txtYeuCau = new System.Windows.Forms.TextBox();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.txtSoDienThoai = new System.Windows.Forms.TextBox();
@@ -43,12 +42,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.cboNguon = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtNguon);
+            this.groupBox1.Controls.Add(this.cboNguon);
             this.groupBox1.Controls.Add(this.txtYeuCau);
             this.groupBox1.Controls.Add(this.txtDiaChi);
             this.groupBox1.Controls.Add(this.txtSoDienThoai);
@@ -64,14 +64,6 @@
             this.groupBox1.Size = new System.Drawing.Size(497, 187);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            // 
-            // txtNguon
-            // 
-            this.txtNguon.Location = new System.Drawing.Point(138, 157);
-            this.txtNguon.MaxLength = 500;
-            this.txtNguon.Name = "txtNguon";
-            this.txtNguon.Size = new System.Drawing.Size(347, 20);
-            this.txtNguon.TabIndex = 10;
             // 
             // txtYeuCau
             // 
@@ -184,6 +176,14 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // cboNguon
+            // 
+            this.cboNguon.FormattingEnabled = true;
+            this.cboNguon.Location = new System.Drawing.Point(138, 157);
+            this.cboNguon.Name = "cboNguon";
+            this.cboNguon.Size = new System.Drawing.Size(347, 21);
+            this.cboNguon.TabIndex = 10;
+            // 
             // dlgAddYKienKhachHang
             // 
             this.AcceptButton = this.btnOK;
@@ -213,7 +213,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtNguon;
         private System.Windows.Forms.TextBox txtYeuCau;
         private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.TextBox txtSoDienThoai;
@@ -226,5 +225,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.ComboBox cboNguon;
     }
 }

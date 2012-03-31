@@ -87,7 +87,9 @@ namespace MM.Dialogs
                 txtNoiDungLienHe.Text = drNhatKyLienHeCongTy["NoiDungLienHe"] as string;
                 txtNguoiLienHe.Text = drNhatKyLienHeCongTy["TenNguoiLienHe"] as string;
                 txtSoDienThoaiLienHe.Text = drNhatKyLienHeCongTy["SoDienThoaiLienHe"] as string;
-                numSoNguoiKham.Value = Convert.ToInt32(drNhatKyLienHeCongTy["SoNguoiKham"]);
+                txtEmail.Text = drNhatKyLienHeCongTy["Email"] as string;
+                txtDiaChi.Text = drNhatKyLienHeCongTy["DiaChi"] as string;
+                txtSoNguoiKham.Text = drNhatKyLienHeCongTy["SoNguoiKham"].ToString();
                 if (drNhatKyLienHeCongTy["ThangKham"] != null && drNhatKyLienHeCongTy["ThangKham"] != DBNull.Value)
                 {
                     chkThangKham.Checked = true;
@@ -125,11 +127,13 @@ namespace MM.Dialogs
                     cboCongTyLienHe.Enabled = false;
                     txtNguoiLienHe.Enabled = false;
                     txtSoDienThoaiLienHe.Enabled = false;
-                    numSoNguoiKham.Enabled = false;
+                    txtSoNguoiKham.Enabled = false;
                     chkThangKham.Enabled = false;
                     cboThang.Enabled = false;
                     cboNam.Enabled = false;
                     txtNoiDungLienHe.Enabled = false;
+                    txtDiaChi.Enabled = false;
+                    txtEmail.Enabled = false;
                     btnOK.Enabled = false;
                     _isView = true;
                 }
@@ -255,7 +259,9 @@ namespace MM.Dialogs
                     _nhatKyLienHeCongTy.Note = string.Empty;
                     _nhatKyLienHeCongTy.TenNguoiLienHe = txtNguoiLienHe.Text;
                     _nhatKyLienHeCongTy.SoDienThoaiLienHe = txtSoDienThoaiLienHe.Text;
-                    _nhatKyLienHeCongTy.SoNguoiKham = (int)numSoNguoiKham.Value;
+                    _nhatKyLienHeCongTy.SoNguoiKham = txtSoNguoiKham.Text;
+                    _nhatKyLienHeCongTy.DiaChi = txtDiaChi.Text;
+                    _nhatKyLienHeCongTy.Email = txtEmail.Text;
 
                     if (chkThangKham.Checked)
                         _nhatKyLienHeCongTy.ThangKham = new DateTime(Convert.ToInt32(cboNam.Text), Convert.ToInt32(cboThang.Text), 1);

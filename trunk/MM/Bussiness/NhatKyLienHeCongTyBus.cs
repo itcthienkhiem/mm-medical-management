@@ -35,19 +35,23 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetNhatKyLienHeCongTyList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan)
+        public static Result GetNhatKyLienHeCongTyList(int type, DateTime fromDate, DateTime toDate, string tenBenhNhan, string tenNguoiTao)
         {
             Result result = null;
 
             try
             {
                 string query = string.Empty;
-                if (isFromDateToDate)
+                if (type == 0)
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND NgayGioLienHe BETWEEN '{1}' AND '{2}' ORDER BY NgayGioLienHe DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                else
+                else if (type == 1)
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe LIKE N'%{1}%' ORDER BY NgayGioLienHe DESC", 
                         (byte)Status.Actived, tenBenhNhan);
+                else
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY NgayGioLienHe DESC",
+                        (byte)Status.Actived, tenNguoiTao);
+
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -120,9 +124,9 @@ namespace MM.Bussiness
                             if (s.ThangKham.HasValue)
                                 thangKham = s.ThangKham.Value.ToString("MM/yyyy");
 
-                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Số người khám: '{6}', Tháng khám: '{7}', Nội dung liên hệ: '{8}', Ghi chú: '{9}'\n",
-                                s.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, s.CongTyLienHe, s.TenNguoiLienHe, s.SoDienThoaiLienHe,
-                                s.SoNguoiKham, thangKham, s.NoiDungLienHe, s.Note);
+                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}'\n",
+                                s.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, s.CongTyLienHe, s.TenNguoiLienHe, s.DiaChi, s.SoDienThoaiLienHe,
+                                s.Email, s.SoNguoiKham, thangKham, s.NoiDungLienHe, s.Note);
                         }
 
                         index++;
@@ -197,10 +201,10 @@ namespace MM.Bussiness
                         if (nhatKyLienHeCongTy.ThangKham.HasValue)
                             thangKham = nhatKyLienHeCongTy.ThangKham.Value.ToString("MM/yyyy");
 
-                        desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Số người khám: '{6}', Tháng khám: '{7}', Nội dung liên hệ: '{8}', Ghi chú: '{9}'",
+                        desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}'",
                                  nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName,
-                                 nhatKyLienHeCongTy.CongTyLienHe, nhatKyLienHeCongTy.TenNguoiLienHe, nhatKyLienHeCongTy.SoDienThoaiLienHe, nhatKyLienHeCongTy.SoNguoiKham,
-                                 thangKham, nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note);
+                                 nhatKyLienHeCongTy.CongTyLienHe, nhatKyLienHeCongTy.TenNguoiLienHe, nhatKyLienHeCongTy.DiaChi, nhatKyLienHeCongTy.SoDienThoaiLienHe, 
+                                 nhatKyLienHeCongTy.Email, nhatKyLienHeCongTy.SoNguoiKham, thangKham, nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -235,6 +239,8 @@ namespace MM.Bussiness
                             nklhct.SoDienThoaiLienHe = nhatKyLienHeCongTy.SoDienThoaiLienHe;
                             nklhct.SoNguoiKham = nhatKyLienHeCongTy.SoNguoiKham;
                             nklhct.ThangKham = nhatKyLienHeCongTy.ThangKham;
+                            nklhct.DiaChi = nhatKyLienHeCongTy.DiaChi;
+                            nklhct.Email = nhatKyLienHeCongTy.Email;
 
                             //Tracking
                             string docStaffGUID = string.Empty;
@@ -249,9 +255,9 @@ namespace MM.Bussiness
                             if (nhatKyLienHeCongTy.ThangKham.HasValue)
                                 thangKham = nklhct.ThangKham.Value.ToString("MM/yyyy");
 
-                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Số ĐT liên hệ: '{5}', Số người khám: '{6}', Tháng khám: '{7}', Nội dung liên hệ: '{8}', Ghi chú: '{9}'",
-                                  nklhct.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, nklhct.CongTyLienHe, nklhct.TenNguoiLienHe, nklhct.SoDienThoaiLienHe, 
-                                  nklhct.SoNguoiKham, thangKham, nklhct.NoiDungLienHe, nklhct.Note);
+                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}'",
+                                  nklhct.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, nklhct.CongTyLienHe, nklhct.TenNguoiLienHe, nklhct.DiaChi,
+                                  nklhct.SoDienThoaiLienHe, nklhct.Email, nklhct.SoNguoiKham, thangKham, nklhct.NoiDungLienHe, nklhct.Note);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();

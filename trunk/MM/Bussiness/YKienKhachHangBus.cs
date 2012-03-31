@@ -35,22 +35,27 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetYKienKhachHangList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan)
+        public static Result GetYKienKhachHangList(int type, DateTime fromDate, DateTime toDate, string tenBenhNhan, string tenNguoiTao)
         {
             Result result = null;
 
             try
             {
                 string query = string.Empty;
-                if (isFromDateToDate)
+                if (type == 0)
                 {
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WHERE Status={0} AND ContactDate BETWEEN '{1}' AND '{2}' ORDER BY ContactDate DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
+                else if (type == 1)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WHERE Status={0} AND TenKhachHang LIKE N'%{1}%' ORDER BY ContactDate DESC",
+                        (byte)Status.Actived, tenBenhNhan);
+                }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WHERE Status={0} AND TenKhachHang LIKE N'%{1}%' ORDER BY ContactDate DESC", 
-                        (byte)Status.Actived, tenBenhNhan);
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WHERE Status={0} AND NguoiTao LIKE N'%{1}%' ORDER BY ContactDate DESC",
+                        (byte)Status.Actived, tenNguoiTao);
                 }
                 
                 return ExcuteQuery(query);
@@ -310,6 +315,29 @@ namespace MM.Bussiness
                     db.Dispose();
                     db = null;
                 }
+            }
+
+            return result;
+        }
+
+        public static Result GetNguonList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT DISTINCT Nguon FROM YKienKhachHang ORDER BY Nguon", (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
             }
 
             return result;

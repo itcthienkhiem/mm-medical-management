@@ -67,6 +67,7 @@
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceViewBindingSource)).BeginInit();
@@ -158,7 +159,8 @@
             this.soTaiKhoanDataGridViewTextBoxColumn,
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn,
             this.vATDataGridViewTextBoxColumn,
-            this.Notes});
+            this.Notes,
+            this.DaThuTien});
             this.dgInvoice.DataSource = this.invoiceViewBindingSource;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
@@ -429,6 +431,15 @@
             this.Notes.ReadOnly = true;
             this.Notes.Width = 250;
             // 
+            // DaThuTien
+            // 
+            this.DaThuTien.DataPropertyName = "DaThuTien";
+            this.DaThuTien.HeaderText = "Đã thu tiền";
+            this.DaThuTien.Name = "DaThuTien";
+            this.DaThuTien.ReadOnly = true;
+            this.DaThuTien.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DaThuTien.Width = 80;
+            // 
             // uInvoiceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -485,5 +496,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn hinhThucThanhToanStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
     }
 }
