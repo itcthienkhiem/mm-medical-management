@@ -63,7 +63,18 @@ namespace MM.Dialogs
                 cboHinhThucThanhToan.Enabled = false;
                 numVAT.Enabled = false;
                 dtpkNgay.Enabled = false;
-                chkDaThuTien.Enabled = false;
+
+                btnOK.Visible = true;
+                if (Global.StaffType == StaffType.Admin)
+                {
+                    chkDaThuTien.Enabled = true;
+                    btnOK.Enabled = true;
+                }
+                else
+                {
+                    chkDaThuTien.Enabled = false;
+                    btnOK.Enabled = false;
+                }
             }
         }
         #endregion
@@ -554,12 +565,15 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                if (!ExportInvoice()) e.Cancel = true;
-                else if (_receiptList != null && _receiptList.Count > 0)
+                if (!_isView)
                 {
-                    foreach (DataRow row in _receiptList)
+                    if (!ExportInvoice()) e.Cancel = true;
+                    else if (_receiptList != null && _receiptList.Count > 0)
                     {
-                        row["IsExportedInvoice"] = true;
+                        foreach (DataRow row in _receiptList)
+                        {
+                            row["IsExportedInvoice"] = true;
+                        }
                     }
                 }
             }
@@ -757,6 +771,24 @@ namespace MM.Dialogs
         {
             if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
             _flag = false;
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            string inviceGUID = _drInvoice["InvoiceGUID"].ToString();
+            bool daThuTien = chkDaThuTien.Checked;
+            Result result = InvoiceBus.UpdateDaThuTienInvoice(inviceGUID, daThuTien);
+            if (result.IsOK)
+            {
+                _drInvoice["DaThuTien"] = daThuTien;
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("InvoiceBus.UpdateDaThuTienInvoice"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("InvoiceBus.UpdateDaThuTienInvoice"));
+            }
         }
         #endregion
     }
