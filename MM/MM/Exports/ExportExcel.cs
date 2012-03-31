@@ -4211,7 +4211,6 @@ namespace MM.Exports
                     if (row["Email"] != null && row["Email"] != DBNull.Value)
                         email = row["Email"].ToString();
 
-
                     string soNguoiKham = row["SoNguoiKham"].ToString();
                     
                     string thangKham = string.Empty;
@@ -4322,7 +4321,7 @@ namespace MM.Exports
                     hinhList.Add((byte[])ketQuaSoiCTC["Hinh2"]);
 
                 double left = 96.134184222258924;
-                double top = 195;
+                double top = 175;
                 double width = 163.64469756847291;
                 double height = 171.0; ;
                 workSheet.Cells["A9"].RowHeight = height;
