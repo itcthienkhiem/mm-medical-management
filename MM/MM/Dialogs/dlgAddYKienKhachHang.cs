@@ -59,6 +59,24 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void OnDisplayNguonList()
+        {
+            Result result = YKienKhachHangBus.GetNguonList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    cboNguon.Items.Add(row["Nguon"].ToString());
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("YKienKhachHangBus.GetNguonList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("YKienKhachHangBus.GetNguonList"));
+            }
+        }
+
         private void DisplayInfo(DataRow drYKienKhachHang)
         {
             try
@@ -67,7 +85,7 @@ namespace MM.Dialogs
                 txtSoDienThoai.Text = drYKienKhachHang["SoDienThoai"] as string;
                 txtDiaChi.Text = drYKienKhachHang["DiaChi"] as string;
                 txtYeuCau.Text = drYKienKhachHang["YeuCau"] as string;
-                txtNguon.Text = drYKienKhachHang["Nguon"] as string;
+                cboNguon.Text = drYKienKhachHang["Nguon"] as string;
 
                 _yKienKhachHang.YKienKhachHangGUID = Guid.Parse(drYKienKhachHang["YKienKhachHangGUID"].ToString());
 
@@ -185,7 +203,7 @@ namespace MM.Dialogs
                     _yKienKhachHang.SoDienThoai = txtSoDienThoai.Text;
                     _yKienKhachHang.DiaChi = txtDiaChi.Text;
                     _yKienKhachHang.YeuCau = txtYeuCau.Text;
-                    _yKienKhachHang.Nguon = txtNguon.Text;
+                    _yKienKhachHang.Nguon = cboNguon.Text;
                     _yKienKhachHang.Note = string.Empty;
 
                     Result result = YKienKhachHangBus.InsertYKienKhachHang(_yKienKhachHang);
@@ -223,6 +241,7 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgAddYKienKhachHang_Load(object sender, EventArgs e)
         {
+            OnDisplayNguonList();
             OnDisplayBenhNhan();
             if (!_isNew) DisplayInfo(_drYKienKhachHang);
         }

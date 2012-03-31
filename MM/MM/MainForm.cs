@@ -237,6 +237,7 @@ namespace MM
                         bool isExport = Convert.ToBoolean(row["IsExport"]);
                         bool isConfirm = Convert.ToBoolean(row["IsConfirm"]);
                         bool isLock = Convert.ToBoolean(row["IsLock"]);
+                        bool isExportAll = Convert.ToBoolean(row["IsExportAll"]);
 
                         if (functionCode == Const.DocStaff)
                         {
@@ -704,6 +705,7 @@ namespace MM
                             _uNhatKyLienHeCongTy.AllowExport = isExport;
                             _uNhatKyLienHeCongTy.AllowImport = isImport;
                             _uNhatKyLienHeCongTy.AllowLock = isLock;
+                            _uNhatKyLienHeCongTy.AllowExportAll = isExportAll;
                         }
                         else if (functionCode == Const.DichVuDaSuDung)
                         {
@@ -824,6 +826,7 @@ namespace MM
                     (ctrl as uBase).AllowExport = true;
                     (ctrl as uBase).AllowImport = true;
                     (ctrl as uBase).AllowLock = true;
+                    (ctrl as uBase).AllowExportAll = true;
                 }
 
                 servicesToolStripMenuItem.Enabled = isLogin;

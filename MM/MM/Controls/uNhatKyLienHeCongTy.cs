@@ -20,10 +20,12 @@ namespace MM.Controls
     public partial class uNhatKyLienHeCongTy : uBase
     {
         #region Members
-        private bool _isFromDateToDate = true;
+        //private bool _isFromDateToDate = true;
         private string _tenBenhNhan = string.Empty;
+        private string _tenNguoiTao = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
+        private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo
         #endregion
 
         #region Constructor
@@ -52,7 +54,11 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
-            btnExportExcel.Enabled = AllowExport;
+
+            if (AllowExportAll)
+                btnExportExcel.Enabled = true;
+            else
+                btnExportExcel.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -60,11 +66,29 @@ namespace MM.Controls
             try
             {
                 UpdateGUI();
+
+                //if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
+                //{
+                //    MsgBox.Show(Application.ProductName, "Vui lòng nhập tên công ty cần tìm.", IconType.Information);
+                //    txtTenBenhNhan.Focus();
+                //    return;
+                //}
+
+                //if (raTenNguoiTao.Checked && txtTenNguoiTao.Text.Trim() == string.Empty)
+                //{
+                //    MsgBox.Show(Application.ProductName, "Vui lòng nhập tên người tạo cần tìm.", IconType.Information);
+                //    txtTenNguoiTao.Focus();
+                //    return;
+                //}
+
                 chkChecked.Checked = false;
-                _isFromDateToDate = raTuNgayToiNgay.Checked;
+                if (raTuNgayToiNgay.Checked) _type = 0;
+                else if (raTenBenhNhan.Checked) _type = 1;
+                else _type = 2;
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 _tenBenhNhan = txtTenBenhNhan.Text;
+                _tenNguoiTao = txtTenNguoiTao.Text;
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayNhatKyLienHeCongTyListProc));
                 base.ShowWaiting();
@@ -82,7 +106,7 @@ namespace MM.Controls
 
         private void OnDisplayNhatKyLienHeCongTyList()
         {
-            Result result = NhatKyLienHeCongTyBus.GetNhatKyLienHeCongTyList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan);
+            Result result = NhatKyLienHeCongTyBus.GetNhatKyLienHeCongTyList(_type, _fromDate, _toDate, _tenBenhNhan, _tenNguoiTao);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -188,6 +212,20 @@ namespace MM.Controls
         {
             Cursor.Current = Cursors.WaitCursor;
             List<DataRow> checkedRows = GetCheckedRows();
+
+            if (!AllowExportAll)
+            {
+                foreach (DataRow row in checkedRows)
+                {
+                    string userGUID = row["CreatedBy"].ToString();
+                    if (userGUID != Global.UserGUID)
+                    {
+                        MsgBox.Show(Application.ProductName, "Bạn chỉ có thể in được liên hệ công ty do mình tạo. Vui lòng chọn lại.", IconType.Information);
+                        return;
+                    }
+                }
+            }
+
             if (checkedRows.Count > 0)
             {
                 string exportFileName = string.Format("{0}\\Temp\\NhatKyLienHeCongTy.xls", Application.StartupPath);
@@ -237,6 +275,20 @@ namespace MM.Controls
         {
             Cursor.Current = Cursors.WaitCursor;
             List<DataRow> checkedRows = GetCheckedRows();
+
+            if (!AllowExportAll)
+            {
+                foreach (DataRow row in checkedRows)
+                {
+                    string userGUID = row["CreatedBy"].ToString();
+                    if (userGUID != Global.UserGUID)
+                    {
+                        MsgBox.Show(Application.ProductName, "Bạn chỉ có thể xuất được liên hệ công ty do mình tạo. Vui lòng chọn lại.", IconType.Information);
+                        return;
+                    }
+                }
+            }
+
             if (checkedRows.Count > 0)
             {
                 SaveFileDialog dlg = new SaveFileDialog();
@@ -433,7 +485,17 @@ namespace MM.Controls
         {
             dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
             dtpkDenNgay.Enabled = raTuNgayToiNgay.Checked;
-            txtTenBenhNhan.ReadOnly = raTuNgayToiNgay.Checked;
+            //txtTenBenhNhan.ReadOnly = raTuNgayToiNgay.Checked;
+        }
+
+        private void raTenBenhNhan_CheckedChanged(object sender, EventArgs e)
+        {
+            txtTenBenhNhan.ReadOnly = !raTenBenhNhan.Checked;
+        }
+
+        private void raTenNguoiTao_CheckedChanged(object sender, EventArgs e)
+        {
+            txtTenNguoiTao.ReadOnly = !raTenNguoiTao.Checked;
         }
 
         private void btnView_Click(object sender, EventArgs e)
