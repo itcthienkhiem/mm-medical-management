@@ -63,7 +63,6 @@ namespace MM.Common
                 workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
                 excelApp.Visible = true;
-                excelApp.
                 workBook.PrintPreview(objOpt);
                 excelApp.Visible = false;
             }
