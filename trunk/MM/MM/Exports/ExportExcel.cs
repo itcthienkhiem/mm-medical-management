@@ -4221,7 +4221,6 @@ namespace MM.Exports
                     string noiDungLienHe = row["NoiDungLienHe"].ToString();
                     string nhanVienLienHe = row["FullName"].ToString();
 
-                    string lienHeLanDau = Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy HH:mm:ss");
                     string lienHeCapNhat = string.Empty;
                     if (row["UpdatedDate"] != null && row["UpdatedDate"] != DBNull.Value)
                         lienHeCapNhat = Convert.ToDateTime(row["UpdatedDate"]).ToString("dd/MM/yyyy HH:mm:ss");
@@ -4230,43 +4229,40 @@ namespace MM.Exports
                     range.Value = ngayLienHe.ToString("dd/MM/yyyy HH:mm:ss");
 
                     range = workSheet.Cells[rowIndex, 1];
-                    range.Value = congTyLienHe;
+                    range.Value = lienHeCapNhat;
 
                     range = workSheet.Cells[rowIndex, 2];
-                    range.Value = diaChi;
+                    range.Value = congTyLienHe;
 
                     range = workSheet.Cells[rowIndex, 3];
-                    range.Value = nguoiLienHe;
+                    range.Value = diaChi;
 
                     range = workSheet.Cells[rowIndex, 4];
-                    range.Value = soDienThoaiLienHe;
+                    range.Value = nguoiLienHe;
 
                     range = workSheet.Cells[rowIndex, 5];
-                    range.Value = email;
+                    range.Value = soDienThoaiLienHe;
 
                     range = workSheet.Cells[rowIndex, 6];
-                    range.Value = soNguoiKham;
+                    range.Value = email;
 
                     range = workSheet.Cells[rowIndex, 7];
-                    range.Value = thangKham;
+                    range.Value = soNguoiKham;
 
                     range = workSheet.Cells[rowIndex, 8];
-                    range.Value = noiDungLienHe;
+                    range.Value = thangKham;
 
                     range = workSheet.Cells[rowIndex, 9];
-                    range.Value = nhanVienLienHe;
+                    range.Value = noiDungLienHe;
 
                     range = workSheet.Cells[rowIndex, 10];
-                    range.Value = lienHeLanDau;
-
-                    range = workSheet.Cells[rowIndex, 11];
-                    range.Value = lienHeCapNhat;
+                    range.Value = nhanVienLienHe;
 
                     rowIndex++;
 
                 }
 
-                range = workSheet.Cells[string.Format("A3:L{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:K{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
