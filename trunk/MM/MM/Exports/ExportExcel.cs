@@ -3291,23 +3291,23 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
-                workSheet.Cells["C6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
-                workSheet.Cells["E6"].Value = string.Format("          Giới tính: {0}", patientRow["GenderAsStr"].ToString());
+                workSheet.Cells["D6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["F6"].Value = string.Format("    Giới tính: {0}", patientRow["GenderAsStr"].ToString());
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
                     workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
 
                 if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["C7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
+                    workSheet.Cells["D7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
 
                 if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["E7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
+                    workSheet.Cells["F7"].Value = string.Format("    Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
 
                 if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
                     workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["E8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+                    workSheet.Cells["F8"].Value = string.Format("    BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -3322,88 +3322,89 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 6.5590551181102361;
-                double top = 175.206062992126;
-                double width = 138.66776077766588;
-                double height = 127.26858267716534;
+                double left = 0.73803149606299212;
+                double top = 198;
+                double width = 128.50485241420625;
+                double height = 129.2431496062992;
 
                 if (hinhList.Count == 4)
                 {
-                    left = 6.5590551181102361;
-                    top = 175.206062992126;
-                    width = 138.66776077766588;
-                    height = 127.26858267716534;
+                    left = 0.73803149606299212;
+                    top = 198;
+                    width = 128.50485241420625;
+                    height = 129.2431496062992;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 149.27965054144539;
+                    left = 134.99997052444246;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 291.97978920584586;
+                    left = 269.12107375824547;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 434.69525694033877;
+                    left = 403.32905700657312;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 168.75;
-                    left = 3.3107086614173227;
-                    width = 184.51114660443753;
-                    height = 168.0907874015748;
+                    left = 0.73803149606299212;
+                    width = 163.64469756847291;
+                    height = 171.0;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 191.84193400601231;
+                    left = 184.49902827713433;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 380.57241159128978;
+                    left = 368.15975936217569;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 251.25;
-                    left = 6.5590551181102361;
-                    width = 274.75875488041896;
-                    height = 250.26858267716534;
+                    left = 96.134184222258924;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 287.03733755758429;
+                    left = 272.01223594316349;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 145.1328001477446;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    left = 183.74839835587449;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
                 }
 
                 workSheet.Cells["A13"].Value = ketQuaNoiSoi["OngTaiPhai"].ToString();
-                workSheet.Cells["E13"].Value = ketQuaNoiSoi["OngTaiTrai"].ToString();
+                workSheet.Cells["D13"].Value = ketQuaNoiSoi["OngTaiTrai"].ToString();
 
                 workSheet.Cells["A14"].Value = ketQuaNoiSoi["MangNhiPhai"].ToString();
-                workSheet.Cells["E14"].Value = ketQuaNoiSoi["MangNhiTrai"].ToString();
+                workSheet.Cells["D14"].Value = ketQuaNoiSoi["MangNhiTrai"].ToString();
 
                 workSheet.Cells["A15"].Value = ketQuaNoiSoi["CanBuaPhai"].ToString();
-                workSheet.Cells["E15"].Value = ketQuaNoiSoi["CanBuaTrai"].ToString();
+                workSheet.Cells["D15"].Value = ketQuaNoiSoi["CanBuaTrai"].ToString();
 
                 workSheet.Cells["A16"].Value = ketQuaNoiSoi["HomNhiPhai"].ToString();
-                workSheet.Cells["E16"].Value = ketQuaNoiSoi["HomNhiTrai"].ToString();
+                workSheet.Cells["D16"].Value = ketQuaNoiSoi["HomNhiTrai"].ToString();
 
                 workSheet.Cells["A17"].Value = ketQuaNoiSoi["ValsavaPhai"].ToString();
-                workSheet.Cells["E17"].Value = ketQuaNoiSoi["ValsavaTrai"].ToString();
+                workSheet.Cells["D17"].Value = ketQuaNoiSoi["ValsavaTrai"].ToString();
 
                 workSheet.Cells["B19"].Value = ketQuaNoiSoi["KetLuan"].ToString();
                 workSheet.Cells["B21"].Value = ketQuaNoiSoi["DeNghi"].ToString();
 
-                workSheet.Cells["E23"].Value = string.Format("Ngày: {0}", 
+                workSheet.Cells["F23"].Value = string.Format("Ngày: {0}", 
                     Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
 
-                workSheet.Cells["E27"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+                workSheet.Cells["F27"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
@@ -3440,23 +3441,23 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
-                workSheet.Cells["C6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
-                workSheet.Cells["E6"].Value = string.Format("          Giới tính: {0}", patientRow["GenderAsStr"].ToString());
+                workSheet.Cells["D6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["F6"].Value = string.Format("    Giới tính: {0}", patientRow["GenderAsStr"].ToString());
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
                     workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
 
                 if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["C7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
+                    workSheet.Cells["D7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
 
                 if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["E7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
+                    workSheet.Cells["F7"].Value = string.Format("    Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
 
                 if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
                     workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["E8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+                    workSheet.Cells["F8"].Value = string.Format("    BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -3471,100 +3472,101 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 6.5590551181102361;
-                double top = 175.206062992126;
-                double width = 138.66776077766588;
-                double height = 127.26858267716534;
+                double left = 0.73803149606299212;
+                double top = 198;
+                double width = 128.50485241420625;
+                double height = 129.2431496062992;
 
                 if (hinhList.Count == 4)
                 {
-                    left = 6.5590551181102361;
-                    top = 175.206062992126;
-                    width = 138.66776077766588;
-                    height = 127.26858267716534;
+                    left = 0.73803149606299212;
+                    top = 198;
+                    width = 128.50485241420625;
+                    height = 129.2431496062992;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 149.27965054144539;
+                    left = 134.99997052444246;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 291.97978920584586;
+                    left = 269.12107375824547;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 434.69525694033877;
+                    left = 403.32905700657312;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 168.75;
-                    left = 3.3107086614173227;
-                    width = 184.51114660443753;
-                    height = 168.0907874015748;
+                    left = 0.73803149606299212;
+                    width = 163.64469756847291;
+                    height = 171.0;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 191.84193400601231;
+                    left = 184.49902827713433;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 380.57241159128978;
+                    left = 368.15975936217569;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 251.25;
-                    left = 6.5590551181102361;
-                    width = 274.75875488041896;
-                    height = 250.26858267716534;
+                    left = 96.134184222258924;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 287.03733755758429;
+                    left = 272.01223594316349;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 145.1328001477446;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    left = 183.74839835587449;
+                   width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
                 }
 
                 workSheet.Cells["A13"].Value = ketQuaNoiSoi["NiemMacPhai"].ToString();
-                workSheet.Cells["E13"].Value = ketQuaNoiSoi["NiemMacTrai"].ToString();
+                workSheet.Cells["D13"].Value = ketQuaNoiSoi["NiemMacTrai"].ToString();
 
                 workSheet.Cells["A14"].Value = ketQuaNoiSoi["VachNganPhai"].ToString();
-                workSheet.Cells["E14"].Value = ketQuaNoiSoi["VachNganTrai"].ToString();
+                workSheet.Cells["D14"].Value = ketQuaNoiSoi["VachNganTrai"].ToString();
 
                 workSheet.Cells["A15"].Value = ketQuaNoiSoi["KheTrenPhai"].ToString();
-                workSheet.Cells["E15"].Value = ketQuaNoiSoi["KheTrenTrai"].ToString();
+                workSheet.Cells["D15"].Value = ketQuaNoiSoi["KheTrenTrai"].ToString();
 
                 workSheet.Cells["A16"].Value = ketQuaNoiSoi["KheGiuaPhai"].ToString();
-                workSheet.Cells["E16"].Value = ketQuaNoiSoi["KheGiuaTrai"].ToString();
+                workSheet.Cells["D16"].Value = ketQuaNoiSoi["KheGiuaTrai"].ToString();
 
                 workSheet.Cells["A17"].Value = ketQuaNoiSoi["CuonGiuaPhai"].ToString();
-                workSheet.Cells["E17"].Value = ketQuaNoiSoi["CuonGiuaTrai"].ToString();
+                workSheet.Cells["D17"].Value = ketQuaNoiSoi["CuonGiuaTrai"].ToString();
 
                 workSheet.Cells["A18"].Value = ketQuaNoiSoi["CuonDuoiPhai"].ToString();
-                workSheet.Cells["E18"].Value = ketQuaNoiSoi["CuonDuoiTrai"].ToString();
+                workSheet.Cells["D18"].Value = ketQuaNoiSoi["CuonDuoiTrai"].ToString();
 
                 workSheet.Cells["A19"].Value = ketQuaNoiSoi["MomMocPhai"].ToString();
-                workSheet.Cells["E19"].Value = ketQuaNoiSoi["MomMocTrai"].ToString();
+                workSheet.Cells["D19"].Value = ketQuaNoiSoi["MomMocTrai"].ToString();
 
                 workSheet.Cells["A20"].Value = ketQuaNoiSoi["BongSangPhai"].ToString();
-                workSheet.Cells["E20"].Value = ketQuaNoiSoi["BongSangTrai"].ToString();
+                workSheet.Cells["D20"].Value = ketQuaNoiSoi["BongSangTrai"].ToString();
 
                 workSheet.Cells["A21"].Value = ketQuaNoiSoi["VomPhai"].ToString();
-                workSheet.Cells["E21"].Value = ketQuaNoiSoi["VomTrai"].ToString();
+                workSheet.Cells["D21"].Value = ketQuaNoiSoi["VomTrai"].ToString();
 
                 workSheet.Cells["B23"].Value = ketQuaNoiSoi["KetLuan"].ToString();
                 workSheet.Cells["B25"].Value = ketQuaNoiSoi["DeNghi"].ToString();
 
-                workSheet.Cells["E27"].Value = string.Format("Ngày: {0}",
+                workSheet.Cells["F27"].Value = string.Format("Ngày: {0}",
                     Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
 
-                workSheet.Cells["E31"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+                workSheet.Cells["F31"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
@@ -3601,23 +3603,23 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
-                workSheet.Cells["C6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
-                workSheet.Cells["E6"].Value = string.Format("         Giới tính: {0}", patientRow["GenderAsStr"].ToString());
+                workSheet.Cells["D6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["F6"].Value = string.Format("    Giới tính: {0}", patientRow["GenderAsStr"].ToString());
 
                 if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
                     workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
 
                 if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
-                    workSheet.Cells["C7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
+                    workSheet.Cells["D7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
 
                 if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
-                    workSheet.Cells["E7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
+                    workSheet.Cells["F7"].Value = string.Format("    Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
 
                 if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
                     workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["E8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+                    workSheet.Cells["F8"].Value = string.Format("    BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -3632,85 +3634,86 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 6.5590551181102361;
-                double top = 175.206062992126;
-                double width = 138.66776077766588;
-                double height = 127.26858267716534;
+                double left = 0.73803149606299212;
+                double top = 198;
+                double width = 128.50485241420625;
+                double height = 129.2431496062992;
 
                 if (hinhList.Count == 4)
                 {
-                    left = 6.5590551181102361;
-                    top = 175.206062992126;
-                    width = 138.66776077766588;
-                    height = 127.26858267716534;
+                    left = 0.73803149606299212;
+                    top = 198;
+                    width = 128.50485241420625;
+                    height = 129.2431496062992;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 149.27965054144539;
+                    left = 134.99997052444246;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 291.97978920584586;
+                    left = 269.12107375824547;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 434.69525694033877;
+                    left = 403.32905700657312;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 168.75;
-                    left = 3.3107086614173227;
-                    width = 184.51114660443753;
-                    height = 168.0907874015748;
+                    left = 0.73803149606299212;
+                    width = 163.64469756847291;
+                    height = 171.0;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 191.84193400601231;
+                    left = 184.49902827713433;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 380.57241159128978;
+                    left = 368.15975936217569;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 251.25;
-                    left = 6.5590551181102361;
-                    width = 274.75875488041896;
-                    height = 250.26858267716534;
+                    left = 96.134184222258924;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 287.03733755758429;
+                    left = 272.01223594316349;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 145.1328001477446;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    left = 183.74839835587449;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
                 }
 
                 workSheet.Cells["A13"].Value = ketQuaNoiSoi["OngTaiPhai"].ToString();
-                workSheet.Cells["E13"].Value = ketQuaNoiSoi["OngTaiTrai"].ToString();
+                workSheet.Cells["D13"].Value = ketQuaNoiSoi["OngTaiTrai"].ToString();
 
                 workSheet.Cells["A14"].Value = ketQuaNoiSoi["MangNhiPhai"].ToString();
-                workSheet.Cells["E14"].Value = ketQuaNoiSoi["MangNhiTrai"].ToString();
+                workSheet.Cells["D14"].Value = ketQuaNoiSoi["MangNhiTrai"].ToString();
 
                 workSheet.Cells["A15"].Value = ketQuaNoiSoi["CanBuaPhai"].ToString();
-                workSheet.Cells["E15"].Value = ketQuaNoiSoi["CanBuaTrai"].ToString();
+                workSheet.Cells["D15"].Value = ketQuaNoiSoi["CanBuaTrai"].ToString();
 
                 workSheet.Cells["A16"].Value = ketQuaNoiSoi["HomNhiPhai"].ToString();
-                workSheet.Cells["E16"].Value = ketQuaNoiSoi["HomNhiTrai"].ToString();
+                workSheet.Cells["D16"].Value = ketQuaNoiSoi["HomNhiTrai"].ToString();
 
                 workSheet.Cells["B18"].Value = ketQuaNoiSoi["KetLuan"].ToString();
                 workSheet.Cells["B20"].Value = ketQuaNoiSoi["DeNghi"].ToString();
 
-                workSheet.Cells["E22"].Value = string.Format("Ngày: {0}",
+                workSheet.Cells["F22"].Value = string.Format("Ngày: {0}",
                     Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
 
-                workSheet.Cells["E26"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+                workSheet.Cells["F26"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
@@ -3778,65 +3781,67 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 6.5590551181102361;
-                double top = 175.206062992126;
-                double width = 138.66776077766588;
-                double height = 127.26858267716534;
+                double left = 0.73803149606299212;
+                double top = 195;
+                double width = 128.50485241420625;
+                double height = 129.2431496062992;
 
                 if (hinhList.Count == 4)
                 {
-                    left = 6.5590551181102361;
-                    top = 175.206062992126;
-                    width = 138.66776077766588;
-                    height = 127.26858267716534;
+                    left = 0.73803149606299212;
+                    top = 195;
+                    width = 128.50485241420625;
+                    height = 129.2431496062992;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 149.27965054144539;
+                    left = 134.99997052444246;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 291.97978920584586;
+                    left = 269.12107375824547;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 434.69525694033877;
+                    left = 403.32905700657312;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 168.75;
-                    left = 3.3107086614173227;
-                    width = 184.51114660443753;
-                    height = 168.0907874015748;
+                    left = 0.73803149606299212;
+                    width = 163.64469756847291;
+                    height = 171.0;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 191.84193400601231;
+                    left = 184.49902827713433;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 380.57241159128978;
+                    left = 368.15975936217569;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 251.25;
-                    left = 6.5590551181102361;
-                    width = 274.75875488041896;
-                    height = 250.26858267716534;
+                    left = 96.134184222258924;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 287.03733755758429;
+                    left = 272.01223594316349;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 145.1328001477446;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    left = 183.74839835587449;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
                 }
+
 
                 workSheet.Cells["C13"].Value = ketQuaNoiSoi["Amydale"].ToString();
                 workSheet.Cells["C14"].Value = ketQuaNoiSoi["XoangLe"].ToString();
@@ -3919,63 +3924,63 @@ namespace MM.Exports
                 if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
-                double left = 6.5590551181102361;
-                double top = 175.206062992126;
-                double width = 138.66776077766588;
-                double height = 127.26858267716534;
+                double left = 0.73803149606299212;
+                double top = 195;
+                double width = 128.50485241420625;
+                double height = 129.2431496062992;
 
                 if (hinhList.Count == 4)
                 {
-                    workSheet.Cells["A10"].RowHeight = 128.25;
-                    left = 6.5590551181102361;
-                    top = 175.206062992126;
-                    width = 138.66776077766588;
-                    height = 127.26858267716534;
+                    left = 0.73803149606299212;
+                    top = 195;
+                    width = 128.50485241420625;
+                    height = 129.2431496062992;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 149.27965054144539;
+                    left = 134.99997052444246;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 291.97978920584586;
+                    left = 269.12107375824547;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
 
-                    left = 434.69525694033877;
+                    left = 403.32905700657312;
                     workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
                 }
                 else if (hinhList.Count == 3)
                 {
-                    workSheet.Cells["A10"].RowHeight = 168.75;
-                    left = 3.3107086614173227;
-                    width = 184.51114660443753;
-                    height = 168.0907874015748;
+                    left = 0.73803149606299212;
+                    width = 163.64469756847291;
+                    height = 171.0;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 191.84193400601231;
+                    left = 184.49902827713433;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
-                    left = 380.57241159128978;
+                    left = 368.15975936217569;
                     workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
                 }
                 else if (hinhList.Count == 2)
                 {
-                    workSheet.Cells["A10"].RowHeight = 251.25;
-                    left = 6.5590551181102361;
-                    width = 274.75875488041896;
-                    height = 250.26858267716534;
+                    left = 96.134184222258924;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                    left = 287.03733755758429;
+                    left = 272.01223594316349;
                     workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
                 }
                 else
                 {
-                    workSheet.Cells["A10"].RowHeight = 258;
-                    left = 145.1328001477446;
-                    width = 282.07818645035422;
-                    height = 257.71874015748028;
+                    left = 183.74839835587449;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
 
                     workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
                 }
@@ -4320,19 +4325,15 @@ namespace MM.Exports
                 if (ketQuaSoiCTC["Hinh2"] != null && ketQuaSoiCTC["Hinh2"] != DBNull.Value)
                     hinhList.Add((byte[])ketQuaSoiCTC["Hinh2"]);
 
-                double left = 6.5590551181102361;
-                double top = 160.206062992126;
-                double width = 138.66776077766588;
-                double height = 127.26858267716534;
-
-                workSheet.Cells["A9"].RowHeight = 251.25;
-                left = 6.5590551181102361;
-                width = 274.75875488041896;
-                height = 250.26858267716534;
+                double left = 96.134184222258924;
+                double top = 195;
+                double width = 163.64469756847291;
+                double height = 171.0; ;
+                workSheet.Cells["A9"].RowHeight = height;
 
                 workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
 
-                left = 287.03733755758429;
+                left = 272.01223594316349;
                 workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
 
                 workSheet.Cells["C13"].Value = ketQuaSoiCTC["AmHo"].ToString();
