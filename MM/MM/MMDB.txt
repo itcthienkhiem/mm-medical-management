@@ -1,4 +1,4 @@
-2011-12-13
+﻿2011-12-13
 - Update: spGetCheckList, ContractMemberView
 - Create: spCheckMember, spGetDanhSachNhanVien
 2011-12-14
@@ -160,6 +160,9 @@ spDichVuHopDong
 - Create table: KetQuaSoiCTC
 - Create view: KetQuaSoiCTCView
 - Insert Data: Function(KhamCTC)
+2012-03-31
+- Update table: Invoice, HoaDonThuoc, HoaDonXuatTruoc, HoaDonHopDong, NhatKyLienHeCongTy, Permission
+- Update view: InvoiceView, HoaDonThuocView, HoaDonXuatTruocView, HoaSonHopDongView, NhatKyLienHeCongTyView, PermissionView
 
 1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo
@@ -173,8 +176,16 @@ Khám nội soi (Thêm, xóa, sửa, in, xuất) (OK)
 1>> Thêm field Địa chỉ (Quận) vào chức năng nhật ký liên hệ công ty
 2>> Nhân viên liên hệ => Người khởi tạo
 3>> Liên hệ lần đầu => CreatedDate, Liên hệ cập nhật => UpdatedDate
-4>> Số dt liên hệ => Số ĐT or email
+4>> Thêm field email liên hệ
 5>> Xuất Excel => Xuất liên hệ cty (Nếu kô có quyền xuất full thì chỉ xuất thông tin của nhân viên đó thôi)
 6>> Thêm field Đã trả tiền vào toàn bộ hóa đơn
+7>> Nguồn => Combobox distinct
+8>> Chỉnh lại template canh lề trái, row kết quả rộng ra
+9>> Số lượng khám sửa thành text
+10>> Tăng kích thước field Số điện thoại liên hệ
+11>> Thêm option search theo người tạo trong chức năng Ý kiến khách hàng, Nhật ký liên hệ công ty
+12>> Đổi tên Kham CTC => Soi CTC
+13>> Chỉnh lại template xuất excel nội soi và soi CTC
+
 
 
