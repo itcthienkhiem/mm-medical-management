@@ -62,6 +62,10 @@ namespace MM.Common
                 excelApp = ExcelInit();
                 workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
+
+                Excel.Worksheet workSheet = workBook.Sheets[0];
+                workSheet.PageSetup.TopMargin = 1;
+
                 excelApp.Visible = true;
                 workBook.PrintPreview(objOpt);
                 excelApp.Visible = false;
