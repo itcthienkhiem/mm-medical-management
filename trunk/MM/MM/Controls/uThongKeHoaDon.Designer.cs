@@ -66,6 +66,7 @@
             this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LoaiHoaDon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -270,7 +271,8 @@
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn,
             this.vATDataGridViewTextBoxColumn,
             this.Notes,
-            this.LoaiHoaDon});
+            this.LoaiHoaDon,
+            this.DaThuTien});
             this.dgInvoice.DataSource = this.hoaDonThuocViewBindingSource;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
@@ -414,6 +416,14 @@
             this.LoaiHoaDon.Name = "LoaiHoaDon";
             this.LoaiHoaDon.ReadOnly = true;
             // 
+            // DaThuTien
+            // 
+            this.DaThuTien.DataPropertyName = "DaThuTien";
+            this.DaThuTien.HeaderText = "Đã thu tiền";
+            this.DaThuTien.Name = "DaThuTien";
+            this.DaThuTien.ReadOnly = true;
+            this.DaThuTien.Width = 80;
+            // 
             // uThongKeHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,5 +479,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiHoaDon;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
     }
 }

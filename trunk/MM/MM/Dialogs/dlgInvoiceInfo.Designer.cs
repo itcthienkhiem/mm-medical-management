@@ -62,6 +62,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.txtTenNguoiMuaHang = new System.Windows.Forms.TextBox();
             this.txtMaSoThue = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -99,7 +100,7 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkDaThuTien = new System.Windows.Forms.CheckBox();
+            this.btnOK = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -113,6 +114,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnOK);
             this.panel1.Controls.Add(this.btnClose2);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnExportAndPrint);
@@ -129,10 +131,10 @@
             this.btnClose2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose2.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnClose2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose2.Location = new System.Drawing.Point(367, 6);
+            this.btnClose2.Location = new System.Drawing.Point(406, 6);
             this.btnClose2.Name = "btnClose2";
             this.btnClose2.Size = new System.Drawing.Size(75, 25);
-            this.btnClose2.TabIndex = 18;
+            this.btnClose2.TabIndex = 19;
             this.btnClose2.Text = "   &Đóng";
             this.btnClose2.UseVisualStyleBackColor = true;
             this.btnClose2.Visible = false;
@@ -141,7 +143,7 @@
             // 
             this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(265, 6);
+            this.btnPrint.Location = new System.Drawing.Point(226, 6);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(97, 25);
             this.btnPrint.TabIndex = 17;
@@ -350,6 +352,18 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(708, 144);
             this.panel6.TabIndex = 0;
+            // 
+            // chkDaThuTien
+            // 
+            this.chkDaThuTien.AutoSize = true;
+            this.chkDaThuTien.Checked = true;
+            this.chkDaThuTien.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDaThuTien.Location = new System.Drawing.Point(331, 119);
+            this.chkDaThuTien.Name = "chkDaThuTien";
+            this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
+            this.chkDaThuTien.TabIndex = 25;
+            this.chkDaThuTien.Text = "Đã thu tiền";
+            this.chkDaThuTien.UseVisualStyleBackColor = true;
             // 
             // txtTenNguoiMuaHang
             // 
@@ -759,17 +773,18 @@
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn6.Width = 120;
             // 
-            // chkDaThuTien
+            // btnOK
             // 
-            this.chkDaThuTien.AutoSize = true;
-            this.chkDaThuTien.Checked = true;
-            this.chkDaThuTien.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDaThuTien.Location = new System.Drawing.Point(331, 119);
-            this.chkDaThuTien.Name = "chkDaThuTien";
-            this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
-            this.chkDaThuTien.TabIndex = 25;
-            this.chkDaThuTien.Text = "Đã thu tiền";
-            this.chkDaThuTien.UseVisualStyleBackColor = true;
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(327, 6);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 18;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Visible = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // dlgInvoiceInfo
             // 
@@ -873,6 +888,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DateTimePicker dtpkNgay;
         private System.Windows.Forms.CheckBox chkDaThuTien;
+        private System.Windows.Forms.Button btnOK;
 
 
     }

@@ -520,5 +520,71 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result UpdateDaThuTienInvoice(string invoiceGUID, bool daThuTien)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    Invoice invoice = db.Invoices.SingleOrDefault<Invoice>(i => i.InvoiceGUID.ToString() == invoiceGUID);
+                    if (invoice != null)
+                    {
+                        invoice.UpdatedDate = DateTime.Now;
+                        invoice.UpdatedBy = Guid.Parse(Global.UserGUID);
+                        invoice.ChuaThuTien = !daThuTien;
+
+                        string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)invoice.HinhThucThanhToan);
+
+                        desc += string.Format("- Hóa đơn dịch vụ: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}', Ghi chú: '{8}', Đã thu tiền: '{9}'\n",
+                                    invoice.InvoiceGUID.ToString(), invoice.InvoiceCode, invoice.InvoiceDate.ToString("dd/MM/yyyy HH:mm:ss"),
+                                    invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan, htttStr, invoice.Notes, !invoice.ChuaThuTien);
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Cập nhật thông tin hóa đơn dịch vụ";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+
+                    
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

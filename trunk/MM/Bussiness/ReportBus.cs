@@ -349,6 +349,7 @@ namespace MM.Bussiness
                     newRow["PhieuThuThuocGUIDList"] = string.Empty;
                     newRow["Notes"] = row["Notes"];
                     newRow["LoaiHoaDon"] = "Hóa đơn xuất trước";
+                    newRow["DaThuTien"] = row["DaThuTien"];
                     dtAll.Rows.Add(newRow);
                 }
 
@@ -380,6 +381,7 @@ namespace MM.Bussiness
                     newRow["Status"] = row["Status"];
                     newRow["PhieuThuThuocGUIDList"] = string.Empty;
                     newRow["Notes"] = row["Notes"];
+                    newRow["DaThuTien"] = row["DaThuTien"];
                     newRow["LoaiHoaDon"] = "Hóa đơn hợp đồng";
                     dtAll.Rows.Add(newRow);
                 }
@@ -411,6 +413,7 @@ namespace MM.Bussiness
                     newRow["Status"] = row["Status"];
                     newRow["PhieuThuThuocGUIDList"] = row["ReceiptGUIDList"];
                     newRow["Notes"] = row["Notes"];
+                    newRow["DaThuTien"] = row["DaThuTien"];
                     newRow["LoaiHoaDon"] = "Hóa đơn dịch vụ";
                     dtAll.Rows.Add(newRow);
                 }
