@@ -417,12 +417,7 @@ namespace MM.Controls
                                                 break;
 
                                             case "quantity":
-                                                
-                                                int iquantity = -1;
-                                                if (Int32.TryParse(curCellValue, out iquantity))
-                                                {
-                                                    diary.SoNguoiKham = iquantity;
-                                                }
+                                                diary.SoNguoiKham = curCellValue;
                                                 break;
 
                                             case "check-up month":
