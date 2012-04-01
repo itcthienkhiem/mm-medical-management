@@ -991,6 +991,9 @@ namespace MM
                     OnExcelTemplate();
                     break;
 
+                case "TemplateForSale":
+                    OnBieuMauPhongSale();
+                    break;
                 case "Change Password":
                     OnChangePassword();
                     break;
@@ -1321,6 +1324,11 @@ namespace MM
             _uPermission.DisplayAsThread();
         }
 
+        private void OnBieuMauPhongSale()
+        {
+            dlgTemplateForSale dlg = new dlgTemplateForSale();
+            dlg.ShowDialog();
+        }
         private void OnExcelTemplate()
         {
             dlgExcelTemplate dlg = new dlgExcelTemplate();

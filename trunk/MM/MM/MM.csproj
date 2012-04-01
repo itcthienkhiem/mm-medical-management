@@ -970,6 +970,12 @@
     <Compile Include="Dialogs\dlgServices.Designer.cs">
       <DependentUpon>dlgServices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgTemplateForSale.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgTemplateForSale.Designer.cs">
+      <DependentUpon>dlgTemplateForSale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgThuocThayThe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1378,6 +1384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgServices.resx">
       <DependentUpon>dlgServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgTemplateForSale.resx">
+      <DependentUpon>dlgTemplateForSale.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgThuocThayThe.resx">
       <DependentUpon>dlgThuocThayThe.cs</DependentUpon>

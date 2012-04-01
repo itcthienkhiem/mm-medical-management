@@ -30,54 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            this._mainPanel = new System.Windows.Forms.Panel();
-            this._uNhatKyLienHeCongTy = new MM.Controls.uNhatKyLienHeCongTy();
-            this._uYKienKhachHangList = new MM.Controls.uYKienKhachHangList();
-            this._uHoaDonHopDongList = new MM.Controls.uHoaDonHopDongList();
-            this._uPhieuThuHopDongList = new MM.Controls.uPhieuThuHopDongList();
-            this._uPhucHoiBenhNhan = new MM.Controls.uPhucHoiBenhNhan();
-            this._uThongKeHoaDon = new MM.Controls.uThongKeHoaDon();
-            this._uHoaDonXuatTruoc = new MM.Controls.uHoaDonXuatTruoc();
-            this._uHoaDonThuocList = new MM.Controls.uHoaDonThuocList();
-            this._uBaoCaoDichVuChuaXuatPhieuThu = new MM.Controls.uBaoCaoDichVuChuaXuatPhieuThu();
-            this._uDoanhThuTheoNgay = new MM.Controls.uDoanhThuTheoNgay();
-            this._uGiaVonDichVuList = new MM.Controls.uGiaVonDichVuList();
-            this._uInKetQuaKhamSucKhoeTongQuat = new MM.Controls.uInKetQuaKhamSucKhoeTongQuat();
-            this._uServiceGroupList = new MM.Controls.uServiceGroupList();
-            this._uTrackingList = new MM.Controls.uTrackingList();
-            this._uDichVuTuTuc = new MM.Controls.uDichVuTuTuc();
-            this._uPhieuThuThuocList = new MM.Controls.uPhieuThuThuocList();
-            this._uBaoCaoThuocTonKho = new MM.Controls.uBaoCaoThuocTonKho();
-            this._uBaoCaoThuocHetHan = new MM.Controls.uBaoCaoThuocHetHan();
-            this._uToaThuocList = new MM.Controls.uToaThuocList();
-            this._uGiaThuocList = new MM.Controls.uGiaThuocList();
-            this._uLoThuocList = new MM.Controls.uLoThuocList();
-            this._uNhomThuocList = new MM.Controls.uNhomThuocList();
-            this._uThuocList = new MM.Controls.uThuocList();
-            this._uDichVuHopDong = new MM.Controls.uDichVuHopDong();
-            this._uDoanhThuNhanVien = new MM.Controls.uDoanhThuNhanVien();
-            this._uInvoiceList = new MM.Controls.uInvoiceList();
-            this._uReceiptList = new MM.Controls.uReceiptList();
-            this._uPrintLabel = new MM.Controls.uPrintLabel();
-            this._uPermission = new MM.Controls.uPermission();
-            this._uContractList = new MM.Controls.uContractList();
-            this._uCompanyList = new MM.Controls.uCompanyList();
-            this._uSymptomList = new MM.Controls.uSymptomList();
-            this._uSpecialityList = new MM.Controls.uSpecialityList();
-            this._uPatientHistory = new MM.Controls.uPatientHistory();
-            this._uPatientList = new MM.Controls.uPatientList();
-            this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
-            this._uDocStaffList = new MM.Controls.uDocStaffList();
-            this._uServicesList = new MM.Controls.uServicesList();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainToolbar = new System.Windows.Forms.ToolStrip();
             this.tbLogin = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -120,6 +81,12 @@
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.danhmụcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chuyenKhoaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
+            this.nhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator41 = new System.Windows.Forms.ToolStripSeparator();
+            this.trieuChungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.servicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator28 = new System.Windows.Forms.ToolStripSeparator();
@@ -195,6 +162,7 @@
             this.aboutMedicalManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
             this.templateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.biểuMẫuPhòngSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._dotNetBarManager = new DevComponents.DotNetBar.DotNetBarManager(this.components);
             this.dockSite4 = new DevComponents.DotNetBar.DockSite();
             this.bar1 = new DevComponents.DotNetBar.Bar();
@@ -223,13 +191,45 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this.danhmụcToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chuyenKhoaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
-            this.nhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator41 = new System.Windows.Forms.ToolStripSeparator();
-            this.trieuChungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._mainPanel.SuspendLayout();
+            this._mainPanel = new System.Windows.Forms.Panel();
+            this._uNhatKyLienHeCongTy = new MM.Controls.uNhatKyLienHeCongTy();
+            this._uYKienKhachHangList = new MM.Controls.uYKienKhachHangList();
+            this._uHoaDonHopDongList = new MM.Controls.uHoaDonHopDongList();
+            this._uPhieuThuHopDongList = new MM.Controls.uPhieuThuHopDongList();
+            this._uPhucHoiBenhNhan = new MM.Controls.uPhucHoiBenhNhan();
+            this._uThongKeHoaDon = new MM.Controls.uThongKeHoaDon();
+            this._uHoaDonXuatTruoc = new MM.Controls.uHoaDonXuatTruoc();
+            this._uHoaDonThuocList = new MM.Controls.uHoaDonThuocList();
+            this._uBaoCaoDichVuChuaXuatPhieuThu = new MM.Controls.uBaoCaoDichVuChuaXuatPhieuThu();
+            this._uDoanhThuTheoNgay = new MM.Controls.uDoanhThuTheoNgay();
+            this._uGiaVonDichVuList = new MM.Controls.uGiaVonDichVuList();
+            this._uInKetQuaKhamSucKhoeTongQuat = new MM.Controls.uInKetQuaKhamSucKhoeTongQuat();
+            this._uServiceGroupList = new MM.Controls.uServiceGroupList();
+            this._uTrackingList = new MM.Controls.uTrackingList();
+            this._uDichVuTuTuc = new MM.Controls.uDichVuTuTuc();
+            this._uPhieuThuThuocList = new MM.Controls.uPhieuThuThuocList();
+            this._uBaoCaoThuocTonKho = new MM.Controls.uBaoCaoThuocTonKho();
+            this._uBaoCaoThuocHetHan = new MM.Controls.uBaoCaoThuocHetHan();
+            this._uToaThuocList = new MM.Controls.uToaThuocList();
+            this._uGiaThuocList = new MM.Controls.uGiaThuocList();
+            this._uLoThuocList = new MM.Controls.uLoThuocList();
+            this._uNhomThuocList = new MM.Controls.uNhomThuocList();
+            this._uThuocList = new MM.Controls.uThuocList();
+            this._uDichVuHopDong = new MM.Controls.uDichVuHopDong();
+            this._uDoanhThuNhanVien = new MM.Controls.uDoanhThuNhanVien();
+            this._uInvoiceList = new MM.Controls.uInvoiceList();
+            this._uReceiptList = new MM.Controls.uReceiptList();
+            this._uPrintLabel = new MM.Controls.uPrintLabel();
+            this._uPermission = new MM.Controls.uPermission();
+            this._uContractList = new MM.Controls.uContractList();
+            this._uCompanyList = new MM.Controls.uCompanyList();
+            this._uSymptomList = new MM.Controls.uSymptomList();
+            this._uSpecialityList = new MM.Controls.uSpecialityList();
+            this._uPatientHistory = new MM.Controls.uPatientHistory();
+            this._uPatientList = new MM.Controls.uPatientList();
+            this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
+            this._uDocStaffList = new MM.Controls.uDocStaffList();
+            this._uServicesList = new MM.Controls.uServicesList();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -242,244 +242,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar2)).BeginInit();
             this.bar2.SuspendLayout();
             this.panelDockContainer2.SuspendLayout();
+            this._mainPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // _mainPanel
-            // 
-            this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this._mainPanel, "_mainPanel");
-            this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this._mainPanel.Controls.Add(this._uNhatKyLienHeCongTy);
-            this._mainPanel.Controls.Add(this._uYKienKhachHangList);
-            this._mainPanel.Controls.Add(this._uHoaDonHopDongList);
-            this._mainPanel.Controls.Add(this._uPhieuThuHopDongList);
-            this._mainPanel.Controls.Add(this._uPhucHoiBenhNhan);
-            this._mainPanel.Controls.Add(this._uThongKeHoaDon);
-            this._mainPanel.Controls.Add(this._uHoaDonXuatTruoc);
-            this._mainPanel.Controls.Add(this._uHoaDonThuocList);
-            this._mainPanel.Controls.Add(this._uBaoCaoDichVuChuaXuatPhieuThu);
-            this._mainPanel.Controls.Add(this._uDoanhThuTheoNgay);
-            this._mainPanel.Controls.Add(this._uGiaVonDichVuList);
-            this._mainPanel.Controls.Add(this._uInKetQuaKhamSucKhoeTongQuat);
-            this._mainPanel.Controls.Add(this._uServiceGroupList);
-            this._mainPanel.Controls.Add(this._uTrackingList);
-            this._mainPanel.Controls.Add(this._uDichVuTuTuc);
-            this._mainPanel.Controls.Add(this._uPhieuThuThuocList);
-            this._mainPanel.Controls.Add(this._uBaoCaoThuocTonKho);
-            this._mainPanel.Controls.Add(this._uBaoCaoThuocHetHan);
-            this._mainPanel.Controls.Add(this._uToaThuocList);
-            this._mainPanel.Controls.Add(this._uGiaThuocList);
-            this._mainPanel.Controls.Add(this._uLoThuocList);
-            this._mainPanel.Controls.Add(this._uNhomThuocList);
-            this._mainPanel.Controls.Add(this._uThuocList);
-            this._mainPanel.Controls.Add(this._uDichVuHopDong);
-            this._mainPanel.Controls.Add(this._uDoanhThuNhanVien);
-            this._mainPanel.Controls.Add(this._uInvoiceList);
-            this._mainPanel.Controls.Add(this._uReceiptList);
-            this._mainPanel.Controls.Add(this._uPrintLabel);
-            this._mainPanel.Controls.Add(this._uPermission);
-            this._mainPanel.Controls.Add(this._uContractList);
-            this._mainPanel.Controls.Add(this._uCompanyList);
-            this._mainPanel.Controls.Add(this._uSymptomList);
-            this._mainPanel.Controls.Add(this._uSpecialityList);
-            this._mainPanel.Controls.Add(this._uPatientHistory);
-            this._mainPanel.Controls.Add(this._uPatientList);
-            this._mainPanel.Controls.Add(this._uDuplicatePatient);
-            this._mainPanel.Controls.Add(this._uDocStaffList);
-            this._mainPanel.Controls.Add(this._uServicesList);
-            this._mainPanel.Name = "_mainPanel";
-            // 
-            // _uNhatKyLienHeCongTy
-            // 
-            resources.ApplyResources(this._uNhatKyLienHeCongTy, "_uNhatKyLienHeCongTy");
-            this._uNhatKyLienHeCongTy.Name = "_uNhatKyLienHeCongTy";
-            // 
-            // _uYKienKhachHangList
-            // 
-            resources.ApplyResources(this._uYKienKhachHangList, "_uYKienKhachHangList");
-            this._uYKienKhachHangList.Name = "_uYKienKhachHangList";
-            // 
-            // _uHoaDonHopDongList
-            // 
-            resources.ApplyResources(this._uHoaDonHopDongList, "_uHoaDonHopDongList");
-            this._uHoaDonHopDongList.Name = "_uHoaDonHopDongList";
-            // 
-            // _uPhieuThuHopDongList
-            // 
-            resources.ApplyResources(this._uPhieuThuHopDongList, "_uPhieuThuHopDongList");
-            this._uPhieuThuHopDongList.Name = "_uPhieuThuHopDongList";
-            // 
-            // _uPhucHoiBenhNhan
-            // 
-            resources.ApplyResources(this._uPhucHoiBenhNhan, "_uPhucHoiBenhNhan");
-            this._uPhucHoiBenhNhan.Name = "_uPhucHoiBenhNhan";
-            // 
-            // _uThongKeHoaDon
-            // 
-            resources.ApplyResources(this._uThongKeHoaDon, "_uThongKeHoaDon");
-            this._uThongKeHoaDon.Name = "_uThongKeHoaDon";
-            // 
-            // _uHoaDonXuatTruoc
-            // 
-            resources.ApplyResources(this._uHoaDonXuatTruoc, "_uHoaDonXuatTruoc");
-            this._uHoaDonXuatTruoc.Name = "_uHoaDonXuatTruoc";
-            // 
-            // _uHoaDonThuocList
-            // 
-            resources.ApplyResources(this._uHoaDonThuocList, "_uHoaDonThuocList");
-            this._uHoaDonThuocList.Name = "_uHoaDonThuocList";
-            // 
-            // _uBaoCaoDichVuChuaXuatPhieuThu
-            // 
-            resources.ApplyResources(this._uBaoCaoDichVuChuaXuatPhieuThu, "_uBaoCaoDichVuChuaXuatPhieuThu");
-            this._uBaoCaoDichVuChuaXuatPhieuThu.Name = "_uBaoCaoDichVuChuaXuatPhieuThu";
-            // 
-            // _uDoanhThuTheoNgay
-            // 
-            resources.ApplyResources(this._uDoanhThuTheoNgay, "_uDoanhThuTheoNgay");
-            this._uDoanhThuTheoNgay.Name = "_uDoanhThuTheoNgay";
-            // 
-            // _uGiaVonDichVuList
-            // 
-            resources.ApplyResources(this._uGiaVonDichVuList, "_uGiaVonDichVuList");
-            this._uGiaVonDichVuList.Name = "_uGiaVonDichVuList";
-            // 
-            // _uInKetQuaKhamSucKhoeTongQuat
-            // 
-            resources.ApplyResources(this._uInKetQuaKhamSucKhoeTongQuat, "_uInKetQuaKhamSucKhoeTongQuat");
-            this._uInKetQuaKhamSucKhoeTongQuat.Name = "_uInKetQuaKhamSucKhoeTongQuat";
-            // 
-            // _uServiceGroupList
-            // 
-            resources.ApplyResources(this._uServiceGroupList, "_uServiceGroupList");
-            this._uServiceGroupList.Name = "_uServiceGroupList";
-            // 
-            // _uTrackingList
-            // 
-            resources.ApplyResources(this._uTrackingList, "_uTrackingList");
-            this._uTrackingList.Name = "_uTrackingList";
-            // 
-            // _uDichVuTuTuc
-            // 
-            resources.ApplyResources(this._uDichVuTuTuc, "_uDichVuTuTuc");
-            this._uDichVuTuTuc.Name = "_uDichVuTuTuc";
-            // 
-            // _uPhieuThuThuocList
-            // 
-            resources.ApplyResources(this._uPhieuThuThuocList, "_uPhieuThuThuocList");
-            this._uPhieuThuThuocList.Name = "_uPhieuThuThuocList";
-            // 
-            // _uBaoCaoThuocTonKho
-            // 
-            resources.ApplyResources(this._uBaoCaoThuocTonKho, "_uBaoCaoThuocTonKho");
-            this._uBaoCaoThuocTonKho.Name = "_uBaoCaoThuocTonKho";
-            // 
-            // _uBaoCaoThuocHetHan
-            // 
-            resources.ApplyResources(this._uBaoCaoThuocHetHan, "_uBaoCaoThuocHetHan");
-            this._uBaoCaoThuocHetHan.Name = "_uBaoCaoThuocHetHan";
-            // 
-            // _uToaThuocList
-            // 
-            resources.ApplyResources(this._uToaThuocList, "_uToaThuocList");
-            this._uToaThuocList.Name = "_uToaThuocList";
-            this._uToaThuocList.PatientRow = null;
-            // 
-            // _uGiaThuocList
-            // 
-            resources.ApplyResources(this._uGiaThuocList, "_uGiaThuocList");
-            this._uGiaThuocList.Name = "_uGiaThuocList";
-            // 
-            // _uLoThuocList
-            // 
-            resources.ApplyResources(this._uLoThuocList, "_uLoThuocList");
-            this._uLoThuocList.Name = "_uLoThuocList";
-            // 
-            // _uNhomThuocList
-            // 
-            resources.ApplyResources(this._uNhomThuocList, "_uNhomThuocList");
-            this._uNhomThuocList.Name = "_uNhomThuocList";
-            // 
-            // _uThuocList
-            // 
-            resources.ApplyResources(this._uThuocList, "_uThuocList");
-            this._uThuocList.IsReport = false;
-            this._uThuocList.Name = "_uThuocList";
-            // 
-            // _uDichVuHopDong
-            // 
-            resources.ApplyResources(this._uDichVuHopDong, "_uDichVuHopDong");
-            this._uDichVuHopDong.Name = "_uDichVuHopDong";
-            // 
-            // _uDoanhThuNhanVien
-            // 
-            resources.ApplyResources(this._uDoanhThuNhanVien, "_uDoanhThuNhanVien");
-            this._uDoanhThuNhanVien.Name = "_uDoanhThuNhanVien";
-            // 
-            // _uInvoiceList
-            // 
-            resources.ApplyResources(this._uInvoiceList, "_uInvoiceList");
-            this._uInvoiceList.Name = "_uInvoiceList";
-            // 
-            // _uReceiptList
-            // 
-            resources.ApplyResources(this._uReceiptList, "_uReceiptList");
-            this._uReceiptList.Name = "_uReceiptList";
-            // 
-            // _uPrintLabel
-            // 
-            resources.ApplyResources(this._uPrintLabel, "_uPrintLabel");
-            this._uPrintLabel.Name = "_uPrintLabel";
-            // 
-            // _uPermission
-            // 
-            resources.ApplyResources(this._uPermission, "_uPermission");
-            this._uPermission.Name = "_uPermission";
-            // 
-            // _uContractList
-            // 
-            resources.ApplyResources(this._uContractList, "_uContractList");
-            this._uContractList.Name = "_uContractList";
-            // 
-            // _uCompanyList
-            // 
-            resources.ApplyResources(this._uCompanyList, "_uCompanyList");
-            this._uCompanyList.Name = "_uCompanyList";
-            // 
-            // _uSymptomList
-            // 
-            resources.ApplyResources(this._uSymptomList, "_uSymptomList");
-            this._uSymptomList.Name = "_uSymptomList";
-            // 
-            // _uSpecialityList
-            // 
-            resources.ApplyResources(this._uSpecialityList, "_uSpecialityList");
-            this._uSpecialityList.Name = "_uSpecialityList";
-            // 
-            // _uPatientHistory
-            // 
-            resources.ApplyResources(this._uPatientHistory, "_uPatientHistory");
-            this._uPatientHistory.Name = "_uPatientHistory";
-            // 
-            // _uPatientList
-            // 
-            resources.ApplyResources(this._uPatientList, "_uPatientList");
-            this._uPatientList.Name = "_uPatientList";
-            // 
-            // _uDuplicatePatient
-            // 
-            resources.ApplyResources(this._uDuplicatePatient, "_uDuplicatePatient");
-            this._uDuplicatePatient.Name = "_uDuplicatePatient";
-            // 
-            // _uDocStaffList
-            // 
-            resources.ApplyResources(this._uDocStaffList, "_uDocStaffList");
-            this._uDocStaffList.Name = "_uDocStaffList";
-            // 
-            // _uServicesList
-            // 
-            resources.ApplyResources(this._uServicesList, "_uServicesList");
-            this._uServicesList.Name = "_uServicesList";
             // 
             // _mainToolbar
             // 
@@ -823,6 +587,51 @@
             resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
             this.exitToolStripMenuItem.Tag = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // danhmụcToolStripMenuItem
+            // 
+            this.danhmụcToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chuyenKhoaToolStripMenuItem,
+            this.toolStripSeparator40,
+            this.nhanVienToolStripMenuItem,
+            this.toolStripSeparator41,
+            this.trieuChungToolStripMenuItem});
+            resources.ApplyResources(this.danhmụcToolStripMenuItem, "danhmụcToolStripMenuItem");
+            this.danhmụcToolStripMenuItem.Name = "danhmụcToolStripMenuItem";
+            // 
+            // chuyenKhoaToolStripMenuItem
+            // 
+            this.chuyenKhoaToolStripMenuItem.Image = global::MM.Properties.Resources.stethoscope_icon;
+            this.chuyenKhoaToolStripMenuItem.Name = "chuyenKhoaToolStripMenuItem";
+            resources.ApplyResources(this.chuyenKhoaToolStripMenuItem, "chuyenKhoaToolStripMenuItem");
+            this.chuyenKhoaToolStripMenuItem.Tag = "Speciality List";
+            this.chuyenKhoaToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator40
+            // 
+            this.toolStripSeparator40.Name = "toolStripSeparator40";
+            resources.ApplyResources(this.toolStripSeparator40, "toolStripSeparator40");
+            // 
+            // nhanVienToolStripMenuItem
+            // 
+            this.nhanVienToolStripMenuItem.Image = global::MM.Properties.Resources.Doctor_32;
+            this.nhanVienToolStripMenuItem.Name = "nhanVienToolStripMenuItem";
+            resources.ApplyResources(this.nhanVienToolStripMenuItem, "nhanVienToolStripMenuItem");
+            this.nhanVienToolStripMenuItem.Tag = "Doctor List";
+            this.nhanVienToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator41
+            // 
+            this.toolStripSeparator41.Name = "toolStripSeparator41";
+            resources.ApplyResources(this.toolStripSeparator41, "toolStripSeparator41");
+            // 
+            // trieuChungToolStripMenuItem
+            // 
+            this.trieuChungToolStripMenuItem.Image = global::MM.Properties.Resources.research;
+            this.trieuChungToolStripMenuItem.Name = "trieuChungToolStripMenuItem";
+            resources.ApplyResources(this.trieuChungToolStripMenuItem, "trieuChungToolStripMenuItem");
+            this.trieuChungToolStripMenuItem.Tag = "Symptom List";
+            this.trieuChungToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // servicesToolStripMenuItem
             // 
@@ -1347,7 +1156,8 @@
             this.toolStripSeparator2,
             this.aboutMedicalManagementToolStripMenuItem,
             this.toolStripSeparator25,
-            this.templateExcelToolStripMenuItem});
+            this.templateExcelToolStripMenuItem,
+            this.biểuMẫuPhòngSaleToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             // 
@@ -1384,6 +1194,13 @@
             resources.ApplyResources(this.templateExcelToolStripMenuItem, "templateExcelToolStripMenuItem");
             this.templateExcelToolStripMenuItem.Tag = "ExcelTemplate";
             this.templateExcelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // biểuMẫuPhòngSaleToolStripMenuItem
+            // 
+            this.biểuMẫuPhòngSaleToolStripMenuItem.Name = "biểuMẫuPhòngSaleToolStripMenuItem";
+            resources.ApplyResources(this.biểuMẫuPhòngSaleToolStripMenuItem, "biểuMẫuPhòngSaleToolStripMenuItem");
+            this.biểuMẫuPhòngSaleToolStripMenuItem.Tag = "TemplateForSale";
+            this.biểuMẫuPhòngSaleToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // _dotNetBarManager
             // 
@@ -1455,14 +1272,14 @@
             this.dgPatient.AllowUserToDeleteRows = false;
             this.dgPatient.AllowUserToOrderColumns = true;
             this.dgPatient.AutoGenerateColumns = false;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNumDataGridViewTextBoxColumn,
@@ -1476,14 +1293,14 @@
             this.mobileDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
             this.dgPatient.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle9;
             resources.ApplyResources(this.dgPatient, "dgPatient");
             this.dgPatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPatient.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -1497,8 +1314,8 @@
             // fileNumDataGridViewTextBoxColumn
             // 
             this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             resources.ApplyResources(this.fileNumDataGridViewTextBoxColumn, "fileNumDataGridViewTextBoxColumn");
             this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
             this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1520,8 +1337,8 @@
             // GenderAsStr
             // 
             this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle3;
             resources.ApplyResources(this.GenderAsStr, "GenderAsStr");
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
@@ -1529,9 +1346,9 @@
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.NullValue = null;
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = null;
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             resources.ApplyResources(this.dobDataGridViewTextBoxColumn, "dobDataGridViewTextBoxColumn");
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1539,8 +1356,8 @@
             // identityCardDataGridViewTextBoxColumn
             // 
             this.identityCardDataGridViewTextBoxColumn.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             resources.ApplyResources(this.identityCardDataGridViewTextBoxColumn, "identityCardDataGridViewTextBoxColumn");
             this.identityCardDataGridViewTextBoxColumn.Name = "identityCardDataGridViewTextBoxColumn";
             this.identityCardDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1548,8 +1365,8 @@
             // homePhoneDataGridViewTextBoxColumn
             // 
             this.homePhoneDataGridViewTextBoxColumn.DataPropertyName = "HomePhone";
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             resources.ApplyResources(this.homePhoneDataGridViewTextBoxColumn, "homePhoneDataGridViewTextBoxColumn");
             this.homePhoneDataGridViewTextBoxColumn.Name = "homePhoneDataGridViewTextBoxColumn";
             this.homePhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1557,8 +1374,8 @@
             // workPhoneDataGridViewTextBoxColumn
             // 
             this.workPhoneDataGridViewTextBoxColumn.DataPropertyName = "WorkPhone";
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             resources.ApplyResources(this.workPhoneDataGridViewTextBoxColumn, "workPhoneDataGridViewTextBoxColumn");
             this.workPhoneDataGridViewTextBoxColumn.Name = "workPhoneDataGridViewTextBoxColumn";
             this.workPhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1566,8 +1383,8 @@
             // mobileDataGridViewTextBoxColumn
             // 
             this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
             resources.ApplyResources(this.mobileDataGridViewTextBoxColumn, "mobileDataGridViewTextBoxColumn");
             this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
             this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1681,50 +1498,242 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
-            // danhmụcToolStripMenuItem
+            // _mainPanel
             // 
-            this.danhmụcToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.chuyenKhoaToolStripMenuItem,
-            this.toolStripSeparator40,
-            this.nhanVienToolStripMenuItem,
-            this.toolStripSeparator41,
-            this.trieuChungToolStripMenuItem});
-            resources.ApplyResources(this.danhmụcToolStripMenuItem, "danhmụcToolStripMenuItem");
-            this.danhmụcToolStripMenuItem.Name = "danhmụcToolStripMenuItem";
+            this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this._mainPanel, "_mainPanel");
+            this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uNhatKyLienHeCongTy);
+            this._mainPanel.Controls.Add(this._uYKienKhachHangList);
+            this._mainPanel.Controls.Add(this._uHoaDonHopDongList);
+            this._mainPanel.Controls.Add(this._uPhieuThuHopDongList);
+            this._mainPanel.Controls.Add(this._uPhucHoiBenhNhan);
+            this._mainPanel.Controls.Add(this._uThongKeHoaDon);
+            this._mainPanel.Controls.Add(this._uHoaDonXuatTruoc);
+            this._mainPanel.Controls.Add(this._uHoaDonThuocList);
+            this._mainPanel.Controls.Add(this._uBaoCaoDichVuChuaXuatPhieuThu);
+            this._mainPanel.Controls.Add(this._uDoanhThuTheoNgay);
+            this._mainPanel.Controls.Add(this._uGiaVonDichVuList);
+            this._mainPanel.Controls.Add(this._uInKetQuaKhamSucKhoeTongQuat);
+            this._mainPanel.Controls.Add(this._uServiceGroupList);
+            this._mainPanel.Controls.Add(this._uTrackingList);
+            this._mainPanel.Controls.Add(this._uDichVuTuTuc);
+            this._mainPanel.Controls.Add(this._uPhieuThuThuocList);
+            this._mainPanel.Controls.Add(this._uBaoCaoThuocTonKho);
+            this._mainPanel.Controls.Add(this._uBaoCaoThuocHetHan);
+            this._mainPanel.Controls.Add(this._uToaThuocList);
+            this._mainPanel.Controls.Add(this._uGiaThuocList);
+            this._mainPanel.Controls.Add(this._uLoThuocList);
+            this._mainPanel.Controls.Add(this._uNhomThuocList);
+            this._mainPanel.Controls.Add(this._uThuocList);
+            this._mainPanel.Controls.Add(this._uDichVuHopDong);
+            this._mainPanel.Controls.Add(this._uDoanhThuNhanVien);
+            this._mainPanel.Controls.Add(this._uInvoiceList);
+            this._mainPanel.Controls.Add(this._uReceiptList);
+            this._mainPanel.Controls.Add(this._uPrintLabel);
+            this._mainPanel.Controls.Add(this._uPermission);
+            this._mainPanel.Controls.Add(this._uContractList);
+            this._mainPanel.Controls.Add(this._uCompanyList);
+            this._mainPanel.Controls.Add(this._uSymptomList);
+            this._mainPanel.Controls.Add(this._uSpecialityList);
+            this._mainPanel.Controls.Add(this._uPatientHistory);
+            this._mainPanel.Controls.Add(this._uPatientList);
+            this._mainPanel.Controls.Add(this._uDuplicatePatient);
+            this._mainPanel.Controls.Add(this._uDocStaffList);
+            this._mainPanel.Controls.Add(this._uServicesList);
+            this._mainPanel.Name = "_mainPanel";
             // 
-            // chuyenKhoaToolStripMenuItem
+            // _uNhatKyLienHeCongTy
             // 
-            this.chuyenKhoaToolStripMenuItem.Image = global::MM.Properties.Resources.stethoscope_icon;
-            this.chuyenKhoaToolStripMenuItem.Name = "chuyenKhoaToolStripMenuItem";
-            resources.ApplyResources(this.chuyenKhoaToolStripMenuItem, "chuyenKhoaToolStripMenuItem");
-            this.chuyenKhoaToolStripMenuItem.Tag = "Speciality List";
-            this.chuyenKhoaToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            resources.ApplyResources(this._uNhatKyLienHeCongTy, "_uNhatKyLienHeCongTy");
+            this._uNhatKyLienHeCongTy.Name = "_uNhatKyLienHeCongTy";
             // 
-            // toolStripSeparator40
+            // _uYKienKhachHangList
             // 
-            this.toolStripSeparator40.Name = "toolStripSeparator40";
-            resources.ApplyResources(this.toolStripSeparator40, "toolStripSeparator40");
+            resources.ApplyResources(this._uYKienKhachHangList, "_uYKienKhachHangList");
+            this._uYKienKhachHangList.Name = "_uYKienKhachHangList";
             // 
-            // nhanVienToolStripMenuItem
+            // _uHoaDonHopDongList
             // 
-            this.nhanVienToolStripMenuItem.Image = global::MM.Properties.Resources.Doctor_32;
-            this.nhanVienToolStripMenuItem.Name = "nhanVienToolStripMenuItem";
-            resources.ApplyResources(this.nhanVienToolStripMenuItem, "nhanVienToolStripMenuItem");
-            this.nhanVienToolStripMenuItem.Tag = "Doctor List";
-            this.nhanVienToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            resources.ApplyResources(this._uHoaDonHopDongList, "_uHoaDonHopDongList");
+            this._uHoaDonHopDongList.Name = "_uHoaDonHopDongList";
             // 
-            // toolStripSeparator41
+            // _uPhieuThuHopDongList
             // 
-            this.toolStripSeparator41.Name = "toolStripSeparator41";
-            resources.ApplyResources(this.toolStripSeparator41, "toolStripSeparator41");
+            resources.ApplyResources(this._uPhieuThuHopDongList, "_uPhieuThuHopDongList");
+            this._uPhieuThuHopDongList.Name = "_uPhieuThuHopDongList";
             // 
-            // trieuChungToolStripMenuItem
+            // _uPhucHoiBenhNhan
             // 
-            this.trieuChungToolStripMenuItem.Image = global::MM.Properties.Resources.research;
-            this.trieuChungToolStripMenuItem.Name = "trieuChungToolStripMenuItem";
-            resources.ApplyResources(this.trieuChungToolStripMenuItem, "trieuChungToolStripMenuItem");
-            this.trieuChungToolStripMenuItem.Tag = "Symptom List";
-            this.trieuChungToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            resources.ApplyResources(this._uPhucHoiBenhNhan, "_uPhucHoiBenhNhan");
+            this._uPhucHoiBenhNhan.Name = "_uPhucHoiBenhNhan";
+            // 
+            // _uThongKeHoaDon
+            // 
+            resources.ApplyResources(this._uThongKeHoaDon, "_uThongKeHoaDon");
+            this._uThongKeHoaDon.Name = "_uThongKeHoaDon";
+            // 
+            // _uHoaDonXuatTruoc
+            // 
+            resources.ApplyResources(this._uHoaDonXuatTruoc, "_uHoaDonXuatTruoc");
+            this._uHoaDonXuatTruoc.Name = "_uHoaDonXuatTruoc";
+            // 
+            // _uHoaDonThuocList
+            // 
+            resources.ApplyResources(this._uHoaDonThuocList, "_uHoaDonThuocList");
+            this._uHoaDonThuocList.Name = "_uHoaDonThuocList";
+            // 
+            // _uBaoCaoDichVuChuaXuatPhieuThu
+            // 
+            resources.ApplyResources(this._uBaoCaoDichVuChuaXuatPhieuThu, "_uBaoCaoDichVuChuaXuatPhieuThu");
+            this._uBaoCaoDichVuChuaXuatPhieuThu.Name = "_uBaoCaoDichVuChuaXuatPhieuThu";
+            // 
+            // _uDoanhThuTheoNgay
+            // 
+            resources.ApplyResources(this._uDoanhThuTheoNgay, "_uDoanhThuTheoNgay");
+            this._uDoanhThuTheoNgay.Name = "_uDoanhThuTheoNgay";
+            // 
+            // _uGiaVonDichVuList
+            // 
+            resources.ApplyResources(this._uGiaVonDichVuList, "_uGiaVonDichVuList");
+            this._uGiaVonDichVuList.Name = "_uGiaVonDichVuList";
+            // 
+            // _uInKetQuaKhamSucKhoeTongQuat
+            // 
+            resources.ApplyResources(this._uInKetQuaKhamSucKhoeTongQuat, "_uInKetQuaKhamSucKhoeTongQuat");
+            this._uInKetQuaKhamSucKhoeTongQuat.Name = "_uInKetQuaKhamSucKhoeTongQuat";
+            // 
+            // _uServiceGroupList
+            // 
+            resources.ApplyResources(this._uServiceGroupList, "_uServiceGroupList");
+            this._uServiceGroupList.Name = "_uServiceGroupList";
+            // 
+            // _uTrackingList
+            // 
+            resources.ApplyResources(this._uTrackingList, "_uTrackingList");
+            this._uTrackingList.Name = "_uTrackingList";
+            // 
+            // _uDichVuTuTuc
+            // 
+            resources.ApplyResources(this._uDichVuTuTuc, "_uDichVuTuTuc");
+            this._uDichVuTuTuc.Name = "_uDichVuTuTuc";
+            // 
+            // _uPhieuThuThuocList
+            // 
+            resources.ApplyResources(this._uPhieuThuThuocList, "_uPhieuThuThuocList");
+            this._uPhieuThuThuocList.Name = "_uPhieuThuThuocList";
+            // 
+            // _uBaoCaoThuocTonKho
+            // 
+            resources.ApplyResources(this._uBaoCaoThuocTonKho, "_uBaoCaoThuocTonKho");
+            this._uBaoCaoThuocTonKho.Name = "_uBaoCaoThuocTonKho";
+            // 
+            // _uBaoCaoThuocHetHan
+            // 
+            resources.ApplyResources(this._uBaoCaoThuocHetHan, "_uBaoCaoThuocHetHan");
+            this._uBaoCaoThuocHetHan.Name = "_uBaoCaoThuocHetHan";
+            // 
+            // _uToaThuocList
+            // 
+            resources.ApplyResources(this._uToaThuocList, "_uToaThuocList");
+            this._uToaThuocList.Name = "_uToaThuocList";
+            this._uToaThuocList.PatientRow = null;
+            // 
+            // _uGiaThuocList
+            // 
+            resources.ApplyResources(this._uGiaThuocList, "_uGiaThuocList");
+            this._uGiaThuocList.Name = "_uGiaThuocList";
+            // 
+            // _uLoThuocList
+            // 
+            resources.ApplyResources(this._uLoThuocList, "_uLoThuocList");
+            this._uLoThuocList.Name = "_uLoThuocList";
+            // 
+            // _uNhomThuocList
+            // 
+            resources.ApplyResources(this._uNhomThuocList, "_uNhomThuocList");
+            this._uNhomThuocList.Name = "_uNhomThuocList";
+            // 
+            // _uThuocList
+            // 
+            resources.ApplyResources(this._uThuocList, "_uThuocList");
+            this._uThuocList.IsReport = false;
+            this._uThuocList.Name = "_uThuocList";
+            // 
+            // _uDichVuHopDong
+            // 
+            resources.ApplyResources(this._uDichVuHopDong, "_uDichVuHopDong");
+            this._uDichVuHopDong.Name = "_uDichVuHopDong";
+            // 
+            // _uDoanhThuNhanVien
+            // 
+            resources.ApplyResources(this._uDoanhThuNhanVien, "_uDoanhThuNhanVien");
+            this._uDoanhThuNhanVien.Name = "_uDoanhThuNhanVien";
+            // 
+            // _uInvoiceList
+            // 
+            resources.ApplyResources(this._uInvoiceList, "_uInvoiceList");
+            this._uInvoiceList.Name = "_uInvoiceList";
+            // 
+            // _uReceiptList
+            // 
+            resources.ApplyResources(this._uReceiptList, "_uReceiptList");
+            this._uReceiptList.Name = "_uReceiptList";
+            // 
+            // _uPrintLabel
+            // 
+            resources.ApplyResources(this._uPrintLabel, "_uPrintLabel");
+            this._uPrintLabel.Name = "_uPrintLabel";
+            // 
+            // _uPermission
+            // 
+            resources.ApplyResources(this._uPermission, "_uPermission");
+            this._uPermission.Name = "_uPermission";
+            // 
+            // _uContractList
+            // 
+            resources.ApplyResources(this._uContractList, "_uContractList");
+            this._uContractList.Name = "_uContractList";
+            // 
+            // _uCompanyList
+            // 
+            resources.ApplyResources(this._uCompanyList, "_uCompanyList");
+            this._uCompanyList.Name = "_uCompanyList";
+            // 
+            // _uSymptomList
+            // 
+            resources.ApplyResources(this._uSymptomList, "_uSymptomList");
+            this._uSymptomList.Name = "_uSymptomList";
+            // 
+            // _uSpecialityList
+            // 
+            resources.ApplyResources(this._uSpecialityList, "_uSpecialityList");
+            this._uSpecialityList.Name = "_uSpecialityList";
+            // 
+            // _uPatientHistory
+            // 
+            resources.ApplyResources(this._uPatientHistory, "_uPatientHistory");
+            this._uPatientHistory.Name = "_uPatientHistory";
+            // 
+            // _uPatientList
+            // 
+            resources.ApplyResources(this._uPatientList, "_uPatientList");
+            this._uPatientList.Name = "_uPatientList";
+            // 
+            // _uDuplicatePatient
+            // 
+            resources.ApplyResources(this._uDuplicatePatient, "_uDuplicatePatient");
+            this._uDuplicatePatient.Name = "_uDuplicatePatient";
+            // 
+            // _uDocStaffList
+            // 
+            resources.ApplyResources(this._uDocStaffList, "_uDocStaffList");
+            this._uDocStaffList.Name = "_uDocStaffList";
+            // 
+            // _uServicesList
+            // 
+            resources.ApplyResources(this._uServicesList, "_uServicesList");
+            this._uServicesList.Name = "_uServicesList";
             // 
             // MainForm
             // 
@@ -1746,7 +1755,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this._mainPanel.ResumeLayout(false);
             this._mainToolbar.ResumeLayout(false);
             this._mainToolbar.PerformLayout();
             this._mainStatus.ResumeLayout(false);
@@ -1762,6 +1770,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bar2)).EndInit();
             this.bar2.ResumeLayout(false);
             this.panelDockContainer2.ResumeLayout(false);
+            this._mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1959,6 +1968,7 @@
         private System.Windows.Forms.ToolStripMenuItem nhanVienToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator41;
         private System.Windows.Forms.ToolStripMenuItem trieuChungToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem biểuMẫuPhòngSaleToolStripMenuItem;
 
     }
 }
