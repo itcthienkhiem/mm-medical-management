@@ -405,7 +405,7 @@ namespace MM.Controls
                                         switch (sheet.Cells[0, j].Value.ToString().Trim().ToLower())
                                         {
                                             case "district":
-                                                //diary.district = curCellValue;
+                                                diary.DiaChi = curCellValue;
                                                 break;
 
                                             case "company name":
@@ -421,14 +421,14 @@ namespace MM.Controls
                                                 break;
 
                                             case "check-up month":
-                                                //diary.ThangKham = curCellValue;
+                                                diary.ThangKham = curCellValue;
                                                 break;
                                             //
                                             case "feedback":
                                                 diary.NoiDungLienHe = curCellValue;
                                                 break;
                                             case "email":
-                                                //diary.e
+                                                diary.Email = curCellValue;
                                                 break;
                                             case "contact date":
                                                 DateTime dt = new DateTime();
@@ -452,6 +452,7 @@ namespace MM.Controls
                                 //if (ct.FirstName != null && ct.FirstName != string.Empty && ct.SurName != null && ct.SurName != string.Empty & ct.Gender.HasValue)
                                 {
                                     diary.CreatedBy = Guid.Parse(Global.UserGUID);
+                                    diary.Note = "Import from Excel";
                                     Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
                                     if (!result.IsOK)
                                     {
