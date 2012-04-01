@@ -148,12 +148,12 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (txtThangKham.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập tháng khám.", IconType.Information);
-                txtThangKham.Focus();
-                return false;
-            }
+            //if (txtThangKham.Text.Trim() == string.Empty)
+            //{
+            //    MsgBox.Show(this.Text, "Vui lòng nhập tháng khám.", IconType.Information);
+            //    txtThangKham.Focus();
+            //    return false;
+            //}
 
             string nhatKyLienHeCongTyGUID = string.Empty;
             if (!_isNew) nhatKyLienHeCongTyGUID = _nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID.ToString();
@@ -163,7 +163,7 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, string.Format("Công ty: '{0}' đã liên hệ trước rồi. Vui lòng cập nhật thông tin cho công ty này.", cboCongTyLienHe.Text), 
+                    MsgBox.Show(this.Text, string.Format("Công ty: '{0}' đã liên hệ rồi. Vui lòng xem lại thông tin.", cboCongTyLienHe.Text), 
                         IconType.Information);
 
                     _isView = true;

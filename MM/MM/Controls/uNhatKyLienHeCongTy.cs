@@ -321,8 +321,8 @@ namespace MM.Controls
             string s = string.Format("Sheet {0} không đúng định dạng nên không được nhập", ws.Name) + System.Environment.NewLine;
             try
             {
-                if (ws.Cells[0, 0].Value != null && ws.Cells[0, 0].Value.ToString().ToLower() != "district" ||
-                        ws.Cells[0, 1].Value != null && ws.Cells[0, 1].Value.ToString().ToLower() != "company name" ||
+                if (ws.Cells[0, 0].Value != null && ws.Cells[0, 0].Value.ToString().ToLower() != "company name" ||
+                        ws.Cells[0, 1].Value != null && ws.Cells[0, 1].Value.ToString().ToLower() != "district" ||
                         ws.Cells[0, 2].Value != null && ws.Cells[0, 2].Value.ToString().ToLower() != "person contact" ||
                         ws.Cells[0, 3].Value != null && ws.Cells[0, 3].Value.ToString().ToLower() != "tel" ||
                         ws.Cells[0, 4].Value != null && ws.Cells[0, 4].Value.ToString().ToLower() != "quantity" ||
