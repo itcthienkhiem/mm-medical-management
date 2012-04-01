@@ -448,8 +448,7 @@
             // SoNguoiKham
             // 
             this.SoNguoiKham.DataPropertyName = "SoNguoiKham";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.NullValue = null;
             this.SoNguoiKham.DefaultCellStyle = dataGridViewCellStyle5;
             this.SoNguoiKham.HeaderText = "Số người khám";
@@ -460,8 +459,7 @@
             // ThangKham
             // 
             this.ThangKham.DataPropertyName = "ThangKham";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.Format = "MM/yyyy";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.NullValue = null;
             this.ThangKham.DefaultCellStyle = dataGridViewCellStyle6;
             this.ThangKham.HeaderText = "Tháng khám";

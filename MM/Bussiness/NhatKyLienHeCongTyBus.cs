@@ -120,13 +120,9 @@ namespace MM.Bussiness
                                 fullName = s.DocStaff.Contact.FullName;
                             }
 
-                            string thangKham = string.Empty;
-                            if (s.ThangKham.HasValue)
-                                thangKham = s.ThangKham.Value.ToString("MM/yyyy");
-
                             desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}'\n",
                                 s.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, s.CongTyLienHe, s.TenNguoiLienHe, s.DiaChi, s.SoDienThoaiLienHe,
-                                s.Email, s.SoNguoiKham, thangKham, s.NoiDungLienHe, s.Note);
+                                s.Email, s.SoNguoiKham, s.ThangKham, s.NoiDungLienHe, s.Note);
                         }
 
                         index++;
@@ -197,14 +193,10 @@ namespace MM.Bussiness
                             fullName = nhatKyLienHeCongTy.DocStaff.Contact.FullName;
                         }
 
-                        string thangKham = string.Empty;
-                        if (nhatKyLienHeCongTy.ThangKham.HasValue)
-                            thangKham = nhatKyLienHeCongTy.ThangKham.Value.ToString("MM/yyyy");
-
                         desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}'",
                                  nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName,
                                  nhatKyLienHeCongTy.CongTyLienHe, nhatKyLienHeCongTy.TenNguoiLienHe, nhatKyLienHeCongTy.DiaChi, nhatKyLienHeCongTy.SoDienThoaiLienHe, 
-                                 nhatKyLienHeCongTy.Email, nhatKyLienHeCongTy.SoNguoiKham, thangKham, nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note);
+                                 nhatKyLienHeCongTy.Email, nhatKyLienHeCongTy.SoNguoiKham, nhatKyLienHeCongTy.ThangKham, nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -251,13 +243,9 @@ namespace MM.Bussiness
                                 fullName = nklhct.DocStaff.Contact.FullName;
                             }
 
-                            string thangKham = string.Empty;
-                            if (nhatKyLienHeCongTy.ThangKham.HasValue)
-                                thangKham = nklhct.ThangKham.Value.ToString("MM/yyyy");
-
                             desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}'",
                                   nklhct.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, nklhct.CongTyLienHe, nklhct.TenNguoiLienHe, nklhct.DiaChi,
-                                  nklhct.SoDienThoaiLienHe, nklhct.Email, nklhct.SoNguoiKham, thangKham, nklhct.NoiDungLienHe, nklhct.Note);
+                                  nklhct.SoDienThoaiLienHe, nklhct.Email, nklhct.SoNguoiKham, nklhct.ThangKham, nklhct.NoiDungLienHe, nklhct.Note);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();

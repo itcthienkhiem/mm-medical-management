@@ -46,19 +46,6 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
-        private void InitData()
-        {
-            //cboThang.SelectedIndex = DateTime.Now.Month - 1;
-
-            cboNam.Items.Add(string.Empty);
-            for (int i = 1990; i <= 2200; i++)
-            {
-                cboNam.Items.Add(i.ToString()); 
-            }
-
-            //cboNam.Text = DateTime.Now.Year.ToString();
-        }
-
         private void DisplayCongTyLienHeList()
         {
             dtpkNgayGioLienHe.Value = DateTime.Now;
@@ -91,12 +78,7 @@ namespace MM.Dialogs
                 txtDiaChi.Text = drNhatKyLienHeCongTy["DiaChi"] as string;
                 txtSoNguoiKham.Text = drNhatKyLienHeCongTy["SoNguoiKham"].ToString();
                 if (drNhatKyLienHeCongTy["ThangKham"] != null && drNhatKyLienHeCongTy["ThangKham"] != DBNull.Value)
-                {
-                    chkThangKham.Checked = true;
-                    DateTime dt = Convert.ToDateTime(drNhatKyLienHeCongTy["ThangKham"]);
-                    cboThang.SelectedIndex = dt.Month;
-                    cboNam.Text = dt.Year.ToString();
-                }
+                    txtThangKham.Text = drNhatKyLienHeCongTy["ThangKham"].ToString();
 
                 _nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID = Guid.Parse(drNhatKyLienHeCongTy["NhatKyLienHeCongTyGUID"].ToString());
 
@@ -128,9 +110,7 @@ namespace MM.Dialogs
                     txtNguoiLienHe.Enabled = false;
                     txtSoDienThoaiLienHe.Enabled = false;
                     txtSoNguoiKham.Enabled = false;
-                    chkThangKham.Enabled = false;
-                    cboThang.Enabled = false;
-                    cboNam.Enabled = false;
+                    txtThangKham.Enabled = false;
                     txtNoiDungLienHe.Enabled = false;
                     txtDiaChi.Enabled = false;
                     txtEmail.Enabled = false;
@@ -168,21 +148,11 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (chkThangKham.Checked)
+            if (txtThangKham.Text.Trim() == string.Empty)
             {
-                if (cboThang.Text == string.Empty)
-                {
-                    MsgBox.Show(this.Text, "Vui lòng nhập tháng.", IconType.Information);
-                    cboThang.Focus();
-                    return false;
-                }
-
-                if (cboNam.Text == string.Empty)
-                {
-                    MsgBox.Show(this.Text, "Vui lòng nhập năm.", IconType.Information);
-                    cboNam.Focus();
-                    return false;
-                }
+                MsgBox.Show(this.Text, "Vui lòng nhập tháng khám.", IconType.Information);
+                txtThangKham.Focus();
+                return false;
             }
 
             string nhatKyLienHeCongTyGUID = string.Empty;
@@ -262,11 +232,7 @@ namespace MM.Dialogs
                     _nhatKyLienHeCongTy.SoNguoiKham = txtSoNguoiKham.Text;
                     _nhatKyLienHeCongTy.DiaChi = txtDiaChi.Text;
                     _nhatKyLienHeCongTy.Email = txtEmail.Text;
-
-                    if (chkThangKham.Checked)
-                        _nhatKyLienHeCongTy.ThangKham = new DateTime(Convert.ToInt32(cboNam.Text), Convert.ToInt32(cboThang.Text), 1);
-                    else
-                        _nhatKyLienHeCongTy.ThangKham = null;
+                    _nhatKyLienHeCongTy.ThangKham = txtThangKham.Text;
 
                     Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(_nhatKyLienHeCongTy);
                     if (!result.IsOK)
@@ -291,7 +257,6 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgAddNhatKyKienHeCongTy_Load(object sender, EventArgs e)
         {
-            InitData();
             DisplayCongTyLienHeList();
             if (!_isNew) DisplayInfo(_drNhatKyLienHeCongTy);
         }
@@ -318,15 +283,6 @@ namespace MM.Dialogs
                         e.Cancel = true;
                 }
             }
-        }
-
-        private void chkThangKham_CheckedChanged(object sender, EventArgs e)
-        {
-            cboThang.Enabled = chkThangKham.Checked;
-            cboNam.Enabled = chkThangKham.Checked;
-
-            if (chkThangKham.Checked)
-                cboNam.Text = DateTime.Now.Year.ToString();
         }
         #endregion
 
