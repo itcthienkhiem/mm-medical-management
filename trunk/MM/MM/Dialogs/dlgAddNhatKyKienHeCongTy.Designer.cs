@@ -30,9 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddNhatKyKienHeCongTy));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkThangKham = new System.Windows.Forms.CheckBox();
-            this.cboNam = new System.Windows.Forms.ComboBox();
-            this.cboThang = new System.Windows.Forms.ComboBox();
+            this.txtSoNguoiKham = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtDiaChi = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtSoDienThoaiLienHe = new System.Windows.Forms.TextBox();
             this.txtNguoiLienHe = new System.Windows.Forms.TextBox();
@@ -46,24 +48,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtDiaChi = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtSoNguoiKham = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtThangKham = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtThangKham);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtSoNguoiKham);
             this.groupBox1.Controls.Add(this.txtEmail);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtDiaChi);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.chkThangKham);
-            this.groupBox1.Controls.Add(this.cboNam);
-            this.groupBox1.Controls.Add(this.cboThang);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtSoDienThoaiLienHe);
             this.groupBox1.Controls.Add(this.txtNguoiLienHe);
@@ -77,61 +75,51 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(4, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(410, 283);
+            this.groupBox1.Size = new System.Drawing.Size(410, 279);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // chkThangKham
+            // txtSoNguoiKham
             // 
-            this.chkThangKham.AutoSize = true;
-            this.chkThangKham.Location = new System.Drawing.Point(17, 175);
-            this.chkThangKham.Name = "chkThangKham";
-            this.chkThangKham.Size = new System.Drawing.Size(89, 17);
-            this.chkThangKham.TabIndex = 10;
-            this.chkThangKham.Text = "Tháng khám:";
-            this.chkThangKham.UseVisualStyleBackColor = true;
-            this.chkThangKham.CheckedChanged += new System.EventHandler(this.chkThangKham_CheckedChanged);
+            this.txtSoNguoiKham.Location = new System.Drawing.Point(109, 150);
+            this.txtSoNguoiKham.MaxLength = 500;
+            this.txtSoNguoiKham.Name = "txtSoNguoiKham";
+            this.txtSoNguoiKham.Size = new System.Drawing.Size(284, 20);
+            this.txtSoNguoiKham.TabIndex = 9;
             // 
-            // cboNam
+            // txtEmail
             // 
-            this.cboNam.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboNam.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboNam.DropDownHeight = 105;
-            this.cboNam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboNam.DropDownWidth = 75;
-            this.cboNam.Enabled = false;
-            this.cboNam.FormattingEnabled = true;
-            this.cboNam.IntegralHeight = false;
-            this.cboNam.Location = new System.Drawing.Point(150, 173);
-            this.cboNam.Name = "cboNam";
-            this.cboNam.Size = new System.Drawing.Size(75, 21);
-            this.cboNam.TabIndex = 12;
+            this.txtEmail.Location = new System.Drawing.Point(109, 128);
+            this.txtEmail.MaxLength = 500;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(284, 20);
+            this.txtEmail.TabIndex = 8;
             // 
-            // cboThang
+            // label8
             // 
-            this.cboThang.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboThang.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboThang.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboThang.Enabled = false;
-            this.cboThang.FormattingEnabled = true;
-            this.cboThang.Items.AddRange(new object[] {
-            "",
-            "01",
-            "02",
-            "03",
-            "04",
-            "05",
-            "06",
-            "07",
-            "08",
-            "09",
-            "10",
-            "11",
-            "12"});
-            this.cboThang.Location = new System.Drawing.Point(109, 173);
-            this.cboThang.Name = "cboThang";
-            this.cboThang.Size = new System.Drawing.Size(39, 21);
-            this.cboThang.TabIndex = 11;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(37, 131);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(69, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Email liên hệ:";
+            // 
+            // txtDiaChi
+            // 
+            this.txtDiaChi.Location = new System.Drawing.Point(109, 62);
+            this.txtDiaChi.MaxLength = 500;
+            this.txtDiaChi.Name = "txtDiaChi";
+            this.txtDiaChi.Size = new System.Drawing.Size(284, 20);
+            this.txtDiaChi.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(28, 65);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Địa chỉ (Quận):";
             // 
             // label6
             // 
@@ -177,7 +165,7 @@
             // 
             // txtNoiDungLienHe
             // 
-            this.txtNoiDungLienHe.Location = new System.Drawing.Point(109, 197);
+            this.txtNoiDungLienHe.Location = new System.Drawing.Point(109, 194);
             this.txtNoiDungLienHe.Multiline = true;
             this.txtNoiDungLienHe.Name = "txtNoiDungLienHe";
             this.txtNoiDungLienHe.Size = new System.Drawing.Size(284, 75);
@@ -206,7 +194,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 200);
+            this.label3.Location = new System.Drawing.Point(19, 197);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 13);
             this.label3.TabIndex = 2;
@@ -235,7 +223,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(211, 289);
+            this.btnCancel.Location = new System.Drawing.Point(211, 285);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 10;
@@ -247,54 +235,29 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(132, 289);
+            this.btnOK.Location = new System.Drawing.Point(132, 285);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 9;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // label9
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 65);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Địa chỉ (Quận):";
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(36, 176);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Tháng khám:";
             // 
-            // txtDiaChi
+            // txtThangKham
             // 
-            this.txtDiaChi.Location = new System.Drawing.Point(109, 62);
-            this.txtDiaChi.MaxLength = 500;
-            this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(284, 20);
-            this.txtDiaChi.TabIndex = 5;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(109, 128);
-            this.txtEmail.MaxLength = 500;
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(284, 20);
-            this.txtEmail.TabIndex = 8;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(37, 131);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 13);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Email liên hệ:";
-            // 
-            // txtSoNguoiKham
-            // 
-            this.txtSoNguoiKham.Location = new System.Drawing.Point(109, 150);
-            this.txtSoNguoiKham.MaxLength = 500;
-            this.txtSoNguoiKham.Name = "txtSoNguoiKham";
-            this.txtSoNguoiKham.Size = new System.Drawing.Size(284, 20);
-            this.txtSoNguoiKham.TabIndex = 9;
+            this.txtThangKham.Location = new System.Drawing.Point(109, 172);
+            this.txtThangKham.MaxLength = 500;
+            this.txtThangKham.Name = "txtThangKham";
+            this.txtThangKham.Size = new System.Drawing.Size(284, 20);
+            this.txtThangKham.TabIndex = 10;
             // 
             // dlgAddNhatKyKienHeCongTy
             // 
@@ -302,7 +265,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(419, 318);
+            this.ClientSize = new System.Drawing.Size(419, 316);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -337,14 +300,13 @@
         private System.Windows.Forms.TextBox txtNguoiLienHe;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cboNam;
-        private System.Windows.Forms.ComboBox cboThang;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox chkThangKham;
         private System.Windows.Forms.TextBox txtDiaChi;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtSoNguoiKham;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtThangKham;
+        private System.Windows.Forms.Label label9;
     }
 }
