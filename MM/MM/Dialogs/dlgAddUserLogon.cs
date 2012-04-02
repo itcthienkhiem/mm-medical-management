@@ -637,7 +637,7 @@ namespace MM.Dialogs
                     (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
-                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;

@@ -59,6 +59,8 @@ namespace MM.Controls
                 btnExportExcel.Enabled = true;
             else
                 btnExportExcel.Enabled = AllowExport;
+
+            btnImportExcel.Enabled = AllowImport;
         }
 
         public void DisplayAsThread()
