@@ -439,11 +439,11 @@ namespace MM.Controls
                                                     diary.CreatedDate = dt;
                                                     diary.NgayGioLienHe = dt;
                                                 }
-                                                //else
-                                                //{
-                                                //    diary.CreatedDate = DateTime.Now;
-                                                //    diary.NgayGioLienHe = DateTime.Now;
-                                                //}
+                                                else
+                                                {
+                                                    diary.CreatedDate = DateTime.Now;
+                                                    diary.NgayGioLienHe = DateTime.Now;
+                                                }
                                                 break;
                                             default:
                                                 break;
@@ -460,7 +460,7 @@ namespace MM.Controls
                                         diary.DocStaffGUID = null;
 
                                     diary.CreatedBy = Guid.Parse(Global.UserGUID);
-                                    diary.Note = "Import from Excel";
+                                    diary.Note = "Import from Excel on " + DateTime.Now.ToString("dd/MM/yyyy");
                                     Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
                                     if (!result.IsOK)
                                     {
