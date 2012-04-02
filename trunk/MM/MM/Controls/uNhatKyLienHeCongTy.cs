@@ -453,6 +453,11 @@ namespace MM.Controls
                                 //add to db
                                 //if (ct.FirstName != null && ct.FirstName != string.Empty && ct.SurName != null && ct.SurName != string.Empty & ct.Gender.HasValue)
                                 {
+                                    if (Global.StaffType != StaffType.Admin)
+                                        diary.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                                    else
+                                        diary.DocStaffGUID = null;
+
                                     diary.CreatedBy = Guid.Parse(Global.UserGUID);
                                     diary.Note = "Import from Excel";
                                     Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
