@@ -439,10 +439,11 @@ namespace MM.Controls
                                                     diary.CreatedDate = dt;
                                                     diary.NgayGioLienHe = dt;
                                                 }
-                                                else
-                                                {
-                                                    diary.NgayGioLienHe = DateTime.Now;
-                                                }
+                                                //else
+                                                //{
+                                                //    diary.CreatedDate = DateTime.Now;
+                                                //    diary.NgayGioLienHe = DateTime.Now;
+                                                //}
                                                 break;
                                             default:
                                                 break;
