@@ -314,7 +314,6 @@
             this.IsExportAll.DataPropertyName = "IsExportAll";
             this.IsExportAll.HeaderText = "Xuất hết";
             this.IsExportAll.Name = "IsExportAll";
-            this.IsExportAll.ReadOnly = true;
             this.IsExportAll.Width = 60;
             // 
             // IsConfirm
