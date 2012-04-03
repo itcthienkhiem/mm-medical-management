@@ -451,22 +451,20 @@ namespace MM.Controls
                                     }
 
                                 }
-                                //add to db
-                                //if (ct.FirstName != null && ct.FirstName != string.Empty && ct.SurName != null && ct.SurName != string.Empty & ct.Gender.HasValue)
-                                {
-                                    if (Global.StaffType != StaffType.Admin)
-                                        diary.DocStaffGUID = Guid.Parse(Global.UserGUID);
-                                    else
-                                        diary.DocStaffGUID = null;
 
-                                    diary.CreatedBy = Guid.Parse(Global.UserGUID);
-                                    diary.Note = "Import from Excel on " + DateTime.Now.ToString("dd/MM/yyyy");
-                                    Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
-                                    if (!result.IsOK)
-                                    {
-                                        MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"), IconType.Error);
-                                        Utility.WriteToTraceLog(result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"));
-                                    }
+                                //add to db
+                                if (Global.StaffType != StaffType.Admin)
+                                    diary.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                                else
+                                    diary.DocStaffGUID = null;
+
+                                diary.CreatedBy = Guid.Parse(Global.UserGUID);
+                                diary.Note = "Import from Excel on " + DateTime.Now.ToString("dd/MM/yyyy");
+                                Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
+                                if (!result.IsOK)
+                                {
+                                    MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"), IconType.Error);
+                                    Utility.WriteToTraceLog(result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"));
                                 }
                             }
                         }
