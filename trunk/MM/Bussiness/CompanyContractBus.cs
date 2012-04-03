@@ -1122,5 +1122,39 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetCompanyMember(string companyGUID, string hoTen, string namSinh, string gioiTinh)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (gioiTinh.Trim() == string.Empty)
+                {
+                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}' AND DobStr = N'{3}'",
+                    companyGUID, (byte)Status.Actived, hoTen, namSinh);
+                }
+                else
+                {
+                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}' AND DobStr = N'{3}' AND GenderAsStr = N'{4}'",
+                    companyGUID, (byte)Status.Actived, hoTen, namSinh, gioiTinh);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }

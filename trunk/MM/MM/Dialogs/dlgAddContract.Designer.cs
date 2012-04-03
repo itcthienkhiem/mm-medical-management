@@ -78,20 +78,6 @@
             this.btnDeleteMember = new System.Windows.Forms.Button();
             this.btnAddMember = new System.Windows.Forms.Button();
             this.pageMemberList = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.chkChecked = new System.Windows.Forms.CheckBox();
-            this.dgGiaDichVu = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dataGridViewCheckBoxXColumn2 = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.codeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.giaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.giaDichVuHopDongViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.pageDanhSachDichVuHopDong = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.dtpkEndDate = new System.Windows.Forms.DateTimePicker();
             this.btnDSNVKhamDu = new System.Windows.Forms.Button();
@@ -110,10 +96,25 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pageContractInfo = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.dgGiaDichVu = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dataGridViewCheckBoxXColumn2 = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.codeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaDichVuHopDongViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.pageDanhSachDichVuHopDong = new DevComponents.DotNetBar.TabItem(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.btnImportDSNV = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).BeginInit();
             this.tabContract.SuspendLayout();
             this.tabControlPanel2.SuspendLayout();
@@ -128,21 +129,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tabControlPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             this.tabControlPanel3.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgGiaDichVu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.giaDichVuHopDongViewBindingSource)).BeginInit();
             this.panel5.SuspendLayout();
-            this.tabControlPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabContract
             // 
             this.tabContract.CanReorderTabs = true;
             this.tabContract.Controls.Add(this.tabControlPanel2);
-            this.tabContract.Controls.Add(this.tabControlPanel1);
             this.tabContract.Controls.Add(this.tabControlPanel3);
+            this.tabContract.Controls.Add(this.tabControlPanel1);
             this.tabContract.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabContract.Location = new System.Drawing.Point(0, 0);
             this.tabContract.Name = "tabContract";
@@ -479,6 +480,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnImportDSNV);
             this.panel1.Controls.Add(this.btnExportExcelCheckList);
             this.panel1.Controls.Add(this.btnPrintCheckList);
             this.panel1.Controls.Add(this.btnPrintPreviewCheckList);
@@ -497,7 +499,7 @@
             // 
             this.btnExportExcelCheckList.Image = global::MM.Properties.Resources.page_excel_icon;
             this.btnExportExcelCheckList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcelCheckList.Location = new System.Drawing.Point(6, 213);
+            this.btnExportExcelCheckList.Location = new System.Drawing.Point(6, 212);
             this.btnExportExcelCheckList.Name = "btnExportExcelCheckList";
             this.btnExportExcelCheckList.Size = new System.Drawing.Size(135, 25);
             this.btnExportExcelCheckList.TabIndex = 19;
@@ -595,190 +597,6 @@
             this.pageMemberList.Image = global::MM.Properties.Resources.Apps_preferences_contact_list_icon;
             this.pageMemberList.Name = "pageMemberList";
             this.pageMemberList.Text = "Danh sách nhân viên";
-            // 
-            // tabControlPanel3
-            // 
-            this.tabControlPanel3.Controls.Add(this.panel8);
-            this.tabControlPanel3.Controls.Add(this.panel5);
-            this.tabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel3.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel3.Name = "tabControlPanel3";
-            this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel3.Size = new System.Drawing.Size(811, 511);
-            this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel3.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel3.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel3.Style.GradientAngle = 90;
-            this.tabControlPanel3.TabIndex = 3;
-            this.tabControlPanel3.TabItem = this.pageDanhSachDichVuHopDong;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.chkChecked);
-            this.panel8.Controls.Add(this.dgGiaDichVu);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(1, 1);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(718, 509);
-            this.panel8.TabIndex = 1;
-            // 
-            // chkChecked
-            // 
-            this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
-            this.chkChecked.Name = "chkChecked";
-            this.chkChecked.Size = new System.Drawing.Size(15, 14);
-            this.chkChecked.TabIndex = 3;
-            this.chkChecked.UseVisualStyleBackColor = true;
-            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
-            // 
-            // dgGiaDichVu
-            // 
-            this.dgGiaDichVu.AllowUserToAddRows = false;
-            this.dgGiaDichVu.AllowUserToDeleteRows = false;
-            this.dgGiaDichVu.AllowUserToOrderColumns = true;
-            this.dgGiaDichVu.AutoGenerateColumns = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgGiaDichVu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dgGiaDichVu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgGiaDichVu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewCheckBoxXColumn2,
-            this.codeDataGridViewTextBoxColumn1,
-            this.nameDataGridViewTextBoxColumn1,
-            this.giaDataGridViewTextBoxColumn});
-            this.dgGiaDichVu.DataSource = this.giaDichVuHopDongViewBindingSource;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgGiaDichVu.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dgGiaDichVu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgGiaDichVu.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgGiaDichVu.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgGiaDichVu.HighlightSelectedColumnHeaders = false;
-            this.dgGiaDichVu.Location = new System.Drawing.Point(0, 0);
-            this.dgGiaDichVu.MultiSelect = false;
-            this.dgGiaDichVu.Name = "dgGiaDichVu";
-            this.dgGiaDichVu.ReadOnly = true;
-            this.dgGiaDichVu.RowHeadersWidth = 30;
-            this.dgGiaDichVu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgGiaDichVu.Size = new System.Drawing.Size(718, 509);
-            this.dgGiaDichVu.TabIndex = 2;
-            this.dgGiaDichVu.DoubleClick += new System.EventHandler(this.dgGiaDichVu_DoubleClick);
-            // 
-            // dataGridViewCheckBoxXColumn2
-            // 
-            this.dataGridViewCheckBoxXColumn2.Checked = true;
-            this.dataGridViewCheckBoxXColumn2.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.dataGridViewCheckBoxXColumn2.CheckValue = "N";
-            this.dataGridViewCheckBoxXColumn2.DataPropertyName = "Checked";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewCheckBoxXColumn2.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dataGridViewCheckBoxXColumn2.Frozen = true;
-            this.dataGridViewCheckBoxXColumn2.HeaderText = "";
-            this.dataGridViewCheckBoxXColumn2.Name = "dataGridViewCheckBoxXColumn2";
-            this.dataGridViewCheckBoxXColumn2.ReadOnly = true;
-            this.dataGridViewCheckBoxXColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewCheckBoxXColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxXColumn2.Width = 40;
-            // 
-            // codeDataGridViewTextBoxColumn1
-            // 
-            this.codeDataGridViewTextBoxColumn1.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn1.HeaderText = "Mã dịch vụ";
-            this.codeDataGridViewTextBoxColumn1.Name = "codeDataGridViewTextBoxColumn1";
-            this.codeDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Tên dịch vụ";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn1.Width = 300;
-            // 
-            // giaDataGridViewTextBoxColumn
-            // 
-            this.giaDataGridViewTextBoxColumn.DataPropertyName = "Gia";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.Format = "N0";
-            dataGridViewCellStyle11.NullValue = null;
-            this.giaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
-            this.giaDataGridViewTextBoxColumn.HeaderText = "Giá";
-            this.giaDataGridViewTextBoxColumn.Name = "giaDataGridViewTextBoxColumn";
-            this.giaDataGridViewTextBoxColumn.ReadOnly = true;
-            this.giaDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // giaDichVuHopDongViewBindingSource
-            // 
-            this.giaDichVuHopDongViewBindingSource.DataSource = typeof(MM.Databasae.GiaDichVuHopDongView);
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.btnDelete);
-            this.panel5.Controls.Add(this.btnEdit);
-            this.panel5.Controls.Add(this.btnAdd);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(719, 1);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(91, 509);
-            this.panel5.TabIndex = 0;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::MM.Properties.Resources.del;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(8, 65);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "    &Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(8, 36);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
-            this.btnEdit.TabIndex = 4;
-            this.btnEdit.Text = "    &Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::MM.Properties.Resources.add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(8, 7);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "    &Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // pageDanhSachDichVuHopDong
-            // 
-            this.pageDanhSachDichVuHopDong.AttachedControl = this.tabControlPanel3;
-            this.pageDanhSachDichVuHopDong.Image = global::MM.Properties.Resources.checklist_icon;
-            this.pageDanhSachDichVuHopDong.Name = "pageDanhSachDichVuHopDong";
-            this.pageDanhSachDichVuHopDong.Text = "Danh sách dịch vụ hợp đồng";
             // 
             // tabControlPanel1
             // 
@@ -983,6 +801,190 @@
             this.pageContractInfo.Name = "pageContractInfo";
             this.pageContractInfo.Text = "Thông tin hợp đồng";
             // 
+            // tabControlPanel3
+            // 
+            this.tabControlPanel3.Controls.Add(this.panel8);
+            this.tabControlPanel3.Controls.Add(this.panel5);
+            this.tabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel3.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel3.Name = "tabControlPanel3";
+            this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel3.Size = new System.Drawing.Size(811, 511);
+            this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel3.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel3.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel3.Style.GradientAngle = 90;
+            this.tabControlPanel3.TabIndex = 3;
+            this.tabControlPanel3.TabItem = this.pageDanhSachDichVuHopDong;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.chkChecked);
+            this.panel8.Controls.Add(this.dgGiaDichVu);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(1, 1);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(718, 509);
+            this.panel8.TabIndex = 1;
+            // 
+            // chkChecked
+            // 
+            this.chkChecked.AutoSize = true;
+            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Name = "chkChecked";
+            this.chkChecked.Size = new System.Drawing.Size(15, 14);
+            this.chkChecked.TabIndex = 3;
+            this.chkChecked.UseVisualStyleBackColor = true;
+            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
+            // 
+            // dgGiaDichVu
+            // 
+            this.dgGiaDichVu.AllowUserToAddRows = false;
+            this.dgGiaDichVu.AllowUserToDeleteRows = false;
+            this.dgGiaDichVu.AllowUserToOrderColumns = true;
+            this.dgGiaDichVu.AutoGenerateColumns = false;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgGiaDichVu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgGiaDichVu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgGiaDichVu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxXColumn2,
+            this.codeDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1,
+            this.giaDataGridViewTextBoxColumn});
+            this.dgGiaDichVu.DataSource = this.giaDichVuHopDongViewBindingSource;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgGiaDichVu.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dgGiaDichVu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgGiaDichVu.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgGiaDichVu.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgGiaDichVu.HighlightSelectedColumnHeaders = false;
+            this.dgGiaDichVu.Location = new System.Drawing.Point(0, 0);
+            this.dgGiaDichVu.MultiSelect = false;
+            this.dgGiaDichVu.Name = "dgGiaDichVu";
+            this.dgGiaDichVu.ReadOnly = true;
+            this.dgGiaDichVu.RowHeadersWidth = 30;
+            this.dgGiaDichVu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgGiaDichVu.Size = new System.Drawing.Size(718, 509);
+            this.dgGiaDichVu.TabIndex = 2;
+            this.dgGiaDichVu.DoubleClick += new System.EventHandler(this.dgGiaDichVu_DoubleClick);
+            // 
+            // dataGridViewCheckBoxXColumn2
+            // 
+            this.dataGridViewCheckBoxXColumn2.Checked = true;
+            this.dataGridViewCheckBoxXColumn2.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.dataGridViewCheckBoxXColumn2.CheckValue = "N";
+            this.dataGridViewCheckBoxXColumn2.DataPropertyName = "Checked";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewCheckBoxXColumn2.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewCheckBoxXColumn2.Frozen = true;
+            this.dataGridViewCheckBoxXColumn2.HeaderText = "";
+            this.dataGridViewCheckBoxXColumn2.Name = "dataGridViewCheckBoxXColumn2";
+            this.dataGridViewCheckBoxXColumn2.ReadOnly = true;
+            this.dataGridViewCheckBoxXColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCheckBoxXColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewCheckBoxXColumn2.Width = 40;
+            // 
+            // codeDataGridViewTextBoxColumn1
+            // 
+            this.codeDataGridViewTextBoxColumn1.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn1.HeaderText = "Mã dịch vụ";
+            this.codeDataGridViewTextBoxColumn1.Name = "codeDataGridViewTextBoxColumn1";
+            this.codeDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Tên dịch vụ";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn1.Width = 300;
+            // 
+            // giaDataGridViewTextBoxColumn
+            // 
+            this.giaDataGridViewTextBoxColumn.DataPropertyName = "Gia";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            dataGridViewCellStyle11.NullValue = null;
+            this.giaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            this.giaDataGridViewTextBoxColumn.HeaderText = "Giá";
+            this.giaDataGridViewTextBoxColumn.Name = "giaDataGridViewTextBoxColumn";
+            this.giaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.giaDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // giaDichVuHopDongViewBindingSource
+            // 
+            this.giaDichVuHopDongViewBindingSource.DataSource = typeof(MM.Databasae.GiaDichVuHopDongView);
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnDelete);
+            this.panel5.Controls.Add(this.btnEdit);
+            this.panel5.Controls.Add(this.btnAdd);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel5.Location = new System.Drawing.Point(719, 1);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(91, 509);
+            this.panel5.TabIndex = 0;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::MM.Properties.Resources.del;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(8, 65);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 25);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "    &Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Image = global::MM.Properties.Resources.edit;
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(8, 36);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 25);
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.Text = "    &Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::MM.Properties.Resources.add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(8, 7);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 25);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "    &Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // pageDanhSachDichVuHopDong
+            // 
+            this.pageDanhSachDichVuHopDong.AttachedControl = this.tabControlPanel3;
+            this.pageDanhSachDichVuHopDong.Image = global::MM.Properties.Resources.checklist_icon;
+            this.pageDanhSachDichVuHopDong.Name = "pageDanhSachDichVuHopDong";
+            this.pageDanhSachDichVuHopDong.Text = "Danh sách dịch vụ hợp đồng";
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -1017,6 +1019,18 @@
             // _printDialog
             // 
             this._printDialog.UseEXDialog = true;
+            // 
+            // btnImportDSNV
+            // 
+            this.btnImportDSNV.Image = ((System.Drawing.Image)(resources.GetObject("btnImportDSNV.Image")));
+            this.btnImportDSNV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportDSNV.Location = new System.Drawing.Point(6, 240);
+            this.btnImportDSNV.Name = "btnImportDSNV";
+            this.btnImportDSNV.Size = new System.Drawing.Size(135, 25);
+            this.btnImportDSNV.TabIndex = 20;
+            this.btnImportDSNV.Text = "      &Nhập DVHĐ";
+            this.btnImportDSNV.UseVisualStyleBackColor = true;
+            this.btnImportDSNV.Click += new System.EventHandler(this.btnImportDSNV_Click);
             // 
             // dlgAddContract
             // 
@@ -1054,15 +1068,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.tabControlPanel1.ResumeLayout(false);
+            this.tabControlPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             this.tabControlPanel3.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgGiaDichVu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.giaDichVuHopDongViewBindingSource)).EndInit();
             this.panel5.ResumeLayout(false);
-            this.tabControlPanel1.ResumeLayout(false);
-            this.tabControlPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1141,6 +1155,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn giaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnImportDSNV;
 
     }
 }
