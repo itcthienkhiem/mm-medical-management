@@ -130,6 +130,8 @@ namespace MM.Controls
                     newRow["DeletedBy"] = dlg.Contract.DeletedBy.ToString();
 
                 newRow["ContractStatus"] = dlg.Contract.Status;
+
+                newRow["Lock"] = false;
                 dt.Rows.Add(newRow);
 
                 //SelectLastedRow();
