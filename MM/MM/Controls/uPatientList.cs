@@ -619,11 +619,11 @@ namespace MM.Controls
             string s = string.Format("Sheet {0} không đúng định dạng nên không được nhập", ws.Name) + System.Environment.NewLine;
             try
             {
-                if (ws.Cells[0, 0].Text.ToLower() != "code" ||
-                        ws.Cells[0, 1].Text.ToLower() != "fullname" ||
-                        ws.Cells[0, 2].Text.ToLower() != "dob" ||
-                        ws.Cells[0, 3].Text.ToLower() != "sex" ||
-                        ws.Cells[0, 4].Text.ToLower() != "mobile")
+                if (ws.Cells[0, 0].Text.ToLower().Trim() != "code" ||
+                        ws.Cells[0, 1].Text.ToLower().Trim() != "fullname" ||
+                        ws.Cells[0, 2].Text.ToLower().Trim() != "dob" ||
+                        ws.Cells[0, 3].Text.ToLower().Trim() != "sex" ||
+                        ws.Cells[0, 4].Text.ToLower().Trim() != "mobile")
                 {
                     message += s;
                     return false;
