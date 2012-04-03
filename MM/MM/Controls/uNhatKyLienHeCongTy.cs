@@ -341,7 +341,7 @@ namespace MM.Controls
             catch (Exception ex)
             {
                 message += s;
-                Utility.WriteToTraceLog(ex.Message);
+                Utility.WriteToTraceLog(ex.Message);    
                 return false;
             }
         }

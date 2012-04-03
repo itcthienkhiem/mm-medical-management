@@ -12,6 +12,7 @@ using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
 using MM.Exports;
+using SpreadsheetGear;
 
 namespace MM.Dialogs
 {
@@ -138,7 +139,7 @@ namespace MM.Dialogs
                     btnAddService.Enabled = !_isLock;
                     btnDeleteService.Enabled = !_isLock;
                     btnOK.Enabled = !_isLock;
-
+                    btnImportDSNV.Enabled = !_isLock;
                 }
 
                 DisplayDetailAsThread(_contract.CompanyContractGUID.ToString());
@@ -999,6 +1000,144 @@ namespace MM.Dialogs
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
+
+        private void OnImportDVHD()
+        {
+            if (cboCompany.Text == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng chọn công ty.", IconType.Information);
+                tabContract.SelectedTabIndex = 0;
+                cboCompany.Focus();
+                return;
+            }
+
+            if (dgGiaDichVu.RowCount <= 0)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập nhập danh sách dịch vụ theo hợp đồng.", IconType.Information);
+                tabContract.SelectedTabIndex = 1;
+                btnAdd.Focus();
+                return;
+            }
+
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Title = "Import Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                IWorkbook workBook = null;
+                string companyGUID = cboCompany.SelectedValue.ToString();
+                DataTable dtService = dgGiaDichVu.DataSource as DataTable;
+
+                try
+                {
+                    workBook = SpreadsheetGear.Factory.GetWorkbook(dlg.FileName);
+                    string msg = string.Empty;
+                    
+                    foreach (IWorksheet workSheet in workBook.Worksheets)
+                    {
+                        //Check Header
+                        //STT
+                        string value = workSheet.Cells[0, 0].Text;
+                        if (value.Trim() == string.Empty || value.ToLower() != "STT".ToLower())
+                        {
+                            msg += string.Format("Sheet '{0}' không đúng định dạng nên không được nhập.\n", workSheet.Name);
+                            continue;
+                        }
+
+                        //Họ và tên
+                        value = workSheet.Cells[0, 1].Text;
+                        if (value.Trim() == string.Empty || (value.ToLower() != "Họ và tên".ToLower() && 
+                            value.ToLower() != "Họ tên".ToLower() && value.ToLower() != "Fullname".ToLower() &&
+                            value.ToLower() != "Full Name".ToLower()))
+                        {
+                            msg += string.Format("Sheet '{0}' không đúng định dạng nên không được nhập.\n", workSheet.Name);
+                            continue;
+                        }
+
+                        //Năm sinh
+                        value = workSheet.Cells[0, 2].Text;
+                        if (value.Trim() == string.Empty || (value.ToLower() != "Năm sinh".ToLower() &&
+                            value.ToLower() != "Dob".ToLower()))
+                        {
+                            msg += string.Format("Sheet '{0}' không đúng định dạng nên không được nhập.\n", workSheet.Name);
+                            continue;
+                        }
+
+                        //Giới tính
+                        value = workSheet.Cells[0, 3].Text;
+                        if (value.Trim() == string.Empty || (value.ToLower() != "Giới tính".ToLower() &&
+                            value.ToLower() != "Gender".ToLower()))
+                        {
+                            msg += string.Format("Sheet '{0}' không đúng định dạng nên không được nhập.\n", workSheet.Name);
+                            continue;
+                        }
+
+                        int rowCount = workSheet.UsedRange.RowCount;
+                        int colCount = workSheet.UsedRange.ColumnCount;
+
+                        for (int i = 1; i < rowCount; i++)
+                        {
+                            string hoTen = workSheet.Cells[i, 1].Text;
+                            if (hoTen.Trim() == string.Empty) continue;
+                            hoTen = Utility.ConvertVNI2Unicode(hoTen);
+                            string ngaySinh = workSheet.Cells[i, 2].Text;
+                            string gioiTinh = Utility.ConvertVNI2Unicode(workSheet.Cells[i, 3].Text);
+
+                            Result result = CompanyContractBus.GetCompanyMember(companyGUID, hoTen, ngaySinh, gioiTinh);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCompanyMember"), IconType.Error);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCompanyMember"));
+                                return;
+                            }
+
+                            DataTable dtMember = result.QueryResult as DataTable;
+                            if (dtMember == null || dtMember.Rows.Count <= 0) continue;
+
+                            List<string> addedServices = new List<string>();
+                            DataTable dtAddedService = dtService.Clone();
+                            List<DataRow> checkedMembers = new List<DataRow>();
+                            checkedMembers.Add(dtMember.Rows[0]);
+
+                            for (int j = 4; j < colCount; j++)
+                            {
+                                string isChecked = workSheet.Cells[i, j].Text;
+                                if (isChecked.Trim().ToLower() != "X".ToLower()) continue;
+                                string serviceName = workSheet.Cells[0, j].Text;
+                                if (serviceName.Trim() == string.Empty) continue;
+
+                                DataRow[] rows = dtService.Select(string.Format("Name = '{0}'", serviceName));
+                                if (rows == null || rows.Length <= 0) continue;
+
+                                addedServices.Add(rows[0]["ServiceGUID"].ToString());
+
+                                DataRow newRow = dtAddedService.NewRow();
+                                newRow.ItemArray = rows[0].ItemArray;
+                                dtAddedService.Rows.Add(newRow);
+                            }
+
+                            dlg_OnAddMember(checkedMembers, addedServices, dtAddedService);
+                        }
+                    }
+
+                    if (msg == string.Empty) msg = "Nhập dữ liệu từ Excel hoàn tất.";
+                    MsgBox.Show(this.Text, msg, IconType.Information);
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                    Utility.WriteToTraceLog(ex.Message);
+                }
+                finally
+                {
+                    if (workBook != null)
+                    {
+                        workBook.Close();
+                        workBook = null;
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -1325,6 +1464,11 @@ namespace MM.Dialogs
                 OnDisplayCheckList();
             }
         }
+
+        private void btnImportDSNV_Click(object sender, EventArgs e)
+        {
+            OnImportDVHD();
+        }
         #endregion
 
         #region Working Thread
@@ -1364,5 +1508,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+       
     }
 }
