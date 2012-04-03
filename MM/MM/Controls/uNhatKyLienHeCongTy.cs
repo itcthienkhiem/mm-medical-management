@@ -323,15 +323,15 @@ namespace MM.Controls
             string s = string.Format("Sheet {0} không đúng định dạng nên không được nhập", ws.Name) + System.Environment.NewLine;
             try
             {
-                if (ws.Cells[0, 0].Value != null && ws.Cells[0, 0].Value.ToString().ToLower() != "company name" ||
-                        ws.Cells[0, 1].Value != null && ws.Cells[0, 1].Value.ToString().ToLower() != "district" ||
-                        ws.Cells[0, 2].Value != null && ws.Cells[0, 2].Value.ToString().ToLower() != "person contact" ||
-                        ws.Cells[0, 3].Value != null && ws.Cells[0, 3].Value.ToString().ToLower() != "tel" ||
-                        ws.Cells[0, 4].Value != null && ws.Cells[0, 4].Value.ToString().ToLower() != "quantity" ||
-                        ws.Cells[0, 5].Value != null && ws.Cells[0, 5].Value.ToString().ToLower() != "check-up month" ||
-                        ws.Cells[0, 6].Value != null && ws.Cells[0, 6].Value.ToString().ToLower() != "feedback" ||
-                        ws.Cells[0, 7].Value != null && ws.Cells[0, 7].Value.ToString().ToLower() != "email" ||
-                        ws.Cells[0, 8].Value != null && ws.Cells[0, 8].Value.ToString().ToLower() != "contact date")
+                if (ws.Cells[0, 0].Value.ToString().ToLower() != "company name" ||
+                        ws.Cells[0, 1].Text.ToLower().Trim() != "district" ||
+                        ws.Cells[0, 2].Text.ToLower().Trim() != "person contact" ||
+                        ws.Cells[0, 3].Text.ToLower().Trim() != "tel" ||
+                        ws.Cells[0, 4].Text.ToLower().Trim() != "quantity" ||
+                        ws.Cells[0, 5].Text.ToLower().Trim() != "check-up month" ||
+                        ws.Cells[0, 6].Text.ToLower().Trim() != "feedback" ||
+                        ws.Cells[0, 7].Text.ToLower().Trim() != "email" ||
+                        ws.Cells[0, 8].Text.ToLower().Trim() != "contact date")
                 {
                     message += s;
                     return false;
@@ -414,6 +414,10 @@ namespace MM.Controls
                                                 diary.CongTyLienHe = curCellValue;
                                                 break;
 
+                                            case "person contact":
+                                                diary.TenNguoiLienHe = curCellValue;
+                                                break;
+
                                             case "tel":
                                                 diary.SoDienThoaiLienHe = curCellValue;
                                                 break;
@@ -453,18 +457,21 @@ namespace MM.Controls
                                 }
 
                                 //add to db
-                                if (Global.StaffType != StaffType.Admin)
-                                    diary.DocStaffGUID = Guid.Parse(Global.UserGUID);
-                                else
-                                    diary.DocStaffGUID = null;
-
-                                diary.CreatedBy = Guid.Parse(Global.UserGUID);
-                                diary.Note = "Import from Excel on " + DateTime.Now.ToString("dd/MM/yyyy");
-                                Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
-                                if (!result.IsOK)
+                                if (diary.CongTyLienHe != null && diary.CongTyLienHe != "" && diary.TenNguoiLienHe != null && diary.TenNguoiLienHe != "")
                                 {
-                                    MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"), IconType.Error);
-                                    Utility.WriteToTraceLog(result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"));
+                                    if (Global.StaffType != StaffType.Admin)
+                                        diary.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                                    else
+                                        diary.DocStaffGUID = null;
+
+                                    diary.CreatedBy = Guid.Parse(Global.UserGUID);
+                                    diary.Note = "Import from Excel on " + DateTime.Now.ToString("dd/MM/yyyy");
+                                    Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
+                                    if (!result.IsOK)
+                                    {
+                                        MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"), IconType.Error);
+                                        Utility.WriteToTraceLog(result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"));
+                                    }
                                 }
                             }
                         }
