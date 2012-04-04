@@ -400,6 +400,10 @@ namespace MM.Dialogs
                         _selectedCompanyInfo.GiaDichVuDataSource = result.QueryResult as DataTable;
                         _htCompany.Add(companyGUID, _selectedCompanyInfo);
                     }
+                    else if ((_htCompany[companyGUID] as CompanyInfo).GiaDichVuDataSource == null)
+                    {
+                        (_htCompany[companyGUID] as CompanyInfo).GiaDichVuDataSource = result.QueryResult as DataTable;
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
