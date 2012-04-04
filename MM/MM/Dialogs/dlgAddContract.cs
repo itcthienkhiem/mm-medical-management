@@ -361,6 +361,10 @@ namespace MM.Dialogs
                         _selectedCompanyInfo.DataSource = result.QueryResult as DataTable;
                         _htCompany.Add(companyGUID, _selectedCompanyInfo);
                     }
+                    else if ((_htCompany[companyGUID] as CompanyInfo).DataSource == null)
+                    {
+                        (_htCompany[companyGUID] as CompanyInfo).DataSource = result.QueryResult as DataTable;
+                    }
 
                     if (dgMembers.RowCount <= 0)
                         pService.Enabled = false;
@@ -886,6 +890,10 @@ namespace MM.Dialogs
         private void OnAddGiaDichVu()
         {
             if (_selectedCompanyInfo == null) return;
+
+            if (_selectedCompanyInfo.GiaDichVuDataSource == null)
+                _selectedCompanyInfo.GiaDichVuDataSource = dgGiaDichVu.DataSource as DataTable;
+
             dlgAddGiaDichVuHopDong dlg = new dlgAddGiaDichVuHopDong(_selectedCompanyInfo.GiaDichVuDataSource);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
