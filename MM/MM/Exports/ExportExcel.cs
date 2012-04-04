@@ -4370,5 +4370,68 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportGiaVonDichVuToExcel(string exportFileName, List<DataRow> giaVonDichVuList)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\GiaVonDichVuTemplate.xls", Application.StartupPath);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                int stt = 1;
+                IRange range;
+                foreach (DataRow row in giaVonDichVuList)
+                {
+                    string serviceName = row["Name"].ToString();
+                    double giaVon = Convert.ToDouble(row["GiaVon"]);
+                    DateTime ngayApDung = Convert.ToDateTime(row["NgayApDung"]);
+
+                    range = workSheet.Cells[rowIndex, 0];
+                    range.Value = stt;
+
+                    range = workSheet.Cells[rowIndex, 1];
+                    range.Value = serviceName;
+
+                    range = workSheet.Cells[rowIndex, 2];
+                    range.Value = giaVon;
+
+                    range = workSheet.Cells[rowIndex, 3];
+                    range.Value = ngayApDung.ToString("dd/MM/yyyy");
+
+                    rowIndex++;
+                    stt++;
+                }
+
+                range = workSheet.Cells[string.Format("A3:D{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }

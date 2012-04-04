@@ -32,12 +32,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtDichVu = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -45,10 +47,19 @@
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgGiaVonDichVu = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.giaVonDichVuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
+            this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
+            this.raDichVu = new System.Windows.Forms.RadioButton();
+            this.btnView = new System.Windows.Forms.Button();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.giaVonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayApDungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.giaVonDichVuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -58,34 +69,32 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnView);
+            this.panel1.Controls.Add(this.raDichVu);
+            this.panel1.Controls.Add(this.dtpkDenNgay);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.dtpkTuNgay);
+            this.panel1.Controls.Add(this.raTuNgayToiNgay);
             this.panel1.Controls.Add(this.txtDichVu);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(779, 45);
+            this.panel1.Size = new System.Drawing.Size(779, 63);
             this.panel1.TabIndex = 0;
             // 
             // txtDichVu
             // 
-            this.txtDichVu.Location = new System.Drawing.Point(81, 13);
+            this.txtDichVu.Enabled = false;
+            this.txtDichVu.Location = new System.Drawing.Point(84, 34);
             this.txtDichVu.Name = "txtDichVu";
-            this.txtDichVu.Size = new System.Drawing.Size(375, 20);
-            this.txtDichVu.TabIndex = 1;
+            this.txtDichVu.Size = new System.Drawing.Size(290, 20);
+            this.txtDichVu.TabIndex = 5;
             this.txtDichVu.TextChanged += new System.EventHandler(this.txtTenThuoc_TextChanged);
             this.txtDichVu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTenThuoc_KeyDown);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tìm dịch vụ:";
-            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnExportExcel);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnEdit);
             this.panel2.Controls.Add(this.btnAdd);
@@ -94,6 +103,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(779, 38);
             this.panel2.TabIndex = 2;
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(243, 6);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
+            this.btnExportExcel.TabIndex = 77;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // btnDelete
             // 
@@ -136,9 +157,9 @@
             this.panel3.Controls.Add(this.chkChecked);
             this.panel3.Controls.Add(this.dgGiaVonDichVu);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 45);
+            this.panel3.Location = new System.Drawing.Point(0, 63);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(779, 403);
+            this.panel3.Size = new System.Drawing.Size(779, 385);
             this.panel3.TabIndex = 3;
             // 
             // chkChecked
@@ -190,7 +211,7 @@
             this.dgGiaVonDichVu.ReadOnly = true;
             this.dgGiaVonDichVu.RowHeadersWidth = 30;
             this.dgGiaVonDichVu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgGiaVonDichVu.Size = new System.Drawing.Size(779, 403);
+            this.dgGiaVonDichVu.Size = new System.Drawing.Size(779, 385);
             this.dgGiaVonDichVu.TabIndex = 4;
             this.dgGiaVonDichVu.DoubleClick += new System.EventHandler(this.dgGiaThuoc_DoubleClick);
             // 
@@ -209,6 +230,104 @@
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
+            // 
+            // giaVonDichVuViewBindingSource
+            // 
+            this.giaVonDichVuViewBindingSource.DataSource = typeof(MM.Databasae.GiaVonDichVuView);
+            // 
+            // dtpkDenNgay
+            // 
+            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkDenNgay.Location = new System.Drawing.Point(261, 9);
+            this.dtpkDenNgay.Name = "dtpkDenNgay";
+            this.dtpkDenNgay.Size = new System.Drawing.Size(113, 20);
+            this.dtpkDenNgay.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(204, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "đến ngày";
+            // 
+            // dtpkTuNgay
+            // 
+            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkTuNgay.Location = new System.Drawing.Point(83, 9);
+            this.dtpkTuNgay.Name = "dtpkTuNgay";
+            this.dtpkTuNgay.Size = new System.Drawing.Size(113, 20);
+            this.dtpkTuNgay.TabIndex = 2;
+            // 
+            // raTuNgayToiNgay
+            // 
+            this.raTuNgayToiNgay.AutoSize = true;
+            this.raTuNgayToiNgay.Checked = true;
+            this.raTuNgayToiNgay.Location = new System.Drawing.Point(15, 10);
+            this.raTuNgayToiNgay.Name = "raTuNgayToiNgay";
+            this.raTuNgayToiNgay.Size = new System.Drawing.Size(64, 17);
+            this.raTuNgayToiNgay.TabIndex = 1;
+            this.raTuNgayToiNgay.TabStop = true;
+            this.raTuNgayToiNgay.Text = "Từ ngày";
+            this.raTuNgayToiNgay.UseVisualStyleBackColor = true;
+            this.raTuNgayToiNgay.CheckedChanged += new System.EventHandler(this.raTuNgayToiNgay_CheckedChanged);
+            // 
+            // raDichVu
+            // 
+            this.raDichVu.AutoSize = true;
+            this.raDichVu.Location = new System.Drawing.Point(15, 35);
+            this.raDichVu.Name = "raDichVu";
+            this.raDichVu.Size = new System.Drawing.Size(62, 17);
+            this.raDichVu.TabIndex = 4;
+            this.raDichVu.TabStop = true;
+            this.raDichVu.Text = "Dịch vụ";
+            this.raDichVu.UseVisualStyleBackColor = true;
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::MM.Properties.Resources.views_icon;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(379, 32);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 23);
+            this.btnView.TabIndex = 6;
+            this.btnView.Text = "   &Xem";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Dịch vụ";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "GiaVon";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Giá vốn (VNĐ)";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "NgayApDung";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Ngày áp dụng";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -241,10 +360,6 @@
             this.ngayApDungDataGridViewTextBoxColumn.Name = "ngayApDungDataGridViewTextBoxColumn";
             this.ngayApDungDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // giaVonDichVuViewBindingSource
-            // 
-            this.giaVonDichVuViewBindingSource.DataSource = typeof(MM.Databasae.GiaVonDichVuView);
-            // 
             // uGiaVonDichVuList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,7 +384,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtDichVu;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
@@ -282,5 +396,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn giaVonDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayApDungDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.RadioButton raDichVu;
+        private System.Windows.Forms.DateTimePicker dtpkDenNgay;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dtpkTuNgay;
+        private System.Windows.Forms.RadioButton raTuNgayToiNgay;
+        private System.Windows.Forms.Button btnView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }

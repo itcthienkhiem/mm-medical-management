@@ -1485,6 +1485,7 @@
     <None Include="Templates\DichVuHopDongTemplate.xls" />
     <None Include="Templates\DichVuTuTucTemplate.xls" />
     <None Include="Templates\DoanhThuTheoNgayTemplate.xls" />
+    <None Include="Templates\GiaVonDichVuTemplate.xls" />
     <None Include="Templates\HDGTGTTemplate.xls" />
     <None Include="Templates\KetQuaNoiSoiHongThanhQuanTemplate.xls" />
     <None Include="Templates\KetQuaNoiSoiMuiTemplate.xls" />
