@@ -11,6 +11,7 @@ using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -18,12 +19,18 @@ namespace MM.Controls
     {
         #region Members
         private DataTable _dataSource = null;
+        private bool _isFromDateToDate = true;
+        private string _tenDichVu = string.Empty;
+        private DateTime _fromDate = DateTime.Now;
+        private DateTime _toDate = DateTime.Now;
         #endregion
 
         #region Constructor
         public uGiaVonDichVuList()
         {
             InitializeComponent();
+            dtpkTuNgay.Value = new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0);
+            dtpkDenNgay.Value = DateTime.Now;
         }
         #endregion
 
@@ -37,6 +44,7 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+            btnExportExcel.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -49,6 +57,11 @@ namespace MM.Controls
             try
             {
                 UpdateGUI();
+                _isFromDateToDate = raTuNgayToiNgay.Checked;
+                _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
+                _tenDichVu = txtDichVu.Text;
+
                 chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayGiaVonDichVuListProc));
                 base.ShowWaiting();
@@ -66,13 +79,13 @@ namespace MM.Controls
 
         private void OnDisplayGiaVonDichVuList()
         {
-            Result result = GiaVonDichVuBus.GetGiaVonDichVuList();
+            Result result = GiaVonDichVuBus.GetGiaVonDichVuList(_isFromDateToDate, _fromDate, _toDate, _tenDichVu);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
-                    _dataSource = result.QueryResult as DataTable;
-                    OnSearchGiaVonDichVu();
+                    dgGiaVonDichVu.DataSource = result.QueryResult as DataTable;
+                    //OnSearchGiaVonDichVu();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -165,41 +178,42 @@ namespace MM.Controls
 
         private void OnAddGiaVonDichVu()
         {
-            if (_dataSource == null) return;
+            //if (_dataSource == null) return;
             dlgAddGiaVonDichVu dlg = new dlgAddGiaVonDichVu();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                DataTable dt = _dataSource;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["GiaVonDichVuGUID"] = dlg.GiaVonDichVu.GiaVonDichVuGUID.ToString();
-                newRow["ServiceGUID"] = dlg.GiaVonDichVu.ServiceGUID.ToString();
-                newRow["Name"] = dlg.TenDichVu;
-                newRow["GiaVon"] = dlg.GiaVonDichVu.GiaVon;
-                newRow["NgayApDung"] = dlg.GiaVonDichVu.NgayApDung;
-                newRow["GiaVonDichVuStatus"] = dlg.GiaVonDichVu.Status;
+                DisplayAsThread();
+                //DataTable dt = _dataSource;
+                //if (dt == null) return;
+                //DataRow newRow = dt.NewRow();
+                //newRow["Checked"] = false;
+                //newRow["GiaVonDichVuGUID"] = dlg.GiaVonDichVu.GiaVonDichVuGUID.ToString();
+                //newRow["ServiceGUID"] = dlg.GiaVonDichVu.ServiceGUID.ToString();
+                //newRow["Name"] = dlg.TenDichVu;
+                //newRow["GiaVon"] = dlg.GiaVonDichVu.GiaVon;
+                //newRow["NgayApDung"] = dlg.GiaVonDichVu.NgayApDung;
+                //newRow["GiaVonDichVuStatus"] = dlg.GiaVonDichVu.Status;
 
-                if (dlg.GiaVonDichVu.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.GiaVonDichVu.CreatedDate;
+                //if (dlg.GiaVonDichVu.CreatedDate.HasValue)
+                //    newRow["CreatedDate"] = dlg.GiaVonDichVu.CreatedDate;
 
-                if (dlg.GiaVonDichVu.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.GiaVonDichVu.CreatedBy.ToString();
+                //if (dlg.GiaVonDichVu.CreatedBy.HasValue)
+                //    newRow["CreatedBy"] = dlg.GiaVonDichVu.CreatedBy.ToString();
 
-                if (dlg.GiaVonDichVu.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.GiaVonDichVu.UpdatedDate;
+                //if (dlg.GiaVonDichVu.UpdatedDate.HasValue)
+                //    newRow["UpdatedDate"] = dlg.GiaVonDichVu.UpdatedDate;
 
-                if (dlg.GiaVonDichVu.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.GiaVonDichVu.UpdatedBy.ToString();
+                //if (dlg.GiaVonDichVu.UpdatedBy.HasValue)
+                //    newRow["UpdatedBy"] = dlg.GiaVonDichVu.UpdatedBy.ToString();
 
-                if (dlg.GiaVonDichVu.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.GiaVonDichVu.DeletedDate;
+                //if (dlg.GiaVonDichVu.DeletedDate.HasValue)
+                //    newRow["DeletedDate"] = dlg.GiaVonDichVu.DeletedDate;
 
-                if (dlg.GiaVonDichVu.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.GiaVonDichVu.DeletedBy.ToString();
+                //if (dlg.GiaVonDichVu.DeletedBy.HasValue)
+                //    newRow["DeletedBy"] = dlg.GiaVonDichVu.DeletedBy.ToString();
 
-                dt.Rows.Add(newRow);
-                OnSearchGiaVonDichVu();
+                //dt.Rows.Add(newRow);
+                //OnSearchGiaVonDichVu();
             }
         }
 
@@ -214,7 +228,7 @@ namespace MM.Controls
 
         private void OnEditGiaVonDichVu()
         {
-            if (_dataSource == null) return;
+            //if (_dataSource == null) return;
 
             if (dgGiaVonDichVu.SelectedRows == null || dgGiaVonDichVu.SelectedRows.Count <= 0)
             {
@@ -222,47 +236,49 @@ namespace MM.Controls
                 return;
             }
 
-            string giaVonDichGUID = (dgGiaVonDichVu.SelectedRows[0].DataBoundItem as DataRowView).Row["GiaVonDichVuGUID"].ToString();
-            DataRow drGiaVonDichVu = GetDataRow(giaVonDichGUID);
-            if (drGiaVonDichVu == null) return;
+            //string giaVonDichGUID = (dgGiaVonDichVu.SelectedRows[0].DataBoundItem as DataRowView).Row["GiaVonDichVuGUID"].ToString();
+            DataRow drGiaVonDichVu = (dgGiaVonDichVu.SelectedRows[0].DataBoundItem as DataRowView).Row;//GetDataRow(giaVonDichGUID);
+            //if (drGiaVonDichVu == null) return;
             dlgAddGiaVonDichVu dlg = new dlgAddGiaVonDichVu(drGiaVonDichVu);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                drGiaVonDichVu["ServiceGUID"] = dlg.GiaVonDichVu.ServiceGUID.ToString();
-                drGiaVonDichVu["Name"] = dlg.TenDichVu;
-                drGiaVonDichVu["GiaVon"] = dlg.GiaVonDichVu.GiaVon;
-                drGiaVonDichVu["NgayApDung"] = dlg.GiaVonDichVu.NgayApDung;
-                drGiaVonDichVu["GiaVonDichVuStatus"] = dlg.GiaVonDichVu.Status;
+                //drGiaVonDichVu["ServiceGUID"] = dlg.GiaVonDichVu.ServiceGUID.ToString();
+                //drGiaVonDichVu["Name"] = dlg.TenDichVu;
+                //drGiaVonDichVu["GiaVon"] = dlg.GiaVonDichVu.GiaVon;
+                //drGiaVonDichVu["NgayApDung"] = dlg.GiaVonDichVu.NgayApDung;
+                //drGiaVonDichVu["GiaVonDichVuStatus"] = dlg.GiaVonDichVu.Status;
 
-                if (dlg.GiaVonDichVu.CreatedDate.HasValue)
-                    drGiaVonDichVu["CreatedDate"] = dlg.GiaVonDichVu.CreatedDate;
+                //if (dlg.GiaVonDichVu.CreatedDate.HasValue)
+                //    drGiaVonDichVu["CreatedDate"] = dlg.GiaVonDichVu.CreatedDate;
 
-                if (dlg.GiaVonDichVu.CreatedBy.HasValue)
-                    drGiaVonDichVu["CreatedBy"] = dlg.GiaVonDichVu.CreatedBy.ToString();
+                //if (dlg.GiaVonDichVu.CreatedBy.HasValue)
+                //    drGiaVonDichVu["CreatedBy"] = dlg.GiaVonDichVu.CreatedBy.ToString();
 
-                if (dlg.GiaVonDichVu.UpdatedDate.HasValue)
-                    drGiaVonDichVu["UpdatedDate"] = dlg.GiaVonDichVu.UpdatedDate;
+                //if (dlg.GiaVonDichVu.UpdatedDate.HasValue)
+                //    drGiaVonDichVu["UpdatedDate"] = dlg.GiaVonDichVu.UpdatedDate;
 
-                if (dlg.GiaVonDichVu.UpdatedBy.HasValue)
-                    drGiaVonDichVu["UpdatedBy"] = dlg.GiaVonDichVu.UpdatedBy.ToString();
+                //if (dlg.GiaVonDichVu.UpdatedBy.HasValue)
+                //    drGiaVonDichVu["UpdatedBy"] = dlg.GiaVonDichVu.UpdatedBy.ToString();
 
-                if (dlg.GiaVonDichVu.DeletedDate.HasValue)
-                    drGiaVonDichVu["DeletedDate"] = dlg.GiaVonDichVu.DeletedDate;
+                //if (dlg.GiaVonDichVu.DeletedDate.HasValue)
+                //    drGiaVonDichVu["DeletedDate"] = dlg.GiaVonDichVu.DeletedDate;
 
-                if (dlg.GiaVonDichVu.DeletedBy.HasValue)
-                    drGiaVonDichVu["DeletedBy"] = dlg.GiaVonDichVu.DeletedBy.ToString();
+                //if (dlg.GiaVonDichVu.DeletedBy.HasValue)
+                //    drGiaVonDichVu["DeletedBy"] = dlg.GiaVonDichVu.DeletedBy.ToString();
 
-                OnSearchGiaVonDichVu();
+                //OnSearchGiaVonDichVu();
+                DisplayAsThread();
             }
         }
 
         private void OnDeleteGiaVonDichVu()
         {
-            if (_dataSource == null) return;
-            UpdateChecked();
+            //if (_dataSource == null) return;
+            //UpdateChecked();
             List<string> deletedGiaVonList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            foreach (DataRow row in _dataSource.Rows)
+            DataTable dt = dgGiaVonDichVu.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
@@ -281,10 +297,10 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
-                            _dataSource.Rows.Remove(row);
+                            dt.Rows.Remove(row);
                         }
 
-                        OnSearchGiaVonDichVu();
+                        //OnSearchGiaVonDichVu();
                     }
                     else
                     {
@@ -295,6 +311,35 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những giá vốn dịch vụ cần xóa.", IconType.Information);
+        }
+
+        private void OnExportExcel()
+        {
+            //if (_dataSource == null) return;
+            //UpdateChecked();
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgGiaVonDichVu.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedRows.Add(row);
+                }
+            }
+
+            if (checkedRows.Count > 0)
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Title = "Export Excel";
+                dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    if (!ExportExcel.ExportGiaVonDichVuToExcel(dlg.FileName, checkedRows))
+                        return;
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những giá vốn dịch vụ cần xuất Excel.", IconType.Information);
         }
         #endregion
 
@@ -323,7 +368,7 @@ namespace MM.Controls
 
         private void txtTenThuoc_TextChanged(object sender, EventArgs e)
         {
-            OnSearchGiaVonDichVu();
+            //OnSearchGiaVonDichVu();
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -338,37 +383,54 @@ namespace MM.Controls
 
         private void txtTenThuoc_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Down)
-            {
-                dgGiaVonDichVu.Focus();
+            //if (e.KeyCode == Keys.Down)
+            //{
+            //    dgGiaVonDichVu.Focus();
 
-                if (dgGiaVonDichVu.SelectedRows != null && dgGiaVonDichVu.SelectedRows.Count > 0)
-                {
-                    int index = dgGiaVonDichVu.SelectedRows[0].Index;
-                    if (index < dgGiaVonDichVu.RowCount - 1)
-                    {
-                        index++;
-                        dgGiaVonDichVu.CurrentCell = dgGiaVonDichVu[1, index];
-                        dgGiaVonDichVu.Rows[index].Selected = true;
-                    }
-                }
-            }
+            //    if (dgGiaVonDichVu.SelectedRows != null && dgGiaVonDichVu.SelectedRows.Count > 0)
+            //    {
+            //        int index = dgGiaVonDichVu.SelectedRows[0].Index;
+            //        if (index < dgGiaVonDichVu.RowCount - 1)
+            //        {
+            //            index++;
+            //            dgGiaVonDichVu.CurrentCell = dgGiaVonDichVu[1, index];
+            //            dgGiaVonDichVu.Rows[index].Selected = true;
+            //        }
+            //    }
+            //}
 
-            if (e.KeyCode == Keys.Up)
-            {
-                dgGiaVonDichVu.Focus();
+            //if (e.KeyCode == Keys.Up)
+            //{
+            //    dgGiaVonDichVu.Focus();
 
-                if (dgGiaVonDichVu.SelectedRows != null && dgGiaVonDichVu.SelectedRows.Count > 0)
-                {
-                    int index = dgGiaVonDichVu.SelectedRows[0].Index;
-                    if (index > 0)
-                    {
-                        index--;
-                        dgGiaVonDichVu.CurrentCell = dgGiaVonDichVu[1, index];
-                        dgGiaVonDichVu.Rows[index].Selected = true;
-                    }
-                }
-            }
+            //    if (dgGiaVonDichVu.SelectedRows != null && dgGiaVonDichVu.SelectedRows.Count > 0)
+            //    {
+            //        int index = dgGiaVonDichVu.SelectedRows[0].Index;
+            //        if (index > 0)
+            //        {
+            //            index--;
+            //            dgGiaVonDichVu.CurrentCell = dgGiaVonDichVu[1, index];
+            //            dgGiaVonDichVu.Rows[index].Selected = true;
+            //        }
+            //    }
+            //}
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
+
+        private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
+            dtpkDenNgay.Enabled = raTuNgayToiNgay.Checked;
+            txtDichVu.Enabled = !raTuNgayToiNgay.Checked;
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            DisplayAsThread();
         }
         #endregion
 

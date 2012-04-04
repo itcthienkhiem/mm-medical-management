@@ -36,6 +36,40 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetGiaVonDichVuList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenDichVu)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (isFromDateToDate)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaVonDichVuView WHERE GiaVonDichVuStatus={0} AND ServiceStatus={0} AND NgayApDung BETWEEN '{1}' AND '{2}' ORDER BY Name ASC, NgayApDung DESC",
+                    (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaVonDichVuView WHERE GiaVonDichVuStatus={0} AND ServiceStatus={0} AND Name LIKE N'%{1}%' ORDER BY Name ASC, NgayApDung DESC",
+                   (byte)Status.Actived, tenDichVu);
+                }
+                                
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetGiaVonDichVuMoiNhat(string serviceGUID)
         {
             Result result = null;
