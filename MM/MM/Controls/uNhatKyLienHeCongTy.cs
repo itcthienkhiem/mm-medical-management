@@ -460,18 +460,26 @@ namespace MM.Controls
                                 //add to db
                                 if (diary.CongTyLienHe != null && diary.CongTyLienHe != "" && diary.TenNguoiLienHe != null && diary.TenNguoiLienHe != "")
                                 {
-                                    if (Global.StaffType != StaffType.Admin)
-                                        diary.DocStaffGUID = Guid.Parse(Global.UserGUID);
-                                    else
-                                        diary.DocStaffGUID = null;
-
-                                    diary.CreatedBy = Guid.Parse(Global.UserGUID);
-                                    diary.Note = "Import from Excel on " + DateTime.Now.ToString("dd/MM/yyyy");
-                                    Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
-                                    if (!result.IsOK)
+                                    Result rs = NhatKyLienHeCongTyBus.CheckCongTyLienHeExist(diary.CongTyLienHe, string.Empty);
+                                    if (rs.Error.Code == ErrorCode.EXIST)
                                     {
-                                        MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"), IconType.Error);
-                                        Utility.WriteToTraceLog(result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"));
+                                        continue;
+                                    }
+                                    else
+                                    {
+                                        if (Global.StaffType != StaffType.Admin)
+                                            diary.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                                        else
+                                            diary.DocStaffGUID = null;
+
+                                        diary.CreatedBy = Guid.Parse(Global.UserGUID);
+                                        diary.Note = "Import from Excel on " + DateTime.Now.ToString("dd/MM/yyyy");
+                                        Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(diary);
+                                        if (!result.IsOK)
+                                        {
+                                            MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"), IconType.Error);
+                                            Utility.WriteToTraceLog(result.GetErrorAsString("NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy"));
+                                        }
                                     }
                                 }
                             }
