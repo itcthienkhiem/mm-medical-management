@@ -55,6 +55,7 @@ namespace MM.Controls
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
                 dgPatient.DataSource = null;
+                lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
                 return;
             }
 
@@ -72,12 +73,17 @@ namespace MM.Controls
 
                 dgPatient.DataSource = newDataSource;
                 _isAscending = true;
+                lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
                 return;
             }
 
             string str = txtSearchPatient.Text.ToLower();
             DataTable dt = _dataSource as DataTable;
-            if (dt == null) return;
+            if (dt == null)
+            {
+                lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
+                return;
+            }
             newDataSource = dt.Clone();
 
             if (chkMaBenhNhan.Checked)
@@ -98,6 +104,7 @@ namespace MM.Controls
                 if (newDataSource.Rows.Count > 0)
                 {
                     dgPatient.DataSource = newDataSource;
+                    lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
                     return;
                 }
             }
@@ -120,6 +127,7 @@ namespace MM.Controls
                 if (newDataSource.Rows.Count > 0)
                 {
                     dgPatient.DataSource = newDataSource;
+                    lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
                     return;
                 }
             }
@@ -141,6 +149,7 @@ namespace MM.Controls
             if (newDataSource.Rows.Count > 0)
             {
                 dgPatient.DataSource = newDataSource;
+                lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
                 return;
             }
 
@@ -199,6 +208,7 @@ namespace MM.Controls
             }*/
 
             dgPatient.DataSource = newDataSource;
+            lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
         }
 
         private void RaiseOpentPatient()
