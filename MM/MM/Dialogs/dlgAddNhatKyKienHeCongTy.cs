@@ -141,9 +141,9 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (txtSoDienThoaiLienHe.Text.Trim() == string.Empty)
+            if (txtSoDienThoaiLienHe.Text.Trim() == string.Empty && txtEmail.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập số điện thoại liên hệ.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng nhập số điện thoại hoặc email liên hệ.", IconType.Information);
                 txtSoDienThoaiLienHe.Focus();
                 return false;
             }
