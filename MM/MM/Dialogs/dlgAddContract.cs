@@ -1012,7 +1012,49 @@ namespace MM.Dialogs
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
+        private string ReFormatDate(string type, string value)
+        {
+            string sRet = value;
+            if (type.ToLower().StartsWith("m"))
+            {
+                char[] split = new char[] { '/' };
+                string[] sTemp = value.Split(split, StringSplitOptions.None);
+                if (sTemp.Count() == 3)
+                {
+                    sRet = sTemp[1] + "/" + sTemp[0] + "/" + sTemp[2];
+                }
+                else
+                {
+                    sRet = value;
+                }
+            }
+            return sRet;
+        }
+        private string GetCellText(IRange cell)
+        {
+            try
+            {
+                string s = cell.Text;
+                //process NULL text in excel 
+                if (s.ToUpper() == "NULL")
+                    s = "";
 
+                string sType = cell.NumberFormat.Trim();
+                if (sType.Contains("yy"))
+                {
+                    s = ReFormatDate(sType, s);
+                }
+                //process "'" character
+                s = s.Replace("'", "''");
+                if (cell.Font.Name.ToLower().IndexOf("vni") == 0)
+                    s = Utility.ConvertVNI2Unicode(s);
+                return s;
+            }
+            catch
+            {
+                return "";
+            }
+        }
         private void OnImportDVHD()
         {
             if (cboCompany.Text == string.Empty)
@@ -1089,11 +1131,10 @@ namespace MM.Dialogs
 
                         for (int i = 1; i < rowCount; i++)
                         {
-                            string hoTen = workSheet.Cells[i, 1].Text;
+                            string hoTen = GetCellText(workSheet.Cells[i, 1]);
                             if (hoTen.Trim() == string.Empty) continue;
-                            hoTen = Utility.ConvertVNI2Unicode(hoTen);
-                            string ngaySinh = workSheet.Cells[i, 2].Text;
-                            string gioiTinh = Utility.ConvertVNI2Unicode(workSheet.Cells[i, 3].Text);
+                            string ngaySinh = GetCellText(workSheet.Cells[i, 2]);
+                            string gioiTinh = GetCellText(workSheet.Cells[i, 3]);
 
                             Result result = CompanyContractBus.GetCompanyMember(companyGUID, hoTen, ngaySinh, gioiTinh);
                             if (!result.IsOK)
@@ -1113,9 +1154,9 @@ namespace MM.Dialogs
 
                             for (int j = 4; j < colCount; j++)
                             {
-                                string isChecked = workSheet.Cells[i, j].Text;
+                                string isChecked =GetCellText(workSheet.Cells[i, j]);
                                 if (isChecked.Trim().ToLower() != "X".ToLower()) continue;
-                                string serviceName = workSheet.Cells[0, j].Text;
+                                string serviceName = GetCellText(workSheet.Cells[0, j]);
                                 if (serviceName.Trim() == string.Empty) continue;
 
                                 DataRow[] rows = dtService.Select(string.Format("Name = '{0}'", serviceName));
