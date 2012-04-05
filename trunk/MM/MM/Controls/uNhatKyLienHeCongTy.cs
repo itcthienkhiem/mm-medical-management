@@ -25,7 +25,7 @@ namespace MM.Controls
         private string _tenNguoiTao = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
-        private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo
+        private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo; 3: Công ty trùng
         #endregion
 
         #region Constructor
@@ -86,7 +86,8 @@ namespace MM.Controls
                 chkChecked.Checked = false;
                 if (raTuNgayToiNgay.Checked) _type = 0;
                 else if (raTenBenhNhan.Checked) _type = 1;
-                else _type = 2;
+                else if (raTenNguoiTao.Checked) _type = 2;
+                else _type = 3;
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 _tenBenhNhan = txtTenBenhNhan.Text;
