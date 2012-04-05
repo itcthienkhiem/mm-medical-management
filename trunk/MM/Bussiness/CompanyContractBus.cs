@@ -1132,13 +1132,13 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (gioiTinh.Trim() == string.Empty)
                 {
-                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}' AND DobStr = N'{3}'",
-                    companyGUID, (byte)Status.Actived, hoTen, namSinh);
+                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}'",
+                    companyGUID, (byte)Status.Actived, hoTen);
                 }
                 else
                 {
-                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}' AND DobStr = N'{3}' AND GenderAsStr = N'{4}'",
-                    companyGUID, (byte)Status.Actived, hoTen, namSinh, gioiTinh);
+                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}' AND GenderAsStr = N'{3}'",
+                    companyGUID, (byte)Status.Actived, hoTen, gioiTinh);
                 }
 
                 return ExcuteQuery(query);
