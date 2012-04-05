@@ -32,16 +32,52 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uNhatKyLienHeCongTy));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uNhatKyLienHeCongTy));
             this.nhatKyLienHeCongTyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgNhatKyLienHeCongTy = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnImportExcel = new System.Windows.Forms.Button();
+            this.btnExportExcel = new System.Windows.Forms.Button();
+            this.btnPrintPreview = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.raCongTyTrung = new System.Windows.Forms.RadioButton();
+            this.txtTenNguoiTao = new System.Windows.Forms.TextBox();
+            this.raTenNguoiTao = new System.Windows.Forms.RadioButton();
+            this.btnView = new System.Windows.Forms.Button();
+            this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
+            this.raTenBenhNhan = new System.Windows.Forms.RadioButton();
+            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
+            this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayGioLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UpdatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.congTyLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,26 +90,7 @@
             this.noiDungLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnImportExcel = new System.Windows.Forms.Button();
-            this.btnExportExcel = new System.Windows.Forms.Button();
-            this.btnPrintPreview = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtTenNguoiTao = new System.Windows.Forms.TextBox();
-            this.raTenNguoiTao = new System.Windows.Forms.RadioButton();
-            this.btnView = new System.Windows.Forms.Button();
-            this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
-            this.raTenBenhNhan = new System.Windows.Forms.RadioButton();
-            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
-            this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
-            this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.raCongTyTrung = new System.Windows.Forms.RadioButton();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nhatKyLienHeCongTyViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgNhatKyLienHeCongTy)).BeginInit();
@@ -171,6 +188,342 @@
             this.colChecked.ReadOnly = true;
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colChecked.Width = 40;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnImportExcel);
+            this.panel2.Controls.Add(this.btnExportExcel);
+            this.panel2.Controls.Add(this.btnPrintPreview);
+            this.panel2.Controls.Add(this.btnPrint);
+            this.panel2.Controls.Add(this.btnDelete);
+            this.panel2.Controls.Add(this.btnEdit);
+            this.panel2.Controls.Add(this.btnAdd);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 406);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(959, 38);
+            this.panel2.TabIndex = 1;
+            // 
+            // btnImportExcel
+            // 
+            this.btnImportExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnImportExcel.Image")));
+            this.btnImportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportExcel.Location = new System.Drawing.Point(508, 7);
+            this.btnImportExcel.Name = "btnImportExcel";
+            this.btnImportExcel.Size = new System.Drawing.Size(89, 23);
+            this.btnImportExcel.TabIndex = 83;
+            this.btnImportExcel.Text = "Nhập Excel";
+            this.btnImportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnImportExcel.UseVisualStyleBackColor = true;
+            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(408, 6);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
+            this.btnExportExcel.TabIndex = 82;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // btnPrintPreview
+            // 
+            this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
+            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintPreview.Location = new System.Drawing.Point(243, 6);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
+            this.btnPrintPreview.TabIndex = 80;
+            this.btnPrintPreview.Text = "      &Xem bản in";
+            this.btnPrintPreview.UseVisualStyleBackColor = true;
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(340, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(64, 25);
+            this.btnPrint.TabIndex = 81;
+            this.btnPrint.Text = "   &In";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::MM.Properties.Resources.del;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(164, 6);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 25);
+            this.btnDelete.TabIndex = 8;
+            this.btnDelete.Text = "    &Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Image = global::MM.Properties.Resources.edit;
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(85, 6);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 25);
+            this.btnEdit.TabIndex = 7;
+            this.btnEdit.Text = "    &Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::MM.Properties.Resources.add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(6, 6);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 25);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.Text = "    &Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbKetQuaTimDuoc);
+            this.panel1.Controls.Add(this.raCongTyTrung);
+            this.panel1.Controls.Add(this.txtTenNguoiTao);
+            this.panel1.Controls.Add(this.raTenNguoiTao);
+            this.panel1.Controls.Add(this.btnView);
+            this.panel1.Controls.Add(this.txtTenBenhNhan);
+            this.panel1.Controls.Add(this.raTenBenhNhan);
+            this.panel1.Controls.Add(this.dtpkDenNgay);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.dtpkTuNgay);
+            this.panel1.Controls.Add(this.raTuNgayToiNgay);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(959, 107);
+            this.panel1.TabIndex = 0;
+            // 
+            // raCongTyTrung
+            // 
+            this.raCongTyTrung.AutoSize = true;
+            this.raCongTyTrung.Location = new System.Drawing.Point(13, 80);
+            this.raCongTyTrung.Name = "raCongTyTrung";
+            this.raCongTyTrung.Size = new System.Drawing.Size(88, 17);
+            this.raCongTyTrung.TabIndex = 18;
+            this.raCongTyTrung.Text = "Công ty trùng";
+            this.raCongTyTrung.UseVisualStyleBackColor = true;
+            // 
+            // txtTenNguoiTao
+            // 
+            this.txtTenNguoiTao.Location = new System.Drawing.Point(106, 56);
+            this.txtTenNguoiTao.Name = "txtTenNguoiTao";
+            this.txtTenNguoiTao.ReadOnly = true;
+            this.txtTenNguoiTao.Size = new System.Drawing.Size(277, 20);
+            this.txtTenNguoiTao.TabIndex = 7;
+            // 
+            // raTenNguoiTao
+            // 
+            this.raTenNguoiTao.AutoSize = true;
+            this.raTenNguoiTao.Location = new System.Drawing.Point(13, 57);
+            this.raTenNguoiTao.Name = "raTenNguoiTao";
+            this.raTenNguoiTao.Size = new System.Drawing.Size(91, 17);
+            this.raTenNguoiTao.TabIndex = 6;
+            this.raTenNguoiTao.Text = "Tên người tạo";
+            this.raTenNguoiTao.UseVisualStyleBackColor = true;
+            this.raTenNguoiTao.CheckedChanged += new System.EventHandler(this.raTenNguoiTao_CheckedChanged);
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::MM.Properties.Resources.views_icon;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(308, 77);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 23);
+            this.btnView.TabIndex = 8;
+            this.btnView.Text = "   &Xem";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            // 
+            // txtTenBenhNhan
+            // 
+            this.txtTenBenhNhan.Location = new System.Drawing.Point(106, 33);
+            this.txtTenBenhNhan.Name = "txtTenBenhNhan";
+            this.txtTenBenhNhan.ReadOnly = true;
+            this.txtTenBenhNhan.Size = new System.Drawing.Size(277, 20);
+            this.txtTenBenhNhan.TabIndex = 5;
+            // 
+            // raTenBenhNhan
+            // 
+            this.raTenBenhNhan.AutoSize = true;
+            this.raTenBenhNhan.Location = new System.Drawing.Point(13, 34);
+            this.raTenBenhNhan.Name = "raTenBenhNhan";
+            this.raTenBenhNhan.Size = new System.Drawing.Size(82, 17);
+            this.raTenBenhNhan.TabIndex = 4;
+            this.raTenBenhNhan.Text = "Tên công ty";
+            this.raTenBenhNhan.UseVisualStyleBackColor = true;
+            this.raTenBenhNhan.CheckedChanged += new System.EventHandler(this.raTenBenhNhan_CheckedChanged);
+            // 
+            // dtpkDenNgay
+            // 
+            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkDenNgay.Location = new System.Drawing.Point(270, 9);
+            this.dtpkDenNgay.Name = "dtpkDenNgay";
+            this.dtpkDenNgay.Size = new System.Drawing.Size(113, 20);
+            this.dtpkDenNgay.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(213, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "đến ngày";
+            // 
+            // dtpkTuNgay
+            // 
+            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkTuNgay.Location = new System.Drawing.Point(92, 9);
+            this.dtpkTuNgay.Name = "dtpkTuNgay";
+            this.dtpkTuNgay.Size = new System.Drawing.Size(113, 20);
+            this.dtpkTuNgay.TabIndex = 2;
+            // 
+            // raTuNgayToiNgay
+            // 
+            this.raTuNgayToiNgay.AutoSize = true;
+            this.raTuNgayToiNgay.Checked = true;
+            this.raTuNgayToiNgay.Location = new System.Drawing.Point(13, 10);
+            this.raTuNgayToiNgay.Name = "raTuNgayToiNgay";
+            this.raTuNgayToiNgay.Size = new System.Drawing.Size(64, 17);
+            this.raTuNgayToiNgay.TabIndex = 1;
+            this.raTuNgayToiNgay.TabStop = true;
+            this.raTuNgayToiNgay.Text = "Từ ngày";
+            this.raTuNgayToiNgay.UseVisualStyleBackColor = true;
+            this.raTuNgayToiNgay.CheckedChanged += new System.EventHandler(this.raTuNgayToiNgay_CheckedChanged);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "NgayGioLienHe";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle8.NullValue = null;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Liên hệ lần đầu";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 130;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "UpdatedDate";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle9.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Liên hệ cập nhật";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "CongTyLienHe";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Công ty liên hệ";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "DiaChi";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Địa chỉ (Quận)";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "TenNguoiLienHe";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Người liên hệ";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "SoDienThoaiLienHe";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Số ĐT liên hệ";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Email";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Email liên hệ";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "SoNguoiKham";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.NullValue = null;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle10;
+            this.dataGridViewTextBoxColumn8.HeaderText = "Số người khám";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "ThangKham";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.NullValue = null;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn9.HeaderText = "Tháng khám";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "NoiDungLienHe";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Nội dung liên hệ";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "FullName";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Người khởi tạo";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "NguoiCapNhat";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Người cập nhật";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Visible = false;
+            this.dataGridViewTextBoxColumn12.Width = 200;
             // 
             // ngayGioLienHeDataGridViewTextBoxColumn
             // 
@@ -281,231 +634,15 @@
             this.NguoiCapNhat.Visible = false;
             this.NguoiCapNhat.Width = 200;
             // 
-            // panel2
+            // lbKetQuaTimDuoc
             // 
-            this.panel2.Controls.Add(this.btnImportExcel);
-            this.panel2.Controls.Add(this.btnExportExcel);
-            this.panel2.Controls.Add(this.btnPrintPreview);
-            this.panel2.Controls.Add(this.btnPrint);
-            this.panel2.Controls.Add(this.btnDelete);
-            this.panel2.Controls.Add(this.btnEdit);
-            this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 406);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(959, 38);
-            this.panel2.TabIndex = 1;
-            // 
-            // btnImportExcel
-            // 
-            this.btnImportExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnImportExcel.Image")));
-            this.btnImportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportExcel.Location = new System.Drawing.Point(508, 7);
-            this.btnImportExcel.Name = "btnImportExcel";
-            this.btnImportExcel.Size = new System.Drawing.Size(89, 23);
-            this.btnImportExcel.TabIndex = 83;
-            this.btnImportExcel.Text = "Nhập Excel";
-            this.btnImportExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImportExcel.UseVisualStyleBackColor = true;
-            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
-            // 
-            // btnExportExcel
-            // 
-            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
-            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(408, 6);
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
-            this.btnExportExcel.TabIndex = 82;
-            this.btnExportExcel.Text = "      &Xuất Excel";
-            this.btnExportExcel.UseVisualStyleBackColor = true;
-            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
-            // 
-            // btnPrintPreview
-            // 
-            this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
-            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintPreview.Location = new System.Drawing.Point(243, 6);
-            this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
-            this.btnPrintPreview.TabIndex = 80;
-            this.btnPrintPreview.Text = "      &Xem bản in";
-            this.btnPrintPreview.UseVisualStyleBackColor = true;
-            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(340, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(64, 25);
-            this.btnPrint.TabIndex = 81;
-            this.btnPrint.Text = "   &In";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::MM.Properties.Resources.del;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(164, 6);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
-            this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "    &Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(85, 6);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
-            this.btnEdit.TabIndex = 7;
-            this.btnEdit.Text = "    &Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::MM.Properties.Resources.add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(6, 6);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
-            this.btnAdd.TabIndex = 6;
-            this.btnAdd.Text = "    &Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.raCongTyTrung);
-            this.panel1.Controls.Add(this.txtTenNguoiTao);
-            this.panel1.Controls.Add(this.raTenNguoiTao);
-            this.panel1.Controls.Add(this.btnView);
-            this.panel1.Controls.Add(this.txtTenBenhNhan);
-            this.panel1.Controls.Add(this.raTenBenhNhan);
-            this.panel1.Controls.Add(this.dtpkDenNgay);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.dtpkTuNgay);
-            this.panel1.Controls.Add(this.raTuNgayToiNgay);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(959, 107);
-            this.panel1.TabIndex = 0;
-            // 
-            // txtTenNguoiTao
-            // 
-            this.txtTenNguoiTao.Location = new System.Drawing.Point(106, 56);
-            this.txtTenNguoiTao.Name = "txtTenNguoiTao";
-            this.txtTenNguoiTao.ReadOnly = true;
-            this.txtTenNguoiTao.Size = new System.Drawing.Size(277, 20);
-            this.txtTenNguoiTao.TabIndex = 7;
-            // 
-            // raTenNguoiTao
-            // 
-            this.raTenNguoiTao.AutoSize = true;
-            this.raTenNguoiTao.Location = new System.Drawing.Point(13, 57);
-            this.raTenNguoiTao.Name = "raTenNguoiTao";
-            this.raTenNguoiTao.Size = new System.Drawing.Size(91, 17);
-            this.raTenNguoiTao.TabIndex = 6;
-            this.raTenNguoiTao.Text = "Tên người tạo";
-            this.raTenNguoiTao.UseVisualStyleBackColor = true;
-            this.raTenNguoiTao.CheckedChanged += new System.EventHandler(this.raTenNguoiTao_CheckedChanged);
-            // 
-            // btnView
-            // 
-            this.btnView.Image = global::MM.Properties.Resources.views_icon;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(308, 77);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 23);
-            this.btnView.TabIndex = 8;
-            this.btnView.Text = "   &Xem";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            // 
-            // txtTenBenhNhan
-            // 
-            this.txtTenBenhNhan.Location = new System.Drawing.Point(106, 33);
-            this.txtTenBenhNhan.Name = "txtTenBenhNhan";
-            this.txtTenBenhNhan.ReadOnly = true;
-            this.txtTenBenhNhan.Size = new System.Drawing.Size(277, 20);
-            this.txtTenBenhNhan.TabIndex = 5;
-            // 
-            // raTenBenhNhan
-            // 
-            this.raTenBenhNhan.AutoSize = true;
-            this.raTenBenhNhan.Location = new System.Drawing.Point(13, 34);
-            this.raTenBenhNhan.Name = "raTenBenhNhan";
-            this.raTenBenhNhan.Size = new System.Drawing.Size(82, 17);
-            this.raTenBenhNhan.TabIndex = 4;
-            this.raTenBenhNhan.Text = "Tên công ty";
-            this.raTenBenhNhan.UseVisualStyleBackColor = true;
-            this.raTenBenhNhan.CheckedChanged += new System.EventHandler(this.raTenBenhNhan_CheckedChanged);
-            // 
-            // dtpkDenNgay
-            // 
-            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkDenNgay.Location = new System.Drawing.Point(270, 9);
-            this.dtpkDenNgay.Name = "dtpkDenNgay";
-            this.dtpkDenNgay.Size = new System.Drawing.Size(113, 20);
-            this.dtpkDenNgay.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(213, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "đến ngày";
-            // 
-            // dtpkTuNgay
-            // 
-            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkTuNgay.Location = new System.Drawing.Point(92, 9);
-            this.dtpkTuNgay.Name = "dtpkTuNgay";
-            this.dtpkTuNgay.Size = new System.Drawing.Size(113, 20);
-            this.dtpkTuNgay.TabIndex = 2;
-            // 
-            // raTuNgayToiNgay
-            // 
-            this.raTuNgayToiNgay.AutoSize = true;
-            this.raTuNgayToiNgay.Checked = true;
-            this.raTuNgayToiNgay.Location = new System.Drawing.Point(13, 10);
-            this.raTuNgayToiNgay.Name = "raTuNgayToiNgay";
-            this.raTuNgayToiNgay.Size = new System.Drawing.Size(64, 17);
-            this.raTuNgayToiNgay.TabIndex = 1;
-            this.raTuNgayToiNgay.TabStop = true;
-            this.raTuNgayToiNgay.Text = "Từ ngày";
-            this.raTuNgayToiNgay.UseVisualStyleBackColor = true;
-            this.raTuNgayToiNgay.CheckedChanged += new System.EventHandler(this.raTuNgayToiNgay_CheckedChanged);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.AllowCurrentPage = true;
-            this._printDialog.AllowSelection = true;
-            this._printDialog.AllowSomePages = true;
-            this._printDialog.ShowHelp = true;
-            this._printDialog.UseEXDialog = true;
-            // 
-            // raCongTyTrung
-            // 
-            this.raCongTyTrung.AutoSize = true;
-            this.raCongTyTrung.Location = new System.Drawing.Point(13, 80);
-            this.raCongTyTrung.Name = "raCongTyTrung";
-            this.raCongTyTrung.Size = new System.Drawing.Size(88, 17);
-            this.raCongTyTrung.TabIndex = 18;
-            this.raCongTyTrung.Text = "Công ty trùng";
-            this.raCongTyTrung.UseVisualStyleBackColor = true;
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(389, 84);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 19;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
             // 
             // uNhatKyLienHeCongTy
             // 
@@ -567,5 +704,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
         private System.Windows.Forms.RadioButton raCongTyTrung;
+        private System.Windows.Forms.Label lbKetQuaTimDuoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
     }
 }

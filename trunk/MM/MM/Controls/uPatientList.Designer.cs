@@ -62,11 +62,11 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
@@ -357,6 +357,16 @@
             this.panel1.Size = new System.Drawing.Size(1101, 39);
             this.panel1.TabIndex = 0;
             // 
+            // lbKetQuaTimDuoc
+            // 
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(653, 12);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 7;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
+            // 
             // chkTheoSoDienThoai
             // 
             this.chkTheoSoDienThoai.AutoSize = true;
@@ -395,15 +405,6 @@
             this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tìm bệnh nhân:";
-            // 
-            // lbKetQuaTimDuoc
-            // 
-            this.lbKetQuaTimDuoc.AutoSize = true;
-            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(653, 12);
-            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
-            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
-            this.lbKetQuaTimDuoc.TabIndex = 7;
-            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
             // 
             // uPatientList
             // 

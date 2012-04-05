@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
@@ -77,6 +77,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(806, 36);
             this.panel1.TabIndex = 0;
+            // 
+            // lbKetQuaTimDuoc
+            // 
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(637, 11);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 6;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
             // 
             // chkTheoSoDienThoai
             // 
@@ -291,15 +301,6 @@
             // patientViewBindingSource
             // 
             this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
-            // 
-            // lbKetQuaTimDuoc
-            // 
-            this.lbKetQuaTimDuoc.AutoSize = true;
-            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(637, 11);
-            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
-            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
-            this.lbKetQuaTimDuoc.TabIndex = 6;
-            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
             // 
             // uSearchPatient
             // 

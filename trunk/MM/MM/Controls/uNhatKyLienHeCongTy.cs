@@ -115,6 +115,7 @@ namespace MM.Controls
                 MethodInvoker method = delegate
                 {
                     dgNhatKyLienHeCongTy.DataSource = result.QueryResult;
+                    lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgNhatKyLienHeCongTy.RowCount);
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
