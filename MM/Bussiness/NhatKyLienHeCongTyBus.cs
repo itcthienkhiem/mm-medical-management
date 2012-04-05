@@ -48,8 +48,11 @@ namespace MM.Bussiness
                 else if (type == 1)
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe LIKE N'%{1}%' ORDER BY NgayGioLienHe DESC", 
                         (byte)Status.Actived, tenBenhNhan);
-                else
+                else if (type == 2)
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY NgayGioLienHe DESC",
+                        (byte)Status.Actived, tenNguoiTao);
+                else
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe IN (SELECT CongTyLienHe FROM NhatKyLienHeCongTy WHERE Status = 0 GROUP BY CongTyLienHe HAVING Count(CongTyLienHe) >= 2) ORDER BY CongTyLienHe",
                         (byte)Status.Actived, tenNguoiTao);
 
                 return ExcuteQuery(query);
