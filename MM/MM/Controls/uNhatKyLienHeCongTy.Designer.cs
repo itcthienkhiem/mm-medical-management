@@ -73,6 +73,7 @@
             this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
             this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.raCongTyTrung = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.nhatKyLienHeCongTyViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgNhatKyLienHeCongTy)).BeginInit();
@@ -89,9 +90,9 @@
             this.panel3.Controls.Add(this.chkChecked);
             this.panel3.Controls.Add(this.dgNhatKyLienHeCongTy);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 83);
+            this.panel3.Location = new System.Drawing.Point(0, 107);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(959, 323);
+            this.panel3.Size = new System.Drawing.Size(959, 299);
             this.panel3.TabIndex = 2;
             // 
             // chkChecked
@@ -152,7 +153,7 @@
             this.dgNhatKyLienHeCongTy.ReadOnly = true;
             this.dgNhatKyLienHeCongTy.RowHeadersWidth = 30;
             this.dgNhatKyLienHeCongTy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgNhatKyLienHeCongTy.Size = new System.Drawing.Size(959, 323);
+            this.dgNhatKyLienHeCongTy.Size = new System.Drawing.Size(959, 299);
             this.dgNhatKyLienHeCongTy.TabIndex = 4;
             this.dgNhatKyLienHeCongTy.DoubleClick += new System.EventHandler(this.dgYKienKhachHang_DoubleClick);
             // 
@@ -382,6 +383,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.raCongTyTrung);
             this.panel1.Controls.Add(this.txtTenNguoiTao);
             this.panel1.Controls.Add(this.raTenNguoiTao);
             this.panel1.Controls.Add(this.btnView);
@@ -394,7 +396,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(959, 83);
+            this.panel1.Size = new System.Drawing.Size(959, 107);
             this.panel1.TabIndex = 0;
             // 
             // txtTenNguoiTao
@@ -420,7 +422,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(387, 54);
+            this.btnView.Location = new System.Drawing.Point(308, 77);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 8;
@@ -495,6 +497,16 @@
             this._printDialog.ShowHelp = true;
             this._printDialog.UseEXDialog = true;
             // 
+            // raCongTyTrung
+            // 
+            this.raCongTyTrung.AutoSize = true;
+            this.raCongTyTrung.Location = new System.Drawing.Point(13, 80);
+            this.raCongTyTrung.Name = "raCongTyTrung";
+            this.raCongTyTrung.Size = new System.Drawing.Size(88, 17);
+            this.raCongTyTrung.TabIndex = 18;
+            this.raCongTyTrung.Text = "Công ty trùng";
+            this.raCongTyTrung.UseVisualStyleBackColor = true;
+            // 
             // uNhatKyLienHeCongTy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,5 +566,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn noiDungLienHeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
+        private System.Windows.Forms.RadioButton raCongTyTrung;
     }
 }
