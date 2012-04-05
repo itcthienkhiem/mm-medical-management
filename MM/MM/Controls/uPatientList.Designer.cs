@@ -62,10 +62,11 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
@@ -345,6 +346,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbKetQuaTimDuoc);
             this.panel1.Controls.Add(this.chkTheoSoDienThoai);
             this.panel1.Controls.Add(this.chkMaBenhNhan);
             this.panel1.Controls.Add(this.txtSearchPatient);
@@ -354,6 +356,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1101, 39);
             this.panel1.TabIndex = 0;
+            // 
+            // chkTheoSoDienThoai
+            // 
+            this.chkTheoSoDienThoai.AutoSize = true;
+            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(521, 12);
+            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
+            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
+            this.chkTheoSoDienThoai.TabIndex = 6;
+            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
+            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
             // 
             // chkMaBenhNhan
             // 
@@ -384,15 +396,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tìm bệnh nhân:";
             // 
-            // chkTheoSoDienThoai
+            // lbKetQuaTimDuoc
             // 
-            this.chkTheoSoDienThoai.AutoSize = true;
-            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(521, 12);
-            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
-            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
-            this.chkTheoSoDienThoai.TabIndex = 6;
-            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
-            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(653, 12);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 7;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
             // 
             // uPatientList
             // 
@@ -443,5 +454,6 @@
         private System.Windows.Forms.CheckBox chkMaBenhNhan;
         private System.Windows.Forms.Button btnVaoPhongCho;
         private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
+        private System.Windows.Forms.Label lbKetQuaTimDuoc;
     }
 }
