@@ -442,6 +442,7 @@ namespace MM.Controls
                 dgPatient.DataSource = newDataSource;
                 if (dgPatient.RowCount > 0) dgPatient.Rows[0].Selected = true;
                 _isAscending = true;
+                lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
                 return;
             }
 
@@ -467,6 +468,7 @@ namespace MM.Controls
                 if (newDataSource.Rows.Count > 0)
                 {
                     dgPatient.DataSource = newDataSource;
+                    lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
                     return;
                 }
             }
@@ -489,6 +491,7 @@ namespace MM.Controls
                 if (newDataSource.Rows.Count > 0)
                 {
                     dgPatient.DataSource = newDataSource;
+                    lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
                     return;
                 }
             }
@@ -510,6 +513,7 @@ namespace MM.Controls
             if (newDataSource.Rows.Count > 0)
             {
                 dgPatient.DataSource = newDataSource;
+                lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
                 return;
             }
 
@@ -569,6 +573,7 @@ namespace MM.Controls
                 
 
             dgPatient.DataSource = newDataSource;
+            lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgPatient.RowCount);
         }
 
         private void OnImportExcel()
