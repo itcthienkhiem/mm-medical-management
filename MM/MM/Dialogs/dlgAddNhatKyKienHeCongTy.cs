@@ -163,9 +163,24 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    //MsgBox.Show(this.Text, string.Format("Công ty: '{0}' đã liên hệ rồi. Vui lòng xem lại thông tin.", cboCongTyLienHe.Text), 
-                    //    IconType.Information);
+                    MsgBox.Show(this.Text, string.Format("Công ty: '{0}' đã liên hệ rồi. Vui lòng xem lại thông tin.", cboCongTyLienHe.Text), 
+                        IconType.Information);
 
+                    _isView = true;
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.CheckCongTyLienHeExist"), IconType.Error);
+                return false;
+            }
+
+            result = NhatKyLienHeCongTyBus.CheckCongTyLienHeExist2(cboCongTyLienHe.Text, nhatKyLienHeCongTyGUID);
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
                     string sChoice =string.Format("Công ty: '{0}' đã liên hệ rồi. Bạn có muốn tạo liên hệ với công ty này nữa không?", cboCongTyLienHe.Text);
                     if (MsgBox.Question(this.Text, sChoice) == DialogResult.Yes)
                     {
@@ -178,7 +193,7 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.CheckCongTyLienHeExist"), IconType.Error);
+                MsgBox.Show(this.Text, result.GetErrorAsString("NhatKyLienHeCongTyBus.CheckCongTyLienHeExist2"), IconType.Error);
                 return false;
             }
 
