@@ -163,8 +163,14 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, string.Format("Công ty: '{0}' đã liên hệ rồi. Vui lòng xem lại thông tin.", cboCongTyLienHe.Text), 
-                        IconType.Information);
+                    //MsgBox.Show(this.Text, string.Format("Công ty: '{0}' đã liên hệ rồi. Vui lòng xem lại thông tin.", cboCongTyLienHe.Text), 
+                    //    IconType.Information);
+
+                    string sChoice =string.Format("Công ty: '{0}' đã liên hệ rồi. Bạn có muốn tạo liên hệ với công ty này nữa không?", cboCongTyLienHe.Text);
+                    if (MsgBox.Question(this.Text, sChoice) == DialogResult.Yes)
+                    {
+                        return true;
+                    }
 
                     _isView = true;
                     return false;
