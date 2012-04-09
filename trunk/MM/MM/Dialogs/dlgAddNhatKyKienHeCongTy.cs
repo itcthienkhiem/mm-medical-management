@@ -176,6 +176,9 @@ namespace MM.Dialogs
                 return false;
             }
 
+            nhatKyLienHeCongTyGUID = string.Empty;
+            if (!_isNew) nhatKyLienHeCongTyGUID = _nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID.ToString();
+
             result = NhatKyLienHeCongTyBus.CheckCongTyLienHeExist2(cboCongTyLienHe.Text, nhatKyLienHeCongTyGUID);
             if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
             {
