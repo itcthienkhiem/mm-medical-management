@@ -367,6 +367,12 @@ namespace MM.Controls
         }
         private void ImportNhatKyFromExcel(string filename)
         {
+            string LogFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log");
+            LogFile = Path.Combine(LogFile, "Import_" + DateTime.Now.ToString("dd-MM-yyyy-") + System.Environment.MachineName + ".txt");
+            if (File.Exists(LogFile))
+            {
+                File.Delete(LogFile);
+            }
             string message = "Nhập dữ liệu từ Excel hoàn tất." + System.Environment.NewLine;
             Cursor.Current = Cursors.WaitCursor;
             try
@@ -459,11 +465,14 @@ namespace MM.Controls
                                 }
 
                                 //add to db
-                                if (diary.CongTyLienHe != null && diary.CongTyLienHe != "" && diary.TenNguoiLienHe != null && diary.TenNguoiLienHe != "")
+                                //if (diary.CongTyLienHe != null && diary.CongTyLienHe != "" && diary.TenNguoiLienHe != null && diary.TenNguoiLienHe != "")
+                                if (diary.CongTyLienHe != null && diary.CongTyLienHe != "")
                                 {
                                     Result rs = NhatKyLienHeCongTyBus.CheckCongTyLienHeExist(diary.CongTyLienHe, string.Empty);
                                     if (rs.Error.Code == ErrorCode.EXIST)
                                     {
+                                        string sLog= string.Format("Line {0}: Company:{1}", (i+1).ToString(),diary.CongTyLienHe);
+                                        WriteToLogFile(LogFile,sLog);
                                         continue;
                                     }
                                     else
@@ -483,6 +492,11 @@ namespace MM.Controls
                                         }
                                     }
                                 }
+                                else
+                                {
+                                    string sLog = string.Format("Line {0}: Company:{1}", (i+1).ToString(), diary.CongTyLienHe);
+                                    WriteToLogFile(LogFile,sLog);
+                                }
                             }
                         }
                     }
@@ -498,7 +512,16 @@ namespace MM.Controls
             }
         }
         #endregion
-
+        private void WriteToLogFile(string filename,string message)
+        {
+            string logfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log");
+            logfile = Path.Combine(logfile, filename);
+            TextWriter tw = new StreamWriter(logfile, true);
+            // write a line of text to the file
+            tw.WriteLine(message);
+            // close the stream
+            tw.Close();
+        }
         #region Window Event Handlers
         private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
         {
