@@ -82,6 +82,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BookingBus.cs" />
     <Compile Include="BookmarkBus.cs" />
     <Compile Include="BusBase.cs" />
     <Compile Include="CanDoBus.cs" />

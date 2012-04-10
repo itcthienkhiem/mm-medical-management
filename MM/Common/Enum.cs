@@ -207,4 +207,10 @@ namespace MM.Common
     {
         HopDong = 0
     };
+
+    public enum BookingType : int
+    {
+        Monitor = 0,
+        BloodTaking
+    };
 }

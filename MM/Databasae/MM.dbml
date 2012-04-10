@@ -2392,9 +2392,6 @@
       <Column Name="MorningCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AfternoonCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="EveningCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MorningTotal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="AfternoonTotal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="EveningTotal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Pax" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="BookingType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
@@ -2414,9 +2411,6 @@
       <Column Name="MorningCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="AfternoonCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="EveningCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MorningTotal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="AfternoonTotal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="EveningTotal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Pax" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="BookingType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
