@@ -429,9 +429,12 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
-
+                
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
                 if (invoice.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Color = Color.Black;
 
                 workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", invoice.MaSoThue);
 
@@ -439,11 +442,14 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
-
+                
                 string diaChi = string.Empty;
                 if (invoice.DiaChi != null) diaChi = invoice.DiaChi;
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", diaChi);
                 if (diaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Color = Color.Black;
 
                 workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", invoice.SoTaiKhoan);
                 workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", invoice.HinhThucThanhToanStr);
@@ -616,8 +622,12 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
                 if (hdt.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Color = Color.Black;
 
                 workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", hdt.MaSoThue);
 
@@ -625,8 +635,12 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
                 if (hdt.DiaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Color = Color.Black;
 
                 workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", hdt.SoTaiKhoan);
                 workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", hdt.HinhThucThanhToanStr);
@@ -798,8 +812,12 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
                 if (hdt.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Color = Color.Black;
 
                 workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", hdt.MaSoThue);
 
@@ -807,8 +825,13 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+                
+
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
                 if (hdt.DiaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Color = Color.Black;
 
                 workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", hdt.SoTaiKhoan);
                 workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", hdt.HinhThucThanhToanStr);
@@ -980,8 +1003,12 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+                
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
                 if (hdt.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Color = Color.Black;
 
                 workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", hdt.MaSoThue);
 
@@ -989,8 +1016,12 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+                
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
                 if (hdt.DiaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Color = Color.Black;
 
                 workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", hdt.SoTaiKhoan);
                 workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", hdt.HinhThucThanhToanStr);
