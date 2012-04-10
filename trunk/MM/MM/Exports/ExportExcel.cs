@@ -380,42 +380,6 @@ namespace MM.Exports
             return true;
         }
 
-        private static void ProcessStringValue(string value, int maxLenght, ref string value1, ref string value2)
-        {
-            int index = value.LastIndexOf(" ");
-            value1 = string.Empty;
-            value2 = string.Empty;
-            if (index >= 0)
-            {
-                value1 = value.Substring(0, index);
-                value2 = value.Substring(index + 1, value.Length - index - 1);
-                if (index > maxLenght - 1)
-                {
-                    string value3 = string.Empty;
-                    string value4 = string.Empty;
-                    index = value1.LastIndexOf(" ");
-                    if (index >= 0)
-                    {
-                        value3 = value1.Substring(0, index);
-                        value4 = value1.Substring(index + 1, value1.Length - index - 1);
-                    }
-                    else
-                    {
-                        value3 = value1.Substring(0, maxLenght);
-                        value4 = value1.Substring(maxLenght, value1.Length - maxLenght);
-                    }
-
-                    value1 = value3;
-                    value2 = string.Format("{0} {1}", value4, value2);
-                }
-            }
-            else
-            {
-                value1 = value.Substring(0, maxLenght);
-                value2 = value.Substring(maxLenght, value.Length - maxLenght);
-            }
-        }
-
         public static bool ExportInvoiceToExcel(string exportFileName, string invoiceGUID, string lien)
         {
             Cursor.Current = Cursors.WaitCursor;
