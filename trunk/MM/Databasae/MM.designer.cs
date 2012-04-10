@@ -46880,12 +46880,6 @@ namespace MM.Databasae
 		
 		private int _EveningCount;
 		
-		private int _MorningTotal;
-		
-		private int _AfternoonTotal;
-		
-		private int _EveningTotal;
-		
 		private int _Pax;
 		
 		private byte _BookingType;
@@ -46920,12 +46914,6 @@ namespace MM.Databasae
     partial void OnAfternoonCountChanged();
     partial void OnEveningCountChanging(int value);
     partial void OnEveningCountChanged();
-    partial void OnMorningTotalChanging(int value);
-    partial void OnMorningTotalChanged();
-    partial void OnAfternoonTotalChanging(int value);
-    partial void OnAfternoonTotalChanged();
-    partial void OnEveningTotalChanging(int value);
-    partial void OnEveningTotalChanged();
     partial void OnPaxChanging(int value);
     partial void OnPaxChanged();
     partial void OnBookingTypeChanging(byte value);
@@ -47067,66 +47055,6 @@ namespace MM.Databasae
 					this._EveningCount = value;
 					this.SendPropertyChanged("EveningCount");
 					this.OnEveningCountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MorningTotal", DbType="Int NOT NULL")]
-		public int MorningTotal
-		{
-			get
-			{
-				return this._MorningTotal;
-			}
-			set
-			{
-				if ((this._MorningTotal != value))
-				{
-					this.OnMorningTotalChanging(value);
-					this.SendPropertyChanging();
-					this._MorningTotal = value;
-					this.SendPropertyChanged("MorningTotal");
-					this.OnMorningTotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AfternoonTotal", DbType="Int NOT NULL")]
-		public int AfternoonTotal
-		{
-			get
-			{
-				return this._AfternoonTotal;
-			}
-			set
-			{
-				if ((this._AfternoonTotal != value))
-				{
-					this.OnAfternoonTotalChanging(value);
-					this.SendPropertyChanging();
-					this._AfternoonTotal = value;
-					this.SendPropertyChanged("AfternoonTotal");
-					this.OnAfternoonTotalChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EveningTotal", DbType="Int NOT NULL")]
-		public int EveningTotal
-		{
-			get
-			{
-				return this._EveningTotal;
-			}
-			set
-			{
-				if ((this._EveningTotal != value))
-				{
-					this.OnEveningTotalChanging(value);
-					this.SendPropertyChanging();
-					this._EveningTotal = value;
-					this.SendPropertyChanged("EveningTotal");
-					this.OnEveningTotalChanged();
 				}
 			}
 		}
@@ -47348,12 +47276,6 @@ namespace MM.Databasae
 		
 		private int _EveningCount;
 		
-		private int _MorningTotal;
-		
-		private int _AfternoonTotal;
-		
-		private int _EveningTotal;
-		
 		private int _Pax;
 		
 		private byte _BookingType;
@@ -47472,54 +47394,6 @@ namespace MM.Databasae
 				if ((this._EveningCount != value))
 				{
 					this._EveningCount = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MorningTotal", DbType="Int NOT NULL")]
-		public int MorningTotal
-		{
-			get
-			{
-				return this._MorningTotal;
-			}
-			set
-			{
-				if ((this._MorningTotal != value))
-				{
-					this._MorningTotal = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AfternoonTotal", DbType="Int NOT NULL")]
-		public int AfternoonTotal
-		{
-			get
-			{
-				return this._AfternoonTotal;
-			}
-			set
-			{
-				if ((this._AfternoonTotal != value))
-				{
-					this._AfternoonTotal = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EveningTotal", DbType="Int NOT NULL")]
-		public int EveningTotal
-		{
-			get
-			{
-				return this._EveningTotal;
-			}
-			set
-			{
-				if ((this._EveningTotal != value))
-				{
-					this._EveningTotal = value;
 				}
 			}
 		}

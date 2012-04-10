@@ -156,6 +156,8 @@
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator27 = new System.Windows.Forms.ToolStripSeparator();
             this.trackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator42 = new System.Windows.Forms.ToolStripSeparator();
+            this.bookingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -230,6 +232,7 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
+            this._uBookingList = new MM.Controls.uBookingList();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1117,7 +1120,9 @@
             this.dICOMToolStripMenuItem,
             this.printLabelToolStripMenuItem,
             this.toolStripSeparator27,
-            this.trackingToolStripMenuItem});
+            this.trackingToolStripMenuItem,
+            this.toolStripSeparator42,
+            this.bookingToolStripMenuItem});
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             // 
@@ -1148,6 +1153,18 @@
             resources.ApplyResources(this.trackingToolStripMenuItem, "trackingToolStripMenuItem");
             this.trackingToolStripMenuItem.Tag = "Tracking";
             this.trackingToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator42
+            // 
+            this.toolStripSeparator42.Name = "toolStripSeparator42";
+            resources.ApplyResources(this.toolStripSeparator42, "toolStripSeparator42");
+            // 
+            // bookingToolStripMenuItem
+            // 
+            resources.ApplyResources(this.bookingToolStripMenuItem, "bookingToolStripMenuItem");
+            this.bookingToolStripMenuItem.Name = "bookingToolStripMenuItem";
+            this.bookingToolStripMenuItem.Tag = "Booking";
+            this.bookingToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -1503,6 +1520,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uBookingList);
             this._mainPanel.Controls.Add(this._uNhatKyLienHeCongTy);
             this._mainPanel.Controls.Add(this._uYKienKhachHangList);
             this._mainPanel.Controls.Add(this._uHoaDonHopDongList);
@@ -1734,6 +1752,11 @@
             // 
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
+            // 
+            // _uBookingList
+            // 
+            resources.ApplyResources(this._uBookingList, "_uBookingList");
+            this._uBookingList.Name = "_uBookingList";
             // 
             // MainForm
             // 
@@ -1969,6 +1992,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator41;
         private System.Windows.Forms.ToolStripMenuItem trieuChungToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem biểuMẫuPhòngSaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator42;
+        private System.Windows.Forms.ToolStripMenuItem bookingToolStripMenuItem;
+        private Controls.uBookingList _uBookingList;
 
     }
 }

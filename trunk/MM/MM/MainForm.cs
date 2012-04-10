@@ -188,6 +188,8 @@ namespace MM
                 _uYKienKhachHangList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uNhatKyLienHeCongTy))
                 _uNhatKyLienHeCongTy.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uBookingList))
+                _uBookingList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -761,6 +763,18 @@ namespace MM
                             Global.AllowExportKhamCTC = isExport;
                             Global.AllowPrintKhamCTC = isPrint;
                         }
+                        else if (functionCode == Const.Booking)
+                        {
+                            bookingToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBookingList.AllowAdd = isAdd;
+                            _uBookingList.AllowEdit = isEdit;
+                            _uBookingList.AllowDelete = isDelete;
+                            _uBookingList.AllowPrint = isPrint;
+                            _uBookingList.AllowExport = isExport;
+                            _uBookingList.AllowImport = isImport;
+                            _uBookingList.AllowLock = isLock;
+                            _uBookingList.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1113,7 +1127,18 @@ namespace MM
                 case "NhatKyLienHeCongTy":
                     OnNhatKyLienHeCongTy();
                     break;
+
+                case "Booking":
+                    OnBooking();
+                    break;
             }
+        }
+
+        private void OnBooking()
+        {
+            this.Text = string.Format("{0} - Lịch hẹn.", Application.ProductName);
+            ViewControl(_uBookingList);
+            _uBookingList.DisplayAsThread();
         }
 
         private void OnNhatKyLienHeCongTy()
