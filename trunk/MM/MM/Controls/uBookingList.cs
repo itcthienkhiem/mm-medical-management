@@ -150,8 +150,16 @@ namespace MM.Controls
         {
             if (dgBooking[0, 0] != null) return;
             Font font = new System.Drawing.Font("Tohama", 10, FontStyle.Bold);
-            
+            SourceGrid2.RectangleBorder border = new SourceGrid2.RectangleBorder(new SourceGrid2.Border(Color.Black), 
+                                                                                 new SourceGrid2.Border(Color.Black));
+
+            SourceGrid2.RectangleBorder border2 = new SourceGrid2.RectangleBorder(new SourceGrid2.Border(Color.LightGray),
+                                                                                 new SourceGrid2.Border(Color.Black),
+                                                                                 new SourceGrid2.Border(Color.LightGray),
+                                                                                 new SourceGrid2.Border(Color.LightGray));
+
             SourceGrid2.Cells.Real.Cell cell = NewCell("BOOKING MONITOR", Color.White, Color.Red, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell.Border = border2;
             dgBooking[0, 0] = cell;
             dgBooking[0, 0].ColumnSpan = 9;
             
@@ -163,20 +171,24 @@ namespace MM.Controls
             dgBooking[0, 10].ColumnSpan = 4;
 
             cell = NewCell("Day", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell.Border = border;
             dgBooking[1, 0] = cell;
             dgBooking[1, 0].RowSpan = 2;
 
             cell = NewCell("Date", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell.Border = border;
             dgBooking[1, 1] = cell;
             dgBooking[1, 1].RowSpan = 2;
             dgBooking.AutoSizeColumn(1, 70);
 
             cell = NewCell("Company", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell.Border = border;
             dgBooking[1, 2] = cell;
             dgBooking[1, 2].RowSpan = 2;
             dgBooking.AutoSizeColumn(2, 170);
 
             cell = NewCell("Morning", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell.Border = border;
             dgBooking[1, 3] = cell;
             dgBooking[1, 3].RowSpan = 2;
             dgBooking.AutoSizeColumn(3, 60);
