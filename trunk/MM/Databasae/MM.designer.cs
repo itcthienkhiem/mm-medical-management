@@ -201,6 +201,9 @@ namespace MM.Databasae
     partial void InsertNhatKyLienHeCongTy(NhatKyLienHeCongTy instance);
     partial void UpdateNhatKyLienHeCongTy(NhatKyLienHeCongTy instance);
     partial void DeleteNhatKyLienHeCongTy(NhatKyLienHeCongTy instance);
+    partial void InsertBooking(Booking instance);
+    partial void UpdateBooking(Booking instance);
+    partial void DeleteBooking(Booking instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -998,6 +1001,22 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<NhatKyLienHeCongTyView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Booking> Bookings
+		{
+			get
+			{
+				return this.GetTable<Booking>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BookingView> BookingViews
+		{
+			get
+			{
+				return this.GetTable<BookingView>();
 			}
 		}
 		
@@ -46838,6 +46857,845 @@ namespace MM.Databasae
 				if ((this._ThangKham != value))
 				{
 					this._ThangKham = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Booking")]
+	public partial class Booking : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _BookingGUID;
+		
+		private System.DateTime _BookingDate;
+		
+		private string _Company;
+		
+		private int _MorningCount;
+		
+		private int _AfternoonCount;
+		
+		private int _EveningCount;
+		
+		private int _MorningTotal;
+		
+		private int _AfternoonTotal;
+		
+		private int _EveningTotal;
+		
+		private int _Pax;
+		
+		private byte _BookingType;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBookingGUIDChanging(System.Guid value);
+    partial void OnBookingGUIDChanged();
+    partial void OnBookingDateChanging(System.DateTime value);
+    partial void OnBookingDateChanged();
+    partial void OnCompanyChanging(string value);
+    partial void OnCompanyChanged();
+    partial void OnMorningCountChanging(int value);
+    partial void OnMorningCountChanged();
+    partial void OnAfternoonCountChanging(int value);
+    partial void OnAfternoonCountChanged();
+    partial void OnEveningCountChanging(int value);
+    partial void OnEveningCountChanged();
+    partial void OnMorningTotalChanging(int value);
+    partial void OnMorningTotalChanged();
+    partial void OnAfternoonTotalChanging(int value);
+    partial void OnAfternoonTotalChanged();
+    partial void OnEveningTotalChanging(int value);
+    partial void OnEveningTotalChanged();
+    partial void OnPaxChanging(int value);
+    partial void OnPaxChanged();
+    partial void OnBookingTypeChanging(byte value);
+    partial void OnBookingTypeChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public Booking()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid BookingGUID
+		{
+			get
+			{
+				return this._BookingGUID;
+			}
+			set
+			{
+				if ((this._BookingGUID != value))
+				{
+					this.OnBookingGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._BookingGUID = value;
+					this.SendPropertyChanged("BookingGUID");
+					this.OnBookingGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingDate", DbType="DateTime NOT NULL")]
+		public System.DateTime BookingDate
+		{
+			get
+			{
+				return this._BookingDate;
+			}
+			set
+			{
+				if ((this._BookingDate != value))
+				{
+					this.OnBookingDateChanging(value);
+					this.SendPropertyChanging();
+					this._BookingDate = value;
+					this.SendPropertyChanged("BookingDate");
+					this.OnBookingDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Company", DbType="NVarChar(255)")]
+		public string Company
+		{
+			get
+			{
+				return this._Company;
+			}
+			set
+			{
+				if ((this._Company != value))
+				{
+					this.OnCompanyChanging(value);
+					this.SendPropertyChanging();
+					this._Company = value;
+					this.SendPropertyChanged("Company");
+					this.OnCompanyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MorningCount", DbType="Int NOT NULL")]
+		public int MorningCount
+		{
+			get
+			{
+				return this._MorningCount;
+			}
+			set
+			{
+				if ((this._MorningCount != value))
+				{
+					this.OnMorningCountChanging(value);
+					this.SendPropertyChanging();
+					this._MorningCount = value;
+					this.SendPropertyChanged("MorningCount");
+					this.OnMorningCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AfternoonCount", DbType="Int NOT NULL")]
+		public int AfternoonCount
+		{
+			get
+			{
+				return this._AfternoonCount;
+			}
+			set
+			{
+				if ((this._AfternoonCount != value))
+				{
+					this.OnAfternoonCountChanging(value);
+					this.SendPropertyChanging();
+					this._AfternoonCount = value;
+					this.SendPropertyChanged("AfternoonCount");
+					this.OnAfternoonCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EveningCount", DbType="Int NOT NULL")]
+		public int EveningCount
+		{
+			get
+			{
+				return this._EveningCount;
+			}
+			set
+			{
+				if ((this._EveningCount != value))
+				{
+					this.OnEveningCountChanging(value);
+					this.SendPropertyChanging();
+					this._EveningCount = value;
+					this.SendPropertyChanged("EveningCount");
+					this.OnEveningCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MorningTotal", DbType="Int NOT NULL")]
+		public int MorningTotal
+		{
+			get
+			{
+				return this._MorningTotal;
+			}
+			set
+			{
+				if ((this._MorningTotal != value))
+				{
+					this.OnMorningTotalChanging(value);
+					this.SendPropertyChanging();
+					this._MorningTotal = value;
+					this.SendPropertyChanged("MorningTotal");
+					this.OnMorningTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AfternoonTotal", DbType="Int NOT NULL")]
+		public int AfternoonTotal
+		{
+			get
+			{
+				return this._AfternoonTotal;
+			}
+			set
+			{
+				if ((this._AfternoonTotal != value))
+				{
+					this.OnAfternoonTotalChanging(value);
+					this.SendPropertyChanging();
+					this._AfternoonTotal = value;
+					this.SendPropertyChanged("AfternoonTotal");
+					this.OnAfternoonTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EveningTotal", DbType="Int NOT NULL")]
+		public int EveningTotal
+		{
+			get
+			{
+				return this._EveningTotal;
+			}
+			set
+			{
+				if ((this._EveningTotal != value))
+				{
+					this.OnEveningTotalChanging(value);
+					this.SendPropertyChanging();
+					this._EveningTotal = value;
+					this.SendPropertyChanged("EveningTotal");
+					this.OnEveningTotalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pax", DbType="Int NOT NULL")]
+		public int Pax
+		{
+			get
+			{
+				return this._Pax;
+			}
+			set
+			{
+				if ((this._Pax != value))
+				{
+					this.OnPaxChanging(value);
+					this.SendPropertyChanging();
+					this._Pax = value;
+					this.SendPropertyChanged("Pax");
+					this.OnPaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingType", DbType="TinyInt NOT NULL")]
+		public byte BookingType
+		{
+			get
+			{
+				return this._BookingType;
+			}
+			set
+			{
+				if ((this._BookingType != value))
+				{
+					this.OnBookingTypeChanging(value);
+					this.SendPropertyChanging();
+					this._BookingType = value;
+					this.SendPropertyChanged("BookingType");
+					this.OnBookingTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BookingView")]
+	public partial class BookingView
+	{
+		
+		private System.Guid _BookingGUID;
+		
+		private System.DateTime _BookingDate;
+		
+		private string _Company;
+		
+		private int _MorningCount;
+		
+		private int _AfternoonCount;
+		
+		private int _EveningCount;
+		
+		private int _MorningTotal;
+		
+		private int _AfternoonTotal;
+		
+		private int _EveningTotal;
+		
+		private int _Pax;
+		
+		private byte _BookingType;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+		private string _Sales;
+		
+		private System.Nullable<bool> _Archived;
+		
+		public BookingView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid BookingGUID
+		{
+			get
+			{
+				return this._BookingGUID;
+			}
+			set
+			{
+				if ((this._BookingGUID != value))
+				{
+					this._BookingGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingDate", DbType="DateTime NOT NULL")]
+		public System.DateTime BookingDate
+		{
+			get
+			{
+				return this._BookingDate;
+			}
+			set
+			{
+				if ((this._BookingDate != value))
+				{
+					this._BookingDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Company", DbType="NVarChar(255)")]
+		public string Company
+		{
+			get
+			{
+				return this._Company;
+			}
+			set
+			{
+				if ((this._Company != value))
+				{
+					this._Company = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MorningCount", DbType="Int NOT NULL")]
+		public int MorningCount
+		{
+			get
+			{
+				return this._MorningCount;
+			}
+			set
+			{
+				if ((this._MorningCount != value))
+				{
+					this._MorningCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AfternoonCount", DbType="Int NOT NULL")]
+		public int AfternoonCount
+		{
+			get
+			{
+				return this._AfternoonCount;
+			}
+			set
+			{
+				if ((this._AfternoonCount != value))
+				{
+					this._AfternoonCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EveningCount", DbType="Int NOT NULL")]
+		public int EveningCount
+		{
+			get
+			{
+				return this._EveningCount;
+			}
+			set
+			{
+				if ((this._EveningCount != value))
+				{
+					this._EveningCount = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MorningTotal", DbType="Int NOT NULL")]
+		public int MorningTotal
+		{
+			get
+			{
+				return this._MorningTotal;
+			}
+			set
+			{
+				if ((this._MorningTotal != value))
+				{
+					this._MorningTotal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AfternoonTotal", DbType="Int NOT NULL")]
+		public int AfternoonTotal
+		{
+			get
+			{
+				return this._AfternoonTotal;
+			}
+			set
+			{
+				if ((this._AfternoonTotal != value))
+				{
+					this._AfternoonTotal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EveningTotal", DbType="Int NOT NULL")]
+		public int EveningTotal
+		{
+			get
+			{
+				return this._EveningTotal;
+			}
+			set
+			{
+				if ((this._EveningTotal != value))
+				{
+					this._EveningTotal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Pax", DbType="Int NOT NULL")]
+		public int Pax
+		{
+			get
+			{
+				return this._Pax;
+			}
+			set
+			{
+				if ((this._Pax != value))
+				{
+					this._Pax = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingType", DbType="TinyInt NOT NULL")]
+		public byte BookingType
+		{
+			get
+			{
+				return this._BookingType;
+			}
+			set
+			{
+				if ((this._BookingType != value))
+				{
+					this._BookingType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this._UpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this._DeletedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sales", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Sales
+		{
+			get
+			{
+				return this._Sales;
+			}
+			set
+			{
+				if ((this._Sales != value))
+				{
+					this._Sales = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Archived", DbType="Bit")]
+		public System.Nullable<bool> Archived
+		{
+			get
+			{
+				return this._Archived;
+			}
+			set
+			{
+				if ((this._Archived != value))
+				{
+					this._Archived = value;
 				}
 			}
 		}
