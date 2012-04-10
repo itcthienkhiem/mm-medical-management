@@ -380,6 +380,42 @@ namespace MM.Exports
             return true;
         }
 
+        private static void ProcessStringValue(string value, int maxLenght, ref string value1, ref string value2)
+        {
+            int index = value.LastIndexOf(" ");
+            value1 = string.Empty;
+            value2 = string.Empty;
+            if (index >= 0)
+            {
+                value1 = value.Substring(0, index);
+                value2 = value.Substring(index + 1, value.Length - index - 1);
+                if (index > maxLenght - 1)
+                {
+                    string value3 = string.Empty;
+                    string value4 = string.Empty;
+                    index = value1.LastIndexOf(" ");
+                    if (index >= 0)
+                    {
+                        value3 = value1.Substring(0, index);
+                        value4 = value1.Substring(index + 1, value1.Length - index - 1);
+                    }
+                    else
+                    {
+                        value3 = value1.Substring(0, maxLenght);
+                        value4 = value1.Substring(maxLenght, value1.Length - maxLenght);
+                    }
+
+                    value1 = value3;
+                    value2 = string.Format("{0} {1}", value4, value2);
+                }
+            }
+            else
+            {
+                value1 = value.Substring(0, maxLenght);
+                value2 = value.Substring(maxLenght, value.Length - maxLenght);
+            }
+        }
+
         public static bool ExportInvoiceToExcel(string exportFileName, string invoiceGUID, string lien)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -407,7 +443,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
-
+                IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", invoice.InvoiceCode);
@@ -419,23 +455,36 @@ namespace MM.Exports
 
                 workSheet.Cells["A3"].Value = lien;
                 workSheet.Cells["A4"].Value = string.Format("                                   Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
+
                 if (invoice.TenNguoiMuaHang != null && invoice.TenNguoiMuaHang != string.Empty)
                     workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", invoice.TenNguoiMuaHang);
                 else
                     workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", string.Empty);
 
+                range = workSheet.Cells["A11:F11"];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.WrapText = true;
+
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
+                if (invoice.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+
                 workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", invoice.MaSoThue);
 
-                if (invoice.DiaChi != null)
-                    workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", invoice.DiaChi);
-                else
-                    workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", string.Empty);
+                range = workSheet.Cells["A13:F13"];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.WrapText = true;
+
+                string diaChi = string.Empty;
+                if (invoice.DiaChi != null) diaChi = invoice.DiaChi;
+                workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", diaChi);
+                if (diaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
 
                 workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", invoice.SoTaiKhoan);
                 workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", invoice.HinhThucThanhToanStr);
 
-                IRange range = null;
+                
                 DataTable dataSource = result.QueryResult as DataTable;
                 foreach (DataRow row in dataSource.Rows)
                 {
@@ -585,7 +634,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
-
+                IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
@@ -599,13 +648,26 @@ namespace MM.Exports
                 workSheet.Cells["A4"].Value = string.Format("                                   Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
                 workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", hdt.TenNguoiMuaHang);
 
+                range = workSheet.Cells["A11:F11"];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.WrapText = true;
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
+                if (hdt.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+
                 workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", hdt.MaSoThue);
+
+                range = workSheet.Cells["A13:F13"];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.WrapText = true;
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
+                if (hdt.DiaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+
                 workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", hdt.SoTaiKhoan);
                 workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", hdt.HinhThucThanhToanStr);
 
-                IRange range = null;
+                
                 DataTable dataSource = result.QueryResult as DataTable;
                 foreach (DataRow row in dataSource.Rows)
                 {
@@ -754,7 +816,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
-
+                IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
@@ -768,13 +830,26 @@ namespace MM.Exports
                 workSheet.Cells["A4"].Value = string.Format("                                   Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
                 workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", hdt.TenNguoiMuaHang);
 
+                range = workSheet.Cells["A11:F11"];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.WrapText = true;
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
+                if (hdt.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+
                 workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", hdt.MaSoThue);
+
+                range = workSheet.Cells["A13:F13"];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.WrapText = true;
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
+                if (hdt.DiaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+
                 workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", hdt.SoTaiKhoan);
                 workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", hdt.HinhThucThanhToanStr);
 
-                IRange range = null;
+                
                 DataTable dataSource = result.QueryResult as DataTable;
                 foreach (DataRow row in dataSource.Rows)
                 {
@@ -923,7 +998,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
-
+                IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
@@ -937,13 +1012,25 @@ namespace MM.Exports
                 workSheet.Cells["A4"].Value = string.Format("                                   Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
                 workSheet.Cells["A10"].Value = string.Format("  Họ tên người mua hàng: {0}", hdt.TenNguoiMuaHang);
 
+                range = workSheet.Cells["A11:F11"];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.WrapText = true;
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
+                if (hdt.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+
                 workSheet.Cells["A12"].Value = string.Format("  Mã số thuế: {0}", hdt.MaSoThue);
+
+                range = workSheet.Cells["A13:F13"];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Left;
+                range.WrapText = true;
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
+                if (hdt.DiaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+
                 workSheet.Cells["A14"].Value = string.Format("  Số tài khoản: {0}", hdt.SoTaiKhoan);
                 workSheet.Cells["A15"].Value = string.Format("  Hình thức thanh toán: {0}", hdt.HinhThucThanhToanStr);
 
-                IRange range = null;
                 DataTable dataSource = result.QueryResult as DataTable;
                 foreach (DataRow row in dataSource.Rows)
                 {
