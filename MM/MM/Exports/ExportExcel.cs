@@ -429,10 +429,13 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
-                
-                workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
-                if (invoice.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
 
+                workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
+                Font font = new Font("Times New Roman", 12);
+                Size size = TextRenderer.MeasureText(string.Format("  Tên đơn vị: {0}", invoice.TenDonVi), font);
+                double w = range.Width * 72 / 60;
+                if (size.Width > w) workSheet.Cells["A11"].RowHeight = 34.50;
+                                
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
 
@@ -446,7 +449,9 @@ namespace MM.Exports
                 string diaChi = string.Empty;
                 if (invoice.DiaChi != null) diaChi = invoice.DiaChi;
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", diaChi);
-                if (diaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+                size = TextRenderer.MeasureText(string.Format("  Địa chỉ: {0}", diaChi), font);
+                w = range.Width * 72 / 60;
+                if (size.Width > w) workSheet.Cells["A13"].RowHeight = 34.50;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -624,7 +629,10 @@ namespace MM.Exports
                 range.WrapText = true;
 
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
-                if (hdt.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+                Font font = new Font("Times New Roman", 12);
+                Size size = TextRenderer.MeasureText(string.Format("  Tên đơn vị: {0}", hdt.TenDonVi), font);
+                double w = range.Width * 72 / 60;
+                if (size.Width > w) workSheet.Cells["A11"].RowHeight = 34.50;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -637,7 +645,9 @@ namespace MM.Exports
                 range.WrapText = true;
 
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
-                if (hdt.DiaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+                size = TextRenderer.MeasureText(string.Format("  Địa chỉ: {0}", hdt.DiaChi), font);
+                w = range.Width * 72 / 60;
+                if (size.Width > w) workSheet.Cells["A13"].RowHeight = 34.50;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -814,7 +824,10 @@ namespace MM.Exports
                 range.WrapText = true;
 
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
-                if (hdt.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+                Font font = new Font("Times New Roman", 12);
+                Size size = TextRenderer.MeasureText(string.Format("  Tên đơn vị: {0}", hdt.TenDonVi), font);
+                double w = range.Width * 72 / 60;
+                if (size.Width > w) workSheet.Cells["A11"].RowHeight = 34.50;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -826,9 +839,10 @@ namespace MM.Exports
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
                 
-
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
-                if (hdt.DiaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+                size = TextRenderer.MeasureText(string.Format("  Địa chỉ: {0}", hdt.DiaChi), font);
+                w = range.Width * 72 / 60;
+                if (size.Width > w) workSheet.Cells["A13"].RowHeight = 34.50;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -1005,7 +1019,10 @@ namespace MM.Exports
                 range.WrapText = true;
                 
                 workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
-                if (hdt.TenDonVi.Length > 65) workSheet.Cells["A11"].RowHeight = 35;
+                Font font = new Font("Times New Roman", 12);
+                Size size = TextRenderer.MeasureText(string.Format("  Tên đơn vị: {0}", hdt.TenDonVi), font);
+                double w = range.Width * 72 / 60;
+                if (size.Width > w) workSheet.Cells["A11"].RowHeight = 34.50;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -1018,7 +1035,9 @@ namespace MM.Exports
                 range.WrapText = true;
                 
                 workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
-                if (hdt.DiaChi.Length > 65) workSheet.Cells["A13"].RowHeight = 35;
+                size = TextRenderer.MeasureText(string.Format("  Địa chỉ: {0}", hdt.DiaChi), font);
+                w = range.Width * 72 / 60;
+                if (size.Width > w) workSheet.Cells["A13"].RowHeight = 34.50;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
