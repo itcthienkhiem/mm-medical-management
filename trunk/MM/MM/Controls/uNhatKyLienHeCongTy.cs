@@ -108,7 +108,7 @@ namespace MM.Controls
         }
 
         private void OnDisplayNhatKyLienHeCongTyList()
-        {
+        {   
             Result result = NhatKyLienHeCongTyBus.GetNhatKyLienHeCongTyList(_type, _fromDate, _toDate, _tenBenhNhan, _tenNguoiTao);
             if (result.IsOK)
             {
