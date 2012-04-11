@@ -311,10 +311,12 @@ namespace MM.Controls
                     int afternoonCount = 0;
                     int eveningCount = 0;
                     string sales = string.Empty;
+                    DataRow row = null;
 
                     //Booking Monitor
                     if (i < bookingCount)
                     {
+                        row = bookingList[i];
                         company = bookingList[i]["Company"].ToString();
                         morningCount = Convert.ToInt32(bookingList[i]["MorningCount"]);
                         afternoonCount = Convert.ToInt32(bookingList[i]["AfternoonCount"]);
@@ -331,7 +333,7 @@ namespace MM.Controls
                     if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT : borderRB;
                     else if (i == 0) cell.Border = i == count - 1 ? borderRBT2 : borderRBT;
                     else cell.Border = i == count - 1 ? borderRB2 : borderRB;
-
+                    cell.Tag = row;
                     dgBooking[rowIndex, 2] = cell;
 
                     //Morning
@@ -377,8 +379,11 @@ namespace MM.Controls
                     int pax = 0;
                     string time = string.Empty;
                     sales = string.Empty;
+                    row = null;
+
                     if (i < bloodTakingCount)
                     {
+                        row = bloodTakingList[i];
                         company = bloodTakingList[i]["Company"].ToString();
                         pax = Convert.ToInt32(bloodTakingList[i]["Pax"]);
                         time = Convert.ToDateTime(bloodTakingList[i]["BookingDate"]).ToString("hh:mm tt");
@@ -390,7 +395,7 @@ namespace MM.Controls
                     if (j < keys.Count - 1) cell.Border = i == 0 ? borderLRBT : borderLRB;
                     else if (i == 0) cell.Border = i == count - 1 ? borderLRBT2 : borderLRBT;
                     else cell.Border = i == count - 1 ? borderLRB2 : borderLRB;
-
+                    cell.Tag = row;
                     dgBooking[rowIndex, 11] = cell;
 
                     //Pax
