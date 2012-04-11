@@ -163,6 +163,16 @@ spDichVuHopDong
 2012-03-31
 - Update table: Invoice, HoaDonThuoc, HoaDonXuatTruoc, HoaDonHopDong, NhatKyLienHeCongTy, Permission
 - Update view: InvoiceView, HoaDonThuocView, HoaDonXuatTruocView, HoaSonHopDongView, NhatKyLienHeCongTyView, PermissionView
+2012-04-01
+- Update table: NhatKyLienHeCongTy
+- Update view: NhatKyLienHeCongTyView
+2012-04-10
+- Insert data: Function(Booking)
+- Create table: Booking
+- Create view: BookingView
+2012-04-11
+- Update view: ReceiptView
+- Create view: PhieuThuThuocView, PhieuThuHopDongView
 
 1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo

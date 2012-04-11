@@ -73,6 +73,7 @@
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExported = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPhieuThu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phieuThuThuocBindingSource)).BeginInit();
@@ -129,7 +130,8 @@
             this.diaChiDataGridViewTextBoxColumn,
             this.Notes,
             this.IsExported,
-            this.DaThuTien});
+            this.DaThuTien,
+            this.NguoiTao});
             this.dgPhieuThu.DataSource = this.phieuThuThuocBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -503,6 +505,14 @@
             this.DaThuTien.ReadOnly = true;
             this.DaThuTien.Width = 80;
             // 
+            // NguoiTao
+            // 
+            this.NguoiTao.DataPropertyName = "NguoiTao";
+            this.NguoiTao.HeaderText = "Người tạo";
+            this.NguoiTao.Name = "NguoiTao";
+            this.NguoiTao.ReadOnly = true;
+            this.NguoiTao.Width = 200;
+            // 
             // uPhieuThuThuocList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -566,5 +576,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsExported;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
     }
 }
