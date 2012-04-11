@@ -512,16 +512,7 @@ namespace MM.Controls
             }
         }
         #endregion
-        private void WriteToLogFile(string filename,string message)
-        {
-            string logfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log");
-            logfile = Path.Combine(logfile, filename);
-            TextWriter tw = new StreamWriter(logfile, true);
-            // write a line of text to the file
-            tw.WriteLine(message);
-            // close the stream
-            tw.Close();
-        }
+        
         #region Window Event Handlers
         private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
         {
@@ -592,6 +583,17 @@ namespace MM.Controls
         private void btnImportExcel_Click(object sender, EventArgs e)
         {
             OnImportExcel();
+        }
+
+        private void WriteToLogFile(string filename, string message)
+        {
+            string logfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log");
+            logfile = Path.Combine(logfile, filename);
+            TextWriter tw = new StreamWriter(logfile, true);
+            // write a line of text to the file
+            tw.WriteLine(message);
+            // close the stream
+            tw.Close();
         }
         #endregion
 
