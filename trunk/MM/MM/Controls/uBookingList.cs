@@ -268,7 +268,7 @@ namespace MM.Controls
                             ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
 
                         if (j < keys.Count - 1)
-                            cell.Border = borderRT;
+                            cell.Border = i < count - 1 ? borderRT : borderRBT;
                         else
                             cell.Border = i < count - 1 ? borderRT : borderRBT2;
 
@@ -279,7 +279,7 @@ namespace MM.Controls
                             ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
 
                         if (j < keys.Count - 1)
-                            cell.Border = borderRT;
+                            cell.Border = i < count - 1 ? borderRT : borderRBT;
                         else
                             cell.Border = i < count - 1 ? borderRT : borderRBT2;
 
@@ -657,18 +657,107 @@ namespace MM.Controls
             dlgAddBooking dlg = new dlgAddBooking();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-
+                DisplayAsThread();
             }
         }
 
         private void OnEdit()
         {
+            if (dgBooking.Selection == null || dgBooking.Selection.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 lịch hẹn để sửa.", IconType.Information);
+                return;
+            }
 
+            DataRow row = null;
+            foreach (SourceGrid2.Cells.Real.Cell cell in dgBooking.Selection.GetCells())
+            {
+                if (cell.Row < 3) continue;
+                if (cell.Column < 0 || (cell.Column >= 6 && cell.Column <= 8) || cell.Column == 10) continue;
+
+                if ((cell.Column >= 0 && cell.Column <= 5) || cell.Column == 9)
+                    row = dgBooking[cell.Row, 2].Tag as DataRow;
+                else
+                    row = dgBooking[cell.Row, 11].Tag as DataRow;
+
+                if (row == null) continue;
+
+                break;
+            }
+
+            if (row == null)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 lịch hẹn để sửa.", IconType.Information);
+                return;
+            }
+
+            string nguoiTao = row["CreatedBy"].ToString();
+            if (nguoiTao != Global.UserGUID)
+            {
+                MsgBox.Show(Application.ProductName, string.Format("Bạn không thể sửa lịch hẹn của '{0}' tạo. Vui lòng kiểm tra lại",
+                    row["NguoiTao"].ToString()), IconType.Information);
+                return;
+            }
+
+            dlgEditBooking dlg = new dlgEditBooking(row);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                DisplayAsThread();
+            }
         }
 
         private void OnDelete()
         {
+            if (dgBooking.Selection == null || dgBooking.Selection.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 1 lịch hẹn để xóa.", IconType.Information);
+                return;
+            }
 
+            List<string> keys = new List<string>();
+            foreach (SourceGrid2.Cells.Real.Cell cell in dgBooking.Selection.GetCells())
+            {
+                if (cell.Row < 3) continue;
+                if (cell.Column < 0 || (cell.Column >= 6 && cell.Column <= 8) || cell.Column == 10) continue;
+
+                DataRow row = null;
+                if ((cell.Column >= 0 && cell.Column <= 5) || cell.Column == 9)
+                    row = dgBooking[cell.Row, 2].Tag as DataRow;
+                else
+                    row = dgBooking[cell.Row, 11].Tag as DataRow;
+
+                if (row == null) continue;
+                string nguoiTao = row["CreatedBy"].ToString();
+                if (nguoiTao != Global.UserGUID)
+                {
+                    MsgBox.Show(Application.ProductName, string.Format("Bạn không thể xóa lịch hẹn của '{0}' tạo. Vui lòng kiểm tra lại", 
+                        row["NguoiTao"].ToString()), IconType.Information);
+                    return;
+                }
+
+                keys.Add(row["BookingGUID"].ToString());
+            }
+
+            if (keys.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 1 lịch hẹn để xóa.", IconType.Information);
+                return;
+            }
+
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những lịch hẹn mà bạn đã chọn ?") == DialogResult.Yes)
+            {
+                Result result = BookingBus.DeleteBooking(keys);
+                if (result.IsOK)
+                {
+                    DisplayAsThread();
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("BookingBus.DeleteBooking"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.DeleteBooking"));
+                }
+            }
+            
         }
         #endregion
 
@@ -692,6 +781,11 @@ namespace MM.Controls
         {
             OnDelete();
         }
+
+        private void dgBooking_DoubleClick(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
         #endregion
 
         #region Working Thread
@@ -713,5 +807,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

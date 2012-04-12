@@ -1,6 +1,6 @@
 ﻿namespace MM.Dialogs
 {
-    partial class dlgAddBooking
+    partial class dlgEditBooking
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddBooking));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgEditBooking));
             this.gbBookingMonitor = new System.Windows.Forms.GroupBox();
             this.cboBookingMonitorCompany = new System.Windows.Forms.ComboBox();
             this.numEvening = new System.Windows.Forms.NumericUpDown();
@@ -40,8 +40,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dtpkBookingMonitorDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.chkBookingMonitor = new System.Windows.Forms.CheckBox();
-            this.chkBloodTaking = new System.Windows.Forms.CheckBox();
             this.gbBloodTaking = new System.Windows.Forms.GroupBox();
             this.cboBloodTakingCompany = new System.Windows.Forms.ComboBox();
             this.numPax = new System.Windows.Forms.NumericUpDown();
@@ -71,10 +69,10 @@
             this.gbBookingMonitor.Controls.Add(this.label2);
             this.gbBookingMonitor.Controls.Add(this.dtpkBookingMonitorDate);
             this.gbBookingMonitor.Controls.Add(this.label1);
-            this.gbBookingMonitor.Location = new System.Drawing.Point(11, 6);
+            this.gbBookingMonitor.Location = new System.Drawing.Point(6, 2);
             this.gbBookingMonitor.Name = "gbBookingMonitor";
             this.gbBookingMonitor.Size = new System.Drawing.Size(326, 147);
-            this.gbBookingMonitor.TabIndex = 1;
+            this.gbBookingMonitor.TabIndex = 2;
             this.gbBookingMonitor.TabStop = false;
             // 
             // cboBookingMonitorCompany
@@ -177,30 +175,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Date:";
             // 
-            // chkBookingMonitor
-            // 
-            this.chkBookingMonitor.AutoSize = true;
-            this.chkBookingMonitor.Checked = true;
-            this.chkBookingMonitor.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkBookingMonitor.Location = new System.Drawing.Point(7, 7);
-            this.chkBookingMonitor.Name = "chkBookingMonitor";
-            this.chkBookingMonitor.Size = new System.Drawing.Size(103, 17);
-            this.chkBookingMonitor.TabIndex = 0;
-            this.chkBookingMonitor.Text = "Booking Monitor";
-            this.chkBookingMonitor.UseVisualStyleBackColor = true;
-            this.chkBookingMonitor.CheckedChanged += new System.EventHandler(this.chkBookingMonitor_CheckedChanged);
-            // 
-            // chkBloodTaking
-            // 
-            this.chkBloodTaking.AutoSize = true;
-            this.chkBloodTaking.Location = new System.Drawing.Point(7, 160);
-            this.chkBloodTaking.Name = "chkBloodTaking";
-            this.chkBloodTaking.Size = new System.Drawing.Size(89, 17);
-            this.chkBloodTaking.TabIndex = 2;
-            this.chkBloodTaking.Text = "Blood Taking";
-            this.chkBloodTaking.UseVisualStyleBackColor = true;
-            this.chkBloodTaking.CheckedChanged += new System.EventHandler(this.chkBloodTaking_CheckedChanged);
-            // 
             // gbBloodTaking
             // 
             this.gbBloodTaking.Controls.Add(this.cboBloodTakingCompany);
@@ -209,11 +183,10 @@
             this.gbBloodTaking.Controls.Add(this.label7);
             this.gbBloodTaking.Controls.Add(this.dtpkBloodTakingDate);
             this.gbBloodTaking.Controls.Add(this.label8);
-            this.gbBloodTaking.Enabled = false;
-            this.gbBloodTaking.Location = new System.Drawing.Point(11, 159);
+            this.gbBloodTaking.Location = new System.Drawing.Point(6, 2);
             this.gbBloodTaking.Name = "gbBloodTaking";
             this.gbBloodTaking.Size = new System.Drawing.Size(326, 103);
-            this.gbBloodTaking.TabIndex = 3;
+            this.gbBloodTaking.TabIndex = 4;
             this.gbBloodTaking.TabStop = false;
             // 
             // cboBloodTakingCompany
@@ -279,10 +252,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(174, 268);
+            this.btnCancel.Location = new System.Drawing.Point(171, 155);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 15;
+            this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "   &Đóng";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -291,36 +264,31 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(95, 268);
+            this.btnOK.Location = new System.Drawing.Point(92, 155);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 14;
+            this.btnOK.TabIndex = 16;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // dlgAddBooking
+            // dlgEditBooking
             // 
-            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(345, 298);
+            this.ClientSize = new System.Drawing.Size(339, 186);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.chkBloodTaking);
-            this.Controls.Add(this.gbBloodTaking);
-            this.Controls.Add(this.chkBookingMonitor);
             this.Controls.Add(this.gbBookingMonitor);
+            this.Controls.Add(this.gbBloodTaking);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "dlgAddBooking";
-            this.ShowInTaskbar = false;
+            this.Name = "dlgEditBooking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Them lich hen";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddBooking_FormClosing);
-            this.Load += new System.EventHandler(this.dlgAddBooking_Load);
+            this.Text = "Sua lich hen";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgEditBooking_FormClosing);
+            this.Load += new System.EventHandler(this.dlgEditBooking_Load);
             this.gbBookingMonitor.ResumeLayout(false);
             this.gbBookingMonitor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEvening)).EndInit();
@@ -330,16 +298,13 @@
             this.gbBloodTaking.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPax)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.GroupBox gbBookingMonitor;
-        private System.Windows.Forms.CheckBox chkBookingMonitor;
-        private System.Windows.Forms.CheckBox chkBloodTaking;
-        private System.Windows.Forms.GroupBox gbBloodTaking;
+        private System.Windows.Forms.ComboBox cboBookingMonitorCompany;
         private System.Windows.Forms.NumericUpDown numEvening;
         private System.Windows.Forms.NumericUpDown numAfternoon;
         private System.Windows.Forms.NumericUpDown numMorning;
@@ -349,6 +314,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpkBookingMonitorDate;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox gbBloodTaking;
+        private System.Windows.Forms.ComboBox cboBloodTakingCompany;
         private System.Windows.Forms.NumericUpDown numPax;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -356,7 +323,5 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.ComboBox cboBookingMonitorCompany;
-        private System.Windows.Forms.ComboBox cboBloodTakingCompany;
     }
 }
