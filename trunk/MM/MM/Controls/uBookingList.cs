@@ -595,43 +595,48 @@ namespace MM.Controls
             dgBooking.AutoSizeColumn(9, 150);
 
             cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell.Border = borderR;
             dgBooking[1, 10] = cell;
             dgBooking.AutoSizeColumn(10, 30);
-
-            cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            dgBooking[1, 11] = cell;
-
-            cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            dgBooking[1, 12] = cell;
-
-            cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            dgBooking[1, 13] = cell;
-
-            cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            dgBooking[1, 14] = cell;
 
             cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderR;
             dgBooking[2, 10] = cell;
 
+            //cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            //dgBooking[1, 11] = cell;
+
+            //cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            //dgBooking[1, 12] = cell;
+
+            //cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            //dgBooking[1, 13] = cell;
+
+            //cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            //dgBooking[1, 14] = cell;
+
             cell = NewCell("Company", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderLTRB;
-            dgBooking[2, 11] = cell;
+            dgBooking[1, 11] = cell;
+            dgBooking[1, 11].RowSpan = 2;
             dgBooking.AutoSizeColumn(11, 150);
 
             cell = NewCell("Pax", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB;
-            dgBooking[2, 12] = cell;
+            dgBooking[1, 12] = cell;
+            dgBooking[1, 12].RowSpan = 2;
             dgBooking.AutoSizeColumn(12, 50);
 
             cell = NewCell("Time", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB;
-            dgBooking[2, 13] = cell;
+            dgBooking[1, 13] = cell;
+            dgBooking[1, 13].RowSpan = 2;
             dgBooking.AutoSizeColumn(13, 60);
 
             cell = NewCell("Sales", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB;
-            dgBooking[2, 14] = cell;
+            dgBooking[1, 14] = cell;
+            dgBooking[1, 14].RowSpan = 2;
             dgBooking.AutoSizeColumn(14, 150);
         }
 
@@ -695,7 +700,7 @@ namespace MM.Controls
             if (nguoiTao != Global.UserGUID)
             {
                 MsgBox.Show(Application.ProductName, string.Format("Bạn không thể sửa lịch hẹn của '{0}' tạo. Vui lòng kiểm tra lại",
-                    row["NguoiTao"].ToString()), IconType.Information);
+                    row["Sales"].ToString()), IconType.Information);
                 return;
             }
 
@@ -730,8 +735,8 @@ namespace MM.Controls
                 string nguoiTao = row["CreatedBy"].ToString();
                 if (nguoiTao != Global.UserGUID)
                 {
-                    MsgBox.Show(Application.ProductName, string.Format("Bạn không thể xóa lịch hẹn của '{0}' tạo. Vui lòng kiểm tra lại", 
-                        row["NguoiTao"].ToString()), IconType.Information);
+                    MsgBox.Show(Application.ProductName, string.Format("Bạn không thể xóa lịch hẹn của '{0}' tạo. Vui lòng kiểm tra lại",
+                        row["Sales"].ToString()), IconType.Information);
                     return;
                 }
 
