@@ -69,8 +69,6 @@ namespace MM.Controls
                     Hashtable htBooking = new Hashtable();
                     Hashtable htBloodTaking = new Hashtable();
                     int spaceCount = 0;
-                    int count1 = 0;
-                    int count2 = 0;
                     string dateStr = string.Empty;
                     List<string> keys = new List<string>();
 
@@ -113,8 +111,6 @@ namespace MM.Controls
                                 List<DataRow> rows = (List<DataRow>)htBooking[bookingDateStr];
                                 rows.Add(row);
                             }
-
-                            count1++;
                         }
                         else
                         {
@@ -129,15 +125,24 @@ namespace MM.Controls
                                 List<DataRow> rows = (List<DataRow>)htBloodTaking[bookingDateStr];
                                 rows.Add(row);
                             }
-
-                            count2++;
                         }
                     }
 
                     int colCount = 15;
-                    int rowCount = count1 > count2 ? count1 : count2;
-                    rowCount += 3;
+                    int rowCount = 3;
                     rowCount += spaceCount;
+
+                    foreach (string key in keys)
+                    {
+                        List<DataRow> rows1 = htBooking[key] as List<DataRow>;
+                        List<DataRow> rows2 = htBloodTaking[key] as List<DataRow>;
+                        int count1 = 0;
+                        int count2 = 0;
+                        if (rows1 != null) count1 = rows1.Count;
+                        if (rows2 != null) count2 = rows2.Count;
+
+                        rowCount += count1 > count2 ? count1 : count2;
+                    }
 
                     ClearData();       
 
