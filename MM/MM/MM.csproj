@@ -61,10 +61,6 @@
     </Reference>
     <Reference Include="DSBarCode, Version=1.0.4335.40892, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="SourceGrid2, Version=2.0.3.0, Culture=neutral, PublicKeyToken=ad929b4064585aea, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Components\SourceGrid2.dll</HintPath>
-    </Reference>
     <Reference Include="SourceLibrary, Version=1.2.0.0, Culture=neutral, PublicKeyToken=96907d46c0a9af87">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Components\SourceLibrary.dll</HintPath>
@@ -1555,6 +1551,10 @@
     <ProjectReference Include="..\DShowNET\DShowNET.csproj">
       <Project>{CE009BFA-5EF6-4153-B2A1-2FA79698A9AE}</Project>
       <Name>DShowNET</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SourceGrid\SourceGrid2.csproj">
+      <Project>{15001AC5-2185-4B39-BF6C-9FCDC39E7376}</Project>
+      <Name>SourceGrid2</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
