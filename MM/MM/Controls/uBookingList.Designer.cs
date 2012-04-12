@@ -221,6 +221,7 @@
             this.dgBooking.Size = new System.Drawing.Size(975, 473);
             this.dgBooking.SpecialKeys = SourceGrid2.GridSpecialKeys.None;
             this.dgBooking.TabIndex = 0;
+            this.dgBooking.DoubleClick += new System.EventHandler(this.dgBooking_DoubleClick);
             // 
             // uBookingList
             // 

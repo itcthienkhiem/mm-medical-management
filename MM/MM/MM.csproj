@@ -666,6 +666,12 @@
     <Compile Include="Dialogs\dlgConfirmThuTien.Designer.cs">
       <DependentUpon>dlgConfirmThuTien.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgEditBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgEditBooking.Designer.cs">
+      <DependentUpon>dlgEditBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgHoaDonHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1248,6 +1254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgConfirmThuTien.resx">
       <DependentUpon>dlgConfirmThuTien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgEditBooking.resx">
+      <DependentUpon>dlgEditBooking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgHoaDonHopDong.resx">
       <DependentUpon>dlgHoaDonHopDong.cs</DependentUpon>

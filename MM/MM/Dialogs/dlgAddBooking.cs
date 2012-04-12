@@ -44,10 +44,10 @@ namespace MM.Dialogs
 
             if (chkBookingMonitor.Checked)
             {
-                if (txtBookingMonitorCompany.Text.Trim() == string.Empty)
+                if (cboBookingMonitorCompany.Text.Trim() == string.Empty)
                 {
                     MsgBox.Show(this.Text, "Vui lòng nhập tên công ty.", IconType.Information);
-                    txtBookingMonitorCompany.Focus();
+                    cboBookingMonitorCompany.Focus();
                     return false;
                 }
 
@@ -61,19 +61,115 @@ namespace MM.Dialogs
 
             if (chkBloodTaking.Checked)
             {
-                if (txtBloodTakingCompany.Text.Trim() == string.Empty)
+                if (cboBloodTakingCompany.Text.Trim() == string.Empty)
                 {
                     MsgBox.Show(this.Text, "Vui lòng nhập tên công ty.", IconType.Information);
-                    txtBloodTakingCompany.Focus();
+                    cboBloodTakingCompany.Focus();
                     return false;
                 }
             }
 
             return true;
         }
+
+        private void InitData()
+        {
+            Result result = BookingBus.GetCompanyList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    cboBookingMonitorCompany.Items.Add(row["Company"].ToString());
+                    cboBloodTakingCompany.Items.Add(row["Company"].ToString());
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("BookingBus.GetCompanyList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.GetCompanyList"));
+            }
+        }
+
+        private void SaveInfoAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSaveInfoProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnSaveInfo()
+        {
+            try
+            {
+                List<Booking> bookingList = new List<Booking>();
+
+                MethodInvoker method = delegate
+                {
+                    if (chkBookingMonitor.Checked)
+                    {
+                        Booking booking = new Booking();
+                        booking.CreatedDate = DateTime.Now;
+                        booking.CreatedBy = Guid.Parse(Global.UserGUID);
+                        booking.BookingDate = dtpkBookingMonitorDate.Value;
+                        booking.Company = cboBookingMonitorCompany.Text;
+                        booking.MorningCount = (int)numMorning.Value;
+                        booking.AfternoonCount = (int)numAfternoon.Value;
+                        booking.EveningCount = (int)numEvening.Value;
+                        booking.BookingType = (byte)BookingType.Monitor;
+                        booking.Status = (byte)Status.Actived;
+                        bookingList.Add(booking);
+                    }
+
+                    if (chkBloodTaking.Checked)
+                    {
+                        Booking booking = new Booking();
+                        booking.CreatedDate = DateTime.Now;
+                        booking.CreatedBy = Guid.Parse(Global.UserGUID);
+                        booking.BookingDate = dtpkBloodTakingDate.Value;
+                        booking.Company = cboBloodTakingCompany.Text;
+                        booking.Pax = (int)numPax.Value;
+                        booking.BookingType = (byte)BookingType.BloodTaking;
+                        booking.Status = (byte)Status.Actived;
+                        bookingList.Add(booking);
+                    }
+
+                    Result result = BookingBus.InsertBooking(bookingList);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("BookingBus.InsertBooking"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.InsertBooking"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
         #endregion
 
         #region Window Event Handlers
+        private void dlgAddBooking_Load(object sender, EventArgs e)
+        {
+            InitData();
+        }
+
         private void chkBookingMonitor_CheckedChanged(object sender, EventArgs e)
         {
             gbBookingMonitor.Enabled = chkBookingMonitor.Checked;
@@ -86,7 +182,31 @@ namespace MM.Dialogs
 
         private void dlgAddBooking_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
+            {
+                if (!CheckInfo()) e.Cancel = true;
+                else
+                    SaveInfoAsThread();
+            }
+        }
+        #endregion
+
+        #region Working Thread
+        private void OnSaveInfoProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                OnSaveInfo();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
         }
         #endregion
     }
