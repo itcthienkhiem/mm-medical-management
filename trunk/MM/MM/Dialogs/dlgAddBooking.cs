@@ -24,7 +24,7 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             dtpkBookingMonitorDate.Value = DateTime.Now;
-            dtpkBloodTakingDate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 0, 0);
+            dtpkBloodTakingDate.Value = DateTime.Now;//new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 0, 0);
         }
         #endregion
 
