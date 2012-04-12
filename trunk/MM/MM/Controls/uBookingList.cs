@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.Globalization;
 using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
@@ -67,11 +68,17 @@ namespace MM.Controls
 
                     Hashtable htBooking = new Hashtable();
                     Hashtable htBloodTaking = new Hashtable();
-                    int saturdayCount = 0;
+                    int spaceCount = 0;
                     int count1 = 0;
                     int count2 = 0;
                     string dateStr = string.Empty;
                     List<string> keys = new List<string>();
+
+                    CultureInfo cultureInfo = new CultureInfo("en-US");
+                    Calendar cal = cultureInfo.Calendar;
+                    CalendarWeekRule calWeekRule = cultureInfo.DateTimeFormat.CalendarWeekRule;
+                    DayOfWeek firstDayOfWeek = DayOfWeek.Monday;//cultureInfo.DateTimeFormat.FirstDayOfWeek;
+                    int weekOfYear1 = -1;
 
                     foreach (DataRow row in dt.Rows)
                     {
@@ -84,7 +91,13 @@ namespace MM.Controls
                         if (dateStr != bookingDateStr)
                         {
                             dateStr = bookingDateStr;
-                            if (bookingDate.DayOfWeek == DayOfWeek.Saturday) saturdayCount++;
+                            int weekOfYear2 = cal.GetWeekOfYear(bookingDate, calWeekRule, firstDayOfWeek);
+                            if (weekOfYear1 == -1) weekOfYear1 = weekOfYear2;
+                            else if (weekOfYear1 != weekOfYear2)
+                            {
+                                spaceCount++;
+                                weekOfYear1 = weekOfYear2;
+                            }
                         }
 
                         if (bookingType == BookingType.Monitor)
@@ -124,22 +137,14 @@ namespace MM.Controls
                     int colCount = 15;
                     int rowCount = count1 > count2 ? count1 : count2;
                     rowCount += 3;
-
-                    if (saturdayCount > 0)
-                    {
-                        DateTime dateTime = Convert.ToDateTime(dt.Rows[dt.Rows.Count - 1]["BookingDate"]);
-                        if (dateTime.DayOfWeek == DayOfWeek.Saturday)
-                            rowCount += (saturdayCount - 1);
-                        else
-                            rowCount += saturdayCount;
-                    }
+                    rowCount += spaceCount;
 
                     ClearData();       
 
                     dgBooking.Redim(rowCount, colCount);
 
                     InitHeader();
-                    if (keys.Count > 0) FillData(htBooking, htBloodTaking, keys);
+                    if (keys.Count > 0) FillData(htBooking, htBloodTaking, keys, cal, calWeekRule, firstDayOfWeek);
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -163,7 +168,7 @@ namespace MM.Controls
             }
         }
 
-        private void FillData(Hashtable htBooking, Hashtable htBloodTaking, List<string> keys)
+        private void FillData(Hashtable htBooking, Hashtable htBloodTaking, List<string> keys, Calendar cal, CalendarWeekRule calWeekRule, DayOfWeek firstDayOfWeek)
         {
             SourceGrid2.RectangleBorder borderRB = new SourceGrid2.RectangleBorder(new SourceGrid2.Border(Color.Black), new SourceGrid2.Border(Color.Black));
             SourceGrid2.RectangleBorder borderRB2 = new SourceGrid2.RectangleBorder(new SourceGrid2.Border(Color.Black), 
@@ -257,7 +262,10 @@ namespace MM.Controls
                 if (bookingList != null) bookingDate = Convert.ToDateTime(bookingList[0]["BookingDate"]);
                 else bookingDate = Convert.ToDateTime(bloodTakingList[0]["BookingDate"]);
 
-                Color foreColor = bookingDate.DayOfWeek == DayOfWeek.Saturday ? Color.Red : Color.Black;
+                Color foreColor = Color.Black;  
+
+                if (bookingDate.DayOfWeek == DayOfWeek.Saturday || bookingDate.DayOfWeek == DayOfWeek.Sunday)
+                    foreColor = Color.Red;
                 
                 for (int i = 0; i < count; i++)
                 {
@@ -448,25 +456,38 @@ namespace MM.Controls
                 dgBooking[rowIndex - count, 8].RowSpan = count;
 
                 //Saturday
-                if (bookingDate.DayOfWeek == DayOfWeek.Saturday && j < keys.Count - 1)
+                if (j < keys.Count - 1)
                 {
-                    cell = NewCell(string.Empty, Color.White, foreColor,
-                            ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
-                    cell.Border = borderTB;
-                    dgBooking[rowIndex, 0] = cell;
-                    dgBooking[rowIndex, 0].ColumnSpan = 10;
+                    string key2 = keys[j + 1];
+                    List<DataRow> bookings = htBooking[key2] as List<DataRow>;
+                    List<DataRow> bloodTakings = htBloodTaking[key2] as List<DataRow>;
+                    DateTime bookingDate2;
+                    if (bookings != null) bookingDate2 = Convert.ToDateTime(bookings[0]["BookingDate"]);
+                    else bookingDate2 = Convert.ToDateTime(bloodTakings[0]["BookingDate"]);
 
-                    cell = NewCell(string.Empty, Color.White, foreColor,
-                            ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
-                    dgBooking[rowIndex, 10] = cell;
+                    int weekOfYear1 = cal.GetWeekOfYear(bookingDate, calWeekRule, firstDayOfWeek);
+                    int weekOfYear2 = cal.GetWeekOfYear(bookingDate2, calWeekRule, firstDayOfWeek);
 
-                    cell = NewCell(string.Empty, Color.White, foreColor,
+                    if (weekOfYear1 != weekOfYear2)
+                    {
+                        cell = NewCell(string.Empty, Color.White, foreColor,
                             ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
-                    cell.Border = borderTB;
-                    dgBooking[rowIndex, 11] = cell;
-                    dgBooking[rowIndex, 11].ColumnSpan = 4;
+                        cell.Border = borderTB;
+                        dgBooking[rowIndex, 0] = cell;
+                        dgBooking[rowIndex, 0].ColumnSpan = 10;
 
-                    rowIndex++;
+                        cell = NewCell(string.Empty, Color.White, foreColor,
+                                ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
+                        dgBooking[rowIndex, 10] = cell;
+
+                        cell = NewCell(string.Empty, Color.White, foreColor,
+                                ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
+                        cell.Border = borderTB;
+                        dgBooking[rowIndex, 11] = cell;
+                        dgBooking[rowIndex, 11].ColumnSpan = 4;
+
+                        rowIndex++;
+                    }
                 }
             }
         }
@@ -602,18 +623,6 @@ namespace MM.Controls
             cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderR;
             dgBooking[2, 10] = cell;
-
-            //cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            //dgBooking[1, 11] = cell;
-
-            //cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            //dgBooking[1, 12] = cell;
-
-            //cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            //dgBooking[1, 13] = cell;
-
-            //cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            //dgBooking[1, 14] = cell;
 
             cell = NewCell("Company", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderLTRB;
