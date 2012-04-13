@@ -595,6 +595,12 @@ namespace MM.Controls
             // close the stream
             tw.Close();
         }
+
+        private void raTuNgayToiNgay_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                DisplayAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -617,8 +623,5 @@ namespace MM.Controls
         }
         #endregion
 
-        
-
-        
     }
 }
