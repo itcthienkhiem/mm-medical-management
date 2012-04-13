@@ -173,6 +173,9 @@ spDichVuHopDong
 2012-04-11
 - Update view: ReceiptView
 - Create view: PhieuThuThuocView, PhieuThuHopDongView
+2012-04-13
+- Update table: Booking
+- Update view: BookingView
 
 1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo
