@@ -49,6 +49,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.cboBookingMonitorInOut = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cboBloodTakingInOut = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.gbBookingMonitor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEvening)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAfternoon)).BeginInit();
@@ -59,6 +63,8 @@
             // 
             // gbBookingMonitor
             // 
+            this.gbBookingMonitor.Controls.Add(this.cboBookingMonitorInOut);
+            this.gbBookingMonitor.Controls.Add(this.label9);
             this.gbBookingMonitor.Controls.Add(this.cboBookingMonitorCompany);
             this.gbBookingMonitor.Controls.Add(this.numEvening);
             this.gbBookingMonitor.Controls.Add(this.numAfternoon);
@@ -71,7 +77,7 @@
             this.gbBookingMonitor.Controls.Add(this.label1);
             this.gbBookingMonitor.Location = new System.Drawing.Point(6, 2);
             this.gbBookingMonitor.Name = "gbBookingMonitor";
-            this.gbBookingMonitor.Size = new System.Drawing.Size(326, 147);
+            this.gbBookingMonitor.Size = new System.Drawing.Size(326, 173);
             this.gbBookingMonitor.TabIndex = 2;
             this.gbBookingMonitor.TabStop = false;
             // 
@@ -177,6 +183,8 @@
             // 
             // gbBloodTaking
             // 
+            this.gbBloodTaking.Controls.Add(this.cboBloodTakingInOut);
+            this.gbBloodTaking.Controls.Add(this.label10);
             this.gbBloodTaking.Controls.Add(this.cboBloodTakingCompany);
             this.gbBloodTaking.Controls.Add(this.numPax);
             this.gbBloodTaking.Controls.Add(this.label6);
@@ -185,7 +193,7 @@
             this.gbBloodTaking.Controls.Add(this.label8);
             this.gbBloodTaking.Location = new System.Drawing.Point(6, 2);
             this.gbBloodTaking.Name = "gbBloodTaking";
-            this.gbBloodTaking.Size = new System.Drawing.Size(326, 103);
+            this.gbBloodTaking.Size = new System.Drawing.Size(326, 129);
             this.gbBloodTaking.TabIndex = 4;
             this.gbBloodTaking.TabStop = false;
             // 
@@ -252,7 +260,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(171, 155);
+            this.btnCancel.Location = new System.Drawing.Point(171, 181);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 17;
@@ -264,18 +272,66 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(92, 155);
+            this.btnOK.Location = new System.Drawing.Point(92, 181);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 16;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // cboBookingMonitorInOut
+            // 
+            this.cboBookingMonitorInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBookingMonitorInOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboBookingMonitorInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBookingMonitorInOut.FormattingEnabled = true;
+            this.cboBookingMonitorInOut.Items.AddRange(new object[] {
+            "IN",
+            "OUT",
+            "IN AND OUT"});
+            this.cboBookingMonitorInOut.Location = new System.Drawing.Point(70, 138);
+            this.cboBookingMonitorInOut.Name = "cboBookingMonitorInOut";
+            this.cboBookingMonitorInOut.Size = new System.Drawing.Size(99, 21);
+            this.cboBookingMonitorInOut.TabIndex = 14;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(25, 141);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "In/Out:";
+            // 
+            // cboBloodTakingInOut
+            // 
+            this.cboBloodTakingInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBloodTakingInOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboBloodTakingInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBloodTakingInOut.FormattingEnabled = true;
+            this.cboBloodTakingInOut.Items.AddRange(new object[] {
+            "IN",
+            "OUT",
+            "IN AND OUT"});
+            this.cboBloodTakingInOut.Location = new System.Drawing.Point(70, 94);
+            this.cboBloodTakingInOut.Name = "cboBloodTakingInOut";
+            this.cboBloodTakingInOut.Size = new System.Drawing.Size(99, 21);
+            this.cboBloodTakingInOut.TabIndex = 18;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 97);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "In/Out:";
+            // 
             // dlgEditBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 186);
+            this.ClientSize = new System.Drawing.Size(339, 211);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.gbBookingMonitor);
@@ -323,5 +379,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.ComboBox cboBookingMonitorInOut;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cboBloodTakingInOut;
+        private System.Windows.Forms.Label label10;
     }
 }

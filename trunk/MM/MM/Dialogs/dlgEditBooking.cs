@@ -26,6 +26,8 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             _drBooking = drBooking;
+            cboBookingMonitorInOut.SelectedIndex = 0;
+            cboBloodTakingInOut.SelectedIndex = 0;
         }
         #endregion
 
@@ -65,20 +67,22 @@ namespace MM.Dialogs
                     numMorning.Value = Convert.ToInt32(drBooking["MorningCount"]);
                     numAfternoon.Value = Convert.ToInt32(drBooking["AfternoonCount"]);
                     numEvening.Value = Convert.ToInt32(drBooking["EveningCount"]);
+                    cboBookingMonitorInOut.Text = drBooking["InOut"].ToString();
                     gbBloodTaking.Visible = false;
                 }
                 else
                 {
                     gbBookingMonitor.Visible = false;
-                    Size size = new Size(345, 173);
+                    Size size = new Size(345, 194);
                     this.Size = size;
 
-                    btnOK.Location = new Point(92, 111);
-                    btnCancel.Location = new Point(171, 111);
+                    btnOK.Location = new Point(92, 136);
+                    btnCancel.Location = new Point(171, 136);
 
                     dtpkBloodTakingDate.Value = Convert.ToDateTime(drBooking["BookingDate"]);
                     cboBloodTakingCompany.Text = drBooking["Company"].ToString();
                     numPax.Value = Convert.ToInt32(drBooking["Pax"]);
+                    cboBloodTakingInOut.Text = drBooking["InOut"].ToString();
                 }
 
                 _booking.BookingGUID = Guid.Parse(drBooking["BookingGUID"].ToString());
@@ -179,6 +183,7 @@ namespace MM.Dialogs
                         _booking.MorningCount = (int)numMorning.Value;
                         _booking.AfternoonCount = (int)numAfternoon.Value;
                         _booking.EveningCount = (int)numEvening.Value;
+                        _booking.InOut = cboBookingMonitorInOut.Text;
                         _booking.BookingType = (byte)BookingType.Monitor;
                         _booking.Status = (byte)Status.Actived;
                     }
@@ -189,6 +194,7 @@ namespace MM.Dialogs
                         _booking.BookingDate = dtpkBloodTakingDate.Value;
                         _booking.Company = cboBloodTakingCompany.Text;
                         _booking.Pax = (int)numPax.Value;
+                        _booking.InOut = cboBloodTakingInOut.Text;
                         _booking.BookingType = (byte)BookingType.BloodTaking;
                         _booking.Status = (byte)Status.Actived;
                     }

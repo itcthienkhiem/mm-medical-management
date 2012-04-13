@@ -25,6 +25,8 @@ namespace MM.Dialogs
             InitializeComponent();
             dtpkBookingMonitorDate.Value = DateTime.Now;
             dtpkBloodTakingDate.Value = DateTime.Now;//new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 0, 0);
+            cboBookingMonitorInOut.SelectedIndex = 0;
+            cboBloodTakingInOut.SelectedIndex = 0;
         }
         #endregion
 
@@ -126,6 +128,7 @@ namespace MM.Dialogs
                         booking.MorningCount = (int)numMorning.Value;
                         booking.AfternoonCount = (int)numAfternoon.Value;
                         booking.EveningCount = (int)numEvening.Value;
+                        booking.InOut = cboBookingMonitorInOut.Text;
                         booking.BookingType = (byte)BookingType.Monitor;
                         booking.Status = (byte)Status.Actived;
                         bookingList.Add(booking);
@@ -139,6 +142,7 @@ namespace MM.Dialogs
                         booking.BookingDate = dtpkBloodTakingDate.Value;
                         booking.Company = cboBloodTakingCompany.Text;
                         booking.Pax = (int)numPax.Value;
+                        booking.InOut = cboBloodTakingInOut.Text;
                         booking.BookingType = (byte)BookingType.BloodTaking;
                         booking.Status = (byte)Status.Actived;
                         bookingList.Add(booking);

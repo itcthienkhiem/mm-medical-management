@@ -93,19 +93,16 @@ namespace MM.Bussiness
 
                             if (bk.BookingType == (byte)BookingType.Monitor)
                             {
-                                desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Morning: '{3}', Afternoon: '{4}', Evening: '{5}', OwnerGUID: '{6}', Owner: '{7}', BookingType: '{8}'\n",
+                                desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Morning: '{3}', Afternoon: '{4}', Evening: '{5}', OwnerGUID: '{6}', Owner: '{7}', BookingType: '{8}', In/Out: '{9}'\n",
                                         bk.BookingGUID.ToString(), bk.BookingDate.ToString("dd/MM/yyyy"), bk.Company,
-                                        bk.MorningCount, bk.AfternoonCount, bk.EveningCount, docStaffGUID, nguoiTao, "Booking Monitor");
+                                        bk.MorningCount, bk.AfternoonCount, bk.EveningCount, docStaffGUID, nguoiTao, "Booking Monitor", bk.InOut);
                             }
                             else
                             {
-                                desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Pax: '{3}', SaleGUID: '{4}', Sales: '{5}', BookingType: '{6}'\n",
+                                desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Pax: '{3}', SaleGUID: '{4}', Sales: '{5}', BookingType: '{6}', In/Out: '{7}'\n",
                                         bk.BookingGUID.ToString(), bk.BookingDate.ToString("dd/MM/yyyy hh:mm tt"), bk.Company,
-                                        bk.Pax, docStaffGUID, nguoiTao, "Blood Taking");
+                                        bk.Pax, docStaffGUID, nguoiTao, "Blood Taking", bk.InOut);
                             }
-
-
-                            
                         }
 
                         index++;
@@ -178,15 +175,15 @@ namespace MM.Bussiness
 
                         if (booking.BookingType == (byte)BookingType.Monitor)
                         {
-                            desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Morning: '{3}', Afternoon: '{4}', Evening: '{5}', OwnerGUID: '{6}', Owner: '{7}', BookingType: '{8}'\n",
+                            desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Morning: '{3}', Afternoon: '{4}', Evening: '{5}', OwnerGUID: '{6}', Owner: '{7}', BookingType: '{8}', In/Out: '{9}'\n",
                                     booking.BookingGUID.ToString(), booking.BookingDate.ToString("dd/MM/yyyy"), booking.Company,
-                                    booking.MorningCount, booking.AfternoonCount, booking.EveningCount, docStaffGUID, nguoiTao, "Booking Monitor");
+                                    booking.MorningCount, booking.AfternoonCount, booking.EveningCount, docStaffGUID, nguoiTao, "Booking Monitor", booking.InOut);
                         }
                         else
                         {
-                            desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Pax: '{3}', SaleGUID: '{4}', Sales: '{5}', BookingType: '{6}'",
+                            desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Pax: '{3}', SaleGUID: '{4}', Sales: '{5}', BookingType: '{6}', In/Out: '{7}'",
                                     booking.BookingGUID.ToString(), booking.BookingDate.ToString("dd/MM/yyyy hh:mm tt"), booking.Company,
-                                    booking.Pax, docStaffGUID, nguoiTao, "Blood Taking");
+                                    booking.Pax, docStaffGUID, nguoiTao, "Blood Taking", booking.InOut);
                         }
                         
 
@@ -257,6 +254,7 @@ namespace MM.Bussiness
                         bk.DeletedBy = booking.DeletedBy;
                         bk.Status = booking.Status;
                         bk.BookingType = booking.BookingType;
+                        bk.InOut = booking.InOut;
 
                         //Tracking
                         string docStaffGUID = string.Empty;
@@ -270,15 +268,15 @@ namespace MM.Bussiness
 
                         if (bk.BookingType == (byte)BookingType.Monitor)
                         {
-                            desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Morning: '{3}', Afternoon: '{4}', Evening: '{5}', OwnerGUID: '{6}', Owner: '{7}', BookingType: '{8}'",
+                            desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Morning: '{3}', Afternoon: '{4}', Evening: '{5}', OwnerGUID: '{6}', Owner: '{7}', BookingType: '{8}', In/Out: '{9}'",
                                     bk.BookingGUID.ToString(), bk.BookingDate.ToString("dd/MM/yyyy"), bk.Company,
-                                    bk.MorningCount, bk.AfternoonCount, bk.EveningCount, docStaffGUID, nguoiTao, "Booking Monitor");
+                                    bk.MorningCount, bk.AfternoonCount, bk.EveningCount, docStaffGUID, nguoiTao, "Booking Monitor", bk.InOut);
                         }
                         else
                         {
-                            desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Pax: '{3}', SaleGUID: '{4}', Sales: '{5}', BookingType: '{6}'",
+                            desc += string.Format("- GUID: '{0}', BookingDate: '{1}', Company: '{2}', Pax: '{3}', SaleGUID: '{4}', Sales: '{5}', BookingType: '{6}', In/Out: '{7}'",
                                     bk.BookingGUID.ToString(), bk.BookingDate.ToString("dd/MM/yyyy hh:mm tt"), bk.Company,
-                                    bk.Pax, docStaffGUID, nguoiTao, "Blood Taking");
+                                    bk.Pax, docStaffGUID, nguoiTao, "Blood Taking", bk.InOut);
                         }
 
 
