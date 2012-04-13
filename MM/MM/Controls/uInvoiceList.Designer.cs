@@ -61,13 +61,13 @@
             this.invoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenDonViDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.MaSoThue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soTaiKhoanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceViewBindingSource)).BeginInit();
@@ -154,13 +154,13 @@
             this.invoiceDateDataGridViewTextBoxColumn,
             this.fullNameDataGridViewTextBoxColumn,
             this.tenDonViDataGridViewTextBoxColumn,
+            this.DaThuTien,
             this.MaSoThue,
             this.addressDataGridViewTextBoxColumn,
             this.soTaiKhoanDataGridViewTextBoxColumn,
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn,
             this.vATDataGridViewTextBoxColumn,
-            this.Notes,
-            this.DaThuTien});
+            this.Notes});
             this.dgInvoice.DataSource = this.invoiceViewBindingSource;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
@@ -380,6 +380,15 @@
             this.tenDonViDataGridViewTextBoxColumn.ReadOnly = true;
             this.tenDonViDataGridViewTextBoxColumn.Width = 200;
             // 
+            // DaThuTien
+            // 
+            this.DaThuTien.DataPropertyName = "DaThuTien";
+            this.DaThuTien.HeaderText = "Đã thu tiền";
+            this.DaThuTien.Name = "DaThuTien";
+            this.DaThuTien.ReadOnly = true;
+            this.DaThuTien.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DaThuTien.Width = 80;
+            // 
             // MaSoThue
             // 
             this.MaSoThue.DataPropertyName = "MaSoThue";
@@ -431,15 +440,6 @@
             this.Notes.ReadOnly = true;
             this.Notes.Width = 250;
             // 
-            // DaThuTien
-            // 
-            this.DaThuTien.DataPropertyName = "DaThuTien";
-            this.DaThuTien.HeaderText = "Đã thu tiền";
-            this.DaThuTien.Name = "DaThuTien";
-            this.DaThuTien.ReadOnly = true;
-            this.DaThuTien.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DaThuTien.Width = 80;
-            // 
             // uInvoiceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -490,12 +490,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn invoiceDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenDonViDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaSoThue;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn soTaiKhoanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hinhThucThanhToanStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
     }
 }
