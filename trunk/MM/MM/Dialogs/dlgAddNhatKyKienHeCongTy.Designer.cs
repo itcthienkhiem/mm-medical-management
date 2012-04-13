@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddNhatKyKienHeCongTy));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtThangKham = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtSoNguoiKham = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -48,13 +50,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtThangKham = new System.Windows.Forms.TextBox();
+            this.chkHighlight = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkHighlight);
             this.groupBox1.Controls.Add(this.txtThangKham);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtSoNguoiKham);
@@ -75,9 +77,26 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(4, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(410, 279);
+            this.groupBox1.Size = new System.Drawing.Size(410, 299);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtThangKham
+            // 
+            this.txtThangKham.Location = new System.Drawing.Point(109, 172);
+            this.txtThangKham.MaxLength = 500;
+            this.txtThangKham.Name = "txtThangKham";
+            this.txtThangKham.Size = new System.Drawing.Size(284, 20);
+            this.txtThangKham.TabIndex = 10;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(36, 176);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 13);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Tháng khám:";
             // 
             // txtSoNguoiKham
             // 
@@ -223,7 +242,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(211, 285);
+            this.btnCancel.Location = new System.Drawing.Point(211, 305);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 10;
@@ -235,29 +254,22 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(132, 285);
+            this.btnOK.Location = new System.Drawing.Point(132, 305);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 9;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // label9
+            // chkHighlight
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(36, 176);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(70, 13);
-            this.label9.TabIndex = 16;
-            this.label9.Text = "Tháng khám:";
-            // 
-            // txtThangKham
-            // 
-            this.txtThangKham.Location = new System.Drawing.Point(109, 172);
-            this.txtThangKham.MaxLength = 500;
-            this.txtThangKham.Name = "txtThangKham";
-            this.txtThangKham.Size = new System.Drawing.Size(284, 20);
-            this.txtThangKham.TabIndex = 10;
+            this.chkHighlight.AutoSize = true;
+            this.chkHighlight.Location = new System.Drawing.Point(109, 274);
+            this.chkHighlight.Name = "chkHighlight";
+            this.chkHighlight.Size = new System.Drawing.Size(67, 17);
+            this.chkHighlight.TabIndex = 17;
+            this.chkHighlight.Text = "Highlight";
+            this.chkHighlight.UseVisualStyleBackColor = true;
             // 
             // dlgAddNhatKyKienHeCongTy
             // 
@@ -265,7 +277,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(419, 316);
+            this.ClientSize = new System.Drawing.Size(419, 335);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -308,5 +320,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtThangKham;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox chkHighlight;
     }
 }
