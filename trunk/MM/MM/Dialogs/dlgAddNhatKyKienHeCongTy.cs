@@ -134,12 +134,12 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (txtNguoiLienHe.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên người liên hệ.", IconType.Information);
-                txtNguoiLienHe.Focus();
-                return false;
-            }
+            //if (txtNguoiLienHe.Text.Trim() == string.Empty)
+            //{
+            //    MsgBox.Show(this.Text, "Vui lòng nhập tên người liên hệ.", IconType.Information);
+            //    txtNguoiLienHe.Focus();
+            //    return false;
+            //}
 
             if (txtSoDienThoaiLienHe.Text.Trim() == string.Empty && txtEmail.Text.Trim() == string.Empty)
             {
