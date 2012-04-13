@@ -80,6 +80,8 @@ namespace MM.Dialogs
                 if (drNhatKyLienHeCongTy["ThangKham"] != null && drNhatKyLienHeCongTy["ThangKham"] != DBNull.Value)
                     txtThangKham.Text = drNhatKyLienHeCongTy["ThangKham"].ToString();
 
+                chkHighlight.Checked = Convert.ToBoolean(drNhatKyLienHeCongTy["Highlight"]);
+
                 _nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID = Guid.Parse(drNhatKyLienHeCongTy["NhatKyLienHeCongTyGUID"].ToString());
 
                 if (drNhatKyLienHeCongTy["CreatedDate"] != null && drNhatKyLienHeCongTy["CreatedDate"] != DBNull.Value)
@@ -115,6 +117,7 @@ namespace MM.Dialogs
                     txtDiaChi.Enabled = false;
                     txtEmail.Enabled = false;
                     btnOK.Enabled = false;
+                    chkHighlight.Enabled = false;
                     _isView = true;
                 }
             }
@@ -257,6 +260,7 @@ namespace MM.Dialogs
                     _nhatKyLienHeCongTy.DiaChi = txtDiaChi.Text;
                     _nhatKyLienHeCongTy.Email = txtEmail.Text;
                     _nhatKyLienHeCongTy.ThangKham = txtThangKham.Text;
+                    _nhatKyLienHeCongTy.Highlight = chkHighlight.Checked;
 
                     Result result = NhatKyLienHeCongTyBus.InsertNhatKyLienHeCongTy(_nhatKyLienHeCongTy);
                     if (!result.IsOK)

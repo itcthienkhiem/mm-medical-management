@@ -116,6 +116,7 @@ namespace MM.Controls
                 {
                     dgNhatKyLienHeCongTy.DataSource = result.QueryResult;
                     lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgNhatKyLienHeCongTy.RowCount);
+                    RefreshHighlight();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -125,6 +126,17 @@ namespace MM.Controls
             {
                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("NhatKyLienHeCongTyBus.GetNhatKyLienHeCongTyList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("NhatKyLienHeCongTyBus.GetNhatKyLienHeCongTyList"));
+            }
+        }
+
+        private void RefreshHighlight()
+        {
+            foreach (DataGridViewRow row in dgNhatKyLienHeCongTy.Rows)
+            {
+                DataRow dr = (row.DataBoundItem as DataRowView).Row;
+                bool highlight = Convert.ToBoolean(dr["Highlight"]);
+                if (highlight)
+                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
             }
         }
 

@@ -123,9 +123,9 @@ namespace MM.Bussiness
                                 fullName = s.DocStaff.Contact.FullName;
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}', Highlight: '{12}'\n",
                                 s.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, s.CongTyLienHe, s.TenNguoiLienHe, s.DiaChi, s.SoDienThoaiLienHe,
-                                s.Email, s.SoNguoiKham, s.ThangKham, s.NoiDungLienHe, s.Note);
+                                s.Email, s.SoNguoiKham, s.ThangKham, s.NoiDungLienHe, s.Note, s.Highlight);
                         }
 
                         index++;
@@ -196,10 +196,10 @@ namespace MM.Bussiness
                             fullName = nhatKyLienHeCongTy.DocStaff.Contact.FullName;
                         }
 
-                        desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}'",
+                        desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}', Highlight: '{12}'",
                                  nhatKyLienHeCongTy.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName,
                                  nhatKyLienHeCongTy.CongTyLienHe, nhatKyLienHeCongTy.TenNguoiLienHe, nhatKyLienHeCongTy.DiaChi, nhatKyLienHeCongTy.SoDienThoaiLienHe, 
-                                 nhatKyLienHeCongTy.Email, nhatKyLienHeCongTy.SoNguoiKham, nhatKyLienHeCongTy.ThangKham, nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note);
+                                 nhatKyLienHeCongTy.Email, nhatKyLienHeCongTy.SoNguoiKham, nhatKyLienHeCongTy.ThangKham, nhatKyLienHeCongTy.NoiDungLienHe, nhatKyLienHeCongTy.Note, nhatKyLienHeCongTy.Highlight);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -236,6 +236,7 @@ namespace MM.Bussiness
                             nklhct.ThangKham = nhatKyLienHeCongTy.ThangKham;
                             nklhct.DiaChi = nhatKyLienHeCongTy.DiaChi;
                             nklhct.Email = nhatKyLienHeCongTy.Email;
+                            nklhct.Highlight = nhatKyLienHeCongTy.Highlight;
 
                             //Tracking
                             string docStaffGUID = string.Empty;
@@ -246,9 +247,9 @@ namespace MM.Bussiness
                                 fullName = nklhct.DocStaff.Contact.FullName;
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}'",
+                            desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}', Highlight: '{12}'",
                                   nklhct.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, nklhct.CongTyLienHe, nklhct.TenNguoiLienHe, nklhct.DiaChi,
-                                  nklhct.SoDienThoaiLienHe, nklhct.Email, nklhct.SoNguoiKham, nklhct.ThangKham, nklhct.NoiDungLienHe, nklhct.Note);
+                                  nklhct.SoDienThoaiLienHe, nklhct.Email, nklhct.SoNguoiKham, nklhct.ThangKham, nklhct.NoiDungLienHe, nklhct.Note, nklhct.Highlight);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
