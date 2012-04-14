@@ -123,12 +123,9 @@ namespace MM.Bussiness
                                 fullName = s.DocStaff.Contact.FullName;
                             }
 
-                            string soNgay = string.Empty;
-                            if (s.SoNgay.HasValue) soNgay = s.SoNgay.Value.ToString();
-
                             desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}', Highlight: '{12}', Số ngày: '{13}'\n",
                                 s.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, s.CongTyLienHe, s.TenNguoiLienHe, s.DiaChi, s.SoDienThoaiLienHe,
-                                s.Email, s.SoNguoiKham, s.ThangKham, s.NoiDungLienHe, s.Note, s.Highlight, soNgay);
+                                s.Email, s.SoNguoiKham, s.ThangKham, s.NoiDungLienHe, s.Note, s.Highlight, s.SoNgay);
                         }
 
                         index++;
@@ -253,7 +250,7 @@ namespace MM.Bussiness
 
                             desc += string.Format("- GUID: '{0}', Mã nhân viên: '{1}', Tên nhân viên: '{2}', Tên công ty liên hệ: '{3}', Tên người liên hệ: '{4}', Đia chỉ (Quận): '{5}', Số ĐT liên hệ: '{6}', Email liên hệ: '{7}', Số người khám: '{8}', Tháng khám: '{9}', Nội dung liên hệ: '{10}', Ghi chú: '{11}', Highlight: '{12}', Số ngày: '{13}'",
                                   nklhct.NhatKyLienHeCongTyGUID.ToString(), docStaffGUID, fullName, nklhct.CongTyLienHe, nklhct.TenNguoiLienHe, nklhct.DiaChi,
-                                  nklhct.SoDienThoaiLienHe, nklhct.Email, nklhct.SoNguoiKham, nklhct.ThangKham, nklhct.NoiDungLienHe, nklhct.Note, nklhct.Highlight, nklhct.SoNgay.Value);
+                                  nklhct.SoDienThoaiLienHe, nklhct.Email, nklhct.SoNguoiKham, nklhct.ThangKham, nklhct.NoiDungLienHe, nklhct.Note, nklhct.Highlight, nklhct.SoNgay);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();

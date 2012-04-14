@@ -574,8 +574,7 @@
             // SoNgay
             // 
             this.SoNgay.DataPropertyName = "SoNgay";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.NullValue = null;
             this.SoNgay.DefaultCellStyle = dataGridViewCellStyle5;
             this.SoNgay.HeaderText = "Số ngày";
