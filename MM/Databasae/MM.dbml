@@ -2442,6 +2442,7 @@
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="Highlight" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SoNgay" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="DocStaff_NhatKyLienHeCongTy" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
@@ -2472,6 +2473,7 @@
       <Column Name="Email" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="ThangKham" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Highlight" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="SoNgay" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">
