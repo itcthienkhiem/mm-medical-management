@@ -240,11 +240,14 @@ namespace MM.Dialogs
                 {
                     _nhatKyLienHeCongTy.UpdatedDate = DateTime.Now;
                     _nhatKyLienHeCongTy.UpdatedBy = Guid.Parse(Global.UserGUID);
+                    
                 }
 
                 MethodInvoker method = delegate
                 {
                     _nhatKyLienHeCongTy.NgayGioLienHe = dtpkNgayGioLienHe.Value;
+                    if (!_isNew)
+                        _nhatKyLienHeCongTy.SoNgay = DateTime.Now.Subtract(dtpkNgayGioLienHe.Value).Days;
 
                     if (Global.StaffType != StaffType.Admin)
                         _nhatKyLienHeCongTy.DocStaffGUID = Guid.Parse(Global.UserGUID);

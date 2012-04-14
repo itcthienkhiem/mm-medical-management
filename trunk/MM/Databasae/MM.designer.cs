@@ -47405,6 +47405,8 @@ namespace MM.Databasae
 		
 		private bool _Highlight;
 		
+		private System.Nullable<int> _SoNgay;
+		
 		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
@@ -47451,6 +47453,8 @@ namespace MM.Databasae
     partial void OnEmailChanged();
     partial void OnHighlightChanging(bool value);
     partial void OnHighlightChanged();
+    partial void OnSoNgayChanging(System.Nullable<int> value);
+    partial void OnSoNgayChanged();
     #endregion
 		
 		public NhatKyLienHeCongTy()
@@ -47863,6 +47867,26 @@ namespace MM.Databasae
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNgay", DbType="Int")]
+		public System.Nullable<int> SoNgay
+		{
+			get
+			{
+				return this._SoNgay;
+			}
+			set
+			{
+				if ((this._SoNgay != value))
+				{
+					this.OnSoNgayChanging(value);
+					this.SendPropertyChanging();
+					this._SoNgay = value;
+					this.SendPropertyChanged("SoNgay");
+					this.OnSoNgayChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_NhatKyLienHeCongTy", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true, DeleteRule="CASCADE")]
 		public DocStaff DocStaff
 		{
@@ -47971,6 +47995,8 @@ namespace MM.Databasae
 		private string _ThangKham;
 		
 		private bool _Highlight;
+		
+		private System.Nullable<int> _SoNgay;
 		
 		public NhatKyLienHeCongTyView()
 		{
@@ -48372,6 +48398,22 @@ namespace MM.Databasae
 				if ((this._Highlight != value))
 				{
 					this._Highlight = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNgay", DbType="Int")]
+		public System.Nullable<int> SoNgay
+		{
+			get
+			{
+				return this._SoNgay;
+			}
+			set
+			{
+				if ((this._SoNgay != value))
+				{
+					this._SoNgay = value;
 				}
 			}
 		}
