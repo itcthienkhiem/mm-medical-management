@@ -47405,7 +47405,7 @@ namespace MM.Databasae
 		
 		private bool _Highlight;
 		
-		private System.Nullable<int> _SoNgay;
+		private string _SoNgay;
 		
 		private EntityRef<DocStaff> _DocStaff;
 		
@@ -47453,7 +47453,7 @@ namespace MM.Databasae
     partial void OnEmailChanged();
     partial void OnHighlightChanging(bool value);
     partial void OnHighlightChanged();
-    partial void OnSoNgayChanging(System.Nullable<int> value);
+    partial void OnSoNgayChanging(string value);
     partial void OnSoNgayChanged();
     #endregion
 		
@@ -47867,8 +47867,8 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNgay", DbType="Int")]
-		public System.Nullable<int> SoNgay
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNgay", DbType="NVarChar(50)")]
+		public string SoNgay
 		{
 			get
 			{
@@ -47996,7 +47996,7 @@ namespace MM.Databasae
 		
 		private bool _Highlight;
 		
-		private System.Nullable<int> _SoNgay;
+		private string _SoNgay;
 		
 		public NhatKyLienHeCongTyView()
 		{
@@ -48402,8 +48402,8 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNgay", DbType="Int")]
-		public System.Nullable<int> SoNgay
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoNgay", DbType="NVarChar(50)")]
+		public string SoNgay
 		{
 			get
 			{

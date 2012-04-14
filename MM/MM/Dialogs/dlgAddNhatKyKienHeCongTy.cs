@@ -247,7 +247,16 @@ namespace MM.Dialogs
                 {
                     _nhatKyLienHeCongTy.NgayGioLienHe = dtpkNgayGioLienHe.Value;
                     if (!_isNew)
-                        _nhatKyLienHeCongTy.SoNgay = DateTime.Now.Subtract(dtpkNgayGioLienHe.Value).Days;
+                    {
+                        int soNgay = DateTime.Now.Subtract(dtpkNgayGioLienHe.Value).Days;
+                        int thang = soNgay / 30;
+                        int ngay = soNgay % 30;
+
+                        if (thang > 0)
+                            _nhatKyLienHeCongTy.SoNgay = string.Format("{0} tháng {1} ngày", thang, ngay);
+                        else
+                            _nhatKyLienHeCongTy.SoNgay = string.Format("{0} ngày", ngay);
+                    }
 
                     if (Global.StaffType != StaffType.Admin)
                         _nhatKyLienHeCongTy.DocStaffGUID = Guid.Parse(Global.UserGUID);
