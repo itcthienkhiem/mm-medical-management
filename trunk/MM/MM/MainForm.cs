@@ -25,6 +25,7 @@ namespace MM
         private bool _flag = true;
         private string _lastResult = string.Empty;
         private List<SerialPort> _ports = new List<SerialPort>();
+        private Hashtable _htLastResult = new Hashtable();
         #endregion
 
         #region Constructor
@@ -1170,6 +1171,9 @@ namespace MM
         {
             dlgPortConfig dlg = new dlgPortConfig();
             dlg.ShowDialog(this);
+
+            CloseAllCOMPort();
+            OpenCOMPort();
         }
 
         private void OnXetNghiem_Hitachi917()
@@ -1879,39 +1883,48 @@ namespace MM
         #endregion
 
         #region COM
+        private void CloseAllCOMPort()
+        {
+            foreach (SerialPort p in _ports)
+            {
+                p.Close();
+            }
+        }
+
         private void OpenCOMPort()
         {
             if (File.Exists(Global.PortConfigPath))
-                Global.PortConfigCollection.Deserialize(Global.PortConfigPath);
-
-            foreach (string portName in SerialPort.GetPortNames())
             {
-                try
+                Global.PortConfigCollection.Deserialize(Global.PortConfigPath);
+                foreach (PortConfig p in Global.PortConfigCollection.PortConfigList)
                 {
-                    SerialPort port = new SerialPort();
-                    port.BaudRate = 9600;
-                    port.DataBits = 8;
-                    port.DiscardNull = false;
-                    port.DtrEnable = true;
-                    port.Handshake = Handshake.XOnXOff;
-                    port.Parity = Parity.None;
-                    port.ParityReplace = 63;
-                    port.PortName = portName;
-                    port.ReadBufferSize = 4096;
-                    port.ReadTimeout = -1;
-                    port.ReceivedBytesThreshold = 1;
-                    port.RtsEnable = true;
-                    port.StopBits = StopBits.One;
-                    port.WriteBufferSize = 2048;
-                    port.WriteTimeout = -1;
-                    port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(port_DataReceived);
-                    port.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(port_ErrorReceived);
-                    port.Open();
-                    _ports.Add(port);
-                }
-                catch (Exception ex)
-                {
-                    Utility.WriteToTraceLog(ex.Message);   
+                    try
+                    {
+                        SerialPort port = new SerialPort();
+                        port.BaudRate = 9600;
+                        port.DataBits = 8;
+                        port.DiscardNull = false;
+                        port.DtrEnable = true;
+                        port.Handshake = Handshake.XOnXOff;
+                        port.Parity = Parity.None;
+                        port.ParityReplace = 63;
+                        port.PortName = p.PortName;
+                        port.ReadBufferSize = 4096;
+                        port.ReadTimeout = -1;
+                        port.ReceivedBytesThreshold = 1;
+                        port.RtsEnable = true;
+                        port.StopBits = StopBits.One;
+                        port.WriteBufferSize = 2048;
+                        port.WriteTimeout = -1;
+                        port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(port_DataReceived);
+                        port.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(port_ErrorReceived);
+                        port.Open();
+                        _ports.Add(port);
+                    }
+                    catch (Exception ex)
+                    {
+                        Utility.WriteToTraceLog(ex.Message);
+                    }
                 }
             }
         }
