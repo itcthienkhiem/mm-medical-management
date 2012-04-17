@@ -49170,6 +49170,8 @@ namespace MM.Databasae
 		
 		private string _AlarmCode;
 		
+		private string _TinhTrang;
+		
 		private System.Nullable<System.DateTime> _CreatedDate;
 		
 		private System.Nullable<System.Guid> _CreatedBy;
@@ -49200,6 +49202,8 @@ namespace MM.Databasae
     partial void OnTestResultChanged();
     partial void OnAlarmCodeChanging(string value);
     partial void OnAlarmCodeChanged();
+    partial void OnTinhTrangChanging(string value);
+    partial void OnTinhTrangChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedDateChanged();
     partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
@@ -49322,6 +49326,26 @@ namespace MM.Databasae
 					this._AlarmCode = value;
 					this.SendPropertyChanged("AlarmCode");
 					this.OnAlarmCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TinhTrang", DbType="NVarChar(255)")]
+		public string TinhTrang
+		{
+			get
+			{
+				return this._TinhTrang;
+			}
+			set
+			{
+				if ((this._TinhTrang != value))
+				{
+					this.OnTinhTrangChanging(value);
+					this.SendPropertyChanging();
+					this._TinhTrang = value;
+					this.SendPropertyChanged("TinhTrang");
+					this.OnTinhTrangChanged();
 				}
 			}
 		}
