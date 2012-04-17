@@ -1145,12 +1145,22 @@ namespace MM
                 case "Booking":
                     OnBooking();
                     break;
+
+                case "XetNghiem_Hitachi917":
+                    OnXetNghiem_Hitachi917();        
+                    break;
             }
+        }
+
+        private void OnXetNghiem_Hitachi917()
+        {
+            this.Text = string.Format("{0} - Xet nghiem Hitachi917.", Application.ProductName);
+
         }
 
         private void OnBooking()
         {
-            this.Text = string.Format("{0} - Lịch hẹn.", Application.ProductName);
+            this.Text = string.Format("{0} - Lich hen.", Application.ProductName);
             ViewControl(_uBookingList);
             _uBookingList.DisplayAsThread();
         }
