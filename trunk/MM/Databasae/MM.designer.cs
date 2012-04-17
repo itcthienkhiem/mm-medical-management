@@ -213,6 +213,9 @@ namespace MM.Databasae
     partial void InsertKetQuaXetNghiem_Hitachi917(KetQuaXetNghiem_Hitachi917 instance);
     partial void UpdateKetQuaXetNghiem_Hitachi917(KetQuaXetNghiem_Hitachi917 instance);
     partial void DeleteKetQuaXetNghiem_Hitachi917(KetQuaXetNghiem_Hitachi917 instance);
+    partial void InsertChiTietKetQuaXetNghiem_Hitachi917(ChiTietKetQuaXetNghiem_Hitachi917 instance);
+    partial void UpdateChiTietKetQuaXetNghiem_Hitachi917(ChiTietKetQuaXetNghiem_Hitachi917 instance);
+    partial void DeleteChiTietKetQuaXetNghiem_Hitachi917(ChiTietKetQuaXetNghiem_Hitachi917 instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -1066,6 +1069,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<KetQuaXetNghiem_Hitachi917>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ChiTietKetQuaXetNghiem_Hitachi917> ChiTietKetQuaXetNghiem_Hitachi917s
+		{
+			get
+			{
+				return this.GetTable<ChiTietKetQuaXetNghiem_Hitachi917>();
 			}
 		}
 		
@@ -48805,14 +48816,6 @@ namespace MM.Databasae
 		
 		private string _OperationID;
 		
-		private int _TestNum;
-		
-		private string _TestResult;
-		
-		private string _AlarmCode;
-		
-		private string _TrangThai;
-		
 		private System.Nullable<System.DateTime> _CreatedDate;
 		
 		private System.Nullable<System.Guid> _CreatedBy;
@@ -48826,6 +48829,8 @@ namespace MM.Databasae
 		private System.Nullable<System.Guid> _DeletedBy;
 		
 		private byte _Status;
+		
+		private EntitySet<ChiTietKetQuaXetNghiem_Hitachi917> _ChiTietKetQuaXetNghiem_Hitachi917s;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -48841,14 +48846,6 @@ namespace MM.Databasae
     partial void OnNgayXNChanged();
     partial void OnOperationIDChanging(string value);
     partial void OnOperationIDChanged();
-    partial void OnTestNumChanging(int value);
-    partial void OnTestNumChanged();
-    partial void OnTestResultChanging(string value);
-    partial void OnTestResultChanged();
-    partial void OnAlarmCodeChanging(string value);
-    partial void OnAlarmCodeChanged();
-    partial void OnTrangThaiChanging(string value);
-    partial void OnTrangThaiChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedDateChanged();
     partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
@@ -48867,6 +48864,7 @@ namespace MM.Databasae
 		
 		public KetQuaXetNghiem_Hitachi917()
 		{
+			this._ChiTietKetQuaXetNghiem_Hitachi917s = new EntitySet<ChiTietKetQuaXetNghiem_Hitachi917>(new Action<ChiTietKetQuaXetNghiem_Hitachi917>(this.attach_ChiTietKetQuaXetNghiem_Hitachi917s), new Action<ChiTietKetQuaXetNghiem_Hitachi917>(this.detach_ChiTietKetQuaXetNghiem_Hitachi917s));
 			OnCreated();
 		}
 		
@@ -48966,86 +48964,6 @@ namespace MM.Databasae
 					this._OperationID = value;
 					this.SendPropertyChanged("OperationID");
 					this.OnOperationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestNum", DbType="Int NOT NULL")]
-		public int TestNum
-		{
-			get
-			{
-				return this._TestNum;
-			}
-			set
-			{
-				if ((this._TestNum != value))
-				{
-					this.OnTestNumChanging(value);
-					this.SendPropertyChanging();
-					this._TestNum = value;
-					this.SendPropertyChanged("TestNum");
-					this.OnTestNumChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestResult", DbType="NVarChar(6)")]
-		public string TestResult
-		{
-			get
-			{
-				return this._TestResult;
-			}
-			set
-			{
-				if ((this._TestResult != value))
-				{
-					this.OnTestResultChanging(value);
-					this.SendPropertyChanging();
-					this._TestResult = value;
-					this.SendPropertyChanged("TestResult");
-					this.OnTestResultChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlarmCode", DbType="NVarChar(1)")]
-		public string AlarmCode
-		{
-			get
-			{
-				return this._AlarmCode;
-			}
-			set
-			{
-				if ((this._AlarmCode != value))
-				{
-					this.OnAlarmCodeChanging(value);
-					this.SendPropertyChanging();
-					this._AlarmCode = value;
-					this.SendPropertyChanged("AlarmCode");
-					this.OnAlarmCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrangThai", DbType="NVarChar(500)")]
-		public string TrangThai
-		{
-			get
-			{
-				return this._TrangThai;
-			}
-			set
-			{
-				if ((this._TrangThai != value))
-				{
-					this.OnTrangThaiChanging(value);
-					this.SendPropertyChanging();
-					this._TrangThai = value;
-					this.SendPropertyChanged("TrangThai");
-					this.OnTrangThaiChanged();
 				}
 			}
 		}
@@ -49186,6 +49104,398 @@ namespace MM.Databasae
 					this._Status = value;
 					this.SendPropertyChanged("Status");
 					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KetQuaXetNghiem_Hitachi917_ChiTietKetQuaXetNghiem_Hitachi917", Storage="_ChiTietKetQuaXetNghiem_Hitachi917s", ThisKey="KQXN_Hitachi917GUID", OtherKey="KQXN_Hitachi917GUID")]
+		public EntitySet<ChiTietKetQuaXetNghiem_Hitachi917> ChiTietKetQuaXetNghiem_Hitachi917s
+		{
+			get
+			{
+				return this._ChiTietKetQuaXetNghiem_Hitachi917s;
+			}
+			set
+			{
+				this._ChiTietKetQuaXetNghiem_Hitachi917s.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ChiTietKetQuaXetNghiem_Hitachi917s(ChiTietKetQuaXetNghiem_Hitachi917 entity)
+		{
+			this.SendPropertyChanging();
+			entity.KetQuaXetNghiem_Hitachi917 = this;
+		}
+		
+		private void detach_ChiTietKetQuaXetNghiem_Hitachi917s(ChiTietKetQuaXetNghiem_Hitachi917 entity)
+		{
+			this.SendPropertyChanging();
+			entity.KetQuaXetNghiem_Hitachi917 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietKetQuaXetNghiem_Hitachi917")]
+	public partial class ChiTietKetQuaXetNghiem_Hitachi917 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ChiTietKQXN_Hitachi917GUID;
+		
+		private System.Guid _KQXN_Hitachi917GUID;
+		
+		private int _TestNum;
+		
+		private string _TestResult;
+		
+		private string _AlarmCode;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+		private EntityRef<KetQuaXetNghiem_Hitachi917> _KetQuaXetNghiem_Hitachi917;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnChiTietKQXN_Hitachi917GUIDChanging(System.Guid value);
+    partial void OnChiTietKQXN_Hitachi917GUIDChanged();
+    partial void OnKQXN_Hitachi917GUIDChanging(System.Guid value);
+    partial void OnKQXN_Hitachi917GUIDChanged();
+    partial void OnTestNumChanging(int value);
+    partial void OnTestNumChanged();
+    partial void OnTestResultChanging(string value);
+    partial void OnTestResultChanged();
+    partial void OnAlarmCodeChanging(string value);
+    partial void OnAlarmCodeChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public ChiTietKetQuaXetNghiem_Hitachi917()
+		{
+			this._KetQuaXetNghiem_Hitachi917 = default(EntityRef<KetQuaXetNghiem_Hitachi917>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiTietKQXN_Hitachi917GUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ChiTietKQXN_Hitachi917GUID
+		{
+			get
+			{
+				return this._ChiTietKQXN_Hitachi917GUID;
+			}
+			set
+			{
+				if ((this._ChiTietKQXN_Hitachi917GUID != value))
+				{
+					this.OnChiTietKQXN_Hitachi917GUIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiTietKQXN_Hitachi917GUID = value;
+					this.SendPropertyChanged("ChiTietKQXN_Hitachi917GUID");
+					this.OnChiTietKQXN_Hitachi917GUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQXN_Hitachi917GUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid KQXN_Hitachi917GUID
+		{
+			get
+			{
+				return this._KQXN_Hitachi917GUID;
+			}
+			set
+			{
+				if ((this._KQXN_Hitachi917GUID != value))
+				{
+					if (this._KetQuaXetNghiem_Hitachi917.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnKQXN_Hitachi917GUIDChanging(value);
+					this.SendPropertyChanging();
+					this._KQXN_Hitachi917GUID = value;
+					this.SendPropertyChanged("KQXN_Hitachi917GUID");
+					this.OnKQXN_Hitachi917GUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestNum", DbType="Int NOT NULL")]
+		public int TestNum
+		{
+			get
+			{
+				return this._TestNum;
+			}
+			set
+			{
+				if ((this._TestNum != value))
+				{
+					this.OnTestNumChanging(value);
+					this.SendPropertyChanging();
+					this._TestNum = value;
+					this.SendPropertyChanged("TestNum");
+					this.OnTestNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestResult", DbType="NVarChar(6)")]
+		public string TestResult
+		{
+			get
+			{
+				return this._TestResult;
+			}
+			set
+			{
+				if ((this._TestResult != value))
+				{
+					this.OnTestResultChanging(value);
+					this.SendPropertyChanging();
+					this._TestResult = value;
+					this.SendPropertyChanged("TestResult");
+					this.OnTestResultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlarmCode", DbType="NVarChar(1)")]
+		public string AlarmCode
+		{
+			get
+			{
+				return this._AlarmCode;
+			}
+			set
+			{
+				if ((this._AlarmCode != value))
+				{
+					this.OnAlarmCodeChanging(value);
+					this.SendPropertyChanging();
+					this._AlarmCode = value;
+					this.SendPropertyChanged("AlarmCode");
+					this.OnAlarmCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KetQuaXetNghiem_Hitachi917_ChiTietKetQuaXetNghiem_Hitachi917", Storage="_KetQuaXetNghiem_Hitachi917", ThisKey="KQXN_Hitachi917GUID", OtherKey="KQXN_Hitachi917GUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public KetQuaXetNghiem_Hitachi917 KetQuaXetNghiem_Hitachi917
+		{
+			get
+			{
+				return this._KetQuaXetNghiem_Hitachi917.Entity;
+			}
+			set
+			{
+				KetQuaXetNghiem_Hitachi917 previousValue = this._KetQuaXetNghiem_Hitachi917.Entity;
+				if (((previousValue != value) 
+							|| (this._KetQuaXetNghiem_Hitachi917.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._KetQuaXetNghiem_Hitachi917.Entity = null;
+						previousValue.ChiTietKetQuaXetNghiem_Hitachi917s.Remove(this);
+					}
+					this._KetQuaXetNghiem_Hitachi917.Entity = value;
+					if ((value != null))
+					{
+						value.ChiTietKetQuaXetNghiem_Hitachi917s.Add(this);
+						this._KQXN_Hitachi917GUID = value.KQXN_Hitachi917GUID;
+					}
+					else
+					{
+						this._KQXN_Hitachi917GUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("KetQuaXetNghiem_Hitachi917");
 				}
 			}
 		}

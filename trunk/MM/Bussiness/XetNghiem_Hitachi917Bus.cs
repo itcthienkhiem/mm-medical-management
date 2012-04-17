@@ -19,77 +19,77 @@ namespace MM.Bussiness
 
             try
             {
-                db = new MMOverride();
-                string desc = string.Empty;
-                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
-                {
-                    foreach (TestResult_Hitachi917 testResult in testResults)
-                    {
-                        foreach (Result_Hitachi917 r in testResult.Results)
-                        {
-                            string idNum = testResult.IDNum;
-                            int testNum = r.TestNum;
-                            string operationID = testResult.OperatorID;
-                            string sex = testResult.Sex.Trim();
-                            DateTime ngayXN = DateTime.ParseExact(string.Format("{0} {1}", testResult.CollectionDate, testResult.CollectionTime),
-                                "MMddyy HHmm", null);
+                //db = new MMOverride();
+                //string desc = string.Empty;
+                //using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                //{
+                //    foreach (TestResult_Hitachi917 testResult in testResults)
+                //    {
+                //        foreach (Result_Hitachi917 r in testResult.Results)
+                //        {
+                //            string idNum = testResult.IDNum;
+                //            int testNum = r.TestNum;
+                //            string operationID = testResult.OperatorID;
+                //            string sex = testResult.Sex.Trim();
+                //            DateTime ngayXN = DateTime.ParseExact(string.Format("{0} {1}", testResult.CollectionDate, testResult.CollectionTime),
+                //                "MMddyy HHmm", null);
 
-                            PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.FileNum.ToLower().Trim() == idNum.ToLower().Trim());
+                //            PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.FileNum.ToLower().Trim() == idNum.ToLower().Trim());
                             
-                            string trangThai = string.Empty;
+                //            string trangThai = string.Empty;
 
-                            //XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == testNum);
-                            //if (xn != null)
-                            //{
-                            //    List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
+                //            //XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == testNum);
+                //            //if (xn != null)
+                //            //{
+                //            //    List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
                                 
-                            //}
+                //            //}
 
-                            //if (sex != string.Empty)
-                            //{
+                //            //if (sex != string.Empty)
+                //            //{
 
-                            //}
+                //            //}
 
-                            KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.IDNum == idNum &&
-                                k.TestNum == testNum && k.OperationID == operationID && k.NgayXN == ngayXN);
+                //            KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.IDNum == idNum &&
+                //                k.TestNum == testNum && k.OperationID == operationID && k.NgayXN == ngayXN);
 
-                            if (kqxn == null) //Add New
-                            {
-                                kqxn = new KetQuaXetNghiem_Hitachi917();
-                                kqxn.KQXN_Hitachi917GUID = Guid.NewGuid();
-                                kqxn.CreatedDate = DateTime.Now;
-                                if (Global.UserGUID != string.Empty) kqxn.CreatedBy = Guid.Parse(Global.UserGUID);
-                                kqxn.IDNum = idNum;
-                                if (patient != null) kqxn.PatientGUID = patient.PatientGUID;
-                                kqxn.NgayXN = ngayXN;
-                                kqxn.OperationID = operationID;
-                                kqxn.TestNum = testNum;
-                                kqxn.TestResult = r.Result;
-                                kqxn.AlarmCode = r.AlarmCode;
-                                kqxn.TrangThai = trangThai;
-                                kqxn.Status = (byte)Status.Actived;
-                                db.KetQuaXetNghiem_Hitachi917s.InsertOnSubmit(kqxn);
-                            }
-                            else //Update
-                            {
-                                kqxn.UpdatedDate = DateTime.Now;
-                                if (Global.UserGUID != string.Empty) kqxn.UpdatedBy = Guid.Parse(Global.UserGUID);
-                                kqxn.IDNum = idNum;
-                                if (patient != null) kqxn.PatientGUID = patient.PatientGUID;
-                                kqxn.NgayXN = ngayXN;
-                                kqxn.OperationID = operationID;
-                                kqxn.TestNum = testNum;
-                                kqxn.TestResult = r.Result;
-                                kqxn.AlarmCode = r.AlarmCode;
-                                kqxn.TrangThai = trangThai;
-                                kqxn.Status = (byte)Status.Actived;
-                            }
-                        }
-                    }
+                //            if (kqxn == null) //Add New
+                //            {
+                //                kqxn = new KetQuaXetNghiem_Hitachi917();
+                //                kqxn.KQXN_Hitachi917GUID = Guid.NewGuid();
+                //                kqxn.CreatedDate = DateTime.Now;
+                //                if (Global.UserGUID != string.Empty) kqxn.CreatedBy = Guid.Parse(Global.UserGUID);
+                //                kqxn.IDNum = idNum;
+                //                if (patient != null) kqxn.PatientGUID = patient.PatientGUID;
+                //                kqxn.NgayXN = ngayXN;
+                //                kqxn.OperationID = operationID;
+                //                kqxn.TestNum = testNum;
+                //                kqxn.TestResult = r.Result;
+                //                kqxn.AlarmCode = r.AlarmCode;
+                //                kqxn.TrangThai = trangThai;
+                //                kqxn.Status = (byte)Status.Actived;
+                //                db.KetQuaXetNghiem_Hitachi917s.InsertOnSubmit(kqxn);
+                //            }
+                //            else //Update
+                //            {
+                //                kqxn.UpdatedDate = DateTime.Now;
+                //                if (Global.UserGUID != string.Empty) kqxn.UpdatedBy = Guid.Parse(Global.UserGUID);
+                //                kqxn.IDNum = idNum;
+                //                if (patient != null) kqxn.PatientGUID = patient.PatientGUID;
+                //                kqxn.NgayXN = ngayXN;
+                //                kqxn.OperationID = operationID;
+                //                kqxn.TestNum = testNum;
+                //                kqxn.TestResult = r.Result;
+                //                kqxn.AlarmCode = r.AlarmCode;
+                //                kqxn.TrangThai = trangThai;
+                //                kqxn.Status = (byte)Status.Actived;
+                //            }
+                //        }
+                //    }
 
-                    db.SubmitChanges();
-                    t.Complete();
-                }
+                //    db.SubmitChanges();
+                //    t.Complete();
+                //}
 
             }
             catch (System.Data.SqlClient.SqlException se)
