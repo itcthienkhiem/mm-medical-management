@@ -449,6 +449,12 @@
     <Compile Include="Controls\uKetQuaSoiCTCList.Designer.cs">
       <DependentUpon>uKetQuaSoiCTCList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaXetNghiem_Hitachi917.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaXetNghiem_Hitachi917.Designer.cs">
+      <DependentUpon>uKetQuaXetNghiem_Hitachi917.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uLoiKhuyenList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1142,6 +1148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaSoiCTCList.resx">
       <DependentUpon>uKetQuaSoiCTCList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaXetNghiem_Hitachi917.resx">
+      <DependentUpon>uKetQuaXetNghiem_Hitachi917.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uLoiKhuyenList.resx">
       <DependentUpon>uLoiKhuyenList.cs</DependentUpon>

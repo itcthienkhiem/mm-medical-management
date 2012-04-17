@@ -156,6 +156,8 @@
             this.yKienKhachHangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
             this.nhatKyLienHeCongTyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xetNghiemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xetNghiemHiTachi917ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -238,8 +240,7 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
-            this.xetNghiemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xetNghiemHiTachi917ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uKetQuaXetNghiem_Hitachi917 = new MM.Controls.uKetQuaXetNghiem_Hitachi917();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1122,6 +1123,20 @@
             this.nhatKyLienHeCongTyToolStripMenuItem.Tag = "NhatKyLienHeCongTy";
             this.nhatKyLienHeCongTyToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // xetNghiemToolStripMenuItem
+            // 
+            this.xetNghiemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xetNghiemHiTachi917ToolStripMenuItem});
+            resources.ApplyResources(this.xetNghiemToolStripMenuItem, "xetNghiemToolStripMenuItem");
+            this.xetNghiemToolStripMenuItem.Name = "xetNghiemToolStripMenuItem";
+            // 
+            // xetNghiemHiTachi917ToolStripMenuItem
+            // 
+            this.xetNghiemHiTachi917ToolStripMenuItem.Name = "xetNghiemHiTachi917ToolStripMenuItem";
+            resources.ApplyResources(this.xetNghiemHiTachi917ToolStripMenuItem, "xetNghiemHiTachi917ToolStripMenuItem");
+            this.xetNghiemHiTachi917ToolStripMenuItem.Tag = "XetNghiem_Hitachi917";
+            this.xetNghiemHiTachi917ToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1528,6 +1543,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uKetQuaXetNghiem_Hitachi917);
             this._mainPanel.Controls.Add(this._uBookingList);
             this._mainPanel.Controls.Add(this._uNhatKyLienHeCongTy);
             this._mainPanel.Controls.Add(this._uYKienKhachHangList);
@@ -1766,19 +1782,10 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
-            // xetNghiemToolStripMenuItem
+            // _uKetQuaXetNghiem_Hitachi917
             // 
-            this.xetNghiemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xetNghiemHiTachi917ToolStripMenuItem});
-            resources.ApplyResources(this.xetNghiemToolStripMenuItem, "xetNghiemToolStripMenuItem");
-            this.xetNghiemToolStripMenuItem.Name = "xetNghiemToolStripMenuItem";
-            // 
-            // xetNghiemHiTachi917ToolStripMenuItem
-            // 
-            this.xetNghiemHiTachi917ToolStripMenuItem.Name = "xetNghiemHiTachi917ToolStripMenuItem";
-            resources.ApplyResources(this.xetNghiemHiTachi917ToolStripMenuItem, "xetNghiemHiTachi917ToolStripMenuItem");
-            this.xetNghiemHiTachi917ToolStripMenuItem.Tag = "XetNghiem_Hitachi917";
-            this.xetNghiemHiTachi917ToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            resources.ApplyResources(this._uKetQuaXetNghiem_Hitachi917, "_uKetQuaXetNghiem_Hitachi917");
+            this._uKetQuaXetNghiem_Hitachi917.Name = "_uKetQuaXetNghiem_Hitachi917";
             // 
             // MainForm
             // 
@@ -2019,6 +2026,7 @@
         private Controls.uBookingList _uBookingList;
         private System.Windows.Forms.ToolStripMenuItem xetNghiemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xetNghiemHiTachi917ToolStripMenuItem;
+        private Controls.uKetQuaXetNghiem_Hitachi917 _uKetQuaXetNghiem_Hitachi917;
 
     }
 }

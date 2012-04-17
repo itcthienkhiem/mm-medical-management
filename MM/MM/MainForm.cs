@@ -195,6 +195,8 @@ namespace MM
                 _uNhatKyLienHeCongTy.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBookingList))
                 _uBookingList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uKetQuaXetNghiem_Hitachi917))
+                _uKetQuaXetNghiem_Hitachi917.DisplayAsThread();    
         }
 
         private void SaveAppConfig()
@@ -785,6 +787,14 @@ namespace MM
                             xetNghiemToolStripMenuItem.Enabled = isLogin;
                             xetNghiemHiTachi917ToolStripMenuItem.Enabled = isView && isLogin;
 
+                            _uKetQuaXetNghiem_Hitachi917.AllowAdd = isAdd;
+                            _uKetQuaXetNghiem_Hitachi917.AllowEdit = isEdit;
+                            _uKetQuaXetNghiem_Hitachi917.AllowDelete = isDelete;
+                            _uKetQuaXetNghiem_Hitachi917.AllowPrint = isPrint;
+                            _uKetQuaXetNghiem_Hitachi917.AllowExport = isExport;
+                            _uKetQuaXetNghiem_Hitachi917.AllowImport = isImport;
+                            _uKetQuaXetNghiem_Hitachi917.AllowLock = isLock;
+                            _uKetQuaXetNghiem_Hitachi917.AllowExportAll = isExportAll;
                         }
                     }
                 }
@@ -1155,7 +1165,8 @@ namespace MM
         private void OnXetNghiem_Hitachi917()
         {
             this.Text = string.Format("{0} - Xet nghiem Hitachi917.", Application.ProductName);
-
+            ViewControl(_uKetQuaXetNghiem_Hitachi917);
+            _uKetQuaXetNghiem_Hitachi917.DisplayAsThread();
         }
 
         private void OnBooking()
