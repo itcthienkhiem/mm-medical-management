@@ -780,6 +780,12 @@ namespace MM
                             _uBookingList.AllowLock = isLock;
                             _uBookingList.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.XetNghiem)
+                        {
+                            xetNghiemToolStripMenuItem.Enabled = isLogin;
+                            xetNghiemHiTachi917ToolStripMenuItem.Enabled = isView && isLogin;
+
+                        }
                     }
                 }
                 else
@@ -934,6 +940,9 @@ namespace MM
                 chamSocKhachHangToolStripMenuItem.Enabled = isLogin;
                 yKienKhachHangToolStripMenuItem.Enabled = isLogin;
                 nhatKyLienHeCongTyToolStripMenuItem.Enabled = isLogin;
+
+                xetNghiemToolStripMenuItem.Enabled = isLogin;
+                xetNghiemHiTachi917ToolStripMenuItem.Enabled = isLogin;
             }
         }
 
