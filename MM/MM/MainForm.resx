@@ -884,6 +884,21 @@
   <data name="chamSocKhachHangToolStripMenuItem.Text" xml:space="preserve">
     <value>Chăm sóc &amp;khách hàng</value>
   </data>
+  <data name="xetNghiemHiTachi917ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>194, 22</value>
+  </data>
+  <data name="xetNghiemHiTachi917ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Xét nghiệm Hitachi 917</value>
+  </data>
+  <data name="xetNghiemToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="xetNghiemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 20</value>
+  </data>
+  <data name="xetNghiemToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Xét nghiệm</value>
+  </data>
   <data name="dICOMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 22</value>
   </data>
@@ -5850,6 +5865,18 @@
   </data>
   <data name="&gt;&gt;dockContainerItem2.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.DockContainerItem, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;xetNghiemToolStripMenuItem.Name" xml:space="preserve">
+    <value>xetNghiemToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;xetNghiemToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;xetNghiemHiTachi917ToolStripMenuItem.Name" xml:space="preserve">
+    <value>xetNghiemHiTachi917ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;xetNghiemHiTachi917ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
