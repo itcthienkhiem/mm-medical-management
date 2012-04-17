@@ -15,10 +15,7 @@
         {
             if (disposing && (components != null))
             {
-                foreach (System.IO.Ports.SerialPort port in _ports)
-                {
-                    port.Close();
-                }
+                CloseAllCOMPort();
 
                 components.Dispose();
             }
