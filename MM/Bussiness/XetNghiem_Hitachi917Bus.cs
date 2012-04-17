@@ -12,6 +12,8 @@ namespace MM.Bussiness
 {
     public class XetNghiem_Hitachi917Bus : BusBase
     {
+
+
         public static Result InsertKQXN(List<TestResult_Hitachi917> testResults)
         {
             Result result = new Result();
@@ -168,7 +170,7 @@ namespace MM.Bussiness
                             }
                         }
 
-                        desc += string.Format("- GUID: '{0}', IDNum: '{1}', Mã bệnh nhân: '{2}', Tên bệnh nhân: '{3}', Ngày xét nghiệm: '{4}', OperationID: '{5}'\n",
+                        desc += string.Format("GUID: '{0}', IDNum: '{1}', Mã bệnh nhân: '{2}', Tên bệnh nhân: '{3}', Ngày xét nghiệm: '{4}', OperationID: '{5}'",
                                 kqxn.KQXN_Hitachi917GUID.ToString(), kqxn.IDNum, fileNum, tenBenhNhan, kqxn.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"), kqxn.OperationID);
 
                         //Tracking
@@ -178,11 +180,87 @@ namespace MM.Bussiness
                         tk.TrackingDate = DateTime.Now;
                         tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                         tk.ActionType = (byte)ActionType.Delete;
-                        tk.Action = "Cập nhật bệnh nhân xét nghiệm";
+                        tk.Action = "Cập nhật bệnh nhân xét nghiệm hitachi 917";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
                         db.Trackings.InsertOnSubmit(tk);
                     }
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result DeleteXetNghiem(List<string> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    foreach (string key in keys)
+                    {
+                        KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == key);
+
+                        if (kqxn != null)
+                        {
+                            kqxn.CreatedDate = DateTime.Now;
+                            kqxn.DeletedBy = Guid.Parse(Global.UserGUID);
+                            
+                            string tenBenhNhan = string.Empty;
+                            string fileNum = string.Empty;
+                            if (kqxn.PatientGUID != null)
+                            {
+                                PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.PatientGUID == kqxn.PatientGUID);
+                                if (patient != null)
+                                {
+                                    fileNum = patient.FileNum;
+                                    tenBenhNhan = patient.FullName;
+                                }
+                            }
+
+                            desc += string.Format("- GUID: '{0}', IDNum: '{1}', Mã bệnh nhân: '{2}', Tên bệnh nhân: '{3}', Ngày xét nghiệm: '{4}', OperationID: '{5}'\n",
+                                    kqxn.KQXN_Hitachi917GUID.ToString(), kqxn.IDNum, fileNum, tenBenhNhan, kqxn.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"), kqxn.OperationID);
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa xét nghiệm hitachi 917";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
                     t.Complete();
