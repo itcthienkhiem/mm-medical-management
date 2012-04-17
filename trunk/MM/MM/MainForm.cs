@@ -1870,7 +1870,6 @@ namespace MM
                 {
                     Utility.WriteToTraceLog(ex.Message);   
                 }
-
             }
         }
 

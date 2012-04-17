@@ -20,7 +20,6 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                string desc = string.Empty;
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     foreach (TestResult_Hitachi917 testResult in testResults)
@@ -108,6 +107,81 @@ namespace MM.Bussiness
                                 ctkqxn.Status = (byte)Status.Actived;
                             }
                         }
+                    }
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result UpdatePatient(KetQuaXetNghiem_Hitachi917 ketQuaXetNghiem)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID == ketQuaXetNghiem.KQXN_Hitachi917GUID &&
+                        k.Status == (byte)Status.Actived);
+
+                    if (kqxn != null)
+                    {
+                        kqxn.UpdatedDate = DateTime.Now;
+                        kqxn.UpdatedBy = Guid.Parse(Global.UserGUID);
+                        kqxn.PatientGUID = ketQuaXetNghiem.PatientGUID;
+
+                        string tenBenhNhan = string.Empty;
+                        string fileNum = string.Empty;
+                        if (ketQuaXetNghiem.PatientGUID != null)
+                        {
+                            PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.PatientGUID == ketQuaXetNghiem.PatientGUID);
+                            if (patient != null)
+                            {
+                                fileNum = patient.FileNum;
+                                tenBenhNhan = patient.FullName;
+                            }
+                        }
+
+                        desc += string.Format("- GUID: '{0}', IDNum: '{1}', Mã bệnh nhân: '{2}', Tên bệnh nhân: '{3}', Ngày xét nghiệm: '{4}', OperationID: '{5}'\n",
+                                kqxn.KQXN_Hitachi917GUID.ToString(), kqxn.IDNum, fileNum, tenBenhNhan, kqxn.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"), kqxn.OperationID);
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Delete;
+                        tk.Action = "Cập nhật bệnh nhân xét nghiệm";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
                     }
 
                     db.SubmitChanges();
