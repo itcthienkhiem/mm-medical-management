@@ -65,5 +65,6 @@ namespace MM.Common
         public static string KhamNoiSoi = "KhamNoiSoi";
         public static string KhamCTC = "Khám CTC";
         public static string Booking = "Booking";
+        public static string XetNghiem = "XetNghiem";
     }
 }

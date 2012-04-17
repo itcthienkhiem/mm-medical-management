@@ -199,6 +199,7 @@
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uBookingList = new MM.Controls.uBookingList();
             this._uNhatKyLienHeCongTy = new MM.Controls.uNhatKyLienHeCongTy();
             this._uYKienKhachHangList = new MM.Controls.uYKienKhachHangList();
             this._uHoaDonHopDongList = new MM.Controls.uHoaDonHopDongList();
@@ -237,7 +238,8 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
-            this._uBookingList = new MM.Controls.uBookingList();
+            this.xetNghiemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xetNghiemHiTachi917ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -522,6 +524,7 @@
             this.thuocToolStripMenuItem,
             this.reportToolStripMenuItem,
             this.chamSocKhachHangToolStripMenuItem,
+            this.xetNghiemToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             resources.ApplyResources(this._mainMenu, "_mainMenu");
@@ -1566,6 +1569,11 @@
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
             // 
+            // _uBookingList
+            // 
+            resources.ApplyResources(this._uBookingList, "_uBookingList");
+            this._uBookingList.Name = "_uBookingList";
+            // 
             // _uNhatKyLienHeCongTy
             // 
             resources.ApplyResources(this._uNhatKyLienHeCongTy, "_uNhatKyLienHeCongTy");
@@ -1758,10 +1766,19 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
-            // _uBookingList
+            // xetNghiemToolStripMenuItem
             // 
-            resources.ApplyResources(this._uBookingList, "_uBookingList");
-            this._uBookingList.Name = "_uBookingList";
+            this.xetNghiemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xetNghiemHiTachi917ToolStripMenuItem});
+            resources.ApplyResources(this.xetNghiemToolStripMenuItem, "xetNghiemToolStripMenuItem");
+            this.xetNghiemToolStripMenuItem.Name = "xetNghiemToolStripMenuItem";
+            // 
+            // xetNghiemHiTachi917ToolStripMenuItem
+            // 
+            this.xetNghiemHiTachi917ToolStripMenuItem.Name = "xetNghiemHiTachi917ToolStripMenuItem";
+            resources.ApplyResources(this.xetNghiemHiTachi917ToolStripMenuItem, "xetNghiemHiTachi917ToolStripMenuItem");
+            this.xetNghiemHiTachi917ToolStripMenuItem.Tag = "XetNghiem_Hitachi917";
+            this.xetNghiemHiTachi917ToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -2000,6 +2017,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator42;
         private System.Windows.Forms.ToolStripMenuItem bookingToolStripMenuItem;
         private Controls.uBookingList _uBookingList;
+        private System.Windows.Forms.ToolStripMenuItem xetNghiemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xetNghiemHiTachi917ToolStripMenuItem;
 
     }
 }
