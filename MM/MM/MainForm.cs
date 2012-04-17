@@ -15,6 +15,7 @@ using MM.Dialogs;
 using MM.Bussiness;
 using DicomImageViewer;
 using System.Diagnostics;
+using System.IO.Ports;
 
 namespace MM
 {
@@ -22,6 +23,8 @@ namespace MM
     {
         #region Members
         private bool _flag = true;
+        private string _lastResult = string.Empty;
+        private List<SerialPort> _ports = new List<SerialPort>();
         #endregion
 
         #region Constructor
@@ -32,7 +35,8 @@ namespace MM
             _uCompanyList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uContractList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uPhongChoList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
-            ParseTestResult_Hitachi917(string.Empty);
+
+            OpenCOMPort();
         }
         #endregion
 
@@ -1835,10 +1839,67 @@ namespace MM
         #endregion
 
         #region COM
-        private string _lastResult = string.Empty;
+        private void OpenCOMPort()
+        {
+            foreach (string portName in SerialPort.GetPortNames())
+            {
+                try
+                {
+                    SerialPort port = new SerialPort();
+                    port.BaudRate = 9600;
+                    port.DataBits = 8;
+                    port.DiscardNull = false;
+                    port.DtrEnable = true;
+                    port.Handshake = Handshake.XOnXOff;
+                    port.Parity = Parity.None;
+                    port.ParityReplace = 63;
+                    port.PortName = portName;
+                    port.ReadBufferSize = 4096;
+                    port.ReadTimeout = -1;
+                    port.ReceivedBytesThreshold = 1;
+                    port.RtsEnable = true;
+                    port.StopBits = StopBits.One;
+                    port.WriteBufferSize = 2048;
+                    port.WriteTimeout = -1;
+                    port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(port_DataReceived);
+                    port.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(port_ErrorReceived);
+                    port.Open();
+                    _ports.Add(port);
+                }
+                catch (Exception ex)
+                {
+                    Utility.WriteToTraceLog(ex.Message);   
+                }
+
+            }
+        }
+
+        private void port_ErrorReceived(object sender, System.IO.Ports.SerialErrorReceivedEventArgs e)
+        {
+            Utility.WriteToTraceLog(string.Format("SerialPort: Error received data '{0}'", e.EventType.ToString()));
+        }
+
+        private void port_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                SerialPort port = (SerialPort)sender;
+                string data = port.ReadExisting();
+
+                List<TestResult_Hitachi917> testResults = ParseTestResult_Hitachi917(data);
+                Result result = XetNghiem_Hitachi917Bus.InsertKQXN(testResults);
+                if (!result.IsOK)
+                    Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.InsertKQXN"));
+            }
+            catch (Exception ex)
+            {
+                Utility.WriteToTraceLog(string.Format("Serial Port: {0}", ex.Message));
+            }
+        }
+
         private List<TestResult_Hitachi917> ParseTestResult_Hitachi917(string result)
         {
-            result = "217:n1    1    1  11DINH ALCAM      3 0319121056XN      9  3  62.2  10   4.8  13  75.7  16  18.2  17   4.1  18  25.8  19  18.0  34   2.9  36   5.2 A1\r218:n1    2    1  21LOC ACE         3 0319121058XN      6 10   6.1  16  27.2  17   5.2  18  18.6  19  17.8  21   1.3 34\r";
+            //result = "217:n1    1    1  11DINH ALCAM      3 0319121056XN      9  3  62.2  10   4.8  13  75.7  16  18.2  17   4.1  18  25.8  19  18.0  34   2.9  36   5.2 A1\r218:n1    2    1  21LOC ACE         3 0319121058XN      6 10   6.1  16  27.2  17   5.2  18  18.6  19  17.8  21   1.3 34\r";
 
             while (result[0] == '\x02')
             {
@@ -1896,8 +1957,6 @@ namespace MM
                     testResults.Add(testResult);
                 }
             }
-
-            XetNghiem_Hitachi917Bus.InsertKQXN(testResults);
 
             return testResults;
         }
