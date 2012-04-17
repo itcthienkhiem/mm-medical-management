@@ -82,5 +82,8 @@ namespace MM.Common
         public static DateTime MaxDateTime = new DateTime(9997, 12, 31);
 
         public static bool IsStart = false;
+
+        public static PortConfigCollection PortConfigCollection = new PortConfigCollection();
+        public static string PortConfigPath = string.Format("{0}\\PortConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
     }
 }

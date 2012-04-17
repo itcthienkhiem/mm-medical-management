@@ -1159,7 +1159,17 @@ namespace MM
                 case "XetNghiem_Hitachi917":
                     OnXetNghiem_Hitachi917();        
                     break;
+
+                case "CauHinhKetNoi":
+                    OnCauHinhKetNoi();
+                    break;
             }
+        }
+
+        private void OnCauHinhKetNoi()
+        {
+            dlgPortConfig dlg = new dlgPortConfig();
+            dlg.ShowDialog(this);
         }
 
         private void OnXetNghiem_Hitachi917()
@@ -1871,6 +1881,9 @@ namespace MM
         #region COM
         private void OpenCOMPort()
         {
+            if (File.Exists(Global.PortConfigPath))
+                Global.PortConfigCollection.Deserialize(Global.PortConfigPath);
+
             foreach (string portName in SerialPort.GetPortNames())
             {
                 try

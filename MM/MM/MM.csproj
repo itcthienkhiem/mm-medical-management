@@ -656,6 +656,12 @@
     <Compile Include="Dialogs\dlgAddPhieuThuHopDong.Designer.cs">
       <DependentUpon>dlgAddPhieuThuHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddPortConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPortConfig.Designer.cs">
+      <DependentUpon>dlgAddPortConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddYKienKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -685,6 +691,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgLyDoXoa.Designer.cs">
       <DependentUpon>dlgLyDoXoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgPortConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgPortConfig.Designer.cs">
+      <DependentUpon>dlgPortConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgSelectNhanVienHopDong.cs">
       <SubType>Form</SubType>
@@ -1254,6 +1266,9 @@
     <EmbeddedResource Include="Dialogs\dlgAddPhieuThuHopDong.resx">
       <DependentUpon>dlgAddPhieuThuHopDong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddPortConfig.resx">
+      <DependentUpon>dlgAddPortConfig.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddYKienKhachHang.resx">
       <DependentUpon>dlgAddYKienKhachHang.cs</DependentUpon>
     </EmbeddedResource>
@@ -1268,6 +1283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgLyDoXoa.resx">
       <DependentUpon>dlgLyDoXoa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgPortConfig.resx">
+      <DependentUpon>dlgPortConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectNhanVienHopDong.resx">
       <DependentUpon>dlgSelectNhanVienHopDong.cs</DependentUpon>
