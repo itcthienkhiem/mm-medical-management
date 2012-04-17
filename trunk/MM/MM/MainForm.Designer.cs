@@ -201,6 +201,7 @@
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uKetQuaXetNghiem_Hitachi917 = new MM.Controls.uKetQuaXetNghiem_Hitachi917();
             this._uBookingList = new MM.Controls.uBookingList();
             this._uNhatKyLienHeCongTy = new MM.Controls.uNhatKyLienHeCongTy();
             this._uYKienKhachHangList = new MM.Controls.uYKienKhachHangList();
@@ -240,7 +241,8 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
-            this._uKetQuaXetNghiem_Hitachi917 = new MM.Controls.uKetQuaXetNghiem_Hitachi917();
+            this.toolStripSeparator43 = new System.Windows.Forms.ToolStripSeparator();
+            this.cauHinhKetNoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1126,7 +1128,9 @@
             // xetNghiemToolStripMenuItem
             // 
             this.xetNghiemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xetNghiemHiTachi917ToolStripMenuItem});
+            this.xetNghiemHiTachi917ToolStripMenuItem,
+            this.toolStripSeparator43,
+            this.cauHinhKetNoiToolStripMenuItem});
             resources.ApplyResources(this.xetNghiemToolStripMenuItem, "xetNghiemToolStripMenuItem");
             this.xetNghiemToolStripMenuItem.Name = "xetNghiemToolStripMenuItem";
             // 
@@ -1314,7 +1318,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1335,7 +1339,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -1585,6 +1589,11 @@
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
             // 
+            // _uKetQuaXetNghiem_Hitachi917
+            // 
+            resources.ApplyResources(this._uKetQuaXetNghiem_Hitachi917, "_uKetQuaXetNghiem_Hitachi917");
+            this._uKetQuaXetNghiem_Hitachi917.Name = "_uKetQuaXetNghiem_Hitachi917";
+            // 
             // _uBookingList
             // 
             resources.ApplyResources(this._uBookingList, "_uBookingList");
@@ -1782,10 +1791,17 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
-            // _uKetQuaXetNghiem_Hitachi917
+            // toolStripSeparator43
             // 
-            resources.ApplyResources(this._uKetQuaXetNghiem_Hitachi917, "_uKetQuaXetNghiem_Hitachi917");
-            this._uKetQuaXetNghiem_Hitachi917.Name = "_uKetQuaXetNghiem_Hitachi917";
+            this.toolStripSeparator43.Name = "toolStripSeparator43";
+            resources.ApplyResources(this.toolStripSeparator43, "toolStripSeparator43");
+            // 
+            // cauHinhKetNoiToolStripMenuItem
+            // 
+            this.cauHinhKetNoiToolStripMenuItem.Name = "cauHinhKetNoiToolStripMenuItem";
+            resources.ApplyResources(this.cauHinhKetNoiToolStripMenuItem, "cauHinhKetNoiToolStripMenuItem");
+            this.cauHinhKetNoiToolStripMenuItem.Tag = "CauHinhKetNoi";
+            this.cauHinhKetNoiToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -2027,6 +2043,8 @@
         private System.Windows.Forms.ToolStripMenuItem xetNghiemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xetNghiemHiTachi917ToolStripMenuItem;
         private Controls.uKetQuaXetNghiem_Hitachi917 _uKetQuaXetNghiem_Hitachi917;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator43;
+        private System.Windows.Forms.ToolStripMenuItem cauHinhKetNoiToolStripMenuItem;
 
     }
 }

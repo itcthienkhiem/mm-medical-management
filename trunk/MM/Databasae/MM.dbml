@@ -2476,12 +2476,22 @@
       <Column Name="SoNgay" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.XetNghiem_Hitachi917" Member="XetNghiem_Hitachi917s">
-    <Type Name="XetNghiem_Hitachi917">
-      <Column Name="XetNghiemGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+  <Table Name="dbo.ChiTietKetQuaXetNghiem_Hitachi917" Member="ChiTietKetQuaXetNghiem_Hitachi917s">
+    <Type Name="ChiTietKetQuaXetNghiem_Hitachi917">
+      <Column Name="ChiTietKQXN_Hitachi917GUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="KQXN_Hitachi917GUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="TestNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TenXetNghiem" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="XetNghiem_Hitachi917_ChiTietXetNghiem_Hitachi917" Member="ChiTietXetNghiem_Hitachi917s" ThisKey="XetNghiemGUID" OtherKey="XetNghiemGUID" Type="ChiTietXetNghiem_Hitachi917" />
+      <Column Name="TestResult" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
+      <Column Name="AlarmCode" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="TinhTrang" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="KetQuaXetNghiem_Hitachi917_ChiTietKetQuaXetNghiem_Hitachi917" Member="KetQuaXetNghiem_Hitachi917" ThisKey="KQXN_Hitachi917GUID" OtherKey="KQXN_Hitachi917GUID" Type="KetQuaXetNghiem_Hitachi917" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ChiTietXetNghiem_Hitachi917" Member="ChiTietXetNghiem_Hitachi917s">
@@ -2491,6 +2501,7 @@
       <Column Name="FromValue" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="ToValue" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="DoiTuong" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="DonVi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="XetNghiem_Hitachi917_ChiTietXetNghiem_Hitachi917" Member="XetNghiem_Hitachi917" ThisKey="XetNghiemGUID" OtherKey="XetNghiemGUID" Type="XetNghiem_Hitachi917" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -2511,22 +2522,14 @@
       <Association Name="KetQuaXetNghiem_Hitachi917_ChiTietKetQuaXetNghiem_Hitachi917" Member="ChiTietKetQuaXetNghiem_Hitachi917s" ThisKey="KQXN_Hitachi917GUID" OtherKey="KQXN_Hitachi917GUID" Type="ChiTietKetQuaXetNghiem_Hitachi917" />
     </Type>
   </Table>
-  <Table Name="dbo.ChiTietKetQuaXetNghiem_Hitachi917" Member="ChiTietKetQuaXetNghiem_Hitachi917s">
-    <Type Name="ChiTietKetQuaXetNghiem_Hitachi917">
-      <Column Name="ChiTietKQXN_Hitachi917GUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="KQXN_Hitachi917GUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.XetNghiem_Hitachi917" Member="XetNghiem_Hitachi917s">
+    <Type Name="XetNghiem_Hitachi917">
+      <Column Name="XetNghiemGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TestNum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="TestResult" Type="System.String" DbType="NVarChar(6)" CanBeNull="true" />
-      <Column Name="AlarmCode" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
-      <Column Name="TinhTrang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="KetQuaXetNghiem_Hitachi917_ChiTietKetQuaXetNghiem_Hitachi917" Member="KetQuaXetNghiem_Hitachi917" ThisKey="KQXN_Hitachi917GUID" OtherKey="KQXN_Hitachi917GUID" Type="KetQuaXetNghiem_Hitachi917" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Column Name="TenXetNghiem" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Fullname" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="XetNghiem_Hitachi917_ChiTietXetNghiem_Hitachi917" Member="ChiTietXetNghiem_Hitachi917s" ThisKey="XetNghiemGUID" OtherKey="XetNghiemGUID" Type="ChiTietXetNghiem_Hitachi917" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

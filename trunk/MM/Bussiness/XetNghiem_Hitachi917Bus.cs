@@ -66,7 +66,7 @@ namespace MM.Bussiness
                         foreach (Result_Hitachi917 r in testResult.Results)
                         {
                             int testNum = r.TestNum;
-                            string tinhTrang = string.Empty;
+                            byte tinhTrang = 0;
 
                             //XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == testNum);
                             //if (xn != null)
