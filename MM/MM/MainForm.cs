@@ -1832,5 +1832,72 @@ namespace MM
             }
         }
         #endregion
+
+        #region COM
+        private string _lastResult = string.Empty;
+        private List<TestResult_Hitachi917> ParseTestResult_Hitachi917(string result)
+        {
+            result = "217:n1    1    1  11DINH ALCAM      3 0319121056XN      9  3  62.2  10   4.8  13  75.7  16  18.2  17   4.1  18  25.8  19  18.0  34   2.9  36   5.2 A1\r218:n1    2    1  21LOC ACE         3 0319121058XN      6 10   6.1  16  27.2  17   5.2  18  18.6  19  17.8  21   1.3 34\r";
+
+            while (result[0] == '\x02')
+            {
+                result = result.Substring(1, result.Length - 1);
+            }
+
+            result = '\x02' + result;
+
+            string[] strArr = result.Split('\r');
+
+            List<TestResult_Hitachi917> testResults = new List<TestResult_Hitachi917>();
+            if (strArr != null && strArr.Length > 0)
+            {
+                strArr[0] = string.Format("{0}{1}", _lastResult, strArr[0]);
+                _lastResult = strArr[strArr.Length - 1];
+
+                for (int i = 0; i < strArr.Length - 1; i++)
+                {
+                    result = strArr[i];
+                    int istart = result.IndexOf('\x02');
+                    int iEnd = result.IndexOf('\x03');
+                    if (istart != 0) continue;
+                    if (istart < 0 || iEnd < 0) continue;
+
+                    TestResult_Hitachi917 testResult = new TestResult_Hitachi917();
+                    testResult.STX = result[0];
+                    testResult.Receiver = result[1];
+                    testResult.Sender = result[2];
+                    testResult.PakageNum = result[3];
+                    testResult.Frame = result[4];
+                    testResult.FunctionCode = result[5];
+                    testResult.SampleClass = result[6];
+                    testResult.SampleNum = result.Substring(7, 5);
+                    testResult.DiskNum = result.Substring(12, 5);
+                    testResult.PositionNum = result.Substring(17, 3);
+                    testResult.SampleCup = result.Substring(20, 1);
+                    testResult.IDNum = result.Substring(21, 13);
+                    testResult.Age = result.Substring(34, 3);
+                    testResult.AgeUnit = result.Substring(37, 1);
+                    testResult.Sex = result.Substring(38, 1);
+                    testResult.CollectionDate = result.Substring(39, 6);
+                    testResult.CollectionTime = result.Substring(45, 4);
+                    testResult.OperatorID = result.Substring(49, 6);
+                    int resultCount = Convert.ToInt32(result.Substring(55, 3));
+
+                    for (int j = 0; j < resultCount; j++)
+                    {
+                        Result_Hitachi917 r = new Result_Hitachi917();
+                        r.TestNum = Convert.ToInt32(result.Substring((58 + j * 10), 3));
+                        r.Result = result.Substring(61 + j * 10, 6);
+                        r.AlarmCode = result.Substring(67 + j * 10, 1);
+                        testResult.Results.Add(r);
+                    }
+
+                    testResults.Add(testResult);
+                }
+            }
+
+            return testResults;
+        }
+        #endregion
     }
 }

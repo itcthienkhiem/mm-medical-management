@@ -204,6 +204,15 @@ namespace MM.Databasae
     partial void InsertNhatKyLienHeCongTy(NhatKyLienHeCongTy instance);
     partial void UpdateNhatKyLienHeCongTy(NhatKyLienHeCongTy instance);
     partial void DeleteNhatKyLienHeCongTy(NhatKyLienHeCongTy instance);
+    partial void InsertXetNghiem_Hitachi917(XetNghiem_Hitachi917 instance);
+    partial void UpdateXetNghiem_Hitachi917(XetNghiem_Hitachi917 instance);
+    partial void DeleteXetNghiem_Hitachi917(XetNghiem_Hitachi917 instance);
+    partial void InsertChiTietXetNghiem_Hitachi917(ChiTietXetNghiem_Hitachi917 instance);
+    partial void UpdateChiTietXetNghiem_Hitachi917(ChiTietXetNghiem_Hitachi917 instance);
+    partial void DeleteChiTietXetNghiem_Hitachi917(ChiTietXetNghiem_Hitachi917 instance);
+    partial void InsertKetQuaXetNghiem_Hitachi917(KetQuaXetNghiem_Hitachi917 instance);
+    partial void UpdateKetQuaXetNghiem_Hitachi917(KetQuaXetNghiem_Hitachi917 instance);
+    partial void DeleteKetQuaXetNghiem_Hitachi917(KetQuaXetNghiem_Hitachi917 instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -1033,6 +1042,30 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<NhatKyLienHeCongTyView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<XetNghiem_Hitachi917> XetNghiem_Hitachi917s
+		{
+			get
+			{
+				return this.GetTable<XetNghiem_Hitachi917>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ChiTietXetNghiem_Hitachi917> ChiTietXetNghiem_Hitachi917s
+		{
+			get
+			{
+				return this.GetTable<ChiTietXetNghiem_Hitachi917>();
+			}
+		}
+		
+		public System.Data.Linq.Table<KetQuaXetNghiem_Hitachi917> KetQuaXetNghiem_Hitachi917s
+		{
+			get
+			{
+				return this.GetTable<KetQuaXetNghiem_Hitachi917>();
 			}
 		}
 		
@@ -48415,6 +48448,765 @@ namespace MM.Databasae
 				{
 					this._SoNgay = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.XetNghiem_Hitachi917")]
+	public partial class XetNghiem_Hitachi917 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _XetNghiemGUID;
+		
+		private int _TestNum;
+		
+		private string _TenXetNghiem;
+		
+		private EntitySet<ChiTietXetNghiem_Hitachi917> _ChiTietXetNghiem_Hitachi917s;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnXetNghiemGUIDChanging(System.Guid value);
+    partial void OnXetNghiemGUIDChanged();
+    partial void OnTestNumChanging(int value);
+    partial void OnTestNumChanged();
+    partial void OnTenXetNghiemChanging(string value);
+    partial void OnTenXetNghiemChanged();
+    #endregion
+		
+		public XetNghiem_Hitachi917()
+		{
+			this._ChiTietXetNghiem_Hitachi917s = new EntitySet<ChiTietXetNghiem_Hitachi917>(new Action<ChiTietXetNghiem_Hitachi917>(this.attach_ChiTietXetNghiem_Hitachi917s), new Action<ChiTietXetNghiem_Hitachi917>(this.detach_ChiTietXetNghiem_Hitachi917s));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XetNghiemGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid XetNghiemGUID
+		{
+			get
+			{
+				return this._XetNghiemGUID;
+			}
+			set
+			{
+				if ((this._XetNghiemGUID != value))
+				{
+					this.OnXetNghiemGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._XetNghiemGUID = value;
+					this.SendPropertyChanged("XetNghiemGUID");
+					this.OnXetNghiemGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestNum", DbType="Int NOT NULL")]
+		public int TestNum
+		{
+			get
+			{
+				return this._TestNum;
+			}
+			set
+			{
+				if ((this._TestNum != value))
+				{
+					this.OnTestNumChanging(value);
+					this.SendPropertyChanging();
+					this._TestNum = value;
+					this.SendPropertyChanged("TestNum");
+					this.OnTestNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenXetNghiem", DbType="NVarChar(255)")]
+		public string TenXetNghiem
+		{
+			get
+			{
+				return this._TenXetNghiem;
+			}
+			set
+			{
+				if ((this._TenXetNghiem != value))
+				{
+					this.OnTenXetNghiemChanging(value);
+					this.SendPropertyChanging();
+					this._TenXetNghiem = value;
+					this.SendPropertyChanged("TenXetNghiem");
+					this.OnTenXetNghiemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="XetNghiem_Hitachi917_ChiTietXetNghiem_Hitachi917", Storage="_ChiTietXetNghiem_Hitachi917s", ThisKey="XetNghiemGUID", OtherKey="XetNghiemGUID")]
+		public EntitySet<ChiTietXetNghiem_Hitachi917> ChiTietXetNghiem_Hitachi917s
+		{
+			get
+			{
+				return this._ChiTietXetNghiem_Hitachi917s;
+			}
+			set
+			{
+				this._ChiTietXetNghiem_Hitachi917s.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ChiTietXetNghiem_Hitachi917s(ChiTietXetNghiem_Hitachi917 entity)
+		{
+			this.SendPropertyChanging();
+			entity.XetNghiem_Hitachi917 = this;
+		}
+		
+		private void detach_ChiTietXetNghiem_Hitachi917s(ChiTietXetNghiem_Hitachi917 entity)
+		{
+			this.SendPropertyChanging();
+			entity.XetNghiem_Hitachi917 = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietXetNghiem_Hitachi917")]
+	public partial class ChiTietXetNghiem_Hitachi917 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ChiTietXetNghiemGUID;
+		
+		private System.Guid _XetNghiemGUID;
+		
+		private System.Nullable<double> _FromValue;
+		
+		private System.Nullable<double> _ToValue;
+		
+		private byte _DoiTuong;
+		
+		private EntityRef<XetNghiem_Hitachi917> _XetNghiem_Hitachi917;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnChiTietXetNghiemGUIDChanging(System.Guid value);
+    partial void OnChiTietXetNghiemGUIDChanged();
+    partial void OnXetNghiemGUIDChanging(System.Guid value);
+    partial void OnXetNghiemGUIDChanged();
+    partial void OnFromValueChanging(System.Nullable<double> value);
+    partial void OnFromValueChanged();
+    partial void OnToValueChanging(System.Nullable<double> value);
+    partial void OnToValueChanged();
+    partial void OnDoiTuongChanging(byte value);
+    partial void OnDoiTuongChanged();
+    #endregion
+		
+		public ChiTietXetNghiem_Hitachi917()
+		{
+			this._XetNghiem_Hitachi917 = default(EntityRef<XetNghiem_Hitachi917>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiTietXetNghiemGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ChiTietXetNghiemGUID
+		{
+			get
+			{
+				return this._ChiTietXetNghiemGUID;
+			}
+			set
+			{
+				if ((this._ChiTietXetNghiemGUID != value))
+				{
+					this.OnChiTietXetNghiemGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiTietXetNghiemGUID = value;
+					this.SendPropertyChanged("ChiTietXetNghiemGUID");
+					this.OnChiTietXetNghiemGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_XetNghiemGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid XetNghiemGUID
+		{
+			get
+			{
+				return this._XetNghiemGUID;
+			}
+			set
+			{
+				if ((this._XetNghiemGUID != value))
+				{
+					if (this._XetNghiem_Hitachi917.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnXetNghiemGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._XetNghiemGUID = value;
+					this.SendPropertyChanged("XetNghiemGUID");
+					this.OnXetNghiemGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromValue", DbType="Float")]
+		public System.Nullable<double> FromValue
+		{
+			get
+			{
+				return this._FromValue;
+			}
+			set
+			{
+				if ((this._FromValue != value))
+				{
+					this.OnFromValueChanging(value);
+					this.SendPropertyChanging();
+					this._FromValue = value;
+					this.SendPropertyChanged("FromValue");
+					this.OnFromValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToValue", DbType="Float")]
+		public System.Nullable<double> ToValue
+		{
+			get
+			{
+				return this._ToValue;
+			}
+			set
+			{
+				if ((this._ToValue != value))
+				{
+					this.OnToValueChanging(value);
+					this.SendPropertyChanging();
+					this._ToValue = value;
+					this.SendPropertyChanged("ToValue");
+					this.OnToValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoiTuong", DbType="TinyInt NOT NULL")]
+		public byte DoiTuong
+		{
+			get
+			{
+				return this._DoiTuong;
+			}
+			set
+			{
+				if ((this._DoiTuong != value))
+				{
+					this.OnDoiTuongChanging(value);
+					this.SendPropertyChanging();
+					this._DoiTuong = value;
+					this.SendPropertyChanged("DoiTuong");
+					this.OnDoiTuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="XetNghiem_Hitachi917_ChiTietXetNghiem_Hitachi917", Storage="_XetNghiem_Hitachi917", ThisKey="XetNghiemGUID", OtherKey="XetNghiemGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public XetNghiem_Hitachi917 XetNghiem_Hitachi917
+		{
+			get
+			{
+				return this._XetNghiem_Hitachi917.Entity;
+			}
+			set
+			{
+				XetNghiem_Hitachi917 previousValue = this._XetNghiem_Hitachi917.Entity;
+				if (((previousValue != value) 
+							|| (this._XetNghiem_Hitachi917.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._XetNghiem_Hitachi917.Entity = null;
+						previousValue.ChiTietXetNghiem_Hitachi917s.Remove(this);
+					}
+					this._XetNghiem_Hitachi917.Entity = value;
+					if ((value != null))
+					{
+						value.ChiTietXetNghiem_Hitachi917s.Add(this);
+						this._XetNghiemGUID = value.XetNghiemGUID;
+					}
+					else
+					{
+						this._XetNghiemGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("XetNghiem_Hitachi917");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.KetQuaXetNghiem_Hitachi917")]
+	public partial class KetQuaXetNghiem_Hitachi917 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _KQXN_Hitachi917GUID;
+		
+		private string _IDNum;
+		
+		private System.Nullable<System.Guid> _PatientGUID;
+		
+		private System.DateTime _NgayXN;
+		
+		private string _OperationID;
+		
+		private int _TestNum;
+		
+		private string _TestResult;
+		
+		private string _AlarmCode;
+		
+		private string _TrangThai;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnKQXN_Hitachi917GUIDChanging(System.Guid value);
+    partial void OnKQXN_Hitachi917GUIDChanged();
+    partial void OnIDNumChanging(string value);
+    partial void OnIDNumChanged();
+    partial void OnPatientGUIDChanging(System.Nullable<System.Guid> value);
+    partial void OnPatientGUIDChanged();
+    partial void OnNgayXNChanging(System.DateTime value);
+    partial void OnNgayXNChanged();
+    partial void OnOperationIDChanging(string value);
+    partial void OnOperationIDChanged();
+    partial void OnTestNumChanging(int value);
+    partial void OnTestNumChanged();
+    partial void OnTestResultChanging(string value);
+    partial void OnTestResultChanged();
+    partial void OnAlarmCodeChanging(string value);
+    partial void OnAlarmCodeChanged();
+    partial void OnTrangThaiChanging(string value);
+    partial void OnTrangThaiChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public KetQuaXetNghiem_Hitachi917()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQXN_Hitachi917GUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid KQXN_Hitachi917GUID
+		{
+			get
+			{
+				return this._KQXN_Hitachi917GUID;
+			}
+			set
+			{
+				if ((this._KQXN_Hitachi917GUID != value))
+				{
+					this.OnKQXN_Hitachi917GUIDChanging(value);
+					this.SendPropertyChanging();
+					this._KQXN_Hitachi917GUID = value;
+					this.SendPropertyChanged("KQXN_Hitachi917GUID");
+					this.OnKQXN_Hitachi917GUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IDNum", DbType="NVarChar(13)")]
+		public string IDNum
+		{
+			get
+			{
+				return this._IDNum;
+			}
+			set
+			{
+				if ((this._IDNum != value))
+				{
+					this.OnIDNumChanging(value);
+					this.SendPropertyChanging();
+					this._IDNum = value;
+					this.SendPropertyChanged("IDNum");
+					this.OnIDNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> PatientGUID
+		{
+			get
+			{
+				return this._PatientGUID;
+			}
+			set
+			{
+				if ((this._PatientGUID != value))
+				{
+					this.OnPatientGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientGUID = value;
+					this.SendPropertyChanged("PatientGUID");
+					this.OnPatientGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayXN", DbType="DateTime NOT NULL")]
+		public System.DateTime NgayXN
+		{
+			get
+			{
+				return this._NgayXN;
+			}
+			set
+			{
+				if ((this._NgayXN != value))
+				{
+					this.OnNgayXNChanging(value);
+					this.SendPropertyChanging();
+					this._NgayXN = value;
+					this.SendPropertyChanged("NgayXN");
+					this.OnNgayXNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OperationID", DbType="NVarChar(6)")]
+		public string OperationID
+		{
+			get
+			{
+				return this._OperationID;
+			}
+			set
+			{
+				if ((this._OperationID != value))
+				{
+					this.OnOperationIDChanging(value);
+					this.SendPropertyChanging();
+					this._OperationID = value;
+					this.SendPropertyChanged("OperationID");
+					this.OnOperationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestNum", DbType="Int NOT NULL")]
+		public int TestNum
+		{
+			get
+			{
+				return this._TestNum;
+			}
+			set
+			{
+				if ((this._TestNum != value))
+				{
+					this.OnTestNumChanging(value);
+					this.SendPropertyChanging();
+					this._TestNum = value;
+					this.SendPropertyChanged("TestNum");
+					this.OnTestNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestResult", DbType="NVarChar(6)")]
+		public string TestResult
+		{
+			get
+			{
+				return this._TestResult;
+			}
+			set
+			{
+				if ((this._TestResult != value))
+				{
+					this.OnTestResultChanging(value);
+					this.SendPropertyChanging();
+					this._TestResult = value;
+					this.SendPropertyChanged("TestResult");
+					this.OnTestResultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AlarmCode", DbType="NVarChar(1)")]
+		public string AlarmCode
+		{
+			get
+			{
+				return this._AlarmCode;
+			}
+			set
+			{
+				if ((this._AlarmCode != value))
+				{
+					this.OnAlarmCodeChanging(value);
+					this.SendPropertyChanging();
+					this._AlarmCode = value;
+					this.SendPropertyChanged("AlarmCode");
+					this.OnAlarmCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrangThai", DbType="NVarChar(500)")]
+		public string TrangThai
+		{
+			get
+			{
+				return this._TrangThai;
+			}
+			set
+			{
+				if ((this._TrangThai != value))
+				{
+					this.OnTrangThaiChanging(value);
+					this.SendPropertyChanging();
+					this._TrangThai = value;
+					this.SendPropertyChanged("TrangThai");
+					this.OnTrangThaiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
