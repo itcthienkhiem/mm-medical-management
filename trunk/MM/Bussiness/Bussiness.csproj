@@ -121,6 +121,7 @@
     <Compile Include="SymptomBus.cs" />
     <Compile Include="ThuocBus.cs" />
     <Compile Include="TrackingBus.cs" />
+    <Compile Include="XetNghiem_Hitachi917Bus.cs" />
     <Compile Include="YKienKhachHangBus.cs" />
   </ItemGroup>
   <ItemGroup>

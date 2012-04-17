@@ -213,4 +213,13 @@ namespace MM.Common
         Monitor = 0,
         BloodTaking
     };
+
+    public enum DoiTuong : byte
+    {
+        Chung = 0,
+        Nam,
+        Nu,
+        NguoiLon,
+        TreEm
+    };
 }
