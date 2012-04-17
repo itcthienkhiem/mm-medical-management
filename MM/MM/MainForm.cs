@@ -32,6 +32,7 @@ namespace MM
             _uCompanyList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uContractList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uPhongChoList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            ParseTestResult_Hitachi917(string.Empty);
         }
         #endregion
 
@@ -1895,6 +1896,8 @@ namespace MM
                     testResults.Add(testResult);
                 }
             }
+
+            XetNghiem_Hitachi917Bus.InsertKQXN(testResults);
 
             return testResults;
         }
