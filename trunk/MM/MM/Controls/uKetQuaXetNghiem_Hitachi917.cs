@@ -40,6 +40,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnDelete.Enabled = AllowDelete;
+            btnEdit.Enabled = AllowEdit;
         }
 
         public void DisplayAsThread()
@@ -87,6 +88,76 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.GetKetQuaXetNghiemList"));
             }
         }
+
+        private void OnCapNhatBenhNhan()
+        {
+            if (dgXetNghiem.SelectedRows == null || dgXetNghiem.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 xét nghiệm để cập nhật bệnh nhân.", IconType.Information);
+                return;
+            }
+
+            DataRow row = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            if (row == null) return;
+
+            dlgSelectPatient dlg = new dlgSelectPatient();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                DataRow patientRow = dlg.PatientRow;
+                if (patientRow != null)
+                {
+                    KetQuaXetNghiem_Hitachi917 kqxn = new KetQuaXetNghiem_Hitachi917();
+                    kqxn.KQXN_Hitachi917GUID = Guid.Parse(row["KQXN_Hitachi917GUID"].ToString());
+                    kqxn.PatientGUID = Guid.Parse(patientRow["PatientGUID"].ToString());
+                    Result result = XetNghiem_Hitachi917Bus.UpdatePatient(kqxn);
+                    if (result.IsOK)
+                    {
+                        row["PatientGUID"] = patientRow["PatientGUID"];
+                        row["FileNum"] = patientRow["FileNum"];
+                        row["FullName"] = patientRow["FullName"];
+                        row["DobStr"] = patientRow["DobStr"];
+                        row["GenderAsStr"] = patientRow["GenderAsStr"];
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_Hitachi917Bus.UpdatePatient"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.UpdatePatient"));
+                    }
+                }
+            }
+        }
+
+        private void OnDeleteKQXN()
+        {
+            List<string> deletedKQXNList = new List<string>();
+            DataTable dt = dgXetNghiem.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedKQXNList.Add(row["KQXN_Hitachi917GUID"].ToString());
+                }
+            }
+
+            if (deletedKQXNList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những xét nghiệm bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = XetNghiem_Hitachi917Bus.DeleteXetNghiem(deletedKQXNList);
+                    if (result.IsOK)
+                    {
+                        DisplayAsThread();
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_Hitachi917Bus.DeleteXetNghiem"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.DeleteXetNghiem"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những xét nghiệm cần xóa.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -104,18 +175,34 @@ namespace MM.Controls
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            OnCapNhatBenhNhan();
+        }
 
+        private void dgXetNghiem_DoubleClick(object sender, EventArgs e)
+        {
+            if (!AllowEdit) return;
+            OnCapNhatBenhNhan();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            OnDeleteKQXN();
         }
 
         private void dtpkTuNgay_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
                 DisplayAsThread();
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgXetNghiem.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
         }
         #endregion
 
@@ -138,5 +225,9 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
+
+        
     }
 }

@@ -336,5 +336,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        private void dgInvoice_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

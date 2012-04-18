@@ -267,8 +267,9 @@ namespace MM.Bussiness
 
                         if (kqxn != null)
                         {
-                            kqxn.CreatedDate = DateTime.Now;
+                            kqxn.DeletedDate = DateTime.Now;
                             kqxn.DeletedBy = Guid.Parse(Global.UserGUID);
+                            kqxn.Status = (byte)Status.Deactived;
                             
                             string tenBenhNhan = string.Empty;
                             string fileNum = string.Empty;
