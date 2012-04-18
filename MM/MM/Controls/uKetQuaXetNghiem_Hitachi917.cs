@@ -16,7 +16,10 @@ namespace MM.Controls
     public partial class uKetQuaXetNghiem_Hitachi917 : uBase
     {
         #region Members
-
+        private bool _isFromDateToDate = true;
+        private string _tenBenhNhan = string.Empty;
+        private DateTime _fromDate = DateTime.Now;
+        private DateTime _toDate = DateTime.Now;
         #endregion
 
         #region Constructor
@@ -31,6 +34,11 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUI()
+        {
+            btnDelete.Enabled = AllowDelete;
+        }
+
         public void DisplayAsThread()
         {
 
@@ -38,7 +46,35 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
+            dtpkDenNgay.Enabled = raTuNgayToiNgay.Checked;
+            txtTenBenhNhan.ReadOnly = raTuNgayToiNgay.Checked;
+        }
 
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpkTuNgay_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                DisplayAsThread();
+        }
         #endregion
+
+        
     }
 }
