@@ -1173,7 +1173,6 @@ namespace MM
             dlgPortConfig dlg = new dlgPortConfig();
             dlg.ShowDialog(this);
 
-            //CloseAllCOMPort();
             OpenCOMPort();
         }
 
