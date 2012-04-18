@@ -89,6 +89,18 @@ namespace MM.Controls
             }
         }
 
+        private void OnDisplayChiTietKetQuaXetNghiem(string ketQuaXetNghiemGUID)
+        {
+            Result result = XetNghiem_Hitachi917Bus.GetChiTietKetQuaXetNghiem(ketQuaXetNghiemGUID);
+            if (result.IsOK)
+                dgChiTietKQXN.DataSource = result.QueryResult;
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_Hitachi917Bus.GetChiTietKetQuaXetNghiem"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.GetChiTietKetQuaXetNghiem"));
+            }
+        }
+
         private void OnCapNhatBenhNhan()
         {
             if (dgXetNghiem.SelectedRows == null || dgXetNghiem.SelectedRows.Count <= 0)
@@ -158,6 +170,8 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những xét nghiệm cần xóa.", IconType.Information);
         }
+
+        
         #endregion
 
         #region Window Event Handlers
@@ -204,6 +218,34 @@ namespace MM.Controls
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void chkCTKQXNChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgChiTietKQXN.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
+
+        private void dgXetNghiem_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgXetNghiem.SelectedRows == null || dgXetNghiem.SelectedRows.Count <= 0)
+            {
+                dgChiTietKQXN.DataSource = null;
+                return;
+            }
+
+            DataRow row = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            if (row == null)
+            {
+                dgChiTietKQXN.DataSource = null;
+                return;
+            }
+
+            OnDisplayChiTietKetQuaXetNghiem(row["KQXN_Hitachi917GUID"].ToString());
+        }
         #endregion
 
         #region Working Thread
@@ -225,8 +267,6 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
 
         
     }

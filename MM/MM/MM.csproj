@@ -1480,6 +1480,7 @@
     <None Include="Properties\DataSources\MM.Databasae.CanDo.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiDinhView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietChiDinhView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiTietKetQuaXetNghiem_Hitachi917View.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuocView.datasource" />
