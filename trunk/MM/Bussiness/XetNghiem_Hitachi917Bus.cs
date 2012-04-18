@@ -12,6 +12,43 @@ namespace MM.Bussiness
 {
     public class XetNghiem_Hitachi917Bus : BusBase
     {
+        public static Result GetKetQuaXetNghiemList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+                if (isFromDateToDate)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} ORDER BY NgayXN DESC",
+                           fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived);
+                }
+                else
+                {
+                    if (tenBenhNhan.Trim() == string.Empty)
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WHERE Status={0} ORDER BY NgayXN DESC",
+                            (byte)Status.Actived, tenBenhNhan);
+                    else
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY NgayXN DESC",
+                            (byte)Status.Actived, tenBenhNhan);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
 
 
         public static Result InsertKQXN(List<TestResult_Hitachi917> testResults)
