@@ -23,7 +23,7 @@ namespace MM
     {
         #region Members
         private bool _flag = true;
-        private string _lastResult = string.Empty;
+        //private string _lastResult = string.Empty;
         private List<SerialPort> _ports = new List<SerialPort>();
         private Hashtable _htLastResult = new Hashtable();
         #endregion
@@ -38,6 +38,7 @@ namespace MM
             _uPhongChoList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
 
             OpenCOMPort();
+            ParseTestResult_Hitachi917(string.Empty, "COM1");
         }
         #endregion
 
@@ -1172,7 +1173,7 @@ namespace MM
             dlgPortConfig dlg = new dlgPortConfig();
             dlg.ShowDialog(this);
 
-            CloseAllCOMPort();
+            //CloseAllCOMPort();
             OpenCOMPort();
         }
 
@@ -1887,39 +1888,80 @@ namespace MM
         {
             foreach (SerialPort p in _ports)
             {
+                p.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(port_DataReceived);
+                p.ErrorReceived -= new System.IO.Ports.SerialErrorReceivedEventHandler(port_ErrorReceived);
                 p.Close();
             }
+        }
+
+        private SerialPort GetPort(string portName)
+        {
+            foreach (SerialPort p in _ports)
+            {
+                if (p.PortName == portName)
+                    return p;
+            }
+
+            return null;
         }
 
         private void OpenCOMPort()
         {
             if (File.Exists(Global.PortConfigPath))
             {
+                List<SerialPort> removePorts = new List<SerialPort>();
+                foreach (SerialPort p in _ports)
+                {
+                    if (!Global.PortConfigCollection.CheckPortNameTonTai(p.PortName, string.Empty))
+                    {
+                        try
+                        {
+                            p.DataReceived -= new System.IO.Ports.SerialDataReceivedEventHandler(port_DataReceived);
+                            p.ErrorReceived -= new System.IO.Ports.SerialErrorReceivedEventHandler(port_ErrorReceived);
+                            p.Close();
+                            removePorts.Add(p);
+                        }
+                        catch (Exception ex)
+                        {
+                            Utility.WriteToTraceLog(ex.Message);                          
+                        }
+                    }
+                }
+
+                foreach (SerialPort p in removePorts)
+                {
+                    _ports.Remove(p);
+                }
+
                 Global.PortConfigCollection.Deserialize(Global.PortConfigPath);
                 foreach (PortConfig p in Global.PortConfigCollection.PortConfigList)
                 {
                     try
                     {
-                        SerialPort port = new SerialPort();
-                        port.BaudRate = 9600;
-                        port.DataBits = 8;
-                        port.DiscardNull = false;
-                        port.DtrEnable = true;
-                        port.Handshake = Handshake.XOnXOff;
-                        port.Parity = Parity.None;
-                        port.ParityReplace = 63;
-                        port.PortName = p.PortName;
-                        port.ReadBufferSize = 4096;
-                        port.ReadTimeout = -1;
-                        port.ReceivedBytesThreshold = 1;
-                        port.RtsEnable = true;
-                        port.StopBits = StopBits.One;
-                        port.WriteBufferSize = 2048;
-                        port.WriteTimeout = -1;
-                        port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(port_DataReceived);
-                        port.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(port_ErrorReceived);
-                        port.Open();
-                        _ports.Add(port);
+                        SerialPort port = GetPort(p.PortName);
+                        if (port == null)
+                        {
+                            port = new SerialPort();
+                            port.BaudRate = 9600;
+                            port.DataBits = 8;
+                            port.DiscardNull = false;
+                            port.DtrEnable = true;
+                            port.Handshake = Handshake.XOnXOff;
+                            port.Parity = Parity.None;
+                            port.ParityReplace = 63;
+                            port.PortName = p.PortName;
+                            port.ReadBufferSize = 4096;
+                            port.ReadTimeout = -1;
+                            port.ReceivedBytesThreshold = 1;
+                            port.RtsEnable = true;
+                            port.StopBits = StopBits.One;
+                            port.WriteBufferSize = 2048;
+                            port.WriteTimeout = -1;
+                            port.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(port_DataReceived);
+                            port.ErrorReceived += new System.IO.Ports.SerialErrorReceivedEventHandler(port_ErrorReceived);
+                            port.Open();
+                            _ports.Add(port);
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -1939,12 +1981,22 @@ namespace MM
             try
             {
                 SerialPort port = (SerialPort)sender;
+                PortConfig portConfig = Global.PortConfigCollection.GetPortConfigByPortName(port.PortName);
+                if (portConfig == null) return;
+
                 string data = port.ReadExisting();
 
-                List<TestResult_Hitachi917> testResults = ParseTestResult_Hitachi917(data);
-                Result result = XetNghiem_Hitachi917Bus.InsertKQXN(testResults);
-                if (!result.IsOK)
-                    Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.InsertKQXN"));
+                if (portConfig.LoaiMay == LoaiMayXN.Hitachi917)
+                {
+                    List<TestResult_Hitachi917> testResults = ParseTestResult_Hitachi917(data, port.PortName);
+                    Result result = XetNghiem_Hitachi917Bus.InsertKQXN(testResults);
+                    if (!result.IsOK)
+                        Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.InsertKQXN"));
+                }
+                else if (portConfig.LoaiMay == LoaiMayXN.CellDyn3200)
+                {
+
+                }
             }
             catch (Exception ex)
             {
@@ -1952,25 +2004,31 @@ namespace MM
             }
         }
 
-        private List<TestResult_Hitachi917> ParseTestResult_Hitachi917(string result)
+        private List<TestResult_Hitachi917> ParseTestResult_Hitachi917(string result, string portName)
         {
             //result = "217:n1    1    1  11DINH ALCAM      3 0319121056XN      9  3  62.2  10   4.8  13  75.7  16  18.2  17   4.1  18  25.8  19  18.0  34   2.9  36   5.2 A1\r218:n1    2    1  21LOC ACE         3 0319121058XN      6 10   6.1  16  27.2  17   5.2  18  18.6  19  17.8  21   1.3 34\r";
 
-            while (result[0] == '\x02')
-            {
-                result = result.Substring(1, result.Length - 1);
-            }
+            //while (result[0] == '\x02')
+            //{
+            //    result = result.Substring(1, result.Length - 1);
+            //}
 
-            result = '\x02' + result;
+            //result = '\x02' + result;
 
             string[] strArr = result.Split('\r');
 
             List<TestResult_Hitachi917> testResults = new List<TestResult_Hitachi917>();
             if (strArr != null && strArr.Length > 0)
             {
-                strArr[0] = string.Format("{0}{1}", _lastResult, strArr[0]);
-                _lastResult = strArr[strArr.Length - 1];
+                string lastResult = string.Empty;
+                if (_htLastResult.ContainsKey(portName))
+                    lastResult = _htLastResult[portName].ToString();
+                else
+                    _htLastResult.Add(portName, string.Empty);
 
+                strArr[0] = string.Format("{0}{1}", lastResult, strArr[0]);
+                _htLastResult[portName] = strArr[strArr.Length - 1];
+                
                 for (int i = 0; i < strArr.Length - 1; i++)
                 {
                     result = strArr[i];
