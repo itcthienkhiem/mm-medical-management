@@ -23,7 +23,6 @@ namespace MM
     {
         #region Members
         private bool _flag = true;
-        //private string _lastResult = string.Empty;
         private List<SerialPort> _ports = new List<SerialPort>();
         private Hashtable _htLastResult = new Hashtable();
         #endregion
