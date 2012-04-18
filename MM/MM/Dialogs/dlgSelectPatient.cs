@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MM.Common;
+using MM.Bussiness;
+using MM.Databasae;
 
 namespace MM.Dialogs
 {
@@ -23,13 +26,25 @@ namespace MM.Dialogs
             _uSearchPatient.DataSource = dataSource;
             _uSearchPatient.OnOpenPatient += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
         }
+
+        public dlgSelectPatient()
+        {
+            InitializeComponent();
+            OnDisplayBenhNhan();
+            _uSearchPatient.OnOpenPatient += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
+        }
         #endregion
 
         #region Properties
         public DataTable DataSource
         {
             get { return _dataSource; }
-            set { _dataSource = value; }
+            set 
+            {
+                _dataSource = value;
+                if (_dataSource == null)
+                    OnDisplayBenhNhan();
+            }
         }
 
         public DataRow PatientRow
@@ -39,7 +54,21 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
-
+        private void OnDisplayBenhNhan()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = PatientBus.GetPatientList();
+            if (result.IsOK)
+            {
+                _dataSource = result.QueryResult as DataTable;
+                _uSearchPatient.DataSource = _dataSource;
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+            }
+        }
         #endregion
 
         #region Window Event Handlers

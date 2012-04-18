@@ -53,8 +53,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgInvoice = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.hoaDonHopDongViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.soHoaDonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayXuatHoaDonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +65,8 @@
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hoaDonHopDongViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -308,15 +308,8 @@
             this.dgInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgInvoice.Size = new System.Drawing.Size(783, 350);
             this.dgInvoice.TabIndex = 7;
+            this.dgInvoice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvoice_CellContentClick);
             this.dgInvoice.DoubleClick += new System.EventHandler(this.dgInvoice_DoubleClick);
-            // 
-            // hoaDonHopDongViewBindingSource
-            // 
-            this.hoaDonHopDongViewBindingSource.DataSource = typeof(MM.Databasae.HoaDonHopDongView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
             // 
             // colChecked
             // 
@@ -427,6 +420,14 @@
             this.notesDataGridViewTextBoxColumn.Name = "notesDataGridViewTextBoxColumn";
             this.notesDataGridViewTextBoxColumn.ReadOnly = true;
             this.notesDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // hoaDonHopDongViewBindingSource
+            // 
+            this.hoaDonHopDongViewBindingSource.DataSource = typeof(MM.Databasae.HoaDonHopDongView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
             // 
             // uHoaDonHopDongList
             // 
