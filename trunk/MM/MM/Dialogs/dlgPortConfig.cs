@@ -28,7 +28,7 @@ namespace MM.Dialogs
         {
             foreach (PortConfig p in Global.PortConfigCollection.PortConfigList)
             {
-                dgConfig.Rows.Add(p.Id, p.TenMayXetNghiem, p.PortName);
+                dgConfig.Rows.Add(p.Id, p.TenMayXetNghiem, p.LoaiMay.ToString(), p.PortName);
             }
         }
 
@@ -38,7 +38,7 @@ namespace MM.Dialogs
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 Global.PortConfigCollection.Add(dlg.PortConfig);
-                dgConfig.Rows.Add(dlg.PortConfig.Id, dlg.PortConfig.TenMayXetNghiem, dlg.PortConfig.PortName);
+                dgConfig.Rows.Add(dlg.PortConfig.Id, dlg.PortConfig.TenMayXetNghiem, dlg.PortConfig.LoaiMay.ToString(), dlg.PortConfig.PortName);
                 Global.PortConfigCollection.Serialize(Global.PortConfigPath);
             }
         }
@@ -47,7 +47,7 @@ namespace MM.Dialogs
         {
             if (dgConfig.SelectedRows == null || dgConfig.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn 1 cấu hình kết nối đề sửa.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng chọn 1 cấu hình kết nối để sửa.", IconType.Information);
                 return;
             }
 
@@ -59,7 +59,8 @@ namespace MM.Dialogs
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 row.Cells[1].Value = dlg.PortConfig.TenMayXetNghiem;
-                row.Cells[2].Value = dlg.PortConfig.PortName;
+                row.Cells[2].Value = dlg.PortConfig.LoaiMay.ToString();
+                row.Cells[3].Value = dlg.PortConfig.PortName;
                 Global.PortConfigCollection.Serialize(Global.PortConfigPath);
             }
         }
@@ -68,11 +69,11 @@ namespace MM.Dialogs
         {
             if (dgConfig.SelectedRows == null || dgConfig.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn 1 cấu hình kết nối đề xóa.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng chọn 1 cấu hình kết nối để xóa.", IconType.Information);
                 return;
             }
 
-            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa cấu hình kết nối mà bạn đã chọn ?") == DialogResult.Yes)
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa cấu hình kết nối đã chọn ?") == DialogResult.Yes)
             {
                 DataGridViewRow row = dgConfig.SelectedRows[0];
                 string id = row.Cells[0].Value.ToString();

@@ -32,10 +32,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTenMayXetNghiem = new System.Windows.Forms.TextBox();
             this.cboCOM = new System.Windows.Forms.ComboBox();
+            this.txtTenMayXetNghiem = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboLoaiMay = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +46,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(183, 86);
+            this.btnCancel.Location = new System.Drawing.Point(183, 111);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 16;
@@ -56,7 +58,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.check;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(104, 86);
+            this.btnOK.Location = new System.Drawing.Point(104, 111);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 15;
@@ -65,33 +67,28 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboLoaiMay);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cboCOM);
             this.groupBox1.Controls.Add(this.txtTenMayXetNghiem);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(349, 78);
+            this.groupBox1.Size = new System.Drawing.Size(349, 103);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // label1
+            // cboCOM
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tên máy xét nghiệm:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Cổng kết nối:";
+            this.cboCOM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCOM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboCOM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCOM.FormattingEnabled = true;
+            this.cboCOM.Location = new System.Drawing.Point(117, 68);
+            this.cboCOM.Name = "cboCOM";
+            this.cboCOM.Size = new System.Drawing.Size(123, 21);
+            this.cboCOM.TabIndex = 4;
             // 
             // txtTenMayXetNghiem
             // 
@@ -100,16 +97,43 @@
             this.txtTenMayXetNghiem.Size = new System.Drawing.Size(215, 20);
             this.txtTenMayXetNghiem.TabIndex = 2;
             // 
-            // cboCOM
+            // label2
             // 
-            this.cboCOM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboCOM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboCOM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCOM.FormattingEnabled = true;
-            this.cboCOM.Location = new System.Drawing.Point(117, 43);
-            this.cboCOM.Name = "cboCOM";
-            this.cboCOM.Size = new System.Drawing.Size(96, 21);
-            this.cboCOM.TabIndex = 3;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(43, 71);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Cổng kết nối:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(105, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tên máy xét nghiệm:";
+            // 
+            // cboLoaiMay
+            // 
+            this.cboLoaiMay.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboLoaiMay.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboLoaiMay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboLoaiMay.FormattingEnabled = true;
+            this.cboLoaiMay.Location = new System.Drawing.Point(117, 43);
+            this.cboLoaiMay.Name = "cboLoaiMay";
+            this.cboLoaiMay.Size = new System.Drawing.Size(123, 21);
+            this.cboLoaiMay.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(61, 46);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(52, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Loại máy:";
             // 
             // dlgAddPortConfig
             // 
@@ -117,7 +141,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(362, 117);
+            this.ClientSize = new System.Drawing.Size(362, 141);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -144,6 +168,8 @@
         private System.Windows.Forms.TextBox txtTenMayXetNghiem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboLoaiMay;
+        private System.Windows.Forms.Label label3;
 
     }
 }

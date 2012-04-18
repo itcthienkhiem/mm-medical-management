@@ -34,6 +34,7 @@ namespace MM.Dialogs
             InitData();
             this.Text = "Sua cau hinh ket noi";
             txtTenMayXetNghiem.Text = _portConfig.TenMayXetNghiem;
+            cboLoaiMay.SelectedIndex = (int)_portConfig.LoaiMay;
             cboCOM.Text = portConfig.PortName;
         }
         #endregion
@@ -54,20 +55,33 @@ namespace MM.Dialogs
                 if (!Global.PortConfigCollection.CheckPortNameTonTai(portName, id))
                     cboCOM.Items.Add(portName);
             }
+
+            string[] names = Enum.GetNames(typeof(LoaiMayXN));
+            foreach (string name in names)
+            {
+                cboLoaiMay.Items.Add(name);
+            }
         }
 
         private bool CheckInfo()
         {
             if (txtTenMayXetNghiem.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập tên máy xét nghiệm.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng nhập tên máy xét nghiệm.", IconType.Information);
                 txtTenMayXetNghiem.Focus();
+                return false;
+            }
+
+            if (cboLoaiMay.Text == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập loại máy xét nghiệm.", IconType.Information);
+                cboCOM.Focus();
                 return false;
             }
 
             if (cboCOM.Text == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập cổng kết nối.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng nhập cổng kết nối.", IconType.Information);
                 cboCOM.Focus();
                 return false;
             }
@@ -75,7 +89,7 @@ namespace MM.Dialogs
             string id = _isNew ? string.Empty : _portConfig.Id;
             if (Global.PortConfigCollection.CheckTenMayXetNghiemTonTai(txtTenMayXetNghiem.Text, id))
             {
-                MsgBox.Show(this.Text, string.Format("Tên máy xét nghiệm: '{0}' đã tồn tại. Vui lòng nhập tên khác.", txtTenMayXetNghiem.Text), 
+                MsgBox.Show(this.Text, string.Format("Tên máy xét nghiệm: '{0}' đã tồn tại. Vui lòng nhập tên khác.", txtTenMayXetNghiem.Text), 
                     IconType.Information);
                 txtTenMayXetNghiem.Focus();
                 return false;
@@ -93,6 +107,7 @@ namespace MM.Dialogs
             }
 
             _portConfig.TenMayXetNghiem = txtTenMayXetNghiem.Text;
+            _portConfig.LoaiMay = (LoaiMayXN)cboLoaiMay.SelectedIndex;
             _portConfig.PortName = cboCOM.Text;
         }
         #endregion
