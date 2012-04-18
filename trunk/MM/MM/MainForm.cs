@@ -37,7 +37,7 @@ namespace MM
             _uPhongChoList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
 
             OpenCOMPort();
-            ParseTestResult_Hitachi917(string.Empty, "COM1");
+            //ParseTestResult_Hitachi917(string.Empty, "COM1");
         }
         #endregion
 
@@ -1907,6 +1907,8 @@ namespace MM
         {
             if (File.Exists(Global.PortConfigPath))
             {
+                Global.PortConfigCollection.Deserialize(Global.PortConfigPath);
+
                 List<SerialPort> removePorts = new List<SerialPort>();
                 foreach (SerialPort p in _ports)
                 {
@@ -1930,8 +1932,7 @@ namespace MM
                 {
                     _ports.Remove(p);
                 }
-
-                Global.PortConfigCollection.Deserialize(Global.PortConfigPath);
+                
                 foreach (PortConfig p in Global.PortConfigCollection.PortConfigList)
                 {
                     try
