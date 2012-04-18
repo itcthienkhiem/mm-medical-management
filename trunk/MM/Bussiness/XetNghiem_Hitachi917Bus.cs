@@ -50,6 +50,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetChiTietKetQuaXetNghiem(string ketQuaXetNghiemGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietKetQuaXetNghiem_Hitachi917View WHERE KQXN_Hitachi917GUID = '{0}' AND Status = {1} ORDER BY TestNum",
+                           ketQuaXetNghiemGUID, (byte)Status.Actived);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
 
         public static Result InsertKQXN(List<TestResult_Hitachi917> testResults)
         {
