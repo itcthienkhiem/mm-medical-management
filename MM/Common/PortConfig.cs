@@ -13,6 +13,7 @@ namespace MM.Common
         private string _id = string.Empty;
         private string _tenMayXetNghiem = string.Empty;
         private string _portName = string.Empty;
+        private LoaiMayXN _loaiMay = LoaiMayXN.Hitachi917;
         #endregion
 
         #region Contructor
@@ -42,6 +43,13 @@ namespace MM.Common
         {
             get { return _portName; }
             set { _portName = value; }
+        }
+
+        [XmlElement("LoaiMay", typeof(LoaiMayXN))]
+        public LoaiMayXN LoaiMay
+        {
+            get { return _loaiMay; }
+            set { _loaiMay = value; }
         }
         #endregion
     }

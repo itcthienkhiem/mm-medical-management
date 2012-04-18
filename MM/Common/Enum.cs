@@ -222,4 +222,10 @@ namespace MM.Common
         NguoiLon,
         TreEm
     };
+
+    public enum LoaiMayXN : byte
+    {
+        Hitachi917,
+        CellDyn3200
+    };
 }
