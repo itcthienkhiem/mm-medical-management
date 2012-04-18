@@ -1179,7 +1179,7 @@ namespace MM
 
         private void OnXetNghiem_Hitachi917()
         {
-            this.Text = string.Format("{0} - Xet nghiem Hitachi917.", Application.ProductName);
+            this.Text = string.Format("{0} - Xet nghiem Hitachi917", Application.ProductName);
             ViewControl(_uKetQuaXetNghiem_Hitachi917);
             _uKetQuaXetNghiem_Hitachi917.DisplayAsThread();
         }
