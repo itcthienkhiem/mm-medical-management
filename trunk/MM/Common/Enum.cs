@@ -217,6 +217,7 @@ namespace MM.Common
     public enum DoiTuong : byte
     {
         Chung = 0,
+        Chung_Sau2h,
         Nam,
         Nu,
         NguoiLon,
