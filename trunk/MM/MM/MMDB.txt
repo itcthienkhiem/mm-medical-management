@@ -180,6 +180,9 @@ spDichVuHopDong
 - Create table: XetNghiem_Hitachi917, ChiTietXetNghiem_Hitachi917, KetQuaXetNghiem_Hitachi917, ChiTietKetQuaXetNghiem_Hitachi917
 - Insert data: Function: (XetNghiem)
 - Create view: XetNghiem_Hitachi917View, ChiTietKetQuaXetNghiem_Hitachi917View
+2012-04-22
+- Update table: KetQuaXetNghiem_Hitachi917
+- Update view: KetQuaXetNghiem_Hitachi917View 
 
 1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo

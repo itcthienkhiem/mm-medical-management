@@ -56,10 +56,173 @@ namespace MM.Bussiness
 
             try
             {
-                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietKetQuaXetNghiem_Hitachi917View WHERE KQXN_Hitachi917GUID = '{0}' AND Status = {1} ORDER BY TestNum",
+                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_Hitachi917View WHERE KQXN_Hitachi917GUID = '{0}' AND Status = {1} ORDER BY TestNum",
                            ketQuaXetNghiemGUID, (byte)Status.Actived);
 
-                return ExcuteQuery(query);
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+
+                MMOverride db = new MMOverride();
+                DataTable dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    int testNum = Convert.ToInt32(row["TestNum"]);
+                    
+                    XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == testNum);
+                    if (xn == null) continue;
+                    List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
+                    if (ctxns.Count <= 0) continue;
+
+                    double testResult = Convert.ToDouble(row["TestResult"].ToString().Trim());
+                    ChiTietXetNghiem_Hitachi917 ctxn = null;
+                    if (testNum == 17)
+                    {
+                        KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
+                        if (kqxn == null) continue;        
+                        if (kqxn.NgayXN.Hour < 14)
+                        {
+                            ctxn = ctxns[0];
+                            if (ctxns[0].DoiTuong != (byte)DoiTuong.Chung) ctxn = ctxns[1];
+
+                            
+                        }
+                        else
+                        {
+                            row["FullName"] = "Postprandial blood sugar";
+                            ctxn = ctxns[1];
+                            if (ctxns[1].DoiTuong != (byte)DoiTuong.Chung_Sau2h) ctxn = ctxns[0];
+                        }
+                    }
+                    else
+                    {
+                        if (ctxns[0].DoiTuong == (byte)DoiTuong.Chung) ctxn = ctxns[0];
+                        else if (ctxns[0].DoiTuong == (byte)DoiTuong.Nam || ctxns[0].DoiTuong == (byte)DoiTuong.Nu)
+                        {
+                            KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
+                            if (kqxn == null) continue;
+                            if (!kqxn.Sex.HasValue || kqxn.Sex.Value == (int)Gender.None) continue;
+
+                            if (kqxn.Sex.Value == (int)Gender.Male)
+                            {
+                                ctxn = ctxns[0];
+                                if (ctxns[0].DoiTuong != (byte)DoiTuong.Nam) ctxn = ctxns[1];
+                            }
+                            else
+                            {
+                                ctxn = ctxns[1];
+                                if (ctxns[1].DoiTuong != (byte)DoiTuong.Nu) ctxn = ctxns[0];
+                            }
+                        }
+                        else
+                        {
+                            KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
+                            if (kqxn == null) continue;
+                            if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
+                            if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
+                                kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
+                            if (kqxn.Age.Value < 18) continue;
+
+                            if (kqxn.Age.Value <= 60) //Người trưởng thành
+                            {
+                                ctxn = ctxns[0];
+                                if (ctxns[0].DoiTuong != (byte)DoiTuong.NguoiLon) ctxn = ctxns[1];
+                            }
+                            else //Người cao tuổi
+                            {
+                                ctxn = ctxns[1];
+                                if (ctxns[1].DoiTuong != (byte)DoiTuong.NguoiCaoTuoi) ctxn = ctxns[0];
+                            }
+                        }
+                    }
+
+                    if (ctxn == null) continue;
+
+                    DoiTuong doiTuong = (DoiTuong)ctxn.DoiTuong;
+
+                    if (ctxn.FromValue.HasValue && ctxn.ToValue.HasValue)
+                    {
+                        if (testResult < ctxn.FromValue.Value || testResult > ctxn.ToValue.Value)
+                            row["TinhTrang"] = (byte)TinhTrang.BatThuong;
+                        else
+                            row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+
+                        switch (doiTuong)
+                        {
+                            case DoiTuong.Chung:
+                            case DoiTuong.Chung_Sau2h:
+                                row["BinhThuong"] = string.Format("({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.Nam:
+                                row["BinhThuong"] = string.Format("(M: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.Nu:
+                                row["BinhThuong"] = string.Format("(F: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.NguoiLon:
+                                row["BinhThuong"] = string.Format("Adult ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.NguoiCaoTuoi:
+                                row["BinhThuong"] = string.Format("> 60 year ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                        }
+                    }
+                    else if (ctxn.FromValue.HasValue)
+                    {
+                        if (testResult <= ctxn.FromValue.Value)
+                            row["TinhTrang"] = (byte)TinhTrang.BatThuong;
+                        else
+                            row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+
+                        switch (doiTuong)
+                        {
+                            case DoiTuong.Chung:
+                            case DoiTuong.Chung_Sau2h:
+                                row["BinhThuong"] = string.Format("(> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.Nam:
+                                row["BinhThuong"] = string.Format("(M > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.Nu:
+                                row["BinhThuong"] = string.Format("(F > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.NguoiLon:
+                                row["BinhThuong"] = string.Format("Adult (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.NguoiCaoTuoi:
+                                row["BinhThuong"] = string.Format("> 60 year (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        if (testResult >= ctxn.ToValue.Value)
+                            row["TinhTrang"] = (byte)TinhTrang.BatThuong;
+                        else
+                            row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+
+                        switch (doiTuong)
+                        {
+                            case DoiTuong.Chung:
+                            case DoiTuong.Chung_Sau2h:
+                                row["BinhThuong"] = string.Format("(< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.Nam:
+                                row["BinhThuong"] = string.Format("(M < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.Nu:
+                                row["BinhThuong"] = string.Format("(F < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.NguoiLon:
+                                row["BinhThuong"] = string.Format("Adult (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                            case DoiTuong.NguoiCaoTuoi:
+                                row["BinhThuong"] = string.Format("> 60 year (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                break;
+                        }
+                    }
+                }
+
+                db.Dispose();
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -89,7 +252,24 @@ namespace MM.Bussiness
                     {
                         string idNum = testResult.IDNum;
                         string operationID = testResult.OperatorID;
-                        string sex = testResult.Sex.Trim();
+                        string strSex = testResult.Sex.Trim();
+                        string strAge = testResult.Age.Trim();
+                        string strAgeUnit = testResult.AgeUnit.Trim();
+                        Gender gender = Gender.None;
+                        AgeUnit ageUnit = AgeUnit.Unknown;
+                        int age = 0;
+
+                        if (strSex != string.Empty)
+                        {
+                            int enumIndex = Convert.ToInt32(strSex);
+                            if (enumIndex == 0) gender = Gender.None;
+                            else if (enumIndex == 1) gender = Gender.Male;
+                            else gender = Gender.Female;
+                        }
+
+                        if (strAge != string.Empty) age = Convert.ToInt32(strAge);
+                        if (strAgeUnit != string.Empty) ageUnit = (AgeUnit)Convert.ToInt32(strAgeUnit);
+
                         DateTime ngayXN = DateTime.ParseExact(string.Format("{0} {1}", testResult.CollectionDate, testResult.CollectionTime),
                             "MMddyy HHmm", null);
 
@@ -109,6 +289,10 @@ namespace MM.Bussiness
                             kqxn.NgayXN = ngayXN;
                             kqxn.OperationID = operationID;
                             kqxn.Status = (byte)Status.Actived;
+                            kqxn.Sex = (int)gender;
+                            kqxn.Age = age;
+                            kqxn.AgeUnit = (int)ageUnit;
+
                             db.KetQuaXetNghiem_Hitachi917s.InsertOnSubmit(kqxn);
                         }
                         else //Update
@@ -120,6 +304,9 @@ namespace MM.Bussiness
                             kqxn.NgayXN = ngayXN;
                             kqxn.OperationID = operationID;
                             kqxn.Status = (byte)Status.Actived;
+                            kqxn.Sex = (int)gender;
+                            kqxn.Age = age;
+                            kqxn.AgeUnit = (int)ageUnit;
                         }
 
                         db.SubmitChanges();
@@ -128,19 +315,7 @@ namespace MM.Bussiness
                         {
                             int testNum = r.TestNum;
                             byte tinhTrang = 0;
-
-                            //XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == testNum);
-                            //if (xn != null)
-                            //{
-                            //    List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
-
-                            //}
-
-                            //if (sex != string.Empty)
-                            //{
-
-                            //}
-
+                                                        
                             ChiTietKetQuaXetNghiem_Hitachi917 ctkqxn = db.ChiTietKetQuaXetNghiem_Hitachi917s.SingleOrDefault<ChiTietKetQuaXetNghiem_Hitachi917>(c => c.KQXN_Hitachi917GUID == kqxn.KQXN_Hitachi917GUID &&
                                 c.TestNum == testNum);
 
@@ -320,6 +495,252 @@ namespace MM.Bussiness
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Delete;
                     tk.Action = "Xóa xét nghiệm hitachi 917";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result UpdateChiSoKetQuaXetNghiem(ChiTietKetQuaXetNghiem_Hitachi917 chiTietKQXN)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    ChiTietKetQuaXetNghiem_Hitachi917 ctkqxn = db.ChiTietKetQuaXetNghiem_Hitachi917s.SingleOrDefault<ChiTietKetQuaXetNghiem_Hitachi917>(c => c.ChiTietKQXN_Hitachi917GUID == chiTietKQXN.ChiTietKQXN_Hitachi917GUID);
+                    if (ctkqxn != null)
+                    {
+                        ctkqxn.UpdatedDate = DateTime.Now;
+                        ctkqxn.UpdatedBy = Guid.Parse(Global.UserGUID);
+                        ctkqxn.Status = (byte)Status.Actived;
+                        ctkqxn.TestResult = chiTietKQXN.TestResult;
+
+                        KetQuaXetNghiem_Hitachi917 kqxn = ctkqxn.KetQuaXetNghiem_Hitachi917;
+                        string tenBenhNhan = string.Empty;
+                        string fileNum = string.Empty;
+                        if (kqxn.PatientGUID != null)
+                        {
+                            PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.PatientGUID == kqxn.PatientGUID);
+                            if (patient != null)
+                            {
+                                fileNum = patient.FileNum;
+                                tenBenhNhan = patient.FullName;
+                            }
+                        }
+
+                        //
+                        for (int i = 0; i < 1; i++)
+                        {
+                            XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == chiTietKQXN.TestNum);
+                            if (xn == null) continue;
+                            List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
+                            if (ctxns.Count <= 0) continue;
+
+                            double testResult = Convert.ToDouble(chiTietKQXN.TestResult.Trim());
+                            ChiTietXetNghiem_Hitachi917 ctxn = null;
+                            if (chiTietKQXN.TestNum == 17)
+                            {
+                                if (kqxn == null) continue;
+                                if (kqxn.NgayXN.Hour < 14)
+                                {
+                                    ctxn = ctxns[0];
+                                    if (ctxns[0].DoiTuong != (byte)DoiTuong.Chung) ctxn = ctxns[1];
+                                }
+                                else
+                                {
+                                    ctxn = ctxns[1];
+                                    if (ctxns[1].DoiTuong != (byte)DoiTuong.Chung_Sau2h) ctxn = ctxns[0];
+                                }
+                            }
+                            else
+                            {
+                                if (ctxns[0].DoiTuong == (byte)DoiTuong.Chung) ctxn = ctxns[0];
+                                else if (ctxns[0].DoiTuong == (byte)DoiTuong.Nam || ctxns[0].DoiTuong == (byte)DoiTuong.Nu)
+                                {
+                                    if (kqxn == null) continue;
+                                    if (!kqxn.Sex.HasValue || kqxn.Sex.Value == (int)Gender.None) continue;
+
+                                    if (kqxn.Sex.Value == (int)Gender.Male)
+                                    {
+                                        ctxn = ctxns[0];
+                                        if (ctxns[0].DoiTuong != (byte)DoiTuong.Nam) ctxn = ctxns[1];
+                                    }
+                                    else
+                                    {
+                                        ctxn = ctxns[1];
+                                        if (ctxns[1].DoiTuong != (byte)DoiTuong.Nu) ctxn = ctxns[0];
+                                    }
+                                }
+                                else
+                                {
+                                    if (kqxn == null) continue;
+                                    if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
+                                    if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
+                                        kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
+                                    if (kqxn.Age.Value < 18) continue;
+
+                                    if (kqxn.Age.Value <= 60) //Người trưởng thành
+                                    {
+                                        ctxn = ctxns[0];
+                                        if (ctxns[0].DoiTuong != (byte)DoiTuong.NguoiLon) ctxn = ctxns[1];
+                                    }
+                                    else //Người cao tuổi
+                                    {
+                                        ctxn = ctxns[1];
+                                        if (ctxns[1].DoiTuong != (byte)DoiTuong.NguoiCaoTuoi) ctxn = ctxns[0];
+                                    }
+                                }
+                            }
+
+                            if (ctxn == null) continue;
+
+                            DoiTuong doiTuong = (DoiTuong)ctxn.DoiTuong;
+
+                            if (ctxn.FromValue.HasValue && ctxn.ToValue.HasValue)
+                            {
+                                if (testResult < ctxn.FromValue.Value || testResult > ctxn.ToValue.Value)
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
+                                else
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
+                            }
+                            else if (ctxn.FromValue.HasValue)
+                            {
+                                if (testResult <= ctxn.FromValue.Value)
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
+                                else
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
+                            }
+                            else
+                            {
+                                if (testResult >= ctxn.ToValue.Value)
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
+                                else
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
+                            }
+                        }
+                        //
+
+                        desc += string.Format("GUID: '{0}', IDNum: '{1}', Mã bệnh nhân: '{2}', Tên bệnh nhân: '{3}', Ngày xét nghiệm: '{4}', OperationID: '{5}', TestNum: '{6}', TestResult: '{7}'",
+                                kqxn.KQXN_Hitachi917GUID.ToString(), kqxn.IDNum, fileNum, tenBenhNhan, kqxn.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"), kqxn.OperationID, ctkqxn.TestNum, ctkqxn.TestResult);
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Delete;
+                        tk.Action = "Cập nhật chỉ số kết quả xét nghiệm hitachi 917";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+                    
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result DeleteChiTietKetQuaXetNghiem(List<string> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    foreach (string key in keys)
+                    {
+                        ChiTietKetQuaXetNghiem_Hitachi917 ctkqxn = db.ChiTietKetQuaXetNghiem_Hitachi917s.SingleOrDefault<ChiTietKetQuaXetNghiem_Hitachi917>(c => c.ChiTietKQXN_Hitachi917GUID.ToString() == key);
+                        if (ctkqxn != null)
+                        {
+                            ctkqxn.DeletedDate = DateTime.Now;
+                            ctkqxn.DeletedBy = Guid.Parse(Global.UserGUID);
+                            ctkqxn.Status = (byte)Status.Deactived;
+
+                            KetQuaXetNghiem_Hitachi917 kqxn = ctkqxn.KetQuaXetNghiem_Hitachi917;
+                            string tenBenhNhan = string.Empty;
+                            string fileNum = string.Empty;
+                            if (kqxn.PatientGUID != null)
+                            {
+                                PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.PatientGUID == kqxn.PatientGUID);
+                                if (patient != null)
+                                {
+                                    fileNum = patient.FileNum;
+                                    tenBenhNhan = patient.FullName;
+                                }
+                            }
+
+                            desc += string.Format("- GUID: '{0}', IDNum: '{1}', Mã bệnh nhân: '{2}', Tên bệnh nhân: '{3}', Ngày xét nghiệm: '{4}', OperationID: '{5}', TestNum: '{6}', TestResult: '{7}'\n",
+                                    kqxn.KQXN_Hitachi917GUID.ToString(), kqxn.IDNum, fileNum, tenBenhNhan, kqxn.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"), kqxn.OperationID, ctkqxn.TestNum, ctkqxn.TestResult);
+
+                        }    
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa chi tiết kết quả xét nghiệm hitachi 917";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
                     db.Trackings.InsertOnSubmit(tk);

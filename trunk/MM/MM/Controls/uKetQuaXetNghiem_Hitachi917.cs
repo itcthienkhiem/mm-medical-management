@@ -41,6 +41,8 @@ namespace MM.Controls
         {
             btnDelete.Enabled = AllowDelete;
             btnEdit.Enabled = AllowEdit;
+            btnCapNhatCTKQXN.Enabled = AllowEdit;
+            btnXoaCTKQXN.Enabled = AllowDelete;
         }
 
         public void DisplayAsThread()
@@ -93,11 +95,27 @@ namespace MM.Controls
         {
             Result result = XetNghiem_Hitachi917Bus.GetChiTietKetQuaXetNghiem(ketQuaXetNghiemGUID);
             if (result.IsOK)
+            {
                 dgChiTietKQXN.DataSource = result.QueryResult;
+                RefreshHighlight();
+            }
             else
             {
                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_Hitachi917Bus.GetChiTietKetQuaXetNghiem"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.GetChiTietKetQuaXetNghiem"));
+            }
+        }
+
+        private void RefreshHighlight()
+        {
+            foreach (DataGridViewRow row in dgChiTietKQXN.Rows)
+            {
+                DataRow dr = (row.DataBoundItem as DataRowView).Row;
+                TinhTrang tinhTrang = (TinhTrang)Convert.ToByte(dr["TinhTrang"]);
+                if (tinhTrang == TinhTrang.BatThuong)
+                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                else
+                    row.DefaultCellStyle.BackColor = SystemColors.Window;
             }
         }
 
@@ -142,12 +160,14 @@ namespace MM.Controls
         private void OnDeleteKQXN()
         {
             List<string> deletedKQXNList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = dgXetNghiem.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
                     deletedKQXNList.Add(row["KQXN_Hitachi917GUID"].ToString());
+                    deletedRows.Add(row);
                 }
             }
 
@@ -158,7 +178,10 @@ namespace MM.Controls
                     Result result = XetNghiem_Hitachi917Bus.DeleteXetNghiem(deletedKQXNList);
                     if (result.IsOK)
                     {
-                        DisplayAsThread();
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
                     }
                     else
                     {
@@ -171,7 +194,66 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những xét nghiệm cần xóa.", IconType.Information);
         }
 
-        
+        private void OnCapNhatChiSoKetQuaXetNghiem()
+        {
+            if (dgChiTietKQXN.SelectedRows == null || dgChiTietKQXN.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 chi tiết kết quả xét nghiệm để cập nhật.", IconType.Information);
+                return;
+            }
+
+            DataRow row = (dgChiTietKQXN.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            if (row == null) return;
+
+            dlgUpdateChiSoKetQuaXetNghiem dlg = new dlgUpdateChiSoKetQuaXetNghiem(row);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                row["TestResult"] = dlg.ChiTietKQXN.TestResult;
+                row["TinhTrang"] = dlg.ChiTietKQXN.TinhTrang;
+
+                if ((TinhTrang)dlg.ChiTietKQXN.TinhTrang == TinhTrang.BatThuong)
+                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                else
+                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.BackColor = SystemColors.Window;
+            }
+        }
+
+        private void OnDeleteChiTietKetQuaXetNghiem()
+        {
+            List<string> deletedCTKQXNList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgChiTietKQXN.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedCTKQXNList.Add(row["ChiTietKQXN_Hitachi917GUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedCTKQXNList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những chi tiết kết quả xét nghiệm bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = XetNghiem_Hitachi917Bus.DeleteChiTietKetQuaXetNghiem(deletedCTKQXNList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_Hitachi917Bus.DeleteChiTietKetQuaXetNghiem"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.DeleteChiTietKetQuaXetNghiem"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những chi tiết kết quả xét nghiệm cần xóa.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -225,7 +307,7 @@ namespace MM.Controls
             if (dt == null || dt.Rows.Count <= 0) return;
             foreach (DataRow row in dt.Rows)
             {
-                row["Checked"] = chkChecked.Checked;
+                row["Checked"] = chkCTKQXNChecked.Checked;
             }
         }
 
@@ -245,6 +327,22 @@ namespace MM.Controls
             }
 
             OnDisplayChiTietKetQuaXetNghiem(row["KQXN_Hitachi917GUID"].ToString());
+        }
+
+        private void btnCapNhatCTKQXN_Click(object sender, EventArgs e)
+        {
+            OnCapNhatChiSoKetQuaXetNghiem();
+        }
+
+        private void btnXoaCTKQXN_Click(object sender, EventArgs e)
+        {
+            OnDeleteChiTietKetQuaXetNghiem();
+        }
+
+        private void dgChiTietKQXN_DoubleClick(object sender, EventArgs e)
+        {
+            if (!AllowEdit) return;
+            OnCapNhatChiSoKetQuaXetNghiem();
         }
         #endregion
 
@@ -267,7 +365,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
