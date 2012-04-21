@@ -220,13 +220,28 @@ namespace MM.Common
         Chung_Sau2h,
         Nam,
         Nu,
+        TreEm,
         NguoiLon,
-        TreEm
+        NguoiCaoTuoi
     };
 
     public enum LoaiMayXN : byte
     {
         Hitachi917,
         CellDyn3200
+    };
+
+    public enum TinhTrang : byte
+    {
+        BinhThuong = 0,
+        BatThuong
+    };
+
+    public enum AgeUnit : byte
+    {
+        Unknown = 0,
+        Days,
+        Months,
+        Years
     };
 }
