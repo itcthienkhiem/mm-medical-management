@@ -77,7 +77,7 @@ namespace MM.Bussiness
 
                     if (xn.FromPercent.HasValue)
                     {
-                        row["BinhThuong"] = string.Format("{0}-{1}  {2}-{3} {4}", xn.FromValue.Value, xn.ToValue.Value, xn.FromPercent.Value, xn.ToPercent.Value, donVi);
+                        row["BinhThuong"] = string.Format("({0:F2} - {1:F2})  ({2:F2} - {3:F2} {4})", xn.FromValue.Value, xn.ToValue.Value, xn.FromPercent.Value, xn.ToPercent.Value, donVi);
                         double testPercent = Convert.ToDouble(row["TestPercent"]);
 
                         if (testResult < xn.FromValue.Value || testResult > xn.ToValue.Value)
@@ -88,7 +88,7 @@ namespace MM.Bussiness
                     }
                     else
                     {
-                        row["BinhThuong"] = string.Format("{0}-{1} {2}", xn.FromValue.Value, xn.ToValue.Value, donVi);
+                        row["BinhThuong"] = string.Format("({0:F2} - {1:F2} {2})", xn.FromValue.Value, xn.ToValue.Value, donVi);
 
                         if (testResult < xn.FromValue.Value || testResult > xn.ToValue.Value)
                             row["TinhTrang"] = (byte)TinhTrang.BatThuong;
