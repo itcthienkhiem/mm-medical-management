@@ -449,6 +449,12 @@
     <Compile Include="Controls\uKetQuaSoiCTCList.Designer.cs">
       <DependentUpon>uKetQuaSoiCTCList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaXetNghiem_CellDyn3200.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaXetNghiem_CellDyn3200.Designer.cs">
+      <DependentUpon>uKetQuaXetNghiem_CellDyn3200.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKetQuaXetNghiem_Hitachi917.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1167,6 +1173,9 @@
     <EmbeddedResource Include="Controls\uKetQuaSoiCTCList.resx">
       <DependentUpon>uKetQuaSoiCTCList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaXetNghiem_CellDyn3200.resx">
+      <DependentUpon>uKetQuaXetNghiem_CellDyn3200.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaXetNghiem_Hitachi917.resx">
       <DependentUpon>uKetQuaXetNghiem_Hitachi917.cs</DependentUpon>
     </EmbeddedResource>
@@ -1489,6 +1498,7 @@
     <None Include="Properties\DataSources\MM.Databasae.CanDo.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiDinhView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietChiDinhView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiTietKetQuaXetNghiem_CellDynView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietKetQuaXetNghiem_Hitachi917View.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
@@ -1510,6 +1520,7 @@
     <None Include="Properties\DataSources\MM.Databasae.KetQuaLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaNoiSoiView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaSoiCTCView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_CellDyn3200View.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_Hitachi917View.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
