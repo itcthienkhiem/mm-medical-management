@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Threading;
 using MM.Common;
+using MM.Databasae;
 using MM.Controls;
 using MM.Dialogs;
 using MM.Bussiness;
@@ -38,6 +39,7 @@ namespace MM
 
             OpenCOMPort();
             //ParseTestResult_Hitachi917(string.Empty, "COM1");
+            //ParseTestResult_CellDyn3200(string.Empty, "COM1");
         }
         #endregion
 
@@ -198,6 +200,8 @@ namespace MM
                 _uBookingList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uKetQuaXetNghiem_Hitachi917))
                 _uKetQuaXetNghiem_Hitachi917.DisplayAsThread();    
+            else if (ctrl.GetType() == typeof(uKetQuaXetNghiem_CellDyn3200))
+                _uKetQuaXetNghiem_CellDyn3200.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -787,6 +791,7 @@ namespace MM
                         {
                             xetNghiemToolStripMenuItem.Enabled = isLogin;
                             xetNghiemHiTachi917ToolStripMenuItem.Enabled = isView && isLogin;
+                            xetNghiemCellDyn3200ToolStripMenuItem.Enabled = isView && isLogin;
 
                             _uKetQuaXetNghiem_Hitachi917.AllowAdd = isAdd;
                             _uKetQuaXetNghiem_Hitachi917.AllowEdit = isEdit;
@@ -796,6 +801,15 @@ namespace MM
                             _uKetQuaXetNghiem_Hitachi917.AllowImport = isImport;
                             _uKetQuaXetNghiem_Hitachi917.AllowLock = isLock;
                             _uKetQuaXetNghiem_Hitachi917.AllowExportAll = isExportAll;
+
+                            _uKetQuaXetNghiem_CellDyn3200.AllowAdd = isAdd;
+                            _uKetQuaXetNghiem_CellDyn3200.AllowEdit = isEdit;
+                            _uKetQuaXetNghiem_CellDyn3200.AllowDelete = isDelete;
+                            _uKetQuaXetNghiem_CellDyn3200.AllowPrint = isPrint;
+                            _uKetQuaXetNghiem_CellDyn3200.AllowExport = isExport;
+                            _uKetQuaXetNghiem_CellDyn3200.AllowImport = isImport;
+                            _uKetQuaXetNghiem_CellDyn3200.AllowLock = isLock;
+                            _uKetQuaXetNghiem_CellDyn3200.AllowExportAll = isExportAll;
                         }
                     }
                 }
@@ -954,6 +968,7 @@ namespace MM
 
                 xetNghiemToolStripMenuItem.Enabled = isLogin;
                 xetNghiemHiTachi917ToolStripMenuItem.Enabled = isLogin;
+                xetNghiemCellDyn3200ToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1161,6 +1176,10 @@ namespace MM
                     OnXetNghiem_Hitachi917();        
                     break;
 
+                case "XetNghiem_CellDyn3200":
+                    OnXetNghiem_CellDyn3200();
+                    break;
+
                 case "CauHinhKetNoi":
                     OnCauHinhKetNoi();
                     break;
@@ -1173,6 +1192,13 @@ namespace MM
             dlg.ShowDialog(this);
 
             OpenCOMPort();
+        }
+
+        private void OnXetNghiem_CellDyn3200()
+        {
+            this.Text = string.Format("{0} - Xet nghiem CellDyn3200", Application.ProductName);
+            ViewControl(_uKetQuaXetNghiem_CellDyn3200);
+            _uKetQuaXetNghiem_CellDyn3200.DisplayAsThread();
         }
 
         private void OnXetNghiem_Hitachi917()
@@ -1994,7 +2020,10 @@ namespace MM
                 }
                 else if (portConfig.LoaiMay == LoaiMayXN.CellDyn3200)
                 {
-
+                    List<TestResult_CellDyn3200> testResults = ParseTestResult_CellDyn3200(data, port.PortName);
+                    Result result = XetNghiem_CellDyn3200Bus.InsertKQXN(testResults);
+                    if (!result.IsOK)
+                        Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_CellDyn3200Bus.InsertKQXN"));
                 }
             }
             catch (Exception ex)
@@ -2065,6 +2094,173 @@ namespace MM
                         r.AlarmCode = result.Substring(67 + j * 10, 1);
                         testResult.Results.Add(r);
                     }
+
+                    testResults.Add(testResult);
+                }
+            }
+
+            return testResults;
+        }
+
+        private List<TestResult_CellDyn3200> ParseTestResult_CellDyn3200(string result, string portName)
+        {
+            List<TestResult_CellDyn3200> testResults = new List<TestResult_CellDyn3200>();
+            result = "\"   \",\"CD3200C\",\"------------\",3280,0,0,\"AVER124     \",\"BUI THI NGHIA TD            \",\"----------------\",\"F\",\"--/--/----\",\"----------------------\",\".  \",\"04/14/2012\",\"17:38\",\"--/--/----\",\"--:--\",\"----------------\",06.34,04.12,01.59,0.307,0.218,0.096,04.36,012.0,038.0,087.0,027.5,031.6,012.7,00254,06.53,0.166,016.7,065.1,025.1,04.85,03.45,01.51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,00000,00000,00000,00000,00000,00000,00000,00000,-----,06.34,1,0,0,0,0,0,0,70\"   \",\"CD3200C\",\"------------\",3280,0,0,\"AVER124     \",\"BUI THI NGHIA TD            \",\"----------------\",\"F\",\"--/--/----\",\"----------------------\",\".  \",\"04/14/2012\",\"17:38\",\"--/--/----\",\"--:--\",\"----------------\",06.34,04.12,01.59,0.307,0.218,0.096,04.36,012.0,038.0,087.0,027.5,031.6,012.7,00254,06.53,0.166,016.7,065.1,025.1,04.85,03.45,01.51,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,00000,00000,00000,00000,00000,00000,00000,00000,-----,06.34,1,0,0,0,0,0,0,70";
+            result = result.Replace("\"", "");
+
+            string[] strArr = result.Split("".ToCharArray());
+
+            if (strArr != null && strArr.Length > 0)
+            {
+                string lastResult = string.Empty;
+                if (_htLastResult.ContainsKey(portName))
+                    lastResult = _htLastResult[portName].ToString();
+                else
+                    _htLastResult.Add(portName, string.Empty);
+
+                strArr[0] = string.Format("{0}{1}", lastResult, strArr[0]);
+                _htLastResult[portName] = strArr[strArr.Length - 1];
+
+                for (int i = 0; i < strArr.Length - 1; i++)
+                {
+                    TestResult_CellDyn3200 testResult = new TestResult_CellDyn3200();
+                    result = strArr[i];
+                    string[] arrResult = result.Split(",".ToCharArray(), StringSplitOptions.None);
+                    if (arrResult == null || arrResult.Count() == 0) continue;
+
+                    testResult.KetQuaXetNghiem.MessageType = arrResult[0].Trim().Substring(1);
+                    testResult.KetQuaXetNghiem.InstrumentType = arrResult[1].Trim();
+                    testResult.KetQuaXetNghiem.SerialNum = arrResult[2].Trim();
+                    testResult.KetQuaXetNghiem.SequenceNum = Convert.ToInt32(arrResult[3].Trim());
+                    testResult.KetQuaXetNghiem.SpareField = arrResult[4].Trim();
+                    testResult.KetQuaXetNghiem.SpecimenType = Convert.ToInt32(arrResult[5].Trim());
+                    if (testResult.KetQuaXetNghiem.SpecimenType != 0) continue;
+
+                    testResult.KetQuaXetNghiem.SpecimenID = arrResult[6].Trim();
+                    testResult.KetQuaXetNghiem.SpecimenName = arrResult[7].Trim();
+                    testResult.KetQuaXetNghiem.PatientID = arrResult[8].Trim();
+                    testResult.KetQuaXetNghiem.SpecimenSex = arrResult[9].Trim();
+                    if (testResult.KetQuaXetNghiem.SpecimenSex == "-") testResult.KetQuaXetNghiem.SpecimenSex = string.Empty;
+
+                    testResult.KetQuaXetNghiem.SpecimenDOB = arrResult[10].Trim();
+                    if (testResult.KetQuaXetNghiem.SpecimenDOB == "--/--/----") testResult.KetQuaXetNghiem.SpecimenDOB = string.Empty;
+
+                    testResult.KetQuaXetNghiem.DrName = arrResult[11].Trim();
+                    testResult.KetQuaXetNghiem.OperatorID = arrResult[12].Trim();
+
+                    testResult.KetQuaXetNghiem.NgayXN = DateTime.ParseExact(string.Format("{0} {1}", arrResult[13].Trim(), arrResult[14].Trim()),
+                            "MM/dd/yyyy HH:mm", null);
+
+                    testResult.KetQuaXetNghiem.CollectionDate = arrResult[15].Trim();
+                    testResult.KetQuaXetNghiem.CollectionTime = arrResult[16].Trim();
+                    testResult.KetQuaXetNghiem.Comment = arrResult[17].Trim();
+
+                    //WBC
+                    ChiTietKetQuaXetNghiem_CellDyn3200 ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "WBC";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[18].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //NEU
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "NEU";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[19].Trim());
+                    ctkqxn.TestPercent = Convert.ToDouble(arrResult[35].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //LYM
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "LYM";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[20].Trim());
+                    ctkqxn.TestPercent = Convert.ToDouble(arrResult[36].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //MONO
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "MONO";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[21].Trim());
+                    ctkqxn.TestPercent = Convert.ToDouble(arrResult[37].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //EOS
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "EOS";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[22].Trim());
+                    ctkqxn.TestPercent = Convert.ToDouble(arrResult[38].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //BASO
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "BASO";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[23].Trim());
+                    ctkqxn.TestPercent = Convert.ToDouble(arrResult[39].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //RBC
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "RBC";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[24].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //HGB
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "HGB";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[25].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //HCT
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "HCT";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[26].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //MCV
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "MCV";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[27].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //MCH
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "MCH";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[28].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //MCHC
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "MCHC";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[29].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //RDW
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "RDW";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[30].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //PLT
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "PLT";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[31].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //MPV
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "MPV";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[32].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //PCT
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "PCT";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[33].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //PDW
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "PDW";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[34].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
 
                     testResults.Add(testResult);
                 }

@@ -43,23 +43,23 @@ namespace MM.Dialogs
             if (_drCTKQXN["TenXetNghiem"] != null && _drCTKQXN["TenXetNghiem"] != DBNull.Value)
                 txTenXetNghiem.Text = _drCTKQXN["TenXetNghiem"].ToString();
 
-            txtKetQua.Text = _drCTKQXN["TestResult"].ToString().Trim();
+            numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
             txtBinhThuong.Text = _drCTKQXN["BinhThuong"].ToString();
 
             _chiTietKQXN.TestNum = Convert.ToInt32(_drCTKQXN["TestNum"]);
         }
 
-        private bool CheckInfo()
-        {
-            if (txtKetQua.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập kết quả xét nghiệm.", IconType.Information);
-                txtKetQua.Focus();
-                return false;
-            }
+        //private bool CheckInfo()
+        //{
+        //    if (txtKetQua.Text.Trim() == string.Empty)
+        //    {
+        //        MsgBox.Show(this.Text, "Vui lòng nhập kết quả xét nghiệm.", IconType.Information);
+        //        txtKetQua.Focus();
+        //        return false;
+        //    }
 
-            return true;
-        }
+        //    return true;
+        //}
 
         private void SaveInfoAsThread()
         {
@@ -84,7 +84,7 @@ namespace MM.Dialogs
             {
                 MethodInvoker method = delegate
                 {
-                    _chiTietKQXN.TestResult = txtKetQua.Text;
+                    _chiTietKQXN.TestResult = numKetQua.Value.ToString();
                     Result result = XetNghiem_Hitachi917Bus.UpdateChiSoKetQuaXetNghiem(_chiTietKQXN);
 
                     if (!result.IsOK)
@@ -116,10 +116,10 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                if (!CheckInfo()) 
-                    e.Cancel = true;
-                else
-                    SaveInfoAsThread();
+                //if (!CheckInfo()) 
+                //    e.Cancel = true;
+                //else
+                SaveInfoAsThread();
             }
         }
         #endregion

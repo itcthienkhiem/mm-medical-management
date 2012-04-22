@@ -31,20 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgUpdateChiSoKetQuaXetNghiem));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtBinhThuong = new System.Windows.Forms.TextBox();
-            this.txtKetQua = new System.Windows.Forms.TextBox();
             this.txTenXetNghiem = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.numKetQua = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numKetQua)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numKetQua);
             this.groupBox1.Controls.Add(this.txtBinhThuong);
-            this.groupBox1.Controls.Add(this.txtKetQua);
             this.groupBox1.Controls.Add(this.txTenXetNghiem);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -57,18 +58,11 @@
             // 
             // txtBinhThuong
             // 
-            this.txtBinhThuong.Location = new System.Drawing.Point(93, 65);
+            this.txtBinhThuong.Location = new System.Drawing.Point(93, 66);
             this.txtBinhThuong.Name = "txtBinhThuong";
             this.txtBinhThuong.ReadOnly = true;
             this.txtBinhThuong.Size = new System.Drawing.Size(132, 20);
             this.txtBinhThuong.TabIndex = 5;
-            // 
-            // txtKetQua
-            // 
-            this.txtKetQua.Location = new System.Drawing.Point(93, 42);
-            this.txtKetQua.Name = "txtKetQua";
-            this.txtKetQua.Size = new System.Drawing.Size(132, 20);
-            this.txtKetQua.TabIndex = 4;
             // 
             // txTenXetNghiem
             // 
@@ -81,7 +75,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 68);
+            this.label3.Location = new System.Drawing.Point(22, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 2;
@@ -90,7 +84,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(42, 45);
+            this.label2.Location = new System.Drawing.Point(42, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 13);
             this.label2.TabIndex = 1;
@@ -129,6 +123,19 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // numKetQua
+            // 
+            this.numKetQua.DecimalPlaces = 1;
+            this.numKetQua.Location = new System.Drawing.Point(93, 42);
+            this.numKetQua.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.numKetQua.Name = "numKetQua";
+            this.numKetQua.Size = new System.Drawing.Size(132, 20);
+            this.numKetQua.TabIndex = 4;
+            // 
             // dlgUpdateChiSoKetQuaXetNghiem
             // 
             this.AcceptButton = this.btnOK;
@@ -151,6 +158,7 @@
             this.Load += new System.EventHandler(this.dlgUpdateChiSoKetQuaXetNghiem_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numKetQua)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -160,11 +168,11 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtBinhThuong;
-        private System.Windows.Forms.TextBox txtKetQua;
         private System.Windows.Forms.TextBox txTenXetNghiem;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.NumericUpDown numKetQua;
     }
 }
