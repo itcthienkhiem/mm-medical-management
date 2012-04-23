@@ -199,9 +199,11 @@ namespace MM
             else if (ctrl.GetType() == typeof(uBookingList))
                 _uBookingList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uKetQuaXetNghiem_Hitachi917))
-                _uKetQuaXetNghiem_Hitachi917.DisplayAsThread();    
+                _uKetQuaXetNghiem_Hitachi917.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uKetQuaXetNghiem_CellDyn3200))
                 _uKetQuaXetNghiem_CellDyn3200.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uBaoCaoKhachHangMuaThuoc))
+                _uBaoCaoKhachHangMuaThuoc.InitData();
         }
 
         private void SaveAppConfig()
@@ -811,6 +813,18 @@ namespace MM
                             _uKetQuaXetNghiem_CellDyn3200.AllowLock = isLock;
                             _uKetQuaXetNghiem_CellDyn3200.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.BaoCaoKhachHangMuaThuoc)
+                        {
+                            baoCaoKhachHangMuaThuocToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBaoCaoKhachHangMuaThuoc.AllowAdd = isAdd;
+                            _uBaoCaoKhachHangMuaThuoc.AllowEdit = isEdit;
+                            _uBaoCaoKhachHangMuaThuoc.AllowDelete = isDelete;
+                            _uBaoCaoKhachHangMuaThuoc.AllowPrint = isPrint;
+                            _uBaoCaoKhachHangMuaThuoc.AllowExport = isExport;
+                            _uBaoCaoKhachHangMuaThuoc.AllowImport = isImport;
+                            _uBaoCaoKhachHangMuaThuoc.AllowLock = isLock;
+                            _uBaoCaoKhachHangMuaThuoc.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -969,6 +983,7 @@ namespace MM
                 xetNghiemToolStripMenuItem.Enabled = isLogin;
                 xetNghiemHiTachi917ToolStripMenuItem.Enabled = isLogin;
                 xetNghiemCellDyn3200ToolStripMenuItem.Enabled = isLogin;
+                baoCaoKhachHangMuaThuocToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1183,7 +1198,18 @@ namespace MM
                 case "CauHinhKetNoi":
                     OnCauHinhKetNoi();
                     break;
+
+                case "BaoCaoKhachHangMuaThuoc":
+                    OnBaoCaoKhachHangMuaThuoc();
+                    break;
             }
+        }
+
+        private void OnBaoCaoKhachHangMuaThuoc()
+        {
+            this.Text = string.Format("{0} - Bao cao khách hang mua thuoc", Application.ProductName);
+            ViewControl(_uBaoCaoKhachHangMuaThuoc);
+            _uBaoCaoKhachHangMuaThuoc.InitData();
         }
 
         private void OnCauHinhKetNoi()

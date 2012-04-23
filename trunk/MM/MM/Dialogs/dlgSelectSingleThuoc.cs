@@ -36,6 +36,11 @@ namespace MM.Dialogs
                 return drThuoc["ThuocGUID"].ToString();
             }
         }
+
+        public DataRow ThuocRow
+        {
+            get { return (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row; }
+        }
         #endregion
 
         #region UI Command
