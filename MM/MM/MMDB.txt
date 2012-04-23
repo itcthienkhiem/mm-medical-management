@@ -185,6 +185,8 @@ spDichVuHopDong
 - Update view: KetQuaXetNghiem_Hitachi917View 
 - Create table: XetNghiem_CellDyn3200, KetQuaXetNghiem_CellDyn3200, ChiTietKetQuaXetNghiem_CellDyn3200
 - Create view: KetQuaXetNghiem_CellDyn3200View, ChiTietKetQuaXetNghiem_CellDynView
+2012-04-23
+- Insert Data: Function (BaoCaoKhachHangMuaThuoc);
 
 1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo

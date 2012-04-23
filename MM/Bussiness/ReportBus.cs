@@ -441,5 +441,30 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetDanhSachKhachHangMuaThuoc(DateTime fromDate, DateTime toDate, string thuocGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT PT.TenBenhNhan, CAST(CAST(DATEPART(yyyy, PT.NgayThu) AS varchar(4)) + '-' + CAST(DATEPART(mm, PT.NgayThu) AS varchar(2)) + '-' + CAST(DATEPART(dd, PT.NgayThu) AS varchar(2)) AS Datetime) AS NgayThu, T.TenThuoc, T.DonViTinh, SUM(CT.SoLuong) AS SoLuong FROM PhieuThuThuoc PT, ChiTietPhieuThuThuoc CT, Thuoc T WHERE PT.PhieuThuThuocGUID = CT.PhieuThuThuocGUID AND CT.ThuocGUID = T.ThuocGUID AND PT.Status = {0} AND CT.Status = {0} AND NgayThu BETWEEN '{1}' AND '{2}' AND T.ThuocGUID = '{3}' GROUP BY PT.TenBenhNhan, CAST(CAST(DATEPART(yyyy, PT.NgayThu) AS varchar(4)) + '-' + CAST(DATEPART(mm, PT.NgayThu) AS varchar(2)) + '-' + CAST(DATEPART(dd, PT.NgayThu) AS varchar(2)) AS datetime) , T.TenThuoc, T.DonViTinh",
+                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), thuocGUID);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }

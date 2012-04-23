@@ -245,6 +245,12 @@
     <Compile Include="Controls\uBaoCaoDichVuChuaXuatPhieuThu.Designer.cs">
       <DependentUpon>uBaoCaoDichVuChuaXuatPhieuThu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uBaoCaoKhachHangMuaThuoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBaoCaoKhachHangMuaThuoc.Designer.cs">
+      <DependentUpon>uBaoCaoKhachHangMuaThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uBaoCaoThuocHetHan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1076,6 +1082,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uBaoCaoDichVuChuaXuatPhieuThu.resx">
       <DependentUpon>uBaoCaoDichVuChuaXuatPhieuThu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uBaoCaoKhachHangMuaThuoc.resx">
+      <DependentUpon>uBaoCaoKhachHangMuaThuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uBaoCaoThuocHetHan.resx">
       <DependentUpon>uBaoCaoThuocHetHan.cs</DependentUpon>
