@@ -41,6 +41,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddPhieuThuThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.btnChonBenhNhan = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -75,7 +76,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lbTongTien = new System.Windows.Forms.Label();
             this.btnExportInvoice = new System.Windows.Forms.Button();
-            this.chkDaThuTien = new System.Windows.Forms.CheckBox();
+            this.chkDaXuatHD = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
@@ -86,6 +87,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkDaXuatHD);
             this.groupBox1.Controls.Add(this.chkDaThuTien);
             this.groupBox1.Controls.Add(this.btnChonBenhNhan);
             this.groupBox1.Controls.Add(this.label7);
@@ -108,6 +110,18 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
+            // 
+            // chkDaThuTien
+            // 
+            this.chkDaThuTien.AutoSize = true;
+            this.chkDaThuTien.Checked = true;
+            this.chkDaThuTien.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDaThuTien.Location = new System.Drawing.Point(97, 172);
+            this.chkDaThuTien.Name = "chkDaThuTien";
+            this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
+            this.chkDaThuTien.TabIndex = 49;
+            this.chkDaThuTien.Text = "Đã thu tiền";
+            this.chkDaThuTien.UseVisualStyleBackColor = true;
             // 
             // btnChonBenhNhan
             // 
@@ -484,17 +498,16 @@
             this.btnExportInvoice.UseVisualStyleBackColor = true;
             this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
             // 
-            // chkDaThuTien
+            // chkDaXuatHD
             // 
-            this.chkDaThuTien.AutoSize = true;
-            this.chkDaThuTien.Checked = true;
-            this.chkDaThuTien.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDaThuTien.Location = new System.Drawing.Point(97, 172);
-            this.chkDaThuTien.Name = "chkDaThuTien";
-            this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
-            this.chkDaThuTien.TabIndex = 49;
-            this.chkDaThuTien.Text = "Đã thu tiền";
-            this.chkDaThuTien.UseVisualStyleBackColor = true;
+            this.chkDaXuatHD.AutoSize = true;
+            this.chkDaXuatHD.Enabled = false;
+            this.chkDaXuatHD.Location = new System.Drawing.Point(181, 172);
+            this.chkDaXuatHD.Name = "chkDaXuatHD";
+            this.chkDaXuatHD.Size = new System.Drawing.Size(106, 17);
+            this.chkDaXuatHD.TabIndex = 50;
+            this.chkDaXuatHD.Text = "Đã xuất hóa đơn";
+            this.chkDaXuatHD.UseVisualStyleBackColor = true;
             // 
             // dlgAddPhieuThuThuoc
             // 
@@ -567,5 +580,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayHetHan;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongTon;
         private System.Windows.Forms.CheckBox chkDaThuTien;
+        private System.Windows.Forms.CheckBox chkDaXuatHD;
     }
 }

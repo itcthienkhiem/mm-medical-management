@@ -31,11 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgReceiptDetail));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExportInvoice = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,15 +55,21 @@
             this.lbTotalPrice = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dgReceiptDetail = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnExportInvoice = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
+            this.receiptDetailViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.chkDaXuatHD = new System.Windows.Forms.CheckBox();
+            this.chkDaThuTien = new System.Windows.Forms.CheckBox();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receiptDetailViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -69,6 +80,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnOK);
             this.panel1.Controls.Add(this.btnExportInvoice);
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnCancel);
@@ -78,21 +90,47 @@
             this.panel1.Size = new System.Drawing.Size(678, 38);
             this.panel1.TabIndex = 6;
             // 
+            // btnExportInvoice
+            // 
+            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
+            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportInvoice.Location = new System.Drawing.Point(337, 6);
+            this.btnExportInvoice.Name = "btnExportInvoice";
+            this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
+            this.btnExportInvoice.TabIndex = 14;
+            this.btnExportInvoice.Text = "      &Xuất hóa đơn";
+            this.btnExportInvoice.UseVisualStyleBackColor = true;
+            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(235, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(97, 25);
+            this.btnPrint.TabIndex = 13;
+            this.btnPrint.Text = "      &In phiếu thu";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(408, 6);
+            this.btnCancel.Location = new System.Drawing.Point(448, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 14;
+            this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "   &Đóng";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.chkDaThuTien);
+            this.panel2.Controls.Add(this.chkDaXuatHD);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.txtAddress);
             this.panel2.Controls.Add(this.txtFileNum);
@@ -104,7 +142,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(678, 116);
+            this.panel2.Size = new System.Drawing.Size(678, 152);
             this.panel2.TabIndex = 7;
             // 
             // label4
@@ -199,9 +237,9 @@
             // 
             this.panel4.Controls.Add(this.dgReceiptDetail);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 116);
+            this.panel4.Location = new System.Drawing.Point(0, 152);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(678, 358);
+            this.panel4.Size = new System.Drawing.Size(678, 322);
             this.panel4.TabIndex = 9;
             // 
             // dgReceiptDetail
@@ -244,57 +282,98 @@
             this.dgReceiptDetail.ReadOnly = true;
             this.dgReceiptDetail.RowHeadersWidth = 30;
             this.dgReceiptDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgReceiptDetail.Size = new System.Drawing.Size(678, 358);
-            this.dgReceiptDetail.TabIndex = 3;
+            this.dgReceiptDetail.Size = new System.Drawing.Size(678, 322);
+            this.dgReceiptDetail.TabIndex = 9;
             // 
-            // Discount
+            // receiptDetailViewBindingSource
             // 
-            this.Discount.DataPropertyName = "Discount";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Discount.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Discount.HeaderText = "Giảm (%)";
-            this.Discount.Name = "Discount";
-            this.Discount.ReadOnly = true;
-            this.Discount.Width = 75;
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "Amount";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Amount.HeaderText = "Thành tiền";
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
-            // 
-            // btnExportInvoice
-            // 
-            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
-            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportInvoice.Location = new System.Drawing.Point(297, 6);
-            this.btnExportInvoice.Name = "btnExportInvoice";
-            this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
-            this.btnExportInvoice.TabIndex = 13;
-            this.btnExportInvoice.Text = "      &Xuất hóa đơn";
-            this.btnExportInvoice.UseVisualStyleBackColor = true;
-            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(195, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(97, 25);
-            this.btnPrint.TabIndex = 12;
-            this.btnPrint.Text = "      &In phiếu thu";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.receiptDetailViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptDetailView);
             // 
             // _printDialog
             // 
             this._printDialog.UseEXDialog = true;
+            // 
+            // chkDaXuatHD
+            // 
+            this.chkDaXuatHD.AutoSize = true;
+            this.chkDaXuatHD.Enabled = false;
+            this.chkDaXuatHD.Location = new System.Drawing.Point(96, 105);
+            this.chkDaXuatHD.Name = "chkDaXuatHD";
+            this.chkDaXuatHD.Size = new System.Drawing.Size(106, 17);
+            this.chkDaXuatHD.TabIndex = 7;
+            this.chkDaXuatHD.Text = "Đã xuất hóa đơn";
+            this.chkDaXuatHD.UseVisualStyleBackColor = true;
+            // 
+            // chkDaThuTien
+            // 
+            this.chkDaThuTien.AutoSize = true;
+            this.chkDaThuTien.Enabled = false;
+            this.chkDaThuTien.Location = new System.Drawing.Point(96, 125);
+            this.chkDaThuTien.Name = "chkDaThuTien";
+            this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
+            this.chkDaThuTien.TabIndex = 8;
+            this.chkDaThuTien.Text = "Đã thu tiền";
+            this.chkDaThuTien.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Enabled = false;
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(155, 6);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 12;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Code";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã DV";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tên DV";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Price";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Giá";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Discount";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Giảm (%)";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 75;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Amount";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Thành tiền";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
             // codeDataGridViewTextBoxColumn
             // 
@@ -322,12 +401,30 @@
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             this.priceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // receiptDetailViewBindingSource
+            // Discount
             // 
-            this.receiptDetailViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptDetailView);
+            this.Discount.DataPropertyName = "Discount";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Discount.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Discount.HeaderText = "Giảm (%)";
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            this.Discount.Width = 75;
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N0";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Amount.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Amount.HeaderText = "Thành tiền";
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
             // 
             // dlgReceiptDetail
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
@@ -344,6 +441,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chi tiet phieu thu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgReceiptDetail_FormClosing);
+            this.Load += new System.EventHandler(this.dlgReceiptDetail_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -382,5 +481,13 @@
         private System.Windows.Forms.Button btnExportInvoice;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.PrintDialog _printDialog;
+        private System.Windows.Forms.CheckBox chkDaThuTien;
+        private System.Windows.Forms.CheckBox chkDaXuatHD;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }
