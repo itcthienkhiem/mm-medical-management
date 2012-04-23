@@ -355,5 +355,68 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result CapNhatTrangThaiPhieuThu(string receiptGUID, bool daXuatHD, bool daThuTien)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    Receipt receipt = db.Receipts.SingleOrDefault<Receipt>(r => r.ReceiptGUID.ToString() == receiptGUID);
+                    if (receipt != null)
+                    {
+                        receipt.UpdatedDate = DateTime.Now;
+                        receipt.UpdatedBy = Guid.Parse(Global.UserGUID);
+                        receipt.IsExportedInVoice = daXuatHD;
+                        receipt.ChuaThuTien = !daThuTien;
+
+                        string desc = string.Format("Phiếu thu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Đã xuất HĐ: '{8}'",
+                               receipt.ReceiptGUID.ToString(), receipt.ReceiptCode, receipt.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), receipt.Patient.FileNum,
+                               receipt.Patient.Contact.FullName, receipt.Patient.Contact.Address, receipt.Notes, !receipt.ChuaThuTien, receipt.IsExportedInVoice);
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Edit;
+                        tk.Action = "Sửa trạng thái phiếu thu";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

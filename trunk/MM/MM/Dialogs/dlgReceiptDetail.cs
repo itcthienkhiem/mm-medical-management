@@ -57,6 +57,10 @@ namespace MM.Dialogs
                 txtAddress.Text = drReceipt["Address"].ToString();
 
             txtReceiptDate.Text = Convert.ToDateTime(drReceipt["ReceiptDate"]).ToString("dd/MM/yyyy HH:mm:ss");
+
+            chkDaXuatHD.Checked = Convert.ToBoolean(drReceipt["IsExportedInVoice"]);
+            chkDaThuTien.Checked = Convert.ToBoolean(drReceipt["DaThuTien"]);
+
             lbTotalPrice.Text = "Tổng tiền: 0 (VNĐ)";
             
             Result result = ReceiptBus.GetReceiptDetailList(drReceipt["receiptGUID"].ToString());
@@ -120,6 +124,16 @@ namespace MM.Dialogs
         #endregion
 
         #region Window Event Handlers
+        private void dlgReceiptDetail_Load(object sender, EventArgs e)
+        {
+            if (Global.StaffType == StaffType.Admin)
+            {
+                chkDaXuatHD.Enabled = true;
+                chkDaThuTien.Enabled = true;
+                btnOK.Enabled = true;
+            }
+        }
+
         private void btnPrint_Click(object sender, EventArgs e)
         {
             OnPrint();
@@ -128,6 +142,28 @@ namespace MM.Dialogs
         private void btnExportInvoice_Click(object sender, EventArgs e)
         {
             OnExportInvoice();
+        }
+
+        private void dlgReceiptDetail_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Global.StaffType == StaffType.Admin)
+            {
+                if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
+                {
+                    Result result = ReceiptBus.CapNhatTrangThaiPhieuThu(_drReceipt["ReceiptGUID"].ToString(), chkDaXuatHD.Checked, chkDaThuTien.Checked);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.CapNhatTrangThaiPhieuThu"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.CapNhatTrangThaiPhieuThu"));
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        _drReceipt["IsExportedInVoice"] = chkDaXuatHD.Checked;
+                        _drReceipt["DaThuTien"] = chkDaThuTien.Checked;
+                    }
+                }
+            }
         }
         #endregion
     }

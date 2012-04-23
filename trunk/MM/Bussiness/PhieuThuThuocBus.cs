@@ -436,5 +436,73 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result CapNhatTrangThaiPhieuThu(string phieuThuThuocGUID, bool daXuatHD, bool daThuTien)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                
+                using (TransactionScope tnx = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    PhieuThuThuoc ptthuoc = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(p => p.PhieuThuThuocGUID.ToString() == phieuThuThuocGUID);
+                    if (ptthuoc != null)
+                    {
+                        ptthuoc.UpdatedDate = DateTime.Now;
+                        ptthuoc.UpdatedBy = Guid.Parse(Global.UserGUID);
+                        ptthuoc.IsExported = daXuatHD;
+                        ptthuoc.ChuaThuTien = !daThuTien;
+
+                        string maToaThuoc = string.Empty;
+                        if (ptthuoc.ToaThuocGUID.Value != Guid.Empty)
+                            maToaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID == ptthuoc.ToaThuocGUID.Value).MaToaThuoc;
+
+                        string desc = string.Format("Phiếu thu thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}'",
+                            ptthuoc.PhieuThuThuocGUID.ToString(), maToaThuoc, ptthuoc.MaPhieuThuThuoc, ptthuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
+                            ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi, ptthuoc.Notes, !ptthuoc.ChuaThuTien, ptthuoc.IsExported);
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Edit;
+                        tk.Action = "Sửa trạng thái phiếu thu thuốc";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.Price;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+
+                    tnx.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

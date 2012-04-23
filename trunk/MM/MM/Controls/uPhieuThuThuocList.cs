@@ -314,6 +314,8 @@ namespace MM.Controls
                 if (dlg.IsExportedInvoice)
                     HighlightExportedInvoice();
             }
+            else
+                HighlightExportedInvoice();
         }
 
         private void OnExportExcel()

@@ -415,7 +415,7 @@ namespace MM.Bussiness
                         tk.TrackingGUID = Guid.NewGuid();
                         tk.TrackingDate = DateTime.Now;
                         tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
-                        tk.ActionType = (byte)ActionType.Delete;
+                        tk.ActionType = (byte)ActionType.Edit;
                         tk.Action = "Cập nhật bệnh nhân xét nghiệm hitachi 917";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
@@ -659,7 +659,7 @@ namespace MM.Bussiness
                         tk.TrackingGUID = Guid.NewGuid();
                         tk.TrackingDate = DateTime.Now;
                         tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
-                        tk.ActionType = (byte)ActionType.Delete;
+                        tk.ActionType = (byte)ActionType.Edit;
                         tk.Action = "Cập nhật chỉ số kết quả xét nghiệm hitachi 917";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
