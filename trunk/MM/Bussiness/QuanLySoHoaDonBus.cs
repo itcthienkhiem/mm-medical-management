@@ -19,24 +19,129 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT Min(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon WHERE XuatTruoc = 'False' AND DaXuat = 'False'";
-                result = ExcuteQuery(query);
-                if (!result.IsOK) return result;
-                DataTable dt = result.QueryResult as DataTable;
-                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
-                    result.QueryResult = dt.Rows[0][0];
-                else
+                while (true)
                 {
-                    query = "SELECT MAX(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon";
+                    string query = "SELECT Min(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon WHERE XuatTruoc = 'False' AND DaXuat = 'False'";
                     result = ExcuteQuery(query);
                     if (!result.IsOK) return result;
-
-                    dt = result.QueryResult as DataTable;
+                    DataTable dt = result.QueryResult as DataTable;
                     if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
-                        result.QueryResult = Convert.ToInt32(dt.Rows[0][0]) + 1;
+                        result.QueryResult = dt.Rows[0][0];
                     else
-                        result.QueryResult = 1;
+                    {
+                        query = "SELECT MAX(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon";
+                        result = ExcuteQuery(query);
+                        if (!result.IsOK) return result;
+
+                        dt = result.QueryResult as DataTable;
+                        if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
+                            result.QueryResult = Convert.ToInt32(dt.Rows[0][0]) + 1;
+                        else
+                            result.QueryResult = 1;
+                    }
+
+                    db = new MMOverride();
+                    int soHoaDon = Convert.ToInt32(result.QueryResult);
+                    bool isExist = false;
+
+                    //Hoa don dich vu
+                    Invoice hdhd = db.Invoices.SingleOrDefault<Invoice>(h => Convert.ToInt32(h.InvoiceCode) == soHoaDon && h.Status == (byte)Status.Actived);
+                    if (hdhd != null)
+                    {
+                        QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                        if (qlshd == null)
+                        {
+                            qlshd = new QuanLySoHoaDon();
+                            qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                            qlshd.SoHoaDon = soHoaDon;
+                            qlshd.DaXuat = true;
+                            qlshd.XuatTruoc = false;
+                            db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                        }
+                        else
+                            qlshd.DaXuat = true;
+
+                        db.SubmitChanges();
+                        isExist = true;
+                    }
+
+                    //Hoa don thuoc
+                    if (!isExist)
+                    {
+                        HoaDonThuoc hdt = db.HoaDonThuocs.SingleOrDefault<HoaDonThuoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && h.Status == (byte)Status.Actived);
+                        if (hdt != null)
+                        {
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            if (qlshd == null)
+                            {
+                                qlshd = new QuanLySoHoaDon();
+                                qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                                qlshd.SoHoaDon = soHoaDon;
+                                qlshd.DaXuat = true;
+                                qlshd.XuatTruoc = false;
+                                db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                            }
+                            else
+                                qlshd.DaXuat = true;
+
+                            db.SubmitChanges();
+                            isExist = true;
+                        }
+                    }
+                    
+
+                    //Hoa don xuat truoc
+                    if (!isExist)
+                    {
+                        HoaDonXuatTruoc hdxt = db.HoaDonXuatTruocs.SingleOrDefault<HoaDonXuatTruoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && h.Status == (byte)Status.Actived);
+                        if (hdxt != null)
+                        {
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            if (qlshd == null)
+                            {
+                                qlshd = new QuanLySoHoaDon();
+                                qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                                qlshd.SoHoaDon = soHoaDon;
+                                qlshd.DaXuat = true;
+                                qlshd.XuatTruoc = true;
+                                db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                            }
+                            else
+                                qlshd.DaXuat = true;
+
+                            db.SubmitChanges();
+                            isExist = true;
+                        }
+                    }
+                    
+
+                    //Hoa don hop dong
+                    if (!isExist)
+                    {
+                        HoaDonHopDong hd = db.HoaDonHopDongs.SingleOrDefault<HoaDonHopDong>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && h.Status == (byte)Status.Actived);
+                        if (hd != null)
+                        {
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            if (qlshd == null)
+                            {
+                                qlshd = new QuanLySoHoaDon();
+                                qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                                qlshd.SoHoaDon = soHoaDon;
+                                qlshd.DaXuat = true;
+                                qlshd.XuatTruoc = false;
+                                db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                            }
+                            else
+                                qlshd.DaXuat = true;
+
+                            db.SubmitChanges();
+                            isExist = true;
+                        }
+                    }
+
+                    if (!isExist) break;
                 }
+                
             }
             catch (System.Data.SqlClient.SqlException se)
             {
