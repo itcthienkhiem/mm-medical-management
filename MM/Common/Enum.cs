@@ -250,6 +250,6 @@ namespace MM.Common
         Biochemistry = 0,
         Urine,
         Electrolytes,
-        Hematology
+        Haematology
     }
 }
