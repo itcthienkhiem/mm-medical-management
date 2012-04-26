@@ -244,4 +244,12 @@ namespace MM.Common
         Months,
         Years
     };
+
+    public enum LoaiXetNghiem : byte
+    {
+        Biochemistry = 0,
+        Urine,
+        Electrolytes,
+        Hematology
+    }
 }
