@@ -83,8 +83,6 @@ namespace MM.Bussiness
                         {
                             ctxn = ctxns[0];
                             if (ctxns[0].DoiTuong != (byte)DoiTuong.Chung) ctxn = ctxns[1];
-
-                            
                         }
                         else
                         {
@@ -117,21 +115,53 @@ namespace MM.Bussiness
                         {
                             KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
                             if (kqxn == null) continue;
-                            if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
-                            if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
-                                kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
-                            if (kqxn.Age.Value < 18) continue;
+                            //if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
+                            //if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
+                            //    kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
+                            //if (kqxn.Age.Value < 18) continue;
 
-                            if (kqxn.Age.Value <= 60) //Người trưởng thành
+                            for (int i = 0; i < ctxns.Count; i++)
                             {
-                                ctxn = ctxns[0];
-                                if (ctxns[0].DoiTuong != (byte)DoiTuong.NguoiLon) ctxn = ctxns[1];
+                                if (ctxns[i].DoiTuong == (byte)DoiTuong.NguoiLon)
+                                {
+                                    ctxn = ctxns[i];
+                                    break;
+                                }
                             }
-                            else //Người cao tuổi
+
+                            if (ctxn == null)
                             {
-                                ctxn = ctxns[1];
-                                if (ctxns[1].DoiTuong != (byte)DoiTuong.NguoiCaoTuoi) ctxn = ctxns[0];
+                                for (int i = 0; i < ctxns.Count; i++)
+                                {
+                                    if (ctxns[i].DoiTuong == (byte)DoiTuong.NguoiCaoTuoi)
+                                    {
+                                        ctxn = ctxns[i];
+                                        break;
+                                    }
+                                }
                             }
+
+                            if (ctxn == null)
+                            {
+                                for (int i = 0; i < ctxns.Count; i++)
+                                {
+                                    if (ctxns[i].DoiTuong == (byte)DoiTuong.TreEm)
+                                    {
+                                        ctxn = ctxns[i];
+                                        break;
+                                    }
+                                }
+                            }
+                            //if (kqxn.Age.Value <= 60) //Người trưởng thành
+                            //{
+                            //    ctxn = ctxns[0];
+                            //    if (ctxns[0].DoiTuong != (byte)DoiTuong.NguoiLon) ctxn = ctxns[1];
+                            //}
+                            //else //Người cao tuổi
+                            //{
+                            //    ctxn = ctxns[1];
+                            //    if (ctxns[1].DoiTuong != (byte)DoiTuong.NguoiCaoTuoi) ctxn = ctxns[0];
+                            //}
                         }
                     }
 
@@ -604,20 +634,53 @@ namespace MM.Bussiness
                                 else
                                 {
                                     if (kqxn == null) continue;
-                                    if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
-                                    if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
-                                        kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
-                                    if (kqxn.Age.Value < 18) continue;
+                                    //if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
+                                    //if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
+                                    //    kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
+                                    //if (kqxn.Age.Value < 18) continue;
 
-                                    if (kqxn.Age.Value <= 60) //Người trưởng thành
+                                    //if (kqxn.Age.Value <= 60) //Người trưởng thành
+                                    //{
+                                    //    ctxn = ctxns[0];
+                                    //    if (ctxns[0].DoiTuong != (byte)DoiTuong.NguoiLon) ctxn = ctxns[1];
+                                    //}
+                                    //else //Người cao tuổi
+                                    //{
+                                    //    ctxn = ctxns[1];
+                                    //    if (ctxns[1].DoiTuong != (byte)DoiTuong.NguoiCaoTuoi) ctxn = ctxns[0];
+                                    //}
+
+                                    for (int j = 0; j < ctxns.Count; j++)
                                     {
-                                        ctxn = ctxns[0];
-                                        if (ctxns[0].DoiTuong != (byte)DoiTuong.NguoiLon) ctxn = ctxns[1];
+                                        if (ctxns[j].DoiTuong == (byte)DoiTuong.NguoiLon)
+                                        {
+                                            ctxn = ctxns[j];
+                                            break;
+                                        }
                                     }
-                                    else //Người cao tuổi
+
+                                    if (ctxn == null)
                                     {
-                                        ctxn = ctxns[1];
-                                        if (ctxns[1].DoiTuong != (byte)DoiTuong.NguoiCaoTuoi) ctxn = ctxns[0];
+                                        for (int j = 0; j < ctxns.Count; j++)
+                                        {
+                                            if (ctxns[j].DoiTuong == (byte)DoiTuong.NguoiCaoTuoi)
+                                            {
+                                                ctxn = ctxns[j];
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    if (ctxn == null)
+                                    {
+                                        for (int j = 0; j < ctxns.Count; j++)
+                                        {
+                                            if (ctxns[j].DoiTuong == (byte)DoiTuong.TreEm)
+                                            {
+                                                ctxn = ctxns[j];
+                                                break;
+                                            }
+                                        }
                                     }
                                 }
                             }
