@@ -66,7 +66,7 @@ namespace MM.Bussiness
                 DataTable dt = result.QueryResult as DataTable;
                 foreach (DataRow row in dt.Rows)
                 {
-                    string tenXetNghiem = row["TenXetNghiem"].ToString();
+                    string tenXetNghiem = row["Fullname"].ToString();
 
                     XetNghiem_CellDyn3200 xn = db.XetNghiem_CellDyn3200s.SingleOrDefault<XetNghiem_CellDyn3200>(x => x.TenXetNghiem == tenXetNghiem);
                     if (xn == null) continue;

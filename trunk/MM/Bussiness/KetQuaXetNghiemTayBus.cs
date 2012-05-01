@@ -414,7 +414,6 @@ namespace MM.Bussiness
                         switch (doiTuong)
                         {
                             case DoiTuong.Chung:
-                            case DoiTuong.Chung_Sau2h:
                                 row["BinhThuong"] = string.Format("(< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
                                 break;
                             case DoiTuong.Nam:

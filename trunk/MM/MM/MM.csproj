@@ -461,6 +461,12 @@
     <Compile Include="Controls\uKetQuaXetNghiemTay.Designer.cs">
       <DependentUpon>uKetQuaXetNghiemTay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaXetNghiemTongHop.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaXetNghiemTongHop.Designer.cs">
+      <DependentUpon>uKetQuaXetNghiemTongHop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKetQuaXetNghiem_CellDyn3200.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1226,6 +1232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaXetNghiemTay.resx">
       <DependentUpon>uKetQuaXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaXetNghiemTongHop.resx">
+      <DependentUpon>uKetQuaXetNghiemTongHop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaXetNghiem_CellDyn3200.resx">
       <DependentUpon>uKetQuaXetNghiem_CellDyn3200.cs</DependentUpon>

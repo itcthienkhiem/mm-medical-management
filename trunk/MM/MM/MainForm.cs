@@ -837,6 +837,15 @@ namespace MM
                             _uKetQuaXetNghiemTay.AllowImport = isImport;
                             _uKetQuaXetNghiemTay.AllowLock = isLock;
                             _uKetQuaXetNghiemTay.AllowExportAll = isExportAll;
+
+                            _uKetQuaXetNghiemTongHop.AllowAdd = isAdd;
+                            _uKetQuaXetNghiemTongHop.AllowEdit = isEdit;
+                            _uKetQuaXetNghiemTongHop.AllowDelete = isDelete;
+                            _uKetQuaXetNghiemTongHop.AllowPrint = isPrint;
+                            _uKetQuaXetNghiemTongHop.AllowExport = isExport;
+                            _uKetQuaXetNghiemTongHop.AllowImport = isImport;
+                            _uKetQuaXetNghiemTongHop.AllowLock = isLock;
+                            _uKetQuaXetNghiemTongHop.AllowExportAll = isExportAll;
                         }
                         else if (functionCode == Const.BaoCaoKhachHangMuaThuoc)
                         {
@@ -1247,7 +1256,7 @@ namespace MM
         private void OnKetQuaXetNghiemTongHop()
         {
             this.Text = string.Format("{0} - Ket qua xet nghiem tong hop", Application.ProductName);
-            
+            ViewControl(_uKetQuaXetNghiemTongHop);
         }
 
         private void OnKetQuaXetNghiemTay()
