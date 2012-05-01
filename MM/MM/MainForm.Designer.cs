@@ -253,6 +253,7 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
+            this._uKetQuaXetNghiemTongHop = new MM.Controls.uKetQuaXetNghiemTongHop();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1633,6 +1634,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uKetQuaXetNghiemTongHop);
             this._mainPanel.Controls.Add(this._uKetQuaXetNghiemTay);
             this._mainPanel.Controls.Add(this._uXetNghiemTay);
             this._mainPanel.Controls.Add(this._uBaoCaoKhachHangMuaThuoc);
@@ -1901,6 +1903,11 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
+            // _uKetQuaXetNghiemTongHop
+            // 
+            resources.ApplyResources(this._uKetQuaXetNghiemTongHop, "_uKetQuaXetNghiemTongHop");
+            this._uKetQuaXetNghiemTongHop.Name = "_uKetQuaXetNghiemTongHop";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2156,6 +2163,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator47;
         private Controls.uXetNghiemTay _uXetNghiemTay;
         private Controls.uKetQuaXetNghiemTay _uKetQuaXetNghiemTay;
+        private Controls.uKetQuaXetNghiemTongHop _uKetQuaXetNghiemTongHop;
 
     }
 }
