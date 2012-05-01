@@ -56,7 +56,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_CellDyn3200View WHERE KQXN_CellDyn3200GUID = '{0}' AND Status = {1} ORDER BY TenXetNghiem",
+                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_CellDyn3200View WHERE KQXN_CellDyn3200GUID = '{0}' AND Status = {1} ORDER BY GroupID, [Order]",
                            ketQuaXetNghiemGUID, (byte)Status.Actived);
 
                 result = ExcuteQuery(query);

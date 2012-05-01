@@ -21,6 +21,8 @@ namespace MM.Controls
         private string _tenBenhNhan = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
+        private Font _normalFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        private Font _boldFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         #endregion
 
         #region Constructor
@@ -113,9 +115,15 @@ namespace MM.Controls
                 DataRow dr = (row.DataBoundItem as DataRowView).Row;
                 TinhTrang tinhTrang = (TinhTrang)Convert.ToByte(dr["TinhTrang"]);
                 if (tinhTrang == TinhTrang.BatThuong)
-                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                {
+                    row.DefaultCellStyle.Font = _boldFont;
+                    row.DefaultCellStyle.ForeColor = Color.Red;
+                }
                 else
-                    row.DefaultCellStyle.BackColor = SystemColors.Window;
+                {
+                    row.DefaultCellStyle.Font = _normalFont;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
+                }
             }
         }
 
@@ -252,9 +260,15 @@ namespace MM.Controls
                 row["TinhTrang"] = dlg.ChiTietKQXN.TinhTrang;
 
                 if ((TinhTrang)dlg.ChiTietKQXN.TinhTrang == TinhTrang.BatThuong)
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                {
+                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _boldFont;
+                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Red;
+                }
                 else
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.BackColor = SystemColors.Window;
+                {
+                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _normalFont;
+                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Black;
+                }
             }
         }
         #endregion

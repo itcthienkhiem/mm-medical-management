@@ -2580,19 +2580,6 @@
       <Column Name="AgeUnit" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.XetNghiem_CellDyn3200" Member="XetNghiem_CellDyn3200s">
-    <Type Name="XetNghiem_CellDyn3200">
-      <Column Name="XetNghiemGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenXetNghiem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FromValue" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ToValue" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="FromPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ToPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="DonVi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.KetQuaXetNghiem_CellDyn3200" Member="KetQuaXetNghiem_CellDyn3200s">
     <Type Name="KetQuaXetNghiem_CellDyn3200">
       <Column Name="KQXN_CellDyn3200GUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2677,30 +2664,6 @@
       <Column Name="Archived" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ChiTietKetQuaXetNghiem_CellDyn3200View" Member="ChiTietKetQuaXetNghiem_CellDyn3200Views">
-    <Type Name="ChiTietKetQuaXetNghiem_CellDyn3200View">
-      <Column Name="ChiTietKQXN_CellDyn3200GUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="KQXN_CellDyn3200GUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="TenXetNghiem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="TestResult" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="TestPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="TinhTrang" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FromValue" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ToValue" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ToPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="DonVi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="FromPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.XetNghiem_Manual" Member="XetNghiem_Manuals">
     <Type Name="XetNghiem_Manual">
       <Column Name="XetNghiem_ManualGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2769,11 +2732,29 @@
       <Association Name="XetNghiem_Manual_ChiTietKetQuaXetNghiem_Manual" Member="XetNghiem_Manual" ThisKey="XetNghiem_ManualGUID" OtherKey="XetNghiem_ManualGUID" Type="XetNghiem_Manual" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.KetQuaXetNghiem_ManualView" Member="KetQuaXetNghiem_ManualViews">
-    <Type Name="KetQuaXetNghiem_ManualView">
-      <Column Name="KetQuaXetNghiemManualGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="NgayXN" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+  <Table Name="dbo.XetNghiem_CellDyn3200" Member="XetNghiem_CellDyn3200s">
+    <Type Name="XetNghiem_CellDyn3200">
+      <Column Name="XetNghiemGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenXetNghiem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FromValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ToValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FromPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ToPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DonVi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ChiTietKetQuaXetNghiem_CellDyn3200View" Member="ChiTietKetQuaXetNghiem_CellDyn3200Views">
+    <Type Name="ChiTietKetQuaXetNghiem_CellDyn3200View">
+      <Column Name="ChiTietKQXN_CellDyn3200GUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="KQXN_CellDyn3200GUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TenXetNghiem" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TestResult" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TestPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TinhTrang" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
@@ -2781,10 +2762,15 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="GenderAsStr" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="Archived" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FromValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ToValue" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ToPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DonVi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="FromPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ChiTietKetQuaXetNghiem_ManualView" Member="ChiTietKetQuaXetNghiem_ManualViews">
@@ -2801,11 +2787,29 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Expr1" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Column Name="TenXetNghiem" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Fullname" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="XetNghiemStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KetQuaXetNghiem_ManualView" Member="KetQuaXetNghiem_ManualViews">
+    <Type Name="KetQuaXetNghiem_ManualView">
+      <Column Name="KetQuaXetNghiemManualGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NgayXN" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GenderAsStr" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="Archived" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FileNum" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

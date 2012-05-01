@@ -101,6 +101,7 @@
     <Compile Include="KetQuaLamSangBus.cs" />
     <Compile Include="KetQuaNoiSoiBus.cs" />
     <Compile Include="KetQuaSoiCTCBus.cs" />
+    <Compile Include="KetQuaXetNghiemTayBus.cs" />
     <Compile Include="LogonBus.cs" />
     <Compile Include="LoiKhuyenBus.cs" />
     <Compile Include="LoThuocBus.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="SymptomBus.cs" />
     <Compile Include="ThuocBus.cs" />
     <Compile Include="TrackingBus.cs" />
+    <Compile Include="XetNghiemTayBus.cs" />
     <Compile Include="XetNghiem_CellDyn3200Bus.cs" />
     <Compile Include="XetNghiem_Hitachi917Bus.cs" />
     <Compile Include="YKienKhachHangBus.cs" />
