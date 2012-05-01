@@ -113,8 +113,8 @@ namespace MM.Bussiness
                         }
                         else
                         {
-                            KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
-                            if (kqxn == null) continue;
+                            //KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
+                            //if (kqxn == null) continue;
                             //if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
                             //if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
                             //    kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
@@ -246,7 +246,7 @@ namespace MM.Bussiness
                                 row["BinhThuong"] = string.Format("Adult (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
                                 break;
                             case DoiTuong.NguoiCaoTuoi:
-                                row["BinhThuong"] = string.Format("> 60 year (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                row["BinhThuong"] = string.Format("< 60 year (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
                                 break;
                         }
                     }

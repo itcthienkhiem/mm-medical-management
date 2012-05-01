@@ -247,9 +247,9 @@ namespace MM.Common
 
     public enum LoaiXetNghiem : byte
     {
-        Biochemistry = 0,
-        Urine,
-        Electrolytes,
-        Haematology
+        Biochemistry = 0, //Sinh hóa
+        Urine, //Nước tiểu
+        Electrolytes, //Ion đồ
+        Haematology //Huyết học
     }
 }

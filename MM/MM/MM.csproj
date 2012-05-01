@@ -455,6 +455,12 @@
     <Compile Include="Controls\uKetQuaSoiCTCList.Designer.cs">
       <DependentUpon>uKetQuaSoiCTCList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaXetNghiemTay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaXetNghiemTay.Designer.cs">
+      <DependentUpon>uKetQuaXetNghiemTay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKetQuaXetNghiem_CellDyn3200.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -629,11 +635,41 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uXetNghiemTay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uXetNghiemTay.Designer.cs">
+      <DependentUpon>uXetNghiemTay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uYKienKhachHangList.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddChiTietKetQuaXetNghiemTay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddChiTietKetQuaXetNghiemTay.Designer.cs">
+      <DependentUpon>dlgAddChiTietKetQuaXetNghiemTay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKetQuaXetNghiemTay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKetQuaXetNghiemTay.Designer.cs">
+      <DependentUpon>dlgAddKetQuaXetNghiemTay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddXetNghiemTay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddXetNghiemTay.Designer.cs">
+      <DependentUpon>dlgAddXetNghiemTay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgSelectXetNghiemTay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgSelectXetNghiemTay.Designer.cs">
+      <DependentUpon>dlgSelectXetNghiemTay.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgUpdateChiSoKetQuaXetNghiem_CellDyn3200.cs">
       <SubType>Form</SubType>
@@ -1188,6 +1224,9 @@
     <EmbeddedResource Include="Controls\uKetQuaSoiCTCList.resx">
       <DependentUpon>uKetQuaSoiCTCList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaXetNghiemTay.resx">
+      <DependentUpon>uKetQuaXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaXetNghiem_CellDyn3200.resx">
       <DependentUpon>uKetQuaXetNghiem_CellDyn3200.cs</DependentUpon>
     </EmbeddedResource>
@@ -1275,8 +1314,23 @@
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uXetNghiemTay.resx">
+      <DependentUpon>uXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddChiTietKetQuaXetNghiemTay.resx">
+      <DependentUpon>dlgAddChiTietKetQuaXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddKetQuaXetNghiemTay.resx">
+      <DependentUpon>dlgAddKetQuaXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddXetNghiemTay.resx">
+      <DependentUpon>dlgAddXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgSelectXetNghiemTay.resx">
+      <DependentUpon>dlgSelectXetNghiemTay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgUpdateChiSoKetQuaXetNghiem_CellDyn3200.resx">
       <DependentUpon>dlgUpdateChiSoKetQuaXetNghiem_CellDyn3200.cs</DependentUpon>
@@ -1518,6 +1572,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ChiTietChiDinhView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietKetQuaXetNghiem_CellDynView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietKetQuaXetNghiem_Hitachi917View.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiTietKetQuaXetNghiem_ManualView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuocView.datasource" />
@@ -1540,6 +1595,7 @@
     <None Include="Properties\DataSources\MM.Databasae.KetQuaSoiCTCView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_CellDyn3200View.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_Hitachi917View.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_ManualView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhatKyLienHeCongTyView.datasource" />
@@ -1566,6 +1622,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TrackingView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.XetNghiem_Manual.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.YKienKhachHang.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
