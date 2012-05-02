@@ -23,7 +23,7 @@ namespace MM.Bussiness
                 DataTable dt = null;
 
                 //Hitachi917
-                query = string.Format("SELECT XetNghiemGUID, NgayXN, Fullname, TestResult, '' AS TestPercent, TinhTrang, '' AS BinhThuong FROM dbo.ChiTietKetQuaXetNghiem_Hitachi917View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY NgayXN, Fullname",
+                query = string.Format("SELECT XetNghiemGUID, NgayXN, Fullname, TestResult, '' AS TestPercent, TinhTrang, '' AS BinhThuong, [Type] FROM dbo.ChiTietKetQuaXetNghiem_Hitachi917View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY NgayXN, Fullname",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);
@@ -220,7 +220,7 @@ namespace MM.Bussiness
 
                 //Celldyn3200
                 string emptyGUID = Guid.Empty.ToString();
-                query = string.Format("SELECT '{4}' AS XetNghiemGUID, NgayXN, Fullname, TestResult, TestPercent, TinhTrang, '' AS BinhThuong FROM dbo.ChiTietKetQuaXetNghiem_CellDyn3200View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXN",
+                query = string.Format("SELECT '{4}' AS XetNghiemGUID, NgayXN, Fullname, TestResult, TestPercent, TinhTrang, '' AS BinhThuong, [Type] FROM dbo.ChiTietKetQuaXetNghiem_CellDyn3200View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXN",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), emptyGUID);
 
                 result = ExcuteQuery(query);
@@ -263,7 +263,7 @@ namespace MM.Bussiness
 
 
                 //Xet nghiem tay
-                query = string.Format("SELECT XetNghiem_ManualGUID AS XetNghiemGUID, NgayXN, Fullname, TestResult, '' AS TestPercent, TinhTrang, '' AS BinhThuong FROM dbo.ChiTietKetQuaXetNghiem_ManualView WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY NgayXN, Fullname",
+                query = string.Format("SELECT XetNghiem_ManualGUID AS XetNghiemGUID, NgayXN, Fullname, TestResult, '' AS TestPercent, TinhTrang, '' AS BinhThuong, [Type] FROM dbo.ChiTietKetQuaXetNghiem_ManualView WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY NgayXN, Fullname",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);
