@@ -17,7 +17,6 @@ namespace MM.Controls
     public partial class uKetQuaXetNghiem_Hitachi917 : uBase
     {
         #region Members
-        private bool _isFromDateToDate = true;
         private string _tenBenhNhan = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
@@ -52,8 +51,7 @@ namespace MM.Controls
             try
             {
                 UpdateGUI();
-
-                _isFromDateToDate = raTuNgayToiNgay.Checked;
+               
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 _tenBenhNhan = txtTenBenhNhan.Text;
@@ -75,7 +73,7 @@ namespace MM.Controls
 
         private void OnDisplayKetQuaXetNghiemList()
         {
-            Result result = XetNghiem_Hitachi917Bus.GetKetQuaXetNghiemList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan);
+            Result result = XetNghiem_Hitachi917Bus.GetKetQuaXetNghiemList(_fromDate, _toDate, _tenBenhNhan);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -273,13 +271,6 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
-        private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
-        {
-            dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
-            dtpkDenNgay.Enabled = raTuNgayToiNgay.Checked;
-            txtTenBenhNhan.ReadOnly = raTuNgayToiNgay.Checked;
-        }
-
         private void btnView_Click(object sender, EventArgs e)
         {
             DisplayAsThread();
