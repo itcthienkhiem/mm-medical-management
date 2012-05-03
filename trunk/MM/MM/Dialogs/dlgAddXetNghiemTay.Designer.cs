@@ -34,21 +34,18 @@
             this.raTreEmNguoiLonNguoiCaoTuoi = new System.Windows.Forms.RadioButton();
             this.raNamNu = new System.Windows.Forms.RadioButton();
             this.gbTreEmNguoiLonNguoiCaoTuoi = new System.Windows.Forms.GroupBox();
-            this.txtDonVi_NguoiCaoTuoi = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.numToValue_NguoiCaoTuoi = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_NguoiCaoTuoi = new System.Windows.Forms.CheckBox();
             this.numFromValue_NguoiCaoTuoi = new System.Windows.Forms.NumericUpDown();
             this.chkFromValue_NguoiCaoTuoi = new System.Windows.Forms.CheckBox();
             this.chkNguoiCaoTuoi = new System.Windows.Forms.CheckBox();
-            this.txtDonVi_NguoiLon = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.numToValue_NguoiLon = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_NguoiLon = new System.Windows.Forms.CheckBox();
             this.numFromValue_NguoiLon = new System.Windows.Forms.NumericUpDown();
             this.chkFromValue_NguoiLon = new System.Windows.Forms.CheckBox();
             this.chkNguoiLon = new System.Windows.Forms.CheckBox();
-            this.txtDonVi_TreEm = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.numToValue_TreEm = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_TreEm = new System.Windows.Forms.CheckBox();
@@ -56,14 +53,12 @@
             this.chkFromValue_TreEm = new System.Windows.Forms.CheckBox();
             this.chkTreEm = new System.Windows.Forms.CheckBox();
             this.gbNamNu = new System.Windows.Forms.GroupBox();
-            this.txtDonVi_Nu = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.numToValue_Nu = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_Nu = new System.Windows.Forms.CheckBox();
             this.numFromValue_Nu = new System.Windows.Forms.NumericUpDown();
             this.chkFromValue_Nu = new System.Windows.Forms.CheckBox();
             this.chkNu = new System.Windows.Forms.CheckBox();
-            this.txtDonVi_Nam = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.numToValue_Nam = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_Nam = new System.Windows.Forms.CheckBox();
@@ -71,7 +66,6 @@
             this.chkFromValue_Nam = new System.Windows.Forms.CheckBox();
             this.chkNam = new System.Windows.Forms.CheckBox();
             this.gbChung = new System.Windows.Forms.GroupBox();
-            this.txtDonVi_Chung = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.numToValue_Chung = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_Chung = new System.Windows.Forms.CheckBox();
@@ -83,6 +77,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.txtDonVi_Chung = new System.Windows.Forms.ComboBox();
+            this.txtDonVi_Nam = new System.Windows.Forms.ComboBox();
+            this.txtDonVi_Nu = new System.Windows.Forms.ComboBox();
+            this.txtDonVi_TreEm = new System.Windows.Forms.ComboBox();
+            this.txtDonVi_NguoiLon = new System.Windows.Forms.ComboBox();
+            this.txtDonVi_NguoiCaoTuoi = new System.Windows.Forms.ComboBox();
             this.gbXetNghiem.SuspendLayout();
             this.gbTreEmNguoiLonNguoiCaoTuoi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue_NguoiCaoTuoi)).BeginInit();
@@ -157,20 +157,20 @@
             // gbTreEmNguoiLonNguoiCaoTuoi
             // 
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.txtDonVi_NguoiCaoTuoi);
+            this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.txtDonVi_NguoiLon);
+            this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.txtDonVi_TreEm);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.label8);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.numToValue_NguoiCaoTuoi);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkToValue_NguoiCaoTuoi);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.numFromValue_NguoiCaoTuoi);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkFromValue_NguoiCaoTuoi);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkNguoiCaoTuoi);
-            this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.txtDonVi_NguoiLon);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.label6);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.numToValue_NguoiLon);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkToValue_NguoiLon);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.numFromValue_NguoiLon);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkFromValue_NguoiLon);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkNguoiLon);
-            this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.txtDonVi_TreEm);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.label7);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.numToValue_TreEm);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkToValue_TreEm);
@@ -184,18 +184,10 @@
             this.gbTreEmNguoiLonNguoiCaoTuoi.TabIndex = 6;
             this.gbTreEmNguoiLonNguoiCaoTuoi.TabStop = false;
             // 
-            // txtDonVi_NguoiCaoTuoi
-            // 
-            this.txtDonVi_NguoiCaoTuoi.Enabled = false;
-            this.txtDonVi_NguoiCaoTuoi.Location = new System.Drawing.Point(428, 71);
-            this.txtDonVi_NguoiCaoTuoi.Name = "txtDonVi_NguoiCaoTuoi";
-            this.txtDonVi_NguoiCaoTuoi.Size = new System.Drawing.Size(102, 20);
-            this.txtDonVi_NguoiCaoTuoi.TabIndex = 39;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(385, 74);
+            this.label8.Location = new System.Drawing.Point(385, 73);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 13);
             this.label8.TabIndex = 38;
@@ -205,7 +197,7 @@
             // 
             this.numToValue_NguoiCaoTuoi.DecimalPlaces = 2;
             this.numToValue_NguoiCaoTuoi.Enabled = false;
-            this.numToValue_NguoiCaoTuoi.Location = new System.Drawing.Point(305, 71);
+            this.numToValue_NguoiCaoTuoi.Location = new System.Drawing.Point(305, 70);
             this.numToValue_NguoiCaoTuoi.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -224,7 +216,7 @@
             // 
             this.chkToValue_NguoiCaoTuoi.AutoSize = true;
             this.chkToValue_NguoiCaoTuoi.Enabled = false;
-            this.chkToValue_NguoiCaoTuoi.Location = new System.Drawing.Point(262, 73);
+            this.chkToValue_NguoiCaoTuoi.Location = new System.Drawing.Point(262, 72);
             this.chkToValue_NguoiCaoTuoi.Name = "chkToValue_NguoiCaoTuoi";
             this.chkToValue_NguoiCaoTuoi.Size = new System.Drawing.Size(45, 17);
             this.chkToValue_NguoiCaoTuoi.TabIndex = 36;
@@ -236,7 +228,7 @@
             // 
             this.numFromValue_NguoiCaoTuoi.DecimalPlaces = 2;
             this.numFromValue_NguoiCaoTuoi.Enabled = false;
-            this.numFromValue_NguoiCaoTuoi.Location = new System.Drawing.Point(182, 71);
+            this.numFromValue_NguoiCaoTuoi.Location = new System.Drawing.Point(182, 70);
             this.numFromValue_NguoiCaoTuoi.Maximum = new decimal(new int[] {
             99999999,
             0,
@@ -255,7 +247,7 @@
             // 
             this.chkFromValue_NguoiCaoTuoi.AutoSize = true;
             this.chkFromValue_NguoiCaoTuoi.Enabled = false;
-            this.chkFromValue_NguoiCaoTuoi.Location = new System.Drawing.Point(114, 73);
+            this.chkFromValue_NguoiCaoTuoi.Location = new System.Drawing.Point(114, 72);
             this.chkFromValue_NguoiCaoTuoi.Name = "chkFromValue_NguoiCaoTuoi";
             this.chkFromValue_NguoiCaoTuoi.Size = new System.Drawing.Size(70, 17);
             this.chkFromValue_NguoiCaoTuoi.TabIndex = 34;
@@ -266,21 +258,13 @@
             // chkNguoiCaoTuoi
             // 
             this.chkNguoiCaoTuoi.AutoSize = true;
-            this.chkNguoiCaoTuoi.Location = new System.Drawing.Point(16, 73);
+            this.chkNguoiCaoTuoi.Location = new System.Drawing.Point(16, 72);
             this.chkNguoiCaoTuoi.Name = "chkNguoiCaoTuoi";
             this.chkNguoiCaoTuoi.Size = new System.Drawing.Size(98, 17);
             this.chkNguoiCaoTuoi.TabIndex = 33;
             this.chkNguoiCaoTuoi.Text = "Người cao tuổi:";
             this.chkNguoiCaoTuoi.UseVisualStyleBackColor = true;
             this.chkNguoiCaoTuoi.CheckedChanged += new System.EventHandler(this.chkNguoiCaoTuoi_CheckedChanged);
-            // 
-            // txtDonVi_NguoiLon
-            // 
-            this.txtDonVi_NguoiLon.Enabled = false;
-            this.txtDonVi_NguoiLon.Location = new System.Drawing.Point(428, 45);
-            this.txtDonVi_NguoiLon.Name = "txtDonVi_NguoiLon";
-            this.txtDonVi_NguoiLon.Size = new System.Drawing.Size(102, 20);
-            this.txtDonVi_NguoiLon.TabIndex = 32;
             // 
             // label6
             // 
@@ -363,14 +347,6 @@
             this.chkNguoiLon.Text = "Người lớn:";
             this.chkNguoiLon.UseVisualStyleBackColor = true;
             this.chkNguoiLon.CheckedChanged += new System.EventHandler(this.chkNguoiLon_CheckedChanged);
-            // 
-            // txtDonVi_TreEm
-            // 
-            this.txtDonVi_TreEm.Enabled = false;
-            this.txtDonVi_TreEm.Location = new System.Drawing.Point(428, 20);
-            this.txtDonVi_TreEm.Name = "txtDonVi_TreEm";
-            this.txtDonVi_TreEm.Size = new System.Drawing.Size(102, 20);
-            this.txtDonVi_TreEm.TabIndex = 25;
             // 
             // label7
             // 
@@ -457,13 +433,13 @@
             // gbNamNu
             // 
             this.gbNamNu.Controls.Add(this.txtDonVi_Nu);
+            this.gbNamNu.Controls.Add(this.txtDonVi_Nam);
             this.gbNamNu.Controls.Add(this.label5);
             this.gbNamNu.Controls.Add(this.numToValue_Nu);
             this.gbNamNu.Controls.Add(this.chkToValue_Nu);
             this.gbNamNu.Controls.Add(this.numFromValue_Nu);
             this.gbNamNu.Controls.Add(this.chkFromValue_Nu);
             this.gbNamNu.Controls.Add(this.chkNu);
-            this.gbNamNu.Controls.Add(this.txtDonVi_Nam);
             this.gbNamNu.Controls.Add(this.label4);
             this.gbNamNu.Controls.Add(this.numToValue_Nam);
             this.gbNamNu.Controls.Add(this.chkToValue_Nam);
@@ -476,14 +452,6 @@
             this.gbNamNu.Size = new System.Drawing.Size(543, 77);
             this.gbNamNu.TabIndex = 5;
             this.gbNamNu.TabStop = false;
-            // 
-            // txtDonVi_Nu
-            // 
-            this.txtDonVi_Nu.Enabled = false;
-            this.txtDonVi_Nu.Location = new System.Drawing.Point(427, 45);
-            this.txtDonVi_Nu.Name = "txtDonVi_Nu";
-            this.txtDonVi_Nu.Size = new System.Drawing.Size(102, 20);
-            this.txtDonVi_Nu.TabIndex = 18;
             // 
             // label5
             // 
@@ -566,14 +534,6 @@
             this.chkNu.Text = "Nữ:";
             this.chkNu.UseVisualStyleBackColor = true;
             this.chkNu.CheckedChanged += new System.EventHandler(this.chkNu_CheckedChanged);
-            // 
-            // txtDonVi_Nam
-            // 
-            this.txtDonVi_Nam.Enabled = false;
-            this.txtDonVi_Nam.Location = new System.Drawing.Point(427, 20);
-            this.txtDonVi_Nam.Name = "txtDonVi_Nam";
-            this.txtDonVi_Nam.Size = new System.Drawing.Size(102, 20);
-            this.txtDonVi_Nam.TabIndex = 11;
             // 
             // label4
             // 
@@ -670,13 +630,6 @@
             this.gbChung.Size = new System.Drawing.Size(543, 50);
             this.gbChung.TabIndex = 4;
             this.gbChung.TabStop = false;
-            // 
-            // txtDonVi_Chung
-            // 
-            this.txtDonVi_Chung.Location = new System.Drawing.Point(427, 18);
-            this.txtDonVi_Chung.Name = "txtDonVi_Chung";
-            this.txtDonVi_Chung.Size = new System.Drawing.Size(102, 20);
-            this.txtDonVi_Chung.TabIndex = 5;
             // 
             // label3
             // 
@@ -812,6 +765,66 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // txtDonVi_Chung
+            // 
+            this.txtDonVi_Chung.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_Chung.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_Chung.FormattingEnabled = true;
+            this.txtDonVi_Chung.Location = new System.Drawing.Point(426, 17);
+            this.txtDonVi_Chung.Name = "txtDonVi_Chung";
+            this.txtDonVi_Chung.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_Chung.TabIndex = 5;
+            // 
+            // txtDonVi_Nam
+            // 
+            this.txtDonVi_Nam.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_Nam.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_Nam.FormattingEnabled = true;
+            this.txtDonVi_Nam.Location = new System.Drawing.Point(426, 19);
+            this.txtDonVi_Nam.Name = "txtDonVi_Nam";
+            this.txtDonVi_Nam.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_Nam.TabIndex = 11;
+            // 
+            // txtDonVi_Nu
+            // 
+            this.txtDonVi_Nu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_Nu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_Nu.FormattingEnabled = true;
+            this.txtDonVi_Nu.Location = new System.Drawing.Point(426, 44);
+            this.txtDonVi_Nu.Name = "txtDonVi_Nu";
+            this.txtDonVi_Nu.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_Nu.TabIndex = 18;
+            // 
+            // txtDonVi_TreEm
+            // 
+            this.txtDonVi_TreEm.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_TreEm.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_TreEm.FormattingEnabled = true;
+            this.txtDonVi_TreEm.Location = new System.Drawing.Point(426, 20);
+            this.txtDonVi_TreEm.Name = "txtDonVi_TreEm";
+            this.txtDonVi_TreEm.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_TreEm.TabIndex = 25;
+            // 
+            // txtDonVi_NguoiLon
+            // 
+            this.txtDonVi_NguoiLon.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_NguoiLon.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_NguoiLon.FormattingEnabled = true;
+            this.txtDonVi_NguoiLon.Location = new System.Drawing.Point(426, 45);
+            this.txtDonVi_NguoiLon.Name = "txtDonVi_NguoiLon";
+            this.txtDonVi_NguoiLon.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_NguoiLon.TabIndex = 32;
+            // 
+            // txtDonVi_NguoiCaoTuoi
+            // 
+            this.txtDonVi_NguoiCaoTuoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_NguoiCaoTuoi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_NguoiCaoTuoi.FormattingEnabled = true;
+            this.txtDonVi_NguoiCaoTuoi.Location = new System.Drawing.Point(426, 70);
+            this.txtDonVi_NguoiCaoTuoi.Name = "txtDonVi_NguoiCaoTuoi";
+            this.txtDonVi_NguoiCaoTuoi.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_NguoiCaoTuoi.TabIndex = 39;
+            // 
             // dlgAddXetNghiemTay
             // 
             this.AcceptButton = this.btnOK;
@@ -871,46 +884,46 @@
         private System.Windows.Forms.GroupBox gbTreEmNguoiLonNguoiCaoTuoi;
         private System.Windows.Forms.GroupBox gbNamNu;
         private System.Windows.Forms.GroupBox gbChung;
-        private System.Windows.Forms.TextBox txtDonVi_Chung;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown numToValue_Chung;
         private System.Windows.Forms.CheckBox chkToValue_Chung;
         private System.Windows.Forms.NumericUpDown numFromValue_Chung;
         private System.Windows.Forms.CheckBox chkFromValue_Chung;
-        private System.Windows.Forms.TextBox txtDonVi_Nu;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown numToValue_Nu;
         private System.Windows.Forms.CheckBox chkToValue_Nu;
         private System.Windows.Forms.NumericUpDown numFromValue_Nu;
         private System.Windows.Forms.CheckBox chkFromValue_Nu;
         private System.Windows.Forms.CheckBox chkNu;
-        private System.Windows.Forms.TextBox txtDonVi_Nam;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numToValue_Nam;
         private System.Windows.Forms.CheckBox chkToValue_Nam;
         private System.Windows.Forms.NumericUpDown numFromValue_Nam;
         private System.Windows.Forms.CheckBox chkFromValue_Nam;
         private System.Windows.Forms.CheckBox chkNam;
-        private System.Windows.Forms.TextBox txtDonVi_NguoiCaoTuoi;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown numToValue_NguoiCaoTuoi;
         private System.Windows.Forms.CheckBox chkToValue_NguoiCaoTuoi;
         private System.Windows.Forms.NumericUpDown numFromValue_NguoiCaoTuoi;
         private System.Windows.Forms.CheckBox chkFromValue_NguoiCaoTuoi;
         private System.Windows.Forms.CheckBox chkNguoiCaoTuoi;
-        private System.Windows.Forms.TextBox txtDonVi_NguoiLon;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numToValue_NguoiLon;
         private System.Windows.Forms.CheckBox chkToValue_NguoiLon;
         private System.Windows.Forms.NumericUpDown numFromValue_NguoiLon;
         private System.Windows.Forms.CheckBox chkFromValue_NguoiLon;
         private System.Windows.Forms.CheckBox chkNguoiLon;
-        private System.Windows.Forms.TextBox txtDonVi_TreEm;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numToValue_TreEm;
         private System.Windows.Forms.CheckBox chkToValue_TreEm;
         private System.Windows.Forms.NumericUpDown numFromValue_TreEm;
         private System.Windows.Forms.CheckBox chkFromValue_TreEm;
         private System.Windows.Forms.CheckBox chkTreEm;
+        private System.Windows.Forms.ComboBox txtDonVi_Chung;
+        private System.Windows.Forms.ComboBox txtDonVi_NguoiCaoTuoi;
+        private System.Windows.Forms.ComboBox txtDonVi_NguoiLon;
+        private System.Windows.Forms.ComboBox txtDonVi_TreEm;
+        private System.Windows.Forms.ComboBox txtDonVi_Nu;
+        private System.Windows.Forms.ComboBox txtDonVi_Nam;
     }
 }

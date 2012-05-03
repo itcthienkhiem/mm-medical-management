@@ -1268,7 +1268,7 @@ namespace MM
 
         private void OnXetNghiemTay()
         {
-            this.Text = string.Format("{0} - Xet nghiem tay", Application.ProductName);
+            this.Text = string.Format("{0} - Danh sach xet nghiem tay", Application.ProductName);
             ViewControl(_uXetNghiemTay);
             _uXetNghiemTay.DisplayAsThread();
         }

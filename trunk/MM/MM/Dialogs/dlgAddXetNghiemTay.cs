@@ -545,11 +545,36 @@ namespace MM.Dialogs
 
             return string.Empty;
         }
+
+        private void InitData()
+        {
+            Result result = XetNghiemTayBus.GetDonViList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    string donVi = row[0].ToString();
+                    txtDonVi_Chung.Items.Add(donVi);
+                    txtDonVi_Nam.Items.Add(donVi);
+                    txtDonVi_Nu.Items.Add(donVi);
+                    txtDonVi_TreEm.Items.Add(donVi);
+                    txtDonVi_NguoiLon.Items.Add(donVi);
+                    txtDonVi_NguoiCaoTuoi.Items.Add(donVi);
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("XetNghiemTayBus.GetDonViList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiemTayBus.GetDonViList"));
+            }
+        }
         #endregion
 
         #region Window Event Handlers
         private void dlgAddXetNghiemTay_Load(object sender, EventArgs e)
         {
+            InitData();
             if (!_isNew) DisplayInfo();
         }
 
