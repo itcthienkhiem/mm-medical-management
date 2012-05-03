@@ -51,7 +51,7 @@ namespace MM.Dialogs
 
         public string TestResult
         {
-            get { return numKetQua.Value.ToString(); }
+            get { return txtResult.Text; }
         }
         #endregion
 
@@ -73,7 +73,7 @@ namespace MM.Dialogs
             try
             {
                 cboXetNghiem.SelectedValue = _drChiTietKQXN["XetNghiem_ManualGUID"].ToString();
-                numKetQua.Value = (Decimal)Convert.ToDouble(_drChiTietKQXN["TestResult"]);
+                txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
             }
             catch (Exception e)
             {
@@ -88,6 +88,13 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.TestResult, "Vui lòng chọn 1 xét nghiệm.", IconType.Information);
                 cboXetNghiem.Focus();
+                return false;
+            }
+
+            if (txtResult.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.TestResult, "Vui lòng nhập kết quả.", IconType.Information);
+                txtResult.Focus();
                 return false;
             }
 

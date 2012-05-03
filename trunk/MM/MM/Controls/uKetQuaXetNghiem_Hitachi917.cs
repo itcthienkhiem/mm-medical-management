@@ -381,5 +381,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        private void dgXetNghiem_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

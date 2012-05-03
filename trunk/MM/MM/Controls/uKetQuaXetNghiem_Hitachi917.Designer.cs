@@ -32,6 +32,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,14 +45,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnView = new System.Windows.Forms.Button();
             this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
             this.raTenKhachHang = new System.Windows.Forms.RadioButton();
             this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
@@ -57,27 +58,33 @@
             this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
             this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.chkChecked = new System.Windows.Forms.CheckBox();
-            this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.chkCTKQXNChecked = new System.Windows.Forms.CheckBox();
-            this.dgChiTietKQXN = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.iDNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayXNDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.operationIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dobStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ketQuaXetNghiemHitachi917ViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.chkCTKQXNChecked = new System.Windows.Forms.CheckBox();
+            this.dgChiTietKQXN = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.chiTietKetQuaXetNghiemHitachi917ViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel6 = new System.Windows.Forms.Panel();
             this.btnXoaCTKQXN = new System.Windows.Forms.Button();
             this.btnCapNhatCTKQXN = new System.Windows.Forms.Button();
-            this.btnView = new System.Windows.Forms.Button();
-            this.ketQuaXetNghiemHitachi917ViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.chiTietKetQuaXetNghiemHitachi917ViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -89,13 +96,6 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngayXNDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.operationIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dobStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chiTietKQXNHitachi917GUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kQXNHitachi917GUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,13 +113,13 @@
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgXetNghiem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ketQuaXetNghiemHitachi917ViewBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTietKQXN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chiTietKetQuaXetNghiemHitachi917ViewBindingSource)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ketQuaXetNghiemHitachi917ViewBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chiTietKetQuaXetNghiemHitachi917ViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -136,6 +136,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(955, 61);
             this.panel3.TabIndex = 6;
+            // 
+            // btnView
+            // 
+            this.btnView.Image = global::MM.Properties.Resources.views_icon;
+            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnView.Location = new System.Drawing.Point(377, 30);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 23);
+            this.btnView.TabIndex = 22;
+            this.btnView.Text = "   &Xem";
+            this.btnView.UseVisualStyleBackColor = true;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
+            this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpkTuNgay_KeyDown);
             // 
             // txtTenBenhNhan
             // 
@@ -212,6 +225,66 @@
             this.panel2.Size = new System.Drawing.Size(955, 38);
             this.panel2.TabIndex = 7;
             // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(435, 6);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
+            this.btnExportExcel.TabIndex = 79;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Visible = false;
+            // 
+            // btnPrintPreview
+            // 
+            this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
+            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintPreview.Location = new System.Drawing.Point(270, 6);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
+            this.btnPrintPreview.TabIndex = 77;
+            this.btnPrintPreview.Text = "      &Xem bản in";
+            this.btnPrintPreview.UseVisualStyleBackColor = true;
+            this.btnPrintPreview.Visible = false;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(367, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(64, 25);
+            this.btnPrint.TabIndex = 78;
+            this.btnPrint.Text = "   &In";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Visible = false;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::MM.Properties.Resources.del;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(153, 6);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(113, 25);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "      &Xóa xét nghiệm";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Image = global::MM.Properties.Resources.edit;
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(7, 6);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(142, 25);
+            this.btnEdit.TabIndex = 4;
+            this.btnEdit.Text = "      &Cập nhật bệnh nhân";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.chkChecked);
@@ -277,6 +350,7 @@
             this.dgXetNghiem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgXetNghiem.Size = new System.Drawing.Size(955, 195);
             this.dgXetNghiem.TabIndex = 9;
+            this.dgXetNghiem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgXetNghiem_CellContentClick);
             this.dgXetNghiem.SelectionChanged += new System.EventHandler(this.dgXetNghiem_SelectionChanged);
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
             // 
@@ -295,6 +369,71 @@
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
+            // 
+            // iDNumDataGridViewTextBoxColumn
+            // 
+            this.iDNumDataGridViewTextBoxColumn.DataPropertyName = "IDNum";
+            this.iDNumDataGridViewTextBoxColumn.HeaderText = "ID Num";
+            this.iDNumDataGridViewTextBoxColumn.Name = "iDNumDataGridViewTextBoxColumn";
+            this.iDNumDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDNumDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // ngayXNDataGridViewTextBoxColumn
+            // 
+            this.ngayXNDataGridViewTextBoxColumn.DataPropertyName = "NgayXN";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ngayXNDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ngayXNDataGridViewTextBoxColumn.HeaderText = "Ngày xét nghiệm";
+            this.ngayXNDataGridViewTextBoxColumn.Name = "ngayXNDataGridViewTextBoxColumn";
+            this.ngayXNDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ngayXNDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // operationIDDataGridViewTextBoxColumn
+            // 
+            this.operationIDDataGridViewTextBoxColumn.DataPropertyName = "OperationID";
+            this.operationIDDataGridViewTextBoxColumn.HeaderText = "OperationID";
+            this.operationIDDataGridViewTextBoxColumn.Name = "operationIDDataGridViewTextBoxColumn";
+            this.operationIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fileNumDataGridViewTextBoxColumn
+            // 
+            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
+            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
+            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
+            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fileNumDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Tên bệnh nhân";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // dobStrDataGridViewTextBoxColumn
+            // 
+            this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
+            this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
+            this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // genderAsStrDataGridViewTextBoxColumn
+            // 
+            this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
+            this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
+            this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ketQuaXetNghiemHitachi917ViewBindingSource
+            // 
+            this.ketQuaXetNghiemHitachi917ViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaXetNghiem_Hitachi917View);
             // 
             // panel4
             // 
@@ -371,6 +510,10 @@
             this.dgChiTietKQXN.TabIndex = 11;
             this.dgChiTietKQXN.DoubleClick += new System.EventHandler(this.dgChiTietKQXN_DoubleClick);
             // 
+            // chiTietKetQuaXetNghiemHitachi917ViewBindingSource
+            // 
+            this.chiTietKetQuaXetNghiemHitachi917ViewBindingSource.DataSource = typeof(MM.Databasae.ChiTietKetQuaXetNghiem_Hitachi917View);
+            // 
             // panel6
             // 
             this.panel6.Controls.Add(this.btnXoaCTKQXN);
@@ -380,90 +523,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(955, 38);
             this.panel6.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(955, 19);
-            this.label2.TabIndex = 0;
-            this.label2.Text = " Chi tiết kết quả xét nghiệm";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.panel1);
-            this.panel5.Controls.Add(this.panel2);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 61);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(955, 233);
-            this.panel5.TabIndex = 10;
-            // 
-            // btnExportExcel
-            // 
-            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
-            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(435, 6);
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
-            this.btnExportExcel.TabIndex = 79;
-            this.btnExportExcel.Text = "      &Xuất Excel";
-            this.btnExportExcel.UseVisualStyleBackColor = true;
-            this.btnExportExcel.Visible = false;
-            // 
-            // btnPrintPreview
-            // 
-            this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
-            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintPreview.Location = new System.Drawing.Point(270, 6);
-            this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
-            this.btnPrintPreview.TabIndex = 77;
-            this.btnPrintPreview.Text = "      &Xem bản in";
-            this.btnPrintPreview.UseVisualStyleBackColor = true;
-            this.btnPrintPreview.Visible = false;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(367, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(64, 25);
-            this.btnPrint.TabIndex = 78;
-            this.btnPrint.Text = "   &In";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Visible = false;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::MM.Properties.Resources.del;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(153, 6);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(113, 25);
-            this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "      &Xóa xét nghiệm";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(7, 6);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(142, 25);
-            this.btnEdit.TabIndex = 4;
-            this.btnEdit.Text = "      &Cập nhật bệnh nhân";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnXoaCTKQXN
             // 
@@ -489,26 +548,29 @@
             this.btnCapNhatCTKQXN.UseVisualStyleBackColor = true;
             this.btnCapNhatCTKQXN.Click += new System.EventHandler(this.btnCapNhatCTKQXN_Click);
             // 
-            // btnView
+            // label2
             // 
-            this.btnView.Image = global::MM.Properties.Resources.views_icon;
-            this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(377, 30);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new System.Drawing.Size(75, 23);
-            this.btnView.TabIndex = 22;
-            this.btnView.Text = "   &Xem";
-            this.btnView.UseVisualStyleBackColor = true;
-            this.btnView.Click += new System.EventHandler(this.btnView_Click);
-            this.btnView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpkTuNgay_KeyDown);
+            this.label2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(955, 19);
+            this.label2.TabIndex = 0;
+            this.label2.Text = " Chi tiết kết quả xét nghiệm";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ketQuaXetNghiemHitachi917ViewBindingSource
+            // panel5
             // 
-            this.ketQuaXetNghiemHitachi917ViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaXetNghiem_Hitachi917View);
-            // 
-            // chiTietKetQuaXetNghiemHitachi917ViewBindingSource
-            // 
-            this.chiTietKetQuaXetNghiemHitachi917ViewBindingSource.DataSource = typeof(MM.Databasae.ChiTietKetQuaXetNghiem_Hitachi917View);
+            this.panel5.Controls.Add(this.panel1);
+            this.panel5.Controls.Add(this.panel2);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 61);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(955, 233);
+            this.panel5.TabIndex = 10;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -613,67 +675,6 @@
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
             // 
-            // iDNumDataGridViewTextBoxColumn
-            // 
-            this.iDNumDataGridViewTextBoxColumn.DataPropertyName = "IDNum";
-            this.iDNumDataGridViewTextBoxColumn.HeaderText = "ID Num";
-            this.iDNumDataGridViewTextBoxColumn.Name = "iDNumDataGridViewTextBoxColumn";
-            this.iDNumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDNumDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // ngayXNDataGridViewTextBoxColumn
-            // 
-            this.ngayXNDataGridViewTextBoxColumn.DataPropertyName = "NgayXN";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ngayXNDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ngayXNDataGridViewTextBoxColumn.HeaderText = "Ngày xét nghiệm";
-            this.ngayXNDataGridViewTextBoxColumn.Name = "ngayXNDataGridViewTextBoxColumn";
-            this.ngayXNDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ngayXNDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // operationIDDataGridViewTextBoxColumn
-            // 
-            this.operationIDDataGridViewTextBoxColumn.DataPropertyName = "OperationID";
-            this.operationIDDataGridViewTextBoxColumn.HeaderText = "OperationID";
-            this.operationIDDataGridViewTextBoxColumn.Name = "operationIDDataGridViewTextBoxColumn";
-            this.operationIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fileNumDataGridViewTextBoxColumn
-            // 
-            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
-            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
-            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fileNumDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Tên bệnh nhân";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // dobStrDataGridViewTextBoxColumn
-            // 
-            this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
-            this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
-            this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // genderAsStrDataGridViewTextBoxColumn
-            // 
-            this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
-            this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
-            this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // chiTietKQXNHitachi917GUIDDataGridViewTextBoxColumn
             // 
             this.chiTietKQXNHitachi917GUIDDataGridViewTextBoxColumn.DataPropertyName = "ChiTietKQXN_Hitachi917GUID";
@@ -760,7 +761,7 @@
             // testResultDataGridViewTextBoxColumn1
             // 
             this.testResultDataGridViewTextBoxColumn1.DataPropertyName = "TestResult";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.testResultDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
             this.testResultDataGridViewTextBoxColumn1.HeaderText = "Kết quả";
             this.testResultDataGridViewTextBoxColumn1.Name = "testResultDataGridViewTextBoxColumn1";
@@ -791,14 +792,14 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgXetNghiem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ketQuaXetNghiemHitachi917ViewBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTietKQXN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chiTietKetQuaXetNghiemHitachi917ViewBindingSource)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ketQuaXetNghiemHitachi917ViewBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chiTietKetQuaXetNghiemHitachi917ViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
