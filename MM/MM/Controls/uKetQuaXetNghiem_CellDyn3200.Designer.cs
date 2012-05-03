@@ -558,7 +558,7 @@
             // testResultDataGridViewTextBoxColumn
             // 
             this.testResultDataGridViewTextBoxColumn.DataPropertyName = "TestResult";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.testResultDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.testResultDataGridViewTextBoxColumn.HeaderText = "Kết quả";
             this.testResultDataGridViewTextBoxColumn.Name = "testResultDataGridViewTextBoxColumn";
@@ -567,7 +567,7 @@
             // testPercentDataGridViewTextBoxColumn
             // 
             this.testPercentDataGridViewTextBoxColumn.DataPropertyName = "TestPercent";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.testPercentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.testPercentDataGridViewTextBoxColumn.HeaderText = "% Kết quả";
             this.testPercentDataGridViewTextBoxColumn.Name = "testPercentDataGridViewTextBoxColumn";

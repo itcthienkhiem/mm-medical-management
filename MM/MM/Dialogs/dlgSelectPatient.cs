@@ -82,6 +82,14 @@ namespace MM.Dialogs
         {
             
         }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.Close();
+        }
         #endregion
+
+        
     }
 }

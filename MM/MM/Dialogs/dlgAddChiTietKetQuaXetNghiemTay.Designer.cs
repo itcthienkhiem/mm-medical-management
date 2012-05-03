@@ -32,22 +32,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddChiTietKetQuaXetNghiemTay));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnChonXetNghiem = new System.Windows.Forms.Button();
-            this.numKetQua = new System.Windows.Forms.NumericUpDown();
             this.cboXetNghiem = new System.Windows.Forms.ComboBox();
             this.xetNghiemManualBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.txtResult = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numKetQua)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xetNghiemManualBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtResult);
             this.groupBox1.Controls.Add(this.btnChonXetNghiem);
-            this.groupBox1.Controls.Add(this.numKetQua);
             this.groupBox1.Controls.Add(this.cboXetNghiem);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -66,24 +65,6 @@
             this.btnChonXetNghiem.Text = "Chọn xét nghiệm...";
             this.btnChonXetNghiem.UseVisualStyleBackColor = true;
             this.btnChonXetNghiem.Click += new System.EventHandler(this.btnChonXetNghiem_Click);
-            // 
-            // numKetQua
-            // 
-            this.numKetQua.DecimalPlaces = 2;
-            this.numKetQua.Location = new System.Drawing.Point(79, 45);
-            this.numKetQua.Maximum = new decimal(new int[] {
-            99999999,
-            0,
-            0,
-            0});
-            this.numKetQua.Minimum = new decimal(new int[] {
-            99999999,
-            0,
-            0,
-            -2147483648});
-            this.numKetQua.Name = "numKetQua";
-            this.numKetQua.Size = new System.Drawing.Size(97, 20);
-            this.numKetQua.TabIndex = 3;
             // 
             // cboXetNghiem
             // 
@@ -145,6 +126,13 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // txtResult
+            // 
+            this.txtResult.Location = new System.Drawing.Point(79, 44);
+            this.txtResult.Name = "txtResult";
+            this.txtResult.Size = new System.Drawing.Size(122, 20);
+            this.txtResult.TabIndex = 5;
+            // 
             // dlgAddChiTietKetQuaXetNghiemTay
             // 
             this.AcceptButton = this.btnOK;
@@ -167,7 +155,6 @@
             this.Load += new System.EventHandler(this.dlgAddChiTietKetQuaXetNghiemTay_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numKetQua)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xetNghiemManualBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -183,6 +170,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnChonXetNghiem;
-        private System.Windows.Forms.NumericUpDown numKetQua;
+        private System.Windows.Forms.TextBox txtResult;
     }
 }
