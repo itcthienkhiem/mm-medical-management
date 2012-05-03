@@ -12,6 +12,35 @@ namespace MM.Bussiness
 {
     public class KetQuaXetNghiemTongHopBus : BusBase
     {
+        public static Result GetDanhSachBenhNhanXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+
+                //Hitachi917
+                query = string.Format("");
+
+                //CellDyn3200
+
+                //Xet nghiem tay
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetKetQuaXetNghiemTongHopList(DateTime fromDate, DateTime toDate, string patientGUID, string ngaySinh, string gioiTinh)
         {
             Result result = new Result();
