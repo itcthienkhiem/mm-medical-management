@@ -15,17 +15,51 @@ namespace MM.Bussiness
         public static Result GetDanhSachBenhNhanXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan)
         {
             Result result = new Result();
+            DataTable dt = null;
 
             try
             {
                 string query = string.Empty;
 
                 //Hitachi917
-                query = string.Format("");
+                query = string.Format("SELECT DISTINCT PatientGUID, FullName, DobStr, GenderAsStr FROM KetQuaXetNghiem_Hitachi917View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE '%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+                dt = result.QueryResult as DataTable;
 
                 //CellDyn3200
+                query = string.Format("SELECT DISTINCT PatientGUID, FullName, DobStr, GenderAsStr FROM KetQuaXetNghiem_CellDyn3200View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE '%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dtCellDyn3200 = result.QueryResult as DataTable;
+                foreach (DataRow row in dtCellDyn3200.Rows)
+                {
+                    DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", row["PatientGUID"].ToString()));
+                    if (rows != null && rows.Length > 0) continue;
+
+                    dt.ImportRow(row);
+                }
 
                 //Xet nghiem tay
+                query = string.Format("SELECT DISTINCT PatientGUID, FullName, DobStr, GenderAsStr FROM KetQuaXetNghiem_ManualView WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE '%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dtXetNghiemTay = result.QueryResult as DataTable;
+                foreach (DataRow row in dtXetNghiemTay.Rows)
+                {
+                    DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", row["PatientGUID"].ToString()));
+                    if (rows != null && rows.Length > 0) continue;
+
+                    dt.ImportRow(row);
+                }
+
+                result.QueryResult = dt;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
