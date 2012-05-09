@@ -86,6 +86,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uChiSoXetNghiem_Glucose_Hitachi917.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uChiSoXetNghiem_Glucose_Hitachi917.Designer.cs">
+      <DependentUpon>uChiSoXetNghiem_Glucose_Hitachi917.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\DataGridViewDisableCheckBoxColumn.cs" />
     <Compile Include="Controls\DICOM\DicomDecoder.cs" />
     <Compile Include="Controls\DICOM\DicomDictionary.cs" />
@@ -287,6 +293,12 @@
     <Compile Include="Controls\uChiDinhList.Designer.cs">
       <DependentUpon>uChiDinhList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uChiSoXetNghiem_Hitachi917.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uChiSoXetNghiem_Hitachi917.Designer.cs">
+      <DependentUpon>uChiSoXetNghiem_Hitachi917.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uColor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -310,6 +322,18 @@
     </Compile>
     <Compile Include="Controls\ucReportViewer.Designer.cs">
       <DependentUpon>ucReportViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uDanhSachXetNghiemHitachi917List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uDanhSachXetNghiemHitachi917List.Designer.cs">
+      <DependentUpon>uDanhSachXetNghiemHitachi917List.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uDanhSachXetNghiem_CellDyn3200List.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uDanhSachXetNghiem_CellDyn3200List.Designer.cs">
+      <DependentUpon>uDanhSachXetNghiem_CellDyn3200List.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\uDichVuHopDong.cs">
       <SubType>UserControl</SubType>
@@ -670,6 +694,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddXetNghiemTay.Designer.cs">
       <DependentUpon>dlgAddXetNghiemTay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddXetNghiem_CellDyn3200.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddXetNghiem_CellDyn3200.Designer.cs">
+      <DependentUpon>dlgAddXetNghiem_CellDyn3200.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgSelectXetNghiemTay.cs">
       <SubType>Form</SubType>
@@ -1110,6 +1140,9 @@
     <Compile Include="Controls\uHoaDonHopDongList.Designer.cs">
       <DependentUpon>uHoaDonHopDongList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uChiSoXetNghiem_Glucose_Hitachi917.resx">
+      <DependentUpon>uChiSoXetNghiem_Glucose_Hitachi917.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\DICOM\DicomTagsForm.resx">
       <DependentUpon>DicomTagsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1146,6 +1179,9 @@
     <EmbeddedResource Include="Controls\uChiDinhList.resx">
       <DependentUpon>uChiDinhList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uChiSoXetNghiem_Hitachi917.resx">
+      <DependentUpon>uChiSoXetNghiem_Hitachi917.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uColor.resx">
       <DependentUpon>uColor.cs</DependentUpon>
     </EmbeddedResource>
@@ -1157,6 +1193,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ucReportViewer.resx">
       <DependentUpon>ucReportViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uDanhSachXetNghiemHitachi917List.resx">
+      <DependentUpon>uDanhSachXetNghiemHitachi917List.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uDanhSachXetNghiem_CellDyn3200List.resx">
+      <DependentUpon>uDanhSachXetNghiem_CellDyn3200List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDichVuHopDong.resx">
       <DependentUpon>uDichVuHopDong.cs</DependentUpon>
@@ -1337,6 +1379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddXetNghiemTay.resx">
       <DependentUpon>dlgAddXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddXetNghiem_CellDyn3200.resx">
+      <DependentUpon>dlgAddXetNghiem_CellDyn3200.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectXetNghiemTay.resx">
       <DependentUpon>dlgSelectXetNghiemTay.cs</DependentUpon>
@@ -1631,6 +1676,8 @@
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TrackingView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.XetNghiem_CellDyn3200.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.XetNghiem_Hitachi917.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.XetNghiem_Manual.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.YKienKhachHang.datasource" />
     <None Include="Properties\Settings.settings">
@@ -1746,6 +1793,7 @@
     <None Include="Resources\backup-restore-icon.png" />
     <None Include="Resources\lock-icon.png" />
     <None Include="Resources\lock-off-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-05-07.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-05-03.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-04-27.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-04-26.sql" />

@@ -12,6 +12,30 @@ namespace MM.Bussiness
 {
     public class XetNghiem_Hitachi917Bus : BusBase
     {
+        public static Result GetDanhSachXetNghiem()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT DISTINCT X.* FROM XetNghiem_Hitachi917 X, ChiTietXetNghiem_Hitachi917 C WHERE X.Status = {0} AND X.XetNghiemGUID = C.XetNghiemGUID ORDER BY X.Fullname", 
+                    (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetKetQuaXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan)
         {
             Result result = new Result();
@@ -826,6 +850,147 @@ namespace MM.Bussiness
                     db.Dispose();
                     db = null;
                 }
+            }
+
+            return result;
+        }
+
+        public static Result GetChiTietXetNghiemList(string xetNghiemGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT * FROM ChiTietXetNghiem_Hitachi917 WHERE Status={0} AND XetNghiemGUID='{1}'",
+                    (byte)Status.Actived, xetNghiemGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result UpdateXetNghiem(XetNghiem_Hitachi917 xetNghiem, List<ChiTietXetNghiem_Hitachi917> ctxns)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.XetNghiemGUID == xetNghiem.XetNghiemGUID);
+                    if (xn != null)
+                    {
+                        xn.UpdatedDate = DateTime.Now;
+                        xn.UpdatedBy = Guid.Parse(Global.UserGUID);
+
+                        //Update chi tiết xét nghiệm
+                        var chiTietXetNghiemList = xn.ChiTietXetNghiem_Hitachi917s;
+                        foreach (ChiTietXetNghiem_Hitachi917 ctxn in chiTietXetNghiemList)
+                        {
+                            ctxn.UpdatedDate = DateTime.Now;
+                            ctxn.UpdatedBy = Guid.Parse(Global.UserGUID);
+                            ctxn.Status = (byte)Status.Deactived;
+                        }
+
+                        db.SubmitChanges();
+
+                        foreach (ChiTietXetNghiem_Hitachi917 ctxn in ctxns)
+                        {
+                            ChiTietXetNghiem_Hitachi917 ct = db.ChiTietXetNghiem_Hitachi917s.SingleOrDefault<ChiTietXetNghiem_Hitachi917>(c => c.DoiTuong == ctxn.DoiTuong &&
+                                c.XetNghiemGUID == xn.XetNghiemGUID);
+                            if (ct == null)
+                            {
+                                ctxn.ChiTietXetNghiemGUID = Guid.NewGuid();
+                                ctxn.XetNghiemGUID = xn.XetNghiemGUID;
+                                ctxn.CreatedBy = Guid.Parse(Global.UserGUID);
+                                ctxn.CreatedDate = DateTime.Now;
+                                db.ChiTietXetNghiem_Hitachi917s.InsertOnSubmit(ctxn);
+                            }
+                            else
+                            {
+                                ct.FromValue = ctxn.FromValue;
+                                ct.ToValue = ctxn.ToValue;
+                                ct.DonVi = ctxn.DonVi;
+                                ct.DoiTuong = ctxn.DoiTuong;
+                                ct.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                ct.UpdatedDate = DateTime.Now;
+                                ct.Status = (byte)Status.Actived;
+                            }
+                        }
+
+                        //Tracking
+                        desc += string.Format("GUID: '{0}', Tên xét nghiệm: '{1}'", xn.XetNghiemGUID.ToString(), xn.Fullname);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Edit;
+                        tk.Action = "Sửa thông tin xét nghiệm Hitachi917";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetDonViList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT DISTINCT DonVi FROM ChiTietXetNghiem_Hitachi917");
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
             }
 
             return result;

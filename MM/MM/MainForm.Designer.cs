@@ -156,8 +156,10 @@
             this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
             this.nhatKyLienHeCongTyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xetNghiemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.danhSachXetNghiemHitachi917ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xetNghiemHiTachi917ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator44 = new System.Windows.Forms.ToolStripSeparator();
+            this.danhSachXetNghiemCellDyn3200ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xetNghiemCellDyn3200ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator43 = new System.Windows.Forms.ToolStripSeparator();
             this.xetNghiemTayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -254,6 +256,8 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
+            this._uDanhSachXetNghiemHitachi917List = new MM.Controls.uDanhSachXetNghiemHitachi917List();
+            this._uDanhSachXetNghiem_CellDyn3200List = new MM.Controls.uDanhSachXetNghiem_CellDyn3200List();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1153,8 +1157,10 @@
             // xetNghiemToolStripMenuItem
             // 
             this.xetNghiemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.danhSachXetNghiemHitachi917ToolStripMenuItem,
             this.xetNghiemHiTachi917ToolStripMenuItem,
             this.toolStripSeparator44,
+            this.danhSachXetNghiemCellDyn3200ToolStripMenuItem,
             this.xetNghiemCellDyn3200ToolStripMenuItem,
             this.toolStripSeparator43,
             this.xetNghiemTayToolStripMenuItem,
@@ -1165,6 +1171,13 @@
             this.cauHinhKetNoiToolStripMenuItem});
             resources.ApplyResources(this.xetNghiemToolStripMenuItem, "xetNghiemToolStripMenuItem");
             this.xetNghiemToolStripMenuItem.Name = "xetNghiemToolStripMenuItem";
+            // 
+            // danhSachXetNghiemHitachi917ToolStripMenuItem
+            // 
+            this.danhSachXetNghiemHitachi917ToolStripMenuItem.Name = "danhSachXetNghiemHitachi917ToolStripMenuItem";
+            resources.ApplyResources(this.danhSachXetNghiemHitachi917ToolStripMenuItem, "danhSachXetNghiemHitachi917ToolStripMenuItem");
+            this.danhSachXetNghiemHitachi917ToolStripMenuItem.Tag = "DanhSachXetNghiemHitachi917";
+            this.danhSachXetNghiemHitachi917ToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // xetNghiemHiTachi917ToolStripMenuItem
             // 
@@ -1177,6 +1190,13 @@
             // 
             this.toolStripSeparator44.Name = "toolStripSeparator44";
             resources.ApplyResources(this.toolStripSeparator44, "toolStripSeparator44");
+            // 
+            // danhSachXetNghiemCellDyn3200ToolStripMenuItem
+            // 
+            this.danhSachXetNghiemCellDyn3200ToolStripMenuItem.Name = "danhSachXetNghiemCellDyn3200ToolStripMenuItem";
+            resources.ApplyResources(this.danhSachXetNghiemCellDyn3200ToolStripMenuItem, "danhSachXetNghiemCellDyn3200ToolStripMenuItem");
+            this.danhSachXetNghiemCellDyn3200ToolStripMenuItem.Tag = "DanhSachXetNghiemCellDyn3200";
+            this.danhSachXetNghiemCellDyn3200ToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // xetNghiemCellDyn3200ToolStripMenuItem
             // 
@@ -1405,7 +1425,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1426,7 +1446,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -1634,6 +1654,8 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uDanhSachXetNghiem_CellDyn3200List);
+            this._mainPanel.Controls.Add(this._uDanhSachXetNghiemHitachi917List);
             this._mainPanel.Controls.Add(this._uKetQuaXetNghiemTongHop);
             this._mainPanel.Controls.Add(this._uKetQuaXetNghiemTay);
             this._mainPanel.Controls.Add(this._uXetNghiemTay);
@@ -1908,6 +1930,16 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
+            // _uDanhSachXetNghiemHitachi917List
+            // 
+            resources.ApplyResources(this._uDanhSachXetNghiemHitachi917List, "_uDanhSachXetNghiemHitachi917List");
+            this._uDanhSachXetNghiemHitachi917List.Name = "_uDanhSachXetNghiemHitachi917List";
+            // 
+            // _uDanhSachXetNghiem_CellDyn3200List
+            // 
+            resources.ApplyResources(this._uDanhSachXetNghiem_CellDyn3200List, "_uDanhSachXetNghiem_CellDyn3200List");
+            this._uDanhSachXetNghiem_CellDyn3200List.Name = "_uDanhSachXetNghiem_CellDyn3200List";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2164,6 +2196,10 @@
         private Controls.uXetNghiemTay _uXetNghiemTay;
         private Controls.uKetQuaXetNghiemTay _uKetQuaXetNghiemTay;
         private Controls.uKetQuaXetNghiemTongHop _uKetQuaXetNghiemTongHop;
+        private System.Windows.Forms.ToolStripMenuItem danhSachXetNghiemHitachi917ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem danhSachXetNghiemCellDyn3200ToolStripMenuItem;
+        private Controls.uDanhSachXetNghiem_CellDyn3200List _uDanhSachXetNghiem_CellDyn3200List;
+        private Controls.uDanhSachXetNghiemHitachi917List _uDanhSachXetNghiemHitachi917List;
 
     }
 }

@@ -12,6 +12,60 @@ namespace MM.Bussiness
 {
     public class XetNghiem_CellDyn3200Bus : BusBase
     {
+        public static Result GetDanhSachXetNghiem()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT *, '' AS Normal, '' AS NormalPercent FROM XetNghiem_CellDyn3200 WHERE Status = {0} ORDER BY GroupID, [Order]", (byte)Status.Actived);
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+
+                    if (row["FromValue"] != null && row["FromValue"] != DBNull.Value &&
+                        row["ToValue"] != null && row["ToValue"] != DBNull.Value)
+                        row["Normal"] = string.Format("{0:F2} - {1:F3}", Convert.ToDouble(row["FromValue"]), Convert.ToDouble(row["ToValue"]));
+                    else if (row["FromValue"] != null && row["FromValue"] != DBNull.Value)
+                        row["Normal"] = string.Format("> {0:F2}", Convert.ToDouble(row["FromValue"]));
+                    else
+                        row["Normal"] = string.Format("< {0:F2}", Convert.ToDouble(row["ToValue"]));
+
+                    string donVi = string.Empty;
+                    if (row["DonVi"] != null && row["DonVi"] != DBNull.Value)
+                        donVi = row["DonVi"].ToString();
+
+                    if (row["FromPercent"] != null && row["FromPercent"] != DBNull.Value &&
+                        row["ToPercent"] != null && row["ToPercent"] != DBNull.Value)
+                    {
+                        row["NormalPercent"] = string.Format("{0:F2} - {1:F3} {2}", 
+                            Convert.ToDouble(row["FromPercent"]), Convert.ToDouble(row["ToPercent"]), donVi);
+                    }
+                    else if (row["FromPercent"] != null && row["FromPercent"] != DBNull.Value)
+                        row["NormalPercent"] = string.Format("> {0:F2} {1}", Convert.ToDouble(row["FromPercent"]), donVi);
+                    else if (row["ToPercent"] != null && row["ToPercent"] != DBNull.Value)
+                        row["NormalPercent"] = string.Format("< {0:F2} {1}", Convert.ToDouble(row["ToPercent"]), donVi);
+                    else
+                        row["Normal"] = string.Format("{0} {1}", row["Normal"], donVi);
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetKetQuaXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan)
         {
             Result result = new Result();
@@ -516,6 +570,71 @@ namespace MM.Bussiness
                         tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                         tk.ActionType = (byte)ActionType.Edit;
                         tk.Action = "Cập nhật chỉ số kết quả xét nghiệm celldyn 3200";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result UpdateXetNghiem(XetNghiem_CellDyn3200 xetNghiem)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    XetNghiem_CellDyn3200 xn = db.XetNghiem_CellDyn3200s.SingleOrDefault<XetNghiem_CellDyn3200>(x => x.XetNghiemGUID == xetNghiem.XetNghiemGUID);
+                    if (xn != null)
+                    {
+                        xn.UpdatedDate = xetNghiem.UpdatedDate;
+                        xn.UpdatedBy = xetNghiem.UpdatedBy;
+                        xn.FromValue = xetNghiem.FromValue;
+                        xn.ToValue = xetNghiem.ToValue;
+                        xn.FromPercent = xetNghiem.FromPercent;
+                        xn.ToPercent = xetNghiem.ToPercent;
+                        xn.Status = (byte)Status.Actived;
+
+                        desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}'", xn.XetNghiemGUID.ToString(), xn.FullName);
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Edit;
+                        tk.Action = "Cập nhật xét nghiệm CellDyn3200";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
                         db.Trackings.InsertOnSubmit(tk);
