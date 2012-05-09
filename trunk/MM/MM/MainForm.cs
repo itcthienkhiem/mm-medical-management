@@ -801,6 +801,8 @@ namespace MM
                             xetNghiemTayToolStripMenuItem.Enabled = isView && isLogin;
                             ketQuaXetNghiemTayToolStripMenuItem.Enabled = isView && isLogin;
                             ketQuaXetNghiemTongQuatToolStripMenuItem.Enabled = isView && isLogin;
+                            danhSachXetNghiemHitachi917ToolStripMenuItem.Enabled = isView && isLogin;
+                            danhSachXetNghiemCellDyn3200ToolStripMenuItem.Enabled = isView && isLogin;
 
                             _uKetQuaXetNghiem_Hitachi917.AllowAdd = isAdd;
                             _uKetQuaXetNghiem_Hitachi917.AllowEdit = isEdit;
@@ -828,6 +830,24 @@ namespace MM
                             _uXetNghiemTay.AllowImport = isImport;
                             _uXetNghiemTay.AllowLock = isLock;
                             _uXetNghiemTay.AllowExportAll = isExportAll;
+
+                            _uDanhSachXetNghiemHitachi917List.AllowAdd = isAdd;
+                            _uDanhSachXetNghiemHitachi917List.AllowEdit = isEdit;
+                            _uDanhSachXetNghiemHitachi917List.AllowDelete = isDelete;
+                            _uDanhSachXetNghiemHitachi917List.AllowPrint = isPrint;
+                            _uDanhSachXetNghiemHitachi917List.AllowExport = isExport;
+                            _uDanhSachXetNghiemHitachi917List.AllowImport = isImport;
+                            _uDanhSachXetNghiemHitachi917List.AllowLock = isLock;
+                            _uDanhSachXetNghiemHitachi917List.AllowExportAll = isExportAll;
+
+                            _uDanhSachXetNghiem_CellDyn3200List.AllowAdd = isAdd;
+                            _uDanhSachXetNghiem_CellDyn3200List.AllowEdit = isEdit;
+                            _uDanhSachXetNghiem_CellDyn3200List.AllowDelete = isDelete;
+                            _uDanhSachXetNghiem_CellDyn3200List.AllowPrint = isPrint;
+                            _uDanhSachXetNghiem_CellDyn3200List.AllowExport = isExport;
+                            _uDanhSachXetNghiem_CellDyn3200List.AllowImport = isImport;
+                            _uDanhSachXetNghiem_CellDyn3200List.AllowLock = isLock;
+                            _uDanhSachXetNghiem_CellDyn3200List.AllowExportAll = isExportAll;
 
                             _uKetQuaXetNghiemTay.AllowAdd = isAdd;
                             _uKetQuaXetNghiemTay.AllowEdit = isEdit;
@@ -1021,6 +1041,8 @@ namespace MM
                 ketQuaXetNghiemTayToolStripMenuItem.Enabled = isLogin;
                 ketQuaXetNghiemTongQuatToolStripMenuItem.Enabled = isLogin;
                 baoCaoKhachHangMuaThuocToolStripMenuItem.Enabled = isLogin;
+                danhSachXetNghiemHitachi917ToolStripMenuItem.Enabled = isLogin;
+                danhSachXetNghiemCellDyn3200ToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1247,10 +1269,33 @@ namespace MM
                 case "KetQuaXetNghiemTay":
                     OnKetQuaXetNghiemTay();
                     break;
+
                 case "KetQuaXetNghiemTongHop":
                     OnKetQuaXetNghiemTongHop();
                     break;
+
+                case "DanhSachXetNghiemHitachi917":
+                    OnDanhSachXetNghiemHitachi917();
+                    break;
+
+                case "DanhSachXetNghiemCellDyn3200":
+                    OnDanhSachXetNghiemCellDyn3200();
+                    break;
             }
+        }
+
+        private void OnDanhSachXetNghiemHitachi917()
+        {
+            this.Text = string.Format("{0} - Danh sach xet nghiem Hitachi917", Application.ProductName);
+            ViewControl(_uDanhSachXetNghiemHitachi917List);
+            _uDanhSachXetNghiemHitachi917List.DisplayAsThread();
+        }
+
+        private void OnDanhSachXetNghiemCellDyn3200()
+        {
+            this.Text = string.Format("{0} - Danh sach xet nghiem CellDyn3200", Application.ProductName);
+            ViewControl(_uDanhSachXetNghiem_CellDyn3200List);
+            _uDanhSachXetNghiem_CellDyn3200List.DisplayAsThread();
         }
 
         private void OnKetQuaXetNghiemTongHop()

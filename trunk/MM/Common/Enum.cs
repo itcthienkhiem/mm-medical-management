@@ -222,7 +222,12 @@ namespace MM.Common
         Nu,
         TreEm,
         NguoiLon,
-        NguoiCaoTuoi
+        NguoiCaoTuoi,
+        Nam_Sau2h,
+        Nu_Sau2h,
+        TreEm_Sau2h,
+        NguoiLon_Sau2h,
+        NguoiCaoTuoi_Sau2h
     };
 
     public enum LoaiMayXN : byte
