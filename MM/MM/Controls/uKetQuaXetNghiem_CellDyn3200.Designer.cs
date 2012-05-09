@@ -42,6 +42,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
             this.txtTenBenhNhan = new System.Windows.Forms.TextBox();
             this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
@@ -67,7 +69,6 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
@@ -79,8 +80,9 @@
             this.dobStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ketQuaXetNghiemCellDyn3200ViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -88,9 +90,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.chiTietKetQuaXetNghiemCellDynViewBindingSource)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgXetNghiem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ketQuaXetNghiemCellDyn3200ViewBindingSource)).BeginInit();
+            this.panel5.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -107,6 +110,24 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(962, 61);
             this.panel3.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Bệnh nhân:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(25, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "Từ ngày:";
             // 
             // btnView
             // 
@@ -344,7 +365,7 @@
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnEdit);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 178);
+            this.panel2.Location = new System.Drawing.Point(0, 114);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(962, 38);
             this.panel2.TabIndex = 11;
@@ -409,16 +430,6 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.chkChecked);
-            this.panel1.Controls.Add(this.dgXetNghiem);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 61);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(962, 117);
-            this.panel1.TabIndex = 12;
-            // 
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
@@ -472,7 +483,7 @@
             this.dgXetNghiem.ReadOnly = true;
             this.dgXetNghiem.RowHeadersWidth = 30;
             this.dgXetNghiem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgXetNghiem.Size = new System.Drawing.Size(962, 117);
+            this.dgXetNghiem.Size = new System.Drawing.Size(962, 114);
             this.dgXetNghiem.TabIndex = 9;
             this.dgXetNghiem.SelectionChanged += new System.EventHandler(this.dgXetNghiem_SelectionChanged);
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
@@ -558,30 +569,41 @@
             // 
             this.ketQuaXetNghiemCellDyn3200ViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaXetNghiem_CellDyn3200View);
             // 
-            // label4
+            // splitter1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 35);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "Bệnh nhân:";
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter1.Location = new System.Drawing.Point(0, 213);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(962, 3);
+            this.splitter1.TabIndex = 13;
+            this.splitter1.TabStop = false;
             // 
-            // label3
+            // panel5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(25, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Từ ngày:";
+            this.panel5.Controls.Add(this.panel8);
+            this.panel5.Controls.Add(this.panel2);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(0, 61);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(962, 152);
+            this.panel5.TabIndex = 14;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.chkChecked);
+            this.panel8.Controls.Add(this.dgXetNghiem);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(962, 114);
+            this.panel8.TabIndex = 12;
             // 
             // uKetQuaXetNghiem_CellDyn3200
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Name = "uKetQuaXetNghiem_CellDyn3200";
@@ -595,10 +617,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.chiTietKetQuaXetNghiemCellDynViewBindingSource)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgXetNghiem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ketQuaXetNghiemCellDyn3200ViewBindingSource)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -625,7 +648,6 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgXetNghiem;
         private System.Windows.Forms.DataGridViewTextBoxColumn wBCDataGridViewTextBoxColumn;
@@ -668,6 +690,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BinhThuong;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel8;
 
     }
 }
