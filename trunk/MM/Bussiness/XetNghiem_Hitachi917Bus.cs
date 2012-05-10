@@ -70,6 +70,17 @@ namespace MM.Bussiness
             return result;
         }
 
+        private static ChiTietXetNghiem_Hitachi917 GetChiTietXetNghiem(List<ChiTietXetNghiem_Hitachi917> ctxns, DoiTuong doiTuong)
+        {
+            foreach (ChiTietXetNghiem_Hitachi917 ctxn in ctxns)
+            {
+                if (ctxn.DoiTuong == (int)doiTuong)
+                    return ctxn;
+            }
+
+            return null;
+        }
+
         public static Result GetChiTietKetQuaXetNghiem(string ketQuaXetNghiemGUID)
         {
             Result result = new Result();
@@ -87,188 +98,317 @@ namespace MM.Bussiness
                 foreach (DataRow row in dt.Rows)
                 {
                     int testNum = Convert.ToInt32(row["TestNum"]);
-                    
-                    XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == testNum);
-                    if (xn == null) continue;
-                    List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
-                    if (ctxns.Count <= 0) continue;
-
                     double testResult = Convert.ToDouble(row["TestResult"].ToString().Trim());
-                    ChiTietXetNghiem_Hitachi917 ctxn = null;
+
+                    KetQuaXetNghiem_Hitachi917 kqxn = null;
+                    bool isSau2h = false;
+
                     if (testNum == 17)
                     {
-                        KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
-                        if (kqxn == null) continue;        
-                        if (kqxn.NgayXN.Hour < 14)
-                        {
-                            ctxn = ctxns[0];
-                            if (ctxns[0].DoiTuong != (byte)DoiTuong.Chung) ctxn = ctxns[1];
-                        }
-                        else
+                        kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
+                        if (kqxn == null) continue;
+                        if (kqxn.NgayXN.Hour > 14)
                         {
                             row["FullName"] = "Postprandial blood sugar";
-                            ctxn = ctxns[1];
-                            if (ctxns[1].DoiTuong != (byte)DoiTuong.Chung_Sau2h) ctxn = ctxns[0];
+                            isSau2h = true;
                         }
                     }
-                    else
-                    {
-                        if (ctxns[0].DoiTuong == (byte)DoiTuong.Chung) ctxn = ctxns[0];
-                        else if (ctxns[0].DoiTuong == (byte)DoiTuong.Nam || ctxns[0].DoiTuong == (byte)DoiTuong.Nu)
-                        {
-                            KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
-                            if (kqxn == null) continue;
-                            if (!kqxn.Sex.HasValue || kqxn.Sex.Value == (int)Gender.None) continue;
 
-                            if (kqxn.Sex.Value == (int)Gender.Male)
-                            {
-                                ctxn = ctxns[0];
-                                if (ctxns[0].DoiTuong != (byte)DoiTuong.Nam) ctxn = ctxns[1];
-                            }
+                    if ((row["FromValue"] != null && row["FromValue"] != DBNull.Value) ||
+                        (row["ToValue"] != null && row["ToValue"] != DBNull.Value))
+                    {
+                        #region Đã cập nhật chỉ số xét nghiệm
+                        string donVi = string.Empty;
+                        if (row["DonVi"] != null && row["DonVi"] != DBNull.Value)
+                            donVi = row["DonVi"].ToString();
+
+                        double fromValue = 0;
+                        double toValue = 0;
+                        int kq = 0;
+                        if (row["FromValue"] == null || row["FromValue"] == DBNull.Value)
+                        {
+                            kq = 1;
+                            toValue = Convert.ToDouble(row["ToValue"]);
+                            if (testResult >= toValue)
+                                row["TinhTrang"] = (byte)TinhTrang.BatThuong;
                             else
-                            {
-                                ctxn = ctxns[1];
-                                if (ctxns[1].DoiTuong != (byte)DoiTuong.Nu) ctxn = ctxns[0];
-                            }
+                                row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+                        }
+                        else if (row["ToValue"] == null || row["ToValue"] == DBNull.Value)
+                        {
+                            kq = 2;
+                            fromValue = Convert.ToDouble(row["FromValue"]);
+                            if (testResult <= fromValue)
+                                row["TinhTrang"] = (byte)TinhTrang.BatThuong;
+                            else
+                                row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
                         }
                         else
                         {
-                            //KetQuaXetNghiem_Hitachi917 kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
-                            //if (kqxn == null) continue;
-                            //if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
-                            //if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
-                            //    kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
-                            //if (kqxn.Age.Value < 18) continue;
+                            fromValue = Convert.ToDouble(row["FromValue"]);
+                            toValue = Convert.ToDouble(row["ToValue"]);
 
-                            for (int i = 0; i < ctxns.Count; i++)
-                            {
-                                if (ctxns[i].DoiTuong == (byte)DoiTuong.NguoiLon)
-                                {
-                                    ctxn = ctxns[i];
-                                    break;
-                                }
-                            }
-
-                            if (ctxn == null)
-                            {
-                                for (int i = 0; i < ctxns.Count; i++)
-                                {
-                                    if (ctxns[i].DoiTuong == (byte)DoiTuong.NguoiCaoTuoi)
-                                    {
-                                        ctxn = ctxns[i];
-                                        break;
-                                    }
-                                }
-                            }
-
-                            if (ctxn == null)
-                            {
-                                for (int i = 0; i < ctxns.Count; i++)
-                                {
-                                    if (ctxns[i].DoiTuong == (byte)DoiTuong.TreEm)
-                                    {
-                                        ctxn = ctxns[i];
-                                        break;
-                                    }
-                                }
-                            }
-                            //if (kqxn.Age.Value <= 60) //Người trưởng thành
-                            //{
-                            //    ctxn = ctxns[0];
-                            //    if (ctxns[0].DoiTuong != (byte)DoiTuong.NguoiLon) ctxn = ctxns[1];
-                            //}
-                            //else //Người cao tuổi
-                            //{
-                            //    ctxn = ctxns[1];
-                            //    if (ctxns[1].DoiTuong != (byte)DoiTuong.NguoiCaoTuoi) ctxn = ctxns[0];
-                            //}
+                            if (testResult >= fromValue && testResult <= toValue)
+                                row["TinhTrang"] = TinhTrang.BinhThuong;
+                            else
+                                row["TinhTrang"] = TinhTrang.BatThuong;
                         }
-                    }
 
-                    if (ctxn == null) continue;
-
-                    DoiTuong doiTuong = (DoiTuong)ctxn.DoiTuong;
-
-                    if (ctxn.FromValue.HasValue && ctxn.ToValue.HasValue)
-                    {
-                        if (testResult < ctxn.FromValue.Value || testResult > ctxn.ToValue.Value)
-                            row["TinhTrang"] = (byte)TinhTrang.BatThuong;
-                        else
-                            row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
-
+                        DoiTuong doiTuong = (DoiTuong)Convert.ToByte(row["DoiTuong"]);
                         switch (doiTuong)
                         {
                             case DoiTuong.Chung:
                             case DoiTuong.Chung_Sau2h:
-                                row["BinhThuong"] = string.Format("({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                if (kq == 0)
+                                    row["BinhThuong"] = string.Format("({0} - {1} {2})", fromValue, toValue, donVi);
+                                else if (kq == 1)
+                                    row["BinhThuong"] = string.Format("(< {0} {1})", toValue, donVi);
+                                else
+                                    row["BinhThuong"] = string.Format("(> {0} {1})", fromValue, donVi);
                                 break;
                             case DoiTuong.Nam:
-                                row["BinhThuong"] = string.Format("(M: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                            case DoiTuong.Nam_Sau2h:
+                                if (kq == 0)
+                                    row["BinhThuong"] = string.Format("(M: {0} - {1} {2})", fromValue, toValue, donVi);
+                                else if (kq == 1)
+                                    row["BinhThuong"] = string.Format("(M < {0} {1})", toValue, donVi);
+                                else
+                                    row["BinhThuong"] = string.Format("(M > {0} {1})", fromValue, donVi);
                                 break;
                             case DoiTuong.Nu:
-                                row["BinhThuong"] = string.Format("(F: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                            case DoiTuong.Nu_Sau2h:
+                                if (kq == 0)
+                                    row["BinhThuong"] = string.Format("(F: {0} - {1} {2})", fromValue, toValue, donVi);
+                                else if (kq == 1)
+                                    row["BinhThuong"] = string.Format("(F < {0} {1})", toValue, donVi);
+                                else
+                                    row["BinhThuong"] = string.Format("(F > {0} {1})", fromValue, donVi);
+                                break;
+                            case DoiTuong.TreEm:
+                            case DoiTuong.TreEm_Sau2h:
+                                if (kq == 0)
+                                    row["BinhThuong"] = string.Format("Child ({0} - {1} {2})", fromValue, toValue, donVi);
+                                else if (kq == 1)
+                                    row["BinhThuong"] = string.Format("Child (< {0} {1})", toValue, donVi);
+                                else
+                                    row["BinhThuong"] = string.Format("Child (> {0} {1})", fromValue, donVi);
                                 break;
                             case DoiTuong.NguoiLon:
-                                row["BinhThuong"] = string.Format("Adult ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                            case DoiTuong.NguoiLon_Sau2h:
+                                if (kq == 0)
+                                    row["BinhThuong"] = string.Format("Adult ({0} - {1} {2})", fromValue, toValue, donVi);
+                                else if (kq == 1)
+                                    row["BinhThuong"] = string.Format("Adult (< {0} {1})", toValue, donVi);
+                                else
+                                    row["BinhThuong"] = string.Format("Adult (> {0} {1})", fromValue, donVi);
                                 break;
                             case DoiTuong.NguoiCaoTuoi:
-                                row["BinhThuong"] = string.Format("> 60 year ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                            case DoiTuong.NguoiCaoTuoi_Sau2h:
+                                if (kq == 0)
+                                    row["BinhThuong"] = string.Format("> 60 year ({0} - {1} {2})", fromValue, toValue, donVi);
+                                else if (kq == 1)
+                                    row["BinhThuong"] = string.Format("> 60 year (< {0} {1})", toValue, donVi);
+                                else
+                                    row["BinhThuong"] = string.Format("> 60 year (> {0} {1})", fromValue, donVi);
                                 break;
                         }
-                    }
-                    else if (ctxn.FromValue.HasValue)
-                    {
-                        if (testResult <= ctxn.FromValue.Value)
-                            row["TinhTrang"] = (byte)TinhTrang.BatThuong;
-                        else
-                            row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
-
-                        switch (doiTuong)
-                        {
-                            case DoiTuong.Chung:
-                            case DoiTuong.Chung_Sau2h:
-                                row["BinhThuong"] = string.Format("(> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-                                break;
-                            case DoiTuong.Nam:
-                                row["BinhThuong"] = string.Format("(M > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-                                break;
-                            case DoiTuong.Nu:
-                                row["BinhThuong"] = string.Format("(F > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-                                break;
-                            case DoiTuong.NguoiLon:
-                                row["BinhThuong"] = string.Format("Adult (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-                                break;
-                            case DoiTuong.NguoiCaoTuoi:
-                                row["BinhThuong"] = string.Format("> 60 year (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-                                break;
-                        }
+                        #endregion
                     }
                     else
                     {
-                        if (testResult >= ctxn.ToValue.Value)
-                            row["TinhTrang"] = (byte)TinhTrang.BatThuong;
-                        else
-                            row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+                        #region Chưa cập nhật chỉ số xét nghiệm
+                        XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == testNum);
+                        if (xn == null) continue;
+                        List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
+                        if (ctxns.Count <= 0) continue;
+                        ChiTietXetNghiem_Hitachi917 ctxn = null;
+                        Gender gender = Gender.None;
 
-                        switch (doiTuong)
+                        if (!isSau2h)
                         {
-                            case DoiTuong.Chung:
-                            case DoiTuong.Chung_Sau2h:
-                                row["BinhThuong"] = string.Format("(< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-                                break;
-                            case DoiTuong.Nam:
-                                row["BinhThuong"] = string.Format("(M < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-                                break;
-                            case DoiTuong.Nu:
-                                row["BinhThuong"] = string.Format("(F < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-                                break;
-                            case DoiTuong.NguoiLon:
-                                row["BinhThuong"] = string.Format("Adult (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-                                break;
-                            case DoiTuong.NguoiCaoTuoi:
-                                row["BinhThuong"] = string.Format("< 60 year (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-                                break;
+                            ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Chung);
+                            if (ctxn == null)
+                            {
+                                if (kqxn == null)
+                                    kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
+                                if (kqxn == null) continue;
+
+                                if (kqxn.PatientGUID.HasValue)
+                                {
+                                    PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.PatientGUID == kqxn.PatientGUID.Value);
+                                    if (patient == null) continue;
+                                    if (patient.Gender.HasValue) gender = (Gender)patient.Gender.Value;
+                                }
+                                else
+                                {
+                                    if (kqxn.Sex.HasValue) gender = (Gender)kqxn.Sex.Value;
+                                }
+
+                                if (gender == Gender.None) continue;
+
+                                if (gender == Gender.Male)
+                                    ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Nam);
+                                else
+                                    ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Nu);
+                            }
+
+                            if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.NguoiLon);
+                            if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.NguoiCaoTuoi);
+                            if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.TreEm);
                         }
+                        else
+                        {
+                            ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Chung_Sau2h);
+                            if (ctxn == null)
+                            {
+                                if (kqxn == null)
+                                    kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
+                                if (kqxn == null) continue;
+
+                                if (kqxn.PatientGUID.HasValue)
+                                {
+                                    PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.PatientGUID == kqxn.PatientGUID.Value);
+                                    if (patient == null) continue;
+                                    if (patient.Gender.HasValue) gender = (Gender)patient.Gender.Value;
+                                }
+                                else
+                                {
+                                    if (kqxn.Sex.HasValue) gender = (Gender)kqxn.Sex.Value;
+                                }
+
+                                if (gender == Gender.None) continue;
+
+                                if (gender == Gender.Male)
+                                    ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Nam_Sau2h);
+                                else
+                                    ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Nu_Sau2h);
+                            }
+
+                            if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.NguoiLon_Sau2h);
+                            if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.NguoiCaoTuoi_Sau2h);
+                            if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.TreEm_Sau2h);
+                        }
+
+                        if (ctxn == null) continue;
+
+                        ChiTietKetQuaXetNghiem_Hitachi917 ctkqxn = db.ChiTietKetQuaXetNghiem_Hitachi917s.SingleOrDefault<ChiTietKetQuaXetNghiem_Hitachi917>(c => c.ChiTietKQXN_Hitachi917GUID.ToString() == row["ChiTietKQXN_Hitachi917GUID"].ToString());
+                        if (ctkqxn != null)
+                        {
+                            ctkqxn.FromValue = ctxn.FromValue;
+                            ctkqxn.ToValue = ctxn.ToValue;
+                            ctkqxn.DoiTuong = ctxn.DoiTuong;
+                            ctkqxn.DonVi = ctxn.DonVi;
+                            db.SubmitChanges();
+                        }
+
+                        DoiTuong doiTuong = (DoiTuong)ctxn.DoiTuong;
+
+                        if (ctxn.FromValue.HasValue && ctxn.ToValue.HasValue)
+                        {
+                            if (testResult < ctxn.FromValue.Value || testResult > ctxn.ToValue.Value)
+                                row["TinhTrang"] = (byte)TinhTrang.BatThuong;
+                            else
+                                row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+
+                            switch (doiTuong)
+                            {
+                                case DoiTuong.Chung:
+                                case DoiTuong.Chung_Sau2h:
+                                    row["BinhThuong"] = string.Format("({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.Nam:
+                                case DoiTuong.Nam_Sau2h:
+                                    row["BinhThuong"] = string.Format("(M: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.Nu:
+                                case DoiTuong.Nu_Sau2h:
+                                    row["BinhThuong"] = string.Format("(F: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.TreEm:
+                                case DoiTuong.TreEm_Sau2h:
+                                    row["BinhThuong"] = string.Format("Child ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.NguoiLon:
+                                case DoiTuong.NguoiLon_Sau2h:
+                                    row["BinhThuong"] = string.Format("Adult ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.NguoiCaoTuoi:
+                                case DoiTuong.NguoiCaoTuoi_Sau2h:
+                                    row["BinhThuong"] = string.Format("> 60 year ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                            }
+                        }
+                        else if (ctxn.FromValue.HasValue)
+                        {
+                            if (testResult <= ctxn.FromValue.Value)
+                                row["TinhTrang"] = (byte)TinhTrang.BatThuong;
+                            else
+                                row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+
+                            switch (doiTuong)
+                            {
+                                case DoiTuong.Chung:
+                                case DoiTuong.Chung_Sau2h:
+                                    row["BinhThuong"] = string.Format("(> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.Nam:
+                                case DoiTuong.Nam_Sau2h:
+                                    row["BinhThuong"] = string.Format("(M > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.Nu:
+                                case DoiTuong.Nu_Sau2h:
+                                    row["BinhThuong"] = string.Format("(F > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.TreEm:
+                                case DoiTuong.TreEm_Sau2h:
+                                    row["BinhThuong"] = string.Format("Child (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.NguoiLon:
+                                case DoiTuong.NguoiLon_Sau2h:
+                                    row["BinhThuong"] = string.Format("Adult (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.NguoiCaoTuoi:
+                                case DoiTuong.NguoiCaoTuoi_Sau2h:
+                                    row["BinhThuong"] = string.Format("> 60 year (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            if (testResult >= ctxn.ToValue.Value)
+                                row["TinhTrang"] = (byte)TinhTrang.BatThuong;
+                            else
+                                row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+
+                            switch (doiTuong)
+                            {
+                                case DoiTuong.Chung:
+                                case DoiTuong.Chung_Sau2h:
+                                    row["BinhThuong"] = string.Format("(< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.Nam:
+                                case DoiTuong.Nam_Sau2h:
+                                    row["BinhThuong"] = string.Format("(M < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.Nu:
+                                case DoiTuong.Nu_Sau2h:
+                                    row["BinhThuong"] = string.Format("(F < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.TreEm:
+                                case DoiTuong.TreEm_Sau2h:
+                                    row["BinhThuong"] = string.Format("Child (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.NguoiLon:
+                                case DoiTuong.NguoiLon_Sau2h:
+                                    row["BinhThuong"] = string.Format("Adult (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                                case DoiTuong.NguoiCaoTuoi:
+                                case DoiTuong.NguoiCaoTuoi_Sau2h:
+                                    row["BinhThuong"] = string.Format("< 60 year (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    break;
+                            }
+                        }
+                        #endregion
                     }
                 }
 
@@ -594,6 +734,10 @@ namespace MM.Bussiness
                         ctkqxn.UpdatedBy = Guid.Parse(Global.UserGUID);
                         ctkqxn.Status = (byte)Status.Actived;
                         ctkqxn.TestResult = chiTietKQXN.TestResult;
+                        ctkqxn.FromValue = chiTietKQXN.FromValue;
+                        ctkqxn.ToValue = chiTietKQXN.ToValue;
+                        ctkqxn.DoiTuong = chiTietKQXN.DoiTuong;
+                        ctkqxn.DonVi = chiTietKQXN.DonVi;
 
                         KetQuaXetNghiem_Hitachi917 kqxn = ctkqxn.KetQuaXetNghiem_Hitachi917;
                         string tenBenhNhan = string.Empty;
@@ -608,130 +752,110 @@ namespace MM.Bussiness
                             }
                         }
 
-                        //
-                        for (int i = 0; i < 1; i++)
+                        if ((chiTietKQXN.FromValue != null && chiTietKQXN.FromValue.HasValue) ||
+                        (chiTietKQXN.ToValue != null && chiTietKQXN.ToValue.HasValue))
                         {
-                            XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == chiTietKQXN.TestNum);
-                            if (xn == null) continue;
-                            List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
-                            if (ctxns.Count <= 0) continue;
+                            double testResult = Convert.ToDouble(chiTietKQXN.TestResult);
+                            string donVi = string.Empty;
+                            if (chiTietKQXN.DonVi != null && chiTietKQXN.DonVi.Trim() != string.Empty)
+                                donVi = chiTietKQXN.DonVi;
 
-                            double testResult = Convert.ToDouble(chiTietKQXN.TestResult.Trim());
-                            ChiTietXetNghiem_Hitachi917 ctxn = null;
-                            if (chiTietKQXN.TestNum == 17)
+                            double fromValue = 0;
+                            double toValue = 0;
+                            int kq = 0;
+                            if (chiTietKQXN.FromValue == null || !chiTietKQXN.FromValue.HasValue)
                             {
-                                if (kqxn == null) continue;
-                                if (kqxn.NgayXN.Hour < 14)
-                                {
-                                    ctxn = ctxns[0];
-                                    if (ctxns[0].DoiTuong != (byte)DoiTuong.Chung) ctxn = ctxns[1];
-                                }
+                                kq = 1;
+                                toValue = chiTietKQXN.ToValue.Value;
+                                if (testResult >= toValue)
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
                                 else
-                                {
-                                    ctxn = ctxns[1];
-                                    if (ctxns[1].DoiTuong != (byte)DoiTuong.Chung_Sau2h) ctxn = ctxns[0];
-                                }
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
+                            }
+                            else if (chiTietKQXN.ToValue == null || !chiTietKQXN.ToValue.HasValue)
+                            {
+                                kq = 2;
+                                fromValue = chiTietKQXN.FromValue.Value;
+                                if (testResult <= fromValue)
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
+                                else
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
                             }
                             else
                             {
-                                if (ctxns[0].DoiTuong == (byte)DoiTuong.Chung) ctxn = ctxns[0];
-                                else if (ctxns[0].DoiTuong == (byte)DoiTuong.Nam || ctxns[0].DoiTuong == (byte)DoiTuong.Nu)
-                                {
-                                    if (kqxn == null) continue;
-                                    if (!kqxn.Sex.HasValue || kqxn.Sex.Value == (int)Gender.None) continue;
+                                fromValue = chiTietKQXN.FromValue.Value;
+                                toValue = chiTietKQXN.ToValue.Value;
 
-                                    if (kqxn.Sex.Value == (int)Gender.Male)
-                                    {
-                                        ctxn = ctxns[0];
-                                        if (ctxns[0].DoiTuong != (byte)DoiTuong.Nam) ctxn = ctxns[1];
-                                    }
+                                if (testResult >= fromValue && testResult <= toValue)
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
+                                else
+                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
+                            }
+
+                            DoiTuong doiTuong = (DoiTuong)chiTietKQXN.DoiTuong;
+                            switch (doiTuong)
+                            {
+                                case DoiTuong.Chung:
+                                case DoiTuong.Chung_Sau2h:
+                                    if (kq == 0)
+                                        result.QueryResult = string.Format("({0} - {1} {2})", fromValue, toValue, donVi);
+                                    else if (kq == 1)
+                                        result.QueryResult = string.Format("(< {0} {1})", toValue, donVi);
                                     else
-                                    {
-                                        ctxn = ctxns[1];
-                                        if (ctxns[1].DoiTuong != (byte)DoiTuong.Nu) ctxn = ctxns[0];
-                                    }
-                                }
-                                else
-                                {
-                                    if (kqxn == null) continue;
-                                    //if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
-                                    //if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
-                                    //    kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
-                                    //if (kqxn.Age.Value < 18) continue;
-
-                                    //if (kqxn.Age.Value <= 60) //Người trưởng thành
-                                    //{
-                                    //    ctxn = ctxns[0];
-                                    //    if (ctxns[0].DoiTuong != (byte)DoiTuong.NguoiLon) ctxn = ctxns[1];
-                                    //}
-                                    //else //Người cao tuổi
-                                    //{
-                                    //    ctxn = ctxns[1];
-                                    //    if (ctxns[1].DoiTuong != (byte)DoiTuong.NguoiCaoTuoi) ctxn = ctxns[0];
-                                    //}
-
-                                    for (int j = 0; j < ctxns.Count; j++)
-                                    {
-                                        if (ctxns[j].DoiTuong == (byte)DoiTuong.NguoiLon)
-                                        {
-                                            ctxn = ctxns[j];
-                                            break;
-                                        }
-                                    }
-
-                                    if (ctxn == null)
-                                    {
-                                        for (int j = 0; j < ctxns.Count; j++)
-                                        {
-                                            if (ctxns[j].DoiTuong == (byte)DoiTuong.NguoiCaoTuoi)
-                                            {
-                                                ctxn = ctxns[j];
-                                                break;
-                                            }
-                                        }
-                                    }
-
-                                    if (ctxn == null)
-                                    {
-                                        for (int j = 0; j < ctxns.Count; j++)
-                                        {
-                                            if (ctxns[j].DoiTuong == (byte)DoiTuong.TreEm)
-                                            {
-                                                ctxn = ctxns[j];
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (ctxn == null) continue;
-
-                            DoiTuong doiTuong = (DoiTuong)ctxn.DoiTuong;
-
-                            if (ctxn.FromValue.HasValue && ctxn.ToValue.HasValue)
-                            {
-                                if (testResult < ctxn.FromValue.Value || testResult > ctxn.ToValue.Value)
-                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
-                                else
-                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
-                            }
-                            else if (ctxn.FromValue.HasValue)
-                            {
-                                if (testResult <= ctxn.FromValue.Value)
-                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
-                                else
-                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
-                            }
-                            else
-                            {
-                                if (testResult >= ctxn.ToValue.Value)
-                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
-                                else
-                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
+                                        result.QueryResult = string.Format("(> {0} {1})", fromValue, donVi);
+                                    break;
+                                case DoiTuong.Nam:
+                                case DoiTuong.Nam_Sau2h:
+                                    if (kq == 0)
+                                        result.QueryResult = string.Format("(M: {0} - {1} {2})", fromValue, toValue, donVi);
+                                    else if (kq == 1)
+                                        result.QueryResult = string.Format("(M < {0} {1})", toValue, donVi);
+                                    else
+                                        result.QueryResult = string.Format("(M > {0} {1})", fromValue, donVi);
+                                    break;
+                                case DoiTuong.Nu:
+                                case DoiTuong.Nu_Sau2h:
+                                    if (kq == 0)
+                                        result.QueryResult = string.Format("(F: {0} - {1} {2})", fromValue, toValue, donVi);
+                                    else if (kq == 1)
+                                        result.QueryResult = string.Format("(F < {0} {1})", toValue, donVi);
+                                    else
+                                        result.QueryResult = string.Format("(F > {0} {1})", fromValue, donVi);
+                                    break;
+                                case DoiTuong.TreEm:
+                                case DoiTuong.TreEm_Sau2h:
+                                    if (kq == 0)
+                                        result.QueryResult = string.Format("Child ({0} - {1} {2})", fromValue, toValue, donVi);
+                                    else if (kq == 1)
+                                        result.QueryResult = string.Format("Child (< {0} {1})", toValue, donVi);
+                                    else
+                                        result.QueryResult = string.Format("Child (> {0} {1})", fromValue, donVi);
+                                    break;
+                                case DoiTuong.NguoiLon:
+                                case DoiTuong.NguoiLon_Sau2h:
+                                    if (kq == 0)
+                                        result.QueryResult = string.Format("Adult ({0} - {1} {2})", fromValue, toValue, donVi);
+                                    else if (kq == 1)
+                                        result.QueryResult = string.Format("Adult (< {0} {1})", toValue, donVi);
+                                    else
+                                        result.QueryResult = string.Format("Adult (> {0} {1})", fromValue, donVi);
+                                    break;
+                                case DoiTuong.NguoiCaoTuoi:
+                                case DoiTuong.NguoiCaoTuoi_Sau2h:
+                                    if (kq == 0)
+                                        result.QueryResult = string.Format("> 60 year ({0} - {1} {2})", fromValue, toValue, donVi);
+                                    else if (kq == 1)
+                                        result.QueryResult = string.Format("> 60 year (< {0} {1})", toValue, donVi);
+                                    else
+                                        result.QueryResult = string.Format("> 60 year (> {0} {1})", fromValue, donVi);
+                                    break;
                             }
                         }
-                        //
+                        else
+                        {
+                            chiTietKQXN.TinhTrang = (byte)TinhTrang.BinhThuong;
+                            result.QueryResult = string.Empty;
+                        }
 
                         desc += string.Format("GUID: '{0}', IDNum: '{1}', Mã bệnh nhân: '{2}', Tên bệnh nhân: '{3}', Ngày xét nghiệm: '{4}', OperationID: '{5}', TestNum: '{6}', TestResult: '{7}'",
                                 kqxn.KQXN_Hitachi917GUID.ToString(), kqxn.IDNum, fileNum, tenBenhNhan, kqxn.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"), kqxn.OperationID, ctkqxn.TestNum, ctkqxn.TestResult);
