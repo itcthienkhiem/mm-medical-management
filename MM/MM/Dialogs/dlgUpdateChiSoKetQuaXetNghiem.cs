@@ -18,6 +18,7 @@ namespace MM.Dialogs
         #region Members
         private DataRow _drCTKQXN = null;
         private ChiTietKetQuaXetNghiem_Hitachi917 _chiTietKQXN = new ChiTietKetQuaXetNghiem_Hitachi917();
+        private string _binhThuong = string.Empty;
         #endregion
 
         #region Constructor
@@ -33,6 +34,11 @@ namespace MM.Dialogs
         {
             get { return _chiTietKQXN; }
         }
+
+        public string BinhThuong
+        {
+            get { return _binhThuong; }
+        }
         #endregion
 
         #region UI Command
@@ -44,22 +50,49 @@ namespace MM.Dialogs
                 txTenXetNghiem.Text = _drCTKQXN["TenXetNghiem"].ToString();
 
             numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
-            txtBinhThuong.Text = _drCTKQXN["BinhThuong"].ToString();
-
             _chiTietKQXN.TestNum = Convert.ToInt32(_drCTKQXN["TestNum"]);
+
+            if ((_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value) &&
+                (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value))
+            {
+                chkFromValue.Enabled = false;
+                chkToValue.Enabled = false;
+            }
+            else if (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value)
+            {
+                chkFromValue.Checked = true;
+                numFromValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
+            }
+            else if (_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value)
+            {
+                chkToValue.Checked = true;
+                numToValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
+            }
+            else
+            {
+                chkFromValue.Checked = true;
+                numFromValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
+                chkToValue.Checked = true;
+                numToValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
+            }
+
+            if (_drCTKQXN["DonVi"] != null && _drCTKQXN["DonVi"] != DBNull.Value)
+                txtDonVi.Text = _drCTKQXN["DonVi"].ToString();
         }
 
-        //private bool CheckInfo()
-        //{
-        //    if (txtKetQua.Text.Trim() == string.Empty)
-        //    {
-        //        MsgBox.Show(this.Text, "Vui lòng nhập kết quả xét nghiệm.", IconType.Information);
-        //        txtKetQua.Focus();
-        //        return false;
-        //    }
+        private bool CheckInfo()
+        {
+            if (chkFromValue.Enabled == true && chkToValue.Enabled == true)
+            {
+                if (!chkFromValue.Checked && !chkToValue.Checked)
+                {
+                    MsgBox.Show(this.Text, "Vui lòng nhập ngưỡng chỉ số.", IconType.Information);
+                    return false;
+                }
+            }
 
-        //    return true;
-        //}
+            return true;
+        }
 
         private void SaveInfoAsThread()
         {
@@ -85,6 +118,17 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _chiTietKQXN.TestResult = numKetQua.Value.ToString();
+                    if (chkFromValue.Checked)
+                        _chiTietKQXN.FromValue = (double)numFromValue.Value;
+
+                    if (chkToValue.Checked)
+                        _chiTietKQXN.ToValue = (double)numToValue.Value;
+
+                    _chiTietKQXN.DonVi = txtDonVi.Text;
+
+                    if (_drCTKQXN["DoiTuong"] != null && _drCTKQXN["DoiTuong"] != DBNull.Value)
+                        _chiTietKQXN.DoiTuong = Convert.ToByte(_drCTKQXN["DoiTuong"]);
+
                     Result result = XetNghiem_Hitachi917Bus.UpdateChiSoKetQuaXetNghiem(_chiTietKQXN);
 
                     if (!result.IsOK)
@@ -93,6 +137,8 @@ namespace MM.Dialogs
                         Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.UpdateChiSoKetQuaXetNghiem"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                     }
+                    else
+                        _binhThuong = result.QueryResult.ToString();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -116,11 +162,21 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                //if (!CheckInfo()) 
-                //    e.Cancel = true;
-                //else
-                SaveInfoAsThread();
+                if (!CheckInfo()) 
+                    e.Cancel = true;
+                else
+                    SaveInfoAsThread();
             }
+        }
+
+        private void chkFromValue_CheckedChanged(object sender, EventArgs e)
+        {
+            numFromValue.Enabled = chkFromValue.Checked;
+        }
+
+        private void chkToValue_CheckedChanged(object sender, EventArgs e)
+        {
+            numToValue.Enabled = chkToValue.Checked;
         }
         #endregion
 
@@ -142,5 +198,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

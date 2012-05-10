@@ -218,6 +218,16 @@ namespace MM.Controls
             {
                 row["TestResult"] = dlg.ChiTietKQXN.TestResult;
                 row["TinhTrang"] = dlg.ChiTietKQXN.TinhTrang;
+                row["BinhThuong"] = dlg.BinhThuong;
+                if (dlg.ChiTietKQXN.FromValue.HasValue)
+                    row["FromValue"] = dlg.ChiTietKQXN.FromValue.Value;
+                else
+                    row["FromValue"] = DBNull.Value;
+
+                if (dlg.ChiTietKQXN.ToValue.HasValue)
+                    row["ToValue"] = dlg.ChiTietKQXN.ToValue.Value;
+                else
+                    row["ToValue"] = DBNull.Value;
 
                 if ((TinhTrang)dlg.ChiTietKQXN.TinhTrang == TinhTrang.BatThuong)
                 {
@@ -372,10 +382,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        private void dgXetNghiem_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }
