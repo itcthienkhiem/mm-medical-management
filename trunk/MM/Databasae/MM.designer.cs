@@ -219,9 +219,6 @@ namespace MM.Databasae
     partial void InsertXetNghiem_Manual(XetNghiem_Manual instance);
     partial void UpdateXetNghiem_Manual(XetNghiem_Manual instance);
     partial void DeleteXetNghiem_Manual(XetNghiem_Manual instance);
-    partial void InsertChiTietKetQuaXetNghiem_CellDyn3200(ChiTietKetQuaXetNghiem_CellDyn3200 instance);
-    partial void UpdateChiTietKetQuaXetNghiem_CellDyn3200(ChiTietKetQuaXetNghiem_CellDyn3200 instance);
-    partial void DeleteChiTietKetQuaXetNghiem_CellDyn3200(ChiTietKetQuaXetNghiem_CellDyn3200 instance);
     partial void InsertChiTietKetQuaXetNghiem_Hitachi917(ChiTietKetQuaXetNghiem_Hitachi917 instance);
     partial void UpdateChiTietKetQuaXetNghiem_Hitachi917(ChiTietKetQuaXetNghiem_Hitachi917 instance);
     partial void DeleteChiTietKetQuaXetNghiem_Hitachi917(ChiTietKetQuaXetNghiem_Hitachi917 instance);
@@ -237,6 +234,9 @@ namespace MM.Databasae
     partial void InsertChiTietXetNghiem_Hitachi917(ChiTietXetNghiem_Hitachi917 instance);
     partial void UpdateChiTietXetNghiem_Hitachi917(ChiTietXetNghiem_Hitachi917 instance);
     partial void DeleteChiTietXetNghiem_Hitachi917(ChiTietXetNghiem_Hitachi917 instance);
+    partial void InsertChiTietKetQuaXetNghiem_CellDyn3200(ChiTietKetQuaXetNghiem_CellDyn3200 instance);
+    partial void UpdateChiTietKetQuaXetNghiem_CellDyn3200(ChiTietKetQuaXetNghiem_CellDyn3200 instance);
+    partial void DeleteChiTietKetQuaXetNghiem_CellDyn3200(ChiTietKetQuaXetNghiem_CellDyn3200 instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -1133,14 +1133,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		public System.Data.Linq.Table<ChiTietKetQuaXetNghiem_CellDyn3200> ChiTietKetQuaXetNghiem_CellDyn3200s
-		{
-			get
-			{
-				return this.GetTable<ChiTietKetQuaXetNghiem_CellDyn3200>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ChiTietKetQuaXetNghiem_Hitachi917> ChiTietKetQuaXetNghiem_Hitachi917s
 		{
 			get
@@ -1154,14 +1146,6 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ChiTietKetQuaXetNghiem_Manual>();
-			}
-		}
-		
-		public System.Data.Linq.Table<ChiTietKetQuaXetNghiem_CellDyn3200View> ChiTietKetQuaXetNghiem_CellDyn3200Views
-		{
-			get
-			{
-				return this.GetTable<ChiTietKetQuaXetNghiem_CellDyn3200View>();
 			}
 		}
 		
@@ -1202,6 +1186,22 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ChiTietXetNghiem_Hitachi917>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ChiTietKetQuaXetNghiem_CellDyn3200> ChiTietKetQuaXetNghiem_CellDyn3200s
+		{
+			get
+			{
+				return this.GetTable<ChiTietKetQuaXetNghiem_CellDyn3200>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ChiTietKetQuaXetNghiem_CellDyn3200View> ChiTietKetQuaXetNghiem_CellDyn3200Views
+		{
+			get
+			{
+				return this.GetTable<ChiTietKetQuaXetNghiem_CellDyn3200View>();
 			}
 		}
 		
@@ -52076,517 +52076,6 @@ namespace MM.Databasae
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietKetQuaXetNghiem_CellDyn3200")]
-	public partial class ChiTietKetQuaXetNghiem_CellDyn3200 : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ChiTietKQXN_CellDyn3200GUID;
-		
-		private System.Guid _KQXN_CellDyn3200GUID;
-		
-		private string _TenXetNghiem;
-		
-		private System.Nullable<double> _TestResult;
-		
-		private System.Nullable<double> _TestPercent;
-		
-		private byte _TinhTrang;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		private byte _Status;
-		
-		private bool _DaIn;
-		
-		private System.Nullable<double> _FromValue;
-		
-		private System.Nullable<double> _ToValue;
-		
-		private System.Nullable<byte> _DoiTuong;
-		
-		private string _DonVi;
-		
-		private EntityRef<KetQuaXetNghiem_CellDyn3200> _KetQuaXetNghiem_CellDyn3200;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnChiTietKQXN_CellDyn3200GUIDChanging(System.Guid value);
-    partial void OnChiTietKQXN_CellDyn3200GUIDChanged();
-    partial void OnKQXN_CellDyn3200GUIDChanging(System.Guid value);
-    partial void OnKQXN_CellDyn3200GUIDChanged();
-    partial void OnTenXetNghiemChanging(string value);
-    partial void OnTenXetNghiemChanged();
-    partial void OnTestResultChanging(System.Nullable<double> value);
-    partial void OnTestResultChanged();
-    partial void OnTestPercentChanging(System.Nullable<double> value);
-    partial void OnTestPercentChanged();
-    partial void OnTinhTrangChanging(byte value);
-    partial void OnTinhTrangChanged();
-    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedDateChanged();
-    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnCreatedByChanged();
-    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdatedDateChanged();
-    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnUpdatedByChanged();
-    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDeletedDateChanged();
-    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
-    partial void OnDeletedByChanged();
-    partial void OnStatusChanging(byte value);
-    partial void OnStatusChanged();
-    partial void OnDaInChanging(bool value);
-    partial void OnDaInChanged();
-    partial void OnFromValueChanging(System.Nullable<double> value);
-    partial void OnFromValueChanged();
-    partial void OnToValueChanging(System.Nullable<double> value);
-    partial void OnToValueChanged();
-    partial void OnDoiTuongChanging(System.Nullable<byte> value);
-    partial void OnDoiTuongChanged();
-    partial void OnDonViChanging(string value);
-    partial void OnDonViChanged();
-    #endregion
-		
-		public ChiTietKetQuaXetNghiem_CellDyn3200()
-		{
-			this._KetQuaXetNghiem_CellDyn3200 = default(EntityRef<KetQuaXetNghiem_CellDyn3200>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiTietKQXN_CellDyn3200GUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ChiTietKQXN_CellDyn3200GUID
-		{
-			get
-			{
-				return this._ChiTietKQXN_CellDyn3200GUID;
-			}
-			set
-			{
-				if ((this._ChiTietKQXN_CellDyn3200GUID != value))
-				{
-					this.OnChiTietKQXN_CellDyn3200GUIDChanging(value);
-					this.SendPropertyChanging();
-					this._ChiTietKQXN_CellDyn3200GUID = value;
-					this.SendPropertyChanged("ChiTietKQXN_CellDyn3200GUID");
-					this.OnChiTietKQXN_CellDyn3200GUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQXN_CellDyn3200GUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid KQXN_CellDyn3200GUID
-		{
-			get
-			{
-				return this._KQXN_CellDyn3200GUID;
-			}
-			set
-			{
-				if ((this._KQXN_CellDyn3200GUID != value))
-				{
-					if (this._KetQuaXetNghiem_CellDyn3200.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnKQXN_CellDyn3200GUIDChanging(value);
-					this.SendPropertyChanging();
-					this._KQXN_CellDyn3200GUID = value;
-					this.SendPropertyChanged("KQXN_CellDyn3200GUID");
-					this.OnKQXN_CellDyn3200GUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenXetNghiem", DbType="NVarChar(50)")]
-		public string TenXetNghiem
-		{
-			get
-			{
-				return this._TenXetNghiem;
-			}
-			set
-			{
-				if ((this._TenXetNghiem != value))
-				{
-					this.OnTenXetNghiemChanging(value);
-					this.SendPropertyChanging();
-					this._TenXetNghiem = value;
-					this.SendPropertyChanged("TenXetNghiem");
-					this.OnTenXetNghiemChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestResult", DbType="Float")]
-		public System.Nullable<double> TestResult
-		{
-			get
-			{
-				return this._TestResult;
-			}
-			set
-			{
-				if ((this._TestResult != value))
-				{
-					this.OnTestResultChanging(value);
-					this.SendPropertyChanging();
-					this._TestResult = value;
-					this.SendPropertyChanged("TestResult");
-					this.OnTestResultChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestPercent", DbType="Float")]
-		public System.Nullable<double> TestPercent
-		{
-			get
-			{
-				return this._TestPercent;
-			}
-			set
-			{
-				if ((this._TestPercent != value))
-				{
-					this.OnTestPercentChanging(value);
-					this.SendPropertyChanging();
-					this._TestPercent = value;
-					this.SendPropertyChanged("TestPercent");
-					this.OnTestPercentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TinhTrang", DbType="TinyInt NOT NULL")]
-		public byte TinhTrang
-		{
-			get
-			{
-				return this._TinhTrang;
-			}
-			set
-			{
-				if ((this._TinhTrang != value))
-				{
-					this.OnTinhTrangChanging(value);
-					this.SendPropertyChanging();
-					this._TinhTrang = value;
-					this.SendPropertyChanged("TinhTrang");
-					this.OnTinhTrangChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this.OnUpdatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDate = value;
-					this.SendPropertyChanged("UpdatedDate");
-					this.OnUpdatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this.OnUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedBy = value;
-					this.SendPropertyChanged("UpdatedBy");
-					this.OnUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this.OnDeletedDateChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedDate = value;
-					this.SendPropertyChanged("DeletedDate");
-					this.OnDeletedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this.OnDeletedByChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedBy = value;
-					this.SendPropertyChanged("DeletedBy");
-					this.OnDeletedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
-		public byte Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaIn", DbType="Bit NOT NULL")]
-		public bool DaIn
-		{
-			get
-			{
-				return this._DaIn;
-			}
-			set
-			{
-				if ((this._DaIn != value))
-				{
-					this.OnDaInChanging(value);
-					this.SendPropertyChanging();
-					this._DaIn = value;
-					this.SendPropertyChanged("DaIn");
-					this.OnDaInChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromValue", DbType="Float")]
-		public System.Nullable<double> FromValue
-		{
-			get
-			{
-				return this._FromValue;
-			}
-			set
-			{
-				if ((this._FromValue != value))
-				{
-					this.OnFromValueChanging(value);
-					this.SendPropertyChanging();
-					this._FromValue = value;
-					this.SendPropertyChanged("FromValue");
-					this.OnFromValueChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToValue", DbType="Float")]
-		public System.Nullable<double> ToValue
-		{
-			get
-			{
-				return this._ToValue;
-			}
-			set
-			{
-				if ((this._ToValue != value))
-				{
-					this.OnToValueChanging(value);
-					this.SendPropertyChanging();
-					this._ToValue = value;
-					this.SendPropertyChanged("ToValue");
-					this.OnToValueChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoiTuong", DbType="TinyInt")]
-		public System.Nullable<byte> DoiTuong
-		{
-			get
-			{
-				return this._DoiTuong;
-			}
-			set
-			{
-				if ((this._DoiTuong != value))
-				{
-					this.OnDoiTuongChanging(value);
-					this.SendPropertyChanging();
-					this._DoiTuong = value;
-					this.SendPropertyChanged("DoiTuong");
-					this.OnDoiTuongChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonVi", DbType="NVarChar(50)")]
-		public string DonVi
-		{
-			get
-			{
-				return this._DonVi;
-			}
-			set
-			{
-				if ((this._DonVi != value))
-				{
-					this.OnDonViChanging(value);
-					this.SendPropertyChanging();
-					this._DonVi = value;
-					this.SendPropertyChanged("DonVi");
-					this.OnDonViChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KetQuaXetNghiem_CellDyn3200_ChiTietKetQuaXetNghiem_CellDyn3200", Storage="_KetQuaXetNghiem_CellDyn3200", ThisKey="KQXN_CellDyn3200GUID", OtherKey="KQXN_CellDyn3200GUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public KetQuaXetNghiem_CellDyn3200 KetQuaXetNghiem_CellDyn3200
-		{
-			get
-			{
-				return this._KetQuaXetNghiem_CellDyn3200.Entity;
-			}
-			set
-			{
-				KetQuaXetNghiem_CellDyn3200 previousValue = this._KetQuaXetNghiem_CellDyn3200.Entity;
-				if (((previousValue != value) 
-							|| (this._KetQuaXetNghiem_CellDyn3200.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._KetQuaXetNghiem_CellDyn3200.Entity = null;
-						previousValue.ChiTietKetQuaXetNghiem_CellDyn3200s.Remove(this);
-					}
-					this._KetQuaXetNghiem_CellDyn3200.Entity = value;
-					if ((value != null))
-					{
-						value.ChiTietKetQuaXetNghiem_CellDyn3200s.Add(this);
-						this._KQXN_CellDyn3200GUID = value.KQXN_CellDyn3200GUID;
-					}
-					else
-					{
-						this._KQXN_CellDyn3200GUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("KetQuaXetNghiem_CellDyn3200");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietKetQuaXetNghiem_Hitachi917")]
 	public partial class ChiTietKetQuaXetNghiem_Hitachi917 : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -53622,555 +53111,6 @@ namespace MM.Databasae
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietKetQuaXetNghiem_CellDyn3200View")]
-	public partial class ChiTietKetQuaXetNghiem_CellDyn3200View
-	{
-		
-		private System.Guid _ChiTietKQXN_CellDyn3200GUID;
-		
-		private System.Guid _KQXN_CellDyn3200GUID;
-		
-		private string _TenXetNghiem;
-		
-		private System.Nullable<double> _TestResult;
-		
-		private System.Nullable<double> _TestPercent;
-		
-		private byte _TinhTrang;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		private byte _Status;
-		
-		private string _FullName;
-		
-		private string _Type;
-		
-		private System.Nullable<double> _FromValue;
-		
-		private System.Nullable<double> _ToValue;
-		
-		private System.Nullable<double> _ToPercent;
-		
-		private string _DonVi;
-		
-		private System.Nullable<double> _FromPercent;
-		
-		private System.Nullable<int> _Order;
-		
-		private System.Nullable<int> _GroupID;
-		
-		private System.Nullable<System.DateTime> _NgayXN;
-		
-		private System.Nullable<System.Guid> _PatientGUID;
-		
-		private byte _KQXNStatus;
-		
-		private System.Nullable<double> _FromValue2;
-		
-		private System.Nullable<double> _ToValue2;
-		
-		private System.Nullable<byte> _DoiTuong2;
-		
-		private string _DonVi2;
-		
-		private bool _DaIn;
-		
-		public ChiTietKetQuaXetNghiem_CellDyn3200View()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiTietKQXN_CellDyn3200GUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ChiTietKQXN_CellDyn3200GUID
-		{
-			get
-			{
-				return this._ChiTietKQXN_CellDyn3200GUID;
-			}
-			set
-			{
-				if ((this._ChiTietKQXN_CellDyn3200GUID != value))
-				{
-					this._ChiTietKQXN_CellDyn3200GUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQXN_CellDyn3200GUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid KQXN_CellDyn3200GUID
-		{
-			get
-			{
-				return this._KQXN_CellDyn3200GUID;
-			}
-			set
-			{
-				if ((this._KQXN_CellDyn3200GUID != value))
-				{
-					this._KQXN_CellDyn3200GUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenXetNghiem", DbType="NVarChar(50)")]
-		public string TenXetNghiem
-		{
-			get
-			{
-				return this._TenXetNghiem;
-			}
-			set
-			{
-				if ((this._TenXetNghiem != value))
-				{
-					this._TenXetNghiem = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestResult", DbType="Float")]
-		public System.Nullable<double> TestResult
-		{
-			get
-			{
-				return this._TestResult;
-			}
-			set
-			{
-				if ((this._TestResult != value))
-				{
-					this._TestResult = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestPercent", DbType="Float")]
-		public System.Nullable<double> TestPercent
-		{
-			get
-			{
-				return this._TestPercent;
-			}
-			set
-			{
-				if ((this._TestPercent != value))
-				{
-					this._TestPercent = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TinhTrang", DbType="TinyInt NOT NULL")]
-		public byte TinhTrang
-		{
-			get
-			{
-				return this._TinhTrang;
-			}
-			set
-			{
-				if ((this._TinhTrang != value))
-				{
-					this._TinhTrang = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this._CreatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this._CreatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this._UpdatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this._UpdatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this._DeletedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this._DeletedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
-		public byte Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(50)")]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this._FullName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="NVarChar(50)")]
-		public string Type
-		{
-			get
-			{
-				return this._Type;
-			}
-			set
-			{
-				if ((this._Type != value))
-				{
-					this._Type = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromValue", DbType="Float")]
-		public System.Nullable<double> FromValue
-		{
-			get
-			{
-				return this._FromValue;
-			}
-			set
-			{
-				if ((this._FromValue != value))
-				{
-					this._FromValue = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToValue", DbType="Float")]
-		public System.Nullable<double> ToValue
-		{
-			get
-			{
-				return this._ToValue;
-			}
-			set
-			{
-				if ((this._ToValue != value))
-				{
-					this._ToValue = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToPercent", DbType="Float")]
-		public System.Nullable<double> ToPercent
-		{
-			get
-			{
-				return this._ToPercent;
-			}
-			set
-			{
-				if ((this._ToPercent != value))
-				{
-					this._ToPercent = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonVi", DbType="NVarChar(50)")]
-		public string DonVi
-		{
-			get
-			{
-				return this._DonVi;
-			}
-			set
-			{
-				if ((this._DonVi != value))
-				{
-					this._DonVi = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromPercent", DbType="Float")]
-		public System.Nullable<double> FromPercent
-		{
-			get
-			{
-				return this._FromPercent;
-			}
-			set
-			{
-				if ((this._FromPercent != value))
-				{
-					this._FromPercent = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Order]", Storage="_Order", DbType="Int")]
-		public System.Nullable<int> Order
-		{
-			get
-			{
-				return this._Order;
-			}
-			set
-			{
-				if ((this._Order != value))
-				{
-					this._Order = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupID", DbType="Int")]
-		public System.Nullable<int> GroupID
-		{
-			get
-			{
-				return this._GroupID;
-			}
-			set
-			{
-				if ((this._GroupID != value))
-				{
-					this._GroupID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayXN", DbType="DateTime")]
-		public System.Nullable<System.DateTime> NgayXN
-		{
-			get
-			{
-				return this._NgayXN;
-			}
-			set
-			{
-				if ((this._NgayXN != value))
-				{
-					this._NgayXN = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> PatientGUID
-		{
-			get
-			{
-				return this._PatientGUID;
-			}
-			set
-			{
-				if ((this._PatientGUID != value))
-				{
-					this._PatientGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQXNStatus", DbType="TinyInt NOT NULL")]
-		public byte KQXNStatus
-		{
-			get
-			{
-				return this._KQXNStatus;
-			}
-			set
-			{
-				if ((this._KQXNStatus != value))
-				{
-					this._KQXNStatus = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromValue2", DbType="Float")]
-		public System.Nullable<double> FromValue2
-		{
-			get
-			{
-				return this._FromValue2;
-			}
-			set
-			{
-				if ((this._FromValue2 != value))
-				{
-					this._FromValue2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToValue2", DbType="Float")]
-		public System.Nullable<double> ToValue2
-		{
-			get
-			{
-				return this._ToValue2;
-			}
-			set
-			{
-				if ((this._ToValue2 != value))
-				{
-					this._ToValue2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoiTuong2", DbType="TinyInt")]
-		public System.Nullable<byte> DoiTuong2
-		{
-			get
-			{
-				return this._DoiTuong2;
-			}
-			set
-			{
-				if ((this._DoiTuong2 != value))
-				{
-					this._DoiTuong2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonVi2", DbType="NVarChar(50)")]
-		public string DonVi2
-		{
-			get
-			{
-				return this._DonVi2;
-			}
-			set
-			{
-				if ((this._DonVi2 != value))
-				{
-					this._DonVi2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaIn", DbType="Bit NOT NULL")]
-		public bool DaIn
-		{
-			get
-			{
-				return this._DaIn;
-			}
-			set
-			{
-				if ((this._DaIn != value))
-				{
-					this._DaIn = value;
-				}
 			}
 		}
 	}
@@ -56286,6 +55226,1150 @@ namespace MM.Databasae
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietKetQuaXetNghiem_CellDyn3200")]
+	public partial class ChiTietKetQuaXetNghiem_CellDyn3200 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ChiTietKQXN_CellDyn3200GUID;
+		
+		private System.Guid _KQXN_CellDyn3200GUID;
+		
+		private string _TenXetNghiem;
+		
+		private System.Nullable<double> _TestResult;
+		
+		private System.Nullable<double> _TestPercent;
+		
+		private byte _TinhTrang;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+		private bool _DaIn;
+		
+		private System.Nullable<double> _FromValue;
+		
+		private System.Nullable<double> _ToValue;
+		
+		private System.Nullable<byte> _DoiTuong;
+		
+		private string _DonVi;
+		
+		private System.Nullable<double> _FromPercent;
+		
+		private System.Nullable<double> _ToPercent;
+		
+		private EntityRef<KetQuaXetNghiem_CellDyn3200> _KetQuaXetNghiem_CellDyn3200;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnChiTietKQXN_CellDyn3200GUIDChanging(System.Guid value);
+    partial void OnChiTietKQXN_CellDyn3200GUIDChanged();
+    partial void OnKQXN_CellDyn3200GUIDChanging(System.Guid value);
+    partial void OnKQXN_CellDyn3200GUIDChanged();
+    partial void OnTenXetNghiemChanging(string value);
+    partial void OnTenXetNghiemChanged();
+    partial void OnTestResultChanging(System.Nullable<double> value);
+    partial void OnTestResultChanged();
+    partial void OnTestPercentChanging(System.Nullable<double> value);
+    partial void OnTestPercentChanged();
+    partial void OnTinhTrangChanging(byte value);
+    partial void OnTinhTrangChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    partial void OnDaInChanging(bool value);
+    partial void OnDaInChanged();
+    partial void OnFromValueChanging(System.Nullable<double> value);
+    partial void OnFromValueChanged();
+    partial void OnToValueChanging(System.Nullable<double> value);
+    partial void OnToValueChanged();
+    partial void OnDoiTuongChanging(System.Nullable<byte> value);
+    partial void OnDoiTuongChanged();
+    partial void OnDonViChanging(string value);
+    partial void OnDonViChanged();
+    partial void OnFromPercentChanging(System.Nullable<double> value);
+    partial void OnFromPercentChanged();
+    partial void OnToPercentChanging(System.Nullable<double> value);
+    partial void OnToPercentChanged();
+    #endregion
+		
+		public ChiTietKetQuaXetNghiem_CellDyn3200()
+		{
+			this._KetQuaXetNghiem_CellDyn3200 = default(EntityRef<KetQuaXetNghiem_CellDyn3200>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiTietKQXN_CellDyn3200GUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ChiTietKQXN_CellDyn3200GUID
+		{
+			get
+			{
+				return this._ChiTietKQXN_CellDyn3200GUID;
+			}
+			set
+			{
+				if ((this._ChiTietKQXN_CellDyn3200GUID != value))
+				{
+					this.OnChiTietKQXN_CellDyn3200GUIDChanging(value);
+					this.SendPropertyChanging();
+					this._ChiTietKQXN_CellDyn3200GUID = value;
+					this.SendPropertyChanged("ChiTietKQXN_CellDyn3200GUID");
+					this.OnChiTietKQXN_CellDyn3200GUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQXN_CellDyn3200GUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid KQXN_CellDyn3200GUID
+		{
+			get
+			{
+				return this._KQXN_CellDyn3200GUID;
+			}
+			set
+			{
+				if ((this._KQXN_CellDyn3200GUID != value))
+				{
+					if (this._KetQuaXetNghiem_CellDyn3200.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnKQXN_CellDyn3200GUIDChanging(value);
+					this.SendPropertyChanging();
+					this._KQXN_CellDyn3200GUID = value;
+					this.SendPropertyChanged("KQXN_CellDyn3200GUID");
+					this.OnKQXN_CellDyn3200GUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenXetNghiem", DbType="NVarChar(50)")]
+		public string TenXetNghiem
+		{
+			get
+			{
+				return this._TenXetNghiem;
+			}
+			set
+			{
+				if ((this._TenXetNghiem != value))
+				{
+					this.OnTenXetNghiemChanging(value);
+					this.SendPropertyChanging();
+					this._TenXetNghiem = value;
+					this.SendPropertyChanged("TenXetNghiem");
+					this.OnTenXetNghiemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestResult", DbType="Float")]
+		public System.Nullable<double> TestResult
+		{
+			get
+			{
+				return this._TestResult;
+			}
+			set
+			{
+				if ((this._TestResult != value))
+				{
+					this.OnTestResultChanging(value);
+					this.SendPropertyChanging();
+					this._TestResult = value;
+					this.SendPropertyChanged("TestResult");
+					this.OnTestResultChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestPercent", DbType="Float")]
+		public System.Nullable<double> TestPercent
+		{
+			get
+			{
+				return this._TestPercent;
+			}
+			set
+			{
+				if ((this._TestPercent != value))
+				{
+					this.OnTestPercentChanging(value);
+					this.SendPropertyChanging();
+					this._TestPercent = value;
+					this.SendPropertyChanged("TestPercent");
+					this.OnTestPercentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TinhTrang", DbType="TinyInt NOT NULL")]
+		public byte TinhTrang
+		{
+			get
+			{
+				return this._TinhTrang;
+			}
+			set
+			{
+				if ((this._TinhTrang != value))
+				{
+					this.OnTinhTrangChanging(value);
+					this.SendPropertyChanging();
+					this._TinhTrang = value;
+					this.SendPropertyChanged("TinhTrang");
+					this.OnTinhTrangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaIn", DbType="Bit NOT NULL")]
+		public bool DaIn
+		{
+			get
+			{
+				return this._DaIn;
+			}
+			set
+			{
+				if ((this._DaIn != value))
+				{
+					this.OnDaInChanging(value);
+					this.SendPropertyChanging();
+					this._DaIn = value;
+					this.SendPropertyChanged("DaIn");
+					this.OnDaInChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromValue", DbType="Float")]
+		public System.Nullable<double> FromValue
+		{
+			get
+			{
+				return this._FromValue;
+			}
+			set
+			{
+				if ((this._FromValue != value))
+				{
+					this.OnFromValueChanging(value);
+					this.SendPropertyChanging();
+					this._FromValue = value;
+					this.SendPropertyChanged("FromValue");
+					this.OnFromValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToValue", DbType="Float")]
+		public System.Nullable<double> ToValue
+		{
+			get
+			{
+				return this._ToValue;
+			}
+			set
+			{
+				if ((this._ToValue != value))
+				{
+					this.OnToValueChanging(value);
+					this.SendPropertyChanging();
+					this._ToValue = value;
+					this.SendPropertyChanged("ToValue");
+					this.OnToValueChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoiTuong", DbType="TinyInt")]
+		public System.Nullable<byte> DoiTuong
+		{
+			get
+			{
+				return this._DoiTuong;
+			}
+			set
+			{
+				if ((this._DoiTuong != value))
+				{
+					this.OnDoiTuongChanging(value);
+					this.SendPropertyChanging();
+					this._DoiTuong = value;
+					this.SendPropertyChanged("DoiTuong");
+					this.OnDoiTuongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonVi", DbType="NVarChar(50)")]
+		public string DonVi
+		{
+			get
+			{
+				return this._DonVi;
+			}
+			set
+			{
+				if ((this._DonVi != value))
+				{
+					this.OnDonViChanging(value);
+					this.SendPropertyChanging();
+					this._DonVi = value;
+					this.SendPropertyChanged("DonVi");
+					this.OnDonViChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromPercent", DbType="Float")]
+		public System.Nullable<double> FromPercent
+		{
+			get
+			{
+				return this._FromPercent;
+			}
+			set
+			{
+				if ((this._FromPercent != value))
+				{
+					this.OnFromPercentChanging(value);
+					this.SendPropertyChanging();
+					this._FromPercent = value;
+					this.SendPropertyChanged("FromPercent");
+					this.OnFromPercentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToPercent", DbType="Float")]
+		public System.Nullable<double> ToPercent
+		{
+			get
+			{
+				return this._ToPercent;
+			}
+			set
+			{
+				if ((this._ToPercent != value))
+				{
+					this.OnToPercentChanging(value);
+					this.SendPropertyChanging();
+					this._ToPercent = value;
+					this.SendPropertyChanged("ToPercent");
+					this.OnToPercentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KetQuaXetNghiem_CellDyn3200_ChiTietKetQuaXetNghiem_CellDyn3200", Storage="_KetQuaXetNghiem_CellDyn3200", ThisKey="KQXN_CellDyn3200GUID", OtherKey="KQXN_CellDyn3200GUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public KetQuaXetNghiem_CellDyn3200 KetQuaXetNghiem_CellDyn3200
+		{
+			get
+			{
+				return this._KetQuaXetNghiem_CellDyn3200.Entity;
+			}
+			set
+			{
+				KetQuaXetNghiem_CellDyn3200 previousValue = this._KetQuaXetNghiem_CellDyn3200.Entity;
+				if (((previousValue != value) 
+							|| (this._KetQuaXetNghiem_CellDyn3200.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._KetQuaXetNghiem_CellDyn3200.Entity = null;
+						previousValue.ChiTietKetQuaXetNghiem_CellDyn3200s.Remove(this);
+					}
+					this._KetQuaXetNghiem_CellDyn3200.Entity = value;
+					if ((value != null))
+					{
+						value.ChiTietKetQuaXetNghiem_CellDyn3200s.Add(this);
+						this._KQXN_CellDyn3200GUID = value.KQXN_CellDyn3200GUID;
+					}
+					else
+					{
+						this._KQXN_CellDyn3200GUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("KetQuaXetNghiem_CellDyn3200");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietKetQuaXetNghiem_CellDyn3200View")]
+	public partial class ChiTietKetQuaXetNghiem_CellDyn3200View
+	{
+		
+		private System.Guid _ChiTietKQXN_CellDyn3200GUID;
+		
+		private System.Guid _KQXN_CellDyn3200GUID;
+		
+		private string _TenXetNghiem;
+		
+		private System.Nullable<double> _TestResult;
+		
+		private System.Nullable<double> _TestPercent;
+		
+		private byte _TinhTrang;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+		private string _FullName;
+		
+		private string _Type;
+		
+		private System.Nullable<double> _FromValue;
+		
+		private System.Nullable<double> _ToValue;
+		
+		private System.Nullable<double> _ToPercent;
+		
+		private string _DonVi;
+		
+		private System.Nullable<double> _FromPercent;
+		
+		private System.Nullable<int> _Order;
+		
+		private System.Nullable<int> _GroupID;
+		
+		private System.Nullable<System.DateTime> _NgayXN;
+		
+		private System.Nullable<System.Guid> _PatientGUID;
+		
+		private byte _KQXNStatus;
+		
+		private System.Nullable<double> _FromValue2;
+		
+		private System.Nullable<double> _ToValue2;
+		
+		private System.Nullable<byte> _DoiTuong2;
+		
+		private string _DonVi2;
+		
+		private bool _DaIn;
+		
+		private System.Nullable<double> _FromPercent2;
+		
+		private System.Nullable<double> _ToPercent2;
+		
+		public ChiTietKetQuaXetNghiem_CellDyn3200View()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiTietKQXN_CellDyn3200GUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ChiTietKQXN_CellDyn3200GUID
+		{
+			get
+			{
+				return this._ChiTietKQXN_CellDyn3200GUID;
+			}
+			set
+			{
+				if ((this._ChiTietKQXN_CellDyn3200GUID != value))
+				{
+					this._ChiTietKQXN_CellDyn3200GUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQXN_CellDyn3200GUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid KQXN_CellDyn3200GUID
+		{
+			get
+			{
+				return this._KQXN_CellDyn3200GUID;
+			}
+			set
+			{
+				if ((this._KQXN_CellDyn3200GUID != value))
+				{
+					this._KQXN_CellDyn3200GUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenXetNghiem", DbType="NVarChar(50)")]
+		public string TenXetNghiem
+		{
+			get
+			{
+				return this._TenXetNghiem;
+			}
+			set
+			{
+				if ((this._TenXetNghiem != value))
+				{
+					this._TenXetNghiem = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestResult", DbType="Float")]
+		public System.Nullable<double> TestResult
+		{
+			get
+			{
+				return this._TestResult;
+			}
+			set
+			{
+				if ((this._TestResult != value))
+				{
+					this._TestResult = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TestPercent", DbType="Float")]
+		public System.Nullable<double> TestPercent
+		{
+			get
+			{
+				return this._TestPercent;
+			}
+			set
+			{
+				if ((this._TestPercent != value))
+				{
+					this._TestPercent = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TinhTrang", DbType="TinyInt NOT NULL")]
+		public byte TinhTrang
+		{
+			get
+			{
+				return this._TinhTrang;
+			}
+			set
+			{
+				if ((this._TinhTrang != value))
+				{
+					this._TinhTrang = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this._UpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this._DeletedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(50)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="NVarChar(50)")]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this._Type = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromValue", DbType="Float")]
+		public System.Nullable<double> FromValue
+		{
+			get
+			{
+				return this._FromValue;
+			}
+			set
+			{
+				if ((this._FromValue != value))
+				{
+					this._FromValue = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToValue", DbType="Float")]
+		public System.Nullable<double> ToValue
+		{
+			get
+			{
+				return this._ToValue;
+			}
+			set
+			{
+				if ((this._ToValue != value))
+				{
+					this._ToValue = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToPercent", DbType="Float")]
+		public System.Nullable<double> ToPercent
+		{
+			get
+			{
+				return this._ToPercent;
+			}
+			set
+			{
+				if ((this._ToPercent != value))
+				{
+					this._ToPercent = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonVi", DbType="NVarChar(50)")]
+		public string DonVi
+		{
+			get
+			{
+				return this._DonVi;
+			}
+			set
+			{
+				if ((this._DonVi != value))
+				{
+					this._DonVi = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromPercent", DbType="Float")]
+		public System.Nullable<double> FromPercent
+		{
+			get
+			{
+				return this._FromPercent;
+			}
+			set
+			{
+				if ((this._FromPercent != value))
+				{
+					this._FromPercent = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Order]", Storage="_Order", DbType="Int")]
+		public System.Nullable<int> Order
+		{
+			get
+			{
+				return this._Order;
+			}
+			set
+			{
+				if ((this._Order != value))
+				{
+					this._Order = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupID", DbType="Int")]
+		public System.Nullable<int> GroupID
+		{
+			get
+			{
+				return this._GroupID;
+			}
+			set
+			{
+				if ((this._GroupID != value))
+				{
+					this._GroupID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayXN", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayXN
+		{
+			get
+			{
+				return this._NgayXN;
+			}
+			set
+			{
+				if ((this._NgayXN != value))
+				{
+					this._NgayXN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> PatientGUID
+		{
+			get
+			{
+				return this._PatientGUID;
+			}
+			set
+			{
+				if ((this._PatientGUID != value))
+				{
+					this._PatientGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KQXNStatus", DbType="TinyInt NOT NULL")]
+		public byte KQXNStatus
+		{
+			get
+			{
+				return this._KQXNStatus;
+			}
+			set
+			{
+				if ((this._KQXNStatus != value))
+				{
+					this._KQXNStatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromValue2", DbType="Float")]
+		public System.Nullable<double> FromValue2
+		{
+			get
+			{
+				return this._FromValue2;
+			}
+			set
+			{
+				if ((this._FromValue2 != value))
+				{
+					this._FromValue2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToValue2", DbType="Float")]
+		public System.Nullable<double> ToValue2
+		{
+			get
+			{
+				return this._ToValue2;
+			}
+			set
+			{
+				if ((this._ToValue2 != value))
+				{
+					this._ToValue2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DoiTuong2", DbType="TinyInt")]
+		public System.Nullable<byte> DoiTuong2
+		{
+			get
+			{
+				return this._DoiTuong2;
+			}
+			set
+			{
+				if ((this._DoiTuong2 != value))
+				{
+					this._DoiTuong2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonVi2", DbType="NVarChar(50)")]
+		public string DonVi2
+		{
+			get
+			{
+				return this._DonVi2;
+			}
+			set
+			{
+				if ((this._DonVi2 != value))
+				{
+					this._DonVi2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DaIn", DbType="Bit NOT NULL")]
+		public bool DaIn
+		{
+			get
+			{
+				return this._DaIn;
+			}
+			set
+			{
+				if ((this._DaIn != value))
+				{
+					this._DaIn = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromPercent2", DbType="Float")]
+		public System.Nullable<double> FromPercent2
+		{
+			get
+			{
+				return this._FromPercent2;
+			}
+			set
+			{
+				if ((this._FromPercent2 != value))
+				{
+					this._FromPercent2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToPercent2", DbType="Float")]
+		public System.Nullable<double> ToPercent2
+		{
+			get
+			{
+				return this._ToPercent2;
+			}
+			set
+			{
+				if ((this._ToPercent2 != value))
+				{
+					this._ToPercent2 = value;
+				}
 			}
 		}
 	}
