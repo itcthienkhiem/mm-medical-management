@@ -18,6 +18,8 @@ namespace MM.Dialogs
         #region Members
         private DataRow _drCTKQXN = null;
         private ChiTietKetQuaXetNghiem_CellDyn3200 _chiTietKQXN = new ChiTietKetQuaXetNghiem_CellDyn3200();
+        private string _binhThuong = string.Empty;
+        private string _percent = string.Empty;
         #endregion
 
         #region Constructor
@@ -32,6 +34,16 @@ namespace MM.Dialogs
         public ChiTietKetQuaXetNghiem_CellDyn3200 ChiTietKQXN
         {
             get { return _chiTietKQXN; }
+        }
+
+        public string BinhThuong
+        {
+            get { return _binhThuong; }
+        }
+
+        public string Percent
+        {
+            get { return _percent; }
         }
         #endregion
 
@@ -82,7 +94,7 @@ namespace MM.Dialogs
                     if (numTestPercent.Enabled)
                         _chiTietKQXN.TestPercent = (double)numTestPercent.Value;
 
-                    Result result = XetNghiem_CellDyn3200Bus.UpdateChiSoKetQuaXetNghiem(_chiTietKQXN);
+                    Result result = XetNghiem_CellDyn3200Bus.UpdateChiSoKetQuaXetNghiem(_chiTietKQXN, ref _binhThuong, ref _percent);
 
                     if (!result.IsOK)
                     {
