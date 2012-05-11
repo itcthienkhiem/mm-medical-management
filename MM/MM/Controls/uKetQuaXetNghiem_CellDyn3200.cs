@@ -252,10 +252,32 @@ namespace MM.Controls
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 row["TestResult"] = dlg.ChiTietKQXN.TestResult;
+                row["TinhTrang"] = dlg.ChiTietKQXN.TinhTrang;
+                row["BinhThuong"] = dlg.BinhThuong;
+                row["Percent"] = dlg.Percent;
+
+                if (dlg.ChiTietKQXN.FromValue.HasValue)
+                    row["FromValue"] = dlg.ChiTietKQXN.FromValue.Value;
+                else
+                    row["FromValue"] = DBNull.Value;
+
+                if (dlg.ChiTietKQXN.ToValue.HasValue)
+                    row["ToValue"] = dlg.ChiTietKQXN.ToValue.Value;
+                else
+                    row["ToValue"] = DBNull.Value;
+
+                if (dlg.ChiTietKQXN.FromPercent.HasValue)
+                    row["FromPercent"] = dlg.ChiTietKQXN.FromPercent.Value;
+                else
+                    row["FromPercent"] = DBNull.Value;
+
+                if (dlg.ChiTietKQXN.ToPercent.HasValue)
+                    row["ToPercent"] = dlg.ChiTietKQXN.ToPercent.Value;
+                else
+                    row["ToPercent"] = DBNull.Value;
 
                 if (dlg.ChiTietKQXN.TestPercent.HasValue)
                     row["TestPercent"] = dlg.ChiTietKQXN.TestPercent.Value;
-                row["TinhTrang"] = dlg.ChiTietKQXN.TinhTrang;
 
                 if ((TinhTrang)dlg.ChiTietKQXN.TinhTrang == TinhTrang.BatThuong)
                 {
