@@ -163,7 +163,6 @@ namespace MM.Bussiness
                     }
                     
                     double testResult = Convert.ToDouble(row["TestResult"]);
-
                     TinhTrang tinhTrang = TinhTrang.BinhThuong;
 
                     if (fromValue != null && toValue != null)
@@ -600,7 +599,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result UpdateChiSoKetQuaXetNghiem(ChiTietKetQuaXetNghiem_CellDyn3200 chiTietKQXN)
+        public static Result UpdateChiSoKetQuaXetNghiem(ChiTietKetQuaXetNghiem_CellDyn3200 chiTietKQXN, ref string binhThuong, ref string percent)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -619,6 +618,11 @@ namespace MM.Bussiness
                         ctkqxn.Status = (byte)Status.Actived;
                         ctkqxn.TestResult = chiTietKQXN.TestResult;
                         ctkqxn.TestPercent = chiTietKQXN.TestPercent;
+                        ctkqxn.FromValue = chiTietKQXN.FromValue;
+                        ctkqxn.ToValue = chiTietKQXN.ToValue;
+                        ctkqxn.FromPercent = chiTietKQXN.FromPercent;
+                        ctkqxn.ToPercent = chiTietKQXN.ToPercent;
+                        ctkqxn.DonVi = chiTietKQXN.DonVi;
 
                         KetQuaXetNghiem_CellDyn3200 kqxn = ctkqxn.KetQuaXetNghiem_CellDyn3200;
                         string tenBenhNhan = string.Empty;
@@ -634,29 +638,97 @@ namespace MM.Bussiness
                         }
 
                         //
-                        for (int i = 0; i < 1; i++)
+                        double? fromValue = null;
+                        double? toValue = null;
+                        double? fromPercent = null;
+                        double? toPercent = null;
+                        string donVi = string.Empty;
+
+                        if (ctkqxn.FromValue.HasValue)
+                            fromValue = ctkqxn.FromValue.Value;
+
+                        if (ctkqxn.ToValue.HasValue)
+                            toValue = ctkqxn.ToValue.Value;
+
+                        if (ctkqxn.FromPercent.HasValue)
+                            fromPercent = ctkqxn.FromPercent.Value;
+
+                        if (ctkqxn.ToPercent.HasValue)
+                            toPercent = ctkqxn.ToPercent.Value;
+
+                        if (ctkqxn.DonVi != null && ctkqxn.DonVi != string.Empty)
+                            donVi = ctkqxn.DonVi;
+
+                        double testResult = ctkqxn.TestResult.Value;
+                        TinhTrang tinhTrang = TinhTrang.BinhThuong;
+
+                        if (fromValue != null && toValue != null)
                         {
-                            XetNghiem_CellDyn3200 xn = db.XetNghiem_CellDyn3200s.SingleOrDefault<XetNghiem_CellDyn3200>(x => x.TenXetNghiem.Trim().ToLower() == ctkqxn.TenXetNghiem.Trim().ToLower());
-                            if (xn == null) continue;
-
-                            double testResult = ctkqxn.TestResult.Value;
-
-                            if (xn.FromPercent.HasValue)
-                            {
-                                double testPercent = ctkqxn.TestPercent.Value;
-
-                                if (testResult < xn.FromValue.Value || testResult > xn.ToValue.Value)
-                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
-
-                                if (testPercent < xn.FromPercent.Value || testPercent > xn.ToPercent.Value)
-                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
-                            }
+                            if (fromPercent != null || toPercent != null)
+                                binhThuong = string.Format("({0:F2} - {1:F2})", fromValue.Value, toValue.Value);
                             else
+                                binhThuong = string.Format("({0:F2} - {1:F2} {2})", fromValue.Value, toValue.Value, donVi);
+
+                            if (testResult < fromValue.Value || testResult > toValue.Value)
+                                tinhTrang = TinhTrang.BatThuong;
+                        }
+                        else if (fromValue != null)
+                        {
+                            if (fromPercent != null || toPercent != null)
+                                binhThuong = string.Format("(> {0:F2})", fromValue.Value);
+                            else
+                                binhThuong = string.Format("(> {0:F2 {1})", fromValue.Value, donVi);
+
+                            if (testResult <= fromValue.Value)
+                                tinhTrang = TinhTrang.BatThuong;
+                        }
+                        else
+                        {
+                            if (fromPercent != null || toPercent != null)
+                                binhThuong = string.Format("(< {0:F2})", toValue.Value);
+                            else
+                                binhThuong = string.Format("(< {0:F2 {1})", toValue.Value, donVi);
+
+                            if (testResult >= toValue.Value)
+                                tinhTrang = TinhTrang.BatThuong;
+                        }
+
+                        if (fromPercent != null && toPercent != null)
+                        {
+                            double testPercent = ctkqxn.TestPercent.Value;
+                            percent = string.Format("{0:F2}% ({1:F2} - {2:F2} {3})", testPercent, fromPercent.Value, toPercent.Value, donVi);
+
+                            if (tinhTrang == TinhTrang.BinhThuong)
                             {
-                                if (testResult < xn.FromValue.Value || testResult > xn.ToValue.Value)
-                                    chiTietKQXN.TinhTrang = (byte)TinhTrang.BatThuong;
+                                if (testPercent < fromPercent.Value || testPercent > toPercent.Value)
+                                    tinhTrang = TinhTrang.BatThuong;
                             }
                         }
+                        else if (fromPercent != null)
+                        {
+                            double testPercent = ctkqxn.TestPercent.Value;
+                            percent = string.Format("{0:F2}% (> {1:F2} {2})", testPercent, fromPercent.Value, donVi);
+
+                            if (tinhTrang == TinhTrang.BinhThuong)
+                            {
+                                if (testPercent <= fromPercent.Value)
+                                    tinhTrang = TinhTrang.BatThuong;
+                            }
+                        }
+                        else if (toPercent != null)
+                        {
+                            double testPercent = ctkqxn.TestPercent.Value;
+                            percent = string.Format("{0:F2}% (< {1:F2} {2})", testPercent, toPercent.Value, donVi);
+
+                            if (tinhTrang == TinhTrang.BinhThuong)
+                            {
+                                if (testPercent >= toPercent.Value)
+                                    tinhTrang = TinhTrang.BatThuong;
+                            }
+                        }
+
+                        ctkqxn.TinhTrang = (byte)tinhTrang;
+
                         //
 
                         desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày xét nghiệm: '{3}', Tên xét nghiệm: '{4}', Kết quả: '{5}', % kết quả: '{6}'",
