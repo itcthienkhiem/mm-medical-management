@@ -41,6 +41,10 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnDelete.Enabled = AllowDelete;
             btnEdit.Enabled = AllowEdit;
+
+            btnAddChiTiet.Enabled = AllowAdd;
+            btnDeleteChiTiet.Enabled = AllowDelete;
+            btnEditChiTiet.Enabled = AllowEdit;
         }
 
         public void DisplayAsThread()
@@ -144,7 +148,7 @@ namespace MM.Controls
             dlgAddKetQuaXetNghiemTay dlg = new dlgAddKetQuaXetNghiemTay(drKetQuaXN, dtChiTietKQXN);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DisplayAsThread();
+                OnDisplayChiTietKetQuaXetNghiem(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
             }
         }
 
@@ -183,6 +187,53 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những xét nghiệm cần xóa.", IconType.Information);
+        }
+
+        private void OnAddChiTiet()
+        {
+
+        }
+
+        private void OnEditChiTiet()
+        {
+
+        }
+
+        private void OnDeleteChiTiet()
+        {
+            List<string> deletedKQXNList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgChiTietKQXN.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedKQXNList.Add(row["ChiTietKetQuaXetNghiem_ManualGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedKQXNList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những chi tiết xét nghiệm bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = KetQuaXetNghiemTayBus.DeleteChiTietXetNghiem(deletedKQXNList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTayBus.DeleteChiTietXetNghiem"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTayBus.DeleteChiTietXetNghiem"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những chi tiết xét nghiệm cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -246,6 +297,37 @@ namespace MM.Controls
 
             OnDisplayChiTietKetQuaXetNghiem(row["KetQuaXetNghiemManualGUID"].ToString());
         }
+
+        private void chkCTKQXNChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgChiTietKQXN.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkCTKQXNChecked.Checked;
+            }
+        }
+
+        private void btnAddChiTiet_Click(object sender, EventArgs e)
+        {
+            OnAddChiTiet();
+        }
+
+        private void btnSuaChiTiet_Click(object sender, EventArgs e)
+        {
+            OnEditChiTiet();
+        }
+
+        private void btnXoaChiTiet_Click(object sender, EventArgs e)
+        {
+            OnDeleteChiTiet();
+        }
+
+        private void dgChiTietKQXN_DoubleClick(object sender, EventArgs e)
+        {
+            if (!AllowEdit) return;
+            OnEditChiTiet();
+        }
         #endregion
 
         #region Working Thread
@@ -267,7 +349,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
