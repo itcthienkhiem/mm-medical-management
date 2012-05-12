@@ -80,6 +80,9 @@ namespace MM.Dialogs
                 if (result.IsOK)
                 {
                     DataTable dt = result.QueryResult as DataTable;
+
+                    if (dt.Rows.Count <= 0) raKhong.Checked = true;
+
                     foreach (DataRow row in dt.Rows)
                     {
                         switch ((DoiTuong)Convert.ToByte(row["DoiTuong"]))
@@ -202,6 +205,7 @@ namespace MM.Dialogs
                 }
                 else
                 {
+                    raKhong.Checked = true;
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiemTayBus.GetChiTietXetNghiemList"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiemTayBus.GetChiTietXetNghiemList"));
                 }
@@ -315,7 +319,7 @@ namespace MM.Dialogs
                     }
                 }
             }
-            else
+            else if (raTreEmNguoiLonNguoiCaoTuoi.Checked)
             {
                 if (!chkTreEm.Checked && !chkNguoiLon.Checked && !chkNguoiCaoTuoi.Checked)
                 {
@@ -460,7 +464,7 @@ namespace MM.Dialogs
                             ctxns.Add(ctxn);
                         }
                     }
-                    else
+                    else if (raTreEmNguoiLonNguoiCaoTuoi.Checked)
                     {
                         if (chkTreEm.Checked)
                         {
@@ -587,6 +591,13 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
+        }
+
+        private void raKhong_CheckedChanged(object sender, EventArgs e)
+        {
+            gbChung.Enabled = !raKhong.Checked;
+            gbNamNu.Enabled = !raKhong.Checked;
+            gbTreEmNguoiLonNguoiCaoTuoi.Enabled = !raKhong.Checked;
         }
 
         private void raChung_CheckedChanged(object sender, EventArgs e)
@@ -739,5 +750,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
