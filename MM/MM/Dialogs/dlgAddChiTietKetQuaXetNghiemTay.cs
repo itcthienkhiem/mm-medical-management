@@ -86,14 +86,14 @@ namespace MM.Dialogs
         {
             if (cboXetNghiem.Text == string.Empty)
             {
-                MsgBox.Show(this.TestResult, "Vui lòng chọn 1 xét nghiệm.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng chọn 1 xét nghiệm.", IconType.Information);
                 cboXetNghiem.Focus();
                 return false;
             }
 
             if (txtResult.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.TestResult, "Vui lòng nhập kết quả.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng nhập kết quả.", IconType.Information);
                 txtResult.Focus();
                 return false;
             }

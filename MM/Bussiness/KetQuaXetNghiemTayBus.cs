@@ -832,5 +832,132 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result InsertChiTietKQXN(ChiTietKetQuaXetNghiem_Manual ctkqxn)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    desc += "Chi tiết kết quả xét nghiệm tay:\n";
+                    //Chi tiết
+                    ctkqxn.CreatedDate = DateTime.Now;
+                    ctkqxn.CreatedBy = Guid.Parse(Global.UserGUID);
+                    ctkqxn.Status = (byte)Status.Actived;
+                    db.ChiTietKetQuaXetNghiem_Manuals.InsertOnSubmit(ctkqxn);
+                    db.SubmitChanges();
+
+                    desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}", ctkqxn.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
+                        ctkqxn.XetNghiem_Manual.Fullname, ctkqxn.TestResult);
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Add;
+                    tk.Action = "Thêm kết quả xét nghiệm tay";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result UpdateChiTietKQXN(ChiTietKetQuaXetNghiem_Manual ctkqxn)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    ChiTietKetQuaXetNghiem_Manual ct = db.ChiTietKetQuaXetNghiem_Manuals.SingleOrDefault<ChiTietKetQuaXetNghiem_Manual>(c => c.ChiTietKetQuaXetNghiem_ManualGUID == ctkqxn.ChiTietKetQuaXetNghiem_ManualGUID);
+                    if (ct != null)
+                    {
+                        desc += "Chi tiết kết quả xét nghiệm tay:\n";
+                        //Chi tiết
+                        ct.TestResult = ctkqxn.TestResult;
+                        ct.FromValue = ctkqxn.FromValue;
+                        ct.ToValue = ctkqxn.ToValue;
+                        ct.DonVi = ctkqxn.DonVi;
+                        ct.UpdatedDate = DateTime.Now;
+                        ct.UpdatedBy = Guid.Parse(Global.UserGUID);
+                        ct.Status = (byte)Status.Actived;
+
+                        desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}", ct.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
+                            ct.XetNghiem_Manual.Fullname, ct.TestResult);
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Edit;
+                        tk.Action = "Sửa kết quả xét nghiệm tay";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+                    
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

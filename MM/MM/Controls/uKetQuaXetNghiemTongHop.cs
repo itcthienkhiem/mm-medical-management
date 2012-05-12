@@ -39,7 +39,6 @@ namespace MM.Controls
         public void UpdateGUI()
         {
             btnPrintCellDyn3200.Enabled = AllowPrint;
-            btnPrintSinhHoa.Enabled = AllowPrint;
             btnExportExcelCellDyn3200.Enabled = AllowExport;
             btnExportExcelSinhHoa.Enabled = AllowExport;
         }
@@ -301,6 +300,24 @@ namespace MM.Controls
 
                         break;
                     }
+
+                    exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList))
+                        return;
+                    else
+                    {
+                        try
+                        {
+                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
+                        }
+
+                        break;
+                    }
                 }
             }
         }
@@ -452,11 +469,6 @@ namespace MM.Controls
         private void btnExportExcelCellDyn3200_Click(object sender, EventArgs e)
         {
             ExportCellDyn3200ToExcel();
-        }
-
-        private void btnPrintSinhHoa_Click(object sender, EventArgs e)
-        {
-            PrintSinhHoa();
         }
 
         private void btnExportExcelSinhHoa_Click(object sender, EventArgs e)
