@@ -191,12 +191,69 @@ namespace MM.Controls
 
         private void OnAddChiTiet()
         {
+            if (dgXetNghiem.SelectedRows == null || dgXetNghiem.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 kết quả xét nghiệm.", IconType.Information);
+                return;
+            }
 
+            DataRow drKetQuaXN = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            DataTable dtChiTietKQXN = dgChiTietKQXN.DataSource as DataTable;
+            dlgAddChiTietKetQuaXetNghiemTay dlg = new dlgAddChiTietKetQuaXetNghiemTay(dtChiTietKQXN);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                DataRow newRow = dtChiTietKQXN.NewRow();
+                newRow["Checked"] = false;
+                newRow["KetQuaXetNghiem_ManualGUID"] = drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString();
+                newRow["ChiTietKetQuaXetNghiem_ManualGUID"] = Guid.NewGuid();
+                newRow["XetNghiem_ManualGUID"] = dlg.XetNghiem_ManualGUID;
+                newRow["TenXetNghiem"] = dlg.TenXetNghiem;
+                newRow["Fullname"] = dlg.TenXetNghiem;
+                newRow["TestResult"] = dlg.TestResult;
+                newRow["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+
+                ChiTietKetQuaXetNghiem_Manual ctkqxn = new ChiTietKetQuaXetNghiem_Manual();
+                ctkqxn.KetQuaXetNghiem_ManualGUID = Guid.Parse(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
+                ctkqxn.ChiTietKetQuaXetNghiem_ManualGUID = Guid.NewGuid();
+                ctkqxn.XetNghiem_ManualGUID = Guid.Parse(dlg.XetNghiem_ManualGUID);
+                ctkqxn.TestResult = dlg.TestResult;
+                ctkqxn.TinhTrang = (byte)TinhTrang.BinhThuong;
+
+                Result result = KetQuaXetNghiemTayBus.InsertChiTietKQXN(ctkqxn);
+                if (result.IsOK)
+                {
+                    dtChiTietKQXN.Rows.Add(newRow);
+                    OnDisplayChiTietKetQuaXetNghiem(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTayBus.InsertChiTietKQXN"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTayBus.InsertChiTietKQXN"));
+                }
+            }
         }
 
         private void OnEditChiTiet()
         {
+            if (dgXetNghiem.SelectedRows == null || dgXetNghiem.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 kết quả xét nghiệm.", IconType.Information);
+                return;
+            }
 
+            if (dgChiTietKQXN.SelectedRows == null || dgChiTietKQXN.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 chi tiết kết quả xét nghiệm.", IconType.Information);
+                return;
+            }
+
+            DataRow drKetQuaXN = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            DataRow drChiTiet = (dgChiTietKQXN.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgEditChiTietKetQuaXetNghiemTay dlg = new dlgEditChiTietKetQuaXetNghiemTay(drChiTiet);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                OnDisplayChiTietKetQuaXetNghiem(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
+            }
         }
 
         private void OnDeleteChiTiet()

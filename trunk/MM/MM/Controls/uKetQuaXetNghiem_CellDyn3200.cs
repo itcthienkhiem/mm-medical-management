@@ -153,6 +153,8 @@ namespace MM.Controls
                         row["FullName"] = patientRow["FullName"];
                         row["DobStr"] = patientRow["DobStr"];
                         row["GenderAsStr"] = patientRow["GenderAsStr"];
+
+                        OnDisplayChiTietKetQuaXetNghiem(row["KQXN_CellDyn3200GUID"].ToString());
                     }
                     else
                     {

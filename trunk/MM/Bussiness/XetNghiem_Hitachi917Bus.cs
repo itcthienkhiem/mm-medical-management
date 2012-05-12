@@ -94,19 +94,20 @@ namespace MM.Bussiness
                 if (!result.IsOK) return result;
 
                 MMOverride db = new MMOverride();
+                KetQuaXetNghiem_Hitachi917 kqxn = null;
+                kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
+                if (kqxn == null) return result;
+
                 DataTable dt = result.QueryResult as DataTable;
                 foreach (DataRow row in dt.Rows)
                 {
                     int testNum = Convert.ToInt32(row["TestNum"]);
                     double testResult = Convert.ToDouble(row["TestResult"].ToString().Trim());
 
-                    KetQuaXetNghiem_Hitachi917 kqxn = null;
                     bool isSau2h = false;
 
                     if (testNum == 17)
                     {
-                        kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
-                        if (kqxn == null) continue;
                         if (kqxn.NgayXN.Hour > 14)
                         {
                             row["FullName"] = "Postprandial blood sugar";
@@ -153,6 +154,7 @@ namespace MM.Bussiness
                             else
                                 row["TinhTrang"] = TinhTrang.BatThuong;
                         }
+
 
                         DoiTuong doiTuong = (DoiTuong)Convert.ToByte(row["DoiTuong"]);
                         switch (doiTuong)
@@ -229,10 +231,6 @@ namespace MM.Bussiness
                             ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Chung);
                             if (ctxn == null)
                             {
-                                if (kqxn == null)
-                                    kqxn = db.KetQuaXetNghiem_Hitachi917s.SingleOrDefault<KetQuaXetNghiem_Hitachi917>(k => k.KQXN_Hitachi917GUID.ToString() == ketQuaXetNghiemGUID);
-                                if (kqxn == null) continue;
-
                                 if (kqxn.PatientGUID.HasValue)
                                 {
                                     PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.PatientGUID == kqxn.PatientGUID.Value);
@@ -583,6 +581,94 @@ namespace MM.Bussiness
                         kqxn.UpdatedDate = DateTime.Now;
                         kqxn.UpdatedBy = Guid.Parse(Global.UserGUID);
                         kqxn.PatientGUID = ketQuaXetNghiem.PatientGUID;
+
+                        //
+                        var ctkqs = kqxn.ChiTietKetQuaXetNghiem_Hitachi917s;
+                        foreach (ChiTietKetQuaXetNghiem_Hitachi917 ctkq in ctkqs)
+                        {
+                            int testNum = ctkq.TestNum;
+                            double testResult = Convert.ToDouble(ctkq.TestResult.Trim());
+                            bool isSau2h = false;
+
+                            if (testNum == 17)
+                            {
+                                if (kqxn.NgayXN.Hour > 14) isSau2h = true;
+                            }
+
+                            #region Chưa cập nhật chỉ số xét nghiệm
+                            XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.TestNum == testNum);
+                            if (xn == null) continue;
+                            List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
+                            if (ctxns.Count <= 0) continue;
+                            ChiTietXetNghiem_Hitachi917 ctxn = null;
+                            Gender gender = Gender.None;
+
+                            if (!isSau2h)
+                            {
+                                ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Chung);
+                                if (ctxn == null)
+                                {
+                                    if (kqxn.PatientGUID != null && kqxn.PatientGUID.HasValue)
+                                    {
+                                        PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.PatientGUID == kqxn.PatientGUID.Value);
+                                        if (patient == null) continue;
+                                        if (patient.Gender.HasValue) gender = (Gender)patient.Gender.Value;
+                                    }
+                                    else
+                                    {
+                                        if (kqxn.Sex.HasValue) gender = (Gender)kqxn.Sex.Value;
+                                    }
+
+                                    if (gender == Gender.None) continue;
+
+                                    if (gender == Gender.Male)
+                                        ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Nam);
+                                    else
+                                        ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Nu);
+                                }
+
+                                if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.NguoiLon);
+                                if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.NguoiCaoTuoi);
+                                if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.TreEm);
+                            }
+                            else
+                            {
+                                ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Chung_Sau2h);
+                                if (ctxn == null)
+                                {
+                                    if (kqxn.PatientGUID != null && kqxn.PatientGUID.HasValue)
+                                    {
+                                        PatientView patient = db.PatientViews.SingleOrDefault<PatientView>(p => p.PatientGUID == kqxn.PatientGUID.Value);
+                                        if (patient == null) continue;
+                                        if (patient.Gender.HasValue) gender = (Gender)patient.Gender.Value;
+                                    }
+                                    else
+                                    {
+                                        if (kqxn.Sex.HasValue) gender = (Gender)kqxn.Sex.Value;
+                                    }
+
+                                    if (gender == Gender.None) continue;
+
+                                    if (gender == Gender.Male)
+                                        ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Nam_Sau2h);
+                                    else
+                                        ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.Nu_Sau2h);
+                                }
+
+                                if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.NguoiLon_Sau2h);
+                                if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.NguoiCaoTuoi_Sau2h);
+                                if (ctxn == null) ctxn = GetChiTietXetNghiem(ctxns, DoiTuong.TreEm_Sau2h);
+                            }
+
+                            if (ctxn == null) continue;
+
+                            ctkq.FromValue = ctxn.FromValue;
+                            ctkq.ToValue = ctxn.ToValue;
+                            ctkq.DoiTuong = ctxn.DoiTuong;
+                            ctkq.DonVi = ctxn.DonVi;
+                            #endregion
+                        }
+                        //
 
                         string tenBenhNhan = string.Empty;
                         string fileNum = string.Empty;
