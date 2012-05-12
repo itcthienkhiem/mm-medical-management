@@ -29,11 +29,17 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddXetNghiemTay));
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.gbXetNghiem = new System.Windows.Forms.GroupBox();
+            this.raKhong = new System.Windows.Forms.RadioButton();
             this.raChung = new System.Windows.Forms.RadioButton();
             this.raTreEmNguoiLonNguoiCaoTuoi = new System.Windows.Forms.RadioButton();
             this.raNamNu = new System.Windows.Forms.RadioButton();
             this.gbTreEmNguoiLonNguoiCaoTuoi = new System.Windows.Forms.GroupBox();
+            this.txtDonVi_NguoiCaoTuoi = new System.Windows.Forms.ComboBox();
+            this.txtDonVi_NguoiLon = new System.Windows.Forms.ComboBox();
+            this.txtDonVi_TreEm = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.numToValue_NguoiCaoTuoi = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_NguoiCaoTuoi = new System.Windows.Forms.CheckBox();
@@ -53,6 +59,8 @@
             this.chkFromValue_TreEm = new System.Windows.Forms.CheckBox();
             this.chkTreEm = new System.Windows.Forms.CheckBox();
             this.gbNamNu = new System.Windows.Forms.GroupBox();
+            this.txtDonVi_Nu = new System.Windows.Forms.ComboBox();
+            this.txtDonVi_Nam = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.numToValue_Nu = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_Nu = new System.Windows.Forms.CheckBox();
@@ -66,6 +74,7 @@
             this.chkFromValue_Nam = new System.Windows.Forms.CheckBox();
             this.chkNam = new System.Windows.Forms.CheckBox();
             this.gbChung = new System.Windows.Forms.GroupBox();
+            this.txtDonVi_Chung = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.numToValue_Chung = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_Chung = new System.Windows.Forms.CheckBox();
@@ -75,14 +84,6 @@
             this.txtTenXetNghiem = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.txtDonVi_Chung = new System.Windows.Forms.ComboBox();
-            this.txtDonVi_Nam = new System.Windows.Forms.ComboBox();
-            this.txtDonVi_Nu = new System.Windows.Forms.ComboBox();
-            this.txtDonVi_TreEm = new System.Windows.Forms.ComboBox();
-            this.txtDonVi_NguoiLon = new System.Windows.Forms.ComboBox();
-            this.txtDonVi_NguoiCaoTuoi = new System.Windows.Forms.ComboBox();
             this.gbXetNghiem.SuspendLayout();
             this.gbTreEmNguoiLonNguoiCaoTuoi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue_NguoiCaoTuoi)).BeginInit();
@@ -101,8 +102,33 @@
             ((System.ComponentModel.ISupportInitialize)(this.numFromValue_Chung)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnOK
+            // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(215, 359);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 9;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(294, 359);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 10;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
             // gbXetNghiem
             // 
+            this.gbXetNghiem.Controls.Add(this.raKhong);
             this.gbXetNghiem.Controls.Add(this.raChung);
             this.gbXetNghiem.Controls.Add(this.raTreEmNguoiLonNguoiCaoTuoi);
             this.gbXetNghiem.Controls.Add(this.raNamNu);
@@ -115,15 +141,26 @@
             this.gbXetNghiem.Controls.Add(this.label1);
             this.gbXetNghiem.Location = new System.Drawing.Point(6, 2);
             this.gbXetNghiem.Name = "gbXetNghiem";
-            this.gbXetNghiem.Size = new System.Drawing.Size(572, 321);
+            this.gbXetNghiem.Size = new System.Drawing.Size(572, 351);
             this.gbXetNghiem.TabIndex = 0;
             this.gbXetNghiem.TabStop = false;
+            // 
+            // raKhong
+            // 
+            this.raKhong.AutoSize = true;
+            this.raKhong.Location = new System.Drawing.Point(10, 71);
+            this.raKhong.Name = "raKhong";
+            this.raKhong.Size = new System.Drawing.Size(56, 17);
+            this.raKhong.TabIndex = 5;
+            this.raKhong.Text = "Không";
+            this.raKhong.UseVisualStyleBackColor = true;
+            this.raKhong.CheckedChanged += new System.EventHandler(this.raKhong_CheckedChanged);
             // 
             // raChung
             // 
             this.raChung.AutoSize = true;
             this.raChung.Checked = true;
-            this.raChung.Location = new System.Drawing.Point(10, 67);
+            this.raChung.Location = new System.Drawing.Point(10, 96);
             this.raChung.Name = "raChung";
             this.raChung.Size = new System.Drawing.Size(56, 17);
             this.raChung.TabIndex = 7;
@@ -135,7 +172,7 @@
             // raTreEmNguoiLonNguoiCaoTuoi
             // 
             this.raTreEmNguoiLonNguoiCaoTuoi.AutoSize = true;
-            this.raTreEmNguoiLonNguoiCaoTuoi.Location = new System.Drawing.Point(10, 205);
+            this.raTreEmNguoiLonNguoiCaoTuoi.Location = new System.Drawing.Point(10, 234);
             this.raTreEmNguoiLonNguoiCaoTuoi.Name = "raTreEmNguoiLonNguoiCaoTuoi";
             this.raTreEmNguoiLonNguoiCaoTuoi.Size = new System.Drawing.Size(190, 17);
             this.raTreEmNguoiLonNguoiCaoTuoi.TabIndex = 9;
@@ -146,7 +183,7 @@
             // raNamNu
             // 
             this.raNamNu.AutoSize = true;
-            this.raNamNu.Location = new System.Drawing.Point(10, 124);
+            this.raNamNu.Location = new System.Drawing.Point(10, 153);
             this.raNamNu.Name = "raNamNu";
             this.raNamNu.Size = new System.Drawing.Size(70, 17);
             this.raNamNu.TabIndex = 8;
@@ -178,11 +215,41 @@
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkFromValue_TreEm);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkTreEm);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Enabled = false;
-            this.gbTreEmNguoiLonNguoiCaoTuoi.Location = new System.Drawing.Point(15, 205);
+            this.gbTreEmNguoiLonNguoiCaoTuoi.Location = new System.Drawing.Point(15, 234);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Name = "gbTreEmNguoiLonNguoiCaoTuoi";
             this.gbTreEmNguoiLonNguoiCaoTuoi.Size = new System.Drawing.Size(543, 104);
             this.gbTreEmNguoiLonNguoiCaoTuoi.TabIndex = 6;
             this.gbTreEmNguoiLonNguoiCaoTuoi.TabStop = false;
+            // 
+            // txtDonVi_NguoiCaoTuoi
+            // 
+            this.txtDonVi_NguoiCaoTuoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_NguoiCaoTuoi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_NguoiCaoTuoi.FormattingEnabled = true;
+            this.txtDonVi_NguoiCaoTuoi.Location = new System.Drawing.Point(426, 70);
+            this.txtDonVi_NguoiCaoTuoi.Name = "txtDonVi_NguoiCaoTuoi";
+            this.txtDonVi_NguoiCaoTuoi.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_NguoiCaoTuoi.TabIndex = 39;
+            // 
+            // txtDonVi_NguoiLon
+            // 
+            this.txtDonVi_NguoiLon.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_NguoiLon.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_NguoiLon.FormattingEnabled = true;
+            this.txtDonVi_NguoiLon.Location = new System.Drawing.Point(426, 45);
+            this.txtDonVi_NguoiLon.Name = "txtDonVi_NguoiLon";
+            this.txtDonVi_NguoiLon.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_NguoiLon.TabIndex = 32;
+            // 
+            // txtDonVi_TreEm
+            // 
+            this.txtDonVi_TreEm.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_TreEm.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_TreEm.FormattingEnabled = true;
+            this.txtDonVi_TreEm.Location = new System.Drawing.Point(426, 20);
+            this.txtDonVi_TreEm.Name = "txtDonVi_TreEm";
+            this.txtDonVi_TreEm.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_TreEm.TabIndex = 25;
             // 
             // label8
             // 
@@ -447,11 +514,31 @@
             this.gbNamNu.Controls.Add(this.chkFromValue_Nam);
             this.gbNamNu.Controls.Add(this.chkNam);
             this.gbNamNu.Enabled = false;
-            this.gbNamNu.Location = new System.Drawing.Point(15, 124);
+            this.gbNamNu.Location = new System.Drawing.Point(15, 153);
             this.gbNamNu.Name = "gbNamNu";
             this.gbNamNu.Size = new System.Drawing.Size(543, 77);
             this.gbNamNu.TabIndex = 5;
             this.gbNamNu.TabStop = false;
+            // 
+            // txtDonVi_Nu
+            // 
+            this.txtDonVi_Nu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_Nu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_Nu.FormattingEnabled = true;
+            this.txtDonVi_Nu.Location = new System.Drawing.Point(426, 44);
+            this.txtDonVi_Nu.Name = "txtDonVi_Nu";
+            this.txtDonVi_Nu.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_Nu.TabIndex = 18;
+            // 
+            // txtDonVi_Nam
+            // 
+            this.txtDonVi_Nam.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_Nam.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_Nam.FormattingEnabled = true;
+            this.txtDonVi_Nam.Location = new System.Drawing.Point(426, 19);
+            this.txtDonVi_Nam.Name = "txtDonVi_Nam";
+            this.txtDonVi_Nam.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_Nam.TabIndex = 11;
             // 
             // label5
             // 
@@ -625,11 +712,21 @@
             this.gbChung.Controls.Add(this.chkToValue_Chung);
             this.gbChung.Controls.Add(this.numFromValue_Chung);
             this.gbChung.Controls.Add(this.chkFromValue_Chung);
-            this.gbChung.Location = new System.Drawing.Point(15, 70);
+            this.gbChung.Location = new System.Drawing.Point(15, 99);
             this.gbChung.Name = "gbChung";
             this.gbChung.Size = new System.Drawing.Size(543, 50);
             this.gbChung.TabIndex = 4;
             this.gbChung.TabStop = false;
+            // 
+            // txtDonVi_Chung
+            // 
+            this.txtDonVi_Chung.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtDonVi_Chung.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtDonVi_Chung.FormattingEnabled = true;
+            this.txtDonVi_Chung.Location = new System.Drawing.Point(426, 17);
+            this.txtDonVi_Chung.Name = "txtDonVi_Chung";
+            this.txtDonVi_Chung.Size = new System.Drawing.Size(102, 21);
+            this.txtDonVi_Chung.TabIndex = 5;
             // 
             // label3
             // 
@@ -741,97 +838,13 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên xét nghiệm:";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(294, 329);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 10;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Image = global::MM.Properties.Resources.save;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(215, 329);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 9;
-            this.btnOK.Text = "   &Lưu";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // txtDonVi_Chung
-            // 
-            this.txtDonVi_Chung.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtDonVi_Chung.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtDonVi_Chung.FormattingEnabled = true;
-            this.txtDonVi_Chung.Location = new System.Drawing.Point(426, 17);
-            this.txtDonVi_Chung.Name = "txtDonVi_Chung";
-            this.txtDonVi_Chung.Size = new System.Drawing.Size(102, 21);
-            this.txtDonVi_Chung.TabIndex = 5;
-            // 
-            // txtDonVi_Nam
-            // 
-            this.txtDonVi_Nam.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtDonVi_Nam.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtDonVi_Nam.FormattingEnabled = true;
-            this.txtDonVi_Nam.Location = new System.Drawing.Point(426, 19);
-            this.txtDonVi_Nam.Name = "txtDonVi_Nam";
-            this.txtDonVi_Nam.Size = new System.Drawing.Size(102, 21);
-            this.txtDonVi_Nam.TabIndex = 11;
-            // 
-            // txtDonVi_Nu
-            // 
-            this.txtDonVi_Nu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtDonVi_Nu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtDonVi_Nu.FormattingEnabled = true;
-            this.txtDonVi_Nu.Location = new System.Drawing.Point(426, 44);
-            this.txtDonVi_Nu.Name = "txtDonVi_Nu";
-            this.txtDonVi_Nu.Size = new System.Drawing.Size(102, 21);
-            this.txtDonVi_Nu.TabIndex = 18;
-            // 
-            // txtDonVi_TreEm
-            // 
-            this.txtDonVi_TreEm.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtDonVi_TreEm.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtDonVi_TreEm.FormattingEnabled = true;
-            this.txtDonVi_TreEm.Location = new System.Drawing.Point(426, 20);
-            this.txtDonVi_TreEm.Name = "txtDonVi_TreEm";
-            this.txtDonVi_TreEm.Size = new System.Drawing.Size(102, 21);
-            this.txtDonVi_TreEm.TabIndex = 25;
-            // 
-            // txtDonVi_NguoiLon
-            // 
-            this.txtDonVi_NguoiLon.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtDonVi_NguoiLon.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtDonVi_NguoiLon.FormattingEnabled = true;
-            this.txtDonVi_NguoiLon.Location = new System.Drawing.Point(426, 45);
-            this.txtDonVi_NguoiLon.Name = "txtDonVi_NguoiLon";
-            this.txtDonVi_NguoiLon.Size = new System.Drawing.Size(102, 21);
-            this.txtDonVi_NguoiLon.TabIndex = 32;
-            // 
-            // txtDonVi_NguoiCaoTuoi
-            // 
-            this.txtDonVi_NguoiCaoTuoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtDonVi_NguoiCaoTuoi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtDonVi_NguoiCaoTuoi.FormattingEnabled = true;
-            this.txtDonVi_NguoiCaoTuoi.Location = new System.Drawing.Point(426, 70);
-            this.txtDonVi_NguoiCaoTuoi.Name = "txtDonVi_NguoiCaoTuoi";
-            this.txtDonVi_NguoiCaoTuoi.Size = new System.Drawing.Size(102, 21);
-            this.txtDonVi_NguoiCaoTuoi.TabIndex = 39;
-            // 
             // dlgAddXetNghiemTay
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(584, 360);
+            this.ClientSize = new System.Drawing.Size(584, 389);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.gbXetNghiem);
@@ -925,5 +938,6 @@
         private System.Windows.Forms.ComboBox txtDonVi_TreEm;
         private System.Windows.Forms.ComboBox txtDonVi_Nu;
         private System.Windows.Forms.ComboBox txtDonVi_Nam;
+        private System.Windows.Forms.RadioButton raKhong;
     }
 }
