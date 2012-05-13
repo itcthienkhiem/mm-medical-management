@@ -422,6 +422,7 @@ namespace MM.Controls
         {
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = dgXetNghiem.DataSource as DataTable;
+            if (dt == null) return;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
