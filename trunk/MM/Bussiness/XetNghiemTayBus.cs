@@ -239,6 +239,8 @@ namespace MM.Bussiness
                             xn.TenXetNghiem = xetNghiem.TenXetNghiem;
                             xn.Fullname = xetNghiem.Fullname;
                             xn.Type = xetNghiem.Type;
+                            xn.GroupID = xetNghiem.GroupID;
+                            xn.Order = xetNghiem.Order;
                             xn.UpdatedDate = DateTime.Now;
                             xn.UpdatedBy = Guid.Parse(Global.UserGUID);
                             xn.Status = xetNghiem.Status;

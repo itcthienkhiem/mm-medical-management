@@ -769,7 +769,7 @@ namespace MM.Bussiness
                 }
 
                 List<DataRow> results = (from p in dt.AsEnumerable()
-                           orderby p.Field<DateTime>("NgayXN") descending, p.Field<int>("GroupID"), p.Field<int>("Order")
+                           orderby p.Field<DateTime>("NgayXN"), p.Field<int>("GroupID"), p.Field<int>("Order")
                            select p).ToList<DataRow>();
 
                 DataTable newDataSource = dt.Clone();
@@ -825,14 +825,14 @@ namespace MM.Bussiness
                 DataTable dt = null;
 
                 string emptyGUID = Guid.Empty.ToString();
-                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_CellDyn3200GUID AS ChiTietKQXNGUID, '{4}' AS XetNghiemGUID, NgayXN, NgayXN AS NgayXN2, Fullname, TestResult, TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue2, ToValue2, DoiTuong2, DonVi2, FromPercent2, ToPercent2, GroupID, [Order], 'CellDyn3200' AS LoaiXN, '' AS [Percent] FROM dbo.ChiTietKetQuaXetNghiem_CellDyn3200View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXN",
+                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_CellDyn3200GUID AS ChiTietKQXNGUID, '{4}' AS XetNghiemGUID, NgayXN, NgayXN AS NgayXN2, Fullname, TestResult, TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue2, ToValue2, DoiTuong2, DonVi2, FromPercent2, ToPercent2, GroupID, [Order], 'CellDyn3200' AS LoaiXN, '' AS [Percent] FROM dbo.ChiTietKetQuaXetNghiem_CellDyn3200View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY NgayXN, GroupID, [Order]",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), emptyGUID);
 
                 result = ExcuteQuery(query);
                 if (!result.IsOK) return result;
 
-                DataTable dtCellDyn3200 = result.QueryResult as DataTable;
-                foreach (DataRow row in dtCellDyn3200.Rows)
+                dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
                 {
                     double? fromValue = null;
                     double? toValue = null;
@@ -959,8 +959,6 @@ namespace MM.Bussiness
                         ctkqxn.ToPercent = toPercent;
                         ctkqxn.DonVi = donVi;
                     }
-
-                    dt.ImportRow(row);
                 }
 
                 result.QueryResult = dt;
@@ -1529,7 +1527,20 @@ namespace MM.Bussiness
                     dt.ImportRow(row);
                 }
 
-                result.QueryResult = dt;
+                List<DataRow> results = (from p in dt.AsEnumerable()
+                                         orderby p.Field<DateTime>("NgayXN"), p.Field<int>("GroupID"), p.Field<int>("Order")
+                                         select p).ToList<DataRow>();
+
+                DataTable newDataSource = dt.Clone();
+
+                foreach (DataRow row in results)
+                {
+                    newDataSource.ImportRow(row);
+                }
+
+                dt.Rows.Clear();
+                dt = null;
+                result.QueryResult = newDataSource;
             }
             catch (System.Data.SqlClient.SqlException se)
             {

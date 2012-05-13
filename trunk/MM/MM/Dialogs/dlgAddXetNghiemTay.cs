@@ -53,6 +53,7 @@ namespace MM.Dialogs
             {
                 txtTenXetNghiem.Text = _drXetNghiem["Fullname"] as string;
                 cboLoaiXetNghiem.Text = GetLoaiXetNghiem(_drXetNghiem["Type"].ToString());
+                numThuTu.Value = Convert.ToInt32(_drXetNghiem["Order"]);
 
                 _xetNghiem.XetNghiem_ManualGUID = Guid.Parse(_drXetNghiem["XetNghiem_ManualGUID"].ToString());
 
@@ -431,6 +432,8 @@ namespace MM.Dialogs
                     _xetNghiem.Fullname = txtTenXetNghiem.Text;
                     _xetNghiem.TenXetNghiem = txtTenXetNghiem.Text;
                     _xetNghiem.Type = GetLoaiXetNghiem();
+                    _xetNghiem.GroupID = 0;
+                    _xetNghiem.Order = (int)numThuTu.Value;
 
                     List<ChiTietXetNghiem_Manual> ctxns = new List<ChiTietXetNghiem_Manual>();
                     if (raChung.Checked)
