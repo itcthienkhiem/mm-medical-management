@@ -4535,7 +4535,7 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint)
+        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint, ref bool isData)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4571,12 +4571,15 @@ namespace MM.Exports
                 int groupID = 0;
 
                 List<string> keys = new List<string>();
+
+                isData = false;
                 foreach (DataRow row in dtKQXN.Rows)
                 {
                     string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
                     if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
                         continue;
 
+                    isData = true;
                     keys.Add(chiTietKQXNGUID);
                     string tenXetNghiem = row["Fullname"].ToString();
                     double testResult = Convert.ToDouble(row["TestResult"]);
@@ -4649,7 +4652,7 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportKetQuaXetNghiemSinhToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint)
+        public static bool ExportKetQuaXetNghiemSinhToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint, ref bool isData)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4685,6 +4688,7 @@ namespace MM.Exports
                 DataRow[] rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.Biochemistry.ToString()), "Fullname");
                 List<string> hitachi917Keys = new List<string>();
                 List<string> manualKeys = new List<string>();
+                isData = false;
                 if (rows != null && rows.Length > 0)
                 {
                     foreach (DataRow row in rows)
@@ -4693,6 +4697,7 @@ namespace MM.Exports
                         if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
                             continue;
 
+                        isData = true;
                         string loaiXN = row["LoaiXN"].ToString();
                         if (loaiXN == "Manual")
                             manualKeys.Add(chiTietKQXNGUID);

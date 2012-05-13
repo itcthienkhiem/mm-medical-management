@@ -259,7 +259,8 @@ namespace MM.Controls
                     if (_htXN.ContainsKey(patientGUID))
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false))
+                    bool isData = false;
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData))
                         return;
                 }
             }
@@ -288,13 +289,15 @@ namespace MM.Controls
                     if (_htXN.ContainsKey(patientGUID))
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true))
+                    bool isData = false;
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData))
                         return;
                     else
                     {
                         try
                         {
-                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                            if (isData) 
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
                         }
                         catch (Exception ex)
                         {
@@ -304,13 +307,14 @@ namespace MM.Controls
                     }
 
                     exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true))
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData))
                         return;
                     else
                     {
                         try
                         {
-                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                            if (isData)
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
                         }
                         catch (Exception ex)
                         {
@@ -359,7 +363,8 @@ namespace MM.Controls
                     if (_htXN.ContainsKey(patientGUID))
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false))
+                    bool isData = false;
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData))
                         return;
                 }
             }
@@ -388,7 +393,8 @@ namespace MM.Controls
                     if (_htXN.ContainsKey(patientGUID))
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true))
+                    bool isData = false;
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData))
                         return;
                     else
                     {
