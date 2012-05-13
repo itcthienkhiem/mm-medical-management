@@ -32,6 +32,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.gbXetNghiem = new System.Windows.Forms.GroupBox();
+            this.numThuTu = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
             this.raKhong = new System.Windows.Forms.RadioButton();
             this.raChung = new System.Windows.Forms.RadioButton();
             this.raTreEmNguoiLonNguoiCaoTuoi = new System.Windows.Forms.RadioButton();
@@ -85,6 +87,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbXetNghiem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numThuTu)).BeginInit();
             this.gbTreEmNguoiLonNguoiCaoTuoi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue_NguoiCaoTuoi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFromValue_NguoiCaoTuoi)).BeginInit();
@@ -107,7 +110,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(215, 359);
+            this.btnOK.Location = new System.Drawing.Point(215, 381);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 9;
@@ -119,7 +122,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(294, 359);
+            this.btnCancel.Location = new System.Drawing.Point(294, 381);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 10;
@@ -128,6 +131,8 @@
             // 
             // gbXetNghiem
             // 
+            this.gbXetNghiem.Controls.Add(this.numThuTu);
+            this.gbXetNghiem.Controls.Add(this.label9);
             this.gbXetNghiem.Controls.Add(this.raKhong);
             this.gbXetNghiem.Controls.Add(this.raChung);
             this.gbXetNghiem.Controls.Add(this.raTreEmNguoiLonNguoiCaoTuoi);
@@ -141,14 +146,35 @@
             this.gbXetNghiem.Controls.Add(this.label1);
             this.gbXetNghiem.Location = new System.Drawing.Point(6, 2);
             this.gbXetNghiem.Name = "gbXetNghiem";
-            this.gbXetNghiem.Size = new System.Drawing.Size(572, 351);
+            this.gbXetNghiem.Size = new System.Drawing.Size(572, 373);
             this.gbXetNghiem.TabIndex = 0;
             this.gbXetNghiem.TabStop = false;
+            // 
+            // numThuTu
+            // 
+            this.numThuTu.Location = new System.Drawing.Point(98, 67);
+            this.numThuTu.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.numThuTu.Name = "numThuTu";
+            this.numThuTu.Size = new System.Drawing.Size(74, 20);
+            this.numThuTu.TabIndex = 4;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(54, 69);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Thứ tự:";
             // 
             // raKhong
             // 
             this.raKhong.AutoSize = true;
-            this.raKhong.Location = new System.Drawing.Point(10, 71);
+            this.raKhong.Location = new System.Drawing.Point(10, 94);
             this.raKhong.Name = "raKhong";
             this.raKhong.Size = new System.Drawing.Size(56, 17);
             this.raKhong.TabIndex = 5;
@@ -160,7 +186,7 @@
             // 
             this.raChung.AutoSize = true;
             this.raChung.Checked = true;
-            this.raChung.Location = new System.Drawing.Point(10, 96);
+            this.raChung.Location = new System.Drawing.Point(10, 119);
             this.raChung.Name = "raChung";
             this.raChung.Size = new System.Drawing.Size(56, 17);
             this.raChung.TabIndex = 7;
@@ -172,7 +198,7 @@
             // raTreEmNguoiLonNguoiCaoTuoi
             // 
             this.raTreEmNguoiLonNguoiCaoTuoi.AutoSize = true;
-            this.raTreEmNguoiLonNguoiCaoTuoi.Location = new System.Drawing.Point(10, 234);
+            this.raTreEmNguoiLonNguoiCaoTuoi.Location = new System.Drawing.Point(10, 257);
             this.raTreEmNguoiLonNguoiCaoTuoi.Name = "raTreEmNguoiLonNguoiCaoTuoi";
             this.raTreEmNguoiLonNguoiCaoTuoi.Size = new System.Drawing.Size(190, 17);
             this.raTreEmNguoiLonNguoiCaoTuoi.TabIndex = 9;
@@ -183,7 +209,7 @@
             // raNamNu
             // 
             this.raNamNu.AutoSize = true;
-            this.raNamNu.Location = new System.Drawing.Point(10, 153);
+            this.raNamNu.Location = new System.Drawing.Point(10, 176);
             this.raNamNu.Name = "raNamNu";
             this.raNamNu.Size = new System.Drawing.Size(70, 17);
             this.raNamNu.TabIndex = 8;
@@ -215,7 +241,7 @@
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkFromValue_TreEm);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Controls.Add(this.chkTreEm);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Enabled = false;
-            this.gbTreEmNguoiLonNguoiCaoTuoi.Location = new System.Drawing.Point(15, 234);
+            this.gbTreEmNguoiLonNguoiCaoTuoi.Location = new System.Drawing.Point(15, 257);
             this.gbTreEmNguoiLonNguoiCaoTuoi.Name = "gbTreEmNguoiLonNguoiCaoTuoi";
             this.gbTreEmNguoiLonNguoiCaoTuoi.Size = new System.Drawing.Size(543, 104);
             this.gbTreEmNguoiLonNguoiCaoTuoi.TabIndex = 6;
@@ -514,7 +540,7 @@
             this.gbNamNu.Controls.Add(this.chkFromValue_Nam);
             this.gbNamNu.Controls.Add(this.chkNam);
             this.gbNamNu.Enabled = false;
-            this.gbNamNu.Location = new System.Drawing.Point(15, 153);
+            this.gbNamNu.Location = new System.Drawing.Point(15, 176);
             this.gbNamNu.Name = "gbNamNu";
             this.gbNamNu.Size = new System.Drawing.Size(543, 77);
             this.gbNamNu.TabIndex = 5;
@@ -712,7 +738,7 @@
             this.gbChung.Controls.Add(this.chkToValue_Chung);
             this.gbChung.Controls.Add(this.numFromValue_Chung);
             this.gbChung.Controls.Add(this.chkFromValue_Chung);
-            this.gbChung.Location = new System.Drawing.Point(15, 99);
+            this.gbChung.Location = new System.Drawing.Point(15, 122);
             this.gbChung.Name = "gbChung";
             this.gbChung.Size = new System.Drawing.Size(543, 50);
             this.gbChung.TabIndex = 4;
@@ -844,7 +870,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(584, 389);
+            this.ClientSize = new System.Drawing.Size(584, 410);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.gbXetNghiem);
@@ -860,6 +886,7 @@
             this.Load += new System.EventHandler(this.dlgAddXetNghiemTay_Load);
             this.gbXetNghiem.ResumeLayout(false);
             this.gbXetNghiem.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numThuTu)).EndInit();
             this.gbTreEmNguoiLonNguoiCaoTuoi.ResumeLayout(false);
             this.gbTreEmNguoiLonNguoiCaoTuoi.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue_NguoiCaoTuoi)).EndInit();
@@ -939,5 +966,7 @@
         private System.Windows.Forms.ComboBox txtDonVi_Nu;
         private System.Windows.Forms.ComboBox txtDonVi_Nam;
         private System.Windows.Forms.RadioButton raKhong;
+        private System.Windows.Forms.NumericUpDown numThuTu;
+        private System.Windows.Forms.Label label9;
     }
 }

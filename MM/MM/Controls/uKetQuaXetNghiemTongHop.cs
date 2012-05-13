@@ -297,8 +297,6 @@ namespace MM.Controls
                             MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
                             return;
                         }
-
-                        break;
                     }
 
                     exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
@@ -315,8 +313,6 @@ namespace MM.Controls
                             MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
                             return;
                         }
-
-                        break;
                     }
                 }
             }
