@@ -79,6 +79,7 @@
             this.ketQuaXetNghiemManualViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
+            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -94,6 +95,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.chkMaBenhNhan);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.btnView);
@@ -129,7 +131,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(377, 30);
+            this.btnView.Location = new System.Drawing.Point(476, 30);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 22;
@@ -564,6 +566,18 @@
             this.splitter1.TabIndex = 12;
             this.splitter1.TabStop = false;
             // 
+            // chkMaBenhNhan
+            // 
+            this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMaBenhNhan.Location = new System.Drawing.Point(377, 34);
+            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
+            this.chkMaBenhNhan.Size = new System.Drawing.Size(95, 17);
+            this.chkMaBenhNhan.TabIndex = 30;
+            this.chkMaBenhNhan.Text = "Mã bệnh nhân";
+            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
+            // 
             // uKetQuaXetNghiemTay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -633,5 +647,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn testResultDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn BinhThuong;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaIn;
+        private System.Windows.Forms.CheckBox chkMaBenhNhan;
     }
 }

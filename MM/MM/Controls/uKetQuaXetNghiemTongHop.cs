@@ -47,7 +47,7 @@ namespace MM.Controls
             btnExportExcelSinhHoa.Enabled = AllowExport;
         }
 
-        private void DisplayDanhSachBenhNhan()
+        public void DisplayDanhSachBenhNhan()
         {
             if (dtpkTuNgay.Value > dtpkDenNgay.Value)
             {
@@ -60,7 +60,7 @@ namespace MM.Controls
             DateTime tuNgay = dtpkTuNgay.Value;
             DateTime denNgay = dtpkDenNgay.Value;
 
-            Result result = KetQuaXetNghiemTongHopBus.GetDanhSachBenhNhanXetNghiemList(tuNgay, denNgay, tenBenhNhan);
+            Result result = KetQuaXetNghiemTongHopBus.GetDanhSachBenhNhanXetNghiemList(tuNgay, denNgay, tenBenhNhan, chkMaBenhNhan.Checked);
             if (result.IsOK)
             {
                 _patientGUID = string.Empty;

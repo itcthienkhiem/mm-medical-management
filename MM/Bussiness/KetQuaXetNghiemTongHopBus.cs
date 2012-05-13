@@ -12,7 +12,7 @@ namespace MM.Bussiness
 {
     public class KetQuaXetNghiemTongHopBus : BusBase
     {
-        public static Result GetDanhSachBenhNhanXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan)
+        public static Result GetDanhSachBenhNhanXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan, bool isMaBenhNhan)
         {
             Result result = new Result();
             DataTable dt = null;
@@ -22,16 +22,33 @@ namespace MM.Bussiness
                 string query = string.Empty;
 
                 //Hitachi917
-                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                if (!isMaBenhNhan)
+                {
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
                     tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+                }
+                else
+                {
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FileNum LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+                }
 
                 result = ExcuteQuery(query);
                 if (!result.IsOK) return result;
                 dt = result.QueryResult as DataTable;
 
                 //CellDyn3200
-                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                if (!isMaBenhNhan)
+                {
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
                     tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+                }
+                else
+                {
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FileNum LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+                }
+
                 result = ExcuteQuery(query);
                 if (!result.IsOK) return result;
 
@@ -45,8 +62,17 @@ namespace MM.Bussiness
                 }
 
                 //Xet nghiem tay
-                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_ManualView WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                if (!isMaBenhNhan)
+                {
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_ManualView WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
                     tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+                }
+                else
+                {
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_ManualView WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FileNum LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+                }
+
                 result = ExcuteQuery(query);
                 if (!result.IsOK) return result;
 
