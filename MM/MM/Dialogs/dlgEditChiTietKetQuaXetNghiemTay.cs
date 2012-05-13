@@ -18,6 +18,7 @@ namespace MM.Dialogs
         #region Members
         private DataRow _drChiTietKQXN = null;
         private ChiTietKetQuaXetNghiem_Manual _chiTietKQXN = new ChiTietKetQuaXetNghiem_Manual();
+        private bool _isTongHop = false;
         #endregion
 
         #region Constructor
@@ -29,29 +30,57 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
-
+        public bool IsTongHop
+        {
+            get { return _isTongHop; }
+            set { _isTongHop = value; }
+        }
         #endregion
 
         #region UI Command
         private void DisplayInfo()
         {
-            txtTenXetNghiem.Text = _drChiTietKQXN["Fullname"].ToString();
-            txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
-            txtDonVi.Text = _drChiTietKQXN["DonVi"].ToString();
-
-            if (_drChiTietKQXN["FromValue"] != null && _drChiTietKQXN["FromValue"] != DBNull.Value)
+            if (!_isTongHop)
             {
-                numFromValue.Value = (Decimal)Convert.ToDouble(_drChiTietKQXN["FromValue"]);
-                chkFromValue.Checked = true;
-            }
+                txtTenXetNghiem.Text = _drChiTietKQXN["Fullname"].ToString();
+                txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
+                txtDonVi.Text = _drChiTietKQXN["DonVi"].ToString();
 
-            if (_drChiTietKQXN["ToValue"] != null && _drChiTietKQXN["ToValue"] != DBNull.Value)
+                if (_drChiTietKQXN["FromValue"] != null && _drChiTietKQXN["FromValue"] != DBNull.Value)
+                {
+                    numFromValue.Value = (Decimal)Convert.ToDouble(_drChiTietKQXN["FromValue"]);
+                    chkFromValue.Checked = true;
+                }
+
+                if (_drChiTietKQXN["ToValue"] != null && _drChiTietKQXN["ToValue"] != DBNull.Value)
+                {
+                    numToValue.Value = (Decimal)Convert.ToDouble(_drChiTietKQXN["ToValue"]);
+                    chkToValue.Checked = true;
+                }
+
+                _chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID = Guid.Parse(_drChiTietKQXN["ChiTietKetQuaXetNghiem_ManualGUID"].ToString());
+            }
+            else
             {
-                numToValue.Value = (Decimal)Convert.ToDouble(_drChiTietKQXN["ToValue"]);
-                chkToValue.Checked = true;
-            }
+                txtTenXetNghiem.Text = _drChiTietKQXN["Fullname"].ToString();
+                txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
+                txtDonVi.Text = _drChiTietKQXN["DonVi2"].ToString();
 
-            _chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID = Guid.Parse(_drChiTietKQXN["ChiTietKetQuaXetNghiem_ManualGUID"].ToString());
+                if (_drChiTietKQXN["FromValue2"] != null && _drChiTietKQXN["FromValue2"] != DBNull.Value)
+                {
+                    numFromValue.Value = (Decimal)Convert.ToDouble(_drChiTietKQXN["FromValue2"]);
+                    chkFromValue.Checked = true;
+                }
+
+                if (_drChiTietKQXN["ToValue2"] != null && _drChiTietKQXN["ToValue2"] != DBNull.Value)
+                {
+                    numToValue.Value = (Decimal)Convert.ToDouble(_drChiTietKQXN["ToValue2"]);
+                    chkToValue.Checked = true;
+                }
+
+                _chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID = Guid.Parse(_drChiTietKQXN["ChiTietKQXNGUID"].ToString());
+            }
+            
         }
 
         private bool CheckInfo()

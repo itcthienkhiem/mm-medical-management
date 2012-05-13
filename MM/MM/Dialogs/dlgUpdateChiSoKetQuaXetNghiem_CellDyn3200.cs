@@ -20,6 +20,7 @@ namespace MM.Dialogs
         private ChiTietKetQuaXetNghiem_CellDyn3200 _chiTietKQXN = new ChiTietKetQuaXetNghiem_CellDyn3200();
         private string _binhThuong = string.Empty;
         private string _percent = string.Empty;
+        private bool _isTongHop = false;
         #endregion
 
         #region Constructor
@@ -31,6 +32,12 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
+        public bool IsTongHop
+        {
+            get { return _isTongHop; }
+            set { _isTongHop = value; }
+        }
+
         public ChiTietKetQuaXetNghiem_CellDyn3200 ChiTietKQXN
         {
             get { return _chiTietKQXN; }
@@ -50,70 +57,140 @@ namespace MM.Dialogs
         #region UI Command
         private void DisplayInfo()
         {
-            _chiTietKQXN.ChiTietKQXN_CellDyn3200GUID = Guid.Parse(_drCTKQXN["ChiTietKQXN_CellDyn3200GUID"].ToString());
+            if (!_isTongHop)
+            {
+                _chiTietKQXN.ChiTietKQXN_CellDyn3200GUID = Guid.Parse(_drCTKQXN["ChiTietKQXN_CellDyn3200GUID"].ToString());
 
-            if (_drCTKQXN["TenXetNghiem"] != null && _drCTKQXN["TenXetNghiem"] != DBNull.Value)
-                txTenXetNghiem.Text = _drCTKQXN["TenXetNghiem"].ToString();
+                if (_drCTKQXN["TenXetNghiem"] != null && _drCTKQXN["TenXetNghiem"] != DBNull.Value)
+                    txTenXetNghiem.Text = _drCTKQXN["TenXetNghiem"].ToString();
 
-            numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
+                numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
 
-            if (_drCTKQXN["TestPercent"] == null || _drCTKQXN["TestPercent"] == DBNull.Value)
-                numTestPercent.Enabled = false;
+                if (_drCTKQXN["TestPercent"] == null || _drCTKQXN["TestPercent"] == DBNull.Value)
+                    numTestPercent.Enabled = false;
+                else
+                    numTestPercent.Value = (decimal)Convert.ToDouble(_drCTKQXN["TestPercent"]);
+
+                if ((_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value) &&
+                    (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value))
+                {
+                    chkFromValue_Normal.Enabled = false;
+                    chkToValue_Normal.Enabled = false;
+                }
+                else if (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value)
+                {
+                    chkFromValue_Normal.Checked = true;
+                    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
+                }
+                else if (_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value)
+                {
+                    chkToValue_Normal.Checked = true;
+                    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
+                }
+                else
+                {
+                    chkFromValue_Normal.Checked = true;
+                    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
+                    chkToValue_Normal.Checked = true;
+                    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
+                }
+
+                if ((_drCTKQXN["FromPercent"] == null || _drCTKQXN["FromPercent"] == DBNull.Value) &&
+                    (_drCTKQXN["ToPercent"] == null || _drCTKQXN["ToPercent"] == DBNull.Value))
+                {
+                    chkFromValue_NormalPercent.Enabled = false;
+                    chkToValue_NormalPercent.Enabled = false;
+                }
+                else if (_drCTKQXN["ToPercent"] == null || _drCTKQXN["ToPercent"] == DBNull.Value)
+                {
+                    chkFromValue_NormalPercent.Checked = true;
+                    numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent"]);
+                }
+                else if (_drCTKQXN["FromPercent"] == null || _drCTKQXN["FromPercent"] == DBNull.Value)
+                {
+                    chkToValue_NormalPercent.Checked = true;
+                    numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent"]);
+                }
+                else
+                {
+                    chkFromValue_NormalPercent.Checked = true;
+                    numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent"]);
+                    chkToValue_NormalPercent.Checked = true;
+                    numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent"]);
+                }
+
+                if (_drCTKQXN["DonVi"] != null && _drCTKQXN["DonVi"] != DBNull.Value)
+                    txtDonVi.Text = _drCTKQXN["DonVi"].ToString();
+
+                _chiTietKQXN.TenXetNghiem = _drCTKQXN["Fullname"].ToString();
+            }
             else
-                numTestPercent.Value = (decimal)Convert.ToDouble(_drCTKQXN["TestPercent"]);
+            {
+                _chiTietKQXN.ChiTietKQXN_CellDyn3200GUID = Guid.Parse(_drCTKQXN["ChiTietKQXNGUID"].ToString());
 
-            if ((_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value) &&
-                (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value))
-            {
-                chkFromValue_Normal.Enabled = false;
-                chkToValue_Normal.Enabled = false;
-            }
-            else if (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value)
-            {
-                chkFromValue_Normal.Checked = true;
-                numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
-            }
-            else if (_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value)
-            {
-                chkToValue_Normal.Checked = true;
-                numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
-            }
-            else
-            {
-                chkFromValue_Normal.Checked = true;
-                numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
-                chkToValue_Normal.Checked = true;
-                numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
-            }
+                if (_drCTKQXN["Fullname"] != null && _drCTKQXN["Fullname"] != DBNull.Value)
+                    txTenXetNghiem.Text = _drCTKQXN["Fullname"].ToString();
 
-            if ((_drCTKQXN["FromPercent"] == null || _drCTKQXN["FromPercent"] == DBNull.Value) &&
-                (_drCTKQXN["ToPercent"] == null || _drCTKQXN["ToPercent"] == DBNull.Value))
-            {
-                chkFromValue_NormalPercent.Enabled = false;
-                chkToValue_NormalPercent.Enabled = false;
-            }
-            else if (_drCTKQXN["ToPercent"] == null || _drCTKQXN["ToPercent"] == DBNull.Value)
-            {
-                chkFromValue_NormalPercent.Checked = true;
-                numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent"]);
-            }
-            else if (_drCTKQXN["FromPercent"] == null || _drCTKQXN["FromPercent"] == DBNull.Value)
-            {
-                chkToValue_NormalPercent.Checked = true;
-                numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent"]);
-            }
-            else
-            {
-                chkFromValue_NormalPercent.Checked = true;
-                numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent"]);
-                chkToValue_NormalPercent.Checked = true;
-                numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent"]);
-            }
+                numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
 
-            if (_drCTKQXN["DonVi"] != null && _drCTKQXN["DonVi"] != DBNull.Value)
-                txtDonVi.Text = _drCTKQXN["DonVi"].ToString();
+                if (_drCTKQXN["TestPercent"] == null || _drCTKQXN["TestPercent"] == DBNull.Value)
+                    numTestPercent.Enabled = false;
+                else
+                    numTestPercent.Value = (decimal)Convert.ToDouble(_drCTKQXN["TestPercent"]);
 
-            _chiTietKQXN.TenXetNghiem = _drCTKQXN["TenXetNghiem"].ToString();
+                if ((_drCTKQXN["FromValue2"] == null || _drCTKQXN["FromValue2"] == DBNull.Value) &&
+                    (_drCTKQXN["ToValue2"] == null || _drCTKQXN["ToValue2"] == DBNull.Value))
+                {
+                    chkFromValue_Normal.Enabled = false;
+                    chkToValue_Normal.Enabled = false;
+                }
+                else if (_drCTKQXN["ToValue2"] == null || _drCTKQXN["ToValue2"] == DBNull.Value)
+                {
+                    chkFromValue_Normal.Checked = true;
+                    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue2"]);
+                }
+                else if (_drCTKQXN["FromValue2"] == null || _drCTKQXN["FromValue2"] == DBNull.Value)
+                {
+                    chkToValue_Normal.Checked = true;
+                    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue2"]);
+                }
+                else
+                {
+                    chkFromValue_Normal.Checked = true;
+                    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue2"]);
+                    chkToValue_Normal.Checked = true;
+                    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue2"]);
+                }
+
+                if ((_drCTKQXN["FromPercent2"] == null || _drCTKQXN["FromPercent2"] == DBNull.Value) &&
+                    (_drCTKQXN["ToPercent2"] == null || _drCTKQXN["ToPercent2"] == DBNull.Value))
+                {
+                    chkFromValue_NormalPercent.Enabled = false;
+                    chkToValue_NormalPercent.Enabled = false;
+                }
+                else if (_drCTKQXN["ToPercent2"] == null || _drCTKQXN["ToPercent2"] == DBNull.Value)
+                {
+                    chkFromValue_NormalPercent.Checked = true;
+                    numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent2"]);
+                }
+                else if (_drCTKQXN["FromPercent2"] == null || _drCTKQXN["FromPercent2"] == DBNull.Value)
+                {
+                    chkToValue_NormalPercent.Checked = true;
+                    numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent2"]);
+                }
+                else
+                {
+                    chkFromValue_NormalPercent.Checked = true;
+                    numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent2"]);
+                    chkToValue_NormalPercent.Checked = true;
+                    numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent2"]);
+                }
+
+                if (_drCTKQXN["DonVi2"] != null && _drCTKQXN["DonVi2"] != DBNull.Value)
+                    txtDonVi.Text = _drCTKQXN["DonVi2"].ToString();
+
+                _chiTietKQXN.TenXetNghiem = _drCTKQXN["Fullname"].ToString();
+            }
         }
 
         private bool CheckInfo()

@@ -415,7 +415,47 @@ namespace MM.Controls
 
         private void OnEditChiTiet()
         {
+            if (dgXetNghiem.SelectedRows == null || dgXetNghiem.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 kết quả xét nghiệm để cập nhật.", IconType.Information);
+                return;
+            }
 
+            DataRow drXetNghiem = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            if (drXetNghiem == null) return;
+
+            string loaiXN = drXetNghiem["LoaiXN"].ToString();
+            if (loaiXN == "Hitachi917")
+            {
+                dlgUpdateChiSoKetQuaXetNghiem dlg = new dlgUpdateChiSoKetQuaXetNghiem(drXetNghiem);
+                dlg.IsTongHop = true;
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    DataRow row = (dgBenhNhan.SelectedRows[0].DataBoundItem as DataRowView).Row;
+                    DisplayDanhSachXetNghiem(row);
+                }
+            }
+            else if (loaiXN == "CellDyn3200")
+            {
+                dlgUpdateChiSoKetQuaXetNghiem_CellDyn3200 dlg = new dlgUpdateChiSoKetQuaXetNghiem_CellDyn3200(drXetNghiem);
+                dlg.IsTongHop = true;
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    DataRow row = (dgBenhNhan.SelectedRows[0].DataBoundItem as DataRowView).Row;
+                    DisplayDanhSachXetNghiem(row);
+                }
+            }
+            else
+            {
+                dlgEditChiTietKetQuaXetNghiemTay dlg = new dlgEditChiTietKetQuaXetNghiemTay(drXetNghiem);
+                dlg.IsTongHop = true;
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    DataRow row = (dgBenhNhan.SelectedRows[0].DataBoundItem as DataRowView).Row;
+                    DisplayDanhSachXetNghiem(row);
+                }
+
+            }
         }
 
         private void OnDeleteChiTiet()
@@ -583,7 +623,15 @@ namespace MM.Controls
         {
             OnDeleteChiTiet();
         }
+
+        private void dgXetNghiem_DoubleClick(object sender, EventArgs e)
+        {
+            if (!AllowEdit) return;
+            OnEditChiTiet();
+        }
         #endregion
+
+       
 
         
     }
