@@ -410,7 +410,11 @@ namespace MM.Controls
 
         private void OnAddChiTiet()
         {
-
+            dlgAddXetNghiemTay dlg = new dlgAddXetNghiemTay();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                DisplayDanhSachBenhNhan();
+            }
         }
 
         private void OnEditChiTiet()
