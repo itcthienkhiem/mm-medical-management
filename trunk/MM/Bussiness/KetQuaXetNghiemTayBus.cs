@@ -481,6 +481,16 @@ namespace MM.Bussiness
                             ctkqxn.ToValue = ctxn.ToValue;
                             ctkqxn.DoiTuong = ctxn.DoiTuong;
                             ctkqxn.DonVi = ctxn.DonVi;
+
+                            if (ctxn.FromValue.HasValue)
+                                row["FromValue"] = ctxn.FromValue.Value;
+
+                            if (ctxn.ToValue.HasValue)
+                                row["ToValue"] = ctxn.ToValue.Value;
+
+                            row["DoiTuong"] = ctxn.DoiTuong;
+                            row["DonVi"] = ctxn.DonVi;
+
                             db.SubmitChanges();
                         }
                     }
