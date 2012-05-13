@@ -36,7 +36,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetKetQuaXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan)
+        public static Result GetKetQuaXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan, bool isMaBenhNhan)
         {
             Result result = new Result();
 
@@ -50,8 +50,16 @@ namespace MM.Bussiness
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                    if (!isMaBenhNhan)
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
+                    }
+                    else
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FileNum LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                           fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
+                    }
                 }
 
                 return ExcuteQuery(query);

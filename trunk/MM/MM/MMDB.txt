@@ -222,16 +222,16 @@ Khám nội soi (Thêm, xóa, sửa, in, xuất) (OK)
 12>> Đổi tên Kham CTC => Soi CTC
 13>> Chỉnh lại template xuất excel nội soi và soi CTC
 ===================================================================================================
-1. Xét nghiệm nào đã in thì đánh dấu đã in
-2. Cho add xét nghiệm bằng tay trong kết quả xét nghiệm tổng hợp.
+1. Xét nghiệm nào đã in thì đánh dấu đã in (OK)
+2. Cho add xét nghiệm bằng tay trong kết quả xét nghiệm tổng hợp. (OK)
 3. Cho phép edit ngưỡng xét nghiệm Hitachi917, CellDyn3200 (OK)
-4. Search theo mã bệnh nhân.
-5. 1 lần in ra 2 bản xét nghiệm.
-6. Cho phép edit chỉ số xét nghiệm bằng tay của từng cài.
-7. Thêm order cho xét nghiệm tay
-8. Group theo date kết quả xét nghiệm tổng hợp
-9. % result gộp chung với % normal
-10. Cho phép edit ngưỡng trên kết quả.
+4. Search theo mã bệnh nhân (OK).
+5. 1 lần in ra 2 bản xét nghiệm (OK).
+6. Cho phép edit chỉ số xét nghiệm bằng tay của từng cài (OK).
+7. Thêm order cho xét nghiệm tay (OK)
+8. Group theo date kết quả xét nghiệm tổng hợp (OK)
+9. % result gộp chung với % normal (OK)
+10. Cho phép edit ngưỡng trên kết quả (OK).
 11. Thêm field Note trong Booking
 
 

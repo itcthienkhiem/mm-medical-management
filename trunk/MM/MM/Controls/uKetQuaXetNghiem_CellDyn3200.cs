@@ -20,6 +20,7 @@ namespace MM.Controls
         private string _tenBenhNhan = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
+        private bool _isMaBenhNhan = true;
         private Font _normalFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         private Font _boldFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         #endregion
@@ -55,6 +56,7 @@ namespace MM.Controls
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 _tenBenhNhan = txtTenBenhNhan.Text;
+                _isMaBenhNhan = chkMaBenhNhan.Checked;
 
                 chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayKetQuaXetNghiemListProc));
@@ -73,7 +75,7 @@ namespace MM.Controls
 
         private void OnDisplayKetQuaXetNghiemList()
         {
-            Result result = XetNghiem_CellDyn3200Bus.GetKetQuaXetNghiemList(_fromDate, _toDate, _tenBenhNhan);
+            Result result = XetNghiem_CellDyn3200Bus.GetKetQuaXetNghiemList(_fromDate, _toDate, _tenBenhNhan, _isMaBenhNhan);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate

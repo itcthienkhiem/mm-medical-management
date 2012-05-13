@@ -31,17 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -54,6 +54,13 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.chkCTKQXNChecked = new System.Windows.Forms.CheckBox();
             this.dgChiTietKQXN = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dataGridViewCheckBoxXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.fullNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testResultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Percent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BinhThuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DaIn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.chiTietKetQuaXetNghiemCellDynViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnXoaCTKQXN = new System.Windows.Forms.Button();
@@ -79,13 +86,7 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.dataGridViewCheckBoxXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.fullNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testResultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testPercentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Percent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BinhThuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DaIn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -101,6 +102,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.chkMaBenhNhan);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.btnView);
@@ -136,7 +138,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(377, 30);
+            this.btnView.Location = new System.Drawing.Point(478, 31);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 22;
@@ -258,6 +260,76 @@
             this.dgChiTietKQXN.Size = new System.Drawing.Size(962, 195);
             this.dgChiTietKQXN.TabIndex = 11;
             this.dgChiTietKQXN.DoubleClick += new System.EventHandler(this.dgChiTietKQXN_DoubleClick);
+            // 
+            // dataGridViewCheckBoxXColumn1
+            // 
+            this.dataGridViewCheckBoxXColumn1.Checked = true;
+            this.dataGridViewCheckBoxXColumn1.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.dataGridViewCheckBoxXColumn1.CheckValue = "N";
+            this.dataGridViewCheckBoxXColumn1.DataPropertyName = "Checked";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewCheckBoxXColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewCheckBoxXColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxXColumn1.Name = "dataGridViewCheckBoxXColumn1";
+            this.dataGridViewCheckBoxXColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxXColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCheckBoxXColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewCheckBoxXColumn1.Width = 40;
+            // 
+            // fullNameDataGridViewTextBoxColumn1
+            // 
+            this.fullNameDataGridViewTextBoxColumn1.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn1.HeaderText = "Tên xét nghiệm";
+            this.fullNameDataGridViewTextBoxColumn1.Name = "fullNameDataGridViewTextBoxColumn1";
+            this.fullNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // testResultDataGridViewTextBoxColumn
+            // 
+            this.testResultDataGridViewTextBoxColumn.DataPropertyName = "TestResult";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.testResultDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.testResultDataGridViewTextBoxColumn.HeaderText = "Kết quả";
+            this.testResultDataGridViewTextBoxColumn.Name = "testResultDataGridViewTextBoxColumn";
+            this.testResultDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // testPercentDataGridViewTextBoxColumn
+            // 
+            this.testPercentDataGridViewTextBoxColumn.DataPropertyName = "TestPercent";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.testPercentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.testPercentDataGridViewTextBoxColumn.HeaderText = "% Kết quả";
+            this.testPercentDataGridViewTextBoxColumn.Name = "testPercentDataGridViewTextBoxColumn";
+            this.testPercentDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testPercentDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // Percent
+            // 
+            this.Percent.DataPropertyName = "Percent";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Percent.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Percent.HeaderText = "% Kết quả";
+            this.Percent.Name = "Percent";
+            this.Percent.ReadOnly = true;
+            this.Percent.Width = 160;
+            // 
+            // BinhThuong
+            // 
+            this.BinhThuong.DataPropertyName = "BinhThuong";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.BinhThuong.DefaultCellStyle = dataGridViewCellStyle6;
+            this.BinhThuong.HeaderText = "Bình thường";
+            this.BinhThuong.Name = "BinhThuong";
+            this.BinhThuong.ReadOnly = true;
+            this.BinhThuong.Width = 160;
+            // 
+            // DaIn
+            // 
+            this.DaIn.DataPropertyName = "DaIn";
+            this.DaIn.HeaderText = "Đã in";
+            this.DaIn.Name = "DaIn";
+            this.DaIn.ReadOnly = true;
+            this.DaIn.Width = 60;
             // 
             // chiTietKetQuaXetNghiemCellDynViewBindingSource
             // 
@@ -552,75 +624,17 @@
             this.panel8.Size = new System.Drawing.Size(962, 114);
             this.panel8.TabIndex = 12;
             // 
-            // dataGridViewCheckBoxXColumn1
+            // chkMaBenhNhan
             // 
-            this.dataGridViewCheckBoxXColumn1.Checked = true;
-            this.dataGridViewCheckBoxXColumn1.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.dataGridViewCheckBoxXColumn1.CheckValue = "N";
-            this.dataGridViewCheckBoxXColumn1.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewCheckBoxXColumn1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewCheckBoxXColumn1.HeaderText = "";
-            this.dataGridViewCheckBoxXColumn1.Name = "dataGridViewCheckBoxXColumn1";
-            this.dataGridViewCheckBoxXColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxXColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewCheckBoxXColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxXColumn1.Width = 40;
-            // 
-            // fullNameDataGridViewTextBoxColumn1
-            // 
-            this.fullNameDataGridViewTextBoxColumn1.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn1.HeaderText = "Tên xét nghiệm";
-            this.fullNameDataGridViewTextBoxColumn1.Name = "fullNameDataGridViewTextBoxColumn1";
-            this.fullNameDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // testResultDataGridViewTextBoxColumn
-            // 
-            this.testResultDataGridViewTextBoxColumn.DataPropertyName = "TestResult";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.testResultDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.testResultDataGridViewTextBoxColumn.HeaderText = "Kết quả";
-            this.testResultDataGridViewTextBoxColumn.Name = "testResultDataGridViewTextBoxColumn";
-            this.testResultDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // testPercentDataGridViewTextBoxColumn
-            // 
-            this.testPercentDataGridViewTextBoxColumn.DataPropertyName = "TestPercent";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.testPercentDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.testPercentDataGridViewTextBoxColumn.HeaderText = "% Kết quả";
-            this.testPercentDataGridViewTextBoxColumn.Name = "testPercentDataGridViewTextBoxColumn";
-            this.testPercentDataGridViewTextBoxColumn.ReadOnly = true;
-            this.testPercentDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // Percent
-            // 
-            this.Percent.DataPropertyName = "Percent";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Percent.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Percent.HeaderText = "% Kết quả";
-            this.Percent.Name = "Percent";
-            this.Percent.ReadOnly = true;
-            this.Percent.Width = 160;
-            // 
-            // BinhThuong
-            // 
-            this.BinhThuong.DataPropertyName = "BinhThuong";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.BinhThuong.DefaultCellStyle = dataGridViewCellStyle6;
-            this.BinhThuong.HeaderText = "Bình thường";
-            this.BinhThuong.Name = "BinhThuong";
-            this.BinhThuong.ReadOnly = true;
-            this.BinhThuong.Width = 160;
-            // 
-            // DaIn
-            // 
-            this.DaIn.DataPropertyName = "DaIn";
-            this.DaIn.HeaderText = "Đã in";
-            this.DaIn.Name = "DaIn";
-            this.DaIn.ReadOnly = true;
-            this.DaIn.Width = 60;
+            this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMaBenhNhan.Location = new System.Drawing.Point(377, 35);
+            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
+            this.chkMaBenhNhan.Size = new System.Drawing.Size(95, 17);
+            this.chkMaBenhNhan.TabIndex = 29;
+            this.chkMaBenhNhan.Text = "Mã bệnh nhân";
+            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
             // 
             // uKetQuaXetNghiem_CellDyn3200
             // 
@@ -719,6 +733,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Percent;
         private System.Windows.Forms.DataGridViewTextBoxColumn BinhThuong;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaIn;
+        private System.Windows.Forms.CheckBox chkMaBenhNhan;
 
     }
 }

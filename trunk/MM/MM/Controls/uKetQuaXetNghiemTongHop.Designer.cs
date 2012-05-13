@@ -118,6 +118,7 @@
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.chkMaBenhNhan);
             this.panel3.Controls.Add(this.label4);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.btnView);
@@ -163,7 +165,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(377, 30);
+            this.btnView.Location = new System.Drawing.Point(473, 30);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 22;
@@ -884,6 +886,18 @@
             this.dataGridViewTextBoxColumn15.Visible = false;
             this.dataGridViewTextBoxColumn15.Width = 200;
             // 
+            // chkMaBenhNhan
+            // 
+            this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMaBenhNhan.Location = new System.Drawing.Point(377, 34);
+            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
+            this.chkMaBenhNhan.Size = new System.Drawing.Size(95, 17);
+            this.chkMaBenhNhan.TabIndex = 31;
+            this.chkMaBenhNhan.Text = "Mã bệnh nhân";
+            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
+            // 
             // uKetQuaXetNghiemTongHop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -977,5 +991,6 @@
         private System.Windows.Forms.Button btnDeleteChiTiet;
         private System.Windows.Forms.Button btnEditChiTiet;
         private System.Windows.Forms.Button btnAddChiTiet;
+        private System.Windows.Forms.CheckBox chkMaBenhNhan;
     }
 }
