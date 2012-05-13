@@ -250,16 +250,16 @@ namespace MM.Bussiness
                         ctkqxn.ToPercent = toPercent;
                         ctkqxn.DonVi = donVi;
 
-                        if (ctkqxn.FromValue.HasValue)
+                        if (ctkqxn.FromValue != null && ctkqxn.FromValue.HasValue)
                             row["FromValue"] = ctkqxn.FromValue.Value;
 
-                        if (ctkqxn.ToValue.HasValue)
+                        if (ctkqxn.ToValue != null && ctkqxn.ToValue.HasValue)
                             row["ToValue"] = ctkqxn.ToValue.Value;
 
-                        if (ctkqxn.FromValue.HasValue)
+                        if (ctkqxn.FromPercent != null && ctkqxn.FromValue.HasValue)
                             row["FromPercent"] = ctkqxn.FromPercent.Value;
 
-                        if (ctkqxn.ToValue.HasValue)
+                        if (ctkqxn.ToPercent != null && ctkqxn.ToValue.HasValue)
                             row["ToPercent"] = ctkqxn.ToPercent.Value;
 
                         row["DoiTuong"] = ctkqxn.DoiTuong;

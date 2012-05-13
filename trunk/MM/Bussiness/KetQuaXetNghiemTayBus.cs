@@ -490,10 +490,10 @@ namespace MM.Bussiness
                             ctkqxn.DoiTuong = ctxn.DoiTuong;
                             ctkqxn.DonVi = ctxn.DonVi;
 
-                            if (ctxn.FromValue.HasValue)
+                            if (ctxn.FromValue != null && ctxn.FromValue.HasValue)
                                 row["FromValue"] = ctxn.FromValue.Value;
 
-                            if (ctxn.ToValue.HasValue)
+                            if (ctxn.ToValue != null && ctxn.ToValue.HasValue)
                                 row["ToValue"] = ctxn.ToValue.Value;
 
                             row["DoiTuong"] = ctxn.DoiTuong;
