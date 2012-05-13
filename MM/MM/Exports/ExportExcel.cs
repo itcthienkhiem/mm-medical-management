@@ -4535,7 +4535,7 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList)
+        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4569,12 +4569,15 @@ namespace MM.Exports
 
                 DataTable dtKQXN = result.QueryResult as DataTable;
                 int groupID = 0;
+
+                List<string> keys = new List<string>();
                 foreach (DataRow row in dtKQXN.Rows)
                 {
                     string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
                     if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
                         continue;
 
+                    keys.Add(chiTietKQXNGUID);
                     string tenXetNghiem = row["Fullname"].ToString();
                     double testResult = Convert.ToDouble(row["TestResult"]);
                     string testPercent = row["TestPercent"].ToString();
@@ -4612,6 +4615,17 @@ namespace MM.Exports
                     rowIndex++;
                 }
 
+                if (isPrint)
+                {
+                    Result r = XetNghiem_CellDyn3200Bus.UpdateDaIn(keys);
+                    if (!r.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_CellDyn3200Bus.UpdateDaIn"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_CellDyn3200Bus.UpdateDaIn"));
+                        return false;
+                    }
+                }
+
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
@@ -4635,7 +4649,7 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportKetQuaXetNghiemSinhToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList)
+        public static bool ExportKetQuaXetNghiemSinhToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4669,6 +4683,8 @@ namespace MM.Exports
 
                 DataTable dtKQXN = result.QueryResult as DataTable;
                 DataRow[] rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.Biochemistry.ToString()), "Fullname");
+                List<string> hitachi917Keys = new List<string>();
+                List<string> manualKeys = new List<string>();
                 if (rows != null && rows.Length > 0)
                 {
                     foreach (DataRow row in rows)
@@ -4676,6 +4692,12 @@ namespace MM.Exports
                         string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
                         if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
                             continue;
+
+                        string loaiXN = row["LoaiXN"].ToString();
+                        if (loaiXN == "Manual")
+                            manualKeys.Add(chiTietKQXNGUID);
+                        else
+                            hitachi917Keys.Add(chiTietKQXNGUID);
 
                         bool isNumeric = false;
                         double testResult = 0;
@@ -4771,6 +4793,31 @@ namespace MM.Exports
                         range.Borders.Color = Color.Black;
 
                         rowIndex++;
+                    }
+                }
+
+                if (isPrint)
+                {
+                    if (hitachi917Keys.Count > 0)
+                    {
+                        Result r = XetNghiem_Hitachi917Bus.UpdateDaIn(hitachi917Keys);
+                        if (!r.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_Hitachi917Bus.UpdateDaIn"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.UpdateDaIn"));
+                            return false;
+                        }
+                    }
+
+                    if (manualKeys.Count > 0)
+                    {
+                        Result r = KetQuaXetNghiemTayBus.UpdateDaIn(manualKeys);
+                        if (!r.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTayBus.UpdateDaIn"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTayBus.UpdateDaIn"));
+                            return false;
+                        }
                     }
                 }
                 

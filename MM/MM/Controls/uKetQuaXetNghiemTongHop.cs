@@ -38,6 +38,10 @@ namespace MM.Controls
         #region UI Command
         public void UpdateGUI()
         {
+            btnAddChiTiet.Enabled = AllowAdd;
+            btnEditChiTiet.Enabled = AllowEdit;
+            btnDeleteChiTiet.Enabled = AllowDelete;
+
             btnPrintCellDyn3200.Enabled = AllowPrint;
             btnExportExcelCellDyn3200.Enabled = AllowExport;
             btnExportExcelSinhHoa.Enabled = AllowExport;
@@ -255,7 +259,7 @@ namespace MM.Controls
                     if (_htXN.ContainsKey(patientGUID))
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList))
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false))
                         return;
                 }
             }
@@ -284,7 +288,7 @@ namespace MM.Controls
                     if (_htXN.ContainsKey(patientGUID))
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList))
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true))
                         return;
                     else
                     {
@@ -300,7 +304,7 @@ namespace MM.Controls
                     }
 
                     exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList))
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true))
                         return;
                     else
                     {
@@ -313,6 +317,17 @@ namespace MM.Controls
                             MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
                             return;
                         }
+                    }
+                }
+
+                DataTable dt = dgXetNghiem.DataSource as DataTable;
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        bool isChecked = Convert.ToBoolean(row["Checked"]);
+                        if (isChecked)
+                            row["DaIn"] = true;
                     }
                 }
             }
@@ -344,7 +359,7 @@ namespace MM.Controls
                     if (_htXN.ContainsKey(patientGUID))
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList))
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false))
                         return;
                 }
             }
@@ -373,7 +388,7 @@ namespace MM.Controls
                     if (_htXN.ContainsKey(patientGUID))
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList))
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true))
                         return;
                     else
                     {
@@ -391,6 +406,87 @@ namespace MM.Controls
                     }
                 }
             }
+        }
+
+        private void OnAddChiTiet()
+        {
+
+        }
+
+        private void OnEditChiTiet()
+        {
+
+        }
+
+        private void OnDeleteChiTiet()
+        {
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgXetNghiem.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    //deletedCTKQXNList.Add(row["ChiTietKQXNGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedRows.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những kết quả xét nghiệm bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    List<string> hitachi917Keys = new List<string>();
+                    List<string> celldyn3200Keys = new List<string>();
+                    List<string> manualKeys = new List<string>();
+                    foreach (DataRow row in deletedRows)
+                    {
+                        string loaiXN = row["LoaiXN"].ToString();
+                        if (loaiXN == "Hitachi917")
+                            hitachi917Keys.Add(row["ChiTietKQXNGUID"].ToString());
+                        else if (loaiXN == "CellDyn3200")
+                            celldyn3200Keys.Add(row["ChiTietKQXNGUID"].ToString());
+                        else
+                            manualKeys.Add(row["ChiTietKQXNGUID"].ToString());
+                    }
+
+                    if (hitachi917Keys.Count > 0)
+                    {
+                        Result result = XetNghiem_Hitachi917Bus.DeleteChiTietKetQuaXetNghiem(hitachi917Keys);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_Hitachi917Bus.DeleteChiTietKetQuaXetNghiem"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.DeleteChiTietKetQuaXetNghiem"));
+                        }
+                    }
+
+                    if (celldyn3200Keys.Count > 0)
+                    {
+                        Result result = XetNghiem_CellDyn3200Bus.DeleteChiTietKetQuaXetNghiem(celldyn3200Keys);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_CellDyn3200Bus.DeleteChiTietKetQuaXetNghiem"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_CellDyn3200Bus.DeleteChiTietKetQuaXetNghiem"));
+                        }
+                    }
+
+                    if (manualKeys.Count > 0)
+                    {
+                        Result result = KetQuaXetNghiemTayBus.DeleteChiTietXetNghiem(manualKeys);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTayBus.DeleteChiTietXetNghiem"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTayBus.DeleteChiTietXetNghiem"));
+                        }
+                    }
+
+                    foreach (DataRow row in deletedRows)
+                    {
+                        dt.Rows.Remove(row);
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả xét nghiệm cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -471,6 +567,23 @@ namespace MM.Controls
         {
             ExportSinhHoaToExcel();
         }
+
+        private void btnAddChiTiet_Click(object sender, EventArgs e)
+        {
+            OnAddChiTiet();
+        }
+
+        private void btnEditChiTiet_Click(object sender, EventArgs e)
+        {
+            OnEditChiTiet();
+        }
+
+        private void btnDeleteChiTiet_Click(object sender, EventArgs e)
+        {
+            OnDeleteChiTiet();
+        }
         #endregion
+
+        
     }
 }
