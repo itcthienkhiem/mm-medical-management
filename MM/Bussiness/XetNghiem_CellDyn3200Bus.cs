@@ -262,7 +262,7 @@ namespace MM.Bussiness
                         if (ctkqxn.ToPercent != null && ctkqxn.ToValue.HasValue)
                             row["ToPercent"] = ctkqxn.ToPercent.Value;
 
-                        row["DoiTuong"] = ctkqxn.DoiTuong;
+                        //row["DoiTuong"] = ctkqxn.DoiTuong;
                         row["DonVi"] = ctkqxn.DonVi;
                     }
                 }
