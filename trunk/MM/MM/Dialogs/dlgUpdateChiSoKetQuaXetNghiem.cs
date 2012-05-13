@@ -19,6 +19,7 @@ namespace MM.Dialogs
         private DataRow _drCTKQXN = null;
         private ChiTietKetQuaXetNghiem_Hitachi917 _chiTietKQXN = new ChiTietKetQuaXetNghiem_Hitachi917();
         private string _binhThuong = string.Empty;
+        private bool _isTongHop = false;
         #endregion
 
         #region Constructor
@@ -30,6 +31,12 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
+        public bool IsTongHop
+        {
+            get { return _isTongHop; }
+            set { _isTongHop = value; }
+        }
+
         public ChiTietKetQuaXetNghiem_Hitachi917 ChiTietKQXN
         {
             get { return _chiTietKQXN; }
@@ -44,40 +51,86 @@ namespace MM.Dialogs
         #region UI Command
         private void DisplayInfo()
         {
-            _chiTietKQXN.ChiTietKQXN_Hitachi917GUID = Guid.Parse(_drCTKQXN["ChiTietKQXN_Hitachi917GUID"].ToString());
-
-            if (_drCTKQXN["TenXetNghiem"] != null && _drCTKQXN["TenXetNghiem"] != DBNull.Value)
-                txTenXetNghiem.Text = _drCTKQXN["TenXetNghiem"].ToString();
-
-            numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
-            _chiTietKQXN.TestNum = Convert.ToInt32(_drCTKQXN["TestNum"]);
-
-            if ((_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value) &&
-                (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value))
+            if (!_isTongHop)
             {
-                chkFromValue.Enabled = false;
-                chkToValue.Enabled = false;
-            }
-            else if (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value)
-            {
-                chkFromValue.Checked = true;
-                numFromValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
-            }
-            else if (_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value)
-            {
-                chkToValue.Checked = true;
-                numToValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
+                _chiTietKQXN.ChiTietKQXN_Hitachi917GUID = Guid.Parse(_drCTKQXN["ChiTietKQXN_Hitachi917GUID"].ToString());
+
+                if (_drCTKQXN["Fullname"] != null && _drCTKQXN["Fullname"] != DBNull.Value)
+                    txTenXetNghiem.Text = _drCTKQXN["Fullname"].ToString();
+
+                numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
+                _chiTietKQXN.TestNum = Convert.ToInt32(_drCTKQXN["TestNum"]);
+
+                if ((_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value) &&
+                    (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value))
+                {
+                    chkFromValue.Enabled = false;
+                    chkToValue.Enabled = false;
+                }
+                else if (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value)
+                {
+                    chkFromValue.Checked = true;
+                    numFromValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
+                }
+                else if (_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value)
+                {
+                    chkToValue.Checked = true;
+                    numToValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
+                }
+                else
+                {
+                    chkFromValue.Checked = true;
+                    numFromValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
+                    chkToValue.Checked = true;
+                    numToValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
+                }
+
+                if (_drCTKQXN["DonVi"] != null && _drCTKQXN["DonVi"] != DBNull.Value)
+                    txtDonVi.Text = _drCTKQXN["DonVi"].ToString();
+
+                if (_drCTKQXN["DoiTuong"] != null && _drCTKQXN["DoiTuong"] != DBNull.Value)
+                    _chiTietKQXN.DoiTuong = Convert.ToByte(_drCTKQXN["DoiTuong"]);
             }
             else
             {
-                chkFromValue.Checked = true;
-                numFromValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
-                chkToValue.Checked = true;
-                numToValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
-            }
+                _chiTietKQXN.ChiTietKQXN_Hitachi917GUID = Guid.Parse(_drCTKQXN["ChiTietKQXNGUID"].ToString());
 
-            if (_drCTKQXN["DonVi"] != null && _drCTKQXN["DonVi"] != DBNull.Value)
-                txtDonVi.Text = _drCTKQXN["DonVi"].ToString();
+                if (_drCTKQXN["Fullname"] != null && _drCTKQXN["Fullname"] != DBNull.Value)
+                    txTenXetNghiem.Text = _drCTKQXN["Fullname"].ToString();
+
+                numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
+                _chiTietKQXN.TestNum = Convert.ToInt32(_drCTKQXN["TestNum"]);
+
+                if ((_drCTKQXN["FromValue2"] == null || _drCTKQXN["FromValue2"] == DBNull.Value) &&
+                    (_drCTKQXN["ToValue2"] == null || _drCTKQXN["ToValue2"] == DBNull.Value))
+                {
+                    chkFromValue.Enabled = false;
+                    chkToValue.Enabled = false;
+                }
+                else if (_drCTKQXN["ToValue2"] == null || _drCTKQXN["ToValue2"] == DBNull.Value)
+                {
+                    chkFromValue.Checked = true;
+                    numFromValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue2"]);
+                }
+                else if (_drCTKQXN["FromValue2"] == null || _drCTKQXN["FromValue2"] == DBNull.Value)
+                {
+                    chkToValue.Checked = true;
+                    numToValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue2"]);
+                }
+                else
+                {
+                    chkFromValue.Checked = true;
+                    numFromValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue2"]);
+                    chkToValue.Checked = true;
+                    numToValue.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue2"]);
+                }
+
+                if (_drCTKQXN["DonVi2"] != null && _drCTKQXN["DonVi2"] != DBNull.Value)
+                    txtDonVi.Text = _drCTKQXN["DonVi2"].ToString();
+
+                if (_drCTKQXN["DoiTuong2"] != null && _drCTKQXN["DoiTuong2"] != DBNull.Value)
+                    _chiTietKQXN.DoiTuong = Convert.ToByte(_drCTKQXN["DoiTuong2"]);
+            }
         }
 
         private bool CheckInfo()
@@ -126,8 +179,8 @@ namespace MM.Dialogs
 
                     _chiTietKQXN.DonVi = txtDonVi.Text;
 
-                    if (_drCTKQXN["DoiTuong"] != null && _drCTKQXN["DoiTuong"] != DBNull.Value)
-                        _chiTietKQXN.DoiTuong = Convert.ToByte(_drCTKQXN["DoiTuong"]);
+
+                    
 
                     Result result = XetNghiem_Hitachi917Bus.UpdateChiSoKetQuaXetNghiem(_chiTietKQXN);
 
