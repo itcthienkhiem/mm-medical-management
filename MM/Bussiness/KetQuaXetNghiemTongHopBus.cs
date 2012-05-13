@@ -286,6 +286,16 @@ namespace MM.Bussiness
                             ctkqxn.ToValue = ctxn.ToValue;
                             ctkqxn.DoiTuong = ctxn.DoiTuong;
                             ctkqxn.DonVi = ctxn.DonVi;
+
+                            if (ctxn.FromValue.HasValue)
+                                row["FromValue2"] = ctxn.FromValue.Value;
+
+                            if (ctxn.ToValue.HasValue)
+                                row["ToValue2"] = ctxn.ToValue.Value;
+
+                            row["DoiTuong2"] = ctxn.DoiTuong;
+                            row["DonVi2"] = ctxn.DonVi;
+
                             db.SubmitChanges();
                         }
 
@@ -537,6 +547,22 @@ namespace MM.Bussiness
                         ctkqxn.FromPercent = fromPercent;
                         ctkqxn.ToPercent = toPercent;
                         ctkqxn.DonVi = donVi;
+
+                        if (fromValue != null)
+                            row["FromValue2"] = fromValue.Value;
+
+                        if (toValue != null)
+                            row["ToValue2"] = toValue.Value;
+
+                        if (fromPercent != null)
+                            row["FromPercent2"] = fromPercent.Value;
+
+                        if (toPercent != null)
+                            row["ToPercent2"] = toPercent.Value;
+
+                        row["DonVi2"] = donVi;
+
+                        db.SubmitChanges();
                     }
 
                     dt.ImportRow(row);
@@ -755,13 +781,24 @@ namespace MM.Bussiness
 
                     if (isUpdate)
                     {
-                        ChiTietKetQuaXetNghiem_Manual ctkqxn = db.ChiTietKetQuaXetNghiem_Manuals.SingleOrDefault<ChiTietKetQuaXetNghiem_Manual>(c => c.ChiTietKetQuaXetNghiem_ManualGUID.ToString() == row["ChiTietKetQuaXetNghiem_ManualGUID"].ToString());
+                        ChiTietKetQuaXetNghiem_Manual ctkqxn = db.ChiTietKetQuaXetNghiem_Manuals.SingleOrDefault<ChiTietKetQuaXetNghiem_Manual>(c => c.ChiTietKetQuaXetNghiem_ManualGUID.ToString() == row["ChiTietKQXNGUID"].ToString());
                         if (ctkqxn != null)
                         {
                             ctkqxn.FromValue = ctxn.FromValue;
                             ctkqxn.ToValue = ctxn.ToValue;
                             ctkqxn.DoiTuong = ctxn.DoiTuong;
                             ctkqxn.DonVi = ctxn.DonVi;
+
+                            if (ctxn.FromValue.HasValue)
+                                row["FromValue2"] = ctxn.FromValue.Value;
+
+                            if (ctxn.ToValue.HasValue)
+                                row["ToValue2"] = ctxn.ToValue.Value;
+
+                            row["DoiTuong2"] = ctxn.DoiTuong;
+                            row["DonVi2"] = ctxn.DonVi;
+
+                            db.SubmitChanges();
                         }
                     }
 
@@ -958,6 +995,22 @@ namespace MM.Bussiness
                         ctkqxn.FromPercent = fromPercent;
                         ctkqxn.ToPercent = toPercent;
                         ctkqxn.DonVi = donVi;
+
+                        if (fromValue != null)
+                            row["FromValue2"] = fromValue.Value;
+
+                        if (toValue != null)
+                            row["ToValue2"] = toValue.Value;
+
+                        if (fromPercent != null)
+                            row["FromPercent2"] = fromPercent.Value;
+
+                        if (toPercent != null)
+                            row["ToPercent2"] = toPercent.Value;
+
+                        row["DonVi2"] = donVi;
+
+                        db.SubmitChanges();
                     }
                 }
 
@@ -1185,6 +1238,16 @@ namespace MM.Bussiness
                             ctkqxn.ToValue = ctxn.ToValue;
                             ctkqxn.DoiTuong = ctxn.DoiTuong;
                             ctkqxn.DonVi = ctxn.DonVi;
+
+                            if (ctxn.FromValue.HasValue)
+                                row["FromValue2"] = ctxn.FromValue.Value;
+
+                            if (ctxn.ToValue.HasValue)
+                                row["ToValue2"] = ctxn.ToValue.Value;
+
+                            row["DoiTuong2"] = ctxn.DoiTuong;
+                            row["DonVi2"] = ctxn.DonVi;
+
                             db.SubmitChanges();
                         }
 
@@ -1514,13 +1577,24 @@ namespace MM.Bussiness
 
                     if (isUpdate)
                     {
-                        ChiTietKetQuaXetNghiem_Manual ctkqxn = db.ChiTietKetQuaXetNghiem_Manuals.SingleOrDefault<ChiTietKetQuaXetNghiem_Manual>(c => c.ChiTietKetQuaXetNghiem_ManualGUID.ToString() == row["ChiTietKetQuaXetNghiem_ManualGUID"].ToString());
+                        ChiTietKetQuaXetNghiem_Manual ctkqxn = db.ChiTietKetQuaXetNghiem_Manuals.SingleOrDefault<ChiTietKetQuaXetNghiem_Manual>(c => c.ChiTietKetQuaXetNghiem_ManualGUID.ToString() == row["ChiTietKQXNGUID"].ToString());
                         if (ctkqxn != null)
                         {
                             ctkqxn.FromValue = ctxn.FromValue;
                             ctkqxn.ToValue = ctxn.ToValue;
                             ctkqxn.DoiTuong = ctxn.DoiTuong;
                             ctkqxn.DonVi = ctxn.DonVi;
+
+                            if (ctxn.FromValue.HasValue)
+                                row["FromValue2"] = ctxn.FromValue.Value;
+
+                            if (ctxn.ToValue.HasValue)
+                                row["ToValue2"] = ctxn.ToValue.Value;
+
+                            row["DoiTuong2"] = ctxn.DoiTuong;
+                            row["DonVi2"] = ctxn.DonVi;
+
+                            db.SubmitChanges();
                         }
                     }
 
