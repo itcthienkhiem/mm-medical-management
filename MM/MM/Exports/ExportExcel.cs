@@ -4573,6 +4573,7 @@ namespace MM.Exports
                 List<string> keys = new List<string>();
 
                 isData = false;
+                DateTime maxNgayXN = DateTime.MinValue;
                 foreach (DataRow row in dtKQXN.Rows)
                 {
                     string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
@@ -4580,6 +4581,9 @@ namespace MM.Exports
                         continue;
 
                     isData = true;
+                    DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
+                    if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
+
                     keys.Add(chiTietKQXNGUID);
                     string tenXetNghiem = row["Fullname"].ToString();
                     double testResult = Convert.ToDouble(row["TestResult"]);
@@ -4617,6 +4621,15 @@ namespace MM.Exports
 
                     rowIndex++;
                 }
+
+                if (isData)
+                {
+                    range = workSheet.Cells[string.Format("D{0}", rowIndex + 2)];
+                    range.Value = string.Format("Ngày xét nghiệm: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
+                    range.Font.Italic = true;
+                    range.HorizontalAlignment = HAlign.Center;
+                }
+                
 
                 if (isPrint)
                 {
@@ -4688,6 +4701,7 @@ namespace MM.Exports
                 DataRow[] rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.Biochemistry.ToString()), "Fullname");
                 List<string> hitachi917Keys = new List<string>();
                 List<string> manualKeys = new List<string>();
+                DateTime maxNgayXN = DateTime.MinValue;
                 isData = false;
                 if (rows != null && rows.Length > 0)
                 {
@@ -4696,6 +4710,9 @@ namespace MM.Exports
                         string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
                         if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
                             continue;
+
+                        DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
+                        if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
 
                         isData = true;
                         string loaiXN = row["LoaiXN"].ToString();
@@ -4766,6 +4783,10 @@ namespace MM.Exports
                         if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
                             continue;
 
+                        DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
+                        if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
+
+                        isData = true;
                         bool isNumeric = false;
                         double testResult = 0;
                         try
@@ -4799,6 +4820,14 @@ namespace MM.Exports
 
                         rowIndex++;
                     }
+                }
+
+                if (isData)
+                {
+                    range = workSheet.Cells[string.Format("C{0}", rowIndex + 2)];
+                    range.Value = string.Format("Ngày xét nghiệm: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
+                    range.Font.Italic = true;
+                    range.HorizontalAlignment = HAlign.Center;
                 }
 
                 if (isPrint)
