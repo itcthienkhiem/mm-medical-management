@@ -4543,6 +4543,7 @@ namespace MM.Exports
             try
             {
                 string patientGUID = patientRow["PatientGUID"].ToString();
+                string maBenhNhan = patientRow["FileNum"].ToString();
                 string ngaySinh = patientRow["DobStr"].ToString();
                 string gioiTinh = patientRow["GenderAsStr"].ToString();
                 string tenBenhNhan = patientRow["FullName"].ToString();
@@ -4559,12 +4560,13 @@ namespace MM.Exports
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemCellDyn3200Template.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["B2"].Value = string.Format("Họ tên: {0}", tenBenhNhan);
-                workSheet.Cells["B3"].Value = string.Format("Ngày sinh: {0}", ngaySinh);
-                workSheet.Cells["D3"].Value = string.Format("Giới tính: {0}", gioiTinh);
-                workSheet.Cells["B4"].Value = string.Format("Địa chỉ: {0}", diaChi);
+                workSheet.Cells["B2"].Value = string.Format("Mã bệnh nhân: {0}", maBenhNhan);
+                workSheet.Cells["B3"].Value = string.Format("Họ tên: {0}", tenBenhNhan);
+                workSheet.Cells["B4"].Value = string.Format("Ngày sinh: {0}", ngaySinh);
+                workSheet.Cells["D4"].Value = string.Format("Giới tính: {0}", gioiTinh);
+                workSheet.Cells["B5"].Value = string.Format("Địa chỉ: {0}", diaChi);
                 
-                int rowIndex = 7;
+                int rowIndex = 8;
                 IRange range;
 
                 DataTable dtKQXN = result.QueryResult as DataTable;
@@ -4675,6 +4677,7 @@ namespace MM.Exports
                 string patientGUID = patientRow["PatientGUID"].ToString();
                 string ngaySinh = patientRow["DobStr"].ToString();
                 string gioiTinh = patientRow["GenderAsStr"].ToString();
+                string maBenhNhan = patientRow["FileNum"].ToString();
                 string tenBenhNhan = patientRow["FullName"].ToString();
                 string diaChi = patientRow["Address"].ToString();
 
@@ -4689,12 +4692,13 @@ namespace MM.Exports
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemSinhHoaTemplate.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A2"].Value = string.Format("                      Họ tên: {0}", tenBenhNhan);
-                workSheet.Cells["A3"].Value = string.Format("                      Ngày sinh: {0}", ngaySinh);
-                workSheet.Cells["C3"].Value = string.Format("                      Giới tính: {0}", gioiTinh);
-                workSheet.Cells["A4"].Value = string.Format("                      Địa chỉ: {0}", diaChi);
+                workSheet.Cells["A2"].Value = string.Format("                      Mã bệnh nhân: {0}", maBenhNhan);
+                workSheet.Cells["A3"].Value = string.Format("                      Họ tên: {0}", tenBenhNhan);
+                workSheet.Cells["A4"].Value = string.Format("                      Ngày sinh: {0}", ngaySinh);
+                workSheet.Cells["C4"].Value = string.Format("                      Giới tính: {0}", gioiTinh);
+                workSheet.Cells["A5"].Value = string.Format("                      Địa chỉ: {0}", diaChi);
 
-                int rowIndex = 7;
+                int rowIndex = 8;
                 IRange range;
 
                 DataTable dtKQXN = result.QueryResult as DataTable;
