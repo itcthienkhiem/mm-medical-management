@@ -4594,12 +4594,12 @@ namespace MM.Exports
                     byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
                     string binhThuong = row["BinhThuong"].ToString();
 
-                    if (groupID != 0 && groupID != gID)
-                    {
-                        range = workSheet.Cells[string.Format("A{0}:D{0}", rowIndex + 1)];
-                        range.Merge();
-                        rowIndex++;
-                    }
+                    //if (groupID != 0 && groupID != gID)
+                    //{
+                    //    range = workSheet.Cells[string.Format("A{0}:D{0}", rowIndex + 1)];
+                    //    range.Merge();
+                    //    rowIndex++;
+                    //}
 
                     groupID = gID;
                     
