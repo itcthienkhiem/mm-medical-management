@@ -25,7 +25,8 @@ namespace MM.Controls
         private string _tenNguoiTao = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
-        private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo; 3: Công ty trùng
+        private int _thang = 0;
+        private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo; 3: Công ty trùng; 4: Tháng
         #endregion
 
         #region Constructor
@@ -34,6 +35,8 @@ namespace MM.Controls
             InitializeComponent();
             dtpkDenNgay.Value = DateTime.Now;
             dtpkTuNgay.Value = DateTime.Now.AddDays(-30);
+
+            cboThang.SelectedIndex = DateTime.Now.Month - 1;
         }
         #endregion
 
@@ -87,11 +90,13 @@ namespace MM.Controls
                 if (raTuNgayToiNgay.Checked) _type = 0;
                 else if (raTenBenhNhan.Checked) _type = 1;
                 else if (raTenNguoiTao.Checked) _type = 2;
-                else _type = 3;
+                else if (raCongTyTrung.Checked) _type = 3;
+                else _type = 4;
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 _tenBenhNhan = txtTenBenhNhan.Text;
                 _tenNguoiTao = txtTenNguoiTao.Text;
+                _thang = Convert.ToInt32(cboThang.Text);
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayNhatKyLienHeCongTyListProc));
                 base.ShowWaiting();
@@ -109,7 +114,7 @@ namespace MM.Controls
 
         private void OnDisplayNhatKyLienHeCongTyList()
         {   
-            Result result = NhatKyLienHeCongTyBus.GetNhatKyLienHeCongTyList(_type, _fromDate, _toDate, _tenBenhNhan, _tenNguoiTao);
+            Result result = NhatKyLienHeCongTyBus.GetNhatKyLienHeCongTyList(_type, _fromDate, _toDate, _tenBenhNhan, _tenNguoiTao, _thang);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -543,6 +548,11 @@ namespace MM.Controls
             txtTenNguoiTao.ReadOnly = !raTenNguoiTao.Checked;
         }
 
+        private void raThang_CheckedChanged(object sender, EventArgs e)
+        {
+            cboThang.Enabled = raThang.Checked;
+        }
+
         private void btnView_Click(object sender, EventArgs e)
         {
             DisplayAsThread();
@@ -634,6 +644,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
     }
 }

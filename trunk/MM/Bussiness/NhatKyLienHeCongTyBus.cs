@@ -35,7 +35,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetNhatKyLienHeCongTyList(int type, DateTime fromDate, DateTime toDate, string tenBenhNhan, string tenNguoiTao)
+        public static Result GetNhatKyLienHeCongTyList(int type, DateTime fromDate, DateTime toDate, string tenBenhNhan, string tenNguoiTao, int thang)
         {
             Result result = null;
 
@@ -51,9 +51,17 @@ namespace MM.Bussiness
                 else if (type == 2)
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND FullName LIKE N'{1}%' ORDER BY NgayGioLienHe DESC",
                         (byte)Status.Actived, tenNguoiTao);
-                else
+                else if (type == 3)
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe IN (SELECT CongTyLienHe FROM NhatKyLienHeCongTy WHERE Status = 0 GROUP BY CongTyLienHe HAVING Count(CongTyLienHe) >= 2) ORDER BY CongTyLienHe",
                         (byte)Status.Actived, tenNguoiTao);
+                else
+                {
+                    DateTime date = new DateTime(2000, thang, 1);
+                    string monthStr1 = date.ToString("MMM");
+                    string monthStr2 = date.ToString("MMMM");
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND (ThangKham LIKE N'%{1}%' OR ThangKham LIKE N'%{2}%' OR ThangKham LIKE N'%{3}%') ORDER BY NgayGioLienHe DESC",
+                        (byte)Status.Actived, thang, monthStr1, monthStr2);
+                }
 
                 return ExcuteQuery(query);
             }
