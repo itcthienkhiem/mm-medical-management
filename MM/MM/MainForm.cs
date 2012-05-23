@@ -879,6 +879,18 @@ namespace MM
                             _uBaoCaoKhachHangMuaThuoc.AllowLock = isLock;
                             _uBaoCaoKhachHangMuaThuoc.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.BaoCaoSoLuongKham)
+                        {
+                            baoCaoSoLuongKhamToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBaoCaoSoLuongKham.AllowAdd = isAdd;
+                            _uBaoCaoSoLuongKham.AllowEdit = isEdit;
+                            _uBaoCaoSoLuongKham.AllowDelete = isDelete;
+                            _uBaoCaoSoLuongKham.AllowPrint = isPrint;
+                            _uBaoCaoSoLuongKham.AllowExport = isExport;
+                            _uBaoCaoSoLuongKham.AllowImport = isImport;
+                            _uBaoCaoSoLuongKham.AllowLock = isLock;
+                            _uBaoCaoSoLuongKham.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1043,6 +1055,7 @@ namespace MM
                 baoCaoKhachHangMuaThuocToolStripMenuItem.Enabled = isLogin;
                 danhSachXetNghiemHitachi917ToolStripMenuItem.Enabled = isLogin;
                 danhSachXetNghiemCellDyn3200ToolStripMenuItem.Enabled = isLogin;
+                baoCaoSoLuongKhamToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1281,7 +1294,17 @@ namespace MM
                 case "DanhSachXetNghiemCellDyn3200":
                     OnDanhSachXetNghiemCellDyn3200();
                     break;
+
+                case "BaoCaoSoLuongKham":
+                    OnBaoCaoSoLuongKham();
+                    break;
             }
+        }
+
+        private void OnBaoCaoSoLuongKham()
+        {
+            this.Text = string.Format("{0} - Bao cao so luong kham", Application.ProductName);
+            ViewControl(_uBaoCaoSoLuongKham);
         }
 
         private void OnDanhSachXetNghiemHitachi917()

@@ -466,5 +466,30 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetDanhSachBenhNhanKhamBenh(DateTime fromDate, DateTime toDate, string maBenhNhan)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT P.PatientGUID, Max(S.ActivedDate) AS NgayKham, P.FileNum, P.FullName, P.DobStr, P.GenderAsStr, P.Address FROM PatientView P, ServiceHistory S WHERE P.PatientGUID = S.PatientGUID AND S.ActivedDate BETWEEN '{0}' AND '{1}' AND P.FileNum LIKE N'{2}%' AND Archived = 'False' AND S.Status = 0 GROUP BY P.PatientGUID, P.FullName, P.FileNum, P.GenderAsStr, P.Address, P.DobStr ORDER BY NgayKham",
+                    fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), maBenhNhan);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }

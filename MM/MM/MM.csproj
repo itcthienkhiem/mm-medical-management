@@ -86,6 +86,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uBaoCaoSoLuongKham.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBaoCaoSoLuongKham.Designer.cs">
+      <DependentUpon>uBaoCaoSoLuongKham.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uChiSoXetNghiem_Glucose_Hitachi917.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1146,6 +1152,9 @@
     <Compile Include="Controls\uHoaDonHopDongList.Designer.cs">
       <DependentUpon>uHoaDonHopDongList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uBaoCaoSoLuongKham.resx">
+      <DependentUpon>uBaoCaoSoLuongKham.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uChiSoXetNghiem_Glucose_Hitachi917.resx">
       <DependentUpon>uChiSoXetNghiem_Glucose_Hitachi917.cs</DependentUpon>
     </EmbeddedResource>
@@ -1802,6 +1811,7 @@
     <None Include="Resources\backup-restore-icon.png" />
     <None Include="Resources\lock-icon.png" />
     <None Include="Resources\lock-off-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-05-23.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-05-07.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-05-03.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-04-27.sql" />

@@ -4316,7 +4316,7 @@ namespace MM.Exports
                     
                     string thangKham = string.Empty;
                     if (row["ThangKham"] != null && row["ThangKham"] != DBNull.Value)
-                        thangKham = Convert.ToDateTime(row["ThangKham"]).ToString("MM/yyyy");
+                        thangKham = row["ThangKham"].ToString();
 
                     string noiDungLienHe = row["NoiDungLienHe"].ToString();
                     string nhanVienLienHe = row["FullName"].ToString();
@@ -4859,6 +4859,89 @@ namespace MM.Exports
                     }
                 }
                 
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportDanhSachBenhNhanDenKhamToExcel(string exportFileName, DataTable dtBenhNhan)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\DanhSachBenhNhanDenKhamTemplate.xls", Application.StartupPath);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                IRange range;
+                int stt = 1;
+                foreach (DataRow row in dtBenhNhan.Rows)
+                {
+                    DateTime ngayKham = Convert.ToDateTime(row["NgayKham"]);
+                    string maBenhNhan = row["FileNum"].ToString();
+                    string tenBenhNhan = row["FullName"].ToString();
+                    string ngaySinh = string.Empty;
+                    if (row["DobStr"] != null && row["DobStr"] != DBNull.Value)
+                        ngaySinh = row["DobStr"].ToString();
+
+                    string gioiTinh = string.Empty;
+                    if (row["GenderAsStr"] != null && row["GenderAsStr"] != DBNull.Value)
+                        gioiTinh = row["GenderAsStr"].ToString();
+
+                    string diaChi = string.Empty;
+                    if (row["Address"] != null && row["Address"] != DBNull.Value)
+                        diaChi = row["Address"].ToString();
+
+                    range = workSheet.Cells[rowIndex, 0];
+                    range.Value = stt;
+
+                    range = workSheet.Cells[rowIndex, 1];
+                    range.Value = ngayKham.ToString("dd/MM/yyyy");
+
+                    range = workSheet.Cells[rowIndex, 2];
+                    range.Value = maBenhNhan;
+
+                    range = workSheet.Cells[rowIndex, 3];
+                    range.Value = tenBenhNhan;
+
+                    range = workSheet.Cells[rowIndex, 4];
+                    range.Value = ngaySinh;
+
+                    range = workSheet.Cells[rowIndex, 5];
+                    range.Value = gioiTinh;
+
+                    range = workSheet.Cells[rowIndex, 6];
+                    range.Value = diaChi;
+
+                    rowIndex++;
+                    stt++;
+                }
+
+                range = workSheet.Cells[string.Format("A3:G{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);

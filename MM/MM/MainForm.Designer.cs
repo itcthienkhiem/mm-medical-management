@@ -151,6 +151,8 @@
             this.thongKeHoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator45 = new System.Windows.Forms.ToolStripSeparator();
             this.baoCaoKhachHangMuaThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator48 = new System.Windows.Forms.ToolStripSeparator();
+            this.baoCaoSoLuongKhamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chamSocKhachHangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yKienKhachHangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator39 = new System.Windows.Forms.ToolStripSeparator();
@@ -210,7 +212,10 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
+            this._uBaoCaoSoLuongKham = new MM.Controls.uBaoCaoSoLuongKham();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uDanhSachXetNghiem_CellDyn3200List = new MM.Controls.uDanhSachXetNghiem_CellDyn3200List();
+            this._uDanhSachXetNghiemHitachi917List = new MM.Controls.uDanhSachXetNghiemHitachi917List();
             this._uKetQuaXetNghiemTongHop = new MM.Controls.uKetQuaXetNghiemTongHop();
             this._uKetQuaXetNghiemTay = new MM.Controls.uKetQuaXetNghiemTay();
             this._uXetNghiemTay = new MM.Controls.uXetNghiemTay();
@@ -256,8 +261,6 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
-            this._uDanhSachXetNghiemHitachi917List = new MM.Controls.uDanhSachXetNghiemHitachi917List();
-            this._uDanhSachXetNghiem_CellDyn3200List = new MM.Controls.uDanhSachXetNghiem_CellDyn3200List();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -998,7 +1001,9 @@
             this.toolStripSeparator35,
             this.thongKeHoaDonToolStripMenuItem,
             this.toolStripSeparator45,
-            this.baoCaoKhachHangMuaThuocToolStripMenuItem});
+            this.baoCaoKhachHangMuaThuocToolStripMenuItem,
+            this.toolStripSeparator48,
+            this.baoCaoSoLuongKhamToolStripMenuItem});
             resources.ApplyResources(this.reportToolStripMenuItem, "reportToolStripMenuItem");
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             // 
@@ -1125,6 +1130,18 @@
             this.baoCaoKhachHangMuaThuocToolStripMenuItem.Name = "baoCaoKhachHangMuaThuocToolStripMenuItem";
             this.baoCaoKhachHangMuaThuocToolStripMenuItem.Tag = "BaoCaoKhachHangMuaThuoc";
             this.baoCaoKhachHangMuaThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator48
+            // 
+            this.toolStripSeparator48.Name = "toolStripSeparator48";
+            resources.ApplyResources(this.toolStripSeparator48, "toolStripSeparator48");
+            // 
+            // baoCaoSoLuongKhamToolStripMenuItem
+            // 
+            resources.ApplyResources(this.baoCaoSoLuongKhamToolStripMenuItem, "baoCaoSoLuongKhamToolStripMenuItem");
+            this.baoCaoSoLuongKhamToolStripMenuItem.Name = "baoCaoSoLuongKhamToolStripMenuItem";
+            this.baoCaoSoLuongKhamToolStripMenuItem.Tag = "BaoCaoSoLuongKham";
+            this.baoCaoSoLuongKhamToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // chamSocKhachHangToolStripMenuItem
             // 
@@ -1649,11 +1666,17 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
+            // _uBaoCaoSoLuongKham
+            // 
+            resources.ApplyResources(this._uBaoCaoSoLuongKham, "_uBaoCaoSoLuongKham");
+            this._uBaoCaoSoLuongKham.Name = "_uBaoCaoSoLuongKham";
+            // 
             // _mainPanel
             // 
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uBaoCaoSoLuongKham);
             this._mainPanel.Controls.Add(this._uDanhSachXetNghiem_CellDyn3200List);
             this._mainPanel.Controls.Add(this._uDanhSachXetNghiemHitachi917List);
             this._mainPanel.Controls.Add(this._uKetQuaXetNghiemTongHop);
@@ -1702,6 +1725,16 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uDanhSachXetNghiem_CellDyn3200List
+            // 
+            resources.ApplyResources(this._uDanhSachXetNghiem_CellDyn3200List, "_uDanhSachXetNghiem_CellDyn3200List");
+            this._uDanhSachXetNghiem_CellDyn3200List.Name = "_uDanhSachXetNghiem_CellDyn3200List";
+            // 
+            // _uDanhSachXetNghiemHitachi917List
+            // 
+            resources.ApplyResources(this._uDanhSachXetNghiemHitachi917List, "_uDanhSachXetNghiemHitachi917List");
+            this._uDanhSachXetNghiemHitachi917List.Name = "_uDanhSachXetNghiemHitachi917List";
             // 
             // _uKetQuaXetNghiemTongHop
             // 
@@ -1929,16 +1962,6 @@
             // 
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
-            // 
-            // _uDanhSachXetNghiemHitachi917List
-            // 
-            resources.ApplyResources(this._uDanhSachXetNghiemHitachi917List, "_uDanhSachXetNghiemHitachi917List");
-            this._uDanhSachXetNghiemHitachi917List.Name = "_uDanhSachXetNghiemHitachi917List";
-            // 
-            // _uDanhSachXetNghiem_CellDyn3200List
-            // 
-            resources.ApplyResources(this._uDanhSachXetNghiem_CellDyn3200List, "_uDanhSachXetNghiem_CellDyn3200List");
-            this._uDanhSachXetNghiem_CellDyn3200List.Name = "_uDanhSachXetNghiem_CellDyn3200List";
             // 
             // MainForm
             // 
@@ -2200,6 +2223,9 @@
         private System.Windows.Forms.ToolStripMenuItem danhSachXetNghiemCellDyn3200ToolStripMenuItem;
         private Controls.uDanhSachXetNghiem_CellDyn3200List _uDanhSachXetNghiem_CellDyn3200List;
         private Controls.uDanhSachXetNghiemHitachi917List _uDanhSachXetNghiemHitachi917List;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator48;
+        private System.Windows.Forms.ToolStripMenuItem baoCaoSoLuongKhamToolStripMenuItem;
+        private Controls.uBaoCaoSoLuongKham _uBaoCaoSoLuongKham;
 
     }
 }
