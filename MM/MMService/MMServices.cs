@@ -33,7 +33,7 @@ namespace MMService
         protected override void OnStart(string[] args)
         {
             LoadConfig();
-            OpenCOMPort();
+            //OpenCOMPort();
         }
 
         protected override void OnStop()
