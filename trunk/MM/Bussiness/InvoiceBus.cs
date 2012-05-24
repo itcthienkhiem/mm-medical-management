@@ -159,7 +159,8 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 Invoice invoice = (from i in db.Invoices
                                    where i.InvoiceCode == soHoaDon &&
-                                   i.Status == (byte)Status.Deactived
+                                   i.Status == (byte)Status.Deactived &&
+                                   i.InvoiceDate >= Global.NgayThayDoiSoHoaDonSauCung
                                    orderby i.InvoiceDate descending
                                    select i).FirstOrDefault();
 
@@ -197,7 +198,7 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon && 
-                    (q.DaXuat == true || q.XuatTruoc == true));
+                    (q.DaXuat == true || q.XuatTruoc == true) && q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
 
                 if (qlshd == null)
                     result.Error.Code = ErrorCode.NOT_EXIST;
@@ -368,7 +369,8 @@ namespace MM.Bussiness
                             }
 
                             int soHoaDon = Convert.ToInt32(invoice.InvoiceCode);
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                             if (qlshd != null) qlshd.DaXuat = false;
 
                             string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)invoice.HinhThucThanhToan);
@@ -470,7 +472,8 @@ namespace MM.Bussiness
                     }
 
                     int soHoaDon = Convert.ToInt32(invoice.InvoiceCode);
-                    QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                    QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                        q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                     if (qlshd != null) qlshd.DaXuat = true;
                     else
                     {
@@ -479,6 +482,7 @@ namespace MM.Bussiness
                         qlshd.SoHoaDon = soHoaDon;
                         qlshd.DaXuat = true;
                         qlshd.XuatTruoc = false;
+                        qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
                         db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                     }
 

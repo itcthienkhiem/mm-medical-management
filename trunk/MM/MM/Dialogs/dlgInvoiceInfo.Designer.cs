@@ -42,6 +42,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgInvoiceInfo));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnOK = new System.Windows.Forms.Button();
             this.btnClose2 = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnExportAndPrint = new System.Windows.Forms.Button();
@@ -100,7 +101,6 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnOK = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -125,6 +125,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(708, 38);
             this.panel1.TabIndex = 7;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(327, 6);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 18;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Visible = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnClose2
             // 
@@ -206,7 +219,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(127, 15);
             this.label3.TabIndex = 10;
-            this.label3.Text = "Mẫu số: 01GTKT3/001";
+            this.label3.Text = "Mẫu số: 01GTKT3/002";
             // 
             // label4
             // 
@@ -216,7 +229,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 15);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Ký hiệu: AA/11T";
+            this.label4.Text = "Ký hiệu: AA/12T";
             // 
             // lbInvoiceCode
             // 
@@ -772,19 +785,6 @@
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn6.Width = 120;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Image = global::MM.Properties.Resources.save;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(327, 6);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 18;
-            this.btnOK.Text = "   &Lưu";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Visible = false;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // dlgInvoiceInfo
             // 

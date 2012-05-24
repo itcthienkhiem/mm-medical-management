@@ -238,7 +238,8 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 HoaDonHopDong hdt = (from i in db.HoaDonHopDongs
                                    where i.SoHoaDon == soHoaDon &&
-                                   i.Status == (byte)Status.Deactived
+                                   i.Status == (byte)Status.Deactived &&
+                                   i.NgayXuatHoaDon >= Global.NgayThayDoiSoHoaDonSauCung
                                    orderby i.NgayXuatHoaDon descending
                                    select i).FirstOrDefault();
 
@@ -276,7 +277,7 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
-                   (q.DaXuat == true || q.XuatTruoc == true));
+                   (q.DaXuat == true || q.XuatTruoc == true) && q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
 
                 if (qlshd == null)
                     result.Error.Code = ErrorCode.NOT_EXIST;
@@ -340,7 +341,8 @@ namespace MM.Bussiness
                             }
 
                             int soHoaDon = Convert.ToInt32(hdt.SoHoaDon);
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                             if (qlshd != null) qlshd.DaXuat = false;
                             else
                             {
@@ -349,6 +351,7 @@ namespace MM.Bussiness
                                 qlshd.SoHoaDon = soHoaDon;
                                 qlshd.DaXuat = false;
                                 qlshd.XuatTruoc = false;
+                                qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
                                 db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                             }
 
@@ -451,7 +454,8 @@ namespace MM.Bussiness
                     }
 
                     int soHoaDon = Convert.ToInt32(hdt.SoHoaDon);
-                    QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                    QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                        q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                     if (qlshd != null) qlshd.DaXuat = true;
                     else
                     {
@@ -460,6 +464,7 @@ namespace MM.Bussiness
                         qlshd.SoHoaDon = soHoaDon;
                         qlshd.DaXuat = true;
                         qlshd.XuatTruoc = false;
+                        qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
                         db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                     }
 

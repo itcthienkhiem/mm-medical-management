@@ -198,6 +198,11 @@ spDichVuHopDong
 - Update table: ChiTietKetQuaXetNghiem_Hitachi917, ChiTietKetQuaXetNghiem_CellDyn3200, ChiTietKetQuaXetNghiem_Manual, XetNghiem_Manual, XetNghiem_Hitachi917, XetNghiem_CellDyn3200m
 ChiTietXetNghiem_Hitachi917
 - Update view: ChiTietKetQuaXetNghiem_Hitachi917View, ChiTietKetQuaXetNghiem_CellDyn3200View, ChiTietKetQuaXetNghiem_ManualView
+2012-05-23:
+- Insert data: Function(BaoCaoSoLuongKham)
+2012-05-24:
+- Create table: NgayBatDauLamMoiSoHoaDon
+- Update table: QuanLySoHoaDon
 
 1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo

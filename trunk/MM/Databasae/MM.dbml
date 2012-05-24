@@ -1678,14 +1678,6 @@
       <Association Name="HoaDonThuoc_ChiTietHoaDonThuoc" Member="HoaDonThuoc" ThisKey="HoaDonThuocGUID" OtherKey="HoaDonThuocGUID" Type="HoaDonThuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.QuanLySoHoaDon" Member="QuanLySoHoaDons">
-    <Type Name="QuanLySoHoaDon">
-      <Column Name="QuanLySoHoaDonGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SoHoaDon" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DaXuat" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="XuatTruoc" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.ChiTietHoaDonXuatTruoc" Member="ChiTietHoaDonXuatTruocs">
     <Type Name="ChiTietHoaDonXuatTruoc">
       <Column Name="ChiTietHoaDonXuatTruocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2881,6 +2873,21 @@
       <Column Name="DonVi" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NgayBatDauLamMoiSoHoaDon" Member="NgayBatDauLamMoiSoHoaDons">
+    <Type Name="NgayBatDauLamMoiSoHoaDon">
+      <Column Name="MaNgayBatDauGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NgayBatDau" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuanLySoHoaDon" Member="QuanLySoHoaDons">
+    <Type Name="QuanLySoHoaDon">
+      <Column Name="QuanLySoHoaDonGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoHoaDon" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DaXuat" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="XuatTruoc" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NgayBatDau" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

@@ -115,12 +115,19 @@ namespace MM
 
                 if (!File.Exists(Global.PrintLabelConfigPath))
                     Global.PrintLabelConfig.Serialize(Global.PrintLabelConfigPath);
+
+                Result result = QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung();
+                if (result.IsOK)
+                    Global.NgayThayDoiSoHoaDonSauCung = Convert.ToDateTime(result.QueryResult);
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung"));
+                }
             };
 
             if (InvokeRequired) BeginInvoke(method);
             else method.Invoke();
-
-            
         }
 
         private void RefreshData()
@@ -226,6 +233,11 @@ namespace MM
 
         private void RefreshFunction(bool isLogin)
         {
+            if (Global.UserGUID == Guid.Empty.ToString()) //Admin
+                thayDoiSoHoaDonToolStripMenuItem.Enabled = isLogin;
+            else
+                thayDoiSoHoaDonToolStripMenuItem.Enabled = false;
+
             if (Global.StaffType != StaffType.Admin)
             {
                 toolsToolStripMenuItem.Enabled = isLogin;
@@ -1300,6 +1312,19 @@ namespace MM
                 case "BaoCaoSoLuongKham":
                     OnBaoCaoSoLuongKham();
                     break;
+
+                case "ThayDoiSoHoaDon":
+                    OnThayDoiSoHoaDon();
+                    break;
+            }
+        }
+
+        private void OnThayDoiSoHoaDon()
+        {
+            dlgLamMoiSoHoaDon dlg = new dlgLamMoiSoHoaDon();
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                RefreshData();
             }
         }
 
