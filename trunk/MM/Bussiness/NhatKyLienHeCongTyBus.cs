@@ -59,8 +59,10 @@ namespace MM.Bussiness
                     DateTime date = new DateTime(2000, thang, 1);
                     string monthStr1 = date.ToString("MMM");
                     string monthStr2 = date.ToString("MMMM");
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND (ThangKham LIKE N'%{1}%' OR ThangKham LIKE N'%{2}%' OR ThangKham LIKE N'%{3}%') ORDER BY NgayGioLienHe DESC",
-                        (byte)Status.Actived, thang, monthStr1, monthStr2);
+
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND ((REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec')) LIKE N'%{1}%' OR (REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec')) LIKE N'%{2}%' OR (REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec')) LIKE N'%{3}%') ORDER BY NgayGioLienHe DESC",
+                          (byte)Status.Actived, thang, monthStr1, monthStr2);
+                    
                 }
 
                 return ExcuteQuery(query);
