@@ -463,9 +463,9 @@
             this.raThang.AutoSize = true;
             this.raThang.Location = new System.Drawing.Point(13, 81);
             this.raThang.Name = "raThang";
-            this.raThang.Size = new System.Drawing.Size(56, 17);
+            this.raThang.Size = new System.Drawing.Size(85, 17);
             this.raThang.TabIndex = 8;
-            this.raThang.Text = "Tháng";
+            this.raThang.Text = "Tháng khám";
             this.raThang.UseVisualStyleBackColor = true;
             this.raThang.CheckedChanged += new System.EventHandler(this.raThang_CheckedChanged);
             // 
