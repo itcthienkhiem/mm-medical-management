@@ -79,6 +79,7 @@ namespace MM
                         {
                             dlg.SetAppConfig();
                             SaveAppConfig();
+                            Utility.ResetMMSerivice();
                             RefreshData();
                             OnLogin();
                         }
@@ -101,6 +102,7 @@ namespace MM
                     {
                         dlg.SetAppConfig();
                         SaveAppConfig();
+                        Utility.ResetMMSerivice();
                         RefreshData();
                         OnLogin();
                     }
@@ -1352,7 +1354,7 @@ namespace MM
         {
             dlgPortConfig dlg = new dlgPortConfig();
             dlg.ShowDialog(this);
-
+            Utility.ResetMMSerivice();
             OpenCOMPort();
         }
 
@@ -1487,7 +1489,6 @@ namespace MM
             _uPhieuThuThuocList.DisplayAsThread();
         }
 
-
         private void OnThuocHetHan()
         {
             this.Text = string.Format("{0} - Bao cao thuoc het han", Application.ProductName);
@@ -1590,6 +1591,7 @@ namespace MM
             dlgTemplateForSale dlg = new dlgTemplateForSale();
             dlg.ShowDialog();
         }
+
         private void OnExcelTemplate()
         {
             dlgExcelTemplate dlg = new dlgExcelTemplate();
@@ -1601,6 +1603,7 @@ namespace MM
             ViewDicom dlg = new ViewDicom();
             dlg.ShowDialog();
         }
+
         private void OnCompanyList()
         {
             this.Text = string.Format("{0} - Danh muc cong ty", Application.ProductName);
@@ -1761,6 +1764,7 @@ namespace MM
                 {
                     dlg.SetAppConfig();
                     SaveAppConfig();
+                    Utility.ResetMMSerivice();
                     RefreshData();
                 }
             }
@@ -1791,6 +1795,7 @@ namespace MM
             ViewControl(_uPatientList);
             _uPatientList.DisplayAsThread();
         }
+
         private void OnDuplicatePatient()
         {
             this.Text = string.Format("{0} - Danh muc trung lap benh nhan", Application.ProductName);

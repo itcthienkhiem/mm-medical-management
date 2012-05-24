@@ -8,6 +8,8 @@ using System.Data;
 using System.Reflection;
 using System.Diagnostics;
 using Microsoft.SqlServer.Management.Smo;
+using System.ServiceProcess;
+using System.Threading;
 
 namespace MM.Common
 {
@@ -810,6 +812,23 @@ namespace MM.Common
             if (type == PaymentType.TienMat) return "TM";
             else if (type == PaymentType.ChuyenKhoan) return "CK";
             else return "TM/CK";
+        }
+
+        public static void ResetMMSerivice()
+        {
+            try
+            {
+                string serviceName = "MMServices";
+                int delaystop = 10;//second
+                ServiceController sc = new ServiceController(serviceName);
+                sc.Stop();//Stop target services
+                Thread.Sleep(delaystop * 1000);
+                sc.Start();
+            }
+            catch
+            {
+                
+            }
         }
     }
 }
