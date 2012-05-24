@@ -63,23 +63,23 @@ namespace MM.Common
                 workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
 
-                int sheetCount = workBook.Sheets.Count;
-                Excel.Worksheet workSheet = null;
-                int i = 0;
-                while (i <= sheetCount)
-                {
-                    try
-                    {
-                        workSheet = workBook.Sheets[i];
-                        break;
-                    }
-                    catch
-                    {
-                        i++;
-                    }
-                }
+                //int sheetCount = workBook.Sheets.Count;
+                //Excel.Worksheet workSheet = null;
+                //int i = 0;
+                //while (i <= sheetCount)
+                //{
+                //    try
+                //    {
+                //        workSheet = workBook.Sheets[i];
+                //        break;
+                //    }
+                //    catch
+                //    {
+                //        i++;
+                //    }
+                //}
                 
-                workSheet.PageSetup.TopMargin = 1;
+                //workSheet.PageSetup.TopMargin = 1;
                 excelApp.Visible = true;
                 workBook.PrintPreview(objOpt);
                 excelApp.Visible = false;
