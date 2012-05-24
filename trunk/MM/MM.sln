@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DShowNET", "DShowNET\DShowN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGrid2", "SourceGrid\SourceGrid2.csproj", "{15001AC5-2185-4B39-BF6C-9FCDC39E7376}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMService", "MMService\MMService.csproj", "{43B67225-B7CA-47C1-8812-8C8490541462}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -103,6 +105,16 @@ Global
 		{15001AC5-2185-4B39-BF6C-9FCDC39E7376}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{15001AC5-2185-4B39-BF6C-9FCDC39E7376}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{15001AC5-2185-4B39-BF6C-9FCDC39E7376}.Release|x86.ActiveCfg = Release|Any CPU
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Debug|x86.ActiveCfg = Debug|x86
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Debug|x86.Build.0 = Debug|x86
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Release|Any CPU.ActiveCfg = Release|x86
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Release|Mixed Platforms.Build.0 = Release|x86
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Release|x86.ActiveCfg = Release|x86
+		{43B67225-B7CA-47C1-8812-8C8490541462}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
