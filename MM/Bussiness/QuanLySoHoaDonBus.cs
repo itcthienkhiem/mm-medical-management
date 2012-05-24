@@ -21,7 +21,8 @@ namespace MM.Bussiness
             {
                 while (true)
                 {
-                    string query = "SELECT Min(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon WHERE XuatTruoc = 'False' AND DaXuat = 'False'";
+                    string query = string.Format("SELECT Min(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon WHERE XuatTruoc = 'False' AND DaXuat = 'False' AND NgayBatDau >= '{0}'",
+                        Global.NgayThayDoiSoHoaDonSauCung.ToString("yyyy-MM-dd HH:mm:ss"));
                     result = ExcuteQuery(query);
                     if (!result.IsOK) return result;
                     DataTable dt = result.QueryResult as DataTable;
@@ -29,7 +30,8 @@ namespace MM.Bussiness
                         result.QueryResult = dt.Rows[0][0];
                     else
                     {
-                        query = "SELECT MAX(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon";
+                        query = string.Format("SELECT MAX(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon WHERE NgayBatDau >= '{0}'", 
+                            Global.NgayThayDoiSoHoaDonSauCung.ToString("yyyy-MM-dd HH:mm:ss"));
                         result = ExcuteQuery(query);
                         if (!result.IsOK) return result;
 
@@ -45,10 +47,12 @@ namespace MM.Bussiness
                     bool isExist = false;
 
                     //Hoa don dich vu
-                    Invoice hdhd = db.Invoices.SingleOrDefault<Invoice>(h => Convert.ToInt32(h.InvoiceCode) == soHoaDon && h.Status == (byte)Status.Actived);
+                    Invoice hdhd = db.Invoices.SingleOrDefault<Invoice>(h => Convert.ToInt32(h.InvoiceCode) == soHoaDon && 
+                        h.Status == (byte)Status.Actived && h.InvoiceDate >= Global.NgayThayDoiSoHoaDonSauCung);
                     if (hdhd != null)
                     {
-                        QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                        QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon && 
+                            q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                         if (qlshd == null)
                         {
                             qlshd = new QuanLySoHoaDon();
@@ -56,6 +60,7 @@ namespace MM.Bussiness
                             qlshd.SoHoaDon = soHoaDon;
                             qlshd.DaXuat = true;
                             qlshd.XuatTruoc = false;
+                            qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
                             db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                         }
                         else
@@ -68,10 +73,12 @@ namespace MM.Bussiness
                     //Hoa don thuoc
                     if (!isExist)
                     {
-                        HoaDonThuoc hdt = db.HoaDonThuocs.SingleOrDefault<HoaDonThuoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && h.Status == (byte)Status.Actived);
+                        HoaDonThuoc hdt = db.HoaDonThuocs.SingleOrDefault<HoaDonThuoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && 
+                            h.Status == (byte)Status.Actived && h.NgayXuatHoaDon >= Global.NgayThayDoiSoHoaDonSauCung);
                         if (hdt != null)
                         {
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                             if (qlshd == null)
                             {
                                 qlshd = new QuanLySoHoaDon();
@@ -79,6 +86,7 @@ namespace MM.Bussiness
                                 qlshd.SoHoaDon = soHoaDon;
                                 qlshd.DaXuat = true;
                                 qlshd.XuatTruoc = false;
+                                qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
                                 db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                             }
                             else
@@ -93,10 +101,12 @@ namespace MM.Bussiness
                     //Hoa don xuat truoc
                     if (!isExist)
                     {
-                        HoaDonXuatTruoc hdxt = db.HoaDonXuatTruocs.SingleOrDefault<HoaDonXuatTruoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && h.Status == (byte)Status.Actived);
+                        HoaDonXuatTruoc hdxt = db.HoaDonXuatTruocs.SingleOrDefault<HoaDonXuatTruoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && 
+                            h.Status == (byte)Status.Actived && h.NgayXuatHoaDon >= Global.NgayThayDoiSoHoaDonSauCung);
                         if (hdxt != null)
                         {
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                             if (qlshd == null)
                             {
                                 qlshd = new QuanLySoHoaDon();
@@ -104,6 +114,7 @@ namespace MM.Bussiness
                                 qlshd.SoHoaDon = soHoaDon;
                                 qlshd.DaXuat = true;
                                 qlshd.XuatTruoc = true;
+                                qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
                                 db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                             }
                             else
@@ -113,15 +124,16 @@ namespace MM.Bussiness
                             isExist = true;
                         }
                     }
-                    
 
                     //Hoa don hop dong
                     if (!isExist)
                     {
-                        HoaDonHopDong hd = db.HoaDonHopDongs.SingleOrDefault<HoaDonHopDong>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && h.Status == (byte)Status.Actived);
+                        HoaDonHopDong hd = db.HoaDonHopDongs.SingleOrDefault<HoaDonHopDong>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && 
+                            h.Status == (byte)Status.Actived && h.NgayXuatHoaDon >= Global.NgayThayDoiSoHoaDonSauCung);
                         if (hd != null)
                         {
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon);
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                             if (qlshd == null)
                             {
                                 qlshd = new QuanLySoHoaDon();
@@ -129,6 +141,7 @@ namespace MM.Bussiness
                                 qlshd.SoHoaDon = soHoaDon;
                                 qlshd.DaXuat = true;
                                 qlshd.XuatTruoc = false;
+                                qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
                                 db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                             }
                             else
@@ -172,7 +185,8 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TOP {0} CAST(0 AS Bit) AS Checked, * FROM QuanLySoHoaDon WHERE XuatTruoc = 'False' AND DaXuat = 'False' ORDER BY SoHoaDon", count);
+                string query = string.Format("SELECT TOP {0} CAST(0 AS Bit) AS Checked, * FROM QuanLySoHoaDon WHERE XuatTruoc = 'False' AND DaXuat = 'False' AND NgayBatDau >= '{1}' ORDER BY SoHoaDon", 
+                    count, Global.NgayThayDoiSoHoaDonSauCung.ToString("yyyy-MM-dd HH:mm:ss"));
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -204,7 +218,8 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT MAX(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon";
+                string query = string.Format("SELECT MAX(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDon WHERE NgayBatDau >= '{0}'",
+                    Global.NgayThayDoiSoHoaDonSauCung.ToString("yyyy-MM-dd HH:mm:ss"));
                 result = ExcuteQuery(query);
                 if (!result.IsOK) return result;
 
@@ -244,7 +259,8 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT MAX(InvoiceDate) AS MinDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) < {0} SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} SELECT MIN(InvoiceDate) AS MaxDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) > {0} SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0}", soHoaDon);
+                string query = string.Format("SELECT MAX(InvoiceDate) AS MinDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) < {0} AND InvoiceDate >= '{1}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' SELECT MIN(InvoiceDate) AS MaxDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) > {0} AND InvoiceDate >= '{1}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}'", 
+                    soHoaDon, Global.NgayThayDoiSoHoaDonSauCung.ToString("yyyy-MM-dd HH:mm:ss"));
                 result = ExcuteQueryDataSet(query);
                 if (!result.IsOK) return result;
 
@@ -284,6 +300,81 @@ namespace MM.Bussiness
                 result.Error.Description = e.ToString();
             }
             
+            return result;
+        }
+
+        public static Result SetNgayThayDoiSoHoaSon(DateTime ngayThayDoi)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                NgayBatDauLamMoiSoHoaDon nbd = new NgayBatDauLamMoiSoHoaDon();
+                nbd.MaNgayBatDauGUID = Guid.NewGuid();
+                nbd.NgayBatDau = ngayThayDoi;
+                db.NgayBatDauLamMoiSoHoaDons.InsertOnSubmit(nbd);
+                db.SubmitChanges();
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetNgayThayDoiSoHoaSonSauCung()
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                var ngayThayDoi = (from n in db.NgayBatDauLamMoiSoHoaDons
+                                       orderby n.NgayBatDau descending
+                                       select n).FirstOrDefault();
+
+                if (ngayThayDoi != null)
+                    result.QueryResult = ngayThayDoi.NgayBatDau;
+                else
+                    result.QueryResult = Global.MinDateTime;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
             return result;
         }
     }
