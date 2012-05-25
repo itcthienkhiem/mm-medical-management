@@ -1777,6 +1777,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Components\Dart.PowerTCP.Ftp.DLL" />
+    <Content Include="Components\Dart.PowerTCP.Ftp.Forms.dll" />
+    <Content Include="Components\DartIcons.dll" />
     <Content Include="Components\DevComponents.DotNetBar.Design.dll" />
     <Content Include="Components\DevComponents.DotNetBar2.dll" />
     <Content Include="Components\DevComponents.Instrumentation.Design.dll" />
