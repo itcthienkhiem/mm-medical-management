@@ -40,7 +40,6 @@ namespace MMService
         protected override void OnStart(string[] args)
         {
             Utility.CreateFTPUpdateFolder();
-            LoadConfig();
             OpenCOMPort();
 
             //Start FTP Upload Thread
@@ -62,6 +61,7 @@ namespace MMService
         {
             while (_isStartFTPUpload)
             {
+                LoadConfig();
                 string[] fileNames = Directory.GetFiles(Global.FTPUploadPath);
                 foreach (var fileName in fileNames)
                 {
@@ -87,6 +87,7 @@ namespace MMService
         {
             while (_isStartExport)
             {
+                LoadConfig();
                 DateTime fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
                 DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23,59, 59);
                 ExportXetNghiem.ExportKetQuaXetNghiem(fromDate, toDate);
