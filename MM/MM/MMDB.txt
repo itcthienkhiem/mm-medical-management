@@ -203,6 +203,8 @@ ChiTietXetNghiem_Hitachi917
 2012-05-24:
 - Create table: NgayBatDauLamMoiSoHoaDon
 - Update table: QuanLySoHoaDon
+2012-05-25
+- Create table: MaxNgayXetNghiem
 
 1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo

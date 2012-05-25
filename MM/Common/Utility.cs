@@ -830,6 +830,19 @@ namespace MM.Common
                 
             }
         }
+
+        public static void CreateFTPUpdateFolder()
+        {
+            try
+            {
+                if (!Directory.Exists(Global.FTPUploadPath))
+                    Directory.CreateDirectory(Global.FTPUploadPath);
+            }
+            catch
+            {
+
+            }
+        }
     }
 }
 

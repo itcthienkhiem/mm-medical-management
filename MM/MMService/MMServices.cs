@@ -9,9 +9,11 @@ using System.ServiceProcess;
 using System.Text;
 using System.IO;
 using System.IO.Ports;
+using System.Threading;
 using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
+using SpreadsheetGear;
 
 namespace MMService
 {
@@ -20,6 +22,8 @@ namespace MMService
         #region Members
         private List<SerialPort> _ports = new List<SerialPort>();
         private Hashtable _htLastResult = new Hashtable();
+        private bool _isStartFTPUpload = false;
+        private bool _isStartExport = false;
         #endregion
 
         #region Constructor
@@ -35,16 +39,68 @@ namespace MMService
         #region Methods
         protected override void OnStart(string[] args)
         {
-            //LoadConfig();
-            //OpenCOMPort();
+            Utility.CreateFTPUpdateFolder();
+            LoadConfig();
+            OpenCOMPort();
 
-            //Utility.WriteToTraceLog("MMServices Services start successfully...");
+            //Start FTP Upload Thread
+            _isStartFTPUpload = true;
+            Thread ftpThread = new Thread(new ThreadStart(StartFTPUploadThread));
+            ftpThread.IsBackground = true;
+            ftpThread.Start();
+
+            //Start FTP Export Thread
+            _isStartExport = true;
+            Thread exportThread = new Thread(new ThreadStart(StartExportThread));
+            exportThread.IsBackground = true;
+            exportThread.Start();
+
+            Utility.WriteToTraceLog("MMServices Services start successfully...");
+        }
+
+        private void StartFTPUploadThread()
+        {
+            while (_isStartFTPUpload)
+            {
+                string[] fileNames = Directory.GetFiles(Global.FTPUploadPath);
+                foreach (var fileName in fileNames)
+                {
+                    if (!_isStartFTPUpload) return;
+
+                    string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(fileName));
+                    Result result = FTP.UploadFile(Global.FTPConnectionInfo, fileName, remoteFileName);
+                    if (!result.IsOK)
+                        Utility.WriteToTraceLog(string.Format("{0}: {1}", result.Error.Code, result.Error.Description));
+                    else
+                        File.Delete(fileName);
+
+                    if (!_isStartFTPUpload) return;
+                }
+
+                if (!_isStartFTPUpload) return;
+                Thread.Sleep(1000 * 10);
+                if (!_isStartFTPUpload) return;
+            }
+        }
+
+        private void StartExportThread()
+        {
+            while (_isStartExport)
+            {
+                DateTime fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23,59, 59);
+                ExportXetNghiem.ExportKetQuaXetNghiem(fromDate, toDate);
+
+                if (!_isStartExport) return;
+                Thread.Sleep(1000 * 15);
+                if (!_isStartExport) return;
+            }
         }
 
         protected override void OnStop()
         {
-            //CloseAllCOMPort();
-            //Utility.WriteToTraceLog("MMServices Services stopped...");
+            CloseAllCOMPort();
+            Utility.WriteToTraceLog("MMServices Services stopped...");
         }
 
         private SerialPort GetPort(string portName)
@@ -157,6 +213,20 @@ namespace MMService
                 string password = Convert.ToString(obj);
                 RijndaelCrypto crypto = new RijndaelCrypto();
                 Global.ConnectionInfo.Password = crypto.Decrypt(password);
+            }
+
+            obj = Configuration.GetValues(Const.FTPServerNameKey);
+            if (obj != null) Global.FTPConnectionInfo.ServerName = Convert.ToString(obj);
+
+            obj = Configuration.GetValues(Const.FTPUserNameKey);
+            if (obj != null) Global.FTPConnectionInfo.Username = Convert.ToString(obj);
+
+            obj = Configuration.GetValues(Const.FTPPasswordKey);
+            if (obj != null)
+            {
+                string password = Convert.ToString(obj);
+                RijndaelCrypto crypto = new RijndaelCrypto();
+                Global.FTPConnectionInfo.Password = crypto.Decrypt(password);
             }
         }
 
