@@ -40,10 +40,33 @@ namespace MM
             OpenCOMPort();
             //ParseTestResult_Hitachi917(string.Empty, "COM1");
             //ParseTestResult_CellDyn3200(string.Empty, "COM1");
+            //TestFTP();
         }
         #endregion
 
         #region UI Command
+        //private void TestFTP()
+        //{
+        //    Ftp ftp = new Ftp();
+        //    ftp.Server = "healthcare.com.vn";
+        //    ftp.Username = "healthcare";
+        //    ftp.Password = "dsfsd@$@#Rsdf";
+
+        //    try
+        //    {
+        //        string dir = ftp.GetDirectory();
+        //        string localFileName = string.Format("{0}\\HDGTGT2.xls", Application.StartupPath);
+        //        string reportFileName = string.Format("{0}MMTest/HDGTGT2_2012_05_25.xls", dir);
+
+        //        ftp.Put(localFileName, reportFileName);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+        //    }
+            
+        //}
+
         private void OnInitConfig()
         {
             MethodInvoker method = delegate
@@ -70,6 +93,20 @@ namespace MM
                         string password = Convert.ToString(obj);
                         RijndaelCrypto crypto = new RijndaelCrypto();
                         Global.ConnectionInfo.Password = crypto.Decrypt(password);
+                    }
+
+                    obj = Configuration.GetValues(Const.FTPServerNameKey);
+                    if (obj != null) Global.FTPConnectionInfo.ServerName = Convert.ToString(obj);
+
+                    obj = Configuration.GetValues(Const.FTPUserNameKey);
+                    if (obj != null) Global.FTPConnectionInfo.Username = Convert.ToString(obj);
+
+                    obj = Configuration.GetValues(Const.FTPPasswordKey);
+                    if (obj != null)
+                    {
+                        string password = Convert.ToString(obj);
+                        RijndaelCrypto crypto = new RijndaelCrypto();
+                        Global.FTPConnectionInfo.Password = crypto.Decrypt(password);
                     }
 
                     if (!Global.ConnectionInfo.TestConnection())
@@ -115,6 +152,9 @@ namespace MM
 
                 if (!File.Exists(Global.PrintLabelConfigPath))
                     Global.PrintLabelConfig.Serialize(Global.PrintLabelConfigPath);
+
+                if (File.Exists(Global.PortConfigPath))
+                    Global.PortConfigCollection.Deserialize(Global.PortConfigPath);
 
                 Result result = QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung();
                 if (result.IsOK)
@@ -227,16 +267,27 @@ namespace MM
             Configuration.SetValues(Const.UserNameKey, Global.ConnectionInfo.UserName);
             RijndaelCrypto crypto = new RijndaelCrypto();
             string password = crypto.Encrypt(Global.ConnectionInfo.Password);
-            Configuration.SetValues(Const.PasswordKey, password);
+
+            Configuration.SetValues(Const.FTPServerNameKey, Global.FTPConnectionInfo.ServerName);
+            Configuration.SetValues(Const.FTPUserNameKey, Global.FTPConnectionInfo.Username);
+            password = crypto.Encrypt(Global.FTPConnectionInfo.Password);
+            Configuration.SetValues(Const.FTPPasswordKey, password);
+
             Configuration.SaveData(Global.AppConfig);
         }
 
         private void RefreshFunction(bool isLogin)
         {
             if (Global.UserGUID == Guid.Empty.ToString()) //Admin
+            {
                 thayDoiSoHoaDonToolStripMenuItem.Enabled = isLogin;
+                cauHinhFTPToolStripMenuItem.Enabled = isLogin;
+            }
             else
+            {
                 thayDoiSoHoaDonToolStripMenuItem.Enabled = false;
+                cauHinhFTPToolStripMenuItem.Enabled = false;
+            }
 
             if (Global.StaffType != StaffType.Admin)
             {
@@ -1316,6 +1367,23 @@ namespace MM
                 case "ThayDoiSoHoaDon":
                     OnThayDoiSoHoaDon();
                     break;
+
+                case "CauHinhFTP":
+                    OnCauHinhFTP();
+                    break;
+            }
+        }
+
+        private void OnCauHinhFTP()
+        {
+            dlgFTPConfig dlg = new dlgFTPConfig();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                if (dlg.IsChangeConnectionInfo)
+                {
+                    dlg.SetAppConfig();
+                    SaveAppConfig();
+                }
             }
         }
 
@@ -1380,7 +1448,7 @@ namespace MM
             dlgPortConfig dlg = new dlgPortConfig();
             dlg.ShowDialog(this);
             Utility.ResetMMSerivice();
-            OpenCOMPort();
+            //OpenCOMPort();
         }
 
         private void OnXetNghiem_CellDyn3200()
@@ -2141,7 +2209,7 @@ namespace MM
                         }
                         catch (Exception ex)
                         {
-                            Utility.WriteToTraceLog(ex.Message);                          
+                            Utility.WriteToTraceLog(ex.Message);
                         }
                     }
                 }
@@ -2150,7 +2218,7 @@ namespace MM
                 {
                     _ports.Remove(p);
                 }
-                
+
                 foreach (PortConfig p in Global.PortConfigCollection.PortConfigList)
                 {
                     try
@@ -2248,7 +2316,7 @@ namespace MM
 
                 strArr[0] = string.Format("{0}{1}", lastResult, strArr[0]);
                 _htLastResult[portName] = strArr[strArr.Length - 1];
-                
+
                 for (int i = 0; i < strArr.Length - 1; i++)
                 {
                     result = strArr[i];
