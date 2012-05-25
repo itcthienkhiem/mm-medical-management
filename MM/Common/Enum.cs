@@ -52,7 +52,9 @@ namespace MM.Common
         NO_UPDATED,
         CANCEL_UPDATED,
         EXIST,
-        NOT_EXIST
+        NOT_EXIST,
+        CONNECT_FTP_FAIL,
+        UPLOAD_FTP_FAIL
     };
 
     public enum Gender : int

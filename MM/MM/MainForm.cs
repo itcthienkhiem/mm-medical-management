@@ -40,32 +40,22 @@ namespace MM
             OpenCOMPort();
             //ParseTestResult_Hitachi917(string.Empty, "COM1");
             //ParseTestResult_CellDyn3200(string.Empty, "COM1");
-            //TestFTP();
+            TestFTP();
         }
         #endregion
 
         #region UI Command
-        //private void TestFTP()
-        //{
-        //    Ftp ftp = new Ftp();
-        //    ftp.Server = "healthcare.com.vn";
-        //    ftp.Username = "healthcare";
-        //    ftp.Password = "dsfsd@$@#Rsdf";
+        private void TestFTP()
+        {
+            string localFileName = string.Format("{0}\\HDGTGT2.xls", Application.StartupPath);
+            string remoteFileName = "MMTest/HDGTGT2_2012_05_25.xls";
 
-        //    try
-        //    {
-        //        string dir = ftp.GetDirectory();
-        //        string localFileName = string.Format("{0}\\HDGTGT2.xls", Application.StartupPath);
-        //        string reportFileName = string.Format("{0}MMTest/HDGTGT2_2012_05_25.xls", dir);
-
-        //        ftp.Put(localFileName, reportFileName);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
-        //    }
-            
-        //}
+            Result result = FTP.UploadFile(Global.FTPConnectionInfo, localFileName, remoteFileName);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.Error.Description, IconType.Information);
+            }
+        }
 
         private void OnInitConfig()
         {

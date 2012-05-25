@@ -41,9 +41,9 @@ namespace MM.Common
         #endregion
 
         #region Public Methods
-        public bool TestConnection()
+        public Result TestConnection()
         {
-            return false;
+            return FTP.Connect(_serverName, _username, _password);
         }
         #endregion
     }
