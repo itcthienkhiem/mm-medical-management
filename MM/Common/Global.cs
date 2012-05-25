@@ -9,7 +9,7 @@ namespace MM.Common
     {
         public static string AppConfig = string.Format("{0}\\App.cfg", AppDomain.CurrentDomain.BaseDirectory);
         public static string FTPUploadPath = string.Format("{0}\\FTPUpload", AppDomain.CurrentDomain.BaseDirectory);
-        public static string FTPFolder = "MMTest";
+        public static string FTPFolder = "domains/healthcare.com.vn/public_html/report/images/";
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static FTPConnectionInfo FTPConnectionInfo = new FTPConnectionInfo();
         public static string UserGUID = string.Empty;
