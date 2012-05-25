@@ -469,7 +469,8 @@ namespace MM.Bussiness
 
         public static Result GetDanhSachBenhNhanKhamBenh(DateTime fromDate, DateTime toDate, string maBenhNhan)
         {
-            Result result = null;
+            Result result = new Result();
+            DataTable dt = null;
 
             try
             {
@@ -477,9 +478,19 @@ namespace MM.Bussiness
                 string query = string.Format("SELECT P.PatientGUID, Max(S.ActivedDate) AS NgayKham, P.FileNum, P.FullName, P.DobStr, P.GenderAsStr, P.Address FROM PatientView P, ServiceHistory S WHERE P.PatientGUID = S.PatientGUID AND S.ActivedDate BETWEEN '{0}' AND '{1}' AND P.FileNum LIKE N'{2}%' AND Archived = 'False' AND S.Status = 0 GROUP BY P.PatientGUID, P.FullName, P.FileNum, P.GenderAsStr, P.Address, P.DobStr ORDER BY NgayKham",
                     fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), maBenhNhan);
 
+                /*result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+                dt = result.QueryResult as DataTable;
+
                 //Cân đo
                 query = string.Format("SELECT P.PatientGUID, Max(S.NgayCanDo) AS NgayKham, P.FileNum, P.FullName, P.DobStr, P.GenderAsStr, P.Address FROM PatientView P, CanDo S WHERE P.PatientGUID = S.PatientGUID AND S.NgayCanDo BETWEEN '{0}' AND '{1}' AND P.FileNum LIKE N'{2}%' AND Archived = 'False' AND S.Status = 0 GROUP BY P.PatientGUID, P.FullName, P.FileNum, P.GenderAsStr, P.Address, P.DobStr ORDER BY NgayKham",
                     fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), maBenhNhan);
+
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dtCanDo = result.QueryResult as DataTable;
+
 
                 //Kết luận
                 query = string.Format("SELECT P.PatientGUID, Max(S.NgayKetLuan) AS NgayKham, P.FileNum, P.FullName, P.DobStr, P.GenderAsStr, P.Address FROM PatientView P, KetLuan S WHERE P.PatientGUID = S.PatientGUID AND S.NgayKetLuan BETWEEN '{0}' AND '{1}' AND P.FileNum LIKE N'{2}%' AND Archived = 'False' AND S.Status = 0 GROUP BY P.PatientGUID, P.FullName, P.FileNum, P.GenderAsStr, P.Address, P.DobStr ORDER BY NgayKham",
@@ -514,8 +525,8 @@ namespace MM.Bussiness
                     fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), maBenhNhan);
 
                 //Toa thuốc
-                query = string.Format("SELECT P.PatientGUID, Max(S.NgayKeToa) AS NgayKham, P.FileNum, P.FullName, P.DobStr, P.GenderAsStr, P.Address FROM PatientView P, ToaThuoc S WHERE P.PatientGUID = S.PatientGUID AND S.NgayKeToa BETWEEN '{0}' AND '{1}' AND P.FileNum LIKE N'{2}%' AND Archived = 'False' AND S.Status = 0 GROUP BY P.PatientGUID, P.FullName, P.FileNum, P.GenderAsStr, P.Address, P.DobStr ORDER BY NgayKham",
-                    fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), maBenhNhan);
+                query = string.Format("SELECT P.PatientGUID, Max(S.NgayKeToa) AS NgayKham, P.FileNum, P.FullName, P.DobStr, P.GenderAsStr, P.Address FROM PatientView P, ToaThuoc S WHERE P.PatientGUID = S.BenhNhan AND S.NgayKeToa BETWEEN '{0}' AND '{1}' AND P.FileNum LIKE N'{2}%' AND Archived = 'False' AND S.Status = 0 GROUP BY P.PatientGUID, P.FullName, P.FileNum, P.GenderAsStr, P.Address, P.DobStr ORDER BY NgayKham",
+                    fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), maBenhNhan);*/
 
                 return ExcuteQuery(query);
             }
