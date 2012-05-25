@@ -8,6 +8,8 @@ namespace MM.Common
     public class Global
     {
         public static string AppConfig = string.Format("{0}\\App.cfg", AppDomain.CurrentDomain.BaseDirectory);
+        public static string FTPUploadPath = string.Format("{0}\\FTPUpload", AppDomain.CurrentDomain.BaseDirectory);
+        public static string FTPFolder = "MMTest";
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static FTPConnectionInfo FTPConnectionInfo = new FTPConnectionInfo();
         public static string UserGUID = string.Empty;

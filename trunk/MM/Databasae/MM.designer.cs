@@ -240,6 +240,9 @@ namespace MM.Databasae
     partial void InsertQuanLySoHoaDon(QuanLySoHoaDon instance);
     partial void UpdateQuanLySoHoaDon(QuanLySoHoaDon instance);
     partial void DeleteQuanLySoHoaDon(QuanLySoHoaDon instance);
+    partial void InsertMaxNgayXetNghiem(MaxNgayXetNghiem instance);
+    partial void UpdateMaxNgayXetNghiem(MaxNgayXetNghiem instance);
+    partial void DeleteMaxNgayXetNghiem(MaxNgayXetNghiem instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -1213,6 +1216,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<QuanLySoHoaDon>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MaxNgayXetNghiem> MaxNgayXetNghiems
+		{
+			get
+			{
+				return this.GetTable<MaxNgayXetNghiem>();
 			}
 		}
 		
@@ -56506,6 +56517,140 @@ namespace MM.Databasae
 					this._NgayBatDau = value;
 					this.SendPropertyChanged("NgayBatDau");
 					this.OnNgayBatDauChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MaxNgayXetNghiem")]
+	public partial class MaxNgayXetNghiem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _MaxNgayXetNghiemGUID;
+		
+		private System.Guid _PatientGUID;
+		
+		private System.DateTime _MaxNgayXetNghiem1;
+		
+		private string _LoaiXN;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaxNgayXetNghiemGUIDChanging(System.Guid value);
+    partial void OnMaxNgayXetNghiemGUIDChanged();
+    partial void OnPatientGUIDChanging(System.Guid value);
+    partial void OnPatientGUIDChanged();
+    partial void OnMaxNgayXetNghiem1Changing(System.DateTime value);
+    partial void OnMaxNgayXetNghiem1Changed();
+    partial void OnLoaiXNChanging(string value);
+    partial void OnLoaiXNChanged();
+    #endregion
+		
+		public MaxNgayXetNghiem()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxNgayXetNghiemGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid MaxNgayXetNghiemGUID
+		{
+			get
+			{
+				return this._MaxNgayXetNghiemGUID;
+			}
+			set
+			{
+				if ((this._MaxNgayXetNghiemGUID != value))
+				{
+					this.OnMaxNgayXetNghiemGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._MaxNgayXetNghiemGUID = value;
+					this.SendPropertyChanged("MaxNgayXetNghiemGUID");
+					this.OnMaxNgayXetNghiemGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PatientGUID
+		{
+			get
+			{
+				return this._PatientGUID;
+			}
+			set
+			{
+				if ((this._PatientGUID != value))
+				{
+					this.OnPatientGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientGUID = value;
+					this.SendPropertyChanged("PatientGUID");
+					this.OnPatientGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="MaxNgayXetNghiem", Storage="_MaxNgayXetNghiem1", DbType="DateTime NOT NULL")]
+		public System.DateTime MaxNgayXetNghiem1
+		{
+			get
+			{
+				return this._MaxNgayXetNghiem1;
+			}
+			set
+			{
+				if ((this._MaxNgayXetNghiem1 != value))
+				{
+					this.OnMaxNgayXetNghiem1Changing(value);
+					this.SendPropertyChanging();
+					this._MaxNgayXetNghiem1 = value;
+					this.SendPropertyChanged("MaxNgayXetNghiem1");
+					this.OnMaxNgayXetNghiem1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiXN", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string LoaiXN
+		{
+			get
+			{
+				return this._LoaiXN;
+			}
+			set
+			{
+				if ((this._LoaiXN != value))
+				{
+					this.OnLoaiXNChanging(value);
+					this.SendPropertyChanging();
+					this._LoaiXN = value;
+					this.SendPropertyChanged("LoaiXN");
+					this.OnLoaiXNChanged();
 				}
 			}
 		}

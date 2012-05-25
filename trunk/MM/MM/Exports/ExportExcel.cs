@@ -4791,6 +4791,12 @@ namespace MM.Exports
                         if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
 
                         isData = true;
+                        string loaiXN = row["LoaiXN"].ToString();
+                        if (loaiXN == "Manual")
+                            manualKeys.Add(chiTietKQXNGUID);
+                        else
+                            hitachi917Keys.Add(chiTietKQXNGUID);
+
                         bool isNumeric = false;
                         double testResult = 0;
                         try

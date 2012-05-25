@@ -101,6 +101,88 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetDanhSachBenhNhanXetNghiemCellDyn3200List(DateTime fromDate, DateTime toDate)
+        {
+            Result result = new Result();
+            DataTable dt = null;
+
+            try
+            {
+                string query = string.Empty;
+
+                //CellDyn3200
+                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND NgayXN BETWEEN '{0}' AND '{1}'",
+                fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+
+                dt = result.QueryResult as DataTable;
+                result.QueryResult = dt;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetDanhSachBenhNhanXetNghiemSinhHoaList(DateTime fromDate, DateTime toDate)
+        {
+            Result result = new Result();
+            DataTable dt = null;
+
+            try
+            {
+                string query = string.Empty;
+
+                //Hitachi917
+                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND NgayXN BETWEEN '{0}' AND '{1}'",
+                fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+                dt = result.QueryResult as DataTable;
+
+                //Xet nghiem tay
+                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_ManualView WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND NgayXN BETWEEN '{0}' AND '{1}'",
+                fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
+
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dtXetNghiemTay = result.QueryResult as DataTable;
+                foreach (DataRow row in dtXetNghiemTay.Rows)
+                {
+                    DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", row["PatientGUID"].ToString()));
+                    if (rows != null && rows.Length > 0) continue;
+
+                    dt.ImportRow(row);
+                }
+
+                result.QueryResult = dt;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         private static ChiTietXetNghiem_Hitachi917 GetChiTietXetNghiem(List<ChiTietXetNghiem_Hitachi917> ctxns, DoiTuong doiTuong)
         {
             foreach (ChiTietXetNghiem_Hitachi917 ctxn in ctxns)
