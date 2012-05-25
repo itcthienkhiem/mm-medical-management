@@ -39,7 +39,10 @@ namespace MM.Controls
                 return;
             }
 
-            Result result = ReportBus.GetDanhSachBenhNhanKhamBenh(dtpkFromDate.Value, dtpkToDate.Value, txtMaBenhNhan.Text.Trim());
+            DateTime fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
+            DateTime toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+
+            Result result = ReportBus.GetDanhSachBenhNhanKhamBenh(fromDate, toDate, txtMaBenhNhan.Text.Trim());
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
