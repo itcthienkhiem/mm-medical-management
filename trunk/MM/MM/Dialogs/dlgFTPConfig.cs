@@ -64,22 +64,15 @@ namespace MM.Dialogs
             return result;
         }
 
-        private bool TestConnection()
+        private Result TestConnection()
         {
             Cursor.Current = Cursors.WaitCursor;
-            try
-            {
-                FTPConnectionInfo connectionInfo = new FTPConnectionInfo();
-                connectionInfo.ServerName = txtServerName.Text;
-                connectionInfo.Username = txtUserName.Text;
-                connectionInfo.Password = txtPassword.Text;
+            FTPConnectionInfo connectionInfo = new FTPConnectionInfo();
+            connectionInfo.ServerName = txtServerName.Text;
+            connectionInfo.Username = txtUserName.Text;
+            connectionInfo.Password = txtPassword.Text;
 
-                return connectionInfo.TestConnection();
-            }
-            catch
-            {
-                return false;
-            }
+            return connectionInfo.TestConnection();
         }
 
         public void SetAppConfig()
@@ -96,7 +89,9 @@ namespace MM.Dialogs
         {
             if (!CheckInfo()) return;
 
-            if (TestConnection())
+            Result result = TestConnection();
+
+            if (result.IsOK)
                 MM.MsgBox.Show(this.Text, "Thông tin kết nối thành công.", IconType.Information);
             else
                 MM.MsgBox.Show(this.Text, "Thông tin kết nối thất bại.", IconType.Information);
@@ -114,16 +109,19 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == DialogResult.OK)
             {
-                if (CheckInfo())
-                {
-                    if (!TestConnection())
-                    {
-                        MM.MsgBox.Show(this.Text, "Thông tin kết nối thất bại.", IconType.Information);
-                        e.Cancel = true;
-                    }
-                }
-                else
-                    e.Cancel = true;
+                //if (CheckInfo())
+                //{
+                //    Result result = TestConnection();
+                //    if (!result.IsOK)
+                //    {
+                //        MM.MsgBox.Show(this.Text, "Thông tin kết nối thất bại.", IconType.Information);
+                //        e.Cancel = true;
+                //    }
+                //}
+                //else
+                //    e.Cancel = true;
+
+                if (!CheckInfo()) e.Cancel = true;
             }
         }
 
