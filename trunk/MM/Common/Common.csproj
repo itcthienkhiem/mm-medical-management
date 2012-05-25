@@ -114,6 +114,7 @@
     <Compile Include="Enum.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="ExcelPrintPreview.cs" />
+    <Compile Include="FTP.cs" />
     <Compile Include="FTPConnectionInfo.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Line.cs" />
