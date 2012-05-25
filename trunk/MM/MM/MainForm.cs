@@ -40,23 +40,10 @@ namespace MM
             //OpenCOMPort();
             //ParseTestResult_Hitachi917(string.Empty, "COM1");
             //ParseTestResult_CellDyn3200(string.Empty, "COM1");
-            //TestFTP();
         }
         #endregion
 
         #region UI Command
-        private void TestFTP()
-        {
-            string localFileName = string.Format("{0}\\HDGTGT2.xls", Application.StartupPath);
-            string remoteFileName = "MMTest/HDGTGT2_2012_05_25.xls";
-
-            Result result = FTP.UploadFile(Global.FTPConnectionInfo, localFileName, remoteFileName);
-            if (!result.IsOK)
-            {
-                MsgBox.Show(this.Text, result.Error.Description, IconType.Information);
-            }
-        }
-
         private void OnInitConfig()
         {
             MethodInvoker method = delegate
@@ -1847,7 +1834,7 @@ namespace MM
                 {
                     dlg.SetAppConfig();
                     SaveAppConfig();
-                    Utility.ResetMMSerivice();
+                    //Utility.ResetMMSerivice();
                     RefreshData();
                 }
             }
