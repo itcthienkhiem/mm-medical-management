@@ -13,6 +13,10 @@ namespace MM.Common
         public static string UserNameKey = "UserNameKey";
         public static string PasswordKey = "PasswordKey";
 
+        public static string FTPServerNameKey = "FTPServerNameKey";
+        public static string FTPUserNameKey = "FTPUserNameKey";
+        public static string FTPPasswordKey = "FTPPasswordKey";
+
         public static string AdminGUID = "00000000-0000-0000-0000-000000000000";
 
         public static string Contract = "Contract";

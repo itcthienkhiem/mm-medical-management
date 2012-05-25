@@ -26,19 +26,25 @@ namespace MMService
         public MMServices()
         {
             InitializeComponent();
+
+            this.AutoLog = false;
+            this.ServiceName = "MMServices";
         }
         #endregion
 
         #region Methods
         protected override void OnStart(string[] args)
         {
-            LoadConfig();
+            //LoadConfig();
             //OpenCOMPort();
+
+            //Utility.WriteToTraceLog("MMServices Services start successfully...");
         }
 
         protected override void OnStop()
         {
-            CloseAllCOMPort();
+            //CloseAllCOMPort();
+            //Utility.WriteToTraceLog("MMServices Services stopped...");
         }
 
         private SerialPort GetPort(string portName)

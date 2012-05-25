@@ -15,5 +15,11 @@ namespace MMService
         {
             InitializeComponent();
         }
+
+        protected override void OnAfterInstall(IDictionary savedState)
+        {
+            base.OnAfterInstall(savedState);
+            serviceController1.Start();
+        }
     }
 }
