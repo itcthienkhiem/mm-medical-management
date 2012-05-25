@@ -1632,6 +1632,7 @@
     <EmbeddedResource Include="Dialogs\dlgWaiting.resx">
       <DependentUpon>dlgWaiting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="licenses.licx" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
