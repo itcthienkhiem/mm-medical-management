@@ -153,8 +153,8 @@ namespace MMService
                 }
 
                 if (!_isStartFTPUpload) return;
-                //Thread.Sleep(1000 * 60 * 5);
-                Thread.Sleep(1000 * 10);
+                Thread.Sleep(1000 * 60 * 5);
+                //Thread.Sleep(1000 * 10);
                 if (!_isStartFTPUpload) return;
             }
         }
@@ -169,8 +169,8 @@ namespace MMService
                 ExportXetNghiem.ExportKetQuaXetNghiem(fromDate, toDate);
 
                 if (!_isStartExport) return;
-                //Thread.Sleep(1000 * 60 * 10);
-                Thread.Sleep(1000 * 15);
+                Thread.Sleep(1000 * 60 * 10);
+                //Thread.Sleep(1000 * 15);
                 if (!_isStartExport) return;
             }
         }
