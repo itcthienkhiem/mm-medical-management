@@ -10,7 +10,7 @@ namespace MM.Common
         public static string AppConfig = string.Format("{0}\\App.cfg", AppDomain.CurrentDomain.BaseDirectory);
         public static string FTPUploadPath = string.Format("{0}\\FTPUpload", AppDomain.CurrentDomain.BaseDirectory);
         public static string UsersPath = string.Format("{0}\\Users", AppDomain.CurrentDomain.BaseDirectory);
-        public static string UsersFilePath = string.Format("{0}\\{1}\\Users.txt", AppDomain.CurrentDomain.BaseDirectory, UsersPath);
+        public static string UsersFilePath = string.Format("{0}\\Users\\Users.txt", AppDomain.CurrentDomain.BaseDirectory);
         public static string FTPFolder = "domains/healthcare.com.vn/public_html/report/images/";
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static FTPConnectionInfo FTPConnectionInfo = new FTPConnectionInfo();
