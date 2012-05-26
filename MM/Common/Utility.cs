@@ -831,17 +831,32 @@ namespace MM.Common
             }
         }
 
-        public static void CreateFTPUpdateFolder()
+        public static void CreateFolder(string dir)
         {
             try
             {
-                if (!Directory.Exists(Global.FTPUploadPath))
-                    Directory.CreateDirectory(Global.FTPUploadPath);
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
             }
             catch
             {
 
             }
+        }
+
+        public static string GeneratePassword()
+        {
+            string[] a = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+
+            Random rnd = new Random();
+            string password = string.Empty;
+            for (int i = 0; i < 5; i++)
+            {
+                int index = rnd.Next(36);
+                password += a[index];
+            }
+
+            return password;
         }
     }
 }

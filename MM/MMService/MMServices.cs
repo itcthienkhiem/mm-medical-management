@@ -39,7 +39,8 @@ namespace MMService
         #region Methods
         protected override void OnStart(string[] args)
         {
-            Utility.CreateFTPUpdateFolder();
+            Utility.CreateFolder(Global.FTPUploadPath);
+            Utility.CreateFolder(Global.UsersPath);
             OpenCOMPort();
 
             //Start FTP Upload Thread
@@ -57,6 +58,40 @@ namespace MMService
             Utility.WriteToTraceLog("MMServices Services start successfully...");
         }
 
+        private string GetMaBenhNhan(string fileName)
+        {
+            string[] s = fileName.Split("@".ToCharArray());
+            if (s != null && s.Length > 0)
+                return s[0].Trim();
+
+            return string.Empty;
+        }
+
+        private bool AddUserToTextFile(string customerId, string password, string name)
+        {
+            StreamWriter sw = null;
+            try
+            {
+                sw = new StreamWriter(Global.UsersFilePath, true);
+                sw.WriteLine(string.Format("customer_id: {0}, password: {1}, name: {2}", customerId, password, name));
+                return true;
+            }
+            catch (Exception e)
+            {
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                if (sw != null)
+                {
+                    sw.Close();
+                    sw = null;
+                }
+            }
+
+            return false;
+        }
+
         private void StartFTPUploadThread()
         {
             while (_isStartFTPUpload)
@@ -67,10 +102,50 @@ namespace MMService
                 {
                     if (!_isStartFTPUpload) return;
 
-                    string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(fileName));
-                    Result result = FTP.UploadFile(Global.FTPConnectionInfo, fileName, remoteFileName);
+                    string fn = Path.GetFileName(fileName);
+
+                    string maBenhNhan = GetMaBenhNhan(fn);
+                    if (maBenhNhan == string.Empty) continue;
+
+                    Result result = PatientBus.GetPatient(maBenhNhan);
                     if (!result.IsOK)
-                        Utility.WriteToTraceLog(string.Format("{0}: {1}", result.Error.Code, result.Error.Description));
+                    {
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatient"));
+                        continue;
+                    }
+
+                    PatientView patient = result.QueryResult as PatientView;
+                    if (patient == null) continue;
+                    string tenBenhNhan = patient.FullName;
+                    string password = Utility.GeneratePassword();
+
+                    result = MySQLHelper.CheckUserExist(maBenhNhan);
+                    if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
+                    {
+                        Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.CheckUserExist"));
+                        continue;
+                    }
+
+                    if (result.Error.Code == ErrorCode.NOT_EXIST)
+                    {
+                        result = MySQLHelper.InsertUser(maBenhNhan, password, tenBenhNhan);
+                        if (!result.IsOK)
+                        {
+                            Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
+                            continue;
+                        }
+                        else
+                        {
+                            if (!AddUserToTextFile(maBenhNhan, password, tenBenhNhan))
+                                continue;
+                        }
+                    }
+
+                    fn = fn.Replace("@", "_");
+                    string remoteFileName = string.Format("{0}/{1}/{2}", Global.FTPFolder, maBenhNhan, fn);
+                    result = FTP.UploadFile(Global.FTPConnectionInfo, fileName, remoteFileName);
+                    if (!result.IsOK)
+                        Utility.WriteToTraceLog(result.GetErrorAsString("FTP.UploadFile"));
                     else
                         File.Delete(fileName);
 
@@ -78,7 +153,8 @@ namespace MMService
                 }
 
                 if (!_isStartFTPUpload) return;
-                Thread.Sleep(1000 * 60 * 5);
+                //Thread.Sleep(1000 * 60 * 5);
+                Thread.Sleep(1000 * 10);
                 if (!_isStartFTPUpload) return;
             }
         }
@@ -93,7 +169,8 @@ namespace MMService
                 ExportXetNghiem.ExportKetQuaXetNghiem(fromDate, toDate);
 
                 if (!_isStartExport) return;
-                Thread.Sleep(1000 * 60 * 10);
+                //Thread.Sleep(1000 * 60 * 10);
+                Thread.Sleep(1000 * 15);
                 if (!_isStartExport) return;
             }
         }
