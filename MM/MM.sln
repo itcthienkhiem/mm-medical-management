@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SourceGrid2", "SourceGrid\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMService", "MMService\MMService.csproj", "{43B67225-B7CA-47C1-8812-8C8490541462}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MMConfigServices", "MMConfigServices\MMConfigServices.csproj", "{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MMConfigServicesSetup", "MMConfigServicesSetup\MMConfigServicesSetup.vdproj", "{A151F8C3-2173-4D7D-94BF-79BC03C04FC5}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -115,6 +119,22 @@ Global
 		{43B67225-B7CA-47C1-8812-8C8490541462}.Release|Mixed Platforms.Build.0 = Release|x86
 		{43B67225-B7CA-47C1-8812-8C8490541462}.Release|x86.ActiveCfg = Release|x86
 		{43B67225-B7CA-47C1-8812-8C8490541462}.Release|x86.Build.0 = Release|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Debug|x86.ActiveCfg = Debug|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Debug|x86.Build.0 = Debug|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|Any CPU.ActiveCfg = Release|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|Mixed Platforms.Build.0 = Release|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|x86.ActiveCfg = Release|x86
+		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|x86.Build.0 = Release|x86
+		{A151F8C3-2173-4D7D-94BF-79BC03C04FC5}.Debug|Any CPU.ActiveCfg = Debug
+		{A151F8C3-2173-4D7D-94BF-79BC03C04FC5}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{A151F8C3-2173-4D7D-94BF-79BC03C04FC5}.Debug|x86.ActiveCfg = Debug
+		{A151F8C3-2173-4D7D-94BF-79BC03C04FC5}.Release|Any CPU.ActiveCfg = Release
+		{A151F8C3-2173-4D7D-94BF-79BC03C04FC5}.Release|Mixed Platforms.ActiveCfg = Release
+		{A151F8C3-2173-4D7D-94BF-79BC03C04FC5}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
