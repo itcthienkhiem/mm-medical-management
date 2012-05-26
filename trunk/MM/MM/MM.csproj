@@ -1792,6 +1792,7 @@
     <Content Include="Components\Microsoft.SqlServer.ConnectionInfo.dll" />
     <Content Include="Components\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
     <Content Include="Components\Microsoft.SqlServer.Smo.dll" />
+    <Content Include="Components\MySql.Data.dll" />
     <Content Include="Components\SourceGrid2.dll" />
     <Content Include="Components\SourceLibrary.dll" />
     <Content Include="Components\SpreadsheetGear.Design.dll" />
