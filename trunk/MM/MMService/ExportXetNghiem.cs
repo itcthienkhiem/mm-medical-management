@@ -107,8 +107,8 @@ namespace MMService
                     range.Font.Italic = true;
                     range.HorizontalAlignment = HAlign.Center;
 
-                    string exportFileName = string.Format("{0}\\FTPUpload\\{1}_{2}_{3}.xls", AppDomain.CurrentDomain.BaseDirectory,
-                        maBenhNhan, maxNgayXN.ToString("dd_MM_yyyy_HH_mm_ss"), "CellDyn3200");
+                    string exportFileName = string.Format("{0}\\FTPUpload\\{1}@{2}@{3}.xls", AppDomain.CurrentDomain.BaseDirectory,
+                        maBenhNhan, maxNgayXN.ToString("ddMMyyyyHHmmss"), "CellDyn3200");
 
                     result = MaxNgayXetNghiemBus.CheckMaxNgayXNExist(patientGUID, "CellDyn3200", maxNgayXN);
                     if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
@@ -306,8 +306,8 @@ namespace MMService
                     range.Font.Italic = true;
                     range.HorizontalAlignment = HAlign.Center;
 
-                    string exportFileName = string.Format("{0}\\FTPUpload\\{1}_{2}_{3}.xls", AppDomain.CurrentDomain.BaseDirectory, 
-                        maBenhNhan, maxNgayXN.ToString("dd_MM_yyyy_HH_mm_ss"), "SinhHoa");
+                    string exportFileName = string.Format("{0}\\FTPUpload\\{1}@{2}@{3}.xls", AppDomain.CurrentDomain.BaseDirectory, 
+                        maBenhNhan, maxNgayXN.ToString("ddMMyyyyHHmmss"), "SinhHoa");
 
                     result = MaxNgayXetNghiemBus.CheckMaxNgayXNExist(patientGUID, "Hitachi917", maxNgayXN);
                     if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)

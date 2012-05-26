@@ -40,6 +40,7 @@ namespace MM
             //OpenCOMPort();
             //ParseTestResult_Hitachi917(string.Empty, "COM1");
             //ParseTestResult_CellDyn3200(string.Empty, "COM1");
+            //MySQLHelper.GetAllUsers();
         }
         #endregion
 
