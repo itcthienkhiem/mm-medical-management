@@ -24,8 +24,8 @@ namespace MM
     {
         #region Members
         private bool _flag = true;
-        private List<SerialPort> _ports = new List<SerialPort>();
-        private Hashtable _htLastResult = new Hashtable();
+        //private List<SerialPort> _ports = new List<SerialPort>();
+        //private Hashtable _htLastResult = new Hashtable();
         #endregion
 
         #region Constructor
@@ -94,7 +94,7 @@ namespace MM
                         {
                             dlg.SetAppConfig();
                             SaveAppConfig();
-                            Utility.ResetMMSerivice();
+                            //Utility.ResetMMSerivice();
                             RefreshData();
                             OnLogin();
                         }
@@ -117,7 +117,7 @@ namespace MM
                     {
                         dlg.SetAppConfig();
                         SaveAppConfig();
-                        Utility.ResetMMSerivice();
+                        //Utility.ResetMMSerivice();
                         RefreshData();
                         OnLogin();
                     }
@@ -245,6 +245,7 @@ namespace MM
             Configuration.SetValues(Const.UserNameKey, Global.ConnectionInfo.UserName);
             RijndaelCrypto crypto = new RijndaelCrypto();
             string password = crypto.Encrypt(Global.ConnectionInfo.Password);
+            Configuration.SetValues(Const.PasswordKey, password);
 
             Configuration.SetValues(Const.FTPServerNameKey, Global.FTPConnectionInfo.ServerName);
             Configuration.SetValues(Const.FTPUserNameKey, Global.FTPConnectionInfo.Username);
@@ -1425,7 +1426,7 @@ namespace MM
         {
             dlgPortConfig dlg = new dlgPortConfig();
             dlg.ShowDialog(this);
-            Utility.ResetMMSerivice();
+            //Utility.ResetMMSerivice();
             //OpenCOMPort();
         }
 
