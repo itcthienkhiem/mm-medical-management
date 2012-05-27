@@ -61,6 +61,8 @@
             this.label22 = new System.Windows.Forms.Label();
             this.txtMaPhieuThu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numThu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCongNo)).BeginInit();
@@ -71,7 +73,7 @@
             // 
             this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
             this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportInvoice.Location = new System.Drawing.Point(195, 273);
+            this.btnExportInvoice.Location = new System.Drawing.Point(195, 298);
             this.btnExportInvoice.Name = "btnExportInvoice";
             this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
             this.btnExportInvoice.TabIndex = 18;
@@ -84,7 +86,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(305, 273);
+            this.btnCancel.Location = new System.Drawing.Point(305, 298);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 19;
@@ -96,7 +98,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(116, 273);
+            this.btnOK.Location = new System.Drawing.Point(116, 298);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 17;
@@ -105,6 +107,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtGhiChu);
+            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.chkDaThuTien);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.numThu);
@@ -133,7 +137,7 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Location = new System.Drawing.Point(7, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(481, 263);
+            this.groupBox1.Size = new System.Drawing.Size(481, 287);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
@@ -143,10 +147,10 @@
             this.chkDaThuTien.AutoSize = true;
             this.chkDaThuTien.Checked = true;
             this.chkDaThuTien.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDaThuTien.Location = new System.Drawing.Point(103, 239);
+            this.chkDaThuTien.Location = new System.Drawing.Point(103, 262);
             this.chkDaThuTien.Name = "chkDaThuTien";
             this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
-            this.chkDaThuTien.TabIndex = 72;
+            this.chkDaThuTien.TabIndex = 75;
             this.chkDaThuTien.Text = "Đã thu tiền";
             this.chkDaThuTien.UseVisualStyleBackColor = true;
             // 
@@ -411,12 +415,29 @@
             this.label6.TabIndex = 48;
             this.label6.Text = "Mã phiếu thu:";
             // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(103, 237);
+            this.txtGhiChu.MaxLength = 500;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(346, 20);
+            this.txtGhiChu.TabIndex = 74;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(52, 240);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(47, 13);
+            this.label15.TabIndex = 73;
+            this.label15.Text = "Ghi chú:";
+            // 
             // dlgAddPhieuThuHopDong
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 303);
+            this.ClientSize = new System.Drawing.Size(497, 328);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnExportInvoice);
             this.Controls.Add(this.btnCancel);
@@ -473,5 +494,7 @@
         private System.Windows.Forms.TextBox txtDichVu;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox chkDaThuTien;
+        private System.Windows.Forms.TextBox txtGhiChu;
+        private System.Windows.Forms.Label label15;
     }
 }

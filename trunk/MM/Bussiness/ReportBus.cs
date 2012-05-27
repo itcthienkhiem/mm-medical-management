@@ -239,7 +239,8 @@ namespace MM.Bussiness
                 List<ReceiptDetailView> chiTietPhieuThuList = (from pt in db.Receipts
                                                   join ctpt in db.ReceiptDetailViews on pt.ReceiptGUID equals ctpt.ReceiptGUID
                                                   where pt.Status == (byte)Status.Actived && 
-                                                  pt.ReceiptDate >= tuNgay && pt.ReceiptDate <= denNgay
+                                                  pt.ReceiptDate >= tuNgay && pt.ReceiptDate <= denNgay &&
+                                                  pt.ChuaThuTien == false
                                                   select ctpt).ToList<ReceiptDetailView>();
 
                 result.QueryResult = chiTietPhieuThuList;
@@ -277,8 +278,9 @@ namespace MM.Bussiness
                 List<ChiTietPhieuThuThuocView> chiTietPhieuThuList = (from pt in db.PhieuThuThuocs
                                                                join ctpt in db.ChiTietPhieuThuThuocViews on pt.PhieuThuThuocGUID equals ctpt.PhieuThuThuocGUID
                                                                where pt.Status == (byte)Status.Actived &&
-                                                               pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay
-                                                                      select ctpt).ToList<ChiTietPhieuThuThuocView>();
+                                                               pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay &&
+                                                               pt.ChuaThuTien == false
+                                                               select ctpt).ToList<ChiTietPhieuThuThuocView>();
 
                 result.QueryResult = chiTietPhieuThuList;
             }

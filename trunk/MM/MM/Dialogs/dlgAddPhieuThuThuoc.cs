@@ -620,6 +620,7 @@ namespace MM.Dialogs
                     _phieuThuThuoc.TenCongTy = _tenCongTy;
                     _phieuThuThuoc.Status = (byte)Status.Actived;
                     _phieuThuThuoc.ChuaThuTien = !chkDaThuTien.Checked;
+                    _phieuThuThuoc.Notes = txtGhiChu.Text;
 
                     if (_isNew)
                     {
