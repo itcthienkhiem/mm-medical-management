@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uKetQuaXetNghiemTongHop));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -52,6 +53,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
@@ -60,6 +62,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnUploadFTP = new System.Windows.Forms.Button();
             this.btnDeleteChiTiet = new System.Windows.Forms.Button();
             this.btnEditChiTiet = new System.Windows.Forms.Button();
             this.btnExportExcelSinhHoa = new System.Windows.Forms.Button();
@@ -118,7 +121,6 @@
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -140,8 +142,20 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(854, 61);
+            this.panel3.Size = new System.Drawing.Size(1034, 61);
             this.panel3.TabIndex = 8;
+            // 
+            // chkMaBenhNhan
+            // 
+            this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMaBenhNhan.Location = new System.Drawing.Point(377, 34);
+            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
+            this.chkMaBenhNhan.Size = new System.Drawing.Size(95, 17);
+            this.chkMaBenhNhan.TabIndex = 31;
+            this.chkMaBenhNhan.Text = "Mã bệnh nhân";
+            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -213,6 +227,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnUploadFTP);
             this.panel2.Controls.Add(this.btnDeleteChiTiet);
             this.panel2.Controls.Add(this.btnEditChiTiet);
             this.panel2.Controls.Add(this.btnExportExcelSinhHoa);
@@ -222,8 +237,20 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 560);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(854, 38);
+            this.panel2.Size = new System.Drawing.Size(1034, 38);
             this.panel2.TabIndex = 9;
+            // 
+            // btnUploadFTP
+            // 
+            this.btnUploadFTP.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadFTP.Image")));
+            this.btnUploadFTP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUploadFTP.Location = new System.Drawing.Point(714, 6);
+            this.btnUploadFTP.Name = "btnUploadFTP";
+            this.btnUploadFTP.Size = new System.Drawing.Size(104, 25);
+            this.btnUploadFTP.TabIndex = 94;
+            this.btnUploadFTP.Text = "      &Upload KQXN";
+            this.btnUploadFTP.UseVisualStyleBackColor = true;
+            this.btnUploadFTP.Click += new System.EventHandler(this.btnUploadFTP_Click);
             // 
             // btnDeleteChiTiet
             // 
@@ -304,7 +331,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 320);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(854, 240);
+            this.panel1.Size = new System.Drawing.Size(1034, 240);
             this.panel1.TabIndex = 10;
             // 
             // chkCheckedXN
@@ -372,7 +399,7 @@
             this.dgXetNghiem.ReadOnly = true;
             this.dgXetNghiem.RowHeadersWidth = 30;
             this.dgXetNghiem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgXetNghiem.Size = new System.Drawing.Size(854, 240);
+            this.dgXetNghiem.Size = new System.Drawing.Size(1034, 240);
             this.dgXetNghiem.TabIndex = 9;
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
             // 
@@ -599,7 +626,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 61);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(854, 259);
+            this.panel4.Size = new System.Drawing.Size(1034, 259);
             this.panel4.TabIndex = 11;
             // 
             // chkCheckedBN
@@ -652,7 +679,7 @@
             this.dgBenhNhan.ReadOnly = true;
             this.dgBenhNhan.RowHeadersWidth = 30;
             this.dgBenhNhan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgBenhNhan.Size = new System.Drawing.Size(854, 259);
+            this.dgBenhNhan.Size = new System.Drawing.Size(1034, 259);
             this.dgBenhNhan.TabIndex = 11;
             this.dgBenhNhan.SelectionChanged += new System.EventHandler(this.dgBenhNhan_SelectionChanged);
             // 
@@ -728,7 +755,7 @@
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.splitter1.Location = new System.Drawing.Point(0, 317);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(854, 3);
+            this.splitter1.Size = new System.Drawing.Size(1034, 3);
             this.splitter1.TabIndex = 12;
             this.splitter1.TabStop = false;
             // 
@@ -886,18 +913,6 @@
             this.dataGridViewTextBoxColumn15.Visible = false;
             this.dataGridViewTextBoxColumn15.Width = 200;
             // 
-            // chkMaBenhNhan
-            // 
-            this.chkMaBenhNhan.AutoSize = true;
-            this.chkMaBenhNhan.Checked = true;
-            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMaBenhNhan.Location = new System.Drawing.Point(377, 34);
-            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
-            this.chkMaBenhNhan.Size = new System.Drawing.Size(95, 17);
-            this.chkMaBenhNhan.TabIndex = 31;
-            this.chkMaBenhNhan.Text = "Mã bệnh nhân";
-            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
-            // 
             // uKetQuaXetNghiemTongHop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -908,7 +923,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Name = "uKetQuaXetNghiemTongHop";
-            this.Size = new System.Drawing.Size(854, 598);
+            this.Size = new System.Drawing.Size(1034, 598);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -992,5 +1007,6 @@
         private System.Windows.Forms.Button btnEditChiTiet;
         private System.Windows.Forms.Button btnAddChiTiet;
         private System.Windows.Forms.CheckBox chkMaBenhNhan;
+        private System.Windows.Forms.Button btnUploadFTP;
     }
 }
