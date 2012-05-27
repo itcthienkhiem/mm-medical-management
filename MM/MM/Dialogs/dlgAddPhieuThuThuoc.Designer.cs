@@ -41,6 +41,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddPhieuThuThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkDaXuatHD = new System.Windows.Forms.CheckBox();
             this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.btnChonBenhNhan = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -76,7 +77,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lbTongTien = new System.Windows.Forms.Label();
             this.btnExportInvoice = new System.Windows.Forms.Button();
-            this.chkDaXuatHD = new System.Windows.Forms.CheckBox();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
@@ -87,6 +89,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtGhiChu);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.chkDaXuatHD);
             this.groupBox1.Controls.Add(this.chkDaThuTien);
             this.groupBox1.Controls.Add(this.btnChonBenhNhan);
@@ -106,17 +110,28 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(870, 198);
+            this.groupBox1.Size = new System.Drawing.Size(870, 223);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
+            // 
+            // chkDaXuatHD
+            // 
+            this.chkDaXuatHD.AutoSize = true;
+            this.chkDaXuatHD.Enabled = false;
+            this.chkDaXuatHD.Location = new System.Drawing.Point(181, 198);
+            this.chkDaXuatHD.Name = "chkDaXuatHD";
+            this.chkDaXuatHD.Size = new System.Drawing.Size(106, 17);
+            this.chkDaXuatHD.TabIndex = 50;
+            this.chkDaXuatHD.Text = "Đã xuất hóa đơn";
+            this.chkDaXuatHD.UseVisualStyleBackColor = true;
             // 
             // chkDaThuTien
             // 
             this.chkDaThuTien.AutoSize = true;
             this.chkDaThuTien.Checked = true;
             this.chkDaThuTien.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDaThuTien.Location = new System.Drawing.Point(97, 172);
+            this.chkDaThuTien.Location = new System.Drawing.Point(97, 198);
             this.chkDaThuTien.Name = "chkDaThuTien";
             this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
             this.chkDaThuTien.TabIndex = 49;
@@ -303,11 +318,11 @@
             this.dgChiTiet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgChiTiet.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgChiTiet.HighlightSelectedColumnHeaders = false;
-            this.dgChiTiet.Location = new System.Drawing.Point(7, 208);
+            this.dgChiTiet.Location = new System.Drawing.Point(7, 233);
             this.dgChiTiet.Name = "dgChiTiet";
             this.dgChiTiet.RowHeadersWidth = 30;
             this.dgChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgChiTiet.Size = new System.Drawing.Size(870, 302);
+            this.dgChiTiet.Size = new System.Drawing.Size(870, 277);
             this.dgChiTiet.TabIndex = 12;
             this.dgChiTiet.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgChiTiet_CellFormatting);
             this.dgChiTiet.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_CellMouseDown);
@@ -498,16 +513,22 @@
             this.btnExportInvoice.UseVisualStyleBackColor = true;
             this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
             // 
-            // chkDaXuatHD
+            // txtGhiChu
             // 
-            this.chkDaXuatHD.AutoSize = true;
-            this.chkDaXuatHD.Enabled = false;
-            this.chkDaXuatHD.Location = new System.Drawing.Point(181, 172);
-            this.chkDaXuatHD.Name = "chkDaXuatHD";
-            this.chkDaXuatHD.Size = new System.Drawing.Size(106, 17);
-            this.chkDaXuatHD.TabIndex = 50;
-            this.chkDaXuatHD.Text = "Đã xuất hóa đơn";
-            this.chkDaXuatHD.UseVisualStyleBackColor = true;
+            this.txtGhiChu.Location = new System.Drawing.Point(97, 171);
+            this.txtGhiChu.MaxLength = 500;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(346, 20);
+            this.txtGhiChu.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(46, 174);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 51;
+            this.label8.Text = "Ghi chú:";
             // 
             // dlgAddPhieuThuThuoc
             // 
@@ -581,5 +602,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongTon;
         private System.Windows.Forms.CheckBox chkDaThuTien;
         private System.Windows.Forms.CheckBox chkDaXuatHD;
+        private System.Windows.Forms.TextBox txtGhiChu;
+        private System.Windows.Forms.Label label8;
     }
 }
