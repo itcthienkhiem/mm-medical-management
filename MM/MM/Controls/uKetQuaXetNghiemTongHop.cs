@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
@@ -260,7 +261,8 @@ namespace MM.Controls
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
                     bool isData = false;
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData))
+                    DateTime maxNgayXN = DateTime.Now;
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData, ref maxNgayXN))
                         return;
                 }
             }
@@ -290,7 +292,8 @@ namespace MM.Controls
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
                     bool isData = false;
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData))
+                    DateTime maxNgayXN = DateTime.Now;
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
                         return;
                     else
                     {
@@ -307,7 +310,7 @@ namespace MM.Controls
                     }
 
                     exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData))
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
                         return;
                     else
                     {
@@ -364,7 +367,8 @@ namespace MM.Controls
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
                     bool isData = false;
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData))
+                    DateTime maxNgayXN = DateTime.Now;
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData, ref maxNgayXN))
                         return;
                 }
             }
@@ -394,7 +398,8 @@ namespace MM.Controls
                         uncheckedList = (List<string>)_htXN[patientGUID];
 
                     bool isData = false;
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData))
+                    DateTime maxNgayXN = DateTime.Now;
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
                         return;
                     else
                     {
@@ -539,6 +544,182 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả xét nghiệm cần xóa.", IconType.Information);
         }
+
+        private bool AddUserToTextFile(string customerId, string password, string name)
+        {
+            StreamWriter sw = null;
+            try
+            {
+                sw = new StreamWriter(Global.UsersFilePath, true);
+                sw.WriteLine(string.Format("customer_id: {0}, password: {1}, name: {2}", customerId, password, name));
+                return true;
+            }
+            catch (Exception e)
+            {
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                if (sw != null)
+                {
+                    sw.Close();
+                    sw = null;
+                }
+            }
+
+            return false;
+        }
+
+        private void UploadKQXN()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedPatientRows = GetCheckedPatientRows();
+            if (checkedPatientRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 bệnh nhân cần in.", IconType.Information);
+                return;
+            }
+
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn upload kết quả xét nghiệm ?") == DialogResult.No)
+                return;
+
+            UpdateUncheckedXetNghiem();
+
+            DateTime tuNgay = dtpkTuNgay.Value;
+            DateTime denNgay = dtpkDenNgay.Value;
+            string exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemCellDyn3200.xls", Application.StartupPath);
+            foreach (DataRow row in checkedPatientRows)
+            {
+                List<string> uncheckedList = null;
+                string patientGUID = row["PatientGUID"].ToString();
+                    
+
+                if (_htXN.ContainsKey(patientGUID))
+                    uncheckedList = (List<string>)_htXN[patientGUID];
+
+                bool isData = false;
+                DateTime maxNgayXN = DateTime.Now;
+                if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
+                    return;
+                else
+                {
+                    try
+                    {
+                        if (isData)
+                        {
+                            string maBenhNhan = row["FileNum"].ToString();
+                            string tenBenhNhan = row["FullName"].ToString();
+                            string password = Utility.GeneratePassword();
+
+                            string remoteFileName = string.Format("{0}/{1}/{2}_{3}.xls", Global.FTPFolder, maBenhNhan,
+                                maxNgayXN.ToString("ddMMyyyyHHmmss"), "CellDyn3200");
+
+                            Result result = MySQLHelper.CheckUserExist(maBenhNhan);
+                            if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.CheckUserExist"), IconType.Information);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.CheckUserExist"));
+                                return;
+                            }
+
+                            if (result.Error.Code == ErrorCode.NOT_EXIST)
+                            {
+                                result = MySQLHelper.InsertUser(maBenhNhan, password, tenBenhNhan);
+                                if (!result.IsOK)
+                                {
+                                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.InsertUser"), IconType.Information);
+                                    Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
+                                    return;
+                                }
+                                else
+                                {
+                                    if (!AddUserToTextFile(maBenhNhan, password, tenBenhNhan))
+                                        return;
+                                }
+                            }
+
+                            result = FTP.UploadFile(Global.FTPConnectionInfo, exportFileName, remoteFileName);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("FTP.UploadFile"), IconType.Information);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("FTP.UploadFile"));
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                        return;
+                    }
+                }
+
+                exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
+                if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
+                    return;
+                else
+                {
+                    try
+                    {
+                        if (isData)
+                        {
+                            string maBenhNhan = row["FileNum"].ToString();
+                            string tenBenhNhan = row["FullName"].ToString();
+                            string password = Utility.GeneratePassword();
+
+                            string remoteFileName = string.Format("{0}/{1}/{2}_{3}.xls", Global.FTPFolder, maBenhNhan,
+                                maxNgayXN.ToString("ddMMyyyyHHmmss"), "SinhHoa");
+
+                            Result result = MySQLHelper.CheckUserExist(maBenhNhan);
+                            if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.CheckUserExist"), IconType.Information);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.CheckUserExist"));
+                                return;
+                            }
+
+                            if (result.Error.Code == ErrorCode.NOT_EXIST)
+                            {
+                                result = MySQLHelper.InsertUser(maBenhNhan, password, tenBenhNhan);
+                                if (!result.IsOK)
+                                {
+                                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.InsertUser"), IconType.Information);
+                                    Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
+                                    return;
+                                }
+                                else
+                                {
+                                    if (!AddUserToTextFile(maBenhNhan, password, tenBenhNhan))
+                                        return;
+                                }
+                            }
+
+                            result = FTP.UploadFile(Global.FTPConnectionInfo, exportFileName, remoteFileName);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("FTP.UploadFile"), IconType.Information);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("FTP.UploadFile"));
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                        return;
+                    }
+                }
+            }
+
+            DataTable dt = dgXetNghiem.DataSource as DataTable;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    bool isChecked = Convert.ToBoolean(row["Checked"]);
+                    if (isChecked)
+                        row["DaIn"] = true;
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -639,10 +820,11 @@ namespace MM.Controls
             if (!AllowEdit) return;
             OnEditChiTiet();
         }
+
+        private void btnUploadFTP_Click(object sender, EventArgs e)
+        {
+            UploadKQXN();
+        }
         #endregion
-
-       
-
-        
     }
 }

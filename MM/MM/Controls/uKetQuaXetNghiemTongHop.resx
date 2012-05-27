@@ -117,6 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnUploadFTP.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAM0SURBVDhPhZN7TM1hGMff99x+1Tk5dZSlMyddlramzCF1mnDqyLrniHVzqbklXRbTqEQ36dSJ
+        UwlFMQrViqYYWsUsGkoO5sgl9xZt/mD++XpdZtoy7/bd3j17vp/n3fO8DyGTHI7jzH38XDVR8T6btXEL
+        Ns73naUWcSLRZLkTYmKx0CJ5l8LQOxz37d6H7RgaLcT90RL0v9uNjqHkL2vTvEssxNzkIFs7kWNdl3Sk
+        60UQbr3MxIP3lXg6dhrDY414NFqH/lcl6DStR2mz/xOZrcRuQmWhUCCp6BSMtBrdcc2UiDuvi2EaO4XB
+        d3oMMdDLTxdg/HAcvc+y0DAQgdyT8x4LBHzhH4g2iauq7ReheXAhrpq2YOCNHjdf5KHFuBTtj7QYfFvN
+        gE3oGylC0/1YGK4rsTRGXvAbQCV5F3nfDnZL0HjXD1dMm9A0kAjDjfloGgpC++PlaH6gYdVzcfuVjgFi
+        oO9SYudZ53EGEBK5iyA4vYUgv2MK6m95Y98lX2w6p4Cu2wv1dwKYOYiBAlF+Yx5qbq5Aw71I7Ls8G5nn
+        7WEjN1MRhZKkxNQSpDSYYdvJGYg22COjdTZyOj1R2uONw30LmRZB37MYG065IrvNAzntztjaaAsHDy6e
+        2M+hqQH7CbQGHlJOT8X+y+440a9B6jlXJJ1xRHqLC7IvzkWrMQ41fWrkX3JD2lk7xNdYQu4uXE2kchqi
+        ZoBFeQTh5Rw21MmQdd4R4cVSBBZZIEQnQVz1NJT3KJHb4cTM07CuVorYo2JIbPi+PxopVRfQr375BIvz
+        KMLLOKxhCV5pQngk8TA3jQf/PebY0TYdyY02SDhmhdhqS4QWmX9kXrOfk3BS0yqNjsCPvWJJAQ9hDOKW
+        wINDNIHTagJlqgDr660Rf2QKYqosseqQOWaq+IV/fyZrVQZ9HlhKoC4kCCii8NzMh3siHx4bBfDJEGJl
+        hfinoirNoErhG5lZPHE3eMRVlU6fhR4gCC77pTA9H5EHRNAe5FiTRYis4ME7mT5kRsW/Fkum8KUVAXvp
+        54hKNpkqghVMkezuv5uMy72ojhkt/7uVLEHGWdNlMhe6ReZMkzgp1bCY1WTG72vDl1Fk0UL3AAAAAElF
+        TkSuQmCC
+</value>
+  </data>
   <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

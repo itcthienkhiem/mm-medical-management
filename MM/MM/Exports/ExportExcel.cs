@@ -4535,7 +4535,7 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint, ref bool isData)
+        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint, ref bool isData, ref DateTime maxNgayXN)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4575,7 +4575,7 @@ namespace MM.Exports
                 List<string> keys = new List<string>();
 
                 isData = false;
-                DateTime maxNgayXN = DateTime.MinValue;
+                maxNgayXN = DateTime.MinValue;
                 foreach (DataRow row in dtKQXN.Rows)
                 {
                     string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
@@ -4667,7 +4667,8 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportKetQuaXetNghiemSinhToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint, ref bool isData)
+        public static bool ExportKetQuaXetNghiemSinhToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, 
+            List<string> uncheckedList, bool isPrint, ref bool isData, ref DateTime maxNgayXN)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4705,7 +4706,7 @@ namespace MM.Exports
                 DataRow[] rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.Biochemistry.ToString()), "Fullname");
                 List<string> hitachi917Keys = new List<string>();
                 List<string> manualKeys = new List<string>();
-                DateTime maxNgayXN = DateTime.MinValue;
+                maxNgayXN = DateTime.MinValue;
                 isData = false;
                 if (rows != null && rows.Length > 0)
                 {

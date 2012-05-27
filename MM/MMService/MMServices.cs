@@ -39,21 +39,21 @@ namespace MMService
         #region Methods
         protected override void OnStart(string[] args)
         {
-            Utility.CreateFolder(Global.FTPUploadPath);
-            Utility.CreateFolder(Global.UsersPath);
+            //Utility.CreateFolder(Global.FTPUploadPath);
+            //Utility.CreateFolder(Global.UsersPath);
             OpenCOMPort();
 
             //Start FTP Upload Thread
-            _isStartFTPUpload = true;
-            Thread ftpThread = new Thread(new ThreadStart(StartFTPUploadThread));
-            ftpThread.IsBackground = true;
-            ftpThread.Start();
+            //_isStartFTPUpload = true;
+            //Thread ftpThread = new Thread(new ThreadStart(StartFTPUploadThread));
+            //ftpThread.IsBackground = true;
+            //ftpThread.Start();
 
             //Start FTP Export Thread
-            _isStartExport = true;
-            Thread exportThread = new Thread(new ThreadStart(StartExportThread));
-            exportThread.IsBackground = true;
-            exportThread.Start();
+            //_isStartExport = true;
+            //Thread exportThread = new Thread(new ThreadStart(StartExportThread));
+            //exportThread.IsBackground = true;
+            //exportThread.Start();
 
             Utility.WriteToTraceLog("MMServices Services start successfully...");
         }
