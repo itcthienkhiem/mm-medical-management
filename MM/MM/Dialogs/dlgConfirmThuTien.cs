@@ -29,6 +29,11 @@ namespace MM.Dialogs
         {
             get { return dtpkNgayXuat.Value; }
         }
+
+        public string GhiChu
+        {
+            get { return txtGhiChu.Text; }
+        }
         #endregion
 
         #region Window Event Handlers

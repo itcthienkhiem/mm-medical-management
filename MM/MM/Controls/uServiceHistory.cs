@@ -367,6 +367,7 @@ namespace MM.Controls
                     receipt.CreatedBy = Guid.Parse(Global.UserGUID);
                     receipt.IsExportedInVoice = false;
                     receipt.ChuaThuTien = !dlg.DaThuTien;
+                    receipt.Notes = dlg.GhiChu;
 
                     Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
                     if (result.IsOK)
