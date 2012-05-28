@@ -91,5 +91,7 @@ namespace MM.Common
         public static PortConfigCollection PortConfigCollection = new PortConfigCollection();
         public static string PortConfigPath = string.Format("{0}\\PortConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
         public static DateTime NgayThayDoiSoHoaDonSauCung = MinDateTime;
+        public static string MauSoSauCung = "01GTKT3/002";
+        public static string KiHieuSauCung = "AA/12T";
     }
 }

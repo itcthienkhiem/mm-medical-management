@@ -49,8 +49,8 @@
             this.btnExportInvoice = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lbMauSo = new System.Windows.Forms.Label();
+            this.lbKiHieu = new System.Windows.Forms.Label();
             this.lbInvoiceCode = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtpkNgay = new System.Windows.Forms.DateTimePicker();
@@ -211,25 +211,25 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "HÓA ĐƠN GIÁ TRỊ GIA TĂNG";
             // 
-            // label3
+            // lbMauSo
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(560, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 15);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Mẫu số: 01GTKT3/002";
+            this.lbMauSo.AutoSize = true;
+            this.lbMauSo.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMauSo.Location = new System.Drawing.Point(560, 8);
+            this.lbMauSo.Name = "lbMauSo";
+            this.lbMauSo.Size = new System.Drawing.Size(127, 15);
+            this.lbMauSo.TabIndex = 10;
+            this.lbMauSo.Text = "Mẫu số: 01GTKT3/002";
             // 
-            // label4
+            // lbKiHieu
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(560, 27);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 15);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Ký hiệu: AA/12T";
+            this.lbKiHieu.AutoSize = true;
+            this.lbKiHieu.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbKiHieu.Location = new System.Drawing.Point(560, 27);
+            this.lbKiHieu.Name = "lbKiHieu";
+            this.lbKiHieu.Size = new System.Drawing.Size(98, 15);
+            this.lbKiHieu.TabIndex = 11;
+            this.lbKiHieu.Text = "Ký hiệu: AA/12T";
             // 
             // lbInvoiceCode
             // 
@@ -245,10 +245,10 @@
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.dtpkNgay);
-            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.lbMauSo);
             this.panel2.Controls.Add(this.lbInvoiceCode);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.lbKiHieu);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -834,8 +834,8 @@
         private System.Windows.Forms.Button btnExportAndPrint;
         private System.Windows.Forms.Button btnExportInvoice;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbMauSo;
+        private System.Windows.Forms.Label lbKiHieu;
         private System.Windows.Forms.Label lbInvoiceCode;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
