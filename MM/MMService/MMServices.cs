@@ -321,6 +321,8 @@ namespace MMService
                 PortConfig portConfig = Global.PortConfigCollection.GetPortConfigByPortName(port.PortName);
                 if (portConfig == null) return;
 
+                LoadConfig();
+
                 string data = port.ReadExisting();
 
                 if (portConfig.LoaiMay == LoaiMayXN.Hitachi917)
