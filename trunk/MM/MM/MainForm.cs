@@ -136,13 +136,22 @@ namespace MM
                 if (File.Exists(Global.PortConfigPath))
                     Global.PortConfigCollection.Deserialize(Global.PortConfigPath);
 
-                Result result = QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung();
+                Result result = QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung();
                 if (result.IsOK)
-                    Global.NgayThayDoiSoHoaDonSauCung = Convert.ToDateTime(result.QueryResult);
+                {
+                    if (result.QueryResult != null)
+                    {
+                        NgayBatDauLamMoiSoHoaDon thayDoiSauCung = result.QueryResult as NgayBatDauLamMoiSoHoaDon;
+                        Global.NgayThayDoiSoHoaDonSauCung = thayDoiSauCung.NgayBatDau;
+                        Global.MauSoSauCung = thayDoiSauCung.MauSo;
+                        Global.KiHieuSauCung = thayDoiSauCung.KiHieu;
+                    }
+                    
+                }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"));
                 }
             };
 

@@ -149,6 +149,8 @@ namespace MM.Dialogs
                 dgDetail.AllowUserToDeleteRows = false;
                 dgDetail.ReadOnly = true;
 
+                lbMauSo.Text = string.Format("Mẫu số: {0}", _drInvoice["MauSo"].ToString());
+                lbKiHieu.Text = string.Format("Kí hiệu: {0}", _drInvoice["KiHieu"].ToString());
                 lbInvoiceCode.Text = string.Format("Số: {0}", _drInvoice["SoHoaDon"].ToString());
                 dtpkNgay.Value = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
 
@@ -233,6 +235,9 @@ namespace MM.Dialogs
             else
             {
                 GenerateCode();
+
+                lbMauSo.Text = string.Format("Mẫu số: {0}", Global.MauSoSauCung);
+                lbKiHieu.Text = string.Format("Kí hiệu: {0}", Global.KiHieuSauCung);
 
                 Result result = HoaDonThuocBus.GetNgayXuatHoaDon(_invoiceCode);
                 if (result.IsOK)
@@ -692,6 +697,8 @@ namespace MM.Dialogs
                 invoice.CreatedBy = Guid.Parse(Global.UserGUID);
                 invoice.Status = (byte)Status.Actived;
                 invoice.ChuaThuTien = !chkDaThuTien.Checked;
+                invoice.MauSo = Global.MauSoSauCung;
+                invoice.KiHieu = Global.KiHieuSauCung;
 
                 List<ChiTietHoaDonThuoc> addedDetails = new List<ChiTietHoaDonThuoc>();
                 for (int i = 0; i < dgDetail.RowCount - 1; i++)

@@ -32,19 +32,43 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgLamMoiSoHoaDon_Load(object sender, EventArgs e)
         {
-            Result result = QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung();
+            Result result = QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung();
             if (result.IsOK)
             {
-                DateTime ngayThayDoiSauCung = Convert.ToDateTime(result.QueryResult);
-                dtpkNgayThayDoiSauCung.Value = ngayThayDoiSauCung;
+                if (result.QueryResult != null)
+                {
+                    NgayBatDauLamMoiSoHoaDon thayDoiSauCung = result.QueryResult as NgayBatDauLamMoiSoHoaDon;
+                    dtpkNgayThayDoiSauCung.Value = thayDoiSauCung.NgayBatDau;
+                    txtMauSoCu.Text = thayDoiSauCung.MauSo;
+                    txtKiHieuCu.Text = thayDoiSauCung.KiHieu;
+                }
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetNgayThayDoiSoHoaSonSauCung"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"));
             }
 
             dtpkNgayThayDoiMoi.Value = DateTime.Now;
+        }
+
+        private bool CheckInfo()
+        {
+            if (txtMauSoMoi.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập mẫu số hóa đơn.", IconType.Information);
+                txtMauSoMoi.Focus();
+                return false;
+            }
+
+            if (txtKiHieuMoi.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập kí hiệu hóa đơn.", IconType.Information);
+                txtKiHieuMoi.Focus();
+                return false;
+            }
+
+            return true;
         }
 
         private void dlgLamMoiSoHoaDon_FormClosing(object sender, FormClosingEventArgs e)
@@ -55,17 +79,22 @@ namespace MM.Dialogs
                 {
                     if (dtpkNgayThayDoiSauCung.Value.ToString("dd/MM/yyyy") != dtpkNgayThayDoiMoi.Value.ToString("dd/MM/yyyy"))
                     {
-                        Result result = QuanLySoHoaDonBus.SetNgayThayDoiSoHoaSon(dtpkNgayThayDoiMoi.Value);
-                        if (!result.IsOK)
+                        if (CheckInfo())
                         {
-                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.SetNgayThayDoiSoHoaSon"), IconType.Error);
-                            Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.SetNgayThayDoiSoHoaSon"));
-                            e.Cancel = true;
+                            Result result = QuanLySoHoaDonBus.SetThayDoiSoHoaSon(dtpkNgayThayDoiMoi.Value, txtMauSoMoi.Text, txtKiHieuMoi.Text);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.SetThayDoiSoHoaSon"), IconType.Error);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.SetThayDoiSoHoaSon"));
+                                e.Cancel = true;
+                            }
+                            else
+                            {
+                                Global.NgayThayDoiSoHoaDonSauCung = dtpkNgayThayDoiMoi.Value;
+                            }
                         }
                         else
-                        {
-                            Global.NgayThayDoiSoHoaDonSauCung = dtpkNgayThayDoiMoi.Value;
-                        }
+                            e.Cancel = true;
                     }
                 }
                 else

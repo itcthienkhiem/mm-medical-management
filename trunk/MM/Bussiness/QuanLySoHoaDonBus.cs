@@ -303,7 +303,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result SetNgayThayDoiSoHoaSon(DateTime ngayThayDoi)
+        public static Result SetThayDoiSoHoaSon(DateTime ngayThayDoi, string mauSo, string kiHieu)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -314,6 +314,8 @@ namespace MM.Bussiness
                 NgayBatDauLamMoiSoHoaDon nbd = new NgayBatDauLamMoiSoHoaDon();
                 nbd.MaNgayBatDauGUID = Guid.NewGuid();
                 nbd.NgayBatDau = ngayThayDoi;
+                nbd.MauSo = mauSo;
+                nbd.KiHieu = kiHieu;
                 db.NgayBatDauLamMoiSoHoaDons.InsertOnSubmit(nbd);
                 db.SubmitChanges();
             }
@@ -339,7 +341,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetNgayThayDoiSoHoaSonSauCung()
+        public static Result GetThayDoiSoHoaSonSauCung()
         {
             Result result = new Result();
             MMOverride db = null;
@@ -352,9 +354,9 @@ namespace MM.Bussiness
                                        select n).FirstOrDefault();
 
                 if (ngayThayDoi != null)
-                    result.QueryResult = ngayThayDoi.NgayBatDau;
+                    result.QueryResult = ngayThayDoi;
                 else
-                    result.QueryResult = Global.MinDateTime;
+                    result.QueryResult = null;
             }
             catch (System.Data.SqlClient.SqlException se)
             {

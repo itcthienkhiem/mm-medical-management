@@ -410,6 +410,8 @@ namespace MM.Exports
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", invoice.MauSo);
+                workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", invoice.KiHieu);
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", invoice.InvoiceCode);
 
                 DateTime dt = invoice.InvoiceDate;
@@ -612,6 +614,8 @@ namespace MM.Exports
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
+                workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
 
                 DateTime dt = hdt.NgayXuatHoaDon.Value;
@@ -807,6 +811,8 @@ namespace MM.Exports
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
+                workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
 
                 DateTime dt = hdt.NgayXuatHoaDon.Value;
@@ -1002,6 +1008,8 @@ namespace MM.Exports
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
+                workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
 
                 DateTime dt = hdt.NgayXuatHoaDon;
