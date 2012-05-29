@@ -4568,11 +4568,11 @@ namespace MM.Exports
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemCellDyn3200Template.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["B2"].Value = string.Format("Mã bệnh nhân: {0}", maBenhNhan);
-                workSheet.Cells["B3"].Value = string.Format("Họ tên: {0}", tenBenhNhan);
-                workSheet.Cells["B4"].Value = string.Format("Ngày sinh: {0}", ngaySinh);
+                workSheet.Cells["A2"].Value = string.Format("       Mã bệnh nhân: {0}", maBenhNhan);
+                workSheet.Cells["A3"].Value = string.Format("       Họ tên: {0}", tenBenhNhan);
+                workSheet.Cells["A4"].Value = string.Format("       Ngày sinh: {0}", ngaySinh);
                 workSheet.Cells["D4"].Value = string.Format("Giới tính: {0}", gioiTinh);
-                workSheet.Cells["B5"].Value = string.Format("Địa chỉ: {0}", diaChi);
+                workSheet.Cells["A5"].Value = string.Format("       Địa chỉ: {0}", diaChi);
                 
                 int rowIndex = 8;
                 IRange range;
@@ -4701,11 +4701,11 @@ namespace MM.Exports
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemSinhHoaTemplate.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A2"].Value = string.Format("                      Mã bệnh nhân: {0}", maBenhNhan);
-                workSheet.Cells["A3"].Value = string.Format("                      Họ tên: {0}", tenBenhNhan);
-                workSheet.Cells["A4"].Value = string.Format("                      Ngày sinh: {0}", ngaySinh);
-                workSheet.Cells["C4"].Value = string.Format("                      Giới tính: {0}", gioiTinh);
-                workSheet.Cells["A5"].Value = string.Format("                      Địa chỉ: {0}", diaChi);
+                workSheet.Cells["A2"].Value = string.Format("       Mã bệnh nhân: {0}", maBenhNhan);
+                workSheet.Cells["A3"].Value = string.Format("       Họ tên: {0}", tenBenhNhan);
+                workSheet.Cells["A4"].Value = string.Format("       Ngày sinh: {0}", ngaySinh);
+                workSheet.Cells["C4"].Value = string.Format("      Giới tính: {0}", gioiTinh);
+                workSheet.Cells["A5"].Value = string.Format("       Địa chỉ: {0}", diaChi);
 
                 int rowIndex = 8;
                 IRange range;
