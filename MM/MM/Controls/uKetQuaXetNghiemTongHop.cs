@@ -166,13 +166,17 @@ namespace MM.Controls
                 TinhTrang tinhTrang = (TinhTrang)Convert.ToByte(dr["TinhTrang"]);
                 if (tinhTrang == MM.Common.TinhTrang.BatThuong)
                 {
-                    row.DefaultCellStyle.Font = _boldFont;
-                    row.DefaultCellStyle.ForeColor = Color.Red;
+                    //row.DefaultCellStyle.Font = _boldFont;
+                    //row.DefaultCellStyle.ForeColor = Color.Red;
+                    row.Cells["TestResult"].Style.Font = _boldFont;
+                    row.Cells["TestResult"].Style.ForeColor = Color.Red;
                 }
                 else
                 {
-                    row.DefaultCellStyle.Font = _normalFont;
-                    row.DefaultCellStyle.ForeColor = Color.Black;
+                    row.Cells["TestResult"].Style.Font = _normalFont;
+                    row.Cells["TestResult"].Style.ForeColor = Color.Black;
+                    //row.DefaultCellStyle.Font = _normalFont;
+                    //row.DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
         }
@@ -262,7 +266,8 @@ namespace MM.Controls
 
                     bool isData = false;
                     DateTime maxNgayXN = DateTime.Now;
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData, ref maxNgayXN))
+                    List<string> keys = null;
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData, ref maxNgayXN, ref keys))
                         return;
                 }
             }
@@ -293,7 +298,10 @@ namespace MM.Controls
 
                     bool isData = false;
                     DateTime maxNgayXN = DateTime.Now;
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
+                    List<string> keys = null;
+                    List<string> hitachi917Keys = null;
+                    List<string> manualKeys = null;
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref keys))
                         return;
                     else
                     {
@@ -310,7 +318,7 @@ namespace MM.Controls
                     }
 
                     exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
                         return;
                     else
                     {
@@ -368,7 +376,9 @@ namespace MM.Controls
 
                     bool isData = false;
                     DateTime maxNgayXN = DateTime.Now;
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData, ref maxNgayXN))
+                    List<string> hitachi917Keys = null;
+                    List<string> manualKeys = null;
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
                         return;
                 }
             }
@@ -399,7 +409,9 @@ namespace MM.Controls
 
                     bool isData = false;
                     DateTime maxNgayXN = DateTime.Now;
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
+                    List<string> hitachi917Keys = null;
+                    List<string> manualKeys = null;
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
                         return;
                     else
                     {
@@ -548,9 +560,12 @@ namespace MM.Controls
         private bool AddUserToTextFile(string customerId, string password, string name)
         {
             StreamWriter sw = null;
+
+            string fileName = string.Format("{0}\\Users_{1}.txt", Global.UsersPath, DateTime.Now.ToString("dd_MM_yyyy"));
+
             try
             {
-                sw = new StreamWriter(Global.UsersFilePath, true);
+                sw = new StreamWriter(fileName, true);
                 sw.WriteLine(string.Format("customer_id: {0}, password: {1}, name: {2}", customerId, password, name));
                 return true;
             }
@@ -576,7 +591,7 @@ namespace MM.Controls
             List<DataRow> checkedPatientRows = GetCheckedPatientRows();
             if (checkedPatientRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 bệnh nhân cần in.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 bệnh nhân cần upload.", IconType.Information);
                 return;
             }
 
@@ -599,7 +614,11 @@ namespace MM.Controls
 
                 bool isData = false;
                 DateTime maxNgayXN = DateTime.Now;
-                if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
+                List<string> cellDyn3200Keys = null;
+                List<string> hitachi917Keys = null;
+                List<string> manualKeys = null;
+
+                if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref cellDyn3200Keys))
                     return;
                 else
                 {
@@ -644,6 +663,15 @@ namespace MM.Controls
                                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("FTP.UploadFile"), IconType.Information);
                                 Utility.WriteToTraceLog(result.GetErrorAsString("FTP.UploadFile"));
                             }
+                            else
+                            {
+                                result = XetNghiem_CellDyn3200Bus.UpdateDaUpload(cellDyn3200Keys);
+                                if (!result.IsOK)
+                                {
+                                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_CellDyn3200Bus.UpdateDaUpload"), IconType.Information);
+                                    Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_CellDyn3200Bus.UpdateDaUpload"));
+                                } 
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -654,7 +682,7 @@ namespace MM.Controls
                 }
 
                 exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
-                if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN))
+                if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
                     return;
                 else
                 {
@@ -699,6 +727,22 @@ namespace MM.Controls
                                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("FTP.UploadFile"), IconType.Information);
                                 Utility.WriteToTraceLog(result.GetErrorAsString("FTP.UploadFile"));
                             }
+                            else
+                            {
+                                result = XetNghiem_Hitachi917Bus.UpdateDaUpload(hitachi917Keys);
+                                if (!result.IsOK)
+                                {
+                                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_Hitachi917Bus.UpdateDaUpload"), IconType.Information);
+                                    Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.UpdateDaUpload"));
+                                }
+
+                                result = KetQuaXetNghiemTayBus.UpdateDaUpload(hitachi917Keys);
+                                if (!result.IsOK)
+                                {
+                                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTayBus.UpdateDaUpload"), IconType.Information);
+                                    Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTayBus.UpdateDaUpload"));
+                                } 
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -716,7 +760,7 @@ namespace MM.Controls
                 {
                     bool isChecked = Convert.ToBoolean(row["Checked"]);
                     if (isChecked)
-                        row["DaIn"] = true;
+                        row["DaUpload"] = true;
                 }
             }
         }
@@ -824,6 +868,15 @@ namespace MM.Controls
         private void btnUploadFTP_Click(object sender, EventArgs e)
         {
             UploadKQXN();
+        }
+
+        private void uKetQuaXetNghiemTongHop_Load(object sender, EventArgs e)
+        {
+            int height1 = panel4.Height;
+            int height2 = panel1.Height;
+            int height = height1 + height2;
+            height = (int)(height * 0.7);
+            panel1.Height = height;
         }
         #endregion
     }

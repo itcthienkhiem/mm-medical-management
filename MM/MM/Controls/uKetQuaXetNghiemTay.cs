@@ -297,6 +297,15 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void uKetQuaXetNghiemTay_Load(object sender, EventArgs e)
+        {
+            int height1 = panel5.Height;
+            int height2 = panel4.Height;
+            int height = height1 + height2;
+            height = (int)(height * 0.7);
+            panel4.Height = height;
+        }
+
         private void btnView_Click(object sender, EventArgs e)
         {
             DisplayAsThread();
@@ -408,5 +417,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

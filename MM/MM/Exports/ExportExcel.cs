@@ -4543,7 +4543,7 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint, ref bool isData, ref DateTime maxNgayXN)
+        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint, ref bool isData, ref DateTime maxNgayXN, ref List<string> keys)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4568,11 +4568,11 @@ namespace MM.Exports
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemCellDyn3200Template.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A2"].Value = string.Format("       Mã bệnh nhân: {0}", maBenhNhan);
-                workSheet.Cells["A3"].Value = string.Format("       Họ tên: {0}", tenBenhNhan);
-                workSheet.Cells["A4"].Value = string.Format("       Ngày sinh: {0}", ngaySinh);
-                workSheet.Cells["D4"].Value = string.Format("Giới tính: {0}", gioiTinh);
-                workSheet.Cells["A5"].Value = string.Format("       Địa chỉ: {0}", diaChi);
+                workSheet.Cells["A2"].Value = string.Format("       Laboratory ID: {0}", maBenhNhan);
+                workSheet.Cells["A3"].Value = string.Format("       FullName: {0}", tenBenhNhan);
+                workSheet.Cells["A4"].Value = string.Format("       D.O.B: {0}", ngaySinh);
+                workSheet.Cells["C4"].Value = string.Format("       Sex: {0}", gioiTinh);
+                workSheet.Cells["A5"].Value = string.Format("       Address: {0}", diaChi);
                 
                 int rowIndex = 8;
                 IRange range;
@@ -4580,10 +4580,12 @@ namespace MM.Exports
                 DataTable dtKQXN = result.QueryResult as DataTable;
                 int groupID = 0;
 
-                List<string> keys = new List<string>();
+                keys = new List<string>();
 
                 isData = false;
                 maxNgayXN = DateTime.MinValue;
+                List<DataRow> percentRows = new List<DataRow>();
+
                 foreach (DataRow row in dtKQXN.Rows)
                 {
                     string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
@@ -4595,21 +4597,53 @@ namespace MM.Exports
                     if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
 
                     keys.Add(chiTietKQXNGUID);
-                    string tenXetNghiem = row["Fullname"].ToString();
-                    double testResult = Convert.ToDouble(row["TestResult"]);
-                    string testPercent = row["TestPercent"].ToString();
-                    int gID = Convert.ToInt32(row["GroupID"]);
-                    byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
-                    string binhThuong = row["BinhThuong"].ToString();
 
-                    //if (groupID != 0 && groupID != gID)
-                    //{
-                    //    range = workSheet.Cells[string.Format("A{0}:D{0}", rowIndex + 1)];
-                    //    range.Merge();
-                    //    rowIndex++;
-                    //}
+                    string tenXetNghiem = string.Empty;
+                    double testResult = 0;
+                    string testPercent = string.Empty;
+                    int gID = Convert.ToInt32(row["GroupID"]);
+                    byte tinhTrang = 0;
+                    string binhThuong = string.Empty;
+
+                    if (groupID != 0 && groupID != gID)
+                    {
+                        foreach (DataRow r in percentRows)
+                        {
+                            tenXetNghiem = string.Format("{0}%", r["Fullname"].ToString());
+                            testResult = Convert.ToDouble(r["TestPercent"]);
+                            tinhTrang = Convert.ToByte(r["TinhTrang"]);
+                            binhThuong = r["Percent"].ToString();
+                            int index = binhThuong.IndexOf(" ", 0);
+                            if (index >= 0) binhThuong = binhThuong.Substring(index + 1);
+
+                            workSheet.Cells[rowIndex, 0].Value = tenXetNghiem;
+                            workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Left;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 0].Font.Bold = true;
+                            workSheet.Cells[rowIndex, 1].Value = testResult;
+                            workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Center;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 1].Font.Bold = true;
+
+                            workSheet.Cells[rowIndex, 2].Value = binhThuong;
+                            workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Right;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 2].Font.Bold = true;
+
+                            range = workSheet.Cells[string.Format("A{0}:C{0}", rowIndex + 1)];
+                            range.Borders.LineStyle = LineStyle.Continuous;
+                            range.Borders.Color = Color.Black;
+
+                            rowIndex++;
+                        }
+
+                        percentRows.Clear();
+                    }
 
                     groupID = gID;
+
+                    tenXetNghiem = row["Fullname"].ToString();
+                    testResult = Convert.ToDouble(row["TestResult"]);
+                    testPercent = row["TestPercent"].ToString();
+                    tinhTrang = Convert.ToByte(row["TinhTrang"]);
+                    binhThuong = row["BinhThuong"].ToString();
                     
                     workSheet.Cells[rowIndex, 0].Value = tenXetNghiem;
                     workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Left;
@@ -4618,14 +4652,13 @@ namespace MM.Exports
                     workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Center;
                     if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 1].Font.Bold = true;
                     if (testPercent.Trim() != string.Empty)
-                        workSheet.Cells[rowIndex, 2].Value = Convert.ToDouble(testPercent);
-                    workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Center;
-                    if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 2].Font.Bold = true;
-                    workSheet.Cells[rowIndex, 3].Value = binhThuong;
-                    workSheet.Cells[rowIndex, 3].HorizontalAlignment = HAlign.Right;
-                    if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 3].Font.Bold = true;
+                        percentRows.Add(row);    
 
-                    range = workSheet.Cells[string.Format("A{0}:D{0}", rowIndex + 1)];
+                    workSheet.Cells[rowIndex, 2].Value = binhThuong;
+                    workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Right;
+                    if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 2].Font.Bold = true;
+
+                    range = workSheet.Cells[string.Format("A{0}:C{0}", rowIndex + 1)];
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Color = Color.Black;
 
@@ -4634,7 +4667,7 @@ namespace MM.Exports
 
                 if (isData)
                 {
-                    range = workSheet.Cells[string.Format("D{0}", rowIndex + 2)];
+                    range = workSheet.Cells[string.Format("C{0}", rowIndex + 2)];
                     range.Value = string.Format("Ngày xét nghiệm: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
                     range.Font.Italic = true;
                     range.HorizontalAlignment = HAlign.Center;
@@ -4676,7 +4709,7 @@ namespace MM.Exports
         }
 
         public static bool ExportKetQuaXetNghiemSinhToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, 
-            List<string> uncheckedList, bool isPrint, ref bool isData, ref DateTime maxNgayXN)
+            List<string> uncheckedList, bool isPrint, ref bool isData, ref DateTime maxNgayXN, ref List<string> hitachi917Keys, ref List<string> manualKeys)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4701,19 +4734,19 @@ namespace MM.Exports
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemSinhHoaTemplate.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A2"].Value = string.Format("       Mã bệnh nhân: {0}", maBenhNhan);
-                workSheet.Cells["A3"].Value = string.Format("       Họ tên: {0}", tenBenhNhan);
-                workSheet.Cells["A4"].Value = string.Format("       Ngày sinh: {0}", ngaySinh);
-                workSheet.Cells["C4"].Value = string.Format("      Giới tính: {0}", gioiTinh);
-                workSheet.Cells["A5"].Value = string.Format("       Địa chỉ: {0}", diaChi);
+                workSheet.Cells["A2"].Value = string.Format("       Laboratory ID: {0}", maBenhNhan);
+                workSheet.Cells["A3"].Value = string.Format("       FullName: {0}", tenBenhNhan);
+                workSheet.Cells["A4"].Value = string.Format("       D.O.B: {0}", ngaySinh);
+                workSheet.Cells["C4"].Value = string.Format("      Sex: {0}", gioiTinh);
+                workSheet.Cells["A5"].Value = string.Format("       Address: {0}", diaChi);
 
                 int rowIndex = 8;
                 IRange range;
 
                 DataTable dtKQXN = result.QueryResult as DataTable;
                 DataRow[] rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.Biochemistry.ToString()), "Fullname");
-                List<string> hitachi917Keys = new List<string>();
-                List<string> manualKeys = new List<string>();
+                hitachi917Keys = new List<string>();
+                manualKeys = new List<string>();
                 maxNgayXN = DateTime.MinValue;
                 isData = false;
                 if (rows != null && rows.Length > 0)
@@ -4844,7 +4877,7 @@ namespace MM.Exports
                 if (isData)
                 {
                     range = workSheet.Cells[string.Format("C{0}", rowIndex + 2)];
-                    range.Value = string.Format("Ngày xét nghiệm: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
+                    range.Value = string.Format("Report Date: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
                     range.Font.Italic = true;
                     range.HorizontalAlignment = HAlign.Center;
                 }

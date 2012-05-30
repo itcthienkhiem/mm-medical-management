@@ -378,6 +378,15 @@ namespace MM.Controls
 
             OnDisplayChiTietKetQuaXetNghiem(row["KQXN_CellDyn3200GUID"].ToString());
         }
+
+        private void uKetQuaXetNghiem_CellDyn3200_Load(object sender, EventArgs e)
+        {
+            int height1 = panel5.Height;
+            int height2 = panel4.Height;
+            int height = height1 + height2;
+            height = (int)(height * 0.7);
+            panel4.Height = height;
+        }
         #endregion
 
         #region Working Thread
@@ -399,6 +408,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }
