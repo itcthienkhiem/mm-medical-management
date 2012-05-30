@@ -73,6 +73,8 @@
             this.chkCheckedXN = new System.Windows.Forms.CheckBox();
             this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Column1 = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.DaIn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.DaUpload = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ChiTietKQXNGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.XetNghiemGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgayXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,7 +86,6 @@
             this.BinhThuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TinhTrang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DaIn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.FromValue2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ToValue2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DoiTuong2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,6 +95,7 @@
             this.GroupID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LoaiXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.chkCheckedBN = new System.Windows.Forms.CheckBox();
             this.dgBenhNhan = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -329,9 +331,9 @@
             this.panel1.Controls.Add(this.chkCheckedXN);
             this.panel1.Controls.Add(this.dgXetNghiem);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 320);
+            this.panel1.Location = new System.Drawing.Point(0, 220);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1034, 240);
+            this.panel1.Size = new System.Drawing.Size(1034, 340);
             this.panel1.TabIndex = 10;
             // 
             // chkCheckedXN
@@ -360,6 +362,8 @@
             this.dgXetNghiem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgXetNghiem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
+            this.DaIn,
+            this.DaUpload,
             this.ChiTietKQXNGUID,
             this.XetNghiemGUID,
             this.NgayXN,
@@ -371,7 +375,6 @@
             this.BinhThuong,
             this.TinhTrang,
             this.Type,
-            this.DaIn,
             this.FromValue2,
             this.ToValue2,
             this.DoiTuong2,
@@ -380,7 +383,8 @@
             this.ToPercent2,
             this.GroupID,
             this.Order,
-            this.LoaiXN});
+            this.LoaiXN,
+            this.TestNum});
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -399,7 +403,7 @@
             this.dgXetNghiem.ReadOnly = true;
             this.dgXetNghiem.RowHeadersWidth = 30;
             this.dgXetNghiem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgXetNghiem.Size = new System.Drawing.Size(1034, 240);
+            this.dgXetNghiem.Size = new System.Drawing.Size(1034, 340);
             this.dgXetNghiem.TabIndex = 9;
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
             // 
@@ -415,7 +419,27 @@
             this.Column1.HeaderText = "";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column1.Width = 40;
+            // 
+            // DaIn
+            // 
+            this.DaIn.DataPropertyName = "DaIn";
+            this.DaIn.HeaderText = "Đã in";
+            this.DaIn.Name = "DaIn";
+            this.DaIn.ReadOnly = true;
+            this.DaIn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DaIn.Width = 60;
+            // 
+            // DaUpload
+            // 
+            this.DaUpload.DataPropertyName = "DaUpload";
+            this.DaUpload.HeaderText = "Đã upload";
+            this.DaUpload.Name = "DaUpload";
+            this.DaUpload.ReadOnly = true;
+            this.DaUpload.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DaUpload.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DaUpload.Width = 80;
             // 
             // ChiTietKQXNGUID
             // 
@@ -529,15 +553,6 @@
             this.Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Type.Visible = false;
             // 
-            // DaIn
-            // 
-            this.DaIn.DataPropertyName = "DaIn";
-            this.DaIn.HeaderText = "Đã in";
-            this.DaIn.Name = "DaIn";
-            this.DaIn.ReadOnly = true;
-            this.DaIn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DaIn.Width = 60;
-            // 
             // FromValue2
             // 
             this.FromValue2.DataPropertyName = "FromValue2";
@@ -619,6 +634,14 @@
             this.LoaiXN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.LoaiXN.Visible = false;
             // 
+            // TestNum
+            // 
+            this.TestNum.DataPropertyName = "TestNum";
+            this.TestNum.HeaderText = "TestNum";
+            this.TestNum.Name = "TestNum";
+            this.TestNum.ReadOnly = true;
+            this.TestNum.Visible = false;
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.chkCheckedBN);
@@ -626,7 +649,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 61);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1034, 259);
+            this.panel4.Size = new System.Drawing.Size(1034, 159);
             this.panel4.TabIndex = 11;
             // 
             // chkCheckedBN
@@ -679,7 +702,7 @@
             this.dgBenhNhan.ReadOnly = true;
             this.dgBenhNhan.RowHeadersWidth = 30;
             this.dgBenhNhan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgBenhNhan.Size = new System.Drawing.Size(1034, 259);
+            this.dgBenhNhan.Size = new System.Drawing.Size(1034, 159);
             this.dgBenhNhan.TabIndex = 11;
             this.dgBenhNhan.SelectionChanged += new System.EventHandler(this.dgBenhNhan_SelectionChanged);
             // 
@@ -753,7 +776,7 @@
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 317);
+            this.splitter1.Location = new System.Drawing.Point(0, 217);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(1034, 3);
             this.splitter1.TabIndex = 12;
@@ -924,6 +947,7 @@
             this.Controls.Add(this.panel3);
             this.Name = "uKetQuaXetNghiemTongHop";
             this.Size = new System.Drawing.Size(1034, 598);
+            this.Load += new System.EventHandler(this.uKetQuaXetNghiemTongHop_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -981,7 +1005,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GioiTinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaChi;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.Button btnDeleteChiTiet;
+        private System.Windows.Forms.Button btnEditChiTiet;
+        private System.Windows.Forms.Button btnAddChiTiet;
+        private System.Windows.Forms.CheckBox chkMaBenhNhan;
+        private System.Windows.Forms.Button btnUploadFTP;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn Column1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DaIn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DaUpload;
         private System.Windows.Forms.DataGridViewTextBoxColumn ChiTietKQXNGUID;
         private System.Windows.Forms.DataGridViewTextBoxColumn XetNghiemGUID;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayXN;
@@ -993,7 +1024,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BinhThuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn TinhTrang;
         private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn DaIn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FromValue2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ToValue2;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoiTuong2;
@@ -1003,10 +1033,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GroupID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Order;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiXN;
-        private System.Windows.Forms.Button btnDeleteChiTiet;
-        private System.Windows.Forms.Button btnEditChiTiet;
-        private System.Windows.Forms.Button btnAddChiTiet;
-        private System.Windows.Forms.CheckBox chkMaBenhNhan;
-        private System.Windows.Forms.Button btnUploadFTP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TestNum;
     }
 }

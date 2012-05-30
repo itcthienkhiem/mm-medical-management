@@ -246,6 +246,8 @@ namespace MM
                 _uXetNghiemTay.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uKetQuaXetNghiemTay))
                 _uKetQuaXetNghiemTay.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uKetQuaXetNghiemTongHop))
+                _uKetQuaXetNghiemTongHop.UpdateGUI();
         }
 
         private void SaveAppConfig()
@@ -1410,6 +1412,7 @@ namespace MM
         {
             this.Text = string.Format("{0} - Ket qua xet nghiem tong hop", Application.ProductName);
             ViewControl(_uKetQuaXetNghiemTongHop);
+            _uKetQuaXetNghiemTongHop.UpdateGUI();
         }
 
         private void OnKetQuaXetNghiemTay()
