@@ -158,6 +158,7 @@
             this.chkMaBenhNhan.TabIndex = 31;
             this.chkMaBenhNhan.Text = "Mã bệnh nhân";
             this.chkMaBenhNhan.UseVisualStyleBackColor = true;
+            this.chkMaBenhNhan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtpkTuNgay_KeyDown);
             // 
             // label4
             // 
