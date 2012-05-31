@@ -267,7 +267,7 @@ namespace MM.Controls
                     bool isData = false;
                     DateTime maxNgayXN = DateTime.Now;
                     List<string> keys = null;
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData, ref maxNgayXN, ref keys))
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, true, ref isData, ref maxNgayXN, ref keys))
                         return;
                 }
             }
@@ -301,7 +301,7 @@ namespace MM.Controls
                     List<string> keys = null;
                     List<string> hitachi917Keys = null;
                     List<string> manualKeys = null;
-                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref keys))
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, chkCoLine.Checked, ref isData, ref maxNgayXN, ref keys))
                         return;
                     else
                     {
@@ -318,7 +318,7 @@ namespace MM.Controls
                     }
 
                     exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, chkCoLine.Checked, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
                         return;
                     else
                     {
@@ -378,7 +378,7 @@ namespace MM.Controls
                     DateTime maxNgayXN = DateTime.Now;
                     List<string> hitachi917Keys = null;
                     List<string> manualKeys = null;
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(dlg.FileName, row, tuNgay, denNgay, uncheckedList, false, true, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
                         return;
                 }
             }
@@ -411,7 +411,7 @@ namespace MM.Controls
                     DateTime maxNgayXN = DateTime.Now;
                     List<string> hitachi917Keys = null;
                     List<string> manualKeys = null;
-                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, chkCoLine.Checked, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
                         return;
                     else
                     {
@@ -618,7 +618,7 @@ namespace MM.Controls
                 List<string> hitachi917Keys = null;
                 List<string> manualKeys = null;
 
-                if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref cellDyn3200Keys))
+                if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, true, ref isData, ref maxNgayXN, ref cellDyn3200Keys))
                     return;
                 else
                 {
@@ -682,7 +682,7 @@ namespace MM.Controls
                 }
 
                 exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
-                if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
+                if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, true, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
                     return;
                 else
                 {

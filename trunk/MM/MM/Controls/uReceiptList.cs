@@ -74,6 +74,7 @@ namespace MM.Controls
             try
             {
                 UpdateGUI();
+                lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
                 chkChecked.Checked = false;
                 _isFromDateToDate = raTuNgayToiNgay.Checked;
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
@@ -115,8 +116,10 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    DataTable dt = result.QueryResult as DataTable;
                     dgReceipt.DataSource = result.QueryResult;
                     HighlightExportedInvoice();
+                    lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);
                 };
 
                 if (InvokeRequired) BeginInvoke(method);

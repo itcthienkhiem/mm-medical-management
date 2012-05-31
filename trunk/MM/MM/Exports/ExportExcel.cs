@@ -4543,7 +4543,8 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, List<string> uncheckedList, bool isPrint, ref bool isData, ref DateTime maxNgayXN, ref List<string> keys)
+        public static bool ExportKetQuaXetNghiemCellDyn3200ToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, 
+            List<string> uncheckedList, bool isPrint, bool hasLine, ref bool isData, ref DateTime maxNgayXN, ref List<string> keys)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4573,9 +4574,15 @@ namespace MM.Exports
                 workSheet.Cells["B4"].Value = ngaySinh;
                 workSheet.Cells["E4"].Value = string.Format("       Sex: {0}", gioiTinh);
                 workSheet.Cells["B5"].Value = diaChi;
-                
+
                 int rowIndex = 8;
                 IRange range;
+
+                if (!hasLine)
+                {
+                    range = workSheet.Cells["A7:E8"];
+                    range.Borders.LineStyle = LineStyle.None;
+                }
 
                 DataTable dtKQXN = result.QueryResult as DataTable;
                 int groupID = 0;
@@ -4620,7 +4627,7 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Left;
                             range.Value = tenXetNghiem;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
                             range.Merge();
@@ -4630,11 +4637,14 @@ namespace MM.Exports
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
                             workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
-                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
-                            range.Borders.LineStyle = LineStyle.Continuous;
-                            range.Borders.Color = Color.Black;
+                            if (hasLine)
+                            {
+                                range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                                range.Borders.LineStyle = LineStyle.Continuous;
+                                range.Borders.Color = Color.Black;
+                            }
 
                             rowIndex++;
                         }
@@ -4654,7 +4664,10 @@ namespace MM.Exports
                     range.Merge();
                     range.HorizontalAlignment = HAlign.Left;
                     range.Value = tenXetNghiem;
-                    if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+                    if (tenXetNghiem.ToUpper() == "WBC" || tenXetNghiem.ToUpper() == "RBC" ||
+                        tenXetNghiem.ToUpper() == "PLT")
+                        range.Font.Bold = true;
+                    //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                     range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
                     range.Merge();
@@ -4667,11 +4680,14 @@ namespace MM.Exports
 
                     workSheet.Cells[rowIndex, 4].Value = binhThuong;
                     workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
-                    if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+                    //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
-                    range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
-                    range.Borders.LineStyle = LineStyle.Continuous;
-                    range.Borders.Color = Color.Black;
+                    if (hasLine)
+                    {
+                        range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Color = Color.Black;
+                    }
 
                     rowIndex++;
                 }
@@ -4720,7 +4736,7 @@ namespace MM.Exports
         }
 
         public static bool ExportKetQuaXetNghiemSinhToExcel(string exportFileName, DataRow patientRow, DateTime fromDate, DateTime toDate, 
-            List<string> uncheckedList, bool isPrint, ref bool isData, ref DateTime maxNgayXN, ref List<string> hitachi917Keys, ref List<string> manualKeys)
+            List<string> uncheckedList, bool isPrint, bool hasLine, ref bool isData, ref DateTime maxNgayXN, ref List<string> hitachi917Keys, ref List<string> manualKeys)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -4753,6 +4769,12 @@ namespace MM.Exports
 
                 int rowIndex = 8;
                 IRange range;
+
+                if (!hasLine)
+                {
+                    range = workSheet.Cells["A7:E8"];
+                    range.Borders.LineStyle = LineStyle.None;
+                }
 
                 DataTable dtKQXN = result.QueryResult as DataTable;
                 DataRow[] rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.Biochemistry.ToString()), "Fullname");
@@ -4808,7 +4830,7 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Left;
                             range.Value = tenXetNghiem;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
                             range.Merge();
@@ -4822,11 +4844,14 @@ namespace MM.Exports
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
                             workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
-                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
-                            range.Borders.LineStyle = LineStyle.Continuous;
-                            range.Borders.Color = Color.Black;
+                            if (hasLine)
+                            {
+                                range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                                range.Borders.LineStyle = LineStyle.Continuous;
+                                range.Borders.Color = Color.Black;
+                            }
 
                             rowIndex++;
                         }
@@ -4871,8 +4896,13 @@ namespace MM.Exports
                             range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                             range.Font.Bold = true;
                             range.HorizontalAlignment = HAlign.Center;
-                            range.Borders.LineStyle = LineStyle.Continuous;
-                            range.Borders.Color = Color.Black;
+
+                            if (hasLine)
+                            {
+                                range.Borders.LineStyle = LineStyle.Continuous;
+                                range.Borders.Color = Color.Black;
+                            }
+                            
                             rowIndex++;
                         }
                         else
@@ -4929,9 +4959,12 @@ namespace MM.Exports
                             workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
                             if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
-                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
-                            range.Borders.LineStyle = LineStyle.Continuous;
-                            range.Borders.Color = Color.Black;
+                            if (hasLine)
+                            {
+                                range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                                range.Borders.LineStyle = LineStyle.Continuous;
+                                range.Borders.Color = Color.Black;
+                            }
 
                             rowIndex++;
                         }

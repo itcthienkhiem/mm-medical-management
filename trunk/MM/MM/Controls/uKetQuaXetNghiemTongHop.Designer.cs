@@ -123,6 +123,7 @@
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkCoLine = new System.Windows.Forms.CheckBox();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -230,6 +231,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chkCoLine);
             this.panel2.Controls.Add(this.btnUploadFTP);
             this.panel2.Controls.Add(this.btnDeleteChiTiet);
             this.panel2.Controls.Add(this.btnEditChiTiet);
@@ -247,7 +249,7 @@
             // 
             this.btnUploadFTP.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadFTP.Image")));
             this.btnUploadFTP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUploadFTP.Location = new System.Drawing.Point(714, 6);
+            this.btnUploadFTP.Location = new System.Drawing.Point(788, 6);
             this.btnUploadFTP.Name = "btnUploadFTP";
             this.btnUploadFTP.Size = new System.Drawing.Size(104, 25);
             this.btnUploadFTP.TabIndex = 94;
@@ -283,7 +285,7 @@
             // 
             this.btnExportExcelSinhHoa.Image = global::MM.Properties.Resources.page_excel_icon;
             this.btnExportExcelSinhHoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcelSinhHoa.Location = new System.Drawing.Point(563, 6);
+            this.btnExportExcelSinhHoa.Location = new System.Drawing.Point(637, 6);
             this.btnExportExcelSinhHoa.Name = "btnExportExcelSinhHoa";
             this.btnExportExcelSinhHoa.Size = new System.Drawing.Size(147, 25);
             this.btnExportExcelSinhHoa.TabIndex = 83;
@@ -295,7 +297,7 @@
             // 
             this.btnExportExcelCellDyn3200.Image = global::MM.Properties.Resources.page_excel_icon;
             this.btnExportExcelCellDyn3200.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcelCellDyn3200.Location = new System.Drawing.Point(384, 6);
+            this.btnExportExcelCellDyn3200.Location = new System.Drawing.Point(458, 6);
             this.btnExportExcelCellDyn3200.Name = "btnExportExcelCellDyn3200";
             this.btnExportExcelCellDyn3200.Size = new System.Drawing.Size(175, 25);
             this.btnExportExcelCellDyn3200.TabIndex = 81;
@@ -937,6 +939,18 @@
             this.dataGridViewTextBoxColumn15.Visible = false;
             this.dataGridViewTextBoxColumn15.Width = 200;
             // 
+            // chkCoLine
+            // 
+            this.chkCoLine.AutoSize = true;
+            this.chkCoLine.Checked = true;
+            this.chkCoLine.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCoLine.Location = new System.Drawing.Point(383, 11);
+            this.chkCoLine.Name = "chkCoLine";
+            this.chkCoLine.Size = new System.Drawing.Size(69, 17);
+            this.chkCoLine.TabIndex = 95;
+            this.chkCoLine.Text = "In có line";
+            this.chkCoLine.UseVisualStyleBackColor = true;
+            // 
             // uKetQuaXetNghiemTongHop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -952,6 +966,7 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgXetNghiem)).EndInit();
@@ -1035,5 +1050,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Order;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiXN;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestNum;
+        private System.Windows.Forms.CheckBox chkCoLine;
     }
 }

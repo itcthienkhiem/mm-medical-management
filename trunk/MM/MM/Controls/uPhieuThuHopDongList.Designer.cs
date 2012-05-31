@@ -54,8 +54,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgPhieuThu = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.phieuThuHopDongBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maPhieuThuHopDongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayThuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +64,9 @@
             this.isExportedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phieuThuHopDongBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -76,6 +77,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lbKetQuaTimDuoc);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.btnView);
             this.panel2.Controls.Add(this.txtTenBenhNhan);
@@ -345,14 +347,6 @@
             this.dgPhieuThu.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPhieuThu_ColumnHeaderMouseClick);
             this.dgPhieuThu.DoubleClick += new System.EventHandler(this.dgPhieuThu_DoubleClick);
             // 
-            // phieuThuHopDongBindingSource
-            // 
-            this.phieuThuHopDongBindingSource.DataSource = typeof(MM.Databasae.PhieuThuHopDong);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -443,6 +437,24 @@
             this.NguoiTao.ReadOnly = true;
             this.NguoiTao.Width = 200;
             // 
+            // phieuThuHopDongBindingSource
+            // 
+            this.phieuThuHopDongBindingSource.DataSource = typeof(MM.Databasae.PhieuThuHopDong);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
+            // lbKetQuaTimDuoc
+            // 
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(471, 82);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 16;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
+            // 
             // uPhieuThuHopDongList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,5 +512,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn isExportedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
+        private System.Windows.Forms.Label lbKetQuaTimDuoc;
     }
 }
