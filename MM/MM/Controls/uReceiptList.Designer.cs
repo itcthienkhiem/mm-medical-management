@@ -52,9 +52,6 @@
             this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgReceipt = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ReceiptCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.receiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +62,10 @@
             this.IsExportedInVoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -135,6 +136,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lbKetQuaTimDuoc);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.btnView);
             this.panel2.Controls.Add(this.txtTenBenhNhan);
@@ -322,24 +324,6 @@
             this.dgReceipt.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgReceipt_ColumnHeaderMouseClick);
             this.dgReceipt.DoubleClick += new System.EventHandler(this.dgReceipt_DoubleClick);
             // 
-            // receiptViewBindingSource
-            // 
-            this.receiptViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgReceipt);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 111);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1252, 306);
-            this.panel3.TabIndex = 4;
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -429,6 +413,34 @@
             this.NguoiTao.ReadOnly = true;
             this.NguoiTao.Width = 200;
             // 
+            // receiptViewBindingSource
+            // 
+            this.receiptViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgReceipt);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 111);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1252, 306);
+            this.panel3.TabIndex = 4;
+            // 
+            // lbKetQuaTimDuoc
+            // 
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(473, 81);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 15;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
+            // 
             // uReceiptList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -488,5 +500,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsExportedInVoice;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
+        private System.Windows.Forms.Label lbKetQuaTimDuoc;
     }
 }
