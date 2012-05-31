@@ -4568,11 +4568,11 @@ namespace MM.Exports
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemCellDyn3200Template.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A2"].Value = string.Format("       Laboratory ID: {0}", maBenhNhan);
-                workSheet.Cells["A3"].Value = string.Format("       FullName: {0}", tenBenhNhan);
-                workSheet.Cells["A4"].Value = string.Format("       D.O.B: {0}", ngaySinh);
-                workSheet.Cells["C4"].Value = string.Format("       Sex: {0}", gioiTinh);
-                workSheet.Cells["A5"].Value = string.Format("       Address: {0}", diaChi);
+                workSheet.Cells["B2"].Value = maBenhNhan;
+                workSheet.Cells["B3"].Value = tenBenhNhan;
+                workSheet.Cells["B4"].Value = ngaySinh;
+                workSheet.Cells["E4"].Value = string.Format("       Sex: {0}", gioiTinh);
+                workSheet.Cells["B5"].Value = diaChi;
                 
                 int rowIndex = 8;
                 IRange range;
@@ -4616,18 +4616,23 @@ namespace MM.Exports
                             int index = binhThuong.IndexOf(" ", 0);
                             if (index >= 0) binhThuong = binhThuong.Substring(index + 1);
 
-                            workSheet.Cells[rowIndex, 0].Value = tenXetNghiem;
-                            workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Left;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 0].Font.Bold = true;
-                            workSheet.Cells[rowIndex, 1].Value = testResult;
-                            workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Center;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 1].Font.Bold = true;
+                            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.Value = tenXetNghiem;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
-                            workSheet.Cells[rowIndex, 2].Value = binhThuong;
-                            workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Right;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 2].Font.Bold = true;
+                            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Center;
+                            range.Value = testResult;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
-                            range = workSheet.Cells[string.Format("A{0}:C{0}", rowIndex + 1)];
+                            workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                             range.Borders.LineStyle = LineStyle.Continuous;
                             range.Borders.Color = Color.Black;
 
@@ -4644,21 +4649,27 @@ namespace MM.Exports
                     testPercent = row["TestPercent"].ToString();
                     tinhTrang = Convert.ToByte(row["TinhTrang"]);
                     binhThuong = row["BinhThuong"].ToString();
-                    
-                    workSheet.Cells[rowIndex, 0].Value = tenXetNghiem;
-                    workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Left;
-                    if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 0].Font.Bold = true;
-                    workSheet.Cells[rowIndex, 1].Value = testResult;
-                    workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Center;
-                    if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 1].Font.Bold = true;
+
+                    range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                    range.Merge();
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.Value = tenXetNghiem;
+                    if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                    range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                    range.Merge();
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.Value = testResult;
+                    if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
                     if (testPercent.Trim() != string.Empty)
                         percentRows.Add(row);    
 
-                    workSheet.Cells[rowIndex, 2].Value = binhThuong;
-                    workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Right;
-                    if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 2].Font.Bold = true;
+                    workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                    workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                    if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
-                    range = workSheet.Cells[string.Format("A{0}:C{0}", rowIndex + 1)];
+                    range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Color = Color.Black;
 
@@ -4667,7 +4678,7 @@ namespace MM.Exports
 
                 if (isData)
                 {
-                    range = workSheet.Cells[string.Format("C{0}", rowIndex + 2)];
+                    range = workSheet.Cells[string.Format("E{0}", rowIndex + 2)];
                     range.Value = string.Format("Ngày xét nghiệm: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
                     range.Font.Italic = true;
                     range.HorizontalAlignment = HAlign.Center;
@@ -4734,11 +4745,11 @@ namespace MM.Exports
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemSinhHoaTemplate.xls", Application.StartupPath);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
-                workSheet.Cells["A2"].Value = string.Format("       Laboratory ID: {0}", maBenhNhan);
-                workSheet.Cells["A3"].Value = string.Format("       FullName: {0}", tenBenhNhan);
-                workSheet.Cells["A4"].Value = string.Format("       D.O.B: {0}", ngaySinh);
-                workSheet.Cells["C4"].Value = string.Format("      Sex: {0}", gioiTinh);
-                workSheet.Cells["A5"].Value = string.Format("       Address: {0}", diaChi);
+                workSheet.Cells["B2"].Value = maBenhNhan;
+                workSheet.Cells["B3"].Value = tenBenhNhan;
+                workSheet.Cells["B4"].Value = ngaySinh;
+                workSheet.Cells["E4"].Value = string.Format("      Sex: {0}", gioiTinh);
+                workSheet.Cells["B5"].Value = diaChi;
 
                 int rowIndex = 8;
                 IRange range;
@@ -4777,25 +4788,30 @@ namespace MM.Exports
                         catch { }
 
                         string tenXetNghiem = row["Fullname"].ToString();
-                        
                         byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
                         string binhThuong = row["BinhThuong"].ToString();
 
-                        workSheet.Cells[rowIndex, 0].Value = tenXetNghiem;
-                        workSheet.Cells[rowIndex, 0].HorizontalAlignment = HAlign.Left;
-                        if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 0].Font.Bold = true;
+                        range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                        range.Merge();
+                        range.HorizontalAlignment = HAlign.Left;
+                        range.Value = tenXetNghiem;
+                        if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                        range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                        range.Merge();
+                        range.HorizontalAlignment = HAlign.Center;
                         if (isNumeric)
-                            workSheet.Cells[rowIndex, 1].Value = testResult;
+                            range.Value = testResult;
                         else
-                            workSheet.Cells[rowIndex, 1].Value = row["TestResult"].ToString();
+                            range.Value = row["TestResult"].ToString();
 
-                        workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Center;
-                        if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 1].Font.Bold = true;
-                        workSheet.Cells[rowIndex, 2].Value = binhThuong;
-                        workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Right;
-                        if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 2].Font.Bold = true;
+                        if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
-                        range = workSheet.Cells[string.Format("A{0}:C{0}", rowIndex + 1)];
+                        workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                        workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                        if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+
+                        range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Color = Color.Black;
 
@@ -4803,80 +4819,109 @@ namespace MM.Exports
                     }
                 }
 
-                workSheet.Cells[rowIndex, 0].Value = "URINE (NƯỚC TIỂU)";
-                workSheet.Cells[rowIndex, 0].RowHeight = 26.25;
-                workSheet.Cells[rowIndex, 0].VerticalAlignment = VAlign.Center;
-                range = workSheet.Cells[string.Format("A{0}:C{0}", rowIndex + 1)];
-                range.Merge();
-                range.Font.Bold = true;
-                rowIndex++;
-                workSheet.Cells[rowIndex, 0].Value = "TEST RESULT";
-                workSheet.Cells[rowIndex, 1].Value = "RESULT";
-                workSheet.Cells[rowIndex, 2].Value = "NORMAL";
-                range = workSheet.Cells[string.Format("A{0}:C{0}", rowIndex + 1)];
-                range.Font.Bold = true;
-                range.HorizontalAlignment = HAlign.Center;
-                range.Borders.LineStyle = LineStyle.Continuous;
-                range.Borders.Color = Color.Black;
-                rowIndex++;
-
                 rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.Urine.ToString()), "Fullname");
                 if (rows != null && rows.Length > 0)
                 {
+                    
+
+                    List<DataRow> urineRows = new List<DataRow>();
                     foreach (DataRow row in rows)
                     {
                         string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
                         if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
                             continue;
 
-                        DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
-                        if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
+                        urineRows.Add(row);
+                    }
 
-                        isData = true;
-                        string loaiXN = row["LoaiXN"].ToString();
-                        if (loaiXN == "Manual")
-                            manualKeys.Add(chiTietKQXNGUID);
-                        else
-                            hitachi917Keys.Add(chiTietKQXNGUID);
+                    if (urineRows.Count > 0)
+                    {
+                        workSheet.Cells[rowIndex, 0].Value = "URINE (NƯỚC TIỂU)";
+                        workSheet.Cells[rowIndex, 0].RowHeight = 26.25;
+                        workSheet.Cells[rowIndex, 0].VerticalAlignment = VAlign.Center;
+                        range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                        range.Merge();
+                        range.Font.Bold = true;
+                        rowIndex++;
 
-                        bool isNumeric = false;
-                        double testResult = 0;
-                        try
-                        {
-                            testResult = Convert.ToDouble(row["TestResult"]);
-                            isNumeric = true;
-                        }
-                        catch { }
+                        range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                        range.Merge();
+                        range.Value = "TEST RESULT";
 
-                        string tenXetNghiem = row["Fullname"].ToString();
-                        byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
-                        string binhThuong = row["BinhThuong"].ToString();
+                        range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                        range.Merge();
+                        range.Value = "RESULT";
 
-                        workSheet.Cells[rowIndex, 0].Value = tenXetNghiem;
-                        workSheet.Cells[rowIndex, 0].HorizontalAlignment = HAlign.Left;
-                        if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 0].Font.Bold = true;
-                        if (isNumeric)
-                            workSheet.Cells[rowIndex, 1].Value = testResult;
-                        else
-                            workSheet.Cells[rowIndex, 1].Value = row["TestResult"].ToString();
+                        workSheet.Cells[rowIndex, 4].Value = "NORMAL";
 
-                        workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Center;
-                        if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 1].Font.Bold = true;
-                        workSheet.Cells[rowIndex, 2].Value = binhThuong;
-                        workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Right;
-                        if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 2].Font.Bold = true;
-
-                        range = workSheet.Cells[string.Format("A{0}:C{0}", rowIndex + 1)];
+                        range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                        range.Font.Bold = true;
+                        range.HorizontalAlignment = HAlign.Center;
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Color = Color.Black;
-
                         rowIndex++;
+
+                        foreach (DataRow row in urineRows)
+                        {
+                            string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
+                            if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
+                                continue;
+
+                            DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
+                            if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
+
+                            isData = true;
+                            string loaiXN = row["LoaiXN"].ToString();
+                            if (loaiXN == "Manual")
+                                manualKeys.Add(chiTietKQXNGUID);
+                            else
+                                hitachi917Keys.Add(chiTietKQXNGUID);
+
+                            bool isNumeric = false;
+                            double testResult = 0;
+                            try
+                            {
+                                testResult = Convert.ToDouble(row["TestResult"]);
+                                isNumeric = true;
+                            }
+                            catch { }
+
+                            string tenXetNghiem = row["Fullname"].ToString();
+                            byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
+                            string binhThuong = row["BinhThuong"].ToString();
+
+                            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.Value = tenXetNghiem;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Center;
+                            if (isNumeric)
+                                range.Value = testResult;
+                            else
+                                range.Value = row["TestResult"].ToString();
+
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                            workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                            range.Borders.LineStyle = LineStyle.Continuous;
+                            range.Borders.Color = Color.Black;
+
+                            rowIndex++;
+                        }
                     }
                 }
 
                 if (isData)
                 {
-                    range = workSheet.Cells[string.Format("C{0}", rowIndex + 2)];
+                    range = workSheet.Cells[string.Format("E{0}", rowIndex + 2)];
                     range.Value = string.Format("Report Date: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
                     range.Font.Italic = true;
                     range.HorizontalAlignment = HAlign.Center;
