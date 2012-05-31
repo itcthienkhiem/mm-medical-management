@@ -2947,6 +2947,26 @@
       <Association Name="KetQuaXetNghiem_Hitachi917_ChiTietKetQuaXetNghiem_Hitachi917" Member="KetQuaXetNghiem_Hitachi917" ThisKey="KQXN_Hitachi917GUID" OtherKey="KQXN_Hitachi917GUID" Type="KetQuaXetNghiem_Hitachi917" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="CustomerId" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.AccountView" Member="AccountViews">
+    <Type Name="AccountView">
+      <Column Name="CustomerId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DobStr" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="GenderAsStr" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Archived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">
     <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="DateTime" />

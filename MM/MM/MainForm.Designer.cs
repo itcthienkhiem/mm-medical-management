@@ -172,6 +172,8 @@
             this.ketQuaXetNghiemTongQuatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator47 = new System.Windows.Forms.ToolStripSeparator();
             this.cauHinhKetNoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator51 = new System.Windows.Forms.ToolStripSeparator();
+            this.traCuuThongTinKhachHangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -265,6 +267,7 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
+            this._uTraCuuThongTinKhachHang = new MM.Controls.uTraCuuThongTinKhachHang();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1203,7 +1206,9 @@
             this.toolStripSeparator46,
             this.ketQuaXetNghiemTongQuatToolStripMenuItem,
             this.toolStripSeparator47,
-            this.cauHinhKetNoiToolStripMenuItem});
+            this.cauHinhKetNoiToolStripMenuItem,
+            this.toolStripSeparator51,
+            this.traCuuThongTinKhachHangToolStripMenuItem});
             resources.ApplyResources(this.xetNghiemToolStripMenuItem, "xetNghiemToolStripMenuItem");
             this.xetNghiemToolStripMenuItem.Name = "xetNghiemToolStripMenuItem";
             // 
@@ -1282,6 +1287,18 @@
             resources.ApplyResources(this.cauHinhKetNoiToolStripMenuItem, "cauHinhKetNoiToolStripMenuItem");
             this.cauHinhKetNoiToolStripMenuItem.Tag = "CauHinhKetNoi";
             this.cauHinhKetNoiToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator51
+            // 
+            this.toolStripSeparator51.Name = "toolStripSeparator51";
+            resources.ApplyResources(this.toolStripSeparator51, "toolStripSeparator51");
+            // 
+            // traCuuThongTinKhachHangToolStripMenuItem
+            // 
+            this.traCuuThongTinKhachHangToolStripMenuItem.Name = "traCuuThongTinKhachHangToolStripMenuItem";
+            resources.ApplyResources(this.traCuuThongTinKhachHangToolStripMenuItem, "traCuuThongTinKhachHangToolStripMenuItem");
+            this.traCuuThongTinKhachHangToolStripMenuItem.Tag = "TraCuuThongTinKhachHang";
+            this.traCuuThongTinKhachHangToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -1708,6 +1725,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uTraCuuThongTinKhachHang);
             this._mainPanel.Controls.Add(this._uBaoCaoSoLuongKham);
             this._mainPanel.Controls.Add(this._uDanhSachXetNghiem_CellDyn3200List);
             this._mainPanel.Controls.Add(this._uDanhSachXetNghiemHitachi917List);
@@ -1995,6 +2013,11 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
+            // _uTraCuuThongTinKhachHang
+            // 
+            resources.ApplyResources(this._uTraCuuThongTinKhachHang, "_uTraCuuThongTinKhachHang");
+            this._uTraCuuThongTinKhachHang.Name = "_uTraCuuThongTinKhachHang";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2262,6 +2285,9 @@
         private System.Windows.Forms.ToolStripMenuItem thayDoiSoHoaDonToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator50;
         private System.Windows.Forms.ToolStripMenuItem cauHinhFTPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator51;
+        private System.Windows.Forms.ToolStripMenuItem traCuuThongTinKhachHangToolStripMenuItem;
+        private Controls.uTraCuuThongTinKhachHang _uTraCuuThongTinKhachHang;
 
     }
 }

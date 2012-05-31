@@ -43,7 +43,10 @@ namespace MM.Common
                 if (dt == null || dt.Rows.Count <= 0)
                     result.Error.Code = ErrorCode.NOT_EXIST;
                 else
+                {
                     result.Error.Code = ErrorCode.EXIST;
+                    result.QueryResult = dt.Rows[0]["password"].ToString();
+                }
             }
             catch (Exception e)
             {
