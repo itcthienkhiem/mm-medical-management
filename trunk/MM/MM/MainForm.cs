@@ -248,6 +248,8 @@ namespace MM
                 _uKetQuaXetNghiemTay.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uKetQuaXetNghiemTongHop))
                 _uKetQuaXetNghiemTongHop.UpdateGUI();
+            else if (ctrl.GetType() == typeof(uTraCuuThongTinKhachHang))
+                _uTraCuuThongTinKhachHang.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -948,6 +950,18 @@ namespace MM
                             _uBaoCaoSoLuongKham.AllowLock = isLock;
                             _uBaoCaoSoLuongKham.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.TraCuuThongTinKhachHang)
+                        {
+                            traCuuThongTinKhachHangToolStripMenuItem.Enabled = isView && isLogin;
+                            _uTraCuuThongTinKhachHang.AllowAdd = isAdd;
+                            _uTraCuuThongTinKhachHang.AllowEdit = isEdit;
+                            _uTraCuuThongTinKhachHang.AllowDelete = isDelete;
+                            _uTraCuuThongTinKhachHang.AllowPrint = isPrint;
+                            _uTraCuuThongTinKhachHang.AllowExport = isExport;
+                            _uTraCuuThongTinKhachHang.AllowImport = isImport;
+                            _uTraCuuThongTinKhachHang.AllowLock = isLock;
+                            _uTraCuuThongTinKhachHang.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1113,6 +1127,7 @@ namespace MM
                 danhSachXetNghiemHitachi917ToolStripMenuItem.Enabled = isLogin;
                 danhSachXetNghiemCellDyn3200ToolStripMenuItem.Enabled = isLogin;
                 baoCaoSoLuongKhamToolStripMenuItem.Enabled = isLogin;
+                traCuuThongTinKhachHangToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1363,7 +1378,18 @@ namespace MM
                 case "CauHinhFTP":
                     OnCauHinhFTP();
                     break;
+
+                case "TraCuuThongTinKhachHang":
+                    OnTraCuuThongTinKhachHang();
+                    break;
             }
+        }
+
+        private void OnTraCuuThongTinKhachHang()
+        {
+            this.Text = string.Format("{0} - Tra cuu thong tin khach hang", Application.ProductName);
+            ViewControl(_uTraCuuThongTinKhachHang);
+            _uTraCuuThongTinKhachHang.DisplayAsThread();
         }
 
         private void OnCauHinhFTP()

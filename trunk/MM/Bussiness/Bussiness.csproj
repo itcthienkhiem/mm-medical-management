@@ -124,6 +124,7 @@
     <Compile Include="SymptomBus.cs" />
     <Compile Include="ThuocBus.cs" />
     <Compile Include="TrackingBus.cs" />
+    <Compile Include="UserBus.cs" />
     <Compile Include="XetNghiemTayBus.cs" />
     <Compile Include="XetNghiem_CellDyn3200Bus.cs" />
     <Compile Include="XetNghiem_Hitachi917Bus.cs" />

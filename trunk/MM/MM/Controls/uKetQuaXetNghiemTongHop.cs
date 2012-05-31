@@ -46,6 +46,7 @@ namespace MM.Controls
             btnPrintCellDyn3200.Enabled = AllowPrint;
             btnExportExcelCellDyn3200.Enabled = AllowExport;
             btnExportExcelSinhHoa.Enabled = AllowExport;
+            btnUploadFTP.Enabled = AllowExport;
         }
 
         public void DisplayDanhSachBenhNhan()
@@ -650,11 +651,16 @@ namespace MM.Controls
                                     Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
                                     return;
                                 }
-                                else
-                                {
-                                    if (!AddUserToTextFile(maBenhNhan, password, tenBenhNhan))
-                                        return;
-                                }
+                            }
+                            else
+                                password = result.QueryResult.ToString();
+
+                            result = UserBus.AddUser(maBenhNhan, password);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.AddUser"), IconType.Information);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.AddUser"));
+                                return;
                             }
 
                             result = FTP.UploadFile(Global.FTPConnectionInfo, exportFileName, remoteFileName);
@@ -714,11 +720,16 @@ namespace MM.Controls
                                     Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
                                     return;
                                 }
-                                else
-                                {
-                                    if (!AddUserToTextFile(maBenhNhan, password, tenBenhNhan))
-                                        return;
-                                }
+                            }
+                            else
+                                password = result.QueryResult.ToString();
+
+                            result = UserBus.AddUser(maBenhNhan, password);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.AddUser"), IconType.Information);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.AddUser"));
+                                return;
                             }
 
                             result = FTP.UploadFile(Global.FTPConnectionInfo, exportFileName, remoteFileName);

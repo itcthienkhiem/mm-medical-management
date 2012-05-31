@@ -671,6 +671,12 @@
     <Compile Include="Controls\uTrackingList.Designer.cs">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uTraCuuThongTinKhachHang.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uTraCuuThongTinKhachHang.Designer.cs">
+      <DependentUpon>uTraCuuThongTinKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uXetNghiemTay.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1392,6 +1398,9 @@
     <EmbeddedResource Include="Controls\uTrackingList.resx">
       <DependentUpon>uTrackingList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uTraCuuThongTinKhachHang.resx">
+      <DependentUpon>uTraCuuThongTinKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uXetNghiemTay.resx">
       <DependentUpon>uXetNghiemTay.cs</DependentUpon>
     </EmbeddedResource>
@@ -1658,6 +1667,7 @@
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="Components\Uninstall_MM.bat" />
+    <None Include="Properties\DataSources\MM.Databasae.AccountView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CanDo.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiDinhView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietChiDinhView.datasource" />
