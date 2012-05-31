@@ -4762,68 +4762,80 @@ namespace MM.Exports
                 isData = false;
                 if (rows != null && rows.Length > 0)
                 {
+
+                    List<DataRow> sinhHoaRows = new List<DataRow>();
                     foreach (DataRow row in rows)
                     {
                         string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
                         if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
                             continue;
 
-                        DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
-                        if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
+                        sinhHoaRows.Add(row);
+                    }
 
-                        isData = true;
-                        string loaiXN = row["LoaiXN"].ToString();
-                        if (loaiXN == "Manual")
-                            manualKeys.Add(chiTietKQXNGUID);
-                        else
-                            hitachi917Keys.Add(chiTietKQXNGUID);
-
-                        bool isNumeric = false;
-                        double testResult = 0;
-                        try
+                    if (sinhHoaRows.Count > 0)
+                    {
+                        foreach (DataRow row in sinhHoaRows)
                         {
-                            testResult = Convert.ToDouble(row["TestResult"]);
-                            isNumeric = true;
+                            string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
+                            if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
+                                continue;
+
+                            DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
+                            if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
+
+                            isData = true;
+                            string loaiXN = row["LoaiXN"].ToString();
+                            if (loaiXN == "Manual")
+                                manualKeys.Add(chiTietKQXNGUID);
+                            else
+                                hitachi917Keys.Add(chiTietKQXNGUID);
+
+                            bool isNumeric = false;
+                            double testResult = 0;
+                            try
+                            {
+                                testResult = Convert.ToDouble(row["TestResult"]);
+                                isNumeric = true;
+                            }
+                            catch { }
+
+                            string tenXetNghiem = row["Fullname"].ToString();
+                            byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
+                            string binhThuong = row["BinhThuong"].ToString();
+
+                            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.Value = tenXetNghiem;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Center;
+                            if (isNumeric)
+                                range.Value = testResult;
+                            else
+                                range.Value = row["TestResult"].ToString();
+
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                            workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                            range.Borders.LineStyle = LineStyle.Continuous;
+                            range.Borders.Color = Color.Black;
+
+                            rowIndex++;
                         }
-                        catch { }
-
-                        string tenXetNghiem = row["Fullname"].ToString();
-                        byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
-                        string binhThuong = row["BinhThuong"].ToString();
-
-                        range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
-                        range.Merge();
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.Value = tenXetNghiem;
-                        if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
-
-                        range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
-                        range.Merge();
-                        range.HorizontalAlignment = HAlign.Center;
-                        if (isNumeric)
-                            range.Value = testResult;
-                        else
-                            range.Value = row["TestResult"].ToString();
-
-                        if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
-
-                        workSheet.Cells[rowIndex, 4].Value = binhThuong;
-                        workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
-                        if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
-
-                        range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
-                        range.Borders.LineStyle = LineStyle.Continuous;
-                        range.Borders.Color = Color.Black;
-
-                        rowIndex++;
                     }
                 }
 
                 rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.Urine.ToString()), "Fullname");
                 if (rows != null && rows.Length > 0)
                 {
-                    
-
                     List<DataRow> urineRows = new List<DataRow>();
                     foreach (DataRow row in rows)
                     {
@@ -4836,30 +4848,37 @@ namespace MM.Exports
 
                     if (urineRows.Count > 0)
                     {
-                        workSheet.Cells[rowIndex, 0].Value = "URINE (NƯỚC TIỂU)";
-                        workSheet.Cells[rowIndex, 0].RowHeight = 26.25;
-                        workSheet.Cells[rowIndex, 0].VerticalAlignment = VAlign.Center;
-                        range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
-                        range.Merge();
-                        range.Font.Bold = true;
-                        rowIndex++;
+                        if (isData)
+                        {
+                            workSheet.Cells[rowIndex, 0].Value = "URINE (NƯỚC TIỂU)";
+                            workSheet.Cells[rowIndex, 0].RowHeight = 26.25;
+                            workSheet.Cells[rowIndex, 0].VerticalAlignment = VAlign.Center;
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.Font.Bold = true;
+                            rowIndex++;
 
-                        range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
-                        range.Merge();
-                        range.Value = "TEST RESULT";
+                            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.Value = "TEST RESULT";
 
-                        range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
-                        range.Merge();
-                        range.Value = "RESULT";
+                            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.Value = "RESULT";
 
-                        workSheet.Cells[rowIndex, 4].Value = "NORMAL";
+                            workSheet.Cells[rowIndex, 4].Value = "NORMAL";
 
-                        range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
-                        range.Font.Bold = true;
-                        range.HorizontalAlignment = HAlign.Center;
-                        range.Borders.LineStyle = LineStyle.Continuous;
-                        range.Borders.Color = Color.Black;
-                        rowIndex++;
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                            range.Font.Bold = true;
+                            range.HorizontalAlignment = HAlign.Center;
+                            range.Borders.LineStyle = LineStyle.Continuous;
+                            range.Borders.Color = Color.Black;
+                            rowIndex++;
+                        }
+                        else
+                        {
+                            workSheet.Cells[rowIndex, 0].Value = "BIOCHEMISTRY (SINH HÓA)";
+                        }
 
                         foreach (DataRow row in urineRows)
                         {
