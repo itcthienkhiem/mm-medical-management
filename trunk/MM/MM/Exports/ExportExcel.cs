@@ -4710,7 +4710,7 @@ namespace MM.Exports
                 if (isData)
                 {
                     range = workSheet.Cells[string.Format("E{0}", rowIndex + 2)];
-                    range.Value = string.Format("Date report: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
+                    range.Value = string.Format("Report date: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
                     range.Font.Italic = true;
                     range.HorizontalAlignment = HAlign.Center;
                 }
@@ -4869,7 +4869,7 @@ namespace MM.Exports
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
                             workSheet.Cells[rowIndex, 4].RowHeight = 22;
                             workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
-                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
                             if (hasLine)
@@ -4993,7 +4993,7 @@ namespace MM.Exports
                             if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
-                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
                             workSheet.Cells[rowIndex, 4].RowHeight = 22;
                             workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
@@ -5013,7 +5013,7 @@ namespace MM.Exports
                 if (isData)
                 {
                     range = workSheet.Cells[string.Format("E{0}", rowIndex + 2)];
-                    range.Value = string.Format("Report Date: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
+                    range.Value = string.Format("Report date: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
                     range.Font.Italic = true;
                     range.HorizontalAlignment = HAlign.Center;
                 }
