@@ -4943,7 +4943,7 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Left;
                             range.Value = tenXetNghiem;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
                             range.Merge();
@@ -4957,7 +4957,7 @@ namespace MM.Exports
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
                             workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
                             if (hasLine)
                             {
