@@ -4557,6 +4557,7 @@ namespace MM.Exports
                 string gioiTinh = patientRow["GenderAsStr"].ToString();
                 string tenBenhNhan = patientRow["FullName"].ToString();
                 string diaChi = patientRow["Address"].ToString();
+                double rowHeight = 21;
 
                 Result result = KetQuaXetNghiemTongHopBus.GetKetQuaXetNghiemCellDyn3200List(fromDate, toDate, patientGUID, ngaySinh, gioiTinh);
                 if (!result.IsOK)
@@ -4577,7 +4578,7 @@ namespace MM.Exports
 
                 int rowIndex = 8;
                 IRange range;
-                workSheet.Cells["A8:E8"].RowHeight = 22;
+                workSheet.Cells["A8:E8"].RowHeight = rowHeight;
                 workSheet.Cells["A8:E8"].VerticalAlignment = VAlign.Center;
 
                 if (!hasLine)
@@ -4629,7 +4630,7 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Left;
                             range.Value = tenXetNghiem;
-                            range.RowHeight = 22;
+                            range.RowHeight = rowHeight;
                             range.VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
@@ -4637,13 +4638,13 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Center;
                             range.Value = testResult;
-                            range.RowHeight = 22;
+                            range.RowHeight = rowHeight;
                             range.VerticalAlignment = VAlign.Center;
                             if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
                             workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
-                            workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
                             workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
@@ -4672,7 +4673,7 @@ namespace MM.Exports
                     range.Merge();
                     range.HorizontalAlignment = HAlign.Left;
                     range.Value = tenXetNghiem;
-                    range.RowHeight = 22;
+                    range.RowHeight = rowHeight;
                     range.VerticalAlignment = VAlign.Center;
 
                     if (tenXetNghiem.ToUpper() == "WBC" || tenXetNghiem.ToUpper() == "RBC" ||
@@ -4684,7 +4685,7 @@ namespace MM.Exports
                     range.Merge();
                     range.HorizontalAlignment = HAlign.Center;
                     range.Value = testResult;
-                    range.RowHeight = 22;
+                    range.RowHeight = rowHeight;
                     range.VerticalAlignment = VAlign.Center;
                     if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
@@ -4693,7 +4694,7 @@ namespace MM.Exports
 
                     workSheet.Cells[rowIndex, 4].Value = binhThuong;
                     workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
-                    workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                    workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
                     workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
                     //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
@@ -4764,6 +4765,7 @@ namespace MM.Exports
                 string maBenhNhan = patientRow["FileNum"].ToString();
                 string tenBenhNhan = patientRow["FullName"].ToString();
                 string diaChi = patientRow["Address"].ToString();
+                double rowHeight = 21;
 
                 Result result = KetQuaXetNghiemTongHopBus.GetKetQuaXetNghiemSinhHoaList(fromDate, toDate, patientGUID, ngaySinh, gioiTinh);
                 if (!result.IsOK)
@@ -4785,7 +4787,7 @@ namespace MM.Exports
                 int rowIndex = 8;
                 IRange range;
 
-                workSheet.Cells["A8:E8"].RowHeight = 22;
+                workSheet.Cells["A8:E8"].RowHeight = rowHeight;
                 workSheet.Cells["A8:E8"].VerticalAlignment = VAlign.Center;
                 workSheet.Cells["A8"].Value = "TEST";
 
@@ -4849,7 +4851,7 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Left;
                             range.Value = tenXetNghiem;
-                            range.RowHeight = 22;
+                            range.RowHeight = rowHeight;
                             range.VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
@@ -4861,13 +4863,13 @@ namespace MM.Exports
                             else
                                 range.Value = row["TestResult"].ToString();
 
-                            range.RowHeight = 22;
+                            range.RowHeight = rowHeight;
                             range.VerticalAlignment = VAlign.Center;
 
                             if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
-                            workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
                             workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
                             workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
@@ -4912,17 +4914,17 @@ namespace MM.Exports
                             range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
                             range.Merge();
                             range.Value = "TEST";
-                            range.RowHeight = 22;
+                            range.RowHeight = rowHeight;
                             range.VerticalAlignment = VAlign.Center;
 
                             range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
                             range.Merge();
                             range.Value = "RESULT";
-                            range.RowHeight = 22;
+                            range.RowHeight = rowHeight;
                             range.VerticalAlignment = VAlign.Center;
 
                             workSheet.Cells[rowIndex, 4].Value = "NORMAL";
-                            workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
                             workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
 
                             range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
@@ -4975,7 +4977,7 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Left;
                             range.Value = tenXetNghiem;
-                            range.RowHeight = 22;
+                            range.RowHeight = rowHeight;
                             range.VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
@@ -4987,14 +4989,14 @@ namespace MM.Exports
                             else
                                 range.Value = row["TestResult"].ToString();
 
-                            range.RowHeight = 22;
+                            range.RowHeight = rowHeight;
                             range.VerticalAlignment = VAlign.Center;
 
                             if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
                             workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
-                            workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
                             workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
