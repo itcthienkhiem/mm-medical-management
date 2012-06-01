@@ -4577,6 +4577,8 @@ namespace MM.Exports
 
                 int rowIndex = 8;
                 IRange range;
+                workSheet.Cells["A8:E8"].RowHeight = 22;
+                workSheet.Cells["A8:E8"].VerticalAlignment = VAlign.Center;
 
                 if (!hasLine)
                 {
@@ -4627,16 +4629,22 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Left;
                             range.Value = tenXetNghiem;
+                            range.RowHeight = 22;
+                            range.VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Center;
                             range.Value = testResult;
+                            range.RowHeight = 22;
+                            range.VerticalAlignment = VAlign.Center;
                             if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
-                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
+                            workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
                             if (hasLine)
@@ -4664,6 +4672,9 @@ namespace MM.Exports
                     range.Merge();
                     range.HorizontalAlignment = HAlign.Left;
                     range.Value = tenXetNghiem;
+                    range.RowHeight = 22;
+                    range.VerticalAlignment = VAlign.Center;
+
                     if (tenXetNghiem.ToUpper() == "WBC" || tenXetNghiem.ToUpper() == "RBC" ||
                         tenXetNghiem.ToUpper() == "PLT")
                         range.Font.Bold = true;
@@ -4673,13 +4684,17 @@ namespace MM.Exports
                     range.Merge();
                     range.HorizontalAlignment = HAlign.Center;
                     range.Value = testResult;
+                    range.RowHeight = 22;
+                    range.VerticalAlignment = VAlign.Center;
                     if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                     if (testPercent.Trim() != string.Empty)
                         percentRows.Add(row);    
 
                     workSheet.Cells[rowIndex, 4].Value = binhThuong;
-                    workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                    workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
+                    workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                    workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
                     //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
                     if (hasLine)
@@ -4695,7 +4710,7 @@ namespace MM.Exports
                 if (isData)
                 {
                     range = workSheet.Cells[string.Format("E{0}", rowIndex + 2)];
-                    range.Value = string.Format("Ngày xét nghiệm: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
+                    range.Value = string.Format("Date report: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
                     range.Font.Italic = true;
                     range.HorizontalAlignment = HAlign.Center;
                 }
@@ -4770,6 +4785,10 @@ namespace MM.Exports
                 int rowIndex = 8;
                 IRange range;
 
+                workSheet.Cells["A8:E8"].RowHeight = 22;
+                workSheet.Cells["A8:E8"].VerticalAlignment = VAlign.Center;
+                workSheet.Cells["A8"].Value = "TEST";
+
                 if (!hasLine)
                 {
                     range = workSheet.Cells["A7:E8"];
@@ -4830,6 +4849,8 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Left;
                             range.Value = tenXetNghiem;
+                            range.RowHeight = 22;
+                            range.VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
@@ -4840,9 +4861,14 @@ namespace MM.Exports
                             else
                                 range.Value = row["TestResult"].ToString();
 
+                            range.RowHeight = 22;
+                            range.VerticalAlignment = VAlign.Center;
+
                             if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                            workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
                             workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
@@ -4885,13 +4911,19 @@ namespace MM.Exports
 
                             range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
                             range.Merge();
-                            range.Value = "TEST RESULT";
+                            range.Value = "TEST";
+                            range.RowHeight = 22;
+                            range.VerticalAlignment = VAlign.Center;
 
                             range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
                             range.Merge();
                             range.Value = "RESULT";
+                            range.RowHeight = 22;
+                            range.VerticalAlignment = VAlign.Center;
 
                             workSheet.Cells[rowIndex, 4].Value = "NORMAL";
+                            workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
 
                             range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                             range.Font.Bold = true;
@@ -4943,6 +4975,8 @@ namespace MM.Exports
                             range.Merge();
                             range.HorizontalAlignment = HAlign.Left;
                             range.Value = tenXetNghiem;
+                            range.RowHeight = 22;
+                            range.VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
@@ -4953,10 +4987,15 @@ namespace MM.Exports
                             else
                                 range.Value = row["TestResult"].ToString();
 
+                            range.RowHeight = 22;
+                            range.VerticalAlignment = VAlign.Center;
+
                             if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
                             workSheet.Cells[rowIndex, 4].Value = binhThuong;
                             workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Right;
+                            workSheet.Cells[rowIndex, 4].RowHeight = 22;
+                            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
                             //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
                             if (hasLine)
