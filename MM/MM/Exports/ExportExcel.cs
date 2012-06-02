@@ -4713,6 +4713,7 @@ namespace MM.Exports
                     range = workSheet.Cells[string.Format("E{0}", rowIndex + 2)];
                     range.Value = string.Format("Report date: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
                     range.Font.Italic = true;
+                    range.Font.Bold = true;
                     range.HorizontalAlignment = HAlign.Center;
                 }
                 
@@ -5017,6 +5018,7 @@ namespace MM.Exports
                     range = workSheet.Cells[string.Format("E{0}", rowIndex + 2)];
                     range.Value = string.Format("Report date: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
                     range.Font.Italic = true;
+                    range.Font.Bold = true;
                     range.HorizontalAlignment = HAlign.Center;
                 }
 
