@@ -89,6 +89,7 @@
     <Compile Include="ChiDinhBus.cs" />
     <Compile Include="CompanyBus.cs" />
     <Compile Include="CompanyContractBus.cs" />
+    <Compile Include="DiaChiCongTyBus.cs" />
     <Compile Include="DocStaffBus.cs" />
     <Compile Include="GiaThuocBus.cs" />
     <Compile Include="GiaVonDichVuBus.cs" />
