@@ -47,6 +47,9 @@ namespace MM.Controls
             btnExportExcelCellDyn3200.Enabled = AllowExport;
             btnExportExcelSinhHoa.Enabled = AllowExport;
             btnUploadFTP.Enabled = AllowExport;
+
+            btnPrintCellDyn.Enabled = AllowPrint;
+            btnPrintSinhHoa.Enabled = AllowPrint;
         }
 
         public void DisplayDanhSachBenhNhan()
@@ -274,7 +277,7 @@ namespace MM.Controls
             }
         }
 
-        private void PrintCellDyn3200()
+        private void PrintAll()
         {
             List<DataRow> checkedPatientRows = GetCheckedPatientRows();
             if (checkedPatientRows.Count <= 0)
@@ -842,7 +845,7 @@ namespace MM.Controls
 
         private void btnPrintCellDyn3200_Click(object sender, EventArgs e)
         {
-            PrintCellDyn3200();
+            PrintAll();
         }
 
         private void btnExportExcelCellDyn3200_Click(object sender, EventArgs e)
@@ -889,6 +892,136 @@ namespace MM.Controls
             height = (int)(height * 0.7);
             panel1.Height = height;
         }
+
+        private void btnPrintCellDyn_Click(object sender, EventArgs e)
+        {
+            List<DataRow> checkedPatientRows = GetCheckedPatientRows();
+            if (checkedPatientRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 bệnh nhân cần in.", IconType.Information);
+                return;
+            }
+
+            UpdateUncheckedXetNghiem();
+
+            DateTime tuNgay = dtpkTuNgay.Value;
+            DateTime denNgay = dtpkDenNgay.Value;
+            string exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemCellDyn3200.xls", Application.StartupPath);
+            if (_printDialog.ShowDialog() == DialogResult.OK)
+            {
+                List<string> allKeys = new List<string>();
+                foreach (DataRow row in checkedPatientRows)
+                {
+                    List<string> uncheckedList = null;
+                    string patientGUID = row["PatientGUID"].ToString();
+                    if (_htXN.ContainsKey(patientGUID))
+                        uncheckedList = (List<string>)_htXN[patientGUID];
+
+                    bool isData = false;
+                    DateTime maxNgayXN = DateTime.Now;
+                    List<string> keys = null;
+                    if (!ExportExcel.ExportKetQuaXetNghiemCellDyn3200ToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, chkCoLine.Checked, ref isData, ref maxNgayXN, ref keys))
+                        return;
+                    else
+                    {
+                        try
+                        {
+                            if (isData)
+                            {
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                allKeys.AddRange(keys);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
+                        }
+                    }
+                }
+
+                DataTable dt = dgXetNghiem.DataSource as DataTable;
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        bool isChecked = Convert.ToBoolean(row["Checked"]);
+                        string key = row["ChiTietKQXNGUID"].ToString();
+                        if (isChecked && allKeys.Contains(key))
+                            row["DaIn"] = true;
+                    }
+                }
+            }
+        }
+
+        private void btnPrintSinhHoa_Click(object sender, EventArgs e)
+        {
+            List<DataRow> checkedPatientRows = GetCheckedPatientRows();
+            if (checkedPatientRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 bệnh nhân cần in.", IconType.Information);
+                return;
+            }
+
+            UpdateUncheckedXetNghiem();
+
+            DateTime tuNgay = dtpkTuNgay.Value;
+            DateTime denNgay = dtpkDenNgay.Value;
+            string exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemSinhHoa.xls", Application.StartupPath);
+            if (_printDialog.ShowDialog() == DialogResult.OK)
+            {
+                List<string> allKeys = new List<string>();
+                foreach (DataRow row in checkedPatientRows)
+                {
+                    List<string> uncheckedList = null;
+                    string patientGUID = row["PatientGUID"].ToString();
+                    if (_htXN.ContainsKey(patientGUID))
+                        uncheckedList = (List<string>)_htXN[patientGUID];
+
+                    bool isData = false;
+                    DateTime maxNgayXN = DateTime.Now;
+                    List<string> hitachi917Keys = null;
+                    List<string> manualKeys = null;
+                    if (!ExportExcel.ExportKetQuaXetNghiemSinhToExcel(exportFileName, row, tuNgay, denNgay, uncheckedList, true, chkCoLine.Checked, ref isData, ref maxNgayXN, ref hitachi917Keys, ref manualKeys))
+                        return;
+                    else
+                    {
+                        try
+                        {
+                            if (isData)
+                            {
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                if (hitachi917Keys != null && hitachi917Keys.Count > 0)
+                                    allKeys.AddRange(hitachi917Keys);
+
+                                if (manualKeys != null && manualKeys.Count > 0)
+                                    allKeys.AddRange(manualKeys);
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
+                        }
+                    }
+                }
+
+                DataTable dt = dgXetNghiem.DataSource as DataTable;
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        bool isChecked = Convert.ToBoolean(row["Checked"]);
+                        string key = row["ChiTietKQXNGUID"].ToString();
+                        if (isChecked && allKeys.Contains(key))
+                            row["DaIn"] = true;
+                    }
+                }
+            }
+        }
         #endregion
+
+        
     }
 }
