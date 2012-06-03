@@ -250,6 +250,8 @@ namespace MM
                 _uKetQuaXetNghiemTongHop.UpdateGUI();
             else if (ctrl.GetType() == typeof(uTraCuuThongTinKhachHang))
                 _uTraCuuThongTinKhachHang.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uDiaChiCongTyList))
+                _uDiaChiCongTyList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -962,6 +964,18 @@ namespace MM
                             _uTraCuuThongTinKhachHang.AllowLock = isLock;
                             _uTraCuuThongTinKhachHang.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.DiaChiCongTy)
+                        {
+                            danhMucDiaChiCongTyToolStripMenuItem.Enabled = isView && isLogin;
+                            _uDiaChiCongTyList.AllowAdd = isAdd;
+                            _uDiaChiCongTyList.AllowEdit = isEdit;
+                            _uDiaChiCongTyList.AllowDelete = isDelete;
+                            _uDiaChiCongTyList.AllowPrint = isPrint;
+                            _uDiaChiCongTyList.AllowExport = isExport;
+                            _uDiaChiCongTyList.AllowImport = isImport;
+                            _uDiaChiCongTyList.AllowLock = isLock;
+                            _uDiaChiCongTyList.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1128,6 +1142,7 @@ namespace MM
                 danhSachXetNghiemCellDyn3200ToolStripMenuItem.Enabled = isLogin;
                 baoCaoSoLuongKhamToolStripMenuItem.Enabled = isLogin;
                 traCuuThongTinKhachHangToolStripMenuItem.Enabled = isLogin;
+                danhMucDiaChiCongTyToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1382,7 +1397,18 @@ namespace MM
                 case "TraCuuThongTinKhachHang":
                     OnTraCuuThongTinKhachHang();
                     break;
+
+                case "DiaChiCongTy":
+                    OnDiaChiCongTy();
+                    break;
             }
+        }
+
+        private void OnDiaChiCongTy()
+        {
+            this.Text = string.Format("{0} - Danh muc dia chi cong ty", Application.ProductName);
+            ViewControl(_uDiaChiCongTyList);
+            _uDiaChiCongTyList.DisplayAsThread();
         }
 
         private void OnTraCuuThongTinKhachHang()
@@ -1858,6 +1884,8 @@ namespace MM
                 _uYKienKhachHangList.ClearData();
             else if (ctrl.GetType() == typeof(uNhatKyLienHeCongTy))
                 _uNhatKyLienHeCongTy.ClearData();
+            else if (ctrl.GetType() == typeof(uDiaChiCongTyList))
+                _uDiaChiCongTyList.ClearData();
         }
 
         private void OnDoctorList()

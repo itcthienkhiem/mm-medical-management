@@ -85,6 +85,19 @@ namespace MM.Bussiness
                     dt.ImportRow(row);
                 }
 
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string maBenhNhan = row["FileNum"].ToString();
+                        string maCongTy = Utility.GetMaCongTy(maBenhNhan);
+                        result = DiaChiCongTyBus.GetDiaChiCongTy(maCongTy);
+                        if (!result.IsOK) return result;
+
+                        row["Address"] = result.QueryResult.ToString();
+                    }
+                }
+
                 result.QueryResult = dt;
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -116,8 +129,22 @@ namespace MM.Bussiness
 
                 result = ExcuteQuery(query);
                 if (!result.IsOK) return result;
-
+                               
                 dt = result.QueryResult as DataTable;
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string maBenhNhan = row["FileNum"].ToString();
+                        string maCongTy = Utility.GetMaCongTy(maBenhNhan);
+                        result = DiaChiCongTyBus.GetDiaChiCongTy(maCongTy);
+                        if (!result.IsOK) return result;
+
+                        row["Address"] = result.QueryResult.ToString();
+                    }
+                }
+
                 result.QueryResult = dt;
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -165,6 +192,19 @@ namespace MM.Bussiness
                     if (rows != null && rows.Length > 0) continue;
 
                     dt.ImportRow(row);
+                }
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string maBenhNhan = row["FileNum"].ToString();
+                        string maCongTy = Utility.GetMaCongTy(maBenhNhan);
+                        result = DiaChiCongTyBus.GetDiaChiCongTy(maCongTy);
+                        if (!result.IsOK) return result;
+
+                        row["Address"] = result.QueryResult.ToString();
+                    }
                 }
 
                 result.QueryResult = dt;

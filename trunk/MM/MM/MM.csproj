@@ -341,6 +341,12 @@
     <Compile Include="Controls\uDanhSachXetNghiem_CellDyn3200List.Designer.cs">
       <DependentUpon>uDanhSachXetNghiem_CellDyn3200List.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uDiaChiCongTyList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uDiaChiCongTyList.Designer.cs">
+      <DependentUpon>uDiaChiCongTyList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uDichVuHopDong.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -688,6 +694,12 @@
     </Compile>
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddDiaChiCongTy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddDiaChiCongTy.Designer.cs">
+      <DependentUpon>dlgAddDiaChiCongTy.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgFTPConfig.cs">
       <SubType>Form</SubType>
@@ -1233,6 +1245,9 @@
     <EmbeddedResource Include="Controls\uDanhSachXetNghiem_CellDyn3200List.resx">
       <DependentUpon>uDanhSachXetNghiem_CellDyn3200List.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uDiaChiCongTyList.resx">
+      <DependentUpon>uDiaChiCongTyList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDichVuHopDong.resx">
       <DependentUpon>uDichVuHopDong.cs</DependentUpon>
     </EmbeddedResource>
@@ -1406,6 +1421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddDiaChiCongTy.resx">
+      <DependentUpon>dlgAddDiaChiCongTy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgFTPConfig.resx">
       <DependentUpon>dlgFTPConfig.cs</DependentUpon>
@@ -1683,6 +1701,7 @@
     <None Include="Properties\DataSources\MM.Databasae.CompanyContractView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.DiaChiCongTy.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaDichVuHopDongView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
@@ -1845,6 +1864,7 @@
     <None Include="Resources\backup-restore-icon.png" />
     <None Include="Resources\lock-icon.png" />
     <None Include="Resources\lock-off-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-06-03.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-05-31.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-05-30.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-05-28.sql" />
