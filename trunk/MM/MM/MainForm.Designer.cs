@@ -174,6 +174,8 @@
             this.cauHinhKetNoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator51 = new System.Windows.Forms.ToolStripSeparator();
             this.traCuuThongTinKhachHangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator52 = new System.Windows.Forms.ToolStripSeparator();
+            this.danhMucDiaChiCongTyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -269,8 +271,6 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
-            this.toolStripSeparator52 = new System.Windows.Forms.ToolStripSeparator();
-            this.danhMucDiaChiCongTyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1211,9 +1211,9 @@
             this.toolStripSeparator47,
             this.cauHinhKetNoiToolStripMenuItem,
             this.toolStripSeparator51,
-            this.traCuuThongTinKhachHangToolStripMenuItem,
+            this.danhMucDiaChiCongTyToolStripMenuItem,
             this.toolStripSeparator52,
-            this.danhMucDiaChiCongTyToolStripMenuItem});
+            this.traCuuThongTinKhachHangToolStripMenuItem});
             resources.ApplyResources(this.xetNghiemToolStripMenuItem, "xetNghiemToolStripMenuItem");
             this.xetNghiemToolStripMenuItem.Name = "xetNghiemToolStripMenuItem";
             // 
@@ -1304,6 +1304,18 @@
             resources.ApplyResources(this.traCuuThongTinKhachHangToolStripMenuItem, "traCuuThongTinKhachHangToolStripMenuItem");
             this.traCuuThongTinKhachHangToolStripMenuItem.Tag = "TraCuuThongTinKhachHang";
             this.traCuuThongTinKhachHangToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator52
+            // 
+            this.toolStripSeparator52.Name = "toolStripSeparator52";
+            resources.ApplyResources(this.toolStripSeparator52, "toolStripSeparator52");
+            // 
+            // danhMucDiaChiCongTyToolStripMenuItem
+            // 
+            this.danhMucDiaChiCongTyToolStripMenuItem.Name = "danhMucDiaChiCongTyToolStripMenuItem";
+            resources.ApplyResources(this.danhMucDiaChiCongTyToolStripMenuItem, "danhMucDiaChiCongTyToolStripMenuItem");
+            this.danhMucDiaChiCongTyToolStripMenuItem.Tag = "DiaChiCongTy";
+            this.danhMucDiaChiCongTyToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -2028,18 +2040,6 @@
             // 
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
-            // 
-            // toolStripSeparator52
-            // 
-            this.toolStripSeparator52.Name = "toolStripSeparator52";
-            resources.ApplyResources(this.toolStripSeparator52, "toolStripSeparator52");
-            // 
-            // danhMucDiaChiCongTyToolStripMenuItem
-            // 
-            this.danhMucDiaChiCongTyToolStripMenuItem.Name = "danhMucDiaChiCongTyToolStripMenuItem";
-            resources.ApplyResources(this.danhMucDiaChiCongTyToolStripMenuItem, "danhMucDiaChiCongTyToolStripMenuItem");
-            this.danhMucDiaChiCongTyToolStripMenuItem.Tag = "DiaChiCongTy";
-            this.danhMucDiaChiCongTyToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // MainForm
             // 

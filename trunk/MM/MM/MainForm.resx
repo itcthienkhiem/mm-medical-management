@@ -1086,20 +1086,20 @@
   <data name="toolStripSeparator51.Size" type="System.Drawing.Size, System.Drawing">
     <value>256, 6</value>
   </data>
-  <data name="traCuuThongTinKhachHangToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>259, 22</value>
-  </data>
-  <data name="traCuuThongTinKhachHangToolStripMenuItem.Text" xml:space="preserve">
-    <value>Tra cứu thông tin khách hàng</value>
-  </data>
-  <data name="toolStripSeparator52.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 6</value>
-  </data>
   <data name="danhMucDiaChiCongTyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 22</value>
   </data>
   <data name="danhMucDiaChiCongTyToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục địa chỉ công ty</value>
+  </data>
+  <data name="toolStripSeparator52.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 6</value>
+  </data>
+  <data name="traCuuThongTinKhachHangToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>259, 22</value>
+  </data>
+  <data name="traCuuThongTinKhachHangToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tra cứu thông tin khách hàng</value>
   </data>
   <data name="xetNghiemToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -6347,6 +6347,18 @@
   <data name="&gt;&gt;traCuuThongTinKhachHangToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparator52.Name" xml:space="preserve">
+    <value>toolStripSeparator52</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator52.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;danhMucDiaChiCongTyToolStripMenuItem.Name" xml:space="preserve">
+    <value>danhMucDiaChiCongTyToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;danhMucDiaChiCongTyToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolsToolStripMenuItem.Name" xml:space="preserve">
     <value>toolsToolStripMenuItem</value>
   </data>
@@ -6526,18 +6538,6 @@
   </data>
   <data name="&gt;&gt;dockContainerItem2.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.DockContainerItem, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator52.Name" xml:space="preserve">
-    <value>toolStripSeparator52</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator52.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;danhMucDiaChiCongTyToolStripMenuItem.Name" xml:space="preserve">
-    <value>danhMucDiaChiCongTyToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;danhMucDiaChiCongTyToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
