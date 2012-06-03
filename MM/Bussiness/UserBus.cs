@@ -15,7 +15,6 @@ namespace MM.Bussiness
         public static Result GetAccountList(DateTime fromDate, DateTime toDate, string tenBenhNhan, bool isMaBenhNhan)
         {
             Result result = new Result();
-            DataTable dt = null;
 
             try
             {
@@ -34,6 +33,22 @@ namespace MM.Bussiness
                 }
 
                 result = ExcuteQuery(query);
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string maBenhNhan = row["CustomerId"].ToString();
+                        string maCongTy = Utility.GetMaCongTy(maBenhNhan);
+                        result = DiaChiCongTyBus.GetDiaChiCongTy(maCongTy);
+                        if (!result.IsOK) return result;
+
+                        row["Address"] = result.QueryResult.ToString();
+                    }
+                }
+
+                result.QueryResult = dt;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
