@@ -4942,10 +4942,262 @@ namespace MM.Exports
                         }
                         else
                         {
-                            workSheet.Cells[rowIndex, 0].Value = "BIOCHEMISTRY (SINH HÓA)";
+                            workSheet.Cells[rowIndex - 2, 0].Value = "URINE (NƯỚC TIỂU)";
                         }
 
                         foreach (DataRow row in urineRows)
+                        {
+                            string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
+                            if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
+                                continue;
+
+                            DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
+                            if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
+
+                            isData = true;
+                            string loaiXN = row["LoaiXN"].ToString();
+                            if (loaiXN == "Manual")
+                                manualKeys.Add(chiTietKQXNGUID);
+                            else
+                                hitachi917Keys.Add(chiTietKQXNGUID);
+
+                            bool isNumeric = false;
+                            double testResult = 0;
+                            try
+                            {
+                                testResult = Convert.ToDouble(row["TestResult"]);
+                                isNumeric = true;
+                            }
+                            catch { }
+
+                            string tenXetNghiem = row["Fullname"].ToString();
+                            byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
+                            string binhThuong = row["BinhThuong"].ToString();
+
+                            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.Value = tenXetNghiem;
+                            range.RowHeight = rowHeight;
+                            range.VerticalAlignment = VAlign.Center;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Center;
+                            if (isNumeric)
+                                range.Value = testResult;
+                            else
+                                range.Value = row["TestResult"].ToString();
+
+                            range.RowHeight = rowHeight;
+                            range.VerticalAlignment = VAlign.Center;
+
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                            workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
+                            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
+                            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+
+                            if (hasLine)
+                            {
+                                range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                                range.Borders.LineStyle = LineStyle.Continuous;
+                                range.Borders.Color = Color.Black;
+                            }
+
+                            rowIndex++;
+                        }
+                    }
+                }
+
+                rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.MienDich.ToString()), "Fullname");
+                if (rows != null && rows.Length > 0)
+                {
+                    List<DataRow> mienDichRows = new List<DataRow>();
+                    foreach (DataRow row in rows)
+                    {
+                        string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
+                        if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
+                            continue;
+
+                        mienDichRows.Add(row);
+                    }
+
+                    if (mienDichRows.Count > 0)
+                    {
+                        if (isData)
+                        {
+                            workSheet.Cells[rowIndex, 0].Value = "MIỄN DỊCH";
+                            workSheet.Cells[rowIndex, 0].RowHeight = 26.25;
+                            workSheet.Cells[rowIndex, 0].VerticalAlignment = VAlign.Center;
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.Font.Bold = true;
+                            rowIndex++;
+
+                            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.Value = "TEST";
+                            range.RowHeight = rowHeight;
+                            range.VerticalAlignment = VAlign.Center;
+
+                            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.Value = "RESULT";
+                            range.RowHeight = rowHeight;
+                            range.VerticalAlignment = VAlign.Center;
+
+                            workSheet.Cells[rowIndex, 4].Value = "NORMAL";
+                            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
+                            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
+
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                            range.Font.Bold = true;
+                            range.HorizontalAlignment = HAlign.Center;
+
+                            if (hasLine)
+                            {
+                                range.Borders.LineStyle = LineStyle.Continuous;
+                                range.Borders.Color = Color.Black;
+                            }
+
+                            rowIndex++;
+                        }
+                        else
+                        {
+                            workSheet.Cells[rowIndex - 2, 0].Value = "MIỄN DỊCH";
+                        }
+
+                        foreach (DataRow row in mienDichRows)
+                        {
+                            string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
+                            if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
+                                continue;
+
+                            DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
+                            if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
+
+                            isData = true;
+                            string loaiXN = row["LoaiXN"].ToString();
+                            if (loaiXN == "Manual")
+                                manualKeys.Add(chiTietKQXNGUID);
+                            else
+                                hitachi917Keys.Add(chiTietKQXNGUID);
+
+                            bool isNumeric = false;
+                            double testResult = 0;
+                            try
+                            {
+                                testResult = Convert.ToDouble(row["TestResult"]);
+                                isNumeric = true;
+                            }
+                            catch { }
+
+                            string tenXetNghiem = row["Fullname"].ToString();
+                            byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
+                            string binhThuong = row["BinhThuong"].ToString();
+
+                            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.Value = tenXetNghiem;
+                            range.RowHeight = rowHeight;
+                            range.VerticalAlignment = VAlign.Center;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.HorizontalAlignment = HAlign.Center;
+                            if (isNumeric)
+                                range.Value = testResult;
+                            else
+                                range.Value = row["TestResult"].ToString();
+
+                            range.RowHeight = rowHeight;
+                            range.VerticalAlignment = VAlign.Center;
+
+                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                            workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
+                            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
+                            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
+                            //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+
+                            if (hasLine)
+                            {
+                                range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                                range.Borders.LineStyle = LineStyle.Continuous;
+                                range.Borders.Color = Color.Black;
+                            }
+
+                            rowIndex++;
+                        }
+                    }
+                }
+
+                rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.SoiTuoiHuyetTrang.ToString()), "Fullname");
+                if (rows != null && rows.Length > 0)
+                {
+                    List<DataRow> soiTuoiHuyetTrangRows = new List<DataRow>();
+                    foreach (DataRow row in rows)
+                    {
+                        string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
+                        if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
+                            continue;
+
+                        soiTuoiHuyetTrangRows.Add(row);
+                    }
+
+                    if (soiTuoiHuyetTrangRows.Count > 0)
+                    {
+                        if (isData)
+                        {
+                            workSheet.Cells[rowIndex, 0].Value = "SOI TƯƠI HUYẾT TRẮNG";
+                            workSheet.Cells[rowIndex, 0].RowHeight = 26.25;
+                            workSheet.Cells[rowIndex, 0].VerticalAlignment = VAlign.Center;
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.Font.Bold = true;
+                            rowIndex++;
+
+                            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.Value = "TEST";
+                            range.RowHeight = rowHeight;
+                            range.VerticalAlignment = VAlign.Center;
+
+                            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                            range.Merge();
+                            range.Value = "RESULT";
+                            range.RowHeight = rowHeight;
+                            range.VerticalAlignment = VAlign.Center;
+
+                            workSheet.Cells[rowIndex, 4].Value = "NORMAL";
+                            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
+                            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
+
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                            range.Font.Bold = true;
+                            range.HorizontalAlignment = HAlign.Center;
+
+                            if (hasLine)
+                            {
+                                range.Borders.LineStyle = LineStyle.Continuous;
+                                range.Borders.Color = Color.Black;
+                            }
+
+                            rowIndex++;
+                        }
+                        else
+                        {
+                            workSheet.Cells[rowIndex - 2, 0].Value = "SOI TƯƠI HUYẾT TRẮNG";
+                        }
+
+                        foreach (DataRow row in soiTuoiHuyetTrangRows)
                         {
                             string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
                             if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID))
