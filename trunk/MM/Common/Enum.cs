@@ -257,6 +257,8 @@ namespace MM.Common
         Biochemistry = 0, //Sinh hóa
         Urine, //Nước tiểu
         Electrolytes, //Ion đồ
-        Haematology //Huyết học
+        Haematology,//Huyết học
+        MienDich,
+        SoiTuoiHuyetTrang
     }
 }

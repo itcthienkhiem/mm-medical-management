@@ -22,12 +22,19 @@ namespace MM.Dialogs
         private DataTable _dtChiTietKQXN = null;
         private Font _normalFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         private Font _boldFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        private DataRow _patientRow = null;
         #endregion
 
         #region Constructor
         public dlgAddKetQuaXetNghiemTay()
         {
             InitializeComponent();
+        }
+
+        public dlgAddKetQuaXetNghiemTay(DataRow patientRow)
+        {
+            InitializeComponent();
+            _patientRow = patientRow;
         }
 
         public dlgAddKetQuaXetNghiemTay(DataRow drKetQuaXetNghiem, DataTable dtChiTietKQXN)
@@ -158,6 +165,7 @@ namespace MM.Dialogs
                         ChiTietKetQuaXetNghiem_Manual ct = new ChiTietKetQuaXetNghiem_Manual();
                         ct.XetNghiem_ManualGUID = Guid.Parse(dr["XetNghiem_ManualGUID"].ToString());
                         ct.TestResult = dr["TestResult"].ToString();
+                        ct.LamThem = Convert.ToBoolean(dr["LamThem"]);
                         ctkqxns.Add(ct);
                     }
 
@@ -195,6 +203,7 @@ namespace MM.Dialogs
                 newRow["Fullname"] = dlg.TenXetNghiem;
                 newRow["TestResult"] = dlg.TestResult;
                 newRow["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+                newRow["LamThem"] = dlg.LamThem;
                 dtChiTietKQXN.Rows.Add(newRow);
             }
         }
@@ -220,6 +229,7 @@ namespace MM.Dialogs
                 drChiTietKQXN["TenXetNghiem"] = dlg.TenXetNghiem;
                 drChiTietKQXN["TestResult"] = dlg.TestResult;
                 drChiTietKQXN["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+                drChiTietKQXN["LamThem"] = dlg.LamThem;
             }
         }
 
@@ -255,6 +265,12 @@ namespace MM.Dialogs
             if (!_isNew) DisplayInfo();
             else
             {
+                if (_patientRow != null)
+                {
+                    txtBenhNhan.Tag = _patientRow["PatientGUID"].ToString();
+                    txtBenhNhan.Text = _patientRow["FullName"].ToString();
+                }
+
                 Result result = KetQuaXetNghiemTayBus.GetChiTietKetQuaXetNghiem(Guid.Empty.ToString());
                 if (result.IsOK) dgChiTiet.DataSource = result.QueryResult as DataTable;
                 else

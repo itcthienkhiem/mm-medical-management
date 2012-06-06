@@ -127,13 +127,11 @@ namespace MM.Controls
             Result result = KetQuaXetNghiemTongHopBus.GetKetQuaXetNghiemTongHopList(tuNgay, denNgay, _patientGUID, ngaySinh, gioiTinh);
             if (result.IsOK)
             {
-                dgXetNghiem.DataSource = result.QueryResult as DataTable;
-
-                List<string> uncheckedList = null;
-                if (_htXN.ContainsKey(_patientGUID))
-                    uncheckedList = (List<string>)_htXN[_patientGUID];
-
-                RefreshHighlight(uncheckedList);
+                DataTable dt = result.QueryResult as DataTable;
+                //dgXetNghiem.DataSource = result.QueryResult as DataTable;
+                RefreshNgayXetNghiem(dt);
+                
+                
             }
             else
             {
@@ -159,6 +157,11 @@ namespace MM.Controls
 
             foreach (DataGridViewRow row in dgXetNghiem.Rows)
             {
+                row.Cells["Checked"].Style.BackColor = Color.LightBlue;
+                row.Cells["DaIn"].Style.BackColor = Color.LightBlue;
+                row.Cells["DaUpload"].Style.BackColor = Color.LightBlue;
+                row.Cells["LamThem"].Style.BackColor = Color.LightBlue;
+
                 DataRow dr = (row.DataBoundItem as DataRowView).Row;
                 string chiTietKQXNGUID = dr["ChiTietKQXNGUID"].ToString();
 
@@ -183,6 +186,74 @@ namespace MM.Controls
                     //row.DefaultCellStyle.ForeColor = Color.Black;
                 }
             }
+        }
+
+        private void RefreshNgayXetNghiem(DataTable dt)
+        {
+            if (dt == null || dt.Rows.Count <= 0)
+            {
+                dgXetNghiem.DataSource = dt;
+                return;
+            }
+
+            if (!chkHienThiGioXetNghiem.Checked)
+            {
+                List<DataRow> results = (from p in dt.AsEnumerable()
+                                         orderby p.Field<DateTime>("NgayXN"), p.Field<int>("GroupID"), p.Field<int>("Order")
+                                         select p).ToList<DataRow>();
+
+                DataTable newDataSource = dt.Clone();
+
+                string ngay = string.Empty;
+                foreach (DataRow row in results)
+                {
+                    string ngayXN = Convert.ToDateTime(row["NgayXN"]).ToString("dd/MM/yyyy");
+                    if (ngay == ngayXN)
+                        row["NgayXN2"] = DBNull.Value;
+                    else
+                        row["NgayXN2"] = ngayXN;
+
+                    ngay = ngayXN;
+
+                    newDataSource.ImportRow(row);
+                }
+
+                dt.Rows.Clear();
+                dt = null;
+                dgXetNghiem.DataSource =  newDataSource;
+            }
+            else
+            {
+                List<DataRow> results = (from p in dt.AsEnumerable()
+                                         orderby p.Field<DateTime>("NgayXN"), p.Field<int>("GroupID"), p.Field<int>("Order")
+                                         select p).ToList<DataRow>();
+
+                DataTable newDataSource = dt.Clone();
+
+                string ngay = string.Empty;
+                foreach (DataRow row in results)
+                {
+                    string ngayXN = Convert.ToDateTime(row["NgayXN"]).ToString("dd/MM/yyyy");
+                    if (ngay == ngayXN)
+                        row["NgayXN2"] = Convert.ToDateTime(row["NgayXN"]).ToString("HH:mm:ss");
+                    else
+                        row["NgayXN2"] = Convert.ToDateTime(row["NgayXN"]).ToString("dd/MM/yyyy HH:mm:ss");
+
+                    ngay = ngayXN;
+
+                    newDataSource.ImportRow(row);
+                }
+
+                dt.Rows.Clear();
+                dt = null;
+                dgXetNghiem.DataSource = newDataSource;
+            }
+
+            List<string> uncheckedList = null;
+            if (_htXN.ContainsKey(_patientGUID))
+                uncheckedList = (List<string>)_htXN[_patientGUID];
+
+            RefreshHighlight(uncheckedList);
         }
 
         private void UpdateUncheckedXetNghiem()
@@ -437,7 +508,13 @@ namespace MM.Controls
 
         private void OnAddChiTiet()
         {
-            dlgAddKetQuaXetNghiemTay dlg = new dlgAddKetQuaXetNghiemTay();
+            DataRow patientRow = null;
+            if (dgBenhNhan.SelectedRows != null && dgBenhNhan.SelectedRows.Count > 0)
+            {
+                patientRow = (dgBenhNhan.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            }
+
+            dlgAddKetQuaXetNghiemTay dlg = new dlgAddKetQuaXetNghiemTay(patientRow);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayDanhSachBenhNhan();
@@ -1020,8 +1097,12 @@ namespace MM.Controls
                 }
             }
         }
-        #endregion
 
-        
+        private void chkHienThiGioXetNghiem_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgXetNghiem.DataSource as DataTable;
+            RefreshNgayXetNghiem(dt);
+        }
+        #endregion
     }
 }

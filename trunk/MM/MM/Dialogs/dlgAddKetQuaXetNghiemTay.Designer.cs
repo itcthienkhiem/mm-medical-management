@@ -52,6 +52,7 @@
             this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testResultDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BinhThuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LamThem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiTietKetQuaXetNghiemManualViewBindingSource)).BeginInit();
@@ -140,7 +141,8 @@
             this.colChecked,
             this.fullnameDataGridViewTextBoxColumn,
             this.testResultDataGridViewTextBoxColumn,
-            this.BinhThuong});
+            this.BinhThuong,
+            this.LamThem});
             this.dgChiTiet.DataSource = this.chiTietKetQuaXetNghiemManualViewBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -277,6 +279,14 @@
             this.BinhThuong.Visible = false;
             this.BinhThuong.Width = 180;
             // 
+            // LamThem
+            // 
+            this.LamThem.DataPropertyName = "LamThem";
+            this.LamThem.HeaderText = "LamThem";
+            this.LamThem.Name = "LamThem";
+            this.LamThem.ReadOnly = true;
+            this.LamThem.Visible = false;
+            // 
             // dlgAddKetQuaXetNghiemTay
             // 
             this.AcceptButton = this.btnOK;
@@ -325,5 +335,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn testResultDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn BinhThuong;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn LamThem;
     }
 }

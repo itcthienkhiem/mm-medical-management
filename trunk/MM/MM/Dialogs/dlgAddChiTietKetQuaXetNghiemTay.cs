@@ -53,6 +53,11 @@ namespace MM.Dialogs
         {
             get { return txtResult.Text; }
         }
+
+        public bool LamThem
+        {
+            get { return chkLamThem.Checked; }
+        }
         #endregion
 
         #region UI Command
@@ -74,6 +79,7 @@ namespace MM.Dialogs
             {
                 cboXetNghiem.SelectedValue = _drChiTietKQXN["XetNghiem_ManualGUID"].ToString();
                 txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
+                chkLamThem.Checked = Convert.ToBoolean(_drChiTietKQXN["LamThem"]);
             }
             catch (Exception e)
             {
@@ -98,32 +104,32 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (_dtChiTietKQXN != null)
-            {
-                foreach (DataRow row in _dtChiTietKQXN.Rows)
-                {
-                    if (row.RowState == DataRowState.Deleted || row.RowState == DataRowState.Detached) continue;
+            //if (_dtChiTietKQXN != null)
+            //{
+            //    foreach (DataRow row in _dtChiTietKQXN.Rows)
+            //    {
+            //        if (row.RowState == DataRowState.Deleted || row.RowState == DataRowState.Detached) continue;
 
-                    if (_isNew)
-                    {
-                        if (row["XetNghiem_ManualGUID"].ToString() == cboXetNghiem.SelectedValue.ToString())
-                        {
-                            MsgBox.Show(this.Text, string.Format("Xét nghiệm: '{0}' đã nhập rồi. Vui lòng chọn xét nghiệm khác.", row["Fullname"].ToString()), IconType.Information);
-                            cboXetNghiem.Focus();
-                            return false;
-                        }
-                    }
-                    else if (row["ChiTietKetQuaXetNghiem_ManualGUID"].ToString() != _drChiTietKQXN["ChiTietKetQuaXetNghiem_ManualGUID"].ToString())
-                    {
-                        if (row["XetNghiem_ManualGUID"].ToString() == cboXetNghiem.SelectedValue.ToString())
-                        {
-                            MsgBox.Show(this.Text, string.Format("Xét nghiệm: '{0}' đã nhập rồi. Vui lòng chọn xét nghiệm khác.", row["Fullname"].ToString()), IconType.Information);
-                            cboXetNghiem.Focus();
-                            return false;
-                        }
-                    }
-                }
-            }
+            //        if (_isNew)
+            //        {
+            //            if (row["XetNghiem_ManualGUID"].ToString() == cboXetNghiem.SelectedValue.ToString())
+            //            {
+            //                MsgBox.Show(this.Text, string.Format("Xét nghiệm: '{0}' đã nhập rồi. Vui lòng chọn xét nghiệm khác.", row["Fullname"].ToString()), IconType.Information);
+            //                cboXetNghiem.Focus();
+            //                return false;
+            //            }
+            //        }
+            //        else if (row["ChiTietKetQuaXetNghiem_ManualGUID"].ToString() != _drChiTietKQXN["ChiTietKetQuaXetNghiem_ManualGUID"].ToString())
+            //        {
+            //            if (row["XetNghiem_ManualGUID"].ToString() == cboXetNghiem.SelectedValue.ToString())
+            //            {
+            //                MsgBox.Show(this.Text, string.Format("Xét nghiệm: '{0}' đã nhập rồi. Vui lòng chọn xét nghiệm khác.", row["Fullname"].ToString()), IconType.Information);
+            //                cboXetNghiem.Focus();
+            //                return false;
+            //            }
+            //        }
+            //    }
+            //}
 
             return true;
         }

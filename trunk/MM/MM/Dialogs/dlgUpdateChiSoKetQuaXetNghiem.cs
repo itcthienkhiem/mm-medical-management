@@ -90,6 +90,8 @@ namespace MM.Dialogs
 
                 if (_drCTKQXN["DoiTuong"] != null && _drCTKQXN["DoiTuong"] != DBNull.Value)
                     _chiTietKQXN.DoiTuong = Convert.ToByte(_drCTKQXN["DoiTuong"]);
+
+                chkLamThem.Checked = Convert.ToBoolean(_drCTKQXN["LamThem"]);
             }
             else
             {
@@ -130,6 +132,8 @@ namespace MM.Dialogs
 
                 if (_drCTKQXN["DoiTuong2"] != null && _drCTKQXN["DoiTuong2"] != DBNull.Value)
                     _chiTietKQXN.DoiTuong = Convert.ToByte(_drCTKQXN["DoiTuong2"]);
+
+                chkLamThem.Checked = Convert.ToBoolean(_drCTKQXN["LamThem"]);
             }
         }
 
@@ -179,8 +183,7 @@ namespace MM.Dialogs
 
                     _chiTietKQXN.DonVi = txtDonVi.Text;
 
-
-                    
+                    _chiTietKQXN.LamThem = chkLamThem.Checked;
 
                     Result result = XetNghiem_Hitachi917Bus.UpdateChiSoKetQuaXetNghiem(_chiTietKQXN);
 

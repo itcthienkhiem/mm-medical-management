@@ -35,12 +35,12 @@
             this.txtXetNghiem = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xetNghiemCellDyn3200BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numToValue_NormalPercent = new System.Windows.Forms.NumericUpDown();
             this.chkToValue_NormalPercent = new System.Windows.Forms.CheckBox();
@@ -52,21 +52,21 @@
             this.chkFromValue_Normal = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnOK = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgXetNghiem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xetNghiemCellDyn3200BindingSource)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue_NormalPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFromValue_NormalPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue_Normal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFromValue_Normal)).BeginInit();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -137,6 +137,14 @@
             this.dgXetNghiem.TabIndex = 4;
             this.dgXetNghiem.SelectionChanged += new System.EventHandler(this.dgXetNghiem_SelectionChanged);
             // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Tên xét nghiệm";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 250;
+            // 
             // xetNghiemCellDyn3200BindingSource
             // 
             this.xetNghiemCellDyn3200BindingSource.DataSource = typeof(MM.Databasae.XetNghiem_CellDyn3200);
@@ -171,27 +179,18 @@
             this.panel3.Size = new System.Drawing.Size(514, 344);
             this.panel3.TabIndex = 7;
             // 
-            // panel6
+            // btnOK
             // 
-            this.panel6.Controls.Add(this.label2);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(514, 20);
-            this.panel6.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(514, 20);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Thông số chỉ số xét nghiệm";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(8, 77);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 12;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Visible = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // groupBox1
             // 
@@ -207,7 +206,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(8, 22);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(372, 74);
+            this.groupBox1.Size = new System.Drawing.Size(372, 48);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Visible = false;
@@ -230,6 +229,7 @@
             this.numToValue_NormalPercent.Name = "numToValue_NormalPercent";
             this.numToValue_NormalPercent.Size = new System.Drawing.Size(74, 20);
             this.numToValue_NormalPercent.TabIndex = 11;
+            this.numToValue_NormalPercent.Visible = false;
             // 
             // chkToValue_NormalPercent
             // 
@@ -240,6 +240,7 @@
             this.chkToValue_NormalPercent.TabIndex = 10;
             this.chkToValue_NormalPercent.Text = "đến";
             this.chkToValue_NormalPercent.UseVisualStyleBackColor = true;
+            this.chkToValue_NormalPercent.Visible = false;
             this.chkToValue_NormalPercent.CheckedChanged += new System.EventHandler(this.chkToValue_NormalPercent_CheckedChanged);
             // 
             // numFromValue_NormalPercent
@@ -260,6 +261,7 @@
             this.numFromValue_NormalPercent.Name = "numFromValue_NormalPercent";
             this.numFromValue_NormalPercent.Size = new System.Drawing.Size(74, 20);
             this.numFromValue_NormalPercent.TabIndex = 9;
+            this.numFromValue_NormalPercent.Visible = false;
             // 
             // chkFromValue_NormalPercent
             // 
@@ -270,6 +272,7 @@
             this.chkFromValue_NormalPercent.TabIndex = 8;
             this.chkFromValue_NormalPercent.Text = "Chỉ số từ:";
             this.chkFromValue_NormalPercent.UseVisualStyleBackColor = true;
+            this.chkFromValue_NormalPercent.Visible = false;
             this.chkFromValue_NormalPercent.CheckedChanged += new System.EventHandler(this.chkFromValue_NormalPercent_CheckedChanged);
             // 
             // numToValue_Normal
@@ -340,6 +343,7 @@
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "% Bình thường:";
+            this.label4.Visible = false;
             // 
             // label5
             // 
@@ -350,18 +354,27 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Bình thường:";
             // 
-            // btnOK
+            // panel6
             // 
-            this.btnOK.Image = global::MM.Properties.Resources.save;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(8, 101);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 12;
-            this.btnOK.Text = "   &Lưu";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Visible = false;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            this.panel6.Controls.Add(this.label2);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(0, 0);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(514, 20);
+            this.panel6.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(514, 20);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Thông số chỉ số xét nghiệm";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -370,14 +383,6 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 250;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Tên xét nghiệm";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 250;
             // 
             // uDanhSachXetNghiem_CellDyn3200List
             // 
@@ -394,13 +399,13 @@
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue_NormalPercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFromValue_NormalPercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue_Normal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFromValue_Normal)).EndInit();
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

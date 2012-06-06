@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE [Type] WHEN 'Biochemistry' THEN N'Sinh hóa' WHEN 'Urine' THEN N'Nước tiểu' WHEN 'Electrolytes' THEN N'Ido đồ' WHEN 'Haematology' THEN N'Huyết học' END LoaiXN FROM XetNghiem_Manual WHERE Status={0} ORDER BY Fullname", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE [Type] WHEN 'MienDich' THEN N'Miễn dịch' WHEN 'Urine' THEN N'Nước tiểu' WHEN 'SoiTuoiHuyetTrang' THEN N'Soi tươi huyết trắng' END LoaiXN FROM XetNghiem_Manual WHERE Status={0} ORDER BY GroupID, [Order]", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -66,6 +66,29 @@ namespace MM.Bussiness
             try
             {
                 string query = string.Format("SELECT DISTINCT DonVi FROM ChiTietXetNghiem_Manual");
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetNhomXetNghiemList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT DISTINCT GroupName FROM XetNghiem_Manual ORDER BY GroupName");
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -241,6 +264,8 @@ namespace MM.Bussiness
                             xn.Type = xetNghiem.Type;
                             xn.GroupID = xetNghiem.GroupID;
                             xn.Order = xetNghiem.Order;
+                            xn.GroupName = xetNghiem.GroupName;
+                            xn.IsPosNeg = xetNghiem.IsPosNeg;
                             xn.UpdatedDate = DateTime.Now;
                             xn.UpdatedBy = Guid.Parse(Global.UserGUID);
                             xn.Status = xetNghiem.Status;
