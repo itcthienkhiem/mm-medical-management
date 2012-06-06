@@ -4594,7 +4594,7 @@ namespace MM.Exports
 
                 isData = false;
                 maxNgayXN = DateTime.MinValue;
-                List<DataRow> percentRows = new List<DataRow>();
+                //List<DataRow> percentRows = new List<DataRow>();
 
                 foreach (DataRow row in dtKQXN.Rows)
                 {
@@ -4615,57 +4615,57 @@ namespace MM.Exports
                     byte tinhTrang = 0;
                     string binhThuong = string.Empty;
 
-                    if (groupID != 0 && groupID != gID)
-                    {
-                        foreach (DataRow r in percentRows)
-                        {
-                            tenXetNghiem = string.Format("{0}%", r["Fullname"].ToString());
-                            testResult = Convert.ToDouble(r["TestPercent"]);
-                            tinhTrang = Convert.ToByte(r["TinhTrang"]);
-                            binhThuong = r["Percent"].ToString();
-                            int index = binhThuong.IndexOf(" ", 0);
-                            if (index >= 0) binhThuong = binhThuong.Substring(index + 1);
+                    //if (groupID != 0 && groupID != gID)
+                    //{
+                    //    foreach (DataRow r in percentRows)
+                    //    {
+                    //        tenXetNghiem = string.Format("{0}%", r["Fullname"].ToString());
+                    //        testResult = Convert.ToDouble(r["TestPercent"]);
+                    //        tinhTrang = Convert.ToByte(r["TinhTrang"]);
+                    //        binhThuong = r["Percent"].ToString();
+                    //        int index = binhThuong.IndexOf(" ", 0);
+                    //        if (index >= 0) binhThuong = binhThuong.Substring(index + 1);
 
-                            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
-                            range.Merge();
-                            range.HorizontalAlignment = HAlign.Left;
-                            range.Value = tenXetNghiem;
-                            range.RowHeight = rowHeight;
-                            range.VerticalAlignment = VAlign.Center;
-                            //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+                    //        range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                    //        range.Merge();
+                    //        range.HorizontalAlignment = HAlign.Left;
+                    //        range.Value = tenXetNghiem;
+                    //        range.RowHeight = rowHeight;
+                    //        range.VerticalAlignment = VAlign.Center;
+                    //        //if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
-                            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
-                            range.Merge();
-                            range.HorizontalAlignment = HAlign.Center;
-                            range.Value = testResult;
-                            range.RowHeight = rowHeight;
-                            range.VerticalAlignment = VAlign.Center;
-                            if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+                    //        range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                    //        range.Merge();
+                    //        range.HorizontalAlignment = HAlign.Center;
+                    //        range.Value = testResult;
+                    //        range.RowHeight = rowHeight;
+                    //        range.VerticalAlignment = VAlign.Center;
+                    //        if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
-                            workSheet.Cells[rowIndex, 4].Value = binhThuong;
-                            workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
-                            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
-                            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
-                            //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
+                    //        workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                    //        workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
+                    //        workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
+                    //        workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
+                    //        //if (tinhTrang == (byte)TinhTrang.BatThuong) workSheet.Cells[rowIndex, 4].Font.Bold = true;
 
-                            if (hasLine)
-                            {
-                                range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
-                                range.Borders.LineStyle = LineStyle.Continuous;
-                                range.Borders.Color = Color.Black;
-                            }
+                    //        if (hasLine)
+                    //        {
+                    //            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                    //            range.Borders.LineStyle = LineStyle.Continuous;
+                    //            range.Borders.Color = Color.Black;
+                    //        }
 
-                            rowIndex++;
-                        }
+                    //        rowIndex++;
+                    //    }
 
-                        percentRows.Clear();
-                    }
+                    //    percentRows.Clear();
+                    //}
 
                     groupID = gID;
 
                     tenXetNghiem = row["Fullname"].ToString();
                     testResult = Convert.ToDouble(row["TestResult"]);
-                    testPercent = row["TestPercent"].ToString();
+                    //testPercent = row["TestPercent"].ToString();
                     tinhTrang = Convert.ToByte(row["TinhTrang"]);
                     binhThuong = row["BinhThuong"].ToString();
 
@@ -4689,8 +4689,8 @@ namespace MM.Exports
                     range.VerticalAlignment = VAlign.Center;
                     if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
 
-                    if (testPercent.Trim() != string.Empty)
-                        percentRows.Add(row);    
+                    //if (testPercent.Trim() != string.Empty)
+                    //    percentRows.Add(row);    
 
                     workSheet.Cells[rowIndex, 4].Value = binhThuong;
                     workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;

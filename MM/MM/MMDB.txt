@@ -211,6 +211,9 @@ ChiTietXetNghiem_Hitachi917
 2012-05-30:
 - Update table: ChiTietKetQuaXetNghiem_CellDyn3200, ChiTietKetQuaXetNghiem_Hitachi917, ChiTietKetQuaXetNghiem_Manual
 - Update view: ChiTietKetQuaXetNghiem_CellDyn3200View, ChiTietKetQuaXetNghiem_Hitachi917View, ChiTietKetQuaXetNghiem_ManualView
+2012-06-06:
+- Update table: XetNghiem_Hitachi917, ChiTietKetQuaXetNghiem_Hitachi917, ChiTietKetQuaXetNghiem_CellDyn3200, ChiTietKetQuaXetNghiem_Manual
+- Update view: ChiTietKetQuaXetNghiem_Hitachi917View, ChiTietKetQuaXetNghiem_CellDyn3200View, ChiTietKetQuaXetNghiem_ManualView
 
 1>> Xuất excel phiếu thu dịch vụ thêm col BSCD (OK)
 2>> Ý kiến khách hàng và nhật ký liên hệ công ty thêm search theo người tạo
@@ -246,5 +249,9 @@ Khám nội soi (Thêm, xóa, sửa, in, xuất) (OK)
 9. % result gộp chung với % normal (OK)
 10. Cho phép edit ngưỡng trên kết quả (OK).
 11. Thêm field Note trong Booking
+
+Nước tiểu (Urine)
+Miễn dịch
+Soi tươi huyết trắng
 
 

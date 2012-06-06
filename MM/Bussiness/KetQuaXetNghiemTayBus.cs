@@ -800,6 +800,7 @@ namespace MM.Bussiness
                                     chiTietKQXN.ToValue = null;
                                     chiTietKQXN.DoiTuong = null;
                                     chiTietKQXN.DonVi = null;
+                                    chiTietKQXN.LamThem = ct.LamThem;
                                     chiTietKQXN.UpdatedBy = Guid.Parse(Global.UserGUID);
                                     chiTietKQXN.UpdatedDate = DateTime.Now;
                                     chiTietKQXN.Status = (byte)Status.Actived;
@@ -931,6 +932,7 @@ namespace MM.Bussiness
                         ct.FromValue = ctkqxn.FromValue;
                         ct.ToValue = ctkqxn.ToValue;
                         ct.DonVi = ctkqxn.DonVi;
+                        ct.LamThem = ctkqxn.LamThem;
                         ct.UpdatedDate = DateTime.Now;
                         ct.UpdatedBy = Guid.Parse(Global.UserGUID);
                         ct.Status = (byte)Status.Actived;

@@ -482,11 +482,23 @@ namespace MMService
                     ctkqxn.TestPercent = Convert.ToDouble(arrResult[35].Trim());
                     testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
 
+                    //NEU%
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "Neu%";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[35].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
                     //LYM
                     ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
                     ctkqxn.TenXetNghiem = "Lym";
                     ctkqxn.TestResult = Convert.ToDouble(arrResult[20].Trim());
                     ctkqxn.TestPercent = Convert.ToDouble(arrResult[36].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //LYM%
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "Lym%";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[36].Trim());
                     testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
 
                     //MONO
@@ -496,6 +508,12 @@ namespace MMService
                     ctkqxn.TestPercent = Convert.ToDouble(arrResult[37].Trim());
                     testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
 
+                    //MONO%
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "Mono%";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[37].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
                     //EOS
                     ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
                     ctkqxn.TenXetNghiem = "Eos";
@@ -503,11 +521,23 @@ namespace MMService
                     ctkqxn.TestPercent = Convert.ToDouble(arrResult[38].Trim());
                     testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
 
+                    //EOS%
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "Eos%";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[38].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
                     //BASO
                     ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
                     ctkqxn.TenXetNghiem = "Baso";
                     ctkqxn.TestResult = Convert.ToDouble(arrResult[23].Trim());
                     ctkqxn.TestPercent = Convert.ToDouble(arrResult[39].Trim());
+                    testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
+
+                    //BASO%
+                    ctkqxn = new ChiTietKetQuaXetNghiem_CellDyn3200();
+                    ctkqxn.TenXetNghiem = "Baso%";
+                    ctkqxn.TestResult = Convert.ToDouble(arrResult[39].Trim());
                     testResult.ChiTietKetQuaXetNghiem.Add(ctkqxn);
 
                     //RBC

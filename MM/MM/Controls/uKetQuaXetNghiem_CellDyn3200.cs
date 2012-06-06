@@ -112,17 +112,26 @@ namespace MM.Controls
         {
             foreach (DataGridViewRow row in dgChiTietKQXN.Rows)
             {
+                row.Cells["Checked"].Style.BackColor = Color.LightBlue;
+                row.Cells["DaIn"].Style.BackColor = Color.LightBlue;
+                row.Cells["DaUpload"].Style.BackColor = Color.LightBlue;
+                row.Cells["LamThem"].Style.BackColor = Color.LightBlue;
+
                 DataRow dr = (row.DataBoundItem as DataRowView).Row;
                 TinhTrang tinhTrang = (TinhTrang)Convert.ToByte(dr["TinhTrang"]);
                 if (tinhTrang == TinhTrang.BatThuong)
                 {
-                    row.DefaultCellStyle.Font = _boldFont;
-                    row.DefaultCellStyle.ForeColor = Color.Red;
+                    //row.DefaultCellStyle.Font = _boldFont;
+                    //row.DefaultCellStyle.ForeColor = Color.Red;
+                    row.Cells["TestResult"].Style.Font = _boldFont;
+                    row.Cells["TestResult"].Style.ForeColor = Color.Red;
                 }
                 else
                 {
-                    row.DefaultCellStyle.Font = _normalFont;
-                    row.DefaultCellStyle.ForeColor = Color.Black;
+                    //row.DefaultCellStyle.Font = _normalFont;
+                    //row.DefaultCellStyle.ForeColor = Color.Black;
+                    row.Cells["TestResult"].Style.Font = _normalFont;
+                    row.Cells["TestResult"].Style.ForeColor = Color.Black;
                 }
             }
         }
@@ -258,8 +267,7 @@ namespace MM.Controls
                 row["TestResult"] = dlg.ChiTietKQXN.TestResult;
                 row["TinhTrang"] = dlg.ChiTietKQXN.TinhTrang;
                 row["BinhThuong"] = dlg.BinhThuong;
-                row["Percent"] = dlg.Percent;
-
+                
                 if (dlg.ChiTietKQXN.FromValue.HasValue)
                     row["FromValue"] = dlg.ChiTietKQXN.FromValue.Value;
                 else
@@ -270,28 +278,36 @@ namespace MM.Controls
                 else
                     row["ToValue"] = DBNull.Value;
 
-                if (dlg.ChiTietKQXN.FromPercent.HasValue)
-                    row["FromPercent"] = dlg.ChiTietKQXN.FromPercent.Value;
-                else
-                    row["FromPercent"] = DBNull.Value;
+                row["LamThem"] = dlg.ChiTietKQXN.LamThem;
 
-                if (dlg.ChiTietKQXN.ToPercent.HasValue)
-                    row["ToPercent"] = dlg.ChiTietKQXN.ToPercent.Value;
-                else
-                    row["ToPercent"] = DBNull.Value;
+                //if (dlg.ChiTietKQXN.FromPercent.HasValue)
+                //    row["FromPercent"] = dlg.ChiTietKQXN.FromPercent.Value;
+                //else
+                //    row["FromPercent"] = DBNull.Value;
 
-                if (dlg.ChiTietKQXN.TestPercent.HasValue)
-                    row["TestPercent"] = dlg.ChiTietKQXN.TestPercent.Value;
+                //if (dlg.ChiTietKQXN.ToPercent.HasValue)
+                //    row["ToPercent"] = dlg.ChiTietKQXN.ToPercent.Value;
+                //else
+                //    row["ToPercent"] = DBNull.Value;
+
+                //if (dlg.ChiTietKQXN.TestPercent.HasValue)
+                //    row["TestPercent"] = dlg.ChiTietKQXN.TestPercent.Value;
 
                 if ((TinhTrang)dlg.ChiTietKQXN.TinhTrang == TinhTrang.BatThuong)
                 {
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _boldFont;
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Red;
+                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _boldFont;
+                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Red;
+
+                    dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.Font = _boldFont;
+                    dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.ForeColor = Color.Red;
                 }
                 else
                 {
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _normalFont;
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Black;
+                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _normalFont;
+                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Black;
+
+                    dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.Font = _normalFont;
+                    dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.ForeColor = Color.Black;
                 }
             }
         }

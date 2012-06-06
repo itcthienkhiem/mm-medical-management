@@ -146,14 +146,12 @@ namespace MM.Controls
         {
             switch (type)
             {
-                case "Biochemistry":
-                    return "Sinh hóa";
                 case "Urine":
                     return "Nước tiểu";
-                case "Electrolytes":
-                    return "Ion đồ";
-                case "Haematology":
-                    return "Huyết học";
+                case "MienDich":
+                    return "Miễn dịch";
+                case "SoiTuoiHuyetTrang":
+                    return "Soi tươi huyết trắng";
             }
 
             return string.Empty;
@@ -173,6 +171,10 @@ namespace MM.Controls
                 newRow["TenXetNghiem"] = dlg.XetNghiem.TenXetNghiem;
                 newRow["Type"] = dlg.XetNghiem.Type;
                 newRow["LoaiXN"] = GetLoaiXetNghiem(dlg.XetNghiem.Type);
+                newRow["GroupID"] = dlg.XetNghiem.GroupID;
+                newRow["GroupName"] = dlg.XetNghiem.GroupName;
+                newRow["Order"] = dlg.XetNghiem.Order;
+                newRow["IsPosNeg"] = dlg.XetNghiem.IsPosNeg;
 
                 if (dlg.XetNghiem.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.XetNghiem.CreatedDate;
@@ -218,6 +220,10 @@ namespace MM.Controls
                 drXetNghiem["TenXetNghiem"] = dlg.XetNghiem.TenXetNghiem;
                 drXetNghiem["Type"] = dlg.XetNghiem.Type;
                 drXetNghiem["LoaiXN"] = GetLoaiXetNghiem(dlg.XetNghiem.Type);
+                drXetNghiem["GroupID"] = dlg.XetNghiem.GroupID;
+                drXetNghiem["GroupName"] = dlg.XetNghiem.GroupName;
+                drXetNghiem["Order"] = dlg.XetNghiem.Order;
+                drXetNghiem["IsPosNeg"] = dlg.XetNghiem.IsPosNeg;
 
                 if (dlg.XetNghiem.CreatedDate.HasValue)
                     drXetNghiem["CreatedDate"] = dlg.XetNghiem.CreatedDate;

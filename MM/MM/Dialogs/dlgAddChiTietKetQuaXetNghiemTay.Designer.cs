@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddChiTietKetQuaXetNghiemTay));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtResult = new System.Windows.Forms.TextBox();
             this.btnChonXetNghiem = new System.Windows.Forms.Button();
             this.cboXetNghiem = new System.Windows.Forms.ComboBox();
             this.xetNghiemManualBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -38,13 +39,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.txtResult = new System.Windows.Forms.TextBox();
+            this.chkLamThem = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xetNghiemManualBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkLamThem);
             this.groupBox1.Controls.Add(this.txtResult);
             this.groupBox1.Controls.Add(this.btnChonXetNghiem);
             this.groupBox1.Controls.Add(this.cboXetNghiem);
@@ -52,9 +54,16 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(5, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(440, 79);
+            this.groupBox1.Size = new System.Drawing.Size(440, 96);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtResult
+            // 
+            this.txtResult.Location = new System.Drawing.Point(79, 44);
+            this.txtResult.Name = "txtResult";
+            this.txtResult.Size = new System.Drawing.Size(122, 20);
+            this.txtResult.TabIndex = 5;
             // 
             // btnChonXetNghiem
             // 
@@ -107,7 +116,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(227, 87);
+            this.btnCancel.Location = new System.Drawing.Point(227, 104);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 18;
@@ -119,19 +128,22 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(148, 87);
+            this.btnOK.Location = new System.Drawing.Point(148, 104);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 17;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // txtResult
+            // chkLamThem
             // 
-            this.txtResult.Location = new System.Drawing.Point(79, 44);
-            this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(122, 20);
-            this.txtResult.TabIndex = 5;
+            this.chkLamThem.AutoSize = true;
+            this.chkLamThem.Location = new System.Drawing.Point(79, 68);
+            this.chkLamThem.Name = "chkLamThem";
+            this.chkLamThem.Size = new System.Drawing.Size(72, 17);
+            this.chkLamThem.TabIndex = 6;
+            this.chkLamThem.Text = "Làm thêm";
+            this.chkLamThem.UseVisualStyleBackColor = true;
             // 
             // dlgAddChiTietKetQuaXetNghiemTay
             // 
@@ -139,7 +151,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(450, 118);
+            this.ClientSize = new System.Drawing.Size(450, 135);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -171,5 +183,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnChonXetNghiem;
         private System.Windows.Forms.TextBox txtResult;
+        private System.Windows.Forms.CheckBox chkLamThem;
     }
 }

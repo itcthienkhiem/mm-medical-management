@@ -42,12 +42,16 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xetNghiemManualBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoaiXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsPosNeg = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -62,7 +66,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(779, 37);
+            this.panel2.Size = new System.Drawing.Size(1043, 37);
             this.panel2.TabIndex = 1;
             // 
             // txtXetNghiem
@@ -90,7 +94,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 375);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(779, 38);
+            this.panel1.Size = new System.Drawing.Size(1043, 38);
             this.panel1.TabIndex = 3;
             // 
             // btnDelete
@@ -136,7 +140,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 37);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(779, 338);
+            this.panel3.Size = new System.Drawing.Size(1043, 338);
             this.panel3.TabIndex = 4;
             // 
             // chkChecked
@@ -167,7 +171,11 @@
             this.dgXetNghiem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
             this.fullnameDataGridViewTextBoxColumn,
-            this.LoaiXN});
+            this.LoaiXN,
+            this.GroupName,
+            this.GroupID,
+            this.Order,
+            this.IsPosNeg});
             this.dgXetNghiem.DataSource = this.xetNghiemManualBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -187,11 +195,31 @@
             this.dgXetNghiem.ReadOnly = true;
             this.dgXetNghiem.RowHeadersWidth = 30;
             this.dgXetNghiem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgXetNghiem.Size = new System.Drawing.Size(779, 338);
+            this.dgXetNghiem.Size = new System.Drawing.Size(1043, 338);
             this.dgXetNghiem.TabIndex = 2;
             this.dgXetNghiem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgXetNghiem_CellContentClick);
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
             this.dgXetNghiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgXetNghiem_KeyDown);
+            // 
+            // xetNghiemManualBindingSource
+            // 
+            this.xetNghiemManualBindingSource.DataSource = typeof(MM.Databasae.XetNghiem_Manual);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Fullname";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Tên xét nghiệm";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Type";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Loại xét nghiệm";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 150;
             // 
             // colChecked
             // 
@@ -225,25 +253,36 @@
             this.LoaiXN.ReadOnly = true;
             this.LoaiXN.Width = 150;
             // 
-            // xetNghiemManualBindingSource
+            // GroupName
             // 
-            this.xetNghiemManualBindingSource.DataSource = typeof(MM.Databasae.XetNghiem_Manual);
+            this.GroupName.DataPropertyName = "GroupName";
+            this.GroupName.HeaderText = "Nhóm xét nghiệm";
+            this.GroupName.Name = "GroupName";
+            this.GroupName.ReadOnly = true;
+            this.GroupName.Width = 120;
             // 
-            // dataGridViewTextBoxColumn1
+            // GroupID
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Fullname";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Tên xét nghiệm";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 250;
+            this.GroupID.DataPropertyName = "GroupID";
+            this.GroupID.HeaderText = "Thứ tự nhóm";
+            this.GroupID.Name = "GroupID";
+            this.GroupID.ReadOnly = true;
             // 
-            // dataGridViewTextBoxColumn2
+            // Order
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Type";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Loại xét nghiệm";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 150;
+            this.Order.DataPropertyName = "Order";
+            this.Order.HeaderText = "Thứ tự xét nghiệm";
+            this.Order.Name = "Order";
+            this.Order.ReadOnly = true;
+            this.Order.Width = 120;
+            // 
+            // IsPosNeg
+            // 
+            this.IsPosNeg.DataPropertyName = "IsPosNeg";
+            this.IsPosNeg.HeaderText = "Âm tính/Dương tính";
+            this.IsPosNeg.Name = "IsPosNeg";
+            this.IsPosNeg.ReadOnly = true;
+            this.IsPosNeg.Width = 120;
             // 
             // uXetNghiemTay
             // 
@@ -253,7 +292,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "uXetNghiemTay";
-            this.Size = new System.Drawing.Size(779, 413);
+            this.Size = new System.Drawing.Size(1043, 413);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -284,5 +323,9 @@
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiXN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Order;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsPosNeg;
     }
 }

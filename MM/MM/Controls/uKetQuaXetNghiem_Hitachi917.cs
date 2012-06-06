@@ -110,21 +110,28 @@ namespace MM.Controls
 
         private void RefreshHighlight()
         {
-            
-
             foreach (DataGridViewRow row in dgChiTietKQXN.Rows)
             {
+                row.Cells["Checked"].Style.BackColor = Color.LightBlue;
+                row.Cells["DaIn"].Style.BackColor = Color.LightBlue;
+                row.Cells["DaUpload"].Style.BackColor = Color.LightBlue;
+                row.Cells["LamThem"].Style.BackColor = Color.LightBlue;
+
                 DataRow dr = (row.DataBoundItem as DataRowView).Row;
                 TinhTrang tinhTrang = (TinhTrang)Convert.ToByte(dr["TinhTrang"]);
                 if (tinhTrang == TinhTrang.BatThuong)
                 {
-                    row.DefaultCellStyle.Font = _boldFont;
-                    row.DefaultCellStyle.ForeColor = Color.Red;
+                    //row.DefaultCellStyle.Font = _boldFont;
+                    //row.DefaultCellStyle.ForeColor = Color.Red;
+                    row.Cells["TestResult"].Style.Font = _boldFont;
+                    row.Cells["TestResult"].Style.ForeColor = Color.Red;
                 }
                 else
                 {
-                    row.DefaultCellStyle.Font = _normalFont;
-                    row.DefaultCellStyle.ForeColor = Color.Black;
+                    //row.DefaultCellStyle.Font = _normalFont;
+                    //row.DefaultCellStyle.ForeColor = Color.Black;
+                    row.Cells["TestResult"].Style.Font = _normalFont;
+                    row.Cells["TestResult"].Style.ForeColor = Color.Black;
                 }
             }
         }
@@ -233,15 +240,22 @@ namespace MM.Controls
                 else
                     row["ToValue"] = DBNull.Value;
 
+                row["LamThem"] = dlg.ChiTietKQXN.LamThem;
+
                 if ((TinhTrang)dlg.ChiTietKQXN.TinhTrang == TinhTrang.BatThuong)
                 {
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _boldFont;
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Red;
+                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _boldFont;
+                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Red;
+                    dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.Font = _boldFont;
+                    dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.ForeColor = Color.Red;
                 }
                 else
                 {
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _normalFont;
-                    dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Black;
+                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _normalFont;
+                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Black;
+
+                    dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.Font = _normalFont;
+                    dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.ForeColor = Color.Black;
                 }
             }
         }

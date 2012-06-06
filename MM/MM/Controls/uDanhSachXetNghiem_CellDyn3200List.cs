@@ -197,47 +197,49 @@ namespace MM.Controls
                 }
 
                 _tenXetNghiem = _row["Fullname"].ToString();
-                if (_tenXetNghiem != "LYM" && _tenXetNghiem != "BASO" && _tenXetNghiem != "MONO" &&
-                    _tenXetNghiem != "EOS" && _tenXetNghiem != "NEU")
-                {
-                    chkFromValue_NormalPercent.Enabled = false;
-                    chkFromValue_NormalPercent.Checked = false;
-                    numFromValue_NormalPercent.Enabled = false;
-                    chkToValue_NormalPercent.Enabled = false;
-                    chkToValue_NormalPercent.Checked = false;
-                    numToValue_NormalPercent.Enabled = false;
-                    numFromValue_NormalPercent.Value = 0;
-                    numToValue_NormalPercent.Value = 0;
-                }
-                else
-                {
-                    chkFromValue_NormalPercent.Enabled = true;
-                    numFromValue_NormalPercent.Enabled = true;
-                    chkToValue_NormalPercent.Enabled = true;
-                    numToValue_NormalPercent.Enabled = true;
 
-                    if (_row["FromPercent"] != null && _row["FromPercent"] != DBNull.Value)
-                    {
-                        chkFromValue_NormalPercent.Checked = true;
-                        numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_row["FromPercent"]);
-                    }
-                    else
-                    {
-                        chkFromValue_NormalPercent.Checked = false;
-                        numFromValue_NormalPercent.Value = 0;
-                    }
+                //_tenXetNghiem = _row["Fullname"].ToString().ToUpper();
+                //if (_tenXetNghiem != "LYM" && _tenXetNghiem != "BASO" && _tenXetNghiem != "MONO" &&
+                //    _tenXetNghiem != "EOS" && _tenXetNghiem != "NEU")
+                //{
+                //    chkFromValue_NormalPercent.Enabled = false;
+                //    chkFromValue_NormalPercent.Checked = false;
+                //    numFromValue_NormalPercent.Enabled = false;
+                //    chkToValue_NormalPercent.Enabled = false;
+                //    chkToValue_NormalPercent.Checked = false;
+                //    numToValue_NormalPercent.Enabled = false;
+                //    numFromValue_NormalPercent.Value = 0;
+                //    numToValue_NormalPercent.Value = 0;
+                //}
+                //else
+                //{
+                //    chkFromValue_NormalPercent.Enabled = true;
+                //    numFromValue_NormalPercent.Enabled = true;
+                //    chkToValue_NormalPercent.Enabled = true;
+                //    numToValue_NormalPercent.Enabled = true;
 
-                    if (_row["ToPercent"] != null && _row["ToPercent"] != DBNull.Value)
-                    {
-                        chkToValue_NormalPercent.Checked = true;
-                        numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_row["ToPercent"]);
-                    }
-                    else
-                    {
-                        chkToValue_NormalPercent.Checked = false;
-                        numToValue_NormalPercent.Value = 0;
-                    }
-                }
+                //    if (_row["FromPercent"] != null && _row["FromPercent"] != DBNull.Value)
+                //    {
+                //        chkFromValue_NormalPercent.Checked = true;
+                //        numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_row["FromPercent"]);
+                //    }
+                //    else
+                //    {
+                //        chkFromValue_NormalPercent.Checked = false;
+                //        numFromValue_NormalPercent.Value = 0;
+                //    }
+
+                //    if (_row["ToPercent"] != null && _row["ToPercent"] != DBNull.Value)
+                //    {
+                //        chkToValue_NormalPercent.Checked = true;
+                //        numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_row["ToPercent"]);
+                //    }
+                //    else
+                //    {
+                //        chkToValue_NormalPercent.Checked = false;
+                //        numToValue_NormalPercent.Value = 0;
+                //    }
+                //}
             }
             catch (Exception e)
             {
@@ -255,13 +257,13 @@ namespace MM.Controls
                 return false;
             }
 
-            if ((_tenXetNghiem == "LYM" || _tenXetNghiem == "BASO" || _tenXetNghiem == "MONO" ||
-                _tenXetNghiem == "EOS" || _tenXetNghiem == "NEU") && !chkFromValue_NormalPercent.Checked && !chkToValue_NormalPercent.Checked)
-            {
-                MsgBox.Show(Application.ProductName, "Vui lòng nhập chỉ số % xét nghiệm.", IconType.Information);
-                chkFromValue_NormalPercent.Focus();
-                return false;
-            }
+            //if ((_tenXetNghiem == "LYM" || _tenXetNghiem == "BASO" || _tenXetNghiem == "MONO" ||
+            //    _tenXetNghiem == "EOS" || _tenXetNghiem == "NEU") && !chkFromValue_NormalPercent.Checked && !chkToValue_NormalPercent.Checked)
+            //{
+            //    MsgBox.Show(Application.ProductName, "Vui lòng nhập chỉ số % xét nghiệm.", IconType.Information);
+            //    chkFromValue_NormalPercent.Focus();
+            //    return false;
+            //}
 
             return true;
         }
@@ -303,11 +305,11 @@ namespace MM.Controls
                     if (chkToValue_Normal.Checked)
                         xetNghiem.ToValue = (double)numToValue_Normal.Value;
 
-                    if (chkFromValue_NormalPercent.Enabled && chkFromValue_NormalPercent.Checked)
-                        xetNghiem.FromPercent = (double)numFromValue_NormalPercent.Value;
+                    //if (chkFromValue_NormalPercent.Enabled && chkFromValue_NormalPercent.Checked)
+                    //    xetNghiem.FromPercent = (double)numFromValue_NormalPercent.Value;
 
-                    if (chkToValue_NormalPercent.Enabled && chkToValue_NormalPercent.Checked)
-                        xetNghiem.ToPercent = (double)numToValue_NormalPercent.Value;
+                    //if (chkToValue_NormalPercent.Enabled && chkToValue_NormalPercent.Checked)
+                    //    xetNghiem.ToPercent = (double)numToValue_NormalPercent.Value;
 
                     Result result = XetNghiem_CellDyn3200Bus.UpdateXetNghiem(xetNghiem);
                     if (!result.IsOK)
@@ -330,15 +332,15 @@ namespace MM.Controls
                             else
                                 row["ToValue"] = DBNull.Value;
 
-                            if (chkFromValue_NormalPercent.Enabled && chkFromValue_NormalPercent.Checked)
-                                row["FromPercent"] = xetNghiem.FromPercent.Value;
-                            else
-                                row["FromPercent"] = DBNull.Value;
+                            //if (chkFromValue_NormalPercent.Enabled && chkFromValue_NormalPercent.Checked)
+                            //    row["FromPercent"] = xetNghiem.FromPercent.Value;
+                            //else
+                            //    row["FromPercent"] = DBNull.Value;
 
-                            if (chkToValue_NormalPercent.Enabled && chkToValue_NormalPercent.Checked)
-                                row["ToPercent"] = xetNghiem.ToPercent.Value;
-                            else
-                                row["ToPercent"] = DBNull.Value;
+                            //if (chkToValue_NormalPercent.Enabled && chkToValue_NormalPercent.Checked)
+                            //    row["ToPercent"] = xetNghiem.ToPercent.Value;
+                            //else
+                            //    row["ToPercent"] = DBNull.Value;
 
                             MsgBox.Show(Application.ProductName, "Lưu chỉ số xét nghiệm thành công.", IconType.Information);
                         }

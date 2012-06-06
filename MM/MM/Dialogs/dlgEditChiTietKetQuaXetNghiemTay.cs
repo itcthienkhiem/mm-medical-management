@@ -58,6 +58,8 @@ namespace MM.Dialogs
                     chkToValue.Checked = true;
                 }
 
+                chkLamThem.Checked = Convert.ToBoolean(_drChiTietKQXN["LamThem"]);
+
                 _chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID = Guid.Parse(_drChiTietKQXN["ChiTietKetQuaXetNghiem_ManualGUID"].ToString());
             }
             else
@@ -77,6 +79,8 @@ namespace MM.Dialogs
                     numToValue.Value = (Decimal)Convert.ToDouble(_drChiTietKQXN["ToValue2"]);
                     chkToValue.Checked = true;
                 }
+
+                chkLamThem.Checked = Convert.ToBoolean(_drChiTietKQXN["LamThem"]);
 
                 _chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID = Guid.Parse(_drChiTietKQXN["ChiTietKQXNGUID"].ToString());
             }
@@ -106,6 +110,8 @@ namespace MM.Dialogs
                 _chiTietKQXN.ToValue = (double)numToValue.Value;
 
             _chiTietKQXN.DonVi = txtDonVi.Text;
+
+            _chiTietKQXN.LamThem = chkLamThem.Checked;
 
             Result result = KetQuaXetNghiemTayBus.UpdateChiTietKQXN(_chiTietKQXN);
             if (!result.IsOK)

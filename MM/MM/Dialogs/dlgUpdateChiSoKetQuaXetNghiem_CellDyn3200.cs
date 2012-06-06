@@ -19,7 +19,6 @@ namespace MM.Dialogs
         private DataRow _drCTKQXN = null;
         private ChiTietKetQuaXetNghiem_CellDyn3200 _chiTietKQXN = new ChiTietKetQuaXetNghiem_CellDyn3200();
         private string _binhThuong = string.Empty;
-        private string _percent = string.Empty;
         private bool _isTongHop = false;
         #endregion
 
@@ -47,11 +46,6 @@ namespace MM.Dialogs
         {
             get { return _binhThuong; }
         }
-
-        public string Percent
-        {
-            get { return _percent; }
-        }
         #endregion
 
         #region UI Command
@@ -65,11 +59,6 @@ namespace MM.Dialogs
                     txTenXetNghiem.Text = _drCTKQXN["TenXetNghiem"].ToString();
 
                 numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
-
-                if (_drCTKQXN["TestPercent"] == null || _drCTKQXN["TestPercent"] == DBNull.Value)
-                    numTestPercent.Enabled = false;
-                else
-                    numTestPercent.Value = (decimal)Convert.ToDouble(_drCTKQXN["TestPercent"]);
 
                 if ((_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value) &&
                     (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value))
@@ -95,34 +84,12 @@ namespace MM.Dialogs
                     numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
                 }
 
-                if ((_drCTKQXN["FromPercent"] == null || _drCTKQXN["FromPercent"] == DBNull.Value) &&
-                    (_drCTKQXN["ToPercent"] == null || _drCTKQXN["ToPercent"] == DBNull.Value))
-                {
-                    chkFromValue_NormalPercent.Enabled = false;
-                    chkToValue_NormalPercent.Enabled = false;
-                }
-                else if (_drCTKQXN["ToPercent"] == null || _drCTKQXN["ToPercent"] == DBNull.Value)
-                {
-                    chkFromValue_NormalPercent.Checked = true;
-                    numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent"]);
-                }
-                else if (_drCTKQXN["FromPercent"] == null || _drCTKQXN["FromPercent"] == DBNull.Value)
-                {
-                    chkToValue_NormalPercent.Checked = true;
-                    numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent"]);
-                }
-                else
-                {
-                    chkFromValue_NormalPercent.Checked = true;
-                    numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent"]);
-                    chkToValue_NormalPercent.Checked = true;
-                    numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent"]);
-                }
-
                 if (_drCTKQXN["DonVi"] != null && _drCTKQXN["DonVi"] != DBNull.Value)
                     txtDonVi.Text = _drCTKQXN["DonVi"].ToString();
 
                 _chiTietKQXN.TenXetNghiem = _drCTKQXN["Fullname"].ToString();
+
+                chkLamThem.Checked = Convert.ToBoolean(_drCTKQXN["LamThem"]);
             }
             else
             {
@@ -132,11 +99,6 @@ namespace MM.Dialogs
                     txTenXetNghiem.Text = _drCTKQXN["Fullname"].ToString();
 
                 numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
-
-                if (_drCTKQXN["TestPercent"] == null || _drCTKQXN["TestPercent"] == DBNull.Value)
-                    numTestPercent.Enabled = false;
-                else
-                    numTestPercent.Value = (decimal)Convert.ToDouble(_drCTKQXN["TestPercent"]);
 
                 if ((_drCTKQXN["FromValue2"] == null || _drCTKQXN["FromValue2"] == DBNull.Value) &&
                     (_drCTKQXN["ToValue2"] == null || _drCTKQXN["ToValue2"] == DBNull.Value))
@@ -161,35 +123,13 @@ namespace MM.Dialogs
                     chkToValue_Normal.Checked = true;
                     numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue2"]);
                 }
-
-                if ((_drCTKQXN["FromPercent2"] == null || _drCTKQXN["FromPercent2"] == DBNull.Value) &&
-                    (_drCTKQXN["ToPercent2"] == null || _drCTKQXN["ToPercent2"] == DBNull.Value))
-                {
-                    chkFromValue_NormalPercent.Enabled = false;
-                    chkToValue_NormalPercent.Enabled = false;
-                }
-                else if (_drCTKQXN["ToPercent2"] == null || _drCTKQXN["ToPercent2"] == DBNull.Value)
-                {
-                    chkFromValue_NormalPercent.Checked = true;
-                    numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent2"]);
-                }
-                else if (_drCTKQXN["FromPercent2"] == null || _drCTKQXN["FromPercent2"] == DBNull.Value)
-                {
-                    chkToValue_NormalPercent.Checked = true;
-                    numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent2"]);
-                }
-                else
-                {
-                    chkFromValue_NormalPercent.Checked = true;
-                    numFromValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromPercent2"]);
-                    chkToValue_NormalPercent.Checked = true;
-                    numToValue_NormalPercent.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToPercent2"]);
-                }
-
+                
                 if (_drCTKQXN["DonVi2"] != null && _drCTKQXN["DonVi2"] != DBNull.Value)
                     txtDonVi.Text = _drCTKQXN["DonVi2"].ToString();
 
                 _chiTietKQXN.TenXetNghiem = _drCTKQXN["Fullname"].ToString();
+
+                chkLamThem.Checked = Convert.ToBoolean(_drCTKQXN["LamThem"]);
             }
         }
 
@@ -198,15 +138,6 @@ namespace MM.Dialogs
             if (chkFromValue_Normal.Enabled == true && chkToValue_Normal.Enabled == true)
             {
                 if (!chkFromValue_Normal.Checked && !chkToValue_Normal.Checked)
-                {
-                    MsgBox.Show(this.Text, "Vui lòng nhập ngưỡng chỉ số.", IconType.Information);
-                    return false;
-                }
-            }
-
-            if (chkFromValue_NormalPercent.Enabled == true && chkToValue_NormalPercent.Enabled == true)
-            {
-                if (!chkFromValue_NormalPercent.Checked && !chkToValue_NormalPercent.Checked)
                 {
                     MsgBox.Show(this.Text, "Vui lòng nhập ngưỡng chỉ số.", IconType.Information);
                     return false;
@@ -240,24 +171,19 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _chiTietKQXN.TestResult = (double)numKetQua.Value;
-                    if (numTestPercent.Enabled)
-                        _chiTietKQXN.TestPercent = (double)numTestPercent.Value;
-
+                    
                     if (chkFromValue_Normal.Checked)
                         _chiTietKQXN.FromValue = (double)numFromValue_Normal.Value;
 
                     if (chkToValue_Normal.Checked)
                         _chiTietKQXN.ToValue = (double)numToValue_Normal.Value;
 
-                    if (chkFromValue_NormalPercent.Checked)
-                        _chiTietKQXN.FromPercent = (double)numFromValue_NormalPercent.Value;
-
-                    if (chkToValue_NormalPercent.Checked)
-                        _chiTietKQXN.ToPercent = (double)numToValue_NormalPercent.Value;
-
+                    
                     _chiTietKQXN.DonVi = txtDonVi.Text;
 
-                    Result result = XetNghiem_CellDyn3200Bus.UpdateChiSoKetQuaXetNghiem(_chiTietKQXN, ref _binhThuong, ref _percent);
+                    _chiTietKQXN.LamThem = chkLamThem.Checked;
+
+                    Result result = XetNghiem_CellDyn3200Bus.UpdateChiSoKetQuaXetNghiem(_chiTietKQXN, ref _binhThuong);
 
                     if (!result.IsOK)
                     {
@@ -301,16 +227,6 @@ namespace MM.Dialogs
         private void chkToValue_Normal_CheckedChanged(object sender, EventArgs e)
         {
             numToValue_Normal.Enabled = chkToValue_Normal.Checked;
-        }
-
-        private void chkFromValue_NormalPercent_CheckedChanged(object sender, EventArgs e)
-        {
-            numFromValue_NormalPercent.Enabled = chkFromValue_NormalPercent.Checked;
-        }
-
-        private void chkToValue_NormalPercent_CheckedChanged(object sender, EventArgs e)
-        {
-            numToValue_NormalPercent.Enabled = chkToValue_NormalPercent.Checked;
         }
         #endregion
 

@@ -42,6 +42,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.chkLamThem = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFromValue)).BeginInit();
@@ -50,6 +51,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkLamThem);
             this.groupBox1.Controls.Add(this.txtDonVi);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.numToValue);
@@ -62,7 +64,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(5, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(302, 121);
+            this.groupBox1.Size = new System.Drawing.Size(302, 151);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -187,7 +189,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(158, 129);
+            this.btnCancel.Location = new System.Drawing.Point(158, 159);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 17;
@@ -199,12 +201,22 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(79, 129);
+            this.btnOK.Location = new System.Drawing.Point(79, 159);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 16;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // chkLamThem
+            // 
+            this.chkLamThem.AutoSize = true;
+            this.chkLamThem.Location = new System.Drawing.Point(22, 125);
+            this.chkLamThem.Name = "chkLamThem";
+            this.chkLamThem.Size = new System.Drawing.Size(72, 17);
+            this.chkLamThem.TabIndex = 12;
+            this.chkLamThem.Text = "Làm thêm";
+            this.chkLamThem.UseVisualStyleBackColor = true;
             // 
             // dlgUpdateChiSoKetQuaXetNghiem
             // 
@@ -212,7 +224,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(312, 159);
+            this.ClientSize = new System.Drawing.Size(312, 189);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -223,7 +235,7 @@
             this.Name = "dlgUpdateChiSoKetQuaXetNghiem";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sua chi so ket qua xet nghiem";
+            this.Text = "Sua chi tiet ket qua xet nghiem";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgUpdateChiSoKetQuaXetNghiem_FormClosing);
             this.Load += new System.EventHandler(this.dlgUpdateChiSoKetQuaXetNghiem_Load);
             this.groupBox1.ResumeLayout(false);
@@ -250,5 +262,6 @@
         private System.Windows.Forms.CheckBox chkToValue;
         private System.Windows.Forms.NumericUpDown numFromValue;
         private System.Windows.Forms.CheckBox chkFromValue;
+        private System.Windows.Forms.CheckBox chkLamThem;
     }
 }

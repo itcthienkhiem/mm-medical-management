@@ -53,7 +53,12 @@ namespace MM.Dialogs
             {
                 txtTenXetNghiem.Text = _drXetNghiem["Fullname"] as string;
                 cboLoaiXetNghiem.Text = GetLoaiXetNghiem(_drXetNghiem["Type"].ToString());
+                numThuTuNhom.Value = Convert.ToInt32(_drXetNghiem["GroupID"]);
                 numThuTu.Value = Convert.ToInt32(_drXetNghiem["Order"]);
+                if (_drXetNghiem["GroupName"] != null && _drXetNghiem["GroupName"] != DBNull.Value)
+                    cboNhomXetNghiem.Text = _drXetNghiem["GroupName"].ToString();
+
+                chkAmTinhDuongTinh.Checked = Convert.ToBoolean(_drXetNghiem["IsPosNeg"]);
 
                 _xetNghiem.XetNghiem_ManualGUID = Guid.Parse(_drXetNghiem["XetNghiem_ManualGUID"].ToString());
 
@@ -432,8 +437,10 @@ namespace MM.Dialogs
                     _xetNghiem.Fullname = txtTenXetNghiem.Text;
                     _xetNghiem.TenXetNghiem = txtTenXetNghiem.Text;
                     _xetNghiem.Type = GetLoaiXetNghiem();
-                    _xetNghiem.GroupID = 0;
+                    _xetNghiem.GroupID = (int)numThuTuNhom.Value;
+                    _xetNghiem.GroupName = cboNhomXetNghiem.Text;
                     _xetNghiem.Order = (int)numThuTu.Value;
+                    _xetNghiem.IsPosNeg = chkAmTinhDuongTinh.Checked;
 
                     List<ChiTietXetNghiem_Manual> ctxns = new List<ChiTietXetNghiem_Manual>();
                     if (raChung.Checked)
@@ -523,14 +530,12 @@ namespace MM.Dialogs
         {
             switch (cboLoaiXetNghiem.Text)
             {
-                case "Sinh hóa":
-                    return LoaiXetNghiem.Biochemistry.ToString();
                 case "Nước tiểu":
                     return LoaiXetNghiem.Urine.ToString();
-                case "Ion đồ":
-                    return LoaiXetNghiem.Electrolytes.ToString();
-                case "Huyết học":
-                    return LoaiXetNghiem.Haematology.ToString();
+                case "Miễn dịch":
+                    return LoaiXetNghiem.MienDich.ToString();
+                case "Soi tươi huyết trắng":
+                    return LoaiXetNghiem.SoiTuoiHuyetTrang.ToString();
             }
 
             return string.Empty;
@@ -540,14 +545,12 @@ namespace MM.Dialogs
         {
             switch (type)
             {
-                case "Biochemistry":
-                    return "Sinh hóa";
                 case "Urine":
                     return "Nước tiểu";
-                case "Electrolytes":
-                    return "Ion đồ";
-                case "Haematology":
-                    return "Huyết học";
+                case "MienDich":
+                    return "Miễn dịch";
+                case "SoiTuoiHuyetTrang":
+                    return "Soi tươi huyết trắng";
             }
 
             return string.Empty;
@@ -574,6 +577,24 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("XetNghiemTayBus.GetDonViList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiemTayBus.GetDonViList"));
+            }
+
+            result = XetNghiemTayBus.GetNhomXetNghiemList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                cboNhomXetNghiem.Items.Add(string.Empty);
+                foreach (DataRow row in dt.Rows)
+                {
+                    string nhomXetNghiem = row[0].ToString().Trim();
+                    if (nhomXetNghiem == string.Empty) continue;
+                    cboNhomXetNghiem.Items.Add(nhomXetNghiem);
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("XetNghiemTayBus.GetNhomXetNghiemList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiemTayBus.GetNhomXetNghiemList"));
             }
         }
         #endregion
