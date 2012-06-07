@@ -4586,6 +4586,11 @@ namespace MM.Exports
                     range = workSheet.Cells["A7:E8"];
                     range.Borders.LineStyle = LineStyle.None;
                 }
+                else
+                {
+                    range = workSheet.Cells["A7:E8"];
+                    range.Borders.Color = Color.Gray;
+                }
 
                 DataTable dtKQXN = result.QueryResult as DataTable;
                 int groupID = 0;
@@ -4702,7 +4707,7 @@ namespace MM.Exports
                     {
                         range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                         range.Borders.LineStyle = LineStyle.Continuous;
-                        range.Borders.Color = Color.Black;
+                        range.Borders.Color = Color.Gray;
                     }
 
                     rowIndex++;
@@ -4797,6 +4802,11 @@ namespace MM.Exports
                     range = workSheet.Cells["A7:E8"];
                     range.Borders.LineStyle = LineStyle.None;
                 }
+                else
+                {
+                    range = workSheet.Cells["A7:E8"];
+                    range.Borders.Color = Color.Gray;
+                }
 
                 DataTable dtKQXN = result.QueryResult as DataTable;
                 DataRow[] rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.Biochemistry.ToString()), "Fullname");
@@ -4879,7 +4889,7 @@ namespace MM.Exports
                             {
                                 range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                                 range.Borders.LineStyle = LineStyle.Continuous;
-                                range.Borders.Color = Color.Black;
+                                range.Borders.Color = Color.Gray;
                             }
 
                             rowIndex++;
@@ -4935,7 +4945,7 @@ namespace MM.Exports
                             if (hasLine)
                             {
                                 range.Borders.LineStyle = LineStyle.Continuous;
-                                range.Borders.Color = Color.Black;
+                                range.Borders.Color = Color.Gray;
                             }
                             
                             rowIndex++;
@@ -5005,7 +5015,7 @@ namespace MM.Exports
                             {
                                 range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                                 range.Borders.LineStyle = LineStyle.Continuous;
-                                range.Borders.Color = Color.Black;
+                                range.Borders.Color = Color.Gray;
                             }
 
                             rowIndex++;
@@ -5061,7 +5071,7 @@ namespace MM.Exports
                             if (hasLine)
                             {
                                 range.Borders.LineStyle = LineStyle.Continuous;
-                                range.Borders.Color = Color.Black;
+                                range.Borders.Color = Color.Gray;
                             }
 
                             rowIndex++;
@@ -5131,7 +5141,7 @@ namespace MM.Exports
                             {
                                 range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                                 range.Borders.LineStyle = LineStyle.Continuous;
-                                range.Borders.Color = Color.Black;
+                                range.Borders.Color = Color.Gray;
                             }
 
                             rowIndex++;
@@ -5187,7 +5197,7 @@ namespace MM.Exports
                             if (hasLine)
                             {
                                 range.Borders.LineStyle = LineStyle.Continuous;
-                                range.Borders.Color = Color.Black;
+                                range.Borders.Color = Color.Gray;
                             }
 
                             rowIndex++;
@@ -5257,7 +5267,7 @@ namespace MM.Exports
                             {
                                 range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
                                 range.Borders.LineStyle = LineStyle.Continuous;
-                                range.Borders.Color = Color.Black;
+                                range.Borders.Color = Color.Gray;
                             }
 
                             rowIndex++;
