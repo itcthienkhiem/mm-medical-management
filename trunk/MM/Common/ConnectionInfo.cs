@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using System.Data.OleDb;
+using System.Data.SqlClient;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -94,10 +95,10 @@ namespace MM.Common
 		#region Public Methods
 		public bool TestConnection()
 		{
-			OleDbConnection con = null;
+			SqlConnection con = null;
 			try
 			{
-				con = new OleDbConnection(ConnectionStringOLEDB);				
+                con = new SqlConnection(ConnectionString);				
 				con.Open();
 				return true;
 			}
