@@ -34,6 +34,7 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             _patientGUID = patientGUID;
+            chkBSCD.Checked = true;
         }
 
         public dlgAddServiceHistory(string patientGUID, DataRow drServiceHistory, bool allowEdit)
