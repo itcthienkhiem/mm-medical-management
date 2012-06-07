@@ -102,8 +102,9 @@ namespace MM.Common
 				con.Open();
 				return true;
 			}
-			catch
+			catch (Exception ex)
 			{
+                Utility.WriteToTraceLog(ex.Message);
 				return false;
 			}
 			finally
