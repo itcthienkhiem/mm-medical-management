@@ -252,6 +252,8 @@ namespace MM
                 _uTraCuuThongTinKhachHang.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uDiaChiCongTyList))
                 _uDiaChiCongTyList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uChiTietPhieuThuDichVu))
+                _uChiTietPhieuThuDichVu.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -976,6 +978,18 @@ namespace MM
                             _uDiaChiCongTyList.AllowLock = isLock;
                             _uDiaChiCongTyList.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.ChiTietPhieuThuDichVu)
+                        {
+                            chiTietPhieuThuDichVuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uChiTietPhieuThuDichVu.AllowAdd = isAdd;
+                            _uChiTietPhieuThuDichVu.AllowEdit = isEdit;
+                            _uChiTietPhieuThuDichVu.AllowDelete = isDelete;
+                            _uChiTietPhieuThuDichVu.AllowPrint = isPrint;
+                            _uChiTietPhieuThuDichVu.AllowExport = isExport;
+                            _uChiTietPhieuThuDichVu.AllowImport = isImport;
+                            _uChiTietPhieuThuDichVu.AllowLock = isLock;
+                            _uChiTietPhieuThuDichVu.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1143,6 +1157,7 @@ namespace MM
                 baoCaoSoLuongKhamToolStripMenuItem.Enabled = isLogin;
                 traCuuThongTinKhachHangToolStripMenuItem.Enabled = isLogin;
                 danhMucDiaChiCongTyToolStripMenuItem.Enabled = isLogin;
+                chiTietPhieuThuDichVuToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1401,7 +1416,18 @@ namespace MM
                 case "DiaChiCongTy":
                     OnDiaChiCongTy();
                     break;
+
+                case "ChiTietPhieuThuDichVu":
+                    OnChiTietPhieuThuDichVu();
+                    break;
             }
+        }
+
+        private void OnChiTietPhieuThuDichVu()
+        {
+            this.Text = string.Format("{0} - Chi tiet phieu thu dich vu", Application.ProductName);
+            ViewControl(_uChiTietPhieuThuDichVu);
+            _uChiTietPhieuThuDichVu.DisplayAsThread();
         }
 
         private void OnDiaChiCongTy()

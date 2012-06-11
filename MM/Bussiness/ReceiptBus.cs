@@ -14,7 +14,7 @@ namespace MM.Bussiness
     {
         public static Result GetReceiptList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
         {
-            Result result = null;
+            Result result = new Result();
 
             try
             {
@@ -57,6 +57,40 @@ namespace MM.Bussiness
                     
                 }
                 
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetChiTietPhieuThuDichVuList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+                if (isFromDateToDate)
+                {
+                    query = string.Format("SELECT * FROM dbo.ChiTietPhieuThuDichVuView WHERE Status = 0 AND ReceiptDetailStatus = 0 AND ServiceStatus = 0 AND Archived = 'False' AND ReceiptDate BETWEEN '{0}' AND '{1}' ORDER BY ReceiptDate DESC, FullName",
+                    fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                }
+                else
+                {
+                    query = string.Format("SELECT * FROM dbo.ChiTietPhieuThuDichVuView WHERE Status = 0 AND ReceiptDetailStatus = 0 AND ServiceStatus = 0 AND Archived = 'False' AND FullName LIKE N'%{0}%' ORDER BY ReceiptDate DESC, FullName",
+                    tenBenhNhan);
+                }
+
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
