@@ -55,6 +55,7 @@ namespace MM.Dialogs
             txtMaBenhNhan.ReadOnly = true;
             txtTenBenhNhan.ReadOnly = true;
             txtDiaChi.ReadOnly = true;
+            txtGhiChu.ReadOnly = true;
             btnChonBenhNhan.Enabled = false;
             
             this.Text = "Xem phieu thu";
