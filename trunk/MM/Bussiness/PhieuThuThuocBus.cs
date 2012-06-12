@@ -219,7 +219,8 @@ namespace MM.Bussiness
                                     db.SubmitChanges();
                                 }
                                 else
-                                    Utility.WriteToTraceLog(string.Format("Không tồn tại lô thuốc: '{0}'", ctptt.ThuocGUID.ToString()));
+                                    Utility.WriteToTraceLog(string.Format("Không tồn tại lô thuốc: '{0}', Mã phiếu thu: '{1}'",
+                                    ctptt.ThuocGUID.ToString(), ptthuoc.MaPhieuThuThuoc));
                             }
 
                             string maToaThuoc = string.Empty;
@@ -390,7 +391,8 @@ namespace MM.Bussiness
                                 giaNhapTB = Math.Round(tongGiaNhap / count, 0);
                             }
                             else
-                                Utility.WriteToTraceLog(string.Format("Không tồn tại lô thuốc: '{0}'", ctptt.ThuocGUID.ToString()));
+                                Utility.WriteToTraceLog(string.Format("Không tồn tại lô thuốc: '{0}', Mã phiếu thu: '{1}'", 
+                                    ctptt.ThuocGUID.ToString(), ptthuoc.MaPhieuThuThuoc));
 
                             ctptt.DonGiaNhap = giaNhapTB;
                             db.ChiTietPhieuThuThuocs.InsertOnSubmit(ctptt);
