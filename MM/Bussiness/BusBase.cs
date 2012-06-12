@@ -23,6 +23,7 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 adapter = new SqlDataAdapter(query, (SqlConnection)db.Connection);
+                adapter.SelectCommand.CommandTimeout = 0;
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 result.QueryResult = dt;
@@ -65,6 +66,7 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 adapter = new SqlDataAdapter(query, (SqlConnection)db.Connection);
+                adapter.SelectCommand.CommandTimeout = 0;
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
                 result.QueryResult = ds;
@@ -110,6 +112,7 @@ namespace MM.Bussiness
                 cmd = new SqlCommand();
                 cmd.Connection = (SqlConnection)db.Connection;
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandTimeout = 0;
                 cmd.CommandText = spName;
 
                 foreach (SqlParameter param in sqlParams)
@@ -171,6 +174,7 @@ namespace MM.Bussiness
                     cmd.Connection.State == ConnectionState.Broken)
                     cmd.Connection.Open();
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandTimeout = 0;
                 cmd.CommandText = spName;
 
                 foreach (SqlParameter param in sqlParams)
