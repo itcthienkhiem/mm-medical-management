@@ -378,7 +378,7 @@ namespace MM.Bussiness
                                         if (soLuongTon >= soLuong)
                                         {
                                             lt.SoLuongXuat += soLuong;
-                                            tongGiaNhap += (soLuong*lt.GiaNhapQuiDoi);
+                                            tongGiaNhap += (soLuong * lt.GiaNhapQuiDoi);
                                             count += soLuong;
                                             soLuong = 0;
                                             db.SubmitChanges();
