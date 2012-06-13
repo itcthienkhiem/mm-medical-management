@@ -206,17 +206,17 @@ namespace MM.Bussiness
                                             {
                                                 lt.SoLuongXuat -= soLuong;
                                                 soLuong = 0;
+                                                db.SubmitChanges();
                                                 break;
                                             }
                                             else
                                             {
                                                 soLuong -= lt.SoLuongXuat;
                                                 lt.SoLuongXuat = 0;
+                                                db.SubmitChanges();
                                             }
                                         }
                                     }
-
-                                    db.SubmitChanges();
                                 }
                                 else
                                     Utility.WriteToTraceLog(string.Format("Không tồn tại lô thuốc: '{0}', Mã phiếu thu: '{1}'",
@@ -351,6 +351,11 @@ namespace MM.Bussiness
                             ctptt.ChiTietPhieuThuThuocGUID = Guid.NewGuid();
 
                             int soLuong = Convert.ToInt32(ctptt.SoLuong);
+                            if (soLuong <= 0)
+                            {
+                                Utility.WriteToTraceLog(string.Format("Số lượng: '{0}', Mã thuốc: '{1}', Mã phiếu thu: '{2}'",
+                                    soLuong, ctptt.ThuocGUID.ToString(), ptthuoc.MaPhieuThuThuoc));
+                            }
 
                             var loThuocList = from l in db.LoThuocs
                                               where l.Status == (byte)Status.Actived &&
@@ -376,6 +381,7 @@ namespace MM.Bussiness
                                             tongGiaNhap += (soLuong*lt.GiaNhapQuiDoi);
                                             count += soLuong;
                                             soLuong = 0;
+                                            db.SubmitChanges();
                                             break;
                                         }
                                         else
@@ -384,6 +390,7 @@ namespace MM.Bussiness
                                             soLuong -= soLuongTon;
                                             tongGiaNhap += (soLuongTon * lt.GiaNhapQuiDoi);
                                             count += soLuongTon;
+                                            db.SubmitChanges();
                                         }
                                     }
                                 }
