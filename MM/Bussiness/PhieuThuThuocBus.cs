@@ -177,50 +177,54 @@ namespace MM.Bussiness
                         PhieuThuThuoc ptthuoc = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(p => p.PhieuThuThuocGUID.ToString() == key);
                         if (ptthuoc != null)
                         {
+                            Status status = (Status)ptthuoc.Status;
                             ptthuoc.DeletedDate = DateTime.Now;
                             ptthuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             ptthuoc.Status = (byte)Status.Deactived;
                             ptthuoc.Notes = noteList[index];
 
-                            //Update So luong Lo thuoc
-                            var ctptts = ptthuoc.ChiTietPhieuThuThuocs;
-                            foreach (var ctptt in ctptts)
+                            if (status == (byte)Status.Actived)
                             {
-                                int soLuong = Convert.ToInt32(ctptt.SoLuong);
-
-                                var loThuocList = from l in db.LoThuocs
-                                                  where l.Status == (byte)Status.Actived &&
-                                                  l.ThuocGUID == ctptt.ThuocGUID &&
-                                                  l.NgayHetHan > dt &&
-                                                  l.SoLuongXuat > 0
-                                                  orderby l.NgayHetHan ascending
-                                                  select l;
-
-                                if (loThuocList != null)
+                                //Update So luong Lo thuoc
+                                var ctptts = ptthuoc.ChiTietPhieuThuThuocs;
+                                foreach (var ctptt in ctptts)
                                 {
-                                    foreach (var lt in loThuocList)
+                                    int soLuong = Convert.ToInt32(ctptt.SoLuong);
+
+                                    var loThuocList = from l in db.LoThuocs
+                                                      where l.Status == (byte)Status.Actived &&
+                                                      l.ThuocGUID == ctptt.ThuocGUID &&
+                                                      l.NgayHetHan > dt &&
+                                                      l.SoLuongXuat > 0
+                                                      orderby l.NgayHetHan ascending
+                                                      select l;
+
+                                    if (loThuocList != null)
                                     {
-                                        if (soLuong > 0)
+                                        foreach (var lt in loThuocList)
                                         {
-                                            if (lt.SoLuongXuat >= soLuong)
+                                            if (soLuong > 0)
                                             {
-                                                lt.SoLuongXuat -= soLuong;
-                                                soLuong = 0;
-                                                db.SubmitChanges();
-                                                break;
-                                            }
-                                            else
-                                            {
-                                                soLuong -= lt.SoLuongXuat;
-                                                lt.SoLuongXuat = 0;
-                                                db.SubmitChanges();
+                                                if (lt.SoLuongXuat >= soLuong)
+                                                {
+                                                    lt.SoLuongXuat -= soLuong;
+                                                    soLuong = 0;
+                                                    db.SubmitChanges();
+                                                    break;
+                                                }
+                                                else
+                                                {
+                                                    soLuong -= lt.SoLuongXuat;
+                                                    lt.SoLuongXuat = 0;
+                                                    db.SubmitChanges();
+                                                }
                                             }
                                         }
                                     }
+                                    else
+                                        Utility.WriteToTraceLog(string.Format("Không tồn tại lô thuốc: '{0}', Mã phiếu thu: '{1}'",
+                                        ctptt.ThuocGUID.ToString(), ptthuoc.MaPhieuThuThuoc));
                                 }
-                                else
-                                    Utility.WriteToTraceLog(string.Format("Không tồn tại lô thuốc: '{0}', Mã phiếu thu: '{1}'",
-                                    ctptt.ThuocGUID.ToString(), ptthuoc.MaPhieuThuThuoc));
                             }
 
                             string maToaThuoc = string.Empty;
