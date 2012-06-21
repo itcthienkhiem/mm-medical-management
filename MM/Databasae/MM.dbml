@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MM" Class="MMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=VUNGUYENXP32;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString5" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Company" Member="Companies">
     <Type Name="Company">
       <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -3056,6 +3056,21 @@
       <Column Name="NgayKham" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="CompanyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spThuocTonKho" Method="spThuocTonKho">
+    <Parameter Name="TuNgay" Parameter="tuNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="MaThuocs" Parameter="maThuocs" Type="System.String" DbType="NVarChar(4000)" />
+    <ElementType Name="spThuocTonKhoResult">
+      <Column Name="ThuocGUID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoDu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLNhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLXuat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>
