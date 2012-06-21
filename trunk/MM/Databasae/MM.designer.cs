@@ -252,7 +252,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1291,6 +1291,13 @@ namespace MM.Databasae
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tuNgay, denNgay);
 			return ((ISingleResult<spDichVuTuTucResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.spThuocTonKho")]
+		public ISingleResult<spThuocTonKhoResult> spThuocTonKho([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TuNgay", DbType="DateTime")] System.Nullable<System.DateTime> tuNgay, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DenNgay", DbType="DateTime")] System.Nullable<System.DateTime> denNgay, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MaThuocs", DbType="NVarChar(4000)")] string maThuocs)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), tuNgay, denNgay, maThuocs);
+			return ((ISingleResult<spThuocTonKhoResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -59085,6 +59092,158 @@ namespace MM.Databasae
 				if ((this._Mobile != value))
 				{
 					this._Mobile = value;
+				}
+			}
+		}
+	}
+	
+	public partial class spThuocTonKhoResult
+	{
+		
+		private string _ThuocGUID;
+		
+		private string _MaThuoc;
+		
+		private string _TenThuoc;
+		
+		private string _DonViTinh;
+		
+		private System.Nullable<int> _SoDu;
+		
+		private System.Nullable<int> _SLNhap;
+		
+		private System.Nullable<int> _SLXuat;
+		
+		private System.Nullable<int> _SLTon;
+		
+		public spThuocTonKhoResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThuocGUID", DbType="NVarChar(50)")]
+		public string ThuocGUID
+		{
+			get
+			{
+				return this._ThuocGUID;
+			}
+			set
+			{
+				if ((this._ThuocGUID != value))
+				{
+					this._ThuocGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaThuoc", DbType="NVarChar(100)")]
+		public string MaThuoc
+		{
+			get
+			{
+				return this._MaThuoc;
+			}
+			set
+			{
+				if ((this._MaThuoc != value))
+				{
+					this._MaThuoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenThuoc", DbType="NVarChar(255)")]
+		public string TenThuoc
+		{
+			get
+			{
+				return this._TenThuoc;
+			}
+			set
+			{
+				if ((this._TenThuoc != value))
+				{
+					this._TenThuoc = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonViTinh", DbType="NVarChar(50)")]
+		public string DonViTinh
+		{
+			get
+			{
+				return this._DonViTinh;
+			}
+			set
+			{
+				if ((this._DonViTinh != value))
+				{
+					this._DonViTinh = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoDu", DbType="Int")]
+		public System.Nullable<int> SoDu
+		{
+			get
+			{
+				return this._SoDu;
+			}
+			set
+			{
+				if ((this._SoDu != value))
+				{
+					this._SoDu = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SLNhap", DbType="Int")]
+		public System.Nullable<int> SLNhap
+		{
+			get
+			{
+				return this._SLNhap;
+			}
+			set
+			{
+				if ((this._SLNhap != value))
+				{
+					this._SLNhap = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SLXuat", DbType="Int")]
+		public System.Nullable<int> SLXuat
+		{
+			get
+			{
+				return this._SLXuat;
+			}
+			set
+			{
+				if ((this._SLXuat != value))
+				{
+					this._SLXuat = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SLTon", DbType="Int")]
+		public System.Nullable<int> SLTon
+		{
+			get
+			{
+				return this._SLTon;
+			}
+			set
+			{
+				if ((this._SLTon != value))
+				{
+					this._SLTon = value;
 				}
 			}
 		}
