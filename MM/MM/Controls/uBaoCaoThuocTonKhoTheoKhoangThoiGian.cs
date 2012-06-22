@@ -15,16 +15,21 @@ using MM.Exports;
 
 namespace MM.Controls
 {
-    public partial class uBaoCaoThuocTonKho : uBase
+    public partial class uBaoCaoThuocTonKhoTheoKhoangThoiGian : uBase
     {
         #region Members
-        private List<string> _thuocKeyList = new List<string>();
+        private List<string> _maThuocList = new List<string>();
+        private string _maThuocs = string.Empty;
+        private DateTime _tuNgay = DateTime.Now;
+        private DateTime _denNgay = DateTime.Now;
         #endregion
 
         #region Constructor
-        public uBaoCaoThuocTonKho()
+        public uBaoCaoThuocTonKhoTheoKhoangThoiGian()
         {
             InitializeComponent();
+            dtpkTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+            dtpkDenNgay.Value = DateTime.Now;
         }
         #endregion
 
@@ -35,7 +40,6 @@ namespace MM.Controls
         #region UI Command
         private void UpdateGUI()
         {
-            _ucReportViewer.ShowPrintButton = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
         }
 
@@ -47,16 +51,13 @@ namespace MM.Controls
 
         private void OnView()
         {
-            Result result = ReportBus.GetThuocTonKhoList(_thuocKeyList);
+            Result result = ReportBus.GetThuocTonKhoTheoKhoangThoiGian(_tuNgay, _denNgay, _maThuocs);
             if (result.IsOK)
             {
-                ReportDataSource reportDataSource = new ReportDataSource("ThuocResult",
-                    (List<ThuocResult>)result.QueryResult);
-
                 MethodInvoker method = delegate
                 {
                     tabReport.SelectedTabIndex = 1;
-                    _ucReportViewer.ViewReport("MM.Templates.rptThuocTonKho.rdlc", reportDataSource);
+                    dgThuocTonKho.DataSource = result.QueryResult;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -64,8 +65,8 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetThuocTonKhoList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetThuocTonKhoList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetThuocTonKhoTheoKhoangThoiGian"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetThuocTonKhoTheoKhoangThoiGian"));
             }
         }
 
@@ -79,11 +80,25 @@ namespace MM.Controls
                     return;
                 }
 
-                _thuocKeyList.Clear();
+                if (dtpkDenNgay.Value < dtpkTuNgay.Value)
+                {
+                    MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
+                    dtpkTuNgay.Focus();
+                    return;
+                }
+
+                _maThuocList.Clear();
+                _maThuocs = string.Empty;
                 foreach (DataRow row in _uThuocList.CheckedRows)
                 {
-                    _thuocKeyList.Add(row["ThuocGUID"].ToString());
+                    _maThuocList.Add(row["MaThuoc"].ToString());
+                    _maThuocs += string.Format("{0},", row["MaThuoc"].ToString());
                 }
+
+                _maThuocs = _maThuocs.Substring(0, _maThuocs.Length - 1);
+
+                _tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                _denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnViewProc));
                 base.ShowWaiting();
@@ -104,7 +119,14 @@ namespace MM.Controls
             Cursor.Current = Cursors.WaitCursor;
             if (_uThuocList.CheckedRows == null || _uThuocList.CheckedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 1 thuốc để xuất excel.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 1 thuốc để xem báo cáo.", IconType.Information);
+                return;
+            }
+
+            if (dtpkDenNgay.Value < dtpkTuNgay.Value)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
+                dtpkTuNgay.Focus();
                 return;
             }
 
@@ -113,22 +135,29 @@ namespace MM.Controls
             dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                _thuocKeyList.Clear();
+                _maThuocList.Clear();
+                _maThuocs = string.Empty;
                 foreach (DataRow row in _uThuocList.CheckedRows)
                 {
-                    _thuocKeyList.Add(row["ThuocGUID"].ToString());
+                    _maThuocList.Add(row["MaThuoc"].ToString());
+                    _maThuocs += string.Format("{0},", row["MaThuoc"].ToString());
                 }
 
-                Result result = ReportBus.GetThuocTonKhoList(_thuocKeyList);
+                _maThuocs = _maThuocs.Substring(0, _maThuocs.Length - 1);
+
+                _tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                _denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
+
+                Result result = ReportBus.GetThuocTonKhoTheoKhoangThoiGian(_tuNgay, _denNgay, _maThuocs);
                 if (result.IsOK)
                 {
-                    List<ThuocResult> thuocList = (List<ThuocResult>)result.QueryResult;
-                    ExportExcel.ExportThuocTonKhoToExcel(dlg.FileName, thuocList);
+                    List<spThuocTonKhoResult> thuocTonKhoList = (List<spThuocTonKhoResult>)result.QueryResult;
+                    ExportExcel.ExportThuocTonKhoTheoKhoangThoiGianToExcel(dlg.FileName, thuocTonKhoList, _tuNgay, _denNgay);
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetThuocTonKhoList"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetThuocTonKhoList"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetThuocTonKhoTheoKhoangThoiGian"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetThuocTonKhoTheoKhoangThoiGian"));
                 }
             }
         }

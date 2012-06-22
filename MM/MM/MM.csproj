@@ -86,6 +86,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uBaoCaoThuocTonKhoTheoKhoangThoiGian.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBaoCaoThuocTonKhoTheoKhoangThoiGian.Designer.cs">
+      <DependentUpon>uBaoCaoThuocTonKhoTheoKhoangThoiGian.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uBaoCaoSoLuongKham.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1188,6 +1194,9 @@
     <Compile Include="Controls\uHoaDonHopDongList.Designer.cs">
       <DependentUpon>uHoaDonHopDongList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uBaoCaoThuocTonKhoTheoKhoangThoiGian.resx">
+      <DependentUpon>uBaoCaoThuocTonKhoTheoKhoangThoiGian.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uBaoCaoSoLuongKham.resx">
       <DependentUpon>uBaoCaoSoLuongKham.cs</DependentUpon>
     </EmbeddedResource>
@@ -1746,6 +1755,7 @@
     <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienChiTietResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienTongHopResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.spThuocTonKhoResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ThuocResult.datasource" />
@@ -1789,6 +1799,7 @@
     <None Include="Templates\ReceiptTemplate.xls" />
     <None Include="Templates\SymptomTemplate.xls" />
     <None Include="Templates\ThuocTonKhoTemplate.xls" />
+    <None Include="Templates\ThuocTonKhoTheoKhoangThoiGianTemplate.xls" />
     <None Include="Templates\ToaThuocChungTemplate.xls" />
     <None Include="Templates\ToaThuocSanKhoaTemplate.xls" />
     <None Include="Templates\ToaThuocTemplate.xls" />

@@ -147,6 +147,7 @@
             this.thuocHetHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator23 = new System.Windows.Forms.ToolStripSeparator();
             this.thuocTonKhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator29 = new System.Windows.Forms.ToolStripSeparator();
             this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator32 = new System.Windows.Forms.ToolStripSeparator();
@@ -274,6 +275,7 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
+            this._uBaoCaoThuocTonKhoTheoKhoangThoiGian = new MM.Controls.uBaoCaoThuocTonKhoTheoKhoangThoiGian();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1035,6 +1037,7 @@
             this.thuocHetHanToolStripMenuItem,
             this.toolStripSeparator23,
             this.thuocTonKhoToolStripMenuItem,
+            this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem,
             this.toolStripSeparator29,
             this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem,
             this.toolStripSeparator32,
@@ -1120,6 +1123,14 @@
             resources.ApplyResources(this.thuocTonKhoToolStripMenuItem, "thuocTonKhoToolStripMenuItem");
             this.thuocTonKhoToolStripMenuItem.Tag = "ThuocTonKho";
             this.thuocTonKhoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // thuocTonKhoTheoKhoangThoiGianToolStripMenuItem
+            // 
+            this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Image = global::MM.Properties.Resources.palet_03_icon;
+            this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Name = "thuocTonKhoTheoKhoangThoiGianToolStripMenuItem";
+            resources.ApplyResources(this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem, "thuocTonKhoTheoKhoangThoiGianToolStripMenuItem");
+            this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Tag = "BaoCaoThuocTonKhoTheoKhoangThoiGian";
+            this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolStripSeparator29
             // 
@@ -1525,7 +1536,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1546,7 +1557,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -1759,6 +1770,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uBaoCaoThuocTonKhoTheoKhoangThoiGian);
             this._mainPanel.Controls.Add(this._uChiTietPhieuThuDichVu);
             this._mainPanel.Controls.Add(this._uDiaChiCongTyList);
             this._mainPanel.Controls.Add(this._uTraCuuThongTinKhachHang);
@@ -2064,6 +2076,11 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
+            // _uBaoCaoThuocTonKhoTheoKhoangThoiGian
+            // 
+            resources.ApplyResources(this._uBaoCaoThuocTonKhoTheoKhoangThoiGian, "_uBaoCaoThuocTonKhoTheoKhoangThoiGian");
+            this._uBaoCaoThuocTonKhoTheoKhoangThoiGian.Name = "_uBaoCaoThuocTonKhoTheoKhoangThoiGian";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2340,6 +2357,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator53;
         private System.Windows.Forms.ToolStripMenuItem chiTietPhieuThuDichVuToolStripMenuItem;
         private Controls.uChiTietPhieuThuDichVu _uChiTietPhieuThuDichVu;
+        private System.Windows.Forms.ToolStripMenuItem thuocTonKhoTheoKhoangThoiGianToolStripMenuItem;
+        private Controls.uBaoCaoThuocTonKhoTheoKhoangThoiGian _uBaoCaoThuocTonKhoTheoKhoangThoiGian;
 
     }
 }
