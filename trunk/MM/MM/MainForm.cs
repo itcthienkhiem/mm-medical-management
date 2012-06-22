@@ -254,6 +254,8 @@ namespace MM
                 _uDiaChiCongTyList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uChiTietPhieuThuDichVu))
                 _uChiTietPhieuThuDichVu.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uBaoCaoThuocTonKhoTheoKhoangThoiGian))
+                _uBaoCaoThuocTonKhoTheoKhoangThoiGian.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -990,6 +992,18 @@ namespace MM
                             _uChiTietPhieuThuDichVu.AllowLock = isLock;
                             _uChiTietPhieuThuDichVu.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.BaoCaoThuocTonKhoTheoKhoangThoiGian)
+                        {
+                            thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowAdd = isAdd;
+                            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowEdit = isEdit;
+                            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowDelete = isDelete;
+                            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowPrint = isPrint;
+                            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowExport = isExport;
+                            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowImport = isImport;
+                            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowLock = isLock;
+                            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1158,6 +1172,7 @@ namespace MM
                 traCuuThongTinKhachHangToolStripMenuItem.Enabled = isLogin;
                 danhMucDiaChiCongTyToolStripMenuItem.Enabled = isLogin;
                 chiTietPhieuThuDichVuToolStripMenuItem.Enabled = isLogin;
+                thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1420,7 +1435,18 @@ namespace MM
                 case "ChiTietPhieuThuDichVu":
                     OnChiTietPhieuThuDichVu();
                     break;
+
+                case "BaoCaoThuocTonKhoTheoKhoangThoiGian":
+                    OnBaoCaoThuocTonKhoTheoKhoangThoiGian();
+                    break;
             }
+        }
+
+        private void OnBaoCaoThuocTonKhoTheoKhoangThoiGian()
+        {
+            this.Text = string.Format("{0} - Bao cao thuoc ton kho theo khoang thoi gian", Application.ProductName);
+            ViewControl(_uBaoCaoThuocTonKhoTheoKhoangThoiGian);
+            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.DisplayAsThread();
         }
 
         private void OnChiTietPhieuThuDichVu()

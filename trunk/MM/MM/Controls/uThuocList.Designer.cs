@@ -42,14 +42,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HamLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).BeginInit();
@@ -187,6 +187,20 @@
             this.dgThuoc.TabIndex = 2;
             this.dgThuoc.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
             // 
+            // thuocBindingSource
+            // 
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgThuoc);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 35);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(796, 364);
+            this.panel3.TabIndex = 1;
+            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -206,7 +220,7 @@
             // maThuocDataGridViewTextBoxColumn
             // 
             this.maThuocDataGridViewTextBoxColumn.DataPropertyName = "MaThuoc";
-            this.maThuocDataGridViewTextBoxColumn.HeaderText = "MaThuoc";
+            this.maThuocDataGridViewTextBoxColumn.HeaderText = "Mã thuốc";
             this.maThuocDataGridViewTextBoxColumn.Name = "maThuocDataGridViewTextBoxColumn";
             this.maThuocDataGridViewTextBoxColumn.ReadOnly = true;
             this.maThuocDataGridViewTextBoxColumn.Width = 150;
@@ -214,7 +228,7 @@
             // tenThuocDataGridViewTextBoxColumn
             // 
             this.tenThuocDataGridViewTextBoxColumn.DataPropertyName = "TenThuoc";
-            this.tenThuocDataGridViewTextBoxColumn.HeaderText = "TenThuoc";
+            this.tenThuocDataGridViewTextBoxColumn.HeaderText = "Tên thuốc";
             this.tenThuocDataGridViewTextBoxColumn.Name = "tenThuocDataGridViewTextBoxColumn";
             this.tenThuocDataGridViewTextBoxColumn.ReadOnly = true;
             this.tenThuocDataGridViewTextBoxColumn.Width = 250;
@@ -242,20 +256,6 @@
             this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // thuocBindingSource
-            // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgThuoc);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 35);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(796, 364);
-            this.panel3.TabIndex = 1;
             // 
             // uThuocList
             // 
@@ -287,14 +287,14 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgThuoc;
         private System.Windows.Forms.BindingSource thuocBindingSource;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox txtTenThuoc;
+        private System.Windows.Forms.Label label1;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn maThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn HamLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox txtTenThuoc;
-        private System.Windows.Forms.Label label1;
     }
 }
