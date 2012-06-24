@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST(SoLuongNhap * GiaNhap AS float) AS TongTien FROM LoThuocView WHERE LoThuocStatus={0} AND ThuocStatus={0} ORDER BY TenLoThuoc", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST(SoLuongNhap * GiaNhap AS float) AS TongTien FROM LoThuocView WHERE LoThuocStatus={0} AND ThuocStatus={0} ORDER BY CreatedDate", 
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -48,7 +48,7 @@ namespace MM.Bussiness
                                                   join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
                                                   where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
                                                   l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
-                                                  l.NgayHetHan > dt && t.ThuocGUID.ToString() == thuocGUID
+                                                  new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) > dt && t.ThuocGUID.ToString() == thuocGUID
                                                   select t).ToList<Thuoc>();
 
                 if (thuocResults != null && thuocResults.Count > 0)
@@ -90,7 +90,7 @@ namespace MM.Bussiness
                                         join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
                                         where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
                                         t.ThuocGUID.ToString() == thuocGUID
-                                        orderby l.NgayHetHan descending
+                                        orderby new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) descending, l.CreatedDate descending
                                         select l).FirstOrDefault<LoThuoc>();
 
                 if (loThuoc != null)
@@ -130,7 +130,7 @@ namespace MM.Bussiness
                 List<LoThuoc> loThuocList = (from l in db.LoThuocs
                                              where l.Status == (byte)Status.Actived &&
                                              l.ThuocGUID.ToString() == thuocGUID &&
-                                             l.NgayHetHan > dt &&
+                                             new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) > dt &&
                                              l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0
                                              select l).ToList<LoThuoc>();
 
@@ -183,7 +183,7 @@ namespace MM.Bussiness
                 List<LoThuoc> loThuocList = (from l in db.LoThuocs
                                             where l.Status == (byte)Status.Actived && 
                                             l.ThuocGUID.ToString() == thuocGUID &&
-                                            l.NgayHetHan > dt &&
+                                            new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) > dt &&
                                             l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0
                                             select l).ToList<LoThuoc>();
 

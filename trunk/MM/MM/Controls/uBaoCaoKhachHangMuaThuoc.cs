@@ -29,8 +29,6 @@ namespace MM.Controls
         }
         #endregion
 
-        
-
         #region Properties
 
         #endregion
@@ -60,7 +58,10 @@ namespace MM.Controls
         {
             DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
             DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-            string thuocGUID = txtThuoc.Tag.ToString();
+
+            string thuocGUID = string.Empty;
+            if (txtThuoc.Text.Trim() != string.Empty)
+                thuocGUID = txtThuoc.Tag.ToString();
 
             Result result = ReportBus.GetDanhSachKhachHangMuaThuoc(tuNgay, denNgay, thuocGUID);
             if (result.IsOK)
@@ -105,12 +106,12 @@ namespace MM.Controls
                 return;
             }
 
-            if (txtThuoc.Tag == null)
-            {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn thuốc.", IconType.Information);
-                btnChonThuoc.Focus();
-                return;
-            }
+            //if (txtThuoc.Tag == null)
+            //{
+            //    MsgBox.Show(Application.ProductName, "Vui lòng chọn thuốc.", IconType.Information);
+            //    btnChonThuoc.Focus();
+            //    return;
+            //}
 
             OnView();
         }

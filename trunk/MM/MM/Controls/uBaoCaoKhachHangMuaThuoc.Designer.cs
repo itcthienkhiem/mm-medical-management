@@ -252,7 +252,6 @@
             // 
             this.txtThuoc.Location = new System.Drawing.Point(68, 33);
             this.txtThuoc.Name = "txtThuoc";
-            this.txtThuoc.ReadOnly = true;
             this.txtThuoc.Size = new System.Drawing.Size(280, 20);
             this.txtThuoc.TabIndex = 29;
             // 
