@@ -225,6 +225,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._uBaoCaoSoLuongKham = new MM.Controls.uBaoCaoSoLuongKham();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uBaoCaoThuocTonKhoTheoKhoangThoiGian = new MM.Controls.uBaoCaoThuocTonKhoTheoKhoangThoiGian();
             this._uChiTietPhieuThuDichVu = new MM.Controls.uChiTietPhieuThuDichVu();
             this._uDiaChiCongTyList = new MM.Controls.uDiaChiCongTyList();
             this._uTraCuuThongTinKhachHang = new MM.Controls.uTraCuuThongTinKhachHang();
@@ -275,7 +276,6 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
-            this._uBaoCaoThuocTonKhoTheoKhoangThoiGian = new MM.Controls.uBaoCaoThuocTonKhoTheoKhoangThoiGian();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1824,6 +1824,11 @@
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
             // 
+            // _uBaoCaoThuocTonKhoTheoKhoangThoiGian
+            // 
+            resources.ApplyResources(this._uBaoCaoThuocTonKhoTheoKhoangThoiGian, "_uBaoCaoThuocTonKhoTheoKhoangThoiGian");
+            this._uBaoCaoThuocTonKhoTheoKhoangThoiGian.Name = "_uBaoCaoThuocTonKhoTheoKhoangThoiGian";
+            // 
             // _uChiTietPhieuThuDichVu
             // 
             resources.ApplyResources(this._uChiTietPhieuThuDichVu, "_uChiTietPhieuThuDichVu");
@@ -2075,11 +2080,6 @@
             // 
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
-            // 
-            // _uBaoCaoThuocTonKhoTheoKhoangThoiGian
-            // 
-            resources.ApplyResources(this._uBaoCaoThuocTonKhoTheoKhoangThoiGian, "_uBaoCaoThuocTonKhoTheoKhoangThoiGian");
-            this._uBaoCaoThuocTonKhoTheoKhoangThoiGian.Name = "_uBaoCaoThuocTonKhoTheoKhoangThoiGian";
             // 
             // MainForm
             // 

@@ -194,9 +194,9 @@ namespace MM.Bussiness
                                     var loThuocList = from l in db.LoThuocs
                                                       where l.Status == (byte)Status.Actived &&
                                                       l.ThuocGUID == ctptt.ThuocGUID &&
-                                                      l.NgayHetHan > dt &&
+                                                      new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) > dt &&
                                                       l.SoLuongXuat > 0
-                                                      orderby l.NgayHetHan ascending
+                                                      orderby new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) ascending, l.CreatedDate ascending
                                                       select l;
 
                                     if (loThuocList != null)
@@ -364,9 +364,9 @@ namespace MM.Bussiness
                             var loThuocList = from l in db.LoThuocs
                                               where l.Status == (byte)Status.Actived &&
                                               l.ThuocGUID == ctptt.ThuocGUID &&
-                                              l.NgayHetHan > dt &&
+                                              new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) > dt &&
                                               l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0
-                                              orderby l.NgayHetHan ascending
+                                              orderby new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) ascending, l.CreatedDate ascending
                                               select l; 
 
                             double giaNhapTB = 0;
