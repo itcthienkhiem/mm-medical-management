@@ -2405,8 +2405,12 @@ namespace MM.Exports
                         range = workSheet.Cells[rowIndex, 1];
                         range.Value = phieuThuThuoc.NgayThu.ToString("dd/MM/yyyy");
 
+                        string maCongTy = Utility.GetMaCongTy(phieuThuThuoc.MaBenhNhan);
+                        if (maCongTy.ToLower() == "tt" || maCongTy.ToLower() == "vgh" || maCongTy.Trim() == string.Empty)
+                            maCongTy = "Tự túc";
+
                         range = workSheet.Cells[rowIndex, 2];
-                        range.Value = phieuThuThuoc.TenCongTy;
+                        range.Value = maCongTy;
                         range.WrapText = true;
 
                         range = workSheet.Cells[rowIndex, 3];
