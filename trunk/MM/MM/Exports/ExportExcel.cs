@@ -2249,18 +2249,23 @@ namespace MM.Exports
                     ReceiptView receipt = result.QueryResult as ReceiptView;
                     if (receipt == null) continue;
 
-                    result = CompanyBus.GetTenCongTy(key);
-                    if (!result.IsOK)
-                    {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetTenCongTy"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetTenCongTy"));
-                        return false;
-                    }
+                    //result = CompanyBus.GetTenCongTy(key);
+                    //if (!result.IsOK)
+                    //{
+                    //    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetTenCongTy"), IconType.Error);
+                    //    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetTenCongTy"));
+                    //    return false;
+                    //}
 
-                    string tenCongTy = receipt.CompanyName;
-                    if (tenCongTy == null) tenCongTy = "Tự túc";
-                    if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
-                        tenCongTy = result.QueryResult.ToString();
+                    //string tenCongTy = string.Empty;
+                    //if (tenCongTy == null) tenCongTy = "Tự túc";
+                    //if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
+                    //    tenCongTy = result.QueryResult.ToString();
+
+                    string tenCongTy = string.Empty;
+                    tenCongTy = Utility.GetMaCongTy(receipt.FileNum);
+                    if (tenCongTy.Trim() == string.Empty || tenCongTy.ToLower() == "tt" || tenCongTy.ToLower() == "vgh")
+                        tenCongTy = "Tự túc";
 
                     result = ReceiptBus.GetReceiptDetailList(key);
                     if (!result.IsOK)
