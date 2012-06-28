@@ -34,9 +34,16 @@ namespace MM.Dialogs
             {
                 PageSetup p = Global.PageSetupConfig.GetPageSetup(template);
                 if (p == null)
-                    dgPageSetup.Rows.Add(template, 0, 0, 0, 0);
+                {
+                    p = ExcelPrintPreview.GetPageSetup(template);
+
+                    if (p == null)
+                        dgPageSetup.Rows.Add(template, 0, 0, 0, 0);
+                    else
+                        dgPageSetup.Rows.Add(template, p.LeftMargin, p.RightMargin, p.TopMargin, p.BottomMargin);
+                }
                 else
-                    dgPageSetup.Rows.Add(p.Template, p.LeftMargin, p.RightMargin, p.TopMargin, p.BottomMargin);
+                    dgPageSetup.Rows.Add(template, p.LeftMargin, p.RightMargin, p.TopMargin, p.BottomMargin);
             }
         }
 

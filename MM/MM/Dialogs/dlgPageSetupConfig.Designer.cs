@@ -149,7 +149,7 @@
             this.LeftMargin.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.LeftMargin.DefaultCellStyle = dataGridViewCellStyle2;
-            this.LeftMargin.HeaderText = "Lề trái";
+            this.LeftMargin.HeaderText = "Lề trái (inch)";
             this.LeftMargin.Increment = 1D;
             this.LeftMargin.MaxValue = 100D;
             this.LeftMargin.MinValue = 0D;
@@ -165,7 +165,7 @@
             this.RightMargin.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.RightMargin.DefaultCellStyle = dataGridViewCellStyle3;
-            this.RightMargin.HeaderText = "Lề phải";
+            this.RightMargin.HeaderText = "Lề phải (inch)";
             this.RightMargin.Increment = 1D;
             this.RightMargin.Name = "RightMargin";
             this.RightMargin.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -179,7 +179,7 @@
             this.TopMargin.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.TopMargin.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TopMargin.HeaderText = "Lề trên";
+            this.TopMargin.HeaderText = "Lề trên (inch)";
             this.TopMargin.Increment = 1D;
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -193,7 +193,7 @@
             this.BottomMargin.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.BottomMargin.DefaultCellStyle = dataGridViewCellStyle5;
-            this.BottomMargin.HeaderText = "Lề dưới";
+            this.BottomMargin.HeaderText = "Lề dưới (inch)";
             this.BottomMargin.Increment = 1D;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Resizable = System.Windows.Forms.DataGridViewTriState.True;
