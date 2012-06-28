@@ -152,6 +152,7 @@ namespace MM.Exports
                     Directory.CreateDirectory(path);
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+                
             }
             catch (Exception ex)
             {
@@ -617,7 +618,7 @@ namespace MM.Exports
                 workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
                 workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
-
+                
                 DateTime dt = hdt.NgayXuatHoaDon.Value;
                 string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
                 string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
