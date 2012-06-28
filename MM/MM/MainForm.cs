@@ -136,6 +136,8 @@ namespace MM
                 if (File.Exists(Global.PortConfigPath))
                     Global.PortConfigCollection.Deserialize(Global.PortConfigPath);
 
+                InitPageSetup();
+
                 Result result = QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung();
                 if (result.IsOK)
                 {
@@ -157,6 +159,12 @@ namespace MM
 
             if (InvokeRequired) BeginInvoke(method);
             else method.Invoke();
+        }
+
+        private void InitPageSetup()
+        {
+            if (File.Exists(Global.PageSetupConfigPath))
+                Global.PageSetupConfig.Deserialize(Global.PageSetupConfigPath);
         }
 
         private void RefreshData()
