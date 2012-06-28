@@ -755,6 +755,12 @@
     <Compile Include="Dialogs\dlgLamMoiSoHoaDon.Designer.cs">
       <DependentUpon>dlgLamMoiSoHoaDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgPageSetupConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgPageSetupConfig.Designer.cs">
+      <DependentUpon>dlgPageSetupConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgSelectXetNghiemTay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1463,6 +1469,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgLamMoiSoHoaDon.resx">
       <DependentUpon>dlgLamMoiSoHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgPageSetupConfig.resx">
+      <DependentUpon>dlgPageSetupConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectXetNghiemTay.resx">
       <DependentUpon>dlgSelectXetNghiemTay.cs</DependentUpon>

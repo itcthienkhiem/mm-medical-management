@@ -163,6 +163,8 @@ namespace MM
 
         private void InitPageSetup()
         {
+            Global.InitExcelTempates();
+
             if (File.Exists(Global.PageSetupConfigPath))
                 Global.PageSetupConfig.Deserialize(Global.PageSetupConfigPath);
         }
@@ -1447,7 +1449,17 @@ namespace MM
                 case "BaoCaoThuocTonKhoTheoKhoangThoiGian":
                     OnBaoCaoThuocTonKhoTheoKhoangThoiGian();
                     break;
+
+                case "CauHinhTrangIn":
+                    OnCauHinhTrangIn();
+                    break;
             }
+        }
+
+        private void OnCauHinhTrangIn()
+        {
+            dlgPageSetupConfig dlg = new dlgPageSetupConfig();
+            dlg.ShowDialog(this);
         }
 
         private void OnBaoCaoThuocTonKhoTheoKhoangThoiGian()

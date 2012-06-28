@@ -263,7 +263,7 @@ namespace MM.Controls
                         {
                             try
                             {
-                                ExcelPrintPreview.PrintPreview(exportFileName);
+                                ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.PhieuThuThuocTemplate));
                             }
                             catch (Exception ex)
                             {
@@ -286,7 +286,7 @@ namespace MM.Controls
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.PhieuThuThuocTemplate));
                                 }
                                 catch (Exception ex)
                                 {

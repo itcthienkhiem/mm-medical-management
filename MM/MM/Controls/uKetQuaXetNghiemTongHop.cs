@@ -382,8 +382,8 @@ namespace MM.Controls
                     {
                         try
                         {
-                            if (isData) 
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                            if (isData)
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaXetNghiemCellDyn3200Template));
                         }
                         catch (Exception ex)
                         {
@@ -400,7 +400,7 @@ namespace MM.Controls
                         try
                         {
                             if (isData)
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaXetNghiemCellDyn3200Template));
                         }
                         catch (Exception ex)
                         {
@@ -492,7 +492,7 @@ namespace MM.Controls
                     {
                         try
                         {
-                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaXetNghiemSinhHoaTemplate));
                         }
                         catch (Exception ex)
                         {
@@ -1005,7 +1005,7 @@ namespace MM.Controls
                         {
                             if (isData)
                             {
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaXetNghiemCellDyn3200Template));
                                 allKeys.AddRange(keys);
                             }
                         }
@@ -1067,7 +1067,7 @@ namespace MM.Controls
                         {
                             if (isData)
                             {
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaXetNghiemSinhHoaTemplate));
                                 if (hitachi917Keys != null && hitachi917Keys.Count > 0)
                                     allKeys.AddRange(hitachi917Keys);
 
