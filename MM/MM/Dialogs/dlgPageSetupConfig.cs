@@ -36,7 +36,7 @@ namespace MM.Dialogs
                 if (p == null)
                     dgPageSetup.Rows.Add(template, 0, 0, 0, 0);
                 else
-                    dgPageSetup.Rows.Add(p.Template, p.LeftMargin, p.RighttMargin, p.ToptMargin, p.BottomMargin);
+                    dgPageSetup.Rows.Add(p.Template, p.LeftMargin, p.RightMargin, p.TopMargin, p.BottomMargin);
             }
         }
 
@@ -54,8 +54,8 @@ namespace MM.Dialogs
                 PageSetup p = new PageSetup();
                 p.Template = template;
                 p.LeftMargin = left;
-                p.RighttMargin = right;
-                p.ToptMargin = top;
+                p.RightMargin = right;
+                p.TopMargin = top;
                 p.BottomMargin = bottom;
                 Global.PageSetupConfig.AddPageSetup(p);
             }

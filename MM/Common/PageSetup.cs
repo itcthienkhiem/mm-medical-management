@@ -38,13 +38,13 @@ namespace MM.Common
             set { _leftMargin = value; }
         }
 
-        public double ToptMargin
+        public double TopMargin
         {
             get { return _topMargin; }
             set { _topMargin = value; }
         }
 
-        public double RighttMargin
+        public double RightMargin
         {
             get { return _rightMargin; }
             set { _rightMargin = value; }
