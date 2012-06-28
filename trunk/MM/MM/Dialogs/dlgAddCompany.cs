@@ -394,11 +394,11 @@ namespace MM.Dialogs
                     try
                     {
                         if (isPreview)
-                            ExcelPrintPreview.PrintPreview(exportFileName);
+                            ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.DanhSachBenhNhanTemplate));
                         else
                         {
                             if (_printDialog.ShowDialog() == DialogResult.OK)
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.DanhSachBenhNhanTemplate));
                         }
                     }
                     catch (Exception ex)

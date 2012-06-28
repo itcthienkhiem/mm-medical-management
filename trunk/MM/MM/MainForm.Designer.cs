@@ -276,6 +276,8 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
+            this.toolStripSeparator54 = new System.Windows.Forms.ToolStripSeparator();
+            this.cauHinhPageSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -572,6 +574,8 @@
             this.databaseConfigurationToolStripMenuItem,
             this.toolStripSeparator50,
             this.cauHinhFTPToolStripMenuItem,
+            this.toolStripSeparator54,
+            this.cauHinhPageSetupToolStripMenuItem,
             this.toolStripSeparator7,
             this.permissionToolStripMenuItem,
             this.changePasswordToolStripMenuItem,
@@ -1536,7 +1540,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1557,7 +1561,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -2081,6 +2085,18 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
+            // toolStripSeparator54
+            // 
+            this.toolStripSeparator54.Name = "toolStripSeparator54";
+            resources.ApplyResources(this.toolStripSeparator54, "toolStripSeparator54");
+            // 
+            // cauHinhPageSetupToolStripMenuItem
+            // 
+            this.cauHinhPageSetupToolStripMenuItem.Name = "cauHinhPageSetupToolStripMenuItem";
+            resources.ApplyResources(this.cauHinhPageSetupToolStripMenuItem, "cauHinhPageSetupToolStripMenuItem");
+            this.cauHinhPageSetupToolStripMenuItem.Tag = "CauHinhTrangIn";
+            this.cauHinhPageSetupToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2359,6 +2375,8 @@
         private Controls.uChiTietPhieuThuDichVu _uChiTietPhieuThuDichVu;
         private System.Windows.Forms.ToolStripMenuItem thuocTonKhoTheoKhoangThoiGianToolStripMenuItem;
         private Controls.uBaoCaoThuocTonKhoTheoKhoangThoiGian _uBaoCaoThuocTonKhoTheoKhoangThoiGian;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator54;
+        private System.Windows.Forms.ToolStripMenuItem cauHinhPageSetupToolStripMenuItem;
 
     }
 }

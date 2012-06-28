@@ -52,7 +52,7 @@ namespace MM.Common
             }
         }
 
-        public static void PrintPreview(string fileName)
+        public static void PrintPreview(string fileName, PageSetup p)
         {
             Excel.Application excelApp = null;
             Excel.Workbook workBook = null;
@@ -63,23 +63,30 @@ namespace MM.Common
                 workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
 
-                //int sheetCount = workBook.Sheets.Count;
-                //Excel.Worksheet workSheet = null;
-                //int i = 0;
-                //while (i <= sheetCount)
-                //{
-                //    try
-                //    {
-                //        workSheet = workBook.Sheets[i];
-                //        break;
-                //    }
-                //    catch
-                //    {
-                //        i++;
-                //    }
-                //}
-                
-                //workSheet.PageSetup.TopMargin = 1;
+                if (p != null)
+                {
+                    int sheetCount = workBook.Sheets.Count;
+                    Excel.Worksheet workSheet = null;
+                    int i = 0;
+                    while (i <= sheetCount)
+                    {
+                        try
+                        {
+                            workSheet = workBook.Sheets[i];
+                            break;
+                        }
+                        catch
+                        {
+                            i++;
+                        }
+                    }
+
+                    workSheet.PageSetup.LeftMargin = p.GetLeftMargin();
+                    workSheet.PageSetup.RightMargin = p.GetRightMargin();
+                    workSheet.PageSetup.TopMargin = p.GetTopMargin();
+                    workSheet.PageSetup.BottomMargin = p.GetBottomMargin();
+                }
+
                 excelApp.Visible = true;
                 workBook.PrintPreview(objOpt);
                 excelApp.Visible = false;
@@ -114,7 +121,7 @@ namespace MM.Common
             return string.Format("{0} on {1}", printerName, portName);
         }
 
-        public static void Print(string fileName, string printerName)
+        public static void Print(string fileName, string printerName, PageSetup p)
         {
             Excel.Application excelApp = null;
             Excel.Workbook workBook = null;
@@ -124,6 +131,32 @@ namespace MM.Common
                 excelApp = ExcelInit();
                 workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
+
+                if (p != null)
+                {
+                    int sheetCount = workBook.Sheets.Count;
+                    Excel.Worksheet workSheet = null;
+                    int i = 0;
+                    while (i <= sheetCount)
+                    {
+                        try
+                        {
+                            workSheet = workBook.Sheets[i];
+                            break;
+                        }
+                        catch
+                        {
+                            i++;
+                        }
+                    }
+
+                    workSheet.PageSetup.LeftMargin = p.GetLeftMargin();
+                    workSheet.PageSetup.RightMargin = p.GetRightMargin();
+                    workSheet.PageSetup.TopMargin = p.GetTopMargin();
+                    workSheet.PageSetup.BottomMargin = p.GetBottomMargin();
+                }
+                
+
                 excelApp.Visible = false;
                 excelApp.ActivePrinter = ConvertToExcelPrinterFriendlyName(printerName);
                 workBook.PrintOut(objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);

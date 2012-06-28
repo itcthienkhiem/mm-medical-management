@@ -311,7 +311,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -328,7 +328,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -345,7 +345,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
                                         }
                                         catch (Exception ex)
                                         {

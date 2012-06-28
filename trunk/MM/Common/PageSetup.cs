@@ -8,6 +8,7 @@ namespace MM.Common
     public class PageSetup
     {
         #region Members
+        private double _const = 72;
         private string _template = string.Empty;
         private double _leftMargin = 0;
         private double _topMargin = 0;
@@ -65,6 +66,28 @@ namespace MM.Common
         {
             get { return _footerMargin; }
             set { _footerMargin = value; }
+        }
+        #endregion
+
+        #region Methods
+        public double GetTopMargin()
+        {
+            return _topMargin * _const;
+        }
+
+        public double GetLeftMargin()
+        {
+            return _leftMargin * _const;
+        }
+
+        public double GetRightMargin()
+        {
+            return _rightMargin * _const;
+        }
+
+        public double GetBottomMargin()
+        {
+            return _bottomMargin * _const;
         }
         #endregion
     }

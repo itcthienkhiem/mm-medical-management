@@ -222,7 +222,7 @@ namespace MM.Controls
                                 {
                                     try
                                     {
-                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTaiTemplate));
                                     }
                                     catch (Exception ex)
                                     {
@@ -239,7 +239,7 @@ namespace MM.Controls
                                 {
                                     try
                                     {
-                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiMuiTemplate));
                                     }
                                     catch (Exception ex)
                                     {
@@ -256,7 +256,7 @@ namespace MM.Controls
                                 {
                                     try
                                     {
-                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiHongThanhQuanTemplate));
                                     }
                                     catch (Exception ex)
                                     {
@@ -273,7 +273,7 @@ namespace MM.Controls
                                 {
                                     try
                                     {
-                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTaiMuiHongTemplate));
                                     }
                                     catch (Exception ex)
                                     {
@@ -290,7 +290,7 @@ namespace MM.Controls
                                 {
                                     try
                                     {
-                                        ExcelPrintPreview.PrintPreview(exportFileName);
+                                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTongQuatTemplate));
                                     }
                                     catch (Exception ex)
                                     {
@@ -319,7 +319,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTaiTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -336,7 +336,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiMuiTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -353,7 +353,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiHongThanhQuanTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -370,7 +370,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTaiMuiHongTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -387,7 +387,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTongQuatTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -422,7 +422,7 @@ namespace MM.Controls
                         {
                             try
                             {
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTaiTemplate));
                             }
                             catch (Exception ex)
                             {
@@ -439,7 +439,7 @@ namespace MM.Controls
                         {
                             try
                             {
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiMuiTemplate));
                             }
                             catch (Exception ex)
                             {
@@ -456,7 +456,7 @@ namespace MM.Controls
                         {
                             try
                             {
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiHongThanhQuanTemplate));
                             }
                             catch (Exception ex)
                             {
@@ -473,7 +473,7 @@ namespace MM.Controls
                         {
                             try
                             {
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTaiMuiHongTemplate));
                             }
                             catch (Exception ex)
                             {
@@ -490,7 +490,7 @@ namespace MM.Controls
                         {
                             try
                             {
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTongQuatTemplate));
                             }
                             catch (Exception ex)
                             {

@@ -45,6 +45,11 @@ namespace MM.Common
         {
             _pageSetupList.Add(p);
         }
+
+        public void ClearAll()
+        {
+            _pageSetupList.Clear();
+        }
         #endregion
 
         #region Serialize & Deserialize

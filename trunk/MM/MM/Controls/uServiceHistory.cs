@@ -285,7 +285,7 @@ namespace MM.Controls
                 try
                 {
                     if (_printDialog.ShowDialog() == DialogResult.OK)
-                        ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                        ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.PhieuThuDichVuTemplate));
                 }
                 catch (Exception ex)
                 {

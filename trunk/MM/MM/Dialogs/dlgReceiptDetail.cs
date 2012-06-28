@@ -98,7 +98,7 @@ namespace MM.Dialogs
                     if (ExportExcel.ExportReceiptToExcel(exportFileName, receiptGUID))
                     {
                         if (_printDialog.ShowDialog() == DialogResult.OK)
-                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName);
+                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.PhieuThuDichVuTemplate));
                     }
                     else
                         return;

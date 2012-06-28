@@ -95,5 +95,40 @@ namespace MM.Common
         public static string KiHieuSauCung = "AA/12T";
         public static PageSetupConfig PageSetupConfig = new PageSetupConfig();
         public static string PageSetupConfigPath = string.Format("{0}\\PageSetupConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
+        public static List<string> ExcelTemplates = new List<string>();
+
+        public static void InitExcelTempates()
+        {
+            ExcelTemplates.Add(Const.CheckListTemplate);
+            ExcelTemplates.Add(Const.ChiTietPhieuThuDichVuTemplate);
+            ExcelTemplates.Add(Const.ChiTietPhieuThuThuocTemplate);
+            ExcelTemplates.Add(Const.DanhSachBenhNhanDenKhamTemplate);
+            ExcelTemplates.Add(Const.DanhSachBenhNhanTemplate);
+            ExcelTemplates.Add(Const.DichVuHopDongTemplate);
+            ExcelTemplates.Add(Const.DichVuTuTucTemplate);
+            ExcelTemplates.Add(Const.DoanhThuTheoNgayTemplate);
+            ExcelTemplates.Add(Const.GiaVonDichVuTemplate);
+            ExcelTemplates.Add(Const.HDGTGTTemplate);
+            ExcelTemplates.Add(Const.KetQuaNoiSoiHongThanhQuanTemplate);
+            ExcelTemplates.Add(Const.KetQuaNoiSoiMuiTemplate);
+            ExcelTemplates.Add(Const.KetQuaNoiSoiTaiMuiHongTemplate);
+            ExcelTemplates.Add(Const.KetQuaNoiSoiTaiTemplate);
+            ExcelTemplates.Add(Const.KetQuaNoiSoiTongQuatTemplate);
+            ExcelTemplates.Add(Const.KetQuaSoiCTCTemplate);
+            ExcelTemplates.Add(Const.KhamSucKhoeTongQuatTemplate);
+            ExcelTemplates.Add(Const.NhatKyLienHeCongTyTemplate);
+            ExcelTemplates.Add(Const.PhieuThuThuocTemplate);
+            ExcelTemplates.Add(Const.PhieuThuDichVuTemplate);
+            ExcelTemplates.Add(Const.TrieuChungTemplate);
+            ExcelTemplates.Add(Const.ThuocTonKhoTheoKhoangThoiGianTemplate);
+            ExcelTemplates.Add(Const.ToaThuocTemplate);
+            ExcelTemplates.Add(Const.ToaThuocChungTemplate);
+            ExcelTemplates.Add(Const.ToaThuocSanKhoaTemplate);
+            ExcelTemplates.Add(Const.YKienKhachHangTemplate);
+            ExcelTemplates.Add(Const.KetQuaXetNghiemCellDyn3200Template);
+            ExcelTemplates.Add(Const.KetQuaXetNghiemSinhHoaTemplate);
+
+            ExcelTemplates.Sort();
+        }
     }
 }
