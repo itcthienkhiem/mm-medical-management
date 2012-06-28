@@ -77,5 +77,33 @@ namespace MM.Common
         public static string DiaChiCongTy = "DiaChiCongTy";
         public static string ChiTietPhieuThuDichVu = "ChiTietPhieuThuDichVu";
         public static string BaoCaoThuocTonKhoTheoKhoangThoiGian = "BaoCaoThuocTonKhoTheoKhoangThoiGian";
+
+        public static string CheckListTemplate = "Theo dõi thực hiện";
+        public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
+        public static string ChiTietPhieuThuThuocTemplate = "Chi tiết phiếu thu thuốc";
+        public static string DanhSachBenhNhanDenKhamTemplate = "Danh sách bệnh nhân đến khám";
+        public static string DanhSachBenhNhanTemplate = "Danh sách bệnh nhân";
+        public static string DichVuHopDongTemplate = "Dịch vụ hợp đồng";
+        public static string DichVuTuTucTemplate = "Dịch vụ tự túc";
+        public static string DoanhThuTheoNgayTemplate = "Doanh thu theo ngày";
+        public static string GiaVonDichVuTemplate = "Giá vốn dịch vụ";
+        public static string HDGTGTTemplate = "Hóa đơn giá trị gia tăng";
+        public static string KetQuaNoiSoiHongThanhQuanTemplate = "Kết quả nội soi thanh quản";
+        public static string KetQuaNoiSoiMuiTemplate = "Kết quả nội soi mũi";
+        public static string KetQuaNoiSoiTaiMuiHongTemplate = "Kết quả nội soi tai mũi họng";
+        public static string KetQuaNoiSoiTaiTemplate = "Kết quả nội soi tai";
+        public static string KetQuaNoiSoiTongQuatTemplate = "Kết quả nội soi tổng quát";
+        public static string KetQuaSoiCTCTemplate = "Kết quả nội soi cổ tử cung";
+        public static string KhamSucKhoeTongQuatTemplate = "Khám sức khỏe tổng quát";
+        public static string NhatKyLienHeCongTyTemplate = "Nhật kí liên hệ công ty";
+        public static string PhieuThuThuocTemplate = "Phiếu thu thuốc";
+        public static string PhieuThuDichVuTemplate = "Phiếu thu dịch vụ";
+        public static string TrieuChungTemplate = "Triệu chứng";
+        public static string ThuocTonKhoTheoKhoangThoiGianTemplate = "Thuốc tồn kho theo khoảng thời gian";
+        public static string ToaThuocChungTemplate = "Toa thuốc chung";
+        public static string ToaThuocSanKhoaTemplate = "Toa thuốc sản khoa";
+        public static string YKienKhachHangTemplate = "Ý kiến khách hàng";
+        public static string KetQuaXetNghiemCellDyn3200Template = "Kết quả xét nghiệm CellDyn3200";
+        public static string KetQuaXetNghiemSinhHoaTemplate = "Kết quả xét nghiệm sinh hóa";
     }
 }

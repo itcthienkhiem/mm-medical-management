@@ -93,5 +93,7 @@ namespace MM.Common
         public static DateTime NgayThayDoiSoHoaDonSauCung = MinDateTime;
         public static string MauSoSauCung = "01GTKT3/002";
         public static string KiHieuSauCung = "AA/12T";
+        public static PageSetupConfig PageSetupConfig = new PageSetupConfig();
+        public static string PageSetupConfigPath = string.Format("{0}\\PageSetupConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
     }
 }

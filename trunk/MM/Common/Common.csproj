@@ -114,6 +114,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="PageSetupConfig.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="ExcelPrintPreview.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Line.cs" />
     <Compile Include="Member.cs" />
     <Compile Include="MySQLHelper.cs" />
+    <Compile Include="PageSetup.cs" />
     <Compile Include="Pencil.cs" />
     <Compile Include="PortConfig.cs" />
     <Compile Include="PrintLabelConfig.cs" />
