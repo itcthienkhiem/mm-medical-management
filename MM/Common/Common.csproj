@@ -95,6 +95,9 @@
     <Reference Include="MySql.Data">
       <HintPath>..\MM\Components\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="SpreadsheetGear">
+      <HintPath>..\MM\Components\SpreadsheetGear.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

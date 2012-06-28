@@ -35,7 +35,7 @@ namespace MM.Dialogs
                 PageSetup p = Global.PageSetupConfig.GetPageSetup(template);
                 if (p == null)
                 {
-                    p = ExcelPrintPreview.GetPageSetup(template);
+                    p = Utility.GetPageSetup(template);
 
                     if (p == null)
                         dgPageSetup.Rows.Add(template, 0, 0, 0, 0);
