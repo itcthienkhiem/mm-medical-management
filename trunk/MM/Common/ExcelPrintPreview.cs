@@ -65,26 +65,29 @@ namespace MM.Common
 
                 if (p != null)
                 {
-                    int sheetCount = workBook.Sheets.Count;
-                    Excel.Worksheet workSheet = null;
-                    int i = 0;
-                    while (i <= sheetCount)
+                    if (p.TopMargin != 0 || p.LeftMargin != 0 || p.RightMargin != 0 || p.BottomMargin != 0)
                     {
-                        try
+                        int sheetCount = workBook.Sheets.Count;
+                        Excel.Worksheet workSheet = null;
+                        int i = 0;
+                        while (i <= sheetCount)
                         {
-                            workSheet = workBook.Sheets[i];
-                            break;
+                            try
+                            {
+                                workSheet = workBook.Sheets[i];
+                                break;
+                            }
+                            catch
+                            {
+                                i++;
+                            }
                         }
-                        catch
-                        {
-                            i++;
-                        }
-                    }
 
-                    workSheet.PageSetup.LeftMargin = p.GetLeftMargin();
-                    workSheet.PageSetup.RightMargin = p.GetRightMargin();
-                    workSheet.PageSetup.TopMargin = p.GetTopMargin();
-                    workSheet.PageSetup.BottomMargin = p.GetBottomMargin();
+                        workSheet.PageSetup.LeftMargin = p.GetLeftMargin();
+                        workSheet.PageSetup.RightMargin = p.GetRightMargin();
+                        workSheet.PageSetup.TopMargin = p.GetTopMargin();
+                        workSheet.PageSetup.BottomMargin = p.GetBottomMargin();
+                    }
                 }
 
                 excelApp.Visible = true;
@@ -134,28 +137,30 @@ namespace MM.Common
 
                 if (p != null)
                 {
-                    int sheetCount = workBook.Sheets.Count;
-                    Excel.Worksheet workSheet = null;
-                    int i = 0;
-                    while (i <= sheetCount)
+                    if (p.TopMargin != 0 || p.LeftMargin != 0 || p.RightMargin != 0 || p.BottomMargin != 0)
                     {
-                        try
+                        int sheetCount = workBook.Sheets.Count;
+                        Excel.Worksheet workSheet = null;
+                        int i = 0;
+                        while (i <= sheetCount)
                         {
-                            workSheet = workBook.Sheets[i];
-                            break;
+                            try
+                            {
+                                workSheet = workBook.Sheets[i];
+                                break;
+                            }
+                            catch
+                            {
+                                i++;
+                            }
                         }
-                        catch
-                        {
-                            i++;
-                        }
-                    }
 
-                    workSheet.PageSetup.LeftMargin = p.GetLeftMargin();
-                    workSheet.PageSetup.RightMargin = p.GetRightMargin();
-                    workSheet.PageSetup.TopMargin = p.GetTopMargin();
-                    workSheet.PageSetup.BottomMargin = p.GetBottomMargin();
+                        workSheet.PageSetup.LeftMargin = p.GetLeftMargin();
+                        workSheet.PageSetup.RightMargin = p.GetRightMargin();
+                        workSheet.PageSetup.TopMargin = p.GetTopMargin();
+                        workSheet.PageSetup.BottomMargin = p.GetBottomMargin();
+                    }
                 }
-                
 
                 excelApp.Visible = false;
                 excelApp.ActivePrinter = ConvertToExcelPrinterFriendlyName(printerName);
