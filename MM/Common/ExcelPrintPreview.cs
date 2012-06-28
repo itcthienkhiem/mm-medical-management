@@ -65,7 +65,7 @@ namespace MM.Common
 
                 if (p != null)
                 {
-                    if (p.TopMargin != 0 || p.LeftMargin != 0 || p.RightMargin != 0 || p.BottomMargin != 0)
+                    //if (p.TopMargin != 0 || p.LeftMargin != 0 || p.RightMargin != 0 || p.BottomMargin != 0)
                     {
                         int sheetCount = workBook.Sheets.Count;
                         Excel.Worksheet workSheet = null;
@@ -137,7 +137,7 @@ namespace MM.Common
 
                 if (p != null)
                 {
-                    if (p.TopMargin != 0 || p.LeftMargin != 0 || p.RightMargin != 0 || p.BottomMargin != 0)
+                    //if (p.TopMargin != 0 || p.LeftMargin != 0 || p.RightMargin != 0 || p.BottomMargin != 0)
                     {
                         int sheetCount = workBook.Sheets.Count;
                         Excel.Worksheet workSheet = null;
