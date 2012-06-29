@@ -88,7 +88,7 @@ namespace MM.Common
                         workSheet.PageSetup.RightMargin = p.GetRightMargin();
                         workSheet.PageSetup.TopMargin = p.GetTopMargin();
                         workSheet.PageSetup.BottomMargin = p.GetBottomMargin();
-                        workSheet.PageSetup.PaperSize = Excel.XlPaperSize.xlPaperA4;
+                        //workSheet.PageSetup.PaperSize = Excel.XlPaperSize.xlPaperA4;
                     }
                 }
 
@@ -161,7 +161,7 @@ namespace MM.Common
                         workSheet.PageSetup.RightMargin = p.GetRightMargin();
                         workSheet.PageSetup.TopMargin = p.GetTopMargin();
                         workSheet.PageSetup.BottomMargin = p.GetBottomMargin();
-                        workSheet.PageSetup.PaperSize = Excel.XlPaperSize.xlPaperA4;
+                        //workSheet.PageSetup.PaperSize = Excel.XlPaperSize.xlPaperA4;
                     }
                 }
 
