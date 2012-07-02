@@ -891,9 +891,11 @@
             this.cboLoaiXetNghiem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaiXetNghiem.FormattingEnabled = true;
             this.cboLoaiXetNghiem.Items.AddRange(new object[] {
-            "Nước tiểu",
+            "Huyết học",
+            "Sinh hóa",
             "Miễn dịch",
-            "Soi tươi huyết trắng"});
+            "Nước tiểu",
+            "Khác"});
             this.cboLoaiXetNghiem.Location = new System.Drawing.Point(105, 43);
             this.cboLoaiXetNghiem.Name = "cboLoaiXetNghiem";
             this.cboLoaiXetNghiem.Size = new System.Drawing.Size(160, 21);
