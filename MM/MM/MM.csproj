@@ -557,6 +557,42 @@
     <Compile Include="Controls\uNhomThuocList.Designer.cs">
       <DependentUpon>uNhomThuocList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uNormal_Chung.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNormal_Chung.Designer.cs">
+      <DependentUpon>uNormal_Chung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uNormal_Estradiol.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNormal_Estradiol.Designer.cs">
+      <DependentUpon>uNormal_Estradiol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uNormal_HutThuoc_KhongHutThuoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNormal_HutThuoc_KhongHutThuoc.Designer.cs">
+      <DependentUpon>uNormal_HutThuoc_KhongHutThuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uNormal_Nam_Nu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNormal_Nam_Nu.Designer.cs">
+      <DependentUpon>uNormal_Nam_Nu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uNormal_Sang_Chieu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNormal_Sang_Chieu.Designer.cs">
+      <DependentUpon>uNormal_Sang_Chieu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uNormal_TreEm_NguoiLon_NguoiCaoTuoi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNormal_TreEm_NguoiLon_NguoiCaoTuoi.Designer.cs">
+      <DependentUpon>uNormal_TreEm_NguoiLon_NguoiCaoTuoi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPalette.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1370,6 +1406,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uNhomThuocList.resx">
       <DependentUpon>uNhomThuocList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNormal_Chung.resx">
+      <DependentUpon>uNormal_Chung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNormal_Estradiol.resx">
+      <DependentUpon>uNormal_Estradiol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNormal_HutThuoc_KhongHutThuoc.resx">
+      <DependentUpon>uNormal_HutThuoc_KhongHutThuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNormal_Nam_Nu.resx">
+      <DependentUpon>uNormal_Nam_Nu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNormal_Sang_Chieu.resx">
+      <DependentUpon>uNormal_Sang_Chieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNormal_TreEm_NguoiLon_NguoiCaoTuoi.resx">
+      <DependentUpon>uNormal_TreEm_NguoiLon_NguoiCaoTuoi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPalette.resx">
       <DependentUpon>uPalette.cs</DependentUpon>
