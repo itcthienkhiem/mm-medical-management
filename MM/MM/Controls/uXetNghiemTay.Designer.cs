@@ -51,7 +51,6 @@
             this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsPosNeg = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -174,8 +173,7 @@
             this.LoaiXN,
             this.GroupName,
             this.GroupID,
-            this.Order,
-            this.IsPosNeg});
+            this.Order});
             this.dgXetNghiem.DataSource = this.xetNghiemManualBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -197,7 +195,6 @@
             this.dgXetNghiem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgXetNghiem.Size = new System.Drawing.Size(1043, 338);
             this.dgXetNghiem.TabIndex = 2;
-            this.dgXetNghiem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgXetNghiem_CellContentClick);
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
             this.dgXetNghiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgXetNghiem_KeyDown);
             // 
@@ -276,14 +273,6 @@
             this.Order.ReadOnly = true;
             this.Order.Width = 120;
             // 
-            // IsPosNeg
-            // 
-            this.IsPosNeg.DataPropertyName = "IsPosNeg";
-            this.IsPosNeg.HeaderText = "Âm tính/Dương tính";
-            this.IsPosNeg.Name = "IsPosNeg";
-            this.IsPosNeg.ReadOnly = true;
-            this.IsPosNeg.Width = 120;
-            // 
             // uXetNghiemTay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,6 +315,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
         private System.Windows.Forms.DataGridViewTextBoxColumn GroupID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Order;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsPosNeg;
     }
 }

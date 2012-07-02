@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE [Type] WHEN 'MienDich' THEN N'Miễn dịch' WHEN 'Urine' THEN N'Nước tiểu' WHEN 'SoiTuoiHuyetTrang' THEN N'Soi tươi huyết trắng' END LoaiXN FROM XetNghiem_Manual WHERE Status={0} ORDER BY GroupID, [Order]", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE [Type] WHEN 'MienDich' THEN N'Miễn dịch' WHEN 'Urine' THEN N'Nước tiểu' WHEN 'Khac' THEN N'Khác' WHEN 'Haematology' THEN N'Huyết học' WHEN 'Biochemistry' THEN N'Sinh hóa' END LoaiXN FROM XetNghiem_Manual WHERE Status={0} ORDER BY GroupID, [Order]", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
