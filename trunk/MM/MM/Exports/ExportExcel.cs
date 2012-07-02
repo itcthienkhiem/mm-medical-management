@@ -5209,7 +5209,7 @@ namespace MM.Exports
                     }
                 }
 
-                rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.SoiTuoiHuyetTrang.ToString()), "Fullname");
+                //rows = dtKQXN.Select(string.Format("Type = '{0}'", LoaiXetNghiem.SoiTuoiHuyetTrang.ToString()), "Fullname");
                 if (rows != null && rows.Length > 0)
                 {
                     List<DataRow> soiTuoiHuyetTrangRows = new List<DataRow>();

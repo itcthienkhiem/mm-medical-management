@@ -533,8 +533,12 @@ namespace MM.Dialogs
                     return LoaiXetNghiem.Urine.ToString();
                 case "Miễn dịch":
                     return LoaiXetNghiem.MienDich.ToString();
-                case "Soi tươi huyết trắng":
-                    return LoaiXetNghiem.SoiTuoiHuyetTrang.ToString();
+                case "Khác":
+                    return LoaiXetNghiem.Khac.ToString();
+                case "Huyết học":
+                    return LoaiXetNghiem.Haematology.ToString();
+                case "Sinh hóa":
+                    return LoaiXetNghiem.Biochemistry.ToString();
             }
 
             return string.Empty;
@@ -548,8 +552,12 @@ namespace MM.Dialogs
                     return "Nước tiểu";
                 case "MienDich":
                     return "Miễn dịch";
-                case "SoiTuoiHuyetTrang":
-                    return "Soi tươi huyết trắng";
+                case "Khac":
+                    return "Khác";
+                case "Haematology":
+                    return "Huyết học";
+                case "Biochemistry":
+                    return "Sinh hóa";
             }
 
             return string.Empty;
