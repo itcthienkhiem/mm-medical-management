@@ -34,7 +34,6 @@
             this.gbXetNghiem = new System.Windows.Forms.GroupBox();
             this.numThuTuNhom = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
-            this.chkAmTinhDuongTinh = new System.Windows.Forms.CheckBox();
             this.cboNhomXetNghiem = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.numThuTu = new System.Windows.Forms.NumericUpDown();
@@ -139,7 +138,6 @@
             // 
             this.gbXetNghiem.Controls.Add(this.numThuTuNhom);
             this.gbXetNghiem.Controls.Add(this.label11);
-            this.gbXetNghiem.Controls.Add(this.chkAmTinhDuongTinh);
             this.gbXetNghiem.Controls.Add(this.cboNhomXetNghiem);
             this.gbXetNghiem.Controls.Add(this.label10);
             this.gbXetNghiem.Controls.Add(this.numThuTu);
@@ -181,16 +179,6 @@
             this.label11.Size = new System.Drawing.Size(70, 13);
             this.label11.TabIndex = 13;
             this.label11.Text = "Thứ tự nhóm:";
-            // 
-            // chkAmTinhDuongTinh
-            // 
-            this.chkAmTinhDuongTinh.AutoSize = true;
-            this.chkAmTinhDuongTinh.Location = new System.Drawing.Point(105, 144);
-            this.chkAmTinhDuongTinh.Name = "chkAmTinhDuongTinh";
-            this.chkAmTinhDuongTinh.Size = new System.Drawing.Size(122, 17);
-            this.chkAmTinhDuongTinh.TabIndex = 7;
-            this.chkAmTinhDuongTinh.Text = "Âm tính/Dương tính";
-            this.chkAmTinhDuongTinh.UseVisualStyleBackColor = true;
             // 
             // cboNhomXetNghiem
             // 
@@ -1033,7 +1021,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cboNhomXetNghiem;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.CheckBox chkAmTinhDuongTinh;
         private System.Windows.Forms.NumericUpDown numThuTuNhom;
         private System.Windows.Forms.Label label11;
     }

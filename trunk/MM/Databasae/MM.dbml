@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MM" Class="MMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=VUNGUYENXP32;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString5" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Company" Member="Companies">
     <Type Name="Company">
       <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2982,7 +2982,7 @@
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GroupName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GroupName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="XetNghiem_Manual_ChiTietKetQuaXetNghiem_Manual" Member="ChiTietKetQuaXetNghiem_Manuals" ThisKey="XetNghiem_ManualGUID" OtherKey="XetNghiem_ManualGUID" Type="ChiTietKetQuaXetNghiem_Manual" />
       <Association Name="XetNghiem_Manual_ChiTietXetNghiem_Manual" Member="ChiTietXetNghiem_Manuals" ThisKey="XetNghiem_ManualGUID" OtherKey="XetNghiem_ManualGUID" Type="ChiTietXetNghiem_Manual" />
     </Type>
@@ -3017,7 +3017,7 @@
       <Column Name="GroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DaUpload" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="LamThem" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="GroupName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GroupName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="HasHutThuoc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="GiaiDoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="FromOperator" Type="System.String" DbType="Char(2)" CanBeNull="true" />
