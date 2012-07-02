@@ -229,7 +229,14 @@ namespace MM.Common
         Nu_Sau2h,
         TreEm_Sau2h,
         NguoiLon_Sau2h,
-        NguoiCaoTuoi_Sau2h
+        NguoiCaoTuoi_Sau2h,
+        HutThuoc,
+        KhongHutThuoc,
+        ThoiDiem,
+        FollicularPhase,
+        Midcycle,
+        LutelPhase,
+        AmTinhDuongTinh
     };
 
     public enum LoaiMayXN : byte
@@ -259,6 +266,7 @@ namespace MM.Common
         Electrolytes, //Ion đồ
         Haematology,//Huyết học
         MienDich,
-        SoiTuoiHuyetTrang
+        SoiTuoiHuyetTrang,
+        Khac
     }
 }

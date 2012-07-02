@@ -440,7 +440,6 @@ namespace MM.Dialogs
                     _xetNghiem.GroupID = (int)numThuTuNhom.Value;
                     _xetNghiem.GroupName = cboNhomXetNghiem.Text;
                     _xetNghiem.Order = (int)numThuTu.Value;
-                    _xetNghiem.IsPosNeg = chkAmTinhDuongTinh.Checked;
 
                     List<ChiTietXetNghiem_Manual> ctxns = new List<ChiTietXetNghiem_Manual>();
                     if (raChung.Checked)
