@@ -587,6 +587,12 @@
     <Compile Include="Controls\uNormal_Sang_Chieu.Designer.cs">
       <DependentUpon>uNormal_Sang_Chieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uNormal_SoiCanLangNuocTieu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNormal_SoiCanLangNuocTieu.Designer.cs">
+      <DependentUpon>uNormal_SoiCanLangNuocTieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uNormal_TreEm_NguoiLon_NguoiCaoTuoi.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1421,6 +1427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uNormal_Sang_Chieu.resx">
       <DependentUpon>uNormal_Sang_Chieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNormal_SoiCanLangNuocTieu.resx">
+      <DependentUpon>uNormal_SoiCanLangNuocTieu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uNormal_TreEm_NguoiLon_NguoiCaoTuoi.resx">
       <DependentUpon>uNormal_TreEm_NguoiLon_NguoiCaoTuoi.cs</DependentUpon>
