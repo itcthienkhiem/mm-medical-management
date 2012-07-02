@@ -58,8 +58,6 @@ namespace MM.Dialogs
                 if (_drXetNghiem["GroupName"] != null && _drXetNghiem["GroupName"] != DBNull.Value)
                     cboNhomXetNghiem.Text = _drXetNghiem["GroupName"].ToString();
 
-                chkAmTinhDuongTinh.Checked = Convert.ToBoolean(_drXetNghiem["IsPosNeg"]);
-
                 _xetNghiem.XetNghiem_ManualGUID = Guid.Parse(_drXetNghiem["XetNghiem_ManualGUID"].ToString());
 
                 if (_drXetNghiem["CreatedDate"] != null && _drXetNghiem["CreatedDate"] != DBNull.Value)

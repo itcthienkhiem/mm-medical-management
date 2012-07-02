@@ -252,7 +252,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -58389,7 +58389,7 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupName", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupName", DbType="NVarChar(255)")]
 		public string GroupName
 		{
 			get
@@ -59012,7 +59012,7 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupName", DbType="NVarChar(50)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupName", DbType="NVarChar(255)")]
 		public string GroupName
 		{
 			get
