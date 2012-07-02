@@ -122,17 +122,20 @@ namespace MM.Dialogs
                 dt.Rows.Add(newRow);
             }
 
-            deletedRows.Clear();
-            foreach (DataRow row in dt.Rows)
+            if (_giaDichVuDataSource != null)
             {
-                DataRow[] rows = _giaDichVuDataSource.Select(string.Format("ServiceGUID='{0}'", row["ServiceGUID"].ToString()));
-                if (rows == null || rows.Length <= 0)
-                    deletedRows.Add(row);
-            }
+                deletedRows.Clear();
+                foreach (DataRow row in dt.Rows)
+                {
+                    DataRow[] rows = _giaDichVuDataSource.Select(string.Format("ServiceGUID='{0}'", row["ServiceGUID"].ToString()));
+                    if (rows == null || rows.Length <= 0)
+                        deletedRows.Add(row);
+                }
 
-            foreach (DataRow row in deletedRows)
-            {
-                dt.Rows.Remove(row);
+                foreach (DataRow row in deletedRows)
+                {
+                    dt.Rows.Remove(row);
+                }
             }
 
             return dt;
