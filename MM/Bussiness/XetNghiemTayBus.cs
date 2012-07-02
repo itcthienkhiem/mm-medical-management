@@ -298,6 +298,13 @@ namespace MM.Bussiness
                                     ct.ToValue = ctxn.ToValue;
                                     ct.DonVi = ctxn.DonVi;
                                     ct.DoiTuong = ctxn.DoiTuong;
+                                    ct.FromAge = ctxn.FromAge;
+                                    ct.ToAge = ctxn.ToAge;
+                                    ct.FromTime = ctxn.FromTime;
+                                    ct.ToTime = ctxn.ToTime;
+                                    ct.FromOperator = ctxn.FromOperator;
+                                    ct.ToOperator = ctxn.ToOperator;
+                                    ct.XValue = ctxn.XValue;
                                     ct.UpdatedBy = Guid.Parse(Global.UserGUID);
                                     ct.UpdatedDate = DateTime.Now;
                                     ct.Status = (byte)Status.Actived;
