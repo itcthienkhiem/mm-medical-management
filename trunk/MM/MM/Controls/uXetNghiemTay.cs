@@ -174,7 +174,6 @@ namespace MM.Controls
                 newRow["GroupID"] = dlg.XetNghiem.GroupID;
                 newRow["GroupName"] = dlg.XetNghiem.GroupName;
                 newRow["Order"] = dlg.XetNghiem.Order;
-                newRow["IsPosNeg"] = dlg.XetNghiem.IsPosNeg;
 
                 if (dlg.XetNghiem.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.XetNghiem.CreatedDate;
@@ -223,7 +222,6 @@ namespace MM.Controls
                 drXetNghiem["GroupID"] = dlg.XetNghiem.GroupID;
                 drXetNghiem["GroupName"] = dlg.XetNghiem.GroupName;
                 drXetNghiem["Order"] = dlg.XetNghiem.Order;
-                drXetNghiem["IsPosNeg"] = dlg.XetNghiem.IsPosNeg;
 
                 if (dlg.XetNghiem.CreatedDate.HasValue)
                     drXetNghiem["CreatedDate"] = dlg.XetNghiem.CreatedDate;

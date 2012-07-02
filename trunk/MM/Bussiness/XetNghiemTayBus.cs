@@ -265,7 +265,6 @@ namespace MM.Bussiness
                             xn.GroupID = xetNghiem.GroupID;
                             xn.Order = xetNghiem.Order;
                             xn.GroupName = xetNghiem.GroupName;
-                            xn.IsPosNeg = xetNghiem.IsPosNeg;
                             xn.UpdatedDate = DateTime.Now;
                             xn.UpdatedBy = Guid.Parse(Global.UserGUID);
                             xn.Status = xetNghiem.Status;
