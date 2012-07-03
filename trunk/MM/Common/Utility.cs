@@ -1027,6 +1027,25 @@ namespace MM.Common
 
             return p;
         }
+
+        public static string GetLoaiXetNghiem(string type)
+        {
+            switch (type)
+            {
+                case "Urine":
+                    return "Nước tiểu";
+                case "MienDich":
+                    return "Miễn dịch";
+                case "Khac":
+                    return "Khác";
+                case "Haematology":
+                    return "Huyết học";
+                case "Biochemistry":
+                    return "Sinh hóa";
+            }
+
+            return string.Empty;
+        }
     }
 }
 

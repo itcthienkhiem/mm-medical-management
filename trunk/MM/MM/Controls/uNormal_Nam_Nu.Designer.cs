@@ -96,6 +96,7 @@
             this.chkToAge_Nam.TabIndex = 10;
             this.chkToAge_Nam.Text = "Tuổi đến";
             this.chkToAge_Nam.UseVisualStyleBackColor = true;
+            this.chkToAge_Nam.CheckedChanged += new System.EventHandler(this.chkToAge_Nam_CheckedChanged);
             // 
             // numFromAge_Nam
             // 
@@ -125,6 +126,7 @@
             this.chkFromAge_Nam.TabIndex = 8;
             this.chkFromAge_Nam.Text = "Tuổi từ";
             this.chkFromAge_Nam.UseVisualStyleBackColor = true;
+            this.chkFromAge_Nam.CheckedChanged += new System.EventHandler(this.chkFromAge_Nam_CheckedChanged);
             // 
             // numToAge_Nu
             // 
@@ -154,6 +156,7 @@
             this.chkToAge_Nu.TabIndex = 16;
             this.chkToAge_Nu.Text = "Tuổi đến";
             this.chkToAge_Nu.UseVisualStyleBackColor = true;
+            this.chkToAge_Nu.CheckedChanged += new System.EventHandler(this.chkToAge_Nu_CheckedChanged);
             // 
             // numFromAge_Nu
             // 
@@ -183,20 +186,21 @@
             this.chkFromAge_Nu.TabIndex = 14;
             this.chkFromAge_Nu.Text = "Tuổi từ";
             this.chkFromAge_Nu.UseVisualStyleBackColor = true;
+            this.chkFromAge_Nu.CheckedChanged += new System.EventHandler(this.chkFromAge_Nu_CheckedChanged);
             // 
             // uNormal_Nam
             // 
             this.uNormal_Nam.DonVi = "";
             this.uNormal_Nam.Enabled = false;
             this.uNormal_Nam.FromOperator = "<=";
-            this.uNormal_Nam.FromValue = 0F;
+            this.uNormal_Nam.FromValue = 0D;
             this.uNormal_Nam.FromValueChecked = false;
             this.uNormal_Nam.Location = new System.Drawing.Point(54, 23);
             this.uNormal_Nam.Name = "uNormal_Nam";
             this.uNormal_Nam.Size = new System.Drawing.Size(452, 24);
             this.uNormal_Nam.TabIndex = 12;
             this.uNormal_Nam.ToOperator = "<=";
-            this.uNormal_Nam.ToValue = 0F;
+            this.uNormal_Nam.ToValue = 0D;
             this.uNormal_Nam.ToValueChecked = false;
             // 
             // uNormal_Nu
@@ -204,14 +208,14 @@
             this.uNormal_Nu.DonVi = "";
             this.uNormal_Nu.Enabled = false;
             this.uNormal_Nu.FromOperator = "<=";
-            this.uNormal_Nu.FromValue = 0F;
+            this.uNormal_Nu.FromValue = 0D;
             this.uNormal_Nu.FromValueChecked = false;
             this.uNormal_Nu.Location = new System.Drawing.Point(54, 81);
             this.uNormal_Nu.Name = "uNormal_Nu";
             this.uNormal_Nu.Size = new System.Drawing.Size(452, 24);
             this.uNormal_Nu.TabIndex = 18;
             this.uNormal_Nu.ToOperator = "<=";
-            this.uNormal_Nu.ToValue = 0F;
+            this.uNormal_Nu.ToValue = 0D;
             this.uNormal_Nu.ToValueChecked = false;
             // 
             // uNormal_Nam_Nu

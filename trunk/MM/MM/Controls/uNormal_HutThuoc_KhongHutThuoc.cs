@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MM.Common;
+using MM.Databasae;
 
 namespace MM.Controls
 {
@@ -45,9 +46,59 @@ namespace MM.Controls
         {
             get { return uNormal_KhongHutThuoc; }
         }
+
+        public DataTable DonViList
+        {
+            set
+            {
+                this.Normal_HutThuoc.DonViList = value;
+                this.Normal_KhongHutThuoc.DonViList = value;
+            }
+        }
         #endregion
 
         #region UI Command
+        public List<ChiTietXetNghiem_Manual> GetChiTietXetNghiem_ManualList()
+        {
+            List<ChiTietXetNghiem_Manual> ctxns = new List<ChiTietXetNghiem_Manual>();
+            if (this.HutThuocChecked)
+            {
+                ChiTietXetNghiem_Manual ct = this.Normal_HutThuoc.GetChiTietXetNghiem_Manual();
+                ct.DoiTuong = (byte)DoiTuong.HutThuoc;
+                ctxns.Add(ct);
+            }
+
+            if (this.KhongHutThuocChecked)
+            {
+                ChiTietXetNghiem_Manual ct = this.Normal_KhongHutThuoc.GetChiTietXetNghiem_Manual();
+                ct.DoiTuong = (byte)DoiTuong.KhongHutThuoc;
+                ctxns.Add(ct);
+            }
+
+            return ctxns;
+        }
+
+        public void SetChiTietXetNghiem_ManualList(List<ChiTietXetNghiem_Manual> ctxns)
+        {
+            if (ctxns == null || ctxns.Count <= 0) return;
+
+            foreach (var ct in ctxns)
+            {
+                switch ((DoiTuong)ct.DoiTuong)
+                {
+                    case DoiTuong.HutThuoc:
+                        this.HutThuocChecked = true;
+                        this.Normal_HutThuoc.SetChiTietXetNghiem_Manual(ct);
+                        break;
+
+                    case DoiTuong.KhongHutThuoc:
+                        this.KhongHutThuocChecked = true;
+                        this.Normal_KhongHutThuoc.SetChiTietXetNghiem_Manual(ct);
+                        break;
+                }
+            }
+        }
+
         public bool CheckInfo()
         {
             if (!chkHutThuoc.Checked && !chkKhongHutThuoc.Checked)

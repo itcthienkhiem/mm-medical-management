@@ -237,7 +237,8 @@ namespace MM.Common
         FollicularPhase,
         Midcycle,
         LutelPhase,
-        AmTinhDuongTinh
+        AmTinhDuongTinh,
+        Khac
     };
 
     public enum LoaiMayXN : byte
@@ -262,8 +263,8 @@ namespace MM.Common
 
     public enum LoaiXetNghiem : byte
     {
-        Haematology,//Huyết học
-        Biochemistry = 0, //Sinh hóa
+        Haematology = 0,//Huyết học
+        Biochemistry, //Sinh hóa
         MienDich,
         Urine, //Nước tiểu
         Khac

@@ -45,6 +45,9 @@
             this.xetNghiemManualBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LoaiXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -218,6 +221,29 @@
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Width = 150;
             // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "GroupName";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Nhóm xét nghiệm";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "GroupID";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Thứ tự nhóm";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Order";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Thứ tự xét nghiệm";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 120;
+            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -256,7 +282,7 @@
             this.GroupName.HeaderText = "Nhóm xét nghiệm";
             this.GroupName.Name = "GroupName";
             this.GroupName.ReadOnly = true;
-            this.GroupName.Width = 120;
+            this.GroupName.Width = 300;
             // 
             // GroupID
             // 
@@ -264,6 +290,7 @@
             this.GroupID.HeaderText = "Thứ tự nhóm";
             this.GroupID.Name = "GroupID";
             this.GroupID.ReadOnly = true;
+            this.GroupID.Width = 95;
             // 
             // Order
             // 
@@ -271,7 +298,7 @@
             this.Order.HeaderText = "Thứ tự xét nghiệm";
             this.Order.Name = "Order";
             this.Order.ReadOnly = true;
-            this.Order.Width = 120;
+            this.Order.Width = 115;
             // 
             // uXetNghiemTay
             // 
@@ -309,6 +336,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiXN;
