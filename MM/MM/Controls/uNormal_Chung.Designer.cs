@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtDonVi = new System.Windows.Forms.ComboBox();
             this.numToValue = new System.Windows.Forms.NumericUpDown();
             this.chkToValue = new System.Windows.Forms.CheckBox();
             this.numFromValue = new System.Windows.Forms.NumericUpDown();
@@ -36,21 +35,10 @@
             this.cboFromOperator = new System.Windows.Forms.ComboBox();
             this.cboToOperator = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cboDonVi = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numToValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numFromValue)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtDonVi
-            // 
-            this.txtDonVi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtDonVi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txtDonVi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
-            this.txtDonVi.Enabled = false;
-            this.txtDonVi.FormattingEnabled = true;
-            this.txtDonVi.Location = new System.Drawing.Point(340, 1);
-            this.txtDonVi.Name = "txtDonVi";
-            this.txtDonVi.Size = new System.Drawing.Size(109, 21);
-            this.txtDonVi.TabIndex = 12;
             // 
             // numToValue
             // 
@@ -151,14 +139,25 @@
             this.label1.TabIndex = 14;
             this.label1.Text = "Result";
             // 
+            // cboDonVi
+            // 
+            this.cboDonVi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDonVi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDonVi.FormattingEnabled = true;
+            this.cboDonVi.Location = new System.Drawing.Point(339, 1);
+            this.cboDonVi.MaxDropDownItems = 12;
+            this.cboDonVi.Name = "cboDonVi";
+            this.cboDonVi.Size = new System.Drawing.Size(112, 21);
+            this.cboDonVi.TabIndex = 15;
+            // 
             // uNormal_Chung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cboDonVi);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboToOperator);
             this.Controls.Add(this.cboFromOperator);
-            this.Controls.Add(this.txtDonVi);
             this.Controls.Add(this.numToValue);
             this.Controls.Add(this.chkToValue);
             this.Controls.Add(this.numFromValue);
@@ -174,7 +173,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox txtDonVi;
         private System.Windows.Forms.NumericUpDown numToValue;
         private System.Windows.Forms.CheckBox chkToValue;
         private System.Windows.Forms.NumericUpDown numFromValue;
@@ -182,5 +180,6 @@
         private System.Windows.Forms.ComboBox cboFromOperator;
         private System.Windows.Forms.ComboBox cboToOperator;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cboDonVi;
     }
 }

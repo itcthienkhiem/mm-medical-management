@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MM.Common;
+using MM.Databasae;
 
 namespace MM.Controls
 {
@@ -29,26 +31,55 @@ namespace MM.Controls
             set { chkFromTo.Checked = value; }
         }
 
-        public float FromValue
+        public double FromValue
         {
-            get { return (float)numFromValue.Value; }
+            get { return (double)numFromValue.Value; }
             set { numFromValue.Value = (Decimal)value; }
         }
 
-        public float ToValue
+        public double ToValue
         {
-            get { return (float)numToValue.Value; }
+            get { return (double)numToValue.Value; }
             set { numToValue.Value = (Decimal)value; }
         }
 
-        public float XValue
+        public double XValue
         {
-            get { return (float)numXValue.Value; }
+            get { return (double)numXValue.Value; }
             set { numXValue.Value = (Decimal)value; }
         }
         #endregion
 
         #region UI Command
+        public ChiTietXetNghiem_Manual GetChiTietXetNghiem_Manual()
+        {
+            ChiTietXetNghiem_Manual ct = new ChiTietXetNghiem_Manual();
+            ct.DoiTuong = (byte)DoiTuong.Khac;
+            if (this.FromToChecked)
+            {
+                ct.FromValue = this.FromValue;
+                ct.ToValue = this.ToValue;
+            }
+
+            ct.XValue = this.XValue;
+
+            return ct;
+        }
+
+        public void SetChiTietXetNghiem_Manual(ChiTietXetNghiem_Manual ct)
+        {
+            if (ct.FromValue != null && ct.FromValue.HasValue)
+            {
+                this.FromToChecked = true;
+                this.FromValue = ct.FromValue.Value;
+                this.ToValue = ct.ToValue.Value;
+            }
+            else
+                this.FromToChecked = false;
+
+            this.XValue = ct.XValue.Value;
+        }
+
         public bool CheckInfo()
         {
             if (chkFromTo.Checked && numFromValue.Value > numToValue.Value)

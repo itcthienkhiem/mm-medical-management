@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MM.Common;
+using MM.Databasae;
 
 namespace MM.Controls
 {
@@ -37,15 +38,15 @@ namespace MM.Controls
             set { chkToValue.Checked = value; }
         }
 
-        public float FromValue
+        public double FromValue
         {
-            get { return (float)numFromValue.Value; }
+            get { return (double)numFromValue.Value; }
             set { numFromValue.Value = (Decimal)value; }
         }
 
-        public float ToValue
+        public double ToValue
         {
-            get { return (float)numToValue.Value; }
+            get { return (double)numToValue.Value; }
             set { numToValue.Value = (Decimal)value; }
         }
 
@@ -63,12 +64,68 @@ namespace MM.Controls
 
         public string DonVi
         {
-            get { return txtDonVi.Text; }
-            set { txtDonVi.Text = value; }
+            get { return cboDonVi.Text; }
+            set { cboDonVi.Text = value; }
+        }
+
+        public DataTable DonViList
+        {
+            set
+            {
+                if (value == null || value.Rows.Count <= 0) return;
+                foreach (DataRow row in value.Rows)
+                {
+                    cboDonVi.Items.Add(row[0].ToString());
+                }
+            }
         }
         #endregion
 
         #region UI Command
+        public ChiTietXetNghiem_Manual GetChiTietXetNghiem_Manual()
+        {
+            ChiTietXetNghiem_Manual ct = new ChiTietXetNghiem_Manual();
+            if (this.FromValueChecked)
+            {
+                ct.FromValue = this.FromValue;
+                ct.FromOperator = this.FromOperator;
+            }
+
+            if (this.ToValueChecked)
+            {
+                ct.ToValue = this.ToValue;
+                ct.ToOperator = this.ToOperator;
+            }
+
+            ct.DonVi = this.DonVi;
+            ct.DoiTuong = (byte)DoiTuong.Chung;
+
+            return ct;
+        }
+
+        public void SetChiTietXetNghiem_Manual(ChiTietXetNghiem_Manual ct)
+        {
+            if (ct.FromValue != null && ct.FromValue.HasValue)
+            {
+                this.FromValueChecked = true;
+                this.FromValue = ct.FromValue.Value;
+                this.FromOperator = ct.FromOperator.Trim();
+            }
+            else
+                this.FromValueChecked = false;
+
+            if (ct.ToValue != null && ct.ToValue.HasValue)
+            {
+                this.ToValueChecked = true;
+                this.ToValue = ct.ToValue.Value;
+                this.ToOperator = ct.ToOperator.Trim();
+            }
+            else
+                this.ToValueChecked = false;
+
+            this.DonVi = ct.DonVi;
+        }
+
         private void InitData()
         {
             cboFromOperator.SelectedIndex = 1;
@@ -94,10 +151,10 @@ namespace MM.Controls
             numFromValue.Enabled = chkFromValue.Checked;
             cboFromOperator.Enabled = chkFromValue.Checked;
 
-            if (chkFromValue.Checked || chkToValue.Checked)
-                txtDonVi.Enabled = true;
-            else
-                txtDonVi.Enabled = false;
+            //if (chkFromValue.Checked || chkToValue.Checked)
+            //    cboDonVi.Enabled = true;
+            //else
+            //    cboDonVi.Enabled = false;
         }
 
         private void chkToValue_CheckedChanged(object sender, EventArgs e)
@@ -105,10 +162,10 @@ namespace MM.Controls
             numToValue.Enabled = chkToValue.Checked;
             cboToOperator.Enabled = chkToValue.Checked;
 
-            if (chkToValue.Checked || chkToValue.Checked)
-                txtDonVi.Enabled = true;
-            else
-                txtDonVi.Enabled = false;
+            //if (chkToValue.Checked || chkToValue.Checked)
+            //    cboDonVi.Enabled = true;
+            //else
+            //    cboDonVi.Enabled = false;
         }
         #endregion
     }

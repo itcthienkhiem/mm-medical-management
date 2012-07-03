@@ -14,7 +14,7 @@ namespace MM.Bussiness
     {
         public static Result GetXetNghiemList()
         {
-            Result result = null;
+            Result result = new Result();
 
             try
             {
@@ -37,13 +37,42 @@ namespace MM.Bussiness
 
         public static Result GetChiTietXetNghiemList(string xetNghiem_ManualGUID)
         {
-            Result result = null;
+            Result result = new Result();
 
             try
             {
                 string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietXetNghiem_Manual WHERE Status={0} AND XetNghiem_ManualGUID='{1}'",
                     (byte)Status.Actived, xetNghiem_ManualGUID);
                 return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetChiTietXetNghiemList2(string xetNghiem_ManualGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<ChiTietXetNghiem_Manual> ctxns = (from x in db.ChiTietXetNghiem_Manuals
+                                                       where x.XetNghiem_ManualGUID.ToString() == xetNghiem_ManualGUID &&
+                                                       x.Status == (byte)Status.Actived
+                                                       select x).ToList();
+
+                result.QueryResult = ctxns;
             }
             catch (System.Data.SqlClient.SqlException se)
             {

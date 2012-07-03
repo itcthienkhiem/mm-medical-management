@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MM.Common;
+using MM.Databasae;
 
 namespace MM.Controls
 {
@@ -68,9 +70,67 @@ namespace MM.Controls
         {
             get { return uNormal_Chieu; }
         }
+
+        public DataTable DonViList
+        {
+            set
+            {
+                this.Normal_Sang.DonViList = value;
+                this.Normal_Chieu.DonViList = value;
+            }
+        }
         #endregion
 
         #region UI Command
+        public List<ChiTietXetNghiem_Manual> GetChiTietXetNghiem_ManualList()
+        {
+            List<ChiTietXetNghiem_Manual> ctxns = new List<ChiTietXetNghiem_Manual>();
+            if (this.SangChecked)
+            {
+                ChiTietXetNghiem_Manual ct = this.Normal_Sang.GetChiTietXetNghiem_Manual();
+                ct.DoiTuong = (byte)DoiTuong.Sang;
+                ct.FromTime = this.FromTime_Sang;
+                ct.ToTime = this.ToTime_Sang;
+                ctxns.Add(ct);
+            }
+
+            if (this.ChieuChecked)
+            {
+                ChiTietXetNghiem_Manual ct = this.Normal_Chieu.GetChiTietXetNghiem_Manual();
+                ct.DoiTuong = (byte)DoiTuong.Chieu;
+                ct.FromTime = this.FromTime_Chieu;
+                ct.ToTime = this.ToTime_Chieu;
+                ctxns.Add(ct);
+            }
+
+            return ctxns;
+        }
+
+        public void SetChiTietXetNghiem_ManualList(List<ChiTietXetNghiem_Manual> ctxns)
+        {
+            if (ctxns == null || ctxns.Count <= 0) return;
+
+            foreach (var ct in ctxns)
+            {
+                switch ((DoiTuong)ct.DoiTuong)
+                {
+                    case DoiTuong.Sang:
+                        this.SangChecked = true;
+                        this.FromTime_Sang = ct.FromTime.Value;
+                        this.ToTime_Sang = ct.ToTime.Value;
+                        this.Normal_Sang.SetChiTietXetNghiem_Manual(ct);
+                        break;
+
+                    case DoiTuong.Chieu:
+                        this.ChieuChecked = true;
+                        this.FromTime_Chieu = ct.FromTime.Value;
+                        this.ToTime_Chieu = ct.ToTime.Value;
+                        this.Normal_Chieu.SetChiTietXetNghiem_Manual(ct);
+                        break;
+                }
+            }
+        }
+
         public bool CheckInfo()
         {
             if (!chkSang.Checked && !chkChieu.Checked)

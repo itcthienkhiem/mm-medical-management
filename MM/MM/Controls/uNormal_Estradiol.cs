@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MM.Common;
+using MM.Databasae;
 
 namespace MM.Controls
 {
@@ -55,9 +57,70 @@ namespace MM.Controls
         {
             get { return uNormal_LutelPhase; }
         }
+
+        public DataTable DonViList
+        {
+            set
+            {
+                this.Normal_FollicularPhase.DonViList = value;
+                this.Normal_Midcycle.DonViList = value;
+                this.Normal_LutelPhase.DonViList = value;
+            }
+        }
         #endregion
 
         #region UI Command
+        public List<ChiTietXetNghiem_Manual> GetChiTietXetNghiem_ManualList()
+        {
+            List<ChiTietXetNghiem_Manual> ctxns = new List<ChiTietXetNghiem_Manual>();
+            if (this.FollicularPhaseChecked)
+            {
+                ChiTietXetNghiem_Manual ct = this.Normal_FollicularPhase.GetChiTietXetNghiem_Manual();
+                ct.DoiTuong = (byte)DoiTuong.FollicularPhase;
+                ctxns.Add(ct);
+            }
+
+            if (this.MidcycleChecked)
+            {
+                ChiTietXetNghiem_Manual ct = this.Normal_Midcycle.GetChiTietXetNghiem_Manual();
+                ct.DoiTuong = (byte)DoiTuong.Midcycle;
+                ctxns.Add(ct);
+            }
+
+            if (this.LutelPhaseChecked)
+            {
+                ChiTietXetNghiem_Manual ct = this.Normal_LutelPhase.GetChiTietXetNghiem_Manual();
+                ct.DoiTuong = (byte)DoiTuong.LutelPhase;
+                ctxns.Add(ct);
+            }
+
+            return ctxns;
+        }
+
+        public void SetChiTietXetNghiem_ManualList(List<ChiTietXetNghiem_Manual> ctxns)
+        {
+            if (ctxns == null || ctxns.Count <= 0) return;
+
+            foreach (var ct in ctxns)
+            {
+                switch ((DoiTuong)ct.DoiTuong)
+                {
+                    case DoiTuong.FollicularPhase:
+                        this.FollicularPhaseChecked = true;
+                        this.Normal_FollicularPhase.SetChiTietXetNghiem_Manual(ct);
+                        break;
+                    case DoiTuong.Midcycle:
+                        this.MidcycleChecked = true;
+                        this.Normal_Midcycle.SetChiTietXetNghiem_Manual(ct);
+                        break;
+                    case DoiTuong.LutelPhase:
+                        this.LutelPhaseChecked = true;
+                        this.Normal_LutelPhase.SetChiTietXetNghiem_Manual(ct);
+                        break;
+                }
+            }
+        }
+
         public bool CheckInfo()
         {
             if (!chkFollicularPhase.Checked && !chkMidcycle.Checked && !chkLutelPhase.Checked)

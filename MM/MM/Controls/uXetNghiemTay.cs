@@ -107,7 +107,7 @@ namespace MM.Controls
             if (txtXetNghiem.Text.Trim() == string.Empty)
             {
                 results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<string>("Fullname")
+                           orderby p.Field<int>("GroupID") ascending, p.Field<int>("Order") ascending
                            select p).ToList<DataRow>();
 
                 newDataSource = _dataSource.Clone();
@@ -127,7 +127,7 @@ namespace MM.Controls
                        where p.Field<string>("Fullname") != null &&
                            p.Field<string>("Fullname").Trim() != string.Empty &&
                            p.Field<string>("Fullname").ToLower().IndexOf(str) >= 0
-                       orderby p.Field<string>("Fullname")
+                       orderby p.Field<int>("GroupID") ascending, p.Field<int>("Order") ascending
                        select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
@@ -140,21 +140,6 @@ namespace MM.Controls
             }
 
             dgXetNghiem.DataSource = newDataSource;
-        }
-
-        private string GetLoaiXetNghiem(string type)
-        {
-            switch (type)
-            {
-                case "Urine":
-                    return "Nước tiểu";
-                case "MienDich":
-                    return "Miễn dịch";
-                case "SoiTuoiHuyetTrang":
-                    return "Soi tươi huyết trắng";
-            }
-
-            return string.Empty;
         }
 
         private void OnAdd()
@@ -170,7 +155,7 @@ namespace MM.Controls
                 newRow["Fullname"] = dlg.XetNghiem.Fullname;
                 newRow["TenXetNghiem"] = dlg.XetNghiem.TenXetNghiem;
                 newRow["Type"] = dlg.XetNghiem.Type;
-                newRow["LoaiXN"] = GetLoaiXetNghiem(dlg.XetNghiem.Type);
+                newRow["LoaiXN"] = Utility.GetLoaiXetNghiem(dlg.XetNghiem.Type);
                 newRow["GroupID"] = dlg.XetNghiem.GroupID;
                 newRow["GroupName"] = dlg.XetNghiem.GroupName;
                 newRow["Order"] = dlg.XetNghiem.Order;
@@ -218,7 +203,7 @@ namespace MM.Controls
                 drXetNghiem["Fullname"] = dlg.XetNghiem.Fullname;
                 drXetNghiem["TenXetNghiem"] = dlg.XetNghiem.TenXetNghiem;
                 drXetNghiem["Type"] = dlg.XetNghiem.Type;
-                drXetNghiem["LoaiXN"] = GetLoaiXetNghiem(dlg.XetNghiem.Type);
+                drXetNghiem["LoaiXN"] = Utility.GetLoaiXetNghiem(dlg.XetNghiem.Type);
                 drXetNghiem["GroupID"] = dlg.XetNghiem.GroupID;
                 drXetNghiem["GroupName"] = dlg.XetNghiem.GroupName;
                 drXetNghiem["Order"] = dlg.XetNghiem.Order;
