@@ -286,10 +286,10 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 YKienKhachHang ykkh = null;
                 if (yKienKhachHangGUID == null || yKienKhachHangGUID == string.Empty)
-                    ykkh = db.YKienKhachHangs.SingleOrDefault<YKienKhachHang>(n => n.TenKhachHang.ToLower() == tenKhachHang.ToLower() &&
+                    ykkh = db.YKienKhachHangs.FirstOrDefault<YKienKhachHang>(n => n.TenKhachHang.ToLower() == tenKhachHang.ToLower() &&
                         n.ContactBy.Value.ToString() == Global.UserGUID && n.Status == (byte)Status.Actived);
                 else
-                    ykkh = db.YKienKhachHangs.SingleOrDefault<YKienKhachHang>(n => n.TenKhachHang.ToLower() == tenKhachHang.ToLower() &&
+                    ykkh = db.YKienKhachHangs.FirstOrDefault<YKienKhachHang>(n => n.TenKhachHang.ToLower() == tenKhachHang.ToLower() &&
                         n.ContactBy.Value.ToString() == Global.UserGUID && n.YKienKhachHangGUID.ToString() != yKienKhachHangGUID &&
                         n.Status == (byte)Status.Actived);
 
