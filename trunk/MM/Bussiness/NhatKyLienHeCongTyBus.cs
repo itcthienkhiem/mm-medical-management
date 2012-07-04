@@ -314,10 +314,10 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 NhatKyLienHeCongTy nklhct = null;
                 if (nhatKyLienHeCongTyGUID == null || nhatKyLienHeCongTyGUID == string.Empty)
-                    nklhct = db.NhatKyLienHeCongTies.SingleOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+                    nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
                         n.CreatedBy.Value.ToString() != Global.UserGUID && n.Status == (byte)Status.Actived);
                 else
-                    nklhct = db.NhatKyLienHeCongTies.SingleOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+                    nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
                         n.CreatedBy.Value.ToString() != Global.UserGUID && n.NhatKyLienHeCongTyGUID.ToString() != nhatKyLienHeCongTyGUID &&
                         n.Status == (byte)Status.Actived);
 
@@ -358,10 +358,10 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 NhatKyLienHeCongTy nklhct = null;
                 if (nhatKyLienHeCongTyGUID == null || nhatKyLienHeCongTyGUID == string.Empty)
-                    nklhct = db.NhatKyLienHeCongTies.SingleOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+                    nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
                         n.CreatedBy.Value.ToString() == Global.UserGUID && n.Status == (byte)Status.Actived);
                 else
-                    nklhct = db.NhatKyLienHeCongTies.SingleOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+                    nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
                         n.CreatedBy.Value.ToString() == Global.UserGUID && n.NhatKyLienHeCongTyGUID.ToString() != nhatKyLienHeCongTyGUID &&
                         n.Status == (byte)Status.Actived);
 
