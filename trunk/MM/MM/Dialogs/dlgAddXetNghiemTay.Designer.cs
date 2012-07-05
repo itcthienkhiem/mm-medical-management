@@ -53,7 +53,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(238, 338);
+            this.btnOK.Location = new System.Drawing.Point(238, 599);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 9;
@@ -65,7 +65,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(317, 338);
+            this.btnCancel.Location = new System.Drawing.Point(317, 599);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 10;
@@ -87,7 +87,7 @@
             this.gbXetNghiem.Controls.Add(this.label1);
             this.gbXetNghiem.Location = new System.Drawing.Point(6, 2);
             this.gbXetNghiem.Name = "gbXetNghiem";
-            this.gbXetNghiem.Size = new System.Drawing.Size(619, 330);
+            this.gbXetNghiem.Size = new System.Drawing.Size(619, 591);
             this.gbXetNghiem.TabIndex = 0;
             this.gbXetNghiem.TabStop = false;
             // 
@@ -95,7 +95,7 @@
             // 
             this._uNormal.Location = new System.Drawing.Point(11, 145);
             this._uNormal.Name = "_uNormal";
-            this._uNormal.Size = new System.Drawing.Size(597, 175);
+            this._uNormal.Size = new System.Drawing.Size(597, 438);
             this._uNormal.TabIndex = 15;
             // 
             // numThuTuNhom
@@ -208,7 +208,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(631, 368);
+            this.ClientSize = new System.Drawing.Size(631, 629);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.gbXetNghiem);

@@ -286,6 +286,9 @@ namespace MM.Controls
         #region Window Event Handlers
         private void dgYKienKhachHang_DoubleClick(object sender, EventArgs e)
         {
+            if (dgYKienKhachHang.CurrentCell != null && 
+                (dgYKienKhachHang.CurrentCell.ColumnIndex == 0 || dgYKienKhachHang.CurrentCell.ColumnIndex == 2)) return;
+
             OnEdit();
         }
 
@@ -368,6 +371,36 @@ namespace MM.Controls
         {
             OnExportToExcel();
         }
+
+        private void dgYKienKhachHang_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 2) return;
+            DataRow row = (dgYKienKhachHang.Rows[e.RowIndex].DataBoundItem as DataRowView).Row;
+            if (row == null) return;
+            string yKienKhachHangGUID = row["YKienKhachHangGUID"].ToString();
+            string ketLuan = string.Empty;
+            if (row["KetLuan"] != null && row["KetLuan"] != DBNull.Value)
+                ketLuan = row["KetLuan"].ToString();
+
+            dlgKetLuan dlg = new dlgKetLuan(ketLuan);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                ketLuan = dlg.KetLuan;
+
+                Result result = YKienKhachHangBus.UpdateKetLuan(yKienKhachHangGUID, ketLuan);
+                if (result.IsOK)
+                {
+                    row["NguoiKetLuan"] = Global.UserGUID;
+                    row["TenNguoiKetLuan"] = Global.Fullname;
+                    row["KetLuan"] = ketLuan;
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("YKienKhachHangBus.UpdateKetLuan"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("YKienKhachHangBus.UpdateKetLuan"));
+                }
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -389,7 +422,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }

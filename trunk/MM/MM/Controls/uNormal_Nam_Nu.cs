@@ -147,6 +147,8 @@ namespace MM.Controls
                 switch ((DoiTuong)ct.DoiTuong)
                 {
                     case DoiTuong.Nam:
+                    case DoiTuong.Sang_Nam:
+                    case DoiTuong.Chieu_Nam:
                         this.NamChecked = true;
                         if (ct.FromAge != null && ct.FromAge.HasValue)
                         {
@@ -167,6 +169,8 @@ namespace MM.Controls
                         this.Normal_Nam.SetChiTietXetNghiem_Manual(ct);
                         break;
                     case DoiTuong.Nu:
+                    case DoiTuong.Sang_Nu:
+                    case DoiTuong.Chieu_Nu:
                         this.NuChecked = true;
                         if (ct.FromAge != null && ct.FromAge.HasValue)
                         {

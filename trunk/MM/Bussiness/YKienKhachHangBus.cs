@@ -94,9 +94,8 @@ namespace MM.Bussiness
                             s.DeletedDate = DateTime.Now;
                             s.DeletedBy = Guid.Parse(Global.UserGUID);
                             s.Status = (byte)Status.Deactived;
-
-                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}'\n",
-                                s.YKienKhachHangGUID.ToString(), s.TenKhachHang, s.SoDienThoai, s.DiaChi, s.YeuCau, s.Nguon, s.Note);
+                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}'\n",
+                                s.YKienKhachHangGUID.ToString(), s.TenKhachHang, s.SoDienThoai, s.DiaChi, s.YeuCau, s.Nguon, s.Note, s.NguoiKetLuan, s.KetLuan);
                         }
 
                         index++;
@@ -159,9 +158,9 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}'",
+                        desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}'",
                                yKienKhachHang.YKienKhachHangGUID.ToString(), yKienKhachHang.TenKhachHang, yKienKhachHang.SoDienThoai, yKienKhachHang.DiaChi,
-                               yKienKhachHang.YeuCau, yKienKhachHang.Nguon, yKienKhachHang.Note);
+                               yKienKhachHang.YeuCau, yKienKhachHang.Nguon, yKienKhachHang.Note, yKienKhachHang.NguoiKetLuan, yKienKhachHang.KetLuan);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -194,10 +193,12 @@ namespace MM.Bussiness
                             ykkh.DeletedDate = yKienKhachHang.DeletedDate;
                             ykkh.DeletedBy = yKienKhachHang.DeletedBy;
                             ykkh.Status = yKienKhachHang.Status;
+                            ykkh.NguoiKetLuan = yKienKhachHang.NguoiKetLuan;
+                            ykkh.KetLuan = yKienKhachHang.KetLuan;
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}'",
-                               ykkh.YKienKhachHangGUID.ToString(), ykkh.TenKhachHang, ykkh.SoDienThoai, ykkh.DiaChi, ykkh.YeuCau, ykkh.Nguon, ykkh.Note);
+                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}'",
+                               ykkh.YKienKhachHangGUID.ToString(), ykkh.TenKhachHang, ykkh.SoDienThoai, ykkh.DiaChi, ykkh.YeuCau, ykkh.Nguon, ykkh.Note, ykkh.NguoiKetLuan, ykkh.KetLuan);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
@@ -338,6 +339,67 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result UpdateKetLuan(string yKienKhachHangGUID, string ketLuan)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    
+                    YKienKhachHang ykkh = db.YKienKhachHangs.SingleOrDefault<YKienKhachHang>(s => s.YKienKhachHangGUID.ToString() == yKienKhachHangGUID);
+                    if (ykkh != null)
+                    {
+                        ykkh.NguoiKetLuan = Guid.Parse(Global.UserGUID);
+                        ykkh.KetLuan = ketLuan;
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}'",
+                            ykkh.YKienKhachHangGUID.ToString(), ykkh.TenKhachHang, ykkh.SoDienThoai, ykkh.DiaChi, ykkh.YeuCau, ykkh.Nguon, ykkh.Note, ykkh.NguoiKetLuan, ykkh.KetLuan);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Edit;
+                        tk.Action = "Cập nhật kết luận ý kiến khách hàng";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
             }
 
             return result;

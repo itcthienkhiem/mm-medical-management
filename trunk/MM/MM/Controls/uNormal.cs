@@ -112,8 +112,12 @@ namespace MM.Controls
                     cboDoiTuong.Text = "Hút thuốc - Không hút thuốc";
                     _uNormal_HutThuoc_KhongHutThuoc.SetChiTietXetNghiem_ManualList(ctxns);
                     break;
-                case DoiTuong.Sang:
-                case DoiTuong.Chieu:
+                case DoiTuong.Sang_Chung:
+                case DoiTuong.Chieu_Chung:
+                case DoiTuong.Sang_Nam:
+                case DoiTuong.Sang_Nu:
+                case DoiTuong.Chieu_Nam:
+                case DoiTuong.Chieu_Nu:
                     cboDoiTuong.Text = "Sáng - Chiều";
                     _uNormal_Sang_Chieu.SetChiTietXetNghiem_ManualList(ctxns);
                     break;

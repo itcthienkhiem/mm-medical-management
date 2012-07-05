@@ -134,7 +134,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CheckTenXetNghiemExist(string xetNghiem_ManualGUID, string tenXetNghiem)
+        public static Result CheckTenXetNghiemExist(string xetNghiem_ManualGUID, string tenXetNghiem, string groupName)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -144,10 +144,12 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 XetNghiem_Manual xn = null;
                 if (xetNghiem_ManualGUID == null || xetNghiem_ManualGUID == string.Empty)
-                    xn = db.XetNghiem_Manuals.SingleOrDefault<XetNghiem_Manual>(x => x.Fullname.ToLower() == tenXetNghiem.ToLower());
+                    xn = db.XetNghiem_Manuals.SingleOrDefault<XetNghiem_Manual>(x => x.Fullname.ToLower() == tenXetNghiem.ToLower() &&
+                        x.GroupName.ToLower() == groupName.ToLower());
                 else
                     xn = db.XetNghiem_Manuals.SingleOrDefault<XetNghiem_Manual>(x => x.Fullname.ToLower() == tenXetNghiem.ToLower() &&
-                                                                x.XetNghiem_ManualGUID.ToString() != xetNghiem_ManualGUID);
+                                                                x.XetNghiem_ManualGUID.ToString() != xetNghiem_ManualGUID &&
+                                                                x.GroupName.ToLower() == groupName.ToLower());
 
                 if (xn == null)
                     result.Error.Code = ErrorCode.NOT_EXIST;
@@ -333,6 +335,8 @@ namespace MM.Bussiness
                                     ct.ToTime = ctxn.ToTime;
                                     ct.FromOperator = ctxn.FromOperator;
                                     ct.ToOperator = ctxn.ToOperator;
+                                    ct.FromTimeOperator = ctxn.FromTimeOperator;
+                                    ct.ToTimeOperator = ctxn.ToTimeOperator;
                                     ct.XValue = ctxn.XValue;
                                     ct.UpdatedBy = Guid.Parse(Global.UserGUID);
                                     ct.UpdatedDate = DateTime.Now;

@@ -54,7 +54,7 @@
             this.groupBox1.Controls.Add(this._uNormal_Chung);
             this.groupBox1.Location = new System.Drawing.Point(1, 1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(593, 171);
+            this.groupBox1.Size = new System.Drawing.Size(593, 434);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bình thường";
@@ -127,15 +127,11 @@
             // _uNormal_Sang_Chieu
             // 
             this._uNormal_Sang_Chieu.ChieuChecked = false;
-            this._uNormal_Sang_Chieu.FromTime_Chieu = 4;
-            this._uNormal_Sang_Chieu.FromTime_Sang = 7;
             this._uNormal_Sang_Chieu.Location = new System.Drawing.Point(14, 54);
             this._uNormal_Sang_Chieu.Name = "_uNormal_Sang_Chieu";
             this._uNormal_Sang_Chieu.SangChecked = false;
-            this._uNormal_Sang_Chieu.Size = new System.Drawing.Size(515, 109);
+            this._uNormal_Sang_Chieu.Size = new System.Drawing.Size(541, 370);
             this._uNormal_Sang_Chieu.TabIndex = 5;
-            this._uNormal_Sang_Chieu.ToTime_Chieu = 8;
-            this._uNormal_Sang_Chieu.ToTime_Sang = 10;
             this._uNormal_Sang_Chieu.Visible = false;
             // 
             // _uNormal_TreEm_NguoiLon_NguoiCaoTuoi
@@ -187,7 +183,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.groupBox1);
             this.Name = "uNormal";
-            this.Size = new System.Drawing.Size(597, 175);
+            this.Size = new System.Drawing.Size(597, 439);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

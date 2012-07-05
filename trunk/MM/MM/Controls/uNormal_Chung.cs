@@ -72,9 +72,13 @@ namespace MM.Controls
         {
             set
             {
+                cboDonVi.Items.Clear();
                 if (value == null || value.Rows.Count <= 0) return;
                 foreach (DataRow row in value.Rows)
                 {
+                    if (row[0] == null || row[0] == DBNull.Value || row[0].ToString().Trim() == string.Empty)
+                        continue;
+
                     cboDonVi.Items.Add(row[0].ToString());
                 }
             }
