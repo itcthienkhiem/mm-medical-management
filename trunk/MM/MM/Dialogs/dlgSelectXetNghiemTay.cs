@@ -59,7 +59,7 @@ namespace MM.Dialogs
             {
                 DataTable dtSource = _dataSource as DataTable;
                 results = (from p in dtSource.AsEnumerable()
-                           orderby p.Field<string>("Fullname")
+                           orderby p.Field<int>("GroupID") ascending, p.Field<int>("Order") ascending 
                            select p).ToList<DataRow>();
 
                 newDataSource = dtSource.Clone();
@@ -80,7 +80,7 @@ namespace MM.Dialogs
                        where p.Field<string>("Fullname") != null &&
                        p.Field<string>("Fullname").Trim() != string.Empty &&
                        p.Field<string>("Fullname").ToLower().IndexOf(str) == 0
-                       orderby p.Field<string>("Fullname")
+                       orderby p.Field<int>("GroupID") ascending, p.Field<int>("Order") ascending 
                        select p).ToList<DataRow>();
 
 
