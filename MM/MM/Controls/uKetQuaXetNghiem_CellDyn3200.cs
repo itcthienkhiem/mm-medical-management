@@ -311,6 +311,15 @@ namespace MM.Controls
                 }
             }
         }
+
+        public void ResizeGUI()
+        {
+            int height1 = panel5.Height;
+            int height2 = panel4.Height;
+            int height = height1 + height2;
+            height = (int)(height * 0.7);
+            panel4.Height = height;
+        }
         #endregion
 
         #region Window Event Handlers
@@ -397,11 +406,7 @@ namespace MM.Controls
 
         private void uKetQuaXetNghiem_CellDyn3200_Load(object sender, EventArgs e)
         {
-            int height1 = panel5.Height;
-            int height2 = panel4.Height;
-            int height = height1 + height2;
-            height = (int)(height * 0.7);
-            panel4.Height = height;
+            
         }
         #endregion
 
