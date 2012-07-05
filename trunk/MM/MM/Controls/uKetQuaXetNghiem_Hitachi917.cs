@@ -296,16 +296,21 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những chi tiết kết quả xét nghiệm cần xóa.", IconType.Information);
         }
-        #endregion
 
-        #region Window Event Handlers
-        private void uKetQuaXetNghiem_Hitachi917_Load(object sender, EventArgs e)
+        public void ResizeGUI()
         {
             int height1 = panel5.Height;
             int height2 = panel4.Height;
             int height = height1 + height2;
             height = (int)(height * 0.7);
             panel4.Height = height;
+        }
+        #endregion
+
+        #region Window Event Handlers
+        private void uKetQuaXetNghiem_Hitachi917_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void btnView_Click(object sender, EventArgs e)

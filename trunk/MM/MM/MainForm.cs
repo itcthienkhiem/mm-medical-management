@@ -1523,6 +1523,7 @@ namespace MM
             this.Text = string.Format("{0} - Danh sach xet nghiem Hitachi917", Application.ProductName);
             ViewControl(_uDanhSachXetNghiemHitachi917List);
             _uDanhSachXetNghiemHitachi917List.DisplayAsThread();
+
         }
 
         private void OnDanhSachXetNghiemCellDyn3200()
@@ -1537,6 +1538,7 @@ namespace MM
             this.Text = string.Format("{0} - Ket qua xet nghiem tong hop", Application.ProductName);
             ViewControl(_uKetQuaXetNghiemTongHop);
             _uKetQuaXetNghiemTongHop.UpdateGUI();
+            _uKetQuaXetNghiemTongHop.ResizeGUI();
         }
 
         private void OnKetQuaXetNghiemTay()
@@ -1544,6 +1546,7 @@ namespace MM
             this.Text = string.Format("{0} - Ket qua xet nghiem tay", Application.ProductName);
             ViewControl(_uKetQuaXetNghiemTay);
             _uKetQuaXetNghiemTay.DisplayAsThread();
+            _uKetQuaXetNghiemTay.ResizeGUI();
         }
 
         private void OnXetNghiemTay()
@@ -1573,6 +1576,7 @@ namespace MM
             this.Text = string.Format("{0} - Ket qua xet nghiem CellDyn3200", Application.ProductName);
             ViewControl(_uKetQuaXetNghiem_CellDyn3200);
             _uKetQuaXetNghiem_CellDyn3200.DisplayAsThread();
+            _uKetQuaXetNghiem_CellDyn3200.ResizeGUI();
         }
 
         private void OnXetNghiem_Hitachi917()
@@ -1580,6 +1584,7 @@ namespace MM
             this.Text = string.Format("{0} - Ket qua xet nghiem Hitachi917", Application.ProductName);
             ViewControl(_uKetQuaXetNghiem_Hitachi917);
             _uKetQuaXetNghiem_Hitachi917.DisplayAsThread();
+            _uKetQuaXetNghiem_Hitachi917.ResizeGUI();
         }
 
         private void OnBooking()
