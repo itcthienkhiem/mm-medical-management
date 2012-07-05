@@ -56,16 +56,10 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
-        private void InitData()
-        {
-            dtpkNgayXetNghiem.Value = DateTime.Now;
-        }
-
         private void DisplayInfo()
         {
             try
             {
-                dtpkNgayXetNghiem.Value = Convert.ToDateTime(_drKetQuaXetNghiem["NgayXN"]);
                 txtBenhNhan.Text = _drKetQuaXetNghiem["FullName"].ToString();
                 txtBenhNhan.Tag = _drKetQuaXetNghiem["PatientGUID"].ToString();
 
@@ -155,7 +149,6 @@ namespace MM.Dialogs
 
                 MethodInvoker method = delegate
                 {
-                    _ketQuaXetNghiem.NgayXN = dtpkNgayXetNghiem.Value;
                     _ketQuaXetNghiem.PatientGUID = Guid.Parse(txtBenhNhan.Tag.ToString());
 
                     List<ChiTietKetQuaXetNghiem_Manual> ctkqxns = new List<ChiTietKetQuaXetNghiem_Manual>();
@@ -166,6 +159,8 @@ namespace MM.Dialogs
                         ct.XetNghiem_ManualGUID = Guid.Parse(dr["XetNghiem_ManualGUID"].ToString());
                         ct.TestResult = dr["TestResult"].ToString();
                         ct.LamThem = Convert.ToBoolean(dr["LamThem"]);
+                        ct.HasHutThuoc = Convert.ToBoolean(dr["HasHutThuoc"]);
+                        ct.NgayXetNghiem = Convert.ToDateTime(dr["NgayXetNghiem"]);
                         ctkqxns.Add(ct);
                     }
 
@@ -201,9 +196,12 @@ namespace MM.Dialogs
                 newRow["XetNghiem_ManualGUID"] = dlg.XetNghiem_ManualGUID;
                 newRow["TenXetNghiem"] = dlg.TenXetNghiem;
                 newRow["Fullname"] = dlg.TenXetNghiem;
+                newRow["GroupName"] = dlg.NhomXetNghiem;
                 newRow["TestResult"] = dlg.TestResult;
                 newRow["TinhTrang"] = (byte)TinhTrang.BinhThuong;
                 newRow["LamThem"] = dlg.LamThem;
+                newRow["NgayXetNghiem"] = dlg.NgayXetNghiem;
+                newRow["HasHutThuoc"] = dlg.HasHutThuoc;
                 dtChiTietKQXN.Rows.Add(newRow);
             }
         }
@@ -227,9 +225,13 @@ namespace MM.Dialogs
                 drChiTietKQXN["XetNghiem_ManualGUID"] = dlg.XetNghiem_ManualGUID;
                 drChiTietKQXN["XetNghiem_ManualGUID"] = dlg.XetNghiem_ManualGUID;
                 drChiTietKQXN["TenXetNghiem"] = dlg.TenXetNghiem;
+                drChiTietKQXN["Fullname"] = dlg.TenXetNghiem;
+                drChiTietKQXN["GroupName"] = dlg.NhomXetNghiem;
                 drChiTietKQXN["TestResult"] = dlg.TestResult;
                 drChiTietKQXN["TinhTrang"] = (byte)TinhTrang.BinhThuong;
                 drChiTietKQXN["LamThem"] = dlg.LamThem;
+                drChiTietKQXN["NgayXetNghiem"] = dlg.NgayXetNghiem;
+                drChiTietKQXN["HasHutThuoc"] = dlg.HasHutThuoc;
             }
         }
 
@@ -261,7 +263,6 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgAddKetQuaXetNghiemTay_Load(object sender, EventArgs e)
         {
-            InitData();
             if (!_isNew) DisplayInfo();
             else
             {

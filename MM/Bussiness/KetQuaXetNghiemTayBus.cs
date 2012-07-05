@@ -21,19 +21,23 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (tenBenhNhan.Trim() == string.Empty)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_ManualView WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} ORDER BY NgayXN DESC",
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} ORDER BY V.FullName",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived);
                 }
                 else
                 {
                     if (!isMaBenhNhan)
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_ManualView WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                        //query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_ManualView WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                        //   fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
+                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FullName LIKE N'%{3}%' ORDER BY V.FullName",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                     else
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_ManualView WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FileNum LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                        //query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_ManualView WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FileNum LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                        //   fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
+                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FileNum LIKE N'%{3}%' ORDER BY V.FullName",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                 }
@@ -53,213 +57,6 @@ namespace MM.Bussiness
 
             return result;
         }
-
-        //public static Result SetTinhTrangXetNghiem(DataRow drXetNghiem, DataRow row)
-        //{
-        //    Result result = new Result();
-
-        //    try
-        //    {
-        //        MMOverride db = new MMOverride();
-        //        string xetNghiem_ManualGUID = row["XetNghiem_ManualGUID"].ToString();
-        //        XetNghiem_Manual xn = db.XetNghiem_Manuals.SingleOrDefault<XetNghiem_Manual>(x => x.XetNghiem_ManualGUID.ToString() == xetNghiem_ManualGUID);
-        //        if (xn == null) return result;
-        //        List<ChiTietXetNghiem_Manual> ctxns = xn.ChiTietXetNghiem_Manuals.ToList<ChiTietXetNghiem_Manual>();
-        //        if (ctxns.Count <= 0) return result;
-
-        //        double testResult = 0;
-        //        ChiTietXetNghiem_Manual ctxn = null;
-
-        //        row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
-        //        row["BinhThuong"] = string.Empty;
-
-        //        try
-        //        {
-        //            testResult = Convert.ToDouble(row["TestResult"].ToString().Trim());
-        //            if (ctxns[0].DoiTuong == (byte)DoiTuong.Chung) ctxn = ctxns[0];
-        //            else if (ctxns[0].DoiTuong == (byte)DoiTuong.Nam || ctxns[0].DoiTuong == (byte)DoiTuong.Nu)
-        //            {
-        //                if (drXetNghiem["GenderAsStr"] == null || drXetNghiem["GenderAsStr"] == DBNull.Value) return result;
-        //                if (drXetNghiem["GenderAsStr"].ToString().ToLower() != "nam" && drXetNghiem["GenderAsStr"].ToString().ToLower() != "nữ") return result;
-
-        //                if (drXetNghiem["GenderAsStr"].ToString().ToLower() == "nam")
-        //                {
-        //                    ctxn = ctxns[0];
-        //                    if (ctxns[0].DoiTuong != (byte)DoiTuong.Nam) ctxn = ctxns[1];
-        //                }
-        //                else
-        //                {
-        //                    ctxn = ctxns[1];
-        //                    if (ctxns[1].DoiTuong != (byte)DoiTuong.Nu) ctxn = ctxns[0];
-        //                }
-        //            }
-        //            else
-        //            {
-        //                //KetQuaXetNghiem_ManualView kqxn = db.KetQuaXetNghiem_ManualViews.SingleOrDefault<KetQuaXetNghiem_ManualView>(k => k.KetQuaXetNghiemManualGUID.ToString() == ketQuaXetNghiemGUID);
-        //                //if (kqxn == null) continue;
-        //                //if (!kqxn.Age.HasValue || kqxn.Age.Value <= 0) continue;
-        //                //if (!kqxn.AgeUnit.HasValue || kqxn.AgeUnit.Value == (int)AgeUnit.Unknown ||
-        //                //    kqxn.AgeUnit == (int)AgeUnit.Days || kqxn.AgeUnit == (int)AgeUnit.Months) continue;
-        //                //if (kqxn.Age.Value < 18) continue;
-
-        //                for (int i = 0; i < ctxns.Count; i++)
-        //                {
-        //                    if (ctxns[i].DoiTuong == (byte)DoiTuong.NguoiLon)
-        //                    {
-        //                        ctxn = ctxns[i];
-        //                        break;
-        //                    }
-        //                }
-
-        //                if (ctxn == null)
-        //                {
-        //                    for (int i = 0; i < ctxns.Count; i++)
-        //                    {
-        //                        if (ctxns[i].DoiTuong == (byte)DoiTuong.NguoiCaoTuoi)
-        //                        {
-        //                            ctxn = ctxns[i];
-        //                            break;
-        //                        }
-        //                    }
-        //                }
-
-        //                if (ctxn == null)
-        //                {
-        //                    for (int i = 0; i < ctxns.Count; i++)
-        //                    {
-        //                        if (ctxns[i].DoiTuong == (byte)DoiTuong.TreEm)
-        //                        {
-        //                            ctxn = ctxns[i];
-        //                            break;
-        //                        }
-        //                    }
-        //                }
-        //                //if (kqxn.Age.Value <= 60) //Người trưởng thành
-        //                //{
-        //                //    ctxn = ctxns[0];
-        //                //    if (ctxns[0].DoiTuong != (byte)DoiTuong.NguoiLon) ctxn = ctxns[1];
-        //                //}
-        //                //else //Người cao tuổi
-        //                //{
-        //                //    ctxn = ctxns[1];
-        //                //    if (ctxns[1].DoiTuong != (byte)DoiTuong.NguoiCaoTuoi) ctxn = ctxns[0];
-        //                //}
-        //            }
-        //        }
-        //        catch
-        //        {
-                        
-        //        }
-                
-        //        if (ctxn == null) return result;
-
-        //        DoiTuong doiTuong = (DoiTuong)ctxn.DoiTuong;
-
-        //        if (ctxn.FromValue.HasValue && ctxn.ToValue.HasValue)
-        //        {
-        //            if (testResult < ctxn.FromValue.Value || testResult > ctxn.ToValue.Value)
-        //                row["TinhTrang"] = (byte)TinhTrang.BatThuong;
-        //            else
-        //                row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
-
-        //            switch (doiTuong)
-        //            {
-        //                case DoiTuong.Chung:
-        //                case DoiTuong.Chung_Sau2h:
-        //                    row["BinhThuong"] = string.Format("({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.Nam:
-        //                    row["BinhThuong"] = string.Format("(M: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.Nu:
-        //                    row["BinhThuong"] = string.Format("(F: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.NguoiLon:
-        //                    row["BinhThuong"] = string.Format("Adult ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.NguoiCaoTuoi:
-        //                    row["BinhThuong"] = string.Format("> 60 year ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.TreEm:
-        //                    row["BinhThuong"] = string.Format("Child ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //            }
-        //        }
-        //        else if (ctxn.FromValue.HasValue)
-        //        {
-        //            if (testResult <= ctxn.FromValue.Value)
-        //                row["TinhTrang"] = (byte)TinhTrang.BatThuong;
-        //            else
-        //                row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
-
-        //            switch (doiTuong)
-        //            {
-        //                case DoiTuong.Chung:
-        //                    row["BinhThuong"] = string.Format("(> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.Nam:
-        //                    row["BinhThuong"] = string.Format("(M > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.Nu:
-        //                    row["BinhThuong"] = string.Format("(F > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.NguoiLon:
-        //                    row["BinhThuong"] = string.Format("Adult (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.NguoiCaoTuoi:
-        //                    row["BinhThuong"] = string.Format("> 60 year (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.TreEm:
-        //                    row["BinhThuong"] = string.Format("Child (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
-        //                    break;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (testResult >= ctxn.ToValue.Value)
-        //                row["TinhTrang"] = (byte)TinhTrang.BatThuong;
-        //            else
-        //                row["TinhTrang"] = (byte)TinhTrang.BinhThuong;
-
-        //            switch (doiTuong)
-        //            {
-        //                case DoiTuong.Chung:
-        //                case DoiTuong.Chung_Sau2h:
-        //                    row["BinhThuong"] = string.Format("(< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.Nam:
-        //                    row["BinhThuong"] = string.Format("(M < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.Nu:
-        //                    row["BinhThuong"] = string.Format("(F < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.NguoiLon:
-        //                    row["BinhThuong"] = string.Format("Adult (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.NguoiCaoTuoi:
-        //                    row["BinhThuong"] = string.Format("< 60 year (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //                case DoiTuong.TreEm:
-        //                    row["BinhThuong"] = string.Format("Child (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
-        //                    break;
-        //            }
-        //        }
-
-        //        db.Dispose();
-        //    }
-        //    catch (System.Data.SqlClient.SqlException se)
-        //    {
-        //        result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
-        //        result.Error.Description = se.ToString();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        result.Error.Code = ErrorCode.UNKNOWN_ERROR;
-        //        result.Error.Description = e.ToString();
-        //    }
-
-        //    return result;
-        //}
 
         public static Result GetChiTietKetQuaXetNghiem(string ketQuaXetNghiemGUID)
         {
@@ -553,8 +350,8 @@ namespace MM.Bussiness
                                 }
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày xét nghiệm: '{3}'\n",
-                                    kqxn.KetQuaXetNghiemManualGUID.ToString(), fileNum, tenBenhNhan, kqxn.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"));
+                            desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}'\n",
+                                    kqxn.KetQuaXetNghiemManualGUID.ToString(), fileNum, tenBenhNhan);
                         }
                     }
 
@@ -633,7 +430,7 @@ namespace MM.Bussiness
                            
                             desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày xét nghiệm: '{3}', Tên xét nghiệm: '{4}'\n",
                                     kqxn.ChiTietKetQuaXetNghiem_ManualGUID.ToString(), fileNum, tenBenhNhan, 
-                                    kqxn.KetQuaXetNghiem_Manual.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"), kqxn.XetNghiem_Manual.Fullname);
+                                    kqxn.NgayXetNghiem.ToString("dd/MM/yyyy HH:mm:ss"), kqxn.XetNghiem_Manual.Fullname);
                         }
                     }
 
@@ -705,8 +502,8 @@ namespace MM.Bussiness
                             }
                         }
 
-                        desc += string.Format("- Kết quả xét nghiệm tay: GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày xét nghiệm: '{3}'\n",
-                                    kqxn.KetQuaXetNghiemManualGUID.ToString(), fileNum, tenBenhNhan, kqxn.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"));
+                        desc += string.Format("- Kết quả xét nghiệm tay: GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}''\n",
+                                    kqxn.KetQuaXetNghiemManualGUID.ToString(), fileNum, tenBenhNhan);
 
                         desc += "- Chi tiết kết quả xét nghiệm tay:\n";
                         //Chi tiết
@@ -720,8 +517,8 @@ namespace MM.Bussiness
                             db.ChiTietKetQuaXetNghiem_Manuals.InsertOnSubmit(ct);
                             db.SubmitChanges();
 
-                            desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}\n", ct.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
-                                ct.XetNghiem_Manual.Fullname, ct.TestResult);
+                            desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}, Ngày xét nghiệm: '{3}'\n", ct.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
+                                ct.XetNghiem_Manual.Fullname, ct.TestResult, ct.NgayXetNghiem.ToString("dd/MM/yyyy HH:mm:ss"));
                         }
 
                         //Tracking
@@ -761,8 +558,8 @@ namespace MM.Bussiness
                                 }
                             }
 
-                            desc += string.Format("- Kết quả xét nghiệm tay: GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày xét nghiệm: '{3}'\n",
-                                    ketQuaXN.KetQuaXetNghiemManualGUID.ToString(), fileNum, tenBenhNhan, ketQuaXN.NgayXN.ToString("dd/MM/yyyy HH:mm:ss"));
+                            desc += string.Format("- Kết quả xét nghiệm tay: GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}'\n",
+                                    ketQuaXN.KetQuaXetNghiemManualGUID.ToString(), fileNum, tenBenhNhan);
 
                             desc += "- Chi tiết kết quả xét nghiệm tay:\n";
                             //Chi tiết
@@ -790,8 +587,8 @@ namespace MM.Bussiness
                                     db.ChiTietKetQuaXetNghiem_Manuals.InsertOnSubmit(ct);
                                     db.SubmitChanges();
 
-                                    desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}\n", ct.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
-                                        ct.XetNghiem_Manual.Fullname, ct.TestResult);
+                                    desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}, Ngày xét nghiệm: '{3}'\n", ct.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
+                                        ct.XetNghiem_Manual.Fullname, ct.TestResult, ct.NgayXetNghiem.ToString("dd/MM/yyyy HH:mm:ss"));
                                 }
                                 else
                                 {
@@ -800,13 +597,24 @@ namespace MM.Bussiness
                                     chiTietKQXN.ToValue = null;
                                     chiTietKQXN.DoiTuong = null;
                                     chiTietKQXN.DonVi = null;
+                                    chiTietKQXN.FromOperator = null;
+                                    chiTietKQXN.ToOperator = null;
+                                    chiTietKQXN.FromAge = null;
+                                    chiTietKQXN.ToAge = null;
+                                    chiTietKQXN.FromTime = null;
+                                    chiTietKQXN.FromTime = null;
+                                    chiTietKQXN.FromTimeOperator = null;
+                                    chiTietKQXN.ToTimeOperator = null;
+                                    chiTietKQXN.XValue = null;
                                     chiTietKQXN.LamThem = ct.LamThem;
+                                    chiTietKQXN.HasHutThuoc = ct.HasHutThuoc;
+                                    chiTietKQXN.NgayXetNghiem = ct.NgayXetNghiem;
                                     chiTietKQXN.UpdatedBy = Guid.Parse(Global.UserGUID);
                                     chiTietKQXN.UpdatedDate = DateTime.Now;
                                     chiTietKQXN.Status = (byte)Status.Actived;
 
-                                    desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}\n", chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
-                                        chiTietKQXN.XetNghiem_Manual.Fullname, chiTietKQXN.TestResult);
+                                    desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}, Ngày xét nghiệm: '{3}'\n", chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
+                                        chiTietKQXN.XetNghiem_Manual.Fullname, chiTietKQXN.TestResult, chiTietKQXN.NgayXetNghiem.ToString("dd/MM/yyyy HH:mm:ss"));
                                 }
                             }
 
@@ -871,8 +679,8 @@ namespace MM.Bussiness
                     db.ChiTietKetQuaXetNghiem_Manuals.InsertOnSubmit(ctkqxn);
                     db.SubmitChanges();
 
-                    desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}", ctkqxn.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
-                        ctkqxn.XetNghiem_Manual.Fullname, ctkqxn.TestResult);
+                    desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}, Ngày xét nghiệm: '{3}'", ctkqxn.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
+                        ctkqxn.XetNghiem_Manual.Fullname, ctkqxn.TestResult, ctkqxn.NgayXetNghiem.ToString("dd/MM/yyyy HH:mm:ss"));
 
                     //Tracking
                     desc = desc.Substring(0, desc.Length - 1);
@@ -932,13 +740,24 @@ namespace MM.Bussiness
                         ct.FromValue = ctkqxn.FromValue;
                         ct.ToValue = ctkqxn.ToValue;
                         ct.DonVi = ctkqxn.DonVi;
+                        ct.FromOperator = ctkqxn.FromOperator;
+                        ct.ToOperator = ctkqxn.ToOperator;
+                        ct.FromAge = ctkqxn.FromAge;
+                        ct.ToAge = ctkqxn.ToAge;
+                        ct.FromTime = ctkqxn.FromTime;
+                        ct.FromTime = ctkqxn.FromTime;
+                        ct.FromTimeOperator = ctkqxn.FromTimeOperator;
+                        ct.ToTimeOperator = ctkqxn.ToTimeOperator;
+                        ct.XValue = ctkqxn.XValue;
                         ct.LamThem = ctkqxn.LamThem;
+                        ct.HasHutThuoc = ctkqxn.HasHutThuoc;
+                        ct.NgayXetNghiem = ctkqxn.NgayXetNghiem;
                         ct.UpdatedDate = DateTime.Now;
                         ct.UpdatedBy = Guid.Parse(Global.UserGUID);
                         ct.Status = (byte)Status.Actived;
 
-                        desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}", ct.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
-                            ct.XetNghiem_Manual.Fullname, ct.TestResult);
+                        desc += string.Format("- GUID: '{0}', Tên xét nghiệm: '{1}', Kết quả: {2}, Ngày xét nghiệm: '{3}'", ct.ChiTietKetQuaXetNghiem_ManualGUID.ToString(),
+                            ct.XetNghiem_Manual.Fullname, ct.TestResult, ct.NgayXetNghiem.ToString("dd/MM/yyyy HH:mm:ss"));
 
                         //Tracking
                         desc = desc.Substring(0, desc.Length - 1);

@@ -222,6 +222,10 @@ namespace MM.Controls
                 newRow["Fullname"] = dlg.TenXetNghiem;
                 newRow["TestResult"] = dlg.TestResult;
                 newRow["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+                newRow["LamThem"] = dlg.LamThem;
+                newRow["NgayXetNghiem"] = dlg.NgayXetNghiem;
+                newRow["GroupName"] = dlg.NhomXetNghiem;
+                newRow["HasHutThuoc"] = dlg.HasHutThuoc;
 
                 ChiTietKetQuaXetNghiem_Manual ctkqxn = new ChiTietKetQuaXetNghiem_Manual();
                 ctkqxn.KetQuaXetNghiem_ManualGUID = Guid.Parse(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
@@ -229,6 +233,9 @@ namespace MM.Controls
                 ctkqxn.XetNghiem_ManualGUID = Guid.Parse(dlg.XetNghiem_ManualGUID);
                 ctkqxn.TestResult = dlg.TestResult;
                 ctkqxn.TinhTrang = (byte)TinhTrang.BinhThuong;
+                ctkqxn.LamThem = dlg.LamThem;
+                ctkqxn.HasHutThuoc = dlg.HasHutThuoc;
+                ctkqxn.NgayXetNghiem = dlg.NgayXetNghiem;
 
                 Result result = KetQuaXetNghiemTayBus.InsertChiTietKQXN(ctkqxn);
                 if (result.IsOK)

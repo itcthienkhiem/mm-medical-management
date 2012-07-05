@@ -40,9 +40,9 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xetNghiemManualBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -57,14 +57,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(419, 38);
+            this.panel1.Size = new System.Drawing.Size(600, 38);
             this.panel1.TabIndex = 1;
             // 
             // txtXetNghiem
             // 
             this.txtXetNghiem.Location = new System.Drawing.Point(94, 9);
             this.txtXetNghiem.Name = "txtXetNghiem";
-            this.txtXetNghiem.Size = new System.Drawing.Size(314, 20);
+            this.txtXetNghiem.Size = new System.Drawing.Size(494, 20);
             this.txtXetNghiem.TabIndex = 5;
             this.txtXetNghiem.TextChanged += new System.EventHandler(this.txtXetNghiem_TextChanged);
             this.txtXetNghiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtXetNghiem_KeyDown);
@@ -85,7 +85,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 354);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(419, 38);
+            this.panel2.Size = new System.Drawing.Size(600, 38);
             this.panel2.TabIndex = 2;
             // 
             // btnCancel
@@ -93,7 +93,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(211, 6);
+            this.btnCancel.Location = new System.Drawing.Point(302, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 18;
@@ -105,7 +105,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.check;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(132, 6);
+            this.btnOK.Location = new System.Drawing.Point(223, 6);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 17;
@@ -118,7 +118,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 38);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(419, 316);
+            this.panel3.Size = new System.Drawing.Size(600, 316);
             this.panel3.TabIndex = 3;
             // 
             // dgXetNghiem
@@ -138,7 +138,7 @@
             this.dgXetNghiem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgXetNghiem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fullnameDataGridViewTextBoxColumn,
-            this.LoaiXN});
+            this.GroupName});
             this.dgXetNghiem.DataSource = this.xetNghiemManualBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -158,9 +158,13 @@
             this.dgXetNghiem.ReadOnly = true;
             this.dgXetNghiem.RowHeadersWidth = 30;
             this.dgXetNghiem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgXetNghiem.Size = new System.Drawing.Size(419, 316);
+            this.dgXetNghiem.Size = new System.Drawing.Size(600, 316);
             this.dgXetNghiem.TabIndex = 9;
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
+            // 
+            // xetNghiemManualBindingSource
+            // 
+            this.xetNghiemManualBindingSource.DataSource = typeof(MM.Databasae.XetNghiem_Manual);
             // 
             // fullnameDataGridViewTextBoxColumn
             // 
@@ -170,16 +174,13 @@
             this.fullnameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fullnameDataGridViewTextBoxColumn.Width = 250;
             // 
-            // LoaiXN
+            // GroupName
             // 
-            this.LoaiXN.HeaderText = "Loại xét nghiệm";
-            this.LoaiXN.Name = "LoaiXN";
-            this.LoaiXN.ReadOnly = true;
-            this.LoaiXN.Width = 120;
-            // 
-            // xetNghiemManualBindingSource
-            // 
-            this.xetNghiemManualBindingSource.DataSource = typeof(MM.Databasae.XetNghiem_Manual);
+            this.GroupName.DataPropertyName = "GroupName";
+            this.GroupName.HeaderText = "Nhóm xét nghiệm";
+            this.GroupName.Name = "GroupName";
+            this.GroupName.ReadOnly = true;
+            this.GroupName.Width = 300;
             // 
             // dlgSelectXetNghiemTay
             // 
@@ -187,7 +188,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(419, 392);
+            this.ClientSize = new System.Drawing.Size(600, 392);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -221,8 +222,8 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Panel panel3;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgXetNghiem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LoaiXN;
         private System.Windows.Forms.BindingSource xetNghiemManualBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
     }
 }

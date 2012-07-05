@@ -258,7 +258,7 @@ namespace MM.Dialogs
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
-                cboNhomXetNghiem.Items.Add(string.Empty);
+                //cboNhomXetNghiem.Items.Add(string.Empty);
                 foreach (DataRow row in dt.Rows)
                 {
                     string nhomXetNghiem = row[0].ToString().Trim();

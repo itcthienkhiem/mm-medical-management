@@ -19,6 +19,9 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private DataRow _drChiTietKQXN = null;
         private DataTable _dtChiTietKQXN = null;
+        private string _tenXetNghiem = string.Empty;
+        private string _nhomXetNghiem = string.Empty;
+        private DataTable _dtXetNghiem = null;
         #endregion
 
         #region Constructor
@@ -41,12 +44,23 @@ namespace MM.Dialogs
         #region Properties
         public string XetNghiem_ManualGUID
         {
-            get { return cboXetNghiem.SelectedValue.ToString(); }
+            get 
+            { 
+                if (txtXetNghiem.Tag != null)
+                    return txtXetNghiem.Tag.ToString();
+
+                return string.Empty;
+            }
         }
 
         public string TenXetNghiem
         {
-            get { return cboXetNghiem.Text; }
+            get { return _tenXetNghiem; }
+        }
+
+        public string NhomXetNghiem
+        {
+            get { return _nhomXetNghiem; }
         }
 
         public string TestResult
@@ -58,6 +72,16 @@ namespace MM.Dialogs
         {
             get { return chkLamThem.Checked; }
         }
+
+        public bool HasHutThuoc
+        {
+            get { return chkHutThuoc.Checked; }
+        }
+
+        public DateTime NgayXetNghiem
+        {
+            get { return dtpkNgayXetNghiem.Value; }
+        }
         #endregion
 
         #region UI Command
@@ -65,21 +89,31 @@ namespace MM.Dialogs
         {
             Result result = XetNghiemTayBus.GetXetNghiemList();
             if (result.IsOK)
-                cboXetNghiem.DataSource = result.QueryResult as DataTable;
+                _dtXetNghiem = result.QueryResult as DataTable;
             else
             {
                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiemTayBus.GetXetNghiemList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiemTayBus.GetXetNghiemList"));
             }
+
+            dtpkNgayXetNghiem.Value = DateTime.Now;
         }
 
         private void DisplayInfo()
         {
             try
             {
-                cboXetNghiem.SelectedValue = _drChiTietKQXN["XetNghiem_ManualGUID"].ToString();
+                txtXetNghiem.Tag = _drChiTietKQXN["XetNghiem_ManualGUID"].ToString();
+                _tenXetNghiem = _drChiTietKQXN["FullName"].ToString();
+                _nhomXetNghiem = _drChiTietKQXN["GroupName"].ToString();
+                txtXetNghiem.Text = string.Format("{0} ({1})", _tenXetNghiem, _nhomXetNghiem);
+                dtpkNgayXetNghiem.Value = Convert.ToDateTime(_drChiTietKQXN["NgayXetNghiem"]);
+
                 txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
                 chkLamThem.Checked = Convert.ToBoolean(_drChiTietKQXN["LamThem"]);
+
+                if (_drChiTietKQXN["HasHutThuoc"] != null && _drChiTietKQXN["HasHutThuoc"] != DBNull.Value)
+                    chkHutThuoc.Checked = Convert.ToBoolean(_drChiTietKQXN["HasHutThuoc"]);
             }
             catch (Exception e)
             {
@@ -90,10 +124,10 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (cboXetNghiem.Text == string.Empty)
+            if (txtXetNghiem.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn 1 xét nghiệm.", IconType.Information);
-                cboXetNghiem.Focus();
+                btnChonXetNghiem.Focus();
                 return false;
             }
 
@@ -138,11 +172,14 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void btnChonXetNghiem_Click(object sender, EventArgs e)
         {
-            DataTable dataSource = cboXetNghiem.DataSource as DataTable;
-            dlgSelectXetNghiemTay dlg = new dlgSelectXetNghiemTay(dataSource);
+            dlgSelectXetNghiemTay dlg = new dlgSelectXetNghiemTay(_dtXetNghiem);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                cboXetNghiem.SelectedValue = dlg.XetNghiem_ManualGUID;
+                DataRow row = dlg.XetNghiemRow;
+                txtXetNghiem.Tag = row["XetNghiem_ManualGUID"].ToString();
+                _tenXetNghiem = row["FullName"].ToString();
+                _nhomXetNghiem = row["GroupName"].ToString();
+                txtXetNghiem.Text = string.Format("{0} ({1})", _tenXetNghiem, _nhomXetNghiem);                
             }
         }
 
