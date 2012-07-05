@@ -168,56 +168,56 @@ namespace MM.Bussiness
                             case DoiTuong.Chung:
                             //case DoiTuong.Chung_Sau2h:
                                 if (kq == 0)
-                                    row["BinhThuong"] = string.Format("({0} - {1} {2})", fromValue, toValue, donVi);
+                                    row["BinhThuong"] = string.Format("({0}-{1} {2})", fromValue, toValue, donVi);
                                 else if (kq == 1)
-                                    row["BinhThuong"] = string.Format("(< {0} {1})", toValue, donVi);
+                                    row["BinhThuong"] = string.Format("(<{0} {1})", toValue, donVi);
                                 else
-                                    row["BinhThuong"] = string.Format("(> {0} {1})", fromValue, donVi);
+                                    row["BinhThuong"] = string.Format("(>{0} {1})", fromValue, donVi);
                                 break;
                             case DoiTuong.Nam:
                             //case DoiTuong.Nam_Sau2h:
                                 if (kq == 0)
-                                    row["BinhThuong"] = string.Format("(M: {0} - {1} {2})", fromValue, toValue, donVi);
+                                    row["BinhThuong"] = string.Format("(M: {0}-{1} {2})", fromValue, toValue, donVi);
                                 else if (kq == 1)
-                                    row["BinhThuong"] = string.Format("(M < {0} {1})", toValue, donVi);
+                                    row["BinhThuong"] = string.Format("(M <{0} {1})", toValue, donVi);
                                 else
-                                    row["BinhThuong"] = string.Format("(M > {0} {1})", fromValue, donVi);
+                                    row["BinhThuong"] = string.Format("(M >{0} {1})", fromValue, donVi);
                                 break;
                             case DoiTuong.Nu:
                             //case DoiTuong.Nu_Sau2h:
                                 if (kq == 0)
-                                    row["BinhThuong"] = string.Format("(F: {0} - {1} {2})", fromValue, toValue, donVi);
+                                    row["BinhThuong"] = string.Format("(F: {0}-{1} {2})", fromValue, toValue, donVi);
                                 else if (kq == 1)
-                                    row["BinhThuong"] = string.Format("(F < {0} {1})", toValue, donVi);
+                                    row["BinhThuong"] = string.Format("(F <{0} {1})", toValue, donVi);
                                 else
-                                    row["BinhThuong"] = string.Format("(F > {0} {1})", fromValue, donVi);
+                                    row["BinhThuong"] = string.Format("(F >{0} {1})", fromValue, donVi);
                                 break;
                             case DoiTuong.TreEm:
                             //case DoiTuong.TreEm_Sau2h:
                                 if (kq == 0)
-                                    row["BinhThuong"] = string.Format("Child ({0} - {1} {2})", fromValue, toValue, donVi);
+                                    row["BinhThuong"] = string.Format("Child ({0}-{1} {2})", fromValue, toValue, donVi);
                                 else if (kq == 1)
-                                    row["BinhThuong"] = string.Format("Child (< {0} {1})", toValue, donVi);
+                                    row["BinhThuong"] = string.Format("Child (<{0} {1})", toValue, donVi);
                                 else
-                                    row["BinhThuong"] = string.Format("Child (> {0} {1})", fromValue, donVi);
+                                    row["BinhThuong"] = string.Format("Child (>{0} {1})", fromValue, donVi);
                                 break;
                             case DoiTuong.NguoiLon:
                             //case DoiTuong.NguoiLon_Sau2h:
                                 if (kq == 0)
-                                    row["BinhThuong"] = string.Format("Adult ({0} - {1} {2})", fromValue, toValue, donVi);
+                                    row["BinhThuong"] = string.Format("Adult ({0}-{1} {2})", fromValue, toValue, donVi);
                                 else if (kq == 1)
-                                    row["BinhThuong"] = string.Format("Adult (< {0} {1})", toValue, donVi);
+                                    row["BinhThuong"] = string.Format("Adult (<{0} {1})", toValue, donVi);
                                 else
-                                    row["BinhThuong"] = string.Format("Adult (> {0} {1})", fromValue, donVi);
+                                    row["BinhThuong"] = string.Format("Adult (>{0} {1})", fromValue, donVi);
                                 break;
                             case DoiTuong.NguoiCaoTuoi:
                             //case DoiTuong.NguoiCaoTuoi_Sau2h:
                                 if (kq == 0)
-                                    row["BinhThuong"] = string.Format("> 60 year ({0} - {1} {2})", fromValue, toValue, donVi);
+                                    row["BinhThuong"] = string.Format(">60 year ({0}-{1} {2})", fromValue, toValue, donVi);
                                 else if (kq == 1)
-                                    row["BinhThuong"] = string.Format("> 60 year (< {0} {1})", toValue, donVi);
+                                    row["BinhThuong"] = string.Format(">60 year (<{0} {1})", toValue, donVi);
                                 else
-                                    row["BinhThuong"] = string.Format("> 60 year (> {0} {1})", fromValue, donVi);
+                                    row["BinhThuong"] = string.Format(">60 year (>{0} {1})", fromValue, donVi);
                                 break;
                         }
                         #endregion
@@ -328,27 +328,27 @@ namespace MM.Bussiness
                             {
                                 case DoiTuong.Chung:
                                 //case DoiTuong.Chung_Sau2h:
-                                    row["BinhThuong"] = string.Format("({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("({0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.Nam:
                                 //case DoiTuong.Nam_Sau2h:
-                                    row["BinhThuong"] = string.Format("(M: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("(M: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.Nu:
                                 //case DoiTuong.Nu_Sau2h:
-                                    row["BinhThuong"] = string.Format("(F: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("(F: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.TreEm:
                                 //case DoiTuong.TreEm_Sau2h:
-                                    row["BinhThuong"] = string.Format("Child ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("Child ({0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.NguoiLon:
                                 //case DoiTuong.NguoiLon_Sau2h:
-                                    row["BinhThuong"] = string.Format("Adult ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("Adult ({0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.NguoiCaoTuoi:
                                 //case DoiTuong.NguoiCaoTuoi_Sau2h:
-                                    row["BinhThuong"] = string.Format("> 60 year ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format(">60 year ({0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                             }
                         }
@@ -363,27 +363,27 @@ namespace MM.Bussiness
                             {
                                 case DoiTuong.Chung:
                                 //case DoiTuong.Chung_Sau2h:
-                                    row["BinhThuong"] = string.Format("(> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("(>{0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.Nam:
                                 //case DoiTuong.Nam_Sau2h:
-                                    row["BinhThuong"] = string.Format("(M > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("(M >{0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.Nu:
                                 //case DoiTuong.Nu_Sau2h:
-                                    row["BinhThuong"] = string.Format("(F > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("(F >{0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.TreEm:
                                 //case DoiTuong.TreEm_Sau2h:
-                                    row["BinhThuong"] = string.Format("Child (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("Child (>{0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.NguoiLon:
                                 //case DoiTuong.NguoiLon_Sau2h:
-                                    row["BinhThuong"] = string.Format("Adult (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("Adult (>{0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.NguoiCaoTuoi:
                                 //case DoiTuong.NguoiCaoTuoi_Sau2h:
-                                    row["BinhThuong"] = string.Format("> 60 year (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format(">60 year (>{0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
                                     break;
                             }
                         }
@@ -398,27 +398,27 @@ namespace MM.Bussiness
                             {
                                 case DoiTuong.Chung:
                                 //case DoiTuong.Chung_Sau2h:
-                                    row["BinhThuong"] = string.Format("(< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("(<{0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.Nam:
                                 //case DoiTuong.Nam_Sau2h:
-                                    row["BinhThuong"] = string.Format("(M < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("(M <{0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.Nu:
                                 //case DoiTuong.Nu_Sau2h:
-                                    row["BinhThuong"] = string.Format("(F < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("(F <{0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.TreEm:
                                 //case DoiTuong.TreEm_Sau2h:
-                                    row["BinhThuong"] = string.Format("Child (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("Child (<{0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.NguoiLon:
                                 //case DoiTuong.NguoiLon_Sau2h:
-                                    row["BinhThuong"] = string.Format("Adult (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("Adult (<{0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                                 case DoiTuong.NguoiCaoTuoi:
                                 //case DoiTuong.NguoiCaoTuoi_Sau2h:
-                                    row["BinhThuong"] = string.Format("< 60 year (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                                    row["BinhThuong"] = string.Format("<60 year (<{0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
                                     break;
                             }
                         }
@@ -901,56 +901,56 @@ namespace MM.Bussiness
                                 case DoiTuong.Chung:
                                 //case DoiTuong.Chung_Sau2h:
                                     if (kq == 0)
-                                        result.QueryResult = string.Format("({0} - {1} {2})", fromValue, toValue, donVi);
+                                        result.QueryResult = string.Format("({0}-{1} {2})", fromValue, toValue, donVi);
                                     else if (kq == 1)
-                                        result.QueryResult = string.Format("(< {0} {1})", toValue, donVi);
+                                        result.QueryResult = string.Format("(<{0} {1})", toValue, donVi);
                                     else
-                                        result.QueryResult = string.Format("(> {0} {1})", fromValue, donVi);
+                                        result.QueryResult = string.Format("(>{0} {1})", fromValue, donVi);
                                     break;
                                 case DoiTuong.Nam:
                                 //case DoiTuong.Nam_Sau2h:
                                     if (kq == 0)
-                                        result.QueryResult = string.Format("(M: {0} - {1} {2})", fromValue, toValue, donVi);
+                                        result.QueryResult = string.Format("(M: {0}-{1} {2})", fromValue, toValue, donVi);
                                     else if (kq == 1)
-                                        result.QueryResult = string.Format("(M < {0} {1})", toValue, donVi);
+                                        result.QueryResult = string.Format("(M <{0} {1})", toValue, donVi);
                                     else
-                                        result.QueryResult = string.Format("(M > {0} {1})", fromValue, donVi);
+                                        result.QueryResult = string.Format("(M >{0} {1})", fromValue, donVi);
                                     break;
                                 case DoiTuong.Nu:
                                 //case DoiTuong.Nu_Sau2h:
                                     if (kq == 0)
-                                        result.QueryResult = string.Format("(F: {0} - {1} {2})", fromValue, toValue, donVi);
+                                        result.QueryResult = string.Format("(F: {0}-{1} {2})", fromValue, toValue, donVi);
                                     else if (kq == 1)
-                                        result.QueryResult = string.Format("(F < {0} {1})", toValue, donVi);
+                                        result.QueryResult = string.Format("(F <{0} {1})", toValue, donVi);
                                     else
-                                        result.QueryResult = string.Format("(F > {0} {1})", fromValue, donVi);
+                                        result.QueryResult = string.Format("(F >{0} {1})", fromValue, donVi);
                                     break;
                                 case DoiTuong.TreEm:
                                 //case DoiTuong.TreEm_Sau2h:
                                     if (kq == 0)
-                                        result.QueryResult = string.Format("Child ({0} - {1} {2})", fromValue, toValue, donVi);
+                                        result.QueryResult = string.Format("Child ({0}-{1} {2})", fromValue, toValue, donVi);
                                     else if (kq == 1)
-                                        result.QueryResult = string.Format("Child (< {0} {1})", toValue, donVi);
+                                        result.QueryResult = string.Format("Child (<{0} {1})", toValue, donVi);
                                     else
-                                        result.QueryResult = string.Format("Child (> {0} {1})", fromValue, donVi);
+                                        result.QueryResult = string.Format("Child (>{0} {1})", fromValue, donVi);
                                     break;
                                 case DoiTuong.NguoiLon:
                                 //case DoiTuong.NguoiLon_Sau2h:
                                     if (kq == 0)
-                                        result.QueryResult = string.Format("Adult ({0} - {1} {2})", fromValue, toValue, donVi);
+                                        result.QueryResult = string.Format("Adult ({0}-{1} {2})", fromValue, toValue, donVi);
                                     else if (kq == 1)
-                                        result.QueryResult = string.Format("Adult (< {0} {1})", toValue, donVi);
+                                        result.QueryResult = string.Format("Adult (<{0} {1})", toValue, donVi);
                                     else
-                                        result.QueryResult = string.Format("Adult (> {0} {1})", fromValue, donVi);
+                                        result.QueryResult = string.Format("Adult (>{0} {1})", fromValue, donVi);
                                     break;
                                 case DoiTuong.NguoiCaoTuoi:
                                 //case DoiTuong.NguoiCaoTuoi_Sau2h:
                                     if (kq == 0)
-                                        result.QueryResult = string.Format("> 60 year ({0} - {1} {2})", fromValue, toValue, donVi);
+                                        result.QueryResult = string.Format(">60 year ({0}-{1} {2})", fromValue, toValue, donVi);
                                     else if (kq == 1)
-                                        result.QueryResult = string.Format("> 60 year (< {0} {1})", toValue, donVi);
+                                        result.QueryResult = string.Format(">60 year (<{0} {1})", toValue, donVi);
                                     else
-                                        result.QueryResult = string.Format("> 60 year (> {0} {1})", fromValue, donVi);
+                                        result.QueryResult = string.Format(">60 year (>{0} {1})", fromValue, donVi);
                                     break;
                             }
                         }

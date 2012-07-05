@@ -408,64 +408,64 @@ namespace MM.Bussiness
                 switch (doiTuong)
                 {
                     case DoiTuong.Chung:
-                        normalString = string.Format("({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format("({0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                         break;
                     case DoiTuong.Nam:
                         if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
-                            normalString = string.Format("(M {3}-{4}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value, ctxn.ToAge.Value);
+                            normalString = string.Format("(M {3}-{4}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value, ctxn.ToAge.Value);
                         else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
-                            normalString = string.Format("(M >{3}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value);
+                            normalString = string.Format("(M >{3}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value);
                         else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
-                            normalString = string.Format("(M <{3}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.ToAge.Value);
+                            normalString = string.Format("(M <{3}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.ToAge.Value);
                         else
-                            normalString = string.Format("(M: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                            normalString = string.Format("(M: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                         break;
                     case DoiTuong.Nu:
                         if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
-                            normalString = string.Format("(F {3}-{4}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value, ctxn.ToAge.Value);
+                            normalString = string.Format("(F {3}-{4}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value, ctxn.ToAge.Value);
                         else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
-                            normalString = string.Format("(F >{3}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value);
+                            normalString = string.Format("(F >{3}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value);
                         else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
-                            normalString = string.Format("(F <{3}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.ToAge.Value);
+                            normalString = string.Format("(F <{3}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.ToAge.Value);
                         else
-                            normalString = string.Format("(F: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                            normalString = string.Format("(F: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                         break;
                     case DoiTuong.TreEm:
-                        normalString = string.Format("Child ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format("Child ({0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                         break;
                     case DoiTuong.NguoiLon:
-                        normalString = string.Format("Adult ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format("Adult ({0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                         break;
                     case DoiTuong.NguoiCaoTuoi:
-                        normalString = string.Format("> 60 year ({0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format(">60 year ({0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                         break;
                     case DoiTuong.AmTinhDuongTinh:
-                        normalString = string.Format("(Negative {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format("(Negative {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                         break;
 
                     case DoiTuong.HutThuoc:
-                        normalString = string.Format("(Smoke {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format("(Smoke {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                         break;
 
                     case DoiTuong.KhongHutThuoc:
-                        normalString = string.Format("(Nosmoke {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format("(Nosmoke {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi);
                         break;
 
                     case DoiTuong.Khac:
-                        normalString = string.Format("{0} - {1} (+)/ {2}X", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.XValue);
+                        normalString = string.Format("{0}-{1} (+)/ {2}X", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.XValue);
                         break;
 
                     case DoiTuong.Sang_Chung:
                     case DoiTuong.Chieu_Chung:
                         if (ctxn.FromTime != null && ctxn.FromTime.HasValue && ctxn.ToTime != null && ctxn.ToTime.HasValue)
-                            normalString = string.Format("({3}-{4}h: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromTime.Value, ctxn.ToTime.Value);
+                            normalString = string.Format("({3}-{4}h: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromTime.Value, ctxn.ToTime.Value);
                         else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
                         {
                             string op = ctxn.FromTimeOperator.Replace("<=", ">=").Replace("<", ">");
-                            normalString = string.Format("({3}{4}h: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, op, ctxn.FromTime.Value);
+                            normalString = string.Format("({3}{4}h: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, op, ctxn.FromTime.Value);
                         }
                         else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
-                            normalString = string.Format("({3}{4}h: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.ToTimeOperator, ctxn.FromTime.Value);
+                            normalString = string.Format("({3}{4}h: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, ctxn.ToTimeOperator, ctxn.FromTime.Value);
                         break;
 
                     case DoiTuong.Sang_Nam:
@@ -473,16 +473,16 @@ namespace MM.Bussiness
                         if (ctxn.FromTime != null && ctxn.FromTime.HasValue && ctxn.ToTime != null && ctxn.ToTime.HasValue)
                         {
                             if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
-                                normalString = string.Format("({3}-{4}h) (M {5}-{6}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
+                                normalString = string.Format("({3}-{4}h) (M {5}-{6}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
                                     ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value);
                             else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
-                                normalString = string.Format("({3}-{4}h) (M >{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
+                                normalString = string.Format("({3}-{4}h) (M >{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
                                     ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value);
                             else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
-                                normalString = string.Format("({3}-{4}h) (M <{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
+                                normalString = string.Format("({3}-{4}h) (M <{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
                                     ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.ToAge.Value);
                             else
-                                normalString = string.Format("({3}-{4}h) (M: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
+                                normalString = string.Format("({3}-{4}h) (M: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
                                     ctxn.FromTime.Value, ctxn.ToTime.Value);
                         }
                         else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
@@ -490,31 +490,31 @@ namespace MM.Bussiness
                             string op = ctxn.FromTimeOperator.Replace("<=", ">=").Replace("<", ">");
 
                             if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
-                                normalString = string.Format("({3}{4}h) (M {5}-{6}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
+                                normalString = string.Format("({3}{4}h) (M {5}-{6}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
                                     op, ctxn.FromTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value);
                             else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
-                                normalString = string.Format("({3}{4}h) (M >{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
+                                normalString = string.Format("({3}{4}h) (M >{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
                                     op, ctxn.FromTime.Value, ctxn.FromAge.Value);
                             else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
-                                normalString = string.Format("({3}{4}h) (M <{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
+                                normalString = string.Format("({3}{4}h) (M <{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
                                     op, ctxn.FromTime.Value, ctxn.ToAge.Value);
                             else
-                                normalString = string.Format("({3}{4}h) (M: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
+                                normalString = string.Format("({3}{4}h) (M: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
                                     op, ctxn.FromTime.Value);
                         }
                         else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
                         {
                             if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
-                                normalString = string.Format("({3}{4}h) (M {5}-{6}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (M {5}-{6}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value);
                             else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
-                                normalString = string.Format("({3}{4}h) (M >{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (M >{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value);
                             else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
-                                normalString = string.Format("({3}{4}h) (M <{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (M <{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.ToAge.Value);
                             else
-                                normalString = string.Format("({3}{4}h) (M: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
+                                normalString = string.Format("({3}{4}h) (M: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi, 
                                     ctxn.ToTimeOperator, ctxn.ToTime.Value);
                         }
                         break;
@@ -524,16 +524,16 @@ namespace MM.Bussiness
                         if (ctxn.FromTime != null && ctxn.FromTime.HasValue && ctxn.ToTime != null && ctxn.ToTime.HasValue)
                         {
                             if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
-                                normalString = string.Format("({3}-{4}h) (F {5}-{6}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}-{4}h) (F {5}-{6}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value);
                             else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
-                                normalString = string.Format("({3}-{4}h) (F >{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}-{4}h) (F >{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value);
                             else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
-                                normalString = string.Format("({3}-{4}h) (F <{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}-{4}h) (F <{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.ToAge.Value);
                             else
-                                normalString = string.Format("({3}-{4}h) (F: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}-{4}h) (F: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.FromTime.Value, ctxn.ToTime.Value);
                         }
                         else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
@@ -541,31 +541,31 @@ namespace MM.Bussiness
                             string op = ctxn.FromTimeOperator.Replace("<=", ">=").Replace("<", ">");
 
                             if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
-                                normalString = string.Format("({3}{4}h) (F {5}-{6}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (F {5}-{6}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     op, ctxn.FromTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value);
                             else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
-                                normalString = string.Format("({3}{4}h) (F >{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (F >{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     op, ctxn.FromTime.Value, ctxn.FromAge.Value);
                             else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
-                                normalString = string.Format("({3}{4}h) (F <{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (F <{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     op, ctxn.FromTime.Value, ctxn.ToAge.Value);
                             else
-                                normalString = string.Format("({3}{4}h) (F: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (F: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     op, ctxn.FromTime.Value);
                         }
                         else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
                         {
                             if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
-                                normalString = string.Format("({3}{4}h) (F {5}-{6}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (F {5}-{6}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value);
                             else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
-                                normalString = string.Format("({3}{4}h) (F >{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (F >{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value);
                             else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
-                                normalString = string.Format("({3}{4}h) (F <{5}: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (F <{5}: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.ToAge.Value);
                             else
-                                normalString = string.Format("({3}{4}h) (F: {0} - {1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
+                                normalString = string.Format("({3}{4}h) (F: {0}-{1} {2})", ctxn.FromValue.Value, ctxn.ToValue.Value, ctxn.DonVi,
                                     ctxn.ToTimeOperator, ctxn.ToTime.Value);
                         }
                         break;
@@ -580,25 +580,168 @@ namespace MM.Bussiness
                 else if (ctxn.FromOperator == "<=" && testResult < ctxn.FromValue.Value)
                     tinhTrang = TinhTrang.BatThuong;
 
+                string fOp = ctxn.FromOperator.Replace("<=", ">=").Replace("<", ">");
+
                 switch (doiTuong)
                 {
                     case DoiTuong.Chung:
-                        normalString = string.Format("(> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                        normalString = string.Format("({2}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, fOp);
                         break;
                     case DoiTuong.Nam:
-                        normalString = string.Format("(M > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                        if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                            normalString = string.Format("(M {2}-{3}: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, ctxn.FromAge.Value, ctxn.ToAge.Value, fOp);
+                        else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                            normalString = string.Format("(M >{2}: {3}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, ctxn.FromAge.Value, fOp);
+                        else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                            normalString = string.Format("(M <{2}: {3}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, ctxn.ToAge.Value, fOp);
+                        else
+                            normalString = string.Format("(M {2}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, fOp);
                         break;
                     case DoiTuong.Nu:
-                        normalString = string.Format("(F > {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                        if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                            normalString = string.Format("(F {2}-{3}: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, ctxn.FromAge.Value, ctxn.ToAge.Value, fOp);
+                        else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                            normalString = string.Format("(F >{2}: {3}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, ctxn.FromAge.Value, fOp);
+                        else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                            normalString = string.Format("(F <{2}: {3}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, ctxn.ToAge.Value, fOp);
+                        else
+                            normalString = string.Format("(F {2}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, fOp);
                         break;
                     case DoiTuong.NguoiLon:
-                        normalString = string.Format("Adult (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                        normalString = string.Format("Adult ({2}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, fOp);
                         break;
                     case DoiTuong.NguoiCaoTuoi:
-                        normalString = string.Format("> 60 year (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                        normalString = string.Format(">60 year ({2}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, fOp);
                         break;
                     case DoiTuong.TreEm:
-                        normalString = string.Format("Child (> {0} {1})", ctxn.FromValue.Value, ctxn.DonVi);
+                        normalString = string.Format("Child ({2}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, fOp);
+                        break;
+
+                    case DoiTuong.AmTinhDuongTinh:
+                        normalString = string.Format("(Negative {2}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, fOp);
+                        break;
+
+                    case DoiTuong.HutThuoc:
+                        normalString = string.Format("(Smoke {2}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, fOp);
+                        break;
+
+                    case DoiTuong.KhongHutThuoc:
+                        normalString = string.Format("(Nosmoke {2}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, fOp);
+                        break;
+
+                    case DoiTuong.Sang_Chung:
+                    case DoiTuong.Chieu_Chung:
+                        if (ctxn.FromTime != null && ctxn.FromTime.HasValue && ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                            normalString = string.Format("({2}-{3}h: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, ctxn.FromTime.Value, ctxn.ToTime.Value, fOp);
+                        else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
+                        {
+                            string op = ctxn.FromTimeOperator.Replace("<=", ">=").Replace("<", ">");
+                            normalString = string.Format("({2}{3}h: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, op, ctxn.FromTime.Value, fOp);
+                        }
+                        else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                            normalString = string.Format("({2}{3}h: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi, ctxn.ToTimeOperator, ctxn.FromTime.Value, fOp);
+                        break;
+
+                    case DoiTuong.Sang_Nam:
+                    case DoiTuong.Chieu_Nam:
+                        if (ctxn.FromTime != null && ctxn.FromTime.HasValue && ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                        {
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}-{3}h) (M {4}-{5}: {6}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, fOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}-{3}h) (M >{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, fOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}-{3}h) (M <{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.ToAge.Value, fOp);
+                            else
+                                normalString = string.Format("({2}-{3}h) (M: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, fOp);
+                        }
+                        else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
+                        {
+                            string op = ctxn.FromTimeOperator.Replace("<=", ">=").Replace("<", ">");
+
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}{3}h) (M {4}-{5}: {6}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, fOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (M >{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.FromAge.Value, fOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (M <{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.ToAge.Value, fOp);
+                            else
+                                normalString = string.Format("({2}{3}h) (M: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, fOp);
+                        }
+                        else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                        {
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}{3}h) (M {4}-{5}: {6}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, fOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (M >{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, fOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (M <{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.ToAge.Value, fOp);
+                            else
+                                normalString = string.Format("({2}{3}h) (M: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, fOp);
+                        }
+                        break;
+
+                    case DoiTuong.Sang_Nu:
+                    case DoiTuong.Chieu_Nu:
+                        if (ctxn.FromTime != null && ctxn.FromTime.HasValue && ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                        {
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}-{3}h) (F {4}-{5}: {6}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, fOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}-{3}h) (F >{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, fOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}-{3}h) (F <{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.ToAge.Value, fOp);
+                            else
+                                normalString = string.Format("({2}-{3}h) (F: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, fOp);
+                        }
+                        else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
+                        {
+                            string op = ctxn.FromTimeOperator.Replace("<=", ">=").Replace("<", ">");
+
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}{3}h) (F {4}-{5}: {6}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, fOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (F >{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.FromAge.Value, fOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (F <{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.ToAge.Value, fOp);
+                            else
+                                normalString = string.Format("({2}{3}h) (F: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, fOp);
+                        }
+                        else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                        {
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}{3}h) (F {4}-{5}: {6}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, fOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (F >{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, fOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (F <{4}: {5}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.ToAge.Value, fOp);
+                            else
+                                normalString = string.Format("({2}{3}h) (F: {4}{0} {1})", ctxn.FromValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, fOp);
+                        }
                         break;
                 }
             }
@@ -611,31 +754,179 @@ namespace MM.Bussiness
                 else if (ctxn.ToOperator == "<=" && testResult > ctxn.ToValue.Value)
                     tinhTrang = TinhTrang.BatThuong;
 
+                string tOp = ctxn.ToOperator;
+
                 switch (doiTuong)
                 {
                     case DoiTuong.Chung:
-                        normalString = string.Format("(< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format("({2}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, tOp);
                         break;
                     case DoiTuong.Nam:
-                        normalString = string.Format("(M < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                        if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                            normalString = string.Format("(M {2}-{3}: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value, ctxn.ToAge.Value, tOp);
+                        else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                            normalString = string.Format("(M >{2}: {3}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value, tOp);
+                        else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                            normalString = string.Format("(M <{2}: {3}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, ctxn.ToAge.Value, tOp);
+                        else
+                            normalString = string.Format("(M {2}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, tOp);
                         break;
                     case DoiTuong.Nu:
-                        normalString = string.Format("(F < {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                        if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                            normalString = string.Format("(F {2}-{3}: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value, ctxn.ToAge.Value, tOp);
+                        else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                            normalString = string.Format("(F >{2}: {3}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromAge.Value, tOp);
+                        else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                            normalString = string.Format("(F <{2}: {3}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, ctxn.ToAge.Value, tOp);
+                        else
+                            normalString = string.Format("(F {2}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, tOp);
                         break;
                     case DoiTuong.NguoiLon:
-                        normalString = string.Format("Adult (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format("Adult ({2}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, tOp);
                         break;
                     case DoiTuong.NguoiCaoTuoi:
-                        normalString = string.Format("< 60 year (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format(">60 year ({2}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, tOp);
                         break;
                     case DoiTuong.TreEm:
-                        normalString = string.Format("Child (< {0} {1})", ctxn.ToValue.Value, ctxn.DonVi);
+                        normalString = string.Format("Child ({2}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, tOp);
+                        break;
+
+                    case DoiTuong.AmTinhDuongTinh:
+                        normalString = string.Format("(Negative {2}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, tOp);
+                        break;
+
+                    case DoiTuong.HutThuoc:
+                        normalString = string.Format("(Smoke {2}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, tOp);
+                        break;
+
+                    case DoiTuong.KhongHutThuoc:
+                        normalString = string.Format("(Nosmoke {2}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, tOp);
+                        break;
+
+                    case DoiTuong.Sang_Chung:
+                    case DoiTuong.Chieu_Chung:
+                        if (ctxn.FromTime != null && ctxn.FromTime.HasValue && ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                            normalString = string.Format("({2}-{3}h: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, ctxn.FromTime.Value, ctxn.ToTime.Value, tOp);
+                        else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
+                        {
+                            string op = ctxn.FromTimeOperator.Replace("<=", ">=").Replace("<", ">");
+                            normalString = string.Format("({2}{3}h: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, op, ctxn.FromTime.Value, tOp);
+                        }
+                        else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                            normalString = string.Format("({2}{3}h: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi, ctxn.ToTimeOperator, ctxn.FromTime.Value, tOp);
+                        break;
+
+                    case DoiTuong.Sang_Nam:
+                    case DoiTuong.Chieu_Nam:
+                        if (ctxn.FromTime != null && ctxn.FromTime.HasValue && ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                        {
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}-{3}h) (M {4}-{5}: {6}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, tOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}-{3}h) (M >{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, tOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}-{3}h) (M <{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.ToAge.Value, tOp);
+                            else
+                                normalString = string.Format("({2}-{3}h) (M: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, tOp);
+                        }
+                        else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
+                        {
+                            string op = ctxn.FromTimeOperator.Replace("<=", ">=").Replace("<", ">");
+
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}{3}h) (M {4}-{5}: {6}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, tOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (M >{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.FromAge.Value, tOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (M <{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.ToAge.Value, tOp);
+                            else
+                                normalString = string.Format("({2}{3}h) (M: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, tOp);
+                        }
+                        else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                        {
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}{3}h) (M {4}-{5}: {6}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, tOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (M >{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, tOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (M <{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.ToAge.Value, tOp);
+                            else
+                                normalString = string.Format("({2}{3}h) (M: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, tOp);
+                        }
+                        break;
+
+                    case DoiTuong.Sang_Nu:
+                    case DoiTuong.Chieu_Nu:
+                        if (ctxn.FromTime != null && ctxn.FromTime.HasValue && ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                        {
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}-{3}h) (F {4}-{5}: {6}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, tOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}-{3}h) (F >{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.FromAge.Value, tOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}-{3}h) (F <{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, ctxn.ToAge.Value, tOp);
+                            else
+                                normalString = string.Format("({2}-{3}h) (F: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.FromTime.Value, ctxn.ToTime.Value, tOp);
+                        }
+                        else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
+                        {
+                            string op = ctxn.FromTimeOperator.Replace("<=", ">=").Replace("<", ">");
+
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}{3}h) (F {4}-{5}: {6}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, tOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (F >{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.FromAge.Value, tOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (F <{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, ctxn.ToAge.Value, tOp);
+                            else
+                                normalString = string.Format("({2}{3}h) (F: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    op, ctxn.FromTime.Value, tOp);
+                        }
+                        else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
+                        {
+                            if ((ctxn.FromAge != null && ctxn.FromAge.HasValue) && (ctxn.ToAge != null && ctxn.ToAge.HasValue))
+                                normalString = string.Format("({2}{3}h) (F {4}-{5}: {6}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, ctxn.ToAge.Value, tOp);
+                            else if (ctxn.FromAge != null && ctxn.FromAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (F >{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.FromAge.Value, tOp);
+                            else if (ctxn.ToAge != null && ctxn.ToAge.HasValue)
+                                normalString = string.Format("({2}{3}h) (F <{4}: {5}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, ctxn.ToAge.Value, tOp);
+                            else
+                                normalString = string.Format("({2}{3}h) (F: {4}{0} {1})", ctxn.ToValue.Value, ctxn.DonVi,
+                                    ctxn.ToTimeOperator, ctxn.ToTime.Value, tOp);
+                        }
                         break;
                 }
             }
             else
             {
+                tinhTrang = TinhTrang.BinhThuong;
 
+                if (ctxn.XValue != null && ctxn.XValue.HasValue)
+                    normalString = string.Format("/ {0}X", ctxn.XValue.Value);
+                else if (ctxn.DonVi != null && ctxn.DonVi.Trim() != string.Empty)
+                    normalString = ctxn.DonVi;
             }
 
             return normalString;
