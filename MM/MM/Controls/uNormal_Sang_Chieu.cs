@@ -37,29 +37,29 @@ namespace MM.Controls
             set { chkChieu.Checked = value; }
         }
 
-        public int FromTime_Sang
-        {
-            get { return (int)numFromTime_Sang.Value; }
-            set { numFromTime_Sang.Value = value; }
-        }
+        //public int FromTime_Sang
+        //{
+        //    get { return (int)numFromTime_Sang.Value; }
+        //    set { numFromTime_Sang.Value = value; }
+        //}
 
-        public int FromTime_Chieu
-        {
-            get { return (int)numFromTime_Chieu.Value; }
-            set { numFromTime_Chieu.Value = value; }
-        }
+        //public int FromTime_Chieu
+        //{
+        //    get { return (int)numFromTime_Chieu.Value; }
+        //    set { numFromTime_Chieu.Value = value; }
+        //}
 
-        public int ToTime_Sang
-        {
-            get { return (int)numToTime_Sang.Value; }
-            set { numToTime_Sang.Value = value; }
-        }
+        //public int ToTime_Sang
+        //{
+        //    get { return (int)numToTime_Sang.Value; }
+        //    set { numToTime_Sang.Value = value; }
+        //}
 
-        public int ToTime_Chieu
-        {
-            get { return (int)numToTime_Chieu.Value; }
-            set { numToTime_Chieu.Value = value; }
-        }
+        //public int ToTime_Chieu
+        //{
+        //    get { return (int)numToTime_Chieu.Value; }
+        //    set { numToTime_Chieu.Value = value; }
+        //}
 
         public uNormal_Chung Normal_Sang
         {
@@ -77,6 +77,8 @@ namespace MM.Controls
             {
                 this.Normal_Sang.DonViList = value;
                 this.Normal_Chieu.DonViList = value;
+                uNormal_Nam_Nu_Sang.DonViList = value;
+                uNormal_Nam_Nu_Chieu.DonViList = value;
             }
         }
         #endregion
@@ -87,20 +89,99 @@ namespace MM.Controls
             List<ChiTietXetNghiem_Manual> ctxns = new List<ChiTietXetNghiem_Manual>();
             if (this.SangChecked)
             {
-                ChiTietXetNghiem_Manual ct = this.Normal_Sang.GetChiTietXetNghiem_Manual();
-                ct.DoiTuong = (byte)DoiTuong.Sang;
-                ct.FromTime = this.FromTime_Sang;
-                ct.ToTime = this.ToTime_Sang;
-                ctxns.Add(ct);
+                if (raChung_Sang.Checked)
+                {
+                    ChiTietXetNghiem_Manual ct = this.Normal_Sang.GetChiTietXetNghiem_Manual();
+                    ct.DoiTuong = (byte)DoiTuong.Sang_Chung;
+                    if (_uTimeRange_Sang.FromValueChecked)
+                    {
+                        ct.FromTime = _uTimeRange_Sang.FromValue;
+                        ct.FromTimeOperator = _uTimeRange_Sang.FromOperator;
+                    }
+
+                    if (_uTimeRange_Sang.ToValueChecked)
+                    {
+                        ct.ToTime = _uTimeRange_Sang.ToValue;
+                        ct.ToTimeOperator = _uTimeRange_Sang.ToOperator;
+                    }
+
+                    ctxns.Add(ct);
+                }
+                else
+                {
+                    List<ChiTietXetNghiem_Manual> namNuSangList = uNormal_Nam_Nu_Sang.GetChiTietXetNghiem_ManualList();
+
+                    foreach (var ct in namNuSangList)
+                    {
+                        if (ct.DoiTuong == (byte)DoiTuong.Nam)
+                            ct.DoiTuong = (byte)DoiTuong.Sang_Nam;
+                        else if (ct.DoiTuong == (byte)DoiTuong.Nu)
+                            ct.DoiTuong = (byte)DoiTuong.Sang_Nu;
+
+                        if (_uTimeRange_Sang.FromValueChecked)
+                        {
+                            ct.FromTime = _uTimeRange_Sang.FromValue;
+                            ct.FromTimeOperator = _uTimeRange_Sang.FromOperator;
+                        }
+
+                        if (_uTimeRange_Sang.ToValueChecked)
+                        {
+                            ct.ToTime = _uTimeRange_Sang.ToValue;
+                            ct.ToTimeOperator = _uTimeRange_Sang.ToOperator;
+                        }
+
+                        ctxns.Add(ct);
+                    }
+                }
             }
 
             if (this.ChieuChecked)
             {
-                ChiTietXetNghiem_Manual ct = this.Normal_Chieu.GetChiTietXetNghiem_Manual();
-                ct.DoiTuong = (byte)DoiTuong.Chieu;
-                ct.FromTime = this.FromTime_Chieu;
-                ct.ToTime = this.ToTime_Chieu;
-                ctxns.Add(ct);
+                if (raChung_Chieu.Checked)
+                {
+                    ChiTietXetNghiem_Manual ct = this.Normal_Chieu.GetChiTietXetNghiem_Manual();
+                    ct.DoiTuong = (byte)DoiTuong.Chieu_Chung;
+
+                    if (_uTimeRange_Chieu.FromValueChecked)
+                    {
+                        ct.FromTime = _uTimeRange_Chieu.FromValue;
+                        ct.FromTimeOperator = _uTimeRange_Chieu.FromOperator;
+                    }
+
+                    if (_uTimeRange_Chieu.ToValueChecked)
+                    {
+                        ct.ToTime = _uTimeRange_Chieu.ToValue;
+                        ct.ToTimeOperator = _uTimeRange_Chieu.ToOperator;
+                    }
+
+                    ctxns.Add(ct);
+                }
+                else
+                {
+                    List<ChiTietXetNghiem_Manual> namNuChieuList = uNormal_Nam_Nu_Chieu.GetChiTietXetNghiem_ManualList();
+
+                    foreach (var ct in namNuChieuList)
+                    {
+                        if (ct.DoiTuong == (byte)DoiTuong.Nam)
+                            ct.DoiTuong = (byte)DoiTuong.Chieu_Nam;
+                        else if (ct.DoiTuong == (byte)DoiTuong.Nu)
+                            ct.DoiTuong = (byte)DoiTuong.Chieu_Nu;
+
+                        if (_uTimeRange_Chieu.FromValueChecked)
+                        {
+                            ct.FromTime = _uTimeRange_Chieu.FromValue;
+                            ct.FromTimeOperator = _uTimeRange_Chieu.FromOperator;
+                        }
+
+                        if (_uTimeRange_Chieu.ToValueChecked)
+                        {
+                            ct.ToTime = _uTimeRange_Chieu.ToValue;
+                            ct.ToTimeOperator = _uTimeRange_Chieu.ToOperator;
+                        }
+
+                        ctxns.Add(ct);
+                    }
+                }
             }
 
             return ctxns;
@@ -110,22 +191,132 @@ namespace MM.Controls
         {
             if (ctxns == null || ctxns.Count <= 0) return;
 
+            List<ChiTietXetNghiem_Manual> namNuSangList = new List<ChiTietXetNghiem_Manual>();
+            List<ChiTietXetNghiem_Manual> namNuChieuList = new List<ChiTietXetNghiem_Manual>();
+
             foreach (var ct in ctxns)
             {
                 switch ((DoiTuong)ct.DoiTuong)
                 {
-                    case DoiTuong.Sang:
+                    case DoiTuong.Sang_Nam:
+                    case DoiTuong.Sang_Nu:
+                        namNuSangList.Add(ct);
+                        break;
+
+                    case DoiTuong.Chieu_Nam:
+                    case DoiTuong.Chieu_Nu:
+                        namNuChieuList.Add(ct);
+                        break;
+                }
+            }
+
+            foreach (var ct in ctxns)
+            {
+                switch ((DoiTuong)ct.DoiTuong)
+                {
+                    case DoiTuong.Sang_Chung:
                         this.SangChecked = true;
-                        this.FromTime_Sang = ct.FromTime.Value;
-                        this.ToTime_Sang = ct.ToTime.Value;
+                        
+                        if (ct.FromTime != null && ct.FromTime.HasValue)
+                        {
+                            _uTimeRange_Sang.FromValueChecked = true;
+                            _uTimeRange_Sang.FromValue = ct.FromTime.Value;
+                            _uTimeRange_Sang.FromOperator = ct.FromTimeOperator;
+                        }
+                        else
+                            _uTimeRange_Sang.FromValueChecked = false;
+
+
+                        if (ct.ToTime != null && ct.ToTime.HasValue)
+                        {
+                            _uTimeRange_Sang.ToValueChecked = true;
+                            _uTimeRange_Sang.ToValue = ct.ToTime.Value;
+                            _uTimeRange_Sang.ToOperator = ct.ToTimeOperator;
+                        }
+                        else
+                            _uTimeRange_Sang.ToValueChecked = false;
+
+                        raChung_Sang.Checked = true;
                         this.Normal_Sang.SetChiTietXetNghiem_Manual(ct);
                         break;
 
-                    case DoiTuong.Chieu:
+                    case DoiTuong.Chieu_Chung:
                         this.ChieuChecked = true;
-                        this.FromTime_Chieu = ct.FromTime.Value;
-                        this.ToTime_Chieu = ct.ToTime.Value;
+
+                        if (ct.FromTime != null && ct.FromTime.HasValue)
+                        {
+                            _uTimeRange_Chieu.FromValueChecked = true;
+                            _uTimeRange_Chieu.FromValue = ct.FromTime.Value;
+                            _uTimeRange_Chieu.FromOperator = ct.FromTimeOperator;
+                        }
+                        else
+                            _uTimeRange_Chieu.FromValueChecked = false;
+
+
+                        if (ct.ToTime != null && ct.ToTime.HasValue)
+                        {
+                            _uTimeRange_Chieu.ToValueChecked = true;
+                            _uTimeRange_Chieu.ToValue = ct.ToTime.Value;
+                            _uTimeRange_Chieu.ToOperator = ct.ToTimeOperator;
+                        }
+                        else
+                            _uTimeRange_Chieu.ToValueChecked = false;
+
+                        raChung_Chieu.Checked = true;
                         this.Normal_Chieu.SetChiTietXetNghiem_Manual(ct);
+                        break;
+
+                    case DoiTuong.Sang_Nam:
+                    case DoiTuong.Sang_Nu:
+                        this.SangChecked = true;
+                        if (ct.FromTime != null && ct.FromTime.HasValue)
+                        {
+                            _uTimeRange_Sang.FromValueChecked = true;
+                            _uTimeRange_Sang.FromValue = ct.FromTime.Value;
+                            _uTimeRange_Sang.FromOperator = ct.FromTimeOperator;
+                        }
+                        else
+                            _uTimeRange_Sang.FromValueChecked = false;
+
+
+                        if (ct.ToTime != null && ct.ToTime.HasValue)
+                        {
+                            _uTimeRange_Sang.ToValueChecked = true;
+                            _uTimeRange_Sang.ToValue = ct.ToTime.Value;
+                            _uTimeRange_Sang.ToOperator = ct.ToTimeOperator;
+                        }
+                        else
+                            _uTimeRange_Sang.ToValueChecked = false;
+
+                        raNamNu_Sang.Checked = true;
+                        uNormal_Nam_Nu_Sang.SetChiTietXetNghiem_ManualList(namNuSangList);
+                        break;
+
+                    case DoiTuong.Chieu_Nam:
+                    case DoiTuong.Chieu_Nu:
+                        this.ChieuChecked = true;
+
+                        if (ct.FromTime != null && ct.FromTime.HasValue)
+                        {
+                            _uTimeRange_Chieu.FromValueChecked = true;
+                            _uTimeRange_Chieu.FromValue = ct.FromTime.Value;
+                            _uTimeRange_Chieu.FromOperator = ct.FromTimeOperator;
+                        }
+                        else
+                            _uTimeRange_Chieu.FromValueChecked = false;
+
+
+                        if (ct.ToTime != null && ct.ToTime.HasValue)
+                        {
+                            _uTimeRange_Chieu.ToValueChecked = true;
+                            _uTimeRange_Chieu.ToValue = ct.ToTime.Value;
+                            _uTimeRange_Chieu.ToOperator = ct.ToTimeOperator;
+                        }
+                        else
+                            _uTimeRange_Chieu.ToValueChecked = false;
+
+                        raNamNu_Chieu.Checked = true;
+                        uNormal_Nam_Nu_Chieu.SetChiTietXetNghiem_ManualList(namNuChieuList);
                         break;
                 }
             }
@@ -140,10 +331,9 @@ namespace MM.Controls
                 return false;
             }
 
-            if (chkSang.Checked && numFromTime_Sang.Value > numToTime_Sang.Value)
+            if (chkSang.Checked && !_uTimeRange_Sang.CheckInfo())
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng nhập thời gian từ nhở hơn hoặc bằng thời gian đến.", Common.IconType.Information);
-                numFromTime_Sang.Focus();
+                _uTimeRange_Sang.Focus();
                 return false;
             }
 
@@ -153,10 +343,9 @@ namespace MM.Controls
                 return false;
             }
 
-            if (chkChieu.Checked && numFromTime_Chieu.Value > numToTime_Chieu.Value)
+            if (chkChieu.Checked && !_uTimeRange_Chieu.CheckInfo())
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng nhập thời gian từ nhở hơn hoặc bằng thời gian đến.", Common.IconType.Information);
-                numFromTime_Chieu.Focus();
+                _uTimeRange_Chieu.Focus();
                 return false;
             }
 
@@ -173,16 +362,42 @@ namespace MM.Controls
         #region Window Event Handlers
         private void chkSang_CheckedChanged(object sender, EventArgs e)
         {
-            numFromTime_Sang.Enabled = chkSang.Checked;
-            numToTime_Sang.Enabled = chkSang.Checked;
-            uNormal_Sang.Enabled = chkSang.Checked;
+            _uTimeRange_Sang.Enabled = chkSang.Checked;
+            raChung_Sang.Enabled = chkSang.Checked;
+            raNamNu_Sang.Enabled = chkSang.Checked;
+
+            uNormal_Sang.Enabled = chkSang.Checked && raChung_Sang.Checked;
+            uNormal_Nam_Nu_Sang.Enabled = chkSang.Checked && raNamNu_Sang.Checked;
         }
 
         private void chkChieu_CheckedChanged(object sender, EventArgs e)
         {
-            numFromTime_Chieu.Enabled = chkChieu.Checked;
-            numToTime_Chieu.Enabled = chkChieu.Checked;
-            uNormal_Chieu.Enabled = chkChieu.Checked;
+            _uTimeRange_Chieu.Enabled = chkChieu.Checked;
+            raChung_Chieu.Enabled = chkChieu.Checked;
+            raNamNu_Chieu.Enabled = chkChieu.Checked;
+
+            uNormal_Chieu.Enabled = chkChieu.Checked && raChung_Chieu.Checked;
+            uNormal_Nam_Nu_Chieu.Enabled = chkChieu.Checked && raNamNu_Chieu.Checked;
+        }
+
+        private void raChung_Sang_CheckedChanged(object sender, EventArgs e)
+        {
+            uNormal_Sang.Enabled = raChung_Sang.Checked && chkSang.Checked;
+        }
+
+        private void raNamNu_Sang_CheckedChanged(object sender, EventArgs e)
+        {
+            uNormal_Nam_Nu_Sang.Enabled = raNamNu_Sang.Checked && chkSang.Checked;
+        }
+
+        private void raChung_Chieu_CheckedChanged(object sender, EventArgs e)
+        {
+            uNormal_Chieu.Enabled = raChung_Chieu.Checked && chkChieu.Checked;
+        }
+
+        private void raNamNu_Chieu_CheckedChanged(object sender, EventArgs e)
+        {
+            uNormal_Nam_Nu_Chieu.Enabled = raNamNu_Chieu.Checked && chkChieu.Checked;
         }
         #endregion
     }

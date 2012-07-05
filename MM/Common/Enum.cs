@@ -232,13 +232,17 @@ namespace MM.Common
         NguoiCaoTuoi_Sau2h,
         HutThuoc,
         KhongHutThuoc,
-        Sang,
-        Chieu,
+        Sang_Chung,
+        Chieu_Chung,
         FollicularPhase,
         Midcycle,
         LutelPhase,
         AmTinhDuongTinh,
-        Khac
+        Khac,
+        Sang_Nam,
+        Sang_Nu,
+        Chieu_Nam,
+        Chieu_Nu
     };
 
     public enum LoaiMayXN : byte

@@ -86,6 +86,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uTimeRange.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uTimeRange.Designer.cs">
+      <DependentUpon>uTimeRange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uBaoCaoThuocTonKhoTheoKhoangThoiGian.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -797,6 +803,12 @@
     <Compile Include="Dialogs\dlgEditChiTietKetQuaXetNghiemTay.Designer.cs">
       <DependentUpon>dlgEditChiTietKetQuaXetNghiemTay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgKetLuan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgKetLuan.Designer.cs">
+      <DependentUpon>dlgKetLuan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgLamMoiSoHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1248,6 +1260,9 @@
     <Compile Include="Controls\uHoaDonHopDongList.Designer.cs">
       <DependentUpon>uHoaDonHopDongList.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uTimeRange.resx">
+      <DependentUpon>uTimeRange.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uBaoCaoThuocTonKhoTheoKhoangThoiGian.resx">
       <DependentUpon>uBaoCaoThuocTonKhoTheoKhoangThoiGian.cs</DependentUpon>
     </EmbeddedResource>
@@ -1538,6 +1553,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgEditChiTietKetQuaXetNghiemTay.resx">
       <DependentUpon>dlgEditChiTietKetQuaXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgKetLuan.resx">
+      <DependentUpon>dlgKetLuan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgLamMoiSoHoaDon.resx">
       <DependentUpon>dlgLamMoiSoHoaDon.cs</DependentUpon>
@@ -1966,6 +1984,7 @@
     <None Include="Resources\backup-restore-icon.png" />
     <None Include="Resources\lock-icon.png" />
     <None Include="Resources\lock-off-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-07-03.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-02.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-06-21.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-06-11.sql" />

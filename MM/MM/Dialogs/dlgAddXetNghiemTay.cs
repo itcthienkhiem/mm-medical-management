@@ -121,8 +121,16 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (cboNhomXetNghiem.Text == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập nhóm xét nghiệm.", IconType.Information);
+                cboNhomXetNghiem.Focus();
+                return false;
+            }
+
             string xetNghiem_ManualGUID = _isNew ? string.Empty : _xetNghiem.XetNghiem_ManualGUID.ToString();
-            Result result = XetNghiemTayBus.CheckTenXetNghiemExist(xetNghiem_ManualGUID, txtTenXetNghiem.Text);
+            string groupName = cboNhomXetNghiem.Text;
+            Result result = XetNghiemTayBus.CheckTenXetNghiemExist(xetNghiem_ManualGUID, txtTenXetNghiem.Text, groupName);
 
             if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
             {

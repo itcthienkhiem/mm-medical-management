@@ -28,74 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.numToTime_Sang = new System.Windows.Forms.NumericUpDown();
-            this.numFromTime_Sang = new System.Windows.Forms.NumericUpDown();
             this.chkSang = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.numToTime_Chieu = new System.Windows.Forms.NumericUpDown();
-            this.numFromTime_Chieu = new System.Windows.Forms.NumericUpDown();
             this.chkChieu = new System.Windows.Forms.CheckBox();
             this.uNormal_Sang = new MM.Controls.uNormal_Chung();
             this.uNormal_Chieu = new MM.Controls.uNormal_Chung();
-            ((System.ComponentModel.ISupportInitialize)(this.numToTime_Sang)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFromTime_Sang)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numToTime_Chieu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFromTime_Chieu)).BeginInit();
+            this._uTimeRange_Sang = new MM.Controls.uTimeRange();
+            this._uTimeRange_Chieu = new MM.Controls.uTimeRange();
+            this.raChung_Sang = new System.Windows.Forms.RadioButton();
+            this.raNamNu_Sang = new System.Windows.Forms.RadioButton();
+            this.uNormal_Nam_Nu_Sang = new MM.Controls.uNormal_Nam_Nu();
+            this.uNormal_Nam_Nu_Chieu = new MM.Controls.uNormal_Nam_Nu();
+            this.raNamNu_Chieu = new System.Windows.Forms.RadioButton();
+            this.raChung_Chieu = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // numToTime_Sang
-            // 
-            this.numToTime_Sang.Enabled = false;
-            this.numToTime_Sang.Location = new System.Drawing.Point(167, 0);
-            this.numToTime_Sang.Maximum = new decimal(new int[] {
-            12,
-            0,
-            0,
-            0});
-            this.numToTime_Sang.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numToTime_Sang.Name = "numToTime_Sang";
-            this.numToTime_Sang.Size = new System.Drawing.Size(45, 20);
-            this.numToTime_Sang.TabIndex = 16;
-            this.numToTime_Sang.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
-            // numFromTime_Sang
-            // 
-            this.numFromTime_Sang.Enabled = false;
-            this.numFromTime_Sang.Location = new System.Drawing.Point(82, 0);
-            this.numFromTime_Sang.Maximum = new decimal(new int[] {
-            12,
-            0,
-            0,
-            0});
-            this.numFromTime_Sang.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numFromTime_Sang.Name = "numFromTime_Sang";
-            this.numFromTime_Sang.Size = new System.Drawing.Size(45, 20);
-            this.numFromTime_Sang.TabIndex = 14;
-            this.numFromTime_Sang.Value = new decimal(new int[] {
-            7,
-            0,
-            0,
-            0});
             // 
             // chkSang
             // 
             this.chkSang.AutoSize = true;
-            this.chkSang.Location = new System.Drawing.Point(0, 1);
+            this.chkSang.Location = new System.Drawing.Point(0, 3);
             this.chkSang.Name = "chkSang";
             this.chkSang.Size = new System.Drawing.Size(51, 17);
             this.chkSang.TabIndex = 12;
@@ -103,92 +55,10 @@
             this.chkSang.UseVisualStyleBackColor = true;
             this.chkSang.CheckedChanged += new System.EventHandler(this.chkSang_CheckedChanged);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 2);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Từ:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(135, 2);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "Đến:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(135, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 13);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Đến:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(56, 61);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Từ:";
-            // 
-            // numToTime_Chieu
-            // 
-            this.numToTime_Chieu.Enabled = false;
-            this.numToTime_Chieu.Location = new System.Drawing.Point(167, 59);
-            this.numToTime_Chieu.Maximum = new decimal(new int[] {
-            12,
-            0,
-            0,
-            0});
-            this.numToTime_Chieu.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numToTime_Chieu.Name = "numToTime_Chieu";
-            this.numToTime_Chieu.Size = new System.Drawing.Size(45, 20);
-            this.numToTime_Chieu.TabIndex = 27;
-            this.numToTime_Chieu.Value = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            // 
-            // numFromTime_Chieu
-            // 
-            this.numFromTime_Chieu.Enabled = false;
-            this.numFromTime_Chieu.Location = new System.Drawing.Point(82, 59);
-            this.numFromTime_Chieu.Maximum = new decimal(new int[] {
-            12,
-            0,
-            0,
-            0});
-            this.numFromTime_Chieu.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numFromTime_Chieu.Name = "numFromTime_Chieu";
-            this.numFromTime_Chieu.Size = new System.Drawing.Size(45, 20);
-            this.numFromTime_Chieu.TabIndex = 26;
-            this.numFromTime_Chieu.Value = new decimal(new int[] {
-            4,
-            0,
-            0,
-            0});
-            // 
             // chkChieu
             // 
             this.chkChieu.AutoSize = true;
-            this.chkChieu.Location = new System.Drawing.Point(0, 60);
+            this.chkChieu.Location = new System.Drawing.Point(0, 192);
             this.chkChieu.Name = "chkChieu";
             this.chkChieu.Size = new System.Drawing.Size(53, 17);
             this.chkChieu.TabIndex = 25;
@@ -201,14 +71,14 @@
             this.uNormal_Sang.DonVi = "";
             this.uNormal_Sang.Enabled = false;
             this.uNormal_Sang.FromOperator = "<=";
-            this.uNormal_Sang.FromValue = 0F;
+            this.uNormal_Sang.FromValue = 0D;
             this.uNormal_Sang.FromValueChecked = false;
-            this.uNormal_Sang.Location = new System.Drawing.Point(64, 24);
+            this.uNormal_Sang.Location = new System.Drawing.Point(63, 1);
             this.uNormal_Sang.Name = "uNormal_Sang";
             this.uNormal_Sang.Size = new System.Drawing.Size(452, 24);
             this.uNormal_Sang.TabIndex = 24;
             this.uNormal_Sang.ToOperator = "<=";
-            this.uNormal_Sang.ToValue = 0F;
+            this.uNormal_Sang.ToValue = 0D;
             this.uNormal_Sang.ToValueChecked = false;
             // 
             // uNormal_Chieu
@@ -216,38 +86,160 @@
             this.uNormal_Chieu.DonVi = "";
             this.uNormal_Chieu.Enabled = false;
             this.uNormal_Chieu.FromOperator = "<=";
-            this.uNormal_Chieu.FromValue = 0F;
+            this.uNormal_Chieu.FromValue = 0D;
             this.uNormal_Chieu.FromValueChecked = false;
-            this.uNormal_Chieu.Location = new System.Drawing.Point(64, 84);
+            this.uNormal_Chieu.Location = new System.Drawing.Point(79, 214);
             this.uNormal_Chieu.Name = "uNormal_Chieu";
             this.uNormal_Chieu.Size = new System.Drawing.Size(452, 24);
             this.uNormal_Chieu.TabIndex = 28;
             this.uNormal_Chieu.ToOperator = "<=";
-            this.uNormal_Chieu.ToValue = 0F;
+            this.uNormal_Chieu.ToValue = 0D;
             this.uNormal_Chieu.ToValueChecked = false;
+            // 
+            // _uTimeRange_Sang
+            // 
+            this._uTimeRange_Sang.Enabled = false;
+            this._uTimeRange_Sang.FromOperator = "<=";
+            this._uTimeRange_Sang.FromValue = 0;
+            this._uTimeRange_Sang.FromValueChecked = false;
+            this._uTimeRange_Sang.Location = new System.Drawing.Point(52, 0);
+            this._uTimeRange_Sang.Name = "_uTimeRange_Sang";
+            this._uTimeRange_Sang.Size = new System.Drawing.Size(294, 24);
+            this._uTimeRange_Sang.TabIndex = 13;
+            this._uTimeRange_Sang.ToOperator = "<=";
+            this._uTimeRange_Sang.ToValue = 23;
+            this._uTimeRange_Sang.ToValueChecked = false;
+            // 
+            // _uTimeRange_Chieu
+            // 
+            this._uTimeRange_Chieu.Enabled = false;
+            this._uTimeRange_Chieu.FromOperator = "<=";
+            this._uTimeRange_Chieu.FromValue = 0;
+            this._uTimeRange_Chieu.FromValueChecked = false;
+            this._uTimeRange_Chieu.Location = new System.Drawing.Point(64, 189);
+            this._uTimeRange_Chieu.Name = "_uTimeRange_Chieu";
+            this._uTimeRange_Chieu.Size = new System.Drawing.Size(294, 24);
+            this._uTimeRange_Chieu.TabIndex = 26;
+            this._uTimeRange_Chieu.ToOperator = "<=";
+            this._uTimeRange_Chieu.ToValue = 23;
+            this._uTimeRange_Chieu.ToValueChecked = false;
+            // 
+            // raChung_Sang
+            // 
+            this.raChung_Sang.AutoSize = true;
+            this.raChung_Sang.Checked = true;
+            this.raChung_Sang.Enabled = false;
+            this.raChung_Sang.Location = new System.Drawing.Point(2, 4);
+            this.raChung_Sang.Name = "raChung_Sang";
+            this.raChung_Sang.Size = new System.Drawing.Size(59, 17);
+            this.raChung_Sang.TabIndex = 29;
+            this.raChung_Sang.TabStop = true;
+            this.raChung_Sang.Text = "Chung:";
+            this.raChung_Sang.UseVisualStyleBackColor = true;
+            this.raChung_Sang.CheckedChanged += new System.EventHandler(this.raChung_Sang_CheckedChanged);
+            // 
+            // raNamNu_Sang
+            // 
+            this.raNamNu_Sang.AutoSize = true;
+            this.raNamNu_Sang.Enabled = false;
+            this.raNamNu_Sang.Location = new System.Drawing.Point(2, 30);
+            this.raNamNu_Sang.Name = "raNamNu_Sang";
+            this.raNamNu_Sang.Size = new System.Drawing.Size(67, 17);
+            this.raNamNu_Sang.TabIndex = 30;
+            this.raNamNu_Sang.Text = "Nam-Nữ:";
+            this.raNamNu_Sang.UseVisualStyleBackColor = true;
+            this.raNamNu_Sang.CheckedChanged += new System.EventHandler(this.raNamNu_Sang_CheckedChanged);
+            // 
+            // uNormal_Nam_Nu_Sang
+            // 
+            this.uNormal_Nam_Nu_Sang.Enabled = false;
+            this.uNormal_Nam_Nu_Sang.FromAge_Nam = 20;
+            this.uNormal_Nam_Nu_Sang.FromAge_NamChecked = false;
+            this.uNormal_Nam_Nu_Sang.FromAge_Nu = 17;
+            this.uNormal_Nam_Nu_Sang.FromAge_NuChecked = false;
+            this.uNormal_Nam_Nu_Sang.Location = new System.Drawing.Point(20, 53);
+            this.uNormal_Nam_Nu_Sang.NamChecked = false;
+            this.uNormal_Nam_Nu_Sang.Name = "uNormal_Nam_Nu_Sang";
+            this.uNormal_Nam_Nu_Sang.NuChecked = false;
+            this.uNormal_Nam_Nu_Sang.Size = new System.Drawing.Size(506, 106);
+            this.uNormal_Nam_Nu_Sang.TabIndex = 31;
+            this.uNormal_Nam_Nu_Sang.ToAge_Nam = 60;
+            this.uNormal_Nam_Nu_Sang.ToAge_NamChecked = false;
+            this.uNormal_Nam_Nu_Sang.ToAge_Nu = 60;
+            this.uNormal_Nam_Nu_Sang.ToAge_NuChecked = false;
+            // 
+            // uNormal_Nam_Nu_Chieu
+            // 
+            this.uNormal_Nam_Nu_Chieu.Enabled = false;
+            this.uNormal_Nam_Nu_Chieu.FromAge_Nam = 20;
+            this.uNormal_Nam_Nu_Chieu.FromAge_NamChecked = false;
+            this.uNormal_Nam_Nu_Chieu.FromAge_Nu = 17;
+            this.uNormal_Nam_Nu_Chieu.FromAge_NuChecked = false;
+            this.uNormal_Nam_Nu_Chieu.Location = new System.Drawing.Point(36, 265);
+            this.uNormal_Nam_Nu_Chieu.NamChecked = false;
+            this.uNormal_Nam_Nu_Chieu.Name = "uNormal_Nam_Nu_Chieu";
+            this.uNormal_Nam_Nu_Chieu.NuChecked = false;
+            this.uNormal_Nam_Nu_Chieu.Size = new System.Drawing.Size(506, 106);
+            this.uNormal_Nam_Nu_Chieu.TabIndex = 34;
+            this.uNormal_Nam_Nu_Chieu.ToAge_Nam = 60;
+            this.uNormal_Nam_Nu_Chieu.ToAge_NamChecked = false;
+            this.uNormal_Nam_Nu_Chieu.ToAge_Nu = 60;
+            this.uNormal_Nam_Nu_Chieu.ToAge_NuChecked = false;
+            // 
+            // raNamNu_Chieu
+            // 
+            this.raNamNu_Chieu.AutoSize = true;
+            this.raNamNu_Chieu.Enabled = false;
+            this.raNamNu_Chieu.Location = new System.Drawing.Point(18, 242);
+            this.raNamNu_Chieu.Name = "raNamNu_Chieu";
+            this.raNamNu_Chieu.Size = new System.Drawing.Size(67, 17);
+            this.raNamNu_Chieu.TabIndex = 33;
+            this.raNamNu_Chieu.Text = "Nam-Nữ:";
+            this.raNamNu_Chieu.UseVisualStyleBackColor = true;
+            this.raNamNu_Chieu.CheckedChanged += new System.EventHandler(this.raNamNu_Chieu_CheckedChanged);
+            // 
+            // raChung_Chieu
+            // 
+            this.raChung_Chieu.AutoSize = true;
+            this.raChung_Chieu.Checked = true;
+            this.raChung_Chieu.Enabled = false;
+            this.raChung_Chieu.Location = new System.Drawing.Point(18, 216);
+            this.raChung_Chieu.Name = "raChung_Chieu";
+            this.raChung_Chieu.Size = new System.Drawing.Size(59, 17);
+            this.raChung_Chieu.TabIndex = 32;
+            this.raChung_Chieu.TabStop = true;
+            this.raChung_Chieu.Text = "Chung:";
+            this.raChung_Chieu.UseVisualStyleBackColor = true;
+            this.raChung_Chieu.CheckedChanged += new System.EventHandler(this.raChung_Chieu_CheckedChanged);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.uNormal_Nam_Nu_Sang);
+            this.panel1.Controls.Add(this.uNormal_Sang);
+            this.panel1.Controls.Add(this.raChung_Sang);
+            this.panel1.Controls.Add(this.raNamNu_Sang);
+            this.panel1.Location = new System.Drawing.Point(16, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(527, 160);
+            this.panel1.TabIndex = 35;
             // 
             // uNormal_Sang_Chieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.uNormal_Nam_Nu_Chieu);
+            this.Controls.Add(this.raNamNu_Chieu);
+            this.Controls.Add(this.raChung_Chieu);
+            this.Controls.Add(this._uTimeRange_Chieu);
+            this.Controls.Add(this._uTimeRange_Sang);
             this.Controls.Add(this.uNormal_Chieu);
-            this.Controls.Add(this.uNormal_Sang);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.numToTime_Chieu);
-            this.Controls.Add(this.numFromTime_Chieu);
             this.Controls.Add(this.chkChieu);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.numToTime_Sang);
-            this.Controls.Add(this.numFromTime_Sang);
             this.Controls.Add(this.chkSang);
             this.Name = "uNormal_Sang_Chieu";
-            this.Size = new System.Drawing.Size(515, 109);
-            ((System.ComponentModel.ISupportInitialize)(this.numToTime_Sang)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFromTime_Sang)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numToTime_Chieu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numFromTime_Chieu)).EndInit();
+            this.Size = new System.Drawing.Size(544, 370);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,17 +247,18 @@
 
         #endregion
 
-        private System.Windows.Forms.NumericUpDown numToTime_Sang;
-        private System.Windows.Forms.NumericUpDown numFromTime_Sang;
         private System.Windows.Forms.CheckBox chkSang;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numToTime_Chieu;
-        private System.Windows.Forms.NumericUpDown numFromTime_Chieu;
         private System.Windows.Forms.CheckBox chkChieu;
         private uNormal_Chung uNormal_Sang;
         private uNormal_Chung uNormal_Chieu;
+        private uTimeRange _uTimeRange_Sang;
+        private uTimeRange _uTimeRange_Chieu;
+        private System.Windows.Forms.RadioButton raChung_Sang;
+        private System.Windows.Forms.RadioButton raNamNu_Sang;
+        private uNormal_Nam_Nu uNormal_Nam_Nu_Sang;
+        private uNormal_Nam_Nu uNormal_Nam_Nu_Chieu;
+        private System.Windows.Forms.RadioButton raNamNu_Chieu;
+        private System.Windows.Forms.RadioButton raChung_Chieu;
+        private System.Windows.Forms.Panel panel1;
     }
 }
