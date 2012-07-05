@@ -66,21 +66,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.ketQuaXetNghiemManualViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.FileNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dobStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ketQuaXetNghiemManualViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.Checked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.DaIn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DaUpload = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.LamThem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NgayXetNghiem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullnameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayXetNghiem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TestResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BinhThuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
@@ -243,9 +243,9 @@
             this.DaIn,
             this.DaUpload,
             this.LamThem,
+            this.NgayXetNghiem,
             this.fullnameDataGridViewTextBoxColumn1,
             this.GroupName,
-            this.NgayXetNghiem,
             this.TestResult,
             this.BinhThuong});
             this.dgChiTietKQXN.DataSource = this.chiTietKetQuaXetNghiemManualViewBindingSource;
@@ -447,30 +447,6 @@
             this.dgXetNghiem.SelectionChanged += new System.EventHandler(this.dgXetNghiem_SelectionChanged);
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
             // 
-            // ketQuaXetNghiemManualViewBindingSource
-            // 
-            this.ketQuaXetNghiemManualViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaXetNghiem_ManualView);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnDelete);
-            this.panel2.Controls.Add(this.btnEdit);
-            this.panel2.Controls.Add(this.btnAdd);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 155);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1158, 38);
-            this.panel2.TabIndex = 7;
-            // 
-            // splitter1
-            // 
-            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter1.Location = new System.Drawing.Point(0, 251);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1158, 3);
-            this.splitter1.TabIndex = 12;
-            this.splitter1.TabStop = false;
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -521,6 +497,30 @@
             this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
             this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // ketQuaXetNghiemManualViewBindingSource
+            // 
+            this.ketQuaXetNghiemManualViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaXetNghiem_ManualView);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnDelete);
+            this.panel2.Controls.Add(this.btnEdit);
+            this.panel2.Controls.Add(this.btnAdd);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 155);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1158, 38);
+            this.panel2.TabIndex = 7;
+            // 
+            // splitter1
+            // 
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter1.Location = new System.Drawing.Point(0, 251);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(1158, 3);
+            this.splitter1.TabIndex = 12;
+            this.splitter1.TabStop = false;
+            // 
             // Checked
             // 
             this.Checked.Checked = true;
@@ -560,6 +560,17 @@
             this.LamThem.ReadOnly = true;
             this.LamThem.Width = 70;
             // 
+            // NgayXetNghiem
+            // 
+            this.NgayXetNghiem.DataPropertyName = "NgayXetNghiem";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
+            this.NgayXetNghiem.DefaultCellStyle = dataGridViewCellStyle3;
+            this.NgayXetNghiem.HeaderText = "Ngày XN";
+            this.NgayXetNghiem.Name = "NgayXetNghiem";
+            this.NgayXetNghiem.ReadOnly = true;
+            this.NgayXetNghiem.Width = 120;
+            // 
             // fullnameDataGridViewTextBoxColumn1
             // 
             this.fullnameDataGridViewTextBoxColumn1.DataPropertyName = "Fullname";
@@ -576,17 +587,6 @@
             this.GroupName.Name = "GroupName";
             this.GroupName.ReadOnly = true;
             this.GroupName.Width = 250;
-            // 
-            // NgayXetNghiem
-            // 
-            this.NgayXetNghiem.DataPropertyName = "NgayXetNghiem";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
-            this.NgayXetNghiem.DefaultCellStyle = dataGridViewCellStyle3;
-            this.NgayXetNghiem.HeaderText = "Ngày XN";
-            this.NgayXetNghiem.Name = "NgayXetNghiem";
-            this.NgayXetNghiem.ReadOnly = true;
-            this.NgayXetNghiem.Width = 120;
             // 
             // TestResult
             // 
@@ -679,9 +679,9 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaIn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaUpload;
         private System.Windows.Forms.DataGridViewCheckBoxColumn LamThem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgayXetNghiem;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullnameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn GroupName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgayXetNghiem;
         private System.Windows.Forms.DataGridViewTextBoxColumn TestResult;
         private System.Windows.Forms.DataGridViewTextBoxColumn BinhThuong;
     }
