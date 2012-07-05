@@ -542,7 +542,7 @@ namespace MM.Bussiness
                         #region Chưa cập nhật chỉ số xét nghiệm
                         XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.XetNghiemGUID.ToString() == row["XetNghiemGUID"].ToString());
                         if (xn == null) continue;
-                        List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
+                        List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.Where(c => c.Status == (byte)Status.Actived).ToList<ChiTietXetNghiem_Hitachi917>();
                         if (ctxns.Count <= 0) continue;
                         ChiTietXetNghiem_Hitachi917 ctxn = null;
                         Gender gender = Gender.None;
@@ -1347,7 +1347,7 @@ namespace MM.Bussiness
                         #region Chưa cập nhật chỉ số xét nghiệm
                         XetNghiem_Hitachi917 xn = db.XetNghiem_Hitachi917s.SingleOrDefault<XetNghiem_Hitachi917>(x => x.XetNghiemGUID.ToString() == row["XetNghiemGUID"].ToString());
                         if (xn == null) continue;
-                        List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.ToList<ChiTietXetNghiem_Hitachi917>();
+                        List<ChiTietXetNghiem_Hitachi917> ctxns = xn.ChiTietXetNghiem_Hitachi917s.Where(c => c.Status == (byte)Status.Actived).ToList<ChiTietXetNghiem_Hitachi917>();
                         if (ctxns.Count <= 0) continue;
                         ChiTietXetNghiem_Hitachi917 ctxn = null;
                         Gender gender = Gender.None;

@@ -153,7 +153,24 @@ namespace MM.Controls
         private void chkFromValue_CheckedChanged(object sender, EventArgs e)
         {
             numFromValue.Enabled = chkFromValue.Checked;
-            cboFromOperator.Enabled = chkFromValue.Checked;
+
+            if (!chkFromValue.Checked)
+            {
+                cboFromOperator.Enabled = false;
+                cboToOperator.Enabled = chkToValue.Checked;
+            }
+            else
+            {
+                if (chkFromValue.Checked && chkToValue.Checked)
+                {
+                    cboFromOperator.Enabled = false;
+                    cboToOperator.Enabled = false;
+                    cboFromOperator.SelectedIndex = 1;
+                    cboToOperator.SelectedIndex = 1;
+                }
+                else
+                    cboFromOperator.Enabled = true;
+            }
 
             //if (chkFromValue.Checked || chkToValue.Checked)
             //    cboDonVi.Enabled = true;
@@ -164,7 +181,26 @@ namespace MM.Controls
         private void chkToValue_CheckedChanged(object sender, EventArgs e)
         {
             numToValue.Enabled = chkToValue.Checked;
-            cboToOperator.Enabled = chkToValue.Checked;
+
+            if (!chkToValue.Checked)
+            {
+                cboToOperator.Enabled = false;
+                cboFromOperator.Enabled = chkFromValue.Checked;
+            }
+            else
+            {
+                if (chkFromValue.Checked && chkToValue.Checked)
+                {
+                    cboFromOperator.Enabled = false;
+                    cboToOperator.Enabled = false;
+                    cboFromOperator.SelectedIndex = 1;
+                    cboToOperator.SelectedIndex = 1;
+                }
+                else
+                    cboToOperator.Enabled = true;
+            }
+
+            //cboToOperator.Enabled = chkToValue.Checked;
 
             //if (chkToValue.Checked || chkToValue.Checked)
             //    cboDonVi.Enabled = true;

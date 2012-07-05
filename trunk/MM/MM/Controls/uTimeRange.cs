@@ -72,6 +72,13 @@ namespace MM.Controls
 
         public bool CheckInfo()
         {
+            if (!chkFromValue.Checked && !chkToValue.Checked)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng nhập khoảng thời gian.", IconType.Information);
+                chkFromValue.Focus();
+                return false;
+            }
+
             if (chkFromValue.Checked && chkToValue.Checked && numFromValue.Value >= numToValue.Value)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng nhập thời gian từ phải nhỏ hơn thời gian đến.", IconType.Information);
@@ -87,13 +94,47 @@ namespace MM.Controls
         private void chkFromValue_CheckedChanged(object sender, EventArgs e)
         {
             numFromValue.Enabled = chkFromValue.Checked;
-            cboFromOperator.Enabled = chkFromValue.Checked;
+
+            if (!chkFromValue.Checked)
+            {
+                cboFromOperator.Enabled = false;
+                cboToOperator.Enabled = chkToValue.Checked;
+            }
+            else
+            {
+                if (chkFromValue.Checked && chkToValue.Checked)
+                {
+                    cboFromOperator.Enabled = false;
+                    cboToOperator.Enabled = false;
+                    cboFromOperator.SelectedIndex = 1;
+                    cboToOperator.SelectedIndex = 1;
+                }
+                else
+                    cboFromOperator.Enabled = true;
+            }
         }
 
         private void chkToValue_CheckedChanged(object sender, EventArgs e)
         {
             numToValue.Enabled = chkToValue.Checked;
-            cboToOperator.Enabled = chkToValue.Checked;
+
+            if (!chkToValue.Checked)
+            {
+                cboToOperator.Enabled = false;
+                cboFromOperator.Enabled = chkFromValue.Checked;
+            }
+            else
+            {
+                if (chkFromValue.Checked && chkToValue.Checked)
+                {
+                    cboFromOperator.Enabled = false;
+                    cboToOperator.Enabled = false;
+                    cboFromOperator.SelectedIndex = 1;
+                    cboToOperator.SelectedIndex = 1;
+                }
+                else
+                    cboToOperator.Enabled = true;
+            }
         }
         #endregion
     }
