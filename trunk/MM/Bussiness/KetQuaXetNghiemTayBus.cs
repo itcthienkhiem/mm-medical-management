@@ -96,7 +96,7 @@ namespace MM.Bussiness
                     ctxn.ToAge = Convert.ToInt32(row["ToAge"]);
 
                 if (row["FromTime"] != null && row["FromTime"] != DBNull.Value)
-                    ctxn.FromAge = Convert.ToInt32(row["FromTime"]);
+                    ctxn.FromTime = Convert.ToInt32(row["FromTime"]);
 
                 if (row["ToTime"] != null && row["ToTime"] != DBNull.Value)
                     ctxn.ToTime = Convert.ToInt32(row["ToTime"]);
@@ -198,23 +198,22 @@ namespace MM.Bussiness
                         int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
                         int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
 
-                        if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                        if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
-
-                        if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                        if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                        if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                            (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ||
+                            (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                            (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                     }
                     else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
                     {
                         int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
-                        if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                        if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
+                        if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                            (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond)) ctxn = null;
                     }
                     else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
                     {
                         int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
-                        if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                        if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                        if ((ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                            (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                     }
                     else
                         return ctxn;
@@ -229,23 +228,22 @@ namespace MM.Bussiness
                         int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
                         int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
 
-                        if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                        if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
-
-                        if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                        if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                        if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                            (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ||
+                            (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                            (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                     }
                     else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
                     {
                         int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
-                        if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                        if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
+                        if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                            (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond)) ctxn = null;
                     }
                     else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
                     {
                         int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
-                        if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                        if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                        if ((ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                            (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                     }
                     else
                         return ctxn;
@@ -262,23 +260,22 @@ namespace MM.Bussiness
                             int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
                             int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
 
-                            if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                            if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
-
-                            if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                            if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                            if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                                (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                         }
                         else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
                         {
                             int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
-                            if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                            if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
+                            if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                                (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond)) ctxn = null;
                         }
                         else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
                         {
                             int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
-                            if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                            if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                            if ((ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                         }
                         else
                             return ctxn;
@@ -293,23 +290,22 @@ namespace MM.Bussiness
                             int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
                             int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
 
-                            if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                            if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
-
-                            if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                            if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                            if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                                (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                         }
                         else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
                         {
                             int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
-                            if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                            if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
+                            if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                                (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond)) ctxn = null;
                         }
                         else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
                         {
                             int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
-                            if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                            if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                            if ((ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                         }
                         else
                             return ctxn;
@@ -326,23 +322,22 @@ namespace MM.Bussiness
                             int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
                             int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
 
-                            if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                            if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
-
-                            if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                            if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                            if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                                (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                         }
                         else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
                         {
                             int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
-                            if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                            if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
+                            if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                                (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond)) ctxn = null;
                         }
                         else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
                         {
                             int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
-                            if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                            if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                            if ((ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                         }
                         else
                             return ctxn;
@@ -357,23 +352,22 @@ namespace MM.Bussiness
                             int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
                             int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
 
-                            if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                            if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
-
-                            if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                            if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                            if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                                (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                         }
                         else if (ctxn.FromTime != null && ctxn.FromTime.HasValue)
                         {
                             int fromTimeSecond = ctxn.FromTime.Value * 60 * 60;
-                            if (ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ctxn = null;
-                            if (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond) ctxn = null;
+                            if ((ctxn.FromTimeOperator == "<" && second <= fromTimeSecond) ||
+                                (ctxn.FromTimeOperator == "<=" && second < fromTimeSecond)) ctxn = null;
                         }
                         else if (ctxn.ToTime != null && ctxn.ToTime.HasValue)
                         {
                             int toTimeSecond = ctxn.ToTime.Value * 60 * 60;
-                            if (ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ctxn = null;
-                            if (ctxn.ToTimeOperator == "<=" && second > toTimeSecond) ctxn = null;
+                            if ((ctxn.ToTimeOperator == "<" && second >= toTimeSecond) ||
+                                (ctxn.ToTimeOperator == "<=" && second > toTimeSecond)) ctxn = null;
                         }
                         else
                             return ctxn;
@@ -938,7 +932,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_ManualView WHERE KetQuaXetNghiem_ManualGUID = '{0}' AND Status = {1} ORDER BY Fullname",
+                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_ManualView WHERE KetQuaXetNghiem_ManualGUID = '{0}' AND Status = {1} ORDER BY NgayXetNghiem DESC, GroupID, [Order]",
                            ketQuaXetNghiemGUID, (byte)Status.Actived);
 
                 result = ExcuteQuery(query);
@@ -952,12 +946,16 @@ namespace MM.Bussiness
                     double testResult = 0;
                     try
                     {
-                        string resutlStr = row["TestResult"].ToString().Trim().ToLower();
-                        resutlStr = resutlStr.Replace("negative", "").Replace("positive", "");
-                        testResult = Convert.ToDouble(resutlStr.Trim());
+                        string resultStr = row["TestResult"].ToString().Trim().ToLower();
+                        resultStr = resultStr.Replace("negative", "").Replace("positive", "");
+                        testResult = Convert.ToDouble(resultStr.Trim());
                     }
                     catch
                     {
+                        string resultStr = row["TestResult"].ToString().Trim().ToLower();
+                        if (resultStr.IndexOf("positive") >= 0)
+                            row["TinhTrang"] = (byte)TinhTrang.BatThuong;
+
                         continue;
                     }
 
@@ -968,6 +966,13 @@ namespace MM.Bussiness
                     string normalStr = GetNormalString(testResult, ctxn, ref tinhTrang);
                     row["TinhTrang"] = (byte)tinhTrang;
                     row["BinhThuong"] = normalStr;
+                    if (ctxn.DoiTuong == (byte)DoiTuong.AmTinhDuongTinh)
+                    {
+                        if (tinhTrang == TinhTrang.BinhThuong)
+                            row["TestResult"] = string.Format("Negative {0}", row["TestResult"].ToString());
+                        else
+                            row["TestResult"] = string.Format("Positive {0}", row["TestResult"].ToString());
+                    }
 
                     if (isUpdate)
                     {

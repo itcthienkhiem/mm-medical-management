@@ -149,6 +149,7 @@ namespace MM.Dialogs
 
                 MethodInvoker method = delegate
                 {
+                    _ketQuaXetNghiem.NgayXN = DateTime.Now;
                     _ketQuaXetNghiem.PatientGUID = Guid.Parse(txtBenhNhan.Tag.ToString());
 
                     List<ChiTietKetQuaXetNghiem_Manual> ctkqxns = new List<ChiTietKetQuaXetNghiem_Manual>();
