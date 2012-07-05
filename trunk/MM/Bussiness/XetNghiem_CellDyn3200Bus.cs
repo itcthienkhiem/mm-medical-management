@@ -180,9 +180,9 @@ namespace MM.Bussiness
                         //    row["BinhThuong"] = string.Format("({0:F2} - {1:F2})", fromValue.Value, toValue.Value);
                         //else
                         if (donVi != string.Empty)
-                            row["BinhThuong"] = string.Format("({0:F2} - {1:F2} {2})", fromValue.Value, toValue.Value, donVi);
+                            row["BinhThuong"] = string.Format("({0:F2}-{1:F2} {2})", fromValue.Value, toValue.Value, donVi);
                         else
-                            row["BinhThuong"] = string.Format("({0:F2} - {1:F2})", fromValue.Value, toValue.Value);
+                            row["BinhThuong"] = string.Format("({0:F2}-{1:F2})", fromValue.Value, toValue.Value);
 
                         if (testResult < fromValue.Value || testResult > toValue.Value)
                             tinhTrang = TinhTrang.BatThuong;
@@ -193,9 +193,9 @@ namespace MM.Bussiness
                         //    row["BinhThuong"] = string.Format("(> {0:F2})", fromValue.Value);
                         //else
                         if (donVi != string.Empty)
-                            row["BinhThuong"] = string.Format("(> {0:F2} {1})", fromValue.Value, donVi);
+                            row["BinhThuong"] = string.Format("(>{0:F2} {1})", fromValue.Value, donVi);
                         else
-                            row["BinhThuong"] = string.Format("(> {0:F2})", fromValue.Value);
+                            row["BinhThuong"] = string.Format("(>{0:F2})", fromValue.Value);
 
                         if (testResult <= fromValue.Value)
                             tinhTrang = TinhTrang.BatThuong;
@@ -206,9 +206,9 @@ namespace MM.Bussiness
                         //    row["BinhThuong"] = string.Format("(< {0:F2})", toValue.Value);
                         //else
                         if (donVi != string.Empty)
-                            row["BinhThuong"] = string.Format("(< {0:F2} {1})", toValue.Value, donVi);
+                            row["BinhThuong"] = string.Format("(<{0:F2} {1})", toValue.Value, donVi);
                         else
-                            row["BinhThuong"] = string.Format("(< {0:F2})", toValue.Value);
+                            row["BinhThuong"] = string.Format("(<{0:F2})", toValue.Value);
 
                         if (testResult >= toValue.Value)
                             tinhTrang = TinhTrang.BatThuong;
@@ -702,9 +702,9 @@ namespace MM.Bussiness
                             //    binhThuong = string.Format("({0:F2} - {1:F2})", fromValue.Value, toValue.Value);
                             //else
                             if (donVi != string.Empty)
-                                binhThuong = string.Format("({0:F2} - {1:F2} {2})", fromValue.Value, toValue.Value, donVi);
+                                binhThuong = string.Format("({0:F2}-{1:F2} {2})", fromValue.Value, toValue.Value, donVi);
                             else
-                                binhThuong = string.Format("({0:F2} - {1:F2})", fromValue.Value, toValue.Value);
+                                binhThuong = string.Format("({0:F2}-{1:F2})", fromValue.Value, toValue.Value);
 
                             if (testResult < fromValue.Value || testResult > toValue.Value)
                                 tinhTrang = TinhTrang.BatThuong;
@@ -715,9 +715,9 @@ namespace MM.Bussiness
                             //    binhThuong = string.Format("(> {0:F2})", fromValue.Value);
                             //else
                             if (donVi != string.Empty)
-                                binhThuong = string.Format("(> {0:F2} {1})", fromValue.Value, donVi);
+                                binhThuong = string.Format("(>{0:F2} {1})", fromValue.Value, donVi);
                             else
-                                binhThuong = string.Format("(> {0:F2})", fromValue.Value);
+                                binhThuong = string.Format("(>{0:F2})", fromValue.Value);
 
                             if (testResult <= fromValue.Value)
                                 tinhTrang = TinhTrang.BatThuong;
@@ -728,9 +728,9 @@ namespace MM.Bussiness
                             //    binhThuong = string.Format("(< {0:F2})", toValue.Value);
                             //else
                             if (donVi != string.Empty)
-                                binhThuong = string.Format("(< {0:F2} {1})", toValue.Value, donVi);
+                                binhThuong = string.Format("(<{0:F2} {1})", toValue.Value, donVi);
                             else
-                                binhThuong = string.Format("(< {0:F2})", toValue.Value);
+                                binhThuong = string.Format("(<{0:F2})", toValue.Value);
 
                             if (testResult >= toValue.Value)
                                 tinhTrang = TinhTrang.BatThuong;
