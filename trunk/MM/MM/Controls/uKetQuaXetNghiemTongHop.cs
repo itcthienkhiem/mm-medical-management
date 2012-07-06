@@ -198,7 +198,8 @@ namespace MM.Controls
             if (!chkHienThiGioXetNghiem.Checked)
             {
                 List<DataRow> results = (from p in dt.AsEnumerable()
-                                         orderby p.Field<DateTime>("NgayXN"), p.Field<int>("GroupID"), p.Field<int>("Order")
+                                         orderby p.Field<DateTime>("NgayXN"), p.Field<int>("ThuTu"), 
+                                         p.Field<int>("GroupID"), p.Field<int>("Order")
                                          select p).ToList<DataRow>();
 
                 DataTable newDataSource = dt.Clone();
@@ -224,7 +225,8 @@ namespace MM.Controls
             else
             {
                 List<DataRow> results = (from p in dt.AsEnumerable()
-                                         orderby p.Field<DateTime>("NgayXN"), p.Field<int>("GroupID"), p.Field<int>("Order")
+                                         orderby p.Field<DateTime>("NgayXN"), p.Field<int>("ThuTu"),
+                                         p.Field<int>("GroupID"), p.Field<int>("Order")
                                          select p).ToList<DataRow>();
 
                 DataTable newDataSource = dt.Clone();
@@ -865,7 +867,65 @@ namespace MM.Controls
 
         private void OnPrintXetNghiem()
         {
+            List<DataRow> checkedPatientRows = GetCheckedPatientRows();
+            if (checkedPatientRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 bệnh nhân cần in.", IconType.Information);
+                return;
+            }
 
+            UpdateUncheckedXetNghiem();
+
+            DateTime tuNgay = dtpkTuNgay.Value;
+            DateTime denNgay = dtpkDenNgay.Value;
+            dlgNhomXetNghiem dlgNhomXN = new dlgNhomXetNghiem();
+            if (dlgNhomXN.ShowDialog(this) == DialogResult.OK)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\KetQuaXetNghiemTongHop.xls", Application.StartupPath);
+                if (_printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (DataRow row in checkedPatientRows)
+                    {
+                        List<string> uncheckedList = null;
+                        string patientGUID = row["PatientGUID"].ToString();
+                        if (_htXN.ContainsKey(patientGUID))
+                            uncheckedList = (List<string>)_htXN[patientGUID];
+
+                        bool isData = false;
+                        DateTime maxNgayXN = DateTime.Now;
+                        List<string> cellDyn3200Keys = null;
+                        List<string> hitachi917Keys = null;
+                        List<string> manualKeys = null;
+                        if (!ExportExcel.ExportKetQuaXetNghiemTongHopExcel(exportFileName, dlgNhomXN.CheckedRows, row, tuNgay, denNgay,
+                                uncheckedList, false, true, ref isData, ref maxNgayXN, ref cellDyn3200Keys, ref hitachi917Keys, ref manualKeys))
+                            return;
+                        else
+                        {
+                            try
+                            {
+                                if (isData)
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, 
+                                        Global.PageSetupConfig.GetPageSetup(Const.KetQuaXetNghiemSinhHoaTemplate));
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                return;
+                            }
+                        }
+                    }
+
+                    DataTable dt = dgXetNghiem.DataSource as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            bool isChecked = Convert.ToBoolean(row["Checked"]);
+                            if (isChecked) row["DaIn"] = true;
+                        }
+                    }
+                }
+            }
         }
 
         private void OnExportExcel()
@@ -882,10 +942,31 @@ namespace MM.Controls
             DateTime tuNgay = dtpkTuNgay.Value;
             DateTime denNgay = dtpkDenNgay.Value;
 
-            dlgNhomXetNghiem dlg = new dlgNhomXetNghiem();
-            if (dlg.ShowDialog(this) == DialogResult.OK)
+            dlgNhomXetNghiem dlgNhomXN = new dlgNhomXetNghiem();
+            if (dlgNhomXN.ShowDialog(this) == DialogResult.OK)
             {
+                foreach (DataRow row in checkedPatientRows)
+                {
+                    SaveFileDialog dlg = new SaveFileDialog();
+                    dlg.Title = "Export Excel";
+                    dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        List<string> uncheckedList = null;
+                        string patientGUID = row["PatientGUID"].ToString();
+                        if (_htXN.ContainsKey(patientGUID))
+                            uncheckedList = (List<string>)_htXN[patientGUID];
 
+                        bool isData = false;
+                        DateTime maxNgayXN = DateTime.Now;
+                        List<string> cellDyn3200Keys = null;
+                        List<string> hitachi917Keys = null;
+                        List<string> manualKeys = null;
+                        if (!ExportExcel.ExportKetQuaXetNghiemTongHopExcel(dlg.FileName, dlgNhomXN.CheckedRows, row, tuNgay, denNgay, 
+                            uncheckedList, false, true, ref isData, ref maxNgayXN, ref cellDyn3200Keys, ref hitachi917Keys, ref manualKeys))
+                            return;
+                    }
+                }
             }
         }
         #endregion
