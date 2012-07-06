@@ -12,6 +12,57 @@ namespace MM.Bussiness
 {
     public class KetQuaXetNghiemTongHopBus : BusBase
     {
+        public static Result GetNhomXetNghiemList()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = "SELECT DISTINCT CAST(1 AS Bit) AS Checked, GroupName, [Type], GroupID FROM XetNghiem_Manual ORDER BY GroupID";
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["Checked"] = true;
+                newRow["GroupName"] = "CÔNG THỨC MÁU (MÁY CELLDYN 3200)";
+                newRow["Type"] = "Haematology";
+                newRow["GroupID"] = 0;
+                dt.Rows.InsertAt(newRow, 0);
+
+                int index = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (row["Type"].ToString() == "Biochemistry")
+                    {
+                        newRow = dt.NewRow();
+                        newRow["Checked"] = true;
+                        newRow["GroupName"] = "SINH HÓA (MÁY HITACHI 917)";
+                        newRow["Type"] = "Biochemistry";
+                        newRow["GroupID"] = 0;
+                        dt.Rows.InsertAt(newRow, index);
+                        break;
+                    }
+
+                    index++;
+                }
+
+                result.QueryResult = dt;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetDanhSachBenhNhanXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan, bool isMaBenhNhan)
         {
             Result result = new Result();

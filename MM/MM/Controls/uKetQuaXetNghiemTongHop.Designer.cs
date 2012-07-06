@@ -31,6 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uKetQuaXetNghiemTongHop));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -49,12 +55,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkHienThiGioXetNghiem = new System.Windows.Forms.CheckBox();
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
@@ -73,13 +73,48 @@
             this.btnUploadFTP = new System.Windows.Forms.Button();
             this.btnDeleteChiTiet = new System.Windows.Forms.Button();
             this.btnEditChiTiet = new System.Windows.Forms.Button();
-            this.btnExportExcelSinhHoa = new System.Windows.Forms.Button();
-            this.btnExportExcelCellDyn3200 = new System.Windows.Forms.Button();
+            this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnAddChiTiet = new System.Windows.Forms.Button();
-            this.btnPrintCellDyn3200 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkCheckedXN = new System.Windows.Forms.CheckBox();
             this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Checked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.DaIn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.DaUpload = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.LamThem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ChiTietKQXNGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.XetNghiemGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KetQuaXetNghiemGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayXN2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BinhThuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TinhTrang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FromValue2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToValue2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoiTuong2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonVi2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FromPercent2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToPercent2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoaiXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TestNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FromOperator2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToOperator2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FromAge2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToAge2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FromTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FromTimeOperator2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ToTimeOperator2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.XValue2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HasHutThuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.chkCheckedBN = new System.Windows.Forms.CheckBox();
             this.dgBenhNhan = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -121,42 +156,6 @@
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Checked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.DaIn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.DaUpload = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.LamThem = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ChiTietKQXNGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.XetNghiemGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KetQuaXetNghiemGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayXN2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestResult = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestPercent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BinhThuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TinhTrang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FromValue2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToValue2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoiTuong2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DonVi2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FromPercent2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToPercent2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GroupID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiXN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TestNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FromOperator2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToOperator2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FromAge2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToAge2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FromTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToTime2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FromTimeOperator2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ToTimeOperator2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.XValue2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HasHutThuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -282,10 +281,9 @@
             this.panel2.Controls.Add(this.btnUploadFTP);
             this.panel2.Controls.Add(this.btnDeleteChiTiet);
             this.panel2.Controls.Add(this.btnEditChiTiet);
-            this.panel2.Controls.Add(this.btnExportExcelSinhHoa);
-            this.panel2.Controls.Add(this.btnExportExcelCellDyn3200);
+            this.panel2.Controls.Add(this.btnExportExcel);
             this.panel2.Controls.Add(this.btnAddChiTiet);
-            this.panel2.Controls.Add(this.btnPrintCellDyn3200);
+            this.panel2.Controls.Add(this.btnPrint);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 560);
             this.panel2.Name = "panel2";
@@ -301,6 +299,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(229, 38);
             this.panel5.TabIndex = 96;
+            this.panel5.Visible = false;
             // 
             // btnPrintSinhHoa
             // 
@@ -342,7 +341,7 @@
             // 
             this.btnUploadFTP.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadFTP.Image")));
             this.btnUploadFTP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUploadFTP.Location = new System.Drawing.Point(788, 6);
+            this.btnUploadFTP.Location = new System.Drawing.Point(562, 6);
             this.btnUploadFTP.Name = "btnUploadFTP";
             this.btnUploadFTP.Size = new System.Drawing.Size(104, 25);
             this.btnUploadFTP.TabIndex = 94;
@@ -374,29 +373,17 @@
             this.btnEditChiTiet.UseVisualStyleBackColor = true;
             this.btnEditChiTiet.Click += new System.EventHandler(this.btnEditChiTiet_Click);
             // 
-            // btnExportExcelSinhHoa
+            // btnExportExcel
             // 
-            this.btnExportExcelSinhHoa.Image = global::MM.Properties.Resources.page_excel_icon;
-            this.btnExportExcelSinhHoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcelSinhHoa.Location = new System.Drawing.Point(637, 6);
-            this.btnExportExcelSinhHoa.Name = "btnExportExcelSinhHoa";
-            this.btnExportExcelSinhHoa.Size = new System.Drawing.Size(147, 25);
-            this.btnExportExcelSinhHoa.TabIndex = 83;
-            this.btnExportExcelSinhHoa.Text = "      &Xuất Excel XN sinh hóa";
-            this.btnExportExcelSinhHoa.UseVisualStyleBackColor = true;
-            this.btnExportExcelSinhHoa.Click += new System.EventHandler(this.btnExportExcelSinhHoa_Click);
-            // 
-            // btnExportExcelCellDyn3200
-            // 
-            this.btnExportExcelCellDyn3200.Image = global::MM.Properties.Resources.page_excel_icon;
-            this.btnExportExcelCellDyn3200.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcelCellDyn3200.Location = new System.Drawing.Point(458, 6);
-            this.btnExportExcelCellDyn3200.Name = "btnExportExcelCellDyn3200";
-            this.btnExportExcelCellDyn3200.Size = new System.Drawing.Size(175, 25);
-            this.btnExportExcelCellDyn3200.TabIndex = 81;
-            this.btnExportExcelCellDyn3200.Text = "      &Xuất Excel XN CellDyn3200";
-            this.btnExportExcelCellDyn3200.UseVisualStyleBackColor = true;
-            this.btnExportExcelCellDyn3200.Click += new System.EventHandler(this.btnExportExcelCellDyn3200_Click);
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(458, 6);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(99, 25);
+            this.btnExportExcel.TabIndex = 81;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // btnAddChiTiet
             // 
@@ -410,17 +397,17 @@
             this.btnAddChiTiet.UseVisualStyleBackColor = true;
             this.btnAddChiTiet.Click += new System.EventHandler(this.btnAddChiTiet_Click);
             // 
-            // btnPrintCellDyn3200
+            // btnPrint
             // 
-            this.btnPrintCellDyn3200.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrintCellDyn3200.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintCellDyn3200.Location = new System.Drawing.Point(274, 6);
-            this.btnPrintCellDyn3200.Name = "btnPrintCellDyn3200";
-            this.btnPrintCellDyn3200.Size = new System.Drawing.Size(106, 25);
-            this.btnPrintCellDyn3200.TabIndex = 80;
-            this.btnPrintCellDyn3200.Text = "      &In xét nghiệm";
-            this.btnPrintCellDyn3200.UseVisualStyleBackColor = true;
-            this.btnPrintCellDyn3200.Click += new System.EventHandler(this.btnPrintCellDyn3200_Click);
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(274, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(106, 25);
+            this.btnPrint.TabIndex = 80;
+            this.btnPrint.Text = "      &In xét nghiệm";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // panel1
             // 
@@ -515,6 +502,336 @@
             this.dgXetNghiem.TabIndex = 9;
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
             // 
+            // Checked
+            // 
+            this.Checked.Checked = true;
+            this.Checked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.Checked.CheckValue = "N";
+            this.Checked.DataPropertyName = "Checked";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Checked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Checked.Frozen = true;
+            this.Checked.HeaderText = "";
+            this.Checked.Name = "Checked";
+            this.Checked.ReadOnly = true;
+            this.Checked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Checked.Width = 40;
+            // 
+            // DaIn
+            // 
+            this.DaIn.DataPropertyName = "DaIn";
+            this.DaIn.HeaderText = "Đã in";
+            this.DaIn.Name = "DaIn";
+            this.DaIn.ReadOnly = true;
+            this.DaIn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DaIn.Width = 60;
+            // 
+            // DaUpload
+            // 
+            this.DaUpload.DataPropertyName = "DaUpload";
+            this.DaUpload.HeaderText = "Đã upload";
+            this.DaUpload.Name = "DaUpload";
+            this.DaUpload.ReadOnly = true;
+            this.DaUpload.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DaUpload.Width = 80;
+            // 
+            // LamThem
+            // 
+            this.LamThem.DataPropertyName = "LamThem";
+            this.LamThem.HeaderText = "Làm thêm";
+            this.LamThem.Name = "LamThem";
+            this.LamThem.ReadOnly = true;
+            this.LamThem.Width = 70;
+            // 
+            // ChiTietKQXNGUID
+            // 
+            this.ChiTietKQXNGUID.DataPropertyName = "ChiTietKQXNGUID";
+            this.ChiTietKQXNGUID.HeaderText = "ChiTietKQXNGUID";
+            this.ChiTietKQXNGUID.Name = "ChiTietKQXNGUID";
+            this.ChiTietKQXNGUID.ReadOnly = true;
+            this.ChiTietKQXNGUID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ChiTietKQXNGUID.Visible = false;
+            // 
+            // XetNghiemGUID
+            // 
+            this.XetNghiemGUID.DataPropertyName = "XetNghiemGUID";
+            this.XetNghiemGUID.HeaderText = "XetNghiemGUID";
+            this.XetNghiemGUID.Name = "XetNghiemGUID";
+            this.XetNghiemGUID.ReadOnly = true;
+            this.XetNghiemGUID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.XetNghiemGUID.Visible = false;
+            // 
+            // KetQuaXetNghiemGUID
+            // 
+            this.KetQuaXetNghiemGUID.DataPropertyName = "KetQuaXetNghiemGUID";
+            this.KetQuaXetNghiemGUID.HeaderText = "KetQuaXetNghiemGUID";
+            this.KetQuaXetNghiemGUID.Name = "KetQuaXetNghiemGUID";
+            this.KetQuaXetNghiemGUID.ReadOnly = true;
+            this.KetQuaXetNghiemGUID.Visible = false;
+            // 
+            // NgayXN
+            // 
+            this.NgayXN.DataPropertyName = "NgayXN";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle3.NullValue = null;
+            this.NgayXN.DefaultCellStyle = dataGridViewCellStyle3;
+            this.NgayXN.HeaderText = "Ngày xét nghiệm";
+            this.NgayXN.Name = "NgayXN";
+            this.NgayXN.ReadOnly = true;
+            this.NgayXN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NgayXN.Visible = false;
+            this.NgayXN.Width = 110;
+            // 
+            // NgayXN2
+            // 
+            this.NgayXN2.DataPropertyName = "NgayXN2";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = null;
+            this.NgayXN2.DefaultCellStyle = dataGridViewCellStyle4;
+            this.NgayXN2.HeaderText = "Ngày xét nghiệm";
+            this.NgayXN2.Name = "NgayXN2";
+            this.NgayXN2.ReadOnly = true;
+            this.NgayXN2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NgayXN2.Width = 120;
+            // 
+            // Fullname
+            // 
+            this.Fullname.DataPropertyName = "Fullname";
+            this.Fullname.HeaderText = "Tên xét nghiệm";
+            this.Fullname.Name = "Fullname";
+            this.Fullname.ReadOnly = true;
+            this.Fullname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Fullname.Width = 250;
+            // 
+            // GroupName
+            // 
+            this.GroupName.DataPropertyName = "GroupName";
+            this.GroupName.HeaderText = "Nhóm xét nghiệm";
+            this.GroupName.Name = "GroupName";
+            this.GroupName.ReadOnly = true;
+            this.GroupName.Width = 250;
+            // 
+            // TestResult
+            // 
+            this.TestResult.DataPropertyName = "TestResult";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.TestResult.DefaultCellStyle = dataGridViewCellStyle5;
+            this.TestResult.HeaderText = "Kết quả";
+            this.TestResult.Name = "TestResult";
+            this.TestResult.ReadOnly = true;
+            this.TestResult.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TestPercent
+            // 
+            this.TestPercent.DataPropertyName = "TestPercent";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.TestPercent.DefaultCellStyle = dataGridViewCellStyle6;
+            this.TestPercent.HeaderText = "% kết quả";
+            this.TestPercent.Name = "TestPercent";
+            this.TestPercent.ReadOnly = true;
+            this.TestPercent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TestPercent.Visible = false;
+            // 
+            // BinhThuong
+            // 
+            this.BinhThuong.DataPropertyName = "BinhThuong";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.BinhThuong.DefaultCellStyle = dataGridViewCellStyle7;
+            this.BinhThuong.HeaderText = "Bình thường";
+            this.BinhThuong.Name = "BinhThuong";
+            this.BinhThuong.ReadOnly = true;
+            this.BinhThuong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BinhThuong.Width = 150;
+            // 
+            // TinhTrang
+            // 
+            this.TinhTrang.DataPropertyName = "TinhTrang";
+            this.TinhTrang.HeaderText = "TinhTrang";
+            this.TinhTrang.Name = "TinhTrang";
+            this.TinhTrang.ReadOnly = true;
+            this.TinhTrang.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TinhTrang.Visible = false;
+            // 
+            // Type
+            // 
+            this.Type.DataPropertyName = "Type";
+            this.Type.HeaderText = "Type";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            this.Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Type.Visible = false;
+            // 
+            // FromValue2
+            // 
+            this.FromValue2.DataPropertyName = "FromValue";
+            this.FromValue2.HeaderText = "FromValue2";
+            this.FromValue2.Name = "FromValue2";
+            this.FromValue2.ReadOnly = true;
+            this.FromValue2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FromValue2.Visible = false;
+            // 
+            // ToValue2
+            // 
+            this.ToValue2.DataPropertyName = "ToValue";
+            this.ToValue2.HeaderText = "ToValue2";
+            this.ToValue2.Name = "ToValue2";
+            this.ToValue2.ReadOnly = true;
+            this.ToValue2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ToValue2.Visible = false;
+            // 
+            // DoiTuong2
+            // 
+            this.DoiTuong2.DataPropertyName = "DoiTuong";
+            this.DoiTuong2.HeaderText = "DoiTuong2";
+            this.DoiTuong2.Name = "DoiTuong2";
+            this.DoiTuong2.ReadOnly = true;
+            this.DoiTuong2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DoiTuong2.Visible = false;
+            // 
+            // DonVi2
+            // 
+            this.DonVi2.DataPropertyName = "DonVi";
+            this.DonVi2.HeaderText = "DonVi2";
+            this.DonVi2.Name = "DonVi2";
+            this.DonVi2.ReadOnly = true;
+            this.DonVi2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DonVi2.Visible = false;
+            // 
+            // FromPercent2
+            // 
+            this.FromPercent2.DataPropertyName = "FromPercent";
+            this.FromPercent2.HeaderText = "FromPercent2";
+            this.FromPercent2.Name = "FromPercent2";
+            this.FromPercent2.ReadOnly = true;
+            this.FromPercent2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FromPercent2.Visible = false;
+            // 
+            // ToPercent2
+            // 
+            this.ToPercent2.DataPropertyName = "ToPercent";
+            this.ToPercent2.HeaderText = "ToPercent2";
+            this.ToPercent2.Name = "ToPercent2";
+            this.ToPercent2.ReadOnly = true;
+            this.ToPercent2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ToPercent2.Visible = false;
+            // 
+            // GroupID
+            // 
+            this.GroupID.DataPropertyName = "GroupID";
+            this.GroupID.HeaderText = "GroupID";
+            this.GroupID.Name = "GroupID";
+            this.GroupID.ReadOnly = true;
+            this.GroupID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.GroupID.Visible = false;
+            // 
+            // Order
+            // 
+            this.Order.DataPropertyName = "Order";
+            this.Order.HeaderText = "Order";
+            this.Order.Name = "Order";
+            this.Order.ReadOnly = true;
+            this.Order.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Order.Visible = false;
+            // 
+            // LoaiXN
+            // 
+            this.LoaiXN.DataPropertyName = "LoaiXN";
+            this.LoaiXN.HeaderText = "LoaiXN";
+            this.LoaiXN.Name = "LoaiXN";
+            this.LoaiXN.ReadOnly = true;
+            this.LoaiXN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.LoaiXN.Visible = false;
+            // 
+            // TestNum
+            // 
+            this.TestNum.DataPropertyName = "TestNum";
+            this.TestNum.HeaderText = "TestNum";
+            this.TestNum.Name = "TestNum";
+            this.TestNum.ReadOnly = true;
+            this.TestNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TestNum.Visible = false;
+            // 
+            // FromOperator2
+            // 
+            this.FromOperator2.DataPropertyName = "FromOperator";
+            this.FromOperator2.HeaderText = "FromOperator2";
+            this.FromOperator2.Name = "FromOperator2";
+            this.FromOperator2.ReadOnly = true;
+            this.FromOperator2.Visible = false;
+            // 
+            // ToOperator2
+            // 
+            this.ToOperator2.DataPropertyName = "ToOperator";
+            this.ToOperator2.HeaderText = "ToOperator2";
+            this.ToOperator2.Name = "ToOperator2";
+            this.ToOperator2.ReadOnly = true;
+            this.ToOperator2.Visible = false;
+            // 
+            // FromAge2
+            // 
+            this.FromAge2.DataPropertyName = "FromAge";
+            this.FromAge2.HeaderText = "FromAge2";
+            this.FromAge2.Name = "FromAge2";
+            this.FromAge2.ReadOnly = true;
+            this.FromAge2.Visible = false;
+            // 
+            // ToAge2
+            // 
+            this.ToAge2.DataPropertyName = "ToAge";
+            this.ToAge2.HeaderText = "ToAge2";
+            this.ToAge2.Name = "ToAge2";
+            this.ToAge2.ReadOnly = true;
+            this.ToAge2.Visible = false;
+            // 
+            // FromTime2
+            // 
+            this.FromTime2.DataPropertyName = "FromTime";
+            this.FromTime2.HeaderText = "FromTime2";
+            this.FromTime2.Name = "FromTime2";
+            this.FromTime2.ReadOnly = true;
+            this.FromTime2.Visible = false;
+            // 
+            // ToTime2
+            // 
+            this.ToTime2.DataPropertyName = "ToTime";
+            this.ToTime2.HeaderText = "ToTime2";
+            this.ToTime2.Name = "ToTime2";
+            this.ToTime2.ReadOnly = true;
+            this.ToTime2.Visible = false;
+            // 
+            // FromTimeOperator2
+            // 
+            this.FromTimeOperator2.DataPropertyName = "FromTimeOperator";
+            this.FromTimeOperator2.HeaderText = "FromTimeOperator2";
+            this.FromTimeOperator2.Name = "FromTimeOperator2";
+            this.FromTimeOperator2.ReadOnly = true;
+            this.FromTimeOperator2.Visible = false;
+            // 
+            // ToTimeOperator2
+            // 
+            this.ToTimeOperator2.DataPropertyName = "ToTimeOperator";
+            this.ToTimeOperator2.HeaderText = "ToTimeOperator2";
+            this.ToTimeOperator2.Name = "ToTimeOperator2";
+            this.ToTimeOperator2.ReadOnly = true;
+            this.ToTimeOperator2.Visible = false;
+            // 
+            // XValue2
+            // 
+            this.XValue2.DataPropertyName = "XValue";
+            this.XValue2.HeaderText = "XValue2";
+            this.XValue2.Name = "XValue2";
+            this.XValue2.ReadOnly = true;
+            this.XValue2.Visible = false;
+            // 
+            // HasHutThuoc
+            // 
+            this.HasHutThuoc.DataPropertyName = "HasHutThuoc";
+            this.HasHutThuoc.HeaderText = "HasHutThuoc";
+            this.HasHutThuoc.Name = "HasHutThuoc";
+            this.HasHutThuoc.ReadOnly = true;
+            this.HasHutThuoc.Visible = false;
+            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.chkCheckedBN);
@@ -577,6 +894,7 @@
             this.dgBenhNhan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgBenhNhan.Size = new System.Drawing.Size(1187, 135);
             this.dgBenhNhan.TabIndex = 11;
+            this.dgBenhNhan.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgBenhNhan_CellContentClick);
             this.dgBenhNhan.SelectionChanged += new System.EventHandler(this.dgBenhNhan_SelectionChanged);
             // 
             // colChecked
@@ -940,336 +1258,6 @@
             this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
             this.dataGridViewTextBoxColumn26.Width = 250;
             // 
-            // Checked
-            // 
-            this.Checked.Checked = true;
-            this.Checked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.Checked.CheckValue = "N";
-            this.Checked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Checked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Checked.Frozen = true;
-            this.Checked.HeaderText = "";
-            this.Checked.Name = "Checked";
-            this.Checked.ReadOnly = true;
-            this.Checked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Checked.Width = 40;
-            // 
-            // DaIn
-            // 
-            this.DaIn.DataPropertyName = "DaIn";
-            this.DaIn.HeaderText = "Đã in";
-            this.DaIn.Name = "DaIn";
-            this.DaIn.ReadOnly = true;
-            this.DaIn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DaIn.Width = 60;
-            // 
-            // DaUpload
-            // 
-            this.DaUpload.DataPropertyName = "DaUpload";
-            this.DaUpload.HeaderText = "Đã upload";
-            this.DaUpload.Name = "DaUpload";
-            this.DaUpload.ReadOnly = true;
-            this.DaUpload.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DaUpload.Width = 80;
-            // 
-            // LamThem
-            // 
-            this.LamThem.DataPropertyName = "LamThem";
-            this.LamThem.HeaderText = "Làm thêm";
-            this.LamThem.Name = "LamThem";
-            this.LamThem.ReadOnly = true;
-            this.LamThem.Width = 70;
-            // 
-            // ChiTietKQXNGUID
-            // 
-            this.ChiTietKQXNGUID.DataPropertyName = "ChiTietKQXNGUID";
-            this.ChiTietKQXNGUID.HeaderText = "ChiTietKQXNGUID";
-            this.ChiTietKQXNGUID.Name = "ChiTietKQXNGUID";
-            this.ChiTietKQXNGUID.ReadOnly = true;
-            this.ChiTietKQXNGUID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ChiTietKQXNGUID.Visible = false;
-            // 
-            // XetNghiemGUID
-            // 
-            this.XetNghiemGUID.DataPropertyName = "XetNghiemGUID";
-            this.XetNghiemGUID.HeaderText = "XetNghiemGUID";
-            this.XetNghiemGUID.Name = "XetNghiemGUID";
-            this.XetNghiemGUID.ReadOnly = true;
-            this.XetNghiemGUID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.XetNghiemGUID.Visible = false;
-            // 
-            // KetQuaXetNghiemGUID
-            // 
-            this.KetQuaXetNghiemGUID.DataPropertyName = "KetQuaXetNghiemGUID";
-            this.KetQuaXetNghiemGUID.HeaderText = "KetQuaXetNghiemGUID";
-            this.KetQuaXetNghiemGUID.Name = "KetQuaXetNghiemGUID";
-            this.KetQuaXetNghiemGUID.ReadOnly = true;
-            this.KetQuaXetNghiemGUID.Visible = false;
-            // 
-            // NgayXN
-            // 
-            this.NgayXN.DataPropertyName = "NgayXN";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle3.NullValue = null;
-            this.NgayXN.DefaultCellStyle = dataGridViewCellStyle3;
-            this.NgayXN.HeaderText = "Ngày xét nghiệm";
-            this.NgayXN.Name = "NgayXN";
-            this.NgayXN.ReadOnly = true;
-            this.NgayXN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.NgayXN.Visible = false;
-            this.NgayXN.Width = 110;
-            // 
-            // NgayXN2
-            // 
-            this.NgayXN2.DataPropertyName = "NgayXN2";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = null;
-            this.NgayXN2.DefaultCellStyle = dataGridViewCellStyle4;
-            this.NgayXN2.HeaderText = "Ngày xét nghiệm";
-            this.NgayXN2.Name = "NgayXN2";
-            this.NgayXN2.ReadOnly = true;
-            this.NgayXN2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.NgayXN2.Width = 120;
-            // 
-            // Fullname
-            // 
-            this.Fullname.DataPropertyName = "Fullname";
-            this.Fullname.HeaderText = "Tên xét nghiệm";
-            this.Fullname.Name = "Fullname";
-            this.Fullname.ReadOnly = true;
-            this.Fullname.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Fullname.Width = 250;
-            // 
-            // GroupName
-            // 
-            this.GroupName.DataPropertyName = "GroupName";
-            this.GroupName.HeaderText = "Nhóm xét nghiệm";
-            this.GroupName.Name = "GroupName";
-            this.GroupName.ReadOnly = true;
-            this.GroupName.Width = 250;
-            // 
-            // TestResult
-            // 
-            this.TestResult.DataPropertyName = "TestResult";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.TestResult.DefaultCellStyle = dataGridViewCellStyle5;
-            this.TestResult.HeaderText = "Kết quả";
-            this.TestResult.Name = "TestResult";
-            this.TestResult.ReadOnly = true;
-            this.TestResult.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // TestPercent
-            // 
-            this.TestPercent.DataPropertyName = "TestPercent";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.TestPercent.DefaultCellStyle = dataGridViewCellStyle6;
-            this.TestPercent.HeaderText = "% kết quả";
-            this.TestPercent.Name = "TestPercent";
-            this.TestPercent.ReadOnly = true;
-            this.TestPercent.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TestPercent.Visible = false;
-            // 
-            // BinhThuong
-            // 
-            this.BinhThuong.DataPropertyName = "BinhThuong";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.BinhThuong.DefaultCellStyle = dataGridViewCellStyle7;
-            this.BinhThuong.HeaderText = "Bình thường";
-            this.BinhThuong.Name = "BinhThuong";
-            this.BinhThuong.ReadOnly = true;
-            this.BinhThuong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BinhThuong.Width = 150;
-            // 
-            // TinhTrang
-            // 
-            this.TinhTrang.DataPropertyName = "TinhTrang";
-            this.TinhTrang.HeaderText = "TinhTrang";
-            this.TinhTrang.Name = "TinhTrang";
-            this.TinhTrang.ReadOnly = true;
-            this.TinhTrang.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TinhTrang.Visible = false;
-            // 
-            // Type
-            // 
-            this.Type.DataPropertyName = "Type";
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            this.Type.ReadOnly = true;
-            this.Type.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Type.Visible = false;
-            // 
-            // FromValue2
-            // 
-            this.FromValue2.DataPropertyName = "FromValue";
-            this.FromValue2.HeaderText = "FromValue2";
-            this.FromValue2.Name = "FromValue2";
-            this.FromValue2.ReadOnly = true;
-            this.FromValue2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FromValue2.Visible = false;
-            // 
-            // ToValue2
-            // 
-            this.ToValue2.DataPropertyName = "ToValue";
-            this.ToValue2.HeaderText = "ToValue2";
-            this.ToValue2.Name = "ToValue2";
-            this.ToValue2.ReadOnly = true;
-            this.ToValue2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ToValue2.Visible = false;
-            // 
-            // DoiTuong2
-            // 
-            this.DoiTuong2.DataPropertyName = "DoiTuong";
-            this.DoiTuong2.HeaderText = "DoiTuong2";
-            this.DoiTuong2.Name = "DoiTuong2";
-            this.DoiTuong2.ReadOnly = true;
-            this.DoiTuong2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DoiTuong2.Visible = false;
-            // 
-            // DonVi2
-            // 
-            this.DonVi2.DataPropertyName = "DonVi";
-            this.DonVi2.HeaderText = "DonVi2";
-            this.DonVi2.Name = "DonVi2";
-            this.DonVi2.ReadOnly = true;
-            this.DonVi2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DonVi2.Visible = false;
-            // 
-            // FromPercent2
-            // 
-            this.FromPercent2.DataPropertyName = "FromPercent";
-            this.FromPercent2.HeaderText = "FromPercent2";
-            this.FromPercent2.Name = "FromPercent2";
-            this.FromPercent2.ReadOnly = true;
-            this.FromPercent2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.FromPercent2.Visible = false;
-            // 
-            // ToPercent2
-            // 
-            this.ToPercent2.DataPropertyName = "ToPercent";
-            this.ToPercent2.HeaderText = "ToPercent2";
-            this.ToPercent2.Name = "ToPercent2";
-            this.ToPercent2.ReadOnly = true;
-            this.ToPercent2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ToPercent2.Visible = false;
-            // 
-            // GroupID
-            // 
-            this.GroupID.DataPropertyName = "GroupID";
-            this.GroupID.HeaderText = "GroupID";
-            this.GroupID.Name = "GroupID";
-            this.GroupID.ReadOnly = true;
-            this.GroupID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.GroupID.Visible = false;
-            // 
-            // Order
-            // 
-            this.Order.DataPropertyName = "Order";
-            this.Order.HeaderText = "Order";
-            this.Order.Name = "Order";
-            this.Order.ReadOnly = true;
-            this.Order.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Order.Visible = false;
-            // 
-            // LoaiXN
-            // 
-            this.LoaiXN.DataPropertyName = "LoaiXN";
-            this.LoaiXN.HeaderText = "LoaiXN";
-            this.LoaiXN.Name = "LoaiXN";
-            this.LoaiXN.ReadOnly = true;
-            this.LoaiXN.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.LoaiXN.Visible = false;
-            // 
-            // TestNum
-            // 
-            this.TestNum.DataPropertyName = "TestNum";
-            this.TestNum.HeaderText = "TestNum";
-            this.TestNum.Name = "TestNum";
-            this.TestNum.ReadOnly = true;
-            this.TestNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TestNum.Visible = false;
-            // 
-            // FromOperator2
-            // 
-            this.FromOperator2.DataPropertyName = "FromOperator";
-            this.FromOperator2.HeaderText = "FromOperator2";
-            this.FromOperator2.Name = "FromOperator2";
-            this.FromOperator2.ReadOnly = true;
-            this.FromOperator2.Visible = false;
-            // 
-            // ToOperator2
-            // 
-            this.ToOperator2.DataPropertyName = "ToOperator";
-            this.ToOperator2.HeaderText = "ToOperator2";
-            this.ToOperator2.Name = "ToOperator2";
-            this.ToOperator2.ReadOnly = true;
-            this.ToOperator2.Visible = false;
-            // 
-            // FromAge2
-            // 
-            this.FromAge2.DataPropertyName = "FromAge";
-            this.FromAge2.HeaderText = "FromAge2";
-            this.FromAge2.Name = "FromAge2";
-            this.FromAge2.ReadOnly = true;
-            this.FromAge2.Visible = false;
-            // 
-            // ToAge2
-            // 
-            this.ToAge2.DataPropertyName = "ToAge";
-            this.ToAge2.HeaderText = "ToAge2";
-            this.ToAge2.Name = "ToAge2";
-            this.ToAge2.ReadOnly = true;
-            this.ToAge2.Visible = false;
-            // 
-            // FromTime2
-            // 
-            this.FromTime2.DataPropertyName = "FromTime";
-            this.FromTime2.HeaderText = "FromTime2";
-            this.FromTime2.Name = "FromTime2";
-            this.FromTime2.ReadOnly = true;
-            this.FromTime2.Visible = false;
-            // 
-            // ToTime2
-            // 
-            this.ToTime2.DataPropertyName = "ToTime";
-            this.ToTime2.HeaderText = "ToTime2";
-            this.ToTime2.Name = "ToTime2";
-            this.ToTime2.ReadOnly = true;
-            this.ToTime2.Visible = false;
-            // 
-            // FromTimeOperator2
-            // 
-            this.FromTimeOperator2.DataPropertyName = "FromTimeOperator";
-            this.FromTimeOperator2.HeaderText = "FromTimeOperator2";
-            this.FromTimeOperator2.Name = "FromTimeOperator2";
-            this.FromTimeOperator2.ReadOnly = true;
-            this.FromTimeOperator2.Visible = false;
-            // 
-            // ToTimeOperator2
-            // 
-            this.ToTimeOperator2.DataPropertyName = "ToTimeOperator";
-            this.ToTimeOperator2.HeaderText = "ToTimeOperator2";
-            this.ToTimeOperator2.Name = "ToTimeOperator2";
-            this.ToTimeOperator2.ReadOnly = true;
-            this.ToTimeOperator2.Visible = false;
-            // 
-            // XValue2
-            // 
-            this.XValue2.DataPropertyName = "XValue";
-            this.XValue2.HeaderText = "XValue2";
-            this.XValue2.Name = "XValue2";
-            this.XValue2.ReadOnly = true;
-            this.XValue2.Visible = false;
-            // 
-            // HasHutThuoc
-            // 
-            this.HasHutThuoc.DataPropertyName = "HasHutThuoc";
-            this.HasHutThuoc.HeaderText = "HasHutThuoc";
-            this.HasHutThuoc.Name = "HasHutThuoc";
-            this.HasHutThuoc.ReadOnly = true;
-            this.HasHutThuoc.Visible = false;
-            // 
             // uKetQuaXetNghiemTongHop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1321,9 +1309,8 @@
         private System.Windows.Forms.CheckBox chkCheckedXN;
         private System.Windows.Forms.CheckBox chkCheckedBN;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgBenhNhan;
-        private System.Windows.Forms.Button btnExportExcelCellDyn3200;
-        private System.Windows.Forms.Button btnPrintCellDyn3200;
-        private System.Windows.Forms.Button btnExportExcelSinhHoa;
+        private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;

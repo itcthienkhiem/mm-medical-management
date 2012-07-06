@@ -43,9 +43,8 @@ namespace MM.Controls
             btnEditChiTiet.Enabled = AllowEdit;
             btnDeleteChiTiet.Enabled = AllowDelete;
 
-            btnPrintCellDyn3200.Enabled = AllowPrint;
-            btnExportExcelCellDyn3200.Enabled = AllowExport;
-            btnExportExcelSinhHoa.Enabled = AllowExport;
+            btnPrint.Enabled = AllowPrint;
+            btnExportExcel.Enabled = AllowExport;
             btnUploadFTP.Enabled = AllowExport;
 
             btnPrintCellDyn.Enabled = AllowPrint;
@@ -325,7 +324,6 @@ namespace MM.Controls
 
             DateTime tuNgay = dtpkTuNgay.Value;
             DateTime denNgay = dtpkDenNgay.Value;
-
 
             foreach (DataRow row in checkedPatientRows)
             {
@@ -864,6 +862,32 @@ namespace MM.Controls
             height = (int)(height * 0.7);
             panel1.Height = height;
         }
+
+        private void OnPrintXetNghiem()
+        {
+
+        }
+
+        private void OnExportExcel()
+        {
+            List<DataRow> checkedPatientRows = GetCheckedPatientRows();
+            if (checkedPatientRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 bệnh nhân cần xuất excel.", IconType.Information);
+                return;
+            }
+
+            UpdateUncheckedXetNghiem();
+
+            DateTime tuNgay = dtpkTuNgay.Value;
+            DateTime denNgay = dtpkDenNgay.Value;
+
+            dlgNhomXetNghiem dlg = new dlgNhomXetNghiem();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -929,19 +953,14 @@ namespace MM.Controls
             DisplayDanhSachXetNghiem(row);
         }
 
-        private void btnPrintCellDyn3200_Click(object sender, EventArgs e)
+        private void btnPrint_Click(object sender, EventArgs e)
         {
-            PrintAll();
+            OnPrintXetNghiem();
         }
 
-        private void btnExportExcelCellDyn3200_Click(object sender, EventArgs e)
+        private void btnExportExcel_Click(object sender, EventArgs e)
         {
-            ExportCellDyn3200ToExcel();
-        }
-
-        private void btnExportExcelSinhHoa_Click(object sender, EventArgs e)
-        {
-            ExportSinhHoaToExcel();
+            OnExportExcel();
         }
 
         private void btnAddChiTiet_Click(object sender, EventArgs e)
@@ -1109,5 +1128,10 @@ namespace MM.Controls
             RefreshNgayXetNghiem(dt);
         }
         #endregion
+
+        private void dgBenhNhan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
