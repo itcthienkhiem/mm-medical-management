@@ -96,7 +96,7 @@ namespace MM.Controls
 
         private void OnDisplayChiTietKetQuaXetNghiem(string ketQuaXetNghiemGUID)
         {
-            Result result = KetQuaXetNghiemTayBus.GetChiTietKetQuaXetNghiem(ketQuaXetNghiemGUID);
+            Result result = KetQuaXetNghiemTayBus.GetChiTietKetQuaXetNghiem(ketQuaXetNghiemGUID, dtpkTuNgay.Value, dtpkDenNgay.Value);
             if (result.IsOK)
             {
                 dgChiTietKQXN.DataSource = result.QueryResult;

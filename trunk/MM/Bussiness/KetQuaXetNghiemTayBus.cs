@@ -117,6 +117,7 @@ namespace MM.Bussiness
             }
             else
             {
+                isUpdate = true;
                 string xetNghiem_ManualGUID = row["XetNghiem_ManualGUID"].ToString();
                 XetNghiem_Manual xn = db.XetNghiem_Manuals.FirstOrDefault<XetNghiem_Manual>(x => x.XetNghiem_ManualGUID.ToString() == xetNghiem_ManualGUID);
                 if (xn == null || xn.Fullname.ToUpper() == "ESTRADIOL") return null;
@@ -373,8 +374,6 @@ namespace MM.Bussiness
                             return ctxn;
                     }
                 }
-
-                isUpdate = true;
             }
 
             return ctxn;
@@ -389,15 +388,23 @@ namespace MM.Bussiness
             {
                 tinhTrang = TinhTrang.BinhThuong;
 
-                if (ctxn.FromOperator == "<" && testResult <= ctxn.FromValue.Value)
-                    tinhTrang = TinhTrang.BatThuong;
-                else if (ctxn.FromOperator == "<=" && testResult < ctxn.FromValue.Value)
-                    tinhTrang = TinhTrang.BatThuong;
+                if (doiTuong == DoiTuong.Khac)
+                {
+                    if (testResult < ctxn.FromValue.Value || testResult > ctxn.ToValue.Value)
+                        tinhTrang = TinhTrang.BatThuong;
+                }
+                else
+                {
+                    if (ctxn.FromOperator == "<" && testResult <= ctxn.FromValue.Value)
+                        tinhTrang = TinhTrang.BatThuong;
+                    else if (ctxn.FromOperator == "<=" && testResult < ctxn.FromValue.Value)
+                        tinhTrang = TinhTrang.BatThuong;
 
-                if (ctxn.ToOperator == "<" && testResult >= ctxn.ToValue.Value)
-                    tinhTrang = TinhTrang.BatThuong;
-                else if (ctxn.ToOperator == "<=" && testResult > ctxn.ToValue.Value)
-                    tinhTrang = TinhTrang.BatThuong;
+                    if (ctxn.ToOperator == "<" && testResult >= ctxn.ToValue.Value)
+                        tinhTrang = TinhTrang.BatThuong;
+                    else if (ctxn.ToOperator == "<=" && testResult > ctxn.ToValue.Value)
+                        tinhTrang = TinhTrang.BatThuong;
+                }
 
                 switch (doiTuong)
                 {
@@ -928,12 +935,17 @@ namespace MM.Bussiness
 
         public static Result GetChiTietKetQuaXetNghiem(string ketQuaXetNghiemGUID)
         {
+            return GetChiTietKetQuaXetNghiem(ketQuaXetNghiemGUID, Global.MinDateTime, Global.MaxDateTime);
+        }
+
+        public static Result GetChiTietKetQuaXetNghiem(string ketQuaXetNghiemGUID, DateTime fromDate, DateTime toDate)
+        {
             Result result = new Result();
 
             try
             {
-                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_ManualView WHERE KetQuaXetNghiem_ManualGUID = '{0}' AND Status = {1} ORDER BY NgayXetNghiem DESC, GroupID, [Order]",
-                           ketQuaXetNghiemGUID, (byte)Status.Actived);
+                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_ManualView WHERE KetQuaXetNghiem_ManualGUID = '{0}' AND Status = {1} AND NgayXetNghiem BETWEEN '{2}' AND '{3}' ORDER BY NgayXetNghiem DESC, GroupID, [Order]",
+                           ketQuaXetNghiemGUID, (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);
                 if (!result.IsOK) return result;
@@ -1206,7 +1218,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertKQXN(KetQuaXetNghiem_Manual kqxn, List<ChiTietKetQuaXetNghiem_Manual> ctkqxns)
+        public static Result InsertKQXN(KetQuaXetNghiem_Manual kqxn, List<ChiTietKetQuaXetNghiem_Manual> ctkqxns, List<string> deletedKeys)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -1296,9 +1308,19 @@ namespace MM.Bussiness
 
                             desc += "- Chi tiết kết quả xét nghiệm tay:\n";
                             //Chi tiết
-                            var chiTietKQXNs = ketQuaXN.ChiTietKetQuaXetNghiem_Manuals;
-                            foreach (ChiTietKetQuaXetNghiem_Manual ct in chiTietKQXNs)
+                            //var chiTietKQXNs = ketQuaXN.ChiTietKetQuaXetNghiem_Manuals;
+                            //foreach (ChiTietKetQuaXetNghiem_Manual ct in chiTietKQXNs)
+                            //{
+                            //    ct.UpdatedDate = DateTime.Now;
+                            //    ct.UpdatedBy = Guid.Parse(Global.UserGUID);
+                            //    ct.Status = (byte)Status.Deactived;
+                            //}
+
+                            foreach (string key in deletedKeys)
                             {
+                                ChiTietKetQuaXetNghiem_Manual ct = db.ChiTietKetQuaXetNghiem_Manuals.SingleOrDefault(c => c.ChiTietKetQuaXetNghiem_ManualGUID.ToString() == key);
+                                if (ct == null) continue;
+
                                 ct.UpdatedDate = DateTime.Now;
                                 ct.UpdatedBy = Guid.Parse(Global.UserGUID);
                                 ct.Status = (byte)Status.Deactived;
@@ -1475,12 +1497,12 @@ namespace MM.Bussiness
                         ct.DonVi = ctkqxn.DonVi;
                         ct.FromOperator = ctkqxn.FromOperator;
                         ct.ToOperator = ctkqxn.ToOperator;
-                        ct.FromAge = ctkqxn.FromAge;
-                        ct.ToAge = ctkqxn.ToAge;
-                        ct.FromTime = ctkqxn.FromTime;
-                        ct.FromTime = ctkqxn.FromTime;
-                        ct.FromTimeOperator = ctkqxn.FromTimeOperator;
-                        ct.ToTimeOperator = ctkqxn.ToTimeOperator;
+                        //ct.FromAge = ctkqxn.FromAge;
+                        //ct.ToAge = ctkqxn.ToAge;
+                        //ct.FromTime = ctkqxn.FromTime;
+                        //ct.FromTime = ctkqxn.FromTime;
+                        //ct.FromTimeOperator = ctkqxn.FromTimeOperator;
+                        //ct.ToTimeOperator = ctkqxn.ToTimeOperator;
                         ct.XValue = ctkqxn.XValue;
                         ct.LamThem = ctkqxn.LamThem;
                         ct.HasHutThuoc = ctkqxn.HasHutThuoc;

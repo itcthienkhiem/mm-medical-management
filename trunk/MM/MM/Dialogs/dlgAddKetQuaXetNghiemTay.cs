@@ -23,6 +23,7 @@ namespace MM.Dialogs
         private Font _normalFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         private Font _boldFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         private DataRow _patientRow = null;
+        private List<string> _deletedKeys = new List<string>();
         #endregion
 
         #region Constructor
@@ -165,7 +166,7 @@ namespace MM.Dialogs
                         ctkqxns.Add(ct);
                     }
 
-                    Result result = KetQuaXetNghiemTayBus.InsertKQXN(_ketQuaXetNghiem, ctkqxns);
+                    Result result = KetQuaXetNghiemTayBus.InsertKQXN(_ketQuaXetNghiem, ctkqxns, _deletedKeys);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(this.Text, result.GetErrorAsString("XetNghiemTayBus.InsertKQXN"), IconType.Error);
@@ -252,6 +253,10 @@ namespace MM.Dialogs
                 {
                     foreach (DataRow row in deletedRows)
                     {
+                        if (row["ChiTietKetQuaXetNghiem_ManualGUID"] != null && row["ChiTietKetQuaXetNghiem_ManualGUID"] != DBNull.Value &&
+                            !_deletedKeys.Contains(row["ChiTietKetQuaXetNghiem_ManualGUID"].ToString()))
+                            _deletedKeys.Add(row["ChiTietKetQuaXetNghiem_ManualGUID"].ToString());
+
                         dt.Rows.Remove(row);
                     }
                 }
