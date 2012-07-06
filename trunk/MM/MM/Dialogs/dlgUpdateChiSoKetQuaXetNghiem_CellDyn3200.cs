@@ -52,85 +52,83 @@ namespace MM.Dialogs
         private void DisplayInfo()
         {
             if (!_isTongHop)
-            {
                 _chiTietKQXN.ChiTietKQXN_CellDyn3200GUID = Guid.Parse(_drCTKQXN["ChiTietKQXN_CellDyn3200GUID"].ToString());
-
-                if (_drCTKQXN["TenXetNghiem"] != null && _drCTKQXN["TenXetNghiem"] != DBNull.Value)
-                    txTenXetNghiem.Text = _drCTKQXN["TenXetNghiem"].ToString();
-
-                numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
-
-                if ((_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value) &&
-                    (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value))
-                {
-                    chkFromValue_Normal.Enabled = false;
-                    chkToValue_Normal.Enabled = false;
-                }
-                else if (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value)
-                {
-                    chkFromValue_Normal.Checked = true;
-                    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
-                }
-                else if (_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value)
-                {
-                    chkToValue_Normal.Checked = true;
-                    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
-                }
-                else
-                {
-                    chkFromValue_Normal.Checked = true;
-                    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
-                    chkToValue_Normal.Checked = true;
-                    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
-                }
-
-                if (_drCTKQXN["DonVi"] != null && _drCTKQXN["DonVi"] != DBNull.Value)
-                    txtDonVi.Text = _drCTKQXN["DonVi"].ToString();
-
-                _chiTietKQXN.TenXetNghiem = _drCTKQXN["Fullname"].ToString();
-
-                chkLamThem.Checked = Convert.ToBoolean(_drCTKQXN["LamThem"]);
-            }
             else
             {
                 _chiTietKQXN.ChiTietKQXN_CellDyn3200GUID = Guid.Parse(_drCTKQXN["ChiTietKQXNGUID"].ToString());
 
-                if (_drCTKQXN["Fullname"] != null && _drCTKQXN["Fullname"] != DBNull.Value)
-                    txTenXetNghiem.Text = _drCTKQXN["Fullname"].ToString();
+                //if (_drCTKQXN["Fullname"] != null && _drCTKQXN["Fullname"] != DBNull.Value)
+                //    txTenXetNghiem.Text = _drCTKQXN["Fullname"].ToString();
 
-                numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
+                //numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
 
-                if ((_drCTKQXN["FromValue2"] == null || _drCTKQXN["FromValue2"] == DBNull.Value) &&
-                    (_drCTKQXN["ToValue2"] == null || _drCTKQXN["ToValue2"] == DBNull.Value))
-                {
-                    chkFromValue_Normal.Enabled = false;
-                    chkToValue_Normal.Enabled = false;
-                }
-                else if (_drCTKQXN["ToValue2"] == null || _drCTKQXN["ToValue2"] == DBNull.Value)
-                {
-                    chkFromValue_Normal.Checked = true;
-                    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue2"]);
-                }
-                else if (_drCTKQXN["FromValue2"] == null || _drCTKQXN["FromValue2"] == DBNull.Value)
-                {
-                    chkToValue_Normal.Checked = true;
-                    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue2"]);
-                }
-                else
-                {
-                    chkFromValue_Normal.Checked = true;
-                    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue2"]);
-                    chkToValue_Normal.Checked = true;
-                    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue2"]);
-                }
+                //if ((_drCTKQXN["FromValue2"] == null || _drCTKQXN["FromValue2"] == DBNull.Value) &&
+                //    (_drCTKQXN["ToValue2"] == null || _drCTKQXN["ToValue2"] == DBNull.Value))
+                //{
+                //    chkFromValue_Normal.Enabled = false;
+                //    chkToValue_Normal.Enabled = false;
+                //}
+                //else if (_drCTKQXN["ToValue2"] == null || _drCTKQXN["ToValue2"] == DBNull.Value)
+                //{
+                //    chkFromValue_Normal.Checked = true;
+                //    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue2"]);
+                //}
+                //else if (_drCTKQXN["FromValue2"] == null || _drCTKQXN["FromValue2"] == DBNull.Value)
+                //{
+                //    chkToValue_Normal.Checked = true;
+                //    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue2"]);
+                //}
+                //else
+                //{
+                //    chkFromValue_Normal.Checked = true;
+                //    numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue2"]);
+                //    chkToValue_Normal.Checked = true;
+                //    numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue2"]);
+                //}
                 
-                if (_drCTKQXN["DonVi2"] != null && _drCTKQXN["DonVi2"] != DBNull.Value)
-                    txtDonVi.Text = _drCTKQXN["DonVi2"].ToString();
+                //if (_drCTKQXN["DonVi2"] != null && _drCTKQXN["DonVi2"] != DBNull.Value)
+                //    txtDonVi.Text = _drCTKQXN["DonVi2"].ToString();
 
-                _chiTietKQXN.TenXetNghiem = _drCTKQXN["Fullname"].ToString();
+                //_chiTietKQXN.TenXetNghiem = _drCTKQXN["Fullname"].ToString();
 
-                chkLamThem.Checked = Convert.ToBoolean(_drCTKQXN["LamThem"]);
+                //chkLamThem.Checked = Convert.ToBoolean(_drCTKQXN["LamThem"]);
             }
+
+            if (_drCTKQXN["Fullname"] != null && _drCTKQXN["Fullname"] != DBNull.Value)
+                txTenXetNghiem.Text = _drCTKQXN["Fullname"].ToString();
+
+            numKetQua.Value = (Decimal)Convert.ToDouble(_drCTKQXN["TestResult"].ToString().Trim());
+
+            if ((_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value) &&
+                (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value))
+            {
+                chkFromValue_Normal.Enabled = false;
+                chkToValue_Normal.Enabled = false;
+            }
+            else if (_drCTKQXN["ToValue"] == null || _drCTKQXN["ToValue"] == DBNull.Value)
+            {
+                chkFromValue_Normal.Checked = true;
+                numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
+            }
+            else if (_drCTKQXN["FromValue"] == null || _drCTKQXN["FromValue"] == DBNull.Value)
+            {
+                chkToValue_Normal.Checked = true;
+                numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
+            }
+            else
+            {
+                chkFromValue_Normal.Checked = true;
+                numFromValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["FromValue"]);
+                chkToValue_Normal.Checked = true;
+                numToValue_Normal.Value = (Decimal)Convert.ToDouble(_drCTKQXN["ToValue"]);
+            }
+
+            if (_drCTKQXN["DonVi"] != null && _drCTKQXN["DonVi"] != DBNull.Value)
+                txtDonVi.Text = _drCTKQXN["DonVi"].ToString();
+
+            _chiTietKQXN.TenXetNghiem = _drCTKQXN["Fullname"].ToString();
+
+            chkLamThem.Checked = Convert.ToBoolean(_drCTKQXN["LamThem"]);
         }
 
         private bool CheckInfo()

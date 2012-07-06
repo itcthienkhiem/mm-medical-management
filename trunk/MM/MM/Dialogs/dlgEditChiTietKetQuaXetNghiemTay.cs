@@ -57,135 +57,135 @@ namespace MM.Dialogs
         {
             if (!_isTongHop)
             {
-                dtpkNgayXetNghiem.Value = Convert.ToDateTime(_drChiTietKQXN["NgayXetNghiem"]);
-                txtTenXetNghiem.Text = string.Format("{0} ({1})", _drChiTietKQXN["Fullname"].ToString(), _drChiTietKQXN["GroupName"].ToString()); 
-                txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
-
-                if (txtResult.Text.ToLower().Replace("negative", "").Replace("positive", "").Trim() != string.Empty)
-                    txtResult.Text = txtResult.Text.ToLower().Replace("negative", "").Replace("positive", "").Trim();
-
-                chkLamThem.Checked = Convert.ToBoolean(_drChiTietKQXN["LamThem"]);
-                chkHutThuoc.Checked = Convert.ToBoolean(_drChiTietKQXN["HasHutThuoc"]);
-
-                if (_drChiTietKQXN["DoiTuong"] != null && _drChiTietKQXN["DoiTuong"] != DBNull.Value)
-                {
-                    DoiTuong doiTuong = (DoiTuong)Convert.ToByte(_drChiTietKQXN["DoiTuong"]);
-
-                    if (doiTuong == DoiTuong.Khac)
-                    {
-                        _uNormal_SoiCanLangNuocTieu.Visible = true;
-
-                        if (_drChiTietKQXN["FromValue"] != null && _drChiTietKQXN["FromValue"] != DBNull.Value &&
-                            _drChiTietKQXN["ToValue"] != null && _drChiTietKQXN["ToValue"] != DBNull.Value)
-                        {
-                            _uNormal_SoiCanLangNuocTieu.FromToChecked = true;
-                            _uNormal_SoiCanLangNuocTieu.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue"]);
-                            _uNormal_SoiCanLangNuocTieu.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue"]);
-                        }
-                        else
-                            _uNormal_SoiCanLangNuocTieu.FromToChecked = false;
-
-                        _uNormal_SoiCanLangNuocTieu.XValue = Convert.ToDouble(_drChiTietKQXN["XValue"]);
-                    }
-                    else
-                    {
-                        _uNormal_Chung.Visible = true;
-                        string donVi = string.Empty;
-                        if (_drChiTietKQXN["DonVi"] != null && _drChiTietKQXN["DonVi"] != DBNull.Value)
-                            donVi = _drChiTietKQXN["DonVi"].ToString();
-                        _uNormal_Chung.DonVi = donVi;
-
-                        if (_drChiTietKQXN["FromValue"] != null && _drChiTietKQXN["FromValue"] != DBNull.Value &&
-                            _drChiTietKQXN["ToValue"] != null && _drChiTietKQXN["ToValue"] != DBNull.Value)
-                        {
-                            _uNormal_Chung.FromValueChecked = true;
-                            _uNormal_Chung.ToValueChecked = true;
-                            _uNormal_Chung.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue"]);
-                            _uNormal_Chung.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue"]);
-                        }
-                        else if (_drChiTietKQXN["FromValue"] != null && _drChiTietKQXN["FromValue"] != DBNull.Value)
-                        {
-                            _uNormal_Chung.FromValueChecked = true;
-                            _uNormal_Chung.ToValueChecked = false;
-                            _uNormal_Chung.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue"]);
-                            _uNormal_Chung.FromOperator = _drChiTietKQXN["FromOperator"].ToString();
-                        }
-                        else if (_drChiTietKQXN["ToValue"] != null && _drChiTietKQXN["ToValue"] != DBNull.Value)
-                        {
-                            _uNormal_Chung.FromValueChecked = false;
-                            _uNormal_Chung.ToValueChecked = true;
-                            _uNormal_Chung.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue"]);
-                            _uNormal_Chung.ToOperator = _drChiTietKQXN["ToOperator"].ToString();
-                        }
-                    }
-                }
-                
                 _chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID = Guid.Parse(_drChiTietKQXN["ChiTietKetQuaXetNghiem_ManualGUID"].ToString());
+                dtpkNgayXetNghiem.Value = Convert.ToDateTime(_drChiTietKQXN["NgayXetNghiem"]);
             }
             else
             {
+                _chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID = Guid.Parse(_drChiTietKQXN["ChiTietKQXNGUID"].ToString());
                 dtpkNgayXetNghiem.Value = Convert.ToDateTime(_drChiTietKQXN["NgayXN"]);
-                txtTenXetNghiem.Text = string.Format("{0} ({1})", _drChiTietKQXN["Fullname"].ToString(), _drChiTietKQXN["GroupName"].ToString());
-                txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
-                chkLamThem.Checked = Convert.ToBoolean(_drChiTietKQXN["LamThem"]);
-                chkHutThuoc.Checked = Convert.ToBoolean(_drChiTietKQXN["HasHutThuoc"]);
+                //dtpkNgayXetNghiem.Value = Convert.ToDateTime(_drChiTietKQXN["NgayXN"]);
+                //txtTenXetNghiem.Text = string.Format("{0} ({1})", _drChiTietKQXN["Fullname"].ToString(), _drChiTietKQXN["GroupName"].ToString());
+                //txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
+                //chkLamThem.Checked = Convert.ToBoolean(_drChiTietKQXN["LamThem"]);
+                //chkHutThuoc.Checked = Convert.ToBoolean(_drChiTietKQXN["HasHutThuoc"]);
 
-                if (_drChiTietKQXN["DoiTuong2"] != null && _drChiTietKQXN["DoiTuong2"] != DBNull.Value)
+                //if (_drChiTietKQXN["DoiTuong2"] != null && _drChiTietKQXN["DoiTuong2"] != DBNull.Value)
+                //{
+                //    DoiTuong doiTuong = (DoiTuong)Convert.ToByte(_drChiTietKQXN["DoiTuong2"]);
+
+                //    if (doiTuong == DoiTuong.Khac)
+                //    {
+                //        _uNormal_SoiCanLangNuocTieu.Visible = true;
+
+                //        if (_drChiTietKQXN["FromValue2"] != null && _drChiTietKQXN["FromValue2"] != DBNull.Value &&
+                //            _drChiTietKQXN["ToValue2"] != null && _drChiTietKQXN["ToValue2"] != DBNull.Value)
+                //        {
+                //            _uNormal_SoiCanLangNuocTieu.FromToChecked = true;
+                //            _uNormal_SoiCanLangNuocTieu.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue2"]);
+                //            _uNormal_SoiCanLangNuocTieu.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue2"]);
+                //        }
+                //        else
+                //            _uNormal_SoiCanLangNuocTieu.FromToChecked = false;
+
+                //        _uNormal_SoiCanLangNuocTieu.XValue = Convert.ToDouble(_drChiTietKQXN["XValue2"]);
+                //    }
+                //    else
+                //    {
+                //        _uNormal_Chung.Visible = true;
+                //        string donVi = string.Empty;
+                //        if (_drChiTietKQXN["DonVi2"] != null && _drChiTietKQXN["DonVi2"] != DBNull.Value)
+                //            donVi = _drChiTietKQXN["DonVi2"].ToString();
+                //        _uNormal_Chung.DonVi = donVi;
+
+                //        if (_drChiTietKQXN["FromValue2"] != null && _drChiTietKQXN["FromValue2"] != DBNull.Value &&
+                //            _drChiTietKQXN["ToValue2"] != null && _drChiTietKQXN["ToValue2"] != DBNull.Value)
+                //        {
+                //            _uNormal_Chung.FromValueChecked = true;
+                //            _uNormal_Chung.ToValueChecked = true;
+                //            _uNormal_Chung.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue2"]);
+                //            _uNormal_Chung.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue2"]);
+                //        }
+                //        else if (_drChiTietKQXN["FromValue2"] != null && _drChiTietKQXN["FromValue2"] != DBNull.Value)
+                //        {
+                //            _uNormal_Chung.FromValueChecked = true;
+                //            _uNormal_Chung.ToValueChecked = false;
+                //            _uNormal_Chung.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue2"]);
+                //            _uNormal_Chung.FromOperator = _drChiTietKQXN["FromOperator2"].ToString();
+                //        }
+                //        else if (_drChiTietKQXN["ToValue2"] != null && _drChiTietKQXN["ToValue2"] != DBNull.Value)
+                //        {
+                //            _uNormal_Chung.FromValueChecked = false;
+                //            _uNormal_Chung.ToValueChecked = true;
+                //            _uNormal_Chung.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue2"]);
+                //            _uNormal_Chung.ToOperator = _drChiTietKQXN["ToOperator2"].ToString();
+                //        }
+                //    }
+                //}
+            }
+
+            
+            txtTenXetNghiem.Text = string.Format("{0} ({1})", _drChiTietKQXN["Fullname"].ToString(), _drChiTietKQXN["GroupName"].ToString());
+            txtResult.Text = _drChiTietKQXN["TestResult"].ToString();
+
+            if (txtResult.Text.ToLower().Replace("negative", "").Replace("positive", "").Trim() != string.Empty)
+                txtResult.Text = txtResult.Text.ToLower().Replace("negative", "").Replace("positive", "").Trim();
+
+            chkLamThem.Checked = Convert.ToBoolean(_drChiTietKQXN["LamThem"]);
+            chkHutThuoc.Checked = Convert.ToBoolean(_drChiTietKQXN["HasHutThuoc"]);
+
+            if (_drChiTietKQXN["DoiTuong"] != null && _drChiTietKQXN["DoiTuong"] != DBNull.Value)
+            {
+                DoiTuong doiTuong = (DoiTuong)Convert.ToByte(_drChiTietKQXN["DoiTuong"]);
+
+                if (doiTuong == DoiTuong.Khac)
                 {
-                    DoiTuong doiTuong = (DoiTuong)Convert.ToByte(_drChiTietKQXN["DoiTuong2"]);
+                    _uNormal_SoiCanLangNuocTieu.Visible = true;
 
-                    if (doiTuong == DoiTuong.Khac)
+                    if (_drChiTietKQXN["FromValue"] != null && _drChiTietKQXN["FromValue"] != DBNull.Value &&
+                        _drChiTietKQXN["ToValue"] != null && _drChiTietKQXN["ToValue"] != DBNull.Value)
                     {
-                        _uNormal_SoiCanLangNuocTieu.Visible = true;
-
-                        if (_drChiTietKQXN["FromValue2"] != null && _drChiTietKQXN["FromValue2"] != DBNull.Value &&
-                            _drChiTietKQXN["ToValue2"] != null && _drChiTietKQXN["ToValue2"] != DBNull.Value)
-                        {
-                            _uNormal_SoiCanLangNuocTieu.FromToChecked = true;
-                            _uNormal_SoiCanLangNuocTieu.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue2"]);
-                            _uNormal_SoiCanLangNuocTieu.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue2"]);
-                        }
-                        else
-                            _uNormal_SoiCanLangNuocTieu.FromToChecked = false;
-
-                        _uNormal_SoiCanLangNuocTieu.XValue = Convert.ToDouble(_drChiTietKQXN["XValue2"]);
+                        _uNormal_SoiCanLangNuocTieu.FromToChecked = true;
+                        _uNormal_SoiCanLangNuocTieu.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue"]);
+                        _uNormal_SoiCanLangNuocTieu.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue"]);
                     }
                     else
-                    {
-                        _uNormal_Chung.Visible = true;
-                        string donVi = string.Empty;
-                        if (_drChiTietKQXN["DonVi2"] != null && _drChiTietKQXN["DonVi2"] != DBNull.Value)
-                            donVi = _drChiTietKQXN["DonVi2"].ToString();
-                        _uNormal_Chung.DonVi = donVi;
+                        _uNormal_SoiCanLangNuocTieu.FromToChecked = false;
 
-                        if (_drChiTietKQXN["FromValue2"] != null && _drChiTietKQXN["FromValue2"] != DBNull.Value &&
-                            _drChiTietKQXN["ToValue2"] != null && _drChiTietKQXN["ToValue2"] != DBNull.Value)
-                        {
-                            _uNormal_Chung.FromValueChecked = true;
-                            _uNormal_Chung.ToValueChecked = true;
-                            _uNormal_Chung.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue2"]);
-                            _uNormal_Chung.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue2"]);
-                        }
-                        else if (_drChiTietKQXN["FromValue2"] != null && _drChiTietKQXN["FromValue2"] != DBNull.Value)
-                        {
-                            _uNormal_Chung.FromValueChecked = true;
-                            _uNormal_Chung.ToValueChecked = false;
-                            _uNormal_Chung.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue2"]);
-                            _uNormal_Chung.FromOperator = _drChiTietKQXN["FromOperator2"].ToString();
-                        }
-                        else if (_drChiTietKQXN["ToValue2"] != null && _drChiTietKQXN["ToValue2"] != DBNull.Value)
-                        {
-                            _uNormal_Chung.FromValueChecked = false;
-                            _uNormal_Chung.ToValueChecked = true;
-                            _uNormal_Chung.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue2"]);
-                            _uNormal_Chung.ToOperator = _drChiTietKQXN["ToOperator2"].ToString();
-                        }
+                    _uNormal_SoiCanLangNuocTieu.XValue = Convert.ToDouble(_drChiTietKQXN["XValue"]);
+                }
+                else
+                {
+                    _uNormal_Chung.Visible = true;
+                    string donVi = string.Empty;
+                    if (_drChiTietKQXN["DonVi"] != null && _drChiTietKQXN["DonVi"] != DBNull.Value)
+                        donVi = _drChiTietKQXN["DonVi"].ToString();
+                    _uNormal_Chung.DonVi = donVi;
+
+                    if (_drChiTietKQXN["FromValue"] != null && _drChiTietKQXN["FromValue"] != DBNull.Value &&
+                        _drChiTietKQXN["ToValue"] != null && _drChiTietKQXN["ToValue"] != DBNull.Value)
+                    {
+                        _uNormal_Chung.FromValueChecked = true;
+                        _uNormal_Chung.ToValueChecked = true;
+                        _uNormal_Chung.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue"]);
+                        _uNormal_Chung.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue"]);
+                    }
+                    else if (_drChiTietKQXN["FromValue"] != null && _drChiTietKQXN["FromValue"] != DBNull.Value)
+                    {
+                        _uNormal_Chung.FromValueChecked = true;
+                        _uNormal_Chung.ToValueChecked = false;
+                        _uNormal_Chung.FromValue = Convert.ToDouble(_drChiTietKQXN["FromValue"]);
+                        _uNormal_Chung.FromOperator = _drChiTietKQXN["FromOperator"].ToString();
+                    }
+                    else if (_drChiTietKQXN["ToValue"] != null && _drChiTietKQXN["ToValue"] != DBNull.Value)
+                    {
+                        _uNormal_Chung.FromValueChecked = false;
+                        _uNormal_Chung.ToValueChecked = true;
+                        _uNormal_Chung.ToValue = Convert.ToDouble(_drChiTietKQXN["ToValue"]);
+                        _uNormal_Chung.ToOperator = _drChiTietKQXN["ToOperator"].ToString();
                     }
                 }
-
-                _chiTietKQXN.ChiTietKetQuaXetNghiem_ManualGUID = Guid.Parse(_drChiTietKQXN["ChiTietKQXNGUID"].ToString());
             }
-            
         }
 
         private bool CheckInfo()

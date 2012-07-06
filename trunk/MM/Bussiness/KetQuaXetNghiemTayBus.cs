@@ -21,7 +21,7 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (tenBenhNhan.Trim() == string.Empty)
                 {
-                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} ORDER BY V.FullName",
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} ORDER BY V.FullName",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived);
                 }
                 else
@@ -30,14 +30,14 @@ namespace MM.Bussiness
                     {
                         //query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_ManualView WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
                         //   fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
-                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FullName LIKE N'%{3}%' ORDER BY V.FullName",
+                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FullName LIKE N'%{3}%' ORDER BY V.FullName",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                     else
                     {
                         //query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_ManualView WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FileNum LIKE N'%{3}%' ORDER BY NgayXN DESC",
                         //   fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
-                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FileNum LIKE N'%{3}%' ORDER BY V.FullName",
+                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FileNum LIKE N'%{3}%' ORDER BY V.FullName",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                 }
@@ -118,7 +118,12 @@ namespace MM.Bussiness
             else
             {
                 isUpdate = true;
-                string xetNghiem_ManualGUID = row["XetNghiem_ManualGUID"].ToString();
+                string xetNghiem_ManualGUID = string.Empty;
+                if (row.Table.Columns.Contains("XetNghiemGUID"))
+                    xetNghiem_ManualGUID = row["XetNghiemGUID"].ToString();
+                else
+                    xetNghiem_ManualGUID = row["XetNghiem_ManualGUID"].ToString();
+
                 XetNghiem_Manual xn = db.XetNghiem_Manuals.FirstOrDefault<XetNghiem_Manual>(x => x.XetNghiem_ManualGUID.ToString() == xetNghiem_ManualGUID);
                 if (xn == null || xn.Fullname.ToUpper() == "ESTRADIOL") return null;
                 List<ChiTietXetNghiem_Manual> ctxns = xn.ChiTietXetNghiem_Manuals.Where(c => c.Status == (byte)Status.Actived).ToList<ChiTietXetNghiem_Manual>();
@@ -134,7 +139,12 @@ namespace MM.Bussiness
                 if (ctxn != null) return ctxn;
                 
                 //Nam - Nữ
-                string ketQuaXetNghiem_ManualGUID = row["KetQuaXetNghiem_ManualGUID"].ToString();
+                string ketQuaXetNghiem_ManualGUID = string.Empty;
+                if (row.Table.Columns.Contains("KetQuaXetNghiemGUID"))
+                    ketQuaXetNghiem_ManualGUID = row["KetQuaXetNghiemGUID"].ToString();
+                else
+                    ketQuaXetNghiem_ManualGUID = row["KetQuaXetNghiem_ManualGUID"].ToString();
+
                 KetQuaXetNghiem_ManualView kqxn = db.KetQuaXetNghiem_ManualViews.SingleOrDefault<KetQuaXetNghiem_ManualView>(k => k.KetQuaXetNghiemManualGUID.ToString() == ketQuaXetNghiem_ManualGUID);
                 if (kqxn == null) return null;
                 if (kqxn.GenderAsStr.ToLower() == "nam")
@@ -187,7 +197,12 @@ namespace MM.Bussiness
                 if (ctxn != null) return ctxn;
 
                 //Sáng - Chiều
-                DateTime ngayXetNghiem = Convert.ToDateTime(row["NgayXetNghiem"]);
+                DateTime ngayXetNghiem = DateTime.Now;
+                if (row.Table.Columns.Contains("NgayXN"))
+                    ngayXetNghiem = Convert.ToDateTime(row["NgayXN"]);
+                else
+                    ngayXetNghiem = Convert.ToDateTime(row["NgayXetNghiem"]);
+
                 int second = ngayXetNghiem.Hour * 60 * 60 + ngayXetNghiem.Minute * 60 + ngayXetNghiem.Second;
 
                 ctxn = GetChiTietXetNghiem_Manual(ctxns, DoiTuong.Sang_Chung);
