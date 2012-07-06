@@ -54,9 +54,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgYKienKhachHang = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.yKienKhachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colButtonKetLuan = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
+            this.KetLuan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenKhachHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soDienThoaiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,9 +69,6 @@
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiKetLuan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KetLuan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.yKienKhachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -308,6 +308,7 @@
             this.colChecked,
             this.STT,
             this.colButtonKetLuan,
+            this.KetLuan,
             this.tenKhachHangDataGridViewTextBoxColumn,
             this.soDienThoaiDataGridViewTextBoxColumn,
             this.diaChiDataGridViewTextBoxColumn,
@@ -316,8 +317,7 @@
             this.nguonDataGridViewTextBoxColumn,
             this.NguoiTao,
             this.NguoiCapNhat,
-            this.NguoiKetLuan,
-            this.KetLuan});
+            this.NguoiKetLuan});
             this.dgYKienKhachHang.DataSource = this.yKienKhachHangBindingSource;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -342,6 +342,18 @@
             this.dgYKienKhachHang.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgYKienKhachHang_CellMouseUp);
             this.dgYKienKhachHang.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgYKienKhachHang_ColumnHeaderMouseClick);
             this.dgYKienKhachHang.DoubleClick += new System.EventHandler(this.dgYKienKhachHang_DoubleClick);
+            // 
+            // yKienKhachHangBindingSource
+            // 
+            this.yKienKhachHangBindingSource.DataSource = typeof(MM.Databasae.YKienKhachHang);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
             // 
             // colChecked
             // 
@@ -376,6 +388,14 @@
             this.colButtonKetLuan.Text = "Kết luận";
             this.colButtonKetLuan.UseColumnTextForButtonValue = true;
             this.colButtonKetLuan.Width = 60;
+            // 
+            // KetLuan
+            // 
+            this.KetLuan.DataPropertyName = "KetLuan";
+            this.KetLuan.HeaderText = "Kết luận";
+            this.KetLuan.Name = "KetLuan";
+            this.KetLuan.ReadOnly = true;
+            this.KetLuan.Width = 250;
             // 
             // tenKhachHangDataGridViewTextBoxColumn
             // 
@@ -453,26 +473,6 @@
             this.NguoiKetLuan.ReadOnly = true;
             this.NguoiKetLuan.Width = 200;
             // 
-            // KetLuan
-            // 
-            this.KetLuan.DataPropertyName = "KetLuan";
-            this.KetLuan.HeaderText = "Kết luận";
-            this.KetLuan.Name = "KetLuan";
-            this.KetLuan.ReadOnly = true;
-            this.KetLuan.Width = 250;
-            // 
-            // yKienKhachHangBindingSource
-            // 
-            this.yKienKhachHangBindingSource.DataSource = typeof(MM.Databasae.YKienKhachHang);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.AllowCurrentPage = true;
-            this._printDialog.AllowSelection = true;
-            this._printDialog.AllowSomePages = true;
-            this._printDialog.ShowHelp = true;
-            this._printDialog.UseEXDialog = true;
-            // 
             // uYKienKhachHangList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -520,6 +520,7 @@
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn colButtonKetLuan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KetLuan;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenKhachHangDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn soDienThoaiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
@@ -529,6 +530,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiKetLuan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KetLuan;
     }
 }
