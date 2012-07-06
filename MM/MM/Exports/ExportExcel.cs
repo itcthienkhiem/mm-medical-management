@@ -5392,6 +5392,242 @@ namespace MM.Exports
             return true;
         }
 
+        private static void InitHeader(IWorksheet workSheet, bool hasLine, int rowIndex, string nhomXetNghiem)
+        {
+            double rowHeight = 21;
+            workSheet.Cells[rowIndex, 0].Value = nhomXetNghiem;
+            workSheet.Cells[rowIndex, 0].RowHeight = 26.25;
+            workSheet.Cells[rowIndex, 0].VerticalAlignment = VAlign.Center;
+            IRange range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+            range.Merge();
+            range.Font.Bold = true;
+            rowIndex++;
+
+            range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+            range.Merge();
+            range.Value = "TEST";
+            range.RowHeight = rowHeight;
+            range.VerticalAlignment = VAlign.Center;
+
+            range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+            range.Merge();
+            range.Value = "RESULT";
+            range.RowHeight = rowHeight;
+            range.VerticalAlignment = VAlign.Center;
+
+            workSheet.Cells[rowIndex, 4].Value = "NORMAL";
+            workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
+            workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
+
+            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+            range.Font.Bold = true;
+            range.HorizontalAlignment = HAlign.Center;
+
+            if (hasLine)
+            {
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Color = Color.Gray;
+            }
+        }
+
+        public static bool ExportKetQuaXetNghiemTongHopExcel(string exportFileName, List<DataRow> selectedNhomXNList, DataRow patientRow, DateTime fromDate, DateTime toDate,
+            List<string> uncheckedList, bool isPrint, bool hasLine, ref bool isData, ref DateTime maxNgayXN, ref List<string> cellDyn3200Keys,
+            ref List<string> hitachi917Keys, ref List<string> manualKeys)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                cellDyn3200Keys = new List<string>();
+                hitachi917Keys = new List<string>();
+                manualKeys = new List<string>();
+                string patientGUID = patientRow["PatientGUID"].ToString();
+                string ngaySinh = patientRow["DobStr"].ToString();
+                string gioiTinh = patientRow["GenderAsStr"].ToString();
+                string maBenhNhan = patientRow["FileNum"].ToString();
+                string tenBenhNhan = patientRow["FullName"].ToString();
+                string diaChi = patientRow["Address"].ToString();
+                double rowHeight = 21;
+
+                Result result = KetQuaXetNghiemTongHopBus.GetKetQuaXetNghiemTongHopList(fromDate, toDate, patientGUID, ngaySinh, gioiTinh);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTongHopBus.GetKetQuaXetNghiemTongHopList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTongHopBus.GetKetQuaXetNghiemTongHopList"));
+                    return false;
+                }
+
+                string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemSinhHoaTemplate.xls", Application.StartupPath);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["B2"].Value = maBenhNhan;
+                workSheet.Cells["B3"].Value = tenBenhNhan;
+                workSheet.Cells["B4"].Value = ngaySinh;
+                workSheet.Cells["E4"].Value = string.Format("      Sex: {0}", gioiTinh);
+                workSheet.Cells["B5"].Value = diaChi;
+
+                int rowIndex = 6;
+                IRange range;
+
+                DataTable dtKQXN = result.QueryResult as DataTable;
+                isData = false;
+                foreach (DataRow drNhomXN in selectedNhomXNList)
+                {
+                    string nhomXetNghiem = drNhomXN["GroupName"].ToString();
+                    string type = drNhomXN["Type"].ToString();
+
+                    DataRow[] rows = dtKQXN.Select(string.Format("GroupName = '{0}'", nhomXetNghiem));
+                    if (rows == null || rows.Length <= 0) continue;
+
+                    List<DataRow> xetNghiemList = new List<DataRow>();
+                    foreach (DataRow row in rows)
+                    {
+                        string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
+                        if (uncheckedList != null && uncheckedList.Contains(chiTietKQXNGUID)) continue;
+
+                        xetNghiemList.Add(row);
+                    }
+
+                    if (xetNghiemList.Count <= 0) continue;
+
+                    InitHeader(workSheet, hasLine, rowIndex, nhomXetNghiem);
+                    rowIndex += 2;
+
+                    foreach (DataRow row in xetNghiemList)
+                    {
+                        string chiTietKQXNGUID = row["ChiTietKQXNGUID"].ToString();
+
+                        DateTime ngayXN = Convert.ToDateTime(row["NgayXN"]);
+                        if (ngayXN > maxNgayXN) maxNgayXN = ngayXN;
+
+                        isData = true;
+                        string loaiXN = row["LoaiXN"].ToString();
+                        if (loaiXN == "Manual")
+                            manualKeys.Add(chiTietKQXNGUID);
+                        else if (loaiXN == "Hitachi917")
+                            hitachi917Keys.Add(chiTietKQXNGUID);
+                        else
+                            cellDyn3200Keys.Add(chiTietKQXNGUID);
+
+                        bool isNumeric = false;
+                        double testResult = 0;
+                        try
+                        {
+                            testResult = Convert.ToDouble(row["TestResult"]);
+                            isNumeric = true;
+                        }
+                        catch { }
+
+                        string tenXetNghiem = row["Fullname"].ToString();
+                        byte tinhTrang = Convert.ToByte(row["TinhTrang"]);
+                        string binhThuong = row["BinhThuong"].ToString();
+
+                        range = workSheet.Cells[string.Format("A{0}:B{0}", rowIndex + 1)];
+                        range.Merge();
+                        range.HorizontalAlignment = HAlign.Left;
+                        range.Value = tenXetNghiem;
+                        range.RowHeight = rowHeight;
+                        range.VerticalAlignment = VAlign.Center;
+
+                        if (tenXetNghiem.ToUpper() == "WBC" || tenXetNghiem.ToUpper() == "RBC" || tenXetNghiem.ToUpper() == "PLT")
+                            range.Font.Bold = true;
+
+                        range = workSheet.Cells[string.Format("C{0}:D{0}", rowIndex + 1)];
+                        range.Merge();
+                        range.HorizontalAlignment = HAlign.Center;
+                        if (isNumeric) range.Value = testResult;
+                        else range.Value = row["TestResult"].ToString();
+
+                        range.RowHeight = rowHeight;
+                        range.VerticalAlignment = VAlign.Center;
+
+                        if (tinhTrang == (byte)TinhTrang.BatThuong) range.Font.Bold = true;
+
+                        workSheet.Cells[rowIndex, 4].Value = binhThuong;
+                        workSheet.Cells[rowIndex, 4].RowHeight = rowHeight;
+                        workSheet.Cells[rowIndex, 4].VerticalAlignment = VAlign.Center;
+                        workSheet.Cells[rowIndex, 4].HorizontalAlignment = HAlign.Center;
+
+                        if (hasLine)
+                        {
+                            range = workSheet.Cells[string.Format("A{0}:E{0}", rowIndex + 1)];
+                            range.Borders.LineStyle = LineStyle.Continuous;
+                            range.Borders.Color = Color.Gray;
+                        }
+
+                        rowIndex++;
+                    }
+                }
+
+                if (isData)
+                {
+                    range = workSheet.Cells[string.Format("E{0}", rowIndex + 2)];
+                    range.Value = string.Format("Report date: {0}", maxNgayXN.ToString("dd/MM/yyyy"));
+                    range.Font.Italic = true;
+                    range.Font.Bold = true;
+                    range.HorizontalAlignment = HAlign.Center;
+                }
+
+                if (isPrint)
+                {
+                    if (cellDyn3200Keys.Count > 0)
+                    {
+                        Result r = XetNghiem_CellDyn3200Bus.UpdateDaIn(cellDyn3200Keys);
+                        if (!r.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_CellDyn3200Bus.UpdateDaIn"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_CellDyn3200Bus.UpdateDaIn"));
+                            return false;
+                        }
+                    }
+
+                    if (hitachi917Keys.Count > 0)
+                    {
+                        Result r = XetNghiem_Hitachi917Bus.UpdateDaIn(hitachi917Keys);
+                        if (!r.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("XetNghiem_Hitachi917Bus.UpdateDaIn"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("XetNghiem_Hitachi917Bus.UpdateDaIn"));
+                            return false;
+                        }
+                    }
+
+                    if (manualKeys.Count > 0)
+                    {
+                        Result r = KetQuaXetNghiemTayBus.UpdateDaIn(manualKeys);
+                        if (!r.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTayBus.UpdateDaIn"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTayBus.UpdateDaIn"));
+                            return false;
+                        }
+                    }
+                }
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
         public static bool ExportDanhSachBenhNhanDenKhamToExcel(string exportFileName, DataTable dtBenhNhan)
         {
             Cursor.Current = Cursors.WaitCursor;
