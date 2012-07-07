@@ -20,7 +20,6 @@ namespace MM.Controls
     public partial class uPatientList : uBase
     {
         #region Members
-        private Color _highLightBackColor;
         private DataTable _dataSource = null;
         private string _fileName = string.Empty;
         private bool _isAscending = true;
@@ -30,7 +29,6 @@ namespace MM.Controls
         public uPatientList()
         {
             InitializeComponent();
-            _highLightBackColor = Color.YellowGreen;
         }
         #endregion
 
@@ -49,7 +47,6 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnOpenPatient.Enabled = AllowOpenPatient;
             btnImportExcel.Enabled = AllowImport;
@@ -642,6 +639,7 @@ namespace MM.Controls
                 return false;
             }
         }
+
         private string ReFormatDate(string type, string value)
         {
             string sRet = value;
@@ -660,6 +658,7 @@ namespace MM.Controls
             }
             return sRet;
         }
+
         private void ImportPatientFromExcel()
         {
             bool generateCode = true;
