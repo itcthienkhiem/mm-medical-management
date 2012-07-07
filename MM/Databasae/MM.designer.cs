@@ -3183,8 +3183,6 @@ namespace MM.Databasae
 		
 		private EntitySet<NhatKyLienHeCongTy> _NhatKyLienHeCongTies;
 		
-		private EntitySet<BenhNhanThanThuoc> _BenhNhanThanThuocs;
-		
 		private EntityRef<Speciality> _Speciality;
 		
 		private EntityRef<Contact> _Contact;
@@ -3224,7 +3222,6 @@ namespace MM.Databasae
 			this._ServiceHistories = new EntitySet<ServiceHistory>(new Action<ServiceHistory>(this.attach_ServiceHistories), new Action<ServiceHistory>(this.detach_ServiceHistories));
 			this._KetQuaSoiCTCs = new EntitySet<KetQuaSoiCTC>(new Action<KetQuaSoiCTC>(this.attach_KetQuaSoiCTCs), new Action<KetQuaSoiCTC>(this.detach_KetQuaSoiCTCs));
 			this._NhatKyLienHeCongTies = new EntitySet<NhatKyLienHeCongTy>(new Action<NhatKyLienHeCongTy>(this.attach_NhatKyLienHeCongTies), new Action<NhatKyLienHeCongTy>(this.detach_NhatKyLienHeCongTies));
-			this._BenhNhanThanThuocs = new EntitySet<BenhNhanThanThuoc>(new Action<BenhNhanThanThuoc>(this.attach_BenhNhanThanThuocs), new Action<BenhNhanThanThuoc>(this.detach_BenhNhanThanThuocs));
 			this._Speciality = default(EntityRef<Speciality>);
 			this._Contact = default(EntityRef<Contact>);
 			OnCreated();
@@ -3541,19 +3538,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_BenhNhanThanThuoc", Storage="_BenhNhanThanThuocs", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
-		public EntitySet<BenhNhanThanThuoc> BenhNhanThanThuocs
-		{
-			get
-			{
-				return this._BenhNhanThanThuocs;
-			}
-			set
-			{
-				this._BenhNhanThanThuocs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Speciality_DocStaff", Storage="_Speciality", ThisKey="SpecialityGUID", OtherKey="SpecialityGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Speciality Speciality
 		{
@@ -3769,18 +3753,6 @@ namespace MM.Databasae
 		}
 		
 		private void detach_NhatKyLienHeCongTies(NhatKyLienHeCongTy entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_BenhNhanThanThuocs(BenhNhanThanThuoc entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_BenhNhanThanThuocs(BenhNhanThanThuoc entity)
 		{
 			this.SendPropertyChanging();
 			entity.DocStaff = null;
@@ -59528,8 +59500,6 @@ namespace MM.Databasae
 		
 		private System.Guid _PatientGUID;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Patient> _Patient;
 		
     #region Extensibility Method Definitions
@@ -59546,7 +59516,6 @@ namespace MM.Databasae
 		
 		public BenhNhanThanThuoc()
 		{
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Patient = default(EntityRef<Patient>);
 			OnCreated();
 		}
@@ -59582,10 +59551,6 @@ namespace MM.Databasae
 			{
 				if ((this._DocStaffGUID != value))
 				{
-					if (this._DocStaff.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
 					this.OnDocStaffGUIDChanging(value);
 					this.SendPropertyChanging();
 					this._DocStaffGUID = value;
@@ -59615,40 +59580,6 @@ namespace MM.Databasae
 					this._PatientGUID = value;
 					this.SendPropertyChanged("PatientGUID");
 					this.OnPatientGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_BenhNhanThanThuoc", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.BenhNhanThanThuocs.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.BenhNhanThanThuocs.Add(this);
-						this._DocStaffGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._DocStaffGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}

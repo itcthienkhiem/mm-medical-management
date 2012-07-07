@@ -1990,6 +1990,8 @@ namespace MM
                 _uNhatKyLienHeCongTy.ClearData();
             else if (ctrl.GetType() == typeof(uDiaChiCongTyList))
                 _uDiaChiCongTyList.ClearData();
+            else if (ctrl.GetType() == typeof(uBenhNhanThanThuocList))
+                _uBenhNhanThanThuocList.ClearData();
         }
 
         private void OnDoctorList()
