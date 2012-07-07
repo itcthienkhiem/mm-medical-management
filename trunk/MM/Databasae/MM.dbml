@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MM" Class="MMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=VUNGUYENXP32;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString2" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString5" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Company" Member="Companies">
     <Type Name="Company">
       <Column Name="CompanyGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -105,6 +105,7 @@
       <Association Name="DocStaff_ServiceHistory" Member="ServiceHistories" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="ServiceHistory" />
       <Association Name="DocStaff_KetQuaSoiCTC" Member="KetQuaSoiCTCs" ThisKey="DocStaffGUID" OtherKey="BacSiSoi" Type="KetQuaSoiCTC" />
       <Association Name="DocStaff_NhatKyLienHeCongTy" Member="NhatKyLienHeCongTies" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="NhatKyLienHeCongTy" />
+      <Association Name="DocStaff_BenhNhanThanThuoc" Member="BenhNhanThanThuocs" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="BenhNhanThanThuoc" />
       <Association Name="Speciality_DocStaff" Member="Speciality" ThisKey="SpecialityGUID" OtherKey="SpecialityGUID" Type="Speciality" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Contact_DocStaff" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -160,6 +161,7 @@
       <Association Name="Patient_ServiceHistory" Member="ServiceHistories" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="ServiceHistory" />
       <Association Name="Patient_KetQuaSoiCTC" Member="KetQuaSoiCTCs" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="KetQuaSoiCTC" />
       <Association Name="Patient_YKienKhachHang" Member="YKienKhachHangs" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="YKienKhachHang" />
+      <Association Name="Patient_BenhNhanThanThuoc" Member="BenhNhanThanThuocs" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="BenhNhanThanThuoc" />
       <Association Name="Contact_Patient" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -3040,6 +3042,15 @@
       <Column Name="FromTimeOperator" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
       <Column Name="ToTimeOperator" Type="System.String" DbType="VarChar(2)" CanBeNull="true" />
       <Column Name="NgayXetNghiem" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BenhNhanThanThuoc" Member="BenhNhanThanThuocs">
+    <Type Name="BenhNhanThanThuoc">
+      <Column Name="BenhNhanThanThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PatientGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="DocStaff_BenhNhanThanThuoc" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
+      <Association Name="Patient_BenhNhanThanThuoc" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

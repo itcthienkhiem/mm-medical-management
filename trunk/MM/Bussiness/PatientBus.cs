@@ -15,11 +15,59 @@ namespace MM.Bussiness
     {
         public static Result GetPatientList()
         {
-            Result result = null;
+            Result result = new Result();
 
             try
             {
                 string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'False' ORDER BY FirstName, FullName";
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetBenhNhanThanThuocList()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView P, BenhNhanThanThuoc B WHERE Archived = 'False' AND P.PatientGUID = B.PatientGUID AND B.DocStaffGUID = '{0}' ORDER BY FirstName, FullName",
+                    Global.UserGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetBenhNhanKhongThanThuocList()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'False' AND NOT EXISTS (SELECT PatientGUID FROM BenhNhanThanThuoc WHERE PatientGUID = PatientView.PatientGUID AND DocStaffGUID = '{0}') ORDER BY FirstName, FullName",
+                    Global.UserGUID);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -189,7 +237,7 @@ namespace MM.Bussiness
                                 string genderStr = string.Empty;
                                 if (contact.Gender == 0) genderStr = "Nam";
                                 else if (contact.Gender == 1) genderStr = "Nữ";
-                                else genderStr = "Không xác định";
+                                else genderStr = "";
 
                                 desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'\n",
                                     patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, genderStr, contact.IdentityCard);
@@ -205,6 +253,80 @@ namespace MM.Bussiness
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Delete;
                     tk.Action = "Xóa thông tin bệnh nhân";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result DeleteBenhNhanThanThuoc(List<String> patientKeys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    string desc = string.Empty;
+                    foreach (string key in patientKeys)
+                    {
+                        BenhNhanThanThuoc bntt = db.BenhNhanThanThuocs.FirstOrDefault(b => b.PatientGUID.ToString() == key && b.DocStaffGUID.ToString() == Global.UserGUID);
+                        if (bntt != null)
+                        {
+                            Patient patient = bntt.Patient;
+                            if (patient != null)
+                            {
+                                Contact contact = patient.Contact;
+                                if (contact != null)
+                                {
+                                    string genderStr = string.Empty;
+                                    if (contact.Gender == 0) genderStr = "Nam";
+                                    else if (contact.Gender == 1) genderStr = "Nữ";
+                                    else genderStr = "";
+
+                                    desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'\n",
+                                        patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, genderStr, contact.IdentityCard);
+                                }
+                            }
+
+                            db.BenhNhanThanThuocs.DeleteOnSubmit(bntt);
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa bệnh nhân thân thuộc";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
                     db.Trackings.InsertOnSubmit(tk);
@@ -264,7 +386,7 @@ namespace MM.Bussiness
                                 string genderStr = string.Empty;
                                 if (contact.Gender == 0) genderStr = "Nam";
                                 else if (contact.Gender == 1) genderStr = "Nữ";
-                                else genderStr = "Không xác định";
+                                else genderStr = "";
 
                                 desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'\n",
                                     patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, genderStr, contact.IdentityCard);
@@ -342,7 +464,7 @@ namespace MM.Bussiness
                         string genderStr = string.Empty;
                         if (contact.Gender == 0) genderStr = "Nam";
                         else if (contact.Gender == 1) genderStr = "Nữ";
-                        else genderStr = "Không xác định";
+                        else genderStr = "";
 
                         //Tracking
                         desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'",
@@ -414,7 +536,7 @@ namespace MM.Bussiness
                                 string genderStr = string.Empty;
                                 if (ct.Gender == 0) genderStr = "Nam";
                                 else if (ct.Gender == 1) genderStr = "Nữ";
-                                else genderStr = "Không xác định";
+                                else genderStr = "";
 
                                 //Tracking
                                 desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'",
@@ -488,6 +610,77 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result InsertBenhNhanThanThuoc(List<DataRow> patientRows)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    //Insert
+                    foreach (DataRow row in patientRows)
+                    {
+                        string patientGUID = row["PatientGUID"].ToString();
+                        BenhNhanThanThuoc bntt = new BenhNhanThanThuoc();
+                        bntt.BenhNhanThanThuocGUID = Guid.NewGuid();
+                        bntt.PatientGUID = Guid.Parse(patientGUID);
+                        bntt.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        db.BenhNhanThanThuocs.InsertOnSubmit(bntt);
+                        db.SubmitChanges();
+
+                        //Tracking
+                        Patient patient = bntt.Patient;
+                        Contact contact = patient.Contact;
+                        string genderStr = string.Empty;
+                        if (contact.Gender == 0) genderStr = "Nam";
+                        else if (contact.Gender == 1) genderStr = "Nữ";
+                        else genderStr = "";
+
+                        desc += string.Format("- GUID: '{0}', Mã bệnh nhân: '{1}', Tên bệnh nhân: '{2}', Ngày sinh: '{3}', Giới tính: '{4}', CMND: '{5}'",
+                                    patient.PatientGUID.ToString(), patient.FileNum, contact.FullName, contact.DobStr, genderStr, contact.IdentityCard);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm bệnh nhân thân thuộc";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+                    }
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result CheckPatientExist(string fullname, string dobStr, byte gender, string source)
         {
             Result result = new Result();
@@ -528,6 +721,7 @@ namespace MM.Bussiness
 
             return result;
         }
+
         public static Result CheckPatientExistFileNum(string patientGUID, string fileNum)
         {
             Result result = new Result();

@@ -16,6 +16,7 @@ namespace MM.Dialogs
     {
         #region Members
         private DataTable _dataSource = null;
+        private bool _isBenhNhanThanThuoc = false;
         #endregion
 
         #region Constructor
@@ -32,6 +33,14 @@ namespace MM.Dialogs
             InitializeComponent();
             OnDisplayBenhNhan();
             _uSearchPatient.OnOpenPatient += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
+        }
+
+        public dlgSelectPatient(bool isBenhNhanThanThuoc)
+        {
+            InitializeComponent();
+            _isBenhNhanThanThuoc = isBenhNhanThanThuoc;
+            this.IsMulti = true;
+            OnDisplayBenhNhan();
         }
         #endregion
 
@@ -51,22 +60,53 @@ namespace MM.Dialogs
         {
             get { return (DataRow)_uSearchPatient.PatientRow; }
         }
+
+        public bool IsMulti
+        {
+            get { return _uSearchPatient.IsMulti; }
+            set { _uSearchPatient.IsMulti = value; }
+        }
+
+        public List<DataRow> CheckedPatientRows
+        {
+            get { return _uSearchPatient.CheckedPatientRows; }
+        }
         #endregion
 
         #region UI Command
         private void OnDisplayBenhNhan()
         {
             Cursor.Current = Cursors.WaitCursor;
-            Result result = PatientBus.GetPatientList();
-            if (result.IsOK)
+            
+            if (!_isBenhNhanThanThuoc)
             {
-                _dataSource = result.QueryResult as DataTable;
-                _uSearchPatient.DataSource = _dataSource;
+                Result result = PatientBus.GetPatientList();
+
+                if (result.IsOK)
+                {
+                    _dataSource = result.QueryResult as DataTable;
+                    _uSearchPatient.DataSource = _dataSource;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                }
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                Result result = PatientBus.GetBenhNhanKhongThanThuocList();
+
+                if (result.IsOK)
+                {
+                    _dataSource = result.QueryResult as DataTable;
+                    _uSearchPatient.DataSource = _dataSource;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetBenhNhanKhongThanThuocList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetBenhNhanKhongThanThuocList"));
+                }
             }
         }
         #endregion
