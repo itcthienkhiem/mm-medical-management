@@ -18,6 +18,7 @@ namespace MM.Controls
         #region Members
         private object _dataSource = null;
         private bool _isAscending = true;
+        private bool _isMulti = false;
         #endregion
 
         #region Constructor
@@ -44,11 +45,65 @@ namespace MM.Controls
                 return null;
             }
         }
+
+        public bool IsMulti
+        {
+            get { return _isMulti; }
+            set 
+            { 
+                _isMulti = value;
+                chkChecked.Visible = _isMulti;
+                colChecked.Visible = _isMulti;
+            }
+        }
+
+        public List<DataRow> CheckedPatientRows
+        {
+            get
+            {
+                if (_dataSource == null) return null;
+                UpdateChecked();
+                List<DataRow> checkedRows = new List<DataRow>();
+                DataTable dataSource = _dataSource as DataTable;
+                DataRow[] rows = dataSource.Select("Checked='True'");
+                if (rows != null && rows.Length > 0)
+                {
+                    foreach (DataRow row in rows)
+                    {
+                        string patientGUID = row["PatientGUID"].ToString();
+                        checkedRows.Add(row);
+                    }
+                }
+
+                return checkedRows;
+            }
+        }
         #endregion
 
         #region UI Command
+        private void UpdateChecked()
+        {
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt == null) return;
+
+            DataRow[] rows1 = dt.Select("Checked='True'");
+            if (rows1 == null || rows1.Length <= 0) return;
+
+            DataTable dataSource = _dataSource as DataTable;
+            foreach (DataRow row1 in rows1)
+            {
+                string patientGUID1 = row1["PatientGUID"].ToString();
+                DataRow[] rows2 = dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID1));
+                if (rows2 == null || rows2.Length <= 0) continue;
+
+                rows2[0]["Checked"] = row1["Checked"];
+            }
+        }
+
         public void OnSearch()
         {
+            if (_isMulti) UpdateChecked();
+
             List<DataRow> results = null;
             DataTable newDataSource = null;
 
@@ -295,6 +350,16 @@ namespace MM.Controls
         private void chkMaBenhNhan_CheckedChanged(object sender, EventArgs e)
         {
             OnSearch();
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
         }
         #endregion
     }

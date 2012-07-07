@@ -249,10 +249,13 @@ namespace MM.Databasae
     partial void InsertChiTietKetQuaXetNghiem_Manual(ChiTietKetQuaXetNghiem_Manual instance);
     partial void UpdateChiTietKetQuaXetNghiem_Manual(ChiTietKetQuaXetNghiem_Manual instance);
     partial void DeleteChiTietKetQuaXetNghiem_Manual(ChiTietKetQuaXetNghiem_Manual instance);
+    partial void InsertBenhNhanThanThuoc(BenhNhanThanThuoc instance);
+    partial void UpdateBenhNhanThanThuoc(BenhNhanThanThuoc instance);
+    partial void DeleteBenhNhanThanThuoc(BenhNhanThanThuoc instance);
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1262,6 +1265,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ChiTietKetQuaXetNghiem_ManualView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<BenhNhanThanThuoc> BenhNhanThanThuocs
+		{
+			get
+			{
+				return this.GetTable<BenhNhanThanThuoc>();
 			}
 		}
 		
@@ -3172,6 +3183,8 @@ namespace MM.Databasae
 		
 		private EntitySet<NhatKyLienHeCongTy> _NhatKyLienHeCongTies;
 		
+		private EntitySet<BenhNhanThanThuoc> _BenhNhanThanThuocs;
+		
 		private EntityRef<Speciality> _Speciality;
 		
 		private EntityRef<Contact> _Contact;
@@ -3211,6 +3224,7 @@ namespace MM.Databasae
 			this._ServiceHistories = new EntitySet<ServiceHistory>(new Action<ServiceHistory>(this.attach_ServiceHistories), new Action<ServiceHistory>(this.detach_ServiceHistories));
 			this._KetQuaSoiCTCs = new EntitySet<KetQuaSoiCTC>(new Action<KetQuaSoiCTC>(this.attach_KetQuaSoiCTCs), new Action<KetQuaSoiCTC>(this.detach_KetQuaSoiCTCs));
 			this._NhatKyLienHeCongTies = new EntitySet<NhatKyLienHeCongTy>(new Action<NhatKyLienHeCongTy>(this.attach_NhatKyLienHeCongTies), new Action<NhatKyLienHeCongTy>(this.detach_NhatKyLienHeCongTies));
+			this._BenhNhanThanThuocs = new EntitySet<BenhNhanThanThuoc>(new Action<BenhNhanThanThuoc>(this.attach_BenhNhanThanThuocs), new Action<BenhNhanThanThuoc>(this.detach_BenhNhanThanThuocs));
 			this._Speciality = default(EntityRef<Speciality>);
 			this._Contact = default(EntityRef<Contact>);
 			OnCreated();
@@ -3527,6 +3541,19 @@ namespace MM.Databasae
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_BenhNhanThanThuoc", Storage="_BenhNhanThanThuocs", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
+		public EntitySet<BenhNhanThanThuoc> BenhNhanThanThuocs
+		{
+			get
+			{
+				return this._BenhNhanThanThuocs;
+			}
+			set
+			{
+				this._BenhNhanThanThuocs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Speciality_DocStaff", Storage="_Speciality", ThisKey="SpecialityGUID", OtherKey="SpecialityGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Speciality Speciality
 		{
@@ -3742,6 +3769,18 @@ namespace MM.Databasae
 		}
 		
 		private void detach_NhatKyLienHeCongTies(NhatKyLienHeCongTy entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_BenhNhanThanThuocs(BenhNhanThanThuoc entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_BenhNhanThanThuocs(BenhNhanThanThuoc entity)
 		{
 			this.SendPropertyChanging();
 			entity.DocStaff = null;
@@ -4289,6 +4328,8 @@ namespace MM.Databasae
 		
 		private EntitySet<YKienKhachHang> _YKienKhachHangs;
 		
+		private EntitySet<BenhNhanThanThuoc> _BenhNhanThanThuocs;
+		
 		private EntityRef<Contact> _Contact;
 		
     #region Extensibility Method Definitions
@@ -4335,6 +4376,7 @@ namespace MM.Databasae
 			this._ServiceHistories = new EntitySet<ServiceHistory>(new Action<ServiceHistory>(this.attach_ServiceHistories), new Action<ServiceHistory>(this.detach_ServiceHistories));
 			this._KetQuaSoiCTCs = new EntitySet<KetQuaSoiCTC>(new Action<KetQuaSoiCTC>(this.attach_KetQuaSoiCTCs), new Action<KetQuaSoiCTC>(this.detach_KetQuaSoiCTCs));
 			this._YKienKhachHangs = new EntitySet<YKienKhachHang>(new Action<YKienKhachHang>(this.attach_YKienKhachHangs), new Action<YKienKhachHang>(this.detach_YKienKhachHangs));
+			this._BenhNhanThanThuocs = new EntitySet<BenhNhanThanThuoc>(new Action<BenhNhanThanThuoc>(this.attach_BenhNhanThanThuocs), new Action<BenhNhanThanThuoc>(this.detach_BenhNhanThanThuocs));
 			this._Contact = default(EntityRef<Contact>);
 			OnCreated();
 		}
@@ -4745,6 +4787,19 @@ namespace MM.Databasae
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_BenhNhanThanThuoc", Storage="_BenhNhanThanThuocs", ThisKey="PatientGUID", OtherKey="PatientGUID")]
+		public EntitySet<BenhNhanThanThuoc> BenhNhanThanThuocs
+		{
+			get
+			{
+				return this._BenhNhanThanThuocs;
+			}
+			set
+			{
+				this._BenhNhanThanThuocs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_Patient", Storage="_Contact", ThisKey="ContactGUID", OtherKey="ContactGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Contact Contact
 		{
@@ -4962,6 +5017,18 @@ namespace MM.Databasae
 		}
 		
 		private void detach_YKienKhachHangs(YKienKhachHang entity)
+		{
+			this.SendPropertyChanging();
+			entity.Patient = null;
+		}
+		
+		private void attach_BenhNhanThanThuocs(BenhNhanThanThuoc entity)
+		{
+			this.SendPropertyChanging();
+			entity.Patient = this;
+		}
+		
+		private void detach_BenhNhanThanThuocs(BenhNhanThanThuoc entity)
 		{
 			this.SendPropertyChanging();
 			entity.Patient = null;
@@ -59445,6 +59512,198 @@ namespace MM.Databasae
 				{
 					this._NgayXetNghiem = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.BenhNhanThanThuoc")]
+	public partial class BenhNhanThanThuoc : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _BenhNhanThanThuocGUID;
+		
+		private System.Guid _DocStaffGUID;
+		
+		private System.Guid _PatientGUID;
+		
+		private EntityRef<DocStaff> _DocStaff;
+		
+		private EntityRef<Patient> _Patient;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBenhNhanThanThuocGUIDChanging(System.Guid value);
+    partial void OnBenhNhanThanThuocGUIDChanged();
+    partial void OnDocStaffGUIDChanging(System.Guid value);
+    partial void OnDocStaffGUIDChanged();
+    partial void OnPatientGUIDChanging(System.Guid value);
+    partial void OnPatientGUIDChanged();
+    #endregion
+		
+		public BenhNhanThanThuoc()
+		{
+			this._DocStaff = default(EntityRef<DocStaff>);
+			this._Patient = default(EntityRef<Patient>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BenhNhanThanThuocGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid BenhNhanThanThuocGUID
+		{
+			get
+			{
+				return this._BenhNhanThanThuocGUID;
+			}
+			set
+			{
+				if ((this._BenhNhanThanThuocGUID != value))
+				{
+					this.OnBenhNhanThanThuocGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._BenhNhanThanThuocGUID = value;
+					this.SendPropertyChanged("BenhNhanThanThuocGUID");
+					this.OnBenhNhanThanThuocGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid DocStaffGUID
+		{
+			get
+			{
+				return this._DocStaffGUID;
+			}
+			set
+			{
+				if ((this._DocStaffGUID != value))
+				{
+					if (this._DocStaff.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDocStaffGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._DocStaffGUID = value;
+					this.SendPropertyChanged("DocStaffGUID");
+					this.OnDocStaffGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PatientGUID
+		{
+			get
+			{
+				return this._PatientGUID;
+			}
+			set
+			{
+				if ((this._PatientGUID != value))
+				{
+					if (this._Patient.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPatientGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientGUID = value;
+					this.SendPropertyChanged("PatientGUID");
+					this.OnPatientGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_BenhNhanThanThuoc", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.BenhNhanThanThuocs.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.BenhNhanThanThuocs.Add(this);
+						this._DocStaffGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._DocStaffGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("DocStaff");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_BenhNhanThanThuoc", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Patient Patient
+		{
+			get
+			{
+				return this._Patient.Entity;
+			}
+			set
+			{
+				Patient previousValue = this._Patient.Entity;
+				if (((previousValue != value) 
+							|| (this._Patient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Patient.Entity = null;
+						previousValue.BenhNhanThanThuocs.Remove(this);
+					}
+					this._Patient.Entity = value;
+					if ((value != null))
+					{
+						value.BenhNhanThanThuocs.Add(this);
+						this._PatientGUID = value.PatientGUID;
+					}
+					else
+					{
+						this._PatientGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

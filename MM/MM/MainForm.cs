@@ -155,6 +155,9 @@ namespace MM
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"));
                 }
+
+                dlgSelectPatient dlg2 = new dlgSelectPatient(true);
+                dlg2.ShowDialog(this);
             };
 
             if (InvokeRequired) BeginInvoke(method);

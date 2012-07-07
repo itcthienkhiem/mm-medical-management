@@ -78,6 +78,8 @@
             this.databaseConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator50 = new System.Windows.Forms.ToolStripSeparator();
             this.cauHinhFTPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator54 = new System.Windows.Forms.ToolStripSeparator();
+            this.cauHinhPageSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.permissionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -276,8 +278,8 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
-            this.toolStripSeparator54 = new System.Windows.Forms.ToolStripSeparator();
-            this.cauHinhPageSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator55 = new System.Windows.Forms.ToolStripSeparator();
+            this.benhNhanThanThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -606,6 +608,18 @@
             this.cauHinhFTPToolStripMenuItem.Tag = "CauHinhFTP";
             this.cauHinhFTPToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator54
+            // 
+            this.toolStripSeparator54.Name = "toolStripSeparator54";
+            resources.ApplyResources(this.toolStripSeparator54, "toolStripSeparator54");
+            // 
+            // cauHinhPageSetupToolStripMenuItem
+            // 
+            this.cauHinhPageSetupToolStripMenuItem.Name = "cauHinhPageSetupToolStripMenuItem";
+            resources.ApplyResources(this.cauHinhPageSetupToolStripMenuItem, "cauHinhPageSetupToolStripMenuItem");
+            this.cauHinhPageSetupToolStripMenuItem.Tag = "CauHinhTrangIn";
+            this.cauHinhPageSetupToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
@@ -752,7 +766,9 @@
             this.toolStripSeparator15,
             this.DuplicatePatientToolStripMenuItem,
             this.toolStripSeparator36,
-            this.phucHoiBenhNhanToolStripMenuItem});
+            this.phucHoiBenhNhanToolStripMenuItem,
+            this.toolStripSeparator55,
+            this.benhNhanThanThuocToolStripMenuItem});
             resources.ApplyResources(this.patientToolStripMenuItem, "patientToolStripMenuItem");
             this.patientToolStripMenuItem.Name = "patientToolStripMenuItem";
             // 
@@ -1540,7 +1556,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1561,7 +1577,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -2085,17 +2101,17 @@
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
             // 
-            // toolStripSeparator54
+            // toolStripSeparator55
             // 
-            this.toolStripSeparator54.Name = "toolStripSeparator54";
-            resources.ApplyResources(this.toolStripSeparator54, "toolStripSeparator54");
+            this.toolStripSeparator55.Name = "toolStripSeparator55";
+            resources.ApplyResources(this.toolStripSeparator55, "toolStripSeparator55");
             // 
-            // cauHinhPageSetupToolStripMenuItem
+            // benhNhanThanThuocToolStripMenuItem
             // 
-            this.cauHinhPageSetupToolStripMenuItem.Name = "cauHinhPageSetupToolStripMenuItem";
-            resources.ApplyResources(this.cauHinhPageSetupToolStripMenuItem, "cauHinhPageSetupToolStripMenuItem");
-            this.cauHinhPageSetupToolStripMenuItem.Tag = "CauHinhTrangIn";
-            this.cauHinhPageSetupToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            this.benhNhanThanThuocToolStripMenuItem.Image = global::MM.Properties.Resources._1320161545_people;
+            this.benhNhanThanThuocToolStripMenuItem.Name = "benhNhanThanThuocToolStripMenuItem";
+            resources.ApplyResources(this.benhNhanThanThuocToolStripMenuItem, "benhNhanThanThuocToolStripMenuItem");
+            this.benhNhanThanThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -2377,6 +2393,8 @@
         private Controls.uBaoCaoThuocTonKhoTheoKhoangThoiGian _uBaoCaoThuocTonKhoTheoKhoangThoiGian;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator54;
         private System.Windows.Forms.ToolStripMenuItem cauHinhPageSetupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator55;
+        private System.Windows.Forms.ToolStripMenuItem benhNhanThanThuocToolStripMenuItem;
 
     }
 }
