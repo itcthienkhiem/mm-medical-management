@@ -26,7 +26,10 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void DisplayAsThread()
+        {
 
+        }
         #endregion
 
         #region Window Event Handlers

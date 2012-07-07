@@ -36,6 +36,7 @@ namespace MM
             _uCompanyList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uContractList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uPhongChoList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            _uBenhNhanThanThuocList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
 
             Utility.CreateFolder(Global.UsersPath);
 
@@ -155,9 +156,6 @@ namespace MM
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"));
                 }
-
-                dlgSelectPatient dlg2 = new dlgSelectPatient(true);
-                dlg2.ShowDialog(this);
             };
 
             if (InvokeRequired) BeginInvoke(method);
@@ -269,6 +267,8 @@ namespace MM
                 _uChiTietPhieuThuDichVu.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBaoCaoThuocTonKhoTheoKhoangThoiGian))
                 _uBaoCaoThuocTonKhoTheoKhoangThoiGian.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uBenhNhanThanThuocList))
+                _uBenhNhanThanThuocList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1017,6 +1017,18 @@ namespace MM
                             _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowLock = isLock;
                             _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.BenhNhanThanThuoc)
+                        {
+                            benhNhanThanThuocToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBenhNhanThanThuocList.AllowAdd = isAdd;
+                            _uBenhNhanThanThuocList.AllowEdit = isEdit;
+                            _uBenhNhanThanThuocList.AllowDelete = isDelete;
+                            _uBenhNhanThanThuocList.AllowPrint = isPrint;
+                            _uBenhNhanThanThuocList.AllowExport = isExport;
+                            _uBenhNhanThanThuocList.AllowImport = isImport;
+                            _uBenhNhanThanThuocList.AllowLock = isLock;
+                            _uBenhNhanThanThuocList.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1186,6 +1198,7 @@ namespace MM
                 danhMucDiaChiCongTyToolStripMenuItem.Enabled = isLogin;
                 chiTietPhieuThuDichVuToolStripMenuItem.Enabled = isLogin;
                 thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Enabled = isLogin;
+                benhNhanThanThuocToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1456,7 +1469,18 @@ namespace MM
                 case "CauHinhTrangIn":
                     OnCauHinhTrangIn();
                     break;
+
+                case "BenhNhanThanThuoc":
+                    OnBenhNhanThanThuoc();
+                    break;
             }
+        }
+
+        private void OnBenhNhanThanThuoc()
+        {
+            this.Text = string.Format("{0} - Benh nhan than thuoc", Application.ProductName);
+            ViewControl(_uBenhNhanThanThuocList);
+            _uBenhNhanThanThuocList.DisplayAsThread();
         }
 
         private void OnCauHinhTrangIn()
