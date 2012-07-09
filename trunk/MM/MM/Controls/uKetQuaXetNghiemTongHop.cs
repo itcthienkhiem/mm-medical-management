@@ -1208,11 +1208,11 @@ namespace MM.Controls
             DataTable dt = dgXetNghiem.DataSource as DataTable;
             RefreshNgayXetNghiem(dt);
         }
-        #endregion
 
         private void dgBenhNhan_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+        #endregion
     }
 }
