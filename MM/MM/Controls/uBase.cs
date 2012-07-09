@@ -47,6 +47,7 @@ namespace MM.Controls
         public bool AllowDeleteDangKy = true;
         public bool AllowLock = true;
         public bool AllowExportAll = true;
+        public bool AllowView = true;
         #endregion
 
         #region Constructor

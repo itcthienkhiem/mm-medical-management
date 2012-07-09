@@ -83,6 +83,15 @@ namespace MM.Common
         //Kê toa
         public static bool AllowViewKeToa = true;
 
+        //Danh Sách địa chỉ công ty
+        public static bool AllowViewDSDiaChiCongTy = true;
+        public static bool AllowAddDSDiaChiCongTy = true;
+        public static bool AllowEditDSDiaChiCongTy = true;
+        public static bool AllowDeleteDSDiaChiCongTy = true;
+
+        //Tra cứu danh sách khách hàng
+        public static bool AllowViewTraCuuDanhSachKhachHang = true;
+
         public static DateTime MinDateTime = new DateTime(1753, 1, 1);
         public static DateTime MaxDateTime = new DateTime(9997, 12, 31);
 

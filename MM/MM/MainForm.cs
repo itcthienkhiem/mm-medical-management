@@ -269,6 +269,8 @@ namespace MM
                 _uBaoCaoThuocTonKhoTheoKhoangThoiGian.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBenhNhanThanThuocList))
                 _uBenhNhanThanThuocList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uXetNghiem))
+                _uXetNghiem.InitData();
         }
 
         private void SaveAppConfig()
@@ -318,6 +320,11 @@ namespace MM
                 Global.AllowDeleteChiDinh = false;
                 Global.AllowConfirmChiDinh = false;
                 Global.AllowAddPhongCho = false;
+                Global.AllowViewDSDiaChiCongTy = false;
+                Global.AllowAddDSDiaChiCongTy = false;
+                Global.AllowEditDSDiaChiCongTy = false;
+                Global.AllowDeleteDSDiaChiCongTy = false;
+                Global.AllowViewTraCuuDanhSachKhachHang = false;
 
                 Result result = LogonBus.GetPermission(Global.LogonGUID);
                 if (result.IsOK)
@@ -882,6 +889,16 @@ namespace MM
                             danhSachXetNghiemHitachi917ToolStripMenuItem.Enabled = isView && isLogin;
                             danhSachXetNghiemCellDyn3200ToolStripMenuItem.Enabled = isView && isLogin;
 
+                            _uXetNghiem.AllowView = isView;
+                            _uXetNghiem.AllowAdd = isAdd;
+                            _uXetNghiem.AllowEdit = isEdit;
+                            _uXetNghiem.AllowDelete = isDelete;
+                            _uXetNghiem.AllowPrint = isPrint;
+                            _uXetNghiem.AllowExport = isExport;
+                            _uXetNghiem.AllowImport = isImport;
+                            _uXetNghiem.AllowLock = isLock;
+                            _uXetNghiem.AllowExportAll = isExportAll;
+
                             _uKetQuaXetNghiem_Hitachi917.AllowAdd = isAdd;
                             _uKetQuaXetNghiem_Hitachi917.AllowEdit = isEdit;
                             _uKetQuaXetNghiem_Hitachi917.AllowDelete = isDelete;
@@ -980,6 +997,8 @@ namespace MM
                             _uTraCuuThongTinKhachHang.AllowImport = isImport;
                             _uTraCuuThongTinKhachHang.AllowLock = isLock;
                             _uTraCuuThongTinKhachHang.AllowExportAll = isExportAll;
+
+                            Global.AllowViewTraCuuDanhSachKhachHang = isView;
                         }
                         else if (functionCode == Const.DiaChiCongTy)
                         {
@@ -992,6 +1011,11 @@ namespace MM
                             _uDiaChiCongTyList.AllowImport = isImport;
                             _uDiaChiCongTyList.AllowLock = isLock;
                             _uDiaChiCongTyList.AllowExportAll = isExportAll;
+
+                            Global.AllowViewDSDiaChiCongTy = isView;
+                            Global.AllowAddDSDiaChiCongTy = isAdd;
+                            Global.AllowEditDSDiaChiCongTy = isEdit;
+                            Global.AllowDeleteDSDiaChiCongTy = isDelete;
                         }
                         else if (functionCode == Const.ChiTietPhieuThuDichVu)
                         {
@@ -1084,6 +1108,11 @@ namespace MM
                 Global.AllowDeleteKhamCTC = true;
                 Global.AllowExportKhamCTC = true;
                 Global.AllowPrintKhamCTC = true;
+                Global.AllowViewDSDiaChiCongTy = true;
+                Global.AllowAddDSDiaChiCongTy = true;
+                Global.AllowEditDSDiaChiCongTy = true;
+                Global.AllowDeleteDSDiaChiCongTy = true;
+                Global.AllowViewTraCuuDanhSachKhachHang = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
@@ -1473,7 +1502,18 @@ namespace MM
                 case "BenhNhanThanThuoc":
                     OnBenhNhanThanThuoc();
                     break;
+
+                case "XetNghiem":
+                    OnXetNghiem();
+                    break;
             }
+        }
+
+        private void OnXetNghiem()
+        {
+            this.Text = string.Format("{0} - Xet nghiem", Application.ProductName);
+            ViewControl(_uXetNghiem);
+            _uXetNghiem.InitData();
         }
 
         private void OnBenhNhanThanThuoc()
