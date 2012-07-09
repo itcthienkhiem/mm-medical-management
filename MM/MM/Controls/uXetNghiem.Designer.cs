@@ -203,6 +203,7 @@
             this.label1.BackColor = System.Drawing.Color.DodgerBlue;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(3);
@@ -327,6 +328,7 @@
             this.lbDetail.BackColor = System.Drawing.Color.DodgerBlue;
             this.lbDetail.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbDetail.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lbDetail.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lbDetail.Location = new System.Drawing.Point(0, 0);
             this.lbDetail.Margin = new System.Windows.Forms.Padding(3);
