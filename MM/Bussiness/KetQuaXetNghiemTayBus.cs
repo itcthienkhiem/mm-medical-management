@@ -959,7 +959,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_ManualView WHERE KetQuaXetNghiem_ManualGUID = '{0}' AND Status = {1} AND NgayXetNghiem BETWEEN '{2}' AND '{3}' ORDER BY NgayXetNghiem DESC, GroupID, [Order]",
+                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, convert(varchar(10), GetDate(), 103) + ' ' + convert(varchar(10), GetDate(), 108) as NgayXNStr, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_ManualView WHERE KetQuaXetNghiem_ManualGUID = '{0}' AND Status = {1} AND NgayXetNghiem BETWEEN '{2}' AND '{3}' ORDER BY NgayXetNghiem DESC, GroupID, [Order]",
                            ketQuaXetNghiemGUID, (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);

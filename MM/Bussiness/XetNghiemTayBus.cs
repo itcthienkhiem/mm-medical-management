@@ -117,7 +117,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT GroupName FROM XetNghiem_Manual ORDER BY GroupName");
+                string query = string.Format("SELECT DISTINCT GroupName, GroupID FROM XetNghiem_Manual ORDER BY GroupID");
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -365,6 +365,43 @@ namespace MM.Bussiness
                     t.Complete();
                 }
 
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetDanhSachXetNghiemTheoNhom(string groupName)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<XetNghiem_Manual> xetNghiemList = (from x in db.XetNghiem_Manuals
+                                                        where x.GroupName.ToLower() == groupName.ToLower() &&
+                                                        x.Status == (byte)Status.Actived
+                                                        orderby x.Order ascending
+                                                        select x).ToList();
+                result.QueryResult = xetNghiemList;
             }
             catch (System.Data.SqlClient.SqlException se)
             {

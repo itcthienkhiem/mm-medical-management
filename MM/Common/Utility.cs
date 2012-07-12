@@ -515,6 +515,47 @@ namespace MM.Common
             return false;
         }
 
+        public static bool IsValidDateTime(string dateTimeStr, ref string format)
+        {
+            List<string> dateFormats = new List<string>();
+            dateFormats.Add("dd/MM/yyyy");
+            dateFormats.Add("dd/MM/yy");
+            dateFormats.Add("dd/M/yyyy");
+            dateFormats.Add("dd/M/yy");
+            dateFormats.Add("d/MM/yyyy");
+            dateFormats.Add("d/MM/yy");
+            dateFormats.Add("d/M/yy");
+            dateFormats.Add("d/M/yyyy");
+
+            List<string> timeFormats = new List<string>();
+            timeFormats.Add("HH:mm:ss");
+            timeFormats.Add("HH:mm:s");
+            timeFormats.Add("HH:m:s");
+            timeFormats.Add("HH:m:ss");
+            timeFormats.Add("H:m:ss");
+            timeFormats.Add("H:mm:ss");
+            timeFormats.Add("H:mm:s");
+            timeFormats.Add("H:m:s");
+
+            foreach (var dateFormat in dateFormats)
+            {
+                foreach (var timeFormat in timeFormats)
+                {
+                    try
+                    {
+                        DateTime.ParseExact(dateTimeStr, string.Format("{0} {1}", dateFormat, timeFormat), null);
+                        format = string.Format("{0} {1}", dateFormat, timeFormat);
+                        return true;
+                    }
+                    catch
+                    {
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public static List<string> GetSQLServerInstances()
         {
             List<string> instances = new List<string>();

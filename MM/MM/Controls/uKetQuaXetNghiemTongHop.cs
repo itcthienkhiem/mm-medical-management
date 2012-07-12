@@ -514,7 +514,7 @@ namespace MM.Controls
                 patientRow = (dgBenhNhan.SelectedRows[0].DataBoundItem as DataRowView).Row;
             }
 
-            dlgAddKetQuaXetNghiemTay dlg = new dlgAddKetQuaXetNghiemTay(patientRow);
+            dlgAddNhomKetQuaXetNghiemTay dlg = new dlgAddNhomKetQuaXetNghiemTay(patientRow);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayDanhSachBenhNhan();

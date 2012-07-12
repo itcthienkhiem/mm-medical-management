@@ -773,6 +773,18 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddNhomXetNghiemTay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddNhomXetNghiemTay.Designer.cs">
+      <DependentUpon>dlgAddNhomXetNghiemTay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddNhomKetQuaXetNghiemTay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddNhomKetQuaXetNghiemTay.Designer.cs">
+      <DependentUpon>dlgAddNhomKetQuaXetNghiemTay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddDiaChiCongTy.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1556,6 +1568,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddNhomXetNghiemTay.resx">
+      <DependentUpon>dlgAddNhomXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddNhomKetQuaXetNghiemTay.resx">
+      <DependentUpon>dlgAddNhomKetQuaXetNghiemTay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDiaChiCongTy.resx">
       <DependentUpon>dlgAddDiaChiCongTy.cs</DependentUpon>
