@@ -210,45 +210,54 @@ namespace MM.Controls
 
             DataRow drKetQuaXN = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
             DataTable dtChiTietKQXN = dgChiTietKQXN.DataSource as DataTable;
-            dlgAddChiTietKetQuaXetNghiemTay dlg = new dlgAddChiTietKetQuaXetNghiemTay(dtChiTietKQXN);
+            dlgAddNhomKetQuaXetNghiemTay dlg = new dlgAddNhomKetQuaXetNghiemTay(drKetQuaXN, dtChiTietKQXN.Clone());
+            dlg.EnableBtnChonBenhNhan(false);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataRow newRow = dtChiTietKQXN.NewRow();
-                newRow["Checked"] = false;
-                newRow["KetQuaXetNghiem_ManualGUID"] = drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString();
-                newRow["ChiTietKetQuaXetNghiem_ManualGUID"] = Guid.NewGuid();
-                newRow["XetNghiem_ManualGUID"] = dlg.XetNghiem_ManualGUID;
-                newRow["TenXetNghiem"] = dlg.TenXetNghiem;
-                newRow["Fullname"] = dlg.TenXetNghiem;
-                newRow["TestResult"] = dlg.TestResult;
-                newRow["TinhTrang"] = (byte)TinhTrang.BinhThuong;
-                newRow["LamThem"] = dlg.LamThem;
-                newRow["NgayXetNghiem"] = dlg.NgayXetNghiem;
-                newRow["GroupName"] = dlg.NhomXetNghiem;
-                newRow["HasHutThuoc"] = dlg.HasHutThuoc;
-
-                ChiTietKetQuaXetNghiem_Manual ctkqxn = new ChiTietKetQuaXetNghiem_Manual();
-                ctkqxn.KetQuaXetNghiem_ManualGUID = Guid.Parse(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
-                ctkqxn.ChiTietKetQuaXetNghiem_ManualGUID = Guid.NewGuid();
-                ctkqxn.XetNghiem_ManualGUID = Guid.Parse(dlg.XetNghiem_ManualGUID);
-                ctkqxn.TestResult = dlg.TestResult;
-                ctkqxn.TinhTrang = (byte)TinhTrang.BinhThuong;
-                ctkqxn.LamThem = dlg.LamThem;
-                ctkqxn.HasHutThuoc = dlg.HasHutThuoc;
-                ctkqxn.NgayXetNghiem = dlg.NgayXetNghiem;
-
-                Result result = KetQuaXetNghiemTayBus.InsertChiTietKQXN(ctkqxn);
-                if (result.IsOK)
-                {
-                    dtChiTietKQXN.Rows.Add(newRow);
-                    OnDisplayChiTietKetQuaXetNghiem(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
-                }
-                else
-                {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTayBus.InsertChiTietKQXN"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTayBus.InsertChiTietKQXN"));
-                }
+                OnDisplayChiTietKetQuaXetNghiem(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
             }
+
+            //DataRow drKetQuaXN = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            //DataTable dtChiTietKQXN = dgChiTietKQXN.DataSource as DataTable;
+            //dlgAddChiTietKetQuaXetNghiemTay dlg = new dlgAddChiTietKetQuaXetNghiemTay(dtChiTietKQXN);
+            //if (dlg.ShowDialog(this) == DialogResult.OK)
+            //{
+            //    DataRow newRow = dtChiTietKQXN.NewRow();
+            //    newRow["Checked"] = false;
+            //    newRow["KetQuaXetNghiem_ManualGUID"] = drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString();
+            //    newRow["ChiTietKetQuaXetNghiem_ManualGUID"] = Guid.NewGuid();
+            //    newRow["XetNghiem_ManualGUID"] = dlg.XetNghiem_ManualGUID;
+            //    newRow["TenXetNghiem"] = dlg.TenXetNghiem;
+            //    newRow["Fullname"] = dlg.TenXetNghiem;
+            //    newRow["TestResult"] = dlg.TestResult;
+            //    newRow["TinhTrang"] = (byte)TinhTrang.BinhThuong;
+            //    newRow["LamThem"] = dlg.LamThem;
+            //    newRow["NgayXetNghiem"] = dlg.NgayXetNghiem;
+            //    newRow["GroupName"] = dlg.NhomXetNghiem;
+            //    newRow["HasHutThuoc"] = dlg.HasHutThuoc;
+
+            //    ChiTietKetQuaXetNghiem_Manual ctkqxn = new ChiTietKetQuaXetNghiem_Manual();
+            //    ctkqxn.KetQuaXetNghiem_ManualGUID = Guid.Parse(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
+            //    ctkqxn.ChiTietKetQuaXetNghiem_ManualGUID = Guid.NewGuid();
+            //    ctkqxn.XetNghiem_ManualGUID = Guid.Parse(dlg.XetNghiem_ManualGUID);
+            //    ctkqxn.TestResult = dlg.TestResult;
+            //    ctkqxn.TinhTrang = (byte)TinhTrang.BinhThuong;
+            //    ctkqxn.LamThem = dlg.LamThem;
+            //    ctkqxn.HasHutThuoc = dlg.HasHutThuoc;
+            //    ctkqxn.NgayXetNghiem = dlg.NgayXetNghiem;
+
+            //    Result result = KetQuaXetNghiemTayBus.InsertChiTietKQXN(ctkqxn);
+            //    if (result.IsOK)
+            //    {
+            //        dtChiTietKQXN.Rows.Add(newRow);
+            //        OnDisplayChiTietKetQuaXetNghiem(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
+            //    }
+            //    else
+            //    {
+            //        MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTayBus.InsertChiTietKQXN"), IconType.Error);
+            //        Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTayBus.InsertChiTietKQXN"));
+            //    }
+            //}
         }
 
         private void OnEditChiTiet()

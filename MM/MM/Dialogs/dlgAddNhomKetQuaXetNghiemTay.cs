@@ -56,6 +56,11 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        public void EnableBtnChonBenhNhan(bool status)
+        {
+            btnChonBenhNhan.Enabled = status;
+        }
+
         private void DisplayInfo()
         {
             try
