@@ -139,7 +139,7 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-            dlgAddKetQuaXetNghiemTay dlg = new dlgAddKetQuaXetNghiemTay();
+            dlgAddNhomKetQuaXetNghiemTay dlg = new dlgAddNhomKetQuaXetNghiemTay();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
@@ -156,7 +156,7 @@ namespace MM.Controls
 
             DataRow drKetQuaXN = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
             DataTable dtChiTietKQXN = dgChiTietKQXN.DataSource as DataTable;
-            dlgAddKetQuaXetNghiemTay dlg = new dlgAddKetQuaXetNghiemTay(drKetQuaXN, dtChiTietKQXN);
+            dlgAddNhomKetQuaXetNghiemTay dlg = new dlgAddNhomKetQuaXetNghiemTay(drKetQuaXN, dtChiTietKQXN);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 OnDisplayChiTietKetQuaXetNghiem(drKetQuaXN["KetQuaXetNghiemManualGUID"].ToString());
