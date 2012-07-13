@@ -23,7 +23,7 @@ namespace MM.Controls
         private bool _isMaBenhNhan = true;
         private Font _normalFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         private Font _boldFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-        private string _patientGUID = string.Empty;
+        private string _xetNghiemGUID = string.Empty;
         #endregion
 
         #region Constructor
@@ -48,42 +48,37 @@ namespace MM.Controls
             btnXoaCTKQXN.Enabled = AllowDelete;
         }
 
-        private string GetCurrentPatient()
+        private string GetCurrentXetNghiem()
         {
-            string patientGUID = string.Empty;
+            string xetNghiemGUID = string.Empty;
 
             if (dgXetNghiem.RowCount <= 0) return string.Empty;
             if (dgXetNghiem.SelectedRows == null || dgXetNghiem.SelectedRows.Count <= 0) return string.Empty;
 
             DataRow drXetNghiem = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            if (drXetNghiem["PatientGUID"] != null && drXetNghiem["PatientGUID"] != DBNull.Value)
-                patientGUID = drXetNghiem["PatientGUID"].ToString();
+            if (drXetNghiem["KQXN_Hitachi917GUID"] != null && drXetNghiem["KQXN_Hitachi917GUID"] != DBNull.Value)
+                xetNghiemGUID = drXetNghiem["KQXN_Hitachi917GUID"].ToString();
 
-            return patientGUID;
+            return xetNghiemGUID;
         }
 
-        private void SetCurrentPatient(string patientGUID)
+        private void SetCurrentXetNghiem(string xetNghiemGUID)
         {
-            int rowIndex = -1;
             foreach (DataGridViewRow row in dgXetNghiem.Rows)
             {
                 DataRow dr = (row.DataBoundItem as DataRowView).Row;
-                if (dr["PatientGUID"] == null || dr["PatientGUID"] == DBNull.Value) continue;
+                if (dr["KQXN_Hitachi917GUID"] == null || dr["KQXN_Hitachi917GUID"] == DBNull.Value) continue;
 
-                if (dr["PatientGUID"].ToString().Trim().ToUpper() == _patientGUID.Trim().ToUpper())
+                if (dr["KQXN_Hitachi917GUID"].ToString().Trim().ToUpper() == xetNghiemGUID.Trim().ToUpper())
                 {
-                    rowIndex = row.Index;
+                    if (row.Index > 0)
+                    {
+                        dgXetNghiem.CurrentCell = dgXetNghiem[0, row.Index];
+                        dgXetNghiem.Rows[row.Index].Selected = true;
+                    }
                     break;
                 }
             }
-
-            if (rowIndex >= 0)
-            {
-
-                dgChiTietKQXN.CurrentCell = dgChiTietKQXN[0, rowIndex];
-
-            }
-            
         }
 
         public void DisplayAsThread()
@@ -91,7 +86,7 @@ namespace MM.Controls
             try
             {
                 UpdateGUI();
-                //_patientGUID = GetCurrentPatient();
+                _xetNghiemGUID = GetCurrentXetNghiem();
 
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
@@ -120,8 +115,8 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    dgXetNghiem.DataSource = result.QueryResult;
-                    //SetCurrentPatient(_patientGUID);
+                    dgXetNghiem.DataSource = result.QueryResult;                    
+                    SetCurrentXetNghiem(_xetNghiemGUID);
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
