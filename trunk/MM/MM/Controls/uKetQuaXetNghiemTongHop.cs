@@ -24,6 +24,7 @@ namespace MM.Controls
         private Font _boldFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         private Hashtable _htXN = new Hashtable();
         private string _patientGUID = string.Empty;
+        private string _currentPatient = string.Empty;
         private bool _flag = false;
         #endregion
 
@@ -51,6 +52,39 @@ namespace MM.Controls
             btnPrintSinhHoa.Enabled = AllowPrint;
         }
 
+        private string GetCurrentBenhNhan()
+        {
+            string patientGUID = string.Empty;
+
+            if (dgBenhNhan.RowCount <= 0) return string.Empty;
+            if (dgBenhNhan.SelectedRows == null || dgBenhNhan.SelectedRows.Count <= 0) return string.Empty;
+
+            DataRow drXetNghiem = (dgBenhNhan.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            if (drXetNghiem["PatientGUID"] != null && drXetNghiem["PatientGUID"] != DBNull.Value)
+                patientGUID = drXetNghiem["PatientGUID"].ToString();
+
+            return patientGUID;
+        }
+
+        private void SetCurrentBenhNhan(string patientGUID)
+        {
+            foreach (DataGridViewRow row in dgBenhNhan.Rows)
+            {
+                DataRow dr = (row.DataBoundItem as DataRowView).Row;
+                if (dr["PatientGUID"] == null || dr["PatientGUID"] == DBNull.Value) continue;
+
+                if (dr["PatientGUID"].ToString().Trim().ToUpper() == patientGUID.Trim().ToUpper())
+                {
+                    if (row.Index > 0)
+                    {
+                        dgBenhNhan.CurrentCell = dgBenhNhan[0, row.Index];
+                        dgBenhNhan.Rows[row.Index].Selected = true;
+                    }
+                    break;
+                }
+            }
+        }
+
         public void DisplayDanhSachBenhNhan()
         {
             if (dtpkTuNgay.Value > dtpkDenNgay.Value)
@@ -59,6 +93,8 @@ namespace MM.Controls
                 dtpkTuNgay.Focus();
                 return;
             }
+
+            _currentPatient = GetCurrentBenhNhan();
 
             string tenBenhNhan = txtTenBenhNhan.Text;
             DateTime tuNgay = dtpkTuNgay.Value;
@@ -71,6 +107,8 @@ namespace MM.Controls
                 _htXN.Clear();
 
                 dgBenhNhan.DataSource = result.QueryResult as DataTable;
+
+                SetCurrentBenhNhan(_currentPatient);
             }
             else
             {
