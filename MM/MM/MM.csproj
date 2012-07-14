@@ -1999,6 +1999,7 @@
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-07-14.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-13.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-07.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-02.sql" />
