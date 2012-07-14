@@ -1538,7 +1538,7 @@ namespace MM
 
         private void OnChiTietPhieuThuDichVu()
         {
-            this.Text = string.Format("{0} - Chi tiet phieu thu dich vu", Application.ProductName);
+            this.Text = string.Format("{0} - Danh sach dich vu xuat phieu thu", Application.ProductName);
             ViewControl(_uChiTietPhieuThuDichVu);
             _uChiTietPhieuThuDichVu.DisplayAsThread();
         }

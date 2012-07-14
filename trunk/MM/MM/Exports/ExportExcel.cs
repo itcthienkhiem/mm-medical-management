@@ -5710,5 +5710,89 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportDanhSachDichVuXuatPhieuThuToExcel(string exportFileName, DataTable dtDichVu)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\DanhSachDichVuXuatPhieuThuTemplate.xls", Application.StartupPath);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                IRange range;
+                int stt = 1;
+                foreach (DataRow row in dtDichVu.Rows)
+                {
+                    string ngayXuat = Convert.ToDateTime(row["ReceiptDate"]).ToString("dd/MM/yyyy");
+                    string tenDichVu = row["Name"].ToString();
+                    string tenBenhNhan = row["FullName"].ToString();
+                    string maBenhNhan = row["FileNum"].ToString();
+                    string ngaySinh = string.Empty;
+                    if (row["DobStr"] != null && row["DobStr"] != DBNull.Value)
+                        ngaySinh = row["DobStr"].ToString();
+
+                    string gioiTinh = string.Empty;
+                    if (row["GenderAsStr"] != null && row["GenderAsStr"] != DBNull.Value)
+                        gioiTinh = row["GenderAsStr"].ToString();
+
+                    string diaChi = string.Empty;
+                    if (row["Address"] != null && row["Address"] != DBNull.Value)
+                        diaChi = row["Address"].ToString();
+
+                    range = workSheet.Cells[rowIndex, 0];
+                    range.Value = ngayXuat;
+
+                    range = workSheet.Cells[rowIndex, 1];
+                    range.Value = tenDichVu;
+
+                    range = workSheet.Cells[rowIndex, 2];
+                    range.Value = tenBenhNhan;
+
+                    range = workSheet.Cells[rowIndex, 3];
+                    range.Value = maBenhNhan;
+
+                    range = workSheet.Cells[rowIndex, 4];
+                    range.Value = ngaySinh;
+
+                    range = workSheet.Cells[rowIndex, 5];
+                    range.Value = gioiTinh;
+
+                    range = workSheet.Cells[rowIndex, 6];
+                    range.Value = diaChi;
+
+                    rowIndex++;
+                    stt++;
+                }
+
+                range = workSheet.Cells[string.Format("A3:G{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }

@@ -1039,6 +1039,10 @@ namespace MM.Common
                     case "Kết quả xét nghiệm sinh hóa":
                         fileName = string.Format("{0}\\Templates\\KetQuaXetNghiemSinhHoaTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
                         break;
+
+                    case "Danh sách dịch vụ xuất phiếu thu":
+                        fileName = string.Format("{0}\\Templates\\DanhSachDichVuXuatPhieuThuTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
                 }
 
                 if (fileName != string.Empty && File.Exists(fileName))

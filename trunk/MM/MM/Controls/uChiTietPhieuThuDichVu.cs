@@ -10,6 +10,7 @@ using System.Threading;
 using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -30,10 +31,18 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void UpdateGUID()
+        {
+            btnPrintPreview.Enabled = AllowPrint;
+            btnPrint.Enabled = AllowPrint;
+            btnExportExcel.Enabled = AllowExport;
+        }
+
         public void DisplayAsThread()
         {
             try
             {
+                UpdateGUID();
                 lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
                 _isFromDateToDate = raTuNgayToiNgay.Checked;
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
@@ -75,6 +84,61 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetChiTietPhieuThuDichVuList"));
             }
         }
+
+        private void OnPrint(bool isPreview)
+        {
+            if (dgChiTiet.RowCount <= 0) return;
+
+            string exportFileName = string.Format("{0}\\Temp\\DanhSachDichVuXuatPhieuThu.xls", Application.StartupPath);
+            if (isPreview)
+            {
+                DataTable dt = dgChiTiet.DataSource as DataTable;
+                if (ExportExcel.ExportDanhSachDichVuXuatPhieuThuToExcel(exportFileName, dt))
+                {
+                    try
+                    {
+                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.DanhSachDichVuXuatPhieuThuTemplate));
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                    }
+                }
+            }
+            else
+            {
+                if (_printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    DataTable dt = dgChiTiet.DataSource as DataTable;
+                    if (ExportExcel.ExportDanhSachDichVuXuatPhieuThuToExcel(exportFileName, dt))
+                    {
+                        try
+                        {
+                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.DanhSachDichVuXuatPhieuThuTemplate));
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void OnExportExcel()
+        {
+            if (dgChiTiet.RowCount <= 0) return;
+
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "Export Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                DataTable dt = dgChiTiet.DataSource as DataTable;
+                ExportExcel.ExportDanhSachDichVuXuatPhieuThuToExcel(dlg.FileName, dt);
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -103,6 +167,21 @@ namespace MM.Controls
 
             DisplayAsThread();
         }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -124,7 +203,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }

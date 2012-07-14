@@ -136,6 +136,7 @@ namespace MM.Common
             ExcelTemplates.Add(Const.YKienKhachHangTemplate);
             ExcelTemplates.Add(Const.KetQuaXetNghiemCellDyn3200Template);
             ExcelTemplates.Add(Const.KetQuaXetNghiemSinhHoaTemplate);
+            ExcelTemplates.Add(Const.DanhSachDichVuXuatPhieuThuTemplate);
 
             ExcelTemplates.Sort();
         }

@@ -229,6 +229,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._uBaoCaoSoLuongKham = new MM.Controls.uBaoCaoSoLuongKham();
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uXetNghiem = new MM.Controls.uXetNghiem();
             this._uBenhNhanThanThuocList = new MM.Controls.uBenhNhanThanThuocList();
             this._uBaoCaoThuocTonKhoTheoKhoangThoiGian = new MM.Controls.uBaoCaoThuocTonKhoTheoKhoangThoiGian();
             this._uChiTietPhieuThuDichVu = new MM.Controls.uChiTietPhieuThuDichVu();
@@ -281,7 +282,6 @@
             this._uDuplicatePatient = new MM.Controls.uDuplicatePatient();
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
-            this._uXetNghiem = new MM.Controls.uXetNghiem();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1863,6 +1863,11 @@
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
             // 
+            // _uXetNghiem
+            // 
+            resources.ApplyResources(this._uXetNghiem, "_uXetNghiem");
+            this._uXetNghiem.Name = "_uXetNghiem";
+            // 
             // _uBenhNhanThanThuocList
             // 
             resources.ApplyResources(this._uBenhNhanThanThuocList, "_uBenhNhanThanThuocList");
@@ -2124,11 +2129,6 @@
             // 
             resources.ApplyResources(this._uServicesList, "_uServicesList");
             this._uServicesList.Name = "_uServicesList";
-            // 
-            // _uXetNghiem
-            // 
-            resources.ApplyResources(this._uXetNghiem, "_uXetNghiem");
-            this._uXetNghiem.Name = "_uXetNghiem";
             // 
             // MainForm
             // 

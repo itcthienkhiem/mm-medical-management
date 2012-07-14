@@ -710,37 +710,37 @@
     <value>&amp;Công ty</value>
   </data>
   <data name="receiptListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>258, 30</value>
   </data>
   <data name="receiptListToolStripMenuItem.Text" xml:space="preserve">
     <value>Phiếu thu dịch vụ</value>
   </data>
   <data name="toolStripSeparator24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
+    <value>255, 6</value>
   </data>
   <data name="phieuThuThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>258, 30</value>
   </data>
   <data name="phieuThuThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Phiếu thu thuốc</value>
   </data>
   <data name="toolStripSeparator37.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
+    <value>255, 6</value>
   </data>
   <data name="phieuThuHopDongToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>258, 30</value>
   </data>
   <data name="phieuThuHopDongToolStripMenuItem.Text" xml:space="preserve">
     <value>Phiếu thu hợp đồng</value>
   </data>
   <data name="toolStripSeparator53.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
+    <value>255, 6</value>
   </data>
   <data name="chiTietPhieuThuDichVuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+    <value>258, 30</value>
   </data>
   <data name="chiTietPhieuThuDichVuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Chi tiết phiếu thu dịch vụ</value>
+    <value>Danh sách dịch vụ xuất phiếu thu</value>
   </data>
   <data name="receiptToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
