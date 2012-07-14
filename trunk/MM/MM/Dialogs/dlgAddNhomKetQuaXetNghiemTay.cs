@@ -316,6 +316,8 @@ namespace MM.Dialogs
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaXetNghiemTayBus.GetChiTietKetQuaXetNghiem"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaXetNghiemTayBus.GetChiTietKetQuaXetNghiem"));
                 }
+
+                OnAdd();
             }
         }
 
