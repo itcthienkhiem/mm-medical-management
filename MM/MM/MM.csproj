@@ -1924,6 +1924,7 @@
     <None Include="Templates\ChiTietPhieuThuThuocTemplate.xls" />
     <None Include="Templates\DanhSachBenhNhanDenKhamTemplate.xls" />
     <None Include="Templates\DanhSachBenhNhanTemplate.xls" />
+    <None Include="Templates\DanhSachDichVuXuatPhieuThuTemplate.xls" />
     <None Include="Templates\DichVuHopDongTemplate.xls" />
     <None Include="Templates\DichVuTuTucTemplate.xls" />
     <None Include="Templates\DoanhThuTheoNgayTemplate.xls" />
