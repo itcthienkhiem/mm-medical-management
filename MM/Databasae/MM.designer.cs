@@ -61191,6 +61191,8 @@ namespace MM.Databasae
 		
 		private string _Path;
 		
+		private int _ThuTu;
+		
 		private System.Nullable<System.DateTime> _CreatedDate;
 		
 		private System.Nullable<System.Guid> _CreatedBy;
@@ -61219,6 +61221,8 @@ namespace MM.Databasae
     partial void OnTenSieuAmChanged();
     partial void OnPathChanging(string value);
     partial void OnPathChanged();
+    partial void OnThuTuChanging(int value);
+    partial void OnThuTuChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedDateChanged();
     partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
@@ -61298,6 +61302,26 @@ namespace MM.Databasae
 					this._Path = value;
 					this.SendPropertyChanged("Path");
 					this.OnPathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThuTu", DbType="Int NOT NULL")]
+		public int ThuTu
+		{
+			get
+			{
+				return this._ThuTu;
+			}
+			set
+			{
+				if ((this._ThuTu != value))
+				{
+					this.OnThuTuChanging(value);
+					this.SendPropertyChanging();
+					this._ThuTu = value;
+					this.SendPropertyChanged("ThuTu");
+					this.OnThuTuChanged();
 				}
 			}
 		}
