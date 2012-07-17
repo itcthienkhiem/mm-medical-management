@@ -121,6 +121,7 @@
     <Compile Include="ServiceHistoryBus.cs" />
     <Compile Include="ServicesBus.cs" />
     <Compile Include="QuanLySoHoaDonBus.cs" />
+    <Compile Include="SieuAmBus.cs" />
     <Compile Include="SpecialityBus.cs" />
     <Compile Include="SymptomBus.cs" />
     <Compile Include="ThuocBus.cs" />
