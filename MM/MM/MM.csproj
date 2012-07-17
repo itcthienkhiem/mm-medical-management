@@ -84,6 +84,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Components\TXTextControl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\uBenhNhanThanThuocList.cs">
@@ -91,6 +95,12 @@
     </Compile>
     <Compile Include="Controls\uBenhNhanThanThuocList.Designer.cs">
       <DependentUpon>uBenhNhanThanThuocList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uLoaiSieuAmList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uLoaiSieuAmList.Designer.cs">
+      <DependentUpon>uLoaiSieuAmList.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\uTimeRange.cs">
       <SubType>UserControl</SubType>
@@ -1293,6 +1303,9 @@
     <EmbeddedResource Include="Controls\uBenhNhanThanThuocList.resx">
       <DependentUpon>uBenhNhanThanThuocList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uLoaiSieuAmList.resx">
+      <DependentUpon>uLoaiSieuAmList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTimeRange.resx">
       <DependentUpon>uTimeRange.cs</DependentUpon>
     </EmbeddedResource>
@@ -1942,6 +1955,7 @@
     <None Include="Templates\NhatKyLienHeCongTyTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
+    <None Include="Templates\SieuAmTemplate.rtf" />
     <None Include="Templates\SymptomTemplate.xls" />
     <None Include="Templates\ThuocTonKhoTemplate.xls" />
     <None Include="Templates\ThuocTonKhoTheoKhoangThoiGianTemplate.xls" />
@@ -1992,6 +2006,8 @@
     <Content Include="Components\SourceLibrary.dll" />
     <Content Include="Components\SpreadsheetGear.Design.dll" />
     <Content Include="Components\SpreadsheetGear.dll" />
+    <Content Include="Components\TXDocumentServer.dll" />
+    <Content Include="Components\TXTextControl.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="Components\WebCam_Capture.dll" />
     <Content Include="Controls\Excel\Office\Excel\MetaData\EscherRecordTypes.txt" />
@@ -2000,6 +2016,7 @@
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-07-17.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-14.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-13.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-07.sql" />
