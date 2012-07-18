@@ -310,5 +310,37 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetKetQuaSieuAmList(string patientGUID, DateTime fromDate, DateTime toDate)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
+                    Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat &&
+                    Global.StaffType != StaffType.BacSiPhuKhoa)
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaSieuAmView WHERE PatientGUID = '{0}' AND NgaySieuAm BETWEEN '{1}' AND '{2}' AND Status = {3} AND LoaiSieuAmStatus = {3} AND PatientArchived = 'False' AND BacSiSieuAmArchived = 'False' AND BacSiChiDinhArchived = 'False' ORDER BY NgaySieuAm DESC",
+                        patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
+                else
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaSieuAmView WHERE PatientGUID = '{0}' AND NgaySieuAm BETWEEN '{1}' AND '{2}' AND Status = {3}  AND LoaiSieuAmStatus = {3} AND PatientArchived = 'False' AND BacSiSieuAmArchived = 'False' AND BacSiChiDinhArchived = 'False' AND BacSiSieuAmGUID = '{4}' ORDER BY NgaySieuAm DESC",
+                        patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }

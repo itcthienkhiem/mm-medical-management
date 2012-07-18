@@ -96,6 +96,12 @@
     <Compile Include="Controls\uBenhNhanThanThuocList.Designer.cs">
       <DependentUpon>uBenhNhanThanThuocList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uKetQuaSieuAmList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uKetQuaSieuAmList.Designer.cs">
+      <DependentUpon>uKetQuaSieuAmList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uLoaiSieuAmList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1303,6 +1309,9 @@
     <EmbeddedResource Include="Controls\uBenhNhanThanThuocList.resx">
       <DependentUpon>uBenhNhanThanThuocList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uKetQuaSieuAmList.resx">
+      <DependentUpon>uKetQuaSieuAmList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uLoaiSieuAmList.resx">
       <DependentUpon>uLoaiSieuAmList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1890,6 +1899,7 @@
     <None Include="Properties\DataSources\MM.Databasae.KetLuanView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaNoiSoiView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.KetQuaSieuAmView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaSoiCTCView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_CellDyn3200View.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_Hitachi917View.datasource" />
