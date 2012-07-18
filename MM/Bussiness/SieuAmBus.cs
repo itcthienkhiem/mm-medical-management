@@ -36,7 +36,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public Result GetMauBaoCaoList(string loaiSieuAmGUID)
+        public static Result GetMauBaoCaoList(string loaiSieuAmGUID)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -44,8 +44,13 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                List<MauBaoCao> mauBaoCaoList = db.MauBaoCaos.Where(m => m.LoaiSieuAmGUID.ToString() == loaiSieuAmGUID &&
-                    m.Status == (byte)Status.Actived).ToList();
+                List<MauBaoCao> mauBaoCaoList = (from m in db.MauBaoCaos
+                                                 where m.LoaiSieuAmGUID.ToString() == loaiSieuAmGUID &&
+                                                 m.Status == (byte)Status.Actived
+                                                 orderby m.DoiTuong ascending
+                                                 select m).ToList();
+
+                result.QueryResult = mauBaoCaoList;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -247,11 +252,11 @@ namespace MM.Bussiness
                                 MauBaoCao mauBaoCao = lsa.MauBaoCaos.Where(m => m.DoiTuong == mbc.DoiTuong).FirstOrDefault();
                                 if (mauBaoCao == null)
                                 {
-                                    mauBaoCao.MauBaoCaoGUID = Guid.NewGuid();
-                                    mauBaoCao.LoaiSieuAmGUID = loaiSieuAm.LoaiSieuAmGUID;
-                                    mauBaoCao.CreatedDate = DateTime.Now;
-                                    mauBaoCao.CreatedBy = Guid.Parse(Global.UserGUID);
-                                    db.MauBaoCaos.InsertOnSubmit(mauBaoCao);
+                                    mbc.MauBaoCaoGUID = Guid.NewGuid();
+                                    mbc.LoaiSieuAmGUID = loaiSieuAm.LoaiSieuAmGUID;
+                                    mbc.CreatedDate = DateTime.Now;
+                                    mbc.CreatedBy = Guid.Parse(Global.UserGUID);
+                                    db.MauBaoCaos.InsertOnSubmit(mbc);
                                 }
                                 else
                                 {

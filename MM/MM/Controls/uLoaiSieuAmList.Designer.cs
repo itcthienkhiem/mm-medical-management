@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -50,14 +51,14 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.tabMauBaoCao = new System.Windows.Forms.TabControl();
-            this.pageChung = new System.Windows.Forms.TabPage();
+            this._page1 = new System.Windows.Forms.TabPage();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.chkNu = new System.Windows.Forms.CheckBox();
+            this.chkNam = new System.Windows.Forms.CheckBox();
             this.btnBrowse_Nu = new System.Windows.Forms.Button();
             this.txtMauBaoCao_Nu = new System.Windows.Forms.TextBox();
             this.btnBrowse_Nam = new System.Windows.Forms.Button();
             this.txtMauBaoCao_Nam = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnBrowse_Chung = new System.Windows.Forms.Button();
             this.txtMauBaoCao_Chung = new System.Windows.Forms.TextBox();
             this.raNamNu = new System.Windows.Forms.RadioButton();
@@ -70,6 +71,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this._textControl1 = new TXTextControl.TextControl();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -81,7 +83,7 @@
             this.panel8.SuspendLayout();
             this.panel10.SuspendLayout();
             this.tabMauBaoCao.SuspendLayout();
-            this.pageChung.SuspendLayout();
+            this._page1.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numThuTu)).BeginInit();
             this.panel3.SuspendLayout();
@@ -134,28 +136,28 @@
             this.dgLoaiSieuAm.AllowUserToDeleteRows = false;
             this.dgLoaiSieuAm.AllowUserToOrderColumns = true;
             this.dgLoaiSieuAm.AutoGenerateColumns = false;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgLoaiSieuAm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgLoaiSieuAm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgLoaiSieuAm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLoaiSieuAm.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
             this.tenSieuAmDataGridViewTextBoxColumn,
             this.thuTuDataGridViewTextBoxColumn});
             this.dgLoaiSieuAm.DataSource = this.loaiSieuAmBindingSource;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgLoaiSieuAm.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgLoaiSieuAm.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgLoaiSieuAm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgLoaiSieuAm.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgLoaiSieuAm.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -176,8 +178,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
             this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
@@ -198,6 +200,8 @@
             // thuTuDataGridViewTextBoxColumn
             // 
             this.thuTuDataGridViewTextBoxColumn.DataPropertyName = "ThuTu";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.thuTuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.thuTuDataGridViewTextBoxColumn.HeaderText = "Thứ tự";
             this.thuTuDataGridViewTextBoxColumn.Name = "thuTuDataGridViewTextBoxColumn";
             this.thuTuDataGridViewTextBoxColumn.ReadOnly = true;
@@ -286,39 +290,39 @@
             // 
             this.panel10.Controls.Add(this.tabMauBaoCao);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(0, 144);
+            this.panel10.Location = new System.Drawing.Point(0, 138);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(676, 415);
+            this.panel10.Size = new System.Drawing.Size(676, 421);
             this.panel10.TabIndex = 1;
             // 
             // tabMauBaoCao
             // 
-            this.tabMauBaoCao.Controls.Add(this.pageChung);
+            this.tabMauBaoCao.Controls.Add(this._page1);
             this.tabMauBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMauBaoCao.Location = new System.Drawing.Point(0, 0);
             this.tabMauBaoCao.Name = "tabMauBaoCao";
             this.tabMauBaoCao.SelectedIndex = 0;
-            this.tabMauBaoCao.Size = new System.Drawing.Size(676, 415);
+            this.tabMauBaoCao.Size = new System.Drawing.Size(676, 421);
             this.tabMauBaoCao.TabIndex = 0;
             // 
-            // pageChung
+            // _page1
             // 
-            this.pageChung.Location = new System.Drawing.Point(4, 22);
-            this.pageChung.Name = "pageChung";
-            this.pageChung.Padding = new System.Windows.Forms.Padding(3);
-            this.pageChung.Size = new System.Drawing.Size(668, 389);
-            this.pageChung.TabIndex = 0;
-            this.pageChung.Text = "Mẫu báo cáo (Chung)";
-            this.pageChung.UseVisualStyleBackColor = true;
+            this._page1.Controls.Add(this._textControl1);
+            this._page1.Location = new System.Drawing.Point(4, 22);
+            this._page1.Name = "_page1";
+            this._page1.Size = new System.Drawing.Size(668, 395);
+            this._page1.TabIndex = 0;
+            this._page1.Text = "Mẫu báo cáo (Chung)";
+            this._page1.UseVisualStyleBackColor = true;
             // 
             // panel9
             // 
+            this.panel9.Controls.Add(this.chkNu);
+            this.panel9.Controls.Add(this.chkNam);
             this.panel9.Controls.Add(this.btnBrowse_Nu);
             this.panel9.Controls.Add(this.txtMauBaoCao_Nu);
             this.panel9.Controls.Add(this.btnBrowse_Nam);
             this.panel9.Controls.Add(this.txtMauBaoCao_Nam);
-            this.panel9.Controls.Add(this.label6);
-            this.panel9.Controls.Add(this.label5);
             this.panel9.Controls.Add(this.btnBrowse_Chung);
             this.panel9.Controls.Add(this.txtMauBaoCao_Chung);
             this.panel9.Controls.Add(this.raNamNu);
@@ -330,23 +334,48 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(676, 144);
+            this.panel9.Size = new System.Drawing.Size(676, 138);
             this.panel9.TabIndex = 0;
+            // 
+            // chkNu
+            // 
+            this.chkNu.AutoSize = true;
+            this.chkNu.Enabled = false;
+            this.chkNu.Location = new System.Drawing.Point(95, 111);
+            this.chkNu.Name = "chkNu";
+            this.chkNu.Size = new System.Drawing.Size(43, 17);
+            this.chkNu.TabIndex = 15;
+            this.chkNu.Text = "Nữ:";
+            this.chkNu.UseVisualStyleBackColor = true;
+            this.chkNu.CheckedChanged += new System.EventHandler(this.chkNu_CheckedChanged);
+            // 
+            // chkNam
+            // 
+            this.chkNam.AutoSize = true;
+            this.chkNam.Enabled = false;
+            this.chkNam.Location = new System.Drawing.Point(95, 88);
+            this.chkNam.Name = "chkNam";
+            this.chkNam.Size = new System.Drawing.Size(51, 17);
+            this.chkNam.TabIndex = 14;
+            this.chkNam.Text = "Nam:";
+            this.chkNam.UseVisualStyleBackColor = true;
+            this.chkNam.CheckedChanged += new System.EventHandler(this.chkNam_CheckedChanged);
             // 
             // btnBrowse_Nu
             // 
             this.btnBrowse_Nu.Enabled = false;
             this.btnBrowse_Nu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse_Nu.Location = new System.Drawing.Point(494, 111);
+            this.btnBrowse_Nu.Location = new System.Drawing.Point(557, 108);
             this.btnBrowse_Nu.Name = "btnBrowse_Nu";
             this.btnBrowse_Nu.Size = new System.Drawing.Size(28, 22);
             this.btnBrowse_Nu.TabIndex = 13;
             this.btnBrowse_Nu.Text = "...";
             this.btnBrowse_Nu.UseVisualStyleBackColor = true;
+            this.btnBrowse_Nu.Click += new System.EventHandler(this.btnBrowse_Nu_Click);
             // 
             // txtMauBaoCao_Nu
             // 
-            this.txtMauBaoCao_Nu.Location = new System.Drawing.Point(86, 112);
+            this.txtMauBaoCao_Nu.Location = new System.Drawing.Point(149, 109);
             this.txtMauBaoCao_Nu.MaxLength = 255;
             this.txtMauBaoCao_Nu.Name = "txtMauBaoCao_Nu";
             this.txtMauBaoCao_Nu.ReadOnly = true;
@@ -357,53 +386,37 @@
             // 
             this.btnBrowse_Nam.Enabled = false;
             this.btnBrowse_Nam.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse_Nam.Location = new System.Drawing.Point(494, 87);
+            this.btnBrowse_Nam.Location = new System.Drawing.Point(557, 84);
             this.btnBrowse_Nam.Name = "btnBrowse_Nam";
             this.btnBrowse_Nam.Size = new System.Drawing.Size(28, 22);
             this.btnBrowse_Nam.TabIndex = 11;
             this.btnBrowse_Nam.Text = "...";
             this.btnBrowse_Nam.UseVisualStyleBackColor = true;
+            this.btnBrowse_Nam.Click += new System.EventHandler(this.btnBrowse_Nam_Click);
             // 
             // txtMauBaoCao_Nam
             // 
-            this.txtMauBaoCao_Nam.Location = new System.Drawing.Point(86, 88);
+            this.txtMauBaoCao_Nam.Location = new System.Drawing.Point(149, 85);
             this.txtMauBaoCao_Nam.MaxLength = 255;
             this.txtMauBaoCao_Nam.Name = "txtMauBaoCao_Nam";
             this.txtMauBaoCao_Nam.ReadOnly = true;
             this.txtMauBaoCao_Nam.Size = new System.Drawing.Size(403, 20);
             this.txtMauBaoCao_Nam.TabIndex = 10;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(56, 115);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Nữ:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(48, 91);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Nam:";
-            // 
             // btnBrowse_Chung
             // 
             this.btnBrowse_Chung.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse_Chung.Location = new System.Drawing.Point(494, 36);
+            this.btnBrowse_Chung.Location = new System.Drawing.Point(556, 36);
             this.btnBrowse_Chung.Name = "btnBrowse_Chung";
             this.btnBrowse_Chung.Size = new System.Drawing.Size(28, 22);
             this.btnBrowse_Chung.TabIndex = 7;
             this.btnBrowse_Chung.Text = "...";
             this.btnBrowse_Chung.UseVisualStyleBackColor = true;
+            this.btnBrowse_Chung.Click += new System.EventHandler(this.btnBrowse_Chung_Click);
             // 
             // txtMauBaoCao_Chung
             // 
-            this.txtMauBaoCao_Chung.Location = new System.Drawing.Point(86, 37);
+            this.txtMauBaoCao_Chung.Location = new System.Drawing.Point(148, 37);
             this.txtMauBaoCao_Chung.MaxLength = 255;
             this.txtMauBaoCao_Chung.Name = "txtMauBaoCao_Chung";
             this.txtMauBaoCao_Chung.ReadOnly = true;
@@ -413,11 +426,11 @@
             // raNamNu
             // 
             this.raNamNu.AutoSize = true;
-            this.raNamNu.Location = new System.Drawing.Point(16, 65);
+            this.raNamNu.Location = new System.Drawing.Point(16, 62);
             this.raNamNu.Name = "raNamNu";
-            this.raNamNu.Size = new System.Drawing.Size(73, 17);
+            this.raNamNu.Size = new System.Drawing.Size(145, 17);
             this.raNamNu.TabIndex = 5;
-            this.raNamNu.Text = "Nam - Nữ:";
+            this.raNamNu.Text = "Mẫu báo cáo (Nam - Nữ):";
             this.raNamNu.UseVisualStyleBackColor = true;
             this.raNamNu.CheckedChanged += new System.EventHandler(this.raNamNu_CheckedChanged);
             // 
@@ -427,10 +440,10 @@
             this.raChung.Checked = true;
             this.raChung.Location = new System.Drawing.Point(16, 38);
             this.raChung.Name = "raChung";
-            this.raChung.Size = new System.Drawing.Size(59, 17);
+            this.raChung.Size = new System.Drawing.Size(131, 17);
             this.raChung.TabIndex = 4;
             this.raChung.TabStop = true;
-            this.raChung.Text = "Chung:";
+            this.raChung.Text = "Mẫu báo cáo (Chung):";
             this.raChung.UseVisualStyleBackColor = true;
             this.raChung.CheckedChanged += new System.EventHandler(this.raChung_CheckedChanged);
             // 
@@ -524,7 +537,21 @@
             this.btnAdd.Text = "    &Thêm mới";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-           
+            // 
+            // _textControl1
+            // 
+            this._textControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._textControl1.EditMode = TXTextControl.EditMode.ReadAndSelect;
+            this._textControl1.Font = new System.Drawing.Font("Arial", 10F);
+            this._textControl1.Location = new System.Drawing.Point(0, 0);
+            this._textControl1.Name = "_textControl1";
+            this._textControl1.PageMargins.Bottom = 79;
+            this._textControl1.PageMargins.Left = 79;
+            this._textControl1.PageMargins.Right = 79;
+            this._textControl1.PageMargins.Top = 79;
+            this._textControl1.Size = new System.Drawing.Size(668, 395);
+            this._textControl1.TabIndex = 0;
+            this._textControl1.ViewMode = TXTextControl.ViewMode.PageView;
             // 
             // uLoaiSieuAmList
             // 
@@ -547,7 +574,7 @@
             this.panel8.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.tabMauBaoCao.ResumeLayout(false);
-            this.pageChung.ResumeLayout(false);
+            this._page1.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numThuTu)).EndInit();
@@ -581,20 +608,21 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtTenSieuAm;
         private System.Windows.Forms.Label label3;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenSieuAmDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn thuTuDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TextBox txtMauBaoCao_Chung;
-        private System.Windows.Forms.RadioButton raNamNu;
-        private System.Windows.Forms.RadioButton raChung;
-        private System.Windows.Forms.Button btnBrowse_Chung;
         private System.Windows.Forms.Button btnBrowse_Nu;
         private System.Windows.Forms.TextBox txtMauBaoCao_Nu;
         private System.Windows.Forms.Button btnBrowse_Nam;
         private System.Windows.Forms.TextBox txtMauBaoCao_Nam;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabControl tabMauBaoCao;
-        private System.Windows.Forms.TabPage pageChung;
+        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenSieuAmDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn thuTuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckBox chkNu;
+        private System.Windows.Forms.CheckBox chkNam;
+        private System.Windows.Forms.Button btnBrowse_Chung;
+        private System.Windows.Forms.TextBox txtMauBaoCao_Chung;
+        private System.Windows.Forms.RadioButton raNamNu;
+        private System.Windows.Forms.RadioButton raChung;
+        private System.Windows.Forms.TabPage _page1;
+        private TXTextControl.TextControl _textControl1;
     }
 }
