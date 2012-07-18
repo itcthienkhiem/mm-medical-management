@@ -67,6 +67,7 @@ namespace MM.Controls
                 _uKetLuanList.PatientRow = (DataRow)value;
                 _uKetQuaNoiSoiList.PatientRow = (DataRow)value;
                 _uKetQuaSoiCTCList.PatientRow = (DataRow)value;
+                _uKetQuaSieuAmList.PatientRow = (DataRow)value;
             }
         }
         #endregion
@@ -107,6 +108,7 @@ namespace MM.Controls
             pageKetLuan.Visible = Global.AllowViewKetLuan;
             pageKhamNoiSoi.Visible = Global.AllowViewKhamNoiSoi;
             pageKhamCTC.Visible = Global.AllowViewKhamCTC;
+            pageKetQuaSieuAm.Visible = Global.AllowViewSieuAm;
 
             OnRefreshData();
             
@@ -159,6 +161,8 @@ namespace MM.Controls
                 _uKetQuaNoiSoiList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 9)
                 _uKetQuaSoiCTCList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 10)
+                _uKetQuaSieuAmList.DisplayAsThread();
         }
 
         public void DisplayCheckListAsThread()
@@ -265,6 +269,8 @@ namespace MM.Controls
                 _uKetQuaNoiSoiList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 9)
                 _uKetQuaSoiCTCList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 10)
+                _uKetQuaSieuAmList.DisplayAsThread();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
