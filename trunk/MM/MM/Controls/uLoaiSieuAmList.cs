@@ -201,7 +201,12 @@ namespace MM.Controls
         private void OnEdit()
         {
             _isNew = false;
-            if (_drLoaiSieuAm == null) return;
+            if (_drLoaiSieuAm == null)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn loại siêu âm cần cập nhật.", IconType.Information);
+                return;
+            }
+
             if (!CheckInfo()) return;
 
             LoaiSieuAm loaiSieuAm = new LoaiSieuAm();
@@ -296,12 +301,12 @@ namespace MM.Controls
             if (dgLoaiSieuAm.SelectedRows == null || dgLoaiSieuAm.SelectedRows.Count <= 0) 
             {
                 _drLoaiSieuAm = null;
-                txtTenSieuAm.Text = string.Empty;
-                txtMauBaoCao_Chung.Text = string.Empty;
-                txtMauBaoCao_Nam.Text = string.Empty;
-                txtMauBaoCao_Nu.Text = string.Empty;
-                _textControl1.ResetContents();
-                _textControl2.ResetContents();
+                //txtTenSieuAm.Text = string.Empty;
+                //txtMauBaoCao_Chung.Text = string.Empty;
+                //txtMauBaoCao_Nam.Text = string.Empty;
+                //txtMauBaoCao_Nu.Text = string.Empty;
+                //_textControl1.ResetContents();
+                //_textControl2.ResetContents();
                 return;
             }
 
