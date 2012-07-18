@@ -1854,13 +1854,6 @@
       <DependentUpon>uHoaDonHopDongList.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="Components\TxTextControl\tx151bmp.flt" />
-    <None Include="Components\TxTextControl\tx151gif.flt" />
-    <None Include="Components\TxTextControl\tx151ic.ini" />
-    <None Include="Components\TxTextControl\tx151jpg.flt" />
-    <None Include="Components\TxTextControl\tx151png.flt" />
-    <None Include="Components\TxTextControl\tx151tif.flt" />
-    <None Include="Components\TxTextControl\tx151wmf.flt" />
     <None Include="Components\Uninstall_MM.bat" />
     <None Include="Properties\DataSources\MM.Databasae.AccountView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CanDo.datasource" />
@@ -2027,23 +2020,6 @@
     <Content Include="Components\SourceLibrary.dll" />
     <Content Include="Components\SpreadsheetGear.Design.dll" />
     <Content Include="Components\SpreadsheetGear.dll" />
-    <Content Include="Components\TxTextControl\de\TXDocumentServer.resources.dll" />
-    <Content Include="Components\TxTextControl\de\TXTextControl.resources.dll" />
-    <Content Include="Components\TxTextControl\tx151.dll" />
-    <Content Include="Components\TxTextControl\tx151css.dll" />
-    <Content Include="Components\TxTextControl\tx151doc.dll" />
-    <Content Include="Components\TxTextControl\tx151dox.dll" />
-    <Content Include="Components\TxTextControl\tx151htm.dll" />
-    <Content Include="Components\TxTextControl\tx151ic.dll" />
-    <Content Include="Components\TxTextControl\tx151pdf.dll" />
-    <Content Include="Components\TxTextControl\tx151rtf.dll" />
-    <Content Include="Components\TxTextControl\tx151tls.dll" />
-    <Content Include="Components\TxTextControl\tx151wnd.dll" />
-    <Content Include="Components\TxTextControl\tx151xml.dll" />
-    <Content Include="Components\TxTextControl\TXDocumentServer.dll" />
-    <Content Include="Components\TxTextControl\txpdf.dll" />
-    <Content Include="Components\TxTextControl\TXTextControl.dll" />
-    <Content Include="Components\TxTextControl\TXTextControl.xml" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="Components\WebCam_Capture.dll" />
     <Content Include="Controls\Excel\Office\Excel\MetaData\EscherRecordTypes.txt" />

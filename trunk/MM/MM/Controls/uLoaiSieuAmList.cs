@@ -23,6 +23,7 @@ namespace MM.Controls
         public uLoaiSieuAmList()
         {
             InitializeComponent();
+           
         }
         #endregion
 
