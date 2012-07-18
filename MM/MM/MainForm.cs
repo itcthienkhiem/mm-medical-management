@@ -271,6 +271,8 @@ namespace MM
                 _uBenhNhanThanThuocList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uXetNghiem))
                 _uXetNghiem.InitData();
+            else if (ctrl.GetType() == typeof(uLoaiSieuAmList))
+                _uLoaiSieuAmList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1053,6 +1055,27 @@ namespace MM
                             _uBenhNhanThanThuocList.AllowLock = isLock;
                             _uBenhNhanThanThuocList.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.KetQuaSieuAm)
+                        {
+                            Global.AllowViewSieuAm = isView;
+                            Global.AllowAddSieuAm = isAdd;
+                            Global.AllowEditSieuAm = isEdit;
+                            Global.AllowDeleteSieuAm = isDelete;
+                            Global.AllowExportSieuAm = isExport;
+                            Global.AllowPrintSieuAm = isPrint;
+                        }
+                        else if (functionCode == Const.LoaiSieuAm)
+                        {
+                            loaiSieuAmToolStripMenuItem.Enabled = isView && isLogin;
+                            _uLoaiSieuAmList.AllowAdd = isAdd;
+                            _uLoaiSieuAmList.AllowEdit = isEdit;
+                            _uLoaiSieuAmList.AllowDelete = isDelete;
+                            _uLoaiSieuAmList.AllowPrint = isPrint;
+                            _uLoaiSieuAmList.AllowExport = isExport;
+                            _uLoaiSieuAmList.AllowImport = isImport;
+                            _uLoaiSieuAmList.AllowLock = isLock;
+                            _uLoaiSieuAmList.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1113,6 +1136,12 @@ namespace MM
                 Global.AllowEditDSDiaChiCongTy = true;
                 Global.AllowDeleteDSDiaChiCongTy = true;
                 Global.AllowViewTraCuuDanhSachKhachHang = true;
+                Global.AllowViewSieuAm = true;
+                Global.AllowAddSieuAm = true;
+                Global.AllowEditSieuAm = true;
+                Global.AllowDeleteSieuAm = true;
+                Global.AllowExportSieuAm = true;
+                Global.AllowPrintSieuAm = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
@@ -1228,6 +1257,7 @@ namespace MM
                 chiTietPhieuThuDichVuToolStripMenuItem.Enabled = isLogin;
                 thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Enabled = isLogin;
                 benhNhanThanThuocToolStripMenuItem.Enabled = isLogin;
+                loaiSieuAmToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1506,7 +1536,18 @@ namespace MM
                 case "XetNghiem":
                     OnXetNghiem();
                     break;
+
+                case "LoaiSieuAm":
+                    OnLoaiSieuAm();
+                    break;
             }
+        }
+
+        private void OnLoaiSieuAm()
+        {
+            this.Text = string.Format("{0} - Loai sieu am", Application.ProductName);
+            ViewControl(_uLoaiSieuAmList);
+            _uLoaiSieuAmList.DisplayAsThread();
         }
 
         private void OnXetNghiem()
