@@ -36,6 +36,56 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetLoaiSieuAmList(bool isNam)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<LoaiSieuAm> loaiSieuAmList = null;
+                if (isNam)
+                {
+                    loaiSieuAmList = (from s in db.LoaiSieuAms
+                                      join m in db.MauBaoCaos on s.LoaiSieuAmGUID equals m.LoaiSieuAmGUID
+                                      where m.DoiTuong == (byte)DoiTuong.Chung || m.DoiTuong == (byte)DoiTuong.Nam
+                                      orderby s.ThuTu ascending
+                                      select s).ToList();
+                }
+                else
+                {
+                    loaiSieuAmList = (from s in db.LoaiSieuAms
+                                      join m in db.MauBaoCaos on s.LoaiSieuAmGUID equals m.LoaiSieuAmGUID
+                                      where m.DoiTuong == (byte)DoiTuong.Chung || m.DoiTuong == (byte)DoiTuong.Nu
+                                      orderby s.ThuTu ascending
+                                      select s).ToList();
+                }
+
+                result.QueryResult = loaiSieuAmList;                    
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetMauBaoCaoList(string loaiSieuAmGUID)
         {
             Result result = new Result();
