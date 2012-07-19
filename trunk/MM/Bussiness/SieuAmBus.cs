@@ -236,7 +236,8 @@ namespace MM.Bussiness
                             l.DeletedBy = Guid.Parse(Global.UserGUID);
                             l.Status = (byte)Status.Deactived;
                             
-                            desc += string.Format("- GUID: '{0}', Tên siêu âm: '{1}', Thứ tự: '{2}'\n", l.LoaiSieuAmGUID.ToString(), l.TenSieuAm, l.ThuTu);
+                            desc += string.Format("- GUID: '{0}', Tên siêu âm: '{1}', Thứ tự: '{2}', In trang 2: '{3}'\n", 
+                                l.LoaiSieuAmGUID.ToString(), l.TenSieuAm, l.ThuTu, l.InTrang2);
                         }
                     }
 
@@ -306,8 +307,8 @@ namespace MM.Bussiness
                         }
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Tên siêu âm: '{1}', Thứ tự: '{2}'\n", 
-                            loaiSieuAm.LoaiSieuAmGUID.ToString(), loaiSieuAm.TenSieuAm, loaiSieuAm.ThuTu);
+                        desc += string.Format("- GUID: '{0}', Tên siêu âm: '{1}', Thứ tự: '{2}', In trang 2: '{3}'", 
+                            loaiSieuAm.LoaiSieuAmGUID.ToString(), loaiSieuAm.TenSieuAm, loaiSieuAm.ThuTu, loaiSieuAm.InTrang2);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -328,13 +329,10 @@ namespace MM.Bussiness
                         {
                             lsa.TenSieuAm = loaiSieuAm.TenSieuAm;
                             lsa.ThuTu = loaiSieuAm.ThuTu;
+                            lsa.InTrang2 = loaiSieuAm.InTrang2;
                             lsa.Path = loaiSieuAm.Path;
-                            lsa.CreatedDate = loaiSieuAm.CreatedDate;
-                            lsa.CreatedBy = loaiSieuAm.CreatedBy;
                             lsa.UpdatedDate = loaiSieuAm.UpdatedDate;
                             lsa.UpdatedBy = loaiSieuAm.UpdatedBy;
-                            lsa.DeletedDate = loaiSieuAm.DeletedDate;
-                            lsa.DeletedBy = loaiSieuAm.DeletedBy;
                             lsa.Status = loaiSieuAm.Status;
 
                             //Delete mẫu báo cáo
@@ -368,8 +366,8 @@ namespace MM.Bussiness
                             }
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Tên siêu âm: '{1}', Thứ tự: '{2}'\n",
-                            lsa.LoaiSieuAmGUID.ToString(), lsa.TenSieuAm, lsa.ThuTu);
+                            desc += string.Format("- GUID: '{0}', Tên siêu âm: '{1}', Thứ tự: '{2}', In trang 2: '{3}'",
+                            lsa.LoaiSieuAmGUID.ToString(), lsa.TenSieuAm, lsa.ThuTu, lsa.InTrang2);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
@@ -556,10 +554,6 @@ namespace MM.Bussiness
                             kqsa.KetQuaSieuAm1 = ketQuaSieuAm.KetQuaSieuAm1;
                             kqsa.Hinh1 = ketQuaSieuAm.Hinh1;
                             kqsa.Hinh2 = ketQuaSieuAm.Hinh2;
-                            kqsa.CreatedBy = ketQuaSieuAm.CreatedBy;
-                            kqsa.CreatedDate = ketQuaSieuAm.CreatedDate;
-                            kqsa.DeletedBy = ketQuaSieuAm.DeletedBy;
-                            kqsa.DeletedDate = ketQuaSieuAm.DeletedDate;
                             kqsa.UpdatedBy = ketQuaSieuAm.UpdatedBy;
                             kqsa.UpdatedDate = ketQuaSieuAm.UpdatedDate;
                             kqsa.Status = ketQuaSieuAm.Status;

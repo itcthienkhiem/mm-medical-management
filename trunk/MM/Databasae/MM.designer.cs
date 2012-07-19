@@ -264,7 +264,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString5, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1301,19 +1301,19 @@ namespace MM.Databasae
 			}
 		}
 		
-		public System.Data.Linq.Table<KetQuaSieuAmView> KetQuaSieuAmViews
-		{
-			get
-			{
-				return this.GetTable<KetQuaSieuAmView>();
-			}
-		}
-		
 		public System.Data.Linq.Table<LoaiSieuAm> LoaiSieuAms
 		{
 			get
 			{
 				return this.GetTable<LoaiSieuAm>();
+			}
+		}
+		
+		public System.Data.Linq.Table<KetQuaSieuAmView> KetQuaSieuAmViews
+		{
+			get
+			{
+				return this.GetTable<KetQuaSieuAmView>();
 			}
 		}
 		
@@ -60648,6 +60648,388 @@ namespace MM.Databasae
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LoaiSieuAm")]
+	public partial class LoaiSieuAm : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _LoaiSieuAmGUID;
+		
+		private string _TenSieuAm;
+		
+		private int _ThuTu;
+		
+		private bool _InTrang2;
+		
+		private string _Path;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+		private EntitySet<MauBaoCao> _MauBaoCaos;
+		
+		private EntitySet<KetQuaSieuAm> _KetQuaSieuAms;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLoaiSieuAmGUIDChanging(System.Guid value);
+    partial void OnLoaiSieuAmGUIDChanged();
+    partial void OnTenSieuAmChanging(string value);
+    partial void OnTenSieuAmChanged();
+    partial void OnThuTuChanging(int value);
+    partial void OnThuTuChanged();
+    partial void OnInTrang2Changing(bool value);
+    partial void OnInTrang2Changed();
+    partial void OnPathChanging(string value);
+    partial void OnPathChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public LoaiSieuAm()
+		{
+			this._MauBaoCaos = new EntitySet<MauBaoCao>(new Action<MauBaoCao>(this.attach_MauBaoCaos), new Action<MauBaoCao>(this.detach_MauBaoCaos));
+			this._KetQuaSieuAms = new EntitySet<KetQuaSieuAm>(new Action<KetQuaSieuAm>(this.attach_KetQuaSieuAms), new Action<KetQuaSieuAm>(this.detach_KetQuaSieuAms));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiSieuAmGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid LoaiSieuAmGUID
+		{
+			get
+			{
+				return this._LoaiSieuAmGUID;
+			}
+			set
+			{
+				if ((this._LoaiSieuAmGUID != value))
+				{
+					this.OnLoaiSieuAmGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._LoaiSieuAmGUID = value;
+					this.SendPropertyChanged("LoaiSieuAmGUID");
+					this.OnLoaiSieuAmGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenSieuAm", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string TenSieuAm
+		{
+			get
+			{
+				return this._TenSieuAm;
+			}
+			set
+			{
+				if ((this._TenSieuAm != value))
+				{
+					this.OnTenSieuAmChanging(value);
+					this.SendPropertyChanging();
+					this._TenSieuAm = value;
+					this.SendPropertyChanged("TenSieuAm");
+					this.OnTenSieuAmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThuTu", DbType="Int NOT NULL")]
+		public int ThuTu
+		{
+			get
+			{
+				return this._ThuTu;
+			}
+			set
+			{
+				if ((this._ThuTu != value))
+				{
+					this.OnThuTuChanging(value);
+					this.SendPropertyChanging();
+					this._ThuTu = value;
+					this.SendPropertyChanged("ThuTu");
+					this.OnThuTuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InTrang2", DbType="Bit NOT NULL")]
+		public bool InTrang2
+		{
+			get
+			{
+				return this._InTrang2;
+			}
+			set
+			{
+				if ((this._InTrang2 != value))
+				{
+					this.OnInTrang2Changing(value);
+					this.SendPropertyChanging();
+					this._InTrang2 = value;
+					this.SendPropertyChanged("InTrang2");
+					this.OnInTrang2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Path", DbType="NVarChar(500)")]
+		public string Path
+		{
+			get
+			{
+				return this._Path;
+			}
+			set
+			{
+				if ((this._Path != value))
+				{
+					this.OnPathChanging(value);
+					this.SendPropertyChanging();
+					this._Path = value;
+					this.SendPropertyChanged("Path");
+					this.OnPathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LoaiSieuAm_MauBaoCao", Storage="_MauBaoCaos", ThisKey="LoaiSieuAmGUID", OtherKey="LoaiSieuAmGUID")]
+		public EntitySet<MauBaoCao> MauBaoCaos
+		{
+			get
+			{
+				return this._MauBaoCaos;
+			}
+			set
+			{
+				this._MauBaoCaos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LoaiSieuAm_KetQuaSieuAm", Storage="_KetQuaSieuAms", ThisKey="LoaiSieuAmGUID", OtherKey="LoaiSieuAmGUID")]
+		public EntitySet<KetQuaSieuAm> KetQuaSieuAms
+		{
+			get
+			{
+				return this._KetQuaSieuAms;
+			}
+			set
+			{
+				this._KetQuaSieuAms.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_MauBaoCaos(MauBaoCao entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoaiSieuAm = this;
+		}
+		
+		private void detach_MauBaoCaos(MauBaoCao entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoaiSieuAm = null;
+		}
+		
+		private void attach_KetQuaSieuAms(KetQuaSieuAm entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoaiSieuAm = this;
+		}
+		
+		private void detach_KetQuaSieuAms(KetQuaSieuAm entity)
+		{
+			this.SendPropertyChanging();
+			entity.LoaiSieuAm = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.KetQuaSieuAmView")]
 	public partial class KetQuaSieuAmView
 	{
@@ -60709,6 +61091,10 @@ namespace MM.Databasae
 		private string _BacSiChiDinh;
 		
 		private System.Nullable<bool> _BacSiChiDinhArchived;
+		
+		private int _ThuTu;
+		
+		private bool _InTrang2;
 		
 		public KetQuaSieuAmView()
 		{
@@ -61177,134 +61563,6 @@ namespace MM.Databasae
 				}
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LoaiSieuAm")]
-	public partial class LoaiSieuAm : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _LoaiSieuAmGUID;
-		
-		private string _TenSieuAm;
-		
-		private string _Path;
-		
-		private int _ThuTu;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		private byte _Status;
-		
-		private EntitySet<MauBaoCao> _MauBaoCaos;
-		
-		private EntitySet<KetQuaSieuAm> _KetQuaSieuAms;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnLoaiSieuAmGUIDChanging(System.Guid value);
-    partial void OnLoaiSieuAmGUIDChanged();
-    partial void OnTenSieuAmChanging(string value);
-    partial void OnTenSieuAmChanged();
-    partial void OnPathChanging(string value);
-    partial void OnPathChanged();
-    partial void OnThuTuChanging(int value);
-    partial void OnThuTuChanged();
-    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedDateChanged();
-    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnCreatedByChanged();
-    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdatedDateChanged();
-    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnUpdatedByChanged();
-    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDeletedDateChanged();
-    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
-    partial void OnDeletedByChanged();
-    partial void OnStatusChanging(byte value);
-    partial void OnStatusChanged();
-    #endregion
-		
-		public LoaiSieuAm()
-		{
-			this._MauBaoCaos = new EntitySet<MauBaoCao>(new Action<MauBaoCao>(this.attach_MauBaoCaos), new Action<MauBaoCao>(this.detach_MauBaoCaos));
-			this._KetQuaSieuAms = new EntitySet<KetQuaSieuAm>(new Action<KetQuaSieuAm>(this.attach_KetQuaSieuAms), new Action<KetQuaSieuAm>(this.detach_KetQuaSieuAms));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LoaiSieuAmGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid LoaiSieuAmGUID
-		{
-			get
-			{
-				return this._LoaiSieuAmGUID;
-			}
-			set
-			{
-				if ((this._LoaiSieuAmGUID != value))
-				{
-					this.OnLoaiSieuAmGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._LoaiSieuAmGUID = value;
-					this.SendPropertyChanged("LoaiSieuAmGUID");
-					this.OnLoaiSieuAmGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenSieuAm", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string TenSieuAm
-		{
-			get
-			{
-				return this._TenSieuAm;
-			}
-			set
-			{
-				if ((this._TenSieuAm != value))
-				{
-					this.OnTenSieuAmChanging(value);
-					this.SendPropertyChanging();
-					this._TenSieuAm = value;
-					this.SendPropertyChanged("TenSieuAm");
-					this.OnTenSieuAmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Path", DbType="NVarChar(500)")]
-		public string Path
-		{
-			get
-			{
-				return this._Path;
-			}
-			set
-			{
-				if ((this._Path != value))
-				{
-					this.OnPathChanging(value);
-					this.SendPropertyChanging();
-					this._Path = value;
-					this.SendPropertyChanged("Path");
-					this.OnPathChanged();
-				}
-			}
-		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThuTu", DbType="Int NOT NULL")]
 		public int ThuTu
@@ -61317,223 +61575,25 @@ namespace MM.Databasae
 			{
 				if ((this._ThuTu != value))
 				{
-					this.OnThuTuChanging(value);
-					this.SendPropertyChanging();
 					this._ThuTu = value;
-					this.SendPropertyChanged("ThuTu");
-					this.OnThuTuChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InTrang2", DbType="Bit NOT NULL")]
+		public bool InTrang2
 		{
 			get
 			{
-				return this._CreatedDate;
+				return this._InTrang2;
 			}
 			set
 			{
-				if ((this._CreatedDate != value))
+				if ((this._InTrang2 != value))
 				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
+					this._InTrang2 = value;
 				}
 			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this.OnUpdatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDate = value;
-					this.SendPropertyChanged("UpdatedDate");
-					this.OnUpdatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this.OnUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedBy = value;
-					this.SendPropertyChanged("UpdatedBy");
-					this.OnUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this.OnDeletedDateChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedDate = value;
-					this.SendPropertyChanged("DeletedDate");
-					this.OnDeletedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this.OnDeletedByChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedBy = value;
-					this.SendPropertyChanged("DeletedBy");
-					this.OnDeletedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
-		public byte Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LoaiSieuAm_MauBaoCao", Storage="_MauBaoCaos", ThisKey="LoaiSieuAmGUID", OtherKey="LoaiSieuAmGUID")]
-		public EntitySet<MauBaoCao> MauBaoCaos
-		{
-			get
-			{
-				return this._MauBaoCaos;
-			}
-			set
-			{
-				this._MauBaoCaos.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LoaiSieuAm_KetQuaSieuAm", Storage="_KetQuaSieuAms", ThisKey="LoaiSieuAmGUID", OtherKey="LoaiSieuAmGUID")]
-		public EntitySet<KetQuaSieuAm> KetQuaSieuAms
-		{
-			get
-			{
-				return this._KetQuaSieuAms;
-			}
-			set
-			{
-				this._KetQuaSieuAms.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_MauBaoCaos(MauBaoCao entity)
-		{
-			this.SendPropertyChanging();
-			entity.LoaiSieuAm = this;
-		}
-		
-		private void detach_MauBaoCaos(MauBaoCao entity)
-		{
-			this.SendPropertyChanging();
-			entity.LoaiSieuAm = null;
-		}
-		
-		private void attach_KetQuaSieuAms(KetQuaSieuAm entity)
-		{
-			this.SendPropertyChanging();
-			entity.LoaiSieuAm = this;
-		}
-		
-		private void detach_KetQuaSieuAms(KetQuaSieuAm entity)
-		{
-			this.SendPropertyChanging();
-			entity.LoaiSieuAm = null;
 		}
 	}
 	
