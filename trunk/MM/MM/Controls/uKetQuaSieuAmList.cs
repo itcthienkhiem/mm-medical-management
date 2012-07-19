@@ -194,7 +194,28 @@ namespace MM.Controls
 
         private void OnPrint(bool isPreview)
         {
-
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetCheckedRows();
+            if (checkedRows.Count > 0)
+            {
+                if (isPreview)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        dlgPrintKetQuaSieuAm dlg = new dlgPrintKetQuaSieuAm(_patientRow, row);
+                        dlg.ShowDialog();
+                    }
+                }
+                else
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả siêu âm cần in.", IconType.Information);
         }
 
         private List<DataRow> GetCheckedRows()

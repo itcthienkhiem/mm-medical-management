@@ -108,6 +108,12 @@
     <Compile Include="Controls\uLoaiSieuAmList.Designer.cs">
       <DependentUpon>uLoaiSieuAmList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPrintKetQuaSieuAm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPrintKetQuaSieuAm.Designer.cs">
+      <DependentUpon>uPrintKetQuaSieuAm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uTimeRange.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -873,6 +879,12 @@
     <Compile Include="Dialogs\dlgPageSetupConfig.Designer.cs">
       <DependentUpon>dlgPageSetupConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgPrintKetQuaSieuAm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgPrintKetQuaSieuAm.Designer.cs">
+      <DependentUpon>dlgPrintKetQuaSieuAm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgSelectXetNghiemTay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1321,6 +1333,9 @@
     <EmbeddedResource Include="Controls\uLoaiSieuAmList.resx">
       <DependentUpon>uLoaiSieuAmList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPrintKetQuaSieuAm.resx">
+      <DependentUpon>uPrintKetQuaSieuAm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTimeRange.resx">
       <DependentUpon>uTimeRange.cs</DependentUpon>
     </EmbeddedResource>
@@ -1638,6 +1653,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgPageSetupConfig.resx">
       <DependentUpon>dlgPageSetupConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgPrintKetQuaSieuAm.resx">
+      <DependentUpon>dlgPrintKetQuaSieuAm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectXetNghiemTay.resx">
       <DependentUpon>dlgSelectXetNghiemTay.cs</DependentUpon>
