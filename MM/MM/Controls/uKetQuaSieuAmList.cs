@@ -131,12 +131,60 @@ namespace MM.Controls
 
         private void OnEdit()
         {
+            _isPrint = false;
+            _ketQuaSieuAm = null;
+            if (dgSieuAm.SelectedRows == null || dgSieuAm.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 kết quả siêu âm.", IconType.Information);
+                return;
+            }
 
+            string gioiTinh = _patientRow["GenderAsStr"].ToString();
+            DataRow drKetQuaSieuAm = (dgSieuAm.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddKetQuaSieuAm dlg = new dlgAddKetQuaSieuAm(_patientGUID, gioiTinh, drKetQuaSieuAm, Global.AllowEditKhamCTC);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _isPrint = dlg.IsPrint;
+                _ketQuaSieuAm = dlg.KetQuaSieuAm;
+                DisplayAsThread();
+            }
         }
 
         private void OnDelete()
         {
+            List<string> deletedKQNSList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgSieuAm.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedKQNSList.Add(row["KetQuaSieuAmGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
 
+            if (deletedKQNSList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những kết quả siêu âm mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = SieuAmBus.DeleteKetQuaSieuAm(deletedKQNSList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("SieuAmBus.DeleteKetQuaSieuAm"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("SieuAmBus.DeleteKetQuaSieuAm"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả siêu âm.", IconType.Information);
         }
 
         private void OnPrint(DataRow drKetQuaSieuAm)
