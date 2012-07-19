@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uKetQuaSieuAmList));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pFilter = new System.Windows.Forms.Panel();
-            this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.lbToDate = new System.Windows.Forms.Label();
             this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
+            this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnPrintPreview = new System.Windows.Forms.Button();
@@ -78,14 +79,6 @@
             this.pFilter.Name = "pFilter";
             this.pFilter.Size = new System.Drawing.Size(992, 60);
             this.pFilter.TabIndex = 5;
-            // 
-            // _uPrintKetQuaSieuAm
-            // 
-            this._uPrintKetQuaSieuAm.Location = new System.Drawing.Point(456, 45);
-            this._uPrintKetQuaSieuAm.Name = "_uPrintKetQuaSieuAm";
-            this._uPrintKetQuaSieuAm.PatientRow = null;
-            this._uPrintKetQuaSieuAm.Size = new System.Drawing.Size(433, 277);
-            this._uPrintKetQuaSieuAm.TabIndex = 18;
             // 
             // raFromDateToDate
             // 
@@ -152,6 +145,14 @@
             this.dtpkFromDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkFromDate.TabIndex = 2;
             // 
+            // _uPrintKetQuaSieuAm
+            // 
+            this._uPrintKetQuaSieuAm.Location = new System.Drawing.Point(456, 45);
+            this._uPrintKetQuaSieuAm.Name = "_uPrintKetQuaSieuAm";
+            this._uPrintKetQuaSieuAm.PatientRow = null;
+            this._uPrintKetQuaSieuAm.Size = new System.Drawing.Size(433, 277);
+            this._uPrintKetQuaSieuAm.TabIndex = 18;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnExportExcel);
@@ -168,15 +169,15 @@
             // 
             // btnExportExcel
             // 
-            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnExportExcel.Image")));
             this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(410, 6);
+            this.btnExportExcel.Location = new System.Drawing.Point(409, 6);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
             this.btnExportExcel.TabIndex = 76;
-            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.Text = "      &Xuất KQSA";
             this.btnExportExcel.UseVisualStyleBackColor = true;
-            this.btnExportExcel.Visible = false;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // btnPrintPreview
             // 

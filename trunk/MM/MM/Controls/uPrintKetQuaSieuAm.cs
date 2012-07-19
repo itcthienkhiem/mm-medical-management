@@ -203,6 +203,13 @@ namespace MM.Controls
 
             _textControl.Print("KetQuaSieuAm");
         }
+
+        public void Export(DataRow drKetQuaSieuAm, string fileName)
+        {
+            _textControl.ResetContents();
+            PrintPreview(drKetQuaSieuAm);
+            _textControl.Save(fileName, TXTextControl.StreamType.RichTextFormat);
+        }
         #endregion
 
         #region Window Event Handlers

@@ -231,6 +231,28 @@ namespace MM.Controls
 
             return checkedRows;
         }
+
+        private void OnExport()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetCheckedRows();
+            if (checkedRows.Count > 0)
+            {
+                foreach (DataRow row in checkedRows)
+                {
+                    SaveFileDialog dlg = new SaveFileDialog();
+                    dlg.Title = "Export Excel";
+                    dlg.Filter = "Excel Files(*.rtf)|*.rtf";
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        _uPrintKetQuaSieuAm.PatientRow = _patientRow;
+                        _uPrintKetQuaSieuAm.Export(row, dlg.FileName);
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả siêu âm cần xuất.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -289,6 +311,10 @@ namespace MM.Controls
             OnPrint(false);
         }
 
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExport();
+        }
         #endregion
 
         #region Working Thread
