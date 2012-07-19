@@ -315,7 +315,6 @@
             // 
             this.picHinh2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picHinh2.ContextMenuStrip = this.ctmHinh2;
-            this.picHinh2.Image = ((System.Drawing.Image)(resources.GetObject("picHinh2.Image")));
             this.picHinh2.Location = new System.Drawing.Point(6, 390);
             this.picHinh2.Name = "picHinh2";
             this.picHinh2.Size = new System.Drawing.Size(220, 130);
@@ -351,7 +350,6 @@
             // 
             this.picHinh1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picHinh1.ContextMenuStrip = this.ctmHinh1;
-            this.picHinh1.Image = ((System.Drawing.Image)(resources.GetObject("picHinh1.Image")));
             this.picHinh1.Location = new System.Drawing.Point(5, 254);
             this.picHinh1.Name = "picHinh1";
             this.picHinh1.Size = new System.Drawing.Size(220, 130);

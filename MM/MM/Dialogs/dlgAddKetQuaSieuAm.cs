@@ -124,6 +124,8 @@ namespace MM.Dialogs
             DisplayDSBacSiChiDinh();
             DisplayDSBasSiSieuAm();
             DisplayLoaiSieuAm();
+
+            if (_allowEdit) StartTVCapture();
         }
 
         private void DisplayLoaiSieuAm()
