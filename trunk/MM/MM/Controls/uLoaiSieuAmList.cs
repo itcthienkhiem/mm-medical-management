@@ -231,12 +231,15 @@ namespace MM.Controls
             MauBaoCao mauBaoCao = new MauBaoCao();
             mauBaoCao.Template = new System.Data.Linq.Binary(buff);
             mauBaoCao.DoiTuong = (int)DoiTuong.Chung;
-            mauBaoCaoList.Add(mauBaoCao);
+            
 
             if (raNamNu.Checked)
             {
                 if (chkNam.Checked)
+                {
                     mauBaoCao.DoiTuong = (int)DoiTuong.Nam;
+                    mauBaoCaoList.Add(mauBaoCao);
+                }
 
                 if (chkNu.Checked)
                 {
@@ -249,6 +252,8 @@ namespace MM.Controls
                     mauBaoCaoList.Add(mauBaoCao);
                 }
             }
+            else
+                mauBaoCaoList.Add(mauBaoCao);
 
             Result result = SieuAmBus.InsertLoaiSieuAm(loaiSieuAm, mauBaoCaoList);
             if (result.IsOK)
