@@ -254,6 +254,11 @@ namespace MM.Controls
             OnDelete();
         }
 
+        private void dgSieuAm_DoubleClick(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
             OnPrint(true);
@@ -263,6 +268,7 @@ namespace MM.Controls
         {
             OnPrint(false);
         }
+
         #endregion
 
         #region Working Thread
