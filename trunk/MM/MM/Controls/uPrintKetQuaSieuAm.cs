@@ -16,7 +16,6 @@ namespace MM.Controls
     {
         #region Members
         private DataRow _patientRow = null;
-        private DataRow _drKetQuaSieuAm = null;
         private string _reportTemplate = string.Format("{0}\\Templates\\SieuAmTemplate.rtf", Application.StartupPath);
         #endregion
 
@@ -33,19 +32,14 @@ namespace MM.Controls
             get { return _patientRow; }
             set { _patientRow = value; }
         }
-
-        public DataRow DrKetQuaSieuAm
-        {
-            get { return _drKetQuaSieuAm; }
-            set { _drKetQuaSieuAm = value; }
-        }
         #endregion
 
         #region UI Command
-        public void DisplayInfo()
+        public void PrintPreview(DataRow drKetQuaSieuAm)
         {
-            bool is2Page = Convert.ToBoolean(_drKetQuaSieuAm["InTrang2"]);
+            bool is2Page = Convert.ToBoolean(drKetQuaSieuAm["InTrang2"]);
             if (is2Page) _reportTemplate = string.Format("{0}\\Templates\\SieuAmTemplate2.rtf", Application.StartupPath);
+            else _reportTemplate = string.Format("{0}\\Templates\\SieuAmTemplate.rtf", Application.StartupPath);
 
             Cursor.Current = Cursors.WaitCursor;
             _textControl.Load(_reportTemplate, TXTextControl.StreamType.RichTextFormat);
@@ -96,17 +90,17 @@ namespace MM.Controls
             if (index > -1)
             {
                 _textControl.Selection.Start = index;
-                _textControl.Selection.Text = label + _drKetQuaSieuAm["LamSang"].ToString();
+                _textControl.Selection.Text = label + drKetQuaSieuAm["LamSang"].ToString();
             }
 
-            if (_drKetQuaSieuAm["BacSiChiDinhGUID"] != null && _drKetQuaSieuAm["BacSiChiDinhGUID"] != DBNull.Value)
+            if (drKetQuaSieuAm["BacSiChiDinhGUID"] != null && drKetQuaSieuAm["BacSiChiDinhGUID"] != DBNull.Value)
             {
                 label = "BS. Chỉ định: ";
                 index = _textControl.Find(label, 0, TXTextControl.FindOptions.NoMessageBox);
                 if (index > -1)
                 {
                     _textControl.Selection.Start = index;
-                    _textControl.Selection.Text = label + _drKetQuaSieuAm["BacSiChiDinh"].ToString();
+                    _textControl.Selection.Text = label + drKetQuaSieuAm["BacSiChiDinh"].ToString();
                 }
             }
 
@@ -117,14 +111,14 @@ namespace MM.Controls
                 if (index > -1)
                 {
                     _textControl.Selection.Start = index;
-                    byte[] buff = (byte[])_drKetQuaSieuAm["KetQuaSieuAm"];
+                    byte[] buff = (byte[])drKetQuaSieuAm["KetQuaSieuAm"];
                     _textControl.Selection.Load(buff, TXTextControl.BinaryStreamType.MSWord);
                 }
             }
             else
             {
                 _textControl.Selection.Start = 9999;
-                byte[] buff = (byte[])_drKetQuaSieuAm["KetQuaSieuAm"];
+                byte[] buff = (byte[])drKetQuaSieuAm["KetQuaSieuAm"];
                 _textControl.Selection.Load(buff, TXTextControl.BinaryStreamType.MSWord);
             }
             
@@ -137,8 +131,8 @@ namespace MM.Controls
                 _textControl.Selection.Text = string.Empty;
 
                 Image bmp = null;
-                if (_drKetQuaSieuAm["Hinh1"] != null && _drKetQuaSieuAm["Hinh1"] != DBNull.Value)
-                    bmp = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh1"]);
+                if (drKetQuaSieuAm["Hinh1"] != null && drKetQuaSieuAm["Hinh1"] != DBNull.Value)
+                    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh1"]);
                 else
                     bmp = Properties.Resources.WhiteImage;
 
@@ -155,8 +149,8 @@ namespace MM.Controls
                 _textControl.Selection.Text = string.Empty;
 
                 Image bmp = null;
-                if (_drKetQuaSieuAm["Hinh2"] != null && _drKetQuaSieuAm["Hinh2"] != DBNull.Value)
-                    bmp = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh2"]);
+                if (drKetQuaSieuAm["Hinh2"] != null && drKetQuaSieuAm["Hinh2"] != DBNull.Value)
+                    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh2"]);
                 else
                     bmp = Properties.Resources.WhiteImage;
 
@@ -169,7 +163,7 @@ namespace MM.Controls
             index = _textControl.Find(label, 0, TXTextControl.FindOptions.NoMessageBox);
             if (index > -1)
             {
-                DateTime ngaySieuAm = Convert.ToDateTime(_drKetQuaSieuAm["NgaySieuAm"]);
+                DateTime ngaySieuAm = Convert.ToDateTime(drKetQuaSieuAm["NgaySieuAm"]);
                 _textControl.Selection.Start = index;
                 _textControl.Selection.Text = string.Format("{0} {1} Tháng {2} Năm {3}", 
                     label, ngaySieuAm.Day, ngaySieuAm.Month, ngaySieuAm.Year);
@@ -180,20 +174,41 @@ namespace MM.Controls
             if (index > -1)
             {
                 _textControl.Selection.Start = index;
-                _textControl.Selection.Text = _drKetQuaSieuAm["BacSiSieuAm"].ToString();
+                _textControl.Selection.Text = drKetQuaSieuAm["BacSiSieuAm"].ToString();
+            }
+        }
+
+        public void Print(List<DataRow> ketQuaSieuAmList)
+        {
+            _textControl.ResetContents();
+            List<string> dataList = new List<string>();
+            foreach (DataRow row in ketQuaSieuAmList)
+            {
+                PrintPreview(row);
+                string data = string.Empty;
+                _textControl.Save(out data, TXTextControl.StringStreamType.RichTextFormat);
+                dataList.Add(data);
             }
 
-            //string fileName = string.Format("{0}\\Report.rtf", Application.StartupPath);
-            //_textControl.Save(fileName, TXTextControl.StreamType.RichTextFormat);
+            int i = 0;
+            foreach (string data in dataList)
+            {
+                if (i == 0)
+                    _textControl.Load(data, TXTextControl.StringStreamType.RichTextFormat);
+                else
+                    _textControl.Append(data, TXTextControl.StringStreamType.RichTextFormat, TXTextControl.AppendSettings.StartWithNewSection);
 
-            //_textControl.Append(fileName, TXTextControl.StreamType.RichTextFormat, TXTextControl.AppendSettings.StartWithNewSection);
+                i++;
+            }
+
+            _textControl.Print("KetQuaSieuAm");
         }
         #endregion
 
         #region Window Event Handlers
         private void tbPrint_Click(object sender, EventArgs e)
         {
-            _textControl.Print("Kết quả siêu âm");
+            _textControl.Print("KetQuaSieuAm");
         }
         #endregion
     }

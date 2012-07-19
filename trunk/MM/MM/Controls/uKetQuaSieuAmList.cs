@@ -99,9 +99,7 @@ namespace MM.Controls
                     {
                         DataRow[] rows = dt.Select(string.Format("KetQuaSieuAmGUID='{0}'", _ketQuaSieuAm.KetQuaSieuAmGUID.ToString()));
                         if (rows != null && rows.Length > 0)
-                        {
                             OnPrint(rows[0]);
-                        }
                     }
                 };
 
@@ -189,7 +187,10 @@ namespace MM.Controls
 
         private void OnPrint(DataRow drKetQuaSieuAm)
         {
-
+            List<DataRow> rows = new List<DataRow>();
+            rows.Add(drKetQuaSieuAm);
+            _uPrintKetQuaSieuAm.PatientRow = _patientRow;
+            _uPrintKetQuaSieuAm.Print(rows);
         }
 
         private void OnPrint(bool isPreview)
@@ -208,10 +209,8 @@ namespace MM.Controls
                 }
                 else
                 {
-                    foreach (DataRow row in checkedRows)
-                    {
-                        
-                    }
+                    _uPrintKetQuaSieuAm.PatientRow = _patientRow;
+                    _uPrintKetQuaSieuAm.Print(checkedRows);
                 }
             }
             else
