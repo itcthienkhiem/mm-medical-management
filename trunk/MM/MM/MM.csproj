@@ -1996,6 +1996,7 @@
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
     <None Include="Templates\SieuAmTemplate.rtf" />
+    <None Include="Templates\SieuAmTemplate2.rtf" />
     <None Include="Templates\SieuAmTemplate\0-1.RTF" />
     <None Include="Templates\SieuAmTemplate\0.RTF" />
     <None Include="Templates\SieuAmTemplate\1.RTF" />
