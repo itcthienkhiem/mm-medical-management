@@ -36,10 +36,10 @@
             this.pFilter = new System.Windows.Forms.Panel();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
             this.lbToDate = new System.Windows.Forms.Label();
             this.dtpkFromDate = new System.Windows.Forms.DateTimePicker();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnPrintPreview = new System.Windows.Forms.Button();
@@ -50,13 +50,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgSieuAm = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.ketQuaSieuAmViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngaySieuAmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bacSiChiDinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bacSiSieuAmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenSieuAmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lamSangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ketQuaSieuAmViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -101,6 +101,19 @@
             this.raAll.UseVisualStyleBackColor = true;
             this.raAll.CheckedChanged += new System.EventHandler(this.raAll_CheckedChanged);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Enabled = false;
+            this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(346, 31);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(64, 21);
+            this.btnSearch.TabIndex = 6;
+            this.btnSearch.Text = "    &Tìm";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // dtpkToDate
             // 
             this.dtpkToDate.CustomFormat = "dd/MM/yyyy";
@@ -129,19 +142,6 @@
             this.dtpkFromDate.Name = "dtpkFromDate";
             this.dtpkFromDate.Size = new System.Drawing.Size(96, 20);
             this.dtpkFromDate.TabIndex = 2;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Enabled = false;
-            this.btnSearch.Image = global::MM.Properties.Resources.viewalldie;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(346, 31);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(64, 21);
-            this.btnSearch.TabIndex = 6;
-            this.btnSearch.Text = "    &Tìm";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel2
             // 
@@ -292,10 +292,7 @@
             this.dgSieuAm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSieuAm.Size = new System.Drawing.Size(992, 348);
             this.dgSieuAm.TabIndex = 11;
-            // 
-            // ketQuaSieuAmViewBindingSource
-            // 
-            this.ketQuaSieuAmViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaSieuAmView);
+            this.dgSieuAm.DoubleClick += new System.EventHandler(this.dgSieuAm_DoubleClick);
             // 
             // colChecked
             // 
@@ -354,6 +351,10 @@
             this.lamSangDataGridViewTextBoxColumn.Name = "lamSangDataGridViewTextBoxColumn";
             this.lamSangDataGridViewTextBoxColumn.ReadOnly = true;
             this.lamSangDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // ketQuaSieuAmViewBindingSource
+            // 
+            this.ketQuaSieuAmViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaSieuAmView);
             // 
             // uKetQuaSieuAmList
             // 
