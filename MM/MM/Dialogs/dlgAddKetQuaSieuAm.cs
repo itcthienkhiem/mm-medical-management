@@ -121,9 +121,9 @@ namespace MM.Dialogs
         {
             Cursor.Current = Cursors.WaitCursor;
             dtpkNgaySieuAm.Value = DateTime.Now;
-            DisplayLoaiSieuAm();
             DisplayDSBacSiChiDinh();
             DisplayDSBasSiSieuAm();
+            DisplayLoaiSieuAm();
 
             //if (_allowEdit) StartTVCapture();
         }
@@ -275,14 +275,16 @@ namespace MM.Dialogs
             {
                 _ketQuaSieuAm.KetQuaSieuAmGUID = Guid.Parse(_drKetQuaSieuAm["KetQuaSieuAmGUID"].ToString());
                 dtpkNgaySieuAm.Value = Convert.ToDateTime(_drKetQuaSieuAm["NgaySieuAm"]);
-                cboLoaiSieuAm.SelectedValue = _drKetQuaSieuAm["LoaiSieuAmGUID"].ToString();
+                
                 cboBSSieuAm.SelectedValue = _drKetQuaSieuAm["BacSiSieuAmGUID"].ToString();
                 if (_drKetQuaSieuAm["BacSiChiDinhGUID"] != null && _drKetQuaSieuAm["BacSiChiDinhGUID"] != DBNull.Value)
                     cboBSCD.SelectedValue = _drKetQuaSieuAm["BacSiChiDinhGUID"].ToString();
 
+                cboLoaiSieuAm.SelectedValue = Guid.Parse(_drKetQuaSieuAm["LoaiSieuAmGUID"].ToString());
+                
                 txtLamSang.Text = _drKetQuaSieuAm["LamSang"].ToString();
 
-                byte[] buff = (byte[])_drKetQuaSieuAm["Template"];
+                byte[] buff = (byte[])_drKetQuaSieuAm["KetQuaSieuAm"];
                 _textControl.Load(buff, TXTextControl.BinaryStreamType.MSWord);
 
                 if (_drKetQuaSieuAm["Hinh1"] != null && _drKetQuaSieuAm["Hinh1"] != DBNull.Value)
@@ -370,6 +372,8 @@ namespace MM.Dialogs
 
                     if (cboBSCD.Text.Trim() != string.Empty)
                         _ketQuaSieuAm.BacSiChiDinhGUID = Guid.Parse(cboBSCD.SelectedValue.ToString());
+
+                    _ketQuaSieuAm.LamSang = txtLamSang.Text;
 
                     byte[] buff = null;
                     _textControl.Save(out buff, TXTextControl.BinaryStreamType.MSWord);
