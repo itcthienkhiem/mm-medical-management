@@ -136,13 +136,15 @@ namespace MM.Controls
                 _textControl.Selection.Start = index;
                 _textControl.Selection.Text = string.Empty;
 
+                Image bmp = null;
                 if (_drKetQuaSieuAm["Hinh1"] != null && _drKetQuaSieuAm["Hinh1"] != DBNull.Value)
-                {
-                    Image bmp = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh1"]);
-                    img = new TXTextControl.Image(bmp);
-                    _textControl.Images.Add(img, TXTextControl.HorizontalAlignment.Center, index,
-                        TXTextControl.ImageInsertionMode.DisplaceText);
-                }
+                    bmp = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh1"]);
+                else
+                    bmp = Properties.Resources.WhiteImage;
+
+                img = new TXTextControl.Image(bmp);
+                _textControl.Images.Add(img, TXTextControl.HorizontalAlignment.Center, index,
+                    TXTextControl.ImageInsertionMode.MoveWithText);
             }
             
             label = "Hình 2";
@@ -152,13 +154,15 @@ namespace MM.Controls
                 _textControl.Selection.Start = index;
                 _textControl.Selection.Text = string.Empty;
 
+                Image bmp = null;
                 if (_drKetQuaSieuAm["Hinh2"] != null && _drKetQuaSieuAm["Hinh2"] != DBNull.Value)
-                {
-                    Image bmp = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh2"]);
-                    img = new TXTextControl.Image(bmp);
-                    _textControl.Images.Add(img, TXTextControl.HorizontalAlignment.Center, index,
-                        TXTextControl.ImageInsertionMode.DisplaceText);
-                }
+                    bmp = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh2"]);
+                else
+                    bmp = Properties.Resources.WhiteImage;
+
+                img = new TXTextControl.Image(bmp);
+                _textControl.Images.Add(img, TXTextControl.HorizontalAlignment.Center, index,
+                    TXTextControl.ImageInsertionMode.MoveWithText);
             }
 
             label = "Ngày";
@@ -178,6 +182,9 @@ namespace MM.Controls
                 _textControl.Selection.Start = index;
                 _textControl.Selection.Text = _drKetQuaSieuAm["BacSiSieuAm"].ToString();
             }
+
+            string fileName = string.Format("{0}\\Report.rtf", Application.StartupPath);
+            _textControl.Save(fileName, TXTextControl.StreamType.RichTextFormat);
         }
         #endregion
 
