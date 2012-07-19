@@ -52,6 +52,7 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.tabMauBaoCao = new System.Windows.Forms.TabControl();
             this._page1 = new System.Windows.Forms.TabPage();
+            this._textControl1 = new TXTextControl.TextControl();
             this.panel9 = new System.Windows.Forms.Panel();
             this.chkNu = new System.Windows.Forms.CheckBox();
             this.chkNam = new System.Windows.Forms.CheckBox();
@@ -71,7 +72,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this._textControl1 = new TXTextControl.TextControl();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -315,6 +315,21 @@
             this._page1.Text = "Mẫu báo cáo (Chung)";
             this._page1.UseVisualStyleBackColor = true;
             // 
+            // _textControl1
+            // 
+            this._textControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._textControl1.EditMode = TXTextControl.EditMode.ReadAndSelect;
+            this._textControl1.Font = new System.Drawing.Font("Arial", 10F);
+            this._textControl1.Location = new System.Drawing.Point(0, 0);
+            this._textControl1.Name = "_textControl1";
+            this._textControl1.PageMargins.Bottom = 79;
+            this._textControl1.PageMargins.Left = 79;
+            this._textControl1.PageMargins.Right = 79;
+            this._textControl1.PageMargins.Top = 79;
+            this._textControl1.Size = new System.Drawing.Size(668, 395);
+            this._textControl1.TabIndex = 0;
+            this._textControl1.ViewMode = TXTextControl.ViewMode.Normal;
+            // 
             // panel9
             // 
             this.panel9.Controls.Add(this.chkNu);
@@ -537,21 +552,6 @@
             this.btnAdd.Text = "    &Thêm mới";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // _textControl1
-            // 
-            this._textControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._textControl1.EditMode = TXTextControl.EditMode.ReadAndSelect;
-            this._textControl1.Font = new System.Drawing.Font("Arial", 10F);
-            this._textControl1.Location = new System.Drawing.Point(0, 0);
-            this._textControl1.Name = "_textControl1";
-            this._textControl1.PageMargins.Bottom = 79;
-            this._textControl1.PageMargins.Left = 79;
-            this._textControl1.PageMargins.Right = 79;
-            this._textControl1.PageMargins.Top = 79;
-            this._textControl1.Size = new System.Drawing.Size(668, 395);
-            this._textControl1.TabIndex = 0;
-            this._textControl1.ViewMode = TXTextControl.ViewMode.PageView;
             // 
             // uLoaiSieuAmList
             // 

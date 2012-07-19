@@ -789,6 +789,12 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddKetQuaSieuAm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddKetQuaSieuAm.Designer.cs">
+      <DependentUpon>dlgAddKetQuaSieuAm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddNhomXetNghiemTay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1591,6 +1597,9 @@
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddKetQuaSieuAm.resx">
+      <DependentUpon>dlgAddKetQuaSieuAm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddNhomXetNghiemTay.resx">
       <DependentUpon>dlgAddNhomXetNghiemTay.cs</DependentUpon>
     </EmbeddedResource>
@@ -1904,6 +1913,7 @@
     <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_CellDyn3200View.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_Hitachi917View.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaXetNghiem_ManualView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.LoaiSieuAm1.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhatKyLienHeCongTyView.datasource" />

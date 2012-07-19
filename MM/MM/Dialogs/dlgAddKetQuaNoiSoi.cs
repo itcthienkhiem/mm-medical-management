@@ -171,16 +171,16 @@ namespace MM.Dialogs
                 cboDeNghi.Text = drKetQuaNoiSoi["DeNghi"].ToString();
 
                 if (drKetQuaNoiSoi["Hinh1"] != null && drKetQuaNoiSoi["Hinh1"] != DBNull.Value)
-                    picHinh1.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh1"]);
+                    picHinh1.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh1"]);
 
                 if (drKetQuaNoiSoi["Hinh2"] != null && drKetQuaNoiSoi["Hinh2"] != DBNull.Value)
-                    picHinh2.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh2"]);
+                    picHinh2.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh2"]);
 
                 if (drKetQuaNoiSoi["Hinh3"] != null && drKetQuaNoiSoi["Hinh3"] != DBNull.Value)
-                    picHinh3.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh3"]);
+                    picHinh3.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh3"]);
 
                 if (drKetQuaNoiSoi["Hinh4"] != null && drKetQuaNoiSoi["Hinh4"] != DBNull.Value)
-                    picHinh4.Image = ParseImage((byte[])drKetQuaNoiSoi["Hinh4"]);
+                    picHinh4.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh4"]);
 
                 LoaiNoiSoi type = (LoaiNoiSoi)cboLoaiNoiSoi.SelectedIndex;
                 switch (type)
@@ -288,60 +288,6 @@ namespace MM.Dialogs
             }
         }
 
-        private Image ParseImage(byte[] buffer)
-        {
-            Bitmap bmp = null;
-            MemoryStream ms = null;
-
-            try
-            {
-                ms = new MemoryStream(buffer);
-                bmp = new Bitmap(ms);
-                return bmp;
-            }
-            catch (Exception e)
-            {
-                MsgBox.Show(this.Text, e.Message, IconType.Error);
-                Utility.WriteToTraceLog(e.Message);
-            }
-            finally
-            {
-                if (ms != null)
-                {
-                    ms.Close();
-                    ms = null;
-                }
-            }
-            
-            return bmp;
-        }
-
-        private byte[] GetBinaryFromImage(Image img)
-        {
-            MemoryStream ms = null;
-            try
-            {
-                ms = new MemoryStream();
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                return ms.GetBuffer();
-            }
-            catch (Exception e)
-            {
-                MsgBox.Show(this.Text, e.Message, IconType.Error);
-                Utility.WriteToTraceLog(e.Message);
-            }
-            finally
-            {
-                if (ms != null)
-                {
-                    ms.Close();
-                    ms = null;
-                }
-            }
-
-            return null;
-        }
-
         private void ChonHinh()
         {
             if (lvCapture.SelectedItems == null || lvCapture.SelectedItems.Count <= 0) return;
@@ -421,16 +367,16 @@ namespace MM.Dialogs
                     _ketQuaNoiSoi.Hinh4 = null;
 
                     if (picHinh1.Image != null)
-                        _ketQuaNoiSoi.Hinh1 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh1.Image));
+                        _ketQuaNoiSoi.Hinh1 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh1.Image));
 
                     if (picHinh2.Image != null)
-                        _ketQuaNoiSoi.Hinh2 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh2.Image));
+                        _ketQuaNoiSoi.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
 
                     if (picHinh3.Image != null)
-                        _ketQuaNoiSoi.Hinh3 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh3.Image));
+                        _ketQuaNoiSoi.Hinh3 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh3.Image));
 
                     if (picHinh4.Image != null)
-                        _ketQuaNoiSoi.Hinh4 = new System.Data.Linq.Binary(GetBinaryFromImage(picHinh4.Image));
+                        _ketQuaNoiSoi.Hinh4 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh4.Image));
 
                     LoaiNoiSoi type = (LoaiNoiSoi)cboLoaiNoiSoi.SelectedIndex;
                     switch (type)

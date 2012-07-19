@@ -10,6 +10,7 @@ using System.Threading;
 using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
+using MM.Dialogs;
 
 namespace MM.Controls
 {
@@ -116,7 +117,16 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-
+            _isPrint = false;
+            _ketQuaSieuAm = null;
+            string gioiTinh = _patientRow["GenderAsStr"].ToString();
+            dlgAddKetQuaSieuAm dlg = new dlgAddKetQuaSieuAm(_patientGUID, gioiTinh);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _isPrint = dlg.IsPrint;
+                _ketQuaSieuAm = dlg.KetQuaSieuAm;
+                DisplayAsThread();
+            }
         }
 
         private void OnEdit()

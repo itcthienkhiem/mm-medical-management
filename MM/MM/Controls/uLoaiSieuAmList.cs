@@ -43,7 +43,7 @@ namespace MM.Controls
             _page2.UseVisualStyleBackColor = true;
             _textControl2 = new TXTextControl.TextControl();
             _textControl2.EditMode = TXTextControl.EditMode.ReadAndSelect;
-            _textControl2.ViewMode = TXTextControl.ViewMode.PageView;
+            _textControl2.ViewMode = TXTextControl.ViewMode.Normal;
             _textControl2.Text = string.Empty;
             _page2.Controls.Add(_textControl2);
             _textControl2.Dock = DockStyle.Fill;
@@ -144,12 +144,15 @@ namespace MM.Controls
             MauBaoCao mauBaoCao = new MauBaoCao();
             mauBaoCao.Template = new System.Data.Linq.Binary(buff);
             mauBaoCao.DoiTuong = (int)DoiTuong.Chung;
-            mauBaoCaoList.Add(mauBaoCao);
+            
 
             if (raNamNu.Checked)
             {
                 if (chkNam.Checked)
+                {
                     mauBaoCao.DoiTuong = (int)DoiTuong.Nam;
+                    mauBaoCaoList.Add(mauBaoCao);
+                }
 
                 if (chkNu.Checked)
                 {
@@ -162,6 +165,8 @@ namespace MM.Controls
                     mauBaoCaoList.Add(mauBaoCao);    
                 }
             }
+            else
+                mauBaoCaoList.Add(mauBaoCao);
 
             Result result = SieuAmBus.InsertLoaiSieuAm(loaiSieuAm, mauBaoCaoList);
             if (result.IsOK)
