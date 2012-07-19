@@ -34,6 +34,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pFilter = new System.Windows.Forms.Panel();
+            this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -77,6 +78,14 @@
             this.pFilter.Name = "pFilter";
             this.pFilter.Size = new System.Drawing.Size(992, 60);
             this.pFilter.TabIndex = 5;
+            // 
+            // _uPrintKetQuaSieuAm
+            // 
+            this._uPrintKetQuaSieuAm.Location = new System.Drawing.Point(456, 45);
+            this._uPrintKetQuaSieuAm.Name = "_uPrintKetQuaSieuAm";
+            this._uPrintKetQuaSieuAm.PatientRow = null;
+            this._uPrintKetQuaSieuAm.Size = new System.Drawing.Size(433, 277);
+            this._uPrintKetQuaSieuAm.TabIndex = 18;
             // 
             // raFromDateToDate
             // 
@@ -233,6 +242,7 @@
             // 
             this.panel1.Controls.Add(this.chkChecked);
             this.panel1.Controls.Add(this.dgSieuAm);
+            this.panel1.Controls.Add(this._uPrintKetQuaSieuAm);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 60);
             this.panel1.Name = "panel1";
@@ -402,5 +412,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn bacSiSieuAmDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenSieuAmDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lamSangDataGridViewTextBoxColumn;
+        private uPrintKetQuaSieuAm _uPrintKetQuaSieuAm;
     }
 }
