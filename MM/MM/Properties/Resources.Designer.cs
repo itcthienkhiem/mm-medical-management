@@ -899,5 +899,12 @@ namespace MM.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        public static System.Drawing.Bitmap WhiteImage {
+            get {
+                object obj = ResourceManager.GetObject("WhiteImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
