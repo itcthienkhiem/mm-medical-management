@@ -113,11 +113,10 @@ namespace MM.Controls
             index = _textControl.Find(label, 0, TXTextControl.FindOptions.NoMessageBox);
             if (index > -1)
             {
-                _textControl.Selection.Start = index + 1;
+                _textControl.Selection.Start = index;
                 byte[] buff = (byte[])_drKetQuaSieuAm["KetQuaSieuAm"];
                 _textControl.Selection.Load(buff, TXTextControl.BinaryStreamType.MSWord);
             }
-
             
             label = "Hình 1";
             index = _textControl.Find(label, 0, TXTextControl.FindOptions.NoMessageBox);
