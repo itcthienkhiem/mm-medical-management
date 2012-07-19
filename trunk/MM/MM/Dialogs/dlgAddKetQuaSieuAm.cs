@@ -384,7 +384,7 @@ namespace MM.Dialogs
                     if (picHinh2.Image != null)
                         _ketQuaSieuAm.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
 
-                    Result result = null;//KetQuaSoiCTCBus.InsertKetQuaSoiCTC(_ketQuaSoiCTC);
+                    Result result = SieuAmBus.InsertKetQuaSieuAm(_ketQuaSieuAm);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(this.Text, result.GetErrorAsString("SieuAmBus.InsertKetQuaSieuAm"), IconType.Error);

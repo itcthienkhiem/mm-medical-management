@@ -442,5 +442,171 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result DeleteKetQuaSieuAm(List<String> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    string desc = string.Empty;
+                    foreach (string key in keys)
+                    {
+                        KetQuaSieuAm kqsa = db.KetQuaSieuAms.SingleOrDefault<KetQuaSieuAm>(k => k.KetQuaSieuAmGUID.ToString() == key);
+                        if (kqsa != null)
+                        {
+                            kqsa.DeletedDate = DateTime.Now;
+                            kqsa.DeletedBy = Guid.Parse(Global.UserGUID);
+                            kqsa.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Ngày siêu âm: '{1}', Bệnh nhân: '{2}', Bác sĩ siêu âm: '{3}', Bác sĩ chỉ định: '{4}', Loại siêu âm: '{5}'\n",
+                                kqsa.KetQuaSieuAmGUID.ToString(), kqsa.NgaySieuAm.Value.ToString("dd/MM/yyyy HH:mm:ss"), kqsa.Patient.Contact.FullName,
+                                kqsa.BacSiSieuAmGUID.ToString(), kqsa.BacSiChiDinhGUID.ToString(), kqsa.LoaiSieuAm.TenSieuAm);
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa kết quả siêu âm";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result InsertKetQuaSieuAm(KetQuaSieuAm ketQuaSieuAm)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    //Insert
+                    if (ketQuaSieuAm.KetQuaSieuAmGUID == null || ketQuaSieuAm.KetQuaSieuAmGUID == Guid.Empty)
+                    {
+                        ketQuaSieuAm.KetQuaSieuAmGUID = Guid.NewGuid();
+                        db.KetQuaSieuAms.InsertOnSubmit(ketQuaSieuAm);
+                        db.SubmitChanges();
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Ngày siêu âm: '{1}', Bệnh nhân: '{2}', Bác sĩ siêu âm: '{3}', Bác sĩ chỉ định: '{4}', Loại siêu âm: '{5}'",
+                                ketQuaSieuAm.KetQuaSieuAmGUID.ToString(), ketQuaSieuAm.NgaySieuAm.Value.ToString("dd/MM/yyyy HH:mm:ss"), ketQuaSieuAm.Patient.Contact.FullName,
+                                ketQuaSieuAm.BacSiSieuAmGUID.ToString(), ketQuaSieuAm.BacSiChiDinhGUID.ToString(), ketQuaSieuAm.LoaiSieuAm.TenSieuAm);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm kết quả siêu âm";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+                    else //Update
+                    {
+                        KetQuaSieuAm kqsa = db.KetQuaSieuAms.SingleOrDefault<KetQuaSieuAm>(k => k.KetQuaSieuAmGUID == ketQuaSieuAm.KetQuaSieuAmGUID);
+                        if (kqsa != null)
+                        {
+                            kqsa.NgaySieuAm = ketQuaSieuAm.NgaySieuAm;
+                            kqsa.PatientGUID = ketQuaSieuAm.PatientGUID;
+                            kqsa.BacSiSieuAmGUID = ketQuaSieuAm.BacSiSieuAmGUID;
+                            kqsa.BacSiChiDinhGUID = ketQuaSieuAm.BacSiChiDinhGUID;
+                            kqsa.LoaiSieuAmGUID = ketQuaSieuAm.LoaiSieuAmGUID;
+                            kqsa.LamSang = ketQuaSieuAm.LamSang;
+                            kqsa.KetQuaSieuAm1 = ketQuaSieuAm.KetQuaSieuAm1;
+                            kqsa.Hinh1 = ketQuaSieuAm.Hinh1;
+                            kqsa.Hinh2 = ketQuaSieuAm.Hinh2;
+                            kqsa.CreatedBy = ketQuaSieuAm.CreatedBy;
+                            kqsa.CreatedDate = ketQuaSieuAm.CreatedDate;
+                            kqsa.DeletedBy = ketQuaSieuAm.DeletedBy;
+                            kqsa.DeletedDate = ketQuaSieuAm.DeletedDate;
+                            kqsa.UpdatedBy = ketQuaSieuAm.UpdatedBy;
+                            kqsa.UpdatedDate = ketQuaSieuAm.UpdatedDate;
+                            kqsa.Status = ketQuaSieuAm.Status;
+                            db.SubmitChanges();
+
+                            //Tracking
+                            desc += string.Format("- GUID: '{0}', Ngày siêu âm: '{1}', Bệnh nhân: '{2}', Bác sĩ siêu âm: '{3}', Bác sĩ chỉ định: '{4}', Loại siêu âm: '{5}'",
+                                kqsa.KetQuaSieuAmGUID.ToString(), kqsa.NgaySieuAm.Value.ToString("dd/MM/yyyy HH:mm:ss"), kqsa.Patient.Contact.FullName,
+                                kqsa.BacSiSieuAmGUID.ToString(), kqsa.BacSiChiDinhGUID.ToString(), kqsa.LoaiSieuAm.TenSieuAm);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa kết quả siêu âm";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+
+                            db.SubmitChanges();
+                        }
+                    }
+
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }
