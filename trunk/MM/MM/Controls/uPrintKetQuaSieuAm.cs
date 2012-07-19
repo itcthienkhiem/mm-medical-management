@@ -44,6 +44,9 @@ namespace MM.Controls
         #region UI Command
         public void DisplayInfo()
         {
+            bool is2Page = false;
+            if (is2Page) _reportTemplate = string.Format("{0}\\Templates\\SieuAmTemplate2.rtf", Application.StartupPath);
+
             Cursor.Current = Cursors.WaitCursor;
             _textControl.Load(_reportTemplate, TXTextControl.StreamType.RichTextFormat);
             _textControl.Tables.GridLines = false;
@@ -63,7 +66,6 @@ namespace MM.Controls
                 _textControl.Selection.Start = index;
                 _textControl.Selection.Text = label + _patientRow["DobStr"].ToString();
             }
-
 
             label = "Họ - Tên: ";
             index = _textControl.Find(label, 0, TXTextControl.FindOptions.NoMessageBox);
@@ -89,7 +91,6 @@ namespace MM.Controls
                 _textControl.Selection.Text = label + _patientRow["Address"].ToString();
             }
 
-
             label = "Lâm sàng: ";
             index = _textControl.Find(label, 0, TXTextControl.FindOptions.NoMessageBox);
             if (index > -1)
@@ -109,11 +110,20 @@ namespace MM.Controls
                 }
             }
 
-            label = "Result";
-            index = _textControl.Find(label, 0, TXTextControl.FindOptions.NoMessageBox);
-            if (index > -1)
+            if (!is2Page)
             {
-                _textControl.Selection.Start = index;                
+                label = "Result";
+                index = _textControl.Find(label, 0, TXTextControl.FindOptions.NoMessageBox);
+                if (index > -1)
+                {
+                    _textControl.Selection.Start = index;
+                    byte[] buff = (byte[])_drKetQuaSieuAm["KetQuaSieuAm"];
+                    _textControl.Selection.Load(buff, TXTextControl.BinaryStreamType.MSWord);
+                }
+            }
+            else
+            {
+                _textControl.Selection.Start = 9999;
                 byte[] buff = (byte[])_drKetQuaSieuAm["KetQuaSieuAm"];
                 _textControl.Selection.Load(buff, TXTextControl.BinaryStreamType.MSWord);
             }
