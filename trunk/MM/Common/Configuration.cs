@@ -68,7 +68,7 @@ namespace MM.Common
                 _version = br.ReadString();
 
                 //Check version
-                if (_version == "Inner Data 1.0.0")
+                //if (_version == "Inner Data 1.0.0")
                 {
                     //Get number of key
                     int maxkey = br.ReadInt32();
@@ -134,8 +134,9 @@ namespace MM.Common
                 return true;
 
             }
-            catch
+            catch (Exception ex)
             {
+                Utility.WriteToTraceLog(string.Format("Load config: {0}"), ex.Message);
                 return false;
             }
             finally
@@ -167,8 +168,9 @@ namespace MM.Common
                     File.Delete(filepath);
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Utility.WriteToTraceLog(string.Format("Save config: {0}"), ex.Message);
                 return false;
             }
 
@@ -247,8 +249,9 @@ namespace MM.Common
 
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Utility.WriteToTraceLog(string.Format("Save config: {0}"), ex.Message);
                 return false;
             }
             finally
