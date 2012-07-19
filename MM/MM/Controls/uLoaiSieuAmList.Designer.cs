@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -72,6 +72,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.chkInTrang2 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -136,28 +137,28 @@
             this.dgLoaiSieuAm.AllowUserToDeleteRows = false;
             this.dgLoaiSieuAm.AllowUserToOrderColumns = true;
             this.dgLoaiSieuAm.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgLoaiSieuAm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgLoaiSieuAm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgLoaiSieuAm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLoaiSieuAm.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
             this.tenSieuAmDataGridViewTextBoxColumn,
             this.thuTuDataGridViewTextBoxColumn});
             this.dgLoaiSieuAm.DataSource = this.loaiSieuAmBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgLoaiSieuAm.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgLoaiSieuAm.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgLoaiSieuAm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgLoaiSieuAm.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgLoaiSieuAm.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -178,8 +179,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle6;
             this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
@@ -200,8 +201,8 @@
             // thuTuDataGridViewTextBoxColumn
             // 
             this.thuTuDataGridViewTextBoxColumn.DataPropertyName = "ThuTu";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.thuTuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.thuTuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.thuTuDataGridViewTextBoxColumn.HeaderText = "Thứ tự";
             this.thuTuDataGridViewTextBoxColumn.Name = "thuTuDataGridViewTextBoxColumn";
             this.thuTuDataGridViewTextBoxColumn.ReadOnly = true;
@@ -332,6 +333,7 @@
             // 
             // panel9
             // 
+            this.panel9.Controls.Add(this.chkInTrang2);
             this.panel9.Controls.Add(this.chkNu);
             this.panel9.Controls.Add(this.chkNam);
             this.panel9.Controls.Add(this.btnBrowse_Nu);
@@ -359,7 +361,7 @@
             this.chkNu.Location = new System.Drawing.Point(95, 111);
             this.chkNu.Name = "chkNu";
             this.chkNu.Size = new System.Drawing.Size(43, 17);
-            this.chkNu.TabIndex = 15;
+            this.chkNu.TabIndex = 12;
             this.chkNu.Text = "Nữ:";
             this.chkNu.UseVisualStyleBackColor = true;
             this.chkNu.CheckedChanged += new System.EventHandler(this.chkNu_CheckedChanged);
@@ -371,7 +373,7 @@
             this.chkNam.Location = new System.Drawing.Point(95, 88);
             this.chkNam.Name = "chkNam";
             this.chkNam.Size = new System.Drawing.Size(51, 17);
-            this.chkNam.TabIndex = 14;
+            this.chkNam.TabIndex = 9;
             this.chkNam.Text = "Nam:";
             this.chkNam.UseVisualStyleBackColor = true;
             this.chkNam.CheckedChanged += new System.EventHandler(this.chkNam_CheckedChanged);
@@ -383,7 +385,7 @@
             this.btnBrowse_Nu.Location = new System.Drawing.Point(557, 108);
             this.btnBrowse_Nu.Name = "btnBrowse_Nu";
             this.btnBrowse_Nu.Size = new System.Drawing.Size(28, 22);
-            this.btnBrowse_Nu.TabIndex = 13;
+            this.btnBrowse_Nu.TabIndex = 14;
             this.btnBrowse_Nu.Text = "...";
             this.btnBrowse_Nu.UseVisualStyleBackColor = true;
             this.btnBrowse_Nu.Click += new System.EventHandler(this.btnBrowse_Nu_Click);
@@ -395,7 +397,7 @@
             this.txtMauBaoCao_Nu.Name = "txtMauBaoCao_Nu";
             this.txtMauBaoCao_Nu.ReadOnly = true;
             this.txtMauBaoCao_Nu.Size = new System.Drawing.Size(403, 20);
-            this.txtMauBaoCao_Nu.TabIndex = 12;
+            this.txtMauBaoCao_Nu.TabIndex = 13;
             // 
             // btnBrowse_Nam
             // 
@@ -444,7 +446,7 @@
             this.raNamNu.Location = new System.Drawing.Point(16, 62);
             this.raNamNu.Name = "raNamNu";
             this.raNamNu.Size = new System.Drawing.Size(145, 17);
-            this.raNamNu.TabIndex = 5;
+            this.raNamNu.TabIndex = 8;
             this.raNamNu.Text = "Mẫu báo cáo (Nam - Nữ):";
             this.raNamNu.UseVisualStyleBackColor = true;
             this.raNamNu.CheckedChanged += new System.EventHandler(this.raNamNu_CheckedChanged);
@@ -456,7 +458,7 @@
             this.raChung.Location = new System.Drawing.Point(16, 38);
             this.raChung.Name = "raChung";
             this.raChung.Size = new System.Drawing.Size(131, 17);
-            this.raChung.TabIndex = 4;
+            this.raChung.TabIndex = 5;
             this.raChung.TabStop = true;
             this.raChung.Text = "Mẫu báo cáo (Chung):";
             this.raChung.UseVisualStyleBackColor = true;
@@ -553,6 +555,16 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // chkInTrang2
+            // 
+            this.chkInTrang2.AutoSize = true;
+            this.chkInTrang2.Location = new System.Drawing.Point(435, 12);
+            this.chkInTrang2.Name = "chkInTrang2";
+            this.chkInTrang2.Size = new System.Drawing.Size(71, 17);
+            this.chkInTrang2.TabIndex = 4;
+            this.chkInTrang2.Text = "In trang 2";
+            this.chkInTrang2.UseVisualStyleBackColor = true;
+            // 
             // uLoaiSieuAmList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -624,5 +636,6 @@
         private System.Windows.Forms.RadioButton raChung;
         private System.Windows.Forms.TabPage _page1;
         private TXTextControl.TextControl _textControl1;
+        private System.Windows.Forms.CheckBox chkInTrang2;
     }
 }

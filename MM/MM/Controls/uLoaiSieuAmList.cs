@@ -135,6 +135,7 @@ namespace MM.Controls
             loaiSieuAm.CreatedDate = DateTime.Now;
             loaiSieuAm.TenSieuAm = txtTenSieuAm.Text.Trim();
             loaiSieuAm.ThuTu = (int)numThuTu.Value;
+            loaiSieuAm.InTrang2 = chkInTrang2.Checked;
             loaiSieuAm.Status = (byte)Status.Actived;
 
             List<MauBaoCao> mauBaoCaoList = new List<MauBaoCao>();
@@ -220,6 +221,7 @@ namespace MM.Controls
             loaiSieuAm.UpdatedDate = DateTime.Now;
             loaiSieuAm.TenSieuAm = txtTenSieuAm.Text.Trim();
             loaiSieuAm.ThuTu = (int)numThuTu.Value;
+            loaiSieuAm.InTrang2 = chkInTrang2.Checked;
             loaiSieuAm.Status = (byte)Status.Actived;
 
             List<MauBaoCao> mauBaoCaoList = new List<MauBaoCao>();
@@ -327,6 +329,7 @@ namespace MM.Controls
                 List<MauBaoCao> mauBaoCaoList = (List<MauBaoCao>)result.QueryResult;
                 txtTenSieuAm.Text = _drLoaiSieuAm["TenSieuAm"].ToString();
                 numThuTu.Value = Convert.ToInt32(_drLoaiSieuAm["ThuTu"]);
+                chkInTrang2.Checked = Convert.ToBoolean(_drLoaiSieuAm["InTrang2"]);
 
                 chkNam.Checked = false;
                 chkNu.Checked = false;

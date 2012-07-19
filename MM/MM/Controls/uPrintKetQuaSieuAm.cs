@@ -44,7 +44,7 @@ namespace MM.Controls
         #region UI Command
         public void DisplayInfo()
         {
-            bool is2Page = false;
+            bool is2Page = Convert.ToBoolean(_drKetQuaSieuAm["InTrang2"]);
             if (is2Page) _reportTemplate = string.Format("{0}\\Templates\\SieuAmTemplate2.rtf", Application.StartupPath);
 
             Cursor.Current = Cursors.WaitCursor;
