@@ -185,6 +185,8 @@ namespace MM.Controls
 
             //string fileName = string.Format("{0}\\Report.rtf", Application.StartupPath);
             //_textControl.Save(fileName, TXTextControl.StreamType.RichTextFormat);
+
+            //_textControl.Append(fileName, TXTextControl.StreamType.RichTextFormat, TXTextControl.AppendSettings.StartWithNewSection);
         }
         #endregion
 
