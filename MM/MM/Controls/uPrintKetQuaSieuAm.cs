@@ -183,8 +183,8 @@ namespace MM.Controls
                 _textControl.Selection.Text = _drKetQuaSieuAm["BacSiSieuAm"].ToString();
             }
 
-            string fileName = string.Format("{0}\\Report.rtf", Application.StartupPath);
-            _textControl.Save(fileName, TXTextControl.StreamType.RichTextFormat);
+            //string fileName = string.Format("{0}\\Report.rtf", Application.StartupPath);
+            //_textControl.Save(fileName, TXTextControl.StreamType.RichTextFormat);
         }
         #endregion
 
