@@ -15,11 +15,10 @@ using DShowNET.Device;
 using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
-using MM.Exports;
-
+    
 namespace MM.Dialogs
 {
-    public partial class dlgAddKetQuaSoiCTC : dlgBase, ISampleGrabberCB
+    public partial class dlgAddKetQuaSieuAm : dlgBase, ISampleGrabberCB
     {
         #region Members
         /// <summary> flag to detect first Form appearance </summary>
@@ -71,30 +70,37 @@ namespace MM.Dialogs
         private int rotCookie = 0;
 #endif
 
-        private int _imgCount = 0;
         private bool _isNew = true;
         private string _patientGUID = string.Empty;
-        private KetQuaSoiCTC _ketQuaSoiCTC = new KetQuaSoiCTC();
-        private DataRow _drKetQuaSoiCTC = null;
+        private KetQuaSieuAm _ketQuaSieuAm = new KetQuaSieuAm();
+        private DataRow _drKetQuaSieuAm = null;
+        private bool _isContinue = false;
+        private WebCam _webCam = null;
         private bool _isPrint = false;
         private bool _allowEdit = true;
+        private string _gioiTinh = string.Empty;
+        private int _hinh = 1;
+        private Hashtable _htMauBaoCao = new Hashtable();
+        private string _loaiSieuAmGUID = string.Empty;
         #endregion
 
         #region Constructor
-        public dlgAddKetQuaSoiCTC(string patientGUID)
+        public dlgAddKetQuaSieuAm(string patientGUID, string gioiTinh)
         {
             InitializeComponent();
             _patientGUID = patientGUID;
+            _gioiTinh = gioiTinh;
         }
 
-        public dlgAddKetQuaSoiCTC(string patientGUID, DataRow drKetQuaSoiCTC, bool allowEdit)
+        public dlgAddKetQuaSieuAm(string patientGUID, string gioiTinh, DataRow drKetQuaSieuAm, bool allowEdit)
         {
             InitializeComponent();
             _allowEdit = allowEdit;
             _patientGUID = patientGUID;
-            _drKetQuaSoiCTC = drKetQuaSoiCTC;
+            _gioiTinh = gioiTinh;
+            _drKetQuaSieuAm = drKetQuaSieuAm;
             _isNew = false;
-            this.Text = "Sua kham soi CTC";
+            this.Text = "Sua ket qua sieu am";
         }
         #endregion
 
@@ -104,22 +110,39 @@ namespace MM.Dialogs
             get { return _isPrint; }
         }
 
-        public KetQuaSoiCTC KetQuaSoiCTC
+        public KetQuaSieuAm KetQuaSieuAm
         {
-            get { return _ketQuaSoiCTC; }
+            get { return _ketQuaSieuAm; }
         }
         #endregion
 
-        #region UI Command
+        #region UI Commnad
         private void InitData()
         {
             Cursor.Current = Cursors.WaitCursor;
-            dtpkNgayKham.Value = DateTime.Now;
-            DisplayDSBasSiSoi();
-            StartTVCapture();
+            dtpkNgaySieuAm.Value = DateTime.Now;
+            DisplayLoaiSieuAm();
+            DisplayDSBacSiChiDinh();
+            DisplayDSBasSiSieuAm();
+
+            //if (_allowEdit) StartTVCapture();
         }
 
-        private void DisplayDSBasSiSoi()
+        private void DisplayLoaiSieuAm()
+        {
+            bool isNam = _gioiTinh.ToLower() == "nam" ? true : false;
+            Result result = SieuAmBus.GetLoaiSieuAmList(isNam);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("SieuAmBus.GetLoaiSieuAmList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("SieuAmBus.GetLoaiSieuAmList"));
+                return;
+            }
+            else
+                cboLoaiSieuAm.DataSource = result.QueryResult;
+        }
+
+        private void DisplayDSBacSiChiDinh()
         {
             //DocStaff
             List<byte> staffTypes = new List<byte>();
@@ -136,124 +159,171 @@ namespace MM.Dialogs
                 return;
             }
             else
-                cboBSSoi.DataSource = result.QueryResult;
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["Fullname"] = string.Empty;
+                newRow["DocStaffGUID"] = Guid.Empty.ToString();
+                dt.Rows.InsertAt(newRow, 0);
+
+                cboBSCD.DataSource = dt;
+            }
+        }
+
+        private void DisplayDSBasSiSieuAm()
+        {
+            //DocStaff
+            List<byte> staffTypes = new List<byte>();
+            staffTypes.Add((byte)StaffType.BacSi);
+            staffTypes.Add((byte)StaffType.BacSiSieuAm);
+            staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
+            Result result = DocStaffBus.GetDocStaffList(staffTypes);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                return;
+            }
+            else
+                cboBSSieuAm.DataSource = result.QueryResult;
 
             if (Global.StaffType == StaffType.BacSi || Global.StaffType == StaffType.BacSiSieuAm ||
                 Global.StaffType == StaffType.BacSiNgoaiTongQuat || Global.StaffType == StaffType.BacSiNoiTongQuat ||
                 Global.StaffType == StaffType.BacSiPhuKhoa)
             {
-                cboBSSoi.SelectedValue = Global.UserGUID;
-                cboBSSoi.Enabled = false;
+                cboBSSieuAm.SelectedValue = Global.UserGUID;
+                cboBSSieuAm.Enabled = false;
             }
         }
 
         private bool CheckInfo()
         {
-            if (cboBSSoi.Text == string.Empty)
+            if (cboLoaiSieuAm.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập bác sĩ soi.", IconType.Information);
-                cboBSSoi.Focus();
+                MsgBox.Show(this.Text, "Vui lòng chọn loại siêu âm.", IconType.Information);
+                cboLoaiSieuAm.Focus();
                 return false;
             }
 
-            if (picHinh1.Image == null)
+            if (cboBSSieuAm.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn hình 1.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ siêu âm.", IconType.Information);
+                cboBSSieuAm.Focus();
                 return false;
             }
 
-            if (picHinh2.Image == null)
+            if (picHinh1.Image == null && picHinh2.Image == null)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn hình 2.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng chọn ít nhất 1 hình siêu âm.", IconType.Information);
+                picHinh1.Focus();
                 return false;
             }
 
             return true;
         }
 
-        private void DisplayInfo(DataRow drKetQuaSoiCTC)
+        private void DisplayMauBaoCao()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            if (cboLoaiSieuAm.Text.Trim() == string.Empty)
+            {
+                _textControl.ResetContents();
+                return;
+            }
+
+            if (_loaiSieuAmGUID != string.Empty && _htMauBaoCao.ContainsKey(_loaiSieuAmGUID))
+            {
+                byte[] buff = null;
+                _textControl.Save(out buff, TXTextControl.BinaryStreamType.MSWord);
+                _htMauBaoCao[_loaiSieuAmGUID] = buff;
+            }
+
+            
+            bool isNam = _gioiTinh.ToLower() == "nam" ? true : false;
+            _loaiSieuAmGUID = cboLoaiSieuAm.SelectedValue.ToString();
+            Result result = SieuAmBus.GetMauBaoCao(_loaiSieuAmGUID, isNam);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("SieuAmBus.GetMauBaoCao"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("SieuAmBus.GetMauBaoCao"));
+            }
+            else
+            {
+                MauBaoCao mauBaoCao = result.QueryResult as MauBaoCao;
+                if (mauBaoCao == null) _textControl.ResetContents();
+                else
+                {
+                    byte[] buff = null;
+                    if (!_htMauBaoCao.ContainsKey(_loaiSieuAmGUID))
+                    {
+                        buff = mauBaoCao.Template.ToArray();
+                        _htMauBaoCao.Add(_loaiSieuAmGUID, buff);
+                    }
+                    else
+                        buff = (byte[])_htMauBaoCao[_loaiSieuAmGUID];
+
+                    _textControl.Load(buff, TXTextControl.BinaryStreamType.MSWord);
+                }
+            }
+        }
+
+        private void DisplayInfo()
         {
             try
             {
-                dtpkNgayKham.Value = Convert.ToDateTime(drKetQuaSoiCTC["NgayKham"]);
-                cboBSSoi.SelectedValue = drKetQuaSoiCTC["BacSiSoi"].ToString();
-                cboKetLuan.Text = drKetQuaSoiCTC["KetLuan"].ToString();
-                cboDeNghi.Text = drKetQuaSoiCTC["DeNghi"].ToString();
+                _ketQuaSieuAm.KetQuaSieuAmGUID = Guid.Parse(_drKetQuaSieuAm["KetQuaSieuAmGUID"].ToString());
+                dtpkNgaySieuAm.Value = Convert.ToDateTime(_drKetQuaSieuAm["NgaySieuAm"]);
+                cboLoaiSieuAm.SelectedValue = _drKetQuaSieuAm["LoaiSieuAmGUID"].ToString();
+                cboBSSieuAm.SelectedValue = _drKetQuaSieuAm["BacSiSieuAmGUID"].ToString();
+                if (_drKetQuaSieuAm["BacSiChiDinhGUID"] != null && _drKetQuaSieuAm["BacSiChiDinhGUID"] != DBNull.Value)
+                    cboBSCD.SelectedValue = _drKetQuaSieuAm["BacSiChiDinhGUID"].ToString();
 
-                if (drKetQuaSoiCTC["Hinh1"] != null && drKetQuaSoiCTC["Hinh1"] != DBNull.Value)
-                    picHinh1.Image = Utility.ParseImage((byte[])drKetQuaSoiCTC["Hinh1"]);
+                txtLamSang.Text = _drKetQuaSieuAm["LamSang"].ToString();
 
-                if (drKetQuaSoiCTC["Hinh2"] != null && drKetQuaSoiCTC["Hinh2"] != DBNull.Value)
-                    picHinh2.Image = Utility.ParseImage((byte[])drKetQuaSoiCTC["Hinh2"]);
+                byte[] buff = (byte[])_drKetQuaSieuAm["Template"];
+                _textControl.Load(buff, TXTextControl.BinaryStreamType.MSWord);
 
-                _uKetQuaSoiCTC.AmHo = drKetQuaSoiCTC["AmHo"].ToString();
-                _uKetQuaSoiCTC.AmDao = drKetQuaSoiCTC["AmDao"].ToString();
-                _uKetQuaSoiCTC.CTC = drKetQuaSoiCTC["CTC"].ToString();
-                _uKetQuaSoiCTC.BieuMoLat = drKetQuaSoiCTC["BieuMoLat"].ToString();
-                _uKetQuaSoiCTC.MoDem = drKetQuaSoiCTC["MoDem"].ToString();
-                _uKetQuaSoiCTC.RanhGioiLatTru = drKetQuaSoiCTC["RanhGioiLatTru"].ToString();
-                _uKetQuaSoiCTC.SauAcidAcetic = drKetQuaSoiCTC["SauAcidAcetic"].ToString();
-                _uKetQuaSoiCTC.SauLugol = drKetQuaSoiCTC["SauLugol"].ToString();
+                if (_drKetQuaSieuAm["Hinh1"] != null && _drKetQuaSieuAm["Hinh1"] != DBNull.Value)
+                    picHinh1.Image = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh1"]);
 
-                _ketQuaSoiCTC.KetQuaSoiCTCGUID = Guid.Parse(drKetQuaSoiCTC["KetQuaSoiCTCGUID"].ToString());
+                if (_drKetQuaSieuAm["Hinh2"] != null && _drKetQuaSieuAm["Hinh2"] != DBNull.Value)
+                    picHinh2.Image = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh2"]);
 
-                if (drKetQuaSoiCTC["CreatedDate"] != null && drKetQuaSoiCTC["CreatedDate"] != DBNull.Value)
-                    _ketQuaSoiCTC.CreatedDate = Convert.ToDateTime(drKetQuaSoiCTC["CreatedDate"]);
+                if (_drKetQuaSieuAm["CreatedDate"] != null && _drKetQuaSieuAm["CreatedDate"] != DBNull.Value)
+                    _ketQuaSieuAm.CreatedDate = Convert.ToDateTime(_drKetQuaSieuAm["CreatedDate"]);
 
-                if (drKetQuaSoiCTC["CreatedBy"] != null && drKetQuaSoiCTC["CreatedBy"] != DBNull.Value)
-                    _ketQuaSoiCTC.CreatedBy = Guid.Parse(drKetQuaSoiCTC["CreatedBy"].ToString());
+                if (_drKetQuaSieuAm["CreatedBy"] != null && _drKetQuaSieuAm["CreatedBy"] != DBNull.Value)
+                    _ketQuaSieuAm.CreatedBy = Guid.Parse(_drKetQuaSieuAm["CreatedBy"].ToString());
 
-                if (drKetQuaSoiCTC["UpdatedDate"] != null && drKetQuaSoiCTC["UpdatedDate"] != DBNull.Value)
-                    _ketQuaSoiCTC.UpdatedDate = Convert.ToDateTime(drKetQuaSoiCTC["UpdatedDate"]);
+                if (_drKetQuaSieuAm["UpdatedDate"] != null && _drKetQuaSieuAm["UpdatedDate"] != DBNull.Value)
+                    _ketQuaSieuAm.UpdatedDate = Convert.ToDateTime(_drKetQuaSieuAm["UpdatedDate"]);
 
-                if (drKetQuaSoiCTC["UpdatedBy"] != null && drKetQuaSoiCTC["UpdatedBy"] != DBNull.Value)
-                    _ketQuaSoiCTC.UpdatedBy = Guid.Parse(drKetQuaSoiCTC["UpdatedBy"].ToString());
+                if (_drKetQuaSieuAm["UpdatedBy"] != null && _drKetQuaSieuAm["UpdatedBy"] != DBNull.Value)
+                    _ketQuaSieuAm.UpdatedBy = Guid.Parse(_drKetQuaSieuAm["UpdatedBy"].ToString());
 
-                if (drKetQuaSoiCTC["DeletedDate"] != null && drKetQuaSoiCTC["DeletedDate"] != DBNull.Value)
-                    _ketQuaSoiCTC.DeletedDate = Convert.ToDateTime(drKetQuaSoiCTC["DeletedDate"]);
+                if (_drKetQuaSieuAm["DeletedDate"] != null && _drKetQuaSieuAm["DeletedDate"] != DBNull.Value)
+                    _ketQuaSieuAm.DeletedDate = Convert.ToDateTime(_drKetQuaSieuAm["DeletedDate"]);
 
-                if (drKetQuaSoiCTC["DeletedBy"] != null && drKetQuaSoiCTC["DeletedBy"] != DBNull.Value)
-                    _ketQuaSoiCTC.DeletedBy = Guid.Parse(drKetQuaSoiCTC["DeletedBy"].ToString());
+                if (_drKetQuaSieuAm["DeletedBy"] != null && _drKetQuaSieuAm["DeletedBy"] != DBNull.Value)
+                    _ketQuaSieuAm.DeletedBy = Guid.Parse(_drKetQuaSieuAm["DeletedBy"].ToString());
 
-                _ketQuaSoiCTC.Status = Convert.ToByte(drKetQuaSoiCTC["Status"]);
+                _ketQuaSieuAm.Status = Convert.ToByte(_drKetQuaSieuAm["Status"]);
 
                 if (!_allowEdit)
                 {
                     btnOK.Enabled = _allowEdit;
                     btnSaveAndPrint.Enabled = _allowEdit;
-                    panel2.Enabled = _allowEdit;
+                    panel3.Enabled = _allowEdit;
                     panel4.Enabled = _allowEdit;
-                    panel5.Enabled = _allowEdit;
-                    panel6.Enabled = _allowEdit;
+                    _textControl.EditMode = TXTextControl.EditMode.ReadAndSelect;
                 }
             }
             catch (Exception e)
             {
                 MsgBox.Show(this.Text, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
-        private void ChonHinh()
-        {
-            if (lvCapture.SelectedItems == null || lvCapture.SelectedItems.Count <= 0) return;
-
-            dlgChonHinh dlg = new dlgChonHinh();
-            dlg.EnableHinh3 = false;
-            dlg.EnableHinh4 = false;
-            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-            {
-                Image img = (Image)lvCapture.SelectedItems[0].Tag;
-
-                switch (dlg.ImageIndex)
-                {
-                    case 1:
-                        picHinh1.Image = img;
-                        break;
-                    case 2:
-                        picHinh2.Image = img;
-                        break;
-                }
             }
         }
 
@@ -274,157 +344,52 @@ namespace MM.Dialogs
             }
         }
 
-        private List<Bookmark> GetBoommark()
-        {
-            List<Bookmark> bookmarkList = new List<Bookmark>();
-            Bookmark bookmark = null;
-
-            if (_uKetQuaSoiCTC.AmHo.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetQuaSoiAmHo;
-                bookmark.Value = _uKetQuaSoiCTC.AmHo;
-                bookmarkList.Add(bookmark);
-            }
-
-            if (_uKetQuaSoiCTC.AmDao.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetQuaSoiAmDao;
-                bookmark.Value = _uKetQuaSoiCTC.AmDao;
-                bookmarkList.Add(bookmark);
-            }
-
-            if (_uKetQuaSoiCTC.CTC.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetQuaSoiCTC;
-                bookmark.Value = _uKetQuaSoiCTC.CTC;
-                bookmarkList.Add(bookmark);
-            }
-
-            if (_uKetQuaSoiCTC.BieuMoLat.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetQuaSoiBieuMoLat;
-                bookmark.Value = _uKetQuaSoiCTC.BieuMoLat;
-                bookmarkList.Add(bookmark);
-            }
-
-            if (_uKetQuaSoiCTC.MoDem.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetQuaSoiMoDem;
-                bookmark.Value = _uKetQuaSoiCTC.MoDem;
-                bookmarkList.Add(bookmark);
-            }
-
-            if (_uKetQuaSoiCTC.RanhGioiLatTru.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetQuaSoiRanhGioiLatTru;
-                bookmark.Value = _uKetQuaSoiCTC.RanhGioiLatTru;
-                bookmarkList.Add(bookmark);
-            }
-
-            if (_uKetQuaSoiCTC.SauAcidAcetic.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetQuaSoiSauAcidAcetic;
-                bookmark.Value = _uKetQuaSoiCTC.SauAcidAcetic;
-                bookmarkList.Add(bookmark);
-            }
-
-            if (_uKetQuaSoiCTC.SauLugol.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetQuaSoiSauLugol;
-                bookmark.Value = _uKetQuaSoiCTC.SauLugol;
-                bookmarkList.Add(bookmark);
-            }
-
-            if (cboKetLuan.Text.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetLuanSoiCTCT;
-                bookmark.Value = cboKetLuan.Text;
-                bookmarkList.Add(bookmark);
-            }
-
-            if (cboDeNghi.Text.Trim() != string.Empty)
-            {
-                bookmark = new Bookmark();
-                bookmark.Type = (int)BookMarkType.KetLuanSoiCTCT;
-                bookmark.Value = cboDeNghi.Text;
-                bookmarkList.Add(bookmark);
-            }
-
-            return bookmarkList;
-        }
-
         private void OnSaveInfo()
         {
             try
             {
-                _ketQuaSoiCTC.PatientGUID = Guid.Parse(_patientGUID);
-                _ketQuaSoiCTC.Status = (byte)Status.Actived;
+                _ketQuaSieuAm.PatientGUID = Guid.Parse(_patientGUID);
+                _ketQuaSieuAm.Status = (byte)Status.Actived;
 
                 if (_isNew)
                 {
-                    _ketQuaSoiCTC.CreatedDate = DateTime.Now;
-                    _ketQuaSoiCTC.CreatedBy = Guid.Parse(Global.UserGUID);
+                    _ketQuaSieuAm.CreatedDate = DateTime.Now;
+                    _ketQuaSieuAm.CreatedBy = Guid.Parse(Global.UserGUID);
                 }
                 else
                 {
-                    _ketQuaSoiCTC.UpdatedDate = DateTime.Now;
-                    _ketQuaSoiCTC.UpdatedBy = Guid.Parse(Global.UserGUID);
+                    _ketQuaSieuAm.UpdatedDate = DateTime.Now;
+                    _ketQuaSieuAm.UpdatedBy = Guid.Parse(Global.UserGUID);
                 }
 
                 MethodInvoker method = delegate
                 {
-                    _ketQuaSoiCTC.NgayKham = dtpkNgayKham.Value;
-                    _ketQuaSoiCTC.BacSiSoi = Guid.Parse(cboBSSoi.SelectedValue.ToString());
-                    _ketQuaSoiCTC.KetLuan = cboKetLuan.Text;
-                    _ketQuaSoiCTC.DeNghi = cboDeNghi.Text;
+                    _ketQuaSieuAm.NgaySieuAm = dtpkNgaySieuAm.Value;
+                    _ketQuaSieuAm.BacSiSieuAmGUID = Guid.Parse(cboBSSieuAm.SelectedValue.ToString());
+                    _ketQuaSieuAm.LoaiSieuAmGUID = Guid.Parse(cboLoaiSieuAm.SelectedValue.ToString());
 
-                    _ketQuaSoiCTC.Hinh1 = null;
-                    _ketQuaSoiCTC.Hinh2 = null;
+                    if (cboBSCD.Text.Trim() != string.Empty)
+                        _ketQuaSieuAm.BacSiChiDinhGUID = Guid.Parse(cboBSCD.SelectedValue.ToString());
+
+                    byte[] buff = null;
+                    _textControl.Save(out buff, TXTextControl.BinaryStreamType.MSWord);
+                    _ketQuaSieuAm.KetQuaSieuAm1 = new System.Data.Linq.Binary(buff);
+
+                    _ketQuaSieuAm.Hinh1 = null;
+                    _ketQuaSieuAm.Hinh2 = null;
 
                     if (picHinh1.Image != null)
-                        _ketQuaSoiCTC.Hinh1 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh1.Image));
+                        _ketQuaSieuAm.Hinh1 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh1.Image));
 
                     if (picHinh2.Image != null)
-                        _ketQuaSoiCTC.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
+                        _ketQuaSieuAm.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
 
-                    _ketQuaSoiCTC.AmHo = _uKetQuaSoiCTC.AmHo;
-                    _ketQuaSoiCTC.AmDao = _uKetQuaSoiCTC.AmDao;
-                    _ketQuaSoiCTC.CTC = _uKetQuaSoiCTC.CTC;
-                    _ketQuaSoiCTC.BieuMoLat = _uKetQuaSoiCTC.BieuMoLat;
-                    _ketQuaSoiCTC.MoDem = _uKetQuaSoiCTC.MoDem;
-                    _ketQuaSoiCTC.RanhGioiLatTru = _uKetQuaSoiCTC.RanhGioiLatTru;
-                    _ketQuaSoiCTC.SauAcidAcetic = _uKetQuaSoiCTC.SauAcidAcetic;
-                    _ketQuaSoiCTC.SauLugol = _uKetQuaSoiCTC.SauLugol;
-                   
-                    Result result = KetQuaSoiCTCBus.InsertKetQuaSoiCTC(_ketQuaSoiCTC);
+                    Result result = null;//KetQuaSoiCTCBus.InsertKetQuaSoiCTC(_ketQuaSoiCTC);
                     if (!result.IsOK)
                     {
-                        MsgBox.Show(this.Text, result.GetErrorAsString("KetQuaSoiCTCBus.InsertKetQuaSoiCTC"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaSoiCTCBus.InsertKetQuaSoiCTC"));
+                        MsgBox.Show(this.Text, result.GetErrorAsString("SieuAmBus.InsertKetQuaSieuAm"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("SieuAmBus.InsertKetQuaSieuAm"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                    }
-                    else
-                    {
-                        List<Bookmark> bookmarkList = GetBoommark();
-                        if (bookmarkList != null && bookmarkList.Count > 0)
-                        {
-                            result = BookmarkBus.InsertBookmark(bookmarkList);
-                            if (!result.IsOK)
-                            {
-                                MsgBox.Show(this.Text, result.GetErrorAsString("BookmarkBus.InsertBookmark"), IconType.Error);
-                                Utility.WriteToTraceLog(result.GetErrorAsString("BookmarkBus.InsertBookmark"));
-                                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                            }
-                        }
                     }
                 };
 
@@ -440,17 +405,13 @@ namespace MM.Dialogs
         #endregion
 
         #region Window Event Handlers
-        private void dlgAddKetQuaSoiCTC_Load(object sender, EventArgs e)
+        private void dlgAddKetQuaSieuAm_Load(object sender, EventArgs e)
         {
             InitData();
-
-            if (!_isNew)
-                DisplayInfo(_drKetQuaSoiCTC);
-            else
-                _uKetQuaSoiCTC.SetDefault();
+            if (!_isNew) DisplayInfo();
         }
 
-        private void dlgAddKetQuaSoiCTC_FormClosing(object sender, FormClosingEventArgs e)
+        private void dlgAddKetQuaSieuAm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
@@ -462,33 +423,11 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
-            {
-                if (_allowEdit && MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin khám CTC ?") == System.Windows.Forms.DialogResult.Yes)
-                {
-                    if (CheckInfo())
-                    {
-                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                        SaveInfoAsThread();
-                        CloseInterfaces();
-                    }
-                    else
-                        e.Cancel = true;
-                }
-                else
-                    CloseInterfaces();
-            }
         }
 
-        private void btnTVTune_Click(object sender, EventArgs e)
+        private void btnHinh1_Click(object sender, EventArgs e)
         {
-            if (sampGrabber == null) return;
-
-            if (capGraph != null) DsUtils.ShowTunerPinDialog(capGraph, capFilter, this.Handle);
-        }
-
-        private void btnCapture_Click(object sender, EventArgs e)
-        {
+            _hinh = 1;
             if (sampGrabber == null) return;
 
             if (savedArray == null)
@@ -499,9 +438,34 @@ namespace MM.Dialogs
                 savedArray = new byte[size + 64000];
             }
 
-            btnCapture.Enabled = false;
+            btnHinh1.Enabled = false;
             captured = false;
             int hr = sampGrabber.SetCallback(this, 1);
+        }
+
+        private void btnHinh2_Click(object sender, EventArgs e)
+        {
+            _hinh = 2;
+            if (sampGrabber == null) return;
+
+            if (savedArray == null)
+            {
+                int size = videoInfoHeader.BmiHeader.ImageSize;
+                if ((size < 1000) || (size > 16000000))
+                    return;
+                savedArray = new byte[size + 64000];
+            }
+
+            btnHinh2.Enabled = false;
+            captured = false;
+            int hr = sampGrabber.SetCallback(this, 1);
+        }
+
+        private void btnSwap_Click(object sender, EventArgs e)
+        {
+            Image img = picHinh1.Image;
+            picHinh1.Image = picHinh2.Image;
+            picHinh2.Image = img;
         }
 
         private void xóaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -516,33 +480,16 @@ namespace MM.Dialogs
             picHinh2.Image = null;
         }
 
-        private void lvCapture_DoubleClick(object sender, EventArgs e)
+        private void btnTVTune_Click(object sender, EventArgs e)
         {
-            ChonHinh();
+            if (sampGrabber == null) return;
+
+            if (capGraph != null) DsUtils.ShowTunerPinDialog(capGraph, capFilter, this.Handle);
         }
 
-        private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cboLoaiSieuAm_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lvCapture.SelectedItems == null || lvCapture.SelectedItems.Count <= 0) return;
-
-            foreach (ListViewItem item in lvCapture.SelectedItems)
-            {
-                int imgIndex = item.ImageIndex;
-                lvCapture.Items.Remove(item);
-                imgListCapture.Images.RemoveAt(imgIndex);
-            }
-        }
-
-        private void xóaTấtCảToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            lvCapture.Items.Clear();
-            imgListCapture.Images.Clear();
-            _imgCount = 0;
-        }
-
-        private void chọnHìnhToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ChonHinh();
+            DisplayMauBaoCao();
         }
 
         private void btnSaveAndPrint_Click(object sender, EventArgs e)
@@ -592,7 +539,9 @@ namespace MM.Dialogs
         {
             try
             {
-                btnCapture.Enabled = true;
+                if (_hinh == 1) btnHinh1.Enabled = true;
+                else btnHinh2.Enabled = true;
+
                 int hr;
                 if (sampGrabber == null)
                     return;
@@ -611,25 +560,8 @@ namespace MM.Dialogs
                 handle.Free();
                 savedArray = null;
 
-                imgListCapture.Images.Add(b);
-
-                _imgCount++;
-                ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
-                item.Tag = b;
-                lvCapture.Items.Add(item);
-
-                if (lvCapture.Items.Count <= 2)
-                {
-                    switch (lvCapture.Items.Count)
-                    {
-                        case 1:
-                            picHinh1.Image = (Image)lvCapture.Items[0].Tag;
-                            break;
-                        case 2:
-                            picHinh2.Image = (Image)lvCapture.Items[1].Tag;
-                            break;
-                    }
-                }
+                if (_hinh == 1) picHinh1.Image = b;
+                else picHinh2.Image = b;
             }
             catch (Exception ee)
             {
@@ -711,7 +643,6 @@ namespace MM.Dialogs
             }
         }
 
-
         /// <summary> build the capture graph for grabber. </summary>
         private bool SetupGraph()
         {
@@ -779,7 +710,6 @@ namespace MM.Dialogs
                 return false;
             }
         }
-
 
         /// <summary> create the used COM components and get the interfaces. </summary>
         private bool GetInterfaces()
@@ -867,7 +797,7 @@ namespace MM.Dialogs
 
                 if (mediaEvt != null)
                 {
-                   //hr = mediaEvt.SetNotifyWindow(IntPtr.Zero, WM_GRAPHNOTIFY, IntPtr.Zero);
+                    //hr = mediaEvt.SetNotifyWindow(IntPtr.Zero, WM_GRAPHNOTIFY, IntPtr.Zero);
                     Marshal.ReleaseComObject(mediaEvt);
                     mediaEvt = null;
                 }
@@ -875,7 +805,7 @@ namespace MM.Dialogs
                 if (videoWin != null)
                 {
                     //hr = videoWin.put_Visible(DsHlp.OAFALSE);
-                   //hr = videoWin.put_Owner(IntPtr.Zero);
+                    //hr = videoWin.put_Owner(IntPtr.Zero);
                     Marshal.ReleaseComObject(videoWin);
                     videoWin = null;
                 }
@@ -999,10 +929,10 @@ namespace MM.Dialogs
             }
         }
         #endregion
-    }
 
-    internal enum PlayState
-    {
-        Init, Stopped, Paused, Running
+        internal enum PlayState
+        {
+            Init, Stopped, Paused, Running
+        }
     }
 }

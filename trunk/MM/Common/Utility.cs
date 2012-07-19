@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Data;
 using System.Reflection;
+using System.Drawing;
 using System.Diagnostics;
 using Microsoft.SqlServer.Management.Smo;
 using System.ServiceProcess;
@@ -1090,6 +1091,54 @@ namespace MM.Common
             }
 
             return string.Empty;
+        }
+
+        public static Image ParseImage(byte[] buffer)
+        {
+            Bitmap bmp = null;
+            MemoryStream ms = null;
+
+            try
+            {
+                ms = new MemoryStream(buffer);
+                bmp = new Bitmap(ms);
+                return bmp;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (ms != null)
+                {
+                    ms.Close();
+                    ms = null;
+                }
+            }
+        }
+
+        public static byte[] GetBinaryFromImage(Image img)
+        {
+            MemoryStream ms = null;
+            try
+            {
+                ms = new MemoryStream();
+                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.GetBuffer();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (ms != null)
+                {
+                    ms.Close();
+                    ms = null;
+                }
+            }
         }
     }
 }
