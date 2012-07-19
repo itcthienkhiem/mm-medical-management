@@ -1093,6 +1093,33 @@ namespace MM.Common
             return string.Empty;
         }
 
+        public static Image ParseImage(byte[] buffer, int width, int height)
+        {
+            Bitmap bmp = null;
+            MemoryStream ms = null;
+
+            try
+            {
+                ms = new MemoryStream(buffer);
+                bmp = new Bitmap(ms);
+                bmp = new Bitmap(bmp, new Size(width, height));
+
+                return bmp;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (ms != null)
+                {
+                    ms.Close();
+                    ms = null;
+                }
+            }
+        }
+
         public static Image ParseImage(byte[] buffer)
         {
             Bitmap bmp = null;
@@ -1102,6 +1129,7 @@ namespace MM.Common
             {
                 ms = new MemoryStream(buffer);
                 bmp = new Bitmap(ms);
+                
                 return bmp;
             }
             catch (Exception e)

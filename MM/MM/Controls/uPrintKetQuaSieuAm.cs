@@ -132,7 +132,7 @@ namespace MM.Controls
 
                 Image bmp = null;
                 if (drKetQuaSieuAm["Hinh1"] != null && drKetQuaSieuAm["Hinh1"] != DBNull.Value)
-                    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh1"]);
+                    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh1"], 300, 200);
                 else
                     bmp = Properties.Resources.WhiteImage;
 
@@ -150,7 +150,7 @@ namespace MM.Controls
 
                 Image bmp = null;
                 if (drKetQuaSieuAm["Hinh2"] != null && drKetQuaSieuAm["Hinh2"] != DBNull.Value)
-                    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh2"]);
+                    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh2"], 300, 200);
                 else
                     bmp = Properties.Resources.WhiteImage;
 
