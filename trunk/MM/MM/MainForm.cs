@@ -44,6 +44,15 @@ namespace MM
             //ParseTestResult_Hitachi917(string.Empty, "COM1");
             //ParseTestResult_CellDyn3200(string.Empty, "COM1");
             //MySQLHelper.GetAllUsers();
+
+            DateTime dt = DateTime.Now.AddMonths(-10);
+            int m = DateTime.Now.Subtract(dt).Days;
+
+            //long c1 = DateTime.Now.ToFileTime();
+            //long c2 = dt.ToFileTime();
+            //long a = c1 - c2;
+            //long b = 25920000000000;
+            //a = a / b;
         }
         #endregion
 
