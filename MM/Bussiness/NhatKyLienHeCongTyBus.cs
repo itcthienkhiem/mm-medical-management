@@ -43,16 +43,16 @@ namespace MM.Bussiness
             {
                 string query = string.Empty;
                 if (type == 0)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND NgayGioLienHe BETWEEN '{1}' AND '{2}' ORDER BY NgayGioLienHe DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND NgayGioLienHe BETWEEN '{1}' AND '{2}' ORDER BY NgayGioLienHe DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 else if (type == 1)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe LIKE N'%{1}%' ORDER BY NgayGioLienHe DESC", 
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe LIKE N'%{1}%' ORDER BY NgayGioLienHe DESC", 
                         (byte)Status.Actived, tenBenhNhan);
                 else if (type == 2)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND FullName LIKE N'{1}%' ORDER BY NgayGioLienHe DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND FullName LIKE N'{1}%' ORDER BY NgayGioLienHe DESC",
                         (byte)Status.Actived, tenNguoiTao);
                 else if (type == 3)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe IN (SELECT CongTyLienHe FROM NhatKyLienHeCongTy WHERE Status = 0 GROUP BY CongTyLienHe HAVING Count(CongTyLienHe) >= 2) ORDER BY CongTyLienHe",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe IN (SELECT CongTyLienHe FROM NhatKyLienHeCongTy WHERE Status = 0 GROUP BY CongTyLienHe HAVING Count(CongTyLienHe) >= 2) ORDER BY CongTyLienHe",
                         (byte)Status.Actived, tenNguoiTao);
                 else
                 {
@@ -60,10 +60,7 @@ namespace MM.Bussiness
                     string monthStr1 = date.ToString("MMM");
                     string monthStr2 = date.ToString("MMMM");
 
-                    //query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND (REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{1}%' OR REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{2}%' OR REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{3}%') ORDER BY NgayGioLienHe DESC",
-                    //      (byte)Status.Actived, thang, monthStr1, monthStr2);
-
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} AND (REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{1}%' OR REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{2}%') ORDER BY NgayGioLienHe DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND (REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{1}%' OR REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{2}%') ORDER BY NgayGioLienHe DESC",
                           (byte)Status.Actived, monthStr1, monthStr2);
                 }
 
@@ -304,24 +301,74 @@ namespace MM.Bussiness
             return result;
         }
 
+        //public static Result CheckCongTyLienHeExist2(string congTy, string nhatKyLienHeCongTyGUID)
+        //{
+        //    Result result = new Result();
+        //    MMOverride db = null;
+
+        //    try
+        //    {
+                
+
+        //        db = new MMOverride();
+        //        NhatKyLienHeCongTy nklhct = null;
+        //        if (nhatKyLienHeCongTyGUID == null || nhatKyLienHeCongTyGUID == string.Empty)
+        //            nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+        //                n.CreatedBy.Value.ToString() != Global.UserGUID && n.Status == (byte)Status.Actived &&
+        //                (DateTime.Now.ToFileTime() - n.NgayGioLienHe.ToFileTime()) / 25920000000000 <= 18);
+        //        else
+        //            nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+        //                n.CreatedBy.Value.ToString() != Global.UserGUID && n.NhatKyLienHeCongTyGUID.ToString() != nhatKyLienHeCongTyGUID &&
+        //                n.Status == (byte)Status.Actived && (DateTime.Now.ToFileTime() - n.NgayGioLienHe.ToFileTime()) / 25920000000000 <= 18);
+
+        //        if (nklhct == null)
+        //            result.Error.Code = ErrorCode.NOT_EXIST;
+        //        else
+        //            result.Error.Code = ErrorCode.EXIST;
+        //    }
+        //    catch (System.Data.SqlClient.SqlException se)
+        //    {
+        //        result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+        //        result.Error.Description = se.ToString();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+        //        result.Error.Description = e.ToString();
+        //    }
+        //    finally
+        //    {
+        //        if (db != null)
+        //        {
+        //            db.Dispose();
+        //            db = null;
+        //        }
+        //    }
+
+        //    return result;
+        //}
+
         public static Result CheckCongTyLienHeExist2(string congTy, string nhatKyLienHeCongTyGUID)
         {
-            Result result = new Result();
-            MMOverride db = null;
+            Result result = null;
 
             try
             {
-                db = new MMOverride();
-                NhatKyLienHeCongTy nklhct = null;
+                string query = string.Empty;
                 if (nhatKyLienHeCongTyGUID == null || nhatKyLienHeCongTyGUID == string.Empty)
-                    nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
-                        n.CreatedBy.Value.ToString() != Global.UserGUID && n.Status == (byte)Status.Actived);
+                {
+                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WHERE CongTyLienHe = '{0}' AND CreatedBy <> '{1}' AND Status = {2} AND datediff(month, NgayGioLienHe, getdate()) <= 18",
+                        congTy, Global.UserGUID.ToString(), (byte)Status.Actived);
+                }
                 else
-                    nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
-                        n.CreatedBy.Value.ToString() != Global.UserGUID && n.NhatKyLienHeCongTyGUID.ToString() != nhatKyLienHeCongTyGUID &&
-                        n.Status == (byte)Status.Actived);
+                {
+                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WHERE CongTyLienHe = '{0}' AND CreatedBy <> '{1}' AND Status = {2} AND NhatKyLienHeCongTyGUID <> '{3}' datediff(month, NgayGioLienHe, getdate()) <= 18",
+                        congTy, Global.UserGUID.ToString(), (byte)Status.Actived, nhatKyLienHeCongTyGUID);
+                }
 
-                if (nklhct == null)
+                result = ExcuteQuery(query);
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt == null || dt.Rows.Count <= 0)
                     result.Error.Code = ErrorCode.NOT_EXIST;
                 else
                     result.Error.Code = ErrorCode.EXIST;
@@ -335,37 +382,77 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
-            }
-            finally
-            {
-                if (db != null)
-                {
-                    db.Dispose();
-                    db = null;
-                }
             }
 
             return result;
         }
 
+        //public static Result CheckCongTyLienHeExist(string congTy, string nhatKyLienHeCongTyGUID)
+        //{
+        //    Result result = new Result();
+        //    MMOverride db = null;
+
+        //    try
+        //    {
+        //        db = new MMOverride();
+        //        NhatKyLienHeCongTy nklhct = null;
+        //        if (nhatKyLienHeCongTyGUID == null || nhatKyLienHeCongTyGUID == string.Empty)
+        //            nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+        //                n.CreatedBy.Value.ToString() == Global.UserGUID && n.Status == (byte)Status.Actived &&
+        //                (DateTime.Now.ToFileTime() - n.NgayGioLienHe.ToFileTime()) / 25920000000000 <= 18);
+        //        else
+        //            nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
+        //                n.CreatedBy.Value.ToString() == Global.UserGUID && n.NhatKyLienHeCongTyGUID.ToString() != nhatKyLienHeCongTyGUID &&
+        //                n.Status == (byte)Status.Actived && (DateTime.Now.ToFileTime() - n.NgayGioLienHe.ToFileTime()) / 25920000000000 <= 18);
+
+        //        if (nklhct == null)
+        //            result.Error.Code = ErrorCode.NOT_EXIST;
+        //        else
+        //            result.Error.Code = ErrorCode.EXIST;
+        //    }
+        //    catch (System.Data.SqlClient.SqlException se)
+        //    {
+        //        result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+        //        result.Error.Description = se.ToString();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+        //        result.Error.Description = e.ToString();
+        //    }
+        //    finally
+        //    {
+        //        if (db != null)
+        //        {
+        //            db.Dispose();
+        //            db = null;
+        //        }
+        //    }
+
+        //    return result;
+        //}
+
         public static Result CheckCongTyLienHeExist(string congTy, string nhatKyLienHeCongTyGUID)
         {
-            Result result = new Result();
-            MMOverride db = null;
+            Result result = null;
 
             try
             {
-                db = new MMOverride();
-                NhatKyLienHeCongTy nklhct = null;
+                string query = string.Empty;
                 if (nhatKyLienHeCongTyGUID == null || nhatKyLienHeCongTyGUID == string.Empty)
-                    nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
-                        n.CreatedBy.Value.ToString() == Global.UserGUID && n.Status == (byte)Status.Actived);
+                {
+                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WHERE CongTyLienHe = '{0}' AND CreatedBy = '{1}' AND Status = {2} AND datediff(month, NgayGioLienHe, getdate()) <= 18",
+                        congTy, Global.UserGUID.ToString(), (byte)Status.Actived);
+                }
                 else
-                    nklhct = db.NhatKyLienHeCongTies.FirstOrDefault<NhatKyLienHeCongTy>(n => n.CongTyLienHe.ToLower() == congTy.ToLower() &&
-                        n.CreatedBy.Value.ToString() == Global.UserGUID && n.NhatKyLienHeCongTyGUID.ToString() != nhatKyLienHeCongTyGUID &&
-                        n.Status == (byte)Status.Actived);
+                {
+                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WHERE CongTyLienHe = '{0}' AND CreatedBy = '{1}' AND Status = {2} AND NhatKyLienHeCongTyGUID <> '{3}' datediff(month, NgayGioLienHe, getdate()) <= 18",
+                        congTy, Global.UserGUID.ToString(), (byte)Status.Actived, nhatKyLienHeCongTyGUID);
+                }
 
-                if (nklhct == null)
+                result = ExcuteQuery(query);
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt == null || dt.Rows.Count <= 0)
                     result.Error.Code = ErrorCode.NOT_EXIST;
                 else
                     result.Error.Code = ErrorCode.EXIST;
@@ -379,14 +466,6 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
-            }
-            finally
-            {
-                if (db != null)
-                {
-                    db.Dispose();
-                    db = null;
-                }
             }
 
             return result;
