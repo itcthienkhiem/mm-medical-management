@@ -2075,6 +2075,7 @@
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
     <None Include="Resources\WhiteImage.PNG" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-07-28.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-17.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-14.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-13.sql" />
