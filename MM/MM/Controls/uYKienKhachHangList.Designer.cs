@@ -418,7 +418,7 @@
             // 
             // colButtonKetLuan
             // 
-            this.colButtonKetLuan.HeaderText = "Hướng giải quyết";
+            this.colButtonKetLuan.HeaderText = "";
             this.colButtonKetLuan.Name = "colButtonKetLuan";
             this.colButtonKetLuan.ReadOnly = true;
             this.colButtonKetLuan.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -454,7 +454,7 @@
             this.DaXong.DataPropertyName = "DaXongStr";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.DaXong.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DaXong.HeaderText = "Đã xong";
+            this.DaXong.HeaderText = "Trạng thái";
             this.DaXong.Name = "DaXong";
             this.DaXong.ReadOnly = true;
             this.DaXong.Width = 80;
