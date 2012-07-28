@@ -42,7 +42,7 @@ namespace MM.Dialogs
             {
                 if (txtKetLuan.Text.Trim() == string.Empty)
                 {
-                    MsgBox.Show(this.Text, "Vui lòng nhập kết luận.", Common.IconType.Information);
+                    MsgBox.Show(this.Text, "Vui lòng nhập hướng giải quyết.", Common.IconType.Information);
                     txtKetLuan.Focus();
                     e.Cancel = true;
                 }
