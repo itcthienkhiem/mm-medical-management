@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddYKienKhachHang));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboNguon = new System.Windows.Forms.ComboBox();
             this.txtYeuCau = new System.Windows.Forms.TextBox();
             this.txtDiaChi = new System.Windows.Forms.TextBox();
             this.txtSoDienThoai = new System.Windows.Forms.TextBox();
@@ -42,12 +44,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.cboNguon = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboDocStaff = new System.Windows.Forms.ComboBox();
+            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.chkDaXong = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkDaXong);
+            this.groupBox1.Controls.Add(this.cboDocStaff);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cboNguon);
             this.groupBox1.Controls.Add(this.txtYeuCau);
             this.groupBox1.Controls.Add(this.txtDiaChi);
@@ -61,9 +70,17 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(4, -1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(497, 187);
+            this.groupBox1.Size = new System.Drawing.Size(497, 231);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // cboNguon
+            // 
+            this.cboNguon.FormattingEnabled = true;
+            this.cboNguon.Location = new System.Drawing.Point(138, 157);
+            this.cboNguon.Name = "cboNguon";
+            this.cboNguon.Size = new System.Drawing.Size(347, 21);
+            this.cboNguon.TabIndex = 10;
             // 
             // txtYeuCau
             // 
@@ -157,7 +174,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(254, 190);
+            this.btnCancel.Location = new System.Drawing.Point(254, 236);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 8;
@@ -169,20 +186,49 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(175, 190);
+            this.btnOK.Location = new System.Drawing.Point(175, 236);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 7;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // cboNguon
+            // label6
             // 
-            this.cboNguon.FormattingEnabled = true;
-            this.cboNguon.Location = new System.Drawing.Point(138, 157);
-            this.cboNguon.Name = "cboNguon";
-            this.cboNguon.Size = new System.Drawing.Size(347, 21);
-            this.cboNguon.TabIndex = 10;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(43, 184);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(90, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Bác sĩ phụ trách:";
+            // 
+            // cboDocStaff
+            // 
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff.DisplayMember = "Fullname";
+            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDocStaff.FormattingEnabled = true;
+            this.cboDocStaff.Location = new System.Drawing.Point(138, 181);
+            this.cboDocStaff.Name = "cboDocStaff";
+            this.cboDocStaff.Size = new System.Drawing.Size(269, 21);
+            this.cboDocStaff.TabIndex = 12;
+            this.cboDocStaff.ValueMember = "DocStaffGUID";
+            // 
+            // docStaffViewBindingSource
+            // 
+            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
+            // 
+            // chkDaXong
+            // 
+            this.chkDaXong.AutoSize = true;
+            this.chkDaXong.Location = new System.Drawing.Point(138, 208);
+            this.chkDaXong.Name = "chkDaXong";
+            this.chkDaXong.Size = new System.Drawing.Size(66, 17);
+            this.chkDaXong.TabIndex = 13;
+            this.chkDaXong.Text = "Đã xong";
+            this.chkDaXong.UseVisualStyleBackColor = true;
             // 
             // dlgAddYKienKhachHang
             // 
@@ -190,7 +236,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(505, 219);
+            this.ClientSize = new System.Drawing.Size(505, 266);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -206,6 +252,7 @@
             this.Load += new System.EventHandler(this.dlgAddYKienKhachHang_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -226,5 +273,9 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.ComboBox cboNguon;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboDocStaff;
+        private System.Windows.Forms.CheckBox chkDaXong;
+        private System.Windows.Forms.BindingSource docStaffViewBindingSource;
     }
 }

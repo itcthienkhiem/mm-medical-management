@@ -57,18 +57,19 @@
             this.yKienKhachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colButtonKetLuan = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
-            this.KetLuan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenKhachHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soDienThoaiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yeuCauDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contactDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nguonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colButtonKetLuan = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
+            this.KetLuan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BacSiPhuTrach = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DaXong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nguonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiKetLuan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -90,7 +91,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1076, 84);
+            this.panel1.Size = new System.Drawing.Size(1188, 84);
             this.panel1.TabIndex = 0;
             // 
             // txtTenNguoiTao
@@ -194,7 +195,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 575);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1076, 38);
+            this.panel2.Size = new System.Drawing.Size(1188, 38);
             this.panel2.TabIndex = 1;
             // 
             // btnExportExcel
@@ -276,7 +277,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 84);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1076, 491);
+            this.panel3.Size = new System.Drawing.Size(1188, 491);
             this.panel3.TabIndex = 2;
             // 
             // chkChecked
@@ -306,18 +307,19 @@
             this.dgYKienKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgYKienKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
-            this.STT,
-            this.colButtonKetLuan,
-            this.KetLuan,
+            this.contactDateDataGridViewTextBoxColumn,
             this.tenKhachHangDataGridViewTextBoxColumn,
             this.soDienThoaiDataGridViewTextBoxColumn,
             this.diaChiDataGridViewTextBoxColumn,
             this.yeuCauDataGridViewTextBoxColumn,
-            this.contactDateDataGridViewTextBoxColumn,
-            this.nguonDataGridViewTextBoxColumn,
+            this.colButtonKetLuan,
+            this.KetLuan,
             this.NguoiTao,
-            this.NguoiCapNhat,
-            this.NguoiKetLuan});
+            this.BacSiPhuTrach,
+            this.DaXong,
+            this.nguonDataGridViewTextBoxColumn,
+            this.NguoiKetLuan,
+            this.NguoiCapNhat});
             this.dgYKienKhachHang.DataSource = this.yKienKhachHangBindingSource;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
@@ -337,7 +339,7 @@
             this.dgYKienKhachHang.ReadOnly = true;
             this.dgYKienKhachHang.RowHeadersWidth = 30;
             this.dgYKienKhachHang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgYKienKhachHang.Size = new System.Drawing.Size(1076, 491);
+            this.dgYKienKhachHang.Size = new System.Drawing.Size(1188, 491);
             this.dgYKienKhachHang.TabIndex = 2;
             this.dgYKienKhachHang.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgYKienKhachHang_CellMouseUp);
             this.dgYKienKhachHang.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgYKienKhachHang_ColumnHeaderMouseClick);
@@ -363,6 +365,7 @@
             this.colChecked.DataPropertyName = "Checked";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.ReadOnly = true;
@@ -370,32 +373,17 @@
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
             // 
-            // STT
+            // contactDateDataGridViewTextBoxColumn
             // 
+            this.contactDateDataGridViewTextBoxColumn.DataPropertyName = "ContactDate";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.STT.DefaultCellStyle = dataGridViewCellStyle3;
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
-            this.STT.ReadOnly = true;
-            this.STT.Width = 50;
-            // 
-            // colButtonKetLuan
-            // 
-            this.colButtonKetLuan.HeaderText = "Kết luận";
-            this.colButtonKetLuan.Name = "colButtonKetLuan";
-            this.colButtonKetLuan.ReadOnly = true;
-            this.colButtonKetLuan.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colButtonKetLuan.Text = "Kết luận";
-            this.colButtonKetLuan.UseColumnTextForButtonValue = true;
-            this.colButtonKetLuan.Width = 60;
-            // 
-            // KetLuan
-            // 
-            this.KetLuan.DataPropertyName = "KetLuan";
-            this.KetLuan.HeaderText = "Kết luận";
-            this.KetLuan.Name = "KetLuan";
-            this.KetLuan.ReadOnly = true;
-            this.KetLuan.Width = 250;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle3.NullValue = null;
+            this.contactDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.contactDateDataGridViewTextBoxColumn.HeaderText = "Ngày liên hệ";
+            this.contactDateDataGridViewTextBoxColumn.Name = "contactDateDataGridViewTextBoxColumn";
+            this.contactDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contactDateDataGridViewTextBoxColumn.Width = 120;
             // 
             // tenKhachHangDataGridViewTextBoxColumn
             // 
@@ -428,17 +416,48 @@
             this.yeuCauDataGridViewTextBoxColumn.ReadOnly = true;
             this.yeuCauDataGridViewTextBoxColumn.Width = 250;
             // 
-            // contactDateDataGridViewTextBoxColumn
+            // colButtonKetLuan
             // 
-            this.contactDateDataGridViewTextBoxColumn.DataPropertyName = "ContactDate";
+            this.colButtonKetLuan.HeaderText = "Hướng giải quyết";
+            this.colButtonKetLuan.Name = "colButtonKetLuan";
+            this.colButtonKetLuan.ReadOnly = true;
+            this.colButtonKetLuan.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colButtonKetLuan.Text = "Hướng giải quyết";
+            this.colButtonKetLuan.UseColumnTextForButtonValue = true;
+            // 
+            // KetLuan
+            // 
+            this.KetLuan.DataPropertyName = "KetLuan";
+            this.KetLuan.HeaderText = "Hướng giải quyết";
+            this.KetLuan.Name = "KetLuan";
+            this.KetLuan.ReadOnly = true;
+            this.KetLuan.Width = 250;
+            // 
+            // NguoiTao
+            // 
+            this.NguoiTao.DataPropertyName = "NguoiTao";
+            this.NguoiTao.HeaderText = "Điều dưỡng phụ trách";
+            this.NguoiTao.Name = "NguoiTao";
+            this.NguoiTao.ReadOnly = true;
+            this.NguoiTao.Width = 200;
+            // 
+            // BacSiPhuTrach
+            // 
+            this.BacSiPhuTrach.DataPropertyName = "BacSiPhuTrach";
+            this.BacSiPhuTrach.HeaderText = "Bác sĩ phụ trách";
+            this.BacSiPhuTrach.Name = "BacSiPhuTrach";
+            this.BacSiPhuTrach.ReadOnly = true;
+            this.BacSiPhuTrach.Width = 200;
+            // 
+            // DaXong
+            // 
+            this.DaXong.DataPropertyName = "DaXongStr";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle4.NullValue = null;
-            this.contactDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.contactDateDataGridViewTextBoxColumn.HeaderText = "Ngày liên hệ";
-            this.contactDateDataGridViewTextBoxColumn.Name = "contactDateDataGridViewTextBoxColumn";
-            this.contactDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.contactDateDataGridViewTextBoxColumn.Width = 120;
+            this.DaXong.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DaXong.HeaderText = "Đã xong";
+            this.DaXong.Name = "DaXong";
+            this.DaXong.ReadOnly = true;
+            this.DaXong.Width = 80;
             // 
             // nguonDataGridViewTextBoxColumn
             // 
@@ -448,13 +467,14 @@
             this.nguonDataGridViewTextBoxColumn.ReadOnly = true;
             this.nguonDataGridViewTextBoxColumn.Width = 200;
             // 
-            // NguoiTao
+            // NguoiKetLuan
             // 
-            this.NguoiTao.DataPropertyName = "NguoiTao";
-            this.NguoiTao.HeaderText = "Người tạo";
-            this.NguoiTao.Name = "NguoiTao";
-            this.NguoiTao.ReadOnly = true;
-            this.NguoiTao.Width = 200;
+            this.NguoiKetLuan.DataPropertyName = "TenNguoiKetLuan";
+            this.NguoiKetLuan.HeaderText = "Người kết luận";
+            this.NguoiKetLuan.Name = "NguoiKetLuan";
+            this.NguoiKetLuan.ReadOnly = true;
+            this.NguoiKetLuan.Visible = false;
+            this.NguoiKetLuan.Width = 200;
             // 
             // NguoiCapNhat
             // 
@@ -465,14 +485,6 @@
             this.NguoiCapNhat.Visible = false;
             this.NguoiCapNhat.Width = 200;
             // 
-            // NguoiKetLuan
-            // 
-            this.NguoiKetLuan.DataPropertyName = "TenNguoiKetLuan";
-            this.NguoiKetLuan.HeaderText = "Người kết luận";
-            this.NguoiKetLuan.Name = "NguoiKetLuan";
-            this.NguoiKetLuan.ReadOnly = true;
-            this.NguoiKetLuan.Width = 200;
-            // 
             // uYKienKhachHangList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -481,7 +493,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uYKienKhachHangList";
-            this.Size = new System.Drawing.Size(1076, 613);
+            this.Size = new System.Drawing.Size(1188, 613);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -518,17 +530,18 @@
         private System.Windows.Forms.TextBox txtTenNguoiTao;
         private System.Windows.Forms.RadioButton raTenNguoiTao;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn colButtonKetLuan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KetLuan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contactDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenKhachHangDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn soDienThoaiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn yeuCauDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contactDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nguonDataGridViewTextBoxColumn;
+        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn colButtonKetLuan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn KetLuan;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BacSiPhuTrach;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DaXong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nguonDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiKetLuan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
     }
 }

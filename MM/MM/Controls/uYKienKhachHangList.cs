@@ -106,7 +106,7 @@ namespace MM.Controls
                 MethodInvoker method = delegate
                 {
                     dgYKienKhachHang.DataSource = result.QueryResult;
-                    RefreshNo();
+                    //RefreshNo();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -287,14 +287,14 @@ namespace MM.Controls
         private void dgYKienKhachHang_DoubleClick(object sender, EventArgs e)
         {
             if (dgYKienKhachHang.CurrentCell != null && 
-                (dgYKienKhachHang.CurrentCell.ColumnIndex == 0 || dgYKienKhachHang.CurrentCell.ColumnIndex == 2)) return;
+                (dgYKienKhachHang.CurrentCell.ColumnIndex == 0 || dgYKienKhachHang.CurrentCell.ColumnIndex == 6)) return;
 
             OnEdit();
         }
 
         private void dgYKienKhachHang_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RefreshNo();
+            //RefreshNo();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -374,7 +374,7 @@ namespace MM.Controls
 
         private void dgYKienKhachHang_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex < 0 || e.ColumnIndex != 2) return;
+            if (e.RowIndex < 0 || e.ColumnIndex != 6) return;
             DataRow row = (dgYKienKhachHang.Rows[e.RowIndex].DataBoundItem as DataRowView).Row;
             if (row == null) return;
             string yKienKhachHangGUID = row["YKienKhachHangGUID"].ToString();

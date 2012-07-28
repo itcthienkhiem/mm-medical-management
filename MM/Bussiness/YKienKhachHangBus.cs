@@ -94,8 +94,8 @@ namespace MM.Bussiness
                             s.DeletedDate = DateTime.Now;
                             s.DeletedBy = Guid.Parse(Global.UserGUID);
                             s.Status = (byte)Status.Deactived;
-                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}'\n",
-                                s.YKienKhachHangGUID.ToString(), s.TenKhachHang, s.SoDienThoai, s.DiaChi, s.YeuCau, s.Nguon, s.Note, s.NguoiKetLuan, s.KetLuan);
+                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}', Bác sĩ phụ trách: '{9}', Đã xong: '{10}'\n",
+                                s.YKienKhachHangGUID.ToString(), s.TenKhachHang, s.SoDienThoai, s.DiaChi, s.YeuCau, s.Nguon, s.Note, s.NguoiKetLuan, s.KetLuan, s.BacSiPhuTrachGUID, s.DaXong);
                         }
 
                         index++;
@@ -158,9 +158,9 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}'",
+                        desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}', Bác sĩ phụ trách: '{9}', Đã xong: '{10}'",
                                yKienKhachHang.YKienKhachHangGUID.ToString(), yKienKhachHang.TenKhachHang, yKienKhachHang.SoDienThoai, yKienKhachHang.DiaChi,
-                               yKienKhachHang.YeuCau, yKienKhachHang.Nguon, yKienKhachHang.Note, yKienKhachHang.NguoiKetLuan, yKienKhachHang.KetLuan);
+                               yKienKhachHang.YeuCau, yKienKhachHang.Nguon, yKienKhachHang.Note, yKienKhachHang.NguoiKetLuan, yKienKhachHang.KetLuan, yKienKhachHang.BacSiPhuTrachGUID, yKienKhachHang.DaXong);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -195,10 +195,12 @@ namespace MM.Bussiness
                             ykkh.Status = yKienKhachHang.Status;
                             ykkh.NguoiKetLuan = yKienKhachHang.NguoiKetLuan;
                             ykkh.KetLuan = yKienKhachHang.KetLuan;
+                            ykkh.BacSiPhuTrachGUID = yKienKhachHang.BacSiPhuTrachGUID;
+                            ykkh.DaXong = yKienKhachHang.DaXong;
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}'",
-                               ykkh.YKienKhachHangGUID.ToString(), ykkh.TenKhachHang, ykkh.SoDienThoai, ykkh.DiaChi, ykkh.YeuCau, ykkh.Nguon, ykkh.Note, ykkh.NguoiKetLuan, ykkh.KetLuan);
+                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}', Bác sĩ phụ trách: '{9}', Đã xong: '{10}'",
+                               ykkh.YKienKhachHangGUID.ToString(), ykkh.TenKhachHang, ykkh.SoDienThoai, ykkh.DiaChi, ykkh.YeuCau, ykkh.Nguon, ykkh.Note, ykkh.NguoiKetLuan, ykkh.KetLuan, ykkh.BacSiPhuTrachGUID, ykkh.DaXong);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
