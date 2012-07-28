@@ -4299,33 +4299,45 @@ namespace MM.Exports
                     DateTime ngayLienHe = Convert.ToDateTime(row["ContactDate"]);
                     string nguon = row["Nguon"].ToString();
                     string nguoiTao = row["NguoiTao"].ToString();
+                    string huongGiaiQuyet = string.Empty;
+                    string daXong = row["DaXongStr"].ToString();
+
+                    if (row["KetLuan"] != null && row["KetLuan"] != DBNull.Value)
+                        huongGiaiQuyet = row["KetLuan"].ToString();
+
+                    string bacSiPhuTrach = string.Empty;
+                    if (row["BacSiPhuTrach"] != null && row["BacSiPhuTrach"] != DBNull.Value)
+                        bacSiPhuTrach = row["BacSiPhuTrach"].ToString();
 
                     range = workSheet.Cells[rowIndex, 0];
-                    range.Value = tenKhachHang;
+                    range.Value = ngayLienHe.ToString("dd/MM/yyyy HH:mm:ss"); ;
 
                     range = workSheet.Cells[rowIndex, 1];
-                    range.Value = soDienThoai;
+                    range.Value = tenKhachHang;
 
                     range = workSheet.Cells[rowIndex, 2];
-                    range.Value = diaChi;
+                    range.Value = soDienThoai;
 
                     range = workSheet.Cells[rowIndex, 3];
                     range.Value = yeuCau;
 
                     range = workSheet.Cells[rowIndex, 4];
-                    range.Value = ngayLienHe.ToString("dd/MM/yyyy HH:mm:ss");
+                    range.Value = huongGiaiQuyet;
 
                     range = workSheet.Cells[rowIndex, 5];
-                    range.Value = nguon;
+                    range.Value = nguoiTao;
 
                     range = workSheet.Cells[rowIndex, 6];
-                    range.Value = nguoiTao;
+                    range.Value = bacSiPhuTrach;
+
+                    range = workSheet.Cells[rowIndex, 7];
+                    range.Value = daXong;
 
                     rowIndex++;
                     
                 }
 
-                range = workSheet.Cells[string.Format("A3:G{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:H{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;

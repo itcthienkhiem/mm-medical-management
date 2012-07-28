@@ -87,6 +87,11 @@ namespace MM.Dialogs
                 txtYeuCau.Text = drYKienKhachHang["YeuCau"] as string;
                 cboNguon.Text = drYKienKhachHang["Nguon"] as string;
 
+                if (drYKienKhachHang["BacSiPhuTrachGUID"] != null && drYKienKhachHang["BacSiPhuTrachGUID"] != DBNull.Value)
+                    cboDocStaff.SelectedValue = drYKienKhachHang["BacSiPhuTrachGUID"].ToString();
+
+                chkDaXong.Checked = Convert.ToBoolean(drYKienKhachHang["DaXong"]);
+
                 _yKienKhachHang.YKienKhachHangGUID = Guid.Parse(drYKienKhachHang["YKienKhachHangGUID"].ToString());
 
                 if (drYKienKhachHang["ContactDate"] != null && drYKienKhachHang["ContactDate"] != DBNull.Value)
@@ -154,6 +159,13 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (cboDocStaff.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ phụ trách.", IconType.Information);
+                cboDocStaff.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -178,7 +190,6 @@ namespace MM.Dialogs
         {
             try
             {
-                
                 _yKienKhachHang.Status = (byte)Status.Actived;
 
                 if (_isNew)
@@ -205,6 +216,8 @@ namespace MM.Dialogs
                     _yKienKhachHang.YeuCau = txtYeuCau.Text;
                     _yKienKhachHang.Nguon = cboNguon.Text;
                     _yKienKhachHang.Note = string.Empty;
+                    _yKienKhachHang.BacSiPhuTrachGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
+                    _yKienKhachHang.DaXong = chkDaXong.Checked;
 
                     Result result = YKienKhachHangBus.InsertYKienKhachHang(_yKienKhachHang);
                     if (!result.IsOK)
@@ -236,6 +249,28 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
             }
         }
+
+        private void DisplayBacSiPhuTrach()
+        {
+            //DocStaff
+            List<byte> staffTypes = new List<byte>();
+            staffTypes.Add((byte)StaffType.BacSi);
+            staffTypes.Add((byte)StaffType.BacSiSieuAm);
+            staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
+            Result result = DocStaffBus.GetDocStaffList(staffTypes);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                return;
+            }
+            else
+            {
+                cboDocStaff.DataSource = result.QueryResult;
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -243,6 +278,7 @@ namespace MM.Dialogs
         {
             OnDisplayNguonList();
             OnDisplayBenhNhan();
+            DisplayBacSiPhuTrach();
             if (!_isNew) DisplayInfo(_drYKienKhachHang);
         }
 

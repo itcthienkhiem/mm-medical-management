@@ -257,4 +257,19 @@ Nước tiểu (Urine)
 Miễn dịch
 Soi tươi huyết trắng
 
+---------------------------------------------------------
+bo STT
+Ngay Lien He x
+Ten Khach Hang x
+Dien Thoai x
+Dia Chi
+Yeu cau x
+Huong giai quyet x
+Dieu duong phu trach = Nguoi Tao x
+Bac si phu trach x 
+Da xong x
+--Nguoi giai quyet = Nguoi ket luan
+Nguon
+
+
 
