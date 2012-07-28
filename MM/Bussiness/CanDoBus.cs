@@ -21,17 +21,17 @@ namespace MM.Bussiness
             {
                 string query = string.Empty;
 
-                if (Global.StaffType != StaffType.DieuDuong)
+                //if (Global.StaffType != StaffType.DieuDuong)
                 {
                     query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, 'R(P): ' + MatPhai + '; L(T): ' + MatTrai + '; ' + CASE HieuChinh WHEN 'True' THEN N'Hiệu chỉnh' ELSE N'Không hiệu chỉnh' END AS ThiLuc FROM CanDoView WHERE Status = {0} AND NgayCanDo BETWEEN '{1}' AND '{2}' AND PatientGUID = '{3}' AND Archived = 'False' ORDER BY NgayCanDo DESC",
                             (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), patientGUID);
                 }
-                else
-                {
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, 'R(P): ' + MatPhai + '; L(T): ' + MatTrai + '; ' + CASE HieuChinh WHEN 'True' THEN N'Hiệu chỉnh' ELSE N'Không hiệu chỉnh' END AS ThiLuc FROM CanDoView WHERE Status = {0} AND NgayCanDo BETWEEN '{1}' AND '{2}' AND PatientGUID = '{3}' AND Archived = 'False' AND DocStaffGUID = '{4}' ORDER BY NgayCanDo DESC",
-                            (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), patientGUID,
-                            Global.UserGUID);
-                }
+                //else
+                //{
+                //    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, 'R(P): ' + MatPhai + '; L(T): ' + MatTrai + '; ' + CASE HieuChinh WHEN 'True' THEN N'Hiệu chỉnh' ELSE N'Không hiệu chỉnh' END AS ThiLuc FROM CanDoView WHERE Status = {0} AND NgayCanDo BETWEEN '{1}' AND '{2}' AND PatientGUID = '{3}' AND Archived = 'False' AND DocStaffGUID = '{4}' ORDER BY NgayCanDo DESC",
+                //            (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), patientGUID,
+                //            Global.UserGUID);
+                //}
 
                 return ExcuteQuery(query);
             }
