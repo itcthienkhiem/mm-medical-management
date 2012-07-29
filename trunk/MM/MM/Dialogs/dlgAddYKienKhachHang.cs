@@ -87,6 +87,9 @@ namespace MM.Dialogs
                 txtYeuCau.Text = drYKienKhachHang["YeuCau"] as string;
                 cboNguon.Text = drYKienKhachHang["Nguon"] as string;
 
+                if (drYKienKhachHang["KetLuan"] != null && drYKienKhachHang["KetLuan"] != DBNull.Value)
+                    txtHuongGiaiQuyet.Text = drYKienKhachHang["KetLuan"].ToString();
+
                 if (drYKienKhachHang["BacSiPhuTrachGUID"] != null && drYKienKhachHang["BacSiPhuTrachGUID"] != DBNull.Value)
                     cboDocStaff.SelectedValue = drYKienKhachHang["BacSiPhuTrachGUID"].ToString();
 
@@ -218,6 +221,7 @@ namespace MM.Dialogs
                     _yKienKhachHang.Note = string.Empty;
                     _yKienKhachHang.BacSiPhuTrachGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
                     _yKienKhachHang.DaXong = chkDaXong.Checked;
+                    _yKienKhachHang.KetLuan = txtHuongGiaiQuyet.Text;
 
                     Result result = YKienKhachHangBus.InsertYKienKhachHang(_yKienKhachHang);
                     if (!result.IsOK)

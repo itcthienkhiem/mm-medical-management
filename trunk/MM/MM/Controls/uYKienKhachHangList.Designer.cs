@@ -62,7 +62,6 @@
             this.soDienThoaiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yeuCauDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colButtonKetLuan = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
             this.KetLuan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BacSiPhuTrach = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -312,7 +311,6 @@
             this.soDienThoaiDataGridViewTextBoxColumn,
             this.diaChiDataGridViewTextBoxColumn,
             this.yeuCauDataGridViewTextBoxColumn,
-            this.colButtonKetLuan,
             this.KetLuan,
             this.NguoiTao,
             this.BacSiPhuTrach,
@@ -415,15 +413,6 @@
             this.yeuCauDataGridViewTextBoxColumn.Name = "yeuCauDataGridViewTextBoxColumn";
             this.yeuCauDataGridViewTextBoxColumn.ReadOnly = true;
             this.yeuCauDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // colButtonKetLuan
-            // 
-            this.colButtonKetLuan.HeaderText = "";
-            this.colButtonKetLuan.Name = "colButtonKetLuan";
-            this.colButtonKetLuan.ReadOnly = true;
-            this.colButtonKetLuan.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colButtonKetLuan.Text = "Hướng giải quyết";
-            this.colButtonKetLuan.UseColumnTextForButtonValue = true;
             // 
             // KetLuan
             // 
@@ -535,7 +524,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn soDienThoaiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn yeuCauDataGridViewTextBoxColumn;
-        private DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn colButtonKetLuan;
         private System.Windows.Forms.DataGridViewTextBoxColumn KetLuan;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
         private System.Windows.Forms.DataGridViewTextBoxColumn BacSiPhuTrach;
