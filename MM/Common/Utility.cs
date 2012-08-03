@@ -1044,6 +1044,21 @@ namespace MM.Common
                     case "Danh sách dịch vụ xuất phiếu thu":
                         fileName = string.Format("{0}\\Templates\\DanhSachDichVuXuatPhieuThuTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
                         break;
+
+                    case "Danh sách dịch vụ":
+                        if (Global.AllowShowServiePrice)
+                            fileName = string.Format("{0}\\Templates\\DanhSachDichVuCoGiaTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        else
+                            fileName = string.Format("{0}\\Templates\\DanhSachDichVuKhongGiaTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
+
+                    case "Danh sách nhân viên":
+                        fileName = string.Format("{0}\\Templates\\DanhSachNhanVienTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
+
+                    case "Danh sách thuốc":
+                        fileName = string.Format("{0}\\Templates\\DanhSachThuocTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
                 }
 
                 if (fileName != string.Empty && File.Exists(fileName))

@@ -111,5 +111,8 @@ namespace MM.Common
         public static string KetQuaXetNghiemCellDyn3200Template = "Kết quả xét nghiệm CellDyn3200";
         public static string KetQuaXetNghiemSinhHoaTemplate = "Kết quả xét nghiệm sinh hóa";
         public static string DanhSachDichVuXuatPhieuThuTemplate = "Danh sách dịch vụ xuất phiếu thu";
+        public static string DanhSachDichVuTemplate = "Danh sách dịch vụ";
+        public static string DanhSachThuocTemplate = "Danh sách thuốc";
+        public static string DanhSachNhanVienTemplate = "Danh sách nhân viên";
     }
 }

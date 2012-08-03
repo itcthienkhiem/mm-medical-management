@@ -5806,5 +5806,302 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportDanhSachNhanVienToExcel(string exportFileName, List<DataRow> checkedRows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\DanhSachNhanVienTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                int stt = 1;
+
+                foreach (DataRow row in checkedRows)
+                {
+                    string tenNhanVien = row["FullName"].ToString();
+                    
+                    string ngaySinh = row["DobStr"].ToString();
+                    string gioiTinh = row["GenderAsStr"].ToString();
+                    string cmnd = string.Empty;
+                    if (row["IdentityCard"] != null && row["IdentityCard"] != DBNull.Value)
+                        cmnd = row["IdentityCard"].ToString();
+
+                    string diaChi = string.Empty;
+                    if (row["Address"] != null && row["Address"] != DBNull.Value)
+                        diaChi = row["Address"].ToString();
+
+                    string homePhone = string.Empty;
+                    if (row["HomePhone"] != null && row["HomePhone"] != DBNull.Value)
+                        homePhone = row["HomePhone"].ToString();
+
+                    string workPhone = string.Empty;
+                    if (row["WorkPhone"] != null && row["WorkPhone"] != DBNull.Value)
+                        workPhone = row["HomePhone"].ToString();
+
+                    string mobile = string.Empty;
+                    if (row["Mobile"] != null && row["Mobile"] != DBNull.Value)
+                        mobile = row["Mobile"].ToString();
+
+                    string email = string.Empty;
+                    if (row["Email"] != null && row["Email"] != DBNull.Value)
+                        email = row["Email"].ToString();
+
+                    workSheet.Cells[rowIndex, 0].Value = tenNhanVien;
+                    workSheet.Cells[rowIndex, 1].Value = diaChi;
+                    workSheet.Cells[rowIndex, 2].Value = ngaySinh;
+                    workSheet.Cells[rowIndex, 3].Value = gioiTinh;
+                    workSheet.Cells[rowIndex, 4].Value = cmnd;
+                    workSheet.Cells[rowIndex, 5].Value = homePhone;
+                    workSheet.Cells[rowIndex, 6].Value = workPhone;
+                    workSheet.Cells[rowIndex, 7].Value = mobile;
+                    workSheet.Cells[rowIndex, 8].Value = email;
+                    rowIndex++;
+                    stt++;
+                }
+
+                IRange range = workSheet.Cells[string.Format("A3:I{0}", checkedRows.Count + 2)];
+                range.WrapText = false;
+                range.HorizontalAlignment = HAlign.General;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                range = workSheet.Cells[string.Format("A3:A{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+
+                range = workSheet.Cells[string.Format("B3:B{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+
+                range = workSheet.Cells[string.Format("C3:H{0}", checkedRows.Count + 2)];
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+
+                range = workSheet.Cells[string.Format("I3:I{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportDanhSachThuocToExcel(string exportFileName, List<DataRow> checkedRows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\DanhSachThuocTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                int stt = 1;
+
+                foreach (DataRow row in checkedRows)
+                {
+                    string maThuoc = string.Empty;
+                    if (row["MaThuoc"] != null && row["MaThuoc"] != DBNull.Value)
+                        maThuoc = row["MaThuoc"].ToString();
+
+                    string tenThuoc = row["TenThuoc"].ToString();
+
+                    string hamLuong = string.Empty;
+                    if (row["HamLuong"] != null && row["HamLuong"] != DBNull.Value)
+                        hamLuong = row["HamLuong"].ToString();
+
+                    string dvt = string.Empty;
+                    if (row["DonViTinh"] != null && row["DonViTinh"] != DBNull.Value)
+                        dvt = row["DonViTinh"].ToString();
+
+                    string ghiChu = string.Empty;
+                    if (row["Note"] != null && row["Note"] != DBNull.Value)
+                        ghiChu = row["Note"].ToString();
+
+                    workSheet.Cells[rowIndex, 0].Value = maThuoc;
+                    workSheet.Cells[rowIndex, 1].Value = tenThuoc;
+                    workSheet.Cells[rowIndex, 2].Value = hamLuong;
+                    workSheet.Cells[rowIndex, 3].Value = dvt;
+                    workSheet.Cells[rowIndex, 4].Value = ghiChu;
+                    rowIndex++;
+                    stt++;
+                }
+
+                IRange range = workSheet.Cells[string.Format("A3:E{0}", checkedRows.Count + 2)];
+                range.WrapText = false;
+                range.HorizontalAlignment = HAlign.General;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                range = workSheet.Cells[string.Format("A3:A{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+
+                range = workSheet.Cells[string.Format("B3:B{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+
+                range = workSheet.Cells[string.Format("C3:D{0}", checkedRows.Count + 2)];
+                range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Top;
+
+                range = workSheet.Cells[string.Format("E3:E{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportDanhSachDichVuToExcel(string exportFileName, List<DataRow> checkedRows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\DanhSachDichVuCoGiaTemplate.xls", Application.StartupPath);
+            if (!Global.AllowShowServiePrice) 
+                excelTemplateName = string.Format("{0}\\Templates\\DanhSachDichVuKhongGiaTemplate.xls", Application.StartupPath);
+
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                int stt = 1;
+
+                foreach (DataRow row in checkedRows)
+                {
+                    string maDichVu = string.Empty;
+                    if (row["Code"] != null && row["Code"] != DBNull.Value)
+                        maDichVu = row["Code"].ToString();
+
+                    string tenDichVu = row["Name"].ToString();
+
+                    int gia = Convert.ToInt32(row["Price"]);
+
+                    string loaiDichVu = string.Empty;
+                    if (row["TypeStr"] != null && row["TypeStr"] != DBNull.Value)
+                        loaiDichVu = row["TypeStr"].ToString();
+
+                    string nhomThucHien = string.Empty;
+                    if (row["StaffTypeStr"] != null && row["StaffTypeStr"] != DBNull.Value)
+                        nhomThucHien = row["StaffTypeStr"].ToString();
+
+                    workSheet.Cells[rowIndex, 0].Value = maDichVu;
+                    workSheet.Cells[rowIndex, 1].Value = tenDichVu;
+                    if (Global.AllowShowServiePrice)
+                    {
+                        workSheet.Cells[rowIndex, 2].Value = gia;
+                        workSheet.Cells[rowIndex, 3].Value = loaiDichVu;
+                        workSheet.Cells[rowIndex, 4].Value = nhomThucHien;
+                    }
+                    else
+                    {
+                        workSheet.Cells[rowIndex, 2].Value = loaiDichVu;
+                        workSheet.Cells[rowIndex, 3].Value = nhomThucHien;
+                    }
+                    
+                    rowIndex++;
+                    stt++;
+                }
+
+                IRange range = null;
+                if (Global.AllowShowServiePrice)
+                    range = workSheet.Cells[string.Format("A3:E{0}", checkedRows.Count + 2)];
+                else
+                    range = workSheet.Cells[string.Format("A3:D{0}", checkedRows.Count + 2)];
+
+                range.WrapText = false;
+                range.HorizontalAlignment = HAlign.General;
+                range.VerticalAlignment = VAlign.Top;
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                range = workSheet.Cells[string.Format("A3:A{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+
+                range = workSheet.Cells[string.Format("B3:B{0}", checkedRows.Count + 2)];
+                range.WrapText = true;
+
+                if (Global.AllowShowServiePrice)
+                {
+                    range = workSheet.Cells[string.Format("C3:C{0}", checkedRows.Count + 2)];
+                    range.HorizontalAlignment = HAlign.Right;
+                    range.VerticalAlignment = VAlign.Top;
+
+                    range = workSheet.Cells[string.Format("D3:E{0}", checkedRows.Count + 2)];
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.VerticalAlignment = VAlign.Top;
+                }
+                else
+                {
+                    range = workSheet.Cells[string.Format("C3:D{0}", checkedRows.Count + 2)];
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.VerticalAlignment = VAlign.Top;
+                }
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
