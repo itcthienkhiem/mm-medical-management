@@ -11,6 +11,7 @@ using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -84,6 +85,7 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+            btnExportExcel.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -326,6 +328,32 @@ namespace MM.Controls
 
             dgThuoc.DataSource = newDataSource;
         }
+
+        private void OnExportExcel()
+        {
+            if (_dataSource == null) return;
+            UpdateChecked();
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = _dataSource;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    checkedRows.Add(row);
+            }
+
+            if (checkedRows.Count <= 0)
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thuốc cần xuất excel.", IconType.Information);
+            else
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Title = "Export Excel";
+                dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    ExportExcel.ExportDanhSachThuocToExcel(dlg.FileName, checkedRows);
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -400,6 +428,11 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -421,6 +454,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
        
     }
