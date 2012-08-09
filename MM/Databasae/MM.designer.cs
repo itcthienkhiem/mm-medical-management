@@ -61782,15 +61782,15 @@ namespace MM.Databasae
 		
 		private System.Nullable<System.DateTime> _CreatedDate;
 		
-		private System.Nullable<System.Guid> _CreatedGUID;
+		private System.Nullable<System.Guid> _CreatedBy;
 		
 		private System.Nullable<System.DateTime> _UpdatedDate;
 		
-		private System.Nullable<System.Guid> _UpdatedGUID;
+		private System.Nullable<System.Guid> _UpdatedBy;
 		
 		private System.Nullable<System.DateTime> _DeletedDate;
 		
-		private System.Nullable<System.Guid> _DeletedGUID;
+		private System.Nullable<System.Guid> _DeletedBy;
 		
 		private byte _Status;
 		
@@ -61812,16 +61812,16 @@ namespace MM.Databasae
     partial void OnLan3Changed();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedDateChanged();
-    partial void OnCreatedGUIDChanging(System.Nullable<System.Guid> value);
-    partial void OnCreatedGUIDChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
     partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnUpdatedDateChanged();
-    partial void OnUpdatedGUIDChanging(System.Nullable<System.Guid> value);
-    partial void OnUpdatedGUIDChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
     partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnDeletedDateChanged();
-    partial void OnDeletedGUIDChanging(System.Nullable<System.Guid> value);
-    partial void OnDeletedGUIDChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
     partial void OnStatusChanging(byte value);
     partial void OnStatusChanged();
     #endregion
@@ -61956,22 +61956,22 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedGUID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
 		{
 			get
 			{
-				return this._CreatedGUID;
+				return this._CreatedBy;
 			}
 			set
 			{
-				if ((this._CreatedGUID != value))
+				if ((this._CreatedBy != value))
 				{
-					this.OnCreatedGUIDChanging(value);
+					this.OnCreatedByChanging(value);
 					this.SendPropertyChanging();
-					this._CreatedGUID = value;
-					this.SendPropertyChanged("CreatedGUID");
-					this.OnCreatedGUIDChanged();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
 				}
 			}
 		}
@@ -61996,22 +61996,22 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedGUID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
 		{
 			get
 			{
-				return this._UpdatedGUID;
+				return this._UpdatedBy;
 			}
 			set
 			{
-				if ((this._UpdatedGUID != value))
+				if ((this._UpdatedBy != value))
 				{
-					this.OnUpdatedGUIDChanging(value);
+					this.OnUpdatedByChanging(value);
 					this.SendPropertyChanging();
-					this._UpdatedGUID = value;
-					this.SendPropertyChanged("UpdatedGUID");
-					this.OnUpdatedGUIDChanged();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
 				}
 			}
 		}
@@ -62036,22 +62036,22 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedGUID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
 		{
 			get
 			{
-				return this._DeletedGUID;
+				return this._DeletedBy;
 			}
 			set
 			{
-				if ((this._DeletedGUID != value))
+				if ((this._DeletedBy != value))
 				{
-					this.OnDeletedGUIDChanging(value);
+					this.OnDeletedByChanging(value);
 					this.SendPropertyChanging();
-					this._DeletedGUID = value;
-					this.SendPropertyChanged("DeletedGUID");
-					this.OnDeletedGUIDChanged();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
 				}
 			}
 		}
@@ -62147,15 +62147,9 @@ namespace MM.Databasae
 		
 		private System.Nullable<System.DateTime> _CreatedDate;
 		
-		private System.Nullable<System.Guid> _CreatedGUID;
-		
 		private System.Nullable<System.DateTime> _UpdatedDate;
 		
-		private System.Nullable<System.Guid> _UpdatedGUID;
-		
 		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedGUID;
 		
 		private byte _Status;
 		
@@ -62180,6 +62174,12 @@ namespace MM.Databasae
 		private string _HomePhone;
 		
 		private string _Email;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
 		
 		public TiemNguaView()
 		{
@@ -62281,22 +62281,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedGUID
-		{
-			get
-			{
-				return this._CreatedGUID;
-			}
-			set
-			{
-				if ((this._CreatedGUID != value))
-				{
-					this._CreatedGUID = value;
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
 		public System.Nullable<System.DateTime> UpdatedDate
 		{
@@ -62313,22 +62297,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedGUID
-		{
-			get
-			{
-				return this._UpdatedGUID;
-			}
-			set
-			{
-				if ((this._UpdatedGUID != value))
-				{
-					this._UpdatedGUID = value;
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
 		public System.Nullable<System.DateTime> DeletedDate
 		{
@@ -62341,22 +62309,6 @@ namespace MM.Databasae
 				if ((this._DeletedDate != value))
 				{
 					this._DeletedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedGUID", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedGUID
-		{
-			get
-			{
-				return this._DeletedGUID;
-			}
-			set
-			{
-				if ((this._DeletedGUID != value))
-				{
-					this._DeletedGUID = value;
 				}
 			}
 		}
@@ -62549,6 +62501,54 @@ namespace MM.Databasae
 				if ((this._Email != value))
 				{
 					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this._UpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this._DeletedBy = value;
 				}
 			}
 		}
