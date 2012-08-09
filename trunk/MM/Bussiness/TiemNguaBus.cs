@@ -12,6 +12,255 @@ namespace MM.Bussiness
 {
     public class TiemNguaBus : BusBase
     {
+        public static Result GetDanhSachTiemNguaList(string tenBenhNhan, bool isMaBenhNhan)
+        {
+            Result result = new Result();
 
+            try
+            {
+                string query = string.Empty;
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    query = string.Format("SELECT * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} ORDER BY FullName", (byte)Status.Actived);
+                }
+                else
+                {
+                    if (!isMaBenhNhan)
+                    {
+                        query = string.Format("SELECT * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND FullName LIKE N'%{1}%' ORDER BY FullName", 
+                            (byte)Status.Actived, tenBenhNhan);
+                    }
+                    else
+                    {
+                        query = string.Format("SELECT * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND FileNum LIKE N'%{1}%' ORDER BY FullName",
+                            (byte)Status.Actived, tenBenhNhan);
+                    }
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result CheckAlert()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT TOP 1 * FROM TiemNgua WHERE Status = {0} AND ((Lan1 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan1) >= 0 AND DATEDIFF(day, GetDate(), Lan1) <= {1}) OR (Lan2 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan2) >= 0 AND DATEDIFF(day, GetDate(), Lan2) <= {1}) OR (Lan3 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan3) >= 0 AND DATEDIFF(day, GetDate(), Lan3) <= {1}))",
+                    (byte)Status.Actived, Global.AlertDays);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result DeleteTiemNgua(List<string> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    string desc = string.Empty;
+                    foreach (string key in keys)
+                    {
+                        TiemNgua s = db.TiemNguas.SingleOrDefault<TiemNgua>(ss => ss.TiemNguaGUID.ToString() == key);
+                        if (s != null)
+                        {
+                            s.DeletedDate = DateTime.Now;
+                            s.DeletedBy = Guid.Parse(Global.UserGUID);
+                            s.Status = (byte)Status.Deactived;
+
+                            string lan1 = string.Empty;
+                            if (s.Lan1.HasValue) lan1 = s.Lan1.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            string lan2 = string.Empty;
+                            if (s.Lan2.HasValue) lan2 = s.Lan2.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            string lan3 = string.Empty;
+                            if (s.Lan3.HasValue) lan3 = s.Lan3.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            desc += string.Format("- GUID: '{0}', Tên bệnh nhân: '{1}', Ngày sinh: '{2}', Số điện thoại: '{3}', Lần 1: '{4}', Lần 2: '{5}', Lần 3: '{6}'\n",
+                                s.TiemNguaGUID, s.Patient.Contact.FullName, s.Patient.Contact.DobStr, s.Patient.Contact.Mobile, lan1, lan2, lan3);
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa thông tin tiêm ngừa";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result InsertTiemNgua(TiemNgua tiemNgua)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    //Insert
+                    if (tiemNgua.TiemNguaGUID == null || tiemNgua.TiemNguaGUID == Guid.Empty)
+                    {
+                        tiemNgua.TiemNguaGUID = Guid.NewGuid();
+                        db.TiemNguas.InsertOnSubmit(tiemNgua);
+                        db.SubmitChanges();
+
+                        //Tracking
+                        string lan1 = string.Empty;
+                        if (tiemNgua.Lan1.HasValue) lan1 = tiemNgua.Lan1.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                        string lan2 = string.Empty;
+                        if (tiemNgua.Lan2.HasValue) lan2 = tiemNgua.Lan2.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                        string lan3 = string.Empty;
+                        if (tiemNgua.Lan3.HasValue) lan3 = tiemNgua.Lan3.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                        desc += string.Format("- GUID: '{0}', Tên bệnh nhân: '{1}', Ngày sinh: '{2}', Số điện thoại: '{3}', Lần 1: '{4}', Lần 2: '{5}', Lần 3: '{6}'",
+                            tiemNgua.TiemNguaGUID, tiemNgua.Patient.Contact.FullName, tiemNgua.Patient.Contact.DobStr, tiemNgua.Patient.Contact.Mobile, lan1, lan2, lan3);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin tiêm ngừa";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+                    else //Update
+                    {
+                        TiemNgua srv = db.TiemNguas.SingleOrDefault<TiemNgua>(s => s.TiemNguaGUID.ToString() == tiemNgua.TiemNguaGUID.ToString());
+                        if (srv != null)
+                        {
+                            srv.PatientGUID = tiemNgua.PatientGUID;
+                            srv.Lan1 = tiemNgua.Lan1;
+                            srv.Lan2 = tiemNgua.Lan2;
+                            srv.Lan3 = tiemNgua.Lan3;
+                            srv.CreatedDate = tiemNgua.CreatedDate;
+                            srv.CreatedBy = tiemNgua.CreatedBy;
+                            srv.UpdatedDate = tiemNgua.UpdatedDate;
+                            srv.UpdatedBy = tiemNgua.UpdatedBy;
+                            srv.DeletedDate = tiemNgua.DeletedDate;
+                            srv.DeletedBy = tiemNgua.DeletedBy;
+                            srv.Status = tiemNgua.Status;
+
+                            //Tracking
+                            string lan1 = string.Empty;
+                            if (srv.Lan1.HasValue) lan1 = srv.Lan1.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            string lan2 = string.Empty;
+                            if (srv.Lan2.HasValue) lan2 = srv.Lan2.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            string lan3 = string.Empty;
+                            if (srv.Lan3.HasValue) lan3 = srv.Lan3.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            desc += string.Format("- GUID: '{0}', Tên bệnh nhân: '{1}', Ngày sinh: '{2}', Số điện thoại: '{3}', Lần 1: '{4}', Lần 2: '{5}', Lần 3: '{6}'",
+                                srv.TiemNguaGUID, srv.Patient.Contact.FullName, srv.Patient.Contact.DobStr, srv.Patient.Contact.Mobile, lan1, lan2, lan3);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin tiêm ngừa";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+
+                            db.SubmitChanges();
+                        }
+                    }
+
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }
