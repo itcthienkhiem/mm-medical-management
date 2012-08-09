@@ -125,6 +125,7 @@
     <Compile Include="SpecialityBus.cs" />
     <Compile Include="SymptomBus.cs" />
     <Compile Include="ThuocBus.cs" />
+    <Compile Include="TiemNguaBus.cs" />
     <Compile Include="TrackingBus.cs" />
     <Compile Include="UserBus.cs" />
     <Compile Include="XetNghiemTayBus.cs" />

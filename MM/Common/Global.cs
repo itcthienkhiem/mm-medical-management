@@ -14,6 +14,7 @@ namespace MM.Common
         public static string FTPFolder = "domains/healthcare.com.vn/public_html/report/images/";
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static FTPConnectionInfo FTPConnectionInfo = new FTPConnectionInfo();
+        public static int AlertDays = 3;
         public static string UserGUID = string.Empty;
         public static string LogonGUID = string.Empty;
         public static string Fullname = string.Empty;

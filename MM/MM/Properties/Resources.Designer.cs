@@ -417,6 +417,20 @@ namespace MM.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap email_alert_icon {
+            get {
+                object obj = ResourceManager.GetObject("email_alert_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap email_alert_icon__2_ {
+            get {
+                object obj = ResourceManager.GetObject("email_alert_icon__2_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap event_search_icon {
             get {
                 object obj = ResourceManager.GetObject("event_search_icon", resourceCulture);

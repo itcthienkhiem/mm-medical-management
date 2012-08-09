@@ -481,4 +481,10 @@
   <data name="WhiteImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WhiteImage.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="email_alert_icon__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\email-alert-icon (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="email_alert_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\email-alert-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -261,10 +261,13 @@ namespace MM.Databasae
     partial void InsertYKienKhachHang(YKienKhachHang instance);
     partial void UpdateYKienKhachHang(YKienKhachHang instance);
     partial void DeleteYKienKhachHang(YKienKhachHang instance);
+    partial void InsertTiemNgua(TiemNgua instance);
+    partial void UpdateTiemNgua(TiemNgua instance);
+    partial void DeleteTiemNgua(TiemNgua instance);
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString5, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1314,6 +1317,22 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<YKienKhachHangView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TiemNgua> TiemNguas
+		{
+			get
+			{
+				return this.GetTable<TiemNgua>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TiemNguaView> TiemNguaViews
+		{
+			get
+			{
+				return this.GetTable<TiemNguaView>();
 			}
 		}
 		
@@ -4373,6 +4392,8 @@ namespace MM.Databasae
 		
 		private EntitySet<YKienKhachHang> _YKienKhachHangs;
 		
+		private EntitySet<TiemNgua> _TiemNguas;
+		
 		private EntityRef<Contact> _Contact;
 		
     #region Extensibility Method Definitions
@@ -4421,6 +4442,7 @@ namespace MM.Databasae
 			this._BenhNhanThanThuocs = new EntitySet<BenhNhanThanThuoc>(new Action<BenhNhanThanThuoc>(this.attach_BenhNhanThanThuocs), new Action<BenhNhanThanThuoc>(this.detach_BenhNhanThanThuocs));
 			this._KetQuaSieuAms = new EntitySet<KetQuaSieuAm>(new Action<KetQuaSieuAm>(this.attach_KetQuaSieuAms), new Action<KetQuaSieuAm>(this.detach_KetQuaSieuAms));
 			this._YKienKhachHangs = new EntitySet<YKienKhachHang>(new Action<YKienKhachHang>(this.attach_YKienKhachHangs), new Action<YKienKhachHang>(this.detach_YKienKhachHangs));
+			this._TiemNguas = new EntitySet<TiemNgua>(new Action<TiemNgua>(this.attach_TiemNguas), new Action<TiemNgua>(this.detach_TiemNguas));
 			this._Contact = default(EntityRef<Contact>);
 			OnCreated();
 		}
@@ -4857,6 +4879,19 @@ namespace MM.Databasae
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_TiemNgua", Storage="_TiemNguas", ThisKey="PatientGUID", OtherKey="PatientGUID")]
+		public EntitySet<TiemNgua> TiemNguas
+		{
+			get
+			{
+				return this._TiemNguas;
+			}
+			set
+			{
+				this._TiemNguas.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_Patient", Storage="_Contact", ThisKey="ContactGUID", OtherKey="ContactGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Contact Contact
 		{
@@ -5098,6 +5133,18 @@ namespace MM.Databasae
 		}
 		
 		private void detach_YKienKhachHangs(YKienKhachHang entity)
+		{
+			this.SendPropertyChanging();
+			entity.Patient = null;
+		}
+		
+		private void attach_TiemNguas(TiemNgua entity)
+		{
+			this.SendPropertyChanging();
+			entity.Patient = this;
+		}
+		
+		private void detach_TiemNguas(TiemNgua entity)
 		{
 			this.SendPropertyChanging();
 			entity.Patient = null;
@@ -61712,6 +61759,796 @@ namespace MM.Databasae
 				if ((this._DaXongStr != value))
 				{
 					this._DaXongStr = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TiemNgua")]
+	public partial class TiemNgua : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _TiemNguaGUID;
+		
+		private System.Guid _PatientGUID;
+		
+		private System.Nullable<System.DateTime> _Lan1;
+		
+		private System.Nullable<System.DateTime> _Lan2;
+		
+		private System.Nullable<System.DateTime> _Lan3;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedGUID;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedGUID;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedGUID;
+		
+		private byte _Status;
+		
+		private EntityRef<Patient> _Patient;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTiemNguaGUIDChanging(System.Guid value);
+    partial void OnTiemNguaGUIDChanged();
+    partial void OnPatientGUIDChanging(System.Guid value);
+    partial void OnPatientGUIDChanged();
+    partial void OnLan1Changing(System.Nullable<System.DateTime> value);
+    partial void OnLan1Changed();
+    partial void OnLan2Changing(System.Nullable<System.DateTime> value);
+    partial void OnLan2Changed();
+    partial void OnLan3Changing(System.Nullable<System.DateTime> value);
+    partial void OnLan3Changed();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedGUIDChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedGUIDChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedGUIDChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedGUIDChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedGUIDChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedGUIDChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public TiemNgua()
+		{
+			this._Patient = default(EntityRef<Patient>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TiemNguaGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid TiemNguaGUID
+		{
+			get
+			{
+				return this._TiemNguaGUID;
+			}
+			set
+			{
+				if ((this._TiemNguaGUID != value))
+				{
+					this.OnTiemNguaGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._TiemNguaGUID = value;
+					this.SendPropertyChanged("TiemNguaGUID");
+					this.OnTiemNguaGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PatientGUID
+		{
+			get
+			{
+				return this._PatientGUID;
+			}
+			set
+			{
+				if ((this._PatientGUID != value))
+				{
+					if (this._Patient.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPatientGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._PatientGUID = value;
+					this.SendPropertyChanged("PatientGUID");
+					this.OnPatientGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lan1", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Lan1
+		{
+			get
+			{
+				return this._Lan1;
+			}
+			set
+			{
+				if ((this._Lan1 != value))
+				{
+					this.OnLan1Changing(value);
+					this.SendPropertyChanging();
+					this._Lan1 = value;
+					this.SendPropertyChanged("Lan1");
+					this.OnLan1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lan2", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Lan2
+		{
+			get
+			{
+				return this._Lan2;
+			}
+			set
+			{
+				if ((this._Lan2 != value))
+				{
+					this.OnLan2Changing(value);
+					this.SendPropertyChanging();
+					this._Lan2 = value;
+					this.SendPropertyChanged("Lan2");
+					this.OnLan2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lan3", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Lan3
+		{
+			get
+			{
+				return this._Lan3;
+			}
+			set
+			{
+				if ((this._Lan3 != value))
+				{
+					this.OnLan3Changing(value);
+					this.SendPropertyChanging();
+					this._Lan3 = value;
+					this.SendPropertyChanged("Lan3");
+					this.OnLan3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedGUID
+		{
+			get
+			{
+				return this._CreatedGUID;
+			}
+			set
+			{
+				if ((this._CreatedGUID != value))
+				{
+					this.OnCreatedGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedGUID = value;
+					this.SendPropertyChanged("CreatedGUID");
+					this.OnCreatedGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedGUID
+		{
+			get
+			{
+				return this._UpdatedGUID;
+			}
+			set
+			{
+				if ((this._UpdatedGUID != value))
+				{
+					this.OnUpdatedGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedGUID = value;
+					this.SendPropertyChanged("UpdatedGUID");
+					this.OnUpdatedGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedGUID
+		{
+			get
+			{
+				return this._DeletedGUID;
+			}
+			set
+			{
+				if ((this._DeletedGUID != value))
+				{
+					this.OnDeletedGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedGUID = value;
+					this.SendPropertyChanged("DeletedGUID");
+					this.OnDeletedGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_TiemNgua", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Patient Patient
+		{
+			get
+			{
+				return this._Patient.Entity;
+			}
+			set
+			{
+				Patient previousValue = this._Patient.Entity;
+				if (((previousValue != value) 
+							|| (this._Patient.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Patient.Entity = null;
+						previousValue.TiemNguas.Remove(this);
+					}
+					this._Patient.Entity = value;
+					if ((value != null))
+					{
+						value.TiemNguas.Add(this);
+						this._PatientGUID = value.PatientGUID;
+					}
+					else
+					{
+						this._PatientGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TiemNguaView")]
+	public partial class TiemNguaView
+	{
+		
+		private System.Guid _TiemNguaGUID;
+		
+		private System.Guid _PatientGUID;
+		
+		private System.Nullable<System.DateTime> _Lan1;
+		
+		private System.Nullable<System.DateTime> _Lan2;
+		
+		private System.Nullable<System.DateTime> _Lan3;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedGUID;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedGUID;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedGUID;
+		
+		private byte _Status;
+		
+		private string _FullName;
+		
+		private string _DobStr;
+		
+		private string _GenderAsStr;
+		
+		private string _FileNum;
+		
+		private string _Address;
+		
+		private bool _Archived;
+		
+		private string _IdentityCard;
+		
+		private string _Mobile;
+		
+		private string _WorkPhone;
+		
+		private string _HomePhone;
+		
+		private string _Email;
+		
+		public TiemNguaView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TiemNguaGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid TiemNguaGUID
+		{
+			get
+			{
+				return this._TiemNguaGUID;
+			}
+			set
+			{
+				if ((this._TiemNguaGUID != value))
+				{
+					this._TiemNguaGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PatientGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PatientGUID
+		{
+			get
+			{
+				return this._PatientGUID;
+			}
+			set
+			{
+				if ((this._PatientGUID != value))
+				{
+					this._PatientGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lan1", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Lan1
+		{
+			get
+			{
+				return this._Lan1;
+			}
+			set
+			{
+				if ((this._Lan1 != value))
+				{
+					this._Lan1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lan2", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Lan2
+		{
+			get
+			{
+				return this._Lan2;
+			}
+			set
+			{
+				if ((this._Lan2 != value))
+				{
+					this._Lan2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lan3", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Lan3
+		{
+			get
+			{
+				return this._Lan3;
+			}
+			set
+			{
+				if ((this._Lan3 != value))
+				{
+					this._Lan3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedGUID
+		{
+			get
+			{
+				return this._CreatedGUID;
+			}
+			set
+			{
+				if ((this._CreatedGUID != value))
+				{
+					this._CreatedGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedGUID
+		{
+			get
+			{
+				return this._UpdatedGUID;
+			}
+			set
+			{
+				if ((this._UpdatedGUID != value))
+				{
+					this._UpdatedGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedGUID
+		{
+			get
+			{
+				return this._DeletedGUID;
+			}
+			set
+			{
+				if ((this._DeletedGUID != value))
+				{
+					this._DeletedGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DobStr", DbType="NVarChar(50)")]
+		public string DobStr
+		{
+			get
+			{
+				return this._DobStr;
+			}
+			set
+			{
+				if ((this._DobStr != value))
+				{
+					this._DobStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenderAsStr", DbType="NVarChar(3)")]
+		public string GenderAsStr
+		{
+			get
+			{
+				return this._GenderAsStr;
+			}
+			set
+			{
+				if ((this._GenderAsStr != value))
+				{
+					this._GenderAsStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FileNum", DbType="NVarChar(50)")]
+		public string FileNum
+		{
+			get
+			{
+				return this._FileNum;
+			}
+			set
+			{
+				if ((this._FileNum != value))
+				{
+					this._FileNum = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(255)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Archived", DbType="Bit NOT NULL")]
+		public bool Archived
+		{
+			get
+			{
+				return this._Archived;
+			}
+			set
+			{
+				if ((this._Archived != value))
+				{
+					this._Archived = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IdentityCard", DbType="NVarChar(15)")]
+		public string IdentityCard
+		{
+			get
+			{
+				return this._IdentityCard;
+			}
+			set
+			{
+				if ((this._IdentityCard != value))
+				{
+					this._IdentityCard = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mobile", DbType="NVarChar(50)")]
+		public string Mobile
+		{
+			get
+			{
+				return this._Mobile;
+			}
+			set
+			{
+				if ((this._Mobile != value))
+				{
+					this._Mobile = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkPhone", DbType="NVarChar(50)")]
+		public string WorkPhone
+		{
+			get
+			{
+				return this._WorkPhone;
+			}
+			set
+			{
+				if ((this._WorkPhone != value))
+				{
+					this._WorkPhone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HomePhone", DbType="NVarChar(50)")]
+		public string HomePhone
+		{
+			get
+			{
+				return this._HomePhone;
+			}
+			set
+			{
+				if ((this._HomePhone != value))
+				{
+					this._HomePhone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
 				}
 			}
 		}

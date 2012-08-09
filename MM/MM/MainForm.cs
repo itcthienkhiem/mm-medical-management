@@ -26,6 +26,7 @@ namespace MM
         private bool _flag = true;
         //private List<SerialPort> _ports = new List<SerialPort>();
         //private Hashtable _htLastResult = new Hashtable();
+        private bool _isAlert = false;
         #endregion
 
         #region Constructor
@@ -40,23 +41,39 @@ namespace MM
 
             Utility.CreateFolder(Global.UsersPath);
 
+            statusAlert.Image = null;
+
             //OpenCOMPort();
             //ParseTestResult_Hitachi917(string.Empty, "COM1");
             //ParseTestResult_CellDyn3200(string.Empty, "COM1");
-            //MySQLHelper.GetAllUsers();
-
-            DateTime dt = DateTime.Now.AddMonths(-10);
-            int m = DateTime.Now.Subtract(dt).Days;
-
-            //long c1 = DateTime.Now.ToFileTime();
-            //long c2 = dt.ToFileTime();
-            //long a = c1 - c2;
-            //long b = 25920000000000;
-            //a = a / b;
         }
         #endregion
 
         #region UI Command
+        private void StartTimerShowAlert()
+        {
+            _timer.Enabled = true;
+            _timer.Start();
+        }
+
+        private void StopTimerShowAlert()
+        {
+            _timer.Stop();
+            _timer.Enabled = false;
+        }
+
+        private void StartTimerCheckAlert()
+        {
+            _timerCheckAlert.Enabled = true;
+            _timerCheckAlert.Start();
+        }
+
+        private void StopTimerCheckAlert()
+        {
+            _timerCheckAlert.Stop();
+            _timerCheckAlert.Enabled = false;
+        }
+
         private void OnInitConfig()
         {
             MethodInvoker method = delegate
@@ -98,6 +115,9 @@ namespace MM
                         RijndaelCrypto crypto = new RijndaelCrypto();
                         Global.FTPConnectionInfo.Password = crypto.Decrypt(password);
                     }
+
+                    obj = Configuration.GetValues(Const.AlertDayKey);
+                    if (obj != null) Global.AlertDays = Convert.ToInt32(obj);
 
                     if (!Global.ConnectionInfo.TestConnection())
                     {
@@ -282,6 +302,9 @@ namespace MM
                 _uXetNghiem.InitData();
             else if (ctrl.GetType() == typeof(uLoaiSieuAmList))
                 _uLoaiSieuAmList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uTiemNguaList))
+                _uTiemNguaList.DisplayAsThread();
+                
         }
 
         private void SaveAppConfig()
@@ -298,6 +321,8 @@ namespace MM
             Configuration.SetValues(Const.FTPUserNameKey, Global.FTPConnectionInfo.Username);
             password = crypto.Encrypt(Global.FTPConnectionInfo.Password);
             Configuration.SetValues(Const.FTPPasswordKey, password);
+
+            Configuration.SetValues(Const.AlertDayKey, Global.AlertDays);
 
             Configuration.SaveData(Global.AppConfig);
         }
@@ -1085,6 +1110,18 @@ namespace MM
                             _uLoaiSieuAmList.AllowLock = isLock;
                             _uLoaiSieuAmList.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.TiemNgua)
+                        {
+                            tiemNguaToolStripMenuItem.Enabled = isView && isLogin;
+                            _uTiemNguaList.AllowAdd = isAdd;
+                            _uTiemNguaList.AllowEdit = isEdit;
+                            _uTiemNguaList.AllowDelete = isDelete;
+                            _uTiemNguaList.AllowPrint = isPrint;
+                            _uTiemNguaList.AllowExport = isExport;
+                            _uTiemNguaList.AllowImport = isImport;
+                            _uTiemNguaList.AllowLock = isLock;
+                            _uTiemNguaList.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1267,6 +1304,7 @@ namespace MM
                 thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Enabled = isLogin;
                 benhNhanThanThuocToolStripMenuItem.Enabled = isLogin;
                 loaiSieuAmToolStripMenuItem.Enabled = isLogin;
+                tiemNguaToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1549,7 +1587,28 @@ namespace MM
                 case "LoaiSieuAm":
                     OnLoaiSieuAm();
                     break;
+
+                case "TiemNgua":
+                    OnTiemNgua();
+                    break;
+
+                case "CauHinhSoNgayBaoTiemNgua":
+                    OnCauHinhSoNgayBaoTiemNgua();
+                    break;
             }
+        }
+
+        private void OnCauHinhSoNgayBaoTiemNgua()
+        {
+            dlgCauHinhSoNgayBaoTiemNgua dlg = new dlgCauHinhSoNgayBaoTiemNgua();
+            dlg.ShowDialog(this);
+        }
+
+        private void OnTiemNgua()
+        {
+            this.Text = string.Format("{0} - Tiem ngua", Application.ProductName);
+            ViewControl(_uTiemNguaList);
+            _uTiemNguaList.DisplayAsThread();
         }
 
         private void OnLoaiSieuAm()
@@ -2221,6 +2280,7 @@ namespace MM
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitConfigAsThread();
+            StartTimerCheckAlert();
 
             if (!System.Diagnostics.Debugger.IsAttached)
                 AutoDetectUpdateAsThread();
@@ -2231,7 +2291,11 @@ namespace MM
             if (_flag)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn thoát khỏi chương trình ?") == System.Windows.Forms.DialogResult.Yes)
+                {
                     SaveAppConfig();
+                    StopTimerShowAlert();
+                    StopTimerCheckAlert();
+                }
                 else
                     e.Cancel = true;
             }
@@ -2250,7 +2314,30 @@ namespace MM
             if (cmd == null || cmd == string.Empty) return;
             ExcuteCmd(cmd);
         }
-        
+
+        private void _timer_Tick(object sender, EventArgs e)
+        {
+            if (statusAlert.Image == null)
+            {
+                statusAlert.Image = Properties.Resources.email_alert_icon;
+                statusAlert.Text = "Tới thời hạn cần tiêm ngừa. Vui lòng kiểm tra lịch tiêm ngừa.";
+            }
+            else
+            {
+                statusAlert.Text = string.Empty;
+                statusAlert.Image = null;
+            }
+        }
+
+        private void _timerCheckAlert_Tick(object sender, EventArgs e)
+        {
+            int i = 0;
+        }
+
+        private void _mainStatus_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
         #endregion
 
         #region AutoUpdate
@@ -2369,8 +2456,6 @@ namespace MM
                 }
             }
         }
-
-        
         #endregion
 
         #region Working Thread
