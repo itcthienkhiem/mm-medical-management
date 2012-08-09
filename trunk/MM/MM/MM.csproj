@@ -114,6 +114,12 @@
     <Compile Include="Controls\uPrintKetQuaSieuAm.Designer.cs">
       <DependentUpon>uPrintKetQuaSieuAm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uTiemNguaList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uTiemNguaList.Designer.cs">
+      <DependentUpon>uTiemNguaList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uTimeRange.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -819,6 +825,12 @@
     <Compile Include="Dialogs\dlgAddDiaChiCongTy.Designer.cs">
       <DependentUpon>dlgAddDiaChiCongTy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgCauHinhSoNgayBaoTiemNgua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgCauHinhSoNgayBaoTiemNgua.Designer.cs">
+      <DependentUpon>dlgCauHinhSoNgayBaoTiemNgua.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgFTPConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1336,6 +1348,9 @@
     <EmbeddedResource Include="Controls\uPrintKetQuaSieuAm.resx">
       <DependentUpon>uPrintKetQuaSieuAm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uTiemNguaList.resx">
+      <DependentUpon>uTiemNguaList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTimeRange.resx">
       <DependentUpon>uTimeRange.cs</DependentUpon>
     </EmbeddedResource>
@@ -1623,6 +1638,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDiaChiCongTy.resx">
       <DependentUpon>dlgAddDiaChiCongTy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgCauHinhSoNgayBaoTiemNgua.resx">
+      <DependentUpon>dlgCauHinhSoNgayBaoTiemNgua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgFTPConfig.resx">
       <DependentUpon>dlgFTPConfig.cs</DependentUpon>
@@ -2079,6 +2097,9 @@
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
     <None Include="Resources\WhiteImage.PNG" />
+    <None Include="Resources\email-alert-icon %282%29.png" />
+    <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-08-09.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-28.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-17.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-07-14.sql" />
