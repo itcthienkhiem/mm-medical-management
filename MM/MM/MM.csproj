@@ -825,6 +825,12 @@
     <Compile Include="Dialogs\dlgAddDiaChiCongTy.Designer.cs">
       <DependentUpon>dlgAddDiaChiCongTy.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddTiemNgua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddTiemNgua.Designer.cs">
+      <DependentUpon>dlgAddTiemNgua.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgCauHinhSoNgayBaoTiemNgua.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1639,6 +1645,9 @@
     <EmbeddedResource Include="Dialogs\dlgAddDiaChiCongTy.resx">
       <DependentUpon>dlgAddDiaChiCongTy.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddTiemNgua.resx">
+      <DependentUpon>dlgAddTiemNgua.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgCauHinhSoNgayBaoTiemNgua.resx">
       <DependentUpon>dlgCauHinhSoNgayBaoTiemNgua.cs</DependentUpon>
     </EmbeddedResource>
@@ -1974,6 +1983,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ThuocResult.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.TiemNguaView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TrackingView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />

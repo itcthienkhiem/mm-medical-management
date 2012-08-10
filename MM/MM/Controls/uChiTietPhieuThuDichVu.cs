@@ -203,5 +203,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        private void raTenBenhNhan_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
