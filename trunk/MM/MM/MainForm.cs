@@ -26,7 +26,6 @@ namespace MM
         private bool _flag = true;
         //private List<SerialPort> _ports = new List<SerialPort>();
         //private Hashtable _htLastResult = new Hashtable();
-        private bool _isAlert = false;
         #endregion
 
         #region Constructor
@@ -2260,6 +2259,30 @@ namespace MM
             }
 
         }
+
+        private void OnCheckAlert()
+        {
+            Result result = TiemNguaBus.CheckAlert();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt == null || dt.Rows.Count <= 0)
+                {
+                    StopTimerShowAlert();
+                    statusAlert.Text = string.Empty;
+                    statusAlert.Image = null;
+                }
+                else
+                    StartTimerShowAlert();
+            }
+            else
+            {
+                Utility.WriteToTraceLog(result.GetErrorAsString("TiemNguaBus.CheckAlert"));
+                StopTimerShowAlert();
+                statusAlert.Text = string.Empty;
+                statusAlert.Image = null;
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -2280,6 +2303,7 @@ namespace MM
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitConfigAsThread();
+            OnCheckAlert();
             StartTimerCheckAlert();
 
             if (!System.Diagnostics.Debugger.IsAttached)
@@ -2331,12 +2355,12 @@ namespace MM
 
         private void _timerCheckAlert_Tick(object sender, EventArgs e)
         {
-            int i = 0;
+            OnCheckAlert();
         }
 
         private void _mainStatus_DoubleClick(object sender, EventArgs e)
         {
-            
+            if (_timer.Enabled) OnTiemNgua();
         }
         #endregion
 

@@ -12,28 +12,36 @@ namespace MM.Bussiness
 {
     public class TiemNguaBus : BusBase
     {
-        public static Result GetDanhSachTiemNguaList(string tenBenhNhan, bool isMaBenhNhan)
+        public static Result GetDanhSachTiemNguaList(bool isFromTuNgayDenNgay, DateTime tuNgay, DateTime denNgay, string tenBenhNhan, bool isMaBenhNhan)
         {
             Result result = new Result();
 
             try
             {
                 string query = string.Empty;
-                if (tenBenhNhan.Trim() == string.Empty)
+                if (isFromTuNgayDenNgay)
                 {
-                    query = string.Format("SELECT * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} ORDER BY FullName", (byte)Status.Actived);
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND ((Lan1 IS NOT NULL AND Lan1 BETWEEN '{1}' AND '{2}') OR (Lan2 IS NOT NULL AND Lan2 BETWEEN '{1}' AND '{2}') OR (Lan3 IS NOT NULL AND Lan3 BETWEEN '{1}' AND '{2}')) ORDER BY FullName",
+                        (byte)Status.Actived, tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"));
                 }
                 else
                 {
-                    if (!isMaBenhNhan)
+                    if (tenBenhNhan.Trim() == string.Empty)
                     {
-                        query = string.Format("SELECT * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND FullName LIKE N'%{1}%' ORDER BY FullName", 
-                            (byte)Status.Actived, tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} ORDER BY FullName", (byte)Status.Actived);
                     }
-                    else
+                    else //Bệnh nhân
                     {
-                        query = string.Format("SELECT * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND FileNum LIKE N'%{1}%' ORDER BY FullName",
-                            (byte)Status.Actived, tenBenhNhan);
+                        if (!isMaBenhNhan)
+                        {
+                            query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND FullName LIKE N'%{1}%' ORDER BY FullName",
+                                (byte)Status.Actived, tenBenhNhan);
+                        }
+                        else
+                        {
+                            query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND FileNum LIKE N'%{1}%' ORDER BY FullName",
+                                (byte)Status.Actived, tenBenhNhan);
+                        }
                     }
                 }
 
@@ -220,8 +228,10 @@ namespace MM.Bussiness
                             string lan3 = string.Empty;
                             if (srv.Lan3.HasValue) lan3 = srv.Lan3.Value.ToString("dd/MM/yyyy HH:mm:ss");
 
+                            PatientView patient = db.PatientViews.FirstOrDefault(p => p.PatientGUID == srv.PatientGUID);
+                            
                             desc += string.Format("- GUID: '{0}', Tên bệnh nhân: '{1}', Ngày sinh: '{2}', Số điện thoại: '{3}', Lần 1: '{4}', Lần 2: '{5}', Lần 3: '{6}'",
-                                srv.TiemNguaGUID, srv.Patient.Contact.FullName, srv.Patient.Contact.DobStr, srv.Patient.Contact.Mobile, lan1, lan2, lan3);
+                                srv.TiemNguaGUID, patient.FullName, patient.DobStr, patient.Mobile, lan1, lan2, lan3);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
