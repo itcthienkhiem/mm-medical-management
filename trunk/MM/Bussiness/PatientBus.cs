@@ -532,6 +532,7 @@ namespace MM.Bussiness
                                 p.LastSeenDocGUID = patient.LastSeenDocGUID;
                                 p.DateDeceased = patient.DateDeceased;
                                 p.LastVisitGUID = patient.LastVisitGUID;
+                                p.NgayKham = patient.NgayKham;
 
                                 string genderStr = string.Empty;
                                 if (ct.Gender == 0) genderStr = "Nam";

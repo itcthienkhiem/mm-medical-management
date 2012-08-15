@@ -61,6 +61,7 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
+            dtpkNgayKham.Value = DateTime.Now;
             cboGender.SelectedIndex = 0;
             tabPatient.SelectedTabIndex = 0;
         }
@@ -162,6 +163,12 @@ namespace MM.Dialogs
                 txtEmail.Text = drPatient["Email"] as string;
                 txtFax.Text = drPatient["Fax"] as string;
                 txtAddress.Text = drPatient["Address"] as string;
+
+                if (drPatient["NgayKham"] != null && drPatient["NgayKham"] != DBNull.Value)
+                {
+                    chkNgayKham.Checked = true;
+                    dtpkNgayKham.Value = Convert.ToDateTime(drPatient["NgayKham"]);
+                }
 
                 if (drPatient["CompanyName"] != null && drPatient["CompanyName"] != DBNull.Value)
                     txtTenCongTy.Text = drPatient["CompanyName"] as string;
@@ -338,6 +345,11 @@ namespace MM.Dialogs
                 {
                     _contact.Gender = (byte)cboGender.SelectedIndex;
 
+                    if (chkNgayKham.Checked)
+                        _patient.NgayKham = dtpkNgayKham.Value;
+                    else
+                        _patient.NgayKham = null;
+
                     //Patient History
                     _patientHistory.Dot_Quy = chkDotQuy.Checked;
                     _patientHistory.Benh_Tim_Mach = chkBenhTimMach.Checked;
@@ -493,6 +505,11 @@ namespace MM.Dialogs
                 }
             }
         }
+
+        private void chkNgayKham_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkNgayKham.Enabled = chkNgayKham.Checked;
+        }
         #endregion
 
         #region Working Thread
@@ -513,6 +530,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }

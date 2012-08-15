@@ -172,6 +172,9 @@ namespace MM.Controls
                 if (dlg.Contact.DeletedBy.HasValue)
                     newRow["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
 
+                if (dlg.Patient.NgayKham != null && dlg.Patient.NgayKham.HasValue)
+                    newRow["NgayKham"] = dlg.Patient.NgayKham.Value;
+
                 //Patient History
                 newRow["PatientHistoryGUID"] = dlg.PatientHistory.PatientHistoryGUID.ToString();
                 newRow["Di_Ung_Thuoc"] = dlg.PatientHistory.Di_Ung_Thuoc.Value;
@@ -280,6 +283,11 @@ namespace MM.Controls
                 drPatient["City"] = dlg.Contact.City;
                 drPatient["Occupation"] = dlg.Contact.Occupation;
                 drPatient["CompanyName"] = dlg.Contact.CompanyName;
+
+                if (dlg.Patient.NgayKham != null && dlg.Patient.NgayKham.HasValue)
+                    drPatient["NgayKham"] = dlg.Patient.NgayKham.Value;
+                else
+                    drPatient["NgayKham"] = DBNull.Value;
 
                 if (dlg.Contact.CreatedDate.HasValue)
                     drPatient["CreatedDate"] = dlg.Contact.CreatedDate;
