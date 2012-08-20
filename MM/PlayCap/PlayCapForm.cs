@@ -78,6 +78,13 @@ namespace PlayCap
             InitializeComponent();
             PlayCapFactory.PlayCapFact.OnCaptureEvent += new CaptureHandle(PlayCapFact_OnCaptureEvent);
         }
+
+        public PlayCapForm(bool isShowCapture)
+        {
+            InitializeComponent();
+            toolStrip1.Visible = isShowCapture;
+            PlayCapFactory.PlayCapFact.OnCaptureEvent += new CaptureHandle(PlayCapFact_OnCaptureEvent);
+        }
         #endregion
 
         #region Properties
@@ -124,6 +131,11 @@ namespace PlayCap
         private void PlayCapFact_OnCaptureEvent()
         {
             OnCapture();
+        }
+
+        private void videoPanel_SizeChanged(object sender, EventArgs e)
+        {
+            ResizeVideoWindow();
         }
         #endregion
 
@@ -478,8 +490,7 @@ namespace PlayCap
         {
             if (videoWin != null)
             {
-                Rectangle rc = videoPanel.ClientRectangle;
-                videoWin.SetWindowPosition(0, 0, rc.Right, rc.Bottom);
+                videoWin.SetWindowPosition(0, 0, videoPanel.Width, videoPanel.Height);
             }
         }
 
@@ -542,5 +553,7 @@ namespace PlayCap
             Init, Stopped, Paused, Running
         }
         #endregion
+
+        
     }
 }

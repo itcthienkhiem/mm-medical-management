@@ -63,6 +63,7 @@
             this.videoPanel.Name = "videoPanel";
             this.videoPanel.Size = new System.Drawing.Size(300, 200);
             this.videoPanel.TabIndex = 1;
+            this.videoPanel.SizeChanged += new System.EventHandler(this.videoPanel_SizeChanged);
             // 
             // PlayCapForm
             // 
