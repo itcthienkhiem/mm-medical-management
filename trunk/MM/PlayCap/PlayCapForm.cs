@@ -191,13 +191,19 @@ namespace PlayCap
             {
                 int hr;
                 if (sampGrabber == null)
+                {
+                    toolStripButtonChupHinh.Enabled = true;
                     return;
+                }
                 hr = sampGrabber.SetCallback(null, 0);
 
                 int w = videoInfoHeader.BmiHeader.Width;
                 int h = videoInfoHeader.BmiHeader.Height;
                 if (((w & 0x03) != 0) || (w < 32) || (w > 4096) || (h < 32) || (h > 4096))
+                {
+                    toolStripButtonChupHinh.Enabled = true;
                     return;
+                }
                 int stride = w * 3;
 
                 GCHandle handle = GCHandle.Alloc(savedArray, GCHandleType.Pinned);
@@ -212,12 +218,14 @@ namespace PlayCap
                 b.Dispose();
                 b = null;
 
+                Thread.Sleep(500);
                 toolStripButtonChupHinh.Enabled = true;
                 PlayCapFactory.PlayCapFact.RaiseOnBitmap(null);
             }
             catch (Exception ee)
             {
-                MessageBox.Show(this, "Could not grab picture\r\n" + ee.Message, "DirectShow.NET", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                toolStripButtonChupHinh.Enabled = true;
+                //MessageBox.Show(this, "Could not grab picture\r\n" + ee.Message, "DirectShow.NET", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
 
