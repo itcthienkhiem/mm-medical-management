@@ -79,6 +79,8 @@
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
     <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -1334,6 +1336,8 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MsgBox.cs" />
+    <Compile Include="PlayCapFactory.cs" />
+    <Compile Include="PlayCapProxy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\uHoaDonHopDongList.cs">
@@ -1341,6 +1345,11 @@
     </Compile>
     <Compile Include="Controls\uHoaDonHopDongList.Designer.cs">
       <DependentUpon>uHoaDonHopDongList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PlayCapService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Controls\uBenhNhanThanThuocList.resx">
       <DependentUpon>uBenhNhanThanThuocList.cs</DependentUpon>
@@ -2000,6 +2009,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\PlayCapService\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PlayCapService\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PlayCapService\PlayCap.wsdl" />
     <None Include="Templates\CheckListTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuThuocTemplate.xls" />
@@ -2106,6 +2122,13 @@
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Service References\PlayCapService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\PlayCapService\configuration.svcinfo" />
+    <None Include="Service References\PlayCapService\configuration91.svcinfo" />
+    <None Include="Service References\PlayCapService\item.disco" />
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
@@ -2292,6 +2315,12 @@
     <None Include="Resources\help.gif" />
     <None Include="Resources\about.gif" />
     <None Include="Resources\connect_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\PlayCapService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
