@@ -35,7 +35,7 @@ namespace MM
             }
             catch (Exception ex)
             {
-                MsgBox.Show(string.Format("Init Client :{0}", ex.Message), Application.ProductName, Common.IconType.Error); 
+                MsgBox.Show(Application.ProductName, string.Format("Init Client :{0}", ex.Message), Common.IconType.Error); 
             }
         }
 
@@ -44,7 +44,11 @@ namespace MM
             if (!Utility.CheckPlayCapProcessExist())
             {
                 Utility.RunPlayCapProcess();
-                System.Threading.Thread.Sleep(1000);
+                while (!Utility.CheckPlayCapProcessExist())
+                {
+                    
+                }
+
                 InitClient();
             }
         }
@@ -63,9 +67,11 @@ namespace MM
         {
             if (OnCaptureCompletedEvent != null)
             {
-                MemoryStream mem = new MemoryStream(bmp);
-                Bitmap img = new Bitmap(mem);
+                string fileName = string.Format("{0}\\ImageCapture.png", AppDomain.CurrentDomain.BaseDirectory);
+                Bitmap img = new Bitmap(fileName);
                 OnCaptureCompletedEvent(img);
+                img.Dispose();
+                img = null;
             }
         }
         #endregion

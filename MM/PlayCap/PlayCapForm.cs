@@ -113,7 +113,7 @@ namespace PlayCap
         private void PlayCapForm_Load(object sender, EventArgs e)
         {
             OnInitServer();
-            //StartTVCapture();
+            StartTVCapture();
         }
 
         private void toolStripButtonChupHinh_Click(object sender, EventArgs e)
@@ -184,9 +184,12 @@ namespace PlayCap
                 handle.Free();
                 savedArray = null;
 
-                MemoryStream mem = new MemoryStream();
-                b.Save(mem, ImageFormat.Png);
-                PlayCapFactory.PlayCapFact.RaiseOnBitmap(mem.GetBuffer());
+                string fileName = string.Format("{0}\\ImageCapture.png", Application.StartupPath);
+                b.Save(fileName);
+                b.Dispose();
+                b = null;
+                
+                PlayCapFactory.PlayCapFact.RaiseOnBitmap(null);
             }
             catch (Exception ee)
             {
