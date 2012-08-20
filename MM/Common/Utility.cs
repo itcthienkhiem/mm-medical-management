@@ -1184,17 +1184,17 @@ namespace MM.Common
             }
         }
 
-        public static void RunPlayCapProcess()
+        public static void RunPlayCapProcess(bool isShowCapture)
         {
             string path = string.Format("{0}\\PlayCap.exe", AppDomain.CurrentDomain.BaseDirectory);
-            Process.Start(path);
+            Process.Start(path, isShowCapture.ToString());
         }
 
         public static void KillPlayCapProcess()
         {
             try
             {
-                Process[] processList = Process.GetProcessesByName("PlayCap.exe");
+                Process[] processList = Process.GetProcessesByName("PlayCap");
                 if (processList != null && processList.Length > 0)
                 {
                     foreach (Process p in processList)
