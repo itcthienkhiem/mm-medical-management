@@ -94,6 +94,7 @@ namespace PlayCap
         #region UI Command
         private void OnCapture()
         {
+            toolStripButtonChupHinh.Enabled = false;
             if (sampGrabber == null) return;
 
             if (savedArray == null)
@@ -210,7 +211,8 @@ namespace PlayCap
                 b.Save(fileName);
                 b.Dispose();
                 b = null;
-                
+
+                toolStripButtonChupHinh.Enabled = true;
                 PlayCapFactory.PlayCapFact.RaiseOnBitmap(null);
             }
             catch (Exception ee)
