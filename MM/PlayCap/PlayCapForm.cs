@@ -122,7 +122,10 @@ namespace PlayCap
             OnInitServer();
             StartTVCapture();
 
+            int X = Screen.PrimaryScreen.Bounds.Width - this.Width - 8;
+            int Y = 28;
 
+            this.Location = new Point(X, Y);
         }
 
         private void toolStripButtonChupHinh_Click(object sender, EventArgs e)
