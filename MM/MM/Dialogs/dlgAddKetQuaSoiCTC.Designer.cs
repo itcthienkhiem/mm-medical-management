@@ -76,7 +76,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSaveAndPrint = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.btnPlay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.panel5.SuspendLayout();
             this.pageKetQuaNoiSoi.SuspendLayout();
@@ -374,9 +373,9 @@
             // 
             this.panel7.Controls.Add(this.lvCapture);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(3, 55);
+            this.panel7.Location = new System.Drawing.Point(3, 32);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(834, 492);
+            this.panel7.Size = new System.Drawing.Size(834, 515);
             this.panel7.TabIndex = 1;
             // 
             // lvCapture
@@ -387,7 +386,7 @@
             this.lvCapture.LargeImageList = this.imgListCapture;
             this.lvCapture.Location = new System.Drawing.Point(0, 0);
             this.lvCapture.Name = "lvCapture";
-            this.lvCapture.Size = new System.Drawing.Size(834, 492);
+            this.lvCapture.Size = new System.Drawing.Size(834, 515);
             this.lvCapture.SmallImageList = this.imgListCapture;
             this.lvCapture.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvCapture.TabIndex = 0;
@@ -444,7 +443,6 @@
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.btnPlay);
             this.panel6.Controls.Add(this.label14);
             this.panel6.Controls.Add(this.btnCapture);
             this.panel6.Controls.Add(this.btnTVTune);
@@ -453,7 +451,7 @@
             this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(834, 52);
+            this.panel6.Size = new System.Drawing.Size(834, 29);
             this.panel6.TabIndex = 0;
             // 
             // label14
@@ -461,7 +459,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Blue;
-            this.label14.Location = new System.Drawing.Point(5, 18);
+            this.label14.Location = new System.Drawing.Point(5, 6);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(177, 15);
             this.label14.TabIndex = 15;
@@ -552,16 +550,6 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // btnPlay
-            // 
-            this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
-            this.btnPlay.Location = new System.Drawing.Point(207, 4);
-            this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(42, 42);
-            this.btnPlay.TabIndex = 17;
-            this.btnPlay.UseVisualStyleBackColor = true;
-            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
-            // 
             // dlgAddKetQuaSoiCTC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -649,6 +637,5 @@
         private System.Windows.Forms.Button btnSaveAndPrint;
         private System.Windows.Forms.Button btnOK;
         private Controls.uKetQuaSoiCTC _uKetQuaSoiCTC;
-        private System.Windows.Forms.Button btnPlay;
     }
 }
