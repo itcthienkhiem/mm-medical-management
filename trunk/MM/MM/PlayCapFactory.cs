@@ -39,11 +39,11 @@ namespace MM
             }
         }
 
-        public static void RunPlayCapProcess()
+        public static void RunPlayCapProcess(bool isShowCapture)
         {
             if (!Utility.CheckPlayCapProcessExist())
             {
-                Utility.RunPlayCapProcess();
+                Utility.RunPlayCapProcess(isShowCapture);
                 while (!Utility.CheckPlayCapProcessExist())
                 {
                     
