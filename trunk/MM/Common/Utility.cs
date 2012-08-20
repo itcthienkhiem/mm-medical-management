@@ -1213,7 +1213,7 @@ namespace MM.Common
         {
             try
             {
-                Process[] processList = Process.GetProcessesByName("PlayCap.exe");
+                Process[] processList = Process.GetProcessesByName("PlayCap");
                 if (processList != null && processList.Length > 0)
                     return true;
             }
