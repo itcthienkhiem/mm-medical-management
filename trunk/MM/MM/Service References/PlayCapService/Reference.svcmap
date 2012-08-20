@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c841acaa-19f9-40e4-9fe6-cde5f3109cfb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8888/PlayCap/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="334f10ee-a7a8-4642-9491-d1333a440f05" SourceId="1" SourceUrl="http://localhost:8888/PlayCap/?xsd=xsd1" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="9e48f265-a0c4-476b-bc0d-1153fc8988c1" SourceId="1" SourceUrl="http://localhost:8888/PlayCap/?disco" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="2ccbbcf8-8132-465a-9f85-ab03dd568fe1" SourceId="1" SourceUrl="http://localhost:8888/PlayCap/?xsd=xsd0" />
+    <MetadataFile FileName="PlayCap.wsdl" MetadataType="Wsdl" ID="32ed2694-11b3-4e5a-b337-df7aff1b9fd0" SourceId="1" SourceUrl="http://localhost:8888/PlayCap/?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

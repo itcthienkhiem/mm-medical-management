@@ -1183,6 +1183,47 @@ namespace MM.Common
                 }
             }
         }
+
+        public static void RunPlayCapProcess()
+        {
+            string path = string.Format("{0}\\PlayCap.exe", AppDomain.CurrentDomain.BaseDirectory);
+            Process.Start(path);
+        }
+
+        public static void KillPlayCapProcess()
+        {
+            try
+            {
+                Process[] processList = Process.GetProcessesByName("PlayCap.exe");
+                if (processList != null && processList.Length > 0)
+                {
+                    foreach (Process p in processList)
+                    {
+                        p.Kill();
+                    }
+                }
+            }
+            catch
+            {
+                
+            }
+        }
+
+        public static bool CheckPlayCapProcessExist()
+        {
+            try
+            {
+                Process[] processList = Process.GetProcessesByName("PlayCap.exe");
+                if (processList != null && processList.Length > 0)
+                    return true;
+            }
+            catch
+            {
+                
+            }
+
+            return false;
+        }
     }
 }
 
