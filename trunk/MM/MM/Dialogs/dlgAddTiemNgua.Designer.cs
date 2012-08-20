@@ -68,7 +68,7 @@
             this.dtpkLan3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpkLan3.Location = new System.Drawing.Point(135, 95);
             this.dtpkLan3.Name = "dtpkLan3";
-            this.dtpkLan3.Size = new System.Drawing.Size(138, 20);
+            this.dtpkLan3.Size = new System.Drawing.Size(146, 20);
             this.dtpkLan3.TabIndex = 16;
             // 
             // dtpkLan2
@@ -78,7 +78,7 @@
             this.dtpkLan2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpkLan2.Location = new System.Drawing.Point(135, 71);
             this.dtpkLan2.Name = "dtpkLan2";
-            this.dtpkLan2.Size = new System.Drawing.Size(138, 20);
+            this.dtpkLan2.Size = new System.Drawing.Size(146, 20);
             this.dtpkLan2.TabIndex = 15;
             // 
             // dtpkLan1
@@ -88,7 +88,7 @@
             this.dtpkLan1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpkLan1.Location = new System.Drawing.Point(135, 47);
             this.dtpkLan1.Name = "dtpkLan1";
-            this.dtpkLan1.Size = new System.Drawing.Size(138, 20);
+            this.dtpkLan1.Size = new System.Drawing.Size(146, 20);
             this.dtpkLan1.TabIndex = 14;
             // 
             // chkLan3
