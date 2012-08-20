@@ -289,12 +289,13 @@
             this.btnTVTune.Size = new System.Drawing.Size(42, 42);
             this.btnTVTune.TabIndex = 23;
             this.btnTVTune.UseVisualStyleBackColor = true;
+            this.btnTVTune.Visible = false;
             this.btnTVTune.Click += new System.EventHandler(this.btnTVTune_Click);
             // 
             // btnSwap
             // 
             this.btnSwap.Image = ((System.Drawing.Image)(resources.GetObject("btnSwap.Image")));
-            this.btnSwap.Location = new System.Drawing.Point(253, 370);
+            this.btnSwap.Location = new System.Drawing.Point(253, 329);
             this.btnSwap.Name = "btnSwap";
             this.btnSwap.Size = new System.Drawing.Size(31, 31);
             this.btnSwap.TabIndex = 22;
@@ -303,7 +304,7 @@
             // 
             // btnHinh2
             // 
-            this.btnHinh2.Location = new System.Drawing.Point(230, 442);
+            this.btnHinh2.Location = new System.Drawing.Point(230, 401);
             this.btnHinh2.Name = "btnHinh2";
             this.btnHinh2.Size = new System.Drawing.Size(75, 23);
             this.btnHinh2.TabIndex = 21;
@@ -315,7 +316,7 @@
             // 
             this.picHinh2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picHinh2.ContextMenuStrip = this.ctmHinh2;
-            this.picHinh2.Location = new System.Drawing.Point(6, 390);
+            this.picHinh2.Location = new System.Drawing.Point(6, 349);
             this.picHinh2.Name = "picHinh2";
             this.picHinh2.Size = new System.Drawing.Size(220, 130);
             this.picHinh2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -338,7 +339,7 @@
             // 
             // btnHinh1
             // 
-            this.btnHinh1.Location = new System.Drawing.Point(230, 309);
+            this.btnHinh1.Location = new System.Drawing.Point(230, 268);
             this.btnHinh1.Name = "btnHinh1";
             this.btnHinh1.Size = new System.Drawing.Size(75, 23);
             this.btnHinh1.TabIndex = 19;
@@ -350,7 +351,7 @@
             // 
             this.picHinh1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picHinh1.ContextMenuStrip = this.ctmHinh1;
-            this.picHinh1.Location = new System.Drawing.Point(5, 254);
+            this.picHinh1.Location = new System.Drawing.Point(5, 213);
             this.picHinh1.Name = "picHinh1";
             this.picHinh1.Size = new System.Drawing.Size(220, 130);
             this.picHinh1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -378,6 +379,7 @@
             this.videoPanel.Name = "videoPanel";
             this.videoPanel.Size = new System.Drawing.Size(300, 200);
             this.videoPanel.TabIndex = 17;
+            this.videoPanel.Visible = false;
             // 
             // panel5
             // 

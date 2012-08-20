@@ -23,7 +23,7 @@ namespace MM
         #endregion
 
         #region Methods
-        public static void InitClient()
+        public static bool InitClient()
         {
             try
             {
@@ -32,11 +32,14 @@ namespace MM
                 _client = new PlayCapService.PlayCapClient(_instanceContext);
                 _client.RegisterEvent();
                 _callBack.OnBitmapEvent += new BitmapHandler(_callBack_OnBitmapEvent);
+                return true;
             }
             catch (Exception ex)
             {
-                MsgBox.Show(Application.ProductName, string.Format("Init Client :{0}", ex.Message), Common.IconType.Error); 
+                //MsgBox.Show(Application.ProductName, string.Format("Init Client :{0}", ex.Message), Common.IconType.Error); 
             }
+
+            return false;
         }
 
         public static void RunPlayCapProcess(bool isShowCapture)
@@ -46,10 +49,13 @@ namespace MM
                 Utility.RunPlayCapProcess(isShowCapture);
                 while (!Utility.CheckPlayCapProcessExist())
                 {
-                    
+                    System.Threading.Thread.Sleep(500);
                 }
 
-                InitClient();
+                while (!InitClient())
+                {
+                    System.Threading.Thread.Sleep(500);
+                }
             }
         }
 
@@ -60,7 +66,14 @@ namespace MM
 
         public static void Capture()
         {
-            _client.Capture();
+            try
+            {
+                _client.Capture();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, string.Format("Capture :{0}", ex.Message), Common.IconType.Error); 
+            }
         }
 
         private static void _callBack_OnBitmapEvent(byte[] bmp)
@@ -69,7 +82,10 @@ namespace MM
             {
                 string fileName = string.Format("{0}\\ImageCapture.png", AppDomain.CurrentDomain.BaseDirectory);
                 Bitmap img = new Bitmap(fileName);
-                OnCaptureCompletedEvent(img);
+                MemoryStream mem = new MemoryStream();
+                img.Save(mem, System.Drawing.Imaging.ImageFormat.Png);
+                Bitmap b = new Bitmap(mem);
+                OnCaptureCompletedEvent(b);
                 img.Dispose();
                 img = null;
             }

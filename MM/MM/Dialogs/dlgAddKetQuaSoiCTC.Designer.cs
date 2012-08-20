@@ -33,6 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddKetQuaSoiCTC));
             this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel5 = new System.Windows.Forms.Panel();
+            this._uKetQuaSoiCTC = new MM.Controls.uKetQuaSoiCTC();
             this.pageKetQuaNoiSoi = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cboKetLuan = new System.Windows.Forms.ComboBox();
@@ -75,7 +76,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSaveAndPrint = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this._uKetQuaSoiCTC = new MM.Controls.uKetQuaSoiCTC();
+            this.btnPlay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.panel5.SuspendLayout();
             this.pageKetQuaNoiSoi.SuspendLayout();
@@ -106,6 +107,22 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(834, 201);
             this.panel5.TabIndex = 3;
+            // 
+            // _uKetQuaSoiCTC
+            // 
+            this._uKetQuaSoiCTC.AmDao = "Có ít huyết trắng";
+            this._uKetQuaSoiCTC.AmHo = "Bình thường";
+            this._uKetQuaSoiCTC.BieuMoLat = "Láng";
+            this._uKetQuaSoiCTC.CTC = "Kích thước 2.5 cm";
+            this._uKetQuaSoiCTC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaSoiCTC.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaSoiCTC.MoDem = "Mạch máu bình thường";
+            this._uKetQuaSoiCTC.Name = "_uKetQuaSoiCTC";
+            this._uKetQuaSoiCTC.RanhGioiLatTru = "Lỗ ngoài";
+            this._uKetQuaSoiCTC.SauAcidAcetic = "Không bất thường";
+            this._uKetQuaSoiCTC.SauLugol = "Bắt màu đều";
+            this._uKetQuaSoiCTC.Size = new System.Drawing.Size(834, 201);
+            this._uKetQuaSoiCTC.TabIndex = 0;
             // 
             // pageKetQuaNoiSoi
             // 
@@ -357,9 +374,9 @@
             // 
             this.panel7.Controls.Add(this.lvCapture);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(3, 257);
+            this.panel7.Location = new System.Drawing.Point(3, 55);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(834, 290);
+            this.panel7.Size = new System.Drawing.Size(834, 492);
             this.panel7.TabIndex = 1;
             // 
             // lvCapture
@@ -370,7 +387,7 @@
             this.lvCapture.LargeImageList = this.imgListCapture;
             this.lvCapture.Location = new System.Drawing.Point(0, 0);
             this.lvCapture.Name = "lvCapture";
-            this.lvCapture.Size = new System.Drawing.Size(834, 290);
+            this.lvCapture.Size = new System.Drawing.Size(834, 492);
             this.lvCapture.SmallImageList = this.imgListCapture;
             this.lvCapture.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvCapture.TabIndex = 0;
@@ -427,6 +444,7 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.btnPlay);
             this.panel6.Controls.Add(this.label14);
             this.panel6.Controls.Add(this.btnCapture);
             this.panel6.Controls.Add(this.btnTVTune);
@@ -435,7 +453,7 @@
             this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(834, 254);
+            this.panel6.Size = new System.Drawing.Size(834, 52);
             this.panel6.TabIndex = 0;
             // 
             // label14
@@ -443,7 +461,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Blue;
-            this.label14.Location = new System.Drawing.Point(5, 234);
+            this.label14.Location = new System.Drawing.Point(5, 18);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(177, 15);
             this.label14.TabIndex = 15;
@@ -457,6 +475,7 @@
             this.btnCapture.Size = new System.Drawing.Size(42, 42);
             this.btnCapture.TabIndex = 2;
             this.btnCapture.UseVisualStyleBackColor = true;
+            this.btnCapture.Visible = false;
             this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
             // 
             // btnTVTune
@@ -468,6 +487,7 @@
             this.btnTVTune.Size = new System.Drawing.Size(42, 42);
             this.btnTVTune.TabIndex = 0;
             this.btnTVTune.UseVisualStyleBackColor = true;
+            this.btnTVTune.Visible = false;
             this.btnTVTune.Click += new System.EventHandler(this.btnTVTune_Click);
             // 
             // videoPanel
@@ -477,6 +497,7 @@
             this.videoPanel.Name = "videoPanel";
             this.videoPanel.Size = new System.Drawing.Size(200, 200);
             this.videoPanel.TabIndex = 16;
+            this.videoPanel.Visible = false;
             // 
             // imgList
             // 
@@ -531,21 +552,15 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // _uKetQuaSoiCTC
+            // btnPlay
             // 
-            this._uKetQuaSoiCTC.AmDao = "Có ít huyết trắng";
-            this._uKetQuaSoiCTC.AmHo = "Bình thường";
-            this._uKetQuaSoiCTC.BieuMoLat = "Láng";
-            this._uKetQuaSoiCTC.CTC = "Kích thước 2.5 cm";
-            this._uKetQuaSoiCTC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uKetQuaSoiCTC.Location = new System.Drawing.Point(0, 0);
-            this._uKetQuaSoiCTC.MoDem = "Mạch máu bình thường";
-            this._uKetQuaSoiCTC.Name = "_uKetQuaSoiCTC";
-            this._uKetQuaSoiCTC.RanhGioiLatTru = "Lỗ ngoài";
-            this._uKetQuaSoiCTC.SauAcidAcetic = "Không bất thường";
-            this._uKetQuaSoiCTC.SauLugol = "Bắt màu đều";
-            this._uKetQuaSoiCTC.Size = new System.Drawing.Size(834, 201);
-            this._uKetQuaSoiCTC.TabIndex = 0;
+            this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
+            this.btnPlay.Location = new System.Drawing.Point(207, 4);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(42, 42);
+            this.btnPlay.TabIndex = 17;
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // dlgAddKetQuaSoiCTC
             // 
@@ -634,5 +649,6 @@
         private System.Windows.Forms.Button btnSaveAndPrint;
         private System.Windows.Forms.Button btnOK;
         private Controls.uKetQuaSoiCTC _uKetQuaSoiCTC;
+        private System.Windows.Forms.Button btnPlay;
     }
 }

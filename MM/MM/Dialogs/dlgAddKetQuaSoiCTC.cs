@@ -116,8 +116,12 @@ namespace MM.Dialogs
             Cursor.Current = Cursors.WaitCursor;
             dtpkNgayKham.Value = DateTime.Now;
             DisplayDSBasSiSoi();
-            StartTVCapture();
+            //StartTVCapture();
+            PlayCapFactory.RunPlayCapProcess(true);
+            PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
         }
+
+        
 
         private void DisplayDSBasSiSoi()
         {
@@ -457,7 +461,8 @@ namespace MM.Dialogs
                 if (CheckInfo())
                 {
                     SaveInfoAsThread();
-                    CloseInterfaces();
+                    //CloseInterfaces();
+                    PlayCapFactory.KillPlayCapProcess();
                 }
                 else
                     e.Cancel = true;
@@ -470,13 +475,15 @@ namespace MM.Dialogs
                     {
                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
                         SaveInfoAsThread();
-                        CloseInterfaces();
+                        PlayCapFactory.KillPlayCapProcess();
+                        //CloseInterfaces();
                     }
                     else
                         e.Cancel = true;
                 }
                 else
-                    CloseInterfaces();
+                    PlayCapFactory.KillPlayCapProcess();
+                    //CloseInterfaces();
             }
         }
 
@@ -502,6 +509,29 @@ namespace MM.Dialogs
             btnCapture.Enabled = false;
             captured = false;
             int hr = sampGrabber.SetCallback(this, 1);
+        }
+
+        private void PlayCapFactory_OnCaptureCompletedEvent(Image b)
+        {
+            imgListCapture.Images.Add(b);
+
+            _imgCount++;
+            ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
+            item.Tag = b;
+            lvCapture.Items.Add(item);
+
+            if (lvCapture.Items.Count <= 2)
+            {
+                switch (lvCapture.Items.Count)
+                {
+                    case 1:
+                        picHinh1.Image = (Image)lvCapture.Items[0].Tag;
+                        break;
+                    case 2:
+                        picHinh2.Image = (Image)lvCapture.Items[1].Tag;
+                        break;
+                }
+            }
         }
 
         private void xóaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -550,6 +580,11 @@ namespace MM.Dialogs
             _isPrint = true;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            PlayCapFactory.RunPlayCapProcess(true);
         }
         #endregion
 
@@ -999,6 +1034,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 
     internal enum PlayState

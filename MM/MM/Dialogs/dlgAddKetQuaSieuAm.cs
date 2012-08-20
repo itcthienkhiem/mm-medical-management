@@ -125,7 +125,15 @@ namespace MM.Dialogs
             DisplayDSBasSiSieuAm();
             DisplayLoaiSieuAm();
 
-            if (_allowEdit) StartTVCapture();
+            btnHinh1.Enabled = _allowEdit;
+            btnHinh2.Enabled = _allowEdit;
+
+            if (_allowEdit)
+            {
+                PlayCapFactory.RunPlayCapProcess(false);
+                PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+                //StartTVCapture();
+            }
         }
 
         private void DisplayLoaiSieuAm()
@@ -422,47 +430,54 @@ namespace MM.Dialogs
                 if (CheckInfo())
                 {
                     SaveInfoAsThread();
-                    CloseInterfaces();
+                    //CloseInterfaces();
+                    PlayCapFactory.KillPlayCapProcess();
                 }
                 else
                     e.Cancel = true;
             }
+            else
+                PlayCapFactory.KillPlayCapProcess();
         }
 
         private void btnHinh1_Click(object sender, EventArgs e)
         {
             _hinh = 1;
-            if (sampGrabber == null) return;
+            PlayCapFactory.RunPlayCapProcess(false);
+            PlayCapFactory.Capture();
+            //if (sampGrabber == null) return;
 
-            if (savedArray == null)
-            {
-                int size = videoInfoHeader.BmiHeader.ImageSize;
-                if ((size < 1000) || (size > 16000000))
-                    return;
-                savedArray = new byte[size + 64000];
-            }
+            //if (savedArray == null)
+            //{
+            //    int size = videoInfoHeader.BmiHeader.ImageSize;
+            //    if ((size < 1000) || (size > 16000000))
+            //        return;
+            //    savedArray = new byte[size + 64000];
+            //}
 
             btnHinh1.Enabled = false;
-            captured = false;
-            int hr = sampGrabber.SetCallback(this, 1);
+            //captured = false;
+            //int hr = sampGrabber.SetCallback(this, 1);
         }
 
         private void btnHinh2_Click(object sender, EventArgs e)
         {
             _hinh = 2;
-            if (sampGrabber == null) return;
+            PlayCapFactory.RunPlayCapProcess(false);
+            PlayCapFactory.Capture();
+            //if (sampGrabber == null) return;
 
-            if (savedArray == null)
-            {
-                int size = videoInfoHeader.BmiHeader.ImageSize;
-                if ((size < 1000) || (size > 16000000))
-                    return;
-                savedArray = new byte[size + 64000];
-            }
+            //if (savedArray == null)
+            //{
+            //    int size = videoInfoHeader.BmiHeader.ImageSize;
+            //    if ((size < 1000) || (size > 16000000))
+            //        return;
+            //    savedArray = new byte[size + 64000];
+            //}
 
             btnHinh2.Enabled = false;
-            captured = false;
-            int hr = sampGrabber.SetCallback(this, 1);
+            //captured = false;
+            //int hr = sampGrabber.SetCallback(this, 1);
         }
 
         private void btnSwap_Click(object sender, EventArgs e)
@@ -501,6 +516,40 @@ namespace MM.Dialogs
             _isPrint = true;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
+        }
+
+        private void PlayCapFactory_OnCaptureCompletedEvent(Image img)
+        {
+            try
+            {
+                if (_hinh == 1) btnHinh1.Enabled = true;
+                else btnHinh2.Enabled = true;
+
+                //int hr;
+                //if (sampGrabber == null)
+                //    return;
+                //hr = sampGrabber.SetCallback(null, 0);
+
+                //int w = videoInfoHeader.BmiHeader.Width;
+                //int h = videoInfoHeader.BmiHeader.Height;
+                //if (((w & 0x03) != 0) || (w < 32) || (w > 4096) || (h < 32) || (h > 4096))
+                //    return;
+                //int stride = w * 3;
+
+                //GCHandle handle = GCHandle.Alloc(savedArray, GCHandleType.Pinned);
+                //int scan0 = (int)handle.AddrOfPinnedObject();
+                //scan0 += (h - 1) * stride;
+                //Bitmap b = new Bitmap(w, h, -stride, PixelFormat.Format24bppRgb, (IntPtr)scan0);
+                //handle.Free();
+                //savedArray = null;
+
+                if (_hinh == 1) picHinh1.Image = img;
+                else picHinh2.Image = img;
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(this, "Could not grab picture\r\n" + ee.Message, "DirectShow.NET", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
         }
         #endregion
 
