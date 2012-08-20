@@ -18,13 +18,13 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8888/PlayCap/" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:9988/PlayCap/" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="334f10ee-a7a8-4642-9491-d1333a440f05" SourceId="1" SourceUrl="http://localhost:8888/PlayCap/?xsd=xsd1" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="9e48f265-a0c4-476b-bc0d-1153fc8988c1" SourceId="1" SourceUrl="http://localhost:8888/PlayCap/?disco" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="2ccbbcf8-8132-465a-9f85-ab03dd568fe1" SourceId="1" SourceUrl="http://localhost:8888/PlayCap/?xsd=xsd0" />
-    <MetadataFile FileName="PlayCap.wsdl" MetadataType="Wsdl" ID="32ed2694-11b3-4e5a-b337-df7aff1b9fd0" SourceId="1" SourceUrl="http://localhost:8888/PlayCap/?wsdl" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="6332d9dd-ab9e-4673-8be8-69e6ece71a2d" SourceId="1" SourceUrl="http://localhost:9988/PlayCap/?xsd=xsd0" />
+    <MetadataFile FileName="item1.disco" MetadataType="Disco" ID="fbb0bcab-4c15-481d-8c07-7b7399ed7082" SourceId="1" SourceUrl="http://localhost:9988/PlayCap/?disco" />
+    <MetadataFile FileName="item21.xsd" MetadataType="Schema" ID="9e14d697-8173-4983-9000-a9fdc81e41bf" SourceId="1" SourceUrl="http://localhost:9988/PlayCap/?xsd=xsd1" />
+    <MetadataFile FileName="PlayCap1.wsdl" MetadataType="Wsdl" ID="60b1baec-f0c7-49d7-b1fa-191608639e4d" SourceId="1" SourceUrl="http://localhost:9988/PlayCap/?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

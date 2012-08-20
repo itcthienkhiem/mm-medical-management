@@ -2009,13 +2009,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\PlayCapService\item.xsd">
+    <None Include="Service References\PlayCapService\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\PlayCapService\item1.xsd">
+    <None Include="Service References\PlayCapService\item21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\PlayCapService\PlayCap.wsdl" />
+    <None Include="Service References\PlayCapService\PlayCap1.wsdl" />
     <None Include="Templates\CheckListTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuThuocTemplate.xls" />
@@ -2122,13 +2122,13 @@
     <Content Include="Controls\Excel\Office\Excel\readme.txt" />
     <Content Include="MMDB.txt" />
     <Content Include="MM_Ico.ico" />
+    <None Include="Service References\PlayCapService\item1.disco" />
     <None Include="Service References\PlayCapService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\PlayCapService\configuration.svcinfo" />
     <None Include="Service References\PlayCapService\configuration91.svcinfo" />
-    <None Include="Service References\PlayCapService\item.disco" />
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
