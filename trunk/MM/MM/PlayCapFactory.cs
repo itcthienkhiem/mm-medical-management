@@ -72,7 +72,7 @@ namespace MM
             }
             catch (Exception ex)
             {
-                MsgBox.Show(Application.ProductName, string.Format("Capture :{0}", ex.Message), Common.IconType.Error); 
+                //MsgBox.Show(Application.ProductName, string.Format("Capture :{0}", ex.Message), Common.IconType.Error); 
             }
         }
 

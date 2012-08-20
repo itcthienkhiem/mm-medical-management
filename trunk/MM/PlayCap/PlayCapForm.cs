@@ -121,6 +121,8 @@ namespace PlayCap
         {
             OnInitServer();
             StartTVCapture();
+
+
         }
 
         private void toolStripButtonChupHinh_Click(object sender, EventArgs e)
@@ -136,6 +138,11 @@ namespace PlayCap
         private void videoPanel_SizeChanged(object sender, EventArgs e)
         {
             ResizeVideoWindow();
+        }
+
+        private void PlayCapForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
         }
         #endregion
 
@@ -554,6 +561,5 @@ namespace PlayCap
         }
         #endregion
 
-        
     }
 }

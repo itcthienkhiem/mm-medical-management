@@ -443,7 +443,6 @@ namespace MM.Dialogs
         private void btnHinh1_Click(object sender, EventArgs e)
         {
             _hinh = 1;
-            PlayCapFactory.RunPlayCapProcess(false);
             PlayCapFactory.Capture();
             //if (sampGrabber == null) return;
 
@@ -463,7 +462,6 @@ namespace MM.Dialogs
         private void btnHinh2_Click(object sender, EventArgs e)
         {
             _hinh = 2;
-            PlayCapFactory.RunPlayCapProcess(false);
             PlayCapFactory.Capture();
             //if (sampGrabber == null) return;
 

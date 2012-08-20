@@ -581,11 +581,6 @@ namespace MM.Dialogs
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
-
-        private void btnPlay_Click(object sender, EventArgs e)
-        {
-            PlayCapFactory.RunPlayCapProcess(true);
-        }
         #endregion
 
         #region TV Capture
