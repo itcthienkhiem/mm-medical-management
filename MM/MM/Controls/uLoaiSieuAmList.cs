@@ -525,10 +525,18 @@ namespace MM.Controls
             dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                txtMauBaoCao_Chung.Text = dlg.FileName;
-                TXTextControl.TextControl textControl = (_page1.Controls[0] as TXTextControl.TextControl);
-                textControl.Load(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
-                textControl.Tables.GridLines = false;
+                try
+                {
+                    txtMauBaoCao_Chung.Text = dlg.FileName;
+                    TXTextControl.TextControl textControl = (_page1.Controls[0] as TXTextControl.TextControl);
+                    textControl.Load(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                    textControl.Tables.GridLines = false;
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(Application.ProductName, ex.Message, IconType.Information);
+                }
+                
             }
         }
 
@@ -544,10 +552,17 @@ namespace MM.Controls
                 {
                     if (tabPage.Text == "Mẫu báo cáo (Nam)")
                     {
-                        TXTextControl.TextControl textControl = (tabPage.Controls[0] as TXTextControl.TextControl);
-                        textControl.Load(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
-                        textControl.Tables.GridLines = false;
-                        break;
+                        try
+                        {
+                            TXTextControl.TextControl textControl = (tabPage.Controls[0] as TXTextControl.TextControl);
+                            textControl.Load(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            textControl.Tables.GridLines = false;
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, ex.Message, IconType.Information);
+                        }
                     }
                 }
             }
@@ -566,10 +581,17 @@ namespace MM.Controls
                 {
                     if (tabPage.Text == "Mẫu báo cáo (Nữ)")
                     {
-                        TXTextControl.TextControl textControl = (tabPage.Controls[0] as TXTextControl.TextControl);
-                        textControl.Load(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
-                        textControl.Tables.GridLines = false;
-                        break;
+                        try
+                        {
+                            TXTextControl.TextControl textControl = (tabPage.Controls[0] as TXTextControl.TextControl);
+                            textControl.Load(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            textControl.Tables.GridLines = false;
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, ex.Message, IconType.Information);
+                        }
                     }
                 }
             }
