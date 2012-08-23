@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uLoaiSieuAmList));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -54,6 +55,7 @@
             this._page1 = new System.Windows.Forms.TabPage();
             this._textControl1 = new TXTextControl.TextControl();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.chkInTrang2 = new System.Windows.Forms.CheckBox();
             this.chkNu = new System.Windows.Forms.CheckBox();
             this.chkNam = new System.Windows.Forms.CheckBox();
             this.btnBrowse_Nu = new System.Windows.Forms.Button();
@@ -72,7 +74,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.chkInTrang2 = new System.Windows.Forms.CheckBox();
+            this.btnExportWord = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -137,28 +139,28 @@
             this.dgLoaiSieuAm.AllowUserToDeleteRows = false;
             this.dgLoaiSieuAm.AllowUserToOrderColumns = true;
             this.dgLoaiSieuAm.AutoGenerateColumns = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgLoaiSieuAm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgLoaiSieuAm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgLoaiSieuAm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgLoaiSieuAm.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
             this.tenSieuAmDataGridViewTextBoxColumn,
             this.thuTuDataGridViewTextBoxColumn});
             this.dgLoaiSieuAm.DataSource = this.loaiSieuAmBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgLoaiSieuAm.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgLoaiSieuAm.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgLoaiSieuAm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgLoaiSieuAm.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgLoaiSieuAm.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -179,8 +181,8 @@
             this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
             this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
             this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
@@ -201,8 +203,8 @@
             // thuTuDataGridViewTextBoxColumn
             // 
             this.thuTuDataGridViewTextBoxColumn.DataPropertyName = "ThuTu";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.thuTuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.thuTuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.thuTuDataGridViewTextBoxColumn.HeaderText = "Thứ tự";
             this.thuTuDataGridViewTextBoxColumn.Name = "thuTuDataGridViewTextBoxColumn";
             this.thuTuDataGridViewTextBoxColumn.ReadOnly = true;
@@ -353,6 +355,16 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(676, 138);
             this.panel9.TabIndex = 0;
+            // 
+            // chkInTrang2
+            // 
+            this.chkInTrang2.AutoSize = true;
+            this.chkInTrang2.Location = new System.Drawing.Point(435, 12);
+            this.chkInTrang2.Name = "chkInTrang2";
+            this.chkInTrang2.Size = new System.Drawing.Size(71, 17);
+            this.chkInTrang2.TabIndex = 4;
+            this.chkInTrang2.Text = "In trang 2";
+            this.chkInTrang2.UseVisualStyleBackColor = true;
             // 
             // chkNu
             // 
@@ -523,6 +535,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnExportWord);
             this.panel3.Controls.Add(this.btnEdit);
             this.panel3.Controls.Add(this.btnAdd);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -555,15 +568,17 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // chkInTrang2
+            // btnExportWord
             // 
-            this.chkInTrang2.AutoSize = true;
-            this.chkInTrang2.Location = new System.Drawing.Point(435, 12);
-            this.chkInTrang2.Name = "chkInTrang2";
-            this.chkInTrang2.Size = new System.Drawing.Size(71, 17);
-            this.chkInTrang2.TabIndex = 4;
-            this.chkInTrang2.Text = "In trang 2";
-            this.chkInTrang2.UseVisualStyleBackColor = true;
+            this.btnExportWord.Image = ((System.Drawing.Image)(resources.GetObject("btnExportWord.Image")));
+            this.btnExportWord.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportWord.Location = new System.Drawing.Point(195, 6);
+            this.btnExportWord.Name = "btnExportWord";
+            this.btnExportWord.Size = new System.Drawing.Size(89, 25);
+            this.btnExportWord.TabIndex = 2;
+            this.btnExportWord.Text = "      &Xuất Word";
+            this.btnExportWord.UseVisualStyleBackColor = true;
+            this.btnExportWord.Click += new System.EventHandler(this.btnExportWord_Click);
             // 
             // uLoaiSieuAmList
             // 
@@ -637,5 +652,6 @@
         private System.Windows.Forms.TabPage _page1;
         private TXTextControl.TextControl _textControl1;
         private System.Windows.Forms.CheckBox chkInTrang2;
+        private System.Windows.Forms.Button btnExportWord;
     }
 }

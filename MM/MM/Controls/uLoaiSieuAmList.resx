@@ -123,4 +123,17 @@
   <metadata name="loaiSieuAmBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnExportWord.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAASZJREFUOE9jVE1Z
+        +Z+BEgAygBLMANOsn732/6SNV/5P2UwYl887CbcUbkDfukv/LYo2EOWaqVuuYhowdTNCkJCX8Bpw9s7r
+        /3pZa8A2zN5x/T/IZSC2buaa/0evvQCz8RoA0pTUfxCs8ODlZ/+PXYdoSug7AA4fggbE9uz/P3fnjf+m
+        +ev/rz1y7//hK8//G+au+z9z+/X/oW17CBuglb76/5nbr/9nTzvyvwwY2l2rL/zPmnrk/yGgQeqpkCgn
+        GIg7zz7+v/30o//2ZZv/+zbu/L/11MP/G44/gIc8QQOqFpz6f+/5J7iGZ2+//i+cdRy/AbOAfgxq2U0U
+        nrHtGmY6WH343n9iwdL9tzENqFt85v+uc4+JwiAvwhIbPCkTSn245Ck2AACy+27iRcZO5QAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
 </root>
