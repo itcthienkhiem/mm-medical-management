@@ -596,6 +596,78 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void btnExportWord_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (raChung.Checked)
+                {
+                    if (_textControl1.Text.Trim() == string.Empty) return;
+
+                    SaveFileDialog dlg = new SaveFileDialog();
+                    dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        _textControl1.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                    }
+                }
+                else
+                {
+                    if (chkNam.Checked && chkNu.Checked)
+                    {
+                        if (tabMauBaoCao.SelectedIndex == 0)
+                        {
+                            if (_textControl1.Text.Trim() == string.Empty) return;
+                            SaveFileDialog dlg = new SaveFileDialog();
+                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                            {
+                                _textControl1.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            }
+                        }
+                        else
+                        {
+                            if (_textControl2.Text.Trim() == string.Empty) return;
+                            SaveFileDialog dlg = new SaveFileDialog();
+                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                            {
+                                _textControl2.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (chkNam.Checked)
+                        {
+                            if (_textControl1.Text.Trim() == string.Empty) return;
+                            SaveFileDialog dlg = new SaveFileDialog();
+                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                            {
+                                _textControl1.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            }
+                        }
+                        else if (chkNu.Checked)
+                        {
+                            if (_textControl2.Text.Trim() == string.Empty) return;
+                            SaveFileDialog dlg = new SaveFileDialog();
+                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                            {
+                                _textControl2.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+            }
+        }
         #endregion
 
         #region Working Thread
