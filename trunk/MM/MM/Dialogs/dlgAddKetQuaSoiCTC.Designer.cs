@@ -367,7 +367,7 @@
             this.pageChupHinh.Padding = new System.Windows.Forms.Padding(3);
             this.pageChupHinh.Size = new System.Drawing.Size(840, 550);
             this.pageChupHinh.TabIndex = 1;
-            this.pageChupHinh.Text = "Chụp hình";
+            this.pageChupHinh.Text = "Danh sách hình chụp";
             // 
             // panel7
             // 
