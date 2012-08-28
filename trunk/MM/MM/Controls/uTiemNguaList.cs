@@ -106,8 +106,11 @@ namespace MM.Controls
                 {
                     DateTime dt = Convert.ToDateTime(dr["Lan1"]);
                     int days = dt.Subtract(currentDate).Days;
+                    bool daChich = false;
+                    if (dr["DaChich1"] != null && dr["DaChich1"] != DBNull.Value)
+                        daChich = Convert.ToBoolean(dr["DaChich1"]);
 
-                    if (days >= 0 && days <= Global.AlertDays)
+                    if (days >= 0 && days <= Global.AlertDays && !daChich)
                     {
                         row.DefaultCellStyle.BackColor = Color.DodgerBlue;
                         continue;
@@ -118,8 +121,11 @@ namespace MM.Controls
                 {
                     DateTime dt = Convert.ToDateTime(dr["Lan2"]);
                     int days = dt.Subtract(currentDate).Days;
+                    bool daChich = false;
+                    if (dr["DaChich2"] != null && dr["DaChich2"] != DBNull.Value)
+                        daChich = Convert.ToBoolean(dr["DaChich2"]);
 
-                    if (days >= 0 && days <= Global.AlertDays)
+                    if (days >= 0 && days <= Global.AlertDays && !daChich)
                     {
                         row.DefaultCellStyle.BackColor = Color.DodgerBlue;
                         continue;
@@ -130,8 +136,11 @@ namespace MM.Controls
                 {
                     DateTime dt = Convert.ToDateTime(dr["Lan3"]);
                     int days = dt.Subtract(currentDate).Days;
+                    bool daChich = false;
+                    if (dr["DaChich3"] != null && dr["DaChich3"] != DBNull.Value)
+                        daChich = Convert.ToBoolean(dr["DaChich3"]);
 
-                    if (days >= 0 && days <= Global.AlertDays)
+                    if (days >= 0 && days <= Global.AlertDays && !daChich)
                     {
                         row.DefaultCellStyle.BackColor = Color.DodgerBlue;
                         continue;

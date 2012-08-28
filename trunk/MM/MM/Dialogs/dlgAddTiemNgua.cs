@@ -56,18 +56,27 @@ namespace MM.Dialogs
                 {
                     chkLan1.Checked = true;
                     dtpkLan1.Value = Convert.ToDateTime(_drTiemNgua["Lan1"]);
+
+                    if (_drTiemNgua["DaChich1"] != null && _drTiemNgua["DaChich1"] != DBNull.Value)
+                        chkDaChich1.Checked = Convert.ToBoolean(_drTiemNgua["DaChich1"]);
                 }
 
                 if (_drTiemNgua["Lan2"] != null && _drTiemNgua["Lan2"] != DBNull.Value)
                 {
                     chkLan2.Checked = true;
                     dtpkLan2.Value = Convert.ToDateTime(_drTiemNgua["Lan2"]);
+
+                    if (_drTiemNgua["DaChich2"] != null && _drTiemNgua["DaChich2"] != DBNull.Value)
+                        chkDaChich2.Checked = Convert.ToBoolean(_drTiemNgua["DaChich2"]);
                 }
 
                 if (_drTiemNgua["Lan3"] != null && _drTiemNgua["Lan3"] != DBNull.Value)
                 {
                     chkLan3.Checked = true;
                     dtpkLan3.Value = Convert.ToDateTime(_drTiemNgua["Lan3"]);
+
+                    if (_drTiemNgua["DaChich3"] != null && _drTiemNgua["DaChich3"] != DBNull.Value)
+                        chkDaChich3.Checked = Convert.ToBoolean(_drTiemNgua["DaChich3"]);
                 }
 
                 if (_drTiemNgua["CreatedDate"] != null && _drTiemNgua["CreatedDate"] != DBNull.Value)
@@ -150,9 +159,23 @@ namespace MM.Dialogs
 
                 MethodInvoker method = delegate
                 {
-                    if (chkLan1.Checked) _tiemNgua.Lan1 = dtpkLan1.Value;
-                    if (chkLan2.Checked) _tiemNgua.Lan2 = dtpkLan2.Value;
-                    if (chkLan3.Checked) _tiemNgua.Lan3 = dtpkLan3.Value;
+                    if (chkLan1.Checked)
+                    {
+                        _tiemNgua.Lan1 = dtpkLan1.Value;
+                        _tiemNgua.DaChich1 = chkDaChich1.Checked;
+                    }
+
+                    if (chkLan2.Checked)
+                    {
+                        _tiemNgua.Lan2 = dtpkLan2.Value;
+                        _tiemNgua.DaChich2 = chkDaChich2.Checked;
+                    }
+
+                    if (chkLan3.Checked)
+                    {
+                        _tiemNgua.Lan3 = dtpkLan3.Value;
+                        _tiemNgua.DaChich3 = chkDaChich3.Checked;
+                    }
 
                     Result result = TiemNguaBus.InsertTiemNgua(_tiemNgua);
                     if (!result.IsOK)
@@ -212,6 +235,7 @@ namespace MM.Dialogs
         private void chkLan1_CheckedChanged(object sender, EventArgs e)
         {
             dtpkLan1.Enabled = chkLan1.Checked;
+            chkDaChich1.Enabled = chkLan1.Checked;
 
             if (chkLan1.Checked) chkLan2.Enabled = true;
             else
@@ -224,6 +248,8 @@ namespace MM.Dialogs
         private void chkLan2_CheckedChanged(object sender, EventArgs e)
         {
             dtpkLan2.Enabled = chkLan2.Checked;
+            chkDaChich2.Enabled = chkLan2.Checked;
+
             if (chkLan2.Checked) chkLan3.Enabled = true;
             else
             {
@@ -235,6 +261,7 @@ namespace MM.Dialogs
         private void chkLan3_CheckedChanged(object sender, EventArgs e)
         {
             dtpkLan3.Enabled = chkLan3.Checked;
+            chkDaChich3.Enabled = chkLan3.Checked;
         }
         #endregion
 
