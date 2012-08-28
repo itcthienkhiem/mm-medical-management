@@ -41,11 +41,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.chkDaChich1 = new System.Windows.Forms.CheckBox();
+            this.chkDaChich2 = new System.Windows.Forms.CheckBox();
+            this.chkDaChich3 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkDaChich3);
+            this.groupBox1.Controls.Add(this.chkDaChich2);
+            this.groupBox1.Controls.Add(this.chkDaChich1);
             this.groupBox1.Controls.Add(this.dtpkLan3);
             this.groupBox1.Controls.Add(this.dtpkLan2);
             this.groupBox1.Controls.Add(this.dtpkLan1);
@@ -177,6 +183,39 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // chkDaChich1
+            // 
+            this.chkDaChich1.AutoSize = true;
+            this.chkDaChich1.Enabled = false;
+            this.chkDaChich1.Location = new System.Drawing.Point(287, 50);
+            this.chkDaChich1.Name = "chkDaChich1";
+            this.chkDaChich1.Size = new System.Drawing.Size(71, 17);
+            this.chkDaChich1.TabIndex = 17;
+            this.chkDaChich1.Text = "Đã chích";
+            this.chkDaChich1.UseVisualStyleBackColor = true;
+            // 
+            // chkDaChich2
+            // 
+            this.chkDaChich2.AutoSize = true;
+            this.chkDaChich2.Enabled = false;
+            this.chkDaChich2.Location = new System.Drawing.Point(287, 74);
+            this.chkDaChich2.Name = "chkDaChich2";
+            this.chkDaChich2.Size = new System.Drawing.Size(71, 17);
+            this.chkDaChich2.TabIndex = 18;
+            this.chkDaChich2.Text = "Đã chích";
+            this.chkDaChich2.UseVisualStyleBackColor = true;
+            // 
+            // chkDaChich3
+            // 
+            this.chkDaChich3.AutoSize = true;
+            this.chkDaChich3.Enabled = false;
+            this.chkDaChich3.Location = new System.Drawing.Point(287, 98);
+            this.chkDaChich3.Name = "chkDaChich3";
+            this.chkDaChich3.Size = new System.Drawing.Size(71, 17);
+            this.chkDaChich3.TabIndex = 19;
+            this.chkDaChich3.Text = "Đã chích";
+            this.chkDaChich3.UseVisualStyleBackColor = true;
+            // 
             // dlgAddTiemNgua
             // 
             this.AcceptButton = this.btnOK;
@@ -217,5 +256,8 @@
         private System.Windows.Forms.CheckBox chkLan1;
         private System.Windows.Forms.Button btnChonBenhNhan;
         private System.Windows.Forms.TextBox txtBenhNhan;
+        private System.Windows.Forms.CheckBox chkDaChich3;
+        private System.Windows.Forms.CheckBox chkDaChich2;
+        private System.Windows.Forms.CheckBox chkDaChich1;
     }
 }

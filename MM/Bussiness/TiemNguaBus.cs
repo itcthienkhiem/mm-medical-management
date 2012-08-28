@@ -67,7 +67,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TOP 1 * FROM TiemNgua WHERE Status = {0} AND ((Lan1 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan1) >= 0 AND DATEDIFF(day, GetDate(), Lan1) <= {1}) OR (Lan2 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan2) >= 0 AND DATEDIFF(day, GetDate(), Lan2) <= {1}) OR (Lan3 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan3) >= 0 AND DATEDIFF(day, GetDate(), Lan3) <= {1}))",
+                string query = string.Format("SELECT TOP 1 * FROM TiemNgua WHERE Status = {0} AND ((Lan1 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan1) >= 0 AND DATEDIFF(day, GetDate(), Lan1) <= {1} AND (DaChich1 IS NULL OR DaChich1 = 0)) OR (Lan2 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan2) >= 0 AND DATEDIFF(day, GetDate(), Lan2) <= {1} AND (DaChich2 IS NULL OR DaChich2 = 0)) OR (Lan3 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan3) >= 0 AND DATEDIFF(day, GetDate(), Lan3) <= {1}) AND (DaChich3 IS NULL OR DaChich3 = 0))",
                     (byte)Status.Actived, Global.AlertDays);
 
                 return ExcuteQuery(query);
@@ -210,6 +210,9 @@ namespace MM.Bussiness
                             srv.Lan1 = tiemNgua.Lan1;
                             srv.Lan2 = tiemNgua.Lan2;
                             srv.Lan3 = tiemNgua.Lan3;
+                            srv.DaChich1 = tiemNgua.DaChich1;
+                            srv.DaChich2 = tiemNgua.DaChich2;
+                            srv.DaChich3 = tiemNgua.DaChich3;
                             srv.CreatedDate = tiemNgua.CreatedDate;
                             srv.CreatedBy = tiemNgua.CreatedBy;
                             srv.UpdatedDate = tiemNgua.UpdatedDate;
