@@ -3426,7 +3426,7 @@ namespace MM.Exports
                     workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = string.Format("    BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+                    workSheet.Cells["D8"].Value = string.Format("BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -3576,7 +3576,7 @@ namespace MM.Exports
                     workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = string.Format("    BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+                    workSheet.Cells["D8"].Value = string.Format("BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -3738,7 +3738,7 @@ namespace MM.Exports
                     workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = string.Format("    BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+                    workSheet.Cells["D8"].Value = string.Format("BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -3885,7 +3885,7 @@ namespace MM.Exports
                     workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+                    workSheet.Cells["D8"].Value = string.Format("BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
@@ -4028,7 +4028,7 @@ namespace MM.Exports
                     workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
 
                 if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
-                    workSheet.Cells["F8"].Value = string.Format("          BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+                    workSheet.Cells["D8"].Value = string.Format("SBSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
                 if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
