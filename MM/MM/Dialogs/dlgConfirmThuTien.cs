@@ -34,6 +34,11 @@ namespace MM.Dialogs
         {
             get { return txtGhiChu.Text; }
         }
+
+        public string LyDoGiam
+        {
+            get { return txtLyDoGiam.Text; }
+        }
         #endregion
 
         #region Window Event Handlers

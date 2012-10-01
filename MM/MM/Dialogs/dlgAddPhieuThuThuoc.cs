@@ -56,6 +56,7 @@ namespace MM.Dialogs
             txtTenBenhNhan.ReadOnly = true;
             txtDiaChi.ReadOnly = true;
             txtGhiChu.ReadOnly = true;
+            txtLyDoGiam.ReadOnly = true;
             btnChonBenhNhan.Enabled = false;
             
             this.Text = "Xem phieu thu";
@@ -133,6 +134,8 @@ namespace MM.Dialogs
                 txtMaBenhNhan.Text = drPhieuThu["MaBenhNhan"] as string;
                 txtTenBenhNhan.Text = drPhieuThu["TenBenhNhan"] as string;
                 txtDiaChi.Text = drPhieuThu["DiaChi"] as string;
+                txtGhiChu.Text = drPhieuThu["Notes"] as string;
+                txtLyDoGiam.Text = drPhieuThu["LyDoGiam"] as string;
                 chkDaThuTien.Checked = Convert.ToBoolean(drPhieuThu["DaThuTien"]);
                 chkDaXuatHD.Checked = Convert.ToBoolean(drPhieuThu["IsExported"]);
 
@@ -622,6 +625,7 @@ namespace MM.Dialogs
                     _phieuThuThuoc.Status = (byte)Status.Actived;
                     _phieuThuThuoc.ChuaThuTien = !chkDaThuTien.Checked;
                     _phieuThuThuoc.Notes = txtGhiChu.Text;
+                    _phieuThuThuoc.LyDoGiam = txtLyDoGiam.Text;
 
                     if (_isNew)
                     {

@@ -50,7 +50,8 @@ namespace MM.Exports
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["B2"].Value = string.Format("Số: {0}", receipt.ReceiptCode);
                 workSheet.Cells["B5"].Value = string.Format("Người nộp tiền: {0} - {1}", receipt.FullName, receipt.FileNum);
-                workSheet.Cells["B6"].Value = string.Format("Ngày: {0}", receipt.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"));
+                workSheet.Cells["B6"].Value = string.Format("Ngày: {0} - Lý do giảm: {1}", 
+                    receipt.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), receipt.LyDoGiam);
                 if (receipt.Address != null) workSheet.Cells["B7"].Value = string.Format("Địa chỉ: {0}", receipt.Address);
                 else workSheet.Cells["B7"].Value = "Địa chỉ:";
 
@@ -1674,7 +1675,8 @@ namespace MM.Exports
                     workSheet.Cells["B5"].Value = string.Format("Người nộp tiền: {0} - {1}", ptThuoc.TenBenhNhan, ptThuoc.MaBenhNhan);
                 else
                     workSheet.Cells["B5"].Value = string.Format("Người nộp tiền: {0}", ptThuoc.TenBenhNhan);
-                workSheet.Cells["B6"].Value = string.Format("Ngày: {0}", ptThuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"));
+                workSheet.Cells["B6"].Value = string.Format("Ngày: {0} - Lý do giảm: {1}", 
+                    ptThuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"), ptThuoc.LyDoGiam);
                 if (ptThuoc.DiaChi != null) workSheet.Cells["B7"].Value = string.Format("Địa chỉ: {0}", ptThuoc.DiaChi);
                 else workSheet.Cells["B7"].Value = "Địa chỉ:";
 
