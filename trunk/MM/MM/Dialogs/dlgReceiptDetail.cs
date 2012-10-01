@@ -61,6 +61,9 @@ namespace MM.Dialogs
             chkDaXuatHD.Checked = Convert.ToBoolean(drReceipt["IsExportedInVoice"]);
             chkDaThuTien.Checked = Convert.ToBoolean(drReceipt["DaThuTien"]);
 
+            if (drReceipt["LyDoGiam"] != null && drReceipt["LyDoGiam"] != DBNull.Value)
+                txtLyDoGiam.Text = drReceipt["LyDoGiam"].ToString();
+
             lbTotalPrice.Text = "Tổng tiền: 0 (VNĐ)";
             
             Result result = ReceiptBus.GetReceiptDetailList(drReceipt["receiptGUID"].ToString());

@@ -368,6 +368,7 @@ namespace MM.Controls
                     receipt.IsExportedInVoice = false;
                     receipt.ChuaThuTien = !dlg.DaThuTien;
                     receipt.Notes = dlg.GhiChu;
+                    receipt.LyDoGiam = dlg.LyDoGiam;
 
                     Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
                     if (result.IsOK)

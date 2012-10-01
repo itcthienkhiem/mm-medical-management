@@ -41,6 +41,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddPhieuThuThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.chkDaXuatHD = new System.Windows.Forms.CheckBox();
             this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.btnChonBenhNhan = new System.Windows.Forms.Button();
@@ -77,8 +79,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lbTongTien = new System.Windows.Forms.Label();
             this.btnExportInvoice = new System.Windows.Forms.Button();
-            this.txtGhiChu = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtLyDoGiam = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
@@ -89,6 +91,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtLyDoGiam);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.txtGhiChu);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.chkDaXuatHD);
@@ -115,6 +119,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
             // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(97, 171);
+            this.txtGhiChu.MaxLength = 500;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(528, 20);
+            this.txtGhiChu.TabIndex = 12;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(46, 174);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 51;
+            this.label8.Text = "Ghi chú:";
+            // 
             // chkDaXuatHD
             // 
             this.chkDaXuatHD.AutoSize = true;
@@ -122,7 +143,7 @@
             this.chkDaXuatHD.Location = new System.Drawing.Point(181, 198);
             this.chkDaXuatHD.Name = "chkDaXuatHD";
             this.chkDaXuatHD.Size = new System.Drawing.Size(106, 17);
-            this.chkDaXuatHD.TabIndex = 50;
+            this.chkDaXuatHD.TabIndex = 14;
             this.chkDaXuatHD.Text = "Đã xuất hóa đơn";
             this.chkDaXuatHD.UseVisualStyleBackColor = true;
             // 
@@ -134,16 +155,16 @@
             this.chkDaThuTien.Location = new System.Drawing.Point(97, 198);
             this.chkDaThuTien.Name = "chkDaThuTien";
             this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
-            this.chkDaThuTien.TabIndex = 49;
+            this.chkDaThuTien.TabIndex = 13;
             this.chkDaThuTien.Text = "Đã thu tiền";
             this.chkDaThuTien.UseVisualStyleBackColor = true;
             // 
             // btnChonBenhNhan
             // 
-            this.btnChonBenhNhan.Location = new System.Drawing.Point(470, 120);
+            this.btnChonBenhNhan.Location = new System.Drawing.Point(520, 119);
             this.btnChonBenhNhan.Name = "btnChonBenhNhan";
             this.btnChonBenhNhan.Size = new System.Drawing.Size(105, 22);
-            this.btnChonBenhNhan.TabIndex = 48;
+            this.btnChonBenhNhan.TabIndex = 10;
             this.btnChonBenhNhan.Text = "Chọn bệnh nhân...";
             this.btnChonBenhNhan.UseVisualStyleBackColor = true;
             this.btnChonBenhNhan.Click += new System.EventHandler(this.btnChonBenhNhan_Click);
@@ -153,7 +174,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(447, 124);
+            this.label7.Location = new System.Drawing.Point(495, 123);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(17, 13);
             this.label7.TabIndex = 47;
@@ -192,16 +213,16 @@
             this.txtDiaChi.Location = new System.Drawing.Point(97, 146);
             this.txtDiaChi.MaxLength = 500;
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(346, 20);
-            this.txtDiaChi.TabIndex = 9;
+            this.txtDiaChi.Size = new System.Drawing.Size(528, 20);
+            this.txtDiaChi.TabIndex = 11;
             // 
             // txtTenBenhNhan
             // 
             this.txtTenBenhNhan.Location = new System.Drawing.Point(97, 121);
             this.txtTenBenhNhan.MaxLength = 255;
             this.txtTenBenhNhan.Name = "txtTenBenhNhan";
-            this.txtTenBenhNhan.Size = new System.Drawing.Size(346, 20);
-            this.txtTenBenhNhan.TabIndex = 8;
+            this.txtTenBenhNhan.Size = new System.Drawing.Size(394, 20);
+            this.txtTenBenhNhan.TabIndex = 9;
             // 
             // txtMaBenhNhan
             // 
@@ -209,7 +230,7 @@
             this.txtMaBenhNhan.MaxLength = 50;
             this.txtMaBenhNhan.Name = "txtMaBenhNhan";
             this.txtMaBenhNhan.Size = new System.Drawing.Size(165, 20);
-            this.txtMaBenhNhan.TabIndex = 7;
+            this.txtMaBenhNhan.TabIndex = 8;
             // 
             // dtpkNgayThu
             // 
@@ -323,7 +344,7 @@
             this.dgChiTiet.RowHeadersWidth = 30;
             this.dgChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgChiTiet.Size = new System.Drawing.Size(870, 277);
-            this.dgChiTiet.TabIndex = 12;
+            this.dgChiTiet.TabIndex = 15;
             this.dgChiTiet.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgChiTiet_CellFormatting);
             this.dgChiTiet.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_CellMouseDown);
             this.dgChiTiet.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_ColumnHeaderMouseClick);
@@ -474,7 +495,7 @@
             this.btnCancel.Location = new System.Drawing.Point(497, 538);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 16;
+            this.btnCancel.TabIndex = 18;
             this.btnCancel.Text = "   &Đóng";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
@@ -486,7 +507,7 @@
             this.btnOK.Location = new System.Drawing.Point(308, 538);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 13;
+            this.btnOK.TabIndex = 16;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
@@ -508,27 +529,27 @@
             this.btnExportInvoice.Location = new System.Drawing.Point(387, 538);
             this.btnExportInvoice.Name = "btnExportInvoice";
             this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
-            this.btnExportInvoice.TabIndex = 14;
+            this.btnExportInvoice.TabIndex = 17;
             this.btnExportInvoice.Text = "      &Xuất hóa đơn";
             this.btnExportInvoice.UseVisualStyleBackColor = true;
             this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
             // 
-            // txtGhiChu
+            // label9
             // 
-            this.txtGhiChu.Location = new System.Drawing.Point(97, 171);
-            this.txtGhiChu.MaxLength = 500;
-            this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(346, 20);
-            this.txtGhiChu.TabIndex = 10;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(216, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(61, 13);
+            this.label9.TabIndex = 52;
+            this.label9.Text = "Lý do giảm:";
             // 
-            // label8
+            // txtLyDoGiam
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(46, 174);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 13);
-            this.label8.TabIndex = 51;
-            this.label8.Text = "Ghi chú:";
+            this.txtLyDoGiam.Location = new System.Drawing.Point(279, 71);
+            this.txtLyDoGiam.MaxLength = 500;
+            this.txtLyDoGiam.Name = "txtLyDoGiam";
+            this.txtLyDoGiam.Size = new System.Drawing.Size(346, 20);
+            this.txtLyDoGiam.TabIndex = 7;
             // 
             // dlgAddPhieuThuThuoc
             // 
@@ -604,5 +625,7 @@
         private System.Windows.Forms.CheckBox chkDaXuatHD;
         private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtLyDoGiam;
+        private System.Windows.Forms.Label label9;
     }
 }

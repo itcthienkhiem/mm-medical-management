@@ -226,9 +226,9 @@ namespace MM.Bussiness
                                 }
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}'\n",
                                 r.ReceiptGUID.ToString(), r.ReceiptCode, r.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), r.Patient.FileNum, 
-                                r.Patient.Contact.FullName, r.Patient.Contact.Address, noteList[index], !r.ChuaThuTien);
+                                r.Patient.Contact.FullName, r.Patient.Contact.Address, noteList[index], !r.ChuaThuTien, r.LyDoGiam);
                         }
 
                         index++;
@@ -287,9 +287,9 @@ namespace MM.Bussiness
                     db.Receipts.InsertOnSubmit(receipt);
                     db.SubmitChanges();
 
-                    desc += string.Format("- Phiếu thu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}'\n",
+                    desc += string.Format("- Phiếu thu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}'\n",
                                receipt.ReceiptGUID.ToString(), receipt.ReceiptCode, receipt.ReceiptDate.ToString("dd/MM/yyyy HH:mm:ss"), receipt.Patient.FileNum,
-                               receipt.Patient.Contact.FullName, receipt.Patient.Contact.Address, receipt.Notes, !receipt.ChuaThuTien);
+                               receipt.Patient.Contact.FullName, receipt.Patient.Contact.Address, receipt.Notes, !receipt.ChuaThuTien, receipt.LyDoGiam);
 
                     desc += "- Chi tiết phiếu thu được thêm:\n";
 

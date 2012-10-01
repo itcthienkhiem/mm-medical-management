@@ -2132,6 +2132,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-10-01.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-08-28.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-08-15.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-08-09.sql" />
