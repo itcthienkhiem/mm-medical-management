@@ -94,18 +94,64 @@ namespace MM.Controls
             dlgAddCongTacNgoaiGio dlg = new dlgAddCongTacNgoaiGio();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-
+                DisplayAsThread();
             }
         }
 
         private void OnEdit()
         {
+            if (dgCongTacNgoaiGio.SelectedRows == null || dgCongTacNgoaiGio.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 công tác ngoài giờ.", IconType.Information);
+                return;
+            }
 
+            DataRow drCongTacNgoaiGio = (dgCongTacNgoaiGio.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            if (drCongTacNgoaiGio == null) return;
+
+            dlgAddCongTacNgoaiGio dlg = new dlgAddCongTacNgoaiGio(drCongTacNgoaiGio);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                DisplayAsThread();
+            }
         }
 
         private void OnDelete()
         {
+            List<string> deletedKeyList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgCongTacNgoaiGio.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedKeyList.Add(row["CongTacNgoaiGioGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
 
+            if (deletedKeyList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những công tác ngoài giờ mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = CongTacNgoaiGioBus.DeleteCongTacNgoaiGio(deletedKeyList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CongTacNgoaiGioBus.DeleteCongTacNgoaiGio"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CongTacNgoaiGioBus.DeleteCongTacNgoaiGio"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những công tác ngoài giờ cần xóa.", IconType.Information);
         }
 
         private void OnPrint(bool isPreview)

@@ -18,7 +18,7 @@ namespace MM.Dialogs
         #region Members
         private bool _isNew = true;
         private DataRow _drCongTacNgoaiGio;
-        private CongTacNgoaiGio _congTacNgoaiGio;
+        private CongTacNgoaiGio _congTacNgoaiGio = new CongTacNgoaiGio();
         #endregion
 
         #region Constructor
@@ -96,83 +96,26 @@ namespace MM.Dialogs
                 cboNguoiDeXuat.SelectedValue = _drCongTacNgoaiGio["NguoiDeXuatGUID"].ToString();
                 txtGhiChu.Text = _drCongTacNgoaiGio["GhiChu"] as string;
 
-                //cboService.SelectedValue = drServiceHistory["ServiceGUID"].ToString();
-                //cboDocStaff.SelectedValue = drServiceHistory["DocStaffGUID"].ToString();
+                if (_drCongTacNgoaiGio["CreatedDate"] != null && _drCongTacNgoaiGio["CreatedDate"] != DBNull.Value)
+                    _congTacNgoaiGio.CreatedDate = Convert.ToDateTime(_drCongTacNgoaiGio["CreatedDate"]);
 
-                //if (drServiceHistory["RootPatientGUID"] != null && drServiceHistory["RootPatientGUID"] != DBNull.Value)
-                //{
-                //    txtChuyenNhuong.Tag = drServiceHistory["RootPatientGUID"].ToString();
-                //    chkChuyenNhuong.Checked = true;
-                //}
+                if (_drCongTacNgoaiGio["CreatedBy"] != null && _drCongTacNgoaiGio["CreatedBy"] != DBNull.Value)
+                    _congTacNgoaiGio.CreatedBy = Guid.Parse(_drCongTacNgoaiGio["CreatedBy"].ToString());
 
-                //if (drServiceHistory["TenBenhNhanChuyenNhuong"] != null && drServiceHistory["TenBenhNhanChuyenNhuong"] != DBNull.Value)
-                //    txtChuyenNhuong.Text = drServiceHistory["TenBenhNhanChuyenNhuong"].ToString();
+                if (_drCongTacNgoaiGio["UpdatedDate"] != null && _drCongTacNgoaiGio["UpdatedDate"] != DBNull.Value)
+                    _congTacNgoaiGio.UpdatedDate = Convert.ToDateTime(_drCongTacNgoaiGio["UpdatedDate"]);
 
-                //bool isNormalOrNegative = Convert.ToBoolean(drServiceHistory["IsNormalOrNegative"]);
-                //bool normal = Convert.ToBoolean(drServiceHistory["Normal"]);
-                //bool abnormal = Convert.ToBoolean(drServiceHistory["Abnormal"]);
-                //bool negative = Convert.ToBoolean(drServiceHistory["Negative"]);
-                //bool positive = Convert.ToBoolean(drServiceHistory["Positive"]);
+                if (_drCongTacNgoaiGio["UpdatedBy"] != null && _drCongTacNgoaiGio["UpdatedBy"] != DBNull.Value)
+                    _congTacNgoaiGio.UpdatedBy = Guid.Parse(_drCongTacNgoaiGio["UpdatedBy"].ToString());
 
-                //raNormal.Checked = isNormalOrNegative;
-                //raNegative.Checked = !isNormalOrNegative;
-                //chkNormal.Checked = normal;
-                //chkAbnormal.Checked = abnormal;
-                //chkNegative.Checked = negative;
-                //chkPositive.Checked = positive;
-                //raKhamTuTuc.Checked = Convert.ToBoolean(drServiceHistory["KhamTuTuc"]);
-                //raKhamTheoHopDong.Checked = !raKhamTuTuc.Checked;
+                if (_drCongTacNgoaiGio["DeletedDate"] != null && _drCongTacNgoaiGio["DeletedDate"] != DBNull.Value)
+                    _congTacNgoaiGio.DeletedDate = Convert.ToDateTime(_drCongTacNgoaiGio["DeletedDate"]);
 
-                //numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
-                //numDiscount.Value = (decimal)Double.Parse(drServiceHistory["Discount"].ToString());
-                //txtDescription.Text = drServiceHistory["Note"] as string;
-                //_serviceHistory.ServiceHistoryGUID = Guid.Parse(drServiceHistory["ServiceHistoryGUID"].ToString());
+                if (_drCongTacNgoaiGio["DeletedBy"] != null && _drCongTacNgoaiGio["DeletedBy"] != DBNull.Value)
+                    _congTacNgoaiGio.DeletedBy = Guid.Parse(_drCongTacNgoaiGio["DeletedBy"].ToString());
 
-                //if (drServiceHistory["ActivedDate"] != null && drServiceHistory["ActivedDate"] != DBNull.Value)
-                //{
-                //    _serviceHistory.ActivedDate = Convert.ToDateTime(drServiceHistory["ActivedDate"]);
-                //    dtpkActiveDate.Value = _serviceHistory.ActivedDate.Value;
-                //}
-
-                //if (drServiceHistory["CreatedDate"] != null && drServiceHistory["CreatedDate"] != DBNull.Value)
-                //    _serviceHistory.CreatedDate = Convert.ToDateTime(drServiceHistory["CreatedDate"]);
-
-                //if (drServiceHistory["CreatedBy"] != null && drServiceHistory["CreatedBy"] != DBNull.Value)
-                //    _serviceHistory.CreatedBy = Guid.Parse(drServiceHistory["CreatedBy"].ToString());
-
-                //if (drServiceHistory["UpdatedDate"] != null && drServiceHistory["UpdatedDate"] != DBNull.Value)
-                //    _serviceHistory.UpdatedDate = Convert.ToDateTime(drServiceHistory["UpdatedDate"]);
-
-                //if (drServiceHistory["UpdatedBy"] != null && drServiceHistory["UpdatedBy"] != DBNull.Value)
-                //    _serviceHistory.UpdatedBy = Guid.Parse(drServiceHistory["UpdatedBy"].ToString());
-
-                //if (drServiceHistory["DeletedDate"] != null && drServiceHistory["DeletedDate"] != DBNull.Value)
-                //    _serviceHistory.DeletedDate = Convert.ToDateTime(drServiceHistory["DeletedDate"]);
-
-                //if (drServiceHistory["DeletedBy"] != null && drServiceHistory["DeletedBy"] != DBNull.Value)
-                //    _serviceHistory.DeletedBy = Guid.Parse(drServiceHistory["DeletedBy"].ToString());
-
-                //_serviceHistory.Status = Convert.ToByte(drServiceHistory["Status"]);
-
-                //Result result = ChiDinhBus.GetChiDinh(_serviceHistory.ServiceHistoryGUID.ToString());
-                //if (!result.IsOK)
-                //{
-                //    MsgBox.Show(this.Text, result.GetErrorAsString("ChiDinhBus.GetBacSiChiDinh"), IconType.Error);
-                //    Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetBacSiChiDinh"));
-                //    return;
-                //}
-                //else if (result.QueryResult != null)
-                //{
-                //    _chiDinh = (ChiDinh)result.QueryResult;
-                //    cboBacSiChiDinh.SelectedValue = _chiDinh.BacSiChiDinhGUID.ToString();
-                //    chkBSCD.Checked = true;
-                //}
-
-                //if (!_allowEdit)
-                //{
-                //    btnOK.Enabled = _allowEdit;
-                //    groupBox1.Enabled = _allowEdit;
-                //}
+                _congTacNgoaiGio.Status = Convert.ToByte(_drCongTacNgoaiGio["Status"]);
+                _congTacNgoaiGio.CongTacNgoaiGioGUID = Guid.Parse(_drCongTacNgoaiGio["CongTacNgoaiGioGUID"].ToString());
             }
             catch (Exception e)
             {
@@ -183,7 +126,66 @@ namespace MM.Dialogs
 
         private void SaveInfoAsThread()
         {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSaveInfoProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
 
+        private void OnSaveInfo()
+        {
+            try
+            {
+                MethodInvoker method = delegate
+                {
+                    _congTacNgoaiGio.Ngay = dtpkNgay.Value;
+                    _congTacNgoaiGio.DocStaffGUID = Guid.Parse(cboNhanVien.SelectedValue.ToString());
+                    _congTacNgoaiGio.MucDich = txtMucDich.Text;
+                    _congTacNgoaiGio.GioVao = dtpkGioVao.Value;
+                    _congTacNgoaiGio.GioRa = dtpkGioRa.Value;
+                    _congTacNgoaiGio.KetQuaDanhGia = txtKetQuaDanhGia.Text;
+                    _congTacNgoaiGio.NguoiDeXuatGUID = Guid.Parse(cboNguoiDeXuat.SelectedValue.ToString());
+                    _congTacNgoaiGio.GhiChu = txtGhiChu.Text;
+                    _congTacNgoaiGio.Status = (byte)Status.Actived;
+
+                    if (_isNew)
+                    {
+                        _congTacNgoaiGio.CreatedDate = DateTime.Now;
+                        _congTacNgoaiGio.CreatedBy = Guid.Parse(Global.UserGUID);
+                    }
+                    else
+                    {
+                        _congTacNgoaiGio.UpdatedDate = DateTime.Now;
+                        _congTacNgoaiGio.UpdatedBy = Guid.Parse(Global.UserGUID);
+                    }
+
+                    Result result = CongTacNgoaiGioBus.InsertCongTacNgoaiGio(_congTacNgoaiGio);
+
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("CongTacNgoaiGioBus.InsertCongTacNgoaiGio"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CongTacNgoaiGioBus.InsertCongTacNgoaiGio"));
+                        this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
         }
         #endregion
 
@@ -201,6 +203,25 @@ namespace MM.Dialogs
             {
                 if (CheckInfo()) SaveInfoAsThread();
                 else e.Cancel = true;
+            }
+        }
+        #endregion
+
+        #region Working Thread
+        private void OnSaveInfoProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                OnSaveInfo();
+            }
+            catch (Exception e)
+            {
+                MsgBox.Show(this.Text, e.Message, IconType.Error);
+            }
+            finally
+            {
+                base.HideWaiting();
             }
         }
         #endregion

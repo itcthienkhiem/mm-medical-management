@@ -21,13 +21,13 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (tenNhanVien.Trim() != string.Empty)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CongTacNgoaiGioView WHERE Ngay BETWEEN '{0}' AND '{1}' AND FullName LIKE N'{2}%' ORDER BY Ngay DESC",
-                               fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), tenNhanVien);
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CongTacNgoaiGioView WHERE Ngay BETWEEN '{0}' AND '{1}' AND FullName LIKE N'{2}%' AND Status={3} ORDER BY Ngay DESC",
+                               fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), tenNhanVien, (byte)Status.Actived);
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CongTacNgoaiGioView WHERE Ngay BETWEEN '{0}' AND '{1}' ORDER BY Ngay DESC",
-                               fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CongTacNgoaiGioView WHERE Ngay BETWEEN '{0}' AND '{1}' AND Status={2} ORDER BY Ngay DESC",
+                               fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived);
                 }
 
                 return ExcuteQuery(query);
