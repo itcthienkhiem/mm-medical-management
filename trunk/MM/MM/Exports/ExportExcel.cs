@@ -6105,5 +6105,90 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportCongTacNgoaiGioToExcel(string exportFileName, List<DataRow> checkedRows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\CongTacNgoaiGioTemplate.xls", Application.StartupPath);
+
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 5;
+
+                foreach (DataRow row in checkedRows)
+                {
+                    DateTime ngay = Convert.ToDateTime(row["Ngay"]);
+                    string tenNhanVien = row["FullName"].ToString();
+                    string mucDich = row["MucDich"] as string;
+                    DateTime gioVao = Convert.ToDateTime(row["GioVao"]);
+                    DateTime gioRa = Convert.ToDateTime(row["GioRa"]);
+                    string ketQuaDanhGia = row["KetQuaDanhGia"] as string;
+                    string nguoiDeXuat = row["TenNguoiDeXuat"].ToString();
+                    string ghiChu = row["GhiChu"] as string;
+
+                    workSheet.Cells[rowIndex, 0].Value = ngay;
+                    workSheet.Cells[rowIndex, 1].Value = tenNhanVien;
+                    workSheet.Cells[rowIndex, 2].Value = mucDich;
+                    workSheet.Cells[rowIndex, 3].Value = gioVao;
+                    workSheet.Cells[rowIndex, 4].Value = gioRa;
+                    workSheet.Cells[rowIndex, 5].Value = ketQuaDanhGia;
+                    workSheet.Cells[rowIndex, 6].Value = nguoiDeXuat;
+                    workSheet.Cells[rowIndex, 7].Value = ghiChu;
+
+                    rowIndex++;
+                }
+
+                IRange range = workSheet.Cells[string.Format("A6:H{0}", checkedRows.Count + 5)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.VerticalAlignment = VAlign.Top;
+                range.RowHeight = 18.75;
+
+                rowIndex = checkedRows.Count + 5;
+                range = workSheet.Cells[rowIndex, 0];
+                range.Value = "* Đề nghị người đề xuất cập nhật  và nộp lại cho bộ phận kế toán trong ngày.";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.RowHeight = 18.75;
+
+                range = workSheet.Cells[string.Format("F{0}:H{0}", checkedRows.Count + 6)];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Center;
+                range.Value = string.Format("TP. Hồ Chí Minh, ngày    tháng    năm {0}", DateTime.Now.Year);
+
+                range = workSheet.Cells[string.Format("F{0}:H{0}", checkedRows.Count + 7)];
+                range.Merge();
+                range.HorizontalAlignment = HAlign.Center;
+                range.Value = "Giám đốc";
+                range.VerticalAlignment = VAlign.Center;
+                range.RowHeight = 18.75;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
