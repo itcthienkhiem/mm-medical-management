@@ -303,6 +303,9 @@ namespace MM
                 _uLoaiSieuAmList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uTiemNguaList))
                 _uTiemNguaList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uCongTacNgoaiGioList))
+                _uCongTacNgoaiGioList.DisplayAsThread();
+
                 
         }
 
@@ -1121,6 +1124,23 @@ namespace MM
                             _uTiemNguaList.AllowLock = isLock;
                             _uTiemNguaList.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.CongTacNgoaiGio)
+                        {
+                            congTacNgoaiGioToolStripMenuItem.Enabled = isView && isLogin;
+                            _uCongTacNgoaiGioList.AllowAdd = isAdd;
+                            _uCongTacNgoaiGioList.AllowEdit = isEdit;
+                            _uCongTacNgoaiGioList.AllowDelete = isDelete;
+                            _uCongTacNgoaiGioList.AllowPrint = isPrint;
+                            _uCongTacNgoaiGioList.AllowExport = isExport;
+                            _uCongTacNgoaiGioList.AllowImport = isImport;
+                            _uCongTacNgoaiGioList.AllowLock = isLock;
+                            _uCongTacNgoaiGioList.AllowExportAll = isExportAll;
+                        }
+                        else if (functionCode == Const.LichKham)
+                        {
+                            lichKhamToolStripMenuItem.Enabled = isView && isLogin;
+
+                        }
                     }
                 }
                 else
@@ -1304,6 +1324,8 @@ namespace MM
                 benhNhanThanThuocToolStripMenuItem.Enabled = isLogin;
                 loaiSieuAmToolStripMenuItem.Enabled = isLogin;
                 tiemNguaToolStripMenuItem.Enabled = isLogin;
+                congTacNgoaiGioToolStripMenuItem.Enabled = isLogin;
+                lichKhamToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1594,7 +1616,27 @@ namespace MM
                 case "CauHinhSoNgayBaoTiemNgua":
                     OnCauHinhSoNgayBaoTiemNgua();
                     break;
+
+                case "CongTacNgoaiGio":
+                    OnCongTacNgoaiGio();
+                    break;
+
+                case "LichKham":
+                    OnLichKham();
+                    break;
             }
+        }
+
+        private void OnCongTacNgoaiGio()
+        {
+            this.Text = string.Format("{0} - Cong tac ngoai gio", Application.ProductName);
+            ViewControl(_uCongTacNgoaiGioList);
+            _uCongTacNgoaiGioList.DisplayAsThread();
+        }
+
+        private void OnLichKham()
+        {
+            this.Text = string.Format("{0} - Lich kham", Application.ProductName);
         }
 
         private void OnCauHinhSoNgayBaoTiemNgua()

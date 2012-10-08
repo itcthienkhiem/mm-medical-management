@@ -98,6 +98,12 @@
     <Compile Include="Controls\uBenhNhanThanThuocList.Designer.cs">
       <DependentUpon>uBenhNhanThanThuocList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uCongTacNgoaiGioList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uCongTacNgoaiGioList.Designer.cs">
+      <DependentUpon>uCongTacNgoaiGioList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKetQuaSieuAmList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -803,6 +809,12 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddCongTacNgoaiGio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddCongTacNgoaiGio.Designer.cs">
+      <DependentUpon>dlgAddCongTacNgoaiGio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddKetQuaSieuAm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1354,6 +1366,9 @@
     <EmbeddedResource Include="Controls\uBenhNhanThanThuocList.resx">
       <DependentUpon>uBenhNhanThanThuocList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uCongTacNgoaiGioList.resx">
+      <DependentUpon>uCongTacNgoaiGioList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaSieuAmList.resx">
       <DependentUpon>uKetQuaSieuAmList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1641,6 +1656,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddCongTacNgoaiGio.resx">
+      <DependentUpon>dlgAddCongTacNgoaiGio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddKetQuaSieuAm.resx">
       <DependentUpon>dlgAddKetQuaSieuAm.cs</DependentUpon>
@@ -1950,6 +1968,7 @@
     <None Include="Properties\DataSources\MM.Databasae.CompanyContract.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyContractView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CompanyMemberView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.CongTacNgoaiGioView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DiaChiCongTy.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
@@ -2132,6 +2151,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-10-08.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-10-01.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-08-28.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-08-15.sql" />
