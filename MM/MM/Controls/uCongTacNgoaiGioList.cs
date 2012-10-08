@@ -156,12 +156,81 @@ namespace MM.Controls
 
         private void OnPrint(bool isPreview)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetCheckedRows();
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\CongTacNgoaiGio.xls", Application.StartupPath);
+                if (isPreview)
+                {
+                    if (ExportExcel.ExportCongTacNgoaiGioToExcel(exportFileName, checkedRows))
+                    {
+                        try
+                        {
+                            ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.CongTacNgoaiGioTemplate));
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        if (ExportExcel.ExportCongTacNgoaiGioToExcel(exportFileName, checkedRows))
+                        {
+                            try
+                            {
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.CongTacNgoaiGioTemplate));
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những công tác ngoài giờ cần in.", IconType.Information);
+        }
 
+        private List<DataRow> GetCheckedRows()
+        {
+            List<DataRow> checkedRows = new List<DataRow>();
+
+            DataTable dt = dgCongTacNgoaiGio.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return checkedRows;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    checkedRows.Add(row);
+            }
+
+            return checkedRows;
         }
 
         private void OnExportExcel()
         {
+            List<DataRow> checkedRows = GetCheckedRows();
+            if (checkedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những công tác ngoài giờ cần xuất Excel.", IconType.Information);
+                return;
+            }
 
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "Export Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                if (!ExportExcel.ExportCongTacNgoaiGioToExcel(dlg.FileName, checkedRows))
+                    return;
+            }
         }
         #endregion
 
