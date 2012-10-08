@@ -1059,6 +1059,14 @@ namespace MM.Common
                     case "Danh sách thuốc":
                         fileName = string.Format("{0}\\Templates\\DanhSachThuocTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
                         break;
+
+                    case "Công tác ngoài giờ":
+                        fileName = string.Format("{0}\\Templates\\CongTacNgoaiGioTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
+
+                    case "Lịch khám":
+                        fileName = string.Format("{0}\\Templates\\LichKhamTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
                 }
 
                 if (fileName != string.Empty && File.Exists(fileName))

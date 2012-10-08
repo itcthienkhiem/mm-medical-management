@@ -85,6 +85,8 @@ namespace MM.Common
         public static string KetQuaSieuAm = "KetQuaSieuAm";
         public static string TiemNgua = "TiemNgua";
         public static string CauHinhSoNgayBaoTiemNgua = "CauHinhSoNgayBaoTiemNgua";
+        public static string CongTacNgoaiGio = "CongTacNgoaiGio";
+        public static string LichKham = "LichKham";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
@@ -118,5 +120,7 @@ namespace MM.Common
         public static string DanhSachDichVuTemplate = "Danh sách dịch vụ";
         public static string DanhSachThuocTemplate = "Danh sách thuốc";
         public static string DanhSachNhanVienTemplate = "Danh sách nhân viên";
+        public static string CongTacNgoaiGioTemplate = "Công tác ngoài giờ";
+        public static string LichKhamTemplate = "Lịch khám";
     }
 }

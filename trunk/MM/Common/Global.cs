@@ -149,6 +149,8 @@ namespace MM.Common
             ExcelTemplates.Add(Const.DanhSachDichVuTemplate);
             ExcelTemplates.Add(Const.DanhSachThuocTemplate);
             ExcelTemplates.Add(Const.DanhSachNhanVienTemplate);
+            ExcelTemplates.Add(Const.CongTacNgoaiGioTemplate);
+            ExcelTemplates.Add(Const.LichKhamTemplate);
 
             ExcelTemplates.Sort();
         }
