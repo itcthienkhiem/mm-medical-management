@@ -275,4 +275,18 @@ namespace MM.Common
         //SoiTuoiHuyetTrang,
         //Electrolytes, //Ion đồ
     }
+
+    public enum LoaiLichKham : int
+    {
+        CongTySang = 0,
+        CongTyChieu,
+        BsNoiTongQuatSang,
+        BsNoiTongQuatChieu,
+        BsNgoaiTongQuatSang,
+        BsNgoaiTongQuatChieu,
+        BsSieuAmSang,
+        BsSieuAmChieu,
+        BsSanPhuKhoaSang,
+        BsSanPhuKhoaChieu
+    }
 }
