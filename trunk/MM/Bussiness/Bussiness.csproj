@@ -105,6 +105,7 @@
     <Compile Include="KetQuaSoiCTCBus.cs" />
     <Compile Include="KetQuaXetNghiemTayBus.cs" />
     <Compile Include="KetQuaXetNghiemTongHopBus.cs" />
+    <Compile Include="LichKhamBus.cs" />
     <Compile Include="LogonBus.cs" />
     <Compile Include="LoiKhuyenBus.cs" />
     <Compile Include="LoThuocBus.cs" />

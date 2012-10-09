@@ -305,8 +305,8 @@ namespace MM
                 _uTiemNguaList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uCongTacNgoaiGioList))
                 _uCongTacNgoaiGioList.DisplayAsThread();
-
-                
+            else if (ctrl.GetType() == typeof(uLichKham))
+                _uLichKham.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1139,7 +1139,14 @@ namespace MM
                         else if (functionCode == Const.LichKham)
                         {
                             lichKhamToolStripMenuItem.Enabled = isView && isLogin;
-
+                            _uLichKham.AllowAdd = isAdd;
+                            _uLichKham.AllowEdit = isEdit;
+                            _uLichKham.AllowDelete = isDelete;
+                            _uLichKham.AllowPrint = isPrint;
+                            _uLichKham.AllowExport = isExport;
+                            _uLichKham.AllowImport = isImport;
+                            _uLichKham.AllowLock = isLock;
+                            _uLichKham.AllowExportAll = isExportAll;
                         }
                     }
                 }
@@ -1637,6 +1644,8 @@ namespace MM
         private void OnLichKham()
         {
             this.Text = string.Format("{0} - Lich kham", Application.ProductName);
+            ViewControl(_uLichKham);
+            _uLichKham.DisplayAsThread();
         }
 
         private void OnCauHinhSoNgayBaoTiemNgua()

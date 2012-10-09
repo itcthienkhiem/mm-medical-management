@@ -1232,6 +1232,29 @@ namespace MM.Common
 
             return false;
         }
+
+        public static string GetDayOfWeek(DateTime dt)
+        {
+            switch (dt.DayOfWeek)
+            {
+                case DayOfWeek.Friday:
+                    return "Thứ 6";
+                case DayOfWeek.Monday:
+                    return "Thứ 2";
+                case DayOfWeek.Saturday:
+                    return "Thứ 7";
+                case DayOfWeek.Sunday:
+                    return "CN";
+                case DayOfWeek.Thursday:
+                    return "Thứ 5";
+                case DayOfWeek.Tuesday:
+                    return "Thứ 3";
+                case DayOfWeek.Wednesday:
+                    return "Thứ 4";
+            }
+
+            return string.Empty;
+        }
     }
 }
 

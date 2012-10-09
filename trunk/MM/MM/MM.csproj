@@ -110,6 +110,12 @@
     <Compile Include="Controls\uKetQuaSieuAmList.Designer.cs">
       <DependentUpon>uKetQuaSieuAmList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uLichKham.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uLichKham.Designer.cs">
+      <DependentUpon>uLichKham.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uLoaiSieuAmList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1371,6 +1377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaSieuAmList.resx">
       <DependentUpon>uKetQuaSieuAmList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uLichKham.resx">
+      <DependentUpon>uLichKham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uLoaiSieuAmList.resx">
       <DependentUpon>uLoaiSieuAmList.cs</DependentUpon>
