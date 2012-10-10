@@ -18,6 +18,7 @@ namespace MM.Controls
         #region Members
         private int _thang = 0;
         private int _nam = 0;
+        private string _currentValue = string.Empty;
         #endregion
 
         #region Constructor
@@ -39,7 +40,11 @@ namespace MM.Controls
             }
 
             cboNam.Text = DateTime.Now.Year.ToString();
+
+            dgLichKham.KeyUp += new KeyEventHandler(dgLichKham_KeyUp);
         }
+
+        
 
         private void UpdateGUI()
         {
@@ -156,6 +161,27 @@ namespace MM.Controls
             }
         }
 
+        private SourceGrid2.Cells.Real.Cell NewNumericCell(object value, Color backColor, Color foreColor, ContentAlignment textAlignment, Font font, bool isEnableEdit, string toolTip)
+        {
+            SourceGrid2.VisualModels.Common visualModel = new SourceGrid2.VisualModels.Common();
+            visualModel.BackColor = backColor;
+            visualModel.TextAlignment = textAlignment;
+            visualModel.ForeColor = foreColor;
+            visualModel.Font = font;
+
+            SourceGrid2.DataModels.EditorTextBoxNumeric editorModel = new SourceGrid2.DataModels.EditorTextBoxNumeric(typeof(int));
+            editorModel.EnableEdit = isEnableEdit;
+            editorModel.MinimumValue = 0;
+            editorModel.MaximumValue = 99999;
+            editorModel.AllowNull = true;
+            editorModel.DefaultValue = null;
+
+            SourceGrid2.Cells.Real.Cell cell = new SourceGrid2.Cells.Real.Cell(value, editorModel, visualModel);
+            cell.ToolTipText = toolTip;
+
+            return cell;
+        }
+
         private SourceGrid2.Cells.Real.Cell NewCell(object value, Color backColor, Color foreColor, ContentAlignment textAlignment, Font font, bool isEnableEdit, string toolTip)
         {
             SourceGrid2.VisualModels.Common visualModel = new SourceGrid2.VisualModels.Common();
@@ -164,7 +190,7 @@ namespace MM.Controls
             visualModel.ForeColor = foreColor;
             visualModel.Font = font;
 
-            SourceGrid2.DataModels.EditorTextBox editorModel = new SourceGrid2.DataModels.EditorTextBoxNumeric(typeof(string));
+            SourceGrid2.DataModels.EditorTextBox editorModel = new SourceGrid2.DataModels.EditorTextBox(typeof(string));
             editorModel.EnableEdit = isEnableEdit;
 
             SourceGrid2.Cells.Real.Cell cell = new SourceGrid2.Cells.Real.Cell(value, editorModel, visualModel);
@@ -182,6 +208,13 @@ namespace MM.Controls
                     dgLichKham[i, j] = null;
                 }
             }
+        }
+
+        private LichKham GetLichKham(List<LichKham> lichKhams, DateTime ngay, LoaiLichKham loaiLichKham)
+        {
+            if (lichKhams == null) return null;
+            return lichKhams.Where(l => l.Ngay.ToString("dd/MM/yyyy") == ngay.ToString("dd/MM/yyyy") &&
+                l.Type == (int)loaiLichKham).FirstOrDefault();
         }
 
         private void FillData(List<LichKham> lichKhams)
@@ -204,7 +237,32 @@ namespace MM.Controls
                 {
                     string dateStr = string.Format("{0} {1}", dt.ToString("dd/MM"), Utility.GetDayOfWeek(dt));
                     SourceGrid2.Cells.Real.Cell cell = NewCell(dateStr, Color.White, foreColor, ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
+                    cell.Tag = dt;
                     dgLichKham[rowIndex, 0] = cell;
+
+                    for (int col = 0; col < 10; col++)
+                    {
+                        LichKham lichKham = GetLichKham(lichKhams, dt, (LoaiLichKham)col);
+                        bool isEnable = AllowEdit;
+
+                        if (col < 2)
+                        {
+                            object value = null;
+                            if (lichKham != null && lichKham.Value != null && lichKham.Value.Trim() != string.Empty)
+                                value = Convert.ToInt32(lichKham.Value);
+
+                            cell = NewNumericCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, isEnable, string.Empty);
+                        }
+                        else
+                        {
+                            object value = lichKham != null ? lichKham.Value : null;
+                            cell = NewCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, isEnable, string.Empty);
+                        }
+
+                        cell.Tag = lichKham;
+                        dgLichKham[rowIndex, col + 1] = cell;
+                    }
+
                     rowIndex++;
                 }
 
@@ -246,6 +304,82 @@ namespace MM.Controls
         {
             DisplayAsThread();
         }
+
+        private void dgLichKham_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && AllowEdit && dgLichKham.Selection != null)
+            {
+                List<SourceGrid2.Cells.Real.Cell> deletedCells = new List<SourceGrid2.Cells.Real.Cell>();
+                foreach (SourceGrid2.Cells.Real.Cell cell in dgLichKham.Selection.GetCells())
+                {
+                    if (cell.Column < 1 || cell.Row < 2 || cell.Value == null || 
+                        cell.Value.ToString().Trim() == string.Empty) continue;
+
+                    deletedCells.Add(cell);
+                }
+
+                foreach (SourceGrid2.Cells.Real.Cell cell in deletedCells)
+                {
+                    LichKham lichKham = cell.Tag as LichKham;
+                    if (lichKham == null) continue;
+                    lichKham.UpdatedDate = DateTime.Now;
+                    lichKham.UpdatedBy = Guid.Parse(Global.UserGUID);
+                    lichKham.Value = string.Empty;
+
+                    Result result = LichKhamBus.InsertLichKham(lichKham);
+                    if (result.IsOK)
+                        cell.Value = null;
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("LichKhamBus.InsertLichKham"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("LichKhamBus.InsertLichKham"));
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void dgLichKham_CellGotFocus(object sender, SourceGrid2.PositionCancelEventArgs e)
+        {
+            if (e.Position.Column < 1 || e.Position.Row < 2) return;
+            object value = (e.Cell as SourceGrid2.Cells.Real.Cell).Value;
+            _currentValue = value == null ? string.Empty : value.ToString().Trim();
+        }
+
+        private void dgLichKham_CellLostFocus(object sender, SourceGrid2.PositionCancelEventArgs e)
+        {
+            if (e.Position.Column < 1 || e.Position.Row < 2) return;
+            SourceGrid2.Cells.Real.Cell cell = e.Cell as SourceGrid2.Cells.Real.Cell;
+            object value = cell.Value;
+            string strValue = value == null ? string.Empty : value.ToString().Trim();
+            if (_currentValue == strValue) return;
+
+            LichKham lichKham = cell.Tag as LichKham;
+            if (lichKham == null)
+            {
+                lichKham = new LichKham();
+                lichKham.Ngay = Convert.ToDateTime(dgLichKham[e.Position.Row, 0].Tag);
+                lichKham.Type = e.Position.Column - 1;
+                lichKham.Value = strValue;
+                lichKham.CreatedDate = DateTime.Now;
+                lichKham.CreatedBy = Guid.Parse(Global.UserGUID);
+            }
+            else
+            {
+                lichKham.Value = strValue;
+                lichKham.UpdatedDate = DateTime.Now;
+                lichKham.UpdatedBy = Guid.Parse(Global.UserGUID);
+            }
+
+            Result result = LichKhamBus.InsertLichKham(lichKham);
+            if (result.IsOK)
+                cell.Tag = lichKham;
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("LichKhamBus.InsertLichKham"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("LichKhamBus.InsertLichKham"));
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -267,6 +401,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

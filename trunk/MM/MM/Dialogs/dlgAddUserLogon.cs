@@ -894,9 +894,9 @@ namespace MM.Dialogs
                 else if (functionCode == Const.LichKham)
                 {
                     (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
-                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
-                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;

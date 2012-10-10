@@ -43,11 +43,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.btnMacDinh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnMacDinh);
             this.groupBox1.Controls.Add(this.cboServerName);
             this.groupBox1.Controls.Add(this.btnTestConnection);
             this.groupBox1.Controls.Add(this.txtPassword);
@@ -83,7 +85,7 @@
             this.btnTestConnection.Location = new System.Drawing.Point(181, 144);
             this.btnTestConnection.Name = "btnTestConnection";
             this.btnTestConnection.Size = new System.Drawing.Size(119, 25);
-            this.btnTestConnection.TabIndex = 10;
+            this.btnTestConnection.TabIndex = 11;
             this.btnTestConnection.Text = "   &Kiểm tra kết nối";
             this.btnTestConnection.UseVisualStyleBackColor = true;
             this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
@@ -193,6 +195,17 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // btnMacDinh
+            // 
+            this.btnMacDinh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMacDinh.Location = new System.Drawing.Point(105, 144);
+            this.btnMacDinh.Name = "btnMacDinh";
+            this.btnMacDinh.Size = new System.Drawing.Size(72, 25);
+            this.btnMacDinh.TabIndex = 10;
+            this.btnMacDinh.Text = "&Mặc Định";
+            this.btnMacDinh.UseVisualStyleBackColor = true;
+            this.btnMacDinh.Click += new System.EventHandler(this.btnMacDinh_Click);
+            // 
             // dlgDatabaseConfig
             // 
             this.AcceptButton = this.btnOK;
@@ -235,5 +248,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnTestConnection;
         private System.Windows.Forms.ComboBox cboServerName;
+        private System.Windows.Forms.Button btnMacDinh;
     }
 }
