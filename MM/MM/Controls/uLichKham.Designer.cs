@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dgLichKham = new SourceGrid2.Grid();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
@@ -39,7 +40,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cboThang = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgLichKham = new SourceGrid2.Grid();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -53,6 +53,26 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(849, 357);
             this.panel3.TabIndex = 6;
+            // 
+            // dgLichKham
+            // 
+            this.dgLichKham.AutoSizeMinHeight = 10;
+            this.dgLichKham.AutoSizeMinWidth = 10;
+            this.dgLichKham.AutoStretchColumnsToFitWidth = false;
+            this.dgLichKham.AutoStretchRowsToFitHeight = false;
+            this.dgLichKham.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgLichKham.ContextMenuStyle = SourceGrid2.ContextMenuStyle.None;
+            this.dgLichKham.CustomSort = false;
+            this.dgLichKham.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgLichKham.FocusStyle = SourceGrid2.FocusStyle.None;
+            this.dgLichKham.GridToolTipActive = true;
+            this.dgLichKham.Location = new System.Drawing.Point(0, 0);
+            this.dgLichKham.Name = "dgLichKham";
+            this.dgLichKham.Size = new System.Drawing.Size(849, 357);
+            this.dgLichKham.SpecialKeys = SourceGrid2.GridSpecialKeys.None;
+            this.dgLichKham.TabIndex = 1;
+            this.dgLichKham.CellGotFocus += new SourceGrid2.PositionCancelEventHandler(this.dgLichKham_CellGotFocus);
+            this.dgLichKham.CellLostFocus += new SourceGrid2.PositionCancelEventHandler(this.dgLichKham_CellLostFocus);
             // 
             // panel2
             // 
@@ -179,24 +199,6 @@
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tháng:";
-            // 
-            // dgLichKham
-            // 
-            this.dgLichKham.AutoSizeMinHeight = 10;
-            this.dgLichKham.AutoSizeMinWidth = 10;
-            this.dgLichKham.AutoStretchColumnsToFitWidth = false;
-            this.dgLichKham.AutoStretchRowsToFitHeight = false;
-            this.dgLichKham.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgLichKham.ContextMenuStyle = SourceGrid2.ContextMenuStyle.None;
-            this.dgLichKham.CustomSort = false;
-            this.dgLichKham.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgLichKham.FocusStyle = SourceGrid2.FocusStyle.None;
-            this.dgLichKham.GridToolTipActive = true;
-            this.dgLichKham.Location = new System.Drawing.Point(0, 0);
-            this.dgLichKham.Name = "dgLichKham";
-            this.dgLichKham.Size = new System.Drawing.Size(849, 357);
-            this.dgLichKham.SpecialKeys = SourceGrid2.GridSpecialKeys.None;
-            this.dgLichKham.TabIndex = 1;
             // 
             // uLichKham
             // 

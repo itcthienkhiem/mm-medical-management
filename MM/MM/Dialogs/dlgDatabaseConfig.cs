@@ -201,6 +201,15 @@ namespace MM.Dialogs
         {
             this.Close();
         }
+
+        private void btnMacDinh_Click(object sender, EventArgs e)
+        {
+            cboServerName.Text = "Vigor-srv01";
+            txtDatabaseName.Text = "MM";
+            cboAuthentication.SelectedIndex = 1;
+            txtUserName.Text = "sa";
+            txtPassword.Text = "vghpassword";
+        }
         #endregion
 
         #region Working Thread
