@@ -70,7 +70,14 @@
             this.dgLichKham.Location = new System.Drawing.Point(0, 0);
             this.dgLichKham.Name = "dgLichKham";
             this.dgLichKham.Size = new System.Drawing.Size(849, 357);
-            this.dgLichKham.SpecialKeys = SourceGrid2.GridSpecialKeys.None;
+            this.dgLichKham.SpecialKeys = ((SourceGrid2.GridSpecialKeys)(((((((((SourceGrid2.GridSpecialKeys.Ctrl_C | SourceGrid2.GridSpecialKeys.Ctrl_V)
+                        | SourceGrid2.GridSpecialKeys.Ctrl_X)
+                        | SourceGrid2.GridSpecialKeys.Delete)
+                        | SourceGrid2.GridSpecialKeys.Arrows)
+                        | SourceGrid2.GridSpecialKeys.Tab)
+                        | SourceGrid2.GridSpecialKeys.PageDownUp)
+                        | SourceGrid2.GridSpecialKeys.Enter)
+                        | SourceGrid2.GridSpecialKeys.Escape)));
             this.dgLichKham.TabIndex = 1;
             this.dgLichKham.CellGotFocus += new SourceGrid2.PositionCancelEventHandler(this.dgLichKham_CellGotFocus);
             this.dgLichKham.CellLostFocus += new SourceGrid2.PositionCancelEventHandler(this.dgLichKham_CellLostFocus);
