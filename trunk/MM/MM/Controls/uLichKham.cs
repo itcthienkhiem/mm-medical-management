@@ -192,6 +192,7 @@ namespace MM.Controls
             visualModel.TextAlignment = textAlignment;
             visualModel.ForeColor = foreColor;
             visualModel.Font = font;
+            visualModel.WordWrap = true;
 
             SourceGrid2.DataModels.EditorTextBox editorModel = new SourceGrid2.DataModels.EditorTextBox(typeof(string));
             editorModel.EnableEdit = isEnableEdit;
@@ -204,7 +205,7 @@ namespace MM.Controls
 
         private void ClearData()
         {
-            for (int i = 2; i < dgLichKham.RowsCount; i++)
+            for (int i = 0; i < dgLichKham.RowsCount; i++)
             {
                 for (int j = 0; j < dgLichKham.ColumnsCount; j++)
                 {
@@ -296,7 +297,7 @@ namespace MM.Controls
                     dgLichKham.Redim(rowCount, colCount);
                     InitHeader();
                     FillData(lichKhams);
-                    dgLichKham.AutoSizeAll(25, 105);
+                    dgLichKham.AutoSizeView(false);
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -402,6 +403,8 @@ namespace MM.Controls
                     }
                 }
             }
+
+            dgLichKham.AutoSizeView(false);
         }
 
         private void dgLichKham_CellGotFocus(object sender, SourceGrid2.PositionCancelEventArgs e)
