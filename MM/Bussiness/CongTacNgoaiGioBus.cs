@@ -68,7 +68,7 @@ namespace MM.Bussiness
 
                             desc += string.Format("- GUID: '{0}', Ngày: '{1}', Họ tên: '{2}', Mục đích: '{3}', Giờ vào: '{4}', Giờ ra: '{5}', Kết quả đánh giá: '{6}', Người đề xuất: '{7}', Ghi chú: '{8}'\n",
                                 ctng.CongTacNgoaiGioGUID.ToString(), ctng.Ngay.ToString("dd/MM/yyyy"), ctng.DocStaff.Contact.FullName, ctng.MucDich, ctng.GioVao.Value.ToString("HH:mm"), ctng.GioRa.Value.ToString("HH:mm"),
-                                ctng.KetQuaDanhGia, ctng.NguoiDeXuatGUID.ToString(), ctng.GhiChu);
+                                ctng.KetQuaDanhGia, ctng.DocStaff.Contact.FullName, ctng.GhiChu);
                         }
                     }
 
@@ -131,7 +131,7 @@ namespace MM.Bussiness
                         //Tracking
                         desc += string.Format("- GUID: '{0}', Ngày: '{1}', Họ tên: '{2}', Mục đích: '{3}', Giờ vào: '{4}', Giờ ra: '{5}', Kết quả đánh giá: '{6}', Người đề xuất: '{7}', Ghi chú: '{8}'",
                                 ctng.CongTacNgoaiGioGUID.ToString(), ctng.Ngay.ToString("dd/MM/yyyy"), ctng.DocStaff.Contact.FullName, ctng.MucDich, ctng.GioVao.Value.ToString("HH:mm"), ctng.GioRa.Value.ToString("HH:mm"),
-                                ctng.KetQuaDanhGia, ctng.NguoiDeXuatGUID.ToString(), ctng.GhiChu);
+                                ctng.KetQuaDanhGia, ctng.DocStaff.Contact.FullName, ctng.GhiChu);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -151,7 +151,7 @@ namespace MM.Bussiness
                         if (congTacNgoaiGio != null)
                         {
                             congTacNgoaiGio.Ngay = ctng.Ngay;
-                            congTacNgoaiGio.DocStaffGUID = ctng.DocStaffGUID;
+                            congTacNgoaiGio.TenNguoiLam = ctng.TenNguoiLam;
                             congTacNgoaiGio.MucDich = ctng.MucDich;
                             congTacNgoaiGio.GioVao = ctng.GioVao;
                             congTacNgoaiGio.GioRa = ctng.GioRa;
@@ -171,7 +171,7 @@ namespace MM.Bussiness
                             //Tracking
                             desc += string.Format("- GUID: '{0}', Ngày: '{1}', Họ tên: '{2}', Mục đích: '{3}', Giờ vào: '{4}', Giờ ra: '{5}', Kết quả đánh giá: '{6}', Người đề xuất: '{7}', Ghi chú: '{8}'",
                                congTacNgoaiGio.CongTacNgoaiGioGUID.ToString(), congTacNgoaiGio.Ngay.ToString("dd/MM/yyyy"), congTacNgoaiGio.DocStaff.Contact.FullName, congTacNgoaiGio.MucDich,
-                               congTacNgoaiGio.GioVao.Value.ToString("HH:mm"), congTacNgoaiGio.GioRa.Value.ToString("HH:mm"), congTacNgoaiGio.KetQuaDanhGia, congTacNgoaiGio.NguoiDeXuatGUID.ToString(), congTacNgoaiGio.GhiChu);
+                               congTacNgoaiGio.GioVao.Value.ToString("HH:mm"), congTacNgoaiGio.GioRa.Value.ToString("HH:mm"), congTacNgoaiGio.KetQuaDanhGia, congTacNgoaiGio.DocStaff.Contact.FullName, congTacNgoaiGio.GhiChu);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();

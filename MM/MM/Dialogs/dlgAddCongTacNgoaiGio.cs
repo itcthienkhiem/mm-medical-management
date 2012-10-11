@@ -61,16 +61,15 @@ namespace MM.Dialogs
             else
             {
                 DataTable dt = result.QueryResult as DataTable;
-                cboNhanVien.DataSource = dt;
                 cboNguoiDeXuat.DataSource = dt.Copy();
             }
         }
 
         private bool CheckInfo()
         {
-            if (cboNhanVien.Text == string.Empty)
+            if (txtTenNguoiLam.Text.Trim() == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn nhân viên.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng nhập tên người làm.", IconType.Information);
                 return false;
             }
 
@@ -88,7 +87,7 @@ namespace MM.Dialogs
             try
             {
                 dtpkNgay.Value = Convert.ToDateTime(_drCongTacNgoaiGio["Ngay"]);
-                cboNhanVien.SelectedValue = _drCongTacNgoaiGio["DocStaffGUID"].ToString();
+                txtTenNguoiLam.Text = _drCongTacNgoaiGio["TenNguoiLam"] as string;
                 txtMucDich.Text = _drCongTacNgoaiGio["MucDich"] as string;
                 dtpkGioVao.Value = Convert.ToDateTime(_drCongTacNgoaiGio["GioVao"]);
                 dtpkGioRa.Value = Convert.ToDateTime(_drCongTacNgoaiGio["GioRa"]);
@@ -148,7 +147,7 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _congTacNgoaiGio.Ngay = dtpkNgay.Value;
-                    _congTacNgoaiGio.DocStaffGUID = Guid.Parse(cboNhanVien.SelectedValue.ToString());
+                    _congTacNgoaiGio.TenNguoiLam = txtTenNguoiLam.Text;
                     _congTacNgoaiGio.MucDich = txtMucDich.Text;
                     _congTacNgoaiGio.GioVao = dtpkGioVao.Value;
                     _congTacNgoaiGio.GioRa = dtpkGioRa.Value;
