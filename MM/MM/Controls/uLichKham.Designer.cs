@@ -40,6 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cboThang = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -95,6 +96,7 @@
             this.btnPrintPreview.TabIndex = 88;
             this.btnPrintPreview.Text = "      &Xem bản in";
             this.btnPrintPreview.UseVisualStyleBackColor = true;
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // btnPrint
             // 
@@ -106,6 +108,7 @@
             this.btnPrint.TabIndex = 89;
             this.btnPrint.Text = "   &In";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnExportExcel
             // 
@@ -117,6 +120,7 @@
             this.btnExportExcel.TabIndex = 87;
             this.btnExportExcel.Text = "      &Xuất Excel";
             this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // panel1
             // 
@@ -200,6 +204,10 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tháng:";
             // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
             // uLichKham
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,5 +239,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnView;
         private SourceGrid2.Grid dgLichKham;
+        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }

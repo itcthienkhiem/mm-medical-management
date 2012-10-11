@@ -6190,5 +6190,64 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportLichKhamToExcel(string exportFileName, SourceGrid2.Grid dgLichKham, string thangStr, string namStr)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\LichKhamTemplate.xls", Application.StartupPath);
+
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 3;
+
+                workSheet.Cells[0, 0].Value = string.Format("LỊCH KHÁM THÁNG {0} NĂM {1} TẠI PHÒNG KHÁM VIGOR HEALTH", thangStr, namStr);
+                for (int i = 2; i < dgLichKham.RowsCount; i++)
+                {
+                    SourceGrid2.Cells.Real.Cell cell = dgLichKham[i, 0] as SourceGrid2.Cells.Real.Cell;
+                    if (cell == null)
+                    {
+                        rowIndex++;
+                        continue;
+                    }
+
+                    DateTime ngay = Convert.ToDateTime(cell.Tag);
+                    for (int j = 0; j < dgLichKham.ColumnsCount; j++)
+                    {
+                        IRange range = workSheet.Cells[rowIndex, j];
+                        range.Value = dgLichKham[i, j].Value;
+                        range.Borders.Color = Color.Black;
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.RowHeight = 23;
+                    }
+
+                    rowIndex++;
+                }
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }

@@ -2069,6 +2069,7 @@
     <None Include="Templates\KetQuaXetNghiemCellDyn3200Template.xls" />
     <None Include="Templates\KetQuaXetNghiemSinhHoaTemplate.xls" />
     <None Include="Templates\KhamSucKhoeTongQuatTemplate.xls" />
+    <None Include="Templates\LichKhamTemplate.xls" />
     <None Include="Templates\NhatKyLienHeCongTyTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
