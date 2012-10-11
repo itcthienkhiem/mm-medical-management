@@ -54,8 +54,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgCongTacNgoaiGio = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.congTacNgoaiGioViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenNguoiLam = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +63,8 @@
             this.ketQuaDanhGiaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenNguoiDeXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ghiChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.congTacNgoaiGioViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -93,9 +93,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(14, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 17;
-            this.label3.Text = "Tên nhân viên:";
+            this.label3.Text = "Tên người làm:";
             // 
             // label2
             // 
@@ -316,14 +316,6 @@
             this.dgCongTacNgoaiGio.TabIndex = 4;
             this.dgCongTacNgoaiGio.DoubleClick += new System.EventHandler(this.dgCongTacNgoaiGio_DoubleClick);
             // 
-            // congTacNgoaiGioViewBindingSource
-            // 
-            this.congTacNgoaiGioViewBindingSource.DataSource = typeof(MM.Databasae.CongTacNgoaiGioView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
-            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -414,6 +406,14 @@
             this.ghiChuDataGridViewTextBoxColumn.Name = "ghiChuDataGridViewTextBoxColumn";
             this.ghiChuDataGridViewTextBoxColumn.ReadOnly = true;
             this.ghiChuDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // congTacNgoaiGioViewBindingSource
+            // 
+            this.congTacNgoaiGioViewBindingSource.DataSource = typeof(MM.Databasae.CongTacNgoaiGioView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
             // 
             // uCongTacNgoaiGioList
             // 
