@@ -228,11 +228,16 @@ namespace MM.Controls
             Color foreColor = Color.Black;
             Font fontBold = new Font("Tahoma", 9, FontStyle.Bold);
             Font fontNormal = new Font("Tahoma", 9);
+            SourceGrid2.RectangleBorder borderRB = new SourceGrid2.RectangleBorder(new SourceGrid2.Border(Color.Black), new SourceGrid2.Border(Color.Black));
+            SourceGrid2.RectangleBorder borderRTB = new SourceGrid2.RectangleBorder(new SourceGrid2.Border(Color.Black), new SourceGrid2.Border(Color.Black));
+            borderRTB.Top = new SourceGrid2.Border(Color.Black);
 
+            bool isBorderTop = true;
             for (int i = 0; i < daysInMonth; i++)
             {
                 if (dt.DayOfWeek == DayOfWeek.Sunday)
                 {
+                    isBorderTop = true;
                     if (i != 0 && i != daysInMonth - 1)
                         rowIndex++;
                 }
@@ -241,6 +246,7 @@ namespace MM.Controls
                     string dateStr = string.Format("{0} {1}", dt.ToString("dd/MM"), Utility.GetDayOfWeek(dt));
                     SourceGrid2.Cells.Real.Cell cell = NewCell(dateStr, Color.White, foreColor, ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
                     cell.Tag = dt;
+                    cell.Border = isBorderTop ? borderRTB : borderRB;
                     dgLichKham[rowIndex, 0] = cell;
 
                     for (int col = 0; col < 10; col++)
@@ -262,10 +268,12 @@ namespace MM.Controls
                             cell = NewCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, isEnable, string.Empty);
                         }
 
+                        cell.Border = isBorderTop ? borderRTB : borderRB; ;
                         cell.Tag = lichKham;
                         dgLichKham[rowIndex, col + 1] = cell;
                     }
 
+                    isBorderTop = false;
                     rowIndex++;
                 }
 
