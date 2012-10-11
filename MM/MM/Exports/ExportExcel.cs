@@ -6221,7 +6221,7 @@ namespace MM.Exports
                         range.Value = dgLichKham[i, j].Value;
                         range.Borders.Color = Color.Black;
                         range.Borders.LineStyle = LineStyle.Continuous;
-                        range.RowHeight = 23;
+                        //range.RowHeight = 23;
                     }
 
                     rowIndex++;
