@@ -10,6 +10,7 @@ using System.Threading;
 using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -18,6 +19,8 @@ namespace MM.Controls
         #region Members
         private int _thang = 0;
         private int _nam = 0;
+        private string _thangStr = string.Empty;
+        private string _namStr = string.Empty;
         private string _currentValue = string.Empty;
         #endregion
 
@@ -44,8 +47,6 @@ namespace MM.Controls
             dgLichKham.KeyUp += new KeyEventHandler(dgLichKham_KeyUp);
         }
 
-        
-
         private void UpdateGUI()
         {
             btnExportExcel.Enabled = AllowExport;
@@ -60,6 +61,8 @@ namespace MM.Controls
                 UpdateGUI();
                 _thang = Convert.ToInt32(cboThang.Text);
                 _nam = Convert.ToInt32(cboNam.Text);
+                _thangStr = cboThang.Text;
+                _namStr = cboNam.Text;
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayLichKhamProc));
                 base.ShowWaiting();
@@ -297,6 +300,60 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("LichKhamBus.GetLichKhamTheoThang"));
             }
         }
+
+        private void OnExportExcel()
+        {
+            if (dgLichKham.RowsCount <= 2) return;
+
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "Export Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                if (!ExportExcel.ExportLichKhamToExcel(dlg.FileName, dgLichKham, _thangStr, _namStr))
+                    return;
+            }
+        }
+
+        private void OnPrint(bool isPreview)
+        {
+            if (dgLichKham.RowsCount <= 2) return;
+            Cursor.Current = Cursors.WaitCursor;
+            string exportFileName = string.Format("{0}\\Temp\\LichKham.xls", Application.StartupPath);
+            if (isPreview)
+            {
+                if (ExportExcel.ExportLichKhamToExcel(exportFileName, dgLichKham, _thangStr, _namStr))
+                {
+                    try
+                    {
+                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.LichKhamTemplate));
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                if (_printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (ExportExcel.ExportLichKhamToExcel(exportFileName, dgLichKham, _thangStr, _namStr))
+                    {
+                        try
+                        {
+                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.LichKhamTemplate));
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -380,6 +437,21 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("LichKhamBus.InsertLichKham"));
             }
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
         #endregion
 
         #region Working Thread
@@ -401,9 +473,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
     }
 }
