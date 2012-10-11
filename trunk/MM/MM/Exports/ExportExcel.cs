@@ -6122,7 +6122,7 @@ namespace MM.Exports
                 foreach (DataRow row in checkedRows)
                 {
                     DateTime ngay = Convert.ToDateTime(row["Ngay"]);
-                    string tenNhanVien = row["FullName"].ToString();
+                    string tenNhanVien = row["TenNguoiLam"] as string;
                     string mucDich = row["MucDich"] as string;
                     DateTime gioVao = Convert.ToDateTime(row["GioVao"]);
                     DateTime gioRa = Convert.ToDateTime(row["GioRa"]);

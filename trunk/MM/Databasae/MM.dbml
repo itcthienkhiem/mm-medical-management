@@ -106,7 +106,7 @@
       <Association Name="DocStaff_KetQuaSoiCTC" Member="KetQuaSoiCTCs" ThisKey="DocStaffGUID" OtherKey="BacSiSoi" Type="KetQuaSoiCTC" />
       <Association Name="DocStaff_NhatKyLienHeCongTy" Member="NhatKyLienHeCongTies" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="NhatKyLienHeCongTy" />
       <Association Name="DocStaff_KetQuaSieuAm" Member="KetQuaSieuAms" ThisKey="DocStaffGUID" OtherKey="BacSiSieuAmGUID" Type="KetQuaSieuAm" />
-      <Association Name="DocStaff_CongTacNgoaiGio" Member="CongTacNgoaiGios" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="CongTacNgoaiGio" />
+      <Association Name="DocStaff_CongTacNgoaiGio" Member="CongTacNgoaiGios" ThisKey="DocStaffGUID" OtherKey="NguoiDeXuatGUID" Type="CongTacNgoaiGio" />
       <Association Name="Speciality_DocStaff" Member="Speciality" ThisKey="SpecialityGUID" OtherKey="SpecialityGUID" Type="Speciality" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Contact_DocStaff" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -3210,49 +3210,6 @@
       <Column Name="LyDoGiam" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.CongTacNgoaiGio" Member="CongTacNgoaiGios">
-    <Type Name="CongTacNgoaiGio">
-      <Column Name="CongTacNgoaiGioGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Ngay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="MucDich" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="GioVao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="GioRa" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="KetQuaDanhGia" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="NguoiDeXuatGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_CongTacNgoaiGio" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.CongTacNgoaiGioView" Member="CongTacNgoaiGioViews">
-    <Type Name="CongTacNgoaiGioView">
-      <Column Name="CongTacNgoaiGioGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Ngay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="MucDich" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="GioVao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="GioRa" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="KetQuaDanhGia" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="NguoiDeXuatGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="FullName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenNguoiDeXuat" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.LichKham" Member="LichKhams">
     <Type Name="LichKham">
       <Column Name="LichKhamGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -3265,6 +3222,48 @@
       <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CongTacNgoaiGio" Member="CongTacNgoaiGios">
+    <Type Name="CongTacNgoaiGio">
+      <Column Name="CongTacNgoaiGioGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Ngay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TenNguoiLam" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MucDich" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="GioVao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GioRa" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="KetQuaDanhGia" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="NguoiDeXuatGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="DocStaff_CongTacNgoaiGio" Member="DocStaff" ThisKey="NguoiDeXuatGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CongTacNgoaiGioView" Member="CongTacNgoaiGioViews">
+    <Type Name="CongTacNgoaiGioView">
+      <Column Name="CongTacNgoaiGioGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Ngay" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TenNguoiLam" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MucDich" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="GioVao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GioRa" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="KetQuaDanhGia" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="NguoiDeXuatGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="TenNguoiDeXuat" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

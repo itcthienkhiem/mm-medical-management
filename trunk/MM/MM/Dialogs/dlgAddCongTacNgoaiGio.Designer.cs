@@ -44,18 +44,19 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtMucDich = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cboNhanVien = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dtpkNgay = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.txtTenNguoiLam = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtTenNguoiLam);
             this.groupBox1.Controls.Add(this.txtGhiChu);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.cboNguoiDeXuat);
@@ -68,7 +69,6 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtMucDich);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cboNhanVien);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dtpkNgay);
             this.groupBox1.Controls.Add(this.label1);
@@ -191,28 +191,14 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Mục đích:";
             // 
-            // cboNhanVien
-            // 
-            this.cboNhanVien.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboNhanVien.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboNhanVien.DataSource = this.docStaffViewBindingSource;
-            this.cboNhanVien.DisplayMember = "Fullname";
-            this.cboNhanVien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboNhanVien.FormattingEnabled = true;
-            this.cboNhanVien.Location = new System.Drawing.Point(107, 43);
-            this.cboNhanVien.Name = "cboNhanVien";
-            this.cboNhanVien.Size = new System.Drawing.Size(238, 21);
-            this.cboNhanVien.TabIndex = 6;
-            this.cboNhanVien.ValueMember = "DocStaffGUID";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 46);
+            this.label2.Location = new System.Drawing.Point(27, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Nhân viên:";
+            this.label2.Text = "Tên người làm:";
             // 
             // dtpkNgay
             // 
@@ -256,6 +242,13 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // txtTenNguoiLam
+            // 
+            this.txtTenNguoiLam.Location = new System.Drawing.Point(107, 43);
+            this.txtTenNguoiLam.Name = "txtTenNguoiLam";
+            this.txtTenNguoiLam.Size = new System.Drawing.Size(238, 20);
+            this.txtTenNguoiLam.TabIndex = 6;
+            // 
             // dlgAddCongTacNgoaiGio
             // 
             this.AcceptButton = this.btnOK;
@@ -289,7 +282,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpkNgay;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cboNhanVien;
         private System.Windows.Forms.DateTimePicker dtpkGioRa;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dtpkGioVao;
@@ -305,5 +297,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.TextBox txtTenNguoiLam;
     }
 }

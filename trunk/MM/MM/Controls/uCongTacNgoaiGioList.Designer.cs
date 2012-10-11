@@ -54,17 +54,17 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgCongTacNgoaiGio = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.congTacNgoaiGioViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNguoiLam = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mucDichDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gioVaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gioRaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ketQuaDanhGiaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenNguoiDeXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ghiChuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.congTacNgoaiGioViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -286,7 +286,7 @@
             this.dgCongTacNgoaiGio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
             this.ngayDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn,
+            this.TenNguoiLam,
             this.mucDichDataGridViewTextBoxColumn,
             this.gioVaoDataGridViewTextBoxColumn,
             this.gioRaDataGridViewTextBoxColumn,
@@ -316,6 +316,14 @@
             this.dgCongTacNgoaiGio.TabIndex = 4;
             this.dgCongTacNgoaiGio.DoubleClick += new System.EventHandler(this.dgCongTacNgoaiGio_DoubleClick);
             // 
+            // congTacNgoaiGioViewBindingSource
+            // 
+            this.congTacNgoaiGioViewBindingSource.DataSource = typeof(MM.Databasae.CongTacNgoaiGioView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -343,13 +351,13 @@
             this.ngayDataGridViewTextBoxColumn.Name = "ngayDataGridViewTextBoxColumn";
             this.ngayDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // fullNameDataGridViewTextBoxColumn
+            // TenNguoiLam
             // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ và tên";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 200;
+            this.TenNguoiLam.DataPropertyName = "TenNguoiLam";
+            this.TenNguoiLam.HeaderText = "Họ tên người làm";
+            this.TenNguoiLam.Name = "TenNguoiLam";
+            this.TenNguoiLam.ReadOnly = true;
+            this.TenNguoiLam.Width = 200;
             // 
             // mucDichDataGridViewTextBoxColumn
             // 
@@ -407,14 +415,6 @@
             this.ghiChuDataGridViewTextBoxColumn.ReadOnly = true;
             this.ghiChuDataGridViewTextBoxColumn.Width = 150;
             // 
-            // congTacNgoaiGioViewBindingSource
-            // 
-            this.congTacNgoaiGioViewBindingSource.DataSource = typeof(MM.Databasae.CongTacNgoaiGioView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
-            // 
             // uCongTacNgoaiGioList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,15 +457,16 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgCongTacNgoaiGio;
         private System.Windows.Forms.BindingSource congTacNgoaiGioViewBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.PrintDialog _printDialog;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNguoiLam;
         private System.Windows.Forms.DataGridViewTextBoxColumn mucDichDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn gioVaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn gioRaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ketQuaDanhGiaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenNguoiDeXuatDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ghiChuDataGridViewTextBoxColumn;
-        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }
