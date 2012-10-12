@@ -6214,6 +6214,19 @@ namespace MM.Exports
                         continue;
                     }
 
+                    bool hasData = false;
+                    for (int j = 1; j < dgLichKham.ColumnsCount; j++)
+                    {
+                        object value = dgLichKham[i, j].Value;
+                        if (value != null && value.ToString().Trim() != string.Empty)
+                        {
+                            hasData = true;
+                            break;
+                        }
+                    }
+
+                    if (!hasData) continue;
+
                     DateTime ngay = Convert.ToDateTime(cell.Tag);
                     for (int j = 0; j < dgLichKham.ColumnsCount; j++)
                     {
