@@ -252,25 +252,36 @@ namespace MM.Controls
 
                     for (int col = 0; col < 10; col++)
                     {
-                        LichKham lichKham = GetLichKham(lichKhams, dt, (LoaiLichKham)col);
-                        bool isEnable = AllowEdit;
-
                         if (col < 2)
                         {
                             object value = null;
-                            if (lichKham != null && lichKham.Value != null && lichKham.Value.Trim() != string.Empty)
-                                value = Convert.ToInt32(lichKham.Value);
+                            Result result = BookingBus.GetBooking(dt);
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("BookingBus.GetBooking"), IconType.Error);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.GetBooking"));
+                            }
+                            else if (result.QueryResult != null)
+                            {
+                                Booking booking = result.QueryResult as Booking;
+                                if (col == 0) //Sáng
+                                    value = booking.MorningCount;
+                                else
+                                    value = booking.AfternoonCount;
+                            }
 
-                            cell = NewNumericCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, isEnable, string.Empty);
+                            cell = NewNumericCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, false, string.Empty);
                         }
                         else
                         {
+                            LichKham lichKham = GetLichKham(lichKhams, dt, (LoaiLichKham)col);
+                            bool isEnable = AllowEdit;
                             object value = lichKham != null ? lichKham.Value : null;
                             cell = NewCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, isEnable, string.Empty);
+                            cell.Tag = lichKham;
                         }
 
                         cell.Border = isBorderTop ? borderRTB : borderRB; ;
-                        cell.Tag = lichKham;
                         dgLichKham[rowIndex, col + 1] = cell;
                     }
 
@@ -378,7 +389,7 @@ namespace MM.Controls
                 List<SourceGrid2.Cells.Real.Cell> deletedCells = new List<SourceGrid2.Cells.Real.Cell>();
                 foreach (SourceGrid2.Cells.Real.Cell cell in dgLichKham.Selection.GetCells())
                 {
-                    if (cell.Column < 1 || cell.Row < 2 || cell.Value == null || 
+                    if (cell.Column < 3 || cell.Row < 2 || cell.Value == null || 
                         cell.Value.ToString().Trim() == string.Empty) continue;
 
                     deletedCells.Add(cell);
@@ -409,14 +420,14 @@ namespace MM.Controls
 
         private void dgLichKham_CellGotFocus(object sender, SourceGrid2.PositionCancelEventArgs e)
         {
-            if (e.Position.Column < 1 || e.Position.Row < 2) return;
+            if (e.Position.Column < 3 || e.Position.Row < 2) return;
             object value = (e.Cell as SourceGrid2.Cells.Real.Cell).Value;
             _currentValue = value == null ? string.Empty : value.ToString().Trim();
         }
 
         private void dgLichKham_CellLostFocus(object sender, SourceGrid2.PositionCancelEventArgs e)
         {
-            if (e.Position.Column < 1 || e.Position.Row < 2) return;
+            if (e.Position.Column < 3 || e.Position.Row < 2) return;
             SourceGrid2.Cells.Real.Cell cell = e.Cell as SourceGrid2.Cells.Real.Cell;
             object value = cell.Value;
             string strValue = value == null ? string.Empty : value.ToString().Trim();

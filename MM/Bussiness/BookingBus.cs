@@ -318,5 +318,42 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetBooking(DateTime ngay)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                Booking booking = (from b in db.Bookings
+                                   where b.BookingDate.Year == ngay.Year && b.BookingDate.Month == ngay.Month &&
+                                       b.BookingDate.Day == ngay.Day && b.BookingType == (byte)BookingType.Monitor
+                                   select b).FirstOrDefault();
+
+                result.QueryResult = booking;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }
