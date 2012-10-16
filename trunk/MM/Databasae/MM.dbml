@@ -3310,20 +3310,6 @@
       <Association Name="KhoCapCuu_NhapKhoCapCuu" Member="KhoCapCuu" ThisKey="KhoCapCuuGUID" OtherKey="KhoCapCuuGUID" Type="KhoCapCuu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.XuatKhoCapCuu" Member="XuatKhoCapCuus">
-    <Type Name="XuatKhoCapCuu">
-      <Column Name="XuatKhoCapCuuGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="NgayXuat" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="XuatKhoCapCuu_ChiTietXuatKhoCapCuu" Member="ChiTietXuatKhoCapCuus" ThisKey="XuatKhoCapCuuGUID" OtherKey="XuatKhoCapCuuGUID" Type="ChiTietXuatKhoCapCuu" />
-    </Type>
-  </Table>
   <Table Name="dbo.ChiTietXuatKhoCapCuu" Member="ChiTietXuatKhoCapCuus">
     <Type Name="ChiTietXuatKhoCapCuu">
       <Column Name="ChiTietXuatKhoCapCuuGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -3340,6 +3326,21 @@
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="KhoCapCuu_ChiTietXuatKhoCapCuu" Member="KhoCapCuu" ThisKey="KhoCapCuuGUID" OtherKey="KhoCapCuuGUID" Type="KhoCapCuu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="XuatKhoCapCuu_ChiTietXuatKhoCapCuu" Member="XuatKhoCapCuu" ThisKey="XuatKhoCapCuuGUID" OtherKey="XuatKhoCapCuuGUID" Type="XuatKhoCapCuu" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.XuatKhoCapCuu" Member="XuatKhoCapCuus">
+    <Type Name="XuatKhoCapCuu">
+      <Column Name="XuatKhoCapCuuGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NgayXuat" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="XuatKhoCapCuu_ChiTietXuatKhoCapCuu" Member="ChiTietXuatKhoCapCuus" ThisKey="XuatKhoCapCuuGUID" OtherKey="XuatKhoCapCuuGUID" Type="ChiTietXuatKhoCapCuu" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">
