@@ -307,6 +307,8 @@ namespace MM
                 _uCongTacNgoaiGioList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uLichKham))
                 _uLichKham.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uKhoCapCuu))
+                _uKhoCapCuu.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1148,6 +1150,19 @@ namespace MM
                             _uLichKham.AllowLock = isLock;
                             _uLichKham.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.KhoCapCuu)
+                        {
+                            khoCapCuuToolStripMenuItem.Enabled = isLogin;
+                            danhMucCapCuuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uKhoCapCuu.AllowAdd = isAdd;
+                            _uKhoCapCuu.AllowEdit = isEdit;
+                            _uKhoCapCuu.AllowDelete = isDelete;
+                            _uKhoCapCuu.AllowPrint = isPrint;
+                            _uKhoCapCuu.AllowExport = isExport;
+                            _uKhoCapCuu.AllowImport = isImport;
+                            _uKhoCapCuu.AllowLock = isLock;
+                            _uKhoCapCuu.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1333,6 +1348,8 @@ namespace MM
                 tiemNguaToolStripMenuItem.Enabled = isLogin;
                 congTacNgoaiGioToolStripMenuItem.Enabled = isLogin;
                 lichKhamToolStripMenuItem.Enabled = isLogin;
+                khoCapCuuToolStripMenuItem.Enabled = isLogin;
+                danhMucCapCuuToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1631,7 +1648,18 @@ namespace MM
                 case "LichKham":
                     OnLichKham();
                     break;
+
+                case  "KhoCapCuu":
+                    OnKhoCapCuu();
+                    break;
             }
+        }
+
+        private void OnKhoCapCuu()
+        {
+            this.Text = string.Format("{0} - Danh muc cap cuu", Application.ProductName);
+            ViewControl(_uKhoCapCuu);
+            _uKhoCapCuu.DisplayAsThread();
         }
 
         private void OnCongTacNgoaiGio()
@@ -2191,6 +2219,8 @@ namespace MM
                 _uDiaChiCongTyList.ClearData();
             else if (ctrl.GetType() == typeof(uBenhNhanThanThuocList))
                 _uBenhNhanThanThuocList.ClearData();
+            else if (ctrl.GetType() == typeof(uKhoCapCuu))
+                _uKhoCapCuu.ClearData();
         }
 
         private void OnDoctorList()
