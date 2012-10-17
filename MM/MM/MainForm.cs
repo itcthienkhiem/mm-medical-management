@@ -309,6 +309,8 @@ namespace MM
                 _uLichKham.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uKhoCapCuu))
                 _uKhoCapCuu.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uNhapKhoCapCuuList))
+                _uNhapKhoCapCuuList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1163,6 +1165,18 @@ namespace MM
                             _uKhoCapCuu.AllowLock = isLock;
                             _uKhoCapCuu.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.NhapKhoCapCuu)
+                        {
+                            khoCapCuuToolStripMenuItem.Enabled = isLogin;
+                            nhapKhoCapCuuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uNhapKhoCapCuuList.AllowAdd = isAdd;
+                            _uNhapKhoCapCuuList.AllowEdit = isEdit;
+                            _uNhapKhoCapCuuList.AllowDelete = isDelete;
+                            _uNhapKhoCapCuuList.AllowPrint = isPrint;
+                            _uNhapKhoCapCuuList.AllowExport = isExport;
+                            _uNhapKhoCapCuuList.AllowImport = isImport;
+                            _uNhapKhoCapCuuList.AllowLock = isLock;
+                        }
                     }
                 }
                 else
@@ -1350,6 +1364,7 @@ namespace MM
                 lichKhamToolStripMenuItem.Enabled = isLogin;
                 khoCapCuuToolStripMenuItem.Enabled = isLogin;
                 danhMucCapCuuToolStripMenuItem.Enabled = isLogin;
+                nhapKhoCapCuuToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1652,7 +1667,18 @@ namespace MM
                 case  "KhoCapCuu":
                     OnKhoCapCuu();
                     break;
+
+                case "NhapKhoCapCuu":
+                    OnNhapKhoCapCuu();
+                    break;
             }
+        }
+
+        private void OnNhapKhoCapCuu()
+        {
+            this.Text = string.Format("{0} - Nhap kho cap cuu", Application.ProductName);
+            ViewControl(_uNhapKhoCapCuuList);
+            _uNhapKhoCapCuuList.DisplayAsThread();
         }
 
         private void OnKhoCapCuu()

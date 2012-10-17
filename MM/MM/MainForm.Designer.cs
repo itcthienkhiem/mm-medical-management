@@ -244,6 +244,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timer = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uKhoCapCuu = new MM.Controls.uKhoCapCuu();
             this._uLichKham = new MM.Controls.uLichKham();
             this._uCongTacNgoaiGioList = new MM.Controls.uCongTacNgoaiGioList();
             this._uTiemNguaList = new MM.Controls.uTiemNguaList();
@@ -303,7 +304,7 @@
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
-            this._uKhoCapCuu = new MM.Controls.uKhoCapCuu();
+            this._uNhapKhoCapCuuList = new MM.Controls.uNhapKhoCapCuuList();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1938,6 +1939,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uNhapKhoCapCuuList);
             this._mainPanel.Controls.Add(this._uKhoCapCuu);
             this._mainPanel.Controls.Add(this._uLichKham);
             this._mainPanel.Controls.Add(this._uCongTacNgoaiGioList);
@@ -1998,6 +2000,12 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uKhoCapCuu
+            // 
+            resources.ApplyResources(this._uKhoCapCuu, "_uKhoCapCuu");
+            this._uKhoCapCuu.IsReport = false;
+            this._uKhoCapCuu.Name = "_uKhoCapCuu";
             // 
             // _uLichKham
             // 
@@ -2296,11 +2304,10 @@
             this._timerCheckAlert.Interval = 3000;
             this._timerCheckAlert.Tick += new System.EventHandler(this._timerCheckAlert_Tick);
             // 
-            // _uKhoCapCuu
+            // _uNhapKhoCapCuuList
             // 
-            resources.ApplyResources(this._uKhoCapCuu, "_uKhoCapCuu");
-            this._uKhoCapCuu.IsReport = false;
-            this._uKhoCapCuu.Name = "_uKhoCapCuu";
+            resources.ApplyResources(this._uNhapKhoCapCuuList, "_uNhapKhoCapCuuList");
+            this._uNhapKhoCapCuuList.Name = "_uNhapKhoCapCuuList";
             // 
             // MainForm
             // 
@@ -2608,6 +2615,7 @@
         private System.Windows.Forms.ToolStripMenuItem nhapKhoCapCuuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xuatKhoCapCuuToolStripMenuItem;
         private Controls.uKhoCapCuu _uKhoCapCuu;
+        private Controls.uNhapKhoCapCuuList _uNhapKhoCapCuuList;
 
     }
 }
