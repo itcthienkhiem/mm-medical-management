@@ -90,6 +90,7 @@
     <Compile Include="CompanyBus.cs" />
     <Compile Include="CompanyContractBus.cs" />
     <Compile Include="CongTacNgoaiGioBus.cs" />
+    <Compile Include="NhapKhoCapCuuBus.cs" />
     <Compile Include="DiaChiCongTyBus.cs" />
     <Compile Include="DocStaffBus.cs" />
     <Compile Include="GiaThuocBus.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="XetNghiemTayBus.cs" />
     <Compile Include="XetNghiem_CellDyn3200Bus.cs" />
     <Compile Include="XetNghiem_Hitachi917Bus.cs" />
+    <Compile Include="XuatKhoCapCuuBus.cs" />
     <Compile Include="YKienKhachHangBus.cs" />
   </ItemGroup>
   <ItemGroup>

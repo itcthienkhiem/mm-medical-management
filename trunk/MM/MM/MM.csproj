@@ -92,6 +92,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uNhapKhoCapCuuList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNhapKhoCapCuuList.Designer.cs">
+      <DependentUpon>uNhapKhoCapCuuList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKhoCapCuu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -821,6 +827,12 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddNhapKhoCapCuu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddNhapKhoCapCuu.Designer.cs">
+      <DependentUpon>dlgAddNhapKhoCapCuu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddCapCuu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1381,6 +1393,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uNhapKhoCapCuuList.resx">
+      <DependentUpon>uNhapKhoCapCuuList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKhoCapCuu.resx">
       <DependentUpon>uKhoCapCuu.cs</DependentUpon>
     </EmbeddedResource>
@@ -1680,6 +1695,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddNhapKhoCapCuu.resx">
+      <DependentUpon>dlgAddNhapKhoCapCuu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddCapCuu.resx">
       <DependentUpon>dlgAddCapCuu.cs</DependentUpon>
@@ -2017,6 +2035,7 @@
     <None Include="Properties\DataSources\MM.Databasae.LoaiSieuAm1.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.NhapKhoCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhatKyLienHeCongTyView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
