@@ -286,6 +286,39 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetLoThuoc(string loThuocGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                LoThuoc loThuoc = db.LoThuocs.SingleOrDefault(l => l.LoThuocGUID.ToString() == loThuocGUID);
+                result.QueryResult = loThuoc;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result DeleteLoThuoc(List<string> loThuocKeys)
         {
             Result result = new Result();

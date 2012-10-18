@@ -193,6 +193,26 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (!_isNew)
+            {
+                int soLuongNhap = (int)numSoLuongNhap.Value * (int)numSoLuongQuiDoi.Value;
+                Result rs = NhapKhoCapCuuBus.GetNhapKhoCapCuu(_nhapKhoCapCuu.NhapKhoCapCuuGUID.ToString());
+                if (!rs.IsOK)
+                {
+                    MsgBox.Show(this.Text, rs.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuu"), IconType.Error);
+                    return false;
+                }
+
+                int soLuongXuat = (rs.QueryResult as NhapKhoCapCuuView).SoLuongXuat;
+
+                if (soLuongNhap < soLuongXuat)
+                {
+                    MsgBox.Show(this.Text, "Số lượng nhập phải lớn hơn hoặc bằng số lượng xuất.", IconType.Information);
+                    numSoLuongNhap.Focus();
+                    return false;
+                }
+            }
+
             return true;
         }
 

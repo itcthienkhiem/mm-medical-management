@@ -224,6 +224,26 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (!_isNew)
+            {
+                int soLuongNhap = (int)numSoLuongNhap.Value * (int)numSoLuongQuiDoi.Value;
+                Result rs = LoThuocBus.GetLoThuoc(_loThuoc.LoThuocGUID.ToString());
+                if (!rs.IsOK)
+                {
+                    MsgBox.Show(this.Text, rs.GetErrorAsString("LoThuocBus.GetLoThuoc"), IconType.Error);
+                    return false;
+                }
+
+                int soLuongXuat = (rs.QueryResult as LoThuoc).SoLuongXuat;
+
+                if (soLuongNhap < soLuongXuat)
+                {
+                    MsgBox.Show(this.Text, "Số lượng nhập phải lớn hơn hoặc bằng số lượng xuất.", IconType.Information);
+                    numSoLuongNhap.Focus();
+                    return false;
+                }
+            }
+            
             string loThuocGUID = _isNew ? string.Empty : _loThuoc.LoThuocGUID.ToString();
             Result result = LoThuocBus.CheckLoThuocExistCode(loThuocGUID, txtMaLoThuoc.Text);
             if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)

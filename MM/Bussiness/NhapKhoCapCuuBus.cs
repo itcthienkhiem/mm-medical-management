@@ -92,7 +92,8 @@ namespace MM.Bussiness
                                         join l in db.NhapKhoCapCuus on t.KhoCapCuuGUID equals l.KhoCapCuuGUID
                                         where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
                                         t.KhoCapCuuGUID.ToString() == khoCapCuuGUID
-                                        orderby new DateTime(l.NgayHetHan.Value.Year, l.NgayHetHan.Value.Month, l.NgayHetHan.Value.Day) descending, l.CreatedDate descending
+                                        orderby new DateTime(l.NgayHetHan.Value.Year, l.NgayHetHan.Value.Month, l.NgayHetHan.Value.Day) descending, 
+                                        l.NgayNhap descending
                                         select l).FirstOrDefault<NhapKhoCapCuu>();
 
                 if (loThuoc != null)
@@ -410,6 +411,39 @@ namespace MM.Bussiness
                     tnx.Complete();
                 }
 
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetNhapKhoCapCuu(string nhapKhoCapCuuGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                NhapKhoCapCuuView nkcc = db.NhapKhoCapCuuViews.SingleOrDefault(n => n.NhapKhoCapCuuGUID.ToString() == nhapKhoCapCuuGUID);
+                result.QueryResult = nkcc;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
