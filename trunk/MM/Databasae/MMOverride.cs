@@ -140,4 +140,108 @@ namespace MM.Databasae
         }
         #endregion
     }
+
+    public partial class CapCuuResult
+    {
+        #region Members
+
+        private int _SoNgayHetHan = 0;
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SoNgayHetHan", DbType = "int")]
+        public int SoNgayHetHan
+        {
+            get { return _SoNgayHetHan; }
+            set { _SoNgayHetHan = value; }
+        }
+
+
+        private int _MaCapCuu = 0;
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_MaCapCuu", DbType = "int")]
+        public int MaCapCuu
+        {
+            get { return _MaCapCuu; }
+            set { _MaCapCuu = value; }
+        }
+
+        private string _TenCapCuu = string.Empty;
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_TenCapCuu", DbType = "NVarChar(500)")]
+        public string TenCapCuu
+        {
+            get { return _TenCapCuu; }
+            set { _TenCapCuu = value; }
+        }
+
+        private DateTime _NgaySanXuat = DateTime.Now;
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_NgaySanXuat", DbType = "DateTime")]
+        public DateTime NgaySanXuat
+        {
+            get { return _NgaySanXuat; }
+            set { _NgaySanXuat = value; }
+        }
+
+
+        private DateTime _NgayHetHan = DateTime.Now;
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_NgayHetHan", DbType = "DateTime")]
+        public DateTime NgayHetHan
+        {
+            get { return _NgayHetHan; }
+            set { _NgayHetHan = value; }
+        }
+
+        private int _SoLuongNhap = 0;
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SoLuongNhap", DbType = "int")]
+        public int SoLuongNhap
+        {
+            get { return _SoLuongNhap; }
+            set { _SoLuongNhap = value; }
+        }
+
+
+        private int _SoLuongXuat = 0;
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SoLuongXuat", DbType = "int")]
+        public int SoLuongXuat
+        {
+            get { return _SoLuongXuat; }
+            set { _SoLuongXuat = value; }
+        }
+
+
+        private int _SoLuongTon = 0;
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_SoLuongTon", DbType = "int")]
+        public int SoLuongTon
+        {
+            get { return _SoLuongTon; }
+            set { _SoLuongTon = value; }
+        }
+
+
+        private string _DonViTinh = string.Empty;
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_DonViTinh", DbType = "NVarChar(50)")]
+        public string DonViTinh
+        {
+            get { return _DonViTinh; }
+            set { _DonViTinh = value; }
+        }
+        #endregion
+
+        #region Constructor
+        public CapCuuResult()
+        {
+
+        }
+
+        public CapCuuResult(int soNgayHetHan, int maCapCuu, string tenCapCuu, DateTime ngaySanXuat, DateTime ngayHetHan, 
+            int soLuongNhap, int soLuongXuat, int soLuongTon, string donViTinh)
+        {
+            this.SoNgayHetHan = soNgayHetHan;
+            this.MaCapCuu = maCapCuu;
+            this.TenCapCuu = tenCapCuu;
+            this.NgaySanXuat = ngaySanXuat;
+            this.NgayHetHan = ngayHetHan;
+            this.SoLuongNhap = soLuongNhap;
+            this.SoLuongXuat = soLuongXuat;
+            this.SoLuongTon = soLuongTon;
+            this.DonViTinh = donViTinh;
+        }
+        #endregion
+    }
 }

@@ -90,6 +90,8 @@ namespace MM.Common
         public static string KhoCapCuu = "KhoCapCuu";
         public static string NhapKhoCapCuu = "NhapKhoCapCuu";
         public static string XuatKhoCapCuu = "XuatKhoCapCuu";
+        public static string BaoCaoTonKhoCapCuu = "BaoCaoTonKhoCapCuu";
+        public static string BaoCaoCapCuuHetHan = "BaoCaoCapCuuHetHan";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
@@ -125,5 +127,6 @@ namespace MM.Common
         public static string DanhSachNhanVienTemplate = "Danh sách nhân viên";
         public static string CongTacNgoaiGioTemplate = "Công tác ngoài giờ";
         public static string LichKhamTemplate = "Lịch khám";
+        public static string BaoCaoTonKhoCapCuuTemplate = "Báo cáo tồn kho cấp cứu";
     }
 }

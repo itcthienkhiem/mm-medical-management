@@ -191,6 +191,9 @@
             this.toolStripSeparator60 = new System.Windows.Forms.ToolStripSeparator();
             this.nhapKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xuatKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator61 = new System.Windows.Forms.ToolStripSeparator();
+            this.baoCaoCapCuuHetHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.baoCaoTonKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -244,6 +247,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timer = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uXuatKhoCapCuuList = new MM.Controls.uXuatKhoCapCuuList();
             this._uNhapKhoCapCuuList = new MM.Controls.uNhapKhoCapCuuList();
             this._uKhoCapCuu = new MM.Controls.uKhoCapCuu();
             this._uLichKham = new MM.Controls.uLichKham();
@@ -305,7 +309,7 @@
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
-            this._uXuatKhoCapCuuList = new MM.Controls.uXuatKhoCapCuuList();
+            this._uBaoCaoCapCuuHetHan = new MM.Controls.uBaoCaoCapCuuHetHan();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1435,7 +1439,10 @@
             this.danhMucCapCuuToolStripMenuItem,
             this.toolStripSeparator60,
             this.nhapKhoCapCuuToolStripMenuItem,
-            this.xuatKhoCapCuuToolStripMenuItem});
+            this.xuatKhoCapCuuToolStripMenuItem,
+            this.toolStripSeparator61,
+            this.baoCaoCapCuuHetHanToolStripMenuItem,
+            this.baoCaoTonKhoCapCuuToolStripMenuItem});
             resources.ApplyResources(this.khoCapCuuToolStripMenuItem, "khoCapCuuToolStripMenuItem");
             this.khoCapCuuToolStripMenuItem.Name = "khoCapCuuToolStripMenuItem";
             // 
@@ -1464,6 +1471,25 @@
             resources.ApplyResources(this.xuatKhoCapCuuToolStripMenuItem, "xuatKhoCapCuuToolStripMenuItem");
             this.xuatKhoCapCuuToolStripMenuItem.Tag = "XuatKhoCapCuu";
             this.xuatKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator61
+            // 
+            this.toolStripSeparator61.Name = "toolStripSeparator61";
+            resources.ApplyResources(this.toolStripSeparator61, "toolStripSeparator61");
+            // 
+            // baoCaoCapCuuHetHanToolStripMenuItem
+            // 
+            this.baoCaoCapCuuHetHanToolStripMenuItem.Name = "baoCaoCapCuuHetHanToolStripMenuItem";
+            resources.ApplyResources(this.baoCaoCapCuuHetHanToolStripMenuItem, "baoCaoCapCuuHetHanToolStripMenuItem");
+            this.baoCaoCapCuuHetHanToolStripMenuItem.Tag = "BaoCaoCapCuuHetHan";
+            this.baoCaoCapCuuHetHanToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // baoCaoTonKhoCapCuuToolStripMenuItem
+            // 
+            this.baoCaoTonKhoCapCuuToolStripMenuItem.Name = "baoCaoTonKhoCapCuuToolStripMenuItem";
+            resources.ApplyResources(this.baoCaoTonKhoCapCuuToolStripMenuItem, "baoCaoTonKhoCapCuuToolStripMenuItem");
+            this.baoCaoTonKhoCapCuuToolStripMenuItem.Tag = "BaoCaoTonKhoCapCuu";
+            this.baoCaoTonKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -1706,7 +1732,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1727,7 +1753,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -1940,6 +1966,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uBaoCaoCapCuuHetHan);
             this._mainPanel.Controls.Add(this._uXuatKhoCapCuuList);
             this._mainPanel.Controls.Add(this._uNhapKhoCapCuuList);
             this._mainPanel.Controls.Add(this._uKhoCapCuu);
@@ -2002,6 +2029,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uXuatKhoCapCuuList
+            // 
+            resources.ApplyResources(this._uXuatKhoCapCuuList, "_uXuatKhoCapCuuList");
+            this._uXuatKhoCapCuuList.Name = "_uXuatKhoCapCuuList";
             // 
             // _uNhapKhoCapCuuList
             // 
@@ -2311,10 +2343,10 @@
             this._timerCheckAlert.Interval = 3000;
             this._timerCheckAlert.Tick += new System.EventHandler(this._timerCheckAlert_Tick);
             // 
-            // _uXuatKhoCapCuuList
+            // _uBaoCaoCapCuuHetHan
             // 
-            resources.ApplyResources(this._uXuatKhoCapCuuList, "_uXuatKhoCapCuuList");
-            this._uXuatKhoCapCuuList.Name = "_uXuatKhoCapCuuList";
+            resources.ApplyResources(this._uBaoCaoCapCuuHetHan, "_uBaoCaoCapCuuHetHan");
+            this._uBaoCaoCapCuuHetHan.Name = "_uBaoCaoCapCuuHetHan";
             // 
             // MainForm
             // 
@@ -2624,6 +2656,10 @@
         private Controls.uKhoCapCuu _uKhoCapCuu;
         private Controls.uNhapKhoCapCuuList _uNhapKhoCapCuuList;
         private Controls.uXuatKhoCapCuuList _uXuatKhoCapCuuList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator61;
+        private System.Windows.Forms.ToolStripMenuItem baoCaoCapCuuHetHanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem baoCaoTonKhoCapCuuToolStripMenuItem;
+        private Controls.uBaoCaoCapCuuHetHan _uBaoCaoCapCuuHetHan;
 
     }
 }
