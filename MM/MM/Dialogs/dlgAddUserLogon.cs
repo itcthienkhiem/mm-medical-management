@@ -924,6 +924,7 @@ namespace MM.Dialogs
                 }
                 else if (functionCode == Const.XuatKhoCapCuu)
                 {
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
