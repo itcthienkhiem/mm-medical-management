@@ -123,7 +123,7 @@ namespace MM.Controls
                 {
                     DataTable dtSource = _dataSource as DataTable;
                     results = (from p in dtSource.AsEnumerable()
-                               orderby p.Field<DateTime>("NgayNhap")
+                               orderby p.Field<DateTime>("NgayNhap") descending
                                select p).ToList<DataRow>();
 
                     newDataSource = dtSource.Clone();
@@ -152,7 +152,7 @@ namespace MM.Controls
                            p.Field<string>("TenCapCuu").Trim() != string.Empty &&
                            (p.Field<string>("TenCapCuu").ToLower().IndexOf(str) == 0 ||
                            str.IndexOf(p.Field<string>("TenCapCuu").ToLower()) == 0)
-                           orderby p.Field<DateTime>("NgayNhap")
+                           orderby p.Field<DateTime>("NgayNhap") descending
                            select p).ToList<DataRow>();
 
                 foreach (DataRow row in results)
@@ -183,7 +183,7 @@ namespace MM.Controls
                            where p.Field<DateTime>("NgayNhap") != null &&
                            p.Field<DateTime>("NgayNhap") >= tuNgay &&
                            p.Field<DateTime>("NgayNhap") <= denNgay
-                           orderby p.Field<DateTime>("NgayNhap")
+                           orderby p.Field<DateTime>("NgayNhap") descending
                            select p).ToList<DataRow>();
 
                 foreach (DataRow row in results)

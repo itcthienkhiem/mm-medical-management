@@ -372,7 +372,6 @@
             this.soLuongXuatDataGridViewTextBoxColumn.HeaderText = "Số lượng xuất";
             this.soLuongXuatDataGridViewTextBoxColumn.Name = "soLuongXuatDataGridViewTextBoxColumn";
             this.soLuongXuatDataGridViewTextBoxColumn.ReadOnly = true;
-            this.soLuongXuatDataGridViewTextBoxColumn.Visible = false;
             // 
             // soDangKyDataGridViewTextBoxColumn
             // 

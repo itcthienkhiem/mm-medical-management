@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddXuatKhoCapCuu));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.numSoLuongXuat = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.numSoLuongTon = new System.Windows.Forms.NumericUpDown();
@@ -44,8 +46,6 @@
             this.khoCapCuuBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSoLuongXuat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSoLuongTon)).BeginInit();
@@ -73,9 +73,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin xuất kho cấp cứu";
             // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(94, 119);
+            this.txtGhiChu.Multiline = true;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(322, 88);
+            this.txtGhiChu.TabIndex = 68;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(39, 122);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.TabIndex = 67;
+            this.label4.Text = "Ghi chú:";
+            // 
             // numSoLuongXuat
             // 
-            this.numSoLuongXuat.Enabled = false;
             this.numSoLuongXuat.Location = new System.Drawing.Point(94, 95);
             this.numSoLuongXuat.Maximum = new decimal(new int[] {
             99999999,
@@ -205,23 +221,6 @@
             this.btnOK.TabIndex = 12;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(39, 122);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
-            this.label4.TabIndex = 67;
-            this.label4.Text = "Ghi chú:";
-            // 
-            // txtGhiChu
-            // 
-            this.txtGhiChu.Location = new System.Drawing.Point(94, 119);
-            this.txtGhiChu.Multiline = true;
-            this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(322, 88);
-            this.txtGhiChu.TabIndex = 68;
             // 
             // dlgAddXuatKhoCapCuu
             // 
