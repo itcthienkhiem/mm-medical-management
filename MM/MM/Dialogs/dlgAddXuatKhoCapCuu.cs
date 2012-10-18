@@ -74,6 +74,39 @@ namespace MM.Dialogs
                 return false;
             }
 
+            string khoCapCuuGUID = cboKhoCapCuu.SelectedValue.ToString();
+            Result r = NhapKhoCapCuuBus.CheckKhoCapCuuTonKho(khoCapCuuGUID, (int)numSoLuongXuat.Value);
+            if (r.IsOK)
+            {
+                if (!Convert.ToBoolean(r.QueryResult))
+                {
+                    MsgBox.Show(this.Text, string.Format("Cấp cứu '{0}' đã hết hoặc không đủ số lượng để xuất.", cboKhoCapCuu.Text), IconType.Information);
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, r.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuTonKho"), IconType.Error);
+                Utility.WriteToTraceLog(r.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuTonKho"));
+                return false;
+            }
+
+            r = NhapKhoCapCuuBus.CheckKhoCapCuuHetHan(khoCapCuuGUID);
+            if (r.IsOK)
+            {
+                if (Convert.ToBoolean(r.QueryResult))
+                {
+                    MsgBox.Show(this.Text, string.Format("Cấp cứu '{0}' đã hết hạn sử dụng.", cboKhoCapCuu.Text), IconType.Information);
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, r.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuHetHan"), IconType.Error);
+                Utility.WriteToTraceLog(r.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuHetHan"));
+                return false;
+            }
+
             return true;
         }
 

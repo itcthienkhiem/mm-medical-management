@@ -2083,6 +2083,7 @@
     <None Include="Properties\DataSources\MM.Databasae.XetNghiem_CellDyn3200.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.XetNghiem_Hitachi917.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.XetNghiem_Manual.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.XuatKhoCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.YKienKhachHang.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

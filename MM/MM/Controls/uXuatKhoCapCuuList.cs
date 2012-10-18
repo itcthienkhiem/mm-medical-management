@@ -44,7 +44,6 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
         }
 
@@ -54,7 +53,7 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayNhapKhoCapCuuListProc));
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayXuatKhoCapCuuListProc));
                 base.ShowWaiting();
             }
             catch (Exception e)
@@ -68,15 +67,15 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayNhapKhoCapCuuList()
+        private void OnDisplayXuatKhoCapCuuList()
         {
-            Result result = NhapKhoCapCuuBus.GetNhapKhoCapCuuList();
+            Result result = XuatKhoCapCuuBus.GetXuatKhoCapCuuList();
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
                     _dataSource = result.QueryResult as DataTable;
-                    OnSearchNhapKhoCapCuu();
+                    OnSearchXuatKhoCapCuu();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -84,8 +83,8 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuuList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuuList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("XuatKhoCapCuuBus.GetXuatKhoCapCuuList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("XuatKhoCapCuuBus.GetXuatKhoCapCuuList"));
             }
         }
 
@@ -99,15 +98,15 @@ namespace MM.Controls
 
             foreach (DataRow row1 in rows1)
             {
-                string nhapKhoCapCuuGUID1 = row1["NhapKhoCapCuuGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("NhapKhoCapCuuGUID='{0}'", nhapKhoCapCuuGUID1));
+                string xuatKhoCapCuuGUID1 = row1["XuatKhoCapCuuGUID"].ToString();
+                DataRow[] rows2 = _dataSource.Select(string.Format("XuatKhoCapCuuGUID='{0}'", xuatKhoCapCuuGUID1));
                 if (rows2 == null || rows2.Length <= 0) continue;
 
                 rows2[0]["Checked"] = row1["Checked"];
             }
         }
 
-        private void OnSearchNhapKhoCapCuu()
+        private void OnSearchXuatKhoCapCuu()
         {
             if (_dataSource == null) return;
             if (dgNhapKhoCapCuu.CurrentRow != null)
@@ -123,7 +122,7 @@ namespace MM.Controls
                 {
                     DataTable dtSource = _dataSource as DataTable;
                     results = (from p in dtSource.AsEnumerable()
-                               orderby p.Field<DateTime>("NgayNhap")
+                               orderby p.Field<DateTime>("NgayXuat") descending
                                select p).ToList<DataRow>();
 
                     newDataSource = dtSource.Clone();
@@ -152,7 +151,7 @@ namespace MM.Controls
                            p.Field<string>("TenCapCuu").Trim() != string.Empty &&
                            (p.Field<string>("TenCapCuu").ToLower().IndexOf(str) == 0 ||
                            str.IndexOf(p.Field<string>("TenCapCuu").ToLower()) == 0)
-                           orderby p.Field<DateTime>("NgayNhap")
+                           orderby p.Field<DateTime>("NgayXuat") descending
                            select p).ToList<DataRow>();
 
                 foreach (DataRow row in results)
@@ -180,10 +179,10 @@ namespace MM.Controls
                 newDataSource = dt.Clone();
 
                 results = (from p in dt.AsEnumerable()
-                           where p.Field<DateTime>("NgayNhap") != null &&
-                           p.Field<DateTime>("NgayNhap") >= tuNgay &&
-                           p.Field<DateTime>("NgayNhap") <= denNgay
-                           orderby p.Field<DateTime>("NgayNhap")
+                           where p.Field<DateTime>("NgayXuat") != null &&
+                           p.Field<DateTime>("NgayXuat") >= tuNgay &&
+                           p.Field<DateTime>("NgayXuat") <= denNgay
+                           orderby p.Field<DateTime>("NgayXuat") descending
                            select p).ToList<DataRow>();
 
                 foreach (DataRow row in results)
@@ -220,112 +219,42 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-            dlgAddNhapKhoCapCuu dlg = new dlgAddNhapKhoCapCuu();
+            dlgAddXuatKhoCapCuu dlg = new dlgAddXuatKhoCapCuu();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DataTable dt = _dataSource;
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
-                newRow["NhapKhoCapCuuGUID"] = dlg.NhapKhoCapCuu.NhapKhoCapCuuGUID.ToString();
-                newRow["NgayNhap"] = dlg.NhapKhoCapCuu.NgayNhap;
-                newRow["KhoCapCuuGUID"] = dlg.NhapKhoCapCuu.KhoCapCuuGUID;
+                newRow["XuatKhoCapCuuGUID"] = dlg.XuatKhoCapCuu.XuatKhoCapCuuGUID.ToString();
+                newRow["NgayXuat"] = dlg.XuatKhoCapCuu.NgayXuat;
+                newRow["KhoCapCuuGUID"] = dlg.XuatKhoCapCuu.KhoCapCuuGUID;
                 newRow["TenCapCuu"] = dlg.TenCapCuu;
-                newRow["SoDangKy"] = dlg.NhapKhoCapCuu.SoDangKy;
-                newRow["HangSanXuat"] = dlg.NhapKhoCapCuu.HangSanXuat;
-                newRow["NgaySanXuat"] = dlg.NhapKhoCapCuu.NgaySanXuat;
-                newRow["NgayHetHan"] = dlg.NhapKhoCapCuu.NgayHetHan;
-                newRow["NhaPhanPhoi"] = dlg.NhapKhoCapCuu.NhaPhanPhoi;
-                newRow["SoLuongNhap"] = dlg.NhapKhoCapCuu.SoLuongNhap;
-                newRow["DonViTinhNhap"] = dlg.NhapKhoCapCuu.DonViTinhNhap;
-                newRow["GiaNhap"] = dlg.NhapKhoCapCuu.GiaNhap;
-                newRow["SoLuongQuiDoi"] = dlg.NhapKhoCapCuu.SoLuongQuiDoi;
-                newRow["DonViTinhQuiDoi"] = dlg.NhapKhoCapCuu.DonViTinhQuiDoi;
-                newRow["GiaNhapQuiDoi"] = dlg.NhapKhoCapCuu.GiaNhapQuiDoi;
-                newRow["SoLuongXuat"] = 0;
+                newRow["SoLuong"] = dlg.XuatKhoCapCuu.SoLuong;
+                newRow["GiaXuat"] = dlg.XuatKhoCapCuu.GiaXuat;
+                newRow["Note"] = dlg.XuatKhoCapCuu.Note;
 
-                if (dlg.NhapKhoCapCuu.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.NhapKhoCapCuu.CreatedDate;
+                if (dlg.XuatKhoCapCuu.CreatedDate.HasValue)
+                    newRow["CreatedDate"] = dlg.XuatKhoCapCuu.CreatedDate;
 
-                if (dlg.NhapKhoCapCuu.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.NhapKhoCapCuu.CreatedBy.ToString();
+                if (dlg.XuatKhoCapCuu.CreatedBy.HasValue)
+                    newRow["CreatedBy"] = dlg.XuatKhoCapCuu.CreatedBy.ToString();
 
-                if (dlg.NhapKhoCapCuu.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.NhapKhoCapCuu.UpdatedDate;
+                if (dlg.XuatKhoCapCuu.UpdatedDate.HasValue)
+                    newRow["UpdatedDate"] = dlg.XuatKhoCapCuu.UpdatedDate;
 
-                if (dlg.NhapKhoCapCuu.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.NhapKhoCapCuu.UpdatedBy.ToString();
+                if (dlg.XuatKhoCapCuu.UpdatedBy.HasValue)
+                    newRow["UpdatedBy"] = dlg.XuatKhoCapCuu.UpdatedBy.ToString();
 
-                if (dlg.NhapKhoCapCuu.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.NhapKhoCapCuu.DeletedDate;
+                if (dlg.XuatKhoCapCuu.DeletedDate.HasValue)
+                    newRow["DeletedDate"] = dlg.XuatKhoCapCuu.DeletedDate;
 
-                if (dlg.NhapKhoCapCuu.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.NhapKhoCapCuu.DeletedBy.ToString();
+                if (dlg.XuatKhoCapCuu.DeletedBy.HasValue)
+                    newRow["DeletedBy"] = dlg.XuatKhoCapCuu.DeletedBy.ToString();
 
-                newRow["NhapKhoCapCuuStatus"] = dlg.NhapKhoCapCuu.Status;
+                newRow["XuatKhoCapCuuStatus"] = dlg.XuatKhoCapCuu.Status;
                 dt.Rows.Add(newRow);
-                OnSearchNhapKhoCapCuu();
-            }
-        }
-
-        private DataRow GetDataRow(string loThuocGUID)
-        {
-            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("NhapKhoCapCuuGUID = '{0}'", loThuocGUID));
-            if (rows == null || rows.Length <= 0) return null;
-
-            return rows[0];
-        }
-
-        private void OnEdit()
-        {
-            if (dgNhapKhoCapCuu.SelectedRows == null || dgNhapKhoCapCuu.SelectedRows.Count <= 0)
-            {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thông tin cấp cứu.", IconType.Information);
-                return;
-            }
-
-            string nhapKhoCapCuuGUID = (dgNhapKhoCapCuu.SelectedRows[0].DataBoundItem as DataRowView).Row["NhapKhoCapCuuGUID"].ToString();
-            DataRow drNhapKhoCapCuu = GetDataRow(nhapKhoCapCuuGUID);
-            if (drNhapKhoCapCuu == null) return;
-            dlgAddNhapKhoCapCuu dlg = new dlgAddNhapKhoCapCuu(drNhapKhoCapCuu, AllowEdit);
-            if (dlg.ShowDialog(this) == DialogResult.OK)
-            {
-                drNhapKhoCapCuu["NgayNhap"] = dlg.NhapKhoCapCuu.NgayNhap;
-                drNhapKhoCapCuu["KhoCapCuuGUID"] = dlg.NhapKhoCapCuu.KhoCapCuuGUID;
-                drNhapKhoCapCuu["TenCapCuu"] = dlg.TenCapCuu;
-                drNhapKhoCapCuu["SoDangKy"] = dlg.NhapKhoCapCuu.SoDangKy;
-                drNhapKhoCapCuu["HangSanXuat"] = dlg.NhapKhoCapCuu.HangSanXuat;
-                drNhapKhoCapCuu["NgaySanXuat"] = dlg.NhapKhoCapCuu.NgaySanXuat;
-                drNhapKhoCapCuu["NgayHetHan"] = dlg.NhapKhoCapCuu.NgayHetHan;
-                drNhapKhoCapCuu["NhaPhanPhoi"] = dlg.NhapKhoCapCuu.NhaPhanPhoi;
-                drNhapKhoCapCuu["SoLuongNhap"] = dlg.NhapKhoCapCuu.SoLuongNhap;
-                drNhapKhoCapCuu["DonViTinhNhap"] = dlg.NhapKhoCapCuu.DonViTinhNhap;
-                drNhapKhoCapCuu["GiaNhap"] = dlg.NhapKhoCapCuu.GiaNhap;
-                drNhapKhoCapCuu["SoLuongQuiDoi"] = dlg.NhapKhoCapCuu.SoLuongQuiDoi;
-                drNhapKhoCapCuu["DonViTinhQuiDoi"] = dlg.NhapKhoCapCuu.DonViTinhQuiDoi;
-                drNhapKhoCapCuu["GiaNhapQuiDoi"] = dlg.NhapKhoCapCuu.GiaNhapQuiDoi;
-
-                if (dlg.NhapKhoCapCuu.CreatedDate.HasValue)
-                    drNhapKhoCapCuu["CreatedDate"] = dlg.NhapKhoCapCuu.CreatedDate;
-
-                if (dlg.NhapKhoCapCuu.CreatedBy.HasValue)
-                    drNhapKhoCapCuu["CreatedBy"] = dlg.NhapKhoCapCuu.CreatedBy.ToString();
-
-                if (dlg.NhapKhoCapCuu.UpdatedDate.HasValue)
-                    drNhapKhoCapCuu["UpdatedDate"] = dlg.NhapKhoCapCuu.UpdatedDate;
-
-                if (dlg.NhapKhoCapCuu.UpdatedBy.HasValue)
-                    drNhapKhoCapCuu["UpdatedBy"] = dlg.NhapKhoCapCuu.UpdatedBy.ToString();
-
-                if (dlg.NhapKhoCapCuu.DeletedDate.HasValue)
-                    drNhapKhoCapCuu["DeletedDate"] = dlg.NhapKhoCapCuu.DeletedDate;
-
-                if (dlg.NhapKhoCapCuu.DeletedBy.HasValue)
-                    drNhapKhoCapCuu["DeletedBy"] = dlg.NhapKhoCapCuu.DeletedBy.ToString();
-
-                drNhapKhoCapCuu["NhapKhoCapCuuStatus"] = dlg.NhapKhoCapCuu.Status;
-                OnSearchNhapKhoCapCuu();
+                OnSearchXuatKhoCapCuu();
             }
         }
 
@@ -342,37 +271,17 @@ namespace MM.Controls
                 {
                     if (Boolean.Parse(row["Checked"].ToString()))
                     {
-                        deletedList.Add(row["NhapKhoCapCuuGUID"].ToString());
+                        deletedList.Add(row["XuatKhoCapCuuGUID"].ToString());
                         deletedRows.Add(row);
                     }
                 }
             }
 
-
             if (deletedList.Count > 0)
             {
-                foreach (string key in deletedList)
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những thông tin xuất kho cấp cứu mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result rs = NhapKhoCapCuuBus.GetNhapKhoCapCuu(key);
-                    if (!rs.IsOK)
-                    {
-                        MsgBox.Show(Application.ProductName, rs.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuu"), IconType.Error);
-                        Utility.WriteToTraceLog(rs.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuu"));
-                        return;
-                    }
-
-                    NhapKhoCapCuuView nkcc = rs.QueryResult as NhapKhoCapCuuView;
-                    if (nkcc.SoLuongXuat > 0)
-                    {
-                        MsgBox.Show(Application.ProductName, string.Format("Cấp cứu: '{0}' này đã xuất rồi không thể xóa.", nkcc.TenCapCuu),
-                            IconType.Information);
-                        return;
-                    }
-                }
-
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những thông tin nhập kho cấp cứu mà bạn đã đánh dấu ?") == DialogResult.Yes)
-                {
-                    Result result = NhapKhoCapCuuBus.DeleteNhapKhoCappCuu(deletedList);
+                    Result result = XuatKhoCapCuuBus.DeleteXuatKhoCappCuu(deletedList);
                     if (result.IsOK)
                     {
                         foreach (DataRow row in deletedRows)
@@ -380,17 +289,17 @@ namespace MM.Controls
                             _dataSource.Rows.Remove(row);
                         }
 
-                        OnSearchNhapKhoCapCuu();
+                        OnSearchXuatKhoCapCuu();
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("NhapKhoCapCuuBus.DeleteNhapKhoCappCuu"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.DeleteNhapKhoCappCuu"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("XuatKhoCapCuuBus.DeleteXuatKhoCappCuu"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("XuatKhoCapCuuBus.DeleteXuatKhoCappCuu"));
                     }
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thông tin nhập kho cấp cứu cần xóa.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thông tin xuất kho cấp cứu cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -410,20 +319,9 @@ namespace MM.Controls
             OnAdd();
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            OnEdit();
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             OnDelete();
-        }
-
-        private void dgLoThuoc_DoubleClick(object sender, EventArgs e)
-        {
-            //if (!AllowEdit) return;
-            OnEdit();
         }
 
         private void raTenThuoc_CheckedChanged(object sender, EventArgs e)
@@ -432,37 +330,37 @@ namespace MM.Controls
             dtpkTuNgay.Enabled = !raTenCapCuu.Checked;
             dtpkDenNgay.Enabled = !raTenCapCuu.Checked;
 
-            OnSearchNhapKhoCapCuu();
+            OnSearchXuatKhoCapCuu();
         }
 
         private void raTuNgayDenNgay_CheckedChanged(object sender, EventArgs e)
         {
-            OnSearchNhapKhoCapCuu();
+            OnSearchXuatKhoCapCuu();
         }
 
         private void dtpkTuNgay_ValueChanged(object sender, EventArgs e)
         {
-            OnSearchNhapKhoCapCuu();
+            OnSearchXuatKhoCapCuu();
         }
 
         private void dtpkDenNgay_ValueChanged(object sender, EventArgs e)
         {
-            OnSearchNhapKhoCapCuu();
+            OnSearchXuatKhoCapCuu();
         }
 
         private void txtTenThuoc_TextChanged(object sender, EventArgs e)
         {
-            OnSearchNhapKhoCapCuu();
+            OnSearchXuatKhoCapCuu();
         }
         #endregion
 
         #region Working Thread
-        private void OnDisplayNhapKhoCapCuuListProc(object state)
+        private void OnDisplayXuatKhoCapCuuListProc(object state)
         {
             try
             {
                 //Thread.Sleep(500);
-                OnDisplayNhapKhoCapCuuList();
+                OnDisplayXuatKhoCapCuuList();
             }
             catch (Exception e)
             {
