@@ -92,8 +92,8 @@ namespace MM.Controls
                     if (i != 0 && i != daysInMonth - 1)
                         spaceCount++;
                 }
-                else
-                    rowCount++;
+                
+                rowCount++;
 
                 dt = dt.AddDays(1);
             }
@@ -236,59 +236,63 @@ namespace MM.Controls
             bool isBorderTop = true;
             for (int i = 0; i < daysInMonth; i++)
             {
+                string dateStr = string.Format("{0} {1}", dt.ToString("dd/MM"), Utility.GetDayOfWeek(dt));
+                SourceGrid2.Cells.Real.Cell cell = NewCell(dateStr, Color.White, foreColor, ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
+                cell.Tag = dt;
+                cell.Border = isBorderTop ? borderRTB : borderRB;
+                dgLichKham[rowIndex, 0] = cell;
+
+                for (int col = 0; col < 10; col++)
+                {
+                    if (col < 2)
+                    {
+                        object value = null;
+                        Result result = BookingBus.GetBooking(dt);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("BookingBus.GetBooking"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.GetBooking"));
+                        }
+                        else if (result.QueryResult != null)
+                        {
+                            Booking booking = result.QueryResult as Booking;
+                            if (col == 0) //Sáng
+                            {
+                                if (booking.MorningCount > 0)
+                                    value = booking.MorningCount;
+                            }
+                            else
+                            {
+                                if (booking.AfternoonCount > 0)
+                                    value = booking.AfternoonCount;
+                            }
+                        }
+
+                        cell = NewNumericCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, false, string.Empty);
+                    }
+                    else
+                    {
+                        LichKham lichKham = GetLichKham(lichKhams, dt, (LoaiLichKham)col);
+                        bool isEnable = AllowEdit;
+                        object value = lichKham != null ? lichKham.Value : null;
+                        cell = NewCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, isEnable, string.Empty);
+                        cell.Tag = lichKham;
+                    }
+
+                    cell.Border = isBorderTop ? borderRTB : borderRB; ;
+                    dgLichKham[rowIndex, col + 1] = cell;
+                }
+
+                isBorderTop = false;
+                rowIndex++;
+
                 if (dt.DayOfWeek == DayOfWeek.Sunday)
                 {
                     isBorderTop = true;
                     if (i != 0 && i != daysInMonth - 1)
                         rowIndex++;
                 }
-                else
-                {
-                    string dateStr = string.Format("{0} {1}", dt.ToString("dd/MM"), Utility.GetDayOfWeek(dt));
-                    SourceGrid2.Cells.Real.Cell cell = NewCell(dateStr, Color.White, foreColor, ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
-                    cell.Tag = dt;
-                    cell.Border = isBorderTop ? borderRTB : borderRB;
-                    dgLichKham[rowIndex, 0] = cell;
-
-                    for (int col = 0; col < 10; col++)
-                    {
-                        if (col < 2)
-                        {
-                            object value = null;
-                            Result result = BookingBus.GetBooking(dt);
-                            if (!result.IsOK)
-                            {
-                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("BookingBus.GetBooking"), IconType.Error);
-                                Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.GetBooking"));
-                            }
-                            else if (result.QueryResult != null)
-                            {
-                                Booking booking = result.QueryResult as Booking;
-                                if (col == 0) //Sáng
-                                    value = booking.MorningCount;
-                                else
-                                    value = booking.AfternoonCount;
-                            }
-
-                            cell = NewNumericCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, false, string.Empty);
-                        }
-                        else
-                        {
-                            LichKham lichKham = GetLichKham(lichKhams, dt, (LoaiLichKham)col);
-                            bool isEnable = AllowEdit;
-                            object value = lichKham != null ? lichKham.Value : null;
-                            cell = NewCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, isEnable, string.Empty);
-                            cell.Tag = lichKham;
-                        }
-
-                        cell.Border = isBorderTop ? borderRTB : borderRB; ;
-                        dgLichKham[rowIndex, col + 1] = cell;
-                    }
-
-                    isBorderTop = false;
-                    rowIndex++;
-                }
-
+                
                 dt = dt.AddDays(1);
             }
         }

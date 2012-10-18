@@ -6204,13 +6204,31 @@ namespace MM.Exports
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 3;
 
+                List<int> noDataRows = new List<int>();
                 workSheet.Cells[0, 0].Value = string.Format("LỊCH KHÁM THÁNG {0} NĂM {1} TẠI PHÒNG KHÁM VIGOR HEALTH", thangStr, namStr);
                 for (int i = 2; i < dgLichKham.RowsCount; i++)
                 {
                     SourceGrid2.Cells.Real.Cell cell = dgLichKham[i, 0] as SourceGrid2.Cells.Real.Cell;
                     if (cell == null)
                     {
-                        rowIndex++;
+                        if (rowIndex > 3)
+                        {
+                            bool isUp = true;
+                            foreach (int index in noDataRows)
+                            {
+                                if (index + 1 == rowIndex)
+                                {
+                                    isUp = false;
+                                    break;
+                                }
+                            }
+
+                            if (isUp)
+                            {
+                                noDataRows.Add(rowIndex);
+                                rowIndex++;
+                            }
+                        }
                         continue;
                     }
 
@@ -6234,7 +6252,6 @@ namespace MM.Exports
                         range.Value = dgLichKham[i, j].Value;
                         range.Borders.Color = Color.Black;
                         range.Borders.LineStyle = LineStyle.Continuous;
-                        //range.RowHeight = 23;
                     }
 
                     rowIndex++;
