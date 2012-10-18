@@ -92,6 +92,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uBaoCaoTonKhoCapCuu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBaoCaoTonKhoCapCuu.Designer.cs">
+      <DependentUpon>uBaoCaoTonKhoCapCuu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uBaoCaoCapCuuHetHan.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1411,6 +1417,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uBaoCaoTonKhoCapCuu.resx">
+      <DependentUpon>uBaoCaoTonKhoCapCuu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uBaoCaoCapCuuHetHan.resx">
       <DependentUpon>uBaoCaoCapCuuHetHan.cs</DependentUpon>
     </EmbeddedResource>
@@ -2078,6 +2087,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ServiceGroup.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service_ServiceGroupView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.spCapCuuTonKhoResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDichVuHopDongResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDichVuTuTucResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDoanhThuNhanVienChiTietResult.datasource" />
@@ -2112,6 +2122,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PlayCapService\PlayCap1.wsdl" />
+    <None Include="Templates\BaoCaoTonKhoCapCuuTemplate.xls" />
     <None Include="Templates\CheckListTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuThuocTemplate.xls" />

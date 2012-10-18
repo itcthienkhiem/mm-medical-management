@@ -4280,6 +4280,56 @@ namespace MM.Exports
             return true;
         }
 
+        public static bool ExportCapCuuTonKhoToExcel(string exportFileName, List<spCapCuuTonKhoResult> results, DateTime tuNgay, DateTime denNgay)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\BaoCaoTonKhoCapCuuTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+
+                workSheet.Cells["A2"].Value = string.Format("Từ ngày: {0} - Đến ngày: {1}", tuNgay.ToString("dd/MM/yyyy"), denNgay.ToString("dd/MM/yyyy"));
+
+                int rowIndex = 3;
+                IRange range = null;
+                foreach (var row in results)
+                {
+                    workSheet.Cells[rowIndex, 0].Value = row.TenCapCuu;
+                    workSheet.Cells[rowIndex, 1].Value = row.DonViTinh;
+                    workSheet.Cells[rowIndex, 2].Value = row.SoDu;
+                    workSheet.Cells[rowIndex, 3].Value = row.SLNhap;
+                    workSheet.Cells[rowIndex, 4].Value = row.SLXuat;
+                    workSheet.Cells[rowIndex, 5].Value = row.SLTon;
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("A4:F{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
         public static bool ExportYKienKhachHangToExcel(string exportFileName, List<DataRow> yKienKhachHangList)
         {
             Cursor.Current = Cursors.WaitCursor;
