@@ -3266,23 +3266,6 @@
       <Column Name="TenNguoiDeXuat" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.KhoCapCuu" Member="KhoCapCuus">
-    <Type Name="KhoCapCuu">
-      <Column Name="KhoCapCuuGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenCapCuu" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="KhoCapCuu_XuatKhoCapCuu" Member="XuatKhoCapCuus" ThisKey="KhoCapCuuGUID" OtherKey="KhoCapCuuGUID" Type="XuatKhoCapCuu" />
-      <Association Name="KhoCapCuu_NhapKhoCapCuu" Member="NhapKhoCapCuus" ThisKey="KhoCapCuuGUID" OtherKey="KhoCapCuuGUID" Type="NhapKhoCapCuu" />
-    </Type>
-  </Table>
   <Table Name="dbo.XuatKhoCapCuu" Member="XuatKhoCapCuus">
     <Type Name="XuatKhoCapCuu">
       <Column Name="XuatKhoCapCuuGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -3376,6 +3359,24 @@
       <Column Name="TenCapCuu" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
       <Column Name="KhoCapCuuStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="SoLuongXuat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhoCapCuu" Member="KhoCapCuus">
+    <Type Name="KhoCapCuu">
+      <Column Name="KhoCapCuuGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaCapCuu" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenCapCuu" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="KhoCapCuu_XuatKhoCapCuu" Member="XuatKhoCapCuus" ThisKey="KhoCapCuuGUID" OtherKey="KhoCapCuuGUID" Type="XuatKhoCapCuu" />
+      <Association Name="KhoCapCuu_NhapKhoCapCuu" Member="NhapKhoCapCuus" ThisKey="KhoCapCuuGUID" OtherKey="KhoCapCuuGUID" Type="NhapKhoCapCuu" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

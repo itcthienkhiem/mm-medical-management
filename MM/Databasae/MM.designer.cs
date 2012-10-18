@@ -270,15 +270,15 @@ namespace MM.Databasae
     partial void InsertCongTacNgoaiGio(CongTacNgoaiGio instance);
     partial void UpdateCongTacNgoaiGio(CongTacNgoaiGio instance);
     partial void DeleteCongTacNgoaiGio(CongTacNgoaiGio instance);
-    partial void InsertKhoCapCuu(KhoCapCuu instance);
-    partial void UpdateKhoCapCuu(KhoCapCuu instance);
-    partial void DeleteKhoCapCuu(KhoCapCuu instance);
     partial void InsertXuatKhoCapCuu(XuatKhoCapCuu instance);
     partial void UpdateXuatKhoCapCuu(XuatKhoCapCuu instance);
     partial void DeleteXuatKhoCapCuu(XuatKhoCapCuu instance);
     partial void InsertNhapKhoCapCuu(NhapKhoCapCuu instance);
     partial void UpdateNhapKhoCapCuu(NhapKhoCapCuu instance);
     partial void DeleteNhapKhoCapCuu(NhapKhoCapCuu instance);
+    partial void InsertKhoCapCuu(KhoCapCuu instance);
+    partial void UpdateKhoCapCuu(KhoCapCuu instance);
+    partial void DeleteKhoCapCuu(KhoCapCuu instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -1375,14 +1375,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		public System.Data.Linq.Table<KhoCapCuu> KhoCapCuus
-		{
-			get
-			{
-				return this.GetTable<KhoCapCuu>();
-			}
-		}
-		
 		public System.Data.Linq.Table<XuatKhoCapCuu> XuatKhoCapCuus
 		{
 			get
@@ -1412,6 +1404,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<NhapKhoCapCuuView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<KhoCapCuu> KhoCapCuus
+		{
+			get
+			{
+				return this.GetTable<KhoCapCuu>();
 			}
 		}
 		
@@ -63969,364 +63969,6 @@ namespace MM.Databasae
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.KhoCapCuu")]
-	public partial class KhoCapCuu : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _KhoCapCuuGUID;
-		
-		private string _TenCapCuu;
-		
-		private string _DonViTinh;
-		
-		private string _Note;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		private byte _Status;
-		
-		private EntitySet<XuatKhoCapCuu> _XuatKhoCapCuus;
-		
-		private EntitySet<NhapKhoCapCuu> _NhapKhoCapCuus;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnKhoCapCuuGUIDChanging(System.Guid value);
-    partial void OnKhoCapCuuGUIDChanged();
-    partial void OnTenCapCuuChanging(string value);
-    partial void OnTenCapCuuChanged();
-    partial void OnDonViTinhChanging(string value);
-    partial void OnDonViTinhChanged();
-    partial void OnNoteChanging(string value);
-    partial void OnNoteChanged();
-    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedDateChanged();
-    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnCreatedByChanged();
-    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdatedDateChanged();
-    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnUpdatedByChanged();
-    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDeletedDateChanged();
-    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
-    partial void OnDeletedByChanged();
-    partial void OnStatusChanging(byte value);
-    partial void OnStatusChanged();
-    #endregion
-		
-		public KhoCapCuu()
-		{
-			this._XuatKhoCapCuus = new EntitySet<XuatKhoCapCuu>(new Action<XuatKhoCapCuu>(this.attach_XuatKhoCapCuus), new Action<XuatKhoCapCuu>(this.detach_XuatKhoCapCuus));
-			this._NhapKhoCapCuus = new EntitySet<NhapKhoCapCuu>(new Action<NhapKhoCapCuu>(this.attach_NhapKhoCapCuus), new Action<NhapKhoCapCuu>(this.detach_NhapKhoCapCuus));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhoCapCuuGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid KhoCapCuuGUID
-		{
-			get
-			{
-				return this._KhoCapCuuGUID;
-			}
-			set
-			{
-				if ((this._KhoCapCuuGUID != value))
-				{
-					this.OnKhoCapCuuGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._KhoCapCuuGUID = value;
-					this.SendPropertyChanged("KhoCapCuuGUID");
-					this.OnKhoCapCuuGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenCapCuu", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
-		public string TenCapCuu
-		{
-			get
-			{
-				return this._TenCapCuu;
-			}
-			set
-			{
-				if ((this._TenCapCuu != value))
-				{
-					this.OnTenCapCuuChanging(value);
-					this.SendPropertyChanging();
-					this._TenCapCuu = value;
-					this.SendPropertyChanged("TenCapCuu");
-					this.OnTenCapCuuChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonViTinh", DbType="NVarChar(50)")]
-		public string DonViTinh
-		{
-			get
-			{
-				return this._DonViTinh;
-			}
-			set
-			{
-				if ((this._DonViTinh != value))
-				{
-					this.OnDonViTinhChanging(value);
-					this.SendPropertyChanging();
-					this._DonViTinh = value;
-					this.SendPropertyChanged("DonViTinh");
-					this.OnDonViTinhChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="NVarChar(MAX)")]
-		public string Note
-		{
-			get
-			{
-				return this._Note;
-			}
-			set
-			{
-				if ((this._Note != value))
-				{
-					this.OnNoteChanging(value);
-					this.SendPropertyChanging();
-					this._Note = value;
-					this.SendPropertyChanged("Note");
-					this.OnNoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this.OnUpdatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDate = value;
-					this.SendPropertyChanged("UpdatedDate");
-					this.OnUpdatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this.OnUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedBy = value;
-					this.SendPropertyChanged("UpdatedBy");
-					this.OnUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this.OnDeletedDateChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedDate = value;
-					this.SendPropertyChanged("DeletedDate");
-					this.OnDeletedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this.OnDeletedByChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedBy = value;
-					this.SendPropertyChanged("DeletedBy");
-					this.OnDeletedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
-		public byte Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
-					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoCapCuu_XuatKhoCapCuu", Storage="_XuatKhoCapCuus", ThisKey="KhoCapCuuGUID", OtherKey="KhoCapCuuGUID")]
-		public EntitySet<XuatKhoCapCuu> XuatKhoCapCuus
-		{
-			get
-			{
-				return this._XuatKhoCapCuus;
-			}
-			set
-			{
-				this._XuatKhoCapCuus.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoCapCuu_NhapKhoCapCuu", Storage="_NhapKhoCapCuus", ThisKey="KhoCapCuuGUID", OtherKey="KhoCapCuuGUID")]
-		public EntitySet<NhapKhoCapCuu> NhapKhoCapCuus
-		{
-			get
-			{
-				return this._NhapKhoCapCuus;
-			}
-			set
-			{
-				this._NhapKhoCapCuus.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_XuatKhoCapCuus(XuatKhoCapCuu entity)
-		{
-			this.SendPropertyChanging();
-			entity.KhoCapCuu = this;
-		}
-		
-		private void detach_XuatKhoCapCuus(XuatKhoCapCuu entity)
-		{
-			this.SendPropertyChanging();
-			entity.KhoCapCuu = null;
-		}
-		
-		private void attach_NhapKhoCapCuus(NhapKhoCapCuu entity)
-		{
-			this.SendPropertyChanging();
-			entity.KhoCapCuu = this;
-		}
-		
-		private void detach_NhapKhoCapCuus(NhapKhoCapCuu entity)
-		{
-			this.SendPropertyChanging();
-			entity.KhoCapCuu = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.XuatKhoCapCuu")]
 	public partial class XuatKhoCapCuu : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -66102,6 +65744,388 @@ namespace MM.Databasae
 					this._SoLuongXuat = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.KhoCapCuu")]
+	public partial class KhoCapCuu : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _KhoCapCuuGUID;
+		
+		private int _MaCapCuu;
+		
+		private string _TenCapCuu;
+		
+		private string _DonViTinh;
+		
+		private string _Note;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+		private EntitySet<XuatKhoCapCuu> _XuatKhoCapCuus;
+		
+		private EntitySet<NhapKhoCapCuu> _NhapKhoCapCuus;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnKhoCapCuuGUIDChanging(System.Guid value);
+    partial void OnKhoCapCuuGUIDChanged();
+    partial void OnMaCapCuuChanging(int value);
+    partial void OnMaCapCuuChanged();
+    partial void OnTenCapCuuChanging(string value);
+    partial void OnTenCapCuuChanged();
+    partial void OnDonViTinhChanging(string value);
+    partial void OnDonViTinhChanged();
+    partial void OnNoteChanging(string value);
+    partial void OnNoteChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public KhoCapCuu()
+		{
+			this._XuatKhoCapCuus = new EntitySet<XuatKhoCapCuu>(new Action<XuatKhoCapCuu>(this.attach_XuatKhoCapCuus), new Action<XuatKhoCapCuu>(this.detach_XuatKhoCapCuus));
+			this._NhapKhoCapCuus = new EntitySet<NhapKhoCapCuu>(new Action<NhapKhoCapCuu>(this.attach_NhapKhoCapCuus), new Action<NhapKhoCapCuu>(this.detach_NhapKhoCapCuus));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_KhoCapCuuGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid KhoCapCuuGUID
+		{
+			get
+			{
+				return this._KhoCapCuuGUID;
+			}
+			set
+			{
+				if ((this._KhoCapCuuGUID != value))
+				{
+					this.OnKhoCapCuuGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._KhoCapCuuGUID = value;
+					this.SendPropertyChanged("KhoCapCuuGUID");
+					this.OnKhoCapCuuGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaCapCuu", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int MaCapCuu
+		{
+			get
+			{
+				return this._MaCapCuu;
+			}
+			set
+			{
+				if ((this._MaCapCuu != value))
+				{
+					this.OnMaCapCuuChanging(value);
+					this.SendPropertyChanging();
+					this._MaCapCuu = value;
+					this.SendPropertyChanged("MaCapCuu");
+					this.OnMaCapCuuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenCapCuu", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string TenCapCuu
+		{
+			get
+			{
+				return this._TenCapCuu;
+			}
+			set
+			{
+				if ((this._TenCapCuu != value))
+				{
+					this.OnTenCapCuuChanging(value);
+					this.SendPropertyChanging();
+					this._TenCapCuu = value;
+					this.SendPropertyChanged("TenCapCuu");
+					this.OnTenCapCuuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonViTinh", DbType="NVarChar(50)")]
+		public string DonViTinh
+		{
+			get
+			{
+				return this._DonViTinh;
+			}
+			set
+			{
+				if ((this._DonViTinh != value))
+				{
+					this.OnDonViTinhChanging(value);
+					this.SendPropertyChanging();
+					this._DonViTinh = value;
+					this.SendPropertyChanged("DonViTinh");
+					this.OnDonViTinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="NVarChar(MAX)")]
+		public string Note
+		{
+			get
+			{
+				return this._Note;
+			}
+			set
+			{
+				if ((this._Note != value))
+				{
+					this.OnNoteChanging(value);
+					this.SendPropertyChanging();
+					this._Note = value;
+					this.SendPropertyChanged("Note");
+					this.OnNoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoCapCuu_XuatKhoCapCuu", Storage="_XuatKhoCapCuus", ThisKey="KhoCapCuuGUID", OtherKey="KhoCapCuuGUID")]
+		public EntitySet<XuatKhoCapCuu> XuatKhoCapCuus
+		{
+			get
+			{
+				return this._XuatKhoCapCuus;
+			}
+			set
+			{
+				this._XuatKhoCapCuus.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="KhoCapCuu_NhapKhoCapCuu", Storage="_NhapKhoCapCuus", ThisKey="KhoCapCuuGUID", OtherKey="KhoCapCuuGUID")]
+		public EntitySet<NhapKhoCapCuu> NhapKhoCapCuus
+		{
+			get
+			{
+				return this._NhapKhoCapCuus;
+			}
+			set
+			{
+				this._NhapKhoCapCuus.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_XuatKhoCapCuus(XuatKhoCapCuu entity)
+		{
+			this.SendPropertyChanging();
+			entity.KhoCapCuu = this;
+		}
+		
+		private void detach_XuatKhoCapCuus(XuatKhoCapCuu entity)
+		{
+			this.SendPropertyChanging();
+			entity.KhoCapCuu = null;
+		}
+		
+		private void attach_NhapKhoCapCuus(NhapKhoCapCuu entity)
+		{
+			this.SendPropertyChanging();
+			entity.KhoCapCuu = this;
+		}
+		
+		private void detach_NhapKhoCapCuus(NhapKhoCapCuu entity)
+		{
+			this.SendPropertyChanging();
+			entity.KhoCapCuu = null;
 		}
 	}
 	
