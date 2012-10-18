@@ -315,6 +315,8 @@ namespace MM
                 _uXuatKhoCapCuuList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBaoCaoCapCuuHetHan))
                 _uBaoCaoCapCuuHetHan.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uBaoCaoTonKhoCapCuu))
+                _uBaoCaoTonKhoCapCuu.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1205,6 +1207,19 @@ namespace MM
                             _uBaoCaoCapCuuHetHan.AllowImport = isImport;
                             _uBaoCaoCapCuuHetHan.AllowLock = isLock;
                         }
+                        else if (functionCode == Const.BaoCaoTonKhoCapCuu)
+                        {
+                            khoCapCuuToolStripMenuItem.Enabled = isLogin;
+                            baoCaoTonKhoCapCuuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBaoCaoCapCuuHetHan.AllowAdd = isAdd;
+                            _uBaoCaoCapCuuHetHan.AllowEdit = isEdit;
+                            _uBaoCaoCapCuuHetHan.AllowDelete = isDelete;
+                            _uBaoCaoCapCuuHetHan.AllowPrint = isPrint;
+                            _uBaoCaoCapCuuHetHan.AllowExport = isExport;
+                            _uBaoCaoCapCuuHetHan.AllowImport = isImport;
+                            _uBaoCaoCapCuuHetHan.AllowLock = isLock;
+                            _uBaoCaoCapCuuHetHan.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1710,7 +1725,18 @@ namespace MM
                 case "BaoCaoCapCuuHetHan":
                     OnBaoCaoCapCuuHetHan();
                     break;
+
+                case "BaoCaoTonKhoCapCuu":
+                    OnBaoCaoTonKhoCapCuu();
+                    break;
             }
+        }
+
+        private void OnBaoCaoTonKhoCapCuu()
+        {
+            this.Text = string.Format("{0} - Bao cao ton kho cap cuu", Application.ProductName);
+            ViewControl(_uBaoCaoTonKhoCapCuu);
+            _uBaoCaoTonKhoCapCuu.DisplayAsThread();
         }
 
         private void OnBaoCaoCapCuuHetHan()
