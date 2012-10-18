@@ -351,6 +351,25 @@ namespace MM.Controls
 
             if (deletedList.Count > 0)
             {
+                foreach (string key in deletedList)
+                {
+                    Result rs = NhapKhoCapCuuBus.GetNhapKhoCapCuu(key);
+                    if (!rs.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, rs.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuu"), IconType.Error);
+                        Utility.WriteToTraceLog(rs.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuu"));
+                        return;
+                    }
+
+                    NhapKhoCapCuuView nkcc = rs.QueryResult as NhapKhoCapCuuView;
+                    if (nkcc.SoLuongXuat > 0)
+                    {
+                        MsgBox.Show(Application.ProductName, string.Format("Cấp cứu: '{0}' này đã xuất rồi không thể xóa.", nkcc.TenCapCuu),
+                            IconType.Information);
+                        return;
+                    }
+                }
+
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những thông tin nhập kho cấp cứu mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
                     Result result = NhapKhoCapCuuBus.DeleteNhapKhoCappCuu(deletedList);

@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddNhapKhoCapCuu));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dtpkNgayNhap = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.numGiaNhapQuiDoi = new System.Windows.Forms.NumericUpDown();
@@ -61,12 +63,10 @@
             this.txtSoDangKy = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cboKhoCapCuu = new System.Windows.Forms.ComboBox();
+            this.khoCapCuuBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.dtpkNgayNhap = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.khoCapCuuBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGiaNhapQuiDoi)).BeginInit();
@@ -79,8 +79,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dtpkNgayNhap);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.groupBoxNhap);
             this.groupBox1.Controls.Add(this.cboNhaPhanPhoi);
@@ -95,13 +93,35 @@
             this.groupBox1.Controls.Add(this.txtSoDangKy);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.cboKhoCapCuu);
+            this.groupBox1.Controls.Add(this.dtpkNgayNhap);
             this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(452, 286);
+            this.groupBox1.Size = new System.Drawing.Size(452, 265);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhập kho cấp cứu";
+            // 
+            // dtpkNgayNhap
+            // 
+            this.dtpkNgayNhap.CustomFormat = "dd/MM/yyyy";
+            this.dtpkNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkNgayNhap.Location = new System.Drawing.Point(102, 19);
+            this.dtpkNgayNhap.Name = "dtpkNgayNhap";
+            this.dtpkNgayNhap.Size = new System.Drawing.Size(112, 20);
+            this.dtpkNgayNhap.TabIndex = 50;
+            this.dtpkNgayNhap.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(33, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 77;
+            this.label1.Text = "Ngày nhập:";
+            this.label1.Visible = false;
             // 
             // groupBox2
             // 
@@ -113,7 +133,7 @@
             this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this.txtDonViTinhQuiDoi);
             this.groupBox2.Controls.Add(this.numSoLuongQuiDoi);
-            this.groupBox2.Location = new System.Drawing.Point(193, 191);
+            this.groupBox2.Location = new System.Drawing.Point(193, 167);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(240, 82);
             this.groupBox2.TabIndex = 76;
@@ -225,7 +245,7 @@
             this.groupBoxNhap.Controls.Add(this.label27);
             this.groupBoxNhap.Controls.Add(this.cboDonViTinhNhap);
             this.groupBoxNhap.Controls.Add(this.label29);
-            this.groupBoxNhap.Location = new System.Drawing.Point(18, 191);
+            this.groupBoxNhap.Location = new System.Drawing.Point(18, 167);
             this.groupBoxNhap.Name = "groupBoxNhap";
             this.groupBoxNhap.Size = new System.Drawing.Size(168, 82);
             this.groupBoxNhap.TabIndex = 75;
@@ -341,7 +361,7 @@
             this.cboNhaPhanPhoi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNhaPhanPhoi.DisplayMember = "ThuocGUID";
             this.cboNhaPhanPhoi.FormattingEnabled = true;
-            this.cboNhaPhanPhoi.Location = new System.Drawing.Point(102, 164);
+            this.cboNhaPhanPhoi.Location = new System.Drawing.Point(102, 140);
             this.cboNhaPhanPhoi.Name = "cboNhaPhanPhoi";
             this.cboNhaPhanPhoi.Size = new System.Drawing.Size(331, 21);
             this.cboNhaPhanPhoi.TabIndex = 64;
@@ -349,7 +369,7 @@
             // 
             // txtHangSanXuat
             // 
-            this.txtHangSanXuat.Location = new System.Drawing.Point(102, 140);
+            this.txtHangSanXuat.Location = new System.Drawing.Point(102, 116);
             this.txtHangSanXuat.MaxLength = 255;
             this.txtHangSanXuat.Name = "txtHangSanXuat";
             this.txtHangSanXuat.Size = new System.Drawing.Size(331, 20);
@@ -358,7 +378,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 143);
+            this.label8.Location = new System.Drawing.Point(16, 119);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 13);
             this.label8.TabIndex = 74;
@@ -378,7 +398,7 @@
             // 
             this.dtpkNgayHetHan.CustomFormat = "dd/MM/yyyy";
             this.dtpkNgayHetHan.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayHetHan.Location = new System.Drawing.Point(102, 116);
+            this.dtpkNgayHetHan.Location = new System.Drawing.Point(102, 92);
             this.dtpkNgayHetHan.Name = "dtpkNgayHetHan";
             this.dtpkNgayHetHan.Size = new System.Drawing.Size(112, 20);
             this.dtpkNgayHetHan.TabIndex = 62;
@@ -387,7 +407,7 @@
             // 
             this.dtpkNgaySanXuat.CustomFormat = "dd/MM/yyyy";
             this.dtpkNgaySanXuat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgaySanXuat.Location = new System.Drawing.Point(102, 92);
+            this.dtpkNgaySanXuat.Location = new System.Drawing.Point(102, 68);
             this.dtpkNgaySanXuat.Name = "dtpkNgaySanXuat";
             this.dtpkNgaySanXuat.Size = new System.Drawing.Size(112, 20);
             this.dtpkNgaySanXuat.TabIndex = 61;
@@ -395,7 +415,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(15, 167);
+            this.label23.Location = new System.Drawing.Point(15, 143);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(80, 13);
             this.label23.TabIndex = 57;
@@ -404,7 +424,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 120);
+            this.label7.Location = new System.Drawing.Point(21, 96);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 56;
@@ -413,7 +433,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 96);
+            this.label5.Location = new System.Drawing.Point(17, 72);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 13);
             this.label5.TabIndex = 55;
@@ -421,7 +441,7 @@
             // 
             // txtSoDangKy
             // 
-            this.txtSoDangKy.Location = new System.Drawing.Point(102, 68);
+            this.txtSoDangKy.Location = new System.Drawing.Point(102, 44);
             this.txtSoDangKy.MaxLength = 50;
             this.txtSoDangKy.Name = "txtSoDangKy";
             this.txtSoDangKy.Size = new System.Drawing.Size(189, 20);
@@ -430,7 +450,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(30, 71);
+            this.label4.Location = new System.Drawing.Point(30, 47);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 13);
             this.label4.TabIndex = 53;
@@ -444,17 +464,21 @@
             this.cboKhoCapCuu.DisplayMember = "TenCapCuu";
             this.cboKhoCapCuu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKhoCapCuu.FormattingEnabled = true;
-            this.cboKhoCapCuu.Location = new System.Drawing.Point(102, 43);
+            this.cboKhoCapCuu.Location = new System.Drawing.Point(102, 19);
             this.cboKhoCapCuu.Name = "cboKhoCapCuu";
             this.cboKhoCapCuu.Size = new System.Drawing.Size(322, 21);
             this.cboKhoCapCuu.TabIndex = 52;
             this.cboKhoCapCuu.ValueMember = "KhoCapCuuGUID";
             this.cboKhoCapCuu.SelectedIndexChanged += new System.EventHandler(this.cboThuoc_SelectedIndexChanged);
             // 
+            // khoCapCuuBindingSource
+            // 
+            this.khoCapCuuBindingSource.DataSource = typeof(MM.Databasae.KhoCapCuu);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(24, 46);
+            this.label3.Location = new System.Drawing.Point(24, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 13);
             this.label3.TabIndex = 51;
@@ -465,7 +489,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(234, 296);
+            this.btnCancel.Location = new System.Drawing.Point(234, 275);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 13;
@@ -477,34 +501,12 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(155, 296);
+            this.btnOK.Location = new System.Drawing.Point(155, 275);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 12;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // dtpkNgayNhap
-            // 
-            this.dtpkNgayNhap.CustomFormat = "dd/MM/yyyy";
-            this.dtpkNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayNhap.Location = new System.Drawing.Point(102, 19);
-            this.dtpkNgayNhap.Name = "dtpkNgayNhap";
-            this.dtpkNgayNhap.Size = new System.Drawing.Size(112, 20);
-            this.dtpkNgayNhap.TabIndex = 50;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
-            this.label1.TabIndex = 77;
-            this.label1.Text = "Ngày nhập:";
-            // 
-            // khoCapCuuBindingSource
-            // 
-            this.khoCapCuuBindingSource.DataSource = typeof(MM.Databasae.KhoCapCuu);
             // 
             // dlgAddNhapKhoCapCuu
             // 
@@ -512,7 +514,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(464, 327);
+            this.ClientSize = new System.Drawing.Size(464, 306);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);

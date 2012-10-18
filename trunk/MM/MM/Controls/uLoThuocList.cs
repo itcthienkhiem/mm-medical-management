@@ -373,10 +373,28 @@ namespace MM.Controls
                     }
                 }
             }
-            
 
             if (deletedLoThuocList.Count > 0)
             {
+                foreach (string key in deletedLoThuocList)
+                {
+                    Result rs = LoThuocBus.GetLoThuoc(key);
+                    if (!rs.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, rs.GetErrorAsString("LoThuocBus.GetLoThuoc"), IconType.Error);
+                        Utility.WriteToTraceLog(rs.GetErrorAsString("LoThuocBus.GetLoThuoc"));
+                        return;
+                    }
+
+                    LoThuoc lt = rs.QueryResult as LoThuoc;
+                    if (lt.SoLuongXuat > 0)
+                    {
+                        MsgBox.Show(Application.ProductName, string.Format("Lô thuốc: '{0}' này đã xuất rồi không thể xóa.", lt.TenLoThuoc), 
+                            IconType.Information);
+                        return;
+                    }
+                }
+
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những lô thuốc mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
                     Result result = LoThuocBus.DeleteLoThuoc(deletedLoThuocList);
