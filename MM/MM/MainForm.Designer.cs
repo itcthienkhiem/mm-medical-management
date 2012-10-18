@@ -244,6 +244,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timer = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uNhapKhoCapCuuList = new MM.Controls.uNhapKhoCapCuuList();
             this._uKhoCapCuu = new MM.Controls.uKhoCapCuu();
             this._uLichKham = new MM.Controls.uLichKham();
             this._uCongTacNgoaiGioList = new MM.Controls.uCongTacNgoaiGioList();
@@ -304,7 +305,7 @@
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
-            this._uNhapKhoCapCuuList = new MM.Controls.uNhapKhoCapCuuList();
+            this._uXuatKhoCapCuuList = new MM.Controls.uXuatKhoCapCuuList();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1705,7 +1706,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1726,7 +1727,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -1939,6 +1940,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uXuatKhoCapCuuList);
             this._mainPanel.Controls.Add(this._uNhapKhoCapCuuList);
             this._mainPanel.Controls.Add(this._uKhoCapCuu);
             this._mainPanel.Controls.Add(this._uLichKham);
@@ -2000,6 +2002,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uNhapKhoCapCuuList
+            // 
+            resources.ApplyResources(this._uNhapKhoCapCuuList, "_uNhapKhoCapCuuList");
+            this._uNhapKhoCapCuuList.Name = "_uNhapKhoCapCuuList";
             // 
             // _uKhoCapCuu
             // 
@@ -2304,10 +2311,10 @@
             this._timerCheckAlert.Interval = 3000;
             this._timerCheckAlert.Tick += new System.EventHandler(this._timerCheckAlert_Tick);
             // 
-            // _uNhapKhoCapCuuList
+            // _uXuatKhoCapCuuList
             // 
-            resources.ApplyResources(this._uNhapKhoCapCuuList, "_uNhapKhoCapCuuList");
-            this._uNhapKhoCapCuuList.Name = "_uNhapKhoCapCuuList";
+            resources.ApplyResources(this._uXuatKhoCapCuuList, "_uXuatKhoCapCuuList");
+            this._uXuatKhoCapCuuList.Name = "_uXuatKhoCapCuuList";
             // 
             // MainForm
             // 
@@ -2616,6 +2623,7 @@
         private System.Windows.Forms.ToolStripMenuItem xuatKhoCapCuuToolStripMenuItem;
         private Controls.uKhoCapCuu _uKhoCapCuu;
         private Controls.uNhapKhoCapCuuList _uNhapKhoCapCuuList;
+        private Controls.uXuatKhoCapCuuList _uXuatKhoCapCuuList;
 
     }
 }

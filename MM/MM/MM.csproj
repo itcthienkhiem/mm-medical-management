@@ -92,6 +92,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uXuatKhoCapCuuList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uXuatKhoCapCuuList.Designer.cs">
+      <DependentUpon>uXuatKhoCapCuuList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uNhapKhoCapCuuList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -827,6 +833,12 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddXuatKhoCapCuu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddXuatKhoCapCuu.Designer.cs">
+      <DependentUpon>dlgAddXuatKhoCapCuu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddNhapKhoCapCuu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1393,6 +1405,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uXuatKhoCapCuuList.resx">
+      <DependentUpon>uXuatKhoCapCuuList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uNhapKhoCapCuuList.resx">
       <DependentUpon>uNhapKhoCapCuuList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1695,6 +1710,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddXuatKhoCapCuu.resx">
+      <DependentUpon>dlgAddXuatKhoCapCuu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddNhapKhoCapCuu.resx">
       <DependentUpon>dlgAddNhapKhoCapCuu.cs</DependentUpon>
