@@ -313,6 +313,8 @@ namespace MM
                 _uNhapKhoCapCuuList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uXuatKhoCapCuuList))
                 _uXuatKhoCapCuuList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uBaoCaoCapCuuHetHan))
+                _uBaoCaoCapCuuHetHan.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1191,6 +1193,18 @@ namespace MM
                             _uXuatKhoCapCuuList.AllowImport = isImport;
                             _uXuatKhoCapCuuList.AllowLock = isLock;
                         }
+                        else if (functionCode == Const.BaoCaoCapCuuHetHan)
+                        {
+                            khoCapCuuToolStripMenuItem.Enabled = isLogin;
+                            baoCaoCapCuuHetHanToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBaoCaoCapCuuHetHan.AllowAdd = isAdd;
+                            _uBaoCaoCapCuuHetHan.AllowEdit = isEdit;
+                            _uBaoCaoCapCuuHetHan.AllowDelete = isDelete;
+                            _uBaoCaoCapCuuHetHan.AllowPrint = isPrint;
+                            _uBaoCaoCapCuuHetHan.AllowExport = isExport;
+                            _uBaoCaoCapCuuHetHan.AllowImport = isImport;
+                            _uBaoCaoCapCuuHetHan.AllowLock = isLock;
+                        }
                     }
                 }
                 else
@@ -1380,6 +1394,8 @@ namespace MM
                 danhMucCapCuuToolStripMenuItem.Enabled = isLogin;
                 nhapKhoCapCuuToolStripMenuItem.Enabled = isLogin;
                 xuatKhoCapCuuToolStripMenuItem.Enabled = isLogin;
+                baoCaoCapCuuHetHanToolStripMenuItem.Enabled = isLogin;
+                baoCaoTonKhoCapCuuToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1690,7 +1706,18 @@ namespace MM
                 case "XuatKhoCapCuu":
                     OnXuatKhoCapCuu();
                     break;
+
+                case "BaoCaoCapCuuHetHan":
+                    OnBaoCaoCapCuuHetHan();
+                    break;
             }
+        }
+
+        private void OnBaoCaoCapCuuHetHan()
+        {
+            this.Text = string.Format("{0} - Bao cao cap cuu het han", Application.ProductName);
+            ViewControl(_uBaoCaoCapCuuHetHan);
+            _uBaoCaoCapCuuHetHan.DisplayAsThread();
         }
 
         private void OnXuatKhoCapCuu()

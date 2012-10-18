@@ -184,6 +184,49 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetCapCuuHetHanList(int soNgayHetHan, List<string> capCuuKeyList)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+            try
+            {
+                DateTime dt = DateTime.Now.AddDays(soNgayHetHan);
+                db = new MMOverride();
+                List<CapCuuResult> capCuuResults = (from t in db.KhoCapCuus
+                                                    join l in db.NhapKhoCapCuus on t.KhoCapCuuGUID equals l.KhoCapCuuGUID
+                                                    where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
+                                                    l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
+                                                    l.NgayHetHan <= dt && capCuuKeyList.Contains(t.KhoCapCuuGUID.ToString())
+                                                    select new CapCuuResult(soNgayHetHan, t.MaCapCuu, t.TenCapCuu,
+                                                        l.NgaySanXuat.Value, l.NgayHetHan.Value,
+                                                        l.SoLuongNhap * l.SoLuongQuiDoi, l.SoLuongXuat,
+                                                        l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat,
+                                                        t.DonViTinh)).ToList<CapCuuResult>();
+
+                result.QueryResult = capCuuResults;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetThuocTonKhoList(List<string> thuocList)
         {
             Result result = new Result();

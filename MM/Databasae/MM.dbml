@@ -3448,4 +3448,18 @@
       <Column Name="SLTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.spCapCuuTonKho" Method="spCapCuuTonKho">
+    <Parameter Name="TuNgay" Parameter="tuNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="MaCapCuuList" Parameter="maCapCuuList" Type="System.String" DbType="NVarChar(4000)" />
+    <ElementType Name="spCapCuuTonKhoResult">
+      <Column Name="KhoCapCuuGUID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TenCapCuu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoDu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLNhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLXuat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
