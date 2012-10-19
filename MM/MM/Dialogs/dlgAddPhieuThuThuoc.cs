@@ -406,25 +406,24 @@ namespace MM.Dialogs
 
             if (rowIndex < 0 || colIndex < 0) return;
 
-            int soLuong = 1;
+            double soLuong = 1;
             string strValue = dgChiTiet[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
-                soLuong = Convert.ToInt32(strValue);
+                soLuong = Convert.ToDouble(strValue);
 
             strValue = dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            int donGia = 0;
+            double donGia = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
-                donGia = Convert.ToInt32(strValue);
+                donGia = Convert.ToDouble(strValue);
 
-            int giam = 0;
+            double giam = 0;
             strValue = dgChiTiet[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
-                giam = Convert.ToInt32(strValue);
+                giam = Convert.ToDouble(strValue);
 
-            double tienGiam = Math.Round((soLuong * donGia * giam / (double)100));
-            double thanhTien = soLuong * donGia - tienGiam;
+            double tienGiam = Math.Round(((double)soLuong * (double)donGia * (double)giam) / (double)100);
+            double thanhTien = (double)soLuong * (double)donGia - tienGiam;
             dgChiTiet[6, rowIndex].Value = thanhTien;
-
 
             CalculateTongTien();
         }
