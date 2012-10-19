@@ -329,7 +329,8 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 List<Booking> bookingList = (from b in db.Bookings
                                              where b.BookingDate.Year == ngay.Year && b.BookingDate.Month == ngay.Month &&
-                                                 b.BookingDate.Day == ngay.Day && b.BookingType == (byte)BookingType.Monitor
+                                                 b.BookingDate.Day == ngay.Day && b.BookingType == (byte)BookingType.Monitor && 
+                                                 b.Status == (byte)Status.Actived
                                              select b).ToList();
 
                 result.QueryResult = bookingList;
