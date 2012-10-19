@@ -221,6 +221,29 @@ namespace MM.Controls
                 l.Type == (int)loaiLichKham).FirstOrDefault();
         }
 
+        private int GetPersonCount(List<Booking> bookingList, int state)
+        {
+            if (bookingList == null || bookingList.Count <= 0) return 0;
+
+            int count = 0;
+            if (state == 0)
+            {
+                foreach (var booking in bookingList)
+                {
+                    count += booking.MorningCount;
+                }
+            }
+            else
+            {
+                foreach (var booking in bookingList)
+                {
+                    count += booking.AfternoonCount;
+                }
+            }
+
+            return count;
+        }
+
         private void FillData(List<LichKham> lichKhams)
         {
             DateTime dt = new DateTime(_nam, _thang, 1);
@@ -242,30 +265,23 @@ namespace MM.Controls
                 cell.Border = isBorderTop ? borderRTB : borderRB;
                 dgLichKham[rowIndex, 0] = cell;
 
+                Result result = BookingBus.GetBooking(dt);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("BookingBus.GetBooking"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.GetBooking"));
+                }
+
                 for (int col = 0; col < 10; col++)
                 {
                     if (col < 2)
                     {
                         object value = null;
-                        Result result = BookingBus.GetBooking(dt);
-                        if (!result.IsOK)
+                        if (result.QueryResult != null)
                         {
-                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("BookingBus.GetBooking"), IconType.Error);
-                            Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.GetBooking"));
-                        }
-                        else if (result.QueryResult != null)
-                        {
-                            Booking booking = result.QueryResult as Booking;
-                            if (col == 0) //Sáng
-                            {
-                                if (booking.MorningCount > 0)
-                                    value = booking.MorningCount;
-                            }
-                            else
-                            {
-                                if (booking.AfternoonCount > 0)
-                                    value = booking.AfternoonCount;
-                            }
+                            List<Booking> bookingList = result.QueryResult as List<Booking>;
+                            int count = GetPersonCount(bookingList, col);
+                            if (count > 0) value = count;
                         }
 
                         cell = NewNumericCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, false, string.Empty);
