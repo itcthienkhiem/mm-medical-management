@@ -41,6 +41,9 @@ namespace MM.Bussiness
 
             try
             {
+                tenBenhNhan = tenBenhNhan.Trim();
+                tenNguoiTao = tenNguoiTao.Trim();
+
                 string query = string.Empty;
                 if (type == 0)
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND NgayGioLienHe BETWEEN '{1}' AND '{2}' ORDER BY NgayGioLienHe DESC",
