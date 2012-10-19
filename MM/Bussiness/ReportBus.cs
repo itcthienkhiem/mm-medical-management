@@ -529,13 +529,12 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetDanhSachBenhNhanKhamBenh(DateTime fromDate, DateTime toDate, string maBenhNhan)
+        public static Result GetDanhSachBenhNhanKhamBenh(DateTime fromDate, DateTime toDate, string maBenhNhan, bool isDenKham)
         {
             Result result = new Result();
 
             try
             {
-
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 SqlParameter param = new SqlParameter("@FromDate", fromDate);
                 sqlParams.Add(param);
@@ -544,7 +543,10 @@ namespace MM.Bussiness
                 param = new SqlParameter("@MaBenhNhan", maBenhNhan);
                 sqlParams.Add(param);
 
-                return ExcuteQuery("spDanhSachNhanVienDenKham", sqlParams);
+                if (isDenKham)
+                    return ExcuteQuery("spDanhSachNhanVienDenKham", sqlParams);
+                else
+                    return ExcuteQuery("spDanhSachNhanVienChuaDenKham", sqlParams);
             }
             catch (System.Data.SqlClient.SqlException se)
             {

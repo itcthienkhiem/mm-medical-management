@@ -5692,7 +5692,7 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportDanhSachBenhNhanDenKhamToExcel(string exportFileName, DataTable dtBenhNhan)
+        public static bool ExportDanhSachBenhNhanDenKhamToExcel(string exportFileName, DataTable dtBenhNhan, bool isDenKham)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -5705,9 +5705,16 @@ namespace MM.Exports
                 int rowIndex = 2;
                 IRange range;
                 int stt = 1;
+
+                if (!isDenKham)
+                    workSheet.Cells["A1"].Value = "DANH SÁCH BỆNH NHÂN CHƯA ĐẾN KHÁM";
+
                 foreach (DataRow row in dtBenhNhan.Rows)
                 {
-                    DateTime ngayKham = Convert.ToDateTime(row["NgayKham"]);
+                    DateTime ngayKham = DateTime.Now; 
+                    if (row["NgayKham"] != null && row["NgayKham"] != DBNull.Value)
+                        ngayKham = Convert.ToDateTime(row["NgayKham"]);
+
                     string maBenhNhan = row["FileNum"].ToString();
                     string tenBenhNhan = row["FullName"].ToString();
                     string ngaySinh = string.Empty;
@@ -5727,8 +5734,11 @@ namespace MM.Exports
                     range = workSheet.Cells[rowIndex, 0];
                     range.Value = stt;
 
-                    range = workSheet.Cells[rowIndex, 1];
-                    range.Value = ngayKham.ToString("dd/MM/yyyy");
+                    if (isDenKham)
+                    {
+                        range = workSheet.Cells[rowIndex, 1];
+                        range.Value = ngayKham.ToString("dd/MM/yyyy");
+                    }
 
                     range = workSheet.Cells[rowIndex, 2];
                     range.Value = maBenhNhan;

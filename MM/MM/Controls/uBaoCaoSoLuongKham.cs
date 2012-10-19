@@ -41,8 +41,9 @@ namespace MM.Controls
 
             DateTime fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
             DateTime toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
-
-            Result result = ReportBus.GetDanhSachBenhNhanKhamBenh(fromDate, toDate, txtMaBenhNhan.Text.Trim());
+            bool isDenKham = raDenKham.Checked;
+            
+            Result result = ReportBus.GetDanhSachBenhNhanKhamBenh(fromDate, toDate, txtMaBenhNhan.Text.Trim(), isDenKham);
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
@@ -65,7 +66,7 @@ namespace MM.Controls
             string exportFileName = string.Format("{0}\\Temp\\DanhSachBenhNhanDenKham.xls", Application.StartupPath);
             if (isPreview)
             {
-                if (ExportExcel.ExportDanhSachBenhNhanDenKhamToExcel(exportFileName, dt))
+                if (ExportExcel.ExportDanhSachBenhNhanDenKhamToExcel(exportFileName, dt, raDenKham.Checked))
                 {
                     try
                     {
@@ -81,7 +82,7 @@ namespace MM.Controls
             {
                 if (_printDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (ExportExcel.ExportDanhSachBenhNhanDenKhamToExcel(exportFileName, dt))
+                    if (ExportExcel.ExportDanhSachBenhNhanDenKhamToExcel(exportFileName, dt, raDenKham.Checked))
                     {
                         try
                         {
@@ -124,7 +125,7 @@ namespace MM.Controls
             dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                ExportExcel.ExportDanhSachBenhNhanDenKhamToExcel(dlg.FileName, dt);
+                ExportExcel.ExportDanhSachBenhNhanDenKhamToExcel(dlg.FileName, dt, raDenKham.Checked);
             }
         }
         #endregion
