@@ -35,6 +35,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.raChuaDenKham = new System.Windows.Forms.RadioButton();
+            this.raDenKham = new System.Windows.Forms.RadioButton();
             this.txtMaBenhNhan = new System.Windows.Forms.TextBox();
             this.lbKetQua = new System.Windows.Forms.Label();
             this.btnView = new System.Windows.Forms.Button();
@@ -66,6 +68,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.raChuaDenKham);
+            this.panel2.Controls.Add(this.raDenKham);
             this.panel2.Controls.Add(this.txtMaBenhNhan);
             this.panel2.Controls.Add(this.lbKetQua);
             this.panel2.Controls.Add(this.btnView);
@@ -77,8 +81,30 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(833, 90);
+            this.panel2.Size = new System.Drawing.Size(833, 110);
             this.panel2.TabIndex = 5;
+            // 
+            // raChuaDenKham
+            // 
+            this.raChuaDenKham.AutoSize = true;
+            this.raChuaDenKham.Location = new System.Drawing.Point(188, 57);
+            this.raChuaDenKham.Name = "raChuaDenKham";
+            this.raChuaDenKham.Size = new System.Drawing.Size(101, 17);
+            this.raChuaDenKham.TabIndex = 21;
+            this.raChuaDenKham.Text = "Chưa đến khám";
+            this.raChuaDenKham.UseVisualStyleBackColor = true;
+            // 
+            // raDenKham
+            // 
+            this.raDenKham.AutoSize = true;
+            this.raDenKham.Checked = true;
+            this.raDenKham.Location = new System.Drawing.Point(95, 57);
+            this.raDenKham.Name = "raDenKham";
+            this.raDenKham.Size = new System.Drawing.Size(74, 17);
+            this.raDenKham.TabIndex = 20;
+            this.raDenKham.TabStop = true;
+            this.raDenKham.Text = "Đến khám";
+            this.raDenKham.UseVisualStyleBackColor = true;
             // 
             // txtMaBenhNhan
             // 
@@ -91,7 +117,7 @@
             // 
             this.lbKetQua.AutoSize = true;
             this.lbKetQua.ForeColor = System.Drawing.Color.Blue;
-            this.lbKetQua.Location = new System.Drawing.Point(185, 64);
+            this.lbKetQua.Location = new System.Drawing.Point(185, 85);
             this.lbKetQua.Name = "lbKetQua";
             this.lbKetQua.Size = new System.Drawing.Size(123, 13);
             this.lbKetQua.TabIndex = 19;
@@ -101,7 +127,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(95, 59);
+            this.btnView.Location = new System.Drawing.Point(95, 80);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 6;
@@ -205,9 +231,9 @@
             // 
             this.panel3.Controls.Add(this.dgBenhNhan);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 90);
+            this.panel3.Location = new System.Drawing.Point(0, 110);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(833, 305);
+            this.panel3.Size = new System.Drawing.Size(833, 285);
             this.panel3.TabIndex = 7;
             // 
             // dgBenhNhan
@@ -251,7 +277,7 @@
             this.dgBenhNhan.ReadOnly = true;
             this.dgBenhNhan.RowHeadersWidth = 30;
             this.dgBenhNhan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgBenhNhan.Size = new System.Drawing.Size(833, 305);
+            this.dgBenhNhan.Size = new System.Drawing.Size(833, 285);
             this.dgBenhNhan.TabIndex = 5;
             // 
             // _printDialog
@@ -369,6 +395,8 @@
         private System.Windows.Forms.Panel panel3;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgBenhNhan;
         private System.Windows.Forms.PrintDialog _printDialog;
+        private System.Windows.Forms.RadioButton raChuaDenKham;
+        private System.Windows.Forms.RadioButton raDenKham;
         private System.Windows.Forms.DataGridViewTextBoxColumn PatientGUID;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayKham;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileNum;
