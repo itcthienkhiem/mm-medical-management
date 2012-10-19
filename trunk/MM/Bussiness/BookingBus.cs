@@ -327,12 +327,12 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                Booking booking = (from b in db.Bookings
-                                   where b.BookingDate.Year == ngay.Year && b.BookingDate.Month == ngay.Month &&
-                                       b.BookingDate.Day == ngay.Day && b.BookingType == (byte)BookingType.Monitor
-                                   select b).FirstOrDefault();
+                List<Booking> bookingList = (from b in db.Bookings
+                                             where b.BookingDate.Year == ngay.Year && b.BookingDate.Month == ngay.Month &&
+                                                 b.BookingDate.Day == ngay.Day && b.BookingType == (byte)BookingType.Monitor
+                                             select b).ToList();
 
-                result.QueryResult = booking;
+                result.QueryResult = bookingList;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
