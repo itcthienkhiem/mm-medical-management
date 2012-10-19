@@ -5718,6 +5718,8 @@ namespace MM.Exports
                     if (row["GenderAsStr"] != null && row["GenderAsStr"] != DBNull.Value)
                         gioiTinh = row["GenderAsStr"].ToString();
 
+                    string mobile = row["Mobile"] as string;
+
                     string diaChi = string.Empty;
                     if (row["Address"] != null && row["Address"] != DBNull.Value)
                         diaChi = row["Address"].ToString();
@@ -5741,13 +5743,16 @@ namespace MM.Exports
                     range.Value = gioiTinh;
 
                     range = workSheet.Cells[rowIndex, 6];
+                    range.Value = mobile;
+
+                    range = workSheet.Cells[rowIndex, 7];
                     range.Value = diaChi;
 
                     rowIndex++;
                     stt++;
                 }
 
-                range = workSheet.Cells[string.Format("A3:G{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:H{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;

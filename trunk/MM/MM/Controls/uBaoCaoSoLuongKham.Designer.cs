@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtMaBenhNhan = new System.Windows.Forms.TextBox();
             this.lbKetQua = new System.Windows.Forms.Label();
@@ -48,14 +49,15 @@
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgBenhNhan = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.PatientGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgayKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FileNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DobStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -229,15 +231,16 @@
             this.FullName,
             this.DobStr,
             this.GenderAsStr,
+            this.colMobile,
             this.Address});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgBenhNhan.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgBenhNhan.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgBenhNhan.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgBenhNhan.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgBenhNhan.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -250,6 +253,14 @@
             this.dgBenhNhan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgBenhNhan.Size = new System.Drawing.Size(833, 305);
             this.dgBenhNhan.TabIndex = 5;
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
             // 
             // PatientGUID
             // 
@@ -304,6 +315,16 @@
             this.GenderAsStr.ReadOnly = true;
             this.GenderAsStr.Width = 80;
             // 
+            // colMobile
+            // 
+            this.colMobile.DataPropertyName = "Mobile";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colMobile.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colMobile.HeaderText = "ĐTDĐ";
+            this.colMobile.Name = "colMobile";
+            this.colMobile.ReadOnly = true;
+            this.colMobile.Width = 120;
+            // 
             // Address
             // 
             this.Address.DataPropertyName = "Address";
@@ -311,14 +332,6 @@
             this.Address.Name = "Address";
             this.Address.ReadOnly = true;
             this.Address.Width = 250;
-            // 
-            // _printDialog
-            // 
-            this._printDialog.AllowCurrentPage = true;
-            this._printDialog.AllowSelection = true;
-            this._printDialog.AllowSomePages = true;
-            this._printDialog.ShowHelp = true;
-            this._printDialog.UseEXDialog = true;
             // 
             // uBaoCaoSoLuongKham
             // 
@@ -355,13 +368,14 @@
         private System.Windows.Forms.Button btnPrintPreview;
         private System.Windows.Forms.Panel panel3;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgBenhNhan;
+        private System.Windows.Forms.PrintDialog _printDialog;
         private System.Windows.Forms.DataGridViewTextBoxColumn PatientGUID;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayKham;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DobStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMobile;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }
