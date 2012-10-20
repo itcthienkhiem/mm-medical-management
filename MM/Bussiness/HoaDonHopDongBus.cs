@@ -467,7 +467,7 @@ namespace MM.Bussiness
                         qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
                         db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
                     }
-
+                    
                     //Tracking
                     desc = desc.Substring(0, desc.Length - 1);
                     Tracking tk = new Tracking();
