@@ -63,8 +63,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.cboTenNguoiMuaHang = new System.Windows.Forms.ComboBox();
             this.chkDaThuTien = new System.Windows.Forms.CheckBox();
-            this.txtTenNguoiMuaHang = new System.Windows.Forms.TextBox();
             this.txtMaSoThue = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
@@ -347,8 +347,8 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.cboTenNguoiMuaHang);
             this.panel6.Controls.Add(this.chkDaThuTien);
-            this.panel6.Controls.Add(this.txtTenNguoiMuaHang);
             this.panel6.Controls.Add(this.txtMaSoThue);
             this.panel6.Controls.Add(this.label16);
             this.panel6.Controls.Add(this.txtAddress);
@@ -366,6 +366,15 @@
             this.panel6.Size = new System.Drawing.Size(708, 144);
             this.panel6.TabIndex = 0;
             // 
+            // cboTenNguoiMuaHang
+            // 
+            this.cboTenNguoiMuaHang.FormattingEnabled = true;
+            this.cboTenNguoiMuaHang.Location = new System.Drawing.Point(143, 4);
+            this.cboTenNguoiMuaHang.Name = "cboTenNguoiMuaHang";
+            this.cboTenNguoiMuaHang.Size = new System.Drawing.Size(342, 21);
+            this.cboTenNguoiMuaHang.TabIndex = 16;
+            this.cboTenNguoiMuaHang.SelectedIndexChanged += new System.EventHandler(this.cboTenNguoiMuaHang_SelectedIndexChanged);
+            // 
             // chkDaThuTien
             // 
             this.chkDaThuTien.AutoSize = true;
@@ -377,13 +386,6 @@
             this.chkDaThuTien.TabIndex = 25;
             this.chkDaThuTien.Text = "Đã thu tiền";
             this.chkDaThuTien.UseVisualStyleBackColor = true;
-            // 
-            // txtTenNguoiMuaHang
-            // 
-            this.txtTenNguoiMuaHang.Location = new System.Drawing.Point(143, 4);
-            this.txtTenNguoiMuaHang.Name = "txtTenNguoiMuaHang";
-            this.txtTenNguoiMuaHang.Size = new System.Drawing.Size(342, 20);
-            this.txtTenNguoiMuaHang.TabIndex = 16;
             // 
             // txtMaSoThue
             // 
@@ -873,7 +875,6 @@
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtMaSoThue;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtTenNguoiMuaHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenDichVu;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
@@ -889,6 +890,7 @@
         private System.Windows.Forms.DateTimePicker dtpkNgay;
         private System.Windows.Forms.CheckBox chkDaThuTien;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.ComboBox cboTenNguoiMuaHang;
 
 
     }

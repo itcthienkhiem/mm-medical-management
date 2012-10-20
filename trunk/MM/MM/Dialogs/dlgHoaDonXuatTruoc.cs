@@ -29,6 +29,7 @@ namespace MM.Dialogs
         private double _oldTotalPayment = 0;
         private double _totalPayment = 0;
         private HoaDonXuatTruoc _hoaDonXuatTruoc = new HoaDonXuatTruoc();
+        private DataTable _dtThongTinKhachHang = null;
         #endregion
 
         #region Constructor
@@ -55,7 +56,7 @@ namespace MM.Dialogs
                 btnCancel.Visible = false;
                 btnPrint.Visible = true;
                 btnClose2.Visible = true;
-                txtTenNguoiMuaHang.ReadOnly = true;
+                cboTenNguoiMuaHang.Enabled = false;
                 txtTenDonVi.ReadOnly = true;
                 txtMaSoThue.ReadOnly = true;
                 txtAddress.ReadOnly = true;
@@ -88,6 +89,47 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
+        private void DisplayThongTinKhachHang()
+        {
+            Result result = ThongTinKhachHangBus.GetThongTinKhachHangList();
+            if (result.IsOK)
+            {
+                _dtThongTinKhachHang = result.QueryResult as DataTable;
+                foreach (DataRow row in _dtThongTinKhachHang.Rows)
+                {
+                    cboTenNguoiMuaHang.Items.Add(row["TenKhachHang"].ToString());
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinKhachHangList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinKhachHangList"));
+            }
+        }
+
+        private void RefreshThongTinKhachHang(string tenKhachHang)
+        {
+            txtTenDonVi.Text = string.Empty;
+            txtMaSoThue.Text = string.Empty;
+            txtAddress.Text = string.Empty;
+            txtSoTaiKhoan.Text = string.Empty;
+
+            if (_dtThongTinKhachHang == null) return;
+            List<DataRow> results = (from t in _dtThongTinKhachHang.AsEnumerable()
+                                     where t.Field<string>("TenKhachHang").Trim().ToLower() == tenKhachHang.Trim().ToLower()
+                                     select t).ToList<DataRow>();
+
+            if (results != null && results.Count > 0)
+            {
+                txtTenDonVi.Text = results[0]["TenDonVi"] as string;
+                txtMaSoThue.Text = results[0]["MaSoThue"] as string;
+                txtAddress.Text = results[0]["DiaChi"] as string;
+                txtSoTaiKhoan.Text = results[0]["SoTaiKhoan"] as string;
+                cboHinhThucThanhToan.SelectedIndex = Convert.ToByte(results[0]["HinhThucThanhToan"]);
+            }
+        }
+
+
         private void GenerateCode()
         {
             _invoiceCode = Utility.GetCode(string.Empty, _soHoaDon, 7);
@@ -164,7 +206,7 @@ namespace MM.Dialogs
 
                 if (_drInvoice["TenNguoiMuaHang"] != null && _drInvoice["TenNguoiMuaHang"] != DBNull.Value && 
                     _drInvoice["TenNguoiMuaHang"].ToString().Trim() != string.Empty)
-                    txtTenNguoiMuaHang.Text = _drInvoice["TenNguoiMuaHang"].ToString();
+                    cboTenNguoiMuaHang.Text = _drInvoice["TenNguoiMuaHang"].ToString();
                 
                 if (_drInvoice["DiaChi"] != null && _drInvoice["DiaChi"] != DBNull.Value)
                     txtAddress.Text = _drInvoice["DiaChi"].ToString();
@@ -375,10 +417,10 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (txtTenNguoiMuaHang.Text.Trim() == string.Empty && txtTenDonVi.Text.Trim() == string.Empty)
+            if (cboTenNguoiMuaHang.Text.Trim() == string.Empty && txtTenDonVi.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập tên người mua hàng hoặc tên đơn vị.", IconType.Information);
-                txtTenNguoiMuaHang.Focus();
+                cboTenNguoiMuaHang.Focus();
                 return false;
             }
 
@@ -427,7 +469,7 @@ namespace MM.Dialogs
                 HoaDonXuatTruoc invoice = new HoaDonXuatTruoc();
                 invoice.SoHoaDon = _invoiceCode;
                 invoice.NgayXuatHoaDon = dtpkNgay.Value;
-                invoice.TenNguoiMuaHang = txtTenNguoiMuaHang.Text;
+                invoice.TenNguoiMuaHang = cboTenNguoiMuaHang.Text;
                 invoice.DiaChi = txtAddress.Text;
                 invoice.TenDonVi = txtTenDonVi.Text;
                 invoice.MaSoThue = txtMaSoThue.Text;
@@ -474,6 +516,21 @@ namespace MM.Dialogs
                 Result result = HoaDonXuatTruocBus.InsertHoaDonXuatTruoc(invoice, addedDetails);
                 if (result.IsOK)
                 {
+                    //Insert thông tin khách hàng
+                    ThongTinKhachHang thongTinKhachHang = new ThongTinKhachHang();
+                    thongTinKhachHang.TenKhachHang = invoice.TenNguoiMuaHang;
+                    thongTinKhachHang.TenDonVi = invoice.TenDonVi;
+                    thongTinKhachHang.MaSoThue = invoice.MaSoThue;
+                    thongTinKhachHang.DiaChi = invoice.DiaChi;
+                    thongTinKhachHang.SoTaiKhoan = invoice.SoTaiKhoan;
+                    thongTinKhachHang.HinhThucThanhToan = invoice.HinhThucThanhToan;
+                    result = ThongTinKhachHangBus.InsertThongTinKhachHang(thongTinKhachHang);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ThongTinKhachHangBus.InsertThongTinKhachHang"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.InsertThongTinKhachHang"));
+                    }
+
                     _hoaDonXuatTruoc = invoice;
                     if (!_isPrinted) return true;
                     OnPrint(invoice.HoaDonXuatTruocGUID.ToString());
@@ -499,6 +556,7 @@ namespace MM.Dialogs
         private void dlgInvoiceInfo_Load(object sender, EventArgs e)
         {
             dtpkNgay.Value = DateTime.Now;
+            DisplayThongTinKhachHang();
             DisplayInfo();
         }
 
@@ -722,8 +780,15 @@ namespace MM.Dialogs
             if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
             _flag = false;
         }
+
+        private void cboTenNguoiMuaHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshThongTinKhachHang(cboTenNguoiMuaHang.Text);   
+        }
+
         #endregion
 
+        
         
 
         
