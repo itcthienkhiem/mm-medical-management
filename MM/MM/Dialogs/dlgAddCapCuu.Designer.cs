@@ -76,7 +76,8 @@
             "Miếng",
             "Gói",
             "Tuýp",
-            "Lọ"});
+            "Lọ",
+            "Cái"});
             this.cboDonViTinh.Location = new System.Drawing.Point(88, 45);
             this.cboDonViTinh.Name = "cboDonViTinh";
             this.cboDonViTinh.Size = new System.Drawing.Size(121, 21);
