@@ -73,6 +73,8 @@
             this.tbPhieuThuThuoc = new System.Windows.Forms.ToolStripButton();
             this._mainStatus = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusCapCuuHetTonKho = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusCapCuuHetHan = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusAlert = new System.Windows.Forms.ToolStripStatusLabel();
             this._mainMenu = new System.Windows.Forms.MenuStrip();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -245,8 +247,9 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._timer = new System.Windows.Forms.Timer(this.components);
+            this._timerTiemNgua = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uBaoCaoTonKhoCapCuu = new MM.Controls.uBaoCaoTonKhoCapCuu();
             this._uBaoCaoCapCuuHetHan = new MM.Controls.uBaoCaoCapCuuHetHan();
             this._uXuatKhoCapCuuList = new MM.Controls.uXuatKhoCapCuuList();
             this._uNhapKhoCapCuuList = new MM.Controls.uNhapKhoCapCuuList();
@@ -310,7 +313,8 @@
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
-            this._uBaoCaoTonKhoCapCuu = new MM.Controls.uBaoCaoTonKhoCapCuu();
+            this._timerCapCuuHetHSD = new System.Windows.Forms.Timer(this.components);
+            this._timerCapCuuHetTonKho = new System.Windows.Forms.Timer(this.components);
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -574,9 +578,10 @@
             this._mainStatus.ImageScalingSize = new System.Drawing.Size(24, 24);
             this._mainStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel,
+            this.statusCapCuuHetTonKho,
+            this.statusCapCuuHetHan,
             this.statusAlert});
             this._mainStatus.Name = "_mainStatus";
-            this._mainStatus.DoubleClick += new System.EventHandler(this._mainStatus_DoubleClick);
             // 
             // statusLabel
             // 
@@ -584,10 +589,26 @@
             resources.ApplyResources(this.statusLabel, "statusLabel");
             this.statusLabel.Spring = true;
             // 
+            // statusCapCuuHetTonKho
+            // 
+            this.statusCapCuuHetTonKho.DoubleClickEnabled = true;
+            resources.ApplyResources(this.statusCapCuuHetTonKho, "statusCapCuuHetTonKho");
+            this.statusCapCuuHetTonKho.Name = "statusCapCuuHetTonKho";
+            this.statusCapCuuHetTonKho.DoubleClick += new System.EventHandler(this.statusCapCuuHetTonKho_DoubleClick);
+            // 
+            // statusCapCuuHetHan
+            // 
+            this.statusCapCuuHetHan.DoubleClickEnabled = true;
+            resources.ApplyResources(this.statusCapCuuHetHan, "statusCapCuuHetHan");
+            this.statusCapCuuHetHan.Name = "statusCapCuuHetHan";
+            this.statusCapCuuHetHan.DoubleClick += new System.EventHandler(this.statusCapCuuHetHan_DoubleClick);
+            // 
             // statusAlert
             // 
+            this.statusAlert.DoubleClickEnabled = true;
             resources.ApplyResources(this.statusAlert, "statusAlert");
             this.statusAlert.Name = "statusAlert";
+            this.statusAlert.DoubleClick += new System.EventHandler(this.statusAlert_DoubleClick);
             // 
             // _mainMenu
             // 
@@ -1733,7 +1754,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1754,7 +1775,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -1957,10 +1978,10 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
-            // _timer
+            // _timerTiemNgua
             // 
-            this._timer.Interval = 1000;
-            this._timer.Tick += new System.EventHandler(this._timer_Tick);
+            this._timerTiemNgua.Interval = 1400;
+            this._timerTiemNgua.Tick += new System.EventHandler(this._timerTiemNgua_Tick);
             // 
             // _mainPanel
             // 
@@ -2031,6 +2052,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uBaoCaoTonKhoCapCuu
+            // 
+            resources.ApplyResources(this._uBaoCaoTonKhoCapCuu, "_uBaoCaoTonKhoCapCuu");
+            this._uBaoCaoTonKhoCapCuu.Name = "_uBaoCaoTonKhoCapCuu";
             // 
             // _uBaoCaoCapCuuHetHan
             // 
@@ -2350,10 +2376,15 @@
             this._timerCheckAlert.Interval = 3000;
             this._timerCheckAlert.Tick += new System.EventHandler(this._timerCheckAlert_Tick);
             // 
-            // _uBaoCaoTonKhoCapCuu
+            // _timerCapCuuHetHSD
             // 
-            resources.ApplyResources(this._uBaoCaoTonKhoCapCuu, "_uBaoCaoTonKhoCapCuu");
-            this._uBaoCaoTonKhoCapCuu.Name = "_uBaoCaoTonKhoCapCuu";
+            this._timerCapCuuHetHSD.Interval = 1400;
+            this._timerCapCuuHetHSD.Tick += new System.EventHandler(this._timerCapCuuHetHSD_Tick);
+            // 
+            // _timerCapCuuHetTonKho
+            // 
+            this._timerCapCuuHetTonKho.Interval = 1400;
+            this._timerCapCuuHetTonKho.Tick += new System.EventHandler(this._timerCapCuuHetTonKho_Tick);
             // 
             // MainForm
             // 
@@ -2645,7 +2676,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator57;
         private System.Windows.Forms.ToolStripMenuItem tiemNguaToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel statusAlert;
-        private System.Windows.Forms.Timer _timer;
+        private System.Windows.Forms.Timer _timerTiemNgua;
         private System.Windows.Forms.Timer _timerCheckAlert;
         private Controls.uTiemNguaList _uTiemNguaList;
         private System.Windows.Forms.ToolStripMenuItem cauHinhSoNgayToolStripMenuItem;
@@ -2668,6 +2699,10 @@
         private System.Windows.Forms.ToolStripMenuItem baoCaoTonKhoCapCuuToolStripMenuItem;
         private Controls.uBaoCaoCapCuuHetHan _uBaoCaoCapCuuHetHan;
         private Controls.uBaoCaoTonKhoCapCuu _uBaoCaoTonKhoCapCuu;
+        private System.Windows.Forms.ToolStripStatusLabel statusCapCuuHetTonKho;
+        private System.Windows.Forms.ToolStripStatusLabel statusCapCuuHetHan;
+        private System.Windows.Forms.Timer _timerCapCuuHetHSD;
+        private System.Windows.Forms.Timer _timerCapCuuHetTonKho;
 
     }
 }

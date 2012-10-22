@@ -40,8 +40,6 @@ namespace MM
 
             Utility.CreateFolder(Global.UsersPath);
 
-            statusAlert.Image = null;
-
             //OpenCOMPort();
             //ParseTestResult_Hitachi917(string.Empty, "COM1");
             //ParseTestResult_CellDyn3200(string.Empty, "COM1");
@@ -49,16 +47,44 @@ namespace MM
         #endregion
 
         #region UI Command
-        private void StartTimerShowAlert()
+        private void StartTimerShowTiemNguaAlert()
         {
-            _timer.Enabled = true;
-            _timer.Start();
+            _timerTiemNgua.Enabled = true;
+            _timerTiemNgua.Start();
         }
 
-        private void StopTimerShowAlert()
+        private void StopTimerShowTiemNguaAlert()
         {
-            _timer.Stop();
-            _timer.Enabled = false;
+            _timerTiemNgua.Stop();
+            _timerTiemNgua.Enabled = false;
+            statusAlert.Visible = false;
+        }
+
+        private void StartTimerShowCapCuuHetHSDAlert()
+        {
+            _timerCapCuuHetHSD.Enabled = true;
+            _timerCapCuuHetHSD.Start();
+            
+        }
+
+        private void StopTimerShowCapCuuHetHSDAlert()
+        {
+            _timerCapCuuHetHSD.Stop();
+            _timerCapCuuHetHSD.Enabled = false;
+            statusCapCuuHetHan.Visible = false;
+        }
+
+        private void StartTimerShowCapCuuHetTonKhoAlert()
+        {
+            _timerCapCuuHetTonKho.Enabled = true;
+            _timerCapCuuHetTonKho.Start();
+        }
+
+        private void StopTimerShowCapCuuHetTonKhoAlert()
+        {
+            _timerCapCuuHetTonKho.Stop();
+            _timerCapCuuHetTonKho.Enabled = false;
+            statusCapCuuHetTonKho.Visible = false;
         }
 
         private void StartTimerCheckAlert()
@@ -2448,26 +2474,34 @@ namespace MM
 
         private void OnCheckAlert()
         {
+            bool isStartTiemNgua = false;
+            bool isStartCapCuuHetHSD = false;
+            bool isStartCapCuuHetTonKho = false;
+
+            //Tiêm Ngừa
             Result result = TiemNguaBus.CheckAlert();
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
-                if (dt == null || dt.Rows.Count <= 0)
-                {
-                    StopTimerShowAlert();
-                    statusAlert.Text = string.Empty;
-                    statusAlert.Image = null;
-                }
-                else
-                    StartTimerShowAlert();
+                if (dt != null && dt.Rows.Count > 0)
+                    isStartTiemNgua = true;
             }
             else
-            {
                 Utility.WriteToTraceLog(result.GetErrorAsString("TiemNguaBus.CheckAlert"));
-                StopTimerShowAlert();
-                statusAlert.Text = string.Empty;
-                statusAlert.Image = null;
-            }
+
+            //Cấp cứu hết hạn sử dụng
+
+            //Cấp cứu hết tồn kho
+
+
+            if (isStartTiemNgua) StartTimerShowTiemNguaAlert();
+            else StopTimerShowTiemNguaAlert();
+
+            if (isStartCapCuuHetHSD) StartTimerShowCapCuuHetHSDAlert();
+            else StopTimerShowCapCuuHetHSDAlert();
+
+            if (isStartCapCuuHetTonKho) StartTimerShowCapCuuHetTonKhoAlert();
+            else StopTimerShowCapCuuHetTonKhoAlert();
         }
         #endregion
 
@@ -2503,7 +2537,9 @@ namespace MM
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn thoát khỏi chương trình ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     SaveAppConfig();
-                    StopTimerShowAlert();
+                    StopTimerShowTiemNguaAlert();
+                    StopTimerShowCapCuuHetHSDAlert();
+                    StopTimerShowCapCuuHetTonKhoAlert();
                     StopTimerCheckAlert();
                 }
                 else
@@ -2525,18 +2561,19 @@ namespace MM
             ExcuteCmd(cmd);
         }
 
-        private void _timer_Tick(object sender, EventArgs e)
+        private void _timerTiemNgua_Tick(object sender, EventArgs e)
         {
-            if (statusAlert.Image == null)
-            {
-                statusAlert.Image = Properties.Resources.email_alert_icon;
-                statusAlert.Text = "Tới thời hạn cần tiêm ngừa. Vui lòng kiểm tra lịch tiêm ngừa.";
-            }
-            else
-            {
-                statusAlert.Text = string.Empty;
-                statusAlert.Image = null;
-            }
+            statusAlert.Visible = !statusAlert.Visible;
+        }
+
+        private void _timerCapCuuHetHSD_Tick(object sender, EventArgs e)
+        {
+            statusCapCuuHetHan.Visible = !statusCapCuuHetHan.Visible;
+        }
+
+        private void _timerCapCuuHetTonKho_Tick(object sender, EventArgs e)
+        {
+            statusCapCuuHetTonKho.Visible = !statusCapCuuHetTonKho.Visible;
         }
 
         private void _timerCheckAlert_Tick(object sender, EventArgs e)
@@ -2544,9 +2581,19 @@ namespace MM
             OnCheckAlert();
         }
 
-        private void _mainStatus_DoubleClick(object sender, EventArgs e)
+        private void statusAlert_DoubleClick(object sender, EventArgs e)
         {
-            if (_timer.Enabled) OnTiemNgua();
+            if (_timerTiemNgua.Enabled) OnTiemNgua();
+        }
+
+        private void statusCapCuuHetTonKho_DoubleClick(object sender, EventArgs e)
+        {
+            if (_timerCapCuuHetHSD.Enabled) OnNhapKhoCapCuu();
+        }
+
+        private void statusCapCuuHetHan_DoubleClick(object sender, EventArgs e)
+        {
+            if (_timerCapCuuHetTonKho.Enabled) OnNhapKhoCapCuu();
         }
         #endregion
 
