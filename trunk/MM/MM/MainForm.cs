@@ -1763,7 +1763,17 @@ namespace MM
                 case "BaoCaoTonKhoCapCuu":
                     OnBaoCaoTonKhoCapCuu();
                     break;
+
+                case "CauHinhKhoCapCuu":
+                    OnCauHinhKhoCapCuu();
+                    break;
             }
+        }
+
+        private void OnCauHinhKhoCapCuu()
+        {
+            dlgCauHinhKhoCapCuu dlg = new dlgCauHinhKhoCapCuu();
+            dlg.ShowDialog(this);
         }
 
         private void OnBaoCaoTonKhoCapCuu()
