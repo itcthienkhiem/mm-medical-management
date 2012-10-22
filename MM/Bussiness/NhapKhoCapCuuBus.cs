@@ -37,6 +37,49 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result CheckKhoCapCuuHetHan()
+        {
+            Result result = new Result();
+            MMOverride db = null;
+            try
+            {
+                DateTime dt = DateTime.Now;
+                dt = dt.AddDays(-Global.AlertSoNgayHetHanCapCuu);
+                DateTime dtNow = DateTime.Now;
+
+                db = new MMOverride();
+                KhoCapCuu khoCapCuu = (from t in db.KhoCapCuus
+                                       join l in db.NhapKhoCapCuus on t.KhoCapCuuGUID equals l.KhoCapCuuGUID
+                                       where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
+                                       l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 && (
+                                       new DateTime(l.NgayHetHan.Value.Year, l.NgayHetHan.Value.Month, l.NgayHetHan.Value.Day) <= dt ||
+                                       new DateTime(l.NgayHetHan.Value.Year, l.NgayHetHan.Value.Month, l.NgayHetHan.Value.Day) <= dtNow)
+                                       select t).FirstOrDefault();
+
+                result.QueryResult = khoCapCuu != null ? true : false;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result CheckKhoCapCuuHetHan(string khoCapCuuGUID)
         {
             Result result = new Result();
@@ -150,6 +193,46 @@ namespace MM.Bussiness
 
                     result.QueryResult = tongSLNhap - tongSLXuat;
                 }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result CheckKhoCapCuuTonKho()
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                DateTime dt = DateTime.Now;
+
+                NhapKhoCapCuu nkcc = (from l in db.NhapKhoCapCuus
+                                      where l.Status == (byte)Status.Actived &&
+                                      new DateTime(l.NgayHetHan.Value.Year, l.NgayHetHan.Value.Month, l.NgayHetHan.Value.Day) > dt &&
+                                      l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat <= Global.AlertSoLuongHetTonKhoCapCuu
+                                      select l).FirstOrDefault();
+
+                result.QueryResult = nkcc != null ? true: false;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
