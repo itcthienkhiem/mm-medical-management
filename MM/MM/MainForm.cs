@@ -349,6 +349,8 @@ namespace MM
                 _uBaoCaoCapCuuHetHan.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBaoCaoTonKhoCapCuu))
                 _uBaoCaoTonKhoCapCuu.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uThongBaoList))
+                _uThongBaoList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1254,6 +1256,19 @@ namespace MM
                             _uBaoCaoCapCuuHetHan.AllowLock = isLock;
                             _uBaoCaoCapCuuHetHan.AllowExportAll = isExportAll;
                         }
+                        else if (functionCode == Const.ThongBao)
+                        {
+                            toolsToolStripMenuItem.Enabled = isLogin;
+                            thongBaoToolStripMenuItem.Enabled = isView && isLogin;
+                            _uThongBaoList.AllowAdd = isAdd;
+                            _uThongBaoList.AllowEdit = isEdit;
+                            _uThongBaoList.AllowDelete = isDelete;
+                            _uThongBaoList.AllowPrint = isPrint;
+                            _uThongBaoList.AllowExport = isExport;
+                            _uThongBaoList.AllowImport = isImport;
+                            _uThongBaoList.AllowLock = isLock;
+                            _uThongBaoList.AllowExportAll = isExportAll;
+                        }
                     }
                 }
                 else
@@ -1445,6 +1460,7 @@ namespace MM
                 xuatKhoCapCuuToolStripMenuItem.Enabled = isLogin;
                 baoCaoCapCuuHetHanToolStripMenuItem.Enabled = isLogin;
                 baoCaoTonKhoCapCuuToolStripMenuItem.Enabled = isLogin;
+                thongBaoToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1767,7 +1783,18 @@ namespace MM
                 case "CauHinhKhoCapCuu":
                     OnCauHinhKhoCapCuu();
                     break;
+
+                case "ThongBao":
+                    OnThongBao();
+                    break;
             }
+        }
+
+        private void OnThongBao()
+        {
+            this.Text = string.Format("{0} - Thong bao", Application.ProductName);
+            ViewControl(_uThongBaoList);
+            _uThongBaoList.DisplayAsThread();
         }
 
         private void OnCauHinhKhoCapCuu()

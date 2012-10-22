@@ -32,15 +32,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainToolbar = new System.Windows.Forms.ToolStrip();
             this.tbLogin = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -196,6 +196,8 @@
             this.toolStripSeparator61 = new System.Windows.Forms.ToolStripSeparator();
             this.baoCaoCapCuuHetHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.baoCaoTonKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator62 = new System.Windows.Forms.ToolStripSeparator();
+            this.cauHinhKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dICOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -212,6 +214,8 @@
             this.congTacNgoaiGioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator59 = new System.Windows.Forms.ToolStripSeparator();
             this.lichKhamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator63 = new System.Windows.Forms.ToolStripSeparator();
+            this.thongBaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -249,6 +253,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timerTiemNgua = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uThongBaoList = new MM.Controls.uThongBaoList();
             this._uBaoCaoTonKhoCapCuu = new MM.Controls.uBaoCaoTonKhoCapCuu();
             this._uBaoCaoCapCuuHetHan = new MM.Controls.uBaoCaoCapCuuHetHan();
             this._uXuatKhoCapCuuList = new MM.Controls.uXuatKhoCapCuuList();
@@ -315,8 +320,6 @@
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerCapCuuHetHSD = new System.Windows.Forms.Timer(this.components);
             this._timerCapCuuHetTonKho = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator62 = new System.Windows.Forms.ToolStripSeparator();
-            this.cauHinhKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1474,8 +1477,8 @@
             // 
             // danhMucCapCuuToolStripMenuItem
             // 
-            this.danhMucCapCuuToolStripMenuItem.Name = "danhMucCapCuuToolStripMenuItem";
             resources.ApplyResources(this.danhMucCapCuuToolStripMenuItem, "danhMucCapCuuToolStripMenuItem");
+            this.danhMucCapCuuToolStripMenuItem.Name = "danhMucCapCuuToolStripMenuItem";
             this.danhMucCapCuuToolStripMenuItem.Tag = "KhoCapCuu";
             this.danhMucCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1486,15 +1489,15 @@
             // 
             // nhapKhoCapCuuToolStripMenuItem
             // 
-            this.nhapKhoCapCuuToolStripMenuItem.Name = "nhapKhoCapCuuToolStripMenuItem";
             resources.ApplyResources(this.nhapKhoCapCuuToolStripMenuItem, "nhapKhoCapCuuToolStripMenuItem");
+            this.nhapKhoCapCuuToolStripMenuItem.Name = "nhapKhoCapCuuToolStripMenuItem";
             this.nhapKhoCapCuuToolStripMenuItem.Tag = "NhapKhoCapCuu";
             this.nhapKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // xuatKhoCapCuuToolStripMenuItem
             // 
-            this.xuatKhoCapCuuToolStripMenuItem.Name = "xuatKhoCapCuuToolStripMenuItem";
             resources.ApplyResources(this.xuatKhoCapCuuToolStripMenuItem, "xuatKhoCapCuuToolStripMenuItem");
+            this.xuatKhoCapCuuToolStripMenuItem.Name = "xuatKhoCapCuuToolStripMenuItem";
             this.xuatKhoCapCuuToolStripMenuItem.Tag = "XuatKhoCapCuu";
             this.xuatKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1505,17 +1508,29 @@
             // 
             // baoCaoCapCuuHetHanToolStripMenuItem
             // 
-            this.baoCaoCapCuuHetHanToolStripMenuItem.Name = "baoCaoCapCuuHetHanToolStripMenuItem";
             resources.ApplyResources(this.baoCaoCapCuuHetHanToolStripMenuItem, "baoCaoCapCuuHetHanToolStripMenuItem");
+            this.baoCaoCapCuuHetHanToolStripMenuItem.Name = "baoCaoCapCuuHetHanToolStripMenuItem";
             this.baoCaoCapCuuHetHanToolStripMenuItem.Tag = "BaoCaoCapCuuHetHan";
             this.baoCaoCapCuuHetHanToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // baoCaoTonKhoCapCuuToolStripMenuItem
             // 
-            this.baoCaoTonKhoCapCuuToolStripMenuItem.Name = "baoCaoTonKhoCapCuuToolStripMenuItem";
             resources.ApplyResources(this.baoCaoTonKhoCapCuuToolStripMenuItem, "baoCaoTonKhoCapCuuToolStripMenuItem");
+            this.baoCaoTonKhoCapCuuToolStripMenuItem.Name = "baoCaoTonKhoCapCuuToolStripMenuItem";
             this.baoCaoTonKhoCapCuuToolStripMenuItem.Tag = "BaoCaoTonKhoCapCuu";
             this.baoCaoTonKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator62
+            // 
+            this.toolStripSeparator62.Name = "toolStripSeparator62";
+            resources.ApplyResources(this.toolStripSeparator62, "toolStripSeparator62");
+            // 
+            // cauHinhKhoCapCuuToolStripMenuItem
+            // 
+            resources.ApplyResources(this.cauHinhKhoCapCuuToolStripMenuItem, "cauHinhKhoCapCuuToolStripMenuItem");
+            this.cauHinhKhoCapCuuToolStripMenuItem.Name = "cauHinhKhoCapCuuToolStripMenuItem";
+            this.cauHinhKhoCapCuuToolStripMenuItem.Tag = "CauHinhKhoCapCuu";
+            this.cauHinhKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -1534,7 +1549,9 @@
             this.toolStripSeparator58,
             this.congTacNgoaiGioToolStripMenuItem,
             this.toolStripSeparator59,
-            this.lichKhamToolStripMenuItem});
+            this.lichKhamToolStripMenuItem,
+            this.toolStripSeparator63,
+            this.thongBaoToolStripMenuItem});
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             // 
@@ -1632,6 +1649,18 @@
             this.lichKhamToolStripMenuItem.Name = "lichKhamToolStripMenuItem";
             this.lichKhamToolStripMenuItem.Tag = "LichKham";
             this.lichKhamToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator63
+            // 
+            this.toolStripSeparator63.Name = "toolStripSeparator63";
+            resources.ApplyResources(this.toolStripSeparator63, "toolStripSeparator63");
+            // 
+            // thongBaoToolStripMenuItem
+            // 
+            resources.ApplyResources(this.thongBaoToolStripMenuItem, "thongBaoToolStripMenuItem");
+            this.thongBaoToolStripMenuItem.Name = "thongBaoToolStripMenuItem";
+            this.thongBaoToolStripMenuItem.Tag = "ThongBao";
+            this.thongBaoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -1756,14 +1785,14 @@
             this.dgPatient.AllowUserToDeleteRows = false;
             this.dgPatient.AllowUserToOrderColumns = true;
             this.dgPatient.AutoGenerateColumns = false;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dgPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNumDataGridViewTextBoxColumn,
@@ -1777,14 +1806,14 @@
             this.mobileDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
             this.dgPatient.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle27;
             resources.ApplyResources(this.dgPatient, "dgPatient");
             this.dgPatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPatient.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -1798,8 +1827,8 @@
             // fileNumDataGridViewTextBoxColumn
             // 
             this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle20;
             resources.ApplyResources(this.fileNumDataGridViewTextBoxColumn, "fileNumDataGridViewTextBoxColumn");
             this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
             this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1821,8 +1850,8 @@
             // GenderAsStr
             // 
             this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle21;
             resources.ApplyResources(this.GenderAsStr, "GenderAsStr");
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
@@ -1830,9 +1859,9 @@
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.NullValue = null;
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.NullValue = null;
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle22;
             resources.ApplyResources(this.dobDataGridViewTextBoxColumn, "dobDataGridViewTextBoxColumn");
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1840,8 +1869,8 @@
             // identityCardDataGridViewTextBoxColumn
             // 
             this.identityCardDataGridViewTextBoxColumn.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
             resources.ApplyResources(this.identityCardDataGridViewTextBoxColumn, "identityCardDataGridViewTextBoxColumn");
             this.identityCardDataGridViewTextBoxColumn.Name = "identityCardDataGridViewTextBoxColumn";
             this.identityCardDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1849,8 +1878,8 @@
             // homePhoneDataGridViewTextBoxColumn
             // 
             this.homePhoneDataGridViewTextBoxColumn.DataPropertyName = "HomePhone";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
             resources.ApplyResources(this.homePhoneDataGridViewTextBoxColumn, "homePhoneDataGridViewTextBoxColumn");
             this.homePhoneDataGridViewTextBoxColumn.Name = "homePhoneDataGridViewTextBoxColumn";
             this.homePhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1858,8 +1887,8 @@
             // workPhoneDataGridViewTextBoxColumn
             // 
             this.workPhoneDataGridViewTextBoxColumn.DataPropertyName = "WorkPhone";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle25;
             resources.ApplyResources(this.workPhoneDataGridViewTextBoxColumn, "workPhoneDataGridViewTextBoxColumn");
             this.workPhoneDataGridViewTextBoxColumn.Name = "workPhoneDataGridViewTextBoxColumn";
             this.workPhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1867,8 +1896,8 @@
             // mobileDataGridViewTextBoxColumn
             // 
             this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle26;
             resources.ApplyResources(this.mobileDataGridViewTextBoxColumn, "mobileDataGridViewTextBoxColumn");
             this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
             this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1992,6 +2021,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uThongBaoList);
             this._mainPanel.Controls.Add(this._uBaoCaoTonKhoCapCuu);
             this._mainPanel.Controls.Add(this._uBaoCaoCapCuuHetHan);
             this._mainPanel.Controls.Add(this._uXuatKhoCapCuuList);
@@ -2056,6 +2086,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uThongBaoList
+            // 
+            resources.ApplyResources(this._uThongBaoList, "_uThongBaoList");
+            this._uThongBaoList.Name = "_uThongBaoList";
             // 
             // _uBaoCaoTonKhoCapCuu
             // 
@@ -2390,18 +2425,6 @@
             this._timerCapCuuHetTonKho.Interval = 1400;
             this._timerCapCuuHetTonKho.Tick += new System.EventHandler(this._timerCapCuuHetTonKho_Tick);
             // 
-            // toolStripSeparator62
-            // 
-            this.toolStripSeparator62.Name = "toolStripSeparator62";
-            resources.ApplyResources(this.toolStripSeparator62, "toolStripSeparator62");
-            // 
-            // cauHinhKhoCapCuuToolStripMenuItem
-            // 
-            this.cauHinhKhoCapCuuToolStripMenuItem.Name = "cauHinhKhoCapCuuToolStripMenuItem";
-            resources.ApplyResources(this.cauHinhKhoCapCuuToolStripMenuItem, "cauHinhKhoCapCuuToolStripMenuItem");
-            this.cauHinhKhoCapCuuToolStripMenuItem.Tag = "CauHinhKhoCapCuu";
-            this.cauHinhKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2721,6 +2744,9 @@
         private System.Windows.Forms.Timer _timerCapCuuHetTonKho;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator62;
         private System.Windows.Forms.ToolStripMenuItem cauHinhKhoCapCuuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator63;
+        private System.Windows.Forms.ToolStripMenuItem thongBaoToolStripMenuItem;
+        private Controls.uThongBaoList _uThongBaoList;
 
     }
 }

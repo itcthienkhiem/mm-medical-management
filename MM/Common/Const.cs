@@ -95,6 +95,7 @@ namespace MM.Common
         public static string BaoCaoTonKhoCapCuu = "BaoCaoTonKhoCapCuu";
         public static string BaoCaoCapCuuHetHan = "BaoCaoCapCuuHetHan";
         public static string CauHinhKhoCapCuu = "CauHinhKhoCapCuu";
+        public static string ThongBao = "ThongBao";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";

@@ -282,6 +282,9 @@ namespace MM.Databasae
     partial void InsertThongTinKhachHang(ThongTinKhachHang instance);
     partial void UpdateThongTinKhachHang(ThongTinKhachHang instance);
     partial void DeleteThongTinKhachHang(ThongTinKhachHang instance);
+    partial void InsertThongBao(ThongBao instance);
+    partial void UpdateThongBao(ThongBao instance);
+    partial void DeleteThongBao(ThongBao instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -1423,6 +1426,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ThongTinKhachHang>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ThongBao> ThongBaos
+		{
+			get
+			{
+				return this.GetTable<ThongBao>();
 			}
 		}
 		
@@ -66328,6 +66339,404 @@ namespace MM.Databasae
 					this._HinhThucThanhToan = value;
 					this.SendPropertyChanged("HinhThucThanhToan");
 					this.OnHinhThucThanhToanChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ThongBao")]
+	public partial class ThongBao : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ThongBaoGUID;
+		
+		private System.Data.Linq.Binary _ThongBaoBuff;
+		
+		private System.Nullable<System.DateTime> _NgayDuyet1;
+		
+		private System.Data.Linq.Binary _ThongBaoBuff1;
+		
+		private System.Nullable<System.DateTime> _NgayDuyet2;
+		
+		private System.Data.Linq.Binary _ThongBaoBuff2;
+		
+		private System.Nullable<System.DateTime> _NgayDuyet3;
+		
+		private System.Data.Linq.Binary _ThongBaoBuff3;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnThongBaoGUIDChanging(System.Guid value);
+    partial void OnThongBaoGUIDChanged();
+    partial void OnThongBaoBuffChanging(System.Data.Linq.Binary value);
+    partial void OnThongBaoBuffChanged();
+    partial void OnNgayDuyet1Changing(System.Nullable<System.DateTime> value);
+    partial void OnNgayDuyet1Changed();
+    partial void OnThongBaoBuff1Changing(System.Data.Linq.Binary value);
+    partial void OnThongBaoBuff1Changed();
+    partial void OnNgayDuyet2Changing(System.Nullable<System.DateTime> value);
+    partial void OnNgayDuyet2Changed();
+    partial void OnThongBaoBuff2Changing(System.Data.Linq.Binary value);
+    partial void OnThongBaoBuff2Changed();
+    partial void OnNgayDuyet3Changing(System.Nullable<System.DateTime> value);
+    partial void OnNgayDuyet3Changed();
+    partial void OnThongBaoBuff3Changing(System.Data.Linq.Binary value);
+    partial void OnThongBaoBuff3Changed();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public ThongBao()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ThongBaoGUID
+		{
+			get
+			{
+				return this._ThongBaoGUID;
+			}
+			set
+			{
+				if ((this._ThongBaoGUID != value))
+				{
+					this.OnThongBaoGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._ThongBaoGUID = value;
+					this.SendPropertyChanged("ThongBaoGUID");
+					this.OnThongBaoGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoBuff", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ThongBaoBuff
+		{
+			get
+			{
+				return this._ThongBaoBuff;
+			}
+			set
+			{
+				if ((this._ThongBaoBuff != value))
+				{
+					this.OnThongBaoBuffChanging(value);
+					this.SendPropertyChanging();
+					this._ThongBaoBuff = value;
+					this.SendPropertyChanged("ThongBaoBuff");
+					this.OnThongBaoBuffChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayDuyet1", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayDuyet1
+		{
+			get
+			{
+				return this._NgayDuyet1;
+			}
+			set
+			{
+				if ((this._NgayDuyet1 != value))
+				{
+					this.OnNgayDuyet1Changing(value);
+					this.SendPropertyChanging();
+					this._NgayDuyet1 = value;
+					this.SendPropertyChanged("NgayDuyet1");
+					this.OnNgayDuyet1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoBuff1", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ThongBaoBuff1
+		{
+			get
+			{
+				return this._ThongBaoBuff1;
+			}
+			set
+			{
+				if ((this._ThongBaoBuff1 != value))
+				{
+					this.OnThongBaoBuff1Changing(value);
+					this.SendPropertyChanging();
+					this._ThongBaoBuff1 = value;
+					this.SendPropertyChanged("ThongBaoBuff1");
+					this.OnThongBaoBuff1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayDuyet2", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayDuyet2
+		{
+			get
+			{
+				return this._NgayDuyet2;
+			}
+			set
+			{
+				if ((this._NgayDuyet2 != value))
+				{
+					this.OnNgayDuyet2Changing(value);
+					this.SendPropertyChanging();
+					this._NgayDuyet2 = value;
+					this.SendPropertyChanged("NgayDuyet2");
+					this.OnNgayDuyet2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoBuff2", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ThongBaoBuff2
+		{
+			get
+			{
+				return this._ThongBaoBuff2;
+			}
+			set
+			{
+				if ((this._ThongBaoBuff2 != value))
+				{
+					this.OnThongBaoBuff2Changing(value);
+					this.SendPropertyChanging();
+					this._ThongBaoBuff2 = value;
+					this.SendPropertyChanged("ThongBaoBuff2");
+					this.OnThongBaoBuff2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayDuyet3", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayDuyet3
+		{
+			get
+			{
+				return this._NgayDuyet3;
+			}
+			set
+			{
+				if ((this._NgayDuyet3 != value))
+				{
+					this.OnNgayDuyet3Changing(value);
+					this.SendPropertyChanging();
+					this._NgayDuyet3 = value;
+					this.SendPropertyChanged("NgayDuyet3");
+					this.OnNgayDuyet3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoBuff3", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ThongBaoBuff3
+		{
+			get
+			{
+				return this._ThongBaoBuff3;
+			}
+			set
+			{
+				if ((this._ThongBaoBuff3 != value))
+				{
+					this.OnThongBaoBuff3Changing(value);
+					this.SendPropertyChanging();
+					this._ThongBaoBuff3 = value;
+					this.SendPropertyChanged("ThongBaoBuff3");
+					this.OnThongBaoBuff3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
 				}
 			}
 		}
