@@ -18,6 +18,8 @@ namespace MM.Common
         public static string FTPPasswordKey = "FTPPasswordKey";
 
         public static string AlertDayKey = "AlertDayKey";
+        public static string AlertSoNgayHetHanCapCuuKey = "AlertSoNgayHetHanCapCuuKey";
+        public static string AlertSoLuongHetTonKhoCapCuuKey = "AlertSoLuongHetTonKhoCapCuuKey";
 
         public static string AdminGUID = "00000000-0000-0000-0000-000000000000";
 
@@ -92,6 +94,7 @@ namespace MM.Common
         public static string XuatKhoCapCuu = "XuatKhoCapCuu";
         public static string BaoCaoTonKhoCapCuu = "BaoCaoTonKhoCapCuu";
         public static string BaoCaoCapCuuHetHan = "BaoCaoCapCuuHetHan";
+        public static string CauHinhKhoCapCuu = "CauHinhKhoCapCuu";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
