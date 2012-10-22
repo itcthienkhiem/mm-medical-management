@@ -2495,6 +2495,9 @@ namespace MM
             bool isStartTiemNgua = false;
             bool isStartCapCuuHetHSD = false;
             bool isStartCapCuuHetTonKho = false;
+            StopTimerShowTiemNguaAlert();
+            StopTimerShowCapCuuHetHSDAlert();
+            StopTimerShowCapCuuHetTonKhoAlert();
 
             //Tiêm Ngừa
             Result result = TiemNguaBus.CheckAlert();
@@ -2508,18 +2511,24 @@ namespace MM
                 Utility.WriteToTraceLog(result.GetErrorAsString("TiemNguaBus.CheckAlert"));
 
             //Cấp cứu hết hạn sử dụng
+            result = NhapKhoCapCuuBus.CheckKhoCapCuuHetHan();
+            if (result.IsOK)
+                isStartCapCuuHetHSD = Convert.ToBoolean(result.QueryResult);
+            else
+                Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuHetHan"));
 
             //Cấp cứu hết tồn kho
-
+            result = NhapKhoCapCuuBus.CheckKhoCapCuuTonKho();
+            if (result.IsOK)
+                isStartCapCuuHetTonKho = Convert.ToBoolean(result.QueryResult);
+            else
+                Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuTonKho"));
 
             if (isStartTiemNgua) StartTimerShowTiemNguaAlert();
-            else StopTimerShowTiemNguaAlert();
 
             if (isStartCapCuuHetHSD) StartTimerShowCapCuuHetHSDAlert();
-            else StopTimerShowCapCuuHetHSDAlert();
 
             if (isStartCapCuuHetTonKho) StartTimerShowCapCuuHetTonKhoAlert();
-            else StopTimerShowCapCuuHetTonKhoAlert();
         }
         #endregion
 
