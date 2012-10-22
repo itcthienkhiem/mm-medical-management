@@ -121,6 +121,31 @@
     <value>359, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="_mainToolbar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 24</value>
+  </data>
+  <data name="_mainToolbar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 31</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_mainToolbar.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="_mainToolbar.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;_mainToolbar.Name" xml:space="preserve">
+    <value>_mainToolbar</value>
+  </data>
+  <data name="&gt;&gt;_mainToolbar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_mainToolbar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_mainToolbar.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="tbLogin.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -130,7 +155,6 @@
   <data name="tbLogin.ToolTipText" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tbLogin.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -404,35 +428,35 @@
   <data name="tbPhieuThuThuoc.ToolTipText" xml:space="preserve">
     <value>Phiếu thu thuốc</value>
   </data>
-  <data name="_mainToolbar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
-  </data>
-  <data name="_mainToolbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 31</value>
-  </data>
-  <data name="_mainToolbar.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="_mainToolbar.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;_mainToolbar.Name" xml:space="preserve">
-    <value>_mainToolbar</value>
-  </data>
-  <data name="&gt;&gt;_mainToolbar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_mainToolbar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;_mainToolbar.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <metadata name="_mainStatus.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>479, 17</value>
   </metadata>
   <data name="_mainStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="_mainStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 666</value>
+  </data>
+  <data name="_mainStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 29</value>
+  </data>
+  <data name="_mainStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="_mainStatus.Text" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;_mainStatus.Name" xml:space="preserve">
+    <value>_mainStatus</value>
+  </data>
+  <data name="&gt;&gt;_mainStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_mainStatus.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_mainStatus.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
   <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>1180, 24</value>
@@ -544,33 +568,195 @@
   <data name="statusAlert.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="_mainStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 666</value>
-  </data>
-  <data name="_mainStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 29</value>
-  </data>
-  <data name="_mainStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="_mainStatus.Text" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;_mainStatus.Name" xml:space="preserve">
-    <value>_mainStatus</value>
-  </data>
-  <data name="&gt;&gt;_mainStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_mainStatus.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;_mainStatus.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
   <metadata name="_mainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>592, 17</value>
   </metadata>
+  <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 20</value>
+  </data>
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hệ thống</value>
+  </data>
+  <data name="danhmụcToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="danhmụcToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 20</value>
+  </data>
+  <data name="danhmụcToolStripMenuItem.Text" xml:space="preserve">
+    <value>Danh &amp;mục</value>
+  </data>
+  <data name="servicesToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="servicesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 20</value>
+  </data>
+  <data name="servicesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Dịch vụ</value>
+  </data>
+  <data name="patientToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="patientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
+  </data>
+  <data name="patientToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Bệnh nhân</value>
+  </data>
+  <data name="companyToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="companyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 20</value>
+  </data>
+  <data name="companyToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Công ty</value>
+  </data>
+  <data name="receiptToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="receiptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 20</value>
+  </data>
+  <data name="receiptToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Phiếu thu</value>
+  </data>
+  <data name="invoiceToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="invoiceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 20</value>
+  </data>
+  <data name="invoiceToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hóa đơn</value>
+  </data>
+  <data name="thuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="thuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="thuocToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Thuốc</value>
+  </data>
+  <data name="reportToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="reportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 20</value>
+  </data>
+  <data name="reportToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Báo cáo</value>
+  </data>
+  <data name="chamSocKhachHangToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chamSocKhachHangToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 20</value>
+  </data>
+  <data name="chamSocKhachHangToolStripMenuItem.Text" xml:space="preserve">
+    <value>Chăm sóc &amp;khách hàng</value>
+  </data>
+  <data name="xetNghiemToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="xetNghiemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 20</value>
+  </data>
+  <data name="xetNghiemToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Xét nghiệm</value>
+  </data>
+  <data name="danhMucCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="danhMucCapCuuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Danh mục cấp cứu</value>
+  </data>
+  <data name="toolStripSeparator60.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 6</value>
+  </data>
+  <data name="nhapKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="nhapKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Nhập kho cấp cứu</value>
+  </data>
+  <data name="xuatKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="xuatKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Xuất kho cấp cứu</value>
+  </data>
+  <data name="toolStripSeparator61.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 6</value>
+  </data>
+  <data name="baoCaoCapCuuHetHanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="baoCaoCapCuuHetHanToolStripMenuItem.Text" xml:space="preserve">
+    <value>Báo cáo cấp cứu hết hạn</value>
+  </data>
+  <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Báo cáo tồn kho cấp cứu</value>
+  </data>
+  <data name="toolStripSeparator62.Size" type="System.Drawing.Size, System.Drawing">
+    <value>201, 6</value>
+  </data>
+  <data name="cauHinhKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 22</value>
+  </data>
+  <data name="cauHinhKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cấu hình kho cấp cứu</value>
+  </data>
+  <data name="khoCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="khoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 20</value>
+  </data>
+  <data name="khoCapCuuToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kho cấp cứu</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Công cụ</value>
+  </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trợ giúp</value>
+  </data>
+  <data name="_mainMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_mainMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 24</value>
+  </data>
+  <data name="_mainMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;_mainMenu.Name" xml:space="preserve">
+    <value>_mainMenu</value>
+  </data>
+  <data name="&gt;&gt;_mainMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_mainMenu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_mainMenu.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="databaseConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>167, 22</value>
   </data>
@@ -695,12 +881,6 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Thoát</value>
   </data>
-  <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 20</value>
-  </data>
-  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hệ thống</value>
-  </data>
   <data name="chuyenKhoaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
   </data>
@@ -783,15 +963,6 @@
   <data name="loaiSieuAmToolStripMenuItem.Text" xml:space="preserve">
     <value>Loại siêu âm</value>
   </data>
-  <data name="danhmụcToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="danhmụcToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 20</value>
-  </data>
-  <data name="danhmụcToolStripMenuItem.Text" xml:space="preserve">
-    <value>Danh &amp;mục</value>
-  </data>
   <data name="serviceListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 22</value>
   </data>
@@ -815,15 +986,6 @@
   </data>
   <data name="giaVonDichVuToolStripMenuItem.Text" xml:space="preserve">
     <value>Giá vốn dịch vụ</value>
-  </data>
-  <data name="servicesToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="servicesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 20</value>
-  </data>
-  <data name="servicesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Dịch vụ</value>
   </data>
   <data name="openPatientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>191, 22</value>
@@ -867,15 +1029,6 @@
   <data name="benhNhanThanThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Bệnh nhân thân thuộc</value>
   </data>
-  <data name="patientToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="patientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
-  </data>
-  <data name="patientToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Bệnh nhân</value>
-  </data>
   <data name="companyListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
@@ -890,15 +1043,6 @@
   </data>
   <data name="contractListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục hợp đồng</value>
-  </data>
-  <data name="companyToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="companyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
-  </data>
-  <data name="companyToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Công ty</value>
   </data>
   <data name="receiptListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
@@ -957,15 +1101,6 @@
   <data name="chiTietPhieuThuDichVuToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh sách dịch vụ xuất phiếu thu</value>
   </data>
-  <data name="receiptToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="receiptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 20</value>
-  </data>
-  <data name="receiptToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Phiếu thu</value>
-  </data>
   <data name="invoiceListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
   </data>
@@ -998,15 +1133,6 @@
   </data>
   <data name="hoaDonHopDongToolStripMenuItem.Text" xml:space="preserve">
     <value>Hóa đơn hợp đồng</value>
-  </data>
-  <data name="invoiceToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="invoiceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
-  </data>
-  <data name="invoiceToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hóa đơn</value>
   </data>
   <data name="danhMucThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 22</value>
@@ -1049,15 +1175,6 @@
   </data>
   <data name="keToaToolStripMenuItem.Text" xml:space="preserve">
     <value>Kê toa</value>
-  </data>
-  <data name="thuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="thuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
-  </data>
-  <data name="thuocToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Thuốc</value>
   </data>
   <data name="doanhThuNhanVienToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
@@ -1235,15 +1352,6 @@
   <data name="baoCaoSoLuongKhamToolStripMenuItem.Text" xml:space="preserve">
     <value>Báo cáo số lượng khám</value>
   </data>
-  <data name="reportToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="reportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 20</value>
-  </data>
-  <data name="reportToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Báo cáo</value>
-  </data>
   <data name="yKienKhachHangToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1312,15 +1420,6 @@
   </data>
   <data name="nhatKyLienHeCongTyToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhật ký liên hệ công ty</value>
-  </data>
-  <data name="chamSocKhachHangToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="chamSocKhachHangToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 20</value>
-  </data>
-  <data name="chamSocKhachHangToolStripMenuItem.Text" xml:space="preserve">
-    <value>Chăm sóc &amp;khách hàng</value>
   </data>
   <data name="danhSachXetNghiemHitachi917ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>254, 22</value>
@@ -1447,60 +1546,6 @@
   </data>
   <data name="traCuuThongTinKhachHangToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="xetNghiemToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="xetNghiemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 20</value>
-  </data>
-  <data name="xetNghiemToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Xét nghiệm</value>
-  </data>
-  <data name="danhMucCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="danhMucCapCuuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Danh mục cấp cứu</value>
-  </data>
-  <data name="toolStripSeparator60.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
-  </data>
-  <data name="nhapKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="nhapKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Nhập kho cấp cứu</value>
-  </data>
-  <data name="xuatKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="xuatKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Xuất kho cấp cứu</value>
-  </data>
-  <data name="toolStripSeparator61.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
-  </data>
-  <data name="baoCaoCapCuuHetHanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="baoCaoCapCuuHetHanToolStripMenuItem.Text" xml:space="preserve">
-    <value>Báo cáo cấp cứu hết hạn</value>
-  </data>
-  <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
-  </data>
-  <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
-    <value>Báo cáo tồn kho cấp cứu</value>
-  </data>
-  <data name="khoCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="khoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>78, 20</value>
-  </data>
-  <data name="khoCapCuuToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Kho cấp cứu</value>
   </data>
   <data name="dICOMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
@@ -1741,15 +1786,6 @@
   <data name="lichKhamToolStripMenuItem.Text" xml:space="preserve">
     <value>Lịch khám</value>
   </data>
-  <data name="toolsToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
-  </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Công cụ</value>
-  </data>
   <data name="medicalManagementHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>184, 22</value>
   </data>
@@ -1806,175 +1842,9 @@
   <data name="biểuMẫuPhòngSaleToolStripMenuItem.Text" xml:space="preserve">
     <value>Biểu mẫu phòng Sale</value>
   </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Trợ giúp</value>
-  </data>
-  <data name="_mainMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_mainMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 24</value>
-  </data>
-  <data name="_mainMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;_mainMenu.Name" xml:space="preserve">
-    <value>_mainMenu</value>
-  </data>
-  <data name="&gt;&gt;_mainMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_mainMenu.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;_mainMenu.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <metadata name="_dotNetBarManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>701, 17</value>
   </metadata>
-  <data name="bar1.AccessibleDescription" xml:space="preserve">
-    <value>Danh sách bệnh nhân được khám (bar1)</value>
-  </data>
-  <data name="bar1.AccessibleName" xml:space="preserve">
-    <value>Danh sách bệnh nhân được khám</value>
-  </data>
-  <data name="fileNumDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Mã bệnh nhân</value>
-  </data>
-  <metadata name="Fullname.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="Fullname.HeaderText" xml:space="preserve">
-    <value>Họ Tên</value>
-  </data>
-  <data name="Fullname.Width" type="System.Int32, mscorlib">
-    <value>150</value>
-  </data>
-  <metadata name="FullAddress.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="FullAddress.HeaderText" xml:space="preserve">
-    <value>Địa chỉ</value>
-  </data>
-  <data name="FullAddress.Width" type="System.Int32, mscorlib">
-    <value>250</value>
-  </data>
-  <metadata name="GenderAsStr.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="GenderAsStr.HeaderText" xml:space="preserve">
-    <value>Giới tính</value>
-  </data>
-  <data name="dobDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Ngày sinh</value>
-  </data>
-  <data name="dobDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="identityCardDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>CMND</value>
-  </data>
-  <data name="identityCardDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="homePhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>SĐT nhà</value>
-  </data>
-  <data name="homePhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="workPhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>SĐT làm việc</value>
-  </data>
-  <data name="workPhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>95</value>
-  </data>
-  <data name="mobileDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Số DTDĐ</value>
-  </data>
-  <data name="mobileDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="emailDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="emailDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>150</value>
-  </data>
-  <metadata name="patientViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>852, 17</value>
-  </metadata>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="dgPatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="dgPatient.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="dgPatient.RowHeadersWidth" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="dgPatient.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 167</value>
-  </data>
-  <data name="dgPatient.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.Name" xml:space="preserve">
-    <value>dgPatient</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.Controls.DataGridViewX, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.Parent" xml:space="preserve">
-    <value>panelDockContainer1</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="panelDockContainer1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
-  </data>
-  <data name="panelDockContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 167</value>
-  </data>
-  <data name="panelDockContainer1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer1.Name" xml:space="preserve">
-    <value>panelDockContainer1</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer1.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.PanelDockContainer, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer1.Parent" xml:space="preserve">
-    <value>bar1</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="bar1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
-  </data>
-  <data name="dockContainerItem1.Text" xml:space="preserve">
-    <value>Danh sách bệnh nhân được khám</value>
-  </data>
-  <data name="bar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 3</value>
-  </data>
-  <data name="bar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 193</value>
-  </data>
-  <data name="bar1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="bar1.Text" xml:space="preserve">
-    <value>Danh sách bệnh nhân được khám</value>
-  </data>
   <data name="&gt;&gt;bar1.Name" xml:space="preserve">
     <value>bar1</value>
   </data>
@@ -1986,75 +1856,6 @@
   </data>
   <data name="&gt;&gt;bar1.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="bar2.AccessibleDescription" xml:space="preserve">
-    <value>Phòng chờ (bar2)</value>
-  </data>
-  <data name="bar2.AccessibleName" xml:space="preserve">
-    <value>Phòng chờ</value>
-  </data>
-  <data name="_uPhongChoList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uPhongChoList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uPhongChoList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 196</value>
-  </data>
-  <data name="_uPhongChoList.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.Name" xml:space="preserve">
-    <value>_uPhongChoList</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.Type" xml:space="preserve">
-    <value>MM.Controls.uPhongChoList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.Parent" xml:space="preserve">
-    <value>panelDockContainer2</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="panelDockContainer2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
-  </data>
-  <data name="panelDockContainer2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 196</value>
-  </data>
-  <data name="panelDockContainer2.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer2.Name" xml:space="preserve">
-    <value>panelDockContainer2</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer2.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.PanelDockContainer, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer2.Parent" xml:space="preserve">
-    <value>bar2</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="bar2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
-  </data>
-  <data name="dockContainerItem2.Text" xml:space="preserve">
-    <value>Phòng chờ</value>
-  </data>
-  <data name="bar2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 199</value>
-  </data>
-  <data name="bar2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 222</value>
-  </data>
-  <data name="bar2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="bar2.Text" xml:space="preserve">
-    <value>Phòng chờ</value>
   </data>
   <data name="&gt;&gt;bar2.Name" xml:space="preserve">
     <value>bar2</value>
@@ -2068,6 +1869,7 @@
   <data name="&gt;&gt;bar2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="dockSite4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
   </data>
@@ -3097,21 +2899,6 @@
   <data name="_mainPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
-  <data name="_uBaoCaoTonKhoCapCuu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBaoCaoTonKhoCapCuu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBaoCaoTonKhoCapCuu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBaoCaoTonKhoCapCuu.TabIndex" type="System.Int32, mscorlib">
-    <value>61</value>
-  </data>
-  <data name="_uBaoCaoTonKhoCapCuu.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uBaoCaoTonKhoCapCuu.Name" xml:space="preserve">
     <value>_uBaoCaoTonKhoCapCuu</value>
   </data>
@@ -3123,21 +2910,6 @@
   </data>
   <data name="&gt;&gt;_uBaoCaoTonKhoCapCuu.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="_uBaoCaoCapCuuHetHan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBaoCaoCapCuuHetHan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBaoCaoCapCuuHetHan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBaoCaoCapCuuHetHan.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="_uBaoCaoCapCuuHetHan.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoCapCuuHetHan.Name" xml:space="preserve">
     <value>_uBaoCaoCapCuuHetHan</value>
@@ -3151,21 +2923,6 @@
   <data name="&gt;&gt;_uBaoCaoCapCuuHetHan.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="_uXuatKhoCapCuuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uXuatKhoCapCuuList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uXuatKhoCapCuuList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uXuatKhoCapCuuList.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
-  </data>
-  <data name="_uXuatKhoCapCuuList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uXuatKhoCapCuuList.Name" xml:space="preserve">
     <value>_uXuatKhoCapCuuList</value>
   </data>
@@ -3177,21 +2934,6 @@
   </data>
   <data name="&gt;&gt;_uXuatKhoCapCuuList.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="_uNhapKhoCapCuuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uNhapKhoCapCuuList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uNhapKhoCapCuuList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uNhapKhoCapCuuList.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
-  </data>
-  <data name="_uNhapKhoCapCuuList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uNhapKhoCapCuuList.Name" xml:space="preserve">
     <value>_uNhapKhoCapCuuList</value>
@@ -3205,21 +2947,6 @@
   <data name="&gt;&gt;_uNhapKhoCapCuuList.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="_uKhoCapCuu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uKhoCapCuu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uKhoCapCuu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uKhoCapCuu.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
-  </data>
-  <data name="_uKhoCapCuu.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uKhoCapCuu.Name" xml:space="preserve">
     <value>_uKhoCapCuu</value>
   </data>
@@ -3231,21 +2958,6 @@
   </data>
   <data name="&gt;&gt;_uKhoCapCuu.ZOrder" xml:space="preserve">
     <value>4</value>
-  </data>
-  <data name="_uLichKham.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uLichKham.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uLichKham.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uLichKham.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
-  </data>
-  <data name="_uLichKham.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uLichKham.Name" xml:space="preserve">
     <value>_uLichKham</value>
@@ -3259,21 +2971,6 @@
   <data name="&gt;&gt;_uLichKham.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="_uCongTacNgoaiGioList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uCongTacNgoaiGioList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uCongTacNgoaiGioList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uCongTacNgoaiGioList.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
-  </data>
-  <data name="_uCongTacNgoaiGioList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uCongTacNgoaiGioList.Name" xml:space="preserve">
     <value>_uCongTacNgoaiGioList</value>
   </data>
@@ -3285,21 +2982,6 @@
   </data>
   <data name="&gt;&gt;_uCongTacNgoaiGioList.ZOrder" xml:space="preserve">
     <value>6</value>
-  </data>
-  <data name="_uTiemNguaList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uTiemNguaList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uTiemNguaList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uTiemNguaList.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="_uTiemNguaList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uTiemNguaList.Name" xml:space="preserve">
     <value>_uTiemNguaList</value>
@@ -3313,21 +2995,6 @@
   <data name="&gt;&gt;_uTiemNguaList.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="_uLoaiSieuAmList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uLoaiSieuAmList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uLoaiSieuAmList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uLoaiSieuAmList.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
-  </data>
-  <data name="_uLoaiSieuAmList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uLoaiSieuAmList.Name" xml:space="preserve">
     <value>_uLoaiSieuAmList</value>
   </data>
@@ -3339,21 +3006,6 @@
   </data>
   <data name="&gt;&gt;_uLoaiSieuAmList.ZOrder" xml:space="preserve">
     <value>8</value>
-  </data>
-  <data name="_uXetNghiem.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uXetNghiem.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uXetNghiem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uXetNghiem.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
-  </data>
-  <data name="_uXetNghiem.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uXetNghiem.Name" xml:space="preserve">
     <value>_uXetNghiem</value>
@@ -3367,21 +3019,6 @@
   <data name="&gt;&gt;_uXetNghiem.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
-  <data name="_uBenhNhanThanThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBenhNhanThanThuocList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBenhNhanThanThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBenhNhanThanThuocList.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="_uBenhNhanThanThuocList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uBenhNhanThanThuocList.Name" xml:space="preserve">
     <value>_uBenhNhanThanThuocList</value>
   </data>
@@ -3393,21 +3030,6 @@
   </data>
   <data name="&gt;&gt;_uBenhNhanThanThuocList.ZOrder" xml:space="preserve">
     <value>10</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Name" xml:space="preserve">
     <value>_uBaoCaoThuocTonKhoTheoKhoangThoiGian</value>
@@ -3421,21 +3043,6 @@
   <data name="&gt;&gt;_uBaoCaoThuocTonKhoTheoKhoangThoiGian.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="_uChiTietPhieuThuDichVu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uChiTietPhieuThuDichVu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uChiTietPhieuThuDichVu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uChiTietPhieuThuDichVu.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
-  </data>
-  <data name="_uChiTietPhieuThuDichVu.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uChiTietPhieuThuDichVu.Name" xml:space="preserve">
     <value>_uChiTietPhieuThuDichVu</value>
   </data>
@@ -3447,21 +3054,6 @@
   </data>
   <data name="&gt;&gt;_uChiTietPhieuThuDichVu.ZOrder" xml:space="preserve">
     <value>12</value>
-  </data>
-  <data name="_uDiaChiCongTyList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uDiaChiCongTyList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uDiaChiCongTyList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uDiaChiCongTyList.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="_uDiaChiCongTyList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uDiaChiCongTyList.Name" xml:space="preserve">
     <value>_uDiaChiCongTyList</value>
@@ -3475,21 +3067,6 @@
   <data name="&gt;&gt;_uDiaChiCongTyList.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="_uTraCuuThongTinKhachHang.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uTraCuuThongTinKhachHang.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uTraCuuThongTinKhachHang.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uTraCuuThongTinKhachHang.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="_uTraCuuThongTinKhachHang.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uTraCuuThongTinKhachHang.Name" xml:space="preserve">
     <value>_uTraCuuThongTinKhachHang</value>
   </data>
@@ -3501,21 +3078,6 @@
   </data>
   <data name="&gt;&gt;_uTraCuuThongTinKhachHang.ZOrder" xml:space="preserve">
     <value>14</value>
-  </data>
-  <data name="_uBaoCaoSoLuongKham.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBaoCaoSoLuongKham.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBaoCaoSoLuongKham.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBaoCaoSoLuongKham.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="_uBaoCaoSoLuongKham.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoSoLuongKham.Name" xml:space="preserve">
     <value>_uBaoCaoSoLuongKham</value>
@@ -3529,21 +3091,6 @@
   <data name="&gt;&gt;_uBaoCaoSoLuongKham.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="_uDanhSachXetNghiem_CellDyn3200List.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uDanhSachXetNghiem_CellDyn3200List.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uDanhSachXetNghiem_CellDyn3200List.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uDanhSachXetNghiem_CellDyn3200List.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
-  </data>
-  <data name="_uDanhSachXetNghiem_CellDyn3200List.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uDanhSachXetNghiem_CellDyn3200List.Name" xml:space="preserve">
     <value>_uDanhSachXetNghiem_CellDyn3200List</value>
   </data>
@@ -3555,24 +3102,6 @@
   </data>
   <data name="&gt;&gt;_uDanhSachXetNghiem_CellDyn3200List.ZOrder" xml:space="preserve">
     <value>16</value>
-  </data>
-  <data name="_uDanhSachXetNghiemHitachi917List.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="_uDanhSachXetNghiemHitachi917List.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uDanhSachXetNghiemHitachi917List.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uDanhSachXetNghiemHitachi917List.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uDanhSachXetNghiemHitachi917List.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
-  </data>
-  <data name="_uDanhSachXetNghiemHitachi917List.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uDanhSachXetNghiemHitachi917List.Name" xml:space="preserve">
     <value>_uDanhSachXetNghiemHitachi917List</value>
@@ -3586,21 +3115,6 @@
   <data name="&gt;&gt;_uDanhSachXetNghiemHitachi917List.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
-  <data name="_uKetQuaXetNghiemTongHop.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uKetQuaXetNghiemTongHop.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uKetQuaXetNghiemTongHop.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uKetQuaXetNghiemTongHop.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
-  </data>
-  <data name="_uKetQuaXetNghiemTongHop.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uKetQuaXetNghiemTongHop.Name" xml:space="preserve">
     <value>_uKetQuaXetNghiemTongHop</value>
   </data>
@@ -3612,21 +3126,6 @@
   </data>
   <data name="&gt;&gt;_uKetQuaXetNghiemTongHop.ZOrder" xml:space="preserve">
     <value>18</value>
-  </data>
-  <data name="_uKetQuaXetNghiemTay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uKetQuaXetNghiemTay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uKetQuaXetNghiemTay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uKetQuaXetNghiemTay.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="_uKetQuaXetNghiemTay.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uKetQuaXetNghiemTay.Name" xml:space="preserve">
     <value>_uKetQuaXetNghiemTay</value>
@@ -3640,21 +3139,6 @@
   <data name="&gt;&gt;_uKetQuaXetNghiemTay.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="_uXetNghiemTay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uXetNghiemTay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uXetNghiemTay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uXetNghiemTay.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
-  <data name="_uXetNghiemTay.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uXetNghiemTay.Name" xml:space="preserve">
     <value>_uXetNghiemTay</value>
   </data>
@@ -3666,21 +3150,6 @@
   </data>
   <data name="&gt;&gt;_uXetNghiemTay.ZOrder" xml:space="preserve">
     <value>20</value>
-  </data>
-  <data name="_uBaoCaoKhachHangMuaThuoc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBaoCaoKhachHangMuaThuoc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBaoCaoKhachHangMuaThuoc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBaoCaoKhachHangMuaThuoc.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
-  </data>
-  <data name="_uBaoCaoKhachHangMuaThuoc.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoKhachHangMuaThuoc.Name" xml:space="preserve">
     <value>_uBaoCaoKhachHangMuaThuoc</value>
@@ -3694,21 +3163,6 @@
   <data name="&gt;&gt;_uBaoCaoKhachHangMuaThuoc.ZOrder" xml:space="preserve">
     <value>21</value>
   </data>
-  <data name="_uKetQuaXetNghiem_CellDyn3200.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uKetQuaXetNghiem_CellDyn3200.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uKetQuaXetNghiem_CellDyn3200.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uKetQuaXetNghiem_CellDyn3200.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
-  </data>
-  <data name="_uKetQuaXetNghiem_CellDyn3200.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uKetQuaXetNghiem_CellDyn3200.Name" xml:space="preserve">
     <value>_uKetQuaXetNghiem_CellDyn3200</value>
   </data>
@@ -3720,21 +3174,6 @@
   </data>
   <data name="&gt;&gt;_uKetQuaXetNghiem_CellDyn3200.ZOrder" xml:space="preserve">
     <value>22</value>
-  </data>
-  <data name="_uKetQuaXetNghiem_Hitachi917.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uKetQuaXetNghiem_Hitachi917.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uKetQuaXetNghiem_Hitachi917.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uKetQuaXetNghiem_Hitachi917.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
-  </data>
-  <data name="_uKetQuaXetNghiem_Hitachi917.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uKetQuaXetNghiem_Hitachi917.Name" xml:space="preserve">
     <value>_uKetQuaXetNghiem_Hitachi917</value>
@@ -3748,21 +3187,6 @@
   <data name="&gt;&gt;_uKetQuaXetNghiem_Hitachi917.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
-  <data name="_uBookingList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBookingList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBookingList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBookingList.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
-  </data>
-  <data name="_uBookingList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uBookingList.Name" xml:space="preserve">
     <value>_uBookingList</value>
   </data>
@@ -3774,21 +3198,6 @@
   </data>
   <data name="&gt;&gt;_uBookingList.ZOrder" xml:space="preserve">
     <value>24</value>
-  </data>
-  <data name="_uNhatKyLienHeCongTy.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uNhatKyLienHeCongTy.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uNhatKyLienHeCongTy.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uNhatKyLienHeCongTy.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
-  </data>
-  <data name="_uNhatKyLienHeCongTy.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uNhatKyLienHeCongTy.Name" xml:space="preserve">
     <value>_uNhatKyLienHeCongTy</value>
@@ -3802,21 +3211,6 @@
   <data name="&gt;&gt;_uNhatKyLienHeCongTy.ZOrder" xml:space="preserve">
     <value>25</value>
   </data>
-  <data name="_uYKienKhachHangList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uYKienKhachHangList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uYKienKhachHangList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uYKienKhachHangList.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="_uYKienKhachHangList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uYKienKhachHangList.Name" xml:space="preserve">
     <value>_uYKienKhachHangList</value>
   </data>
@@ -3828,21 +3222,6 @@
   </data>
   <data name="&gt;&gt;_uYKienKhachHangList.ZOrder" xml:space="preserve">
     <value>26</value>
-  </data>
-  <data name="_uHoaDonHopDongList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uHoaDonHopDongList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uHoaDonHopDongList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uHoaDonHopDongList.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="_uHoaDonHopDongList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uHoaDonHopDongList.Name" xml:space="preserve">
     <value>_uHoaDonHopDongList</value>
@@ -3856,21 +3235,6 @@
   <data name="&gt;&gt;_uHoaDonHopDongList.ZOrder" xml:space="preserve">
     <value>27</value>
   </data>
-  <data name="_uPhieuThuHopDongList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uPhieuThuHopDongList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uPhieuThuHopDongList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uPhieuThuHopDongList.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="_uPhieuThuHopDongList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uPhieuThuHopDongList.Name" xml:space="preserve">
     <value>_uPhieuThuHopDongList</value>
   </data>
@@ -3882,21 +3246,6 @@
   </data>
   <data name="&gt;&gt;_uPhieuThuHopDongList.ZOrder" xml:space="preserve">
     <value>28</value>
-  </data>
-  <data name="_uPhucHoiBenhNhan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uPhucHoiBenhNhan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uPhucHoiBenhNhan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uPhucHoiBenhNhan.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
-  </data>
-  <data name="_uPhucHoiBenhNhan.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uPhucHoiBenhNhan.Name" xml:space="preserve">
     <value>_uPhucHoiBenhNhan</value>
@@ -3910,21 +3259,6 @@
   <data name="&gt;&gt;_uPhucHoiBenhNhan.ZOrder" xml:space="preserve">
     <value>29</value>
   </data>
-  <data name="_uThongKeHoaDon.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uThongKeHoaDon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uThongKeHoaDon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uThongKeHoaDon.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="_uThongKeHoaDon.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uThongKeHoaDon.Name" xml:space="preserve">
     <value>_uThongKeHoaDon</value>
   </data>
@@ -3936,21 +3270,6 @@
   </data>
   <data name="&gt;&gt;_uThongKeHoaDon.ZOrder" xml:space="preserve">
     <value>30</value>
-  </data>
-  <data name="_uHoaDonXuatTruoc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uHoaDonXuatTruoc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uHoaDonXuatTruoc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uHoaDonXuatTruoc.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="_uHoaDonXuatTruoc.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uHoaDonXuatTruoc.Name" xml:space="preserve">
     <value>_uHoaDonXuatTruoc</value>
@@ -3964,21 +3283,6 @@
   <data name="&gt;&gt;_uHoaDonXuatTruoc.ZOrder" xml:space="preserve">
     <value>31</value>
   </data>
-  <data name="_uHoaDonThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uHoaDonThuocList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uHoaDonThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uHoaDonThuocList.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="_uHoaDonThuocList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uHoaDonThuocList.Name" xml:space="preserve">
     <value>_uHoaDonThuocList</value>
   </data>
@@ -3990,21 +3294,6 @@
   </data>
   <data name="&gt;&gt;_uHoaDonThuocList.ZOrder" xml:space="preserve">
     <value>32</value>
-  </data>
-  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoDichVuChuaXuatPhieuThu.Name" xml:space="preserve">
     <value>_uBaoCaoDichVuChuaXuatPhieuThu</value>
@@ -4018,21 +3307,6 @@
   <data name="&gt;&gt;_uBaoCaoDichVuChuaXuatPhieuThu.ZOrder" xml:space="preserve">
     <value>33</value>
   </data>
-  <data name="_uDoanhThuTheoNgay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uDoanhThuTheoNgay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uDoanhThuTheoNgay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uDoanhThuTheoNgay.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="_uDoanhThuTheoNgay.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uDoanhThuTheoNgay.Name" xml:space="preserve">
     <value>_uDoanhThuTheoNgay</value>
   </data>
@@ -4044,21 +3318,6 @@
   </data>
   <data name="&gt;&gt;_uDoanhThuTheoNgay.ZOrder" xml:space="preserve">
     <value>34</value>
-  </data>
-  <data name="_uGiaVonDichVuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uGiaVonDichVuList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uGiaVonDichVuList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uGiaVonDichVuList.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="_uGiaVonDichVuList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uGiaVonDichVuList.Name" xml:space="preserve">
     <value>_uGiaVonDichVuList</value>
@@ -4072,21 +3331,6 @@
   <data name="&gt;&gt;_uGiaVonDichVuList.ZOrder" xml:space="preserve">
     <value>35</value>
   </data>
-  <data name="_uInKetQuaKhamSucKhoeTongQuat.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uInKetQuaKhamSucKhoeTongQuat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uInKetQuaKhamSucKhoeTongQuat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uInKetQuaKhamSucKhoeTongQuat.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="_uInKetQuaKhamSucKhoeTongQuat.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uInKetQuaKhamSucKhoeTongQuat.Name" xml:space="preserve">
     <value>_uInKetQuaKhamSucKhoeTongQuat</value>
   </data>
@@ -4098,21 +3342,6 @@
   </data>
   <data name="&gt;&gt;_uInKetQuaKhamSucKhoeTongQuat.ZOrder" xml:space="preserve">
     <value>36</value>
-  </data>
-  <data name="_uServiceGroupList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uServiceGroupList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uServiceGroupList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uServiceGroupList.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="_uServiceGroupList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uServiceGroupList.Name" xml:space="preserve">
     <value>_uServiceGroupList</value>
@@ -4126,21 +3355,6 @@
   <data name="&gt;&gt;_uServiceGroupList.ZOrder" xml:space="preserve">
     <value>37</value>
   </data>
-  <data name="_uTrackingList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uTrackingList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uTrackingList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uTrackingList.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="_uTrackingList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uTrackingList.Name" xml:space="preserve">
     <value>_uTrackingList</value>
   </data>
@@ -4152,21 +3366,6 @@
   </data>
   <data name="&gt;&gt;_uTrackingList.ZOrder" xml:space="preserve">
     <value>38</value>
-  </data>
-  <data name="_uDichVuTuTuc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uDichVuTuTuc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uDichVuTuTuc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uDichVuTuTuc.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="_uDichVuTuTuc.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uDichVuTuTuc.Name" xml:space="preserve">
     <value>_uDichVuTuTuc</value>
@@ -4180,21 +3379,6 @@
   <data name="&gt;&gt;_uDichVuTuTuc.ZOrder" xml:space="preserve">
     <value>39</value>
   </data>
-  <data name="_uPhieuThuThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uPhieuThuThuocList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uPhieuThuThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uPhieuThuThuocList.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="_uPhieuThuThuocList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uPhieuThuThuocList.Name" xml:space="preserve">
     <value>_uPhieuThuThuocList</value>
   </data>
@@ -4206,21 +3390,6 @@
   </data>
   <data name="&gt;&gt;_uPhieuThuThuocList.ZOrder" xml:space="preserve">
     <value>40</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKho.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKho.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKho.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKho.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="_uBaoCaoThuocTonKho.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoThuocTonKho.Name" xml:space="preserve">
     <value>_uBaoCaoThuocTonKho</value>
@@ -4234,21 +3403,6 @@
   <data name="&gt;&gt;_uBaoCaoThuocTonKho.ZOrder" xml:space="preserve">
     <value>41</value>
   </data>
-  <data name="_uBaoCaoThuocHetHan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uBaoCaoThuocHetHan.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uBaoCaoThuocHetHan.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uBaoCaoThuocHetHan.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="_uBaoCaoThuocHetHan.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uBaoCaoThuocHetHan.Name" xml:space="preserve">
     <value>_uBaoCaoThuocHetHan</value>
   </data>
@@ -4260,21 +3414,6 @@
   </data>
   <data name="&gt;&gt;_uBaoCaoThuocHetHan.ZOrder" xml:space="preserve">
     <value>42</value>
-  </data>
-  <data name="_uToaThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uToaThuocList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uToaThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uToaThuocList.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="_uToaThuocList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uToaThuocList.Name" xml:space="preserve">
     <value>_uToaThuocList</value>
@@ -4288,21 +3427,6 @@
   <data name="&gt;&gt;_uToaThuocList.ZOrder" xml:space="preserve">
     <value>43</value>
   </data>
-  <data name="_uGiaThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uGiaThuocList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uGiaThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uGiaThuocList.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="_uGiaThuocList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uGiaThuocList.Name" xml:space="preserve">
     <value>_uGiaThuocList</value>
   </data>
@@ -4314,21 +3438,6 @@
   </data>
   <data name="&gt;&gt;_uGiaThuocList.ZOrder" xml:space="preserve">
     <value>44</value>
-  </data>
-  <data name="_uLoThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uLoThuocList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uLoThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uLoThuocList.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="_uLoThuocList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uLoThuocList.Name" xml:space="preserve">
     <value>_uLoThuocList</value>
@@ -4342,21 +3451,6 @@
   <data name="&gt;&gt;_uLoThuocList.ZOrder" xml:space="preserve">
     <value>45</value>
   </data>
-  <data name="_uNhomThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uNhomThuocList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uNhomThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uNhomThuocList.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="_uNhomThuocList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uNhomThuocList.Name" xml:space="preserve">
     <value>_uNhomThuocList</value>
   </data>
@@ -4368,21 +3462,6 @@
   </data>
   <data name="&gt;&gt;_uNhomThuocList.ZOrder" xml:space="preserve">
     <value>46</value>
-  </data>
-  <data name="_uThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uThuocList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uThuocList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uThuocList.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="_uThuocList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uThuocList.Name" xml:space="preserve">
     <value>_uThuocList</value>
@@ -4396,21 +3475,6 @@
   <data name="&gt;&gt;_uThuocList.ZOrder" xml:space="preserve">
     <value>47</value>
   </data>
-  <data name="_uDichVuHopDong.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uDichVuHopDong.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uDichVuHopDong.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uDichVuHopDong.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="_uDichVuHopDong.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uDichVuHopDong.Name" xml:space="preserve">
     <value>_uDichVuHopDong</value>
   </data>
@@ -4422,21 +3486,6 @@
   </data>
   <data name="&gt;&gt;_uDichVuHopDong.ZOrder" xml:space="preserve">
     <value>48</value>
-  </data>
-  <data name="_uDoanhThuNhanVien.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uDoanhThuNhanVien.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uDoanhThuNhanVien.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uDoanhThuNhanVien.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="_uDoanhThuNhanVien.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uDoanhThuNhanVien.Name" xml:space="preserve">
     <value>_uDoanhThuNhanVien</value>
@@ -4450,21 +3499,6 @@
   <data name="&gt;&gt;_uDoanhThuNhanVien.ZOrder" xml:space="preserve">
     <value>49</value>
   </data>
-  <data name="_uInvoiceList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uInvoiceList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uInvoiceList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uInvoiceList.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="_uInvoiceList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uInvoiceList.Name" xml:space="preserve">
     <value>_uInvoiceList</value>
   </data>
@@ -4476,21 +3510,6 @@
   </data>
   <data name="&gt;&gt;_uInvoiceList.ZOrder" xml:space="preserve">
     <value>50</value>
-  </data>
-  <data name="_uReceiptList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uReceiptList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uReceiptList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uReceiptList.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="_uReceiptList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uReceiptList.Name" xml:space="preserve">
     <value>_uReceiptList</value>
@@ -4504,21 +3523,6 @@
   <data name="&gt;&gt;_uReceiptList.ZOrder" xml:space="preserve">
     <value>51</value>
   </data>
-  <data name="_uPrintLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uPrintLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uPrintLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uPrintLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="_uPrintLabel.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uPrintLabel.Name" xml:space="preserve">
     <value>_uPrintLabel</value>
   </data>
@@ -4530,21 +3534,6 @@
   </data>
   <data name="&gt;&gt;_uPrintLabel.ZOrder" xml:space="preserve">
     <value>52</value>
-  </data>
-  <data name="_uPermission.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uPermission.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uPermission.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uPermission.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="_uPermission.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uPermission.Name" xml:space="preserve">
     <value>_uPermission</value>
@@ -4558,21 +3547,6 @@
   <data name="&gt;&gt;_uPermission.ZOrder" xml:space="preserve">
     <value>53</value>
   </data>
-  <data name="_uContractList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uContractList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uContractList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uContractList.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="_uContractList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uContractList.Name" xml:space="preserve">
     <value>_uContractList</value>
   </data>
@@ -4584,21 +3558,6 @@
   </data>
   <data name="&gt;&gt;_uContractList.ZOrder" xml:space="preserve">
     <value>54</value>
-  </data>
-  <data name="_uCompanyList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uCompanyList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uCompanyList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uCompanyList.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="_uCompanyList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uCompanyList.Name" xml:space="preserve">
     <value>_uCompanyList</value>
@@ -4612,21 +3571,6 @@
   <data name="&gt;&gt;_uCompanyList.ZOrder" xml:space="preserve">
     <value>55</value>
   </data>
-  <data name="_uSymptomList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uSymptomList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uSymptomList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uSymptomList.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="_uSymptomList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uSymptomList.Name" xml:space="preserve">
     <value>_uSymptomList</value>
   </data>
@@ -4638,21 +3582,6 @@
   </data>
   <data name="&gt;&gt;_uSymptomList.ZOrder" xml:space="preserve">
     <value>56</value>
-  </data>
-  <data name="_uSpecialityList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uSpecialityList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uSpecialityList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uSpecialityList.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="_uSpecialityList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uSpecialityList.Name" xml:space="preserve">
     <value>_uSpecialityList</value>
@@ -4666,21 +3595,6 @@
   <data name="&gt;&gt;_uSpecialityList.ZOrder" xml:space="preserve">
     <value>57</value>
   </data>
-  <data name="_uPatientHistory.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uPatientHistory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uPatientHistory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uPatientHistory.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="_uPatientHistory.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uPatientHistory.Name" xml:space="preserve">
     <value>_uPatientHistory</value>
   </data>
@@ -4692,21 +3606,6 @@
   </data>
   <data name="&gt;&gt;_uPatientHistory.ZOrder" xml:space="preserve">
     <value>58</value>
-  </data>
-  <data name="_uPatientList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uPatientList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uPatientList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uPatientList.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="_uPatientList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uPatientList.Name" xml:space="preserve">
     <value>_uPatientList</value>
@@ -4720,21 +3619,6 @@
   <data name="&gt;&gt;_uPatientList.ZOrder" xml:space="preserve">
     <value>59</value>
   </data>
-  <data name="_uDuplicatePatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uDuplicatePatient.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uDuplicatePatient.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uDuplicatePatient.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="_uDuplicatePatient.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uDuplicatePatient.Name" xml:space="preserve">
     <value>_uDuplicatePatient</value>
   </data>
@@ -4747,21 +3631,6 @@
   <data name="&gt;&gt;_uDuplicatePatient.ZOrder" xml:space="preserve">
     <value>60</value>
   </data>
-  <data name="_uDocStaffList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uDocStaffList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uDocStaffList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uDocStaffList.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="_uDocStaffList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="&gt;&gt;_uDocStaffList.Name" xml:space="preserve">
     <value>_uDocStaffList</value>
   </data>
@@ -4773,21 +3642,6 @@
   </data>
   <data name="&gt;&gt;_uDocStaffList.ZOrder" xml:space="preserve">
     <value>61</value>
-  </data>
-  <data name="_uServicesList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uServicesList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uServicesList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1191, 186</value>
-  </data>
-  <data name="_uServicesList.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="_uServicesList.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="&gt;&gt;_uServicesList.Name" xml:space="preserve">
     <value>_uServicesList</value>
@@ -7666,15 +6520,1986 @@
   <data name="&gt;&gt;_timerCapCuuHetTonKho.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparator62.Name" xml:space="preserve">
+    <value>toolStripSeparator62</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator62.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cauHinhKhoCapCuuToolStripMenuItem.Name" xml:space="preserve">
+    <value>cauHinhKhoCapCuuToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;cauHinhKhoCapCuuToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>MM.Dialogs.dlgBase, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
+  <data name="bar1.AccessibleDescription" xml:space="preserve">
+    <value>Danh sách bệnh nhân được khám (bar1)</value>
+  </data>
+  <data name="bar1.AccessibleName" xml:space="preserve">
+    <value>Danh sách bệnh nhân được khám</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Name" xml:space="preserve">
+    <value>dgPatient</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.Controls.DataGridViewX, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Parent" xml:space="preserve">
+    <value>panelDockContainer1</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panelDockContainer1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 23</value>
+  </data>
+  <data name="panelDockContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1189, 167</value>
+  </data>
+  <data name="panelDockContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.Name" xml:space="preserve">
+    <value>panelDockContainer1</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.PanelDockContainer, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.Parent" xml:space="preserve">
+    <value>bar1</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bar1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="dockContainerItem1.Text" xml:space="preserve">
+    <value>Danh sách bệnh nhân được khám</value>
+  </data>
+  <data name="bar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 3</value>
+  </data>
+  <data name="bar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 193</value>
+  </data>
+  <data name="bar1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="bar1.Text" xml:space="preserve">
+    <value>Danh sách bệnh nhân được khám</value>
+  </data>
+  <data name="&gt;&gt;bar1.Name" xml:space="preserve">
+    <value>bar1</value>
+  </data>
+  <data name="&gt;&gt;bar1.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.Bar, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;bar1.Parent" xml:space="preserve">
+    <value>dockSite4</value>
+  </data>
+  <data name="&gt;&gt;bar1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="fileNumDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Mã bệnh nhân</value>
+  </data>
+  <metadata name="Fullname.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Fullname.HeaderText" xml:space="preserve">
+    <value>Họ Tên</value>
+  </data>
+  <data name="Fullname.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="FullAddress.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="FullAddress.HeaderText" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="FullAddress.Width" type="System.Int32, mscorlib">
+    <value>250</value>
+  </data>
+  <metadata name="GenderAsStr.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="GenderAsStr.HeaderText" xml:space="preserve">
+    <value>Giới tính</value>
+  </data>
+  <data name="dobDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Ngày sinh</value>
+  </data>
+  <data name="dobDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="identityCardDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>CMND</value>
+  </data>
+  <data name="identityCardDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="homePhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>SĐT nhà</value>
+  </data>
+  <data name="homePhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="workPhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>SĐT làm việc</value>
+  </data>
+  <data name="workPhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>95</value>
+  </data>
+  <data name="mobileDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Số DTDĐ</value>
+  </data>
+  <data name="mobileDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="emailDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="emailDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="patientViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>852, 17</value>
+  </metadata>
+  <data name="dgPatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="dgPatient.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dgPatient.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="dgPatient.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1189, 167</value>
+  </data>
+  <data name="dgPatient.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Name" xml:space="preserve">
+    <value>dgPatient</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.Controls.DataGridViewX, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Parent" xml:space="preserve">
+    <value>panelDockContainer1</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bar2.AccessibleDescription" xml:space="preserve">
+    <value>Phòng chờ (bar2)</value>
+  </data>
+  <data name="bar2.AccessibleName" xml:space="preserve">
+    <value>Phòng chờ</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.Name" xml:space="preserve">
+    <value>_uPhongChoList</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.Type" xml:space="preserve">
+    <value>MM.Controls.uPhongChoList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.Parent" xml:space="preserve">
+    <value>panelDockContainer2</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panelDockContainer2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 23</value>
+  </data>
+  <data name="panelDockContainer2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1189, 196</value>
+  </data>
+  <data name="panelDockContainer2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer2.Name" xml:space="preserve">
+    <value>panelDockContainer2</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer2.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.PanelDockContainer, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer2.Parent" xml:space="preserve">
+    <value>bar2</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bar2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="dockContainerItem2.Text" xml:space="preserve">
+    <value>Phòng chờ</value>
+  </data>
+  <data name="bar2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 199</value>
+  </data>
+  <data name="bar2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 222</value>
+  </data>
+  <data name="bar2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="bar2.Text" xml:space="preserve">
+    <value>Phòng chờ</value>
+  </data>
+  <data name="&gt;&gt;bar2.Name" xml:space="preserve">
+    <value>bar2</value>
+  </data>
+  <data name="&gt;&gt;bar2.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.Bar, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;bar2.Parent" xml:space="preserve">
+    <value>dockSite4</value>
+  </data>
+  <data name="&gt;&gt;bar2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="_uPhongChoList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uPhongChoList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uPhongChoList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1189, 196</value>
+  </data>
+  <data name="_uPhongChoList.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.Name" xml:space="preserve">
+    <value>_uPhongChoList</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.Type" xml:space="preserve">
+    <value>MM.Controls.uPhongChoList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.Parent" xml:space="preserve">
+    <value>panelDockContainer2</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="_timerTiemNgua.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1033, 17</value>
   </metadata>
+  <data name="_uBaoCaoTonKhoCapCuu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBaoCaoTonKhoCapCuu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBaoCaoTonKhoCapCuu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBaoCaoTonKhoCapCuu.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
+  <data name="_uBaoCaoTonKhoCapCuu.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoTonKhoCapCuu.Name" xml:space="preserve">
+    <value>_uBaoCaoTonKhoCapCuu</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoTonKhoCapCuu.Type" xml:space="preserve">
+    <value>MM.Controls.uBaoCaoTonKhoCapCuu, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoTonKhoCapCuu.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoTonKhoCapCuu.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="_uBaoCaoCapCuuHetHan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBaoCaoCapCuuHetHan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBaoCaoCapCuuHetHan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBaoCaoCapCuuHetHan.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="_uBaoCaoCapCuuHetHan.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoCapCuuHetHan.Name" xml:space="preserve">
+    <value>_uBaoCaoCapCuuHetHan</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoCapCuuHetHan.Type" xml:space="preserve">
+    <value>MM.Controls.uBaoCaoCapCuuHetHan, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoCapCuuHetHan.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoCapCuuHetHan.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="_uXuatKhoCapCuuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uXuatKhoCapCuuList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uXuatKhoCapCuuList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uXuatKhoCapCuuList.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="_uXuatKhoCapCuuList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uXuatKhoCapCuuList.Name" xml:space="preserve">
+    <value>_uXuatKhoCapCuuList</value>
+  </data>
+  <data name="&gt;&gt;_uXuatKhoCapCuuList.Type" xml:space="preserve">
+    <value>MM.Controls.uXuatKhoCapCuuList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uXuatKhoCapCuuList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uXuatKhoCapCuuList.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="_uNhapKhoCapCuuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uNhapKhoCapCuuList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uNhapKhoCapCuuList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uNhapKhoCapCuuList.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="_uNhapKhoCapCuuList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uNhapKhoCapCuuList.Name" xml:space="preserve">
+    <value>_uNhapKhoCapCuuList</value>
+  </data>
+  <data name="&gt;&gt;_uNhapKhoCapCuuList.Type" xml:space="preserve">
+    <value>MM.Controls.uNhapKhoCapCuuList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uNhapKhoCapCuuList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uNhapKhoCapCuuList.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="_uKhoCapCuu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uKhoCapCuu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uKhoCapCuu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uKhoCapCuu.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="_uKhoCapCuu.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uKhoCapCuu.Name" xml:space="preserve">
+    <value>_uKhoCapCuu</value>
+  </data>
+  <data name="&gt;&gt;_uKhoCapCuu.Type" xml:space="preserve">
+    <value>MM.Controls.uKhoCapCuu, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uKhoCapCuu.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uKhoCapCuu.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="_uLichKham.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uLichKham.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uLichKham.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uLichKham.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="_uLichKham.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uLichKham.Name" xml:space="preserve">
+    <value>_uLichKham</value>
+  </data>
+  <data name="&gt;&gt;_uLichKham.Type" xml:space="preserve">
+    <value>MM.Controls.uLichKham, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uLichKham.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uLichKham.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="_uCongTacNgoaiGioList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uCongTacNgoaiGioList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uCongTacNgoaiGioList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uCongTacNgoaiGioList.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="_uCongTacNgoaiGioList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uCongTacNgoaiGioList.Name" xml:space="preserve">
+    <value>_uCongTacNgoaiGioList</value>
+  </data>
+  <data name="&gt;&gt;_uCongTacNgoaiGioList.Type" xml:space="preserve">
+    <value>MM.Controls.uCongTacNgoaiGioList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uCongTacNgoaiGioList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uCongTacNgoaiGioList.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="_uTiemNguaList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uTiemNguaList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uTiemNguaList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uTiemNguaList.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="_uTiemNguaList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uTiemNguaList.Name" xml:space="preserve">
+    <value>_uTiemNguaList</value>
+  </data>
+  <data name="&gt;&gt;_uTiemNguaList.Type" xml:space="preserve">
+    <value>MM.Controls.uTiemNguaList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uTiemNguaList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uTiemNguaList.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="_uLoaiSieuAmList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uLoaiSieuAmList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uLoaiSieuAmList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uLoaiSieuAmList.TabIndex" type="System.Int32, mscorlib">
+    <value>53</value>
+  </data>
+  <data name="_uLoaiSieuAmList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uLoaiSieuAmList.Name" xml:space="preserve">
+    <value>_uLoaiSieuAmList</value>
+  </data>
+  <data name="&gt;&gt;_uLoaiSieuAmList.Type" xml:space="preserve">
+    <value>MM.Controls.uLoaiSieuAmList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uLoaiSieuAmList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uLoaiSieuAmList.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="_uXetNghiem.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uXetNghiem.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uXetNghiem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uXetNghiem.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="_uXetNghiem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uXetNghiem.Name" xml:space="preserve">
+    <value>_uXetNghiem</value>
+  </data>
+  <data name="&gt;&gt;_uXetNghiem.Type" xml:space="preserve">
+    <value>MM.Controls.uXetNghiem, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uXetNghiem.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uXetNghiem.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="_uBenhNhanThanThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBenhNhanThanThuocList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBenhNhanThanThuocList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBenhNhanThanThuocList.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="_uBenhNhanThanThuocList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBenhNhanThanThuocList.Name" xml:space="preserve">
+    <value>_uBenhNhanThanThuocList</value>
+  </data>
+  <data name="&gt;&gt;_uBenhNhanThanThuocList.Type" xml:space="preserve">
+    <value>MM.Controls.uBenhNhanThanThuocList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBenhNhanThanThuocList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBenhNhanThanThuocList.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Name" xml:space="preserve">
+    <value>_uBaoCaoThuocTonKhoTheoKhoangThoiGian</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Type" xml:space="preserve">
+    <value>MM.Controls.uBaoCaoThuocTonKhoTheoKhoangThoiGian, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocTonKhoTheoKhoangThoiGian.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="_uChiTietPhieuThuDichVu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uChiTietPhieuThuDichVu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uChiTietPhieuThuDichVu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uChiTietPhieuThuDichVu.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="_uChiTietPhieuThuDichVu.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uChiTietPhieuThuDichVu.Name" xml:space="preserve">
+    <value>_uChiTietPhieuThuDichVu</value>
+  </data>
+  <data name="&gt;&gt;_uChiTietPhieuThuDichVu.Type" xml:space="preserve">
+    <value>MM.Controls.uChiTietPhieuThuDichVu, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uChiTietPhieuThuDichVu.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uChiTietPhieuThuDichVu.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="_uDiaChiCongTyList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDiaChiCongTyList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDiaChiCongTyList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uDiaChiCongTyList.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="_uDiaChiCongTyList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDiaChiCongTyList.Name" xml:space="preserve">
+    <value>_uDiaChiCongTyList</value>
+  </data>
+  <data name="&gt;&gt;_uDiaChiCongTyList.Type" xml:space="preserve">
+    <value>MM.Controls.uDiaChiCongTyList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDiaChiCongTyList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDiaChiCongTyList.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="_uTraCuuThongTinKhachHang.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uTraCuuThongTinKhachHang.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uTraCuuThongTinKhachHang.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uTraCuuThongTinKhachHang.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="_uTraCuuThongTinKhachHang.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uTraCuuThongTinKhachHang.Name" xml:space="preserve">
+    <value>_uTraCuuThongTinKhachHang</value>
+  </data>
+  <data name="&gt;&gt;_uTraCuuThongTinKhachHang.Type" xml:space="preserve">
+    <value>MM.Controls.uTraCuuThongTinKhachHang, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uTraCuuThongTinKhachHang.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uTraCuuThongTinKhachHang.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="_uBaoCaoSoLuongKham.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBaoCaoSoLuongKham.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBaoCaoSoLuongKham.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBaoCaoSoLuongKham.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="_uBaoCaoSoLuongKham.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoSoLuongKham.Name" xml:space="preserve">
+    <value>_uBaoCaoSoLuongKham</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoSoLuongKham.Type" xml:space="preserve">
+    <value>MM.Controls.uBaoCaoSoLuongKham, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoSoLuongKham.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoSoLuongKham.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="_uDanhSachXetNghiem_CellDyn3200List.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDanhSachXetNghiem_CellDyn3200List.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDanhSachXetNghiem_CellDyn3200List.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uDanhSachXetNghiem_CellDyn3200List.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="_uDanhSachXetNghiem_CellDyn3200List.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDanhSachXetNghiem_CellDyn3200List.Name" xml:space="preserve">
+    <value>_uDanhSachXetNghiem_CellDyn3200List</value>
+  </data>
+  <data name="&gt;&gt;_uDanhSachXetNghiem_CellDyn3200List.Type" xml:space="preserve">
+    <value>MM.Controls.uDanhSachXetNghiem_CellDyn3200List, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDanhSachXetNghiem_CellDyn3200List.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDanhSachXetNghiem_CellDyn3200List.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="_uDanhSachXetNghiemHitachi917List.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="_uDanhSachXetNghiemHitachi917List.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDanhSachXetNghiemHitachi917List.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDanhSachXetNghiemHitachi917List.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uDanhSachXetNghiemHitachi917List.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="_uDanhSachXetNghiemHitachi917List.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDanhSachXetNghiemHitachi917List.Name" xml:space="preserve">
+    <value>_uDanhSachXetNghiemHitachi917List</value>
+  </data>
+  <data name="&gt;&gt;_uDanhSachXetNghiemHitachi917List.Type" xml:space="preserve">
+    <value>MM.Controls.uDanhSachXetNghiemHitachi917List, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDanhSachXetNghiemHitachi917List.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDanhSachXetNghiemHitachi917List.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTongHop.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTongHop.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTongHop.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTongHop.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTongHop.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiemTongHop.Name" xml:space="preserve">
+    <value>_uKetQuaXetNghiemTongHop</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiemTongHop.Type" xml:space="preserve">
+    <value>MM.Controls.uKetQuaXetNghiemTongHop, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiemTongHop.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiemTongHop.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTay.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="_uKetQuaXetNghiemTay.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiemTay.Name" xml:space="preserve">
+    <value>_uKetQuaXetNghiemTay</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiemTay.Type" xml:space="preserve">
+    <value>MM.Controls.uKetQuaXetNghiemTay, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiemTay.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiemTay.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="_uXetNghiemTay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uXetNghiemTay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uXetNghiemTay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uXetNghiemTay.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="_uXetNghiemTay.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uXetNghiemTay.Name" xml:space="preserve">
+    <value>_uXetNghiemTay</value>
+  </data>
+  <data name="&gt;&gt;_uXetNghiemTay.Type" xml:space="preserve">
+    <value>MM.Controls.uXetNghiemTay, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uXetNghiemTay.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uXetNghiemTay.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="_uBaoCaoKhachHangMuaThuoc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBaoCaoKhachHangMuaThuoc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBaoCaoKhachHangMuaThuoc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBaoCaoKhachHangMuaThuoc.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="_uBaoCaoKhachHangMuaThuoc.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoKhachHangMuaThuoc.Name" xml:space="preserve">
+    <value>_uBaoCaoKhachHangMuaThuoc</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoKhachHangMuaThuoc.Type" xml:space="preserve">
+    <value>MM.Controls.uBaoCaoKhachHangMuaThuoc, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoKhachHangMuaThuoc.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoKhachHangMuaThuoc.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_CellDyn3200.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_CellDyn3200.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_CellDyn3200.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_CellDyn3200.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_CellDyn3200.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiem_CellDyn3200.Name" xml:space="preserve">
+    <value>_uKetQuaXetNghiem_CellDyn3200</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiem_CellDyn3200.Type" xml:space="preserve">
+    <value>MM.Controls.uKetQuaXetNghiem_CellDyn3200, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiem_CellDyn3200.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiem_CellDyn3200.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_Hitachi917.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_Hitachi917.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_Hitachi917.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_Hitachi917.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="_uKetQuaXetNghiem_Hitachi917.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiem_Hitachi917.Name" xml:space="preserve">
+    <value>_uKetQuaXetNghiem_Hitachi917</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiem_Hitachi917.Type" xml:space="preserve">
+    <value>MM.Controls.uKetQuaXetNghiem_Hitachi917, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiem_Hitachi917.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uKetQuaXetNghiem_Hitachi917.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="_uBookingList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBookingList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBookingList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBookingList.TabIndex" type="System.Int32, mscorlib">
+    <value>38</value>
+  </data>
+  <data name="_uBookingList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBookingList.Name" xml:space="preserve">
+    <value>_uBookingList</value>
+  </data>
+  <data name="&gt;&gt;_uBookingList.Type" xml:space="preserve">
+    <value>MM.Controls.uBookingList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBookingList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBookingList.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="_uNhatKyLienHeCongTy.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uNhatKyLienHeCongTy.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uNhatKyLienHeCongTy.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uNhatKyLienHeCongTy.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="_uNhatKyLienHeCongTy.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uNhatKyLienHeCongTy.Name" xml:space="preserve">
+    <value>_uNhatKyLienHeCongTy</value>
+  </data>
+  <data name="&gt;&gt;_uNhatKyLienHeCongTy.Type" xml:space="preserve">
+    <value>MM.Controls.uNhatKyLienHeCongTy, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uNhatKyLienHeCongTy.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uNhatKyLienHeCongTy.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="_uYKienKhachHangList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uYKienKhachHangList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uYKienKhachHangList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uYKienKhachHangList.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="_uYKienKhachHangList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uYKienKhachHangList.Name" xml:space="preserve">
+    <value>_uYKienKhachHangList</value>
+  </data>
+  <data name="&gt;&gt;_uYKienKhachHangList.Type" xml:space="preserve">
+    <value>MM.Controls.uYKienKhachHangList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uYKienKhachHangList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uYKienKhachHangList.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="_uHoaDonHopDongList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uHoaDonHopDongList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uHoaDonHopDongList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uHoaDonHopDongList.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="_uHoaDonHopDongList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonHopDongList.Name" xml:space="preserve">
+    <value>_uHoaDonHopDongList</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonHopDongList.Type" xml:space="preserve">
+    <value>MM.Controls.uHoaDonHopDongList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonHopDongList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonHopDongList.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="_uPhieuThuHopDongList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uPhieuThuHopDongList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uPhieuThuHopDongList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uPhieuThuHopDongList.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="_uPhieuThuHopDongList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uPhieuThuHopDongList.Name" xml:space="preserve">
+    <value>_uPhieuThuHopDongList</value>
+  </data>
+  <data name="&gt;&gt;_uPhieuThuHopDongList.Type" xml:space="preserve">
+    <value>MM.Controls.uPhieuThuHopDongList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPhieuThuHopDongList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uPhieuThuHopDongList.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="_uPhucHoiBenhNhan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uPhucHoiBenhNhan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uPhucHoiBenhNhan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uPhucHoiBenhNhan.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="_uPhucHoiBenhNhan.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uPhucHoiBenhNhan.Name" xml:space="preserve">
+    <value>_uPhucHoiBenhNhan</value>
+  </data>
+  <data name="&gt;&gt;_uPhucHoiBenhNhan.Type" xml:space="preserve">
+    <value>MM.Controls.uPhucHoiBenhNhan, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPhucHoiBenhNhan.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uPhucHoiBenhNhan.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="_uThongKeHoaDon.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uThongKeHoaDon.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uThongKeHoaDon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uThongKeHoaDon.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="_uThongKeHoaDon.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uThongKeHoaDon.Name" xml:space="preserve">
+    <value>_uThongKeHoaDon</value>
+  </data>
+  <data name="&gt;&gt;_uThongKeHoaDon.Type" xml:space="preserve">
+    <value>MM.Controls.uThongKeHoaDon, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uThongKeHoaDon.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uThongKeHoaDon.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="_uHoaDonXuatTruoc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uHoaDonXuatTruoc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uHoaDonXuatTruoc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uHoaDonXuatTruoc.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="_uHoaDonXuatTruoc.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonXuatTruoc.Name" xml:space="preserve">
+    <value>_uHoaDonXuatTruoc</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonXuatTruoc.Type" xml:space="preserve">
+    <value>MM.Controls.uHoaDonXuatTruoc, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonXuatTruoc.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonXuatTruoc.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="_uHoaDonThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uHoaDonThuocList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uHoaDonThuocList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uHoaDonThuocList.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="_uHoaDonThuocList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonThuocList.Name" xml:space="preserve">
+    <value>_uHoaDonThuocList</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonThuocList.Type" xml:space="preserve">
+    <value>MM.Controls.uHoaDonThuocList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonThuocList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uHoaDonThuocList.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="_uBaoCaoDichVuChuaXuatPhieuThu.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoDichVuChuaXuatPhieuThu.Name" xml:space="preserve">
+    <value>_uBaoCaoDichVuChuaXuatPhieuThu</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoDichVuChuaXuatPhieuThu.Type" xml:space="preserve">
+    <value>MM.Controls.uBaoCaoDichVuChuaXuatPhieuThu, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoDichVuChuaXuatPhieuThu.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoDichVuChuaXuatPhieuThu.ZOrder" xml:space="preserve">
+    <value>33</value>
+  </data>
+  <data name="_uDoanhThuTheoNgay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDoanhThuTheoNgay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDoanhThuTheoNgay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uDoanhThuTheoNgay.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="_uDoanhThuTheoNgay.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuTheoNgay.Name" xml:space="preserve">
+    <value>_uDoanhThuTheoNgay</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuTheoNgay.Type" xml:space="preserve">
+    <value>MM.Controls.uDoanhThuTheoNgay, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuTheoNgay.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuTheoNgay.ZOrder" xml:space="preserve">
+    <value>34</value>
+  </data>
+  <data name="_uGiaVonDichVuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uGiaVonDichVuList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uGiaVonDichVuList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uGiaVonDichVuList.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="_uGiaVonDichVuList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uGiaVonDichVuList.Name" xml:space="preserve">
+    <value>_uGiaVonDichVuList</value>
+  </data>
+  <data name="&gt;&gt;_uGiaVonDichVuList.Type" xml:space="preserve">
+    <value>MM.Controls.uGiaVonDichVuList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uGiaVonDichVuList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uGiaVonDichVuList.ZOrder" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <data name="_uInKetQuaKhamSucKhoeTongQuat.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uInKetQuaKhamSucKhoeTongQuat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uInKetQuaKhamSucKhoeTongQuat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uInKetQuaKhamSucKhoeTongQuat.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="_uInKetQuaKhamSucKhoeTongQuat.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uInKetQuaKhamSucKhoeTongQuat.Name" xml:space="preserve">
+    <value>_uInKetQuaKhamSucKhoeTongQuat</value>
+  </data>
+  <data name="&gt;&gt;_uInKetQuaKhamSucKhoeTongQuat.Type" xml:space="preserve">
+    <value>MM.Controls.uInKetQuaKhamSucKhoeTongQuat, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uInKetQuaKhamSucKhoeTongQuat.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uInKetQuaKhamSucKhoeTongQuat.ZOrder" xml:space="preserve">
+    <value>36</value>
+  </data>
+  <data name="_uServiceGroupList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uServiceGroupList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uServiceGroupList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uServiceGroupList.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="_uServiceGroupList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uServiceGroupList.Name" xml:space="preserve">
+    <value>_uServiceGroupList</value>
+  </data>
+  <data name="&gt;&gt;_uServiceGroupList.Type" xml:space="preserve">
+    <value>MM.Controls.uServiceGroupList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uServiceGroupList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uServiceGroupList.ZOrder" xml:space="preserve">
+    <value>37</value>
+  </data>
+  <data name="_uTrackingList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uTrackingList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uTrackingList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uTrackingList.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="_uTrackingList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uTrackingList.Name" xml:space="preserve">
+    <value>_uTrackingList</value>
+  </data>
+  <data name="&gt;&gt;_uTrackingList.Type" xml:space="preserve">
+    <value>MM.Controls.uTrackingList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uTrackingList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uTrackingList.ZOrder" xml:space="preserve">
+    <value>38</value>
+  </data>
+  <data name="_uDichVuTuTuc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDichVuTuTuc.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDichVuTuTuc.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uDichVuTuTuc.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="_uDichVuTuTuc.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDichVuTuTuc.Name" xml:space="preserve">
+    <value>_uDichVuTuTuc</value>
+  </data>
+  <data name="&gt;&gt;_uDichVuTuTuc.Type" xml:space="preserve">
+    <value>MM.Controls.uDichVuTuTuc, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDichVuTuTuc.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDichVuTuTuc.ZOrder" xml:space="preserve">
+    <value>39</value>
+  </data>
+  <data name="_uPhieuThuThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uPhieuThuThuocList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uPhieuThuThuocList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uPhieuThuThuocList.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="_uPhieuThuThuocList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uPhieuThuThuocList.Name" xml:space="preserve">
+    <value>_uPhieuThuThuocList</value>
+  </data>
+  <data name="&gt;&gt;_uPhieuThuThuocList.Type" xml:space="preserve">
+    <value>MM.Controls.uPhieuThuThuocList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPhieuThuThuocList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uPhieuThuThuocList.ZOrder" xml:space="preserve">
+    <value>40</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKho.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKho.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKho.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKho.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="_uBaoCaoThuocTonKho.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocTonKho.Name" xml:space="preserve">
+    <value>_uBaoCaoThuocTonKho</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocTonKho.Type" xml:space="preserve">
+    <value>MM.Controls.uBaoCaoThuocTonKho, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocTonKho.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocTonKho.ZOrder" xml:space="preserve">
+    <value>41</value>
+  </data>
+  <data name="_uBaoCaoThuocHetHan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uBaoCaoThuocHetHan.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uBaoCaoThuocHetHan.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uBaoCaoThuocHetHan.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="_uBaoCaoThuocHetHan.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocHetHan.Name" xml:space="preserve">
+    <value>_uBaoCaoThuocHetHan</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocHetHan.Type" xml:space="preserve">
+    <value>MM.Controls.uBaoCaoThuocHetHan, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocHetHan.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uBaoCaoThuocHetHan.ZOrder" xml:space="preserve">
+    <value>42</value>
+  </data>
+  <data name="_uToaThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uToaThuocList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uToaThuocList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uToaThuocList.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="_uToaThuocList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uToaThuocList.Name" xml:space="preserve">
+    <value>_uToaThuocList</value>
+  </data>
+  <data name="&gt;&gt;_uToaThuocList.Type" xml:space="preserve">
+    <value>MM.Controls.uToaThuocList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uToaThuocList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uToaThuocList.ZOrder" xml:space="preserve">
+    <value>43</value>
+  </data>
+  <data name="_uGiaThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uGiaThuocList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uGiaThuocList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uGiaThuocList.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="_uGiaThuocList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uGiaThuocList.Name" xml:space="preserve">
+    <value>_uGiaThuocList</value>
+  </data>
+  <data name="&gt;&gt;_uGiaThuocList.Type" xml:space="preserve">
+    <value>MM.Controls.uGiaThuocList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uGiaThuocList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uGiaThuocList.ZOrder" xml:space="preserve">
+    <value>44</value>
+  </data>
+  <data name="_uLoThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uLoThuocList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uLoThuocList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uLoThuocList.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="_uLoThuocList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uLoThuocList.Name" xml:space="preserve">
+    <value>_uLoThuocList</value>
+  </data>
+  <data name="&gt;&gt;_uLoThuocList.Type" xml:space="preserve">
+    <value>MM.Controls.uLoThuocList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uLoThuocList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uLoThuocList.ZOrder" xml:space="preserve">
+    <value>45</value>
+  </data>
+  <data name="_uNhomThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uNhomThuocList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uNhomThuocList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uNhomThuocList.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="_uNhomThuocList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uNhomThuocList.Name" xml:space="preserve">
+    <value>_uNhomThuocList</value>
+  </data>
+  <data name="&gt;&gt;_uNhomThuocList.Type" xml:space="preserve">
+    <value>MM.Controls.uNhomThuocList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uNhomThuocList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uNhomThuocList.ZOrder" xml:space="preserve">
+    <value>46</value>
+  </data>
+  <data name="_uThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uThuocList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uThuocList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uThuocList.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="_uThuocList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uThuocList.Name" xml:space="preserve">
+    <value>_uThuocList</value>
+  </data>
+  <data name="&gt;&gt;_uThuocList.Type" xml:space="preserve">
+    <value>MM.Controls.uThuocList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uThuocList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uThuocList.ZOrder" xml:space="preserve">
+    <value>47</value>
+  </data>
+  <data name="_uDichVuHopDong.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDichVuHopDong.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDichVuHopDong.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uDichVuHopDong.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="_uDichVuHopDong.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDichVuHopDong.Name" xml:space="preserve">
+    <value>_uDichVuHopDong</value>
+  </data>
+  <data name="&gt;&gt;_uDichVuHopDong.Type" xml:space="preserve">
+    <value>MM.Controls.uDichVuHopDong, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDichVuHopDong.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDichVuHopDong.ZOrder" xml:space="preserve">
+    <value>48</value>
+  </data>
+  <data name="_uDoanhThuNhanVien.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDoanhThuNhanVien.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDoanhThuNhanVien.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uDoanhThuNhanVien.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="_uDoanhThuNhanVien.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuNhanVien.Name" xml:space="preserve">
+    <value>_uDoanhThuNhanVien</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuNhanVien.Type" xml:space="preserve">
+    <value>MM.Controls.uDoanhThuNhanVien, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuNhanVien.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDoanhThuNhanVien.ZOrder" xml:space="preserve">
+    <value>49</value>
+  </data>
+  <data name="_uInvoiceList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uInvoiceList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uInvoiceList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uInvoiceList.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="_uInvoiceList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uInvoiceList.Name" xml:space="preserve">
+    <value>_uInvoiceList</value>
+  </data>
+  <data name="&gt;&gt;_uInvoiceList.Type" xml:space="preserve">
+    <value>MM.Controls.uInvoiceList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uInvoiceList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uInvoiceList.ZOrder" xml:space="preserve">
+    <value>50</value>
+  </data>
+  <data name="_uReceiptList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uReceiptList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uReceiptList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uReceiptList.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="_uReceiptList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uReceiptList.Name" xml:space="preserve">
+    <value>_uReceiptList</value>
+  </data>
+  <data name="&gt;&gt;_uReceiptList.Type" xml:space="preserve">
+    <value>MM.Controls.uReceiptList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uReceiptList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uReceiptList.ZOrder" xml:space="preserve">
+    <value>51</value>
+  </data>
+  <data name="_uPrintLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uPrintLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uPrintLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uPrintLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="_uPrintLabel.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uPrintLabel.Name" xml:space="preserve">
+    <value>_uPrintLabel</value>
+  </data>
+  <data name="&gt;&gt;_uPrintLabel.Type" xml:space="preserve">
+    <value>MM.Controls.uPrintLabel, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPrintLabel.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uPrintLabel.ZOrder" xml:space="preserve">
+    <value>52</value>
+  </data>
+  <data name="_uPermission.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uPermission.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uPermission.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uPermission.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="_uPermission.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uPermission.Name" xml:space="preserve">
+    <value>_uPermission</value>
+  </data>
+  <data name="&gt;&gt;_uPermission.Type" xml:space="preserve">
+    <value>MM.Controls.uPermission, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPermission.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uPermission.ZOrder" xml:space="preserve">
+    <value>53</value>
+  </data>
+  <data name="_uContractList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uContractList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uContractList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uContractList.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="_uContractList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uContractList.Name" xml:space="preserve">
+    <value>_uContractList</value>
+  </data>
+  <data name="&gt;&gt;_uContractList.Type" xml:space="preserve">
+    <value>MM.Controls.uContractList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uContractList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uContractList.ZOrder" xml:space="preserve">
+    <value>54</value>
+  </data>
+  <data name="_uCompanyList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uCompanyList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uCompanyList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uCompanyList.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="_uCompanyList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uCompanyList.Name" xml:space="preserve">
+    <value>_uCompanyList</value>
+  </data>
+  <data name="&gt;&gt;_uCompanyList.Type" xml:space="preserve">
+    <value>MM.Controls.uCompanyList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uCompanyList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uCompanyList.ZOrder" xml:space="preserve">
+    <value>55</value>
+  </data>
+  <data name="_uSymptomList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uSymptomList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uSymptomList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uSymptomList.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="_uSymptomList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uSymptomList.Name" xml:space="preserve">
+    <value>_uSymptomList</value>
+  </data>
+  <data name="&gt;&gt;_uSymptomList.Type" xml:space="preserve">
+    <value>MM.Controls.uSymptomList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uSymptomList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uSymptomList.ZOrder" xml:space="preserve">
+    <value>56</value>
+  </data>
+  <data name="_uSpecialityList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uSpecialityList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uSpecialityList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uSpecialityList.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="_uSpecialityList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uSpecialityList.Name" xml:space="preserve">
+    <value>_uSpecialityList</value>
+  </data>
+  <data name="&gt;&gt;_uSpecialityList.Type" xml:space="preserve">
+    <value>MM.Controls.uSpecialityList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uSpecialityList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uSpecialityList.ZOrder" xml:space="preserve">
+    <value>57</value>
+  </data>
+  <data name="_uPatientHistory.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uPatientHistory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uPatientHistory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uPatientHistory.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="_uPatientHistory.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uPatientHistory.Name" xml:space="preserve">
+    <value>_uPatientHistory</value>
+  </data>
+  <data name="&gt;&gt;_uPatientHistory.Type" xml:space="preserve">
+    <value>MM.Controls.uPatientHistory, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPatientHistory.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uPatientHistory.ZOrder" xml:space="preserve">
+    <value>58</value>
+  </data>
+  <data name="_uPatientList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uPatientList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uPatientList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uPatientList.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="_uPatientList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uPatientList.Name" xml:space="preserve">
+    <value>_uPatientList</value>
+  </data>
+  <data name="&gt;&gt;_uPatientList.Type" xml:space="preserve">
+    <value>MM.Controls.uPatientList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPatientList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uPatientList.ZOrder" xml:space="preserve">
+    <value>59</value>
+  </data>
+  <data name="_uDuplicatePatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDuplicatePatient.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDuplicatePatient.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uDuplicatePatient.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="_uDuplicatePatient.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDuplicatePatient.Name" xml:space="preserve">
+    <value>_uDuplicatePatient</value>
+  </data>
+  <data name="&gt;&gt;_uDuplicatePatient.Type" xml:space="preserve">
+    <value>MM.Controls.uDuplicatePatient, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDuplicatePatient.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDuplicatePatient.ZOrder" xml:space="preserve">
+    <value>60</value>
+  </data>
+  <data name="_uDocStaffList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uDocStaffList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uDocStaffList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uDocStaffList.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="_uDocStaffList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uDocStaffList.Name" xml:space="preserve">
+    <value>_uDocStaffList</value>
+  </data>
+  <data name="&gt;&gt;_uDocStaffList.Type" xml:space="preserve">
+    <value>MM.Controls.uDocStaffList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uDocStaffList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uDocStaffList.ZOrder" xml:space="preserve">
+    <value>61</value>
+  </data>
+  <data name="_uServicesList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uServicesList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uServicesList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uServicesList.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="_uServicesList.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uServicesList.Name" xml:space="preserve">
+    <value>_uServicesList</value>
+  </data>
+  <data name="&gt;&gt;_uServicesList.Type" xml:space="preserve">
+    <value>MM.Controls.uServicesList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uServicesList.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uServicesList.ZOrder" xml:space="preserve">
+    <value>62</value>
+  </data>
   <metadata name="_timerCheckAlert.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1116, 17</value>
   </metadata>

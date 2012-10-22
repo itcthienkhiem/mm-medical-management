@@ -144,6 +144,12 @@ namespace MM
                     obj = Configuration.GetValues(Const.AlertDayKey);
                     if (obj != null) Global.AlertDays = Convert.ToInt32(obj);
 
+                    obj = Configuration.GetValues(Const.AlertSoNgayHetHanCapCuuKey);
+                    if (obj != null) Global.AlertSoNgayHetHanCapCuu = Convert.ToInt32(obj);
+
+                    obj = Configuration.GetValues(Const.AlertSoLuongHetTonKhoCapCuuKey);
+                    if (obj != null) Global.AlertSoLuongHetTonKhoCapCuu = Convert.ToInt32(obj);
+
                     if (!Global.ConnectionInfo.TestConnection())
                     {
                         dlgDatabaseConfig dlg = new dlgDatabaseConfig();
@@ -361,6 +367,8 @@ namespace MM
             Configuration.SetValues(Const.FTPPasswordKey, password);
 
             Configuration.SetValues(Const.AlertDayKey, Global.AlertDays);
+            Configuration.SetValues(Const.AlertSoLuongHetTonKhoCapCuuKey, Global.AlertSoLuongHetTonKhoCapCuu);
+            Configuration.SetValues(Const.AlertSoNgayHetHanCapCuuKey, Global.AlertSoNgayHetHanCapCuu);
 
             Configuration.SaveData(Global.AppConfig);
         }

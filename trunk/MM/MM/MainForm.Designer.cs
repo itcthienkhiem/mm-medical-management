@@ -32,15 +32,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainToolbar = new System.Windows.Forms.ToolStrip();
             this.tbLogin = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -315,6 +315,8 @@
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerCapCuuHetHSD = new System.Windows.Forms.Timer(this.components);
             this._timerCapCuuHetTonKho = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator62 = new System.Windows.Forms.ToolStripSeparator();
+            this.cauHinhKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1464,7 +1466,9 @@
             this.xuatKhoCapCuuToolStripMenuItem,
             this.toolStripSeparator61,
             this.baoCaoCapCuuHetHanToolStripMenuItem,
-            this.baoCaoTonKhoCapCuuToolStripMenuItem});
+            this.baoCaoTonKhoCapCuuToolStripMenuItem,
+            this.toolStripSeparator62,
+            this.cauHinhKhoCapCuuToolStripMenuItem});
             resources.ApplyResources(this.khoCapCuuToolStripMenuItem, "khoCapCuuToolStripMenuItem");
             this.khoCapCuuToolStripMenuItem.Name = "khoCapCuuToolStripMenuItem";
             // 
@@ -1752,14 +1756,14 @@
             this.dgPatient.AllowUserToDeleteRows = false;
             this.dgPatient.AllowUserToOrderColumns = true;
             this.dgPatient.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNumDataGridViewTextBoxColumn,
@@ -1773,14 +1777,14 @@
             this.mobileDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
             this.dgPatient.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle18;
             resources.ApplyResources(this.dgPatient, "dgPatient");
             this.dgPatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPatient.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -1794,8 +1798,8 @@
             // fileNumDataGridViewTextBoxColumn
             // 
             this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
             resources.ApplyResources(this.fileNumDataGridViewTextBoxColumn, "fileNumDataGridViewTextBoxColumn");
             this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
             this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1817,8 +1821,8 @@
             // GenderAsStr
             // 
             this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle12;
             resources.ApplyResources(this.GenderAsStr, "GenderAsStr");
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
@@ -1826,9 +1830,9 @@
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = null;
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.NullValue = null;
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
             resources.ApplyResources(this.dobDataGridViewTextBoxColumn, "dobDataGridViewTextBoxColumn");
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1836,8 +1840,8 @@
             // identityCardDataGridViewTextBoxColumn
             // 
             this.identityCardDataGridViewTextBoxColumn.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
             resources.ApplyResources(this.identityCardDataGridViewTextBoxColumn, "identityCardDataGridViewTextBoxColumn");
             this.identityCardDataGridViewTextBoxColumn.Name = "identityCardDataGridViewTextBoxColumn";
             this.identityCardDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1845,8 +1849,8 @@
             // homePhoneDataGridViewTextBoxColumn
             // 
             this.homePhoneDataGridViewTextBoxColumn.DataPropertyName = "HomePhone";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle15;
             resources.ApplyResources(this.homePhoneDataGridViewTextBoxColumn, "homePhoneDataGridViewTextBoxColumn");
             this.homePhoneDataGridViewTextBoxColumn.Name = "homePhoneDataGridViewTextBoxColumn";
             this.homePhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1854,8 +1858,8 @@
             // workPhoneDataGridViewTextBoxColumn
             // 
             this.workPhoneDataGridViewTextBoxColumn.DataPropertyName = "WorkPhone";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle16;
             resources.ApplyResources(this.workPhoneDataGridViewTextBoxColumn, "workPhoneDataGridViewTextBoxColumn");
             this.workPhoneDataGridViewTextBoxColumn.Name = "workPhoneDataGridViewTextBoxColumn";
             this.workPhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1863,8 +1867,8 @@
             // mobileDataGridViewTextBoxColumn
             // 
             this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
             resources.ApplyResources(this.mobileDataGridViewTextBoxColumn, "mobileDataGridViewTextBoxColumn");
             this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
             this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2386,6 +2390,18 @@
             this._timerCapCuuHetTonKho.Interval = 1400;
             this._timerCapCuuHetTonKho.Tick += new System.EventHandler(this._timerCapCuuHetTonKho_Tick);
             // 
+            // toolStripSeparator62
+            // 
+            this.toolStripSeparator62.Name = "toolStripSeparator62";
+            resources.ApplyResources(this.toolStripSeparator62, "toolStripSeparator62");
+            // 
+            // cauHinhKhoCapCuuToolStripMenuItem
+            // 
+            this.cauHinhKhoCapCuuToolStripMenuItem.Name = "cauHinhKhoCapCuuToolStripMenuItem";
+            resources.ApplyResources(this.cauHinhKhoCapCuuToolStripMenuItem, "cauHinhKhoCapCuuToolStripMenuItem");
+            this.cauHinhKhoCapCuuToolStripMenuItem.Tag = "CauHinhKhoCapCuu";
+            this.cauHinhKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2703,6 +2719,8 @@
         private System.Windows.Forms.ToolStripStatusLabel statusCapCuuHetHan;
         private System.Windows.Forms.Timer _timerCapCuuHetHSD;
         private System.Windows.Forms.Timer _timerCapCuuHetTonKho;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator62;
+        private System.Windows.Forms.ToolStripMenuItem cauHinhKhoCapCuuToolStripMenuItem;
 
     }
 }
