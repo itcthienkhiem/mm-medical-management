@@ -40,23 +40,29 @@ namespace MM.Bussiness
         public static Result CheckKhoCapCuuHetHan()
         {
             Result result = new Result();
-            MMOverride db = null;
+
             try
             {
                 DateTime dt = DateTime.Now;
                 dt = dt.AddDays(-Global.AlertSoNgayHetHanCapCuu);
-                DateTime dtNow = DateTime.Now;
 
-                db = new MMOverride();
-                KhoCapCuu khoCapCuu = (from t in db.KhoCapCuus
-                                       join l in db.NhapKhoCapCuus on t.KhoCapCuuGUID equals l.KhoCapCuuGUID
-                                       where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
-                                       l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 && (
-                                       new DateTime(l.NgayHetHan.Value.Year, l.NgayHetHan.Value.Month, l.NgayHetHan.Value.Day) <= dt ||
-                                       new DateTime(l.NgayHetHan.Value.Year, l.NgayHetHan.Value.Month, l.NgayHetHan.Value.Day) <= dtNow)
-                                       select t).FirstOrDefault();
+                string query = string.Format("SELECT TOP 1 N.* FROM KhoCapCuu K, NhapKhoCapCuu N WHERE K.KhoCapCuuGUID = N.KhoCapCuuGUID AND K.Status = 0 AND N.Status = 0 AND N.SoLuongNhap * N.SoLuongQuiDoi - N.SoLuongXuat > 0 AND  DATEDIFF(day, '{0}', NgayHetHan) <= {1}",
+                    dt.ToString("yyyy-MM-dd"), Global.AlertSoNgayHetHanCapCuu);
 
-                result.QueryResult = khoCapCuu != null ? true : false;
+                result = ExcuteQuery(query);
+                if (!result.IsOK)
+                {
+                    result.QueryResult = false;
+                    return result;
+                }
+
+                DataTable dtResult = result.QueryResult as DataTable;
+                if (dtResult != null && dtResult.Rows.Count > 0)
+                    result.QueryResult = true;
+                else
+                    result.QueryResult = false;
+
+                return result;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -67,14 +73,6 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
-            }
-            finally
-            {
-                if (db != null)
-                {
-                    db.Dispose();
-                    db = null;
-                }
             }
 
             return result;
