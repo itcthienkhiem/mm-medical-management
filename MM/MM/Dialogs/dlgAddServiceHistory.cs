@@ -167,7 +167,18 @@ namespace MM.Dialogs
             //DocStaff
             List<byte> staffTypes = new List<byte>();
             if (_staffType != StaffType.None)
-                staffTypes.Add((byte)_staffType);
+            {
+                if (_staffType == StaffType.BacSi)
+                {
+                    staffTypes.Add((byte)StaffType.BacSi);
+                    staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+                    staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+                    staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
+                    staffTypes.Add((byte)StaffType.BacSiSieuAm);
+                }
+                else
+                    staffTypes.Add((byte)_staffType);
+            }
             else
             {
                 staffTypes.Add((byte)StaffType.BacSi);
