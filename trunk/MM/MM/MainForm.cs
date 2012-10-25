@@ -2586,6 +2586,7 @@ namespace MM
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Utility.XoaThongBaoTemp();
             if (_flag)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn thoát khỏi chương trình ?") == System.Windows.Forms.DialogResult.Yes)
