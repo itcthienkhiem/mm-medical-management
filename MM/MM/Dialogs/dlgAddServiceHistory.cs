@@ -175,6 +175,7 @@ namespace MM.Dialogs
                     staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
                     staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
                     staffTypes.Add((byte)StaffType.BacSiSieuAm);
+                    staffTypes.Add((byte)StaffType.XetNghiem);
                 }
                 else
                     staffTypes.Add((byte)_staffType);
