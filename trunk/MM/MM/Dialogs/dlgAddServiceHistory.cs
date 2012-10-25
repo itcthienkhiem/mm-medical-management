@@ -303,7 +303,14 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (chkBSCD.Checked && cboBacSiChiDinh.Text == string.Empty)
+            if (cboDocStaff.SelectedValue == null || cboDocStaff.Text == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ thực hiện.", IconType.Information);
+                cboDocStaff.Focus();
+                return false;
+            }
+
+            if (chkBSCD.Checked && (cboBacSiChiDinh.SelectedValue == null || cboBacSiChiDinh.Text == string.Empty))
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ chỉ định", IconType.Information);
                 cboBacSiChiDinh.Focus();
