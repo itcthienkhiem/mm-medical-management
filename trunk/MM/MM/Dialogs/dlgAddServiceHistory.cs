@@ -296,7 +296,7 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (cboService.Text == null || cboService.Text == string.Empty)
+            if (cboService.SelectedValue == null || cboService.Text == null || cboService.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn dịch vụ.", IconType.Information);
                 cboService.Focus();
