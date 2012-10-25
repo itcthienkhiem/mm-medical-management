@@ -851,6 +851,12 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddThongBao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddThongBao.Designer.cs">
+      <DependentUpon>dlgAddThongBao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgCauHinhKhoCapCuu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1744,6 +1750,9 @@
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddThongBao.resx">
+      <DependentUpon>dlgAddThongBao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgCauHinhKhoCapCuu.resx">
       <DependentUpon>dlgCauHinhKhoCapCuu.cs</DependentUpon>
     </EmbeddedResource>
@@ -2113,6 +2122,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Speciality.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spThuocTonKhoResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ThongBaoView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ThuocResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TiemNguaView.datasource" />

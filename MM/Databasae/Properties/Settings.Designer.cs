@@ -98,5 +98,16 @@ namespace MM.Databasae.Properties {
                 return ((string)(this["MMConnectionString5"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VUNGUYENXP32;Initial Catalog=MM;Persist Security Info=True;User ID=sa" +
+            "")]
+        public string MMConnectionString6 {
+            get {
+                return ((string)(this["MMConnectionString6"]));
+            }
+        }
     }
 }
