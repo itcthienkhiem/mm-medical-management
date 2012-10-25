@@ -1305,6 +1305,24 @@ namespace MM.Common
                 throw e;
             }
         }
+
+        public static void XoaThongBaoTemp()
+        {
+            string path = string.Format("{0}\\Temp", AppDomain.CurrentDomain.BaseDirectory);
+            string[] fileNames = Directory.GetFiles(path);
+            foreach (string fn in fileNames)
+            {
+                if (fn.IndexOf("ThongBao") < 0) continue;
+                try
+                {
+                    File.Delete(fn);
+                }
+                catch
+                {
+                }
+            }
+            
+        }
     }
 }
 

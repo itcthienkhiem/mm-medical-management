@@ -163,14 +163,18 @@ namespace MM.Controls
 
         private void ExecuteThongBao(byte[] buff)
         {
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
-            dlg.FileName = string.Format("ThongBao_{0}.xls", DateTime.Now.ToString("yyyy_MM_dd"));
-            if (dlg.ShowDialog(this) == DialogResult.OK)
-            {
-                Utility.SaveFileFromBytes(dlg.FileName, buff);
-                Utility.ExecuteFile(dlg.FileName);
-            }
+            //SaveFileDialog dlg = new SaveFileDialog();
+            //dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            //dlg.FileName = string.Format("ThongBao_{0}.xls", DateTime.Now.ToString("yyyy_MM_dd"));
+            //if (dlg.ShowDialog(this) == DialogResult.OK)
+            //{
+            //    Utility.SaveFileFromBytes(dlg.FileName, buff);
+            //    Utility.ExecuteFile(dlg.FileName);
+            //}
+
+            string fileName = string.Format("{0}\\Temp\\ThongBao_{1}.xls", Application.StartupPath, DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
+            Utility.SaveFileFromBytes(fileName, buff);
+            Utility.ExecuteFile(fileName);
         }
 
         private void OnXemThongBao()
