@@ -288,7 +288,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString5, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1426,6 +1426,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ThongTinKhachHang>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ThongBaoView> ThongBaoViews
+		{
+			get
+			{
+				return this.GetTable<ThongBaoView>();
 			}
 		}
 		
@@ -66364,13 +66372,13 @@ namespace MM.Databasae
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ThongBao")]
-	public partial class ThongBao : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ThongBaoView")]
+	public partial class ThongBaoView
 	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
 		private System.Guid _ThongBaoGUID;
+		
+		private string _TenThongBao;
 		
 		private System.Data.Linq.Binary _ThongBaoBuff;
 		
@@ -66400,12 +66408,407 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
+		private string _DobStr;
+		
+		private string _GenderAsStr;
+		
+		private string _FullName;
+		
+		private string _Path;
+		
+		private string _GhiChu;
+		
+		public ThongBaoView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ThongBaoGUID
+		{
+			get
+			{
+				return this._ThongBaoGUID;
+			}
+			set
+			{
+				if ((this._ThongBaoGUID != value))
+				{
+					this._ThongBaoGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenThongBao", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string TenThongBao
+		{
+			get
+			{
+				return this._TenThongBao;
+			}
+			set
+			{
+				if ((this._TenThongBao != value))
+				{
+					this._TenThongBao = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoBuff", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ThongBaoBuff
+		{
+			get
+			{
+				return this._ThongBaoBuff;
+			}
+			set
+			{
+				if ((this._ThongBaoBuff != value))
+				{
+					this._ThongBaoBuff = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayDuyet1", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayDuyet1
+		{
+			get
+			{
+				return this._NgayDuyet1;
+			}
+			set
+			{
+				if ((this._NgayDuyet1 != value))
+				{
+					this._NgayDuyet1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoBuff1", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ThongBaoBuff1
+		{
+			get
+			{
+				return this._ThongBaoBuff1;
+			}
+			set
+			{
+				if ((this._ThongBaoBuff1 != value))
+				{
+					this._ThongBaoBuff1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayDuyet2", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayDuyet2
+		{
+			get
+			{
+				return this._NgayDuyet2;
+			}
+			set
+			{
+				if ((this._NgayDuyet2 != value))
+				{
+					this._NgayDuyet2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoBuff2", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ThongBaoBuff2
+		{
+			get
+			{
+				return this._ThongBaoBuff2;
+			}
+			set
+			{
+				if ((this._ThongBaoBuff2 != value))
+				{
+					this._ThongBaoBuff2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayDuyet3", DbType="DateTime")]
+		public System.Nullable<System.DateTime> NgayDuyet3
+		{
+			get
+			{
+				return this._NgayDuyet3;
+			}
+			set
+			{
+				if ((this._NgayDuyet3 != value))
+				{
+					this._NgayDuyet3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThongBaoBuff3", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ThongBaoBuff3
+		{
+			get
+			{
+				return this._ThongBaoBuff3;
+			}
+			set
+			{
+				if ((this._ThongBaoBuff3 != value))
+				{
+					this._ThongBaoBuff3 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this._UpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this._DeletedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DobStr", DbType="NVarChar(50)")]
+		public string DobStr
+		{
+			get
+			{
+				return this._DobStr;
+			}
+			set
+			{
+				if ((this._DobStr != value))
+				{
+					this._DobStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenderAsStr", DbType="NVarChar(3)")]
+		public string GenderAsStr
+		{
+			get
+			{
+				return this._GenderAsStr;
+			}
+			set
+			{
+				if ((this._GenderAsStr != value))
+				{
+					this._GenderAsStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255)")]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Path", DbType="NVarChar(500)")]
+		public string Path
+		{
+			get
+			{
+				return this._Path;
+			}
+			set
+			{
+				if ((this._Path != value))
+				{
+					this._Path = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(500)")]
+		public string GhiChu
+		{
+			get
+			{
+				return this._GhiChu;
+			}
+			set
+			{
+				if ((this._GhiChu != value))
+				{
+					this._GhiChu = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ThongBao")]
+	public partial class ThongBao : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ThongBaoGUID;
+		
+		private string _TenThongBao;
+		
+		private System.Data.Linq.Binary _ThongBaoBuff;
+		
+		private System.Nullable<System.DateTime> _NgayDuyet1;
+		
+		private System.Data.Linq.Binary _ThongBaoBuff1;
+		
+		private System.Nullable<System.DateTime> _NgayDuyet2;
+		
+		private System.Data.Linq.Binary _ThongBaoBuff2;
+		
+		private System.Nullable<System.DateTime> _NgayDuyet3;
+		
+		private System.Data.Linq.Binary _ThongBaoBuff3;
+		
+		private string _Path;
+		
+		private string _GhiChu;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnThongBaoGUIDChanging(System.Guid value);
     partial void OnThongBaoGUIDChanged();
+    partial void OnTenThongBaoChanging(string value);
+    partial void OnTenThongBaoChanged();
     partial void OnThongBaoBuffChanging(System.Data.Linq.Binary value);
     partial void OnThongBaoBuffChanged();
     partial void OnNgayDuyet1Changing(System.Nullable<System.DateTime> value);
@@ -66420,6 +66823,10 @@ namespace MM.Databasae
     partial void OnNgayDuyet3Changed();
     partial void OnThongBaoBuff3Changing(System.Data.Linq.Binary value);
     partial void OnThongBaoBuff3Changed();
+    partial void OnPathChanging(string value);
+    partial void OnPathChanged();
+    partial void OnGhiChuChanging(string value);
+    partial void OnGhiChuChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedDateChanged();
     partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
@@ -66457,6 +66864,26 @@ namespace MM.Databasae
 					this._ThongBaoGUID = value;
 					this.SendPropertyChanged("ThongBaoGUID");
 					this.OnThongBaoGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenThongBao", DbType="NVarChar(500) NOT NULL", CanBeNull=false)]
+		public string TenThongBao
+		{
+			get
+			{
+				return this._TenThongBao;
+			}
+			set
+			{
+				if ((this._TenThongBao != value))
+				{
+					this.OnTenThongBaoChanging(value);
+					this.SendPropertyChanging();
+					this._TenThongBao = value;
+					this.SendPropertyChanged("TenThongBao");
+					this.OnTenThongBaoChanged();
 				}
 			}
 		}
@@ -66597,6 +67024,46 @@ namespace MM.Databasae
 					this._ThongBaoBuff3 = value;
 					this.SendPropertyChanged("ThongBaoBuff3");
 					this.OnThongBaoBuff3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Path", DbType="NVarChar(500)")]
+		public string Path
+		{
+			get
+			{
+				return this._Path;
+			}
+			set
+			{
+				if ((this._Path != value))
+				{
+					this.OnPathChanging(value);
+					this.SendPropertyChanging();
+					this._Path = value;
+					this.SendPropertyChanged("Path");
+					this.OnPathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(500)")]
+		public string GhiChu
+		{
+			get
+			{
+				return this._GhiChu;
+			}
+			set
+			{
+				if ((this._GhiChu != value))
+				{
+					this.OnGhiChuChanging(value);
+					this.SendPropertyChanging();
+					this._GhiChu = value;
+					this.SendPropertyChanged("GhiChu");
+					this.OnGhiChuChanged();
 				}
 			}
 		}
