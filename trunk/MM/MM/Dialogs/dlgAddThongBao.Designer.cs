@@ -40,6 +40,9 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNgayDuyet1 = new System.Windows.Forms.TextBox();
+            this.txtNgayDuyet2 = new System.Windows.Forms.TextBox();
+            this.txtNgayDuyet3 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,7 +92,7 @@
             // chkDuyetLan1
             // 
             this.chkDuyetLan1.AutoSize = true;
-            this.chkDuyetLan1.Location = new System.Drawing.Point(109, 68);
+            this.chkDuyetLan1.Location = new System.Drawing.Point(12, 67);
             this.chkDuyetLan1.Name = "chkDuyetLan1";
             this.chkDuyetLan1.Size = new System.Drawing.Size(80, 17);
             this.chkDuyetLan1.TabIndex = 5;
@@ -99,7 +102,8 @@
             // chkDuyetLan2
             // 
             this.chkDuyetLan2.AutoSize = true;
-            this.chkDuyetLan2.Location = new System.Drawing.Point(195, 68);
+            this.chkDuyetLan2.Enabled = false;
+            this.chkDuyetLan2.Location = new System.Drawing.Point(12, 91);
             this.chkDuyetLan2.Name = "chkDuyetLan2";
             this.chkDuyetLan2.Size = new System.Drawing.Size(80, 17);
             this.chkDuyetLan2.TabIndex = 6;
@@ -109,7 +113,8 @@
             // chkDuyetLan3
             // 
             this.chkDuyetLan3.AutoSize = true;
-            this.chkDuyetLan3.Location = new System.Drawing.Point(281, 68);
+            this.chkDuyetLan3.Enabled = false;
+            this.chkDuyetLan3.Location = new System.Drawing.Point(12, 115);
             this.chkDuyetLan3.Name = "chkDuyetLan3";
             this.chkDuyetLan3.Size = new System.Drawing.Size(80, 17);
             this.chkDuyetLan3.TabIndex = 7;
@@ -121,7 +126,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(261, 104);
+            this.btnCancel.Location = new System.Drawing.Point(261, 151);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 15;
@@ -133,7 +138,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(182, 104);
+            this.btnOK.Location = new System.Drawing.Point(182, 151);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 14;
@@ -142,6 +147,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtNgayDuyet3);
+            this.groupBox1.Controls.Add(this.txtNgayDuyet2);
+            this.groupBox1.Controls.Add(this.txtNgayDuyet1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtTenThongBao);
             this.groupBox1.Controls.Add(this.label2);
@@ -152,9 +160,33 @@
             this.groupBox1.Controls.Add(this.chkDuyetLan1);
             this.groupBox1.Location = new System.Drawing.Point(8, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(503, 96);
+            this.groupBox1.Size = new System.Drawing.Size(503, 143);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // txtNgayDuyet1
+            // 
+            this.txtNgayDuyet1.Enabled = false;
+            this.txtNgayDuyet1.Location = new System.Drawing.Point(109, 65);
+            this.txtNgayDuyet1.Name = "txtNgayDuyet1";
+            this.txtNgayDuyet1.Size = new System.Drawing.Size(165, 20);
+            this.txtNgayDuyet1.TabIndex = 8;
+            // 
+            // txtNgayDuyet2
+            // 
+            this.txtNgayDuyet2.Enabled = false;
+            this.txtNgayDuyet2.Location = new System.Drawing.Point(109, 89);
+            this.txtNgayDuyet2.Name = "txtNgayDuyet2";
+            this.txtNgayDuyet2.Size = new System.Drawing.Size(165, 20);
+            this.txtNgayDuyet2.TabIndex = 9;
+            // 
+            // txtNgayDuyet3
+            // 
+            this.txtNgayDuyet3.Enabled = false;
+            this.txtNgayDuyet3.Location = new System.Drawing.Point(109, 113);
+            this.txtNgayDuyet3.Name = "txtNgayDuyet3";
+            this.txtNgayDuyet3.Size = new System.Drawing.Size(165, 20);
+            this.txtNgayDuyet3.TabIndex = 16;
             // 
             // dlgAddThongBao
             // 
@@ -162,7 +194,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(518, 134);
+            this.ClientSize = new System.Drawing.Size(518, 181);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -195,5 +227,8 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtNgayDuyet3;
+        private System.Windows.Forms.TextBox txtNgayDuyet2;
+        private System.Windows.Forms.TextBox txtNgayDuyet1;
     }
 }

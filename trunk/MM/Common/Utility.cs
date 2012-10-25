@@ -1255,6 +1255,56 @@ namespace MM.Common
 
             return string.Empty;
         }
+
+        public static byte[] GetBytesFromFile(string fileName)
+        {
+            FileStream fs = null;
+            try
+            {
+                fs = File.OpenRead(fileName);
+                int count = (int)fs.Length;
+                byte[] buff = new byte[count];
+                fs.Read(buff, 0, count);
+                return buff;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (fs != null)
+                {
+                    fs.Close();
+                    fs = null;
+                }
+            }
+        }
+
+        public static void SaveFileFromBytes(string fileName, byte[] buff)
+        {
+            try
+            {
+                File.WriteAllBytes(fileName, buff);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static void ExecuteFile(string fileName)
+        {
+            try
+            {
+                Process.Start(fileName);
+            }
+            catch (Exception e)
+            {
+                
+                throw e;
+            }
+        }
     }
 }
 
