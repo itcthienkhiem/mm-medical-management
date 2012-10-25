@@ -188,11 +188,10 @@
             // 
             // cboBacSiChiDinh
             // 
-            this.cboBacSiChiDinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBacSiChiDinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBacSiChiDinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBacSiChiDinh.DataSource = this.docStaffViewBindingSource;
             this.cboBacSiChiDinh.DisplayMember = "Fullname";
-            this.cboBacSiChiDinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBacSiChiDinh.Enabled = false;
             this.cboBacSiChiDinh.FormattingEnabled = true;
             this.cboBacSiChiDinh.Location = new System.Drawing.Point(135, 115);
@@ -342,11 +341,10 @@
             // 
             // cboDocStaff
             // 
-            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff.DisplayMember = "Fullname";
-            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff.FormattingEnabled = true;
             this.cboDocStaff.Location = new System.Drawing.Point(135, 91);
             this.cboDocStaff.Name = "cboDocStaff";
