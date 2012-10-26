@@ -510,17 +510,20 @@ namespace MM.Exports
                     range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 4];
+                    range.NumberFormat = "@";
                     if (donGia > 0)
-                        range.Value = donGia.ToString("#,###");
+                        range.Value = Utility.ToStringFormat(donGia);//donGia.ToString("#.###");
                     else
                         range.Value = donGia.ToString();
 
+                    
                     range.HorizontalAlignment = HAlign.Right;
                     range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 5];
+                    range.NumberFormat = "@";
                     if (thanhTien > 0)
-                        range.Value = thanhTien.ToString("#,###");
+                        range.Value = Utility.ToStringFormat(thanhTien);//thanhTien.ToString("#.###");
                     else
                         range.Value = thanhTien.ToString();
 
@@ -531,8 +534,9 @@ namespace MM.Exports
                 }
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 if (totalPrice > 0)
-                    range.Value = totalPrice.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(totalPrice);//totalPrice.ToString("#.###");
                 else
                     range.Value = totalPrice.ToString();
 
@@ -544,18 +548,20 @@ namespace MM.Exports
                     range.Value = string.Format("  Thuế suất GTGT: .....%, Tiền thuế GTGT:", invoice.VAT);
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 double vat = (invoice.VAT.Value * totalPrice) / 100;
                 vat = Math.Round(vat + 0.05);
                 if (vat > 0)
-                    range.Value = vat.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(vat); //vat.ToString("#.###");
                 else
                     range.Value = vat.ToString();
 
                 rowIndex++;
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 double totalPayment = totalPrice + vat;
                 if (totalPayment > 0)
-                    range.Value = totalPayment.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(totalPayment);//totalPayment.ToString("#.###");
                 else
                     range.Value = totalPayment.ToString();
 
@@ -707,8 +713,9 @@ namespace MM.Exports
                     range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 4];
+                    range.NumberFormat = "@";
                     if (donGia > 0)
-                        range.Value = donGia.ToString("#,###");
+                        range.Value = Utility.ToStringFormat(donGia);//donGia.ToString("#,###");
                     else
                         range.Value = donGia.ToString();
 
@@ -716,8 +723,9 @@ namespace MM.Exports
                     range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 5];
+                    range.NumberFormat = "@";
                     if (thanhTien > 0)
-                        range.Value = thanhTien.ToString("#,###");
+                        range.Value = Utility.ToStringFormat(thanhTien);//thanhTien.ToString("#,###");
                     else
                         range.Value = thanhTien.ToString();
 
@@ -728,8 +736,9 @@ namespace MM.Exports
                 }
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 if (totalPrice > 0)
-                    range.Value = totalPrice.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(totalPrice);//totalPrice.ToString("#,###");
                 else
                     range.Value = totalPrice.ToString();
 
@@ -741,18 +750,20 @@ namespace MM.Exports
                     range.Value = string.Format("  Thuế suất GTGT: .....%, Tiền thuế GTGT:", hdt.VAT);
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 double vat = (hdt.VAT.Value * totalPrice) / 100;
                 vat = Math.Round(vat + 0.05);
                 if (vat > 0)
-                    range.Value = vat.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(vat);//vat.ToString("#,###");
                 else
                     range.Value = vat.ToString();
 
                 rowIndex++;
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 double totalPayment = totalPrice + vat;
                 if (totalPayment > 0)
-                    range.Value = totalPayment.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(totalPayment);//totalPayment.ToString("#,###");
                 else
                     range.Value = totalPayment.ToString();
 
@@ -904,8 +915,9 @@ namespace MM.Exports
                     range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 4];
+                    range.NumberFormat = "@";
                     if (donGia > 0)
-                        range.Value = donGia.ToString("#,###");
+                        range.Value = Utility.ToStringFormat(donGia);//donGia.ToString("#,###");
                     else
                         range.Value = donGia.ToString();
 
@@ -913,8 +925,9 @@ namespace MM.Exports
                     range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 5];
+                    range.NumberFormat = "@";
                     if (thanhTien > 0)
-                        range.Value = thanhTien.ToString("#,###");
+                        range.Value = Utility.ToStringFormat(thanhTien);//thanhTien.ToString("#,###");
                     else
                         range.Value = thanhTien.ToString();
 
@@ -925,8 +938,9 @@ namespace MM.Exports
                 }
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 if (totalPrice > 0)
-                    range.Value = totalPrice.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(totalPrice);//totalPrice.ToString("#,###");
                 else
                     range.Value = totalPrice.ToString();
 
@@ -938,18 +952,20 @@ namespace MM.Exports
                     range.Value = string.Format("  Thuế suất GTGT: .....%, Tiền thuế GTGT:", hdt.VAT);
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 double vat = (hdt.VAT.Value * totalPrice) / 100;
                 vat = Math.Round(vat + 0.05);
                 if (vat > 0)
-                    range.Value = vat.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(vat);//vat.ToString("#,###");
                 else
                     range.Value = vat.ToString();
 
                 rowIndex++;
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 double totalPayment = totalPrice + vat;
                 if (totalPayment > 0)
-                    range.Value = totalPayment.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(totalPayment);//totalPayment.ToString("#,###");
                 else
                     range.Value = totalPayment.ToString();
 
@@ -1100,8 +1116,9 @@ namespace MM.Exports
                     range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 4];
+                    range.NumberFormat = "@";
                     if (donGia > 0)
-                        range.Value = donGia.ToString("#,###");
+                        range.Value = Utility.ToStringFormat(donGia);//donGia.ToString("#,###");
                     else
                         range.Value = donGia.ToString();
 
@@ -1109,8 +1126,9 @@ namespace MM.Exports
                     range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 5];
+                    range.NumberFormat = "@";
                     if (thanhTien > 0)
-                        range.Value = thanhTien.ToString("#,###");
+                        range.Value = Utility.ToStringFormat(thanhTien);//thanhTien.ToString("#,###");
                     else
                         range.Value = thanhTien.ToString();
 
@@ -1121,8 +1139,9 @@ namespace MM.Exports
                 }
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 if (totalPrice > 0)
-                    range.Value = totalPrice.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(totalPrice);//totalPrice.ToString("#,###");
                 else
                     range.Value = totalPrice.ToString();
 
@@ -1134,18 +1153,20 @@ namespace MM.Exports
                     range.Value = string.Format("  Thuế suất GTGT: .....%, Tiền thuế GTGT:", hdt.VAT);
 
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 double vat = (hdt.VAT.Value * totalPrice) / 100;
                 vat = Math.Round(vat + 0.05);
                 if (vat > 0)
-                    range.Value = vat.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(vat);//vat.ToString("#,###");
                 else
                     range.Value = vat.ToString();
 
                 rowIndex++;
                 range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                range.NumberFormat = "@";
                 double totalPayment = totalPrice + vat;
                 if (totalPayment > 0)
-                    range.Value = totalPayment.ToString("#,###");
+                    range.Value = Utility.ToStringFormat(totalPayment);//totalPayment.ToString("#,###");
                 else
                     range.Value = totalPayment.ToString();
 
