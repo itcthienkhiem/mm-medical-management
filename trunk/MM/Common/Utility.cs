@@ -1323,6 +1323,27 @@ namespace MM.Common
             }
             
         }
+
+        public static string ToStringFormat(double value)
+        {
+            string strValue = string.Empty;
+            string s = value.ToString();
+            int count = 0;
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                strValue = s[i] + strValue;
+                count++;
+
+                if (count == 3)
+                {
+                    if (i > 0) strValue = "." + strValue;
+                    count = 0;
+                }
+            }
+
+            return strValue;
+        }
+
     }
 }
 
