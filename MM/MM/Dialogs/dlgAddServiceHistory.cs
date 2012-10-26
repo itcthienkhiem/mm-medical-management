@@ -317,9 +317,13 @@ namespace MM.Dialogs
 
             if (cboDocStaff.SelectedValue == null || cboDocStaff.Text == string.Empty)
             {
-                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ thực hiện.", IconType.Information);
-                cboDocStaff.Focus();
-                return false;
+                string serverName = cboService.Text;
+                if (serverName.ToLower().IndexOf("siêu âm") >= 0 || serverName.ToLower().IndexOf("sieu am") >= 0)
+                {
+                    MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ thực hiện.", IconType.Information);
+                    cboDocStaff.Focus();
+                    return false;
+                }
             }
 
             if (chkBSCD.Checked && (cboBacSiChiDinh.SelectedValue == null || cboBacSiChiDinh.Text == string.Empty))
@@ -383,7 +387,8 @@ namespace MM.Dialogs
                 {
                     _serviceHistory.ActivedDate = dtpkActiveDate.Value;
                     _serviceHistory.KhamTuTuc = raKhamTuTuc.Checked;
-                    if (cboDocStaff.Text != string.Empty)
+
+                    if (cboDocStaff.SelectedValue != null && cboDocStaff.Text.Trim() != string.Empty)
                         _serviceHistory.DocStaffGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
                     else
                         _serviceHistory.DocStaffGUID = null;
@@ -392,8 +397,9 @@ namespace MM.Dialogs
                         _serviceHistory.RootPatientGUID = Guid.Parse(txtChuyenNhuong.Tag.ToString());
                     else
                         _serviceHistory.RootPatientGUID = null;
-                    
+
                     _serviceHistory.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
+
                     _serviceHistory.Price = (double)numPrice.Value;
                     _serviceHistory.Discount = (double)numDiscount.Value;
 
