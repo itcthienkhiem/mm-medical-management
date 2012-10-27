@@ -44,7 +44,7 @@ namespace MM.Bussiness
             try
             {
                 DateTime dt = DateTime.Now;
-                dt = dt.AddDays(-Global.AlertSoNgayHetHanCapCuu);
+                //dt = dt.AddDays(-Global.AlertSoNgayHetHanCapCuu);
 
                 string query = string.Format("SELECT TOP 1 N.* FROM KhoCapCuu K, NhapKhoCapCuu N WHERE K.KhoCapCuuGUID = N.KhoCapCuuGUID AND K.Status = 0 AND N.Status = 0 AND N.SoLuongNhap * N.SoLuongQuiDoi - N.SoLuongXuat > 0 AND  DATEDIFF(day, '{0}', NgayHetHan) <= {1}",
                     dt.ToString("yyyy-MM-dd"), Global.AlertSoNgayHetHanCapCuu);
