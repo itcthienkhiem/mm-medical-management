@@ -23,17 +23,17 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WHERE NgayThu BETWEEN '{0}' AND '{1}' ORDER BY NgayThu DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WITH(NOLOCK) WHERE NgayThu BETWEEN '{0}' AND '{1}' ORDER BY NgayThu DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WITH(NOLOCK) WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WITH(NOLOCK) WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
                         (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
                     
@@ -42,16 +42,16 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WHERE TenBenhNhan LIKE N'%{0}%' ORDER BY NgayThu DESC", tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WITH(NOLOCK) WHERE TenBenhNhan LIKE N'%{0}%' ORDER BY NgayThu DESC", tenBenhNhan);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WHERE Status={0} AND TenBenhNhan LIKE N'%{1}%' ORDER BY NgayThu DESC", 
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WITH(NOLOCK) WHERE Status={0} AND TenBenhNhan LIKE N'%{1}%' ORDER BY NgayThu DESC", 
                         (byte)Status.Actived, tenBenhNhan);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WHERE Status={0} AND TenBenhNhan LIKE N'%{1}%' ORDER BY NgayThu DESC", 
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WITH(NOLOCK) WHERE Status={0} AND TenBenhNhan LIKE N'%{1}%' ORDER BY NgayThu DESC", 
                         (byte)Status.Deactived, tenBenhNhan);
                     }
                     
@@ -79,7 +79,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM ChiTietPhieuThuThuocView WHERE CTPTTStatus={0} AND ThuocStatus={0} AND PhieuThuThuocGUID='{1}' ORDER BY TenThuoc", 
+                string query = string.Format("SELECT * FROM ChiTietPhieuThuThuocView WITH(NOLOCK) WHERE CTPTTStatus={0} AND ThuocStatus={0} AND PhieuThuThuocGUID='{1}' ORDER BY TenThuoc", 
                     (byte)Status.Actived, phieuThuThuocGUID);
                 return ExcuteQuery(query);
             }

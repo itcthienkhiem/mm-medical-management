@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} ORDER BY NgayKham DESC",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} ORDER BY NgayKham DESC",
                         (byte)Status.Actived);
                 
 
@@ -47,10 +47,10 @@ namespace MM.Bussiness
                 string query = string.Empty;
 
                 if (isAll)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} ORDER BY NgayKham DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} ORDER BY NgayKham DESC",
                         (byte)Status.Actived);
                 else
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} AND NgayKham BETWEEN '{1}' AND '{2}' ORDER BY NgayKham DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} AND NgayKham BETWEEN '{1}' AND '{2}' ORDER BY NgayKham DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
 
                 return ExcuteQuery(query);
@@ -80,19 +80,19 @@ namespace MM.Bussiness
                 if (isAll)
                 {
                     if (docStaffGUID == Guid.Empty.ToString())
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} AND BenhNhan='{1}' ORDER BY NgayKham DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} AND BenhNhan='{1}' ORDER BY NgayKham DESC",
                         (byte)Status.Actived, patientGUID);
                     else
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} AND BenhNhan='{1}' AND BacSiKeToa='{2}' ORDER BY NgayKham DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} AND BenhNhan='{1}' AND BacSiKeToa='{2}' ORDER BY NgayKham DESC",
                         (byte)Status.Actived, patientGUID, docStaffGUID);
                 }
                 else
                 {
                     if (docStaffGUID == Guid.Empty.ToString())
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} AND BenhNhan='{1}' AND NgayKham BETWEEN '{2}' AND '{3}' ORDER BY NgayKham DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} AND BenhNhan='{1}' AND NgayKham BETWEEN '{2}' AND '{3}' ORDER BY NgayKham DESC",
                         (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     else
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WHERE Status={0} AND BenhNhan='{1}' AND BacSiKeToa='{2}' AND NgayKham BETWEEN '{3}' AND '{4}' ORDER BY NgayKham DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} AND BenhNhan='{1}' AND BacSiKeToa='{2}' AND NgayKham BETWEEN '{3}' AND '{4}' ORDER BY NgayKham DESC",
                         (byte)Status.Actived, patientGUID, docStaffGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
                 
@@ -118,7 +118,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietToaThuocView WHERE ThuocStatus={0} AND ChiTietToaThuocStatus={0} AND ToaThuocGUID='{1}' ORDER BY TenThuoc",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietToaThuocView WITH(NOLOCK) WHERE ThuocStatus={0} AND ChiTietToaThuocStatus={0} AND ToaThuocGUID='{1}' ORDER BY TenThuoc",
                     (byte)Status.Actived, toaThuocGUID);
                 return ExcuteQuery(query);
             }

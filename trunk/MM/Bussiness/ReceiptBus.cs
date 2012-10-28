@@ -23,17 +23,17 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE ReceiptDate BETWEEN '{0}' AND '{1}' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE ReceiptDate BETWEEN '{0}' AND '{1}' ORDER BY ReceiptDate DESC",
                         fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
                         (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                     }
                     
@@ -42,16 +42,16 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE FullName LIKE N'%{0}%' ORDER BY ReceiptDate DESC", tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE FullName LIKE N'%{0}%' ORDER BY ReceiptDate DESC", tenBenhNhan);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
                         (byte)Status.Actived, tenBenhNhan);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
                         (byte)Status.Deactived, tenBenhNhan);
                     }
                     
@@ -82,12 +82,12 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (isFromDateToDate)
                 {
-                    query = string.Format("SELECT * FROM dbo.ChiTietPhieuThuDichVuView WHERE Status = 0 AND ReceiptDetailStatus = 0 AND ServiceStatus = 0 AND Archived = 'False' AND ReceiptDate BETWEEN '{0}' AND '{1}' ORDER BY ReceiptDate DESC, FullName",
+                    query = string.Format("SELECT * FROM dbo.ChiTietPhieuThuDichVuView WITH(NOLOCK) WHERE Status = 0 AND ReceiptDetailStatus = 0 AND ServiceStatus = 0 AND Archived = 'False' AND ReceiptDate BETWEEN '{0}' AND '{1}' ORDER BY ReceiptDate DESC, FullName",
                     fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
                 else
                 {
-                    query = string.Format("SELECT * FROM dbo.ChiTietPhieuThuDichVuView WHERE Status = 0 AND ReceiptDetailStatus = 0 AND ServiceStatus = 0 AND Archived = 'False' AND FullName LIKE N'%{0}%' ORDER BY ReceiptDate DESC, FullName",
+                    query = string.Format("SELECT * FROM dbo.ChiTietPhieuThuDichVuView WITH(NOLOCK) WHERE Status = 0 AND ReceiptDetailStatus = 0 AND ServiceStatus = 0 AND Archived = 'False' AND FullName LIKE N'%{0}%' ORDER BY ReceiptDate DESC, FullName",
                     tenBenhNhan);
                 }
 
@@ -175,7 +175,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST((Price - (Price * Discount)/100) AS float) AS Amount FROM ReceiptDetailView WHERE ReceiptGUID='{0}' AND ReceiptDetailStatus={1} ORDER BY Code", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST((Price - (Price * Discount)/100) AS float) AS Amount FROM ReceiptDetailView WITH(NOLOCK) WHERE ReceiptGUID='{0}' AND ReceiptDetailStatus={1} ORDER BY Code", 
                     receiptGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }

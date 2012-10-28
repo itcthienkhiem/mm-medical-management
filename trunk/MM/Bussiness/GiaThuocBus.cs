@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaThuocView WHERE GiaThuocStatus={0} AND ThuocStatus={0} ORDER BY TenThuoc ASC, NgayApDung DESC",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaThuocView WITH(NOLOCK) WHERE GiaThuocStatus={0} AND ThuocStatus={0} ORDER BY TenThuoc ASC, NgayApDung DESC",
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -42,7 +42,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TOP 1 * FROM GiaThuoc WHERE ThuocGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
+                string query = string.Format("SELECT TOP 1 * FROM GiaThuoc WITH(NOLOCK) WHERE ThuocGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
                     thuocGUID, (byte)Status.Actived, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 result = ExcuteQuery(query);
                 if (result.IsOK)
@@ -52,7 +52,7 @@ namespace MM.Bussiness
                     {
                         DateTime ngayApDung =  Convert.ToDateTime(dt.Rows[0]["NgayApDung"]);
 
-                        query = string.Format("SELECT * FROM GiaThuoc WHERE ThuocGUID = '{0}' AND Status = {1} AND NgayApDung BETWEEN '{2}' AND '{3}' ORDER BY NgayApDung DESC",
+                        query = string.Format("SELECT * FROM GiaThuoc WITH(NOLOCK) WHERE ThuocGUID = '{0}' AND Status = {1} AND NgayApDung BETWEEN '{2}' AND '{3}' ORDER BY NgayApDung DESC",
                                 thuocGUID, (byte)Status.Actived, ngayApDung.ToString("yyyy-MM-dd 00:00:00"), ngayApDung.ToString("yyyy-MM-dd 23:59:59"));
                         return ExcuteQuery(query);
                     }

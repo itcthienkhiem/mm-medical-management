@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT * FROM ThongTinKhachHang ORDER BY TenKhachHang";
+                string query = "SELECT * FROM ThongTinKhachHang WITH(NOLOCK) ORDER BY TenKhachHang";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT X.* FROM XetNghiem_Hitachi917 X, ChiTietXetNghiem_Hitachi917 C WHERE X.Status = {0} AND X.XetNghiemGUID = C.XetNghiemGUID ORDER BY X.Fullname", 
+                string query = string.Format("SELECT DISTINCT X.* FROM XetNghiem_Hitachi917 X WITH(NOLOCK), ChiTietXetNghiem_Hitachi917 C WITH(NOLOCK) WHERE X.Status = {0} AND X.XetNghiemGUID = C.XetNghiemGUID ORDER BY X.Fullname", 
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -45,19 +45,19 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (tenBenhNhan.Trim() == string.Empty)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} ORDER BY NgayXN DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WITH(NOLOCK) WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} ORDER BY NgayXN DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived);
                 }
                 else
                 {
                     if (!isMaBenhNhan)
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WITH(NOLOCK) WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                     else
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FileNum LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_Hitachi917View WITH(NOLOCK) WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FileNum LIKE N'%{3}%' ORDER BY NgayXN DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                 }
@@ -95,7 +95,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_Hitachi917View WHERE KQXN_Hitachi917GUID = '{0}' AND Status = {1} ORDER BY TestNum",
+                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_Hitachi917View WITH(NOLOCK) WHERE KQXN_Hitachi917GUID = '{0}' AND Status = {1} ORDER BY TestNum",
                            ketQuaXetNghiemGUID, (byte)Status.Actived);
 
                 result = ExcuteQuery(query);
@@ -1088,7 +1088,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM ChiTietXetNghiem_Hitachi917 WHERE Status={0} AND XetNghiemGUID='{1}'",
+                string query = string.Format("SELECT * FROM ChiTietXetNghiem_Hitachi917 WITH(NOLOCK) WHERE Status={0} AND XetNghiemGUID='{1}'",
                     (byte)Status.Actived, xetNghiemGUID);
                 return ExcuteQuery(query);
             }
@@ -1206,7 +1206,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT DonVi FROM ChiTietXetNghiem_Hitachi917");
+                string query = string.Format("SELECT DISTINCT DonVi FROM ChiTietXetNghiem_Hitachi917 WITH(NOLOCK)");
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

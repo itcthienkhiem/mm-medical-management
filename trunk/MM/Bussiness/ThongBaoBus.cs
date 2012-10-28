@@ -20,12 +20,12 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (isAll)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WHERE ((CreatedDate IS NOT NULL AND CreatedDate BETWEEN '{0}' AND '{1}') OR (NgayDuyet1 IS NOT NULL AND NgayDuyet1 BETWEEN '{0}' AND '{1}') OR (NgayDuyet2 IS NOT NULL AND NgayDuyet2 BETWEEN '{0}' AND '{1}') OR (NgayDuyet3 IS NOT NULL AND NgayDuyet3 BETWEEN '{0}' AND '{1}')) AND FullName LIKE N'%{2}%' AND Status = {3} ORDER BY CreatedDate DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WITH(NOLOCK) WHERE ((CreatedDate IS NOT NULL AND CreatedDate BETWEEN '{0}' AND '{1}') OR (NgayDuyet1 IS NOT NULL AND NgayDuyet1 BETWEEN '{0}' AND '{1}') OR (NgayDuyet2 IS NOT NULL AND NgayDuyet2 BETWEEN '{0}' AND '{1}') OR (NgayDuyet3 IS NOT NULL AND NgayDuyet3 BETWEEN '{0}' AND '{1}')) AND FullName LIKE N'%{2}%' AND Status = {3} ORDER BY CreatedDate DESC",
                         tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenNguoiTao, (byte)Status.Actived);
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WHERE ((NgayDuyet1 IS NOT NULL AND NgayDuyet1 BETWEEN '{0}' AND '{1}') OR (NgayDuyet2 IS NOT NULL AND NgayDuyet2 BETWEEN '{0}' AND '{1}') OR (NgayDuyet3 IS NOT NULL AND NgayDuyet3 BETWEEN '{0}' AND '{1}')) AND FullName LIKE N'%{2}%' AND Status = {3} ORDER BY CreatedDate DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WITH(NOLOCK) WHERE ((NgayDuyet1 IS NOT NULL AND NgayDuyet1 BETWEEN '{0}' AND '{1}') OR (NgayDuyet2 IS NOT NULL AND NgayDuyet2 BETWEEN '{0}' AND '{1}') OR (NgayDuyet3 IS NOT NULL AND NgayDuyet3 BETWEEN '{0}' AND '{1}')) AND FullName LIKE N'%{2}%' AND Status = {3} ORDER BY CreatedDate DESC",
                         tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenNguoiTao, (byte)Status.Actived);
                 }
 

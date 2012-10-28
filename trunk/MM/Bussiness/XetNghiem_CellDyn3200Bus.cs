@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT *, '' AS Normal, '' AS NormalPercent FROM XetNghiem_CellDyn3200 WHERE Status = {0} ORDER BY GroupID, [Order]", (byte)Status.Actived);
+                string query = string.Format("SELECT *, '' AS Normal, '' AS NormalPercent FROM XetNghiem_CellDyn3200 WITH(NOLOCK) WHERE Status = {0} ORDER BY GroupID, [Order]", (byte)Status.Actived);
                 result = ExcuteQuery(query);
                 if (!result.IsOK) return result;
 
@@ -75,19 +75,19 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (tenBenhNhan.Trim() == string.Empty)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_CellDyn3200View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} ORDER BY NgayXN DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_CellDyn3200View WITH(NOLOCK) WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} ORDER BY NgayXN DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived);
                 }
                 else
                 {
                     if (!isMaBenhNhan)
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_CellDyn3200View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_CellDyn3200View WITH(NOLOCK) WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                     else
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_CellDyn3200View WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FileNum LIKE N'%{3}%' ORDER BY NgayXN DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_CellDyn3200View WITH(NOLOCK) WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FileNum LIKE N'%{3}%' ORDER BY NgayXN DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                     
@@ -115,7 +115,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_CellDyn3200View WHERE KQXN_CellDyn3200GUID = '{0}' AND Status = {1} ORDER BY GroupID, [Order]",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_CellDyn3200View WITH(NOLOCK) WHERE KQXN_CellDyn3200GUID = '{0}' AND Status = {1} ORDER BY GroupID, [Order]",
                            ketQuaXetNghiemGUID, (byte)Status.Actived);
 
                 result = ExcuteQuery(query);

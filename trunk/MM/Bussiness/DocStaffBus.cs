@@ -40,7 +40,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WHERE AvailableToWork = 'True' AND DocStaffGUID NOT IN (SELECT DocStaffGUID FROM Logon WHERE DocStaffGUID IS NOT NULL AND Status = 0 AND DocStaffGUID <> '{0}') ORDER BY FullName", docStaffGUID);
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WITH(NOLOCK) WHERE AvailableToWork = 'True' AND DocStaffGUID NOT IN (SELECT DocStaffGUID FROM Logon WHERE DocStaffGUID IS NOT NULL AND Status = 0 AND DocStaffGUID <> '{0}') ORDER BY FullName", docStaffGUID);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -74,7 +74,7 @@ namespace MM.Bussiness
 
                 staffTypeStr = string.Format("({0})", staffTypeStr);
 
-                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WHERE AvailableToWork = 'True' AND StaffType IN {0} ORDER BY FullName", staffTypeStr);
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WITH(NOLOCK) WHERE AvailableToWork = 'True' AND StaffType IN {0} ORDER BY FullName", staffTypeStr);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

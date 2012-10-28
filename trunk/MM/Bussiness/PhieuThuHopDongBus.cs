@@ -23,17 +23,17 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WHERE NgayThu BETWEEN '{0}' AND '{1}' ORDER BY NgayThu DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE NgayThu BETWEEN '{0}' AND '{1}' ORDER BY NgayThu DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
                         (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
 
@@ -42,16 +42,16 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WHERE TenNguoiNop LIKE N'%{0}%' ORDER BY NgayThu DESC", tenKhacHang);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE TenNguoiNop LIKE N'%{0}%' ORDER BY NgayThu DESC", tenKhacHang);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WHERE Status={0} AND TenNguoiNop LIKE N'%{1}%' ORDER BY NgayThu DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND TenNguoiNop LIKE N'%{1}%' ORDER BY NgayThu DESC",
                         (byte)Status.Actived, tenKhacHang);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WHERE Status={0} AND TenNguoiNop LIKE N'%{1}%' ORDER BY NgayThu DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND TenNguoiNop LIKE N'%{1}%' ORDER BY NgayThu DESC",
                         (byte)Status.Deactived, tenKhacHang);
                     }
 
@@ -79,7 +79,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM ChiTietPhieuThuHopDong WHERE Status={0} AND PhieuThuHopDongGUID='{1}' ORDER BY DichVu",
+                string query = string.Format("SELECT * FROM ChiTietPhieuThuHopDong WITH(NOLOCK) WHERE Status={0} AND PhieuThuHopDongGUID='{1}' ORDER BY DichVu",
                     (byte)Status.Actived, phieuThuHopDongGUID);
                 return ExcuteQuery(query);
             }
@@ -355,7 +355,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT SUM(SH.Price) AS TongTien FROM CompanyContract HD, ContractMember CM, CompanyMember NV, PatientView PV, CompanyCheckList CL, ServiceHistory SH, Services S WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.PatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND SH.KhamTuTuc = 'False' AND (HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate OR HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate)", hopDongGUID);
+                string query = string.Format("SELECT SUM(SH.Price) AS TongTien FROM CompanyContract HD WITH(NOLOCK), ContractMember CM WITH(NOLOCK), CompanyMember NV WITH(NOLOCK), PatientView PV WITH(NOLOCK), CompanyCheckList CL WITH(NOLOCK), ServiceHistory SH WITH(NOLOCK), Services S WITH(NOLOCK) WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.PatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND SH.KhamTuTuc = 'False' AND (HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate OR HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate)", hopDongGUID);
                 result = ExcuteQuery(query);
 
                 if (!result.IsOK) return result;
@@ -386,7 +386,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT SUM(SH.Price) AS TongTien FROM CompanyContract HD, ContractMember CM, CompanyMember NV, PatientView PV, CompanyCheckList CL, ServiceHistory SH, Services S WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.RootPatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND SH.KhamTuTuc = 'True' AND (HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate OR HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate)", hopDongGUID);
+                string query = string.Format("SELECT SUM(SH.Price) AS TongTien FROM CompanyContract HD WITH(NOLOCK), ContractMember CM WITH(NOLOCK), CompanyMember NV WITH(NOLOCK), PatientView PV WITH(NOLOCK), CompanyCheckList CL WITH(NOLOCK), ServiceHistory SH WITH(NOLOCK), Services S WITH(NOLOCK) WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.RootPatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND SH.KhamTuTuc = 'True' AND (HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate OR HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate)", hopDongGUID);
                 result = ExcuteQuery(query);
 
                 if (!result.IsOK) return result;
@@ -417,7 +417,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT SUM(CT.ThanhTien) AS TongTien FROM PhieuThuHopDong PT, ChiTietPhieuThuHopDong CT WHERE PT.PhieuThuHopDongGUID = CT.PhieuThuHopDongGUID AND PT.HopDongGUID = '{0}' AND PT.Status = 0 AND CT.Status = 0", hopDongGUID);
+                string query = string.Format("SELECT SUM(CT.ThanhTien) AS TongTien FROM PhieuThuHopDong PT WITH(NOLOCK), ChiTietPhieuThuHopDong CT WITH(NOLOCK) WHERE PT.PhieuThuHopDongGUID = CT.PhieuThuHopDongGUID AND PT.HopDongGUID = '{0}' AND PT.Status = 0 AND CT.Status = 0", hopDongGUID);
                 result = ExcuteQuery(query);
 
                 if (!result.IsOK) return result;

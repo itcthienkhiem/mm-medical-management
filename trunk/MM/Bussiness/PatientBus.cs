@@ -42,7 +42,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView P, BenhNhanThanThuoc B WHERE Archived = 'False' AND P.PatientGUID = B.PatientGUID AND B.DocStaffGUID = '{0}' ORDER BY FirstName, FullName",
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView P WITH(NOLOCK), BenhNhanThanThuoc B WITH(NOLOCK) WHERE Archived = 'False' AND P.PatientGUID = B.PatientGUID AND B.DocStaffGUID = '{0}' ORDER BY FirstName, FullName",
                     Global.UserGUID);
                 return ExcuteQuery(query);
             }
@@ -66,7 +66,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WHERE Archived = 'False' AND NOT EXISTS (SELECT PatientGUID FROM BenhNhanThanThuoc WHERE PatientGUID = PatientView.PatientGUID AND DocStaffGUID = '{0}') ORDER BY FirstName, FullName",
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Archived = 'False' AND NOT EXISTS (SELECT PatientGUID FROM BenhNhanThanThuoc WITH(NOLOCK) WHERE PatientGUID = PatientView.PatientGUID AND DocStaffGUID = '{0}') ORDER BY FirstName, FullName",
                     Global.UserGUID);
                 return ExcuteQuery(query);
             }

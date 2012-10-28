@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WHERE Status={0} ORDER BY NgayGioLienHe DESC", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} ORDER BY NgayGioLienHe DESC", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -46,16 +46,16 @@ namespace MM.Bussiness
 
                 string query = string.Empty;
                 if (type == 0)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND NgayGioLienHe BETWEEN '{1}' AND '{2}' ORDER BY NgayGioLienHe DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND NgayGioLienHe BETWEEN '{1}' AND '{2}' ORDER BY NgayGioLienHe DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 else if (type == 1)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe LIKE N'%{1}%' ORDER BY NgayGioLienHe DESC", 
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND CongTyLienHe LIKE N'%{1}%' ORDER BY NgayGioLienHe DESC", 
                         (byte)Status.Actived, tenBenhNhan);
                 else if (type == 2)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND FullName LIKE N'{1}%' ORDER BY NgayGioLienHe DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND FullName LIKE N'{1}%' ORDER BY NgayGioLienHe DESC",
                         (byte)Status.Actived, tenNguoiTao);
                 else if (type == 3)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND CongTyLienHe IN (SELECT CongTyLienHe FROM NhatKyLienHeCongTy WHERE Status = 0 GROUP BY CongTyLienHe HAVING Count(CongTyLienHe) >= 2) ORDER BY CongTyLienHe",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND CongTyLienHe IN (SELECT CongTyLienHe FROM NhatKyLienHeCongTy WHERE Status = 0 GROUP BY CongTyLienHe HAVING Count(CongTyLienHe) >= 2) ORDER BY CongTyLienHe",
                         (byte)Status.Actived, tenNguoiTao);
                 else
                 {
@@ -63,7 +63,7 @@ namespace MM.Bussiness
                     string monthStr1 = date.ToString("MMM");
                     string monthStr2 = date.ToString("MMMM");
 
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WHERE Status={0} AND (REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{1}%' OR REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{2}%') ORDER BY NgayGioLienHe DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND (REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{1}%' OR REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{2}%') ORDER BY NgayGioLienHe DESC",
                           (byte)Status.Actived, monthStr1, monthStr2);
                 }
 
@@ -89,7 +89,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT CongTyLienHe FROM NhatKyLienHeCongTy ORDER BY CongTyLienHe", (byte)Status.Actived);
+                string query = string.Format("SELECT DISTINCT CongTyLienHe FROM NhatKyLienHeCongTy WITH(NOLOCK) ORDER BY CongTyLienHe", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -360,12 +360,12 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (nhatKyLienHeCongTyGUID == null || nhatKyLienHeCongTyGUID == string.Empty)
                 {
-                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WHERE CongTyLienHe = '{0}' AND CreatedBy <> '{1}' AND Status = {2} AND datediff(month, NgayGioLienHe, getdate()) <= 18",
+                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WITH(NOLOCK) WHERE CongTyLienHe = '{0}' AND CreatedBy <> '{1}' AND Status = {2} AND datediff(month, NgayGioLienHe, getdate()) <= 18",
                         congTy, Global.UserGUID.ToString(), (byte)Status.Actived);
                 }
                 else
                 {
-                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WHERE CongTyLienHe = '{0}' AND CreatedBy <> '{1}' AND Status = {2} AND NhatKyLienHeCongTyGUID <> '{3}' datediff(month, NgayGioLienHe, getdate()) <= 18",
+                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WITH(NOLOCK) WHERE CongTyLienHe = '{0}' AND CreatedBy <> '{1}' AND Status = {2} AND NhatKyLienHeCongTyGUID <> '{3}' datediff(month, NgayGioLienHe, getdate()) <= 18",
                         congTy, Global.UserGUID.ToString(), (byte)Status.Actived, nhatKyLienHeCongTyGUID);
                 }
 
@@ -444,12 +444,12 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (nhatKyLienHeCongTyGUID == null || nhatKyLienHeCongTyGUID == string.Empty)
                 {
-                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WHERE CongTyLienHe = '{0}' AND CreatedBy = '{1}' AND Status = {2} AND datediff(month, NgayGioLienHe, getdate()) <= 18",
+                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WITH(NOLOCK) WHERE CongTyLienHe = '{0}' AND CreatedBy = '{1}' AND Status = {2} AND datediff(month, NgayGioLienHe, getdate()) <= 18",
                         congTy, Global.UserGUID.ToString(), (byte)Status.Actived);
                 }
                 else
                 {
-                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WHERE CongTyLienHe = '{0}' AND CreatedBy = '{1}' AND Status = {2} AND NhatKyLienHeCongTyGUID <> '{3}' datediff(month, NgayGioLienHe, getdate()) <= 18",
+                    query = string.Format("SELECT TOP 1 * FROM NhatKyLienHeCongTy WITH(NOLOCK) WHERE CongTyLienHe = '{0}' AND CreatedBy = '{1}' AND Status = {2} AND NhatKyLienHeCongTyGUID <> '{3}' datediff(month, NgayGioLienHe, getdate()) <= 18",
                         congTy, Global.UserGUID.ToString(), (byte)Status.Actived, nhatKyLienHeCongTyGUID);
                 }
 

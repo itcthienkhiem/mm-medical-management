@@ -26,10 +26,10 @@ namespace MM.Bussiness
                 if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
                     Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat && 
                     Global.StaffType != StaffType.BacSiPhuKhoa)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiDinhView WHERE Archived='False' AND Status={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' ORDER BY NgayChiDinh DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiDinhView WITH(NOLOCK) WHERE Archived='False' AND Status={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' ORDER BY NgayChiDinh DESC",
                         (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 else
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiDinhView WHERE Archived='False' AND Status={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' AND BacSiChiDinhGUID='{4}' ORDER BY NgayChiDinh DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiDinhView WITH(NOLOCK) WHERE Archived='False' AND Status={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' AND BacSiChiDinhGUID='{4}' ORDER BY NgayChiDinh DESC",
                         (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), Global.UserGUID);
 
                 return ExcuteQuery(query);
@@ -54,7 +54,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietChiDinhView WHERE CTCDStatus={0} AND ServiceStatus={0} AND ChiDinhGUID='{1}' ORDER BY Name",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietChiDinhView WITH(NOLOCK) WHERE CTCDStatus={0} AND ServiceStatus={0} AND ChiDinhGUID='{1}' ORDER BY Name",
                         (byte)Status.Actived, chiDinhGUID);
 
                 return ExcuteQuery(query);

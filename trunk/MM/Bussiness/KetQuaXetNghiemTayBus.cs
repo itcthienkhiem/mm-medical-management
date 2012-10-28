@@ -21,7 +21,7 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (tenBenhNhan.Trim() == string.Empty)
                 {
-                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} ORDER BY V.FullName",
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V WITH(NOLOCK), ChiTietKetQuaXetNghiem_Manual C WITH(NOLOCK) WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} ORDER BY V.FullName",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived);
                 }
                 else
@@ -30,14 +30,14 @@ namespace MM.Bussiness
                     {
                         //query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_ManualView WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FullName LIKE N'%{3}%' ORDER BY NgayXN DESC",
                         //   fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
-                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FullName LIKE N'%{3}%' ORDER BY V.FullName",
+                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V WITH(NOLOCK), ChiTietKetQuaXetNghiem_Manual C WITH(NOLOCK) WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FullName LIKE N'%{3}%' ORDER BY V.FullName",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                     else
                     {
                         //query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KetQuaXetNghiem_ManualView WHERE NgayXN BETWEEN '{0}' AND '{1}' AND Status = {2} AND FileNum LIKE N'%{3}%' ORDER BY NgayXN DESC",
                         //   fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
-                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FileNum LIKE N'%{3}%' ORDER BY V.FullName",
+                        query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.KetQuaXetNghiemManualGUID, V.PatientGUID, V.Status, V.FullName, V.DobStr, V.GenderAsStr, V.Archived, V.FileNum, V.Address FROM KetQuaXetNghiem_ManualView V WITH(NOLOCK), ChiTietKetQuaXetNghiem_Manual C WITH(NOLOCK) WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FileNum LIKE N'%{3}%' ORDER BY V.FullName",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), (byte)Status.Actived, tenBenhNhan);
                     }
                 }
@@ -959,7 +959,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, convert(varchar(10), GetDate(), 103) + ' ' + convert(varchar(10), GetDate(), 108) as NgayXNStr, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_ManualView WHERE KetQuaXetNghiem_ManualGUID = '{0}' AND Status = {1} AND NgayXetNghiem BETWEEN '{2}' AND '{3}' ORDER BY NgayXetNghiem DESC, GroupID, [Order]",
+                string query = query = string.Format("SELECT CAST(0 AS Bit) AS Checked, convert(varchar(10), GetDate(), 103) + ' ' + convert(varchar(10), GetDate(), 108) as NgayXNStr, *, CAST('' AS nvarchar(50)) AS BinhThuong FROM ChiTietKetQuaXetNghiem_ManualView WITH(NOLOCK) WHERE KetQuaXetNghiem_ManualGUID = '{0}' AND Status = {1} AND NgayXetNghiem BETWEEN '{2}' AND '{3}' ORDER BY NgayXetNghiem DESC, GroupID, [Order]",
                            ketQuaXetNghiemGUID, (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);

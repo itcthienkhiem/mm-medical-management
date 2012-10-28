@@ -24,10 +24,10 @@ namespace MM.Bussiness
                     if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
                         Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat &&
                         Global.StaffType != StaffType.BacSiPhuKhoa && Global.StaffType != StaffType.XetNghiem)
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} ORDER BY Name", 
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} ORDER BY Name", 
                             patientGUID, (byte)Status.Actived);
                     else
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} AND DocStaffGUID = '{2}' ORDER BY Name", 
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} AND DocStaffGUID = '{2}' ORDER BY Name", 
                             patientGUID, (byte)Status.Actived, Global.UserGUID);
                 }
                 else
@@ -35,10 +35,10 @@ namespace MM.Bussiness
                     if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
                         Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat &&
                         Global.StaffType != StaffType.BacSiPhuKhoa && Global.StaffType != StaffType.XetNghiem)
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} ORDER BY Name",
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} ORDER BY Name",
                             patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
                     else
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} AND DocStaffGUID = '{4}' ORDER BY Name",
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} AND DocStaffGUID = '{4}' ORDER BY Name",
                             patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
                 }
 
@@ -102,7 +102,7 @@ namespace MM.Bussiness
             MMOverride db = null;
             try
             {
-                string query = string.Format("SELECT S.*, P.FullName AS TenBenhNhan FROM ServiceHistoryView S, PatientView P WHERE S.PatientGUID = P.PatientGUID AND S.ActivedDate BETWEEN '{0}' AND '{1}' AND S.IsExported = 'False' AND S.Status = {2} AND ServiceStatus = {2} AND KhamTuTuc = 'True' ORDER BY S.ActivedDate",
+                string query = string.Format("SELECT S.*, P.FullName AS TenBenhNhan FROM ServiceHistoryView S WITH(NOLOCK), PatientView P WITH(NOLOCK) WHERE S.PatientGUID = P.PatientGUID AND S.ActivedDate BETWEEN '{0}' AND '{1}' AND S.IsExported = 'False' AND S.Status = {2} AND ServiceStatus = {2} AND KhamTuTuc = 'True' ORDER BY S.ActivedDate",
                     fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
 
                 return ExcuteQuery(query);

@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM Bookmark WHERE Type={0} ORDER BY [Value]", (int)type);
+                string query = string.Format("SELECT * FROM Bookmark WITH(NOLOCK) WHERE Type={0} ORDER BY [Value]", (int)type);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

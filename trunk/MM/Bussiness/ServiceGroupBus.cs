@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ServiceGroup WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ServiceGroup WITH(NOLOCK) WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Service_ServiceGroupView WHERE Service_ServiceGroupStatus={0} AND ServiceStatus={0} AND ServiceGroupStatus={0} AND ServiceGroupGUID = '{1}' ORDER BY Name", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Service_ServiceGroupView WITH(NOLOCK) WHERE Service_ServiceGroupStatus={0} AND ServiceStatus={0} AND ServiceGroupStatus={0} AND ServiceGroupGUID = '{1}' ORDER BY Name", 
                     (byte)Status.Actived, serviceGroupGUID);
                 return ExcuteQuery(query);
             }
@@ -65,7 +65,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} AND ServiceGUID NOT IN (SELECT ServiceGUID FROM Service_ServiceGroupView WHERE Service_ServiceGroupStatus={0} AND ServiceStatus={0} AND ServiceGroupStatus={0}) ORDER BY Name",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WITH(NOLOCK) WHERE Status={0} AND ServiceGUID NOT IN (SELECT ServiceGUID FROM Service_ServiceGroupView WHERE Service_ServiceGroupStatus={0} AND ServiceStatus={0} AND ServiceGroupStatus={0}) ORDER BY Name",
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }

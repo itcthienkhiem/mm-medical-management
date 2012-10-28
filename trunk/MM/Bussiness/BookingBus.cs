@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM BookingView WHERE Status={0} AND BookingDate BETWEEN '{1}' AND '{2}' ORDER BY BookingDate",
+                string query = string.Format("SELECT * FROM BookingView WITH(NOLOCK) WHERE Status={0} AND BookingDate BETWEEN '{1}' AND '{2}' ORDER BY BookingDate",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 
                 return ExcuteQuery(query);
@@ -43,7 +43,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT Company FROM Booking WHERE Status={0}", (byte)Status.Actived);
+                string query = string.Format("SELECT DISTINCT Company FROM Booking WITH(NOLOCK) WHERE Status={0}", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

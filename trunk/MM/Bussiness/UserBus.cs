@@ -23,12 +23,12 @@ namespace MM.Bussiness
                 //Hitachi917
                 if (!isMaBenhNhan)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM AccountView WHERE Archived = 'False' AND FullName LIKE N'%{0}%' AND CreatedDate BETWEEN '{1}' AND '{2}'",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM AccountView WITH(NOLOCK) WHERE Archived = 'False' AND FullName LIKE N'%{0}%' AND CreatedDate BETWEEN '{1}' AND '{2}'",
                     tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM AccountView WHERE Archived = 'False' AND CustomerId LIKE N'%{0}%' AND CreatedDate BETWEEN '{1}' AND '{2}'",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM AccountView WITH(NOLOCK) WHERE Archived = 'False' AND CustomerId LIKE N'%{0}%' AND CreatedDate BETWEEN '{1}' AND '{2}'",
                     tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
                 }
 

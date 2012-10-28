@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE Type WHEN 1 THEN N'Lâm sàng' WHEN 0 THEN N'Cận lâm sàng' END AS TypeStr FROM ServiceView WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE Type WHEN 1 THEN N'Lâm sàng' WHEN 0 THEN N'Cận lâm sàng' END AS TypeStr FROM ServiceView WITH(NOLOCK) WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -72,10 +72,10 @@ namespace MM.Bussiness
             {
                 string query = string.Empty;
                 if (constractGUID != string.Empty && constractGUID != Guid.Empty.ToString())
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} AND ServiceGUID NOT IN (SELECT L.ServiceGUID FROM CompanyCheckList L, ContractMember M WHERE M.ContractMemberGUID = L.ContractMemberGUID AND M.CompanyContractGUID = '{2}' AND M.companyMemberGUID = '{1}' AND L.Status = {0}) ORDER BY Name", 
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WITH(NOLOCK) WHERE Status={0} AND ServiceGUID NOT IN (SELECT L.ServiceGUID FROM CompanyCheckList L WITH(NOLOCK), ContractMember M WITH(NOLOCK) WHERE M.ContractMemberGUID = L.ContractMemberGUID AND M.CompanyContractGUID = '{2}' AND M.companyMemberGUID = '{1}' AND L.Status = {0}) ORDER BY Name", 
                     (byte)Status.Actived, companyMemberGUID, constractGUID);
                 else
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WITH(NOLOCK) WHERE Status={0} ORDER BY Name", (byte)Status.Actived);
 
                 return ExcuteQuery(query);
             }
