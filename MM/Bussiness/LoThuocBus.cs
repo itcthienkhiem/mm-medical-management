@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST(SoLuongNhap * GiaNhap AS float) AS TongTien FROM LoThuocView WHERE LoThuocStatus={0} AND ThuocStatus={0} ORDER BY CreatedDate", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST(SoLuongNhap * GiaNhap AS float) AS TongTien FROM LoThuocView WITH(NOLOCK) WHERE LoThuocStatus={0} AND ThuocStatus={0} ORDER BY CreatedDate", 
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -239,7 +239,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT NhaPhanPhoi FROM LoThuoc ORDER BY NhaPhanPhoi",
+                string query = string.Format("SELECT DISTINCT NhaPhanPhoi FROM LoThuoc WITH(NOLOCK) ORDER BY NhaPhanPhoi",
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }

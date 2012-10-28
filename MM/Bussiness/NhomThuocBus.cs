@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhomThuoc WHERE Status={0} ORDER BY TenNhomThuoc", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhomThuoc WITH(NOLOCK) WHERE Status={0} ORDER BY TenNhomThuoc", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT T.* FROM NhomThuoc_Thuoc N, THUOC T WHERE N.NhomThuocGUID IN (SELECT NhomThuocGUID FROM NhomThuoc_Thuoc WHERE ThuocGUID = '{1}' AND Status={0}) AND N.ThuocGUID <> '{1}' AND N.ThuocGUID = T.ThuocGUID AND T.Status={0} AND N.Status={0} ORDER BY TenThuoc", 
+                string query = string.Format("SELECT DISTINCT T.* FROM NhomThuoc_Thuoc N WITH(NOLOCK), THUOC T WITH(NOLOCK) WHERE N.NhomThuocGUID IN (SELECT NhomThuocGUID FROM NhomThuoc_Thuoc WITH(NOLOCK) WHERE ThuocGUID = '{1}' AND Status={0}) AND N.ThuocGUID <> '{1}' AND N.ThuocGUID = T.ThuocGUID AND T.Status={0} AND N.Status={0} ORDER BY TenThuoc", 
                     (byte)Status.Actived, thuocGUID);
                 return ExcuteQuery(query);
             }

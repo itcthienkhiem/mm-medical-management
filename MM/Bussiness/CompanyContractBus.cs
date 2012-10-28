@@ -19,7 +19,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyContractView WHERE ContractStatus={0} AND CompanyStatus={0} ORDER BY BeginDate DESC", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyContractView WITH(NOLOCK) WHERE ContractStatus={0} AND CompanyStatus={0} ORDER BY BeginDate DESC", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -71,7 +71,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WHERE CompanyContractGUID='{0}' AND Status={1} ORDER BY FirstName, FullName",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} ORDER BY FirstName, FullName",
                     contractGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -95,7 +95,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaDichVuHopDongView WHERE HopDongGUID='{0}' AND GiaDVHDStatus={1} ORDER BY Name",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaDichVuHopDongView WITH(NOLOCK) WHERE HopDongGUID='{0}' AND GiaDVHDStatus={1} ORDER BY Name",
                     contractGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -119,7 +119,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT C.* FROM ContractMemberView C, CompanyCheckList L WHERE C.CompanyContractGUID='{0}' AND  C.ContractMemberGUID = L.ContractMemberGUID AND L.Status = {2} AND C.Status={2} AND C.CompanyMemberStatus={2} AND C.Archived='False' AND L.ServiceGUID = '{1}' ORDER BY C.FirstName, C.FullName",
+                string query = string.Format("SELECT DISTINCT C.* FROM ContractMemberView C WITH(NOLOCK), CompanyCheckList L WITH(NOLOCK) WHERE C.CompanyContractGUID='{0}' AND  C.ContractMemberGUID = L.ContractMemberGUID AND L.Status = {2} AND C.Status={2} AND C.CompanyMemberStatus={2} AND C.Archived='False' AND L.ServiceGUID = '{1}' ORDER BY C.FirstName, C.FullName",
                     contractGUID, serviceGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -143,7 +143,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyCheckListView WHERE ContractMemberGUID='{0}' AND ServiceStatus={1} AND CheckListStatus={1} ORDER BY Name",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyCheckListView WITH(NOLOCK) WHERE ContractMemberGUID='{0}' AND ServiceStatus={1} AND CheckListStatus={1} ORDER BY Name",
                     contractMemberGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -1132,12 +1132,12 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (gioiTinh.Trim() == string.Empty)
                 {
-                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}'",
+                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WITH(NOLOCK) WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}'",
                     companyGUID, (byte)Status.Actived, hoTen);
                 }
                 else
                 {
-                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}' AND GenderAsStr = N'{3}'",
+                    query = string.Format("SELECT TOP 1 * FROM CompanyMemberView WITH(NOLOCK) WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND FullName = N'{2}' AND GenderAsStr = N'{3}'",
                     companyGUID, (byte)Status.Actived, hoTen, gioiTinh);
                 }
 

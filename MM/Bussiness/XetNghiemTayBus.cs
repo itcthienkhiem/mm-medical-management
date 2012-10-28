@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE [Type] WHEN 'MienDich' THEN N'Miễn dịch' WHEN 'Urine' THEN N'Nước tiểu' WHEN 'Khac' THEN N'Khác' WHEN 'Haematology' THEN N'Huyết học' WHEN 'Biochemistry' THEN N'Sinh hóa' END LoaiXN FROM XetNghiem_Manual WHERE Status={0} ORDER BY GroupID, [Order]", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE [Type] WHEN 'MienDich' THEN N'Miễn dịch' WHEN 'Urine' THEN N'Nước tiểu' WHEN 'Khac' THEN N'Khác' WHEN 'Haematology' THEN N'Huyết học' WHEN 'Biochemistry' THEN N'Sinh hóa' END LoaiXN FROM XetNghiem_Manual WITH(NOLOCK) WHERE Status={0} ORDER BY GroupID, [Order]", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietXetNghiem_Manual WHERE Status={0} AND XetNghiem_ManualGUID='{1}'",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietXetNghiem_Manual WITH(NOLOCK) WHERE Status={0} AND XetNghiem_ManualGUID='{1}'",
                     (byte)Status.Actived, xetNghiem_ManualGUID);
                 return ExcuteQuery(query);
             }
@@ -94,7 +94,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT DonVi FROM ChiTietXetNghiem_Manual");
+                string query = string.Format("SELECT DISTINCT DonVi FROM ChiTietXetNghiem_Manual WITH(NOLOCK)");
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -117,7 +117,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT GroupName, GroupID FROM XetNghiem_Manual ORDER BY GroupID");
+                string query = string.Format("SELECT DISTINCT GroupName, GroupID FROM XetNghiem_Manual WITH(NOLOCK) ORDER BY GroupID");
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

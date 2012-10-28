@@ -22,10 +22,10 @@ namespace MM.Bussiness
                 if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
                     Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat && 
                     Global.StaffType != StaffType.BacSiPhuKhoa)
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM LoiKhuyenView WHERE PatientGUID = '{0}' AND Ngay BETWEEN '{1}' AND '{2}' AND LoiKhuyenStatus = {3} AND SymptomStatus = {3} AND Archived = 'False' ORDER BY Ngay DESC",
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM LoiKhuyenView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Ngay BETWEEN '{1}' AND '{2}' AND LoiKhuyenStatus = {3} AND SymptomStatus = {3} AND Archived = 'False' ORDER BY Ngay DESC",
                         patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
                 else
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM LoiKhuyenView WHERE PatientGUID = '{0}' AND Ngay BETWEEN '{1}' AND '{2}' AND LoiKhuyenStatus = {3} AND SymptomStatus = {3} AND Archived = 'False' AND DocStaffGUID = '{4}' ORDER BY Ngay DESC",
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM LoiKhuyenView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Ngay BETWEEN '{1}' AND '{2}' AND LoiKhuyenStatus = {3} AND SymptomStatus = {3} AND Archived = 'False' AND DocStaffGUID = '{4}' ORDER BY Ngay DESC",
                         patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
 
                 return ExcuteQuery(query);

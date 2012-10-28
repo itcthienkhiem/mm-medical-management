@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, P.*, C.* FROM PatientView P, PhongCho C WHERE P.PatientGUID = C.PatientGUID AND Ngay BETWEEN '{0}' AND '{1}' AND Archived = 'False' ORDER BY Ngay",
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, P.*, C.* FROM PatientView P WITH(NOLOCK), PhongCho C WITH(NOLOCK) WHERE P.PatientGUID = C.PatientGUID AND Ngay BETWEEN '{0}' AND '{1}' AND Archived = 'False' ORDER BY Ngay",
                     DateTime.Now.ToString("yyyy-MM-dd 00:00:00"), DateTime.Now.ToString("yyyy-MM-dd 23:59:59"));
                 return ExcuteQuery(query);
             }

@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaVonDichVuView WHERE GiaVonDichVuStatus={0} AND ServiceStatus={0} ORDER BY Name ASC, NgayApDung DESC",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaVonDichVuView WITH(NOLOCK) WHERE GiaVonDichVuStatus={0} AND ServiceStatus={0} ORDER BY Name ASC, NgayApDung DESC",
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -45,12 +45,12 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (isFromDateToDate)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaVonDichVuView WHERE GiaVonDichVuStatus={0} AND ServiceStatus={0} AND NgayApDung BETWEEN '{1}' AND '{2}' ORDER BY Name ASC, NgayApDung DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaVonDichVuView WITH(NOLOCK) WHERE GiaVonDichVuStatus={0} AND ServiceStatus={0} AND NgayApDung BETWEEN '{1}' AND '{2}' ORDER BY Name ASC, NgayApDung DESC",
                     (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaVonDichVuView WHERE GiaVonDichVuStatus={0} AND ServiceStatus={0} AND Name LIKE N'%{1}%' ORDER BY Name ASC, NgayApDung DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaVonDichVuView WITH(NOLOCK) WHERE GiaVonDichVuStatus={0} AND ServiceStatus={0} AND Name LIKE N'%{1}%' ORDER BY Name ASC, NgayApDung DESC",
                    (byte)Status.Actived, tenDichVu);
                 }
                                 
@@ -76,7 +76,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TOP 1 * FROM GiaVonDichVu WHERE ServiceGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
+                string query = string.Format("SELECT TOP 1 * FROM GiaVonDichVu WITH(NOLOCK) WHERE ServiceGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
                     serviceGUID, (byte)Status.Actived, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 return ExcuteQuery(query);
             }
@@ -100,7 +100,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TOP 1 * FROM GiaVonDichVu WHERE ServiceGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
+                string query = string.Format("SELECT TOP 1 * FROM GiaVonDichVu WITH(NOLOCK) WHERE ServiceGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
                     serviceGUID, (byte)Status.Actived, ngayThu.ToString("yyyy-MM-dd HH:mm:ss"));
                 return ExcuteQuery(query);
             }

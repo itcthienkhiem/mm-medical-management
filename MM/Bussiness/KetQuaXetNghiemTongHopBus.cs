@@ -75,12 +75,12 @@ namespace MM.Bussiness
                 //Hitachi917
                 if (!isMaBenhNhan)
                 {
-                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WITH(NOLOCK) WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
                     tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
                 }
                 else
                 {
-                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FileNum LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WITH(NOLOCK) WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FileNum LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
                     tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
                 }
 
@@ -91,12 +91,12 @@ namespace MM.Bussiness
                 //CellDyn3200
                 if (!isMaBenhNhan)
                 {
-                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WITH(NOLOCK) WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
                     tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
                 }
                 else
                 {
-                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FileNum LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WITH(NOLOCK) WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FileNum LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
                     tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
                 }
 
@@ -117,14 +117,14 @@ namespace MM.Bussiness
                 {
                     //query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_ManualView WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FullName LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
                     //tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
-                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.PatientGUID, V.FileNum, V.FullName, V.DobStr, V.GenderAsStr, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FullName LIKE N'%{3}%'",
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.PatientGUID, V.FileNum, V.FullName, V.DobStr, V.GenderAsStr, V.Address FROM KetQuaXetNghiem_ManualView V WITH(NOLOCK), ChiTietKetQuaXetNghiem_Manual C WITH(NOLOCK) WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FullName LIKE N'%{3}%'",
                            fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), (byte)Status.Actived, tenBenhNhan);
                 }
                 else
                 {
                     //query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_ManualView WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND FileNum LIKE N'%{0}%' AND NgayXN BETWEEN '{1}' AND '{2}'",
                     //tenBenhNhan, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
-                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.PatientGUID, V.FileNum, V.FullName, V.DobStr, V.GenderAsStr, V.Address FROM KetQuaXetNghiem_ManualView V, ChiTietKetQuaXetNghiem_Manual C WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FileNum LIKE N'%{3}%'",
+                    query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, V.PatientGUID, V.FileNum, V.FullName, V.DobStr, V.GenderAsStr, V.Address FROM KetQuaXetNghiem_ManualView V WITH(NOLOCK), ChiTietKetQuaXetNghiem_Manual C WITH(NOLOCK) WHERE V.KetQuaXetNghiemManualGUID = C.KetQuaXetNghiem_ManualGUID AND V.Archived = 'False' AND C.NgayXetNghiem BETWEEN '{0}' AND '{1}' AND V.Status = {2} AND C.Status = {2} AND V.FileNum LIKE N'%{3}%'",
                            fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), (byte)Status.Actived, tenBenhNhan);
                 }
 
@@ -179,7 +179,7 @@ namespace MM.Bussiness
                 string query = string.Empty;
 
                 //CellDyn3200
-                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND NgayXN BETWEEN '{0}' AND '{1}'",
+                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_CellDyn3200View WITH(NOLOCK) WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND NgayXN BETWEEN '{0}' AND '{1}'",
                 fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);
@@ -226,7 +226,7 @@ namespace MM.Bussiness
                 string query = string.Empty;
 
                 //Hitachi917
-                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND NgayXN BETWEEN '{0}' AND '{1}'",
+                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_Hitachi917View WITH(NOLOCK) WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND NgayXN BETWEEN '{0}' AND '{1}'",
                 fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);
@@ -234,7 +234,7 @@ namespace MM.Bussiness
                 dt = result.QueryResult as DataTable;
 
                 //Xet nghiem tay
-                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_ManualView WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND NgayXN BETWEEN '{0}' AND '{1}'",
+                query = string.Format("SELECT DISTINCT CAST(0 AS Bit) AS Checked, PatientGUID, FileNum, FullName, DobStr, GenderAsStr, Address FROM KetQuaXetNghiem_ManualView WITH(NOLOCK) WHERE Status = 0 AND Archived = 'False' AND PatientGUID IS NOT NULL AND NgayXN BETWEEN '{0}' AND '{1}'",
                 fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);
@@ -301,7 +301,7 @@ namespace MM.Bussiness
 
                 //Celldyn3200
                 string emptyGUID = Guid.Empty.ToString();
-                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_CellDyn3200GUID AS ChiTietKQXNGUID, '{4}' AS XetNghiemGUID, KQXN_CellDyn3200GUID AS KetQuaXetNghiemGUID, NgayXN, '' AS NgayXN2, Fullname, N'CÔNG THỨC MÁU (MÁY CELLDYN 3200)' AS GroupName, CAST(TestResult AS nvarchar(50)) AS TestResult, TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue2 AS FromValue, ToValue2 AS ToValue, '' AS FromOperator, '' AS ToOperator, 0 AS FromAge, 0 AS ToAge, 0 AS FromTime, 0 AS ToTime, '' AS FromTimeOperator, '' AS ToTimeOperator, 0 AS XValue, CAST(0 AS Bit) AS HasHutThuoc, DoiTuong2 AS DoiTuong, DonVi2 AS DonVi, FromPercent2 AS FromPercent, ToPercent2 AS ToPercent, GroupID, [Order], 'CellDyn3200' AS LoaiXN, 0 AS TestNum, DaUpload, LamThem, 1 AS ThuTu FROM dbo.ChiTietKetQuaXetNghiem_CellDyn3200View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXN",
+                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_CellDyn3200GUID AS ChiTietKQXNGUID, '{4}' AS XetNghiemGUID, KQXN_CellDyn3200GUID AS KetQuaXetNghiemGUID, NgayXN, '' AS NgayXN2, Fullname, N'CÔNG THỨC MÁU (MÁY CELLDYN 3200)' AS GroupName, CAST(TestResult AS nvarchar(50)) AS TestResult, TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue2 AS FromValue, ToValue2 AS ToValue, '' AS FromOperator, '' AS ToOperator, 0 AS FromAge, 0 AS ToAge, 0 AS FromTime, 0 AS ToTime, '' AS FromTimeOperator, '' AS ToTimeOperator, 0 AS XValue, CAST(0 AS Bit) AS HasHutThuoc, DoiTuong2 AS DoiTuong, DonVi2 AS DonVi, FromPercent2 AS FromPercent, ToPercent2 AS ToPercent, GroupID, [Order], 'CellDyn3200' AS LoaiXN, 0 AS TestNum, DaUpload, LamThem, 1 AS ThuTu FROM dbo.ChiTietKetQuaXetNghiem_CellDyn3200View WITH(NOLOCK) WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXN",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), emptyGUID);
 
                 result = ExcuteQuery(query);
@@ -467,7 +467,7 @@ namespace MM.Bussiness
                 dt = dtCellDyn3200;
 
                 //Hitachi917
-                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_Hitachi917GUID AS ChiTietKQXNGUID, XetNghiemGUID, KQXN_Hitachi917GUID AS KetQuaXetNghiemGUID, NgayXN, '' AS NgayXN2, Fullname, N'SINH HÓA (MÁY HITACHI 917)' AS GroupName, TestResult, 0 AS TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue, ToValue, '' AS FromOperator, '' AS ToOperator, 0 AS FromAge, 0 AS ToAge, 0 AS FromTime, 0 AS ToTime, '' AS FromTimeOperator, '' AS ToTimeOperator, 0 AS XValue, CAST(0 AS Bit) AS HasHutThuoc, DoiTuong, DonVi, CAST(NULL AS float) AS FromPercent, CAST(NULL AS float) AS ToPercent, GroupID, [Order], 'Hitachi917' AS LoaiXN, TestNum, DaUpload, LamThem, 2 AS ThuTu  FROM dbo.ChiTietKetQuaXetNghiem_Hitachi917View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXN",
+                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_Hitachi917GUID AS ChiTietKQXNGUID, XetNghiemGUID, KQXN_Hitachi917GUID AS KetQuaXetNghiemGUID, NgayXN, '' AS NgayXN2, Fullname, N'SINH HÓA (MÁY HITACHI 917)' AS GroupName, TestResult, 0 AS TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue, ToValue, '' AS FromOperator, '' AS ToOperator, 0 AS FromAge, 0 AS ToAge, 0 AS FromTime, 0 AS ToTime, '' AS FromTimeOperator, '' AS ToTimeOperator, 0 AS XValue, CAST(0 AS Bit) AS HasHutThuoc, DoiTuong, DonVi, CAST(NULL AS float) AS FromPercent, CAST(NULL AS float) AS ToPercent, GroupID, [Order], 'Hitachi917' AS LoaiXN, TestNum, DaUpload, LamThem, 2 AS ThuTu  FROM dbo.ChiTietKetQuaXetNghiem_Hitachi917View WITH(NOLOCK) WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXN",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);
@@ -801,7 +801,7 @@ namespace MM.Bussiness
                 }
 
                 //Xet nghiem tay
-                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKetQuaXetNghiem_ManualGUID AS ChiTietKQXNGUID, XetNghiem_ManualGUID AS XetNghiemGUID, KetQuaXetNghiem_ManualGUID AS KetQuaXetNghiemGUID, NgayXetNghiem AS NgayXN, '' AS NgayXN2, Fullname, GroupName, TestResult, 0 AS TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue, ToValue, FromOperator, ToOperator, FromAge, ToAge, FromTime, ToTime, FromTimeOperator, ToTimeOperator, XValue, HasHutThuoc, DoiTuong, DonVi, CAST(NULL AS float) AS FromPercent, CAST(NULL AS float) AS ToPercent, ISNULL(GroupID, 0) AS GroupID, ISNULL([Order], 0) AS [Order], 'Manual' AS LoaiXN, 0 AS TestNum, DaUpload, LamThem, 3 AS ThuTu FROM dbo.ChiTietKetQuaXetNghiem_ManualView WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXetNghiem BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXetNghiem",
+                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKetQuaXetNghiem_ManualGUID AS ChiTietKQXNGUID, XetNghiem_ManualGUID AS XetNghiemGUID, KetQuaXetNghiem_ManualGUID AS KetQuaXetNghiemGUID, NgayXetNghiem AS NgayXN, '' AS NgayXN2, Fullname, GroupName, TestResult, 0 AS TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue, ToValue, FromOperator, ToOperator, FromAge, ToAge, FromTime, ToTime, FromTimeOperator, ToTimeOperator, XValue, HasHutThuoc, DoiTuong, DonVi, CAST(NULL AS float) AS FromPercent, CAST(NULL AS float) AS ToPercent, ISNULL(GroupID, 0) AS GroupID, ISNULL([Order], 0) AS [Order], 'Manual' AS LoaiXN, 0 AS TestNum, DaUpload, LamThem, 3 AS ThuTu FROM dbo.ChiTietKetQuaXetNghiem_ManualView WITH(NOLOCK) WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXetNghiem BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXetNghiem",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);
@@ -967,7 +967,7 @@ namespace MM.Bussiness
                 DataTable dt = null;
 
                 string emptyGUID = Guid.Empty.ToString();
-                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_CellDyn3200GUID AS ChiTietKQXNGUID, '{4}' AS XetNghiemGUID, NgayXN, NgayXN AS NgayXN2, Fullname, TestResult, TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue2, ToValue2, DoiTuong2, DonVi2, FromPercent2, ToPercent2, GroupID, [Order], 'CellDyn3200' AS LoaiXN, DaUpload, LamThem FROM dbo.ChiTietKetQuaXetNghiem_CellDyn3200View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY NgayXN, GroupID, [Order]",
+                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_CellDyn3200GUID AS ChiTietKQXNGUID, '{4}' AS XetNghiemGUID, NgayXN, NgayXN AS NgayXN2, Fullname, TestResult, TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue2, ToValue2, DoiTuong2, DonVi2, FromPercent2, ToPercent2, GroupID, [Order], 'CellDyn3200' AS LoaiXN, DaUpload, LamThem FROM dbo.ChiTietKetQuaXetNghiem_CellDyn3200View WITH(NOLOCK) WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY NgayXN, GroupID, [Order]",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"), emptyGUID);
 
                 result = ExcuteQuery(query);
@@ -1163,7 +1163,7 @@ namespace MM.Bussiness
                 DataTable dt = null;
 
                 //Hitachi917
-                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_Hitachi917GUID AS ChiTietKQXNGUID, XetNghiemGUID, NgayXN, NgayXN AS NgayXN2, Fullname, TestResult, 0 AS TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue AS FromValue2, ToValue AS ToValue2, DoiTuong AS DoiTuong2, DonVi AS DonVi2, CAST(NULL AS float) AS FromPercent2, CAST(NULL AS float) AS ToPercent2, GroupID, [Order], 'Hitachi917' AS LoaiXN, DaUpload, LamThem  FROM dbo.ChiTietKetQuaXetNghiem_Hitachi917View WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXN",
+                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKQXN_Hitachi917GUID AS ChiTietKQXNGUID, XetNghiemGUID, NgayXN, NgayXN AS NgayXN2, Fullname, TestResult, 0 AS TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue AS FromValue2, ToValue AS ToValue2, DoiTuong AS DoiTuong2, DonVi AS DonVi2, CAST(NULL AS float) AS FromPercent2, CAST(NULL AS float) AS ToPercent2, GroupID, [Order], 'Hitachi917' AS LoaiXN, DaUpload, LamThem  FROM dbo.ChiTietKetQuaXetNghiem_Hitachi917View WITH(NOLOCK) WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY GroupID, [Order], NgayXN",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
                 result = ExcuteQuery(query);
                 if (!result.IsOK) return result;
@@ -1478,7 +1478,7 @@ namespace MM.Bussiness
                 dt = dtHitachi917;
 
                 //Xet nghiem tay
-                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKetQuaXetNghiem_ManualGUID AS ChiTietKQXNGUID, XetNghiem_ManualGUID AS XetNghiemGUID, NgayXN, NgayXN AS NgayXN2, Fullname, TestResult, 0 AS TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue AS FromValue2, ToValue AS ToValue2, DoiTuong AS DoiTuong2, DonVi AS DonVi2, CAST(NULL AS float) AS FromPercent2, CAST(NULL AS float) AS ToPercent2, ISNULL(GroupID, 0) AS GroupID, ISNULL([Order], 0) AS [Order], 'Manual' AS LoaiXN, DaUpload, LamThem FROM dbo.ChiTietKetQuaXetNghiem_ManualView WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY NgayXN, Fullname",
+                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, ChiTietKetQuaXetNghiem_ManualGUID AS ChiTietKQXNGUID, XetNghiem_ManualGUID AS XetNghiemGUID, NgayXN, NgayXN AS NgayXN2, Fullname, TestResult, 0 AS TestPercent, TinhTrang, '' AS BinhThuong, [Type], DaIn, FromValue AS FromValue2, ToValue AS ToValue2, DoiTuong AS DoiTuong2, DonVi AS DonVi2, CAST(NULL AS float) AS FromPercent2, CAST(NULL AS float) AS ToPercent2, ISNULL(GroupID, 0) AS GroupID, ISNULL([Order], 0) AS [Order], 'Manual' AS LoaiXN, DaUpload, LamThem FROM dbo.ChiTietKetQuaXetNghiem_ManualView WITH(NOLOCK) WHERE Status={0} AND KQXNStatus={0} AND PatientGUID='{1}' AND NgayXN BETWEEN '{2}' AND '{3}' ORDER BY NgayXN, Fullname",
                     (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd 00:00:00"), toDate.ToString("yyyy-MM-dd 23:59:59"));
 
                 result = ExcuteQuery(query);

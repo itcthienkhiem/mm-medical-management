@@ -21,25 +21,25 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (isFromTuNgayDenNgay)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND ((Lan1 IS NOT NULL AND Lan1 BETWEEN '{1}' AND '{2}') OR (Lan2 IS NOT NULL AND Lan2 BETWEEN '{1}' AND '{2}') OR (Lan3 IS NOT NULL AND Lan3 BETWEEN '{1}' AND '{2}')) ORDER BY FullName",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WITH(NOLOCK) WHERE Archived = 'False' AND Status = {0} AND ((Lan1 IS NOT NULL AND Lan1 BETWEEN '{1}' AND '{2}') OR (Lan2 IS NOT NULL AND Lan2 BETWEEN '{1}' AND '{2}') OR (Lan3 IS NOT NULL AND Lan3 BETWEEN '{1}' AND '{2}')) ORDER BY FullName",
                         (byte)Status.Actived, tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"));
                 }
                 else
                 {
                     if (tenBenhNhan.Trim() == string.Empty)
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} ORDER BY FullName", (byte)Status.Actived);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WITH(NOLOCK) WHERE Archived = 'False' AND Status = {0} ORDER BY FullName", (byte)Status.Actived);
                     }
                     else //Bệnh nhân
                     {
                         if (!isMaBenhNhan)
                         {
-                            query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND FullName LIKE N'%{1}%' ORDER BY FullName",
+                            query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WITH(NOLOCK) WHERE Archived = 'False' AND Status = {0} AND FullName LIKE N'%{1}%' ORDER BY FullName",
                                 (byte)Status.Actived, tenBenhNhan);
                         }
                         else
                         {
-                            query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WHERE Archived = 'False' AND Status = {0} AND FileNum LIKE N'%{1}%' ORDER BY FullName",
+                            query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TiemNguaView WITH(NOLOCK) WHERE Archived = 'False' AND Status = {0} AND FileNum LIKE N'%{1}%' ORDER BY FullName",
                                 (byte)Status.Actived, tenBenhNhan);
                         }
                     }
@@ -67,7 +67,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TOP 1 * FROM TiemNgua WHERE Status = {0} AND ((Lan1 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan1) >= 0 AND DATEDIFF(day, GetDate(), Lan1) <= {1} AND (DaChich1 IS NULL OR DaChich1 = 0)) OR (Lan2 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan2) >= 0 AND DATEDIFF(day, GetDate(), Lan2) <= {1} AND (DaChich2 IS NULL OR DaChich2 = 0)) OR (Lan3 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan3) >= 0 AND DATEDIFF(day, GetDate(), Lan3) <= {1}) AND (DaChich3 IS NULL OR DaChich3 = 0))",
+                string query = string.Format("SELECT TOP 1 * FROM TiemNgua WITH(NOLOCK) WHERE Status = {0} AND ((Lan1 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan1) >= 0 AND DATEDIFF(day, GetDate(), Lan1) <= {1} AND (DaChich1 IS NULL OR DaChich1 = 0)) OR (Lan2 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan2) >= 0 AND DATEDIFF(day, GetDate(), Lan2) <= {1} AND (DaChich2 IS NULL OR DaChich2 = 0)) OR (Lan3 IS NOT NULL AND DATEDIFF(day, GetDate(), Lan3) >= 0 AND DATEDIFF(day, GetDate(), Lan3) <= {1}) AND (DaChich3 IS NULL OR DaChich3 = 0))",
                     (byte)Status.Actived, Global.AlertDays);
 
                 return ExcuteQuery(query);

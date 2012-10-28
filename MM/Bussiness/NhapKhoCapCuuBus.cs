@@ -19,7 +19,7 @@ namespace MM.Bussiness
             try
             {
 
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhapKhoCapCuuView WHERE NhapKhoCapCuuStatus={0} AND KhoCapCuuStatus={0} ORDER BY NgayNhap DESC", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM NhapKhoCapCuuView WITH(NOLOCK) WHERE NhapKhoCapCuuStatus={0} AND KhoCapCuuStatus={0} ORDER BY NgayNhap DESC", 
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -46,7 +46,7 @@ namespace MM.Bussiness
                 DateTime dt = DateTime.Now;
                 //dt = dt.AddDays(-Global.AlertSoNgayHetHanCapCuu);
 
-                string query = string.Format("SELECT TOP 1 N.* FROM KhoCapCuu K, NhapKhoCapCuu N WHERE K.KhoCapCuuGUID = N.KhoCapCuuGUID AND K.Status = 0 AND N.Status = 0 AND N.SoLuongNhap * N.SoLuongQuiDoi - N.SoLuongXuat > 0 AND  DATEDIFF(day, '{0}', NgayHetHan) <= {1}",
+                string query = string.Format("SELECT TOP 1 N.* FROM KhoCapCuu K WITH(NOLOCK), NhapKhoCapCuu N WITH(NOLOCK) WHERE K.KhoCapCuuGUID = N.KhoCapCuuGUID AND K.Status = 0 AND N.Status = 0 AND N.SoLuongNhap * N.SoLuongQuiDoi - N.SoLuongXuat > 0 AND  DATEDIFF(day, '{0}', NgayHetHan) <= {1}",
                     dt.ToString("yyyy-MM-dd"), Global.AlertSoNgayHetHanCapCuu);
 
                 result = ExcuteQuery(query);
@@ -318,7 +318,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT DISTINCT NhaPhanPhoi FROM NhapKhoCapCuu ORDER BY NhaPhanPhoi",
+                string query = string.Format("SELECT DISTINCT NhaPhanPhoi FROM NhapKhoCapCuu WITH(NOLOCK) ORDER BY NhaPhanPhoi",
                     (byte)Status.Actived);
                 return ExcuteQuery(query);
             }

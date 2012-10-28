@@ -64,7 +64,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM PermissionView WHERE LogonGUID = '{0}' ORDER BY FunctionName", logonGUID);
+                string query = string.Format("SELECT * FROM PermissionView WITH(NOLOCK) WHERE LogonGUID = '{0}' ORDER BY FunctionName", logonGUID);
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

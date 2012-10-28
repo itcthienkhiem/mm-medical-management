@@ -27,12 +27,12 @@ namespace MM.Bussiness
 
                 if (docStaffGUID == Guid.Empty.ToString())
                 {
-                    query = string.Format("SELECT * FROM TrackingView WHERE TrackingDate BETWEEN '{0}' AND '{1}' AND ActionType IN ({2}) ORDER BY TrackingDate DESC",
+                    query = string.Format("SELECT * FROM TrackingView WITH(NOLOCK) WHERE TrackingDate BETWEEN '{0}' AND '{1}' AND ActionType IN ({2}) ORDER BY TrackingDate DESC",
                         fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), actionTypes);
                 }
                 else
                 {
-                    query = string.Format("SELECT * FROM TrackingView WHERE TrackingDate BETWEEN '{0}' AND '{1}' AND ActionType IN ({2}) AND DocStaffGUID = '{3}' ORDER BY TrackingDate DESC",
+                    query = string.Format("SELECT * FROM TrackingView WITH(NOLOCK) WHERE TrackingDate BETWEEN '{0}' AND '{1}' AND ActionType IN ({2}) AND DocStaffGUID = '{3}' ORDER BY TrackingDate DESC",
                         fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), actionTypes, docStaffGUID);
                 }
                 
