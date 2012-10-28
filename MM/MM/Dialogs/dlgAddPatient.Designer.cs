@@ -65,6 +65,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPatient = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.dtpkNgayKham = new System.Windows.Forms.DateTimePicker();
+            this.chkNgayKham = new System.Windows.Forms.CheckBox();
             this.txtNo = new System.Windows.Forms.TextBox();
             this.txtTenCongTy = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
@@ -72,7 +74,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.pagePatientInfo = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
-            this.cboTinhTrangGiaDinh = new System.Windows.Forms.ComboBox();
             this.chkDangCoThai = new System.Windows.Forms.CheckBox();
             this.chkChichNguaCum = new System.Windows.Forms.CheckBox();
             this.chkChichNguaUonVan = new System.Windows.Forms.CheckBox();
@@ -102,8 +103,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkDiUngThuoc = new System.Windows.Forms.CheckBox();
             this.pagePatientHistory = new DevComponents.DotNetBar.TabItem(this.components);
-            this.chkNgayKham = new System.Windows.Forms.CheckBox();
-            this.dtpkNgayKham = new System.Windows.Forms.DateTimePicker();
+            this.raDocThan = new System.Windows.Forms.RadioButton();
+            this.raCoGiaDinh = new System.Windows.Forms.RadioButton();
+            this.raKhac = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.tabPatient)).BeginInit();
             this.tabPatient.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -436,8 +438,8 @@
             // tabPatient
             // 
             this.tabPatient.CanReorderTabs = true;
-            this.tabPatient.Controls.Add(this.tabControlPanel1);
             this.tabPatient.Controls.Add(this.tabControlPanel2);
+            this.tabPatient.Controls.Add(this.tabControlPanel1);
             this.tabPatient.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabPatient.Location = new System.Drawing.Point(0, 0);
             this.tabPatient.Name = "tabPatient";
@@ -508,6 +510,27 @@
             this.tabControlPanel1.TabIndex = 1;
             this.tabControlPanel1.TabItem = this.pagePatientInfo;
             // 
+            // dtpkNgayKham
+            // 
+            this.dtpkNgayKham.CustomFormat = "dd/MM/yyyy";
+            this.dtpkNgayKham.Enabled = false;
+            this.dtpkNgayKham.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkNgayKham.Location = new System.Drawing.Point(110, 91);
+            this.dtpkNgayKham.Name = "dtpkNgayKham";
+            this.dtpkNgayKham.Size = new System.Drawing.Size(104, 20);
+            this.dtpkNgayKham.TabIndex = 3;
+            // 
+            // chkNgayKham
+            // 
+            this.chkNgayKham.AutoSize = true;
+            this.chkNgayKham.Location = new System.Drawing.Point(20, 92);
+            this.chkNgayKham.Name = "chkNgayKham";
+            this.chkNgayKham.Size = new System.Drawing.Size(83, 17);
+            this.chkNgayKham.TabIndex = 2;
+            this.chkNgayKham.Text = "Ngày khám:";
+            this.chkNgayKham.UseVisualStyleBackColor = true;
+            this.chkNgayKham.CheckedChanged += new System.EventHandler(this.chkNgayKham_CheckedChanged);
+            // 
             // txtNo
             // 
             this.txtNo.Location = new System.Drawing.Point(216, 10);
@@ -572,7 +595,9 @@
             // 
             // tabControlPanel2
             // 
-            this.tabControlPanel2.Controls.Add(this.cboTinhTrangGiaDinh);
+            this.tabControlPanel2.Controls.Add(this.raKhac);
+            this.tabControlPanel2.Controls.Add(this.raCoGiaDinh);
+            this.tabControlPanel2.Controls.Add(this.raDocThan);
             this.tabControlPanel2.Controls.Add(this.chkDangCoThai);
             this.tabControlPanel2.Controls.Add(this.chkChichNguaCum);
             this.tabControlPanel2.Controls.Add(this.chkChichNguaUonVan);
@@ -615,19 +640,6 @@
             this.tabControlPanel2.Style.GradientAngle = 90;
             this.tabControlPanel2.TabIndex = 2;
             this.tabControlPanel2.TabItem = this.pagePatientHistory;
-            // 
-            // cboTinhTrangGiaDinh
-            // 
-            this.cboTinhTrangGiaDinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboTinhTrangGiaDinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboTinhTrangGiaDinh.FormattingEnabled = true;
-            this.cboTinhTrangGiaDinh.Items.AddRange(new object[] {
-            "Độc thân",
-            "Có gia đình"});
-            this.cboTinhTrangGiaDinh.Location = new System.Drawing.Point(124, 426);
-            this.cboTinhTrangGiaDinh.Name = "cboTinhTrangGiaDinh";
-            this.cboTinhTrangGiaDinh.Size = new System.Drawing.Size(308, 21);
-            this.cboTinhTrangGiaDinh.TabIndex = 78;
             // 
             // chkDangCoThai
             // 
@@ -936,26 +948,41 @@
             this.pagePatientHistory.Name = "pagePatientHistory";
             this.pagePatientHistory.Text = "Bệnh sử";
             // 
-            // chkNgayKham
+            // raDocThan
             // 
-            this.chkNgayKham.AutoSize = true;
-            this.chkNgayKham.Location = new System.Drawing.Point(20, 92);
-            this.chkNgayKham.Name = "chkNgayKham";
-            this.chkNgayKham.Size = new System.Drawing.Size(83, 17);
-            this.chkNgayKham.TabIndex = 2;
-            this.chkNgayKham.Text = "Ngày khám:";
-            this.chkNgayKham.UseVisualStyleBackColor = true;
-            this.chkNgayKham.CheckedChanged += new System.EventHandler(this.chkNgayKham_CheckedChanged);
+            this.raDocThan.AutoSize = true;
+            this.raDocThan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.raDocThan.Location = new System.Drawing.Point(126, 427);
+            this.raDocThan.Name = "raDocThan";
+            this.raDocThan.Size = new System.Drawing.Size(69, 17);
+            this.raDocThan.TabIndex = 78;
+            this.raDocThan.TabStop = true;
+            this.raDocThan.Text = "Độc thân";
+            this.raDocThan.UseVisualStyleBackColor = false;
             // 
-            // dtpkNgayKham
+            // raCoGiaDinh
             // 
-            this.dtpkNgayKham.CustomFormat = "dd/MM/yyyy";
-            this.dtpkNgayKham.Enabled = false;
-            this.dtpkNgayKham.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayKham.Location = new System.Drawing.Point(110, 91);
-            this.dtpkNgayKham.Name = "dtpkNgayKham";
-            this.dtpkNgayKham.Size = new System.Drawing.Size(104, 20);
-            this.dtpkNgayKham.TabIndex = 3;
+            this.raCoGiaDinh.AutoSize = true;
+            this.raCoGiaDinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.raCoGiaDinh.Location = new System.Drawing.Point(217, 427);
+            this.raCoGiaDinh.Name = "raCoGiaDinh";
+            this.raCoGiaDinh.Size = new System.Drawing.Size(79, 17);
+            this.raCoGiaDinh.TabIndex = 79;
+            this.raCoGiaDinh.TabStop = true;
+            this.raCoGiaDinh.Text = "Có gia đình";
+            this.raCoGiaDinh.UseVisualStyleBackColor = false;
+            // 
+            // raKhac
+            // 
+            this.raKhac.AutoSize = true;
+            this.raKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.raKhac.Location = new System.Drawing.Point(316, 427);
+            this.raKhac.Name = "raKhac";
+            this.raKhac.Size = new System.Drawing.Size(50, 17);
+            this.raKhac.TabIndex = 80;
+            this.raKhac.TabStop = true;
+            this.raKhac.Text = "Khác";
+            this.raKhac.UseVisualStyleBackColor = false;
             // 
             // dlgAddPatient
             // 
@@ -1059,9 +1086,11 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox txtTenCongTy;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.ComboBox cboTinhTrangGiaDinh;
         private System.Windows.Forms.TextBox txtNo;
         private System.Windows.Forms.DateTimePicker dtpkNgayKham;
         private System.Windows.Forms.CheckBox chkNgayKham;
+        private System.Windows.Forms.RadioButton raKhac;
+        private System.Windows.Forms.RadioButton raCoGiaDinh;
+        private System.Windows.Forms.RadioButton raDocThan;
     }
 }

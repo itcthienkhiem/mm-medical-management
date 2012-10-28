@@ -257,7 +257,26 @@ namespace MM.Dialogs
                     chkUongRuou.Checked = Convert.ToBoolean(drPatient["Uong_Ruou"]);
 
                 if (drPatient["Tinh_Trang_Gia_Dinh"] != null && drPatient["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
-                    cboTinhTrangGiaDinh.Text = drPatient["Tinh_Trang_Gia_Dinh"].ToString();
+                {
+                    string tinhTrangGiaDinh = drPatient["Tinh_Trang_Gia_Dinh"].ToString().Trim();
+                    if (tinhTrangGiaDinh != string.Empty)
+                    {
+                        switch (tinhTrangGiaDinh.ToLower())
+                        {
+                            case "độc thân":
+                                raDocThan.Checked = true;
+                                break;
+
+                            case "có gia đình":
+                                raCoGiaDinh.Checked = true;
+                                break;
+
+                            default:
+                                raKhac.Checked = true;
+                                break;
+                        }
+                    }
+                }
 
                 if (drPatient["Chich_Ngua_Viem_Gan_B"] != null && drPatient["Chich_Ngua_Viem_Gan_B"] != DBNull.Value)
                     chkChichNguaViemGanB.Checked = Convert.ToBoolean(drPatient["Chich_Ngua_Viem_Gan_B"]);
@@ -391,8 +410,13 @@ namespace MM.Dialogs
                         _patientHistory.Thuoc_Dang_Dung = string.Empty;
                     }
 
-
-                    _patientHistory.Tinh_Trang_Gia_Dinh = cboTinhTrangGiaDinh.Text;
+                    _patientHistory.Tinh_Trang_Gia_Dinh = string.Empty;
+                    if (raDocThan.Checked)
+                        _patientHistory.Tinh_Trang_Gia_Dinh = "Độc thân";
+                    else if (raCoGiaDinh.Checked)
+                        _patientHistory.Tinh_Trang_Gia_Dinh = "Có gia đình";
+                    else if (raKhac.Checked)
+                        _patientHistory.Tinh_Trang_Gia_Dinh = "Khác";
 
                     Result result = PatientBus.InsertPatient(_contact, _patient, _patientHistory);
                     if (!result.IsOK)
@@ -494,16 +518,16 @@ namespace MM.Dialogs
 
         private void tabPatient_SelectedTabChanged(object sender, DevComponents.DotNetBar.TabStripTabChangedEventArgs e)
         {
-            if (tabPatient.SelectedTabIndex == 1)
-            {
-                if (!_flag && !_isNew)
-                {
-                    if (_drPatient["Tinh_Trang_Gia_Dinh"] != null && _drPatient["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
-                        cboTinhTrangGiaDinh.Text = _drPatient["Tinh_Trang_Gia_Dinh"].ToString();
+            //if (tabPatient.SelectedTabIndex == 1)
+            //{
+            //    if (!_flag && !_isNew)
+            //    {
+            //        if (_drPatient["Tinh_Trang_Gia_Dinh"] != null && _drPatient["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
+            //            cboTinhTrangGiaDinh.Text = _drPatient["Tinh_Trang_Gia_Dinh"].ToString();
 
-                    _flag = true;
-                }
-            }
+            //        _flag = true;
+            //    }
+            //}
         }
 
         private void chkNgayKham_CheckedChanged(object sender, EventArgs e)
