@@ -27,6 +27,8 @@ namespace MM.Controls
         public uChiTietPhieuThuDichVu()
         {
             InitializeComponent();
+            dtpkTuNgay.Value = DateTime.Now;
+            dtpkDenNgay.Value = DateTime.Now;
         }
         #endregion
 

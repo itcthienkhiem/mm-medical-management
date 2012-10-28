@@ -29,6 +29,8 @@ namespace MM.Controls
         public uHoaDonXuatTruoc()
         {
             InitializeComponent();
+            dtpkDenNgay.Value = DateTime.Now;
+            dtpkTuNgay.Value = DateTime.Now.AddDays(-7);
         }
         #endregion
 
