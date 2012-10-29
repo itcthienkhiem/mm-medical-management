@@ -19,6 +19,7 @@ namespace MM.Controls
         private DateTime _tuNgay = DateTime.Now;
         private DateTime _denNgay = DateTime.Now;
         private string _tenNguoiTao = string.Empty;
+        private int _type = 0; //0: Tất cả; 1: Đã duyệt; 2: Đang chờ duyệt
         #endregion
 
         #region Constructor
@@ -34,9 +35,24 @@ namespace MM.Controls
         #region UI Command
         private void UpdateGUI()
         {
-            btnAdd.Enabled = AllowAdd;
-            btnEdit.Enabled = AllowEdit;
-            btnDelete.Enabled = AllowDelete;
+            btnAdd.Enabled = AllowConfirm ? true : AllowAdd;
+            btnEdit.Enabled = AllowConfirm ? true : AllowEdit;
+            btnDelete.Enabled = AllowConfirm ? true : AllowDelete;
+            btnXemQuaTrinhDuyet.Enabled = AllowConfirm;
+
+            if (!AllowConfirm && !AllowAdd && !AllowEdit && !AllowDelete)
+            {
+                raDaDuyet.Checked = true;
+                raDangChoDuyet.Checked = false;
+                raDangChoDuyet.Enabled = false;
+                raTatCa.Checked = false;
+                raTatCa.Enabled = false;
+            }
+            else
+            {
+                raDangChoDuyet.Enabled = true;
+                raTatCa.Enabled = true;
+            }
         }
 
         public void DisplayAsThread()
@@ -48,6 +64,9 @@ namespace MM.Controls
                 _tuNgay = dtpkTuNgay.Value;
                 _denNgay = dtpkDenNgay.Value;
                 _tenNguoiTao = txtTenNguoiTao.Text.Trim();
+                if (raTatCa.Checked) _type = 0;
+                else if (raDaDuyet.Checked) _type = 1;
+                else if (raDangChoDuyet.Checked) _type = 2;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayThongBaoListProc));
                 base.ShowWaiting();
             }
@@ -64,9 +83,7 @@ namespace MM.Controls
 
         private void OnDisplayThongBaoList()
         {
-            bool isAll = (AllowAdd || AllowEdit || AllowDelete) ? true : false;
-
-            Result result = ThongBaoBus.GetThongBaoList(_tuNgay, _denNgay, _tenNguoiTao, isAll);
+            Result result = ThongBaoBus.GetThongBaoList(_tuNgay, _denNgay, _tenNguoiTao, _type);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -86,7 +103,7 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-            dlgAddThongBao dlg = new dlgAddThongBao();
+            dlgAddThongBao dlg = new dlgAddThongBao(AllowConfirm);
             if (dlg.ShowDialog(this) == DialogResult.OK)
                 DisplayAsThread();
         }
@@ -101,13 +118,13 @@ namespace MM.Controls
 
             DataRow drThongBao = (dgThongBao.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string nguoiTaoGUID = drThongBao["CreatedBy"].ToString();
-            if (nguoiTaoGUID != Global.UserGUID)
+            if (nguoiTaoGUID != Global.UserGUID && !AllowConfirm)
             {
                 MsgBox.Show(Application.ProductName, "Bạn không thể sửa thông báo do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
                 return;
             }
 
-            dlgAddThongBao dlg = new dlgAddThongBao(drThongBao);
+            dlgAddThongBao dlg = new dlgAddThongBao(drThongBao, AllowConfirm);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
@@ -135,7 +152,7 @@ namespace MM.Controls
                     foreach (DataRow row in deletedRows)
                     {
                         string nguoiTaoGUID = row["CreatedBy"].ToString();
-                        if (nguoiTaoGUID != Global.UserGUID)
+                        if (nguoiTaoGUID != Global.UserGUID && !AllowConfirm)
                         {
                             MsgBox.Show(Application.ProductName, "Bạn không thể xóa thông báo do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
                             return;
@@ -212,8 +229,19 @@ namespace MM.Controls
 
                 if (drThongBao["ThongBaoBuff"] != null && drThongBao["ThongBaoBuff"] != DBNull.Value)
                 {
-                    byte[] buff = (byte[])drThongBao["ThongBaoBuff"];
-                    ExecuteThongBao(buff);
+                    string nguoiTaoGUID = drThongBao["CreatedBy"].ToString();
+                    if (AllowConfirm)
+                    {
+                        byte[] buff = (byte[])drThongBao["ThongBaoBuff"];
+                        ExecuteThongBao(buff);
+                    }
+                    else if (nguoiTaoGUID == Global.UserGUID)
+                    {
+                        byte[] buff = (byte[])drThongBao["ThongBaoBuff"];
+                        ExecuteThongBao(buff);
+                    }
+                    else
+                        MsgBox.Show(Application.ProductName, "Bạn không thể xem thông báo do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
                 }
             }
             catch (Exception e)
@@ -221,6 +249,28 @@ namespace MM.Controls
                 MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
+        }
+
+        private void OnXemQuaTrinhDuyet()
+        {
+            if (dgThongBao.SelectedRows == null || dgThongBao.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thông báo.", IconType.Information);
+                return;
+            }
+
+            DataRow drThongBao = (dgThongBao.SelectedRows[0].DataBoundItem as DataRowView).Row;
+
+            if ((drThongBao["ThongBaoBuff3"] == null || drThongBao["ThongBaoBuff3"] == DBNull.Value) &&
+                (drThongBao["ThongBaoBuff2"] == null || drThongBao["ThongBaoBuff2"] == DBNull.Value) &&
+                (drThongBao["ThongBaoBuff1"] == null || drThongBao["ThongBaoBuff1"] == DBNull.Value))
+            {
+                MsgBox.Show(Application.ProductName, "Thông báo này chưa được duyệt lần nào.", IconType.Information);
+                return;
+            }
+
+            dlgQuaTrinhDuyetThongBao dlg = new dlgQuaTrinhDuyetThongBao(drThongBao);
+            dlg.ShowDialog();
         }
         #endregion
         
@@ -271,6 +321,11 @@ namespace MM.Controls
             {
                 row["Checked"] = chkChecked.Checked;
             }
+        }
+
+        private void btnXemQuaTrinhDuyet_Click(object sender, EventArgs e)
+        {
+            OnXemQuaTrinhDuyet();
         }
         #endregion
 
