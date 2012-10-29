@@ -1268,6 +1268,7 @@ namespace MM
                             _uThongBaoList.AllowImport = isImport;
                             _uThongBaoList.AllowLock = isLock;
                             _uThongBaoList.AllowExportAll = isExportAll;
+                            _uThongBaoList.AllowConfirm = isConfirm;
                         }
                     }
                 }
@@ -1346,6 +1347,7 @@ namespace MM
                     (ctrl as uBase).AllowImport = true;
                     (ctrl as uBase).AllowLock = true;
                     (ctrl as uBase).AllowExportAll = true;
+                    (ctrl as uBase).AllowConfirm = true;
                 }
 
                 servicesToolStripMenuItem.Enabled = isLogin;

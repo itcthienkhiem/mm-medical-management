@@ -20,17 +20,20 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private ThongBao _thongBao = new ThongBao();
         private DataRow _drThongBao = null;
+        private bool _isDuyet = false;        
         #endregion
 
         #region Constructor
-        public dlgAddThongBao()
+        public dlgAddThongBao(bool isDuyet)
         {
             InitializeComponent();
+            _isDuyet = isDuyet;
         }
 
-        public dlgAddThongBao(DataRow drThongBao)
+        public dlgAddThongBao(DataRow drThongBao, bool isDuyet)
         {
             InitializeComponent();
+            _isDuyet = isDuyet;
             _drThongBao = drThongBao;
             _isNew = false;
             this.Text = "Sua thong bao";
@@ -74,6 +77,10 @@ namespace MM.Dialogs
                     txtNgayDuyet1.Text = Convert.ToDateTime(_drThongBao["NgayDuyet1"]).ToString("dd/MM/yyyy HH:mm:ss");
                     chkDuyetLan1.Checked = true;
                     _thongBao.NgayDuyet1 = Convert.ToDateTime(_drThongBao["NgayDuyet1"]);
+
+                    if (_drThongBao["NguoiDuyet1GUID"] != null && _drThongBao["NguoiDuyet1GUID"] != DBNull.Value)
+                        _thongBao.NguoiDuyet1GUID = Guid.Parse(_drThongBao["NguoiDuyet1GUID"].ToString());
+
                     byte[] buff = (byte[])_drThongBao["ThongBaoBuff1"];
                     _thongBao.ThongBaoBuff1 = new System.Data.Linq.Binary(buff);
                     chkDuyetLan1.Enabled = false;
@@ -85,6 +92,10 @@ namespace MM.Dialogs
                     txtNgayDuyet2.Text = Convert.ToDateTime(_drThongBao["NgayDuyet2"]).ToString("dd/MM/yyyy HH:mm:ss");
                     chkDuyetLan2.Checked = true;
                     _thongBao.NgayDuyet2 = Convert.ToDateTime(_drThongBao["NgayDuyet2"]);
+
+                    if (_drThongBao["NguoiDuyet2GUID"] != null && _drThongBao["NguoiDuyet2GUID"] != DBNull.Value)
+                        _thongBao.NguoiDuyet2GUID = Guid.Parse(_drThongBao["NguoiDuyet2GUID"].ToString());
+
                     byte[] buff = (byte[])_drThongBao["ThongBaoBuff2"];
                     _thongBao.ThongBaoBuff2 = new System.Data.Linq.Binary(buff);
                     chkDuyetLan2.Enabled = false;
@@ -96,6 +107,10 @@ namespace MM.Dialogs
                     txtNgayDuyet3.Text = Convert.ToDateTime(_drThongBao["NgayDuyet3"]).ToString("dd/MM/yyyy HH:mm:ss");
                     chkDuyetLan3.Checked = true;
                     _thongBao.NgayDuyet3 = Convert.ToDateTime(_drThongBao["NgayDuyet3"]);
+
+                    if (_drThongBao["NguoiDuyet3GUID"] != null && _drThongBao["NguoiDuyet3GUID"] != DBNull.Value)
+                        _thongBao.NguoiDuyet3GUID = Guid.Parse(_drThongBao["NguoiDuyet3GUID"].ToString());
+
                     byte[] buff = (byte[])_drThongBao["ThongBaoBuff3"];
                     _thongBao.ThongBaoBuff3 = new System.Data.Linq.Binary(buff);
                     chkDuyetLan3.Enabled = false;
@@ -183,6 +198,7 @@ namespace MM.Dialogs
                         {
                             _thongBao.NgayDuyet1 = DateTime.Now;
                             _thongBao.ThongBaoBuff1 = new System.Data.Linq.Binary(buff);
+                            _thongBao.NguoiDuyet1GUID = Guid.Parse(Global.UserGUID);
                         }
                     }
                     else
@@ -201,6 +217,7 @@ namespace MM.Dialogs
                             byte[] buff = _thongBao.ThongBaoBuff.ToArray();
                             _thongBao.ThongBaoBuff1 = new System.Data.Linq.Binary(buff);
                             _thongBao.NgayDuyet1 = DateTime.Now;
+                            _thongBao.NguoiDuyet1GUID = Guid.Parse(Global.UserGUID);
                         }
 
                         if (chkDuyetLan2.Enabled && chkDuyetLan2.Checked)
@@ -208,6 +225,7 @@ namespace MM.Dialogs
                             byte[] buff = _thongBao.ThongBaoBuff.ToArray();
                             _thongBao.ThongBaoBuff2 = new System.Data.Linq.Binary(buff);
                             _thongBao.NgayDuyet2 = DateTime.Now;
+                            _thongBao.NguoiDuyet2GUID = Guid.Parse(Global.UserGUID);
                         }
 
                         if (chkDuyetLan3.Enabled && chkDuyetLan3.Checked)
@@ -215,6 +233,7 @@ namespace MM.Dialogs
                             byte[] buff = _thongBao.ThongBaoBuff.ToArray();
                             _thongBao.ThongBaoBuff3 = new System.Data.Linq.Binary(buff);
                             _thongBao.NgayDuyet3 = DateTime.Now;
+                            _thongBao.NguoiDuyet3GUID = Guid.Parse(Global.UserGUID);
                         }
                     }
 
@@ -263,6 +282,10 @@ namespace MM.Dialogs
         private void dlgAddThongBao_Load(object sender, EventArgs e)
         {
             if (!_isNew) DisplayInfo();
+
+            if (chkDuyetLan1.Enabled) chkDuyetLan1.Enabled = _isDuyet;
+            if (chkDuyetLan2.Enabled) chkDuyetLan2.Enabled = _isDuyet;
+            if (chkDuyetLan3.Enabled) chkDuyetLan3.Enabled = _isDuyet;
         }
 
         private void dlgAddThongBao_FormClosing(object sender, FormClosingEventArgs e)
