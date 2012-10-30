@@ -60,6 +60,7 @@ namespace MM.Controls
             try
             {
                 UpdateGUI();
+                lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
                 chkChecked.Checked = false;
                 _tuNgay = dtpkTuNgay.Value;
                 _denNgay = dtpkDenNgay.Value;
@@ -88,7 +89,9 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    DataTable dt = result.QueryResult as DataTable;
                     dgThongBao.DataSource = result.QueryResult as DataTable;
+                    lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
