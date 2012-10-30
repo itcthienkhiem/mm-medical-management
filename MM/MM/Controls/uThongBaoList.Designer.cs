@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uThongBaoList));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uThongBaoList));
             this.panel2 = new System.Windows.Forms.Panel();
             this.raDangChoDuyet = new System.Windows.Forms.RadioButton();
             this.raDaDuyet = new System.Windows.Forms.RadioButton();
@@ -66,6 +66,7 @@
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.thongBaoViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnXemSuaDoi = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -97,10 +98,11 @@
             this.raDangChoDuyet.AutoSize = true;
             this.raDangChoDuyet.Location = new System.Drawing.Point(287, 60);
             this.raDangChoDuyet.Name = "raDangChoDuyet";
-            this.raDangChoDuyet.Size = new System.Drawing.Size(101, 17);
+            this.raDangChoDuyet.Size = new System.Drawing.Size(79, 17);
             this.raDangChoDuyet.TabIndex = 8;
-            this.raDangChoDuyet.Text = "Đang chờ duyệt";
+            this.raDangChoDuyet.Text = "Chưa duyệt";
             this.raDangChoDuyet.UseVisualStyleBackColor = true;
+            this.raDangChoDuyet.CheckedChanged += new System.EventHandler(this.raDangChoDuyet_CheckedChanged);
             // 
             // raDaDuyet
             // 
@@ -111,6 +113,7 @@
             this.raDaDuyet.TabIndex = 7;
             this.raDaDuyet.Text = "Đã duyệt";
             this.raDaDuyet.UseVisualStyleBackColor = true;
+            this.raDaDuyet.CheckedChanged += new System.EventHandler(this.raDaDuyet_CheckedChanged);
             // 
             // raTatCa
             // 
@@ -123,6 +126,7 @@
             this.raTatCa.TabStop = true;
             this.raTatCa.Text = "Tất cả";
             this.raTatCa.UseVisualStyleBackColor = true;
+            this.raTatCa.CheckedChanged += new System.EventHandler(this.raTatCa_CheckedChanged);
             // 
             // label3
             // 
@@ -200,6 +204,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnXemSuaDoi);
             this.panel1.Controls.Add(this.btnXemQuaTrinhDuyet);
             this.panel1.Controls.Add(this.btnXemThongBao);
             this.panel1.Controls.Add(this.btnDelete);
@@ -421,6 +426,19 @@
             // 
             this.thongBaoViewBindingSource.DataSource = typeof(MM.Databasae.ThongBaoView);
             // 
+            // btnXemSuaDoi
+            // 
+            this.btnXemSuaDoi.ForeColor = System.Drawing.Color.Red;
+            this.btnXemSuaDoi.Image = ((System.Drawing.Image)(resources.GetObject("btnXemSuaDoi.Image")));
+            this.btnXemSuaDoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXemSuaDoi.Location = new System.Drawing.Point(518, 6);
+            this.btnXemSuaDoi.Name = "btnXemSuaDoi";
+            this.btnXemSuaDoi.Size = new System.Drawing.Size(119, 25);
+            this.btnXemSuaDoi.TabIndex = 5;
+            this.btnXemSuaDoi.Text = "    &Xem sửa đổi";
+            this.btnXemSuaDoi.UseVisualStyleBackColor = true;
+            this.btnXemSuaDoi.Click += new System.EventHandler(this.btnXemSuaDoi_Click);
+            // 
             // uThongBaoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -472,5 +490,6 @@
         private System.Windows.Forms.RadioButton raDangChoDuyet;
         private System.Windows.Forms.RadioButton raDaDuyet;
         private System.Windows.Forms.RadioButton raTatCa;
+        private System.Windows.Forms.Button btnXemSuaDoi;
     }
 }
