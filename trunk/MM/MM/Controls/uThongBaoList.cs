@@ -327,6 +327,46 @@ namespace MM.Controls
         {
             OnXemQuaTrinhDuyet();
         }
+
+        private void raTatCa_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void raDaDuyet_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void raDangChoDuyet_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void btnXemSuaDoi_Click(object sender, EventArgs e)
+        {
+            if (dgThongBao.SelectedRows == null || dgThongBao.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thông báo.", IconType.Information);
+                return;
+            }
+
+            DataRow drThongBao = (dgThongBao.SelectedRows[0].DataBoundItem as DataRowView).Row;
+
+            string nguoiTaoGUID = drThongBao["CreatedBy"].ToString();
+            if (AllowConfirm)
+            {
+                byte[] buff = (byte[])drThongBao["ThongBaoBuff"];
+                ExecuteThongBao(buff);
+            }
+            else if (nguoiTaoGUID == Global.UserGUID)
+            {
+                byte[] buff = (byte[])drThongBao["ThongBaoBuff"];
+                ExecuteThongBao(buff);
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Bạn không thể xem thông báo do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
+        }
         #endregion
 
         #region Working Thread
