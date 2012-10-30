@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uThongBaoList));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,7 +37,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uThongBaoList));
             this.panel2 = new System.Windows.Forms.Panel();
             this.raDangChoDuyet = new System.Windows.Forms.RadioButton();
             this.raDaDuyet = new System.Windows.Forms.RadioButton();
@@ -50,6 +50,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnXemSuaDoi = new System.Windows.Forms.Button();
             this.btnXemQuaTrinhDuyet = new System.Windows.Forms.Button();
             this.btnXemThongBao = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -66,7 +67,6 @@
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.thongBaoViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnXemSuaDoi = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -215,6 +215,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(974, 38);
             this.panel1.TabIndex = 10;
+            // 
+            // btnXemSuaDoi
+            // 
+            this.btnXemSuaDoi.ForeColor = System.Drawing.Color.Red;
+            this.btnXemSuaDoi.Image = ((System.Drawing.Image)(resources.GetObject("btnXemSuaDoi.Image")));
+            this.btnXemSuaDoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXemSuaDoi.Location = new System.Drawing.Point(518, 6);
+            this.btnXemSuaDoi.Name = "btnXemSuaDoi";
+            this.btnXemSuaDoi.Size = new System.Drawing.Size(153, 25);
+            this.btnXemSuaDoi.TabIndex = 5;
+            this.btnXemSuaDoi.Text = "    &Xem sửa đổi cần duyệt";
+            this.btnXemSuaDoi.UseVisualStyleBackColor = true;
+            this.btnXemSuaDoi.Click += new System.EventHandler(this.btnXemSuaDoi_Click);
             // 
             // btnXemQuaTrinhDuyet
             // 
@@ -425,19 +438,6 @@
             // thongBaoViewBindingSource
             // 
             this.thongBaoViewBindingSource.DataSource = typeof(MM.Databasae.ThongBaoView);
-            // 
-            // btnXemSuaDoi
-            // 
-            this.btnXemSuaDoi.ForeColor = System.Drawing.Color.Red;
-            this.btnXemSuaDoi.Image = ((System.Drawing.Image)(resources.GetObject("btnXemSuaDoi.Image")));
-            this.btnXemSuaDoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXemSuaDoi.Location = new System.Drawing.Point(518, 6);
-            this.btnXemSuaDoi.Name = "btnXemSuaDoi";
-            this.btnXemSuaDoi.Size = new System.Drawing.Size(119, 25);
-            this.btnXemSuaDoi.TabIndex = 5;
-            this.btnXemSuaDoi.Text = "    &Xem sửa đổi";
-            this.btnXemSuaDoi.UseVisualStyleBackColor = true;
-            this.btnXemSuaDoi.Click += new System.EventHandler(this.btnXemSuaDoi_Click);
             // 
             // uThongBaoList
             // 
