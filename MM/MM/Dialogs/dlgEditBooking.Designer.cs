@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgEditBooking));
             this.gbBookingMonitor = new System.Windows.Forms.GroupBox();
+            this.cboBookingMonitorInOut = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.cboBookingMonitorCompany = new System.Windows.Forms.ComboBox();
             this.numEvening = new System.Windows.Forms.NumericUpDown();
             this.numAfternoon = new System.Windows.Forms.NumericUpDown();
@@ -41,6 +43,8 @@
             this.dtpkBookingMonitorDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.gbBloodTaking = new System.Windows.Forms.GroupBox();
+            this.cboBloodTakingInOut = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.cboBloodTakingCompany = new System.Windows.Forms.ComboBox();
             this.numPax = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
@@ -49,10 +53,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.cboBookingMonitorInOut = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cboBloodTakingInOut = new System.Windows.Forms.ComboBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.gbBookingMonitor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numEvening)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAfternoon)).BeginInit();
@@ -80,6 +80,29 @@
             this.gbBookingMonitor.Size = new System.Drawing.Size(326, 173);
             this.gbBookingMonitor.TabIndex = 2;
             this.gbBookingMonitor.TabStop = false;
+            // 
+            // cboBookingMonitorInOut
+            // 
+            this.cboBookingMonitorInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBookingMonitorInOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboBookingMonitorInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBookingMonitorInOut.FormattingEnabled = true;
+            this.cboBookingMonitorInOut.Items.AddRange(new object[] {
+            "IN",
+            "OUT"});
+            this.cboBookingMonitorInOut.Location = new System.Drawing.Point(70, 138);
+            this.cboBookingMonitorInOut.Name = "cboBookingMonitorInOut";
+            this.cboBookingMonitorInOut.Size = new System.Drawing.Size(99, 21);
+            this.cboBookingMonitorInOut.TabIndex = 14;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(25, 141);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "In/Out:";
             // 
             // cboBookingMonitorCompany
             // 
@@ -197,6 +220,30 @@
             this.gbBloodTaking.TabIndex = 4;
             this.gbBloodTaking.TabStop = false;
             // 
+            // cboBloodTakingInOut
+            // 
+            this.cboBloodTakingInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBloodTakingInOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboBloodTakingInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBloodTakingInOut.FormattingEnabled = true;
+            this.cboBloodTakingInOut.Items.AddRange(new object[] {
+            "IN",
+            "OUT",
+            "IN AND OUT"});
+            this.cboBloodTakingInOut.Location = new System.Drawing.Point(70, 94);
+            this.cboBloodTakingInOut.Name = "cboBloodTakingInOut";
+            this.cboBloodTakingInOut.Size = new System.Drawing.Size(99, 21);
+            this.cboBloodTakingInOut.TabIndex = 18;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 97);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(41, 13);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "In/Out:";
+            // 
             // cboBloodTakingCompany
             // 
             this.cboBloodTakingCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -278,54 +325,6 @@
             this.btnOK.TabIndex = 16;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // cboBookingMonitorInOut
-            // 
-            this.cboBookingMonitorInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboBookingMonitorInOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboBookingMonitorInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBookingMonitorInOut.FormattingEnabled = true;
-            this.cboBookingMonitorInOut.Items.AddRange(new object[] {
-            "IN",
-            "OUT",
-            "IN AND OUT"});
-            this.cboBookingMonitorInOut.Location = new System.Drawing.Point(70, 138);
-            this.cboBookingMonitorInOut.Name = "cboBookingMonitorInOut";
-            this.cboBookingMonitorInOut.Size = new System.Drawing.Size(99, 21);
-            this.cboBookingMonitorInOut.TabIndex = 14;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(25, 141);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(41, 13);
-            this.label9.TabIndex = 13;
-            this.label9.Text = "In/Out:";
-            // 
-            // cboBloodTakingInOut
-            // 
-            this.cboBloodTakingInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboBloodTakingInOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboBloodTakingInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboBloodTakingInOut.FormattingEnabled = true;
-            this.cboBloodTakingInOut.Items.AddRange(new object[] {
-            "IN",
-            "OUT",
-            "IN AND OUT"});
-            this.cboBloodTakingInOut.Location = new System.Drawing.Point(70, 94);
-            this.cboBloodTakingInOut.Name = "cboBloodTakingInOut";
-            this.cboBloodTakingInOut.Size = new System.Drawing.Size(99, 21);
-            this.cboBloodTakingInOut.TabIndex = 18;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 97);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(41, 13);
-            this.label10.TabIndex = 17;
-            this.label10.Text = "In/Out:";
             // 
             // dlgEditBooking
             // 

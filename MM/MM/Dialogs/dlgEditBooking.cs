@@ -67,7 +67,12 @@ namespace MM.Dialogs
                     numMorning.Value = Convert.ToInt32(drBooking["MorningCount"]);
                     numAfternoon.Value = Convert.ToInt32(drBooking["AfternoonCount"]);
                     numEvening.Value = Convert.ToInt32(drBooking["EveningCount"]);
-                    cboBookingMonitorInOut.Text = drBooking["InOut"].ToString();
+
+                    if (drBooking["InOut"].ToString() == "IN" || drBooking["InOut"].ToString() == "OUT")
+                        cboBookingMonitorInOut.Text = drBooking["InOut"].ToString();
+                    else
+                        cboBookingMonitorInOut.SelectedIndex = 1;
+
                     gbBloodTaking.Visible = false;
                 }
                 else
@@ -82,7 +87,11 @@ namespace MM.Dialogs
                     dtpkBloodTakingDate.Value = Convert.ToDateTime(drBooking["BookingDate"]);
                     cboBloodTakingCompany.Text = drBooking["Company"].ToString();
                     numPax.Value = Convert.ToInt32(drBooking["Pax"]);
-                    cboBloodTakingInOut.Text = drBooking["InOut"].ToString();
+
+                    if (drBooking["InOut"].ToString() == "IN" || drBooking["InOut"].ToString() == "OUT")
+                        cboBloodTakingInOut.Text = drBooking["InOut"].ToString();
+                    else
+                        cboBloodTakingInOut.SelectedIndex = 1;
                 }
 
                 _booking.BookingGUID = Guid.Parse(drBooking["BookingGUID"].ToString());
