@@ -330,7 +330,7 @@ namespace MM.Bussiness
                 List<Booking> bookingList = (from b in db.Bookings
                                              where b.BookingDate.Year == ngay.Year && b.BookingDate.Month == ngay.Month &&
                                                  b.BookingDate.Day == ngay.Day && b.BookingType == (byte)BookingType.Monitor && 
-                                                 b.Status == (byte)Status.Actived
+                                                 b.Status == (byte)Status.Actived && b.InOut == "IN"
                                              select b).ToList();
 
                 result.QueryResult = bookingList;
