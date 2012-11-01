@@ -68,7 +68,7 @@ namespace MM.Bussiness
 
                             desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Dịch vụ: '{3}', Lần đầu: '{4}'\n",
                                 bnngk.BenhNhanNgoaiGoiKhamGUID.ToString(), bnngk.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
-                                bnngk.Patient.Contact.FullName, bnngk.Service.Name);
+                                bnngk.Patient.Contact.FullName, bnngk.Service.Name, bnngk.LanDau == 0 ? "Lần đầu" : "Tái khám");
                         }
                     }
 
@@ -142,7 +142,7 @@ namespace MM.Bussiness
                         //Tracking
                         desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Dịch vụ: '{3}', Lần đầu: '{4}'\n",
                                 bnngk.BenhNhanNgoaiGoiKhamGUID.ToString(), bnngk.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
-                                bnngk.Patient.Contact.FullName, bnngk.Service.Name);
+                                bnngk.Patient.Contact.FullName, bnngk.Service.Name, bnngk.LanDau == 0 ? "Lần đầu" : "Tái khám");
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -202,7 +202,7 @@ namespace MM.Bussiness
                         //Tracking
                         desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Dịch vụ: '{3}', Lần đầu: '{4}'\n",
                                 bnngk.BenhNhanNgoaiGoiKhamGUID.ToString(), bnngk.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
-                                bnngk.Patient.Contact.FullName, bnngk.Service.Name);
+                                bnngk.Patient.Contact.FullName, bnngk.Service.Name, bnngk.LanDau == 0 ? "Lần đầu" : "Tái khám");
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();

@@ -177,6 +177,15 @@ namespace MM.Dialogs
             }
 
         }
+
+        private void RefreshNo()
+        {
+            int i = 1;
+            foreach (DataGridViewRow row in dgBenhNhanNgoaiGoiKham.Rows)
+            {
+                row.Cells[0].Value = i++;
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -205,7 +214,7 @@ namespace MM.Dialogs
         {
             switch (e.ColumnIndex)
             {
-                case 0:
+                case 1:
                     try
                     {
                         CultureInfo cultureInfo = CultureInfo.CreateSpecificCulture("vi-VN");
@@ -225,9 +234,7 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (CheckInfo())
-                {
-
-                }
+                    SaveInfoAsThread();
                 else
                 {
                     this.DialogResult = System.Windows.Forms.DialogResult.None;
@@ -240,6 +247,16 @@ namespace MM.Dialogs
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
+        }
+
+        private void dgBenhNhanNgoaiGoiKham_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            RefreshNo();
+        }
+
+        private void dgBenhNhanNgoaiGoiKham_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            RefreshNo();
         }
         #endregion
 
@@ -261,5 +278,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
