@@ -153,6 +153,7 @@ namespace MM.Common
             ExcelTemplates.Add(Const.DanhSachNhanVienTemplate);
             ExcelTemplates.Add(Const.CongTacNgoaiGioTemplate);
             ExcelTemplates.Add(Const.LichKhamTemplate);
+            ExcelTemplates.Add(Const.BenhNhanNgoaiGoiKhamTemplate);
 
             ExcelTemplates.Sort();
         }
