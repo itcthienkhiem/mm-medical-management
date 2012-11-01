@@ -351,6 +351,8 @@ namespace MM
                 _uBaoCaoTonKhoCapCuu.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uThongBaoList))
                 _uThongBaoList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uBenhNhanNgoaiGoiKhamList))
+                _uBenhNhanNgoaiGoiKhamList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1270,6 +1272,20 @@ namespace MM
                             _uThongBaoList.AllowExportAll = isExportAll;
                             _uThongBaoList.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.BenhNhanNgoaiGoiKham)
+                        {
+                            patientToolStripMenuItem.Enabled = isLogin;
+                            benhNhanNgoaiGoiKhamToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBenhNhanNgoaiGoiKhamList.AllowAdd = isAdd;
+                            _uBenhNhanNgoaiGoiKhamList.AllowEdit = isEdit;
+                            _uBenhNhanNgoaiGoiKhamList.AllowDelete = isDelete;
+                            _uBenhNhanNgoaiGoiKhamList.AllowPrint = isPrint;
+                            _uBenhNhanNgoaiGoiKhamList.AllowExport = isExport;
+                            _uBenhNhanNgoaiGoiKhamList.AllowImport = isImport;
+                            _uBenhNhanNgoaiGoiKhamList.AllowLock = isLock;
+                            _uBenhNhanNgoaiGoiKhamList.AllowExportAll = isExportAll;
+                            _uBenhNhanNgoaiGoiKhamList.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1463,6 +1479,7 @@ namespace MM
                 baoCaoCapCuuHetHanToolStripMenuItem.Enabled = isLogin;
                 baoCaoTonKhoCapCuuToolStripMenuItem.Enabled = isLogin;
                 thongBaoToolStripMenuItem.Enabled = isLogin;
+                benhNhanNgoaiGoiKhamToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1789,7 +1806,18 @@ namespace MM
                 case "ThongBao":
                     OnThongBao();
                     break;
+
+                case "BenhNhanNgoaiGoiKham":
+                    OnBenhNhanNgoaiGoiKham();
+                    break;
             }
+        }
+
+        private void OnBenhNhanNgoaiGoiKham()
+        {
+            this.Text = string.Format("{0} - Benh nhan ngoai goi kham", Application.ProductName);
+            ViewControl(_uBenhNhanNgoaiGoiKhamList);
+            _uBenhNhanNgoaiGoiKhamList.DisplayAsThread();
         }
 
         private void OnThongBao()
