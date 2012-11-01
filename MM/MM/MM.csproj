@@ -104,6 +104,12 @@
     <Compile Include="Controls\uBaoCaoCapCuuHetHan.Designer.cs">
       <DependentUpon>uBaoCaoCapCuuHetHan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uBenhNhanNgoaiGoiKhamList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBenhNhanNgoaiGoiKhamList.Designer.cs">
+      <DependentUpon>uBenhNhanNgoaiGoiKhamList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uThongBaoList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -851,6 +857,12 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddBenhNhanNgoaiGoiKham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddBenhNhanNgoaiGoiKham.Designer.cs">
+      <DependentUpon>dlgAddBenhNhanNgoaiGoiKham.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddThongBao.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -922,6 +934,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgCauHinhSoNgayBaoTiemNgua.Designer.cs">
       <DependentUpon>dlgCauHinhSoNgayBaoTiemNgua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgEditBenhNhanNgoaiGoiKham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgEditBenhNhanNgoaiGoiKham.Designer.cs">
+      <DependentUpon>dlgEditBenhNhanNgoaiGoiKham.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgFTPConfig.cs">
       <SubType>Form</SubType>
@@ -1447,6 +1465,9 @@
     <EmbeddedResource Include="Controls\uBaoCaoCapCuuHetHan.resx">
       <DependentUpon>uBaoCaoCapCuuHetHan.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uBenhNhanNgoaiGoiKhamList.resx">
+      <DependentUpon>uBenhNhanNgoaiGoiKhamList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uThongBaoList.resx">
       <DependentUpon>uThongBaoList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1756,6 +1777,9 @@
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddBenhNhanNgoaiGoiKham.resx">
+      <DependentUpon>dlgAddBenhNhanNgoaiGoiKham.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddThongBao.resx">
       <DependentUpon>dlgAddThongBao.cs</DependentUpon>
     </EmbeddedResource>
@@ -1791,6 +1815,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgCauHinhSoNgayBaoTiemNgua.resx">
       <DependentUpon>dlgCauHinhSoNgayBaoTiemNgua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgEditBenhNhanNgoaiGoiKham.resx">
+      <DependentUpon>dlgEditBenhNhanNgoaiGoiKham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgFTPConfig.resx">
       <DependentUpon>dlgFTPConfig.cs</DependentUpon>
@@ -2071,6 +2098,7 @@
     <None Include="Components\Uninstall_MM.bat" />
     <None Include="Components\Uninstall_MMConfigServices.bat" />
     <None Include="Properties\DataSources\MM.Databasae.AccountView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.BenhNhanNgoaiGoiKhamView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CanDo.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CapCuuResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiDinhView.datasource" />
@@ -2279,6 +2307,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-11-01.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-10-30.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-10-29.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-10-28 %28Indexs%29.sql" />
