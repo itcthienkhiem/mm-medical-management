@@ -54,13 +54,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgBenhNhanNgoaiGoiKham = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.benhNhanNgoaiGoiKhamViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.ngayKhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lanDauDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.benhNhanNgoaiGoiKhamViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -318,6 +318,10 @@
             this.dgBenhNhanNgoaiGoiKham.TabIndex = 4;
             this.dgBenhNhanNgoaiGoiKham.DoubleClick += new System.EventHandler(this.dgBenhNhanNgoaiGoiKham_DoubleClick);
             // 
+            // benhNhanNgoaiGoiKhamViewBindingSource
+            // 
+            this.benhNhanNgoaiGoiKhamViewBindingSource.DataSource = typeof(MM.Databasae.BenhNhanNgoaiGoiKhamView);
+            // 
             // colChecked
             // 
             this.colChecked.Checked = true;
@@ -338,13 +342,12 @@
             // 
             this.ngayKhamDataGridViewTextBoxColumn.DataPropertyName = "NgayKham";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
             dataGridViewCellStyle3.NullValue = null;
             this.ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.ngayKhamDataGridViewTextBoxColumn.HeaderText = "Ngày khám";
             this.ngayKhamDataGridViewTextBoxColumn.Name = "ngayKhamDataGridViewTextBoxColumn";
             this.ngayKhamDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ngayKhamDataGridViewTextBoxColumn.Width = 120;
             // 
             // fileNumDataGridViewTextBoxColumn
             // 
@@ -379,10 +382,6 @@
             this.lanDauDataGridViewTextBoxColumn.Name = "lanDauDataGridViewTextBoxColumn";
             this.lanDauDataGridViewTextBoxColumn.ReadOnly = true;
             this.lanDauDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // benhNhanNgoaiGoiKhamViewBindingSource
-            // 
-            this.benhNhanNgoaiGoiKhamViewBindingSource.DataSource = typeof(MM.Databasae.BenhNhanNgoaiGoiKhamView);
             // 
             // uBenhNhanNgoaiGoiKhamList
             // 
@@ -424,14 +423,14 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgBenhNhanNgoaiGoiKham;
         private System.Windows.Forms.CheckBox chkMaBenhNhan;
         private System.Windows.Forms.BindingSource benhNhanNgoaiGoiKhamViewBindingSource;
+        private System.Windows.Forms.Button btnPrintPreview;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnExportExcel;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayKhamDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lanDauDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnPrintPreview;
-        private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnExportExcel;
     }
 }

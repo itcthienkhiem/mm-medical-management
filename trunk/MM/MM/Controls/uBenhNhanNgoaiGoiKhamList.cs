@@ -10,6 +10,7 @@ using System.Threading;
 using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
+using MM.Dialogs;
 
 namespace MM.Controls
 {
@@ -93,7 +94,12 @@ namespace MM.Controls
 
         private void OnAdd()
         {
+            DataTable dtSource = (dgBenhNhanNgoaiGoiKham.DataSource as DataTable).Clone();
+            dlgAddBenhNhanNgoaiGoiKham dlg = new dlgAddBenhNhanNgoaiGoiKham(dtSource);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
 
+            }
         }
 
         private void OnEdit()
