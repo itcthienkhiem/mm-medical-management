@@ -35,6 +35,7 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
+            Cursor.Current = Cursors.WaitCursor;
             cboLanDauTaiKham.SelectedIndex = 0;
 
             Result result = PatientBus.GetPatientList();
