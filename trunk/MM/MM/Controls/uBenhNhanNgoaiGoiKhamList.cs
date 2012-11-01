@@ -97,19 +97,77 @@ namespace MM.Controls
             DataTable dtSource = (dgBenhNhanNgoaiGoiKham.DataSource as DataTable).Clone();
             dlgAddBenhNhanNgoaiGoiKham dlg = new dlgAddBenhNhanNgoaiGoiKham(dtSource);
             if (dlg.ShowDialog(this) == DialogResult.OK)
-            {
-
-            }
+                DisplayAsThread();
         }
 
         private void OnEdit()
         {
+            if (dgBenhNhanNgoaiGoiKham.SelectedRows == null || dgBenhNhanNgoaiGoiKham.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân ngoài gói khám.", IconType.Information);
+                return;
+            }
 
+            DataRow drBenhNhanNgoaiGoiKham = (dgBenhNhanNgoaiGoiKham.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string nguoiTaoGUID = drBenhNhanNgoaiGoiKham["CreatedBy"].ToString();
+            if (nguoiTaoGUID != Global.UserGUID && !AllowConfirm)
+            {
+                MsgBox.Show(Application.ProductName, "Bạn không thể sửa bệnh nhân ngoài gói khám do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
+                return;
+            }
+
+            dlgEditBenhNhanNgoaiGoiKham dlg = new dlgEditBenhNhanNgoaiGoiKham(drBenhNhanNgoaiGoiKham);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                DisplayAsThread();
+            }
         }
 
         private void OnDelete()
         {
+            List<string> deletedKeysList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgBenhNhanNgoaiGoiKham.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedKeysList.Add(row["BenhNhanNgoaiGoiKhamGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
 
+            if (deletedKeysList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những bệnh nhân ngoài gói khám mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    foreach (DataRow row in deletedRows)
+                    {
+                        string nguoiTaoGUID = row["CreatedBy"].ToString();
+                        if (nguoiTaoGUID != Global.UserGUID)
+                        {
+                            MsgBox.Show(Application.ProductName, "Bạn không thể xóa bệnh nhân ngoài gói khám do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
+                            return;
+                        }
+                    }
+
+                    Result result = BenhNhanNgoaiGoiKhamBus.DeleteBenhNhanNgoaiGoiKham(deletedKeysList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("BenhNhanNgoaiGoiKhamBus.DeleteBenhNhanNgoaiGoiKham"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("BenhNhanNgoaiGoiKhamBus.DeleteBenhNhanNgoaiGoiKham"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân ngoài gói khám cần xóa.", IconType.Information);
         }
 
         private void OnPrint(bool isPreview)
@@ -159,6 +217,28 @@ namespace MM.Controls
             if (!AllowEdit) return;
             OnEdit();
         }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            if (dtpkTuNgay.Value > dtpkDenNgay.Value)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
+                dtpkTuNgay.Focus();
+                return;
+            }
+
+            DisplayAsThread();
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgBenhNhanNgoaiGoiKham.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -180,5 +260,9 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
+
+        
     }
 }

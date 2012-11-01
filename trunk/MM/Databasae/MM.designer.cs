@@ -291,7 +291,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -67946,6 +67946,8 @@ namespace MM.Databasae
 		
 		private string _LanDauStr;
 		
+		private string _NguoiTao;
+		
 		public BenhNhanNgoaiGoiKhamView()
 		{
 		}
@@ -68346,6 +68348,22 @@ namespace MM.Databasae
 				if ((this._LanDauStr != value))
 				{
 					this._LanDauStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NguoiTao", DbType="NVarChar(255)")]
+		public string NguoiTao
+		{
+			get
+			{
+				return this._NguoiTao;
+			}
+			set
+			{
+				if ((this._NguoiTao != value))
+				{
+					this._NguoiTao = value;
 				}
 			}
 		}
