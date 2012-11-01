@@ -35,6 +35,7 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
+            Cursor.Current = Cursors.WaitCursor;
             dgBenhNhanNgoaiGoiKham.DataSource = _dtSource;
             ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle.NullValue = DateTime.Now.ToString("dd/MM/yyyy");
 
