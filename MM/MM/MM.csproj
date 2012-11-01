@@ -2098,6 +2098,7 @@
     <None Include="Components\Uninstall_MM.bat" />
     <None Include="Components\Uninstall_MMConfigServices.bat" />
     <None Include="Properties\DataSources\MM.Databasae.AccountView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.BenhNhanNgoaiGoiKham.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.BenhNhanNgoaiGoiKhamView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CanDo.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.CapCuuResult.datasource" />
