@@ -133,5 +133,6 @@ namespace MM.Common
         public static string CongTacNgoaiGioTemplate = "Công tác ngoài giờ";
         public static string LichKhamTemplate = "Lịch khám";
         public static string BaoCaoTonKhoCapCuuTemplate = "Báo cáo tồn kho cấp cứu";
+        public static string BenhNhanNgoaiGoiKhamTemplate = "Bệnh nhân ngoài gói khám";
     }
 }

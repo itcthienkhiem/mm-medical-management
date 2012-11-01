@@ -11,6 +11,7 @@ using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -170,14 +171,89 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân ngoài gói khám cần xóa.", IconType.Information);
         }
 
+        private List<DataRow> GetCheckedRows()
+        {
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgBenhNhanNgoaiGoiKham.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    checkedRows.Add(row);
+                }
+            }
+
+            return checkedRows;
+        }
+
         private void OnPrint(bool isPreview)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetCheckedRows();
 
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\BenhNhanNgoaiGoiKham.xls", Application.StartupPath);
+                if (isPreview)
+                {
+                    if (!ExportExcel.ExportDanhSachBenhNhanNgoaiGoiKhamToExcel(exportFileName, checkedRows))
+                        return;
+                    else
+                    {
+                        try
+                        {
+                            ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.BenhNhanNgoaiGoiKhamTemplate));
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        if (!ExportExcel.ExportDanhSachBenhNhanNgoaiGoiKhamToExcel(exportFileName, checkedRows))
+                            return;
+                        else
+                        {
+                            try
+                            {
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.BenhNhanNgoaiGoiKhamTemplate));
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân ngoài gói khám cần in.", IconType.Information);
         }
 
         private void OnExportExcell()
         {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetCheckedRows();
 
+            if (checkedRows.Count > 0)
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Title = "Export Excel";
+                dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    if (!ExportExcel.ExportDanhSachBenhNhanNgoaiGoiKhamToExcel(dlg.FileName, checkedRows))
+                        return;
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân ngoài gói khám cần xuất excel.", IconType.Information);
         }
         #endregion
 
