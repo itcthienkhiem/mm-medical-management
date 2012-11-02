@@ -741,6 +741,9 @@ namespace MM.Common
             {
                 s = char.ToUpper(s[0]) + s.Substring(1);
             }
+
+            s += ".";
+
             return s;
         }
 
