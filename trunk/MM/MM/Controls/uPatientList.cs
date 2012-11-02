@@ -62,6 +62,11 @@ namespace MM.Controls
                 _dataSource = null;
             }
 
+            ClearDataSource();
+        }
+
+        private void ClearDataSource()
+        {
             DataTable dt = dgPatient.DataSource as DataTable;
             if (dt != null)
             {
@@ -433,6 +438,8 @@ namespace MM.Controls
             chkChecked.Checked = false;
             List<DataRow> results = null;
             DataTable newDataSource = null;
+
+            ClearDataSource();
 
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
