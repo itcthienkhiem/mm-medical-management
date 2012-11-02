@@ -31,27 +31,31 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddBenhNhanNgoaiGoiKham));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgBenhNhanNgoaiGoiKham = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayKhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serviceGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.lanDauStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.benhNhanNgoaiGoiKhamViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngayKhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.serviceGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.lanDauStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgBenhNhanNgoaiGoiKham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.benhNhanNgoaiGoiKhamViewBindingSource)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -90,11 +94,11 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.dgBenhNhanNgoaiGoiKham);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(820, 445);
+            this.panel2.Size = new System.Drawing.Size(820, 25);
             this.panel2.TabIndex = 13;
             // 
             // dgBenhNhanNgoaiGoiKham
@@ -113,6 +117,7 @@
             this.dgBenhNhanNgoaiGoiKham.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colNo,
             this.ngayKhamDataGridViewTextBoxColumn,
+            this.PatientGUID,
             this.patientGUIDDataGridViewTextBoxColumn,
             this.serviceGUIDDataGridViewTextBoxColumn,
             this.lanDauStrDataGridViewTextBoxColumn});
@@ -133,13 +138,74 @@
             this.dgBenhNhanNgoaiGoiKham.Name = "dgBenhNhanNgoaiGoiKham";
             this.dgBenhNhanNgoaiGoiKham.RowHeadersWidth = 30;
             this.dgBenhNhanNgoaiGoiKham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgBenhNhanNgoaiGoiKham.Size = new System.Drawing.Size(820, 445);
+            this.dgBenhNhanNgoaiGoiKham.Size = new System.Drawing.Size(820, 420);
             this.dgBenhNhanNgoaiGoiKham.TabIndex = 5;
+            this.dgBenhNhanNgoaiGoiKham.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgBenhNhanNgoaiGoiKham_CellContentDoubleClick);
+            this.dgBenhNhanNgoaiGoiKham.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgBenhNhanNgoaiGoiKham_CellDoubleClick);
             this.dgBenhNhanNgoaiGoiKham.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dgBenhNhanNgoaiGoiKham_CellParsing);
             this.dgBenhNhanNgoaiGoiKham.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgBenhNhanNgoaiGoiKham_CellValidating);
             this.dgBenhNhanNgoaiGoiKham.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgBenhNhanNgoaiGoiKham_EditingControlShowing);
             this.dgBenhNhanNgoaiGoiKham.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgBenhNhanNgoaiGoiKham_UserAddedRow);
             this.dgBenhNhanNgoaiGoiKham.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgBenhNhanNgoaiGoiKham_UserDeletedRow);
+            // 
+            // colNo
+            // 
+            this.colNo.HeaderText = "STT";
+            this.colNo.Name = "colNo";
+            this.colNo.ReadOnly = true;
+            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNo.Width = 40;
+            // 
+            // ngayKhamDataGridViewTextBoxColumn
+            // 
+            this.ngayKhamDataGridViewTextBoxColumn.DataPropertyName = "NgayKham";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ngayKhamDataGridViewTextBoxColumn.HeaderText = "Ngày khám";
+            this.ngayKhamDataGridViewTextBoxColumn.Name = "ngayKhamDataGridViewTextBoxColumn";
+            this.ngayKhamDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ngayKhamDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // PatientGUID
+            // 
+            this.PatientGUID.DataPropertyName = "PatientGUID";
+            this.PatientGUID.HeaderText = "PatientGUID";
+            this.PatientGUID.Name = "PatientGUID";
+            this.PatientGUID.ReadOnly = true;
+            this.PatientGUID.Visible = false;
+            // 
+            // patientGUIDDataGridViewTextBoxColumn
+            // 
+            this.patientGUIDDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.patientGUIDDataGridViewTextBoxColumn.HeaderText = "Tên bệnh nhân";
+            this.patientGUIDDataGridViewTextBoxColumn.Name = "patientGUIDDataGridViewTextBoxColumn";
+            this.patientGUIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.patientGUIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.patientGUIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.patientGUIDDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // serviceGUIDDataGridViewTextBoxColumn
+            // 
+            this.serviceGUIDDataGridViewTextBoxColumn.DataPropertyName = "ServiceGUID";
+            this.serviceGUIDDataGridViewTextBoxColumn.DisplayStyleForCurrentCellOnly = true;
+            this.serviceGUIDDataGridViewTextBoxColumn.HeaderText = "Dịch vụ";
+            this.serviceGUIDDataGridViewTextBoxColumn.Name = "serviceGUIDDataGridViewTextBoxColumn";
+            this.serviceGUIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.serviceGUIDDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // lanDauStrDataGridViewTextBoxColumn
+            // 
+            this.lanDauStrDataGridViewTextBoxColumn.DataPropertyName = "LanDauStr";
+            this.lanDauStrDataGridViewTextBoxColumn.DisplayStyleForCurrentCellOnly = true;
+            this.lanDauStrDataGridViewTextBoxColumn.HeaderText = "Lần đầu/Tái khám";
+            this.lanDauStrDataGridViewTextBoxColumn.Items.AddRange(new object[] {
+            "Lần đầu",
+            "Tái khám"});
+            this.lanDauStrDataGridViewTextBoxColumn.Name = "lanDauStrDataGridViewTextBoxColumn";
+            this.lanDauStrDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.lanDauStrDataGridViewTextBoxColumn.Width = 120;
             // 
             // benhNhanNgoaiGoiKhamViewBindingSource
             // 
@@ -170,55 +236,25 @@
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn2.Width = 110;
             // 
-            // colNo
+            // panel3
             // 
-            this.colNo.HeaderText = "STT";
-            this.colNo.Name = "colNo";
-            this.colNo.ReadOnly = true;
-            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colNo.Width = 40;
+            this.panel3.Controls.Add(this.dgBenhNhanNgoaiGoiKham);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 25);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(820, 420);
+            this.panel3.TabIndex = 21;
             // 
-            // ngayKhamDataGridViewTextBoxColumn
+            // label1
             // 
-            this.ngayKhamDataGridViewTextBoxColumn.DataPropertyName = "NgayKham";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ngayKhamDataGridViewTextBoxColumn.HeaderText = "Ngày khám";
-            this.ngayKhamDataGridViewTextBoxColumn.Name = "ngayKhamDataGridViewTextBoxColumn";
-            this.ngayKhamDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ngayKhamDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // patientGUIDDataGridViewTextBoxColumn
-            // 
-            this.patientGUIDDataGridViewTextBoxColumn.DataPropertyName = "PatientGUID";
-            this.patientGUIDDataGridViewTextBoxColumn.DisplayStyleForCurrentCellOnly = true;
-            this.patientGUIDDataGridViewTextBoxColumn.HeaderText = "Tên bệnh nhân";
-            this.patientGUIDDataGridViewTextBoxColumn.Name = "patientGUIDDataGridViewTextBoxColumn";
-            this.patientGUIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.patientGUIDDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // serviceGUIDDataGridViewTextBoxColumn
-            // 
-            this.serviceGUIDDataGridViewTextBoxColumn.DataPropertyName = "ServiceGUID";
-            this.serviceGUIDDataGridViewTextBoxColumn.DisplayStyleForCurrentCellOnly = true;
-            this.serviceGUIDDataGridViewTextBoxColumn.HeaderText = "Dịch vụ";
-            this.serviceGUIDDataGridViewTextBoxColumn.Name = "serviceGUIDDataGridViewTextBoxColumn";
-            this.serviceGUIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.serviceGUIDDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // lanDauStrDataGridViewTextBoxColumn
-            // 
-            this.lanDauStrDataGridViewTextBoxColumn.DataPropertyName = "LanDauStr";
-            this.lanDauStrDataGridViewTextBoxColumn.DisplayStyleForCurrentCellOnly = true;
-            this.lanDauStrDataGridViewTextBoxColumn.HeaderText = "Lần đầu/Tái khám";
-            this.lanDauStrDataGridViewTextBoxColumn.Items.AddRange(new object[] {
-            "Lần đầu",
-            "Tái khám"});
-            this.lanDauStrDataGridViewTextBoxColumn.Name = "lanDauStrDataGridViewTextBoxColumn";
-            this.lanDauStrDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.lanDauStrDataGridViewTextBoxColumn.Width = 120;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(5, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(414, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Lưu ý: nhấn đúp chuột vào ô tên bệnh nhân để nhập bệnh nhân.";
             // 
             // dlgAddBenhNhanNgoaiGoiKham
             // 
@@ -226,6 +262,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(820, 483);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -240,8 +277,10 @@
             this.Load += new System.EventHandler(this.dlgAddBenhNhanNgoaiGoiKham_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgBenhNhanNgoaiGoiKham)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.benhNhanNgoaiGoiKhamViewBindingSource)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -258,8 +297,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayKhamDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn patientGUIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PatientGUID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn patientGUIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn serviceGUIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn lanDauStrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel3;
     }
 }

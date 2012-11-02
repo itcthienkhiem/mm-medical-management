@@ -18,6 +18,7 @@ namespace MM.Dialogs
     {
         #region Members
         private DataTable _dtSource = null;
+        private DataTable _dtBenhNhan = null;
         #endregion
 
         #region Constructor
@@ -42,15 +43,15 @@ namespace MM.Dialogs
             Result result = PatientBus.GetPatientList();
             if (result.IsOK)
             {
-                DataTable dtPatient = result.QueryResult as DataTable;
-                DataRow row = dtPatient.NewRow();
-                row["PatientGUID"] = Guid.Empty.ToString();
-                row["FullName"] = " ";
-                dtPatient.Rows.InsertAt(row, 0);
+                _dtBenhNhan = result.QueryResult as DataTable;
+                //DataRow row = _dtBenhNhan.NewRow();
+                //row["PatientGUID"] = Guid.Empty.ToString();
+                //row["FullName"] = " ";
+                //_dtBenhNhan.Rows.InsertAt(row, 0);
 
-                patientGUIDDataGridViewTextBoxColumn.DataSource = dtPatient;
-                patientGUIDDataGridViewTextBoxColumn.DisplayMember = "FullName";
-                patientGUIDDataGridViewTextBoxColumn.ValueMember = "PatientGUID";
+                //patientGUIDDataGridViewTextBoxColumn.DataSource = _dtBenhNhan;
+                //patientGUIDDataGridViewTextBoxColumn.DisplayMember = "FullName";
+                //patientGUIDDataGridViewTextBoxColumn.ValueMember = "PatientGUID";
             }
             else
             {
@@ -280,6 +281,24 @@ namespace MM.Dialogs
         }
         #endregion
 
-        
+        private void dgBenhNhanNgoaiGoiKham_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dgBenhNhanNgoaiGoiKham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3 && e.RowIndex >= 0)
+            {
+                dlgSelectPatient dlg = new dlgSelectPatient(_dtBenhNhan);
+                if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                {
+                    string patientGUID = dlg.PatientRow["PatientGUID"].ToString();
+                    string tenBenhNhan = dlg.PatientRow["FullName"].ToString();
+                    dgBenhNhanNgoaiGoiKham.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = tenBenhNhan;
+                    dgBenhNhanNgoaiGoiKham.Rows[e.RowIndex].Cells["PatientGUID"].Value = patientGUID;
+                }
+            }
+        }
     }
 }
