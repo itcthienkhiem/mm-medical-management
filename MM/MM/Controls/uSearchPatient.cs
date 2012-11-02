@@ -100,9 +100,22 @@ namespace MM.Controls
             }
         }
 
+        private void ClearDataSource()
+        {
+            DataTable dtOld = dgPatient.DataSource as DataTable;
+            if (dtOld != null)
+            {
+                dtOld.Rows.Clear();
+                dtOld.Clear();
+                dtOld = null;
+            }
+        }
+
         public void OnSearch()
         {
             if (_isMulti) UpdateChecked();
+
+            ClearDataSource();
 
             List<DataRow> results = null;
             DataTable newDataSource = null;
