@@ -147,6 +147,8 @@ namespace MM.Controls
                     ClearData();       
 
                     dgBooking.Redim(rowCount, colCount);
+                    dgBooking.FixedRows = 3;
+                    dgBooking.FixedColumns = 2;
 
                     InitHeader();
                     if (keys.Count > 0) FillData(htBooking, htBloodTaking, keys, cal, calWeekRule, firstDayOfWeek);
