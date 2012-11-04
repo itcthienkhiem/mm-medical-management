@@ -31,6 +31,15 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceHistory));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.raNormal = new System.Windows.Forms.RadioButton();
+            this.raNegative = new System.Windows.Forms.RadioButton();
+            this.gbNormal = new System.Windows.Forms.GroupBox();
+            this.chkAbnormal = new System.Windows.Forms.CheckBox();
+            this.chkNormal = new System.Windows.Forms.CheckBox();
+            this.gbNegative = new System.Windows.Forms.GroupBox();
+            this.chkPositive = new System.Windows.Forms.CheckBox();
+            this.chkNegative = new System.Windows.Forms.CheckBox();
             this.raKhamTheoHopDong = new System.Windows.Forms.RadioButton();
             this.raKhamTuTuc = new System.Windows.Forms.RadioButton();
             this.chkChuyenNhuong = new System.Windows.Forms.CheckBox();
@@ -40,14 +49,6 @@
             this.chkBSCD = new System.Windows.Forms.CheckBox();
             this.cboBacSiChiDinh = new System.Windows.Forms.ComboBox();
             this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.raNegative = new System.Windows.Forms.RadioButton();
-            this.raNormal = new System.Windows.Forms.RadioButton();
-            this.gbNegative = new System.Windows.Forms.GroupBox();
-            this.chkPositive = new System.Windows.Forms.CheckBox();
-            this.chkNegative = new System.Windows.Forms.CheckBox();
-            this.gbNormal = new System.Windows.Forms.GroupBox();
-            this.chkAbnormal = new System.Windows.Forms.CheckBox();
-            this.chkNormal = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.numDiscount = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -67,9 +68,10 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
-            this.gbNegative.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.gbNormal.SuspendLayout();
+            this.gbNegative.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
@@ -78,6 +80,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.raKhamTheoHopDong);
             this.groupBox1.Controls.Add(this.raKhamTuTuc);
             this.groupBox1.Controls.Add(this.chkChuyenNhuong);
@@ -86,10 +89,6 @@
             this.groupBox1.Controls.Add(this.btnChonDichVu);
             this.groupBox1.Controls.Add(this.chkBSCD);
             this.groupBox1.Controls.Add(this.cboBacSiChiDinh);
-            this.groupBox1.Controls.Add(this.raNegative);
-            this.groupBox1.Controls.Add(this.raNormal);
-            this.groupBox1.Controls.Add(this.gbNegative);
-            this.groupBox1.Controls.Add(this.gbNormal);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.numDiscount);
             this.groupBox1.Controls.Add(this.label3);
@@ -110,6 +109,108 @@
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.raNormal);
+            this.panel1.Controls.Add(this.raNegative);
+            this.panel1.Controls.Add(this.gbNormal);
+            this.panel1.Controls.Add(this.gbNegative);
+            this.panel1.Location = new System.Drawing.Point(117, 211);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(360, 108);
+            this.panel1.TabIndex = 13;
+            // 
+            // raNormal
+            // 
+            this.raNormal.AutoSize = true;
+            this.raNormal.Checked = true;
+            this.raNormal.Location = new System.Drawing.Point(18, 5);
+            this.raNormal.Name = "raNormal";
+            this.raNormal.Size = new System.Drawing.Size(14, 13);
+            this.raNormal.TabIndex = 13;
+            this.raNormal.TabStop = true;
+            this.raNormal.UseVisualStyleBackColor = true;
+            this.raNormal.CheckedChanged += new System.EventHandler(this.raNormal_CheckedChanged);
+            // 
+            // raNegative
+            // 
+            this.raNegative.AutoSize = true;
+            this.raNegative.Location = new System.Drawing.Point(18, 57);
+            this.raNegative.Name = "raNegative";
+            this.raNegative.Size = new System.Drawing.Size(14, 13);
+            this.raNegative.TabIndex = 15;
+            this.raNegative.UseVisualStyleBackColor = true;
+            this.raNegative.CheckedChanged += new System.EventHandler(this.raNegative_CheckedChanged);
+            // 
+            // gbNormal
+            // 
+            this.gbNormal.Controls.Add(this.chkAbnormal);
+            this.gbNormal.Controls.Add(this.chkNormal);
+            this.gbNormal.Location = new System.Drawing.Point(23, 3);
+            this.gbNormal.Name = "gbNormal";
+            this.gbNormal.Size = new System.Drawing.Size(269, 47);
+            this.gbNormal.TabIndex = 14;
+            this.gbNormal.TabStop = false;
+            // 
+            // chkAbnormal
+            // 
+            this.chkAbnormal.AutoSize = true;
+            this.chkAbnormal.Location = new System.Drawing.Point(128, 19);
+            this.chkAbnormal.Name = "chkAbnormal";
+            this.chkAbnormal.Size = new System.Drawing.Size(78, 17);
+            this.chkAbnormal.TabIndex = 1;
+            this.chkAbnormal.Text = "Bất thường";
+            this.chkAbnormal.UseVisualStyleBackColor = true;
+            this.chkAbnormal.CheckedChanged += new System.EventHandler(this.chkAbnormal_CheckedChanged);
+            // 
+            // chkNormal
+            // 
+            this.chkNormal.AutoSize = true;
+            this.chkNormal.Checked = true;
+            this.chkNormal.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkNormal.Location = new System.Drawing.Point(20, 19);
+            this.chkNormal.Name = "chkNormal";
+            this.chkNormal.Size = new System.Drawing.Size(83, 17);
+            this.chkNormal.TabIndex = 0;
+            this.chkNormal.Text = "Bình thường";
+            this.chkNormal.UseVisualStyleBackColor = true;
+            this.chkNormal.CheckedChanged += new System.EventHandler(this.chkNormal_CheckedChanged);
+            // 
+            // gbNegative
+            // 
+            this.gbNegative.Controls.Add(this.chkPositive);
+            this.gbNegative.Controls.Add(this.chkNegative);
+            this.gbNegative.Enabled = false;
+            this.gbNegative.Location = new System.Drawing.Point(23, 57);
+            this.gbNegative.Name = "gbNegative";
+            this.gbNegative.Size = new System.Drawing.Size(269, 47);
+            this.gbNegative.TabIndex = 16;
+            this.gbNegative.TabStop = false;
+            // 
+            // chkPositive
+            // 
+            this.chkPositive.AutoSize = true;
+            this.chkPositive.Location = new System.Drawing.Point(128, 19);
+            this.chkPositive.Name = "chkPositive";
+            this.chkPositive.Size = new System.Drawing.Size(80, 17);
+            this.chkPositive.TabIndex = 3;
+            this.chkPositive.Text = "Dương tính";
+            this.chkPositive.UseVisualStyleBackColor = true;
+            this.chkPositive.CheckedChanged += new System.EventHandler(this.chkPositive_CheckedChanged);
+            // 
+            // chkNegative
+            // 
+            this.chkNegative.AutoSize = true;
+            this.chkNegative.Checked = true;
+            this.chkNegative.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkNegative.Location = new System.Drawing.Point(20, 19);
+            this.chkNegative.Name = "chkNegative";
+            this.chkNegative.Size = new System.Drawing.Size(63, 17);
+            this.chkNegative.TabIndex = 2;
+            this.chkNegative.Text = "Âm tính";
+            this.chkNegative.UseVisualStyleBackColor = true;
+            this.chkNegative.CheckedChanged += new System.EventHandler(this.chkNegative_CheckedChanged);
             // 
             // raKhamTheoHopDong
             // 
@@ -204,95 +305,6 @@
             // docStaffViewBindingSource
             // 
             this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
-            // 
-            // raNegative
-            // 
-            this.raNegative.AutoSize = true;
-            this.raNegative.Location = new System.Drawing.Point(130, 268);
-            this.raNegative.Name = "raNegative";
-            this.raNegative.Size = new System.Drawing.Size(14, 13);
-            this.raNegative.TabIndex = 15;
-            this.raNegative.UseVisualStyleBackColor = true;
-            this.raNegative.CheckedChanged += new System.EventHandler(this.raNegative_CheckedChanged);
-            // 
-            // raNormal
-            // 
-            this.raNormal.AutoSize = true;
-            this.raNormal.Location = new System.Drawing.Point(130, 216);
-            this.raNormal.Name = "raNormal";
-            this.raNormal.Size = new System.Drawing.Size(14, 13);
-            this.raNormal.TabIndex = 13;
-            this.raNormal.UseVisualStyleBackColor = true;
-            this.raNormal.CheckedChanged += new System.EventHandler(this.raNormal_CheckedChanged);
-            // 
-            // gbNegative
-            // 
-            this.gbNegative.Controls.Add(this.chkPositive);
-            this.gbNegative.Controls.Add(this.chkNegative);
-            this.gbNegative.Enabled = false;
-            this.gbNegative.Location = new System.Drawing.Point(135, 268);
-            this.gbNegative.Name = "gbNegative";
-            this.gbNegative.Size = new System.Drawing.Size(269, 47);
-            this.gbNegative.TabIndex = 16;
-            this.gbNegative.TabStop = false;
-            // 
-            // chkPositive
-            // 
-            this.chkPositive.AutoSize = true;
-            this.chkPositive.Location = new System.Drawing.Point(128, 19);
-            this.chkPositive.Name = "chkPositive";
-            this.chkPositive.Size = new System.Drawing.Size(80, 17);
-            this.chkPositive.TabIndex = 3;
-            this.chkPositive.Text = "Dương tính";
-            this.chkPositive.UseVisualStyleBackColor = true;
-            this.chkPositive.CheckedChanged += new System.EventHandler(this.chkPositive_CheckedChanged);
-            // 
-            // chkNegative
-            // 
-            this.chkNegative.AutoSize = true;
-            this.chkNegative.Checked = true;
-            this.chkNegative.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkNegative.Location = new System.Drawing.Point(20, 19);
-            this.chkNegative.Name = "chkNegative";
-            this.chkNegative.Size = new System.Drawing.Size(63, 17);
-            this.chkNegative.TabIndex = 2;
-            this.chkNegative.Text = "Âm tính";
-            this.chkNegative.UseVisualStyleBackColor = true;
-            this.chkNegative.CheckedChanged += new System.EventHandler(this.chkNegative_CheckedChanged);
-            // 
-            // gbNormal
-            // 
-            this.gbNormal.Controls.Add(this.chkAbnormal);
-            this.gbNormal.Controls.Add(this.chkNormal);
-            this.gbNormal.Location = new System.Drawing.Point(135, 214);
-            this.gbNormal.Name = "gbNormal";
-            this.gbNormal.Size = new System.Drawing.Size(269, 47);
-            this.gbNormal.TabIndex = 14;
-            this.gbNormal.TabStop = false;
-            // 
-            // chkAbnormal
-            // 
-            this.chkAbnormal.AutoSize = true;
-            this.chkAbnormal.Location = new System.Drawing.Point(128, 19);
-            this.chkAbnormal.Name = "chkAbnormal";
-            this.chkAbnormal.Size = new System.Drawing.Size(78, 17);
-            this.chkAbnormal.TabIndex = 1;
-            this.chkAbnormal.Text = "Bất thường";
-            this.chkAbnormal.UseVisualStyleBackColor = true;
-            this.chkAbnormal.CheckedChanged += new System.EventHandler(this.chkAbnormal_CheckedChanged);
-            // 
-            // chkNormal
-            // 
-            this.chkNormal.AutoSize = true;
-            this.chkNormal.Checked = true;
-            this.chkNormal.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkNormal.Location = new System.Drawing.Point(20, 19);
-            this.chkNormal.Name = "chkNormal";
-            this.chkNormal.Size = new System.Drawing.Size(83, 17);
-            this.chkNormal.TabIndex = 0;
-            this.chkNormal.Text = "Bình thường";
-            this.chkNormal.UseVisualStyleBackColor = true;
-            this.chkNormal.CheckedChanged += new System.EventHandler(this.chkNormal_CheckedChanged);
             // 
             // label5
             // 
@@ -496,11 +508,13 @@
             this.Load += new System.EventHandler(this.dlgAddServiceHistory_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
-            this.gbNegative.ResumeLayout(false);
-            this.gbNegative.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.gbNormal.ResumeLayout(false);
             this.gbNormal.PerformLayout();
+            this.gbNegative.ResumeLayout(false);
+            this.gbNegative.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
@@ -547,5 +561,6 @@
         private System.Windows.Forms.CheckBox chkChuyenNhuong;
         private System.Windows.Forms.RadioButton raKhamTheoHopDong;
         private System.Windows.Forms.RadioButton raKhamTuTuc;
+        private System.Windows.Forms.Panel panel1;
     }
 }
