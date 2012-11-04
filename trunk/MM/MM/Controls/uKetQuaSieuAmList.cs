@@ -85,6 +85,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgSieuAm.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgSieuAm.DataSource = null;
+            }
+        }
+
         private void OnDisplayKetQuaSieuAmList()
         {
             Result result = SieuAmBus.GetKetQuaSieuAmList(_patientGUID, _fromDate, _toDate);
@@ -92,6 +104,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgSieuAm.DataSource = dt;
 

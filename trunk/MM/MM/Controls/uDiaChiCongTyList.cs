@@ -62,7 +62,33 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgDiaChi.DataSource = null;
+            if (_dataSource != null)
+            {
+                _dataSource.Rows.Clear();
+                _dataSource.Clear();
+                _dataSource = null;
+            }
+
+            DataTable dt = dgDiaChi.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgDiaChi.DataSource = null;
+            }
+        }
+
+        public void ClearDataSource()
+        {
+            DataTable dt = dgDiaChi.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgDiaChi.DataSource = null;
+            }
         }
 
         private void OnDisplayDiaChiCongTyList()
@@ -72,6 +98,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     _dataSource = result.QueryResult as DataTable;
                     OnSearchDiaChiCongTy();
                 };
@@ -236,6 +263,7 @@ namespace MM.Controls
         private void OnSearchDiaChiCongTy()
         {
             UpdateChecked();
+            ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
             DataTable newDataSource = null;

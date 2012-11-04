@@ -38,6 +38,26 @@ namespace MM.Controls
         #region UI Command
         public void ClearData()
         {
+            if (_dataSource != null)
+            {
+                _dataSource.Rows.Clear();
+                _dataSource.Clear();
+                _dataSource = null;
+            }
+
+            ClearDataSource();
+        }
+
+        private void ClearDataSource()
+        {
+            DataTable dt = dgNhapKhoCapCuu.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+            }
+
             dgNhapKhoCapCuu.DataSource = null;
         }
 
@@ -74,6 +94,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     _dataSource = result.QueryResult as DataTable;
                     OnSearchXuatKhoCapCuu();
                 };
@@ -113,6 +134,7 @@ namespace MM.Controls
                 _currentRowIndex = dgNhapKhoCapCuu.CurrentRow.Index;
 
             UpdateChecked();
+            ClearDataSource();
             List<DataRow> results = null;
             DataTable newDataSource = null;
 

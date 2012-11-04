@@ -63,7 +63,26 @@ namespace MM.Controls
         #region UI Command
         public void ClearData()
         {
-            dgMembers.DataSource = null;
+            if (_dataSource != null)
+            {
+                _dataSource.Rows.Clear();
+                _dataSource.Clear();
+                _dataSource = null;
+            }
+
+            ClearDataSource();
+        }
+
+        private void ClearDataSource()
+        {
+            DataTable dt = dgMembers.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgMembers.DataSource = null;
+            }
         }
 
         public void DisplayAsThread()
@@ -92,6 +111,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     _dataSource = GetDataSource(result.QueryResult as DataTable);
                     dgMembers.DataSource = _dataSource;
                 };
@@ -123,6 +143,7 @@ namespace MM.Controls
 
         private void OnSearchPatient()
         {
+            ClearDataSource();
             List<DataRow> results = null;
             DataTable newDataSource = null;
             if (txtSearchPatient.Text.Trim() == string.Empty)

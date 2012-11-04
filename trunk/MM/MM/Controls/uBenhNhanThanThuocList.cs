@@ -59,6 +59,19 @@ namespace MM.Controls
             dgPatient.DataSource = null;
         }
 
+        public void ClearDataSource()
+        {
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+
+                dgPatient.DataSource = null;
+            }
+        }
+
         public void DisplayAsThread()
         {
             try
@@ -253,6 +266,7 @@ namespace MM.Controls
         private void OnSearchPatient()
         {
             UpdateChecked();
+            ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
             DataTable newDataSource = null;

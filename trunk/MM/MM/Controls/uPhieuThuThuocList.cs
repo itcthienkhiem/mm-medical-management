@@ -66,7 +66,14 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgPhieuThu.DataSource = null;
+            DataTable dt = dgPhieuThu.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgPhieuThu.DataSource = null;
+            }
         }
 
         public void DisplayAsThread()
@@ -117,6 +124,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgPhieuThu.DataSource = result.QueryResult;
                     HighlightExportedInvoice();

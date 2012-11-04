@@ -29,6 +29,18 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        private void ClearData()
+        {
+            DataTable dt = dgBenhNhan.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgBenhNhan.DataSource = null;
+            }
+        }
+
         private void OnViewData()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -42,7 +54,9 @@ namespace MM.Controls
             DateTime fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
             DateTime toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
             bool isDenKham = raDenKham.Checked;
-            
+
+            ClearData();
+
             Result result = ReportBus.GetDanhSachBenhNhanKhamBenh(fromDate, toDate, txtMaBenhNhan.Text.Trim(), isDenKham);
             if (result.IsOK)
             {

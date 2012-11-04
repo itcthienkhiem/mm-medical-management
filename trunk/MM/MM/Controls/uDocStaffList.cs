@@ -39,7 +39,14 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgDocStaff.DataSource = null;
+            DataTable dt = dgDocStaff.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgDocStaff.DataSource = null;
+            }
         }
 
         public void DisplayAsThread()
@@ -69,6 +76,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgDocStaff.DataSource = result.QueryResult;
                 };
 

@@ -67,6 +67,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgCongTacNgoaiGio.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgCongTacNgoaiGio.DataSource = null;
+            }
+        }
+
         private void OnDisplayCongTacNgoaiGioList()
         {
             Result result = CongTacNgoaiGioBus.GetCongTacNgoaiGioList(_tuNgay, _denNgay, _tenNhanVien);
@@ -74,6 +86,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgCongTacNgoaiGio.DataSource = result.QueryResult;
                     lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);

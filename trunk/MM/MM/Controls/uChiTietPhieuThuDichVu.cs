@@ -65,6 +65,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgChiTiet.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgChiTiet.DataSource = null;
+            }
+        }
+
         private void OnDisplayChTietPhieuThuDichVuList()
         {
             Result result = ReceiptBus.GetChiTietPhieuThuDichVuList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan);
@@ -72,6 +84,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgChiTiet.DataSource = result.QueryResult;
                     lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);

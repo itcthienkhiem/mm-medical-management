@@ -63,6 +63,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = cboNhanVien.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                cboNhanVien.DataSource = null;
+            }
+        }
+
         private void OnDisplayDocStaffList()
         {
             Result result = DocStaffBus.GetDocStaffList();
@@ -70,6 +82,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     DataRow newRow = dt.NewRow();
                     newRow["DocStaffGUID"] = Guid.Empty.ToString();

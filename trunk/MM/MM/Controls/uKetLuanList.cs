@@ -83,6 +83,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgKetLuan.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgKetLuan.DataSource = null;
+            }
+        }
+
         private void OnDisplayKetLuan()
         {
             Result result = KetLuanBus.GetKetLuanList(_patientGUID, _fromDate, _toDate);
@@ -90,6 +102,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgKetLuan.DataSource = result.QueryResult;
                 };
 

@@ -80,6 +80,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgKhamLamSang.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgKhamLamSang.DataSource = null;
+            }
+        }
+
         private void OnDisplayKetQuaLamSangList()
         {
             Result result = KetQuaLamSangBus.GetKetQuaLamSangList(_patientGUID, _fromDate, _toDate);
@@ -87,6 +99,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgKhamLamSang.DataSource = result.QueryResult;
                     UpdateKetQua();
                 };

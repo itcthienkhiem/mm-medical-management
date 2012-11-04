@@ -58,7 +58,14 @@ namespace MM.Controls
         #region UI Command
         public void ClearData()
         {
-            dgReceipt.DataSource = null;
+            DataTable dt = dgReceipt.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgReceipt.DataSource = null;
+            }
         }
 
         private void UpdateGUI()
@@ -116,6 +123,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgReceipt.DataSource = result.QueryResult;
                     HighlightExportedInvoice();

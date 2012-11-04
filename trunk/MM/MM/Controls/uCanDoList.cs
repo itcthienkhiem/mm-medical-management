@@ -82,6 +82,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgCanDo.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgCanDo.DataSource = null;
+            }
+        }
+
         private void OnDisplayCanDo()
         {
             Result result = CanDoBus.GetCanDo(_patientGUID, _fromDate, _toDate);
@@ -89,6 +101,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgCanDo.DataSource = result.QueryResult;
                 };
 

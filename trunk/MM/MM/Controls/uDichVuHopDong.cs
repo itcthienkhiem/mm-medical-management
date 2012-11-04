@@ -64,6 +64,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = cboHopDong.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                cboHopDong.DataSource = null;
+            }
+        }
+
         private void OnDisplayContractList()
         {
             Result result = CompanyContractBus.GetContractList();
@@ -71,6 +83,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     cboHopDong.DataSource = dt;
                 };

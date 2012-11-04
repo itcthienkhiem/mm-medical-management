@@ -43,7 +43,33 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgDuplicatePatient.DataSource = null;
+            if (_dataSource != null)
+            {
+                _dataSource.Rows.Clear();
+                _dataSource.Clear();
+                _dataSource = null;
+            }
+
+            DataTable dt = dgDuplicatePatient.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgDuplicatePatient.DataSource = null;
+            }
+        }
+
+        public void ClearDataSource()
+        {
+            DataTable dt = dgDuplicatePatient.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgDuplicatePatient.DataSource = null;
+            }
         }
 
         public void DisplayAsThread()
@@ -72,6 +98,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     _dataSource = result.QueryResult as DataTable;
                     OnSearchPatient();
                 };
@@ -88,6 +115,7 @@ namespace MM.Controls
 
         private void OnSearchPatient()
         {
+            ClearDataSource();
             List<DataRow> results = null;
             DataTable newDataSource = null;
             if (txtSearchPatient.Text.Trim() == string.Empty)
