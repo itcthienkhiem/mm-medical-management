@@ -315,16 +315,16 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboDocStaff.SelectedValue == null || cboDocStaff.Text == string.Empty)
-            {
-                string serverName = cboService.Text;
-                if (serverName.ToLower().IndexOf("siêu âm") >= 0 || serverName.ToLower().IndexOf("sieu am") >= 0)
-                {
-                    MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ thực hiện.", IconType.Information);
-                    cboDocStaff.Focus();
-                    return false;
-                }
-            }
+            //if (cboDocStaff.SelectedValue == null || cboDocStaff.Text == string.Empty)
+            //{
+            //    string serverName = cboService.Text;
+            //    if (serverName.ToLower().IndexOf("siêu âm") >= 0 || serverName.ToLower().IndexOf("sieu am") >= 0)
+            //    {
+            //        MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ thực hiện.", IconType.Information);
+            //        cboDocStaff.Focus();
+            //        return false;
+            //    }
+            //}
 
             if (chkBSCD.Checked && (cboBacSiChiDinh.SelectedValue == null || cboBacSiChiDinh.Text == string.Empty))
             {
