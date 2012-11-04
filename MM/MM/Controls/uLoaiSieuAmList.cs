@@ -76,6 +76,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgLoaiSieuAm.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgLoaiSieuAm.DataSource = null;
+            }
+        }
+
         private void OnDisplayLoaiSieuList()
         {
             Result result = SieuAmBus.GetLoaiSieuAmList();
@@ -83,6 +95,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgLoaiSieuAm.DataSource = result.QueryResult;
                 };
 

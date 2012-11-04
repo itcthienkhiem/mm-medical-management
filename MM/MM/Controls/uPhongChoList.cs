@@ -80,6 +80,18 @@ namespace MM.Controls
             }
         }
 
+        public void ClearData()
+        {
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgPatient.DataSource = null;
+            }
+        }
+
         private void OnDisplayPhongChoList()
         {
             Result result = PhongChoBus.GetPhongChoList();
@@ -87,6 +99,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = dgPatient.DataSource as DataTable;
                     if (dt == null)
                         dgPatient.DataSource = result.QueryResult;

@@ -67,6 +67,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearChiDinhData()
+        {
+            DataTable dt = dgChiDinh.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgChiDinh.DataSource = null;
+            }
+        }
+
         private void OnDisplayChiDinhList()
         {
             if (_patientRow == null) return;
@@ -77,6 +89,7 @@ namespace MM.Controls
                 MethodInvoker method = delegate
                 {
                     _flag = false;
+                    ClearChiDinhData();
                     dgChiDinh.DataSource = result.QueryResult;
                     _flag = true;
                     OnGetDichVuChiDinh();
@@ -124,6 +137,18 @@ namespace MM.Controls
             OnDisplayChiTietChiDinh();
         }
 
+        private void ClearChiTietChiDinh()
+        {
+            DataTable dt = dgChiTiet.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgChiTiet.DataSource = null;
+            }
+        }
+
         private void OnDisplayChiTietChiDinh()
         {
             string chiDinhGUID = string.Empty;
@@ -138,6 +163,7 @@ namespace MM.Controls
             Result result = ChiDinhBus.GetChiTietChiDinhList(chiDinhGUID);
             if (result.IsOK)
             {
+                ClearChiTietChiDinh();
                 dgChiTiet.DataSource = result.QueryResult;
 
                 if (_htDichVuChiDinh.ContainsKey(chiDinhGUID))

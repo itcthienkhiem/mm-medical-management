@@ -73,6 +73,18 @@ namespace MM.Controls
             }
         }
 
+        public void ClearData()
+        {
+            DataTable dt = dgTiemNgua.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgTiemNgua.DataSource = null;
+            }
+        }
+
         private void OnDisplayTiemNguaList()
         {
             Result result = TiemNguaBus.GetDanhSachTiemNguaList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _isMaBenhNhan);
@@ -80,6 +92,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgTiemNgua.DataSource = result.QueryResult;
                     HighLightAlert();
                 };

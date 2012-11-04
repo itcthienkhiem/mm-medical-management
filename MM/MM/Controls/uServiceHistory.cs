@@ -73,6 +73,18 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void ClearData()
+        {
+            DataTable dt = dgServiceHistory.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgServiceHistory.DataSource = null;
+            }
+        }
+
         private void UpdateGUI()
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
@@ -227,6 +239,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgServiceHistory.DataSource = result.QueryResult;
                     CalculateTotalPrice();
                     HighlightPaidServices();

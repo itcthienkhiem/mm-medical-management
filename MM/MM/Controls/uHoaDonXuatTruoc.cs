@@ -83,12 +83,33 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDeleteDangKy;
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgSoHoaDon.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgSoHoaDon.DataSource = null;
+            }
+
+            dt = dgInvoice.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgInvoice.DataSource = null;
+            }
+        }
+
         public void DisplayAsThread()
         {
             try
             {
                 UpdateGUI();
-
+                ClearData();
                 _isFromDateToDate = raTuNgayToiNgay.Checked;
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);

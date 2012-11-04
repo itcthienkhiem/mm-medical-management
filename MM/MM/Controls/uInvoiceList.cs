@@ -79,6 +79,8 @@ namespace MM.Controls
             }
         }
 
+        
+
         private void OnDisplayInvoiceList()
         {
             Result result = InvoiceBus.GetInvoiceList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
@@ -86,6 +88,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgInvoice.DataSource = result.QueryResult;
                 };
 
@@ -101,7 +104,14 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgInvoice.DataSource = null;
+            DataTable dt = dgInvoice.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgInvoice.DataSource = null;
+            }
         }
 
         private void OnDeleteInvoice()

@@ -71,6 +71,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgBenhNhanNgoaiGoiKham.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgBenhNhanNgoaiGoiKham.DataSource = null;
+            }
+        }
+
         private void OnDisplayBenhNhanNgoaiGoiKhamList()
         {
             Result result = BenhNhanNgoaiGoiKhamBus.GetBenhNhanNgoaiGoiKhamList(_tuNgay, _denNgay, _tenBenhNhan, _type);
@@ -78,6 +90,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgBenhNhanNgoaiGoiKham.DataSource = result.QueryResult as DataTable;
                     lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);

@@ -28,6 +28,18 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void ClearData()
+        {
+            DataTable dt = dgBenhNhan.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgBenhNhan.DataSource = null;
+            }
+        }
+
         public void DisplayAsThread()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -46,6 +58,7 @@ namespace MM.Controls
             Result result = UserBus.GetAccountList(tuNgay, denNgay, tenBenhNhan, chkMaBenhNhan.Checked);
             if (result.IsOK)
             {
+                ClearData();
                 DataTable dt = result.QueryResult as DataTable;
                 dgBenhNhan.DataSource = result.QueryResult as DataTable;
                 lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);

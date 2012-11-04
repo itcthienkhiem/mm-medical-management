@@ -61,7 +61,14 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgCompany.DataSource = null;
+            DataTable dt = dgCompany.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgCompany.DataSource = null;
+            }
         }
 
         private void OnDisplayCompanyList()
@@ -71,6 +78,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgCompany.DataSource = result.QueryResult;
                 };
 

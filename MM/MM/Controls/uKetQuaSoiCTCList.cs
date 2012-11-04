@@ -85,6 +85,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgSoCTC.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgSoCTC.DataSource = null;
+            }
+        }
+
         private void OnDisplayKetQuaSoiCTCList()
         {
             Result result = KetQuaSoiCTCBus.GetKetQuaSoiCTCList(_patientGUID, _fromDate, _toDate);
@@ -92,6 +104,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgSoCTC.DataSource = dt;
 

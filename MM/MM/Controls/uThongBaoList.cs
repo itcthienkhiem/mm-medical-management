@@ -82,6 +82,18 @@ namespace MM.Controls
             }
         }
 
+        public void ClearData()
+        {
+            DataTable dt = dgThongBao.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgThongBao.DataSource = null;
+            }
+        }
+
         private void OnDisplayThongBaoList()
         {
             Result result = ThongBaoBus.GetThongBaoList(_tuNgay, _denNgay, _tenNguoiTao, _type);
@@ -89,6 +101,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgThongBao.DataSource = result.QueryResult as DataTable;
                     lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);

@@ -47,7 +47,14 @@ namespace MM.Controls
         #region UI Command
         public void ClearData()
         {
-            dgNhatKyLienHeCongTy.DataSource = null;
+            DataTable dt = dgNhatKyLienHeCongTy.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgNhatKyLienHeCongTy.DataSource = null;
+            }
         }
 
         private void UpdateGUI()
@@ -119,6 +126,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgNhatKyLienHeCongTy.DataSource = result.QueryResult;
                     lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dgNhatKyLienHeCongTy.RowCount);
                     RefreshHighlight();

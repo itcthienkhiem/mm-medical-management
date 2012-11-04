@@ -80,6 +80,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgLoiKhuyen.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgLoiKhuyen.DataSource = null;
+            }
+        }
+
         private void OnDisplayLoiKhuyenList()
         {
             Result result = LoiKhuyenBus.GetLoiKhuyenList(_patientGUID, _fromDate, _toDate);
@@ -87,6 +99,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgLoiKhuyen.DataSource = result.QueryResult;
                 };
 

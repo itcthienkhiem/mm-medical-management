@@ -109,6 +109,18 @@ namespace MM.Controls
             }
         }
 
+        public void ClearData()
+        {
+            DataTable dt = dgTracking.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgTracking.DataSource = null;
+            }
+        }
+
         private void OnDisplayTrackingList()
         {
             Result result = TrackingBus.GetTrackingList(_fromDate, _toDate, _docStaffGUID, _isAdd, _isEdit, _isDelete);
@@ -116,6 +128,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgTracking.DataSource = result.QueryResult;
                 };
 

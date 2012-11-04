@@ -49,7 +49,14 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgGiaVonDichVu.DataSource = null;
+            DataTable dt = dgGiaVonDichVu.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgGiaVonDichVu.DataSource = null;
+            }
         }
 
         public void DisplayAsThread()
@@ -84,6 +91,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgGiaVonDichVu.DataSource = result.QueryResult as DataTable;
                     //OnSearchGiaVonDichVu();
                 };

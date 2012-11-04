@@ -42,7 +42,14 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgSpeciality.DataSource = null;
+            DataTable dt = dgSpeciality.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgSpeciality.DataSource = null;
+            }
         }
 
         public void DisplayAsThread()
@@ -72,6 +79,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgSpeciality.DataSource = result.QueryResult;
                 };
 

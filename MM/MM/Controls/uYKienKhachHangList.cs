@@ -41,7 +41,14 @@ namespace MM.Controls
         #region UI Command
         public void ClearData()
         {
-            dgYKienKhachHang.DataSource = null;
+            DataTable dt = dgYKienKhachHang.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgYKienKhachHang.DataSource = null;
+            }
         }
 
         private void UpdateGUI()
@@ -105,6 +112,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgYKienKhachHang.DataSource = result.QueryResult;
                     //RefreshNo();
                 };

@@ -64,7 +64,33 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgContract.DataSource = null;
+            if (_dataSource != null)
+            {
+                _dataSource.Rows.Clear();
+                _dataSource.Clear();
+                _dataSource = null;
+            }
+
+            DataTable dt = dgContract.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgContract.DataSource = null;
+            }
+        }
+
+        private void ClearDataSource()
+        {
+            DataTable dt = dgContract.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgContract.DataSource = null;
+            }
         }
 
         private void OnDisplayContractList()
@@ -74,6 +100,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     _dataSource = result.QueryResult as DataTable;
                     OnSearchHopDong();
                 };
@@ -271,6 +298,7 @@ namespace MM.Controls
         private void OnSearchHopDong()
         {
             UpdateChecked();
+            ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
             DataTable newDataSource = null;

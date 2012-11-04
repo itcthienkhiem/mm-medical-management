@@ -54,6 +54,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgDSKhachHang.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgDSKhachHang.DataSource = null;
+            }
+        }
+
         private void OnView()
         {
             DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
@@ -62,6 +74,8 @@ namespace MM.Controls
             string thuocGUID = string.Empty;
             if (txtThuoc.Text.Trim() != string.Empty)
                 thuocGUID = txtThuoc.Tag.ToString();
+
+            ClearData();
 
             Result result = ReportBus.GetDanhSachKhachHangMuaThuoc(tuNgay, denNgay, thuocGUID);
             if (result.IsOK)

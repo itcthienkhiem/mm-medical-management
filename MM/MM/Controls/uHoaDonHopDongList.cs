@@ -49,7 +49,14 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            dgInvoice.DataSource = null;
+            DataTable dt = dgInvoice.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgInvoice.DataSource = null;
+            }
         }
 
         public void DisplayAsThread()
@@ -89,6 +96,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgInvoice.DataSource = result.QueryResult;
                 };
 

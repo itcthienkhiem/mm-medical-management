@@ -108,6 +108,7 @@ namespace MM.Controls
                 dtOld.Rows.Clear();
                 dtOld.Clear();
                 dtOld = null;
+                dgPatient.DataSource = null;
             }
         }
 

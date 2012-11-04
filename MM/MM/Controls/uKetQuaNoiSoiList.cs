@@ -86,6 +86,18 @@ namespace MM.Controls
             }
         }
 
+        private void ClearData()
+        {
+            DataTable dt = dgKhamNoiSoi.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgKhamNoiSoi.DataSource = null;
+            }
+        }
+
         private void OnDisplayKetQuaNoiSoiList()
         {
             Result result = KetQuaNoiSoiBus.GetKetQuaNoiSoiList(_patientGUID, _fromDate, _toDate);
@@ -93,6 +105,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgKhamNoiSoi.DataSource = dt;
 

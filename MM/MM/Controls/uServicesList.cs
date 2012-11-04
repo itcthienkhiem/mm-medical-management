@@ -44,6 +44,26 @@ namespace MM.Controls
 
         public void ClearData()
         {
+            if (_dataSource != null)
+            {
+                _dataSource.Rows.Clear();
+                _dataSource.Clear();
+                _dataSource = null;
+            }
+
+            ClearDataSource();
+        }
+
+        private void ClearDataSource()
+        {
+            DataTable dt = dgService.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+            }
+
             dgService.DataSource = null;
         }
 
@@ -74,6 +94,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     //dgService.DataSource = result.QueryResult; 
                     _dataSource = result.QueryResult as DataTable;
                     OnSearchDichVu();
@@ -282,6 +303,7 @@ namespace MM.Controls
         private void OnSearchDichVu()
         {
             UpdateChecked();
+            ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
             DataTable newDataSource = null;

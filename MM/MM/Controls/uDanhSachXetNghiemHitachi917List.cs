@@ -65,6 +65,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     _dataSource = result.QueryResult as DataTable;
                     OnSearchXetNghiem();
                 };
@@ -86,6 +87,37 @@ namespace MM.Controls
             if (rows == null || rows.Length <= 0) return null;
 
             return rows[0];
+        }
+
+        private void ClearData()
+        {
+            if (_dataSource != null)
+            {
+                _dataSource.Rows.Clear();
+                _dataSource.Clear();
+                _dataSource = null;
+            }
+
+            DataTable dt = dgXetNghiem.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgXetNghiem.DataSource = null;
+            }
+        }
+
+        private void ClearDataSource()
+        {
+            DataTable dt = dgXetNghiem.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgXetNghiem.DataSource = null;
+            }
         }
 
         private void OnDisplayChiSoXetNghiem()
@@ -125,6 +157,8 @@ namespace MM.Controls
             HideChiSoXetNghiem();
             List<DataRow> results = null;
             DataTable newDataSource = null;
+
+            ClearDataSource();
 
             if (txtXetNghiem.Text.Trim() == string.Empty)
             {

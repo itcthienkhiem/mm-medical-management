@@ -79,6 +79,18 @@ namespace MM.Controls
             }
         }
 
+        public void ClearData()
+        {
+            DataTable dt = dgInvoice.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgInvoice.DataSource = null;
+            }
+        }
+
         private void OnDisplayInvoiceList()
         {
             Result result = HoaDonThuocBus.GetHoaDonThuocList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
@@ -86,6 +98,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     dgInvoice.DataSource = result.QueryResult;
                 };
 
@@ -97,11 +110,6 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonThuocBus.GetHoaDonThuocList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonThuocBus.GetHoaDonThuocList"));
             }
-        }
-
-        public void ClearData()
-        {
-            dgInvoice.DataSource = null;
         }
 
         private void OnDeleteInvoice()
