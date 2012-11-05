@@ -58,19 +58,6 @@ namespace MM.Controls
             _timer.Enabled = false;
         }
 
-        public void DisplayAsThread()
-        {
-            try
-            {
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPhongChoListProc));
-            }
-            catch (Exception e)
-            {
-                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
-                Utility.WriteToTraceLog(e.Message);
-            }
-        }
-
         private void RefreshNo()
         {
             int stt = 1;
@@ -193,22 +180,6 @@ namespace MM.Controls
 
             DataRow drPatient = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
             base.RaiseOpentPatient(drPatient);
-        }
-        #endregion
-
-        #region Working Thread
-        private void OnDisplayPhongChoListProc(object state)
-        {
-            try
-            {
-                Thread.Sleep(500);
-                OnDisplayPhongChoList();
-            }
-            catch (Exception e)
-            {
-                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
-                Utility.WriteToTraceLog(e.Message);
-            }
         }
         #endregion
     }
