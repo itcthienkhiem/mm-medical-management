@@ -26,6 +26,9 @@ namespace MM
         private bool _flag = true;
         //private List<SerialPort> _ports = new List<SerialPort>();
         //private Hashtable _htLastResult = new Hashtable();
+        private bool _isStartTiemNgua = false;
+        private bool _isStartCapCuuHetHSD = false;
+        private bool _isStartCapCuuHetTonKho = false;
         #endregion
 
         #region Constructor
@@ -47,43 +50,18 @@ namespace MM
         #endregion
 
         #region UI Command
-        private void StartTimerShowTiemNguaAlert()
+        private void StartTimerShowAlert()
         {
-            _timerTiemNgua.Enabled = true;
-            _timerTiemNgua.Start();
+            _timerShowAlert.Enabled = true;
+            _timerShowAlert.Start();
         }
 
-        private void StopTimerShowTiemNguaAlert()
+        private void StopTimerShowAlert()
         {
-            _timerTiemNgua.Stop();
-            _timerTiemNgua.Enabled = false;
+            _timerShowAlert.Stop();
+            _timerShowAlert.Enabled = false;
             statusAlert.Visible = false;
-        }
-
-        private void StartTimerShowCapCuuHetHSDAlert()
-        {
-            _timerCapCuuHetHSD.Enabled = true;
-            _timerCapCuuHetHSD.Start();
-            
-        }
-
-        private void StopTimerShowCapCuuHetHSDAlert()
-        {
-            _timerCapCuuHetHSD.Stop();
-            _timerCapCuuHetHSD.Enabled = false;
             statusCapCuuHetHan.Visible = false;
-        }
-
-        private void StartTimerShowCapCuuHetTonKhoAlert()
-        {
-            _timerCapCuuHetTonKho.Enabled = true;
-            _timerCapCuuHetTonKho.Start();
-        }
-
-        private void StopTimerShowCapCuuHetTonKhoAlert()
-        {
-            _timerCapCuuHetTonKho.Stop();
-            _timerCapCuuHetTonKho.Enabled = false;
             statusCapCuuHetTonKho.Visible = false;
         }
 
@@ -2549,12 +2527,11 @@ namespace MM
 
         private void OnCheckAlert()
         {
-            bool isStartTiemNgua = false;
-            bool isStartCapCuuHetHSD = false;
-            bool isStartCapCuuHetTonKho = false;
-            StopTimerShowTiemNguaAlert();
-            StopTimerShowCapCuuHetHSDAlert();
-            StopTimerShowCapCuuHetTonKhoAlert();
+            _isStartTiemNgua = false;
+            _isStartCapCuuHetHSD = false;
+            _isStartCapCuuHetTonKho = false;
+
+            StopTimerShowAlert();
 
             //Tiêm Ngừa
             Result result = TiemNguaBus.CheckAlert();
@@ -2562,7 +2539,7 @@ namespace MM
             {
                 DataTable dt = result.QueryResult as DataTable;
                 if (dt != null && dt.Rows.Count > 0)
-                    isStartTiemNgua = true;
+                    _isStartTiemNgua = true;
             }
             else
                 Utility.WriteToTraceLog(result.GetErrorAsString("TiemNguaBus.CheckAlert"));
@@ -2570,22 +2547,19 @@ namespace MM
             //Cấp cứu hết hạn sử dụng
             result = NhapKhoCapCuuBus.CheckKhoCapCuuHetHan();
             if (result.IsOK)
-                isStartCapCuuHetHSD = Convert.ToBoolean(result.QueryResult);
+                _isStartCapCuuHetHSD = Convert.ToBoolean(result.QueryResult);
             else
                 Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuHetHan"));
 
             //Cấp cứu hết tồn kho
             result = NhapKhoCapCuuBus.CheckKhoCapCuuTonKho();
             if (result.IsOK)
-                isStartCapCuuHetTonKho = Convert.ToBoolean(result.QueryResult);
+                _isStartCapCuuHetTonKho = Convert.ToBoolean(result.QueryResult);
             else
                 Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuTonKho"));
 
-            if (isStartTiemNgua) StartTimerShowTiemNguaAlert();
-
-            if (isStartCapCuuHetHSD) StartTimerShowCapCuuHetHSDAlert();
-
-            if (isStartCapCuuHetTonKho) StartTimerShowCapCuuHetTonKhoAlert();
+            if (_isStartTiemNgua || _isStartCapCuuHetHSD || _isStartCapCuuHetTonKho)
+                StartTimerShowAlert();
         }
         #endregion
 
@@ -2622,9 +2596,7 @@ namespace MM
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn thoát khỏi chương trình ?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     SaveAppConfig();
-                    StopTimerShowTiemNguaAlert();
-                    StopTimerShowCapCuuHetHSDAlert();
-                    StopTimerShowCapCuuHetTonKhoAlert();
+                    StopTimerShowAlert();
                     StopTimerCheckAlert();
                 }
                 else
@@ -2646,19 +2618,11 @@ namespace MM
             ExcuteCmd(cmd);
         }
 
-        private void _timerTiemNgua_Tick(object sender, EventArgs e)
+        private void _timerShowAlert_Tick(object sender, EventArgs e)
         {
-            statusAlert.Visible = !statusAlert.Visible;
-        }
-
-        private void _timerCapCuuHetHSD_Tick(object sender, EventArgs e)
-        {
-            statusCapCuuHetHan.Visible = !statusCapCuuHetHan.Visible;
-        }
-
-        private void _timerCapCuuHetTonKho_Tick(object sender, EventArgs e)
-        {
-            statusCapCuuHetTonKho.Visible = !statusCapCuuHetTonKho.Visible;
+            if (_isStartTiemNgua) statusAlert.Visible = !statusAlert.Visible;
+            if(_isStartCapCuuHetHSD) statusCapCuuHetHan.Visible = !statusCapCuuHetHan.Visible;
+            if (_isStartCapCuuHetTonKho) statusCapCuuHetTonKho.Visible = !statusCapCuuHetTonKho.Visible;
         }
 
         private void _timerCheckAlert_Tick(object sender, EventArgs e)
@@ -2668,17 +2632,17 @@ namespace MM
 
         private void statusAlert_DoubleClick(object sender, EventArgs e)
         {
-            if (_timerTiemNgua.Enabled) OnTiemNgua();
+            if (_isStartTiemNgua) OnTiemNgua();
         }
 
         private void statusCapCuuHetTonKho_DoubleClick(object sender, EventArgs e)
         {
-            if (_timerCapCuuHetHSD.Enabled) OnNhapKhoCapCuu();
+            if (_isStartCapCuuHetTonKho) OnNhapKhoCapCuu();
         }
 
         private void statusCapCuuHetHan_DoubleClick(object sender, EventArgs e)
         {
-            if (_timerCapCuuHetTonKho.Enabled) OnNhapKhoCapCuu();
+            if (_isStartCapCuuHetHSD) OnNhapKhoCapCuu();
         }
         #endregion
 

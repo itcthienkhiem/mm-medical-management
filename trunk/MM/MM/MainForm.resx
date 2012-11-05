@@ -826,52 +826,52 @@
     <value>&amp;Dịch vụ</value>
   </data>
   <data name="openPatientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 30</value>
+    <value>210, 22</value>
   </data>
   <data name="openPatientToolStripMenuItem.Text" xml:space="preserve">
     <value>Mở bệnh nhân</value>
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 6</value>
+    <value>207, 6</value>
   </data>
   <data name="patientListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 30</value>
+    <value>210, 22</value>
   </data>
   <data name="patientListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh sách bệnh nhân</value>
   </data>
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 6</value>
+    <value>207, 6</value>
   </data>
   <data name="DuplicatePatientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 30</value>
+    <value>210, 22</value>
   </data>
   <data name="DuplicatePatientToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh sách trùng lắp</value>
   </data>
   <data name="toolStripSeparator36.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 6</value>
+    <value>207, 6</value>
   </data>
   <data name="phucHoiBenhNhanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 30</value>
+    <value>210, 22</value>
   </data>
   <data name="phucHoiBenhNhanToolStripMenuItem.Text" xml:space="preserve">
     <value>Phục hồi bệnh nhân</value>
   </data>
   <data name="toolStripSeparator55.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 6</value>
+    <value>207, 6</value>
   </data>
   <data name="benhNhanThanThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 30</value>
+    <value>210, 22</value>
   </data>
   <data name="benhNhanThanThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Bệnh nhân thân thuộc</value>
   </data>
   <data name="toolStripSeparator64.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 6</value>
+    <value>207, 6</value>
   </data>
   <data name="benhNhanNgoaiGoiKhamToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 30</value>
+    <value>210, 22</value>
   </data>
   <data name="benhNhanNgoaiGoiKhamToolStripMenuItem.Text" xml:space="preserve">
     <value>Bệnh nhân ngoài gói khám</value>
@@ -7209,6 +7209,18 @@
   <data name="&gt;&gt;benhNhanThanThuocToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparator64.Name" xml:space="preserve">
+    <value>toolStripSeparator64</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator64.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;benhNhanNgoaiGoiKhamToolStripMenuItem.Name" xml:space="preserve">
+    <value>benhNhanNgoaiGoiKhamToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;benhNhanNgoaiGoiKhamToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;companyToolStripMenuItem.Name" xml:space="preserve">
     <value>companyToolStripMenuItem</value>
   </data>
@@ -7947,10 +7959,10 @@
   <data name="&gt;&gt;dockContainerItem2.Type" xml:space="preserve">
     <value>DevComponents.DotNetBar.DockContainerItem, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
   </data>
-  <data name="&gt;&gt;_timerTiemNgua.Name" xml:space="preserve">
-    <value>_timerTiemNgua</value>
+  <data name="&gt;&gt;_timerShowAlert.Name" xml:space="preserve">
+    <value>_timerShowAlert</value>
   </data>
-  <data name="&gt;&gt;_timerTiemNgua.Type" xml:space="preserve">
+  <data name="&gt;&gt;_timerShowAlert.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;_timerCheckAlert.Name" xml:space="preserve">
@@ -7959,46 +7971,16 @@
   <data name="&gt;&gt;_timerCheckAlert.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;_timerCapCuuHetHSD.Name" xml:space="preserve">
-    <value>_timerCapCuuHetHSD</value>
-  </data>
-  <data name="&gt;&gt;_timerCapCuuHetHSD.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_timerCapCuuHetTonKho.Name" xml:space="preserve">
-    <value>_timerCapCuuHetTonKho</value>
-  </data>
-  <data name="&gt;&gt;_timerCapCuuHetTonKho.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator64.Name" xml:space="preserve">
-    <value>toolStripSeparator64</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator64.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;benhNhanNgoaiGoiKhamToolStripMenuItem.Name" xml:space="preserve">
-    <value>benhNhanNgoaiGoiKhamToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;benhNhanNgoaiGoiKhamToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>MM.Dialogs.dlgBase, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <metadata name="_timerTiemNgua.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="_timerShowAlert.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1033, 17</value>
   </metadata>
   <metadata name="_timerCheckAlert.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1116, 17</value>
-  </metadata>
-  <metadata name="_timerCapCuuHetHSD.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 37</value>
-  </metadata>
-  <metadata name="_timerCapCuuHetTonKho.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>178, 37</value>
   </metadata>
 </root>
