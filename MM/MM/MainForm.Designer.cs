@@ -114,6 +114,8 @@
             this.phucHoiBenhNhanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator55 = new System.Windows.Forms.ToolStripSeparator();
             this.benhNhanThanThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator64 = new System.Windows.Forms.ToolStripSeparator();
+            this.benhNhanNgoaiGoiKhamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.companyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
@@ -251,8 +253,9 @@
             this.dockSite6 = new DevComponents.DotNetBar.DockSite();
             this.dockSite7 = new DevComponents.DotNetBar.DockSite();
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
-            this._timerTiemNgua = new System.Windows.Forms.Timer(this.components);
+            this._timerShowAlert = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uBenhNhanNgoaiGoiKhamList = new MM.Controls.uBenhNhanNgoaiGoiKhamList();
             this._uThongBaoList = new MM.Controls.uThongBaoList();
             this._uBaoCaoTonKhoCapCuu = new MM.Controls.uBaoCaoTonKhoCapCuu();
             this._uBaoCaoCapCuuHetHan = new MM.Controls.uBaoCaoCapCuuHetHan();
@@ -318,11 +321,6 @@
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
-            this._timerCapCuuHetHSD = new System.Windows.Forms.Timer(this.components);
-            this._timerCapCuuHetTonKho = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator64 = new System.Windows.Forms.ToolStripSeparator();
-            this.benhNhanNgoaiGoiKhamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uBenhNhanNgoaiGoiKhamList = new MM.Controls.uBenhNhanNgoaiGoiKhamList();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -916,6 +914,19 @@
             resources.ApplyResources(this.benhNhanThanThuocToolStripMenuItem, "benhNhanThanThuocToolStripMenuItem");
             this.benhNhanThanThuocToolStripMenuItem.Tag = "BenhNhanThanThuoc";
             this.benhNhanThanThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator64
+            // 
+            this.toolStripSeparator64.Name = "toolStripSeparator64";
+            resources.ApplyResources(this.toolStripSeparator64, "toolStripSeparator64");
+            // 
+            // benhNhanNgoaiGoiKhamToolStripMenuItem
+            // 
+            this.benhNhanNgoaiGoiKhamToolStripMenuItem.Image = global::MM.Properties.Resources._1320161545_people;
+            this.benhNhanNgoaiGoiKhamToolStripMenuItem.Name = "benhNhanNgoaiGoiKhamToolStripMenuItem";
+            resources.ApplyResources(this.benhNhanNgoaiGoiKhamToolStripMenuItem, "benhNhanNgoaiGoiKhamToolStripMenuItem");
+            this.benhNhanNgoaiGoiKhamToolStripMenuItem.Tag = "BenhNhanNgoaiGoiKham";
+            this.benhNhanNgoaiGoiKhamToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // companyToolStripMenuItem
             // 
@@ -2016,10 +2027,10 @@
             this.dockSite3.Name = "dockSite3";
             this.dockSite3.TabStop = false;
             // 
-            // _timerTiemNgua
+            // _timerShowAlert
             // 
-            this._timerTiemNgua.Interval = 1400;
-            this._timerTiemNgua.Tick += new System.EventHandler(this._timerTiemNgua_Tick);
+            this._timerShowAlert.Interval = 1400;
+            this._timerShowAlert.Tick += new System.EventHandler(this._timerShowAlert_Tick);
             // 
             // _mainPanel
             // 
@@ -2092,6 +2103,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uBenhNhanNgoaiGoiKhamList
+            // 
+            resources.ApplyResources(this._uBenhNhanNgoaiGoiKhamList, "_uBenhNhanNgoaiGoiKhamList");
+            this._uBenhNhanNgoaiGoiKhamList.Name = "_uBenhNhanNgoaiGoiKhamList";
             // 
             // _uThongBaoList
             // 
@@ -2421,34 +2437,6 @@
             this._timerCheckAlert.Interval = 3000;
             this._timerCheckAlert.Tick += new System.EventHandler(this._timerCheckAlert_Tick);
             // 
-            // _timerCapCuuHetHSD
-            // 
-            this._timerCapCuuHetHSD.Interval = 1400;
-            this._timerCapCuuHetHSD.Tick += new System.EventHandler(this._timerCapCuuHetHSD_Tick);
-            // 
-            // _timerCapCuuHetTonKho
-            // 
-            this._timerCapCuuHetTonKho.Interval = 1400;
-            this._timerCapCuuHetTonKho.Tick += new System.EventHandler(this._timerCapCuuHetTonKho_Tick);
-            // 
-            // toolStripSeparator64
-            // 
-            this.toolStripSeparator64.Name = "toolStripSeparator64";
-            resources.ApplyResources(this.toolStripSeparator64, "toolStripSeparator64");
-            // 
-            // benhNhanNgoaiGoiKhamToolStripMenuItem
-            // 
-            this.benhNhanNgoaiGoiKhamToolStripMenuItem.Image = global::MM.Properties.Resources._1320161545_people;
-            this.benhNhanNgoaiGoiKhamToolStripMenuItem.Name = "benhNhanNgoaiGoiKhamToolStripMenuItem";
-            resources.ApplyResources(this.benhNhanNgoaiGoiKhamToolStripMenuItem, "benhNhanNgoaiGoiKhamToolStripMenuItem");
-            this.benhNhanNgoaiGoiKhamToolStripMenuItem.Tag = "BenhNhanNgoaiGoiKham";
-            this.benhNhanNgoaiGoiKhamToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // _uBenhNhanNgoaiGoiKhamList
-            // 
-            resources.ApplyResources(this._uBenhNhanNgoaiGoiKhamList, "_uBenhNhanNgoaiGoiKhamList");
-            this._uBenhNhanNgoaiGoiKhamList.Name = "_uBenhNhanNgoaiGoiKhamList";
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2739,7 +2727,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator57;
         private System.Windows.Forms.ToolStripMenuItem tiemNguaToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel statusAlert;
-        private System.Windows.Forms.Timer _timerTiemNgua;
+        private System.Windows.Forms.Timer _timerShowAlert;
         private System.Windows.Forms.Timer _timerCheckAlert;
         private Controls.uTiemNguaList _uTiemNguaList;
         private System.Windows.Forms.ToolStripMenuItem cauHinhSoNgayToolStripMenuItem;
@@ -2764,8 +2752,6 @@
         private Controls.uBaoCaoTonKhoCapCuu _uBaoCaoTonKhoCapCuu;
         private System.Windows.Forms.ToolStripStatusLabel statusCapCuuHetTonKho;
         private System.Windows.Forms.ToolStripStatusLabel statusCapCuuHetHan;
-        private System.Windows.Forms.Timer _timerCapCuuHetHSD;
-        private System.Windows.Forms.Timer _timerCapCuuHetTonKho;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator62;
         private System.Windows.Forms.ToolStripMenuItem cauHinhKhoCapCuuToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator63;
