@@ -2216,6 +2216,7 @@
     <None Include="Templates\KetQuaXetNghiemSinhHoaTemplate.xls" />
     <None Include="Templates\KhamSucKhoeTongQuatTemplate.xls" />
     <None Include="Templates\KhoCapCuuTemplate.xls" />
+    <None Include="Templates\LichHenTemplate.xls" />
     <None Include="Templates\LichKhamTemplate.xls" />
     <None Include="Templates\NhatKyLienHeCongTyTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />

@@ -6507,5 +6507,224 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportLichHenToExcel(string exportFileName, SourceGrid2.Grid dgLichHen)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\LichHenTemplate.xls", Application.StartupPath);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                
+                IRange range;
+                int count = 0;
+                
+
+                for (int rowIndex = 3; rowIndex < dgLichHen.RowsCount; rowIndex++)
+                {
+                    //Day
+                    SourceGrid2.Cells.Real.Cell cell = dgLichHen[rowIndex, 0] as SourceGrid2.Cells.Real.Cell;
+                    bool isSpacing = cell.Tag == null ? false : true;
+                    string day = cell.Value as string;
+
+                    if (day != null && day != string.Empty) count = 0;
+                    else count++;
+
+                    //Date
+                    cell = dgLichHen[rowIndex, 1] as SourceGrid2.Cells.Real.Cell;
+                    string date = cell.Value as string;
+
+                    //Company
+                    cell = dgLichHen[rowIndex, 2] as SourceGrid2.Cells.Real.Cell;
+                    string company = cell.Value as string;
+
+                    //Morning
+                    cell = dgLichHen[rowIndex, 3] as SourceGrid2.Cells.Real.Cell;
+                    string morningCount = cell.Value as string;
+
+                    //Afternoon
+                    cell = dgLichHen[rowIndex, 4] as SourceGrid2.Cells.Real.Cell;
+                    string afternoonCount = cell.Value as string;
+
+                    //Evening
+                    cell = dgLichHen[rowIndex, 5] as SourceGrid2.Cells.Real.Cell;
+                    string eveningCount = cell.Value as string;
+
+                    //Total Morning IN
+                    cell = dgLichHen[rowIndex, 6] as SourceGrid2.Cells.Real.Cell;
+                    string totalMorningINCount = cell.Value as string;
+
+                    //Total Afternoon IN
+                    cell = dgLichHen[rowIndex, 7] as SourceGrid2.Cells.Real.Cell;
+                    string totalAfternoonINCount = cell.Value as string;
+
+                    //Total Evening IN
+                    cell = dgLichHen[rowIndex, 8] as SourceGrid2.Cells.Real.Cell;
+                    string totalEveningINCount = cell.Value as string;
+
+                    //Total OUT
+                    cell = dgLichHen[rowIndex, 9] as SourceGrid2.Cells.Real.Cell;
+                    string totalOUTCount = cell.Value as string;
+
+                    //Owner
+                    cell = dgLichHen[rowIndex, 10] as SourceGrid2.Cells.Real.Cell;
+                    string owner = cell.Value as string;
+
+                    //Booking Updated Date
+                    cell = dgLichHen[rowIndex, 11] as SourceGrid2.Cells.Real.Cell;
+                    string bookingUpdatedDate = cell.Value as string;
+
+                    //Booking IN/OUT
+                    cell = dgLichHen[rowIndex, 12] as SourceGrid2.Cells.Real.Cell;
+                    string bookingInOut = cell.Value as string;
+
+                    //Blood Company
+                    cell = dgLichHen[rowIndex, 14] as SourceGrid2.Cells.Real.Cell;
+                    string bloodCompany = cell.Value as string;
+
+                    //Pax
+                    cell = dgLichHen[rowIndex, 15] as SourceGrid2.Cells.Real.Cell;
+                    string pax = cell.Value as string;
+
+                    //Time
+                    cell = dgLichHen[rowIndex, 16] as SourceGrid2.Cells.Real.Cell;
+                    string time = cell.Value as string;
+
+                    //Sales
+                    cell = dgLichHen[rowIndex, 17] as SourceGrid2.Cells.Real.Cell;
+                    string sales = cell.Value as string;
+
+                    //Blood Updated Date
+                    cell = dgLichHen[rowIndex, 18] as SourceGrid2.Cells.Real.Cell;
+                    string bloodUpdatedDate = cell.Value as string;
+
+                    //Blood IN/OUT
+                    cell = dgLichHen[rowIndex, 19] as SourceGrid2.Cells.Real.Cell;
+                    string bloodInOut = cell.Value as string;
+
+                    if (!isSpacing)
+                    {
+                        workSheet.Cells[rowIndex, 0].Value = day;
+                        workSheet.Cells[rowIndex, 1].Value = date;
+                        workSheet.Cells[rowIndex, 2].Value = company;
+                        workSheet.Cells[rowIndex, 3].Value = morningCount;
+                        workSheet.Cells[rowIndex, 4].Value = afternoonCount;
+                        workSheet.Cells[rowIndex, 5].Value = eveningCount;
+                        //workSheet.Cells[rowIndex, 6].Value = totalMorningINCount;
+                        //workSheet.Cells[rowIndex, 7].Value = totalAfternoonINCount;
+                        //workSheet.Cells[rowIndex, 8].Value = totalEveningINCount;
+                        //workSheet.Cells[rowIndex, 9].Value = totalOUTCount;
+                        workSheet.Cells[rowIndex, 10].Value = owner;
+                        workSheet.Cells[rowIndex, 11].Value = bookingUpdatedDate;
+                        workSheet.Cells[rowIndex, 12].Value = bookingInOut;
+
+                        range = workSheet.Cells[string.Format("C{0}:F{0}", rowIndex + 1)];
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Color = Color.Black;
+
+                        range = workSheet.Cells[string.Format("K{0}:M{0}", rowIndex + 1)];
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Color = Color.Black;
+
+                        workSheet.Cells[rowIndex, 14].Value = bloodCompany;
+                        workSheet.Cells[rowIndex, 15].Value = pax;
+                        workSheet.Cells[rowIndex, 16].Value = time;
+                        workSheet.Cells[rowIndex, 17].Value = sales;
+                        workSheet.Cells[rowIndex, 18].Value = bloodUpdatedDate;
+                        workSheet.Cells[rowIndex, 19].Value = bloodInOut;
+
+                        range = workSheet.Cells[string.Format("O{0}:T{0}", rowIndex + 1)];
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Color = Color.Black;
+
+                        if (day == "Thứ 7" || day == "CN")
+                            workSheet.Cells[string.Format("A{0}:T{0}", rowIndex + 1)].Font.Color = Color.Red;
+
+                        int i = rowIndex + 1;
+                        if (i >= dgLichHen.RowsCount || (dgLichHen[i, 0] as SourceGrid2.Cells.Real.Cell).Tag != null ||
+                            ((dgLichHen[i, 0] as SourceGrid2.Cells.Real.Cell).Value != null &&
+                            (dgLichHen[i, 0] as SourceGrid2.Cells.Real.Cell).Value.ToString() != string.Empty))
+                            
+                        {
+                            int fromRowIndex = rowIndex - count;
+                            range = workSheet.Cells[string.Format("A{0}:A{1}", fromRowIndex + 1, rowIndex + 1)];
+                            range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Continuous;
+                            range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+                            range.Borders[BordersIndex.EdgeTop].LineStyle = LineStyle.Continuous;
+                            range.Borders[BordersIndex.EdgeTop].Color = Color.Black;
+                            range.Borders[BordersIndex.EdgeLeft].LineStyle = LineStyle.Continuous;
+                            range.Borders[BordersIndex.EdgeLeft].Color = Color.Black;
+                            range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
+                            range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
+
+                            range = workSheet.Cells[string.Format("B{0}:B{1}", fromRowIndex + 1, rowIndex + 1)];
+                            range.Borders[BordersIndex.EdgeBottom].LineStyle = LineStyle.Continuous;
+                            range.Borders[BordersIndex.EdgeBottom].Color = Color.Black;
+                            range.Borders[BordersIndex.EdgeTop].LineStyle = LineStyle.Continuous;
+                            range.Borders[BordersIndex.EdgeTop].Color = Color.Black;
+                            range.Borders[BordersIndex.EdgeLeft].LineStyle = LineStyle.Continuous;
+                            range.Borders[BordersIndex.EdgeLeft].Color = Color.Black;
+                            range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
+                            range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
+
+                            range = workSheet.Cells[string.Format("G{0}:G{1}", fromRowIndex + 1, rowIndex + 1)];
+                            range.Merge();
+                            range.Value = totalMorningINCount;
+                            range.Borders.LineStyle = LineStyle.Continuous;
+                            range.Borders.Color = Color.Black;
+
+                            range = workSheet.Cells[string.Format("H{0}:H{1}", fromRowIndex + 1, rowIndex + 1)];
+                            range.Merge();
+                            range.Value = totalAfternoonINCount;
+                            range.Borders.LineStyle = LineStyle.Continuous;
+                            range.Borders.Color = Color.Black;
+
+                            range = workSheet.Cells[string.Format("I{0}:I{1}", fromRowIndex + 1, rowIndex + 1)];
+                            range.Merge();
+                            range.Value = totalEveningINCount;
+                            range.Borders.LineStyle = LineStyle.Continuous;
+                            range.Borders.Color = Color.Black;
+
+                            range = workSheet.Cells[string.Format("J{0}:J{1}", fromRowIndex + 1, rowIndex + 1)];
+                            range.Merge();
+                            range.Value = totalOUTCount;
+                            range.Borders.LineStyle = LineStyle.Continuous;
+                            range.Borders.Color = Color.Black;
+                        }
+                    }
+                    else
+                    {
+                        range = workSheet.Cells[string.Format("A{0}:T{0}", rowIndex + 1)];
+                        range.Merge();
+                    }
+                }
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }

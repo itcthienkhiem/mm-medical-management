@@ -129,11 +129,18 @@ namespace SourceGrid2
 			}
 			set
 			{
-				if (m_HScroll!=null)
-					m_HScroll.Value = -value.X;
+                try
+                {
+                    if (m_HScroll != null)
+                        m_HScroll.Value = -value.X;
 
-				if (m_VScroll!=null)
-					m_VScroll.Value = -value.Y;
+                    if (m_VScroll != null)
+                        m_VScroll.Value = -value.Y;
+                }
+                catch
+                {
+                }
+				
 			}
 		}
 
