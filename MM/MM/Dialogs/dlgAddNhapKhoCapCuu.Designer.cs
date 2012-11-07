@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddNhapKhoCapCuu));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dtpkNgayNhap = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.numGiaNhapQuiDoi = new System.Windows.Forms.NumericUpDown();
@@ -64,7 +62,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cboKhoCapCuu = new System.Windows.Forms.ComboBox();
             this.khoCapCuuBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dtpkNgayNhap = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -98,30 +98,10 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(452, 265);
+            this.groupBox1.Size = new System.Drawing.Size(452, 287);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhập kho cấp cứu";
-            // 
-            // dtpkNgayNhap
-            // 
-            this.dtpkNgayNhap.CustomFormat = "dd/MM/yyyy";
-            this.dtpkNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayNhap.Location = new System.Drawing.Point(102, 19);
-            this.dtpkNgayNhap.Name = "dtpkNgayNhap";
-            this.dtpkNgayNhap.Size = new System.Drawing.Size(112, 20);
-            this.dtpkNgayNhap.TabIndex = 50;
-            this.dtpkNgayNhap.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 13);
-            this.label1.TabIndex = 77;
-            this.label1.Text = "Ngày nhập:";
-            this.label1.Visible = false;
             // 
             // groupBox2
             // 
@@ -135,7 +115,7 @@
             this.groupBox2.Controls.Add(this.numSoLuongQuiDoi);
             this.groupBox2.Location = new System.Drawing.Point(193, 167);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(240, 82);
+            this.groupBox2.Size = new System.Drawing.Size(240, 106);
             this.groupBox2.TabIndex = 76;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Đơn vị tính qui đổi";
@@ -148,7 +128,6 @@
             this.label10.Size = new System.Drawing.Size(36, 13);
             this.label10.TabIndex = 78;
             this.label10.Text = "(VNĐ)";
-            this.label10.Visible = false;
             // 
             // numGiaNhapQuiDoi
             // 
@@ -162,7 +141,6 @@
             this.numGiaNhapQuiDoi.Size = new System.Drawing.Size(66, 20);
             this.numGiaNhapQuiDoi.TabIndex = 77;
             this.numGiaNhapQuiDoi.ThousandsSeparator = true;
-            this.numGiaNhapQuiDoi.Visible = false;
             // 
             // lbGiaNhapQuiDoi
             // 
@@ -172,7 +150,6 @@
             this.lbGiaNhapQuiDoi.Size = new System.Drawing.Size(95, 13);
             this.lbGiaNhapQuiDoi.TabIndex = 76;
             this.lbGiaNhapQuiDoi.Text = "Giá nhập mỗi viên:";
-            this.lbGiaNhapQuiDoi.Visible = false;
             // 
             // label9
             // 
@@ -247,7 +224,7 @@
             this.groupBoxNhap.Controls.Add(this.label29);
             this.groupBoxNhap.Location = new System.Drawing.Point(18, 167);
             this.groupBoxNhap.Name = "groupBoxNhap";
-            this.groupBoxNhap.Size = new System.Drawing.Size(168, 82);
+            this.groupBoxNhap.Size = new System.Drawing.Size(168, 106);
             this.groupBoxNhap.TabIndex = 75;
             this.groupBoxNhap.TabStop = false;
             this.groupBoxNhap.Text = "Nhập thuốc";
@@ -278,7 +255,6 @@
             this.label26.Size = new System.Drawing.Size(58, 13);
             this.label26.TabIndex = 60;
             this.label26.Text = "Giá (VNĐ):";
-            this.label26.Visible = false;
             // 
             // numSoLuongNhap
             // 
@@ -320,7 +296,6 @@
             this.numGiaNhap.Size = new System.Drawing.Size(78, 20);
             this.numGiaNhap.TabIndex = 66;
             this.numGiaNhap.ThousandsSeparator = true;
-            this.numGiaNhap.Visible = false;
             this.numGiaNhap.ValueChanged += new System.EventHandler(this.numGiaNhap_ValueChanged);
             this.numGiaNhap.Leave += new System.EventHandler(this.numGiaNhap_Leave);
             // 
@@ -475,6 +450,16 @@
             // 
             this.khoCapCuuBindingSource.DataSource = typeof(MM.Databasae.KhoCapCuu);
             // 
+            // dtpkNgayNhap
+            // 
+            this.dtpkNgayNhap.CustomFormat = "dd/MM/yyyy";
+            this.dtpkNgayNhap.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkNgayNhap.Location = new System.Drawing.Point(102, 19);
+            this.dtpkNgayNhap.Name = "dtpkNgayNhap";
+            this.dtpkNgayNhap.Size = new System.Drawing.Size(112, 20);
+            this.dtpkNgayNhap.TabIndex = 50;
+            this.dtpkNgayNhap.Visible = false;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -484,12 +469,22 @@
             this.label3.TabIndex = 51;
             this.label3.Text = "Tên cấp cứu:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(33, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 13);
+            this.label1.TabIndex = 77;
+            this.label1.Text = "Ngày nhập:";
+            this.label1.Visible = false;
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(234, 275);
+            this.btnCancel.Location = new System.Drawing.Point(234, 297);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 13;
@@ -501,7 +496,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(155, 275);
+            this.btnOK.Location = new System.Drawing.Point(155, 297);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 12;
@@ -514,7 +509,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(464, 306);
+            this.ClientSize = new System.Drawing.Size(464, 329);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);

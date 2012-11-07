@@ -154,6 +154,8 @@ namespace MM.Common
             ExcelTemplates.Add(Const.CongTacNgoaiGioTemplate);
             ExcelTemplates.Add(Const.LichKhamTemplate);
             ExcelTemplates.Add(Const.BenhNhanNgoaiGoiKhamTemplate);
+            ExcelTemplates.Add(Const.PhieuThuCapCuuTemplate);
+            ExcelTemplates.Add(Const.ChiTietPhieuThuCapCuuTemplate);
 
             ExcelTemplates.Sort();
         }

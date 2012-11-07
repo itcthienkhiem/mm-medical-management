@@ -15,7 +15,7 @@ using MM.Exports;
 
 namespace MM.Controls
 {
-    public partial class uPhieuThuThuocList : uBase
+    public partial class uPhieuThuCapCuuList : uBase
     {
         #region Members
         private bool _isFromDateToDate = true;
@@ -26,7 +26,7 @@ namespace MM.Controls
         #endregion
 
         #region Constructor
-        public uPhieuThuThuocList()
+        public uPhieuThuCapCuuList()
         {
             InitializeComponent();
             dtpkDenNgay.Value = DateTime.Now;
@@ -106,20 +106,20 @@ namespace MM.Controls
             }
         }
 
-        public void HighlightExportedInvoice()
-        {
-            foreach (DataGridViewRow row in dgPhieuThu.Rows)
-            {
-                DataRow dr = (row.DataBoundItem as DataRowView).Row;
-                bool isExported = Convert.ToBoolean(dr["IsExported"]);
-                if (isExported)
-                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
-            }
-        }
+        //public void HighlightExportedInvoice()
+        //{
+        //    foreach (DataGridViewRow row in dgPhieuThu.Rows)
+        //    {
+        //        DataRow dr = (row.DataBoundItem as DataRowView).Row;
+        //        bool isExported = Convert.ToBoolean(dr["IsExported"]);
+        //        if (isExported)
+        //            row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+        //    }
+        //}
 
         private void OnDisplayPhieuThuThuocList()
         {
-            Result result = PhieuThuThuocBus.GetPhieuThuThuocList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
+            Result result = PhieuThuCapCuuBus.GetPhieuThuCapCuuList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -127,7 +127,7 @@ namespace MM.Controls
                     ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     dgPhieuThu.DataSource = result.QueryResult;
-                    HighlightExportedInvoice();
+                    //HighlightExportedInvoice();
                     lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);
                 };
 
@@ -136,8 +136,8 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuocList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuocList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuCapCuuBus.GetPhieuThuCapCuuList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuCapCuuBus.GetPhieuThuCapCuuList"));
             }
         }
 
@@ -149,43 +149,10 @@ namespace MM.Controls
 
         private void OnAddPhieuThu()
         {
-            dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc();
+            dlgAddPhieuThuCapCuu dlg = new dlgAddPhieuThuCapCuu();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
-                /*DataTable dt = dgPhieuThu.DataSource as DataTable;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["PhieuThuThuocGUID"] = dlg.PhieuThuThuoc.PhieuThuThuocGUID.ToString();
-                newRow["MaPhieuThuThuoc"] = dlg.PhieuThuThuoc.MaPhieuThuThuoc;
-                newRow["NgayThu"] = dlg.PhieuThuThuoc.NgayThu;
-                newRow["MaBenhNhan"] = dlg.PhieuThuThuoc.MaBenhNhan;
-                newRow["TenBenhNhan"] = dlg.PhieuThuThuoc.TenBenhNhan;
-                newRow["DiaChi"] = dlg.PhieuThuThuoc.DiaChi;
-
-                if (dlg.PhieuThuThuoc.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.PhieuThuThuoc.CreatedDate;
-
-                if (dlg.PhieuThuThuoc.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.PhieuThuThuoc.CreatedBy.ToString();
-
-                if (dlg.PhieuThuThuoc.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.PhieuThuThuoc.UpdatedDate;
-
-                if (dlg.PhieuThuThuoc.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.PhieuThuThuoc.UpdatedBy.ToString();
-
-                if (dlg.PhieuThuThuoc.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.PhieuThuThuoc.DeletedDate;
-
-                if (dlg.PhieuThuThuoc.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.PhieuThuThuoc.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.PhieuThuThuoc.Status;
-                newRow["IsExported"] = false;
-                dt.Rows.Add(newRow);
-                //SelectLastedRow();*/
             }
         }
 
@@ -198,7 +165,6 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    //deletedPTThuocList.Add(row["PhieuThuThuocGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
@@ -211,8 +177,8 @@ namespace MM.Controls
 
                     foreach (DataRow row in deletedRows)
                     {
-                        string maPhieuThuThuoc = row["MaPhieuThuThuoc"].ToString();
-                        string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
+                        string maPhieuThuThuoc = row["MaPhieuThuCapCuu"].ToString();
+                        string phieuThuThuocGUID = row["PhieuThuCapCuuGUID"].ToString();
 
                         dlgLyDoXoa dlg = new dlgLyDoXoa(maPhieuThuThuoc, 0);
                         if (dlg.ShowDialog(this) == DialogResult.OK)
@@ -224,20 +190,20 @@ namespace MM.Controls
 
                     if (deletedPTThuocList.Count > 0)
                     {
-                        Result result = PhieuThuThuocBus.DeletePhieuThuThuoc(deletedPTThuocList, noteList);
+                        Result result = PhieuThuCapCuuBus.DeletePhieuThuCapCuu(deletedPTThuocList, noteList);
                         if (result.IsOK)
                         {
                             foreach (DataRow row in deletedRows)
                             {
-                                string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
+                                string phieuThuThuocGUID = row["PhieuThuCapCuuGUID"].ToString();
                                 if (deletedPTThuocList.Contains(phieuThuThuocGUID))
                                     dt.Rows.Remove(row);
                             }
                         }
                         else
                         {
-                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"), IconType.Error);
-                            Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.DeletePhieuThuThuoc"));
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuCapCuuBus.DeletePhieuThuCapCuu"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuCapCuuBus.DeletePhieuThuCapCuu"));
                         }
                     }
                 }
@@ -261,17 +227,17 @@ namespace MM.Controls
 
             if (checkedRows.Count > 0)
             {
-                string exportFileName = string.Format("{0}\\Temp\\PhieuThuThuoc.xls", Application.StartupPath);
+                string exportFileName = string.Format("{0}\\Temp\\PhieuThuCapCuu.xls", Application.StartupPath);
                 if (isPreview)
                 {
                     foreach (DataRow row in checkedRows)
                     {
-                        string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
-                        if (ExportExcel.ExportPhieuThuThuocToExcel(exportFileName, phieuThuThuocGUID))
+                        string phieuThuThuocGUID = row["PhieuThuCapCuuGUID"].ToString();
+                        if (ExportExcel.ExportPhieuThuCapCuuToExcel(exportFileName, phieuThuThuocGUID))
                         {
                             try
                             {
-                                ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.PhieuThuThuocTemplate));
+                                ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.PhieuThuCapCuuTemplate));
                             }
                             catch (Exception ex)
                             {
@@ -289,12 +255,12 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in checkedRows)
                         {
-                            string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
-                            if (ExportExcel.ExportPhieuThuThuocToExcel(exportFileName, phieuThuThuocGUID))
+                            string phieuThuThuocGUID = row["PhieuThuCapCuuGUID"].ToString();
+                            if (ExportExcel.ExportPhieuThuCapCuuToExcel(exportFileName, phieuThuThuocGUID))
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.PhieuThuThuocTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.PhieuThuCapCuuTemplate));
                                 }
                                 catch (Exception ex)
                                 {
@@ -318,14 +284,15 @@ namespace MM.Controls
                 return;
 
             DataRow drPhieuThu = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc(drPhieuThu);
-            if (dlg.ShowDialog(this) == DialogResult.Cancel)
-            {
-                if (dlg.IsExportedInvoice)
-                    HighlightExportedInvoice();
-            }
-            else
-                HighlightExportedInvoice();
+            dlgAddPhieuThuCapCuu dlg = new dlgAddPhieuThuCapCuu(drPhieuThu);
+            dlg.ShowDialog(this);
+            //if (dlg.ShowDialog(this) == DialogResult.Cancel)
+            //{
+            //    if (dlg.IsExportedInvoice)
+            //        HighlightExportedInvoice();
+            //}
+            //else
+            //    HighlightExportedInvoice();
         }
 
         private void OnExportExcel()
@@ -337,7 +304,7 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    checkedPhieuThuThuocKeys.Add(row["PhieuThuThuocGUID"].ToString());
+                    checkedPhieuThuThuocKeys.Add(row["PhieuThuCapCuuGUID"].ToString());
                 }
             }
 
@@ -348,41 +315,41 @@ namespace MM.Controls
                 dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    ExportExcel.ExportChiTietPhieuThuThuocToExcel(dlg.FileName, checkedPhieuThuThuocKeys);
+                    ExportExcel.ExportChiTietPhieuThuCapCuuToExcel(dlg.FileName, checkedPhieuThuThuocKeys);
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu thuốc cần xuất Excel.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những phiếu thu cần xuất Excel.", IconType.Information);
         }
 
         private void OnExportInvoice()
         {
-            List<DataRow> exportedInvoiceList = new List<DataRow>();
-            List<DataRow> noExportedInvoiceList = new List<DataRow>();
-            List<DataRow> checkedRows = CheckedPTRows;
+            //List<DataRow> exportedInvoiceList = new List<DataRow>();
+            //List<DataRow> noExportedInvoiceList = new List<DataRow>();
+            //List<DataRow> checkedRows = CheckedPTRows;
 
-            foreach (DataRow row in checkedRows)
-            {
+            //foreach (DataRow row in checkedRows)
+            //{
 
-                bool isExported = Convert.ToBoolean(row["IsExported"]);
-                if (!isExported)
-                    noExportedInvoiceList.Add(row);
-                else
-                    exportedInvoiceList.Add(row);
-            }
+            //    bool isExported = Convert.ToBoolean(row["IsExported"]);
+            //    if (!isExported)
+            //        noExportedInvoiceList.Add(row);
+            //    else
+            //        exportedInvoiceList.Add(row);
+            //}
 
-            if (exportedInvoiceList.Count > 0)
-            {
-                MsgBox.Show(Application.ProductName, "(Một số) phiếu thu đã xuất hóa đơn rồi. Vui lòng kiểm tra lại.", IconType.Information);
-                return;
-            }
+            //if (exportedInvoiceList.Count > 0)
+            //{
+            //    MsgBox.Show(Application.ProductName, "(Một số) phiếu thu đã xuất hóa đơn rồi. Vui lòng kiểm tra lại.", IconType.Information);
+            //    return;
+            //}
 
-            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất hóa đơn ?") == DialogResult.No) return;
+            //if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất hóa đơn ?") == DialogResult.No) return;
 
-            dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(noExportedInvoiceList);
-            dlg.ShowDialog();
+            //dlgHoaDonThuoc dlg = new dlgHoaDonThuoc(noExportedInvoiceList);
+            //dlg.ShowDialog();
 
-            HighlightExportedInvoice();
+            //HighlightExportedInvoice();
         }
         #endregion
 
@@ -450,24 +417,7 @@ namespace MM.Controls
 
         private void txtTenBenhNhan_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (raTenBenhNhan.Checked && e.KeyCode == Keys.Enter)
-            //{
-            //    if (raTuNgayToiNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
-            //    {
-            //        MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
-            //        dtpkTuNgay.Focus();
-            //        return;
-            //    }
-
-            //    if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
-            //    {
-            //        MsgBox.Show(Application.ProductName, "Vui lòng nhập tên bệnh nhân.", IconType.Information);
-            //        txtTenBenhNhan.Focus();
-            //        return;
-            //    }
-
-            //    DisplayAsThread();
-            //}
+            
         }
 
         private void btnExportExcel_Click(object sender, EventArgs e)
@@ -488,7 +438,7 @@ namespace MM.Controls
 
         private void dgPhieuThu_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            HighlightExportedInvoice();
+            //HighlightExportedInvoice();
         }
         #endregion
 
