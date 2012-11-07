@@ -349,6 +349,45 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetChiTietPhieuThuCapCuu(DateTime tuNgay, DateTime denNgay)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<ChiTietPhieuThuCapCuuView> chiTietPhieuThuList = (from pt in db.PhieuThuCapCuus
+                                                                       join ctpt in db.ChiTietPhieuThuCapCuuViews on pt.PhieuThuCapCuuGUID equals ctpt.PhieuThuCapCuuGUID
+                                                                      where pt.Status == (byte)Status.Actived &&
+                                                                      pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay &&
+                                                                      pt.ChuaThuTien == false
+                                                                       select ctpt).ToList<ChiTietPhieuThuCapCuuView>();
+
+                result.QueryResult = chiTietPhieuThuList;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetTatCaHoaDon(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
         {
             Result result = new Result();
