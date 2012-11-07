@@ -2529,6 +2529,8 @@ namespace MM
             {
                 OnPatientHistory(dlg.PatientRow);
             }
+
+            _uPatientList.DataSource = dlg.DataSource;
         }
 
         private void OnPatientHistory(object patientRow)

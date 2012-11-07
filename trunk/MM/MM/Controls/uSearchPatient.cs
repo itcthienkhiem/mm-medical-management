@@ -7,6 +7,7 @@ using System.Linq;
 using System.Data.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
 using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
@@ -286,6 +287,52 @@ namespace MM.Controls
             if (patientRow != null)
                 base.RaiseOpentPatient(patientRow);
         }
+
+        public void DisplayAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPatientListProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnDisplayPatientList()
+        {
+            Result result = PatientBus.GetPatientList();
+            if (result.IsOK)
+            {
+                MethodInvoker method = delegate
+                {
+                    if (_dataSource != null)
+                    {
+                        (_dataSource as DataTable).Rows.Clear();
+                        (_dataSource as DataTable).Clear();
+                        _dataSource = null;
+                    }
+
+                    _dataSource = result.QueryResult as DataTable;
+                    OnSearch();
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -375,6 +422,32 @@ namespace MM.Controls
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
         #endregion
+
+        #region Working Thread
+        private void OnDisplayPatientListProc(object state)
+        {
+            try
+            {
+                //Thread.Sleep(500);
+                OnDisplayPatientList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+        #endregion
+        
     }
 }
