@@ -33,16 +33,23 @@ namespace MM.Dialogs
             GenerateCode();
         }
 
-        public dlgAddPhieuThuCapCuu(DataRow drPhieuThu)
+        public dlgAddPhieuThuCapCuu(DataRow drPhieuThu, bool allowEdit)
         {
             InitializeComponent();
             _isNew = false;
             _drPhieuThu = drPhieuThu;
-            if (Global.StaffType != StaffType.Admin)
+
+            if (!allowEdit)
             {
                 btnOK.Enabled = false;
                 chkDaThuTien.Enabled = false;
             }
+
+            //if (Global.StaffType != StaffType.Admin)
+            //{
+            //    btnOK.Enabled = false;
+            //    chkDaThuTien.Enabled = false;
+            //}
             //else
             //    chkDaXuatHD.Enabled = true;
 
@@ -636,7 +643,7 @@ namespace MM.Dialogs
                     else
                         e.Cancel = true;
                 }
-                else if (Global.StaffType == StaffType.Admin)
+                else
                 {
                     Result result = PhieuThuCapCuuBus.CapNhatTrangThaiPhieuThu(_phieuThuCapCuu.PhieuThuCapCuuGUID.ToString(), chkDaXuatHD.Checked, chkDaThuTien.Checked);
                     if (!result.IsOK)

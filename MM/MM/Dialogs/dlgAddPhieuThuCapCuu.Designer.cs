@@ -60,14 +60,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.khoCapCuuBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.chiTietPhieuThuCapCuuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.lbTongTien = new System.Windows.Forms.Label();
-            this.btnExportInvoice = new System.Windows.Forms.Button();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KhoCapCuuGUID = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.khoCapCuuBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonGia = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -75,6 +70,11 @@
             this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgayHetHan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoLuongTon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chiTietPhieuThuCapCuuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.lbTongTien = new System.Windows.Forms.Label();
+            this.btnExportInvoice = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.khoCapCuuBindingSource)).BeginInit();
@@ -158,8 +158,6 @@
             // chkDaThuTien
             // 
             this.chkDaThuTien.AutoSize = true;
-            this.chkDaThuTien.Checked = true;
-            this.chkDaThuTien.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDaThuTien.Location = new System.Drawing.Point(97, 173);
             this.chkDaThuTien.Name = "chkDaThuTien";
             this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
@@ -337,62 +335,6 @@
             this.dgChiTiet.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgChiTiet_UserDeletingRow);
             this.dgChiTiet.Leave += new System.EventHandler(this.dgChiTiet_Leave);
             // 
-            // khoCapCuuBindingSource
-            // 
-            this.khoCapCuuBindingSource.DataSource = typeof(MM.Databasae.KhoCapCuu);
-            // 
-            // chiTietPhieuThuCapCuuViewBindingSource
-            // 
-            this.chiTietPhieuThuCapCuuViewBindingSource.DataSource = typeof(MM.Databasae.ChiTietPhieuThuCapCuuView);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(442, 538);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 18;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Image = global::MM.Properties.Resources.save;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(363, 538);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 16;
-            this.btnOK.Text = "   &Lưu";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // lbTongTien
-            // 
-            this.lbTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTongTien.ForeColor = System.Drawing.Color.Red;
-            this.lbTongTien.Location = new System.Drawing.Point(565, 515);
-            this.lbTongTien.Name = "lbTongTien";
-            this.lbTongTien.Size = new System.Drawing.Size(308, 21);
-            this.lbTongTien.TabIndex = 15;
-            this.lbTongTien.Text = "Tổng tiền: 0 VNĐ";
-            this.lbTongTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // btnExportInvoice
-            // 
-            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
-            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportInvoice.Location = new System.Drawing.Point(578, 538);
-            this.btnExportInvoice.Name = "btnExportInvoice";
-            this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
-            this.btnExportInvoice.TabIndex = 17;
-            this.btnExportInvoice.Text = "      &Xuất hóa đơn";
-            this.btnExportInvoice.UseVisualStyleBackColor = true;
-            this.btnExportInvoice.Visible = false;
-            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
-            // 
             // STT
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -415,6 +357,10 @@
             this.KhoCapCuuGUID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.KhoCapCuuGUID.ValueMember = "KhoCapCuuGUID";
             this.KhoCapCuuGUID.Width = 200;
+            // 
+            // khoCapCuuBindingSource
+            // 
+            this.khoCapCuuBindingSource.DataSource = typeof(MM.Databasae.KhoCapCuu);
             // 
             // DonViTinh
             // 
@@ -495,6 +441,58 @@
             this.SoLuongTon.ReadOnly = true;
             this.SoLuongTon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.SoLuongTon.Width = 70;
+            // 
+            // chiTietPhieuThuCapCuuViewBindingSource
+            // 
+            this.chiTietPhieuThuCapCuuViewBindingSource.DataSource = typeof(MM.Databasae.ChiTietPhieuThuCapCuuView);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(442, 538);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 18;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(363, 538);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 16;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // lbTongTien
+            // 
+            this.lbTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTongTien.ForeColor = System.Drawing.Color.Red;
+            this.lbTongTien.Location = new System.Drawing.Point(565, 515);
+            this.lbTongTien.Name = "lbTongTien";
+            this.lbTongTien.Size = new System.Drawing.Size(308, 21);
+            this.lbTongTien.TabIndex = 15;
+            this.lbTongTien.Text = "Tổng tiền: 0 VNĐ";
+            this.lbTongTien.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // btnExportInvoice
+            // 
+            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
+            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportInvoice.Location = new System.Drawing.Point(578, 538);
+            this.btnExportInvoice.Name = "btnExportInvoice";
+            this.btnExportInvoice.Size = new System.Drawing.Size(106, 25);
+            this.btnExportInvoice.TabIndex = 17;
+            this.btnExportInvoice.Text = "      &Xuất hóa đơn";
+            this.btnExportInvoice.UseVisualStyleBackColor = true;
+            this.btnExportInvoice.Visible = false;
+            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
             // 
             // dlgAddPhieuThuCapCuu
             // 
