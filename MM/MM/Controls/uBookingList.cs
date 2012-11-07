@@ -13,6 +13,7 @@ using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -538,6 +539,8 @@ namespace MM.Controls
                     {
                         cell = NewCell(string.Empty, Color.White, foreColor,
                             ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
+
+                        cell.Tag = "Spacing";
                         cell.Border = borderTB;
                         dgBooking[rowIndex, 0] = cell;
                         dgBooking[rowIndex, 0].ColumnSpan = 13;
@@ -652,7 +655,7 @@ namespace MM.Controls
             dgBooking[2, 8] = cell;
             dgBooking.AutoSizeColumn(8, 60);
 
-            cell = NewCell("Total Out", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell = NewCell("Total OUT", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB;
             dgBooking[1, 9] = cell;
             dgBooking[1, 9].RowSpan = 2;
@@ -847,6 +850,20 @@ namespace MM.Controls
             }
             
         }
+
+        private void OnExportToExcel()
+        {
+            if (dgBooking.RowsCount <= 3) return;
+
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "Export Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                if (!ExportExcel.ExportLichHenToExcel(dlg.FileName, dgBooking))
+                    return;
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -874,6 +891,11 @@ namespace MM.Controls
         {
             OnEdit();
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportToExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -895,7 +917,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
