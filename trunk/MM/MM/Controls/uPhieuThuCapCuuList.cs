@@ -284,7 +284,7 @@ namespace MM.Controls
                 return;
 
             DataRow drPhieuThu = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddPhieuThuCapCuu dlg = new dlgAddPhieuThuCapCuu(drPhieuThu);
+            dlgAddPhieuThuCapCuu dlg = new dlgAddPhieuThuCapCuu(drPhieuThu, AllowEdit);
             dlg.ShowDialog(this);
             //if (dlg.ShowDialog(this) == DialogResult.Cancel)
             //{
