@@ -40,6 +40,8 @@ namespace MM.Controls
                 DisplayAsThread();
                 return _dataSource;
             }
+
+            set { _dataSource = (DataTable)value; }
         }
         #endregion
 
@@ -994,6 +996,11 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần đưa vào phòng chờ.", IconType.Information);
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -1015,6 +1022,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

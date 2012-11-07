@@ -11,12 +11,14 @@ using MM.Controls;
 namespace MM.Dialogs
 {
     public delegate void AddMemberHandler(List<DataRow> checkedMembers, List<string> addedServices, DataTable serviceDataSource);
+    public delegate void RefreshPatientHandler();
 
     public partial class dlgBase : Form
     {
         #region Events
         public event AddMemberHandler OnAddMemberEvent = null;
         public event OpenPatientHandler OnOpenPatient;
+        public event RefreshPatientHandler OnRefreshPatient;
         #endregion
 
         #region Members
@@ -43,6 +45,12 @@ namespace MM.Dialogs
         {
             if (OnOpenPatient != null)
                 OnOpenPatient(patientRow);
+        }
+
+        public void RaiseRefreshPatient()
+        {
+            if (OnRefreshPatient != null)
+                OnRefreshPatient();
         }
         #endregion
 

@@ -13,7 +13,7 @@ using MM.Databasae;
 
 namespace MM.Dialogs
 {
-    public partial class dlgOpentPatient : Form
+    public partial class dlgOpentPatient : dlgBase
     {
         #region Members
         private object _patientRow = null;
