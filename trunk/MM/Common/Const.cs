@@ -97,10 +97,13 @@ namespace MM.Common
         public static string CauHinhKhoCapCuu = "CauHinhKhoCapCuu";
         public static string ThongBao = "ThongBao";
         public static string BenhNhanNgoaiGoiKham = "BenhNhanNgoaiGoiKham";
+        public static string PhieuThuCapCuu = "PhieuThuCapCuu";
+        public static string GiaCapCuu = "GiaCapCuu";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
         public static string ChiTietPhieuThuThuocTemplate = "Chi tiết phiếu thu thuốc";
+        public static string ChiTietPhieuThuCapCuuTemplate = "Chi tiết phiếu thu cấp cứu";
         public static string DanhSachBenhNhanDenKhamTemplate = "Danh sách bệnh nhân đến khám";
         public static string DanhSachBenhNhanTemplate = "Danh sách bệnh nhân";
         public static string DichVuHopDongTemplate = "Dịch vụ hợp đồng";
@@ -117,6 +120,7 @@ namespace MM.Common
         public static string KhamSucKhoeTongQuatTemplate = "Khám sức khỏe tổng quát";
         public static string NhatKyLienHeCongTyTemplate = "Nhật kí liên hệ công ty";
         public static string PhieuThuThuocTemplate = "Phiếu thu thuốc";
+        public static string PhieuThuCapCuuTemplate = "Phiếu thu cấp cứu";
         public static string PhieuThuDichVuTemplate = "Phiếu thu dịch vụ";
         public static string TrieuChungTemplate = "Triệu chứng";
         public static string ThuocTonKhoTheoKhoangThoiGianTemplate = "Thuốc tồn kho theo khoảng thời gian";

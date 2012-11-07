@@ -137,7 +137,7 @@ namespace MM.Dialogs
                 txtHangSanXuat.Text = drNhapKhoCapCuu["HangSanXuat"] as string;
                 cboNhaPhanPhoi.Text = drNhapKhoCapCuu["NhaPhanPhoi"] as string;
                 numSoLuongNhap.Value = (Decimal)Convert.ToInt32(drNhapKhoCapCuu["SoLuongNhap"]);
-                //numGiaNhap.Value = (Decimal)Convert.ToDouble(drNhapKhoCapCuu["GiaNhap"]);
+                numGiaNhap.Value = (Decimal)Convert.ToDouble(drNhapKhoCapCuu["GiaNhap"]);
                 cboDonViTinhNhap.Text = drNhapKhoCapCuu["DonViTinhNhap"] as string;
                 txtDonViTinhQuiDoi.Text = drNhapKhoCapCuu["DonViTinhQuiDoi"] as string;
                 numSoLuongQuiDoi.Value = (Decimal)Convert.ToInt32(drNhapKhoCapCuu["SoLuongQuiDoi"]);
@@ -306,7 +306,7 @@ namespace MM.Dialogs
         private void cboThuoc_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshDonViTinh();
-            //RefreshGiaNhapQuiDoi();
+            RefreshGiaNhapQuiDoi();
         }
 
         private void cboDonViTinhNhap_SelectedIndexChanged(object sender, EventArgs e)
@@ -348,21 +348,21 @@ namespace MM.Dialogs
 
         private void numGiaNhap_ValueChanged(object sender, EventArgs e)
         {
-            //RefreshGiaNhapQuiDoi();
+            RefreshGiaNhapQuiDoi();
         }
 
         private void numSoLuongQuiDoi_ValueChanged(object sender, EventArgs e)
         {
-            //RefreshGiaNhapQuiDoi();
+            RefreshGiaNhapQuiDoi();
         }
 
         private void numGiaNhap_Leave(object sender, EventArgs e)
         {
-            //if (numGiaNhap.Text == string.Empty)
-            //{
-            //    numGiaNhap.Text = "0";
-            //    numGiaNhap.Value = 0;
-            //}
+            if (numGiaNhap.Text == string.Empty)
+            {
+                numGiaNhap.Text = "0";
+                numGiaNhap.Value = 0;
+            }
         }
 
         private void numSoLuongQuiDoi_Leave(object sender, EventArgs e)
@@ -373,7 +373,6 @@ namespace MM.Dialogs
                 numSoLuongQuiDoi.Value = 1;
             }
         }
-
         #endregion
 
         #region Working Thread

@@ -44,7 +44,6 @@ namespace MM.Bussiness
             try
             {
                 DateTime dt = DateTime.Now;
-                //dt = dt.AddDays(-Global.AlertSoNgayHetHanCapCuu);
 
                 string query = string.Format("SELECT TOP 1 N.* FROM KhoCapCuu K WITH(NOLOCK), NhapKhoCapCuu N WITH(NOLOCK) WHERE K.KhoCapCuuGUID = N.KhoCapCuuGUID AND K.Status = 0 AND N.Status = 0 AND N.SoLuongNhap * N.SoLuongQuiDoi - N.SoLuongXuat > 0 AND  DATEDIFF(day, '{0}', NgayHetHan) <= {1}",
                     dt.ToString("yyyy-MM-dd"), Global.AlertSoNgayHetHanCapCuu);
@@ -525,6 +524,47 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 NhapKhoCapCuuView nkcc = db.NhapKhoCapCuuViews.SingleOrDefault(n => n.NhapKhoCapCuuGUID.ToString() == nhapKhoCapCuuGUID);
                 result.QueryResult = nkcc;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result GetGiaCapCuuNhap(string khoCapCuuGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                NhapKhoCapCuu loThuoc = (from l in db.NhapKhoCapCuus
+                                         where l.KhoCapCuuGUID.ToString() == khoCapCuuGUID &&
+                                         l.Status == (byte)Status.Actived
+                                         orderby l.NgayNhap descending
+                                         select l).FirstOrDefault();
+
+                if (loThuoc != null)
+                    result.QueryResult = loThuoc.GiaNhapQuiDoi;
+                else
+                    result.QueryResult = 0;
             }
             catch (System.Data.SqlClient.SqlException se)
             {

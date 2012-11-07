@@ -54,7 +54,7 @@ namespace MM.Dialogs
                     msg = string.Format("Bạn không nhập lý do xóa nên phiếu thu: '{0}' không được xóa.", this.Text);
                 else if (_type == 1)
                     msg = string.Format("Bạn không nhập lý do xóa nên hóa đơn: '{0}' không được xóa.", this.Text);
-                else
+                else if (_type == 2)
                     msg = string.Format("Bạn không nhập lý do xóa nên dịch vụ: '{0}' không được xóa.", this.Text);
                         
                 MsgBox.Show(this.Text, msg, Common.IconType.Information);

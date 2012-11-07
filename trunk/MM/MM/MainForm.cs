@@ -35,6 +35,9 @@ namespace MM
         public MainForm()
         {
             InitializeComponent();
+
+            xuatKhoCapCuuToolStripMenuItem.Visible = false;
+
             _uPatientList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uCompanyList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uContractList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
@@ -331,6 +334,10 @@ namespace MM
                 _uThongBaoList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBenhNhanNgoaiGoiKhamList))
                 _uBenhNhanNgoaiGoiKhamList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uGiaThuocList))
+                _uGiaCapCuuList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uPhieuThuCapCuuList))
+                _uPhieuThuCapCuuList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1264,6 +1271,34 @@ namespace MM
                             _uBenhNhanNgoaiGoiKhamList.AllowExportAll = isExportAll;
                             _uBenhNhanNgoaiGoiKhamList.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.GiaCapCuu)
+                        {
+                            khoCapCuuToolStripMenuItem.Enabled = isLogin;
+                            giaCapCuuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uGiaCapCuuList.AllowAdd = isAdd;
+                            _uGiaCapCuuList.AllowEdit = isEdit;
+                            _uGiaCapCuuList.AllowDelete = isDelete;
+                            _uGiaCapCuuList.AllowPrint = isPrint;
+                            _uGiaCapCuuList.AllowExport = isExport;
+                            _uGiaCapCuuList.AllowImport = isImport;
+                            _uGiaCapCuuList.AllowLock = isLock;
+                            _uGiaCapCuuList.AllowExportAll = isExportAll;
+                            _uGiaCapCuuList.AllowConfirm = isConfirm;
+                        }
+                        else if (functionCode == Const.PhieuThuCapCuu)
+                        {
+                            receiptToolStripMenuItem.Enabled = isLogin;
+                            phieuThuCapCuuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uPhieuThuCapCuuList.AllowAdd = isAdd;
+                            _uPhieuThuCapCuuList.AllowEdit = isEdit;
+                            _uPhieuThuCapCuuList.AllowDelete = isDelete;
+                            _uPhieuThuCapCuuList.AllowPrint = isPrint;
+                            _uPhieuThuCapCuuList.AllowExport = isExport;
+                            _uPhieuThuCapCuuList.AllowImport = isImport;
+                            _uPhieuThuCapCuuList.AllowLock = isLock;
+                            _uPhieuThuCapCuuList.AllowExportAll = isExportAll;
+                            _uPhieuThuCapCuuList.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1458,6 +1493,8 @@ namespace MM
                 baoCaoTonKhoCapCuuToolStripMenuItem.Enabled = isLogin;
                 thongBaoToolStripMenuItem.Enabled = isLogin;
                 benhNhanNgoaiGoiKhamToolStripMenuItem.Enabled = isLogin;
+                giaCapCuuToolStripMenuItem.Enabled = isLogin;
+                phieuThuCapCuuToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1788,7 +1825,29 @@ namespace MM
                 case "BenhNhanNgoaiGoiKham":
                     OnBenhNhanNgoaiGoiKham();
                     break;
+
+                case "GiaCapCuu":
+                    OnGiaCapCuu();
+                    break;
+
+                case "PhieuThuCapCuu":
+                    OnPhieuThuCapCuu();
+                    break;
             }
+        }
+
+        private void OnGiaCapCuu()
+        {
+            this.Text = string.Format("{0} - Gia cap cuu", Application.ProductName);
+            ViewControl(_uGiaCapCuuList);
+            _uGiaCapCuuList.DisplayAsThread();
+        }
+
+        private void OnPhieuThuCapCuu()
+        {
+            this.Text = string.Format("{0} - Phieu thu cap cuu", Application.ProductName);
+            ViewControl(_uPhieuThuCapCuuList);
+            _uPhieuThuCapCuuList.DisplayAsThread();
         }
 
         private void OnBenhNhanNgoaiGoiKham()

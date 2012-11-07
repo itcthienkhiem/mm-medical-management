@@ -92,6 +92,18 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uPhieuThuCapCuuList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPhieuThuCapCuuList.Designer.cs">
+      <DependentUpon>uPhieuThuCapCuuList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uGiaCapCuuList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uGiaCapCuuList.Designer.cs">
+      <DependentUpon>uGiaCapCuuList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uBaoCaoTonKhoCapCuu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -857,6 +869,18 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddGiaCapCuu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddGiaCapCuu.Designer.cs">
+      <DependentUpon>dlgAddGiaCapCuu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuThuCapCuu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuThuCapCuu.Designer.cs">
+      <DependentUpon>dlgAddPhieuThuCapCuu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddBenhNhanNgoaiGoiKham.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1459,6 +1483,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uPhieuThuCapCuuList.resx">
+      <DependentUpon>uPhieuThuCapCuuList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uGiaCapCuuList.resx">
+      <DependentUpon>uGiaCapCuuList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uBaoCaoTonKhoCapCuu.resx">
       <DependentUpon>uBaoCaoTonKhoCapCuu.cs</DependentUpon>
     </EmbeddedResource>
@@ -1776,6 +1806,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddGiaCapCuu.resx">
+      <DependentUpon>dlgAddGiaCapCuu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddPhieuThuCapCuu.resx">
+      <DependentUpon>dlgAddPhieuThuCapCuu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddBenhNhanNgoaiGoiKham.resx">
       <DependentUpon>dlgAddBenhNhanNgoaiGoiKham.cs</DependentUpon>
@@ -2107,6 +2143,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ChiTietKetQuaXetNghiem_CellDynView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietKetQuaXetNghiem_Hitachi917View.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietKetQuaXetNghiem_ManualView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuDichVuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
@@ -2120,6 +2157,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DiaChiCongTy.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.GiaCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaDichVuHopDongView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaVonDichVuView.datasource" />
@@ -2143,6 +2181,7 @@
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.PhieuThuCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PhieuThuHopDong.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PhieuThuThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.QuanLySoHoaDon.datasource" />
@@ -2191,6 +2230,7 @@
     <None Include="Templates\BaoCaoTonKhoCapCuuTemplate.xls" />
     <None Include="Templates\BenhNhanNgoaiGoiKhamTemplate.xls" />
     <None Include="Templates\CheckListTemplate.xls" />
+    <None Include="Templates\ChiTietPhieuThuCapCuuTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuTemplate.xls" />
     <None Include="Templates\ChiTietPhieuThuThuocTemplate.xls" />
     <None Include="Templates\CongTacNgoaiGioTemplate.xls" />
@@ -2219,6 +2259,7 @@
     <None Include="Templates\LichHenTemplate.xls" />
     <None Include="Templates\LichKhamTemplate.xls" />
     <None Include="Templates\NhatKyLienHeCongTyTemplate.xls" />
+    <None Include="Templates\PhieuThuCapCuuTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
     <None Include="Templates\ReceiptTemplate.xls" />
     <None Include="Templates\SieuAmTemplate.rtf" />
@@ -2310,6 +2351,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-11-07.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-11-01.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-10-30.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-10-29.sql" />

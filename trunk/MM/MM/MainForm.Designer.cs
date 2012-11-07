@@ -32,15 +32,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
             this._mainToolbar = new System.Windows.Forms.ToolStrip();
             this.tbLogin = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -127,6 +127,8 @@
             this.toolStripSeparator37 = new System.Windows.Forms.ToolStripSeparator();
             this.phieuThuHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator53 = new System.Windows.Forms.ToolStripSeparator();
+            this.phieuThuCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator65 = new System.Windows.Forms.ToolStripSeparator();
             this.chiTietPhieuThuDichVuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -321,6 +323,10 @@
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
+            this._uGiaCapCuuList = new MM.Controls.uGiaCapCuuList();
+            this._uPhieuThuCapCuuList = new MM.Controls.uPhieuThuCapCuuList();
+            this.giaCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator66 = new System.Windows.Forms.ToolStripSeparator();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -967,6 +973,8 @@
             this.toolStripSeparator37,
             this.phieuThuHopDongToolStripMenuItem,
             this.toolStripSeparator53,
+            this.phieuThuCapCuuToolStripMenuItem,
+            this.toolStripSeparator65,
             this.chiTietPhieuThuDichVuToolStripMenuItem});
             resources.ApplyResources(this.receiptToolStripMenuItem, "receiptToolStripMenuItem");
             this.receiptToolStripMenuItem.Name = "receiptToolStripMenuItem";
@@ -1009,6 +1017,19 @@
             // 
             this.toolStripSeparator53.Name = "toolStripSeparator53";
             resources.ApplyResources(this.toolStripSeparator53, "toolStripSeparator53");
+            // 
+            // phieuThuCapCuuToolStripMenuItem
+            // 
+            this.phieuThuCapCuuToolStripMenuItem.Image = global::MM.Properties.Resources.check_icon;
+            this.phieuThuCapCuuToolStripMenuItem.Name = "phieuThuCapCuuToolStripMenuItem";
+            resources.ApplyResources(this.phieuThuCapCuuToolStripMenuItem, "phieuThuCapCuuToolStripMenuItem");
+            this.phieuThuCapCuuToolStripMenuItem.Tag = "PhieuThuCapCuu";
+            this.phieuThuCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator65
+            // 
+            this.toolStripSeparator65.Name = "toolStripSeparator65";
+            resources.ApplyResources(this.toolStripSeparator65, "toolStripSeparator65");
             // 
             // chiTietPhieuThuDichVuToolStripMenuItem
             // 
@@ -1483,6 +1504,8 @@
             this.toolStripSeparator60,
             this.nhapKhoCapCuuToolStripMenuItem,
             this.xuatKhoCapCuuToolStripMenuItem,
+            this.toolStripSeparator66,
+            this.giaCapCuuToolStripMenuItem,
             this.toolStripSeparator61,
             this.baoCaoCapCuuHetHanToolStripMenuItem,
             this.baoCaoTonKhoCapCuuToolStripMenuItem,
@@ -1801,14 +1824,14 @@
             this.dgPatient.AllowUserToDeleteRows = false;
             this.dgPatient.AllowUserToOrderColumns = true;
             this.dgPatient.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.dgPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fileNumDataGridViewTextBoxColumn,
@@ -1822,14 +1845,14 @@
             this.mobileDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
             this.dgPatient.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle27;
             resources.ApplyResources(this.dgPatient, "dgPatient");
             this.dgPatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPatient.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -1843,8 +1866,8 @@
             // fileNumDataGridViewTextBoxColumn
             // 
             this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle20;
             resources.ApplyResources(this.fileNumDataGridViewTextBoxColumn, "fileNumDataGridViewTextBoxColumn");
             this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
             this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1866,8 +1889,8 @@
             // GenderAsStr
             // 
             this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle21;
             resources.ApplyResources(this.GenderAsStr, "GenderAsStr");
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
@@ -1875,9 +1898,9 @@
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = null;
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.NullValue = null;
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle22;
             resources.ApplyResources(this.dobDataGridViewTextBoxColumn, "dobDataGridViewTextBoxColumn");
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1885,8 +1908,8 @@
             // identityCardDataGridViewTextBoxColumn
             // 
             this.identityCardDataGridViewTextBoxColumn.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle23;
             resources.ApplyResources(this.identityCardDataGridViewTextBoxColumn, "identityCardDataGridViewTextBoxColumn");
             this.identityCardDataGridViewTextBoxColumn.Name = "identityCardDataGridViewTextBoxColumn";
             this.identityCardDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1894,8 +1917,8 @@
             // homePhoneDataGridViewTextBoxColumn
             // 
             this.homePhoneDataGridViewTextBoxColumn.DataPropertyName = "HomePhone";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle24;
             resources.ApplyResources(this.homePhoneDataGridViewTextBoxColumn, "homePhoneDataGridViewTextBoxColumn");
             this.homePhoneDataGridViewTextBoxColumn.Name = "homePhoneDataGridViewTextBoxColumn";
             this.homePhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1903,8 +1926,8 @@
             // workPhoneDataGridViewTextBoxColumn
             // 
             this.workPhoneDataGridViewTextBoxColumn.DataPropertyName = "WorkPhone";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle25;
             resources.ApplyResources(this.workPhoneDataGridViewTextBoxColumn, "workPhoneDataGridViewTextBoxColumn");
             this.workPhoneDataGridViewTextBoxColumn.Name = "workPhoneDataGridViewTextBoxColumn";
             this.workPhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1912,8 +1935,8 @@
             // mobileDataGridViewTextBoxColumn
             // 
             this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle26;
             resources.ApplyResources(this.mobileDataGridViewTextBoxColumn, "mobileDataGridViewTextBoxColumn");
             this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
             this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
@@ -2037,6 +2060,8 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uPhieuThuCapCuuList);
+            this._mainPanel.Controls.Add(this._uGiaCapCuuList);
             this._mainPanel.Controls.Add(this._uBenhNhanNgoaiGoiKhamList);
             this._mainPanel.Controls.Add(this._uThongBaoList);
             this._mainPanel.Controls.Add(this._uBaoCaoTonKhoCapCuu);
@@ -2437,6 +2462,29 @@
             this._timerCheckAlert.Interval = 3000;
             this._timerCheckAlert.Tick += new System.EventHandler(this._timerCheckAlert_Tick);
             // 
+            // _uGiaCapCuuList
+            // 
+            resources.ApplyResources(this._uGiaCapCuuList, "_uGiaCapCuuList");
+            this._uGiaCapCuuList.Name = "_uGiaCapCuuList";
+            // 
+            // _uPhieuThuCapCuuList
+            // 
+            resources.ApplyResources(this._uPhieuThuCapCuuList, "_uPhieuThuCapCuuList");
+            this._uPhieuThuCapCuuList.Name = "_uPhieuThuCapCuuList";
+            // 
+            // giaCapCuuToolStripMenuItem
+            // 
+            this.giaCapCuuToolStripMenuItem.Image = global::MM.Properties.Resources.currency_dollar_yellow;
+            this.giaCapCuuToolStripMenuItem.Name = "giaCapCuuToolStripMenuItem";
+            resources.ApplyResources(this.giaCapCuuToolStripMenuItem, "giaCapCuuToolStripMenuItem");
+            this.giaCapCuuToolStripMenuItem.Tag = "GiaCapCuu";
+            this.giaCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator66
+            // 
+            this.toolStripSeparator66.Name = "toolStripSeparator66";
+            resources.ApplyResources(this.toolStripSeparator66, "toolStripSeparator66");
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2760,6 +2808,12 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator64;
         private System.Windows.Forms.ToolStripMenuItem benhNhanNgoaiGoiKhamToolStripMenuItem;
         private Controls.uBenhNhanNgoaiGoiKhamList _uBenhNhanNgoaiGoiKhamList;
+        private System.Windows.Forms.ToolStripMenuItem phieuThuCapCuuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator65;
+        private Controls.uGiaCapCuuList _uGiaCapCuuList;
+        private Controls.uPhieuThuCapCuuList _uPhieuThuCapCuuList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator66;
+        private System.Windows.Forms.ToolStripMenuItem giaCapCuuToolStripMenuItem;
 
     }
 }
