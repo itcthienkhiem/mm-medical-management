@@ -422,6 +422,7 @@ namespace MM
                 if (result.IsOK)
                 {
                     DataTable dtPermission = result.QueryResult as DataTable;
+                    if (dtPermission == null) return;
                     foreach (DataRow row in dtPermission.Rows)
                     {
                         string functionCode = row["FunctionCode"].ToString();
