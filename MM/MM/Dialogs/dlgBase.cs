@@ -91,7 +91,11 @@ namespace MM.Dialogs
             }
             catch
             {
-
+                if (_dlgWaiting != null)
+                {
+                    _dlgWaiting.Close();
+                    _dlgWaiting = null;
+                }
             }
             
         }
