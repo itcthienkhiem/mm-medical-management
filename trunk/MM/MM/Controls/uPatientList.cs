@@ -857,28 +857,42 @@ namespace MM.Controls
             {
                 string patientGUID = row["PatientGUID"].ToString();
                 bool isDelete = Convert.ToBoolean(row["Archived"]);
-                DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
-
+                
                 if (isDelete)
                 {
-                    if (rows != null && rows.Length > 0)
+                    string deletedGUID = row["DeletedBy"].ToString();
+                    if (deletedGUID != Global.UserGUID.ToString())
                     {
-                        deletedKeys.Add(rows[0]["PatientGUID"].ToString());
-                        _dataSource.Rows.Remove(rows[0]);
+                        DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                        if (rows != null && rows.Length > 0)
+                        {
+                            deletedKeys.Add(rows[0]["PatientGUID"].ToString());
+                            _dataSource.Rows.Remove(rows[0]);
+                        }
                     }
                 }
                 else
                 {
-                    if (rows == null || rows.Length <= 0)
-                        _dataSource.ImportRow(row);
+                    string userGUID = string.Empty;
+                    if (row["UpdatedBy"] != null && row["UpdatedBy"] != DBNull.Value)
+                        userGUID = row["UpdatedBy"].ToString();
                     else
-                    {
-                        for (int i = 0; i < _dataSource.Columns.Count; i++)
-                        {
-                            rows[0][i] = row[i];
-                        }
+                        userGUID = row["CreatedBy"].ToString();
 
-                        RaiseEditPatient(row);
+                    if (userGUID != Global.UserGUID.ToString())
+                    {
+                        DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                        if (rows == null || rows.Length <= 0)
+                            _dataSource.ImportRow(row);
+                        else
+                        {
+                            for (int i = 0; i < _dataSource.Columns.Count; i++)
+                            {
+                                rows[0][i] = row[i];
+                            }
+
+                            RaiseEditPatient(row);
+                        }
                     }
                 }
             }
