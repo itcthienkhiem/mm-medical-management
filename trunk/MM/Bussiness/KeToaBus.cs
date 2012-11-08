@@ -174,7 +174,7 @@ namespace MM.Bussiness
             Result result = null;
             try
             {
-                string query = "SELECT Count(*) FROM ToaThuoc";
+                string query = "SELECT Count(*) FROM ToaThuoc WITH(NOLOCK)";
                 result = ExcuteQuery(query);
                 if (result.IsOK)
                 {

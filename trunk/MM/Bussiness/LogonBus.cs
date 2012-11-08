@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 ORDER BY FirstName, Fullname";
+                string query = "SELECT * FROM UserView WITH(NOLOCK) WHERE AvailableToWork = 'True' AND Status = 0 ORDER BY FirstName, Fullname";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT CAST(0 AS Bit) AS Checked, * FROM UserView WHERE AvailableToWork = 'True' AND Status = 0 AND LogonGUID <> '00000000-0000-0000-0000-000000000000' ORDER BY FirstName, Fullname";
+                string query = "SELECT CAST(0 AS Bit) AS Checked, * FROM UserView WITH(NOLOCK) WHERE AvailableToWork = 'True' AND Status = 0 AND LogonGUID <> '00000000-0000-0000-0000-000000000000' ORDER BY FirstName, Fullname";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -87,7 +87,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT * FROM [Function] ORDER BY FunctionName";
+                string query = "SELECT * FROM [Function] WITH(NOLOCK) ORDER BY FunctionName";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -231,7 +231,6 @@ namespace MM.Bussiness
                             db.Logons.InsertOnSubmit(logon);
                             db.SubmitChanges();
                             logonGUID = logon.LogonGUID.ToString();
-                            db.SubmitChanges();
 
                             desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'", logon.LogonGUID.ToString(), logon.DocStaff.Contact.FullName);
                         }
@@ -365,6 +364,149 @@ namespace MM.Bussiness
                     t.Complete();
                 }
                 
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result InsertUserLogon2(Logon logon, DataTable dtPermission)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    //Insert
+                    if (logon.LogonGUID == null || logon.LogonGUID == Guid.Empty)
+                    {
+                        string logonGUID = string.Empty;
+                        Logon l = db.Logons.SingleOrDefault<Logon>(ll => ll.DocStaffGUID.ToString() == logon.DocStaffGUID.ToString());
+                        if (l == null)
+                        {
+                            logon.LogonGUID = Guid.NewGuid();
+                            db.Logons.InsertOnSubmit(logon);
+                            db.SubmitChanges();
+                            logonGUID = logon.LogonGUID.ToString();
+
+                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'", logon.LogonGUID.ToString(), logon.DocStaff.Contact.FullName);
+                        }
+                        else
+                        {
+                            logon.LogonGUID = l.LogonGUID;
+                            l.Password = logon.Password;
+                            l.UpdatedDate = logon.UpdatedDate;
+                            l.UpdatedBy = logon.UpdatedBy;
+                            l.Status = (byte)Status.Actived;
+                            logonGUID = l.LogonGUID.ToString();
+
+                            var permissions = from p in db.UserGroup_Logons
+                                              where p.LogonGUID.ToString() == logonGUID
+                                              select p;
+
+                            db.UserGroup_Logons.DeleteAllOnSubmit(permissions);
+                            db.SubmitChanges();
+
+                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'", l.LogonGUID.ToString(), l.DocStaff.Contact.FullName);
+                        }
+
+                        //Permission
+                        foreach (DataRow row in dtPermission.Rows)
+                        {
+                            bool use = Convert.ToBoolean(row["Checked"]);
+                            if (!use) continue;
+                            UserGroup_Logon p = new UserGroup_Logon();
+                            p.UserGroup_LogonGUID = Guid.NewGuid();
+                            p.LogonGUID = Guid.Parse(logonGUID);
+                            p.UserGroupGUID = Guid.Parse(row["UserGroupGUID"].ToString());
+                            db.UserGroup_Logons.InsertOnSubmit(p);
+                        }
+
+                        //Tracking
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin người sử dụng";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+                    else //Update
+                    {
+                        Logon l = db.Logons.SingleOrDefault<Logon>(ll => ll.LogonGUID.ToString() == logon.LogonGUID.ToString());
+                        if (l != null)
+                        {
+                            l.DocStaffGUID = logon.DocStaffGUID;
+                            l.Password = logon.Password;
+                            l.UpdatedDate = logon.UpdatedDate;
+                            l.UpdatedBy = logon.UpdatedBy;
+                            l.Status = logon.Status;
+
+                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'", l.LogonGUID.ToString(), l.DocStaff.Contact.FullName);
+
+                            var permissions = from p in db.UserGroup_Logons
+                                              where p.LogonGUID == l.LogonGUID
+                                              select p;
+
+                            db.UserGroup_Logons.DeleteAllOnSubmit(permissions);
+                            db.SubmitChanges();
+
+                            //Permission
+                            foreach (DataRow row in dtPermission.Rows)
+                            {
+                                bool use = Convert.ToBoolean(row["Checked"]);
+                                if (!use) continue;
+                                UserGroup_Logon p = new UserGroup_Logon();
+                                p.UserGroup_LogonGUID = Guid.NewGuid();
+                                p.LogonGUID = l.LogonGUID;
+                                p.UserGroupGUID = Guid.Parse(row["UserGroupGUID"].ToString());
+                                db.UserGroup_Logons.InsertOnSubmit(p);
+                            }
+
+                            //Tracking
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Sửa thông tin người sử dụng";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+
+                            db.SubmitChanges();
+                        }
+                    }
+
+                    t.Complete();
+                }
+
             }
             catch (System.Data.SqlClient.SqlException se)
             {

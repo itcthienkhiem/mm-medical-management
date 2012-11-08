@@ -40,7 +40,7 @@ namespace MM.Bussiness
             Result result = null;
             try
             {
-                string query = "SELECT Count(*) FROM Symptom";
+                string query = "SELECT Count(*) FROM Symptom WITH(NOLOCK)";
                 result = ExcuteQuery(query);
                 if (result.IsOK)
                 {

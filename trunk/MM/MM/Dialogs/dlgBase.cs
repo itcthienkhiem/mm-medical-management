@@ -78,14 +78,22 @@ namespace MM.Dialogs
             else 
                 method.Invoke();*/
 
-            this.Invoke(new MethodInvoker(delegate()
+            try
             {
-                if (_dlgWaiting != null)
+                this.Invoke(new MethodInvoker(delegate()
                 {
-                    _dlgWaiting.Close();
-                    _dlgWaiting = null;
-                }
-            }));
+                    if (_dlgWaiting != null)
+                    {
+                        _dlgWaiting.Close();
+                        _dlgWaiting = null;
+                    }
+                }));
+            }
+            catch
+            {
+
+            }
+            
         }
         #endregion
     }

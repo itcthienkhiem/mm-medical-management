@@ -92,6 +92,18 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uNguoiSuDungList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNguoiSuDungList.Designer.cs">
+      <DependentUpon>uNguoiSuDungList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uUserGroupList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uUserGroupList.Designer.cs">
+      <DependentUpon>uUserGroupList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uPhieuThuCapCuuList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -869,6 +881,18 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddNguoiSuDung.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddNguoiSuDung.Designer.cs">
+      <DependentUpon>dlgAddNguoiSuDung.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddUserGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddUserGroup.Designer.cs">
+      <DependentUpon>dlgAddUserGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddGiaCapCuu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1483,6 +1507,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uNguoiSuDungList.resx">
+      <DependentUpon>uNguoiSuDungList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uUserGroupList.resx">
+      <DependentUpon>uUserGroupList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uPhieuThuCapCuuList.resx">
       <DependentUpon>uPhieuThuCapCuuList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1806,6 +1836,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddNguoiSuDung.resx">
+      <DependentUpon>dlgAddNguoiSuDung.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddUserGroup.resx">
+      <DependentUpon>dlgAddUserGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddGiaCapCuu.resx">
       <DependentUpon>dlgAddGiaCapCuu.cs</DependentUpon>
@@ -2205,6 +2241,8 @@
     <None Include="Properties\DataSources\MM.Databasae.TiemNguaView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TrackingView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.UserGroup.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.UserGroup_PermissionView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.XetNghiem_CellDyn3200.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.XetNghiem_Hitachi917.datasource" />
@@ -2351,6 +2389,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2012-11-08.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-11-07.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-11-01.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2012-10-30.sql" />

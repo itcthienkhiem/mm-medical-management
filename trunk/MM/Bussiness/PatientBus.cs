@@ -163,7 +163,7 @@ namespace MM.Bussiness
             Result result = new Result();
             try
             {
-                string query = "SELECT Count(*) FROM Patient";
+                string query = "SELECT Count(*) FROM Patient WITH(NOLOCK)";
                 result = ExcuteQuery(query);
                 if (result.IsOK)
                 {

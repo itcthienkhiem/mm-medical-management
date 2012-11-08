@@ -41,7 +41,7 @@ namespace MM.Bussiness
             Result result = null;
             try
             {
-                string query = "SELECT Count(*) FROM CompanyContract";
+                string query = "SELECT Count(*) FROM CompanyContract WITH(NOLOCK)";
                 result = ExcuteQuery(query);
                 if (result.IsOK)
                 {
