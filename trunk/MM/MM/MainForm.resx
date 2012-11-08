@@ -1696,13 +1696,13 @@
 </value>
   </data>
   <data name="danhMucCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 30</value>
+    <value>204, 22</value>
   </data>
   <data name="danhMucCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục cấp cứu</value>
   </data>
   <data name="toolStripSeparator60.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>201, 6</value>
   </data>
   <data name="nhapKhoCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1732,7 +1732,7 @@
 </value>
   </data>
   <data name="nhapKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 30</value>
+    <value>204, 22</value>
   </data>
   <data name="nhapKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhập kho cấp cứu</value>
@@ -1764,25 +1764,25 @@
 </value>
   </data>
   <data name="xuatKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 30</value>
+    <value>204, 22</value>
   </data>
   <data name="xuatKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Xuất kho cấp cứu</value>
   </data>
   <data name="toolStripSeparator66.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>201, 6</value>
   </data>
   <data name="giaCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="giaCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 30</value>
+    <value>204, 22</value>
   </data>
   <data name="giaCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Giá cấp cứu</value>
   </data>
   <data name="toolStripSeparator61.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>201, 6</value>
   </data>
   <data name="baoCaoCapCuuHetHanToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1816,7 +1816,7 @@
 </value>
   </data>
   <data name="baoCaoCapCuuHetHanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 30</value>
+    <value>204, 22</value>
   </data>
   <data name="baoCaoCapCuuHetHanToolStripMenuItem.Text" xml:space="preserve">
     <value>Báo cáo cấp cứu hết hạn</value>
@@ -1852,13 +1852,13 @@
 </value>
   </data>
   <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 30</value>
+    <value>204, 22</value>
   </data>
   <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Báo cáo tồn kho cấp cứu</value>
   </data>
   <data name="toolStripSeparator62.Size" type="System.Drawing.Size, System.Drawing">
-    <value>209, 6</value>
+    <value>201, 6</value>
   </data>
   <data name="cauHinhKhoCapCuuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1919,7 +1919,7 @@
 </value>
   </data>
   <data name="cauHinhKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>212, 30</value>
+    <value>204, 22</value>
   </data>
   <data name="cauHinhKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình kho cấp cứu</value>
@@ -2608,7 +2608,7 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>74</value>
+    <value>228</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -8322,6 +8322,12 @@
   <data name="&gt;&gt;_timerCheckAlert.Type" xml:space="preserve">
     <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;_timerPatient.Name" xml:space="preserve">
+    <value>_timerPatient</value>
+  </data>
+  <data name="&gt;&gt;_timerPatient.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainForm</value>
   </data>
@@ -8329,9 +8335,12 @@
     <value>MM.Dialogs.dlgBase, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <metadata name="_timerShowAlert.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1033, 17</value>
+    <value>1021, 16</value>
   </metadata>
   <metadata name="_timerCheckAlert.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1116, 17</value>
+  </metadata>
+  <metadata name="_timerPatient.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 54</value>
   </metadata>
 </root>
