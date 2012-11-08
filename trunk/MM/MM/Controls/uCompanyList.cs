@@ -142,7 +142,7 @@ namespace MM.Controls
 
             DataRow drCom = (dgCompany.SelectedRows[0].DataBoundItem as DataRowView).Row;
             dlgAddCompany dlg = new dlgAddCompany(drCom, AllowEdit);
-            dlg.OnOpenPatient += new OpenPatientHandler(dlg_OnOpenPatient);
+            dlg.OnOpenPatientEvent += new OpenPatientHandler(dlg_OnOpenPatient);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 drCom["MaCty"] = dlg.Company.MaCty;

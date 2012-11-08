@@ -17,7 +17,7 @@ namespace MM.Dialogs
     {
         #region Events
         public event AddMemberHandler OnAddMemberEvent = null;
-        public event OpenPatientHandler OnOpenPatient;
+        public event OpenPatientHandler OnOpenPatientEvent;
         public event RefreshPatientHandler OnRefreshPatient;
         #endregion
 
@@ -43,8 +43,8 @@ namespace MM.Dialogs
 
         public void RaiseOpentPatient(object patientRow)
         {
-            if (OnOpenPatient != null)
-                OnOpenPatient(patientRow);
+            if (OnOpenPatientEvent != null)
+                OnOpenPatientEvent(patientRow);
         }
 
         public void RaiseRefreshPatient()
