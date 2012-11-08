@@ -489,6 +489,10 @@ namespace MM
                 Global.AllowDeleteSieuAm = false;
                 Global.AllowExportSieuAm = false;
                 Global.AllowPrintSieuAm = false;
+                Global.AllowAddKeToa = false;
+                Global.AllowEditKeToa = false;
+                Global.AllowDeleteKeToa = false;
+                Global.AllowPrintKeToa = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -745,6 +749,11 @@ namespace MM
                             keToaToolStripMenuItem.Enabled = isView && isLogin;
                             tbKeToa.Enabled = isView && isLogin;
                             Global.AllowViewKeToa = isView;
+                            Global.AllowAddKeToa = isAdd;
+                            Global.AllowEditKeToa = isEdit;
+                            Global.AllowDeleteKeToa = isDelete;
+                            Global.AllowPrintKeToa = isPrint;
+
                             _uToaThuocList.AllowAdd = isAdd;
                             _uToaThuocList.AllowEdit = isEdit;
                             _uToaThuocList.AllowDelete = isDelete;
@@ -1476,6 +1485,10 @@ namespace MM
                 Global.AllowExportSieuAm = true;
                 Global.AllowPrintSieuAm = true;
                 Global.AllowAddYKienKhachHang = true;
+                Global.AllowAddKeToa = true;
+                Global.AllowEditKeToa = true;
+                Global.AllowDeleteKeToa = true;
+                Global.AllowPrintKeToa = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
