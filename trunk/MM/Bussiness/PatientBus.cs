@@ -36,6 +36,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetPatientList(DateTime tuNgay, DateTime denNgay)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE (CreatedDate BETWEEN '{0}' AND '{1}') OR (UpdatedDate IS NOT NULL AND UpdatedDate BETWEEN '{0}' AND '{1}') OR (DeletedDate IS NOT NULL AND DeletedDate BETWEEN '{0}' AND '{1}')",
+                    tuNgay.ToString("yyyy-MM-dd HH:mm:ss"), denNgay.ToString("yyyy-MM-dd HH:mm:ss"));
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetBenhNhanThanThuocList()
         {
             Result result = new Result();
