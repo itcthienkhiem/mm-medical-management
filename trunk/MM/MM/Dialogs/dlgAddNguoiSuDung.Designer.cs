@@ -191,7 +191,7 @@
             // groupNameDataGridViewTextBoxColumn
             // 
             this.groupNameDataGridViewTextBoxColumn.DataPropertyName = "GroupName";
-            this.groupNameDataGridViewTextBoxColumn.HeaderText = "Tên nhóm người sử dụng";
+            this.groupNameDataGridViewTextBoxColumn.HeaderText = "Nhóm người sử dụng";
             this.groupNameDataGridViewTextBoxColumn.Name = "groupNameDataGridViewTextBoxColumn";
             this.groupNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.groupNameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
