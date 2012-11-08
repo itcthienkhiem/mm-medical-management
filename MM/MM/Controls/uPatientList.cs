@@ -851,7 +851,8 @@ namespace MM.Controls
         public void UpdatePatients(DataTable dtPatient)
         {
             if (_dataSource == null) return;
-            
+
+            List<string> deletedKeys = new List<string>();
             foreach (DataRow row in dtPatient.Rows)
             {
                 string patientGUID = row["PatientGUID"].ToString();
@@ -861,7 +862,10 @@ namespace MM.Controls
                 if (isDelete)
                 {
                     if (rows != null && rows.Length > 0)
+                    {
+                        deletedKeys.Add(rows[0]["PatientGUID"].ToString());
                         _dataSource.Rows.Remove(rows[0]);
+                    }
                 }
                 else
                 {
@@ -873,11 +877,16 @@ namespace MM.Controls
                         {
                             rows[0][i] = row[i];
                         }
+
+                        RaiseEditPatient(row);
                     }
                 }
             }
 
             OnSearchPatient();
+
+            if (deletedKeys.Count > 0)
+                RaiseDeletePatient(keys);
         }
         #endregion
 
