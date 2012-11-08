@@ -59,7 +59,7 @@ namespace MM
         private void InitControl()
         {
             xuatKhoCapCuuToolStripMenuItem.Visible = false;
-            permissionToolStripMenuItem.Visible = true;
+            permissionToolStripMenuItem.Visible = false;
 
             _mainPanel.Controls.Add(_uUserGroupList);
             _uUserGroupList.Dock = DockStyle.Fill;
@@ -418,7 +418,7 @@ namespace MM
                 Global.AllowDeleteDSDiaChiCongTy = false;
                 Global.AllowViewTraCuuDanhSachKhachHang = false;
 
-                Result result = LogonBus.GetPermission(Global.LogonGUID);
+                Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
                 {
                     DataTable dtPermission = result.QueryResult as DataTable;
@@ -690,17 +690,6 @@ namespace MM
                             _uBaoCaoThuocHetHan.AllowExport = isExport;
                             _uBaoCaoThuocHetHan.AllowImport = isImport;
                             _uBaoCaoThuocHetHan.AllowLock = isLock;
-                        }
-                        else if (functionCode == Const.ThuocTonKho)
-                        {
-                            thuocTonKhoToolStripMenuItem.Enabled = isView && isLogin;
-                            _uBaoCaoThuocTonKho.AllowAdd = isAdd;
-                            _uBaoCaoThuocTonKho.AllowEdit = isEdit;
-                            _uBaoCaoThuocTonKho.AllowDelete = isDelete;
-                            _uBaoCaoThuocTonKho.AllowPrint = isPrint;
-                            _uBaoCaoThuocTonKho.AllowExport = isExport;
-                            _uBaoCaoThuocTonKho.AllowImport = isImport;
-                            _uBaoCaoThuocTonKho.AllowLock = isLock;
                         }
                         else if (functionCode == Const.PhieuThuThuoc)
                         {
@@ -1121,9 +1110,9 @@ namespace MM
                             _uChiTietPhieuThuDichVu.AllowLock = isLock;
                             _uChiTietPhieuThuDichVu.AllowExportAll = isExportAll;
                         }
-                        else if (functionCode == Const.BaoCaoThuocTonKhoTheoKhoangThoiGian)
+                        else if (functionCode == Const.ThuocTonKho)
                         {
-                            thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Enabled = isView && isLogin;
+                            thuocTonKhoToolStripMenuItem.Enabled = isView && isLogin;
                             _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowAdd = isAdd;
                             _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowEdit = isEdit;
                             _uBaoCaoThuocTonKhoTheoKhoangThoiGian.AllowDelete = isDelete;
@@ -1544,6 +1533,8 @@ namespace MM
                 phieuThuCapCuuToolStripMenuItem.Enabled = isLogin;
                 nhomNguoiSuDungToolStripMenuItem.Enabled = isLogin;
                 nguoiSuDungToolStripMenuItem.Enabled = isLogin;
+                dichVuChuaXuatPhieuThuToolStripMenuItem.Enabled = isLogin;
+                bookingToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1676,7 +1667,7 @@ namespace MM
                     break;
 
                 case "ThuocTonKho":
-                    OnThuocTonKho();
+                    OnBaoCaoThuocTonKhoTheoKhoangThoiGian();
                     break;
 
                 case "PhieuThuThuoc":
@@ -1805,10 +1796,6 @@ namespace MM
 
                 case "ChiTietPhieuThuDichVu":
                     OnChiTietPhieuThuDichVu();
-                    break;
-
-                case "BaoCaoThuocTonKhoTheoKhoangThoiGian":
-                    OnBaoCaoThuocTonKhoTheoKhoangThoiGian();
                     break;
 
                 case "CauHinhTrangIn":
@@ -2032,7 +2019,7 @@ namespace MM
 
         private void OnBaoCaoThuocTonKhoTheoKhoangThoiGian()
         {
-            this.Text = string.Format("{0} - Bao cao thuoc ton kho theo khoang thoi gian", Application.ProductName);
+            this.Text = string.Format("{0} - Bao cao thuoc ton kho", Application.ProductName);
             ViewControl(_uBaoCaoThuocTonKhoTheoKhoangThoiGian);
             _uBaoCaoThuocTonKhoTheoKhoangThoiGian.DisplayAsThread();
         }
