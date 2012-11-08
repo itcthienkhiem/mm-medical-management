@@ -27,7 +27,7 @@ namespace MM.Bussiness
                         query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} ORDER BY Name", 
                             patientGUID, (byte)Status.Actived);
                     else
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} AND DocStaffGUID = '{2}' ORDER BY Name", 
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} AND (DocStaffGUID = '{2}' OR DocStaffGUID IS NULL) ORDER BY Name", 
                             patientGUID, (byte)Status.Actived, Global.UserGUID);
                 }
                 else
@@ -38,7 +38,7 @@ namespace MM.Bussiness
                         query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} ORDER BY Name",
                             patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
                     else
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} AND DocStaffGUID = '{4}' ORDER BY Name",
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} AND (DocStaffGUID = '{4}' OR DocStaffGUID IS NULL) ORDER BY Name",
                             patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
                 }
 
