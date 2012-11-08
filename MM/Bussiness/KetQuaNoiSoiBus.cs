@@ -50,7 +50,7 @@ namespace MM.Bussiness
             Result result = null;
             try
             {
-                string query = "SELECT Count(*) FROM KetQuaNoiSoi";
+                string query = "SELECT Count(*) FROM KetQuaNoiSoi WITH(NOLOCK)";
                 result = ExcuteQuery(query);
                 if (result.IsOK)
                 {

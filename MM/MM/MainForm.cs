@@ -29,14 +29,15 @@ namespace MM
         private bool _isStartTiemNgua = false;
         private bool _isStartCapCuuHetHSD = false;
         private bool _isStartCapCuuHetTonKho = false;
+
+        private uUserGroupList _uUserGroupList = new uUserGroupList();
+        private uNguoiSuDungList _uNguoiSuDungList = new uNguoiSuDungList();
         #endregion
 
         #region Constructor
         public MainForm()
         {
             InitializeComponent();
-
-            xuatKhoCapCuuToolStripMenuItem.Visible = false;
 
             _uPatientList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uCompanyList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
@@ -46,6 +47,8 @@ namespace MM
 
             Utility.CreateFolder(Global.UsersPath);
 
+            InitControl();
+
             //OpenCOMPort();
             //ParseTestResult_Hitachi917(string.Empty, "COM1");
             //ParseTestResult_CellDyn3200(string.Empty, "COM1");
@@ -53,6 +56,20 @@ namespace MM
         #endregion
 
         #region UI Command
+        private void InitControl()
+        {
+            xuatKhoCapCuuToolStripMenuItem.Visible = false;
+            permissionToolStripMenuItem.Visible = true;
+
+            _mainPanel.Controls.Add(_uUserGroupList);
+            _uUserGroupList.Dock = DockStyle.Fill;
+            _uUserGroupList.Visible = false;
+
+            _mainPanel.Controls.Add(_uNguoiSuDungList);
+            _uNguoiSuDungList.Dock = DockStyle.Fill;
+            _uNguoiSuDungList.Visible = false;
+        }
+
         private void StartTimerShowAlert()
         {
             _timerShowAlert.Enabled = true;
@@ -338,6 +355,10 @@ namespace MM
                 _uGiaCapCuuList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uPhieuThuCapCuuList))
                 _uPhieuThuCapCuuList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uUserGroupList))
+                _uUserGroupList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uNguoiSuDungList))
+                _uNguoiSuDungList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1299,6 +1320,32 @@ namespace MM
                             _uPhieuThuCapCuuList.AllowExportAll = isExportAll;
                             _uPhieuThuCapCuuList.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.NhomNguoiSuDung)
+                        {
+                            nhomNguoiSuDungToolStripMenuItem.Enabled = isView && isLogin;
+                            _uUserGroupList.AllowAdd = isAdd;
+                            _uUserGroupList.AllowEdit = isEdit;
+                            _uUserGroupList.AllowDelete = isDelete;
+                            _uUserGroupList.AllowPrint = isPrint;
+                            _uUserGroupList.AllowExport = isExport;
+                            _uUserGroupList.AllowImport = isImport;
+                            _uUserGroupList.AllowLock = isLock;
+                            _uUserGroupList.AllowExportAll = isExportAll;
+                            _uUserGroupList.AllowConfirm = isConfirm;
+                        }
+                        else if (functionCode == Const.NguoiSuDung)
+                        {
+                            nguoiSuDungToolStripMenuItem.Enabled = isView && isLogin;
+                            _uNguoiSuDungList.AllowAdd = isAdd;
+                            _uNguoiSuDungList.AllowEdit = isEdit;
+                            _uNguoiSuDungList.AllowDelete = isDelete;
+                            _uNguoiSuDungList.AllowPrint = isPrint;
+                            _uNguoiSuDungList.AllowExport = isExport;
+                            _uNguoiSuDungList.AllowImport = isImport;
+                            _uNguoiSuDungList.AllowLock = isLock;
+                            _uNguoiSuDungList.AllowExportAll = isExportAll;
+                            _uNguoiSuDungList.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1495,6 +1542,8 @@ namespace MM
                 benhNhanNgoaiGoiKhamToolStripMenuItem.Enabled = isLogin;
                 giaCapCuuToolStripMenuItem.Enabled = isLogin;
                 phieuThuCapCuuToolStripMenuItem.Enabled = isLogin;
+                nhomNguoiSuDungToolStripMenuItem.Enabled = isLogin;
+                nguoiSuDungToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1833,7 +1882,29 @@ namespace MM
                 case "PhieuThuCapCuu":
                     OnPhieuThuCapCuu();
                     break;
+
+                case "NguoiSuDung":
+                    OnNguoiSuDung();
+                    break;
+
+                case "NhomNguoiSuDung":
+                    OnNhomNguoiSuDung();
+                    break;
             }
+        }
+
+        private void OnNguoiSuDung()
+        {
+            this.Text = string.Format("{0} - Nguoi su dung", Application.ProductName);
+            ViewControl(_uNguoiSuDungList);
+            _uNguoiSuDungList.DisplayAsThread();
+        }
+
+        private void OnNhomNguoiSuDung()
+        {
+            this.Text = string.Format("{0} - Nhom nguoi su dung", Application.ProductName);
+            ViewControl(_uUserGroupList);
+            _uUserGroupList.DisplayAsThread();
         }
 
         private void OnGiaCapCuu()

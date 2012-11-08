@@ -126,16 +126,26 @@ namespace MM.Controls
             else
                 method.Invoke();*/
 
-           
 
-            this.Invoke(new MethodInvoker(delegate()
+            try
+            {
+                this.Invoke(new MethodInvoker(delegate()
+                {
+                    if (_dlgWaiting != null)
+                    {
+                        _dlgWaiting.Close();
+                        _dlgWaiting = null;
+                    }
+                }));
+            }
+            catch
             {
                 if (_dlgWaiting != null)
                 {
                     _dlgWaiting.Close();
                     _dlgWaiting = null;
                 }
-            }));
+            }
         }
         #endregion
     }

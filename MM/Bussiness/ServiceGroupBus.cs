@@ -88,7 +88,7 @@ namespace MM.Bussiness
             Result result = null;
             try
             {
-                string query = "SELECT Count(*) FROM ServiceGroup";
+                string query = "SELECT Count(*) FROM ServiceGroup WITH(NOLOCK)";
                 result = ExcuteQuery(query);
                 if (result.IsOK)
                 {
