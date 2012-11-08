@@ -129,6 +129,7 @@ namespace MM.Controls
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 DataTable dt = _dataSource;
+
                 if (dt == null) return;
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
@@ -358,6 +359,7 @@ namespace MM.Controls
                 drPatient["Dang_Co_Thai"] = dlg.PatientHistory.Dang_Co_Thai.Value;
 
                 OnSearchPatient();
+                RaiseEditPatient(drPatient);
             }
         }
 
@@ -391,6 +393,7 @@ namespace MM.Controls
                         }
 
                         OnSearchPatient();
+                        RaiseDeletePatient(deletedPatientList);
                     }
                     else
                     {

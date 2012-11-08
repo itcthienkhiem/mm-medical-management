@@ -57,6 +57,7 @@ namespace MM.Controls
                     }
                     else
                     {
+                        item.Text = string.Format("{0} - {1}", rows[0]["FileNum"], rows[0]["FullName"]);
                         PanelDockContainer p = item.Control as PanelDockContainer;
                         uPatient ctrl = p.Controls[0] as uPatient;
                         p.Tag = patientGUID;

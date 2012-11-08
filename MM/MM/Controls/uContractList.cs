@@ -196,7 +196,7 @@ namespace MM.Controls
             if (drCon == null) return;
 
             dlgAddContract dlg = new dlgAddContract(drCon, AllowEdit);
-            dlg.OnOpenPatient += new OpenPatientHandler(dlg_OnOpenPatient);
+            dlg.OnOpenPatientEvent += new OpenPatientHandler(dlg_OnOpenPatient);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 drCon["CompanyGUID"] = dlg.Contract.CompanyGUID.ToString();

@@ -19,6 +19,8 @@ namespace MM.Controls
     public delegate void ExportReceiptChangedHandler();
     public delegate void RefreshCheckListHandler();
     public delegate void RefreshPatientHandler();
+    public delegate void DeletePatientHandler(List<string> keys);
+    public delegate void EditPatientHandler(DataRow patientRow);
     #endregion
 
     public partial class uBase : UserControl
@@ -26,11 +28,13 @@ namespace MM.Controls
         #region Events
         public event ColorClickedHandler OnColorClicked;
         public event DrawTypeClickedHandler OnDrawTypeClicked;
-        public event OpenPatientHandler OnOpenPatient;
+        public event OpenPatientHandler OnOpenPatientEvent;
         public event ServiceHistoryChangedHandler OnServiceHistoryChanged;
         public event ExportReceiptChangedHandler OnExportReceiptChanged;
         public event RefreshCheckListHandler OnRefreshCheckList;
         public event RefreshPatientHandler OnRefreshPatient;
+        public event DeletePatientHandler OnDeletePatientEvent;
+        public event EditPatientHandler OnEditPatientEvent;
         #endregion
 
         #region Members
@@ -74,8 +78,8 @@ namespace MM.Controls
 
         public void RaiseOpentPatient(object patientRow)
         {
-            if (OnOpenPatient != null)
-                OnOpenPatient(patientRow);
+            if (OnOpenPatientEvent != null)
+                OnOpenPatientEvent(patientRow);
         }
 
         public void RaiseServiceHistoryChanged()
@@ -100,6 +104,18 @@ namespace MM.Controls
         {
             if (OnRefreshPatient != null)
                 OnRefreshPatient();
+        }
+
+        public void RaiseDeletePatient(List<string> keys)
+        {
+            if (OnDeletePatientEvent != null)
+                OnDeletePatientEvent(keys);
+        }
+
+        public void RaiseEditPatient(DataRow patientRow)
+        {
+            if (OnEditPatientEvent != null)
+                OnEditPatientEvent(patientRow);
         }
         #endregion
 

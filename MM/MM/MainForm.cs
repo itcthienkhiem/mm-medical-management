@@ -39,11 +39,14 @@ namespace MM
         {
             InitializeComponent();
 
-            _uPatientList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
-            _uCompanyList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
-            _uContractList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
-            _uPhongChoList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
-            _uBenhNhanThanThuocList.OnOpenPatient += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            _uPatientList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            _uPatientList.OnDeletePatientEvent += new DeletePatientHandler(_uPatientList_OnDeletePatientEvent);
+            _uPatientList.OnEditPatientEvent += new EditPatientHandler(_uPatientList_OnEditPatientEvent);
+
+            _uCompanyList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            _uContractList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            _uPhongChoList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            _uBenhNhanThanThuocList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
 
             Utility.CreateFolder(Global.UsersPath);
 
@@ -2684,6 +2687,35 @@ namespace MM
         #endregion
 
         #region Window Event Handlers
+        private void _uPatientList_OnEditPatientEvent(DataRow patientRow)
+        {
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt == null) return;
+            DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", patientRow["PatientGUID"].ToString()));
+
+            if (rows != null && rows.Length > 0)
+            {
+                for (int i = 0; i < patientRow.Table.Columns.Count; i++)
+                {
+                    rows[0][i] = patientRow[i];
+                }    
+            }
+        }
+
+        private void _uPatientList_OnDeletePatientEvent(List<string> keys)
+        {
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt == null) return;
+
+            foreach (string key in keys)
+            {
+                DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", key));
+                if (rows == null || rows.Length <= 0) continue;
+
+                dt.Rows.Remove(rows[0]);
+            }
+        }
+
         private void _uPatientList_OnOpenPatient(object patientRow)
         {
             OnPatientHistory(patientRow);

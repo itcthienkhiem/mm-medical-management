@@ -23,7 +23,7 @@ namespace MM.Dialogs
         public dlgOpentPatient()
         {
             InitializeComponent();
-            _uSearchPatient.OnOpenPatient += new OpenPatientHandler(_uSearchPatient_OnOpenPatient);
+            _uSearchPatient.OnOpenPatientEvent += new OpenPatientHandler(_uSearchPatient_OnOpenPatient);
             btnVaoPhongCho.Enabled = Global.AllowAddPhongCho;
         }
         #endregion

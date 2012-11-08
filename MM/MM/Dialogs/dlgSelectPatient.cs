@@ -25,14 +25,14 @@ namespace MM.Dialogs
             InitializeComponent();
             _dataSource = dataSource;
             _uSearchPatient.DataSource = dataSource;
-            _uSearchPatient.OnOpenPatient += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
+            _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
         }
 
         public dlgSelectPatient()
         {
             InitializeComponent();
             OnDisplayBenhNhan();
-            _uSearchPatient.OnOpenPatient += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
+            _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
         }
 
         public dlgSelectPatient(bool isBenhNhanThanThuoc)

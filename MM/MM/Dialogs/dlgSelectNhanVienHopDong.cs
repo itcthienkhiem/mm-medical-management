@@ -29,7 +29,7 @@ namespace MM.Dialogs
             _activedDate = activedDate;
             _serviceGUID = serviceGUID;
             _patientGUID = patientGUID;
-            _uSearchPatient.OnOpenPatient += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
+            _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
         }
         #endregion
 
