@@ -329,6 +329,7 @@
             this._uDocStaffList = new MM.Controls.uDocStaffList();
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
+            this._timerPatient = new System.Windows.Forms.Timer(this.components);
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -2504,6 +2505,11 @@
             this._timerCheckAlert.Interval = 3000;
             this._timerCheckAlert.Tick += new System.EventHandler(this._timerCheckAlert_Tick);
             // 
+            // _timerPatient
+            // 
+            this._timerPatient.Interval = 5000;
+            this._timerPatient.Tick += new System.EventHandler(this._timerPatient_Tick);
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2835,6 +2841,7 @@
         private System.Windows.Forms.ToolStripMenuItem giaCapCuuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nhomNguoiSuDungToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nguoiSuDungToolStripMenuItem;
+        private System.Windows.Forms.Timer _timerPatient;
 
     }
 }

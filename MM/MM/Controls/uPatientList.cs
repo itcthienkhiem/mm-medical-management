@@ -37,7 +37,7 @@ namespace MM.Controls
         {
             get
             {
-                DisplayAsThread();
+                if (_dataSource == null) DisplayAsThread();
                 return _dataSource;
             }
 
@@ -846,6 +846,38 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
                 Utility.WriteToTraceLog(ex.Message);
             }
+        }
+
+        public void UpdatePatients(DataTable dtPatient)
+        {
+            if (_dataSource == null) return;
+            
+            foreach (DataRow row in dtPatient.Rows)
+            {
+                string patientGUID = row["PatientGUID"].ToString();
+                bool isDelete = Convert.ToBoolean(row["Archived"]);
+                DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
+
+                if (isDelete)
+                {
+                    if (rows != null && rows.Length > 0)
+                        _dataSource.Rows.Remove(rows[0]);
+                }
+                else
+                {
+                    if (rows == null || rows.Length <= 0)
+                        _dataSource.ImportRow(row);
+                    else
+                    {
+                        for (int i = 0; i < _dataSource.Columns.Count; i++)
+                        {
+                            rows[0][i] = row[i];
+                        }
+                    }
+                }
+            }
+
+            OnSearchPatient();
         }
         #endregion
 

@@ -72,6 +72,17 @@ namespace MM
             _uNguoiSuDungList.Dock = DockStyle.Fill;
             _uNguoiSuDungList.Visible = false;
         }
+        private void StartTimerPatient()
+        {
+            _timerPatient.Enabled = true;
+            _timerPatient.Start();
+        }
+
+        private void StopTimerPatient()
+        {
+            _timerPatient.Stop();
+            _timerPatient.Enabled = false;
+        }
 
         private void StartTimerShowAlert()
         {
@@ -2687,6 +2698,23 @@ namespace MM
         #endregion
 
         #region Window Event Handlers
+        private void _timerPatient_Tick(object sender, EventArgs e)
+        {
+            DateTime denNgay = DateTime.Now;
+            DateTime tungay = denNgay.AddSeconds(-5);
+            Result result = PatientBus.GetPatientList(tungay, denNgay);
+            if (!result.IsOK)
+            {
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                return;
+            }
+
+            DataTable dt = result.QueryResult as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+
+            _uPatientList.UpdatePatients(dt);
+        }
+
         private void _uPatientList_OnEditPatientEvent(DataRow patientRow)
         {
             DataTable dt = dgPatient.DataSource as DataTable;
@@ -2735,6 +2763,7 @@ namespace MM
             InitConfigAsThread();
             OnCheckAlert();
             StartTimerCheckAlert();
+            StartTimerPatient();
 
             if (!System.Diagnostics.Debugger.IsAttached)
                 AutoDetectUpdateAsThread();
