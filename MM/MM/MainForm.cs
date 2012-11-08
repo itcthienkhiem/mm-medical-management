@@ -2779,6 +2779,7 @@ namespace MM
                     SaveAppConfig();
                     StopTimerShowAlert();
                     StopTimerCheckAlert();
+                    StopTimerPatient();
                 }
                 else
                     e.Cancel = true;
