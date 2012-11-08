@@ -415,6 +415,24 @@ namespace MM
                 toolsToolStripMenuItem.Enabled = isLogin;
                 changePasswordToolStripMenuItem.Enabled = isLogin;
 
+                //Global.AllowShowServiePrice = false;
+                //Global.AllowExportReceipt = false;
+                //Global.AllowPrintReceipt = false;
+                //Global.AllowExportInvoice = false;
+                //Global.AllowPrintInvoice = false;
+                //Global.AllowViewChiDinh = false;
+                //Global.AllowAddChiDinh = false;
+                //Global.AllowEditChiDinh = false;
+                //Global.AllowDeleteChiDinh = false;
+                //Global.AllowConfirmChiDinh = false;
+                //Global.AllowAddPhongCho = false;
+                //Global.AllowViewDSDiaChiCongTy = false;
+                //Global.AllowAddDSDiaChiCongTy = false;
+                //Global.AllowEditDSDiaChiCongTy = false;
+                //Global.AllowDeleteDSDiaChiCongTy = false;
+                //Global.AllowViewTraCuuDanhSachKhachHang = false;
+
+                Global.AllowAddYKienKhachHang = false;
                 Global.AllowShowServiePrice = false;
                 Global.AllowExportReceipt = false;
                 Global.AllowPrintReceipt = false;
@@ -426,11 +444,51 @@ namespace MM
                 Global.AllowDeleteChiDinh = false;
                 Global.AllowConfirmChiDinh = false;
                 Global.AllowAddPhongCho = false;
+                Global.AllowViewDichVuDaSuDung = false;
+                Global.AllowAddDichVuDaSuDung = false;
+                Global.AllowEditDichVuDaSuDung = false;
+                Global.AllowDeleteDichVuDaSuDung = false;
+                Global.AllowExportDichVuDaSuDung = false;
+                Global.AllowViewCanDo = false;
+                Global.AllowAddCanDo = false;
+                Global.AllowEditCanDo = false;
+                Global.AllowDeleteCanDo = false;
+                Global.AllowViewKhamLamSang = false;
+                Global.AllowAddKhamLamSang = false;
+                Global.AllowEditKhamLamSang = false;
+                Global.AllowDeleteKhamLamSang = false;
+                Global.AllowViewLoiKhuyen = false;
+                Global.AllowAddLoiKhuyen = false;
+                Global.AllowEditLoiKhuyen = false;
+                Global.AllowDeleteLoiKhuyen = false;
+                Global.AllowViewKetLuan = false;
+                Global.AllowAddKetLuan = false;
+                Global.AllowEditKetLuan = false;
+                Global.AllowDeleteKetLuan = false;
+                Global.AllowViewKhamNoiSoi = false;
+                Global.AllowAddKhamNoiSoi = false;
+                Global.AllowEditKhamNoiSoi = false;
+                Global.AllowDeleteKhamNoiSoi = false;
+                Global.AllowExportKhamNoiSoi = false;
+                Global.AllowPrintKhamNoiSoi = false;
+                Global.AllowViewKeToa = false;
+                Global.AllowViewKhamCTC = false;
+                Global.AllowAddKhamCTC = false;
+                Global.AllowEditKhamCTC = false;
+                Global.AllowDeleteKhamCTC = false;
+                Global.AllowExportKhamCTC = false;
+                Global.AllowPrintKhamCTC = false;
                 Global.AllowViewDSDiaChiCongTy = false;
                 Global.AllowAddDSDiaChiCongTy = false;
                 Global.AllowEditDSDiaChiCongTy = false;
                 Global.AllowDeleteDSDiaChiCongTy = false;
                 Global.AllowViewTraCuuDanhSachKhachHang = false;
+                Global.AllowViewSieuAm = false;
+                Global.AllowAddSieuAm = false;
+                Global.AllowEditSieuAm = false;
+                Global.AllowDeleteSieuAm = false;
+                Global.AllowExportSieuAm = false;
+                Global.AllowPrintSieuAm = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -887,6 +945,7 @@ namespace MM
                         {
                             chamSocKhachHangToolStripMenuItem.Enabled = isLogin;
                             yKienKhachHangToolStripMenuItem.Enabled = isView && isLogin;
+                            Global.AllowAddYKienKhachHang = isAdd;
                             _uYKienKhachHangList.AllowAdd = isAdd;
                             _uYKienKhachHangList.AllowEdit = isEdit;
                             _uYKienKhachHangList.AllowDelete = isDelete;
@@ -1416,6 +1475,7 @@ namespace MM
                 Global.AllowDeleteSieuAm = true;
                 Global.AllowExportSieuAm = true;
                 Global.AllowPrintSieuAm = true;
+                Global.AllowAddYKienKhachHang = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   

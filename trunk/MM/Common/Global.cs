@@ -103,6 +103,9 @@ namespace MM.Common
         //Tra cứu danh sách khách hàng
         public static bool AllowViewTraCuuDanhSachKhachHang = true;
 
+        //Y kiến khách hàng
+        public static bool AllowAddYKienKhachHang = true;
+
         public static DateTime MinDateTime = new DateTime(1753, 1, 1);
         public static DateTime MaxDateTime = new DateTime(9997, 12, 31);
 

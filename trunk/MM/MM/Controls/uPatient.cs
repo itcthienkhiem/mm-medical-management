@@ -98,6 +98,8 @@ namespace MM.Controls
             txtFullAddress.Text ="Địa chỉ: " + row["Address"].ToString();
             txtThuocDiUng.Text = row["Thuoc_Di_Ung"].ToString();
 
+            btnThemYKienKhachHang.Enabled = Global.AllowAddYKienKhachHang;
+            
             pageDailyService.Visible = Global.AllowViewDichVuDaSuDung;
             pageServiceHistory.Visible = Global.AllowViewDichVuDaSuDung;
             pageKeToa.Visible = Global.AllowViewKeToa;
