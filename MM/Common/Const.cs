@@ -80,7 +80,7 @@ namespace MM.Common
         public static string TraCuuThongTinKhachHang = "TraCuuThongTinKhachHang";
         public static string DiaChiCongTy = "DiaChiCongTy";
         public static string ChiTietPhieuThuDichVu = "ChiTietPhieuThuDichVu";
-        public static string BaoCaoThuocTonKhoTheoKhoangThoiGian = "BaoCaoThuocTonKhoTheoKhoangThoiGian";
+        //public static string BaoCaoThuocTonKhoTheoKhoangThoiGian = "BaoCaoThuocTonKhoTheoKhoangThoiGian";
         public static string CauHinTrangIn = "CauHinhTrangIn";
         public static string BenhNhanThanThuoc = "BenhNhanThanThuoc";
         public static string LoaiSieuAm = "LoaiSieuAm";

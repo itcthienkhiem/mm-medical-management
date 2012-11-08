@@ -773,9 +773,9 @@
             // 
             // chuyenKhoaToolStripMenuItem
             // 
+            resources.ApplyResources(this.chuyenKhoaToolStripMenuItem, "chuyenKhoaToolStripMenuItem");
             this.chuyenKhoaToolStripMenuItem.Image = global::MM.Properties.Resources.stethoscope_icon;
             this.chuyenKhoaToolStripMenuItem.Name = "chuyenKhoaToolStripMenuItem";
-            resources.ApplyResources(this.chuyenKhoaToolStripMenuItem, "chuyenKhoaToolStripMenuItem");
             this.chuyenKhoaToolStripMenuItem.Tag = "Speciality List";
             this.chuyenKhoaToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -786,9 +786,9 @@
             // 
             // nhanVienToolStripMenuItem
             // 
+            resources.ApplyResources(this.nhanVienToolStripMenuItem, "nhanVienToolStripMenuItem");
             this.nhanVienToolStripMenuItem.Image = global::MM.Properties.Resources.Doctor_32;
             this.nhanVienToolStripMenuItem.Name = "nhanVienToolStripMenuItem";
-            resources.ApplyResources(this.nhanVienToolStripMenuItem, "nhanVienToolStripMenuItem");
             this.nhanVienToolStripMenuItem.Tag = "Doctor List";
             this.nhanVienToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -799,9 +799,9 @@
             // 
             // trieuChungToolStripMenuItem
             // 
+            resources.ApplyResources(this.trieuChungToolStripMenuItem, "trieuChungToolStripMenuItem");
             this.trieuChungToolStripMenuItem.Image = global::MM.Properties.Resources.research;
             this.trieuChungToolStripMenuItem.Name = "trieuChungToolStripMenuItem";
-            resources.ApplyResources(this.trieuChungToolStripMenuItem, "trieuChungToolStripMenuItem");
             this.trieuChungToolStripMenuItem.Tag = "Symptom List";
             this.trieuChungToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -830,9 +830,9 @@
             // 
             // serviceListToolStripMenuItem
             // 
+            resources.ApplyResources(this.serviceListToolStripMenuItem, "serviceListToolStripMenuItem");
             this.serviceListToolStripMenuItem.Image = global::MM.Properties.Resources.Service_icon__1_;
             this.serviceListToolStripMenuItem.Name = "serviceListToolStripMenuItem";
-            resources.ApplyResources(this.serviceListToolStripMenuItem, "serviceListToolStripMenuItem");
             this.serviceListToolStripMenuItem.Tag = "Services List";
             this.serviceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -843,9 +843,9 @@
             // 
             // serviceGroupToolStripMenuItem
             // 
+            resources.ApplyResources(this.serviceGroupToolStripMenuItem, "serviceGroupToolStripMenuItem");
             this.serviceGroupToolStripMenuItem.Image = global::MM.Properties.Resources.Freelance_icon;
             this.serviceGroupToolStripMenuItem.Name = "serviceGroupToolStripMenuItem";
-            resources.ApplyResources(this.serviceGroupToolStripMenuItem, "serviceGroupToolStripMenuItem");
             this.serviceGroupToolStripMenuItem.Tag = "ServiceGroup";
             this.serviceGroupToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -856,9 +856,9 @@
             // 
             // giaVonDichVuToolStripMenuItem
             // 
+            resources.ApplyResources(this.giaVonDichVuToolStripMenuItem, "giaVonDichVuToolStripMenuItem");
             this.giaVonDichVuToolStripMenuItem.Image = global::MM.Properties.Resources.US_dollar_icon;
             this.giaVonDichVuToolStripMenuItem.Name = "giaVonDichVuToolStripMenuItem";
-            resources.ApplyResources(this.giaVonDichVuToolStripMenuItem, "giaVonDichVuToolStripMenuItem");
             this.giaVonDichVuToolStripMenuItem.Tag = "GiaVonDichVu";
             this.giaVonDichVuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -881,9 +881,9 @@
             // 
             // openPatientToolStripMenuItem
             // 
+            resources.ApplyResources(this.openPatientToolStripMenuItem, "openPatientToolStripMenuItem");
             this.openPatientToolStripMenuItem.Image = global::MM.Properties.Resources.folder_customer_icon;
             this.openPatientToolStripMenuItem.Name = "openPatientToolStripMenuItem";
-            resources.ApplyResources(this.openPatientToolStripMenuItem, "openPatientToolStripMenuItem");
             this.openPatientToolStripMenuItem.Tag = "Open Patient";
             this.openPatientToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -894,9 +894,9 @@
             // 
             // patientListToolStripMenuItem
             // 
+            resources.ApplyResources(this.patientListToolStripMenuItem, "patientListToolStripMenuItem");
             this.patientListToolStripMenuItem.Image = global::MM.Properties.Resources._1320161545_people;
             this.patientListToolStripMenuItem.Name = "patientListToolStripMenuItem";
-            resources.ApplyResources(this.patientListToolStripMenuItem, "patientListToolStripMenuItem");
             this.patientListToolStripMenuItem.Tag = "Patient List";
             this.patientListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -907,9 +907,9 @@
             // 
             // DuplicatePatientToolStripMenuItem
             // 
+            resources.ApplyResources(this.DuplicatePatientToolStripMenuItem, "DuplicatePatientToolStripMenuItem");
             this.DuplicatePatientToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_window_duplicate_icon;
             this.DuplicatePatientToolStripMenuItem.Name = "DuplicatePatientToolStripMenuItem";
-            resources.ApplyResources(this.DuplicatePatientToolStripMenuItem, "DuplicatePatientToolStripMenuItem");
             this.DuplicatePatientToolStripMenuItem.Tag = "DuplicatePatient";
             this.DuplicatePatientToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -920,9 +920,9 @@
             // 
             // phucHoiBenhNhanToolStripMenuItem
             // 
+            resources.ApplyResources(this.phucHoiBenhNhanToolStripMenuItem, "phucHoiBenhNhanToolStripMenuItem");
             this.phucHoiBenhNhanToolStripMenuItem.Image = global::MM.Properties.Resources.backup_restore_icon;
             this.phucHoiBenhNhanToolStripMenuItem.Name = "phucHoiBenhNhanToolStripMenuItem";
-            resources.ApplyResources(this.phucHoiBenhNhanToolStripMenuItem, "phucHoiBenhNhanToolStripMenuItem");
             this.phucHoiBenhNhanToolStripMenuItem.Tag = "PhucHoiBenhNhan";
             this.phucHoiBenhNhanToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -933,9 +933,9 @@
             // 
             // benhNhanThanThuocToolStripMenuItem
             // 
+            resources.ApplyResources(this.benhNhanThanThuocToolStripMenuItem, "benhNhanThanThuocToolStripMenuItem");
             this.benhNhanThanThuocToolStripMenuItem.Image = global::MM.Properties.Resources._1320161545_people;
             this.benhNhanThanThuocToolStripMenuItem.Name = "benhNhanThanThuocToolStripMenuItem";
-            resources.ApplyResources(this.benhNhanThanThuocToolStripMenuItem, "benhNhanThanThuocToolStripMenuItem");
             this.benhNhanThanThuocToolStripMenuItem.Tag = "BenhNhanThanThuoc";
             this.benhNhanThanThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -946,9 +946,9 @@
             // 
             // benhNhanNgoaiGoiKhamToolStripMenuItem
             // 
+            resources.ApplyResources(this.benhNhanNgoaiGoiKhamToolStripMenuItem, "benhNhanNgoaiGoiKhamToolStripMenuItem");
             this.benhNhanNgoaiGoiKhamToolStripMenuItem.Image = global::MM.Properties.Resources._1320161545_people;
             this.benhNhanNgoaiGoiKhamToolStripMenuItem.Name = "benhNhanNgoaiGoiKhamToolStripMenuItem";
-            resources.ApplyResources(this.benhNhanNgoaiGoiKhamToolStripMenuItem, "benhNhanNgoaiGoiKhamToolStripMenuItem");
             this.benhNhanNgoaiGoiKhamToolStripMenuItem.Tag = "BenhNhanNgoaiGoiKham";
             this.benhNhanNgoaiGoiKhamToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -963,9 +963,9 @@
             // 
             // companyListToolStripMenuItem
             // 
+            resources.ApplyResources(this.companyListToolStripMenuItem, "companyListToolStripMenuItem");
             this.companyListToolStripMenuItem.Image = global::MM.Properties.Resources.industry;
             this.companyListToolStripMenuItem.Name = "companyListToolStripMenuItem";
-            resources.ApplyResources(this.companyListToolStripMenuItem, "companyListToolStripMenuItem");
             this.companyListToolStripMenuItem.Tag = "Company List";
             this.companyListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -976,9 +976,9 @@
             // 
             // contractListToolStripMenuItem
             // 
+            resources.ApplyResources(this.contractListToolStripMenuItem, "contractListToolStripMenuItem");
             this.contractListToolStripMenuItem.Image = global::MM.Properties.Resources.Contract_icon;
             this.contractListToolStripMenuItem.Name = "contractListToolStripMenuItem";
-            resources.ApplyResources(this.contractListToolStripMenuItem, "contractListToolStripMenuItem");
             this.contractListToolStripMenuItem.Tag = "Contract List";
             this.contractListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -999,9 +999,9 @@
             // 
             // receiptListToolStripMenuItem
             // 
+            resources.ApplyResources(this.receiptListToolStripMenuItem, "receiptListToolStripMenuItem");
             this.receiptListToolStripMenuItem.Image = global::MM.Properties.Resources.check_icon;
             this.receiptListToolStripMenuItem.Name = "receiptListToolStripMenuItem";
-            resources.ApplyResources(this.receiptListToolStripMenuItem, "receiptListToolStripMenuItem");
             this.receiptListToolStripMenuItem.Tag = "Receipt List";
             this.receiptListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1012,9 +1012,9 @@
             // 
             // phieuThuThuocToolStripMenuItem
             // 
+            resources.ApplyResources(this.phieuThuThuocToolStripMenuItem, "phieuThuThuocToolStripMenuItem");
             this.phieuThuThuocToolStripMenuItem.Image = global::MM.Properties.Resources.check_icon;
             this.phieuThuThuocToolStripMenuItem.Name = "phieuThuThuocToolStripMenuItem";
-            resources.ApplyResources(this.phieuThuThuocToolStripMenuItem, "phieuThuThuocToolStripMenuItem");
             this.phieuThuThuocToolStripMenuItem.Tag = "PhieuThuThuoc";
             this.phieuThuThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1025,9 +1025,9 @@
             // 
             // phieuThuHopDongToolStripMenuItem
             // 
+            resources.ApplyResources(this.phieuThuHopDongToolStripMenuItem, "phieuThuHopDongToolStripMenuItem");
             this.phieuThuHopDongToolStripMenuItem.Image = global::MM.Properties.Resources.check_icon;
             this.phieuThuHopDongToolStripMenuItem.Name = "phieuThuHopDongToolStripMenuItem";
-            resources.ApplyResources(this.phieuThuHopDongToolStripMenuItem, "phieuThuHopDongToolStripMenuItem");
             this.phieuThuHopDongToolStripMenuItem.Tag = "PhieuThuHopDong";
             this.phieuThuHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1038,9 +1038,9 @@
             // 
             // phieuThuCapCuuToolStripMenuItem
             // 
+            resources.ApplyResources(this.phieuThuCapCuuToolStripMenuItem, "phieuThuCapCuuToolStripMenuItem");
             this.phieuThuCapCuuToolStripMenuItem.Image = global::MM.Properties.Resources.check_icon;
             this.phieuThuCapCuuToolStripMenuItem.Name = "phieuThuCapCuuToolStripMenuItem";
-            resources.ApplyResources(this.phieuThuCapCuuToolStripMenuItem, "phieuThuCapCuuToolStripMenuItem");
             this.phieuThuCapCuuToolStripMenuItem.Tag = "PhieuThuCapCuu";
             this.phieuThuCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1071,9 +1071,9 @@
             // 
             // invoiceListToolStripMenuItem
             // 
+            resources.ApplyResources(this.invoiceListToolStripMenuItem, "invoiceListToolStripMenuItem");
             this.invoiceListToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
             this.invoiceListToolStripMenuItem.Name = "invoiceListToolStripMenuItem";
-            resources.ApplyResources(this.invoiceListToolStripMenuItem, "invoiceListToolStripMenuItem");
             this.invoiceListToolStripMenuItem.Tag = "Invoice List";
             this.invoiceListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1084,9 +1084,9 @@
             // 
             // hoaDonThuocToolStripMenuItem
             // 
+            resources.ApplyResources(this.hoaDonThuocToolStripMenuItem, "hoaDonThuocToolStripMenuItem");
             this.hoaDonThuocToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
             this.hoaDonThuocToolStripMenuItem.Name = "hoaDonThuocToolStripMenuItem";
-            resources.ApplyResources(this.hoaDonThuocToolStripMenuItem, "hoaDonThuocToolStripMenuItem");
             this.hoaDonThuocToolStripMenuItem.Tag = "HoaDonThuoc";
             this.hoaDonThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1097,9 +1097,9 @@
             // 
             // hoaDonXuatTruocToolStripMenuItem
             // 
+            resources.ApplyResources(this.hoaDonXuatTruocToolStripMenuItem, "hoaDonXuatTruocToolStripMenuItem");
             this.hoaDonXuatTruocToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
             this.hoaDonXuatTruocToolStripMenuItem.Name = "hoaDonXuatTruocToolStripMenuItem";
-            resources.ApplyResources(this.hoaDonXuatTruocToolStripMenuItem, "hoaDonXuatTruocToolStripMenuItem");
             this.hoaDonXuatTruocToolStripMenuItem.Tag = "HoaDonXuatTruoc";
             this.hoaDonXuatTruocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1110,9 +1110,9 @@
             // 
             // hoaDonHopDongToolStripMenuItem
             // 
+            resources.ApplyResources(this.hoaDonHopDongToolStripMenuItem, "hoaDonHopDongToolStripMenuItem");
             this.hoaDonHopDongToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
             this.hoaDonHopDongToolStripMenuItem.Name = "hoaDonHopDongToolStripMenuItem";
-            resources.ApplyResources(this.hoaDonHopDongToolStripMenuItem, "hoaDonHopDongToolStripMenuItem");
             this.hoaDonHopDongToolStripMenuItem.Tag = "HoaDonHopDong";
             this.hoaDonHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1133,9 +1133,9 @@
             // 
             // danhMucThuocToolStripMenuItem
             // 
+            resources.ApplyResources(this.danhMucThuocToolStripMenuItem, "danhMucThuocToolStripMenuItem");
             this.danhMucThuocToolStripMenuItem.Image = global::MM.Properties.Resources.pills_3_icon;
             this.danhMucThuocToolStripMenuItem.Name = "danhMucThuocToolStripMenuItem";
-            resources.ApplyResources(this.danhMucThuocToolStripMenuItem, "danhMucThuocToolStripMenuItem");
             this.danhMucThuocToolStripMenuItem.Tag = "DanhMucThuoc";
             this.danhMucThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1146,9 +1146,9 @@
             // 
             // nhomThuocToolStripMenuItem
             // 
+            resources.ApplyResources(this.nhomThuocToolStripMenuItem, "nhomThuocToolStripMenuItem");
             this.nhomThuocToolStripMenuItem.Image = global::MM.Properties.Resources.Drug_basket_icon;
             this.nhomThuocToolStripMenuItem.Name = "nhomThuocToolStripMenuItem";
-            resources.ApplyResources(this.nhomThuocToolStripMenuItem, "nhomThuocToolStripMenuItem");
             this.nhomThuocToolStripMenuItem.Tag = "NhomThuoc";
             this.nhomThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1159,9 +1159,9 @@
             // 
             // loThuocToolStripMenuItem
             // 
+            resources.ApplyResources(this.loThuocToolStripMenuItem, "loThuocToolStripMenuItem");
             this.loThuocToolStripMenuItem.Image = global::MM.Properties.Resources.inventory_maintenance_icon;
             this.loThuocToolStripMenuItem.Name = "loThuocToolStripMenuItem";
-            resources.ApplyResources(this.loThuocToolStripMenuItem, "loThuocToolStripMenuItem");
             this.loThuocToolStripMenuItem.Tag = "LoThuoc";
             this.loThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1172,9 +1172,9 @@
             // 
             // giaThuocToolStripMenuItem
             // 
+            resources.ApplyResources(this.giaThuocToolStripMenuItem, "giaThuocToolStripMenuItem");
             this.giaThuocToolStripMenuItem.Image = global::MM.Properties.Resources.currency_dollar_yellow;
             this.giaThuocToolStripMenuItem.Name = "giaThuocToolStripMenuItem";
-            resources.ApplyResources(this.giaThuocToolStripMenuItem, "giaThuocToolStripMenuItem");
             this.giaThuocToolStripMenuItem.Tag = "GiaThuoc";
             this.giaThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1185,9 +1185,9 @@
             // 
             // keToaToolStripMenuItem
             // 
+            resources.ApplyResources(this.keToaToolStripMenuItem, "keToaToolStripMenuItem");
             this.keToaToolStripMenuItem.Image = global::MM.Properties.Resources.prescription_icon;
             this.keToaToolStripMenuItem.Name = "keToaToolStripMenuItem";
-            resources.ApplyResources(this.keToaToolStripMenuItem, "keToaToolStripMenuItem");
             this.keToaToolStripMenuItem.Tag = "KeToa";
             this.keToaToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1221,9 +1221,9 @@
             // 
             // doanhThuNhanVienToolStripMenuItem
             // 
+            resources.ApplyResources(this.doanhThuNhanVienToolStripMenuItem, "doanhThuNhanVienToolStripMenuItem");
             this.doanhThuNhanVienToolStripMenuItem.Image = global::MM.Properties.Resources.personal_loan_icon;
             this.doanhThuNhanVienToolStripMenuItem.Name = "doanhThuNhanVienToolStripMenuItem";
-            resources.ApplyResources(this.doanhThuNhanVienToolStripMenuItem, "doanhThuNhanVienToolStripMenuItem");
             this.doanhThuNhanVienToolStripMenuItem.Tag = "DoanhThuNhanVien";
             this.doanhThuNhanVienToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1234,9 +1234,9 @@
             // 
             // doanhThuTheoNgayToolStripMenuItem
             // 
+            resources.ApplyResources(this.doanhThuTheoNgayToolStripMenuItem, "doanhThuTheoNgayToolStripMenuItem");
             this.doanhThuTheoNgayToolStripMenuItem.Image = global::MM.Properties.Resources.event_search_icon;
             this.doanhThuTheoNgayToolStripMenuItem.Name = "doanhThuTheoNgayToolStripMenuItem";
-            resources.ApplyResources(this.doanhThuTheoNgayToolStripMenuItem, "doanhThuTheoNgayToolStripMenuItem");
             this.doanhThuTheoNgayToolStripMenuItem.Tag = "DoanhThuTheoNgay";
             this.doanhThuTheoNgayToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1247,9 +1247,9 @@
             // 
             // dichVuHopDongToolStripMenuItem
             // 
+            resources.ApplyResources(this.dichVuHopDongToolStripMenuItem, "dichVuHopDongToolStripMenuItem");
             this.dichVuHopDongToolStripMenuItem.Image = global::MM.Properties.Resources.folder_contract_icon;
             this.dichVuHopDongToolStripMenuItem.Name = "dichVuHopDongToolStripMenuItem";
-            resources.ApplyResources(this.dichVuHopDongToolStripMenuItem, "dichVuHopDongToolStripMenuItem");
             this.dichVuHopDongToolStripMenuItem.Tag = "DichVuHopDong";
             this.dichVuHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1260,9 +1260,9 @@
             // 
             // dichVuTuTucToolStripMenuItem
             // 
+            resources.ApplyResources(this.dichVuTuTucToolStripMenuItem, "dichVuTuTucToolStripMenuItem");
             this.dichVuTuTucToolStripMenuItem.Image = global::MM.Properties.Resources.accept_icon;
             this.dichVuTuTucToolStripMenuItem.Name = "dichVuTuTucToolStripMenuItem";
-            resources.ApplyResources(this.dichVuTuTucToolStripMenuItem, "dichVuTuTucToolStripMenuItem");
             this.dichVuTuTucToolStripMenuItem.Tag = "DichVuTuTuc";
             this.dichVuTuTucToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1273,9 +1273,9 @@
             // 
             // thuocHetHanToolStripMenuItem
             // 
+            resources.ApplyResources(this.thuocHetHanToolStripMenuItem, "thuocHetHanToolStripMenuItem");
             this.thuocHetHanToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_view_calendar_upcoming_events_icon;
             this.thuocHetHanToolStripMenuItem.Name = "thuocHetHanToolStripMenuItem";
-            resources.ApplyResources(this.thuocHetHanToolStripMenuItem, "thuocHetHanToolStripMenuItem");
             this.thuocHetHanToolStripMenuItem.Tag = "ThuocHetHan";
             this.thuocHetHanToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1286,18 +1286,18 @@
             // 
             // thuocTonKhoToolStripMenuItem
             // 
+            resources.ApplyResources(this.thuocTonKhoToolStripMenuItem, "thuocTonKhoToolStripMenuItem");
             this.thuocTonKhoToolStripMenuItem.Image = global::MM.Properties.Resources.palet_03_icon;
             this.thuocTonKhoToolStripMenuItem.Name = "thuocTonKhoToolStripMenuItem";
-            resources.ApplyResources(this.thuocTonKhoToolStripMenuItem, "thuocTonKhoToolStripMenuItem");
             this.thuocTonKhoToolStripMenuItem.Tag = "ThuocTonKho";
             this.thuocTonKhoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // thuocTonKhoTheoKhoangThoiGianToolStripMenuItem
             // 
+            resources.ApplyResources(this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem, "thuocTonKhoTheoKhoangThoiGianToolStripMenuItem");
             this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Image = global::MM.Properties.Resources.palet_03_icon;
             this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Name = "thuocTonKhoTheoKhoangThoiGianToolStripMenuItem";
-            resources.ApplyResources(this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem, "thuocTonKhoTheoKhoangThoiGianToolStripMenuItem");
-            this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Tag = "BaoCaoThuocTonKhoTheoKhoangThoiGian";
+            this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Tag = "ThuocTonKho";
             this.thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolStripSeparator29
@@ -1307,9 +1307,9 @@
             // 
             // inKetQuaKhamSucKhoeTongQuatToolStripMenuItem
             // 
+            resources.ApplyResources(this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem, "inKetQuaKhamSucKhoeTongQuatToolStripMenuItem");
             this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Image = global::MM.Properties.Resources.Stethoscope_icon3;
             this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Name = "inKetQuaKhamSucKhoeTongQuatToolStripMenuItem";
-            resources.ApplyResources(this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem, "inKetQuaKhamSucKhoeTongQuatToolStripMenuItem");
             this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Tag = "InKetQuaKhamSucKhoeTongQuat";
             this.inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1320,9 +1320,9 @@
             // 
             // dichVuChuaXuatPhieuThuToolStripMenuItem
             // 
+            resources.ApplyResources(this.dichVuChuaXuatPhieuThuToolStripMenuItem, "dichVuChuaXuatPhieuThuToolStripMenuItem");
             this.dichVuChuaXuatPhieuThuToolStripMenuItem.Image = global::MM.Properties.Resources.Process_Warning_icon;
             this.dichVuChuaXuatPhieuThuToolStripMenuItem.Name = "dichVuChuaXuatPhieuThuToolStripMenuItem";
-            resources.ApplyResources(this.dichVuChuaXuatPhieuThuToolStripMenuItem, "dichVuChuaXuatPhieuThuToolStripMenuItem");
             this.dichVuChuaXuatPhieuThuToolStripMenuItem.Tag = "DichVuChuaXuatPhieuThu";
             this.dichVuChuaXuatPhieuThuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1333,9 +1333,9 @@
             // 
             // thongKeHoaDonToolStripMenuItem
             // 
+            resources.ApplyResources(this.thongKeHoaDonToolStripMenuItem, "thongKeHoaDonToolStripMenuItem");
             this.thongKeHoaDonToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon__1_;
             this.thongKeHoaDonToolStripMenuItem.Name = "thongKeHoaDonToolStripMenuItem";
-            resources.ApplyResources(this.thongKeHoaDonToolStripMenuItem, "thongKeHoaDonToolStripMenuItem");
             this.thongKeHoaDonToolStripMenuItem.Tag = "ThongKeHoaDon";
             this.thongKeHoaDonToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1565,9 +1565,9 @@
             // 
             // giaCapCuuToolStripMenuItem
             // 
+            resources.ApplyResources(this.giaCapCuuToolStripMenuItem, "giaCapCuuToolStripMenuItem");
             this.giaCapCuuToolStripMenuItem.Image = global::MM.Properties.Resources.currency_dollar_yellow;
             this.giaCapCuuToolStripMenuItem.Name = "giaCapCuuToolStripMenuItem";
-            resources.ApplyResources(this.giaCapCuuToolStripMenuItem, "giaCapCuuToolStripMenuItem");
             this.giaCapCuuToolStripMenuItem.Tag = "GiaCapCuu";
             this.giaCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1634,9 +1634,9 @@
             // 
             // printLabelToolStripMenuItem
             // 
+            resources.ApplyResources(this.printLabelToolStripMenuItem, "printLabelToolStripMenuItem");
             this.printLabelToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon;
             this.printLabelToolStripMenuItem.Name = "printLabelToolStripMenuItem";
-            resources.ApplyResources(this.printLabelToolStripMenuItem, "printLabelToolStripMenuItem");
             this.printLabelToolStripMenuItem.Tag = "Print Label";
             this.printLabelToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
@@ -1647,9 +1647,9 @@
             // 
             // trackingToolStripMenuItem
             // 
+            resources.ApplyResources(this.trackingToolStripMenuItem, "trackingToolStripMenuItem");
             this.trackingToolStripMenuItem.Image = global::MM.Properties.Resources.log_icon;
             this.trackingToolStripMenuItem.Name = "trackingToolStripMenuItem";
-            resources.ApplyResources(this.trackingToolStripMenuItem, "trackingToolStripMenuItem");
             this.trackingToolStripMenuItem.Tag = "Tracking";
             this.trackingToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 

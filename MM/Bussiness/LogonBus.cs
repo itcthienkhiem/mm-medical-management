@@ -81,6 +81,72 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetPermission2(string logonGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT * FROM UserGroup_Logon WITH(NOLOCK) WHERE LogonGUID = '{0}'", logonGUID);
+                result = ExcuteQuery(query);
+
+                if (!result.IsOK) return result;
+
+                DataTable dtUserGroup = result.QueryResult as DataTable;
+                DataTable dtPermission = null;
+                foreach (DataRow drUserGroup in dtUserGroup.Rows)
+                {
+                    string userGroupGUID = drUserGroup["UserGroupGUID"].ToString();
+                    query = string.Format("SELECT * FROM UserGroup_PermissionView WITH(NOLOCK) WHERE UserGroupGUID = '{0}'", userGroupGUID);
+                    result = ExcuteQuery(query);
+                    if (!result.IsOK) return result;
+
+                    DataTable dt = result.QueryResult as DataTable;
+
+                    if (dtPermission == null)
+                        dtPermission = dt;
+                    else
+                    {
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            string functionGUID = row["FunctionGUID"].ToString();
+                            DataRow[] rows = dtPermission.Select(string.Format("FunctionGUID='{0}'", functionGUID));
+                            if (rows == null || rows.Length <= 0)
+                                dtPermission.ImportRow(row);
+                            else
+                            {
+                                DataRow dr = rows[0];
+                                if (!Convert.ToBoolean(dr["IsView"])) dr["IsView"] = row["IsView"];
+                                if (!Convert.ToBoolean(dr["IsAdd"])) dr["IsAdd"] = row["IsAdd"];
+                                if (!Convert.ToBoolean(dr["IsEdit"])) dr["IsEdit"] = row["IsEdit"];
+                                if (!Convert.ToBoolean(dr["IsDelete"])) dr["IsDelete"] = row["IsDelete"];
+                                if (!Convert.ToBoolean(dr["IsPrint"])) dr["IsPrint"] = row["IsPrint"];
+                                if (!Convert.ToBoolean(dr["IsImport"])) dr["IsImport"] = row["IsImport"];
+                                if (!Convert.ToBoolean(dr["IsExport"])) dr["IsExport"] = row["IsExport"];
+                                if (!Convert.ToBoolean(dr["IsConfirm"])) dr["IsConfirm"] = row["IsConfirm"];
+                                if (!Convert.ToBoolean(dr["IsLock"])) dr["IsLock"] = row["IsLock"];
+                                if (!Convert.ToBoolean(dr["IsExportAll"])) dr["IsExportAll"] = row["IsExportAll"];
+                            }
+                        }
+                    }
+                }
+
+                result.QueryResult = dtPermission;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetFunction()
         {
             Result result = null;

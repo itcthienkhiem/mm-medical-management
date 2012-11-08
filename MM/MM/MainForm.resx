@@ -572,13 +572,13 @@
     <value>592, 17</value>
   </metadata>
   <data name="databaseConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="databaseConfigurationToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình CSDL</value>
   </data>
   <data name="toolStripSeparator50.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="cauHinhFTPToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -616,13 +616,13 @@
 </value>
   </data>
   <data name="cauHinhFTPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="cauHinhFTPToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình FTP</value>
   </data>
   <data name="toolStripSeparator54.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="cauHinhPageSetupToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -651,13 +651,13 @@
 </value>
   </data>
   <data name="cauHinhPageSetupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="cauHinhPageSetupToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình trang in</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="nhomNguoiSuDungToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -690,7 +690,7 @@
 </value>
   </data>
   <data name="nhomNguoiSuDungToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="nhomNguoiSuDungToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhóm người sử dụng</value>
@@ -729,7 +729,7 @@
 </value>
   </data>
   <data name="nguoiSuDungToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="nguoiSuDungToolStripMenuItem.Text" xml:space="preserve">
     <value>Người sử dụng</value>
@@ -738,7 +738,7 @@
     <value>False</value>
   </data>
   <data name="permissionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="permissionToolStripMenuItem.Text" xml:space="preserve">
     <value>Phân quyền</value>
@@ -747,25 +747,25 @@
     <value>False</value>
   </data>
   <data name="changePasswordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="changePasswordToolStripMenuItem.Text" xml:space="preserve">
     <value>Đổi mật khẩu</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="loginToolStripMenuItem.Text" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Thoát</value>
@@ -776,6 +776,9 @@
   <data name="systemToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Hệ thống</value>
   </data>
+  <data name="chuyenKhoaToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="chuyenKhoaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
   </data>
@@ -784,6 +787,9 @@
   </data>
   <data name="toolStripSeparator40.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 6</value>
+  </data>
+  <data name="nhanVienToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="nhanVienToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
@@ -794,6 +800,9 @@
   <data name="toolStripSeparator41.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 6</value>
   </data>
+  <data name="trieuChungToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="trieuChungToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
   </data>
@@ -802,6 +811,9 @@
   </data>
   <data name="toolStripSeparator56.Size" type="System.Drawing.Size, System.Drawing">
     <value>145, 6</value>
+  </data>
+  <data name="loaiSieuAmToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="loaiSieuAmToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -867,6 +879,9 @@
   <data name="danhmụcToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh &amp;mục</value>
   </data>
+  <data name="serviceListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="serviceListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 22</value>
   </data>
@@ -876,6 +891,9 @@
   <data name="toolStripSeparator28.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 6</value>
   </data>
+  <data name="serviceGroupToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="serviceGroupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 22</value>
   </data>
@@ -884,6 +902,9 @@
   </data>
   <data name="toolStripSeparator30.Size" type="System.Drawing.Size, System.Drawing">
     <value>166, 6</value>
+  </data>
+  <data name="giaVonDichVuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="giaVonDichVuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 22</value>
@@ -900,6 +921,9 @@
   <data name="servicesToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Dịch vụ</value>
   </data>
+  <data name="openPatientToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="openPatientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 22</value>
   </data>
@@ -908,6 +932,9 @@
   </data>
   <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 6</value>
+  </data>
+  <data name="patientListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="patientListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 22</value>
@@ -918,6 +945,9 @@
   <data name="toolStripSeparator15.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 6</value>
   </data>
+  <data name="DuplicatePatientToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="DuplicatePatientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 22</value>
   </data>
@@ -926,6 +956,9 @@
   </data>
   <data name="toolStripSeparator36.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 6</value>
+  </data>
+  <data name="phucHoiBenhNhanToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="phucHoiBenhNhanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 22</value>
@@ -936,6 +969,9 @@
   <data name="toolStripSeparator55.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 6</value>
   </data>
+  <data name="benhNhanThanThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="benhNhanThanThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 22</value>
   </data>
@@ -944,6 +980,9 @@
   </data>
   <data name="toolStripSeparator64.Size" type="System.Drawing.Size, System.Drawing">
     <value>207, 6</value>
+  </data>
+  <data name="benhNhanNgoaiGoiKhamToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="benhNhanNgoaiGoiKhamToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 22</value>
@@ -960,6 +999,9 @@
   <data name="patientToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Bệnh nhân</value>
   </data>
+  <data name="companyListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="companyListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
@@ -968,6 +1010,9 @@
   </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 6</value>
+  </data>
+  <data name="contractListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="contractListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
@@ -984,6 +1029,9 @@
   <data name="companyToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Công ty</value>
   </data>
+  <data name="receiptListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="receiptListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
@@ -992,6 +1040,9 @@
   </data>
   <data name="toolStripSeparator24.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 6</value>
+  </data>
+  <data name="phieuThuThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="phieuThuThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
@@ -1002,6 +1053,9 @@
   <data name="toolStripSeparator37.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 6</value>
   </data>
+  <data name="phieuThuHopDongToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="phieuThuHopDongToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
@@ -1011,6 +1065,9 @@
   <data name="toolStripSeparator53.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 6</value>
   </data>
+  <data name="phieuThuCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="phieuThuCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>245, 22</value>
   </data>
@@ -1019,6 +1076,9 @@
   </data>
   <data name="toolStripSeparator65.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 6</value>
+  </data>
+  <data name="chiTietPhieuThuDichVuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="chiTietPhieuThuDichVuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1059,6 +1119,9 @@
   <data name="receiptToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Phiếu thu</value>
   </data>
+  <data name="invoiceListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="invoiceListToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
   </data>
@@ -1067,6 +1130,9 @@
   </data>
   <data name="toolStripSeparator33.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 6</value>
+  </data>
+  <data name="hoaDonThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="hoaDonThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
@@ -1077,6 +1143,9 @@
   <data name="toolStripSeparator34.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 6</value>
   </data>
+  <data name="hoaDonXuatTruocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="hoaDonXuatTruocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
   </data>
@@ -1085,6 +1154,9 @@
   </data>
   <data name="toolStripSeparator38.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 6</value>
+  </data>
+  <data name="hoaDonHopDongToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="hoaDonHopDongToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>179, 22</value>
@@ -1101,6 +1173,9 @@
   <data name="invoiceToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Hóa đơn</value>
   </data>
+  <data name="danhMucThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="danhMucThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 22</value>
   </data>
@@ -1109,6 +1184,9 @@
   </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 6</value>
+  </data>
+  <data name="nhomThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="nhomThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 22</value>
@@ -1119,6 +1197,9 @@
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 6</value>
   </data>
+  <data name="loThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="loThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 22</value>
   </data>
@@ -1128,6 +1209,9 @@
   <data name="toolStripSeparator20.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 6</value>
   </data>
+  <data name="giaThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="giaThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 22</value>
   </data>
@@ -1136,6 +1220,9 @@
   </data>
   <data name="toolStripSeparator21.Size" type="System.Drawing.Size, System.Drawing">
     <value>159, 6</value>
+  </data>
+  <data name="keToaToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="keToaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 22</value>
@@ -1152,6 +1239,9 @@
   <data name="thuocToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Thuốc</value>
   </data>
+  <data name="doanhThuNhanVienToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="doanhThuNhanVienToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
@@ -1160,6 +1250,9 @@
   </data>
   <data name="toolStripSeparator16.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
+  </data>
+  <data name="doanhThuTheoNgayToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="doanhThuTheoNgayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
@@ -1170,6 +1263,9 @@
   <data name="toolStripSeparator31.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
   </data>
+  <data name="dichVuHopDongToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="dichVuHopDongToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
@@ -1178,6 +1274,9 @@
   </data>
   <data name="toolStripSeparator22.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
+  </data>
+  <data name="dichVuTuTucToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="dichVuTuTucToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
@@ -1188,6 +1287,9 @@
   <data name="toolStripSeparator26.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
   </data>
+  <data name="thuocHetHanToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="thuocHetHanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
@@ -1197,13 +1299,16 @@
   <data name="toolStripSeparator23.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
   </data>
+  <data name="thuocTonKhoToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="thuocTonKhoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
   <data name="thuocTonKhoToolStripMenuItem.Text" xml:space="preserve">
     <value>Thuốc tồn kho</value>
   </data>
-  <data name="thuocTonKhoToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+  <data name="thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -1212,8 +1317,14 @@
   <data name="thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Text" xml:space="preserve">
     <value>Thuốc tồn kho theo khoảng thời gian</value>
   </data>
+  <data name="thuocTonKhoTheoKhoangThoiGianToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="toolStripSeparator29.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
+  </data>
+  <data name="inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
@@ -1224,6 +1335,9 @@
   <data name="toolStripSeparator32.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
   </data>
+  <data name="dichVuChuaXuatPhieuThuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="dichVuChuaXuatPhieuThuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
@@ -1233,6 +1347,9 @@
   <data name="toolStripSeparator35.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
   </data>
+  <data name="thongKeHoaDonToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="thongKeHoaDonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 22</value>
   </data>
@@ -1241,6 +1358,9 @@
   </data>
   <data name="toolStripSeparator45.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
+  </data>
+  <data name="baoCaoKhachHangMuaThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="baoCaoKhachHangMuaThuocToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1284,6 +1404,9 @@
   </data>
   <data name="toolStripSeparator48.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
+  </data>
+  <data name="baoCaoSoLuongKhamToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="baoCaoSoLuongKhamToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1337,6 +1460,9 @@
   <data name="reportToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Báo cáo</value>
   </data>
+  <data name="yKienKhachHangToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="yKienKhachHangToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1374,6 +1500,9 @@
   </data>
   <data name="toolStripSeparator39.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 6</value>
+  </data>
+  <data name="nhatKyLienHeCongTyToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="nhatKyLienHeCongTyToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1550,6 +1679,9 @@
   <data name="xetNghiemToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Xét nghiệm</value>
   </data>
+  <data name="danhMucCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="danhMucCapCuuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1564,13 +1696,16 @@
 </value>
   </data>
   <data name="danhMucCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>212, 30</value>
   </data>
   <data name="danhMucCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục cấp cứu</value>
   </data>
   <data name="toolStripSeparator60.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
+    <value>209, 6</value>
+  </data>
+  <data name="nhapKhoCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="nhapKhoCapCuuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1597,10 +1732,13 @@
 </value>
   </data>
   <data name="nhapKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>212, 30</value>
   </data>
   <data name="nhapKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhập kho cấp cứu</value>
+  </data>
+  <data name="xuatKhoCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="xuatKhoCapCuuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1626,22 +1764,28 @@
 </value>
   </data>
   <data name="xuatKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>212, 30</value>
   </data>
   <data name="xuatKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Xuất kho cấp cứu</value>
   </data>
   <data name="toolStripSeparator66.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
+    <value>209, 6</value>
+  </data>
+  <data name="giaCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="giaCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>212, 30</value>
   </data>
   <data name="giaCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Giá cấp cứu</value>
   </data>
   <data name="toolStripSeparator61.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
+    <value>209, 6</value>
+  </data>
+  <data name="baoCaoCapCuuHetHanToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="baoCaoCapCuuHetHanToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1672,10 +1816,13 @@
 </value>
   </data>
   <data name="baoCaoCapCuuHetHanToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>212, 30</value>
   </data>
   <data name="baoCaoCapCuuHetHanToolStripMenuItem.Text" xml:space="preserve">
     <value>Báo cáo cấp cứu hết hạn</value>
+  </data>
+  <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1705,13 +1852,13 @@
 </value>
   </data>
   <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>212, 30</value>
   </data>
   <data name="baoCaoTonKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Báo cáo tồn kho cấp cứu</value>
   </data>
   <data name="toolStripSeparator62.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 6</value>
+    <value>209, 6</value>
   </data>
   <data name="cauHinhKhoCapCuuToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1772,7 +1919,7 @@
 </value>
   </data>
   <data name="cauHinhKhoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 22</value>
+    <value>212, 30</value>
   </data>
   <data name="cauHinhKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình kho cấp cứu</value>
@@ -1792,6 +1939,9 @@
   <data name="dICOMToolStripMenuItem.Text" xml:space="preserve">
     <value>DICOM</value>
   </data>
+  <data name="printLabelToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="printLabelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
@@ -1801,6 +1951,9 @@
   <data name="toolStripSeparator27.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
+  <data name="trackingToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="trackingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 22</value>
   </data>
@@ -1809,6 +1962,9 @@
   </data>
   <data name="toolStripSeparator42.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
+  </data>
+  <data name="bookingToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="bookingToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1884,6 +2040,9 @@
   <data name="toolStripSeparator57.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
+  <data name="tiemNguaToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="tiemNguaToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1952,6 +2111,9 @@
   <data name="toolStripSeparator58.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
+  <data name="congTacNgoaiGioToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="congTacNgoaiGioToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -1992,6 +2154,9 @@
   <data name="toolStripSeparator59.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
   </data>
+  <data name="lichKhamToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="lichKhamToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -2027,6 +2192,9 @@
   </data>
   <data name="toolStripSeparator63.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 6</value>
+  </data>
+  <data name="thongBaoToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="thongBaoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
