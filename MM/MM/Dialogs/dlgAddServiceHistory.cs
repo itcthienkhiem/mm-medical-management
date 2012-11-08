@@ -208,13 +208,17 @@ namespace MM.Dialogs
                 cboDocStaff.DataSource = dt;
             }
 
-            if (Global.StaffType == _staffType)
-            {
-                cboDocStaff.SelectedValue = Global.UserGUID;
+            cboDocStaff.SelectedValue = Global.UserGUID;
+
+            if (cboDocStaff.SelectedValue != null)
                 cboDocStaff.Enabled = false;
-            }
             else
                 cboDocStaff.Enabled = true;
+
+            //if (Global.StaffType == _staffType)
+            //    cboDocStaff.Enabled = false;
+            //else
+            //    cboDocStaff.Enabled = true;
         }
 
         private void DisplayInfo(DataRow drServiceHistory)
