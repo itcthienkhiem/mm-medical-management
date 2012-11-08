@@ -93,6 +93,10 @@ namespace MM.Common
         
         //Kê toa
         public static bool AllowViewKeToa = true;
+        public static bool AllowAddKeToa = true;
+        public static bool AllowEditKeToa = true;
+        public static bool AllowDeleteKeToa = true;
+        public static bool AllowPrintKeToa = true;
 
         //Danh Sách địa chỉ công ty
         public static bool AllowViewDSDiaChiCongTy = true;

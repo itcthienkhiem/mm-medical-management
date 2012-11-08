@@ -112,6 +112,11 @@ namespace MM.Controls
             pageKhamCTC.Visible = Global.AllowViewKhamCTC;
             pageKetQuaSieuAm.Visible = Global.AllowViewSieuAm;
 
+            _uToaThuocList.AllowAdd = Global.AllowAddKeToa;
+            _uToaThuocList.AllowEdit = Global.AllowEditKeToa;
+            _uToaThuocList.AllowDelete = Global.AllowDeleteKeToa;
+            _uToaThuocList.AllowPrint = Global.AllowPrintKeToa;
+
             OnRefreshData();
             
         }
