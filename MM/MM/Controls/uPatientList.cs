@@ -886,7 +886,7 @@ namespace MM.Controls
             OnSearchPatient();
 
             if (deletedKeys.Count > 0)
-                RaiseDeletePatient(keys);
+                RaiseDeletePatient(deletedKeys);
         }
         #endregion
 
