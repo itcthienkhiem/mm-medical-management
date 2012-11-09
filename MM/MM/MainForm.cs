@@ -415,23 +415,6 @@ namespace MM
                 toolsToolStripMenuItem.Enabled = isLogin;
                 changePasswordToolStripMenuItem.Enabled = isLogin;
 
-                //Global.AllowShowServiePrice = false;
-                //Global.AllowExportReceipt = false;
-                //Global.AllowPrintReceipt = false;
-                //Global.AllowExportInvoice = false;
-                //Global.AllowPrintInvoice = false;
-                //Global.AllowViewChiDinh = false;
-                //Global.AllowAddChiDinh = false;
-                //Global.AllowEditChiDinh = false;
-                //Global.AllowDeleteChiDinh = false;
-                //Global.AllowConfirmChiDinh = false;
-                //Global.AllowAddPhongCho = false;
-                //Global.AllowViewDSDiaChiCongTy = false;
-                //Global.AllowAddDSDiaChiCongTy = false;
-                //Global.AllowEditDSDiaChiCongTy = false;
-                //Global.AllowDeleteDSDiaChiCongTy = false;
-                //Global.AllowViewTraCuuDanhSachKhachHang = false;
-
                 Global.AllowAddYKienKhachHang = false;
                 Global.AllowShowServiePrice = false;
                 Global.AllowExportReceipt = false;
@@ -493,6 +476,12 @@ namespace MM
                 Global.AllowEditKeToa = false;
                 Global.AllowDeleteKeToa = false;
                 Global.AllowPrintKeToa = false;
+                Global.AllowViewCanLamSang = false;
+                Global.AllowAddCanLamSang = false;
+                Global.AllowEditCanLamSang = false;
+                Global.AllowDeleteCanLamSang = false;
+                Global.AllowTaoHoSo = false;
+                Global.AllowUploadHoSo = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -512,6 +501,8 @@ namespace MM
                         bool isConfirm = Convert.ToBoolean(row["IsConfirm"]);
                         bool isLock = Convert.ToBoolean(row["IsLock"]);
                         bool isExportAll = Convert.ToBoolean(row["IsExportAll"]);
+                        bool isCreateReport = Convert.ToBoolean(row["IsCreateReport"]);
+                        bool isUpload = Convert.ToBoolean(row["IsUpload"]);
 
                         if (functionCode == Const.DocStaff)
                         {
@@ -1418,6 +1409,18 @@ namespace MM
                             _uNguoiSuDungList.AllowExportAll = isExportAll;
                             _uNguoiSuDungList.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.KetQuaCanLamSang)
+                        {
+                            Global.AllowViewCanLamSang = isView;
+                            Global.AllowAddCanLamSang = isAdd;
+                            Global.AllowEditCanLamSang = isEdit;
+                            Global.AllowDeleteCanLamSang = isDelete;
+                        }
+                        else if (functionCode == Const.TaoHoSo)
+                        {
+                            Global.AllowTaoHoSo = isCreateReport;
+                            Global.AllowUploadHoSo = isUpload;
+                        }
                     }
                 }
                 else
@@ -1489,6 +1492,12 @@ namespace MM
                 Global.AllowEditKeToa = true;
                 Global.AllowDeleteKeToa = true;
                 Global.AllowPrintKeToa = true;
+                Global.AllowViewCanLamSang = true;
+                Global.AllowAddCanLamSang = true;
+                Global.AllowEditCanLamSang = true;
+                Global.AllowDeleteCanLamSang = true;
+                Global.AllowTaoHoSo = true;
+                Global.AllowUploadHoSo = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   

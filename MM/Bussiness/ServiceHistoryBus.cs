@@ -68,7 +68,7 @@ namespace MM.Bussiness
                 List<ServiceHistoryView> serviceHistoryList = (from s in db.ServiceHistoryViews
                                                                where s.PatientGUID.ToString() == patientGUID &&
                                                                s.ActivedDate.Value >= fromDate && s.ActivedDate.Value <= toDate &&
-                                                               s.Status == (byte)Status.Actived && s.Type == (byte)type && 
+                                                               s.Status == (byte)Status.Actived && s.Type == (byte)type &&
                                                                s.ServiceStatus == (byte)Status.Actived
                                                                orderby s.Name ascending
                                                                select s).ToList<ServiceHistoryView>();

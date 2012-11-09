@@ -664,5 +664,63 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetNgayKhamCuoiCung(string patientGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT Max(NgayCanDo) FROM CanDo WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaLamSang WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKetLuan) FROM KetLuan WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaCanLamSang WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(Ngay) FROM LoiKhuyen WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaNoiSoi WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaSoiCTC WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgaySieuAm) FROM KetQuaSieuAm WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1}",
+                    patientGUID, (byte)Status.Actived);
+
+                result = ExcuteQueryDataSet(query);
+
+                if (!result.IsOK) return result;
+
+                DataSet ds = result.QueryResult as DataSet;
+                List<DateTime> ngayCuoiCungList = new List<DateTime>();
+
+                DateTime maxDate = Global.MinDateTime;
+
+                foreach (DataTable dt in ds.Tables)
+                {
+                    DateTime ngayCuoiCung = Global.MinDateTime;
+                    if (dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
+                        ngayCuoiCung = Convert.ToDateTime(dt.Rows[0][0]);
+
+                    ngayCuoiCungList.Add(ngayCuoiCung);
+
+                    if (maxDate < ngayCuoiCung) maxDate = ngayCuoiCung;
+                }
+
+                if (maxDate != Global.MinDateTime)
+                {
+                    DateTime dtTemp = maxDate.AddDays(-1);
+                    DateTime fromDate = new DateTime(dtTemp.Year, dtTemp.Month, dtTemp.Day, 0, 0, 0);
+
+                    for (int i = 0; i < ngayCuoiCungList.Count; i++)
+                    {
+                        DateTime ngayCuoiCung = ngayCuoiCungList[i];
+                        if (ngayCuoiCung == Global.MinDateTime) continue;
+                        if (ngayCuoiCung < fromDate) ngayCuoiCungList[i] = Global.MinDateTime;
+                    }
+                }
+
+                result.QueryResult = ngayCuoiCungList;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }
