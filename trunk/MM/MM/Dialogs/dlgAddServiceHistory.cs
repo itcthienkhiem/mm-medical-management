@@ -210,7 +210,7 @@ namespace MM.Dialogs
 
             cboDocStaff.SelectedValue = Global.UserGUID;
 
-            if (cboDocStaff.SelectedValue != null)
+            if (cboDocStaff.SelectedValue != null && cboDocStaff.SelectedValue.ToString() != Guid.Empty.ToString())
                 cboDocStaff.Enabled = false;
             else
                 cboDocStaff.Enabled = true;
