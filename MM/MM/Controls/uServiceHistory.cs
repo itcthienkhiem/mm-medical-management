@@ -92,7 +92,7 @@ namespace MM.Controls
 
             btnAdd.Enabled = Global.AllowAddDichVuDaSuDung;
             btnDelete.Enabled = Global.AllowDeleteDichVuDaSuDung;
-            btnExportReceipt.Enabled = Global.AllowExportDichVuDaSuDung;
+            btnExportReceipt.Enabled = Global.AllowExportPhieuThuDichVu;
         }
 
         private void OnAdd()
@@ -389,7 +389,7 @@ namespace MM.Controls
                         base.RaiseExportReceiptChanged();
                         DisplayAsThread();
 
-                        if (Global.AllowPrintReceipt)
+                        if (Global.AllowPrintPhieuThuDichVu)
                         {
                             if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
                                 OnPrint(receipt.ReceiptGUID.ToString());

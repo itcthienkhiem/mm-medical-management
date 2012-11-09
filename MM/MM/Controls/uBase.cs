@@ -54,6 +54,7 @@ namespace MM.Controls
         public bool AllowLock = true;
         public bool AllowExportAll = true;
         public bool AllowView = true;
+        public bool AllowExportInvoice = true;
         #endregion
 
         #region Constructor

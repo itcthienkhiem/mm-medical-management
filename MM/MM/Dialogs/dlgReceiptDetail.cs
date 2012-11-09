@@ -42,9 +42,9 @@ namespace MM.Dialogs
         #region UI Command
         private void UpdateGUI()
         {
-            btnPrint.Enabled = Global.AllowPrintReceipt;
+            btnPrint.Enabled = Global.AllowPrintPhieuThuDichVu;
             bool isExportedInvoice = Convert.ToBoolean(_drReceipt["IsExportedInVoice"]);
-            btnExportInvoice.Enabled = Global.AllowExportInvoice && !isExportedInvoice;
+            btnExportInvoice.Enabled = Global.AllowExportHoaDonDichVu && !isExportedInvoice;
         }
 
         private void DisplayInfo(DataRow drReceipt)

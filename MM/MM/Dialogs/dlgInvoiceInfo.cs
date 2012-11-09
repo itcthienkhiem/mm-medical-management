@@ -38,7 +38,7 @@ namespace MM.Dialogs
             InitializeComponent();
             _receiptList = receiptList;
             cboHinhThucThanhToan.SelectedIndex = 0;
-            btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
+            btnExportAndPrint.Enabled = Global.AllowPrintHoaDonDichVu;
         }
 
         public dlgInvoiceInfo(DataRow drInvoice, bool isView)
@@ -47,7 +47,7 @@ namespace MM.Dialogs
             _drInvoice = drInvoice;
             _isView = isView;
             cboHinhThucThanhToan.SelectedIndex = 0;
-            btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
+            btnExportAndPrint.Enabled = Global.AllowPrintHoaDonDichVu;
 
             if (_isView)
             {

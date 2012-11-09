@@ -23,10 +23,39 @@ namespace MM.Common
         public static string Password = string.Empty;
         public static StaffType StaffType = Common.StaffType.Admin;
         public static bool AllowShowServiePrice = true;
-        public static bool AllowPrintReceipt = true;
-        public static bool AllowExportReceipt = true;
-        public static bool AllowExportInvoice = true;
-        public static bool AllowPrintInvoice = true;
+
+        //Phiếu thu dịch vụ
+        public static bool AllowExportPhieuThuDichVu = true;
+        public static bool AllowPrintPhieuThuDichVu = true;
+
+        //Phiếu thu thuốc
+        public static bool AllowExportPhieuThuThuoc = true;
+        public static bool AllowPrintPhieuThuThuoc = true;
+
+        //Phiếu thu hợp đồng
+        public static bool AllowExportPhieuThuHopDong = true;
+        public static bool AllowPrintPhieuThuHopDong = true;
+
+        //Phiếu thu cấp cứu
+        public static bool AllowExportPhieuThuCapCuu = true;
+        public static bool AllowPrintPhieuThuCapCuu = true;
+
+        //Hóa đơn dịch vụ
+        public static bool AllowExportHoaDonDichVu = true;
+        public static bool AllowPrintHoaDonDichVu = true;
+
+        //Hóa đơn thuốc
+        public static bool AllowExportHoaDonThuoc = true;
+        public static bool AllowPrintHoaDonThuoc = true;
+
+        //Hóa đơn hợp đồng
+        public static bool AllowExportHoaDonHopDong = true;
+        public static bool AllowPrintHoaDonHopDong = true;
+
+        //Hóa đơn xuất trước
+        public static bool AllowExportHoaDonXuatTruoc = true;
+        public static bool AllowPrintHoaDonXuatTruoc = true;
+
         public static string PrintLabelConfigPath = string.Format("{0}\\PrintLabelConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
         public static PrintLabelConfig PrintLabelConfig = new PrintLabelConfig();
         public static bool AllowViewChiDinh = true;
@@ -41,7 +70,6 @@ namespace MM.Common
         public static bool AllowAddDichVuDaSuDung = true;
         public static bool AllowEditDichVuDaSuDung = true;
         public static bool AllowDeleteDichVuDaSuDung = true;
-        public static bool AllowExportDichVuDaSuDung = true;
 
         //Cân đo
         public static bool AllowViewCanDo = true;

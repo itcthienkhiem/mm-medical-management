@@ -59,7 +59,7 @@ namespace MM.Dialogs
             else
             {
                 bool isExportedInvoice = Convert.ToBoolean(_drPhieuThu["IsExported"]);
-                btnExportInvoice.Enabled = Global.AllowExportInvoice && !isExportedInvoice;
+                btnExportInvoice.Enabled = Global.AllowExportHoaDonHopDong && !isExportedInvoice;
             }
         }
 
