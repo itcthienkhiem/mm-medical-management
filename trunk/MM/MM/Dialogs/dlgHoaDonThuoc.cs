@@ -39,7 +39,7 @@ namespace MM.Dialogs
             InitializeComponent();
             _phieuThuThuocList = phieuThuThuocList;
             cboHinhThucThanhToan.SelectedIndex = 0;
-            btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
+            btnExportAndPrint.Enabled = Global.AllowPrintHoaDonThuoc;
         }
 
         public dlgHoaDonThuoc(DataRow drInvoice, bool isView)
@@ -48,7 +48,7 @@ namespace MM.Dialogs
             _drInvoice = drInvoice;
             _isView = isView;
             cboHinhThucThanhToan.SelectedIndex = 0;
-            btnExportAndPrint.Enabled = Global.AllowPrintInvoice;
+            btnExportAndPrint.Enabled = Global.AllowPrintHoaDonThuoc;
 
             if (_isView)
             {

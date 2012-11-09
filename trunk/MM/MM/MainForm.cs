@@ -417,10 +417,16 @@ namespace MM
 
                 Global.AllowAddYKienKhachHang = false;
                 Global.AllowShowServiePrice = false;
-                Global.AllowExportReceipt = false;
-                Global.AllowPrintReceipt = false;
-                Global.AllowExportInvoice = false;
-                Global.AllowPrintInvoice = false;
+                Global.AllowExportPhieuThuDichVu = false;
+                Global.AllowPrintPhieuThuDichVu = false;
+                Global.AllowExportHoaDonDichVu = false;
+                Global.AllowExportHoaDonThuoc = false;
+                Global.AllowExportHoaDonHopDong = false;
+                Global.AllowExportHoaDonXuatTruoc = false;
+                Global.AllowPrintHoaDonDichVu = false;
+                Global.AllowPrintHoaDonThuoc = false;
+                Global.AllowPrintHoaDonHopDong = false;
+                Global.AllowPrintHoaDonXuatTruoc = false;
                 Global.AllowViewChiDinh = false;
                 Global.AllowAddChiDinh = false;
                 Global.AllowEditChiDinh = false;
@@ -431,7 +437,6 @@ namespace MM
                 Global.AllowAddDichVuDaSuDung = false;
                 Global.AllowEditDichVuDaSuDung = false;
                 Global.AllowDeleteDichVuDaSuDung = false;
-                Global.AllowExportDichVuDaSuDung = false;
                 Global.AllowViewCanDo = false;
                 Global.AllowAddCanDo = false;
                 Global.AllowEditCanDo = false;
@@ -632,8 +637,7 @@ namespace MM
                             _uReceiptList.AllowImport = isImport;
                             _uReceiptList.AllowLock = isLock;
 
-                            Global.AllowPrintReceipt = isPrint;
-                            Global.AllowExportReceipt = isExport;
+                            Global.AllowPrintPhieuThuDichVu = isPrint;
                         }
                         else if (functionCode == Const.Invoice)
                         {
@@ -648,8 +652,8 @@ namespace MM
                             _uInvoiceList.AllowImport = isImport;
                             _uInvoiceList.AllowLock = isLock;
 
-                            Global.AllowPrintInvoice = isPrint;
-                            Global.AllowExportInvoice = isExport;
+                            Global.AllowPrintHoaDonDichVu = isPrint;
+                            Global.AllowExportHoaDonDichVu = isExport;
                         }
                         else if (functionCode == Const.DuplicatePatient)
                         {
@@ -875,8 +879,8 @@ namespace MM
                             _uHoaDonThuocList.AllowImport = isImport;
                             _uHoaDonThuocList.AllowLock = isLock;
 
-                            Global.AllowPrintInvoice = isPrint;
-                            Global.AllowExportInvoice = isExport;
+                            Global.AllowPrintHoaDonThuoc = isPrint;
+                            Global.AllowExportHoaDonThuoc = isExport;
                         }
                         else if (functionCode == Const.HoaDonXuatTruoc)
                         {
@@ -891,8 +895,8 @@ namespace MM
                             _uHoaDonXuatTruoc.AllowImport = isImport;
                             _uHoaDonXuatTruoc.AllowLock = isLock;
 
-                            Global.AllowPrintInvoice = isPrint;
-                            Global.AllowExportInvoice = isExport;
+                            Global.AllowPrintHoaDonXuatTruoc = isPrint;
+                            Global.AllowExportHoaDonXuatTruoc = isExport;
                         }
                         else if (functionCode == Const.DangKyHoaDonXuatTruoc)
                         {
@@ -905,7 +909,7 @@ namespace MM
                             thongKeHoaDonToolStripMenuItem.Enabled = isView && isLogin;
                             _uThongKeHoaDon.AllowPrint = isPrint;
                             _uThongKeHoaDon.AllowLock = isLock;
-                            Global.AllowPrintInvoice = isPrint;
+                            //Global.AllowPrintInvoice = isPrint;
                         }
                         else if (functionCode == Const.PhucHoiBenhNhan)
                         {
@@ -940,6 +944,9 @@ namespace MM
                             _uHoaDonHopDongList.AllowExport = isExport;
                             _uHoaDonHopDongList.AllowImport = isImport;
                             _uHoaDonHopDongList.AllowLock = isLock;
+
+                            Global.AllowPrintHoaDonHopDong = isPrint;
+                            Global.AllowExportHoaDonHopDong = isExport;
                         }
                         else if (functionCode == Const.YKienKhachHang)
                         {
@@ -973,7 +980,7 @@ namespace MM
                             Global.AllowAddDichVuDaSuDung = isAdd;
                             Global.AllowEditDichVuDaSuDung = isEdit;
                             Global.AllowDeleteDichVuDaSuDung = isDelete;
-                            Global.AllowExportDichVuDaSuDung = isExport;
+                            Global.AllowExportPhieuThuDichVu = isExport;
                         }
                         else if (functionCode == Const.CanDo)
                         {
@@ -1432,10 +1439,16 @@ namespace MM
             else
             {
                 Global.AllowShowServiePrice = true;
-                Global.AllowExportReceipt = true;
-                Global.AllowPrintReceipt = true;
-                Global.AllowExportInvoice = true;
-                Global.AllowPrintInvoice = true;
+                Global.AllowExportPhieuThuDichVu = true;
+                Global.AllowPrintPhieuThuDichVu = true;
+                Global.AllowExportHoaDonDichVu = true;
+                Global.AllowExportHoaDonThuoc = true;
+                Global.AllowExportHoaDonHopDong = true;
+                Global.AllowExportHoaDonXuatTruoc = true;
+                Global.AllowPrintHoaDonDichVu = true;
+                Global.AllowPrintHoaDonThuoc = true;
+                Global.AllowPrintHoaDonHopDong = true;
+                Global.AllowPrintHoaDonXuatTruoc = true;
                 Global.AllowViewChiDinh = true;
                 Global.AllowAddChiDinh = true;
                 Global.AllowEditChiDinh = true;
@@ -1446,7 +1459,6 @@ namespace MM
                 Global.AllowAddDichVuDaSuDung = true;
                 Global.AllowEditDichVuDaSuDung = true;
                 Global.AllowDeleteDichVuDaSuDung = true;
-                Global.AllowExportDichVuDaSuDung = true;
                 Global.AllowViewCanDo = true;
                 Global.AllowAddCanDo = true;
                 Global.AllowEditCanDo = true;

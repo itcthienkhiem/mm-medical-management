@@ -38,7 +38,8 @@ namespace MM.Controls
         #region UI Command
         private void UpdateGUI()
         {
-            btnPrint.Enabled = AllowPrint;
+            btnPrint.Enabled = Global.AllowPrintHoaDonDichVu || Global.AllowPrintHoaDonThuoc ||
+                Global.AllowPrintHoaDonXuatTruoc || Global.AllowPrintHoaDonHopDong;
         }
 
         public void DisplayAsThread()
@@ -113,8 +114,41 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
+                    string loaiHoaDon = row["LoaiHoaDon"].ToString();
+                    switch (loaiHoaDon)
+                    {
+                        case "Hóa đơn dịch vụ":
+                            if (!Global.AllowPrintHoaDonDichVu)
+                            {
+                                MsgBox.Show(Application.ProductName, "Bạn không có quyền in hóa đơn dịch vụ. Vui lòng kiểm tra lại", IconType.Information);
+                                return;
+                            }
+                            break;
+                        case "Hóa đơn thuốc":
+                            if (!Global.AllowPrintHoaDonThuoc)
+                            {
+                                MsgBox.Show(Application.ProductName, "Bạn không có quyền in hóa đơn thuốc. Vui lòng kiểm tra lại", IconType.Information);
+                                return;
+                            }
+                            break;
+                        case "Hóa đơn hợp đồng":
+                            if (!Global.AllowPrintHoaDonHopDong)
+                            {
+                                MsgBox.Show(Application.ProductName, "Bạn không có quyền in hóa đơn hợp đồng. Vui lòng kiểm tra lại", IconType.Information);
+                                return;
+                            }
+                            break;
+                        case "Hóa đơn xuất trước":
+                            if (!Global.AllowPrintHoaDonXuatTruoc)
+                            {
+                                MsgBox.Show(Application.ProductName, "Bạn không có quyền in hóa đơn xuất trước. Vui lòng kiểm tra lại", IconType.Information);
+                                return;
+                            }
+                            break;
+                    }
+
                     checkedInvoicetList.Add(row["HoaDonThuocGUID"].ToString());
-                    loaiHoaDonList.Add(row["LoaiHoaDon"].ToString());
+                    loaiHoaDonList.Add(loaiHoaDon);
                 }
             }
 
