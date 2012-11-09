@@ -260,5 +260,42 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetNgayCanDoCuoiCung(string patientGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT Max(NgayCanDo) FROM CanDo WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1}",
+                    patientGUID, (byte)Status.Actived);
+
+                result = ExcuteQuery(query);
+
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt == null || dt.Rows.Count <= 0)
+                    result.QueryResult = Global.MinDateTime;
+                else
+                {
+                    if (dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
+                        result.QueryResult = Convert.ToDateTime(dt.Rows[0][0]);
+                    else result.QueryResult = Global.MinDateTime;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }

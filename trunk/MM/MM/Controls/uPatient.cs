@@ -64,6 +64,7 @@ namespace MM.Controls
                 _uCanDoList.PatientRow = (DataRow)value;
                 _uLoiKhuyenList.PatientRow = (DataRow)value;
                 _uKetQuaLamSangList.PatientRow = (DataRow)value;
+                _uKetQuaCanLamSangList.PatientRow = (DataRow)value;
                 _uKetLuanList.PatientRow = (DataRow)value;
                 _uKetQuaNoiSoiList.PatientRow = (DataRow)value;
                 _uKetQuaSoiCTCList.PatientRow = (DataRow)value;
@@ -106,6 +107,7 @@ namespace MM.Controls
             pageChiDinh.Visible = Global.AllowViewChiDinh;
             pageCanDo.Visible = Global.AllowViewCanDo;
             pageKhamLamSang.Visible = Global.AllowViewKhamLamSang;
+            pageCanLamSang.Visible = Global.AllowViewCanLamSang;
             pageLoiKhuyen.Visible = Global.AllowViewLoiKhuyen;
             pageKetLuan.Visible = Global.AllowViewKetLuan;
             pageKhamNoiSoi.Visible = Global.AllowViewKhamNoiSoi;
@@ -161,14 +163,16 @@ namespace MM.Controls
             else if (tabServiceHistory.SelectedTabIndex == 5)
                 _uKetQuaLamSangList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 6)
-                _uLoiKhuyenList.DisplayAsThread();
+                _uKetQuaCanLamSangList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 7)
-                _uKetLuanList.DisplayAsThread();
+                _uLoiKhuyenList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 8)
-                _uKetQuaNoiSoiList.DisplayAsThread();
+                _uKetLuanList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 9)
-                _uKetQuaSoiCTCList.DisplayAsThread();
+                _uKetQuaNoiSoiList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 10)
+                _uKetQuaSoiCTCList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 11)
                 _uKetQuaSieuAmList.DisplayAsThread();
         }
 
@@ -269,14 +273,16 @@ namespace MM.Controls
             else if (tabServiceHistory.SelectedTabIndex == 5)
                 _uKetQuaLamSangList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 6)
-                _uLoiKhuyenList.DisplayAsThread();
+                _uKetQuaCanLamSangList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 7)
-                _uKetLuanList.DisplayAsThread();
+                _uLoiKhuyenList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 8)
-                _uKetQuaNoiSoiList.DisplayAsThread();
+                _uKetLuanList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 9)
-                _uKetQuaSoiCTCList.DisplayAsThread();
+                _uKetQuaNoiSoiList.DisplayAsThread();
             else if (tabServiceHistory.SelectedTabIndex == 10)
+                _uKetQuaSoiCTCList.DisplayAsThread();
+            else if (tabServiceHistory.SelectedTabIndex == 11)
                 _uKetQuaSieuAmList.DisplayAsThread();
         }
 

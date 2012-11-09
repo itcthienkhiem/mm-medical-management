@@ -98,6 +98,12 @@ namespace MM.Common
         public static bool AllowDeleteKeToa = true;
         public static bool AllowPrintKeToa = true;
 
+        //kết quả cận lâm sàng
+        public static bool AllowViewCanLamSang = true;
+        public static bool AllowAddCanLamSang = true;
+        public static bool AllowEditCanLamSang = true;
+        public static bool AllowDeleteCanLamSang = true;
+
         //Danh Sách địa chỉ công ty
         public static bool AllowViewDSDiaChiCongTy = true;
         public static bool AllowAddDSDiaChiCongTy = true;
@@ -109,6 +115,10 @@ namespace MM.Common
 
         //Y kiến khách hàng
         public static bool AllowAddYKienKhachHang = true;
+
+        //Hồ sơ
+        public static bool AllowTaoHoSo = true;
+        public static bool AllowUploadHoSo = true;
 
         public static DateTime MinDateTime = new DateTime(1753, 1, 1);
         public static DateTime MaxDateTime = new DateTime(9997, 12, 31);

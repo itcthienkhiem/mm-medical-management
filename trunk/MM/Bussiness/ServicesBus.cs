@@ -35,6 +35,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetServicesList(ServiceType type)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE Type WHEN 1 THEN N'Lâm sàng' WHEN 0 THEN N'Cận lâm sàng' END AS TypeStr FROM ServiceView WITH(NOLOCK) WHERE Status={0} AND [Type]={1} ORDER BY Name", 
+                    (byte)Status.Actived, (byte)type);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetServiceCount()
         {
             Result result = null;

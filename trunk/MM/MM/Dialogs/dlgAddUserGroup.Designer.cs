@@ -55,6 +55,8 @@
             this.IsExportAll = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.IsConfirm = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.IsLock = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.IsCreateReport = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.IsUpload = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPermission)).BeginInit();
@@ -68,7 +70,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(784, 54);
+            this.groupBox1.Size = new System.Drawing.Size(832, 54);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhóm người sử dụng";
@@ -94,7 +96,7 @@
             this.groupBox2.Controls.Add(this.dgPermission);
             this.groupBox2.Location = new System.Drawing.Point(6, 64);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(784, 471);
+            this.groupBox2.Size = new System.Drawing.Size(832, 471);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Phân quyền";
@@ -127,7 +129,9 @@
             this.IsExport,
             this.IsExportAll,
             this.IsConfirm,
-            this.IsLock});
+            this.IsLock,
+            this.IsCreateReport,
+            this.IsUpload});
             this.dgPermission.DataSource = this.userGroupPermissionViewBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -146,7 +150,7 @@
             this.dgPermission.RowHeadersVisible = false;
             this.dgPermission.RowHeadersWidth = 30;
             this.dgPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPermission.Size = new System.Drawing.Size(763, 442);
+            this.dgPermission.Size = new System.Drawing.Size(811, 442);
             this.dgPermission.TabIndex = 4;
             this.dgPermission.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPermission_CellMouseDown);
             // 
@@ -159,7 +163,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(401, 541);
+            this.btnCancel.Location = new System.Drawing.Point(425, 541);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 15;
@@ -171,7 +175,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(322, 541);
+            this.btnOK.Location = new System.Drawing.Point(346, 541);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 14;
@@ -225,7 +229,7 @@
             this.IsView.HeaderText = "Xem";
             this.IsView.Name = "IsView";
             this.IsView.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsView.Width = 50;
+            this.IsView.Width = 40;
             // 
             // IsAdd
             // 
@@ -233,7 +237,7 @@
             this.IsAdd.HeaderText = "Thêm";
             this.IsAdd.Name = "IsAdd";
             this.IsAdd.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsAdd.Width = 50;
+            this.IsAdd.Width = 40;
             // 
             // IsEdit
             // 
@@ -241,7 +245,7 @@
             this.IsEdit.HeaderText = "Sửa";
             this.IsEdit.Name = "IsEdit";
             this.IsEdit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsEdit.Width = 50;
+            this.IsEdit.Width = 40;
             // 
             // IsDelete
             // 
@@ -249,7 +253,7 @@
             this.IsDelete.HeaderText = "Xóa";
             this.IsDelete.Name = "IsDelete";
             this.IsDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsDelete.Width = 50;
+            this.IsDelete.Width = 40;
             // 
             // IsPrint
             // 
@@ -257,7 +261,7 @@
             this.IsPrint.HeaderText = "In";
             this.IsPrint.Name = "IsPrint";
             this.IsPrint.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsPrint.Width = 50;
+            this.IsPrint.Width = 40;
             // 
             // IsImport
             // 
@@ -265,7 +269,7 @@
             this.IsImport.HeaderText = "Nhập";
             this.IsImport.Name = "IsImport";
             this.IsImport.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsImport.Width = 50;
+            this.IsImport.Width = 40;
             // 
             // IsExport
             // 
@@ -273,7 +277,7 @@
             this.IsExport.HeaderText = "Xuất";
             this.IsExport.Name = "IsExport";
             this.IsExport.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsExport.Width = 50;
+            this.IsExport.Width = 40;
             // 
             // IsExportAll
             // 
@@ -281,7 +285,7 @@
             this.IsExportAll.HeaderText = "Xuất hết";
             this.IsExportAll.Name = "IsExportAll";
             this.IsExportAll.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsExportAll.Width = 60;
+            this.IsExportAll.Width = 55;
             // 
             // IsConfirm
             // 
@@ -289,7 +293,7 @@
             this.IsConfirm.HeaderText = "Duyệt";
             this.IsConfirm.Name = "IsConfirm";
             this.IsConfirm.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsConfirm.Width = 50;
+            this.IsConfirm.Width = 40;
             // 
             // IsLock
             // 
@@ -297,7 +301,21 @@
             this.IsLock.HeaderText = "Khóa";
             this.IsLock.Name = "IsLock";
             this.IsLock.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.IsLock.Width = 50;
+            this.IsLock.Width = 40;
+            // 
+            // IsCreateReport
+            // 
+            this.IsCreateReport.DataPropertyName = "IsCreateReport";
+            this.IsCreateReport.HeaderText = "Tạo hồ sơ";
+            this.IsCreateReport.Name = "IsCreateReport";
+            this.IsCreateReport.Width = 65;
+            // 
+            // IsUpload
+            // 
+            this.IsUpload.DataPropertyName = "IsUpload";
+            this.IsUpload.HeaderText = "Upload hồ sơ";
+            this.IsUpload.Name = "IsUpload";
+            this.IsUpload.Width = 80;
             // 
             // dlgAddUserGroup
             // 
@@ -305,7 +323,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(798, 573);
+            this.ClientSize = new System.Drawing.Size(846, 573);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox2);
@@ -355,5 +373,7 @@
         private Controls.DataGridViewDisableCheckBoxColumn IsExportAll;
         private Controls.DataGridViewDisableCheckBoxColumn IsConfirm;
         private Controls.DataGridViewDisableCheckBoxColumn IsLock;
+        private Controls.DataGridViewDisableCheckBoxColumn IsCreateReport;
+        private Controls.DataGridViewDisableCheckBoxColumn IsUpload;
     }
 }
