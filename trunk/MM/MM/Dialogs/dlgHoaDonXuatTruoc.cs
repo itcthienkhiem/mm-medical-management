@@ -783,6 +783,7 @@ namespace MM.Dialogs
 
         private void cboTenNguoiMuaHang_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (_isView) return;
             RefreshThongTinKhachHang(cboTenNguoiMuaHang.Text);   
         }
 

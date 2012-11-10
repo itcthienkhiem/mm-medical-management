@@ -128,7 +128,6 @@ Global
 		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Debug|x86.Build.0 = Debug|x86
 		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|Any CPU.ActiveCfg = Release|x86
 		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|Mixed Platforms.Build.0 = Release|x86
 		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|x86.ActiveCfg = Release|x86
 		{AC49857E-39C6-4EAD-9A1F-9FAF3D234376}.Release|x86.Build.0 = Release|x86
 		{A151F8C3-2173-4D7D-94BF-79BC03C04FC5}.Debug|Any CPU.ActiveCfg = Debug
