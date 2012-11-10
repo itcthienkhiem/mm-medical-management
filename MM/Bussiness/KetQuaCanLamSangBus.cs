@@ -21,25 +21,31 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (isAll)
                 {
-                    if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
-                        Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat &&
-                        Global.StaffType != StaffType.BacSiPhuKhoa && Global.StaffType != StaffType.XetNghiem)
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND KetQuaCanLamSangStatus = {1} AND ServiceStatus = {1} ORDER BY Name",
+                    //if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
+                    //    Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat &&
+                    //    Global.StaffType != StaffType.BacSiPhuKhoa && Global.StaffType != StaffType.XetNghiem)
+                    //    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND KetQuaCanLamSangStatus = {1} AND ServiceStatus = {1} ORDER BY Name",
+                    //        patientGUID, (byte)Status.Actived);
+                    //else
+                    //    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND KetQuaCanLamSangStatus = {1} AND ServiceStatus = {1} AND (BacSiThucHienGUID = '{2}' OR BacSiThucHienGUID IS NULL) ORDER BY Name",
+                    //        patientGUID, (byte)Status.Actived, Global.UserGUID);
+
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND KetQuaCanLamSangStatus = {1} AND ServiceStatus = {1} ORDER BY Name",
                             patientGUID, (byte)Status.Actived);
-                    else
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND KetQuaCanLamSangStatus = {1} AND ServiceStatus = {1} AND (BacSiThucHienGUID = '{2}' OR BacSiThucHienGUID IS NULL) ORDER BY Name",
-                            patientGUID, (byte)Status.Actived, Global.UserGUID);
                 }
                 else
                 {
-                    if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
-                        Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat &&
-                        Global.StaffType != StaffType.BacSiPhuKhoa && Global.StaffType != StaffType.XetNghiem)
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND KetQuaCanLamSangStatus = {3} AND ServiceStatus = {3} ORDER BY Name",
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND KetQuaCanLamSangStatus = {3} AND ServiceStatus = {3} ORDER BY Name",
                             patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
-                    else
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND KetQuaCanLamSangStatus = {3} AND ServiceStatus = {3} AND (BacSiThucHienGUID = '{4}' OR BacSiThucHienGUID IS NULL) ORDER BY Name",
-                            patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
+
+                    //if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
+                    //    Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat &&
+                    //    Global.StaffType != StaffType.BacSiPhuKhoa && Global.StaffType != StaffType.XetNghiem)
+                    //    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND KetQuaCanLamSangStatus = {3} AND ServiceStatus = {3} ORDER BY Name",
+                    //        patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
+                    //else
+                    //    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaCanLamSangView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND KetQuaCanLamSangStatus = {3} AND ServiceStatus = {3} AND (BacSiThucHienGUID = '{4}' OR BacSiThucHienGUID IS NULL) ORDER BY Name",
+                    //        patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
                 }
 
                 return ExcuteQuery(query);
