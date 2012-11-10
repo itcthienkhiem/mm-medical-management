@@ -191,7 +191,7 @@ namespace MM.Dialogs
                 if (drKetQuaCanLamSang["DeletedBy"] != null && drKetQuaCanLamSang["DeletedBy"] != DBNull.Value)
                     _ketQuaCanLamSang.DeletedBy = Guid.Parse(drKetQuaCanLamSang["DeletedBy"].ToString());
 
-                _ketQuaCanLamSang.Status = Convert.ToByte(drKetQuaCanLamSang["Status"]);
+                _ketQuaCanLamSang.Status = Convert.ToByte(drKetQuaCanLamSang["KetQuaCanLamSangStatus"]);
             }
             catch (Exception e)
             {
