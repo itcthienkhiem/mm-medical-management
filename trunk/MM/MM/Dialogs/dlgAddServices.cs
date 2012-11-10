@@ -52,6 +52,9 @@ namespace MM.Dialogs
         {
             cboType.SelectedIndex = 0;
             cboStaffType.SelectedIndex = 0;
+            label3.Visible = Global.AllowShowServiePrice;
+            label5.Visible = Global.AllowShowServiePrice;
+            numPrice.Visible = Global.AllowShowServiePrice;
         }
 
         private void GenerateCode()
