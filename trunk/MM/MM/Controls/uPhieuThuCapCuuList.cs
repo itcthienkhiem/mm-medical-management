@@ -61,7 +61,7 @@ namespace MM.Controls
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
-            btnExportInvoice.Enabled = AllowExport;
+            //btnExportInvoice.Enabled = Global.AllowEx;
         }
 
         public void ClearData()

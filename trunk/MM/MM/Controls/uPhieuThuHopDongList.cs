@@ -60,7 +60,7 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
-            btnExportInvoice.Enabled = AllowExport;
+            btnExportInvoice.Enabled = Global.AllowExportHoaDonHopDong;
         }
 
         public void ClearData()
