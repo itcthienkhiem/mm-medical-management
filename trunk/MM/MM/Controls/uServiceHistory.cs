@@ -88,6 +88,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
+            Amount.Visible = Global.AllowShowServiePrice;
             pTotal.Visible = Global.AllowShowServiePrice;
 
             btnAdd.Enabled = Global.AllowAddDichVuDaSuDung;
