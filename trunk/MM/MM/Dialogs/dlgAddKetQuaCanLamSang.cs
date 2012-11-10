@@ -92,35 +92,43 @@ namespace MM.Dialogs
             {
                 cboService.DataSource = result.QueryResult;
             }
+
+            DisplayDocStaffList();
         }
 
         private void DisplayDocStaffList()
         {
             //DocStaff
             List<byte> staffTypes = new List<byte>();
-            if (_staffType != StaffType.None)
-            {
-                if (_staffType == StaffType.BacSi)
-                {
-                    staffTypes.Add((byte)StaffType.BacSi);
-                    staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
-                    staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
-                    staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
-                    staffTypes.Add((byte)StaffType.BacSiSieuAm);
-                    staffTypes.Add((byte)StaffType.XetNghiem);
-                }
-                else
-                    staffTypes.Add((byte)_staffType);
-            }
-            else
-            {
-                staffTypes.Add((byte)StaffType.BacSi);
-                staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
-                staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
-                staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
-                staffTypes.Add((byte)StaffType.BacSiSieuAm);
-                staffTypes.Add((byte)StaffType.XetNghiem);
-            }
+            staffTypes.Add((byte)StaffType.BacSi);
+            staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
+            staffTypes.Add((byte)StaffType.BacSiSieuAm);
+
+            //if (_staffType != StaffType.None)
+            //{
+            //    if (_staffType == StaffType.BacSi)
+            //    {
+            //        staffTypes.Add((byte)StaffType.BacSi);
+            //        staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            //        staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            //        staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
+            //        staffTypes.Add((byte)StaffType.BacSiSieuAm);
+            //        staffTypes.Add((byte)StaffType.XetNghiem);
+            //    }
+            //    else
+            //        staffTypes.Add((byte)_staffType);
+            //}
+            //else
+            //{
+            //    staffTypes.Add((byte)StaffType.BacSi);
+            //    staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            //    staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            //    staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
+            //    staffTypes.Add((byte)StaffType.BacSiSieuAm);
+            //    staffTypes.Add((byte)StaffType.XetNghiem);
+            //}
 
             Result result = DocStaffBus.GetDocStaffList(staffTypes);
             if (!result.IsOK)
@@ -139,12 +147,12 @@ namespace MM.Dialogs
                 cboDocStaff.DataSource = dt;
             }
 
-            cboDocStaff.SelectedValue = Global.UserGUID;
+            //cboDocStaff.SelectedValue = Global.UserGUID;
 
-            if (cboDocStaff.SelectedValue != null && cboDocStaff.SelectedValue.ToString() != Guid.Empty.ToString())
-                cboDocStaff.Enabled = false;
-            else
-                cboDocStaff.Enabled = true;
+            //if (cboDocStaff.SelectedValue != null && cboDocStaff.SelectedValue.ToString() != Guid.Empty.ToString())
+            //    cboDocStaff.Enabled = false;
+            //else
+            //    cboDocStaff.Enabled = true;
         }
 
         private void DisplayInfo(DataRow drKetQuaCanLamSang)
@@ -308,21 +316,21 @@ namespace MM.Dialogs
 
         private void cboService_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cboService.SelectedValue == null || cboService.SelectedValue.ToString() == string.Empty) return;
-            DataTable dt = cboService.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return;
+            //if (cboService.SelectedValue == null || cboService.SelectedValue.ToString() == string.Empty) return;
+            //DataTable dt = cboService.DataSource as DataTable;
+            //if (dt == null || dt.Rows.Count <= 0) return;
 
-            string serviceGUID = cboService.SelectedValue.ToString();
-            DataRow[] rows = dt.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
-            if (rows != null && rows.Length > 0)
-            {
-                if (rows[0]["StaffType"] != null && rows[0]["StaffType"] != DBNull.Value)
-                    _staffType = (StaffType)Convert.ToByte(rows[0]["StaffType"]);
-                else
-                    _staffType = StaffType.None;
+            //string serviceGUID = cboService.SelectedValue.ToString();
+            //DataRow[] rows = dt.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+            //if (rows != null && rows.Length > 0)
+            //{
+            //    if (rows[0]["StaffType"] != null && rows[0]["StaffType"] != DBNull.Value)
+            //        _staffType = (StaffType)Convert.ToByte(rows[0]["StaffType"]);
+            //    else
+            //        _staffType = StaffType.None;
 
-                DisplayDocStaffList();
-            }
+            //    DisplayDocStaffList();
+            //}
         }
 
         private void dlgAddServiceHistory_Load(object sender, EventArgs e)
