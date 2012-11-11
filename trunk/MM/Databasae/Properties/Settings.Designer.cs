@@ -109,5 +109,15 @@ namespace MM.Databasae.Properties {
                 return ((string)(this["MMConnectionString6"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=localhost;Initial Catalog=MM;Persist Security Info=True;User ID=sa")]
+        public string MMConnectionString7 {
+            get {
+                return ((string)(this["MMConnectionString7"]));
+            }
+        }
     }
 }
