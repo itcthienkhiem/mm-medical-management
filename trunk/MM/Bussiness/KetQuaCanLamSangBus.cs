@@ -278,6 +278,66 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result InsertMultiKetQuaCanLamSang(List<KetQuaCanLamSang> canLamSangList)
+        {
+            Result result = new Result();
+            MMOverride db = null;
 
+            try
+            {
+                db = new MMOverride();
+                string desc = string.Empty;
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    foreach (KetQuaCanLamSang canLamSang in canLamSangList)
+                    {
+                        canLamSang.KetQuaCanLamSangGUID = Guid.NewGuid();
+                        db.KetQuaCanLamSangs.InsertOnSubmit(canLamSang);
+                        db.SubmitChanges();
+
+                        string bacSiThucHien = string.Empty;
+                        if (canLamSang.DocStaff != null)
+                            bacSiThucHien = canLamSang.DocStaff.Contact.FullName;
+
+                        //Tracking
+                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}'",
+                                canLamSang.KetQuaCanLamSangGUID.ToString(), canLamSang.Patient.Contact.FullName, bacSiThucHien, canLamSang.Service.Name);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Add;
+                        tk.Action = "Thêm thông tin kết quả cận lâm sàng";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+                    }
+
+                    db.SubmitChanges();    
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

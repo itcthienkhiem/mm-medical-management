@@ -131,7 +131,7 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-            dlgAddKetQuaCanLamSang dlg = new dlgAddKetQuaCanLamSang(_patientGUID);
+            dlgAddMultiKetQuaCanLamSang dlg = new dlgAddMultiKetQuaCanLamSang(_patientGUID);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
