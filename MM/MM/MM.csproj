@@ -92,6 +92,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uToaCapCuuList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uToaCapCuuList.Designer.cs">
+      <DependentUpon>uToaCapCuuList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKetQuaCanLamSangList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1531,6 +1537,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uToaCapCuuList.resx">
+      <DependentUpon>uToaCapCuuList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaCanLamSangList.resx">
       <DependentUpon>uKetQuaCanLamSangList.cs</DependentUpon>
     </EmbeddedResource>
@@ -2218,6 +2227,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuDichVuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietPhieuThuThuocView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ChiTietToaCapCuu.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ChiTietToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Company.datasource" />
@@ -2277,6 +2287,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ThuocResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TiemNguaView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ToaCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TrackingView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.UserGroup.datasource" />
