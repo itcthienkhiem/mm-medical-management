@@ -373,6 +373,8 @@ namespace MM
                 _uUserGroupList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uNguoiSuDungList))
                 _uNguoiSuDungList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uToaCapCuuList))
+                _uToaCapCuuList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1428,6 +1430,20 @@ namespace MM
                             Global.AllowTaoHoSo = isCreateReport;
                             Global.AllowUploadHoSo = isUpload;
                         }
+                        else if (functionCode == Const.KeToaCapCuu)
+                        {
+                            khoCapCuuToolStripMenuItem.Enabled = isLogin;
+                            keToaCapCuuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uToaCapCuuList.AllowAdd = isAdd;
+                            _uToaCapCuuList.AllowEdit = isEdit;
+                            _uToaCapCuuList.AllowDelete = isDelete;
+                            _uToaCapCuuList.AllowPrint = isPrint;
+                            _uToaCapCuuList.AllowExport = isExport;
+                            _uToaCapCuuList.AllowImport = isImport;
+                            _uToaCapCuuList.AllowLock = isLock;
+                            _uToaCapCuuList.AllowExportAll = isExportAll;
+                            _uToaCapCuuList.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1644,6 +1660,7 @@ namespace MM
                 nguoiSuDungToolStripMenuItem.Enabled = isLogin;
                 dichVuChuaXuatPhieuThuToolStripMenuItem.Enabled = isLogin;
                 bookingToolStripMenuItem.Enabled = isLogin;
+                keToaCapCuuToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -1986,7 +2003,18 @@ namespace MM
                 case "NhomNguoiSuDung":
                     OnNhomNguoiSuDung();
                     break;
+
+                case "KeToaCapCuu":
+                    OnKeToaCapCuu();
+                    break;
             }
+        }
+
+        private void OnKeToaCapCuu()
+        {
+            this.Text = string.Format("{0} - Ke toa cap cuu", Application.ProductName);
+            ViewControl(_uToaCapCuuList);
+            _uToaCapCuuList.DisplayAsThread();
         }
 
         private void OnNguoiSuDung()

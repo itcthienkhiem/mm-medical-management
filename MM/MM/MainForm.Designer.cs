@@ -199,6 +199,7 @@
             this.toolStripSeparator60 = new System.Windows.Forms.ToolStripSeparator();
             this.nhapKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xuatKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keToaCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator66 = new System.Windows.Forms.ToolStripSeparator();
             this.giaCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator61 = new System.Windows.Forms.ToolStripSeparator();
@@ -261,6 +262,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timerShowAlert = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uToaCapCuuList = new MM.Controls.uToaCapCuuList();
             this._uPhieuThuCapCuuList = new MM.Controls.uPhieuThuCapCuuList();
             this._uGiaCapCuuList = new MM.Controls.uGiaCapCuuList();
             this._uBenhNhanNgoaiGoiKhamList = new MM.Controls.uBenhNhanNgoaiGoiKhamList();
@@ -330,6 +332,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator67 = new System.Windows.Forms.ToolStripSeparator();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1525,6 +1528,8 @@
             this.xuatKhoCapCuuToolStripMenuItem,
             this.toolStripSeparator66,
             this.giaCapCuuToolStripMenuItem,
+            this.toolStripSeparator67,
+            this.keToaCapCuuToolStripMenuItem,
             this.toolStripSeparator61,
             this.baoCaoCapCuuHetHanToolStripMenuItem,
             this.baoCaoTonKhoCapCuuToolStripMenuItem,
@@ -1558,6 +1563,14 @@
             this.xuatKhoCapCuuToolStripMenuItem.Name = "xuatKhoCapCuuToolStripMenuItem";
             this.xuatKhoCapCuuToolStripMenuItem.Tag = "XuatKhoCapCuu";
             this.xuatKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // keToaCapCuuToolStripMenuItem
+            // 
+            resources.ApplyResources(this.keToaCapCuuToolStripMenuItem, "keToaCapCuuToolStripMenuItem");
+            this.keToaCapCuuToolStripMenuItem.Image = global::MM.Properties.Resources.prescription_icon;
+            this.keToaCapCuuToolStripMenuItem.Name = "keToaCapCuuToolStripMenuItem";
+            this.keToaCapCuuToolStripMenuItem.Tag = "KeToaCapCuu";
+            this.keToaCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolStripSeparator66
             // 
@@ -1858,7 +1871,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1879,7 +1892,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -2092,6 +2105,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uToaCapCuuList);
             this._mainPanel.Controls.Add(this._uPhieuThuCapCuuList);
             this._mainPanel.Controls.Add(this._uGiaCapCuuList);
             this._mainPanel.Controls.Add(this._uBenhNhanNgoaiGoiKhamList);
@@ -2160,6 +2174,12 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uToaCapCuuList
+            // 
+            resources.ApplyResources(this._uToaCapCuuList, "_uToaCapCuuList");
+            this._uToaCapCuuList.Name = "_uToaCapCuuList";
+            this._uToaCapCuuList.PatientRow = null;
             // 
             // _uPhieuThuCapCuuList
             // 
@@ -2510,6 +2530,11 @@
             this._timerPatient.Interval = 5000;
             this._timerPatient.Tick += new System.EventHandler(this._timerPatient_Tick);
             // 
+            // toolStripSeparator67
+            // 
+            this.toolStripSeparator67.Name = "toolStripSeparator67";
+            resources.ApplyResources(this.toolStripSeparator67, "toolStripSeparator67");
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2842,6 +2867,9 @@
         private System.Windows.Forms.ToolStripMenuItem nhomNguoiSuDungToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nguoiSuDungToolStripMenuItem;
         private System.Windows.Forms.Timer _timerPatient;
+        private System.Windows.Forms.ToolStripMenuItem keToaCapCuuToolStripMenuItem;
+        private Controls.uToaCapCuuList _uToaCapCuuList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator67;
 
     }
 }
