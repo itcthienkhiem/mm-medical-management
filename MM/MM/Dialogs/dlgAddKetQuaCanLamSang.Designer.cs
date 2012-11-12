@@ -41,10 +41,10 @@
             this.chkPositive = new System.Windows.Forms.CheckBox();
             this.chkNegative = new System.Windows.Forms.CheckBox();
             this.btnChonDichVu = new System.Windows.Forms.Button();
-            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dtpkActiveDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.cboDocStaff = new System.Windows.Forms.ComboBox();
+            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cboService = new System.Windows.Forms.ComboBox();
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtDescription = new System.Windows.Forms.TextBox();
@@ -53,6 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gbNormal.SuspendLayout();
@@ -63,6 +64,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.btnChonDichVu);
             this.groupBox1.Controls.Add(this.dtpkActiveDate);
@@ -75,7 +77,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(532, 320);
+            this.groupBox1.Size = new System.Drawing.Size(532, 348);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
@@ -191,10 +193,6 @@
             this.btnChonDichVu.UseVisualStyleBackColor = true;
             this.btnChonDichVu.Click += new System.EventHandler(this.btnChonDichVu_Click);
             // 
-            // docStaffViewBindingSource
-            // 
-            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
-            // 
             // dtpkActiveDate
             // 
             this.dtpkActiveDate.CustomFormat = "dd/MM/yyyy";
@@ -225,6 +223,10 @@
             this.cboDocStaff.Size = new System.Drawing.Size(293, 21);
             this.cboDocStaff.TabIndex = 5;
             this.cboDocStaff.ValueMember = "DocStaffGUID";
+            // 
+            // docStaffViewBindingSource
+            // 
+            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
             // 
             // cboService
             // 
@@ -285,7 +287,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(274, 326);
+            this.btnCancel.Location = new System.Drawing.Point(274, 354);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 11;
@@ -297,19 +299,31 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(195, 326);
+            this.btnOK.Location = new System.Drawing.Point(195, 354);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 10;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::MM.Properties.Resources.add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(389, 311);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(127, 25);
+            this.btnAdd.TabIndex = 85;
+            this.btnAdd.Text = "    &Thêm lời khuyên";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // dlgAddKetQuaCanLamSang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(545, 355);
+            this.ClientSize = new System.Drawing.Size(545, 385);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -361,5 +375,6 @@
         private System.Windows.Forms.CheckBox chkNormal;
         private System.Windows.Forms.Button btnChonDichVu;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

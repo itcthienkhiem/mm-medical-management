@@ -94,6 +94,14 @@ namespace MM.Dialogs
             }
 
             DisplayDocStaffList();
+
+            btnAdd.Enabled = Global.AllowAddLoiKhuyen;
+        }
+
+        private void OnAddLoiKhuyen()
+        {
+            dlgAddMultiLoiKhuyen dlg = new dlgAddMultiLoiKhuyen(_patientGUID);
+            dlg.ShowDialog(this);
         }
 
         private void DisplayDocStaffList()
@@ -390,6 +398,11 @@ namespace MM.Dialogs
                 cboService.SelectedValue = dlg.ServiceGUID;
             }
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            OnAddLoiKhuyen();
+        }
         #endregion
 
         #region Working Thread
@@ -410,5 +423,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }
