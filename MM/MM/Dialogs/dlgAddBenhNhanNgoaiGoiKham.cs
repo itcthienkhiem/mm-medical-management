@@ -260,6 +260,21 @@ namespace MM.Dialogs
         {
             RefreshNo();
         }
+
+        private void dgBenhNhanNgoaiGoiKham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3 && e.RowIndex >= 0)
+            {
+                dlgSelectPatient dlg = new dlgSelectPatient(_dtBenhNhan);
+                if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                {
+                    string patientGUID = dlg.PatientRow["PatientGUID"].ToString();
+                    string tenBenhNhan = dlg.PatientRow["FullName"].ToString();
+                    dgBenhNhanNgoaiGoiKham.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = tenBenhNhan;
+                    dgBenhNhanNgoaiGoiKham.Rows[e.RowIndex].Cells["PatientGUID"].Value = patientGUID;
+                }
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -281,24 +296,6 @@ namespace MM.Dialogs
         }
         #endregion
 
-        private void dgBenhNhanNgoaiGoiKham_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
-        private void dgBenhNhanNgoaiGoiKham_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 3 && e.RowIndex >= 0)
-            {
-                dlgSelectPatient dlg = new dlgSelectPatient(_dtBenhNhan);
-                if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
-                {
-                    string patientGUID = dlg.PatientRow["PatientGUID"].ToString();
-                    string tenBenhNhan = dlg.PatientRow["FullName"].ToString();
-                    dgBenhNhanNgoaiGoiKham.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = tenBenhNhan;
-                    dgBenhNhanNgoaiGoiKham.Rows[e.RowIndex].Cells["PatientGUID"].Value = patientGUID;
-                }
-            }
-        }
+        
     }
 }

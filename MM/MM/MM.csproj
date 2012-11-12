@@ -887,6 +887,12 @@
     <Compile Include="Controls\uYKienKhachHangList.Designer.cs">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddMultiKetQuaCanLamSang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddMultiKetQuaCanLamSang.Designer.cs">
+      <DependentUpon>dlgAddMultiKetQuaCanLamSang.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddKeToaCapCuu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1858,6 +1864,9 @@
     <EmbeddedResource Include="Controls\uYKienKhachHangList.resx">
       <DependentUpon>uYKienKhachHangList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddMultiKetQuaCanLamSang.resx">
+      <DependentUpon>dlgAddMultiKetQuaCanLamSang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddKeToaCapCuu.resx">
       <DependentUpon>dlgAddKeToaCapCuu.cs</DependentUpon>
     </EmbeddedResource>
@@ -2228,6 +2237,7 @@
     <None Include="Properties\DataSources\MM.Databasae.HoaDonThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetLuanView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.KetQuaCanLamSang.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaCanLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetQuaNoiSoiView.datasource" />
