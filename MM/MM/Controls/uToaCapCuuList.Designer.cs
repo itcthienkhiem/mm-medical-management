@@ -30,8 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -45,30 +46,21 @@
             this.raAll = new System.Windows.Forms.RadioButton();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgToaCapCuu = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.toaCapCuuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maToaCapCuuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayKeToaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bacSiKeToaGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBenhNhanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenCongTyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.updatedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.updatedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deletedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deletedByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgToaCapCuu)).BeginInit();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaCapCuuViewBindingSource)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -225,29 +217,20 @@
             this.colChecked,
             this.maToaCapCuuDataGridViewTextBoxColumn,
             this.ngayKeToaDataGridViewTextBoxColumn,
-            this.fullNameDataGridViewTextBoxColumn,
-            this.bacSiKeToaGUIDDataGridViewTextBoxColumn,
             this.maBenhNhanDataGridViewTextBoxColumn,
             this.tenBenhNhanDataGridViewTextBoxColumn,
             this.diaChiDataGridViewTextBoxColumn,
-            this.tenCongTyDataGridViewTextBoxColumn,
             this.noteDataGridViewTextBoxColumn,
-            this.createdDateDataGridViewTextBoxColumn,
-            this.createdByDataGridViewTextBoxColumn,
-            this.updatedDateDataGridViewTextBoxColumn,
-            this.updatedByDataGridViewTextBoxColumn,
-            this.deletedDateDataGridViewTextBoxColumn,
-            this.deletedByDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn});
+            this.fullNameDataGridViewTextBoxColumn});
             this.dgToaCapCuu.DataSource = this.toaCapCuuViewBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgToaCapCuu.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgToaCapCuu.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgToaCapCuu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgToaCapCuu.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgToaCapCuu.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -262,6 +245,10 @@
             this.dgToaCapCuu.TabIndex = 4;
             this.dgToaCapCuu.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
             // 
+            // toaCapCuuViewBindingSource
+            // 
+            this.toaCapCuuViewBindingSource.DataSource = typeof(MM.Databasae.ToaCapCuuView);
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.chkChecked);
@@ -271,10 +258,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(839, 371);
             this.panel3.TabIndex = 4;
-            // 
-            // toaCapCuuViewBindingSource
-            // 
-            this.toaCapCuuViewBindingSource.DataSource = typeof(MM.Databasae.ToaCapCuuView);
             // 
             // colChecked
             // 
@@ -295,114 +278,61 @@
             // maToaCapCuuDataGridViewTextBoxColumn
             // 
             this.maToaCapCuuDataGridViewTextBoxColumn.DataPropertyName = "MaToaCapCuu";
-            this.maToaCapCuuDataGridViewTextBoxColumn.HeaderText = "MaToaCapCuu";
+            this.maToaCapCuuDataGridViewTextBoxColumn.HeaderText = "Mã toa cấp cứu";
             this.maToaCapCuuDataGridViewTextBoxColumn.Name = "maToaCapCuuDataGridViewTextBoxColumn";
             this.maToaCapCuuDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maToaCapCuuDataGridViewTextBoxColumn.Width = 130;
             // 
             // ngayKeToaDataGridViewTextBoxColumn
             // 
             this.ngayKeToaDataGridViewTextBoxColumn.DataPropertyName = "NgayKeToa";
-            this.ngayKeToaDataGridViewTextBoxColumn.HeaderText = "NgayKeToa";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ngayKeToaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ngayKeToaDataGridViewTextBoxColumn.HeaderText = "Ngày kê toa";
             this.ngayKeToaDataGridViewTextBoxColumn.Name = "ngayKeToaDataGridViewTextBoxColumn";
             this.ngayKeToaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bacSiKeToaGUIDDataGridViewTextBoxColumn
-            // 
-            this.bacSiKeToaGUIDDataGridViewTextBoxColumn.DataPropertyName = "BacSiKeToaGUID";
-            this.bacSiKeToaGUIDDataGridViewTextBoxColumn.HeaderText = "BacSiKeToaGUID";
-            this.bacSiKeToaGUIDDataGridViewTextBoxColumn.Name = "bacSiKeToaGUIDDataGridViewTextBoxColumn";
-            this.bacSiKeToaGUIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // maBenhNhanDataGridViewTextBoxColumn
             // 
             this.maBenhNhanDataGridViewTextBoxColumn.DataPropertyName = "MaBenhNhan";
-            this.maBenhNhanDataGridViewTextBoxColumn.HeaderText = "MaBenhNhan";
+            this.maBenhNhanDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
             this.maBenhNhanDataGridViewTextBoxColumn.Name = "maBenhNhanDataGridViewTextBoxColumn";
             this.maBenhNhanDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maBenhNhanDataGridViewTextBoxColumn.Width = 120;
             // 
             // tenBenhNhanDataGridViewTextBoxColumn
             // 
             this.tenBenhNhanDataGridViewTextBoxColumn.DataPropertyName = "TenBenhNhan";
-            this.tenBenhNhanDataGridViewTextBoxColumn.HeaderText = "TenBenhNhan";
+            this.tenBenhNhanDataGridViewTextBoxColumn.HeaderText = "Tên bệnh nhân";
             this.tenBenhNhanDataGridViewTextBoxColumn.Name = "tenBenhNhanDataGridViewTextBoxColumn";
             this.tenBenhNhanDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenBenhNhanDataGridViewTextBoxColumn.Width = 200;
             // 
             // diaChiDataGridViewTextBoxColumn
             // 
             this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
-            this.diaChiDataGridViewTextBoxColumn.HeaderText = "DiaChi";
+            this.diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
             this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
             this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tenCongTyDataGridViewTextBoxColumn
-            // 
-            this.tenCongTyDataGridViewTextBoxColumn.DataPropertyName = "TenCongTy";
-            this.tenCongTyDataGridViewTextBoxColumn.HeaderText = "TenCongTy";
-            this.tenCongTyDataGridViewTextBoxColumn.Name = "tenCongTyDataGridViewTextBoxColumn";
-            this.tenCongTyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diaChiDataGridViewTextBoxColumn.Width = 250;
             // 
             // noteDataGridViewTextBoxColumn
             // 
             this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Note";
+            this.noteDataGridViewTextBoxColumn.HeaderText = "Ghi chú";
             this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.noteDataGridViewTextBoxColumn.Width = 250;
             // 
-            // createdDateDataGridViewTextBoxColumn
+            // fullNameDataGridViewTextBoxColumn
             // 
-            this.createdDateDataGridViewTextBoxColumn.DataPropertyName = "CreatedDate";
-            this.createdDateDataGridViewTextBoxColumn.HeaderText = "CreatedDate";
-            this.createdDateDataGridViewTextBoxColumn.Name = "createdDateDataGridViewTextBoxColumn";
-            this.createdDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // createdByDataGridViewTextBoxColumn
-            // 
-            this.createdByDataGridViewTextBoxColumn.DataPropertyName = "CreatedBy";
-            this.createdByDataGridViewTextBoxColumn.HeaderText = "CreatedBy";
-            this.createdByDataGridViewTextBoxColumn.Name = "createdByDataGridViewTextBoxColumn";
-            this.createdByDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // updatedDateDataGridViewTextBoxColumn
-            // 
-            this.updatedDateDataGridViewTextBoxColumn.DataPropertyName = "UpdatedDate";
-            this.updatedDateDataGridViewTextBoxColumn.HeaderText = "UpdatedDate";
-            this.updatedDateDataGridViewTextBoxColumn.Name = "updatedDateDataGridViewTextBoxColumn";
-            this.updatedDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // updatedByDataGridViewTextBoxColumn
-            // 
-            this.updatedByDataGridViewTextBoxColumn.DataPropertyName = "UpdatedBy";
-            this.updatedByDataGridViewTextBoxColumn.HeaderText = "UpdatedBy";
-            this.updatedByDataGridViewTextBoxColumn.Name = "updatedByDataGridViewTextBoxColumn";
-            this.updatedByDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // deletedDateDataGridViewTextBoxColumn
-            // 
-            this.deletedDateDataGridViewTextBoxColumn.DataPropertyName = "DeletedDate";
-            this.deletedDateDataGridViewTextBoxColumn.HeaderText = "DeletedDate";
-            this.deletedDateDataGridViewTextBoxColumn.Name = "deletedDateDataGridViewTextBoxColumn";
-            this.deletedDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // deletedByDataGridViewTextBoxColumn
-            // 
-            this.deletedByDataGridViewTextBoxColumn.DataPropertyName = "DeletedBy";
-            this.deletedByDataGridViewTextBoxColumn.HeaderText = "DeletedBy";
-            this.deletedByDataGridViewTextBoxColumn.Name = "deletedByDataGridViewTextBoxColumn";
-            this.deletedByDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Bác sĩ kê toa";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 200;
             // 
             // uToaCapCuuList
             // 
@@ -417,9 +347,9 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgToaCapCuu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.toaCapCuuViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.toaCapCuuViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -440,23 +370,14 @@
         private System.Windows.Forms.DateTimePicker dtpkFromDate;
         private System.Windows.Forms.RadioButton raFromDateToDate;
         private System.Windows.Forms.RadioButton raAll;
+        private System.Windows.Forms.BindingSource toaCapCuuViewBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn maToaCapCuuDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayKeToaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bacSiKeToaGUIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn maBenhNhanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenBenhNhanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenCongTyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdByDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn updatedDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn updatedByDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn deletedDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn deletedByDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource toaCapCuuViewBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
     }
 }

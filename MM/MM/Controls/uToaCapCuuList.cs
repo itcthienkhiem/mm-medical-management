@@ -71,7 +71,7 @@ namespace MM.Controls
                 _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
 
-                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayToaThuocListProc));
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayToaCapCuuListProc));
                 base.ShowWaiting();
             }
             catch (Exception e)
@@ -85,16 +85,9 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayToaThuocList()
+        private void OnDisplayToaCapCuuList()
         {
-            Result result = null;
-            if (_patientRow == null)
-                result = KeToaBus.GetToaThuocList(_isAll, _fromDate, _toDate);
-            else
-            {
-                string patientGUID = _patientRow["PatientGUID"].ToString();
-                result = KeToaBus.GetToaThuocList(patientGUID, Global.UserGUID, _isAll, _fromDate, _toDate);
-            }
+            Result result = KeToaCapCuuBus.GetToaCapCuuList(_isAll, _fromDate, _toDate);
 
             if (result.IsOK)
             {
@@ -109,8 +102,8 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("KeToaBus.GetToaThuocList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("KeToaBus.GetToaThuocList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("KeToaCapCuuBus.GetToaCapCuuList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("KeToaCapCuuBus.GetToaCapCuuList"));
             }
         }
 
@@ -120,52 +113,50 @@ namespace MM.Controls
             dgToaCapCuu.Rows[dgToaCapCuu.RowCount - 1].Selected = true;
         }
 
-        private void OnAddToaThuoc()
+        private void OnAdd()
         {
-            dlgAddToaThuoc dlg = new dlgAddToaThuoc();
-            if (_patientRow != null) dlg.PatientRow = _patientRow;
+            dlgAddKeToaCapCuu dlg = new dlgAddKeToaCapCuu();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
             }
         }
 
-        private void OnEditToaThuoc()
+        private void OnEdit()
         {
             if (dgToaCapCuu.SelectedRows == null || dgToaCapCuu.SelectedRows.Count <= 0)
             {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 toa thuốc.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 toa cấp cứu.", IconType.Information);
                 return;
             }
 
-            DataRow drToaThuoc = (dgToaCapCuu.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddToaThuoc dlg = new dlgAddToaThuoc(drToaThuoc, AllowEdit);
-            if (_patientRow != null) dlg.PatientRow = _patientRow;
+            DataRow drToaCapCuu = (dgToaCapCuu.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddKeToaCapCuu dlg = new dlgAddKeToaCapCuu(drToaCapCuu, AllowEdit);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
             }
         }
 
-        private void OnDeleteToaThuoc()
+        private void OnDelete()
         {
-            List<string> deletedToaThuocList = new List<string>();
+            List<string> deletedList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = dgToaCapCuu.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedToaThuocList.Add(row["ToaThuocGUID"].ToString());
+                    deletedList.Add(row["ToaCapCuuGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
 
-            if (deletedToaThuocList.Count > 0)
+            if (deletedList.Count > 0)
             {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những toa thuốc mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những toa cấp cứu mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = KeToaBus.DeleteToaThuoc(deletedToaThuocList);
+                    Result result = KeToaCapCuuBus.DeleteToaCapCuu(deletedList);
                     if (result.IsOK)
                     {
                         foreach (DataRow row in deletedRows)
@@ -175,35 +166,35 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("KeToaBus.DeleteToaThuoc"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("KeToaBus.DeleteToaThuoc"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("KeToaCapCuuBus.DeleteToaCapCuu"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("KeToaCapCuuBus.DeleteToaCapCuu"));
                     }
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những toa thuốc cần xóa.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những toa cấp cứu cần xóa.", IconType.Information);
         }
         #endregion
 
         #region Window Event Handlers
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            OnAddToaThuoc();
+            OnAdd();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            OnEditToaThuoc();
+            OnEdit();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            OnDeleteToaThuoc();
+            OnDelete();
         }
 
         private void dgThuoc_DoubleClick(object sender, EventArgs e)
         {
-            OnEditToaThuoc();
+            OnEdit();
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -232,12 +223,12 @@ namespace MM.Controls
         #endregion
 
         #region Working Thread
-        private void OnDisplayToaThuocListProc(object state)
+        private void OnDisplayToaCapCuuListProc(object state)
         {
             try
             {
                 //Thread.Sleep(500);
-                OnDisplayToaThuocList();
+                OnDisplayToaCapCuuList();
             }
             catch (Exception e)
             {
