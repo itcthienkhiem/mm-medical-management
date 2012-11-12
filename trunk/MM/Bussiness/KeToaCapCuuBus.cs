@@ -69,7 +69,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetChiTietToaCapCuuList(string toaCapCuuGUID)
+        public static Result GetChiTietToaCapCuu(string toaCapCuuGUID)
         {
             Result result = null;
 
