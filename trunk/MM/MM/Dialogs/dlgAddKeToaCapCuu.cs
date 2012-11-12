@@ -54,6 +54,7 @@ namespace MM.Dialogs
                 txtDiaChi.ReadOnly = true;
                 txtGhiChu.ReadOnly = true;
                 btnChonBenhNhan.Enabled = false;
+                cboDocStaff.Enabled = false;
             }
         }
         #endregion
@@ -432,6 +433,9 @@ namespace MM.Dialogs
                     {
                         DataGridViewRow row = dgChiTiet.Rows[i];
                         ChiTietToaCapCuu cttcc = new ChiTietToaCapCuu();
+                        if (row.Cells["ChiTietToaCapCuuGUID"].Value != null && row.Cells["ChiTietToaCapCuuGUID"].Value != DBNull.Value)
+                            cttcc.ChiTietToaCapCuuGUID = Guid.Parse(row.Cells["ChiTietToaCapCuuGUID"].Value.ToString());
+
                         cttcc.CreatedDate = DateTime.Now;
                         cttcc.CreatedBy = Guid.Parse(Global.UserGUID);
 
@@ -481,13 +485,10 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                if (_isNew)
-                {
-                    if (CheckInfo())
-                        SaveInfoAsThread();
-                    else
-                        e.Cancel = true;
-                }
+                if (CheckInfo())
+                    SaveInfoAsThread();
+                else
+                    e.Cancel = true;
             }
         }
 
