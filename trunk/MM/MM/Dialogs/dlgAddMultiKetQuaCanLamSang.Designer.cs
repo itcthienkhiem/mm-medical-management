@@ -41,7 +41,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgCanLamSang = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.ketQuaCanLamSangBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serviceGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.bacSiThucHienGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -50,6 +49,8 @@
             this.negativeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.positiveDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ketQuaCanLamSangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnAdd = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -101,6 +102,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Controls.Add(this.dtpkActiveDate);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -174,10 +176,6 @@
             this.dgCanLamSang.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgCanLamSang_UserAddedRow);
             this.dgCanLamSang.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgCanLamSang_UserDeletedRow);
             // 
-            // ketQuaCanLamSangBindingSource
-            // 
-            this.ketQuaCanLamSangBindingSource.DataSource = typeof(MM.Databasae.KetQuaCanLamSang);
-            // 
             // colNo
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -242,6 +240,22 @@
             this.noteDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.noteDataGridViewTextBoxColumn.Width = 250;
             // 
+            // ketQuaCanLamSangBindingSource
+            // 
+            this.ketQuaCanLamSangBindingSource.DataSource = typeof(MM.Databasae.KetQuaCanLamSang);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::MM.Properties.Resources.add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(208, 6);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(127, 25);
+            this.btnAdd.TabIndex = 84;
+            this.btnAdd.Text = "    &Thêm lời khuyên";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // dlgAddMultiKetQuaCanLamSang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,5 +303,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn negativeDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn positiveDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

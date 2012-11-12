@@ -55,6 +55,8 @@ namespace MM.Dialogs
             }
 
             DisplayDocStaffList();
+
+            btnAdd.Enabled = Global.AllowAddLoiKhuyen;
         }
 
         private void DisplayDocStaffList()
@@ -195,6 +197,12 @@ namespace MM.Dialogs
                 row.Cells[0].Value = i++;
             }
         }
+
+        private void OnAddLoiKhuyen()
+        {
+            dlgAddMultiLoiKhuyen dlg = new dlgAddMultiLoiKhuyen(_patientGUID);
+            dlg.ShowDialog(this);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -315,6 +323,11 @@ namespace MM.Dialogs
 
             dgCanLamSang.Refresh();
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            OnAddLoiKhuyen();
+        }
         #endregion
 
         #region Working Thread
@@ -335,7 +348,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
     }
 }
