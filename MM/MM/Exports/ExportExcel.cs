@@ -1955,7 +1955,7 @@ namespace MM.Exports
 
                 rowIndex++;
                 range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
-                range.Value = "Cấp cứu mua rồi miễn đổi hoặc trả lại.";
+                range.Value = "Thuốc mua rồi miễn đổi hoặc trả lại.";
                 range.Font.Italic = true;
                 range.Font.Size = 9;
 
