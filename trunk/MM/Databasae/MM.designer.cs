@@ -318,7 +318,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString6, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -75036,6 +75036,8 @@ namespace MM.Databasae
 		
 		private System.Nullable<System.Guid> _ToaCapCuuGUID;
 		
+		private string _MaToaCapCuu;
+		
 		public PhieuThuCapCuuView()
 		{
 		}
@@ -75356,6 +75358,22 @@ namespace MM.Databasae
 				if ((this._ToaCapCuuGUID != value))
 				{
 					this._ToaCapCuuGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaToaCapCuu", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string MaToaCapCuu
+		{
+			get
+			{
+				return this._MaToaCapCuu;
+			}
+			set
+			{
+				if ((this._MaToaCapCuu != value))
+				{
+					this._MaToaCapCuu = value;
 				}
 			}
 		}
