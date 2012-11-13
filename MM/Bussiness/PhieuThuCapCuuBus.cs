@@ -225,9 +225,9 @@ namespace MM.Bussiness
                                 }
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}', Toa thuốc GUID: '{9}'\n",
                                 ptcc.PhieuThuCapCuuGUID.ToString(), ptcc.MaPhieuThuCapCuu, ptcc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                                ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, noteList[index], !ptcc.ChuaThuTien, ptcc.LyDoGiam);
+                                ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, noteList[index], !ptcc.ChuaThuTien, ptcc.LyDoGiam, ptcc.ToaCapCuuGUID.ToString());
                         }
 
                         index++;
@@ -331,9 +331,9 @@ namespace MM.Bussiness
                         db.PhieuThuCapCuus.InsertOnSubmit(ptcc);
                         db.SubmitChanges();
 
-                        desc += string.Format("- Phiếu thu cấp cứu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}'",
+                        desc += string.Format("- Phiếu thu cấp cứu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}', Toa thuốc GUID: '{9}'\n",
                             ptcc.PhieuThuCapCuuGUID.ToString(), ptcc.MaPhieuThuCapCuu, ptcc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                            ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, ptcc.Notes, !ptcc.ChuaThuTien, ptcc.LyDoGiam);
+                            ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, ptcc.Notes, !ptcc.ChuaThuTien, ptcc.LyDoGiam, ptcc.ToaCapCuuGUID.ToString());
 
                         desc += "- Chi tiết phiếu thu cấp cứu được thêm:\n";
 
