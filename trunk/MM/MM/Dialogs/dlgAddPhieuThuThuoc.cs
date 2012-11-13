@@ -108,7 +108,6 @@ namespace MM.Dialogs
             dtpkNgayThu.Value = DateTime.Now;
             OnDisplayToaThuocList();
             OnDisplayThuoc();
-            OnGetSanhSachBenhNhan();
         }
 
         private void OnGetSanhSachBenhNhan()
@@ -696,7 +695,10 @@ namespace MM.Dialogs
         {
             InitData();
             if (_isNew)
+            {
+                OnGetSanhSachBenhNhan();
                 OnGetChiTietPhieuThuThuoc(Guid.Empty.ToString());
+            }
             else
                 DisplayInfo(_drPhieuThu);
 
