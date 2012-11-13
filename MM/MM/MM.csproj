@@ -2287,6 +2287,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ThuocResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TiemNguaView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ToaCapCuu.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TrackingView.datasource" />
