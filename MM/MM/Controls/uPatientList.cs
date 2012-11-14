@@ -54,6 +54,7 @@ namespace MM.Controls
             btnImportExcel.Enabled = AllowImport;
             btnVaoPhongCho.Enabled = Global.AllowAddPhongCho;
             btnTaoHoSo.Enabled = Global.AllowTaoHoSo;
+            btnUploadHoSo.Enabled = Global.AllowUploadHoSo;
         }
 
         public void ClearData()
@@ -1110,9 +1111,41 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void OnXemHoSo()
+        {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                if (!Directory.Exists(Global.HoSoPath))
+                    Directory.CreateDirectory(Global.HoSoPath);
+
+                System.Diagnostics.Process.Start(Global.HoSoPath);
+            }
+            catch (Exception ex)
+            {
+                MM.MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
+        }
+
+        private void OnUploadHoSo()
+        {
+
+        }
         #endregion
 
         #region Window Event Handlers
+        private void btnUploadHoSo_Click(object sender, EventArgs e)
+        {
+            OnUploadHoSo();
+        }
+
+        private void btnXemHoSo_Click(object sender, EventArgs e)
+        {
+            OnXemHoSo();
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OnAddPatient();
@@ -1310,5 +1343,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
