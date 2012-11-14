@@ -923,7 +923,7 @@ namespace MM.Controls
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn tạo hồ sơ cho những bệnh nhân mà bạn đánh dấu ?") == DialogResult.Yes)
                 {
-                    if (OnClearHoSo())
+                    if (OnClearHoSo(checkedRows))
                     {
                         TaoHoSoAsThread(checkedRows);
                     }
@@ -933,16 +933,33 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần tạo hồ sơ.", IconType.Information);
         }
 
-        private bool OnClearHoSo()
+        private bool OnClearHoSo(List<DataRow> checkedRows)
         {
+            Cursor.Current = Cursors.WaitCursor;
             try
             {
-                if (Directory.Exists(Global.HoSoPath))
+
+                //if (Directory.Exists(Global.HoSoPath))
+                //{
+                //    string[] dirs = Directory.GetDirectories(Global.HoSoPath);
+                //    foreach (string dir in dirs)
+                //    {
+                //        Directory.Delete(dir, true);    
+                //    }
+                //}
+
+                foreach (DataRow row in checkedRows)
                 {
-                    string[] dirs = Directory.GetDirectories(Global.HoSoPath);
-                    foreach (string dir in dirs)
+                    string maBenhNhan = row["FileNum"].ToString();
+                    string tenBenhNhan = Utility.ConvertToUnSign(row["FullName"].ToString());
+                    string path = string.Format("{0}\\{1}@{2}", Global.HoSoPath, maBenhNhan, tenBenhNhan);
+                    if (Directory.Exists(path))
                     {
-                        Directory.Delete(dir, true);    
+                        string[] files = Directory.GetFiles(path);
+                        foreach (string file in files)
+                        {
+                            File.Delete(file);
+                        }
                     }
                 }
 
@@ -1131,19 +1148,75 @@ namespace MM.Controls
             }
         }
 
-        private void OnUploadHoSoAsThread()
+        private bool CheckHoSo(List<DataRow> checkedRows)
         {
+            foreach (DataRow row in checkedRows)
+            {
+                string maBenhNhan = row["FileNum"].ToString();
+                string tenBenhNhan = Utility.ConvertToUnSign(row["FullName"].ToString());
+                string path = string.Format("{0}\\{1}@{2}", Global.HoSoPath, maBenhNhan, tenBenhNhan);
+                if (!Directory.Exists(path))
+                {
+                    MsgBox.Show(Application.ProductName, string.Format("Bệnh nhân: '{0}' chưa có hồ sơ để upload. Vui lòng kiểm tra lại.", row["FullName"].ToString()), 
+                        IconType.Information);
+                    return false;
+                }
 
+                string[] files = Directory.GetFiles(path);
+                if (files == null || files.Length <= 0)
+                {
+                    MsgBox.Show(Application.ProductName, string.Format("Bệnh nhân: '{0}' chưa có hồ sơ để upload. Vui lòng kiểm tra lại.", row["FullName"].ToString()),
+                        IconType.Information);
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void OnUploadHoSoAsThread(List<DataRow> checkedRows)
+        {
+            try
+            {
+                if (!CheckHoSo(checkedRows)) return;
+
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
         }
         #endregion
 
         #region Window Event Handlers
         private void btnUploadHoSo_Click(object sender, EventArgs e)
         {
-            if (MsgBox.Question(Application.ProductName, "Bạn có muốn upload hồ sơ ?") == DialogResult.Yes)
+            if (_dataSource == null) return;
+            UpdateChecked();
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataRow[] rows = _dataSource.Select("Checked='True'");
+            if (rows != null && rows.Length > 0)
             {
-                OnUploadHoSoAsThread();
+                foreach (DataRow row in rows)
+                {
+                    checkedRows.Add(row);
+                }
             }
+
+            if (checkedRows.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn upload hồ sơ ?") == DialogResult.Yes)
+                {
+                    OnUploadHoSoAsThread(checkedRows);
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần upload hồ sơ.", IconType.Information);
         }
 
         private void btnXemHoSo_Click(object sender, EventArgs e)
@@ -1173,6 +1246,7 @@ namespace MM.Controls
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
         {
+            if (_dataSource == null) return;
             DataTable dt = dgPatient.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0) return;
             foreach (DataRow row in dt.Rows)
@@ -1339,7 +1413,8 @@ namespace MM.Controls
                 {
                     if (MsgBox.Question(Application.ProductName, "Bạn có muốn upload hồ sơ ?") == DialogResult.Yes)
                     {
-
+                        base.HideWaiting();
+                        OnUploadHoSoAsThread(checkedRows);
                     }
                 }
             }
