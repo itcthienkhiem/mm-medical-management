@@ -270,6 +270,24 @@ Bac si phu trach x
 Da xong x
 --Nguoi giai quyet = Nguoi ket luan
 Nguon
+----------------------------------------------------------
+Triệu chứng
+Dịch vụ
+Mở bệnh nhân
+Danh sách bệnh nhân
+Phục hồi bệnh nhân
+Bệnh nhân thân thuộc
+Hợp đồng
+Thuốc
+Lô thuốc
+Giá thuốc
+Danh sách XN tay
+Danh sách địa chỉ công ty
+Danh mục cấp cứu
+Nhập kho cấp cứu
+Giá cấp cứu
+In nhãn
+
 
 
 
