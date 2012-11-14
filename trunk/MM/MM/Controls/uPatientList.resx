@@ -132,4 +132,20 @@
   <metadata name="patientViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnTaoHoSo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAfpJREFUOE+F0k1r
+        E0EYB/D4cpKeFPTgSVDwIn4BTyLkAwiK4JeQIKihhxxCiCUST6WnBM0iiqSRapsQLIFmX/Jikt1tNm5e
+        3a5d8rZXBSH9+8zQHMKuuPBjGGbmP/vMzJnA6ZfP52/dXjPvBH5PAsbZu85icbIcWmkB/AoGg0XPoG3b
+        0vFhEWOjiNls5ksURdA8JBKJiysBz+9fO2/ub3Ut+Q3m8zlc1/UVDoeRy+UQi8UurQS8fnDhpiFud6aO
+        BVfagCtGfW1uPEMoFEIkEnnkKaFjtGW28zB5HYP4ZV/9+BXYO09YebInQNd1HuA0sjiuCP806SmsTG9A
+        o9GQWf1MWZSQeiug3x+gNxjha1nh5G8tPu4boCiKvDz9j9uf8PTFOjRd57cxso5w2DFh9gbL2/H+gSRJ
+        8nQ6xXg8hkVXZdk/YR1RSwyzh2pTg9rugM2ZTCb+AWzx6IeFg0rdV62l8Q2If4DjOGC+7BXw8lWSl9D+
+        3kWhJHIHSp2PE/8A9sqYz7t7iCeSaKka72ttAyWpArne5H3iDaBnKluWxU++1lRXKLSwTGXVGirYHOIb
+        UBoOhzC7PU/AMrCp6WBzyGpAKpW6ms1mH6qq+oce1Ml/LKrVqiIIwo1oNHqOv8hMJnOPRMgmEch7skMK
+        p3ap/UDekS0SI4/T6fTaX2kJbnOUDZ5BAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

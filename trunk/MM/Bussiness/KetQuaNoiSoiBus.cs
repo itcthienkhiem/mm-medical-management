@@ -45,6 +45,31 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetKetQuaNoiSoiList2(string patientGUID, DateTime fromDate, DateTime toDate)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT * FROM KetQuaNoiSoiView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND Status = {3}",
+                        patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetKetQuaNoiSoiCount()
         {
             Result result = null;

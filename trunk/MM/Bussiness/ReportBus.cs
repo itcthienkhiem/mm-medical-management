@@ -671,7 +671,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT Max(NgayCanDo) FROM CanDo WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaLamSang WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKetLuan) FROM KetLuan WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaCanLamSang WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(Ngay) FROM LoiKhuyen WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaNoiSoi WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaSoiCTC WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgaySieuAm) FROM KetQuaSieuAm WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1}",
+                string query = string.Format("SELECT Max(NgayCanDo) FROM CanDo WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaLamSang WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaCanLamSang WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKetLuan) FROM KetLuan WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(Ngay) FROM LoiKhuyen WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaNoiSoi WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgayKham) FROM KetQuaSoiCTC WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} SELECT Max(NgaySieuAm) FROM KetQuaSieuAm WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1}",
                     patientGUID, (byte)Status.Actived);
 
                 result = ExcuteQueryDataSet(query);

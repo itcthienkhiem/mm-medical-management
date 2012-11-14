@@ -1428,6 +1428,9 @@ namespace MM
                         else if (functionCode == Const.TaoHoSo)
                         {
                             Global.AllowTaoHoSo = isCreateReport;
+                        }
+                        else if (functionCode == Const.UploadHoSo)
+                        {
                             Global.AllowUploadHoSo = isUpload;
                         }
                         else if (functionCode == Const.KeToaCapCuu)

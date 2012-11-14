@@ -90,9 +90,13 @@ namespace MM.Controls
             {
                 DataRow row = _patientRow as DataRow;
                 _patientGUID = row["PatientGUID"].ToString();
-                _isAll = false;
-                _fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                _toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+
+                if (raAll.Checked) _isAll = true;
+                else
+                {
+                    _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
+                    _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+                }
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayKetQuaCanLamSangProc));
                 base.ShowWaiting();

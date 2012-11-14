@@ -53,6 +53,7 @@ namespace MM.Controls
             btnOpenPatient.Enabled = AllowOpenPatient;
             btnImportExcel.Enabled = AllowImport;
             btnVaoPhongCho.Enabled = Global.AllowAddPhongCho;
+            btnTaoHoSo.Enabled = Global.AllowTaoHoSo;
         }
 
         public void ClearData()
@@ -902,6 +903,213 @@ namespace MM.Controls
             if (deletedKeys.Count > 0)
                 RaiseDeletePatient(deletedKeys);
         }
+
+        private void OnTaoHoSo()
+        {
+            if (_dataSource == null) return;
+            UpdateChecked();
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataRow[] rows = _dataSource.Select("Checked='True'");
+            if (rows != null && rows.Length > 0)
+            {
+                foreach (DataRow row in rows)
+                {
+                    checkedRows.Add(row);
+                }
+            }
+
+            if (checkedRows.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn tạo hồ sơ cho những bệnh nhân mà bạn đánh dấu ?") == DialogResult.Yes)
+                {
+                    if (OnClearHoSo())
+                    {
+                        TaoHoSoAsThread(checkedRows);
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần tạo hồ sơ.", IconType.Information);
+        }
+
+        private bool OnClearHoSo()
+        {
+            try
+            {
+                if (Directory.Exists(Global.HoSoPath))
+                {
+                    string[] dirs = Directory.GetDirectories(Global.HoSoPath);
+                    foreach (string dir in dirs)
+                    {
+                        Directory.Delete(dir, true);    
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+                return false;
+            }
+        }
+
+        private void TaoHoSoAsThread(List<DataRow> checkedRows)
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnTaoHoSoProc), checkedRows);
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnTaoHoSo(List<DataRow> checkedRows)
+        {
+            
+            foreach (DataRow row in checkedRows)
+            {
+                string patientGUID = row["PatientGUID"].ToString();
+
+                Result result = ReportBus.GetNgayKhamCuoiCung(patientGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetNgayKhamCuoiCung"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetNgayKhamCuoiCung"));
+                    return;
+                }
+
+                List<DateTime> ngayKhamCuoiCungList = (List<DateTime>)result.QueryResult;
+
+                string maBenhNhan = row["FileNum"].ToString();
+                string tenBenhNhan = Utility.ConvertToUnSign(row["FullName"].ToString());
+                string path = string.Format("{0}\\{1}@{2}", Global.HoSoPath, maBenhNhan, tenBenhNhan);
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+
+                string ketQuaKhamTongQuatFileName = string.Format("{0}\\KetQuaKhamSucKhoeTongQuat_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+                if (!Exports.ExportExcel.ExportKetQuaKhamTongQuatToExcel(ketQuaKhamTongQuatFileName, row, ngayKhamCuoiCungList))
+                    return;
+
+                //Kết quả nội soi
+                if (ngayKhamCuoiCungList[5] != Global.MinDateTime)
+                {
+                    DateTime fromDate = new DateTime(ngayKhamCuoiCungList[5].Year, ngayKhamCuoiCungList[5].Month, ngayKhamCuoiCungList[5].Day, 0, 0, 0);
+                    DateTime toDate = new DateTime(fromDate.Year, fromDate.Month, fromDate.Day, 23, 59, 59);
+
+                    result = KetQuaNoiSoiBus.GetKetQuaNoiSoiList2(patientGUID, fromDate, toDate);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaNoiSoiBus.GetKetQuaNoiSoiList2"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaNoiSoiBus.GetKetQuaNoiSoiList2"));
+                        return;
+                    }
+
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            LoaiNoiSoi loaiNoiSoi = (LoaiNoiSoi)Convert.ToInt32(dr["LoaiNoiSoi"]);
+                            string ketQuaNoiSoiFileName = string.Format("{0}\\KetQuaNoiSoi_{1}_{2}.xls", path, loaiNoiSoi.ToString(),
+                                DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+
+                            switch (loaiNoiSoi)
+                            {
+                                case LoaiNoiSoi.Tai:
+                                    if (!Exports.ExportExcel.ExportKetQuaNoiSoiTaiToExcel(ketQuaNoiSoiFileName, row, dr))
+                                        return;
+                                    break;
+                                case LoaiNoiSoi.Mui:
+                                    if (!Exports.ExportExcel.ExportKetQuaNoiSoiMuiToExcel(ketQuaNoiSoiFileName, row, dr))
+                                        return;
+                                    break;
+                                case LoaiNoiSoi.Hong_ThanhQuan:
+                                    if (!Exports.ExportExcel.ExportKetQuaNoiSoiHongThanhQuanToExcel(ketQuaNoiSoiFileName, row, dr))
+                                        return;
+                                    break;
+                                case LoaiNoiSoi.TaiMuiHong:
+                                    if (!Exports.ExportExcel.ExportKetQuaNoiSoiTaiMuiHongToExcel(ketQuaNoiSoiFileName, row, dr))
+                                        return;
+                                    break;
+                                case LoaiNoiSoi.TongQuat:
+                                    if (!Exports.ExportExcel.ExportKetQuaNoiSoiTongQuatToExcel(ketQuaNoiSoiFileName, row, dr))
+                                        return;
+                                    break;
+                            }
+                        }
+                    }
+                }
+
+                //Kết quả soi CTC
+                if (ngayKhamCuoiCungList[6] != Global.MinDateTime)
+                {
+                    DateTime fromDate = new DateTime(ngayKhamCuoiCungList[6].Year, ngayKhamCuoiCungList[6].Month, ngayKhamCuoiCungList[6].Day, 0, 0, 0);
+                    DateTime toDate = new DateTime(fromDate.Year, fromDate.Month, fromDate.Day, 23, 59, 59);
+
+                    result = KetQuaSoiCTCBus.GetKetQuaSoiCTCList2(patientGUID, fromDate, toDate);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaSoiCTCBus.GetKetQuaSoiCTCList2"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaSoiCTCBus.GetKetQuaSoiCTCList2"));
+                        return;
+                    }
+
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string ketQuaSoiCTCFileName = string.Format("{0}\\KetQuaSoiCTC_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+                            if (!Exports.ExportExcel.ExportKetQuaSoiCTCToExcel(ketQuaSoiCTCFileName, row, dr))
+                                return;
+                        }
+                    }
+                }
+
+                //Kết quả siêu âm
+                if (ngayKhamCuoiCungList[7] != Global.MinDateTime)
+                {
+                    DateTime fromDate = new DateTime(ngayKhamCuoiCungList[7].Year, ngayKhamCuoiCungList[7].Month, ngayKhamCuoiCungList[7].Day, 0, 0, 0);
+                    DateTime toDate = new DateTime(fromDate.Year, fromDate.Month, fromDate.Day, 23, 59, 59);
+
+                    result = SieuAmBus.GetKetQuaSieuAmList2(patientGUID, fromDate, toDate);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("SieuAmBus.GetKetQuaSieuAmList2"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("SieuAmBus.GetKetQuaSieuAmList2"));
+                        return;
+                    }
+
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            string tenSieuAm = Utility.ConvertToUnSign(dr["TenSieuAm"].ToString());
+                            string ketQuaSieuAmFileName = string.Format("{0}\\KetQuaSieuAm_{1}_{2}.rtf", path, tenSieuAm, 
+                                DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+
+                            MethodInvoker method = delegate
+                            {
+                                _uPrintKetQuaSieuAm.PatientRow = row;
+                                _uPrintKetQuaSieuAm.Export(dr, ketQuaSieuAmFileName);
+                            };
+                            if (InvokeRequired) BeginInvoke(method);
+                            else method.Invoke();
+                        }
+                    }
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -1059,6 +1267,11 @@ namespace MM.Controls
         {
             DisplayAsThread();
         }
+
+        private void btnTaoHoSo_Click(object sender, EventArgs e)
+        {
+            OnTaoHoSo();
+        }
         #endregion
 
         #region Working Thread
@@ -1066,7 +1279,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayPatientList();
             }
             catch (Exception e)
@@ -1079,10 +1291,24 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
+
+        private void OnTaoHoSoProc(object state)
+        {
+            try
+            {
+                List<DataRow> checkedRows = (List<DataRow>)state;
+                OnTaoHoSo(checkedRows);
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
         #endregion
-
-        
-
-        
     }
 }
