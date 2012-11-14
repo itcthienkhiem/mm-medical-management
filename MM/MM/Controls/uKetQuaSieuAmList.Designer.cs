@@ -31,9 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uKetQuaSieuAmList));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pFilter = new System.Windows.Forms.Panel();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
@@ -52,13 +51,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgSieuAm = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.ketQuaSieuAmViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ngaySieuAmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bacSiChiDinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bacSiSieuAmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenSieuAmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lamSangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ketQuaSieuAmViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -253,7 +252,7 @@
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 12;
@@ -283,14 +282,14 @@
             this.tenSieuAmDataGridViewTextBoxColumn,
             this.lamSangDataGridViewTextBoxColumn});
             this.dgSieuAm.DataSource = this.ketQuaSieuAmViewBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgSieuAm.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgSieuAm.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgSieuAm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgSieuAm.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgSieuAm.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -298,24 +297,21 @@
             this.dgSieuAm.Location = new System.Drawing.Point(0, 0);
             this.dgSieuAm.MultiSelect = false;
             this.dgSieuAm.Name = "dgSieuAm";
-            this.dgSieuAm.ReadOnly = true;
             this.dgSieuAm.RowHeadersWidth = 30;
             this.dgSieuAm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSieuAm.Size = new System.Drawing.Size(992, 348);
             this.dgSieuAm.TabIndex = 11;
             this.dgSieuAm.DoubleClick += new System.EventHandler(this.dgSieuAm_DoubleClick);
             // 
+            // ketQuaSieuAmViewBindingSource
+            // 
+            this.ketQuaSieuAmViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaSieuAmView);
+            // 
             // colChecked
             // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
@@ -323,10 +319,10 @@
             // ngaySieuAmDataGridViewTextBoxColumn
             // 
             this.ngaySieuAmDataGridViewTextBoxColumn.DataPropertyName = "NgaySieuAm";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ngaySieuAmDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ngaySieuAmDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.ngaySieuAmDataGridViewTextBoxColumn.HeaderText = "Ngày siêu âm";
             this.ngaySieuAmDataGridViewTextBoxColumn.Name = "ngaySieuAmDataGridViewTextBoxColumn";
             this.ngaySieuAmDataGridViewTextBoxColumn.ReadOnly = true;
@@ -362,10 +358,6 @@
             this.lamSangDataGridViewTextBoxColumn.Name = "lamSangDataGridViewTextBoxColumn";
             this.lamSangDataGridViewTextBoxColumn.ReadOnly = true;
             this.lamSangDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // ketQuaSieuAmViewBindingSource
-            // 
-            this.ketQuaSieuAmViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaSieuAmView);
             // 
             // uKetQuaSieuAmList
             // 
@@ -407,12 +399,12 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgSieuAm;
         private System.Windows.Forms.BindingSource ketQuaSieuAmViewBindingSource;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private uPrintKetQuaSieuAm _uPrintKetQuaSieuAm;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngaySieuAmDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bacSiChiDinhDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bacSiSieuAmDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenSieuAmDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lamSangDataGridViewTextBoxColumn;
-        private uPrintKetQuaSieuAm _uPrintKetQuaSieuAm;
     }
 }

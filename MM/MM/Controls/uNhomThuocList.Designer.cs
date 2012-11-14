@@ -39,11 +39,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgNhomThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.nhomThuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.maNhomThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenNhomThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nhomThuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgNhomThuoc)).BeginInit();
@@ -110,7 +110,7 @@
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 5;
@@ -153,12 +153,15 @@
             this.dgNhomThuoc.Location = new System.Drawing.Point(0, 0);
             this.dgNhomThuoc.MultiSelect = false;
             this.dgNhomThuoc.Name = "dgNhomThuoc";
-            this.dgNhomThuoc.ReadOnly = true;
             this.dgNhomThuoc.RowHeadersWidth = 30;
             this.dgNhomThuoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgNhomThuoc.Size = new System.Drawing.Size(780, 429);
             this.dgNhomThuoc.TabIndex = 4;
             this.dgNhomThuoc.DoubleClick += new System.EventHandler(this.dgNhomThuoc_DoubleClick);
+            // 
+            // nhomThuocBindingSource
+            // 
+            this.nhomThuocBindingSource.DataSource = typeof(MM.Databasae.NhomThuoc);
             // 
             // colChecked
             // 
@@ -171,7 +174,6 @@
             this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
@@ -200,10 +202,6 @@
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 300;
             // 
-            // nhomThuocBindingSource
-            // 
-            this.nhomThuocBindingSource.DataSource = typeof(MM.Databasae.NhomThuoc);
-            // 
             // uNhomThuocList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,10 +228,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgNhomThuoc;
+        private System.Windows.Forms.BindingSource nhomThuocBindingSource;
         private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn maNhomThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenNhomThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource nhomThuocBindingSource;
     }
 }
