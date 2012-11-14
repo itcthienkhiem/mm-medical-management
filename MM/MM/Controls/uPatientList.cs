@@ -245,6 +245,7 @@ namespace MM.Controls
                 newRow["Dang_Co_Thai"] = dlg.PatientHistory.Dang_Co_Thai.Value;
 
                 dt.Rows.Add(newRow);
+                _dictPatient.Add(dlg.Patient.PatientGUID.ToString(), newRow);
                 //SelectLastedRow();
                 OnSearchPatient();
             }
@@ -409,6 +410,7 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
+                            _dictPatient.Remove(row["PatientGUID"].ToString());
                             _dataSource.Rows.Remove(row);
                         }
 
