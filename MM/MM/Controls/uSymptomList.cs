@@ -21,6 +21,7 @@ namespace MM.Controls
     {
         #region Members
         DataTable _dataSource = null;
+        Dictionary<string, DataRow> _dictSymptom = null;
         #endregion
 
         #region Constructor
@@ -73,6 +74,12 @@ namespace MM.Controls
                 _dataSource = null;
             }
 
+            if (_dictSymptom != null)
+            {
+                _dictSymptom.Clear();
+                _dictSymptom = null;
+            }
+
             ClearDataSource();
         }
 
@@ -98,6 +105,14 @@ namespace MM.Controls
                 {
                     ClearData();
                     _dataSource = result.QueryResult as DataTable;
+
+                    if (_dictSymptom == null) _dictSymptom = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSource.Rows)
+                    {
+                        string symptomGUID = row["SymptomGUID"].ToString();
+                        _dictSymptom.Add(symptomGUID, row);
+                    }
+
                     OnSearchTrieuChung();
                 };
 
@@ -146,6 +161,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Symptom.Status;
                 dt.Rows.Add(newRow);
+                _dictSymptom.Add(dlg.Symptom.SymptomGUID.ToString(), newRow);
                 //SelectLastedRow();
                 OnSearchTrieuChung();
             }
@@ -160,10 +176,11 @@ namespace MM.Controls
         private DataRow GetDataRow(string symptomGUID)
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("SymptomGUID = '{0}'", symptomGUID));
-            if (rows == null || rows.Length <= 0) return null;
-
-            return rows[0];
+            if (_dictSymptom == null) return null;
+            return _dictSymptom[symptomGUID];
+            //DataRow[] rows = _dataSource.Select(string.Format("SymptomGUID = '{0}'", symptomGUID));
+            //if (rows == null || rows.Length <= 0) return null;
+            //return rows[0];
         }
 
         private void OnEditSymptom()
@@ -211,7 +228,7 @@ namespace MM.Controls
         private void OnDeleteSymptom()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedSympList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = _dataSource;//dgSymptom.DataSource as DataTable;
@@ -233,6 +250,7 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
+                            _dictSymptom.Remove(row["SymptomGUID"].ToString());
                             _dataSource.Rows.Remove(row);
                         }
 
@@ -249,27 +267,27 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những triệu chứng cần xóa.", IconType.Information);
         }
 
-        private void UpdateChecked()
-        {
-            DataTable dt = dgSymptom.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    DataTable dt = dgSymptom.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string serviceGUID1 = row1["SymptomGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("SymptomGUID='{0}'", serviceGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string serviceGUID1 = row1["SymptomGUID"].ToString();
+        //        DataRow[] rows2 = _dataSource.Select(string.Format("SymptomGUID='{0}'", serviceGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
         private void OnSearchTrieuChung()
         {
-            UpdateChecked();
+            //UpdateChecked();
             ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
@@ -354,6 +372,19 @@ namespace MM.Controls
         #endregion
        
         #region Window Event Handlers
+        private void dgSymptom_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgSymptom.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgSymptom.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string symptomGUID = row["SymptomGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictSymptom[symptomGUID]["Checked"] = isChecked;
+        }
+
         private void dgSymptom_DoubleClick(object sender, EventArgs e)
         {
             //if (!AllowEdit) return;
@@ -392,6 +423,9 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+
+                string symptomGUID = row["SymptomGUID"].ToString();
+                _dictSymptom[symptomGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -455,5 +489,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
