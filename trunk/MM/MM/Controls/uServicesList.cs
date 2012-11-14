@@ -19,6 +19,7 @@ namespace MM.Controls
     {
         #region Members
         DataTable _dataSource = null;
+        Dictionary<string, DataRow> _dictServices = null;
         #endregion
 
         #region Constructor
@@ -49,6 +50,12 @@ namespace MM.Controls
                 _dataSource.Rows.Clear();
                 _dataSource.Clear();
                 _dataSource = null;
+            }
+
+            if (_dictServices != null)
+            {
+                _dictServices.Clear();
+                _dictServices = null;
             }
 
             ClearDataSource();
@@ -95,8 +102,15 @@ namespace MM.Controls
                 MethodInvoker method = delegate
                 {
                     ClearData();
-                    //dgService.DataSource = result.QueryResult; 
                     _dataSource = result.QueryResult as DataTable;
+
+                    if (_dictServices == null) _dictServices = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSource.Rows)
+                    {
+                        string serviceGUID = row["ServiceGUID"].ToString();
+                        _dictServices.Add(serviceGUID, row);
+                    }
+
                     OnSearchDichVu();
                 };
 
@@ -151,7 +165,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Service.Status;
                 dt.Rows.Add(newRow);
-                //SelectLastedRow();
+                _dictServices.Add(dlg.Service.ServiceGUID.ToString(), newRow);
                 OnSearchDichVu();
             }
         }
@@ -165,10 +179,12 @@ namespace MM.Controls
         private DataRow GetDataRow(string serviceGUID)
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("ServiceGUID = '{0}'", serviceGUID));
-            if (rows == null || rows.Length <= 0) return null;
+            if (_dictServices == null) return null;
+            return _dictServices[serviceGUID];
+            //DataRow[] rows = _dataSource.Select(string.Format("ServiceGUID = '{0}'", serviceGUID));
+            //if (rows == null || rows.Length <= 0) return null;
 
-            return rows[0];
+            //return rows[0];
         }
 
         private void OnEditService()
@@ -184,7 +200,6 @@ namespace MM.Controls
             string serviceGUID = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row["ServiceGUID"].ToString();
             DataRow drService = GetDataRow(serviceGUID);
             if (drService == null) return;
-            //DataRow drService = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row;
             dlgAddServices dlg = new dlgAddServices(drService);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -222,28 +237,28 @@ namespace MM.Controls
             }
         }
 
-        private void UpdateChecked()
-        {
-            DataTable dt = dgService.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    DataTable dt = dgService.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string serviceGUID1 = row1["ServiceGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string serviceGUID1 = row1["ServiceGUID"].ToString();
+        //        DataRow[] rows2 = _dataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
         private void OnDeleteService()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedServiceList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = _dataSource;//dgService.DataSource as DataTable;
@@ -251,7 +266,6 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    //deletedServiceList.Add(row["ServiceGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
@@ -282,8 +296,8 @@ namespace MM.Controls
                         {
                             foreach (DataRow row in deletedRows)
                             {
+                                _dictServices.Remove(row["ServiceGUID"].ToString());
                                 _dataSource.Rows.Remove(row);
-                                //dt.Rows.Remove(row);
                             }
 
                             OnSearchDichVu();
@@ -302,7 +316,7 @@ namespace MM.Controls
 
         private void OnSearchDichVu()
         {
-            UpdateChecked();
+            //UpdateChecked();
             ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
@@ -352,7 +366,7 @@ namespace MM.Controls
         private void OnExportExcel()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<DataRow> checkedRows = new List<DataRow>();
             DataTable dt = _dataSource;//dgService.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
@@ -377,13 +391,29 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dgService_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgService.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string serviceGUID = row["ServiceGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictServices[serviceGUID]["Checked"] = isChecked;
+        }
+
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
         {
             DataTable dt = dgService.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0) return;
             foreach (DataRow row in dt.Rows)
             {
-                row["Checked"] = chkChecked.Checked;                
+                row["Checked"] = chkChecked.Checked;
+
+                string serviceGUID = row["ServiceGUID"].ToString();
+                _dictServices[serviceGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -473,14 +503,6 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        private void dgService_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        
-
        
     }
 }
