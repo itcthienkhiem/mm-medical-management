@@ -55,6 +55,7 @@
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnTaoHoSo = new System.Windows.Forms.Button();
             this.btnVaoPhongCho = new System.Windows.Forms.Button();
@@ -70,7 +71,8 @@
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
+            this.btnUploadHoSo = new System.Windows.Forms.Button();
+            this.btnXemHoSo = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
@@ -263,8 +265,18 @@
             // 
             this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
             // 
+            // _uPrintKetQuaSieuAm
+            // 
+            this._uPrintKetQuaSieuAm.Location = new System.Drawing.Point(656, 89);
+            this._uPrintKetQuaSieuAm.Name = "_uPrintKetQuaSieuAm";
+            this._uPrintKetQuaSieuAm.PatientRow = null;
+            this._uPrintKetQuaSieuAm.Size = new System.Drawing.Size(241, 184);
+            this._uPrintKetQuaSieuAm.TabIndex = 4;
+            // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnXemHoSo);
+            this.panel2.Controls.Add(this.btnUploadHoSo);
             this.panel2.Controls.Add(this.btnTaoHoSo);
             this.panel2.Controls.Add(this.btnVaoPhongCho);
             this.panel2.Controls.Add(this.btnImportExcel);
@@ -437,13 +449,29 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tìm bệnh nhân:";
             // 
-            // _uPrintKetQuaSieuAm
+            // btnUploadHoSo
             // 
-            this._uPrintKetQuaSieuAm.Location = new System.Drawing.Point(656, 89);
-            this._uPrintKetQuaSieuAm.Name = "_uPrintKetQuaSieuAm";
-            this._uPrintKetQuaSieuAm.PatientRow = null;
-            this._uPrintKetQuaSieuAm.Size = new System.Drawing.Size(241, 184);
-            this._uPrintKetQuaSieuAm.TabIndex = 4;
+            this.btnUploadHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadHoSo.Image")));
+            this.btnUploadHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUploadHoSo.Location = new System.Drawing.Point(758, 5);
+            this.btnUploadHoSo.Name = "btnUploadHoSo";
+            this.btnUploadHoSo.Size = new System.Drawing.Size(100, 25);
+            this.btnUploadHoSo.TabIndex = 14;
+            this.btnUploadHoSo.Text = "      &Upload hồ sơ";
+            this.btnUploadHoSo.UseVisualStyleBackColor = true;
+            this.btnUploadHoSo.Click += new System.EventHandler(this.btnUploadHoSo_Click);
+            // 
+            // btnXemHoSo
+            // 
+            this.btnXemHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnXemHoSo.Image")));
+            this.btnXemHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXemHoSo.Location = new System.Drawing.Point(667, 5);
+            this.btnXemHoSo.Name = "btnXemHoSo";
+            this.btnXemHoSo.Size = new System.Drawing.Size(86, 25);
+            this.btnXemHoSo.TabIndex = 13;
+            this.btnXemHoSo.Text = "      &Xem hồ sơ";
+            this.btnXemHoSo.UseVisualStyleBackColor = true;
+            this.btnXemHoSo.Click += new System.EventHandler(this.btnXemHoSo_Click);
             // 
             // uPatientList
             // 
@@ -498,5 +526,7 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnTaoHoSo;
         private uPrintKetQuaSieuAm _uPrintKetQuaSieuAm;
+        private System.Windows.Forms.Button btnUploadHoSo;
+        private System.Windows.Forms.Button btnXemHoSo;
     }
 }
