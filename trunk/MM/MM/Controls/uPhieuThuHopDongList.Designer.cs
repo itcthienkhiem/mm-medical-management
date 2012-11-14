@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.raDaXoa = new System.Windows.Forms.RadioButton();
             this.raChuaXoa = new System.Windows.Forms.RadioButton();
@@ -54,7 +54,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgPhieuThu = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.phieuThuHopDongBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.maPhieuThuHopDongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayThuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenNguoiNopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,9 +66,6 @@
             this.isExportedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phieuThuHopDongBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -91,6 +90,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(813, 111);
             this.panel2.TabIndex = 9;
+            // 
+            // lbKetQuaTimDuoc
+            // 
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(471, 82);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 16;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
             // 
             // groupBox1
             // 
@@ -290,7 +299,7 @@
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 9;
@@ -324,14 +333,14 @@
             this.DaThuTien,
             this.NguoiTao});
             this.dgPhieuThu.DataSource = this.phieuThuHopDongBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPhieuThu.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPhieuThu.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgPhieuThu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgPhieuThu.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPhieuThu.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -339,7 +348,6 @@
             this.dgPhieuThu.Location = new System.Drawing.Point(0, 0);
             this.dgPhieuThu.MultiSelect = false;
             this.dgPhieuThu.Name = "dgPhieuThu";
-            this.dgPhieuThu.ReadOnly = true;
             this.dgPhieuThu.RowHeadersWidth = 30;
             this.dgPhieuThu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPhieuThu.Size = new System.Drawing.Size(813, 305);
@@ -347,18 +355,20 @@
             this.dgPhieuThu.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPhieuThu_ColumnHeaderMouseClick);
             this.dgPhieuThu.DoubleClick += new System.EventHandler(this.dgPhieuThu_DoubleClick);
             // 
+            // phieuThuHopDongBindingSource
+            // 
+            this.phieuThuHopDongBindingSource.DataSource = typeof(MM.Databasae.PhieuThuHopDong);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
             // colChecked
             // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
             this.colChecked.Frozen = true;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
@@ -373,10 +383,10 @@
             // ngayThuDataGridViewTextBoxColumn
             // 
             this.ngayThuDataGridViewTextBoxColumn.DataPropertyName = "NgayThu";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ngayThuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ngayThuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.ngayThuDataGridViewTextBoxColumn.HeaderText = "Ngày thu";
             this.ngayThuDataGridViewTextBoxColumn.Name = "ngayThuDataGridViewTextBoxColumn";
             this.ngayThuDataGridViewTextBoxColumn.ReadOnly = true;
@@ -437,24 +447,6 @@
             this.NguoiTao.ReadOnly = true;
             this.NguoiTao.Width = 200;
             // 
-            // phieuThuHopDongBindingSource
-            // 
-            this.phieuThuHopDongBindingSource.DataSource = typeof(MM.Databasae.PhieuThuHopDong);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
-            // 
-            // lbKetQuaTimDuoc
-            // 
-            this.lbKetQuaTimDuoc.AutoSize = true;
-            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
-            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(471, 82);
-            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
-            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
-            this.lbKetQuaTimDuoc.TabIndex = 16;
-            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
-            // 
             // uPhieuThuHopDongList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,7 +494,8 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgPhieuThu;
         private System.Windows.Forms.BindingSource phieuThuHopDongBindingSource;
         private System.Windows.Forms.PrintDialog _printDialog;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.Label lbKetQuaTimDuoc;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn maPhieuThuHopDongDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayThuDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenNguoiNopDataGridViewTextBoxColumn;
@@ -512,6 +505,5 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn isExportedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
-        private System.Windows.Forms.Label lbKetQuaTimDuoc;
     }
 }

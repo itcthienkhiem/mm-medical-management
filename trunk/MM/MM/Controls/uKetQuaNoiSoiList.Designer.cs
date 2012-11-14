@@ -30,10 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pFilter = new System.Windows.Forms.Panel();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
@@ -51,7 +50,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgKhamNoiSoi = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.ketQuaNoiSoiViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ngayKhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBacSiChiDinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBacSiNoiSoiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,8 +60,6 @@
             this.ketLuanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deNghiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.loaiNoiSoiStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ketQuaNoiSoiViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -246,7 +245,7 @@
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 10;
@@ -278,14 +277,14 @@
             this.deNghiDataGridViewTextBoxColumn,
             this.loaiNoiSoiStrDataGridViewTextBoxColumn});
             this.dgKhamNoiSoi.DataSource = this.ketQuaNoiSoiViewBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgKhamNoiSoi.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgKhamNoiSoi.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgKhamNoiSoi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgKhamNoiSoi.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgKhamNoiSoi.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -293,24 +292,29 @@
             this.dgKhamNoiSoi.Location = new System.Drawing.Point(0, 0);
             this.dgKhamNoiSoi.MultiSelect = false;
             this.dgKhamNoiSoi.Name = "dgKhamNoiSoi";
-            this.dgKhamNoiSoi.ReadOnly = true;
             this.dgKhamNoiSoi.RowHeadersWidth = 30;
             this.dgKhamNoiSoi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgKhamNoiSoi.Size = new System.Drawing.Size(1068, 363);
             this.dgKhamNoiSoi.TabIndex = 9;
             this.dgKhamNoiSoi.DoubleClick += new System.EventHandler(this.dgKhamNoiSoi_DoubleClick);
             // 
+            // ketQuaNoiSoiViewBindingSource
+            // 
+            this.ketQuaNoiSoiViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaNoiSoiView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
+            // 
             // colChecked
             // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
             this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
@@ -318,10 +322,10 @@
             // ngayKhamDataGridViewTextBoxColumn
             // 
             this.ngayKhamDataGridViewTextBoxColumn.DataPropertyName = "NgayKham";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = "dd/MM/yyyy";
-            this.ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = "dd/MM/yyyy";
+            this.ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.ngayKhamDataGridViewTextBoxColumn.HeaderText = "Ngày khám";
             this.ngayKhamDataGridViewTextBoxColumn.Name = "ngayKhamDataGridViewTextBoxColumn";
             this.ngayKhamDataGridViewTextBoxColumn.ReadOnly = true;
@@ -369,24 +373,12 @@
             // loaiNoiSoiStrDataGridViewTextBoxColumn
             // 
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.DataPropertyName = "LoaiNoiSoiStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.loaiNoiSoiStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.loaiNoiSoiStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.HeaderText = "Loại nội soi";
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.Name = "loaiNoiSoiStrDataGridViewTextBoxColumn";
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.ReadOnly = true;
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // ketQuaNoiSoiViewBindingSource
-            // 
-            this.ketQuaNoiSoiViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaNoiSoiView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.AllowCurrentPage = true;
-            this._printDialog.AllowSelection = true;
-            this._printDialog.AllowSomePages = true;
-            this._printDialog.ShowHelp = true;
-            this._printDialog.UseEXDialog = true;
             // 
             // uKetQuaNoiSoiList
             // 
@@ -427,7 +419,9 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.PrintDialog _printDialog;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.RadioButton raFromDateToDate;
+        private System.Windows.Forms.RadioButton raAll;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayKhamDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenBacSiChiDinhDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenBacSiNoiSoiDataGridViewTextBoxColumn;
@@ -435,7 +429,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ketLuanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deNghiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn loaiNoiSoiStrDataGridViewTextBoxColumn;
-        private System.Windows.Forms.RadioButton raFromDateToDate;
-        private System.Windows.Forms.RadioButton raAll;
     }
 }
