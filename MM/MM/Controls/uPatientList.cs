@@ -1129,7 +1129,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnUploadHoSo()
+        private void OnUploadHoSoAsThread()
         {
 
         }
@@ -1138,7 +1138,10 @@ namespace MM.Controls
         #region Window Event Handlers
         private void btnUploadHoSo_Click(object sender, EventArgs e)
         {
-            OnUploadHoSo();
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn upload hồ sơ ?") == DialogResult.Yes)
+            {
+                OnUploadHoSoAsThread();
+            }
         }
 
         private void btnXemHoSo_Click(object sender, EventArgs e)
@@ -1331,6 +1334,11 @@ namespace MM.Controls
             {
                 List<DataRow> checkedRows = (List<DataRow>)state;
                 OnTaoHoSo(checkedRows);
+
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn upload hồ sơ ?") == DialogResult.Yes)
+                {
+
+                }
             }
             catch (Exception e)
             {
