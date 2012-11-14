@@ -974,7 +974,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnTaoHoSo(List<DataRow> checkedRows)
+        private bool OnTaoHoSo(List<DataRow> checkedRows)
         {
             
             foreach (DataRow row in checkedRows)
@@ -986,7 +986,7 @@ namespace MM.Controls
                 {
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetNgayKhamCuoiCung"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetNgayKhamCuoiCung"));
-                    return;
+                    return false;
                 }
 
                 List<DateTime> ngayKhamCuoiCungList = (List<DateTime>)result.QueryResult;
@@ -998,7 +998,7 @@ namespace MM.Controls
 
                 string ketQuaKhamTongQuatFileName = string.Format("{0}\\KetQuaKhamSucKhoeTongQuat_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
                 if (!Exports.ExportExcel.ExportKetQuaKhamTongQuatToExcel(ketQuaKhamTongQuatFileName, row, ngayKhamCuoiCungList))
-                    return;
+                    return false;
 
                 //Kết quả nội soi
                 if (ngayKhamCuoiCungList[5] != Global.MinDateTime)
@@ -1011,7 +1011,7 @@ namespace MM.Controls
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaNoiSoiBus.GetKetQuaNoiSoiList2"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaNoiSoiBus.GetKetQuaNoiSoiList2"));
-                        return;
+                        return false;
                     }
 
                     DataTable dt = result.QueryResult as DataTable;
@@ -1027,23 +1027,23 @@ namespace MM.Controls
                             {
                                 case LoaiNoiSoi.Tai:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiTaiToExcel(ketQuaNoiSoiFileName, row, dr))
-                                        return;
+                                        return false;
                                     break;
                                 case LoaiNoiSoi.Mui:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiMuiToExcel(ketQuaNoiSoiFileName, row, dr))
-                                        return;
+                                        return false;
                                     break;
                                 case LoaiNoiSoi.Hong_ThanhQuan:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiHongThanhQuanToExcel(ketQuaNoiSoiFileName, row, dr))
-                                        return;
+                                        return false;
                                     break;
                                 case LoaiNoiSoi.TaiMuiHong:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiTaiMuiHongToExcel(ketQuaNoiSoiFileName, row, dr))
-                                        return;
+                                        return false;
                                     break;
                                 case LoaiNoiSoi.TongQuat:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiTongQuatToExcel(ketQuaNoiSoiFileName, row, dr))
-                                        return;
+                                        return false;
                                     break;
                             }
                         }
@@ -1061,7 +1061,7 @@ namespace MM.Controls
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("KetQuaSoiCTCBus.GetKetQuaSoiCTCList2"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaSoiCTCBus.GetKetQuaSoiCTCList2"));
-                        return;
+                        return false;
                     }
 
                     DataTable dt = result.QueryResult as DataTable;
@@ -1071,7 +1071,7 @@ namespace MM.Controls
                         {
                             string ketQuaSoiCTCFileName = string.Format("{0}\\KetQuaSoiCTC_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
                             if (!Exports.ExportExcel.ExportKetQuaSoiCTCToExcel(ketQuaSoiCTCFileName, row, dr))
-                                return;
+                                return false;
                         }
                     }
                 }
@@ -1087,7 +1087,7 @@ namespace MM.Controls
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("SieuAmBus.GetKetQuaSieuAmList2"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("SieuAmBus.GetKetQuaSieuAmList2"));
-                        return;
+                        return false;
                     }
 
                     DataTable dt = result.QueryResult as DataTable;
@@ -1110,6 +1110,8 @@ namespace MM.Controls
                     }
                 }
             }
+
+            return true;
         }
 
         private void OnXemHoSo()
@@ -1333,11 +1335,12 @@ namespace MM.Controls
             try
             {
                 List<DataRow> checkedRows = (List<DataRow>)state;
-                OnTaoHoSo(checkedRows);
-
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn upload hồ sơ ?") == DialogResult.Yes)
+                if (OnTaoHoSo(checkedRows))
                 {
+                    if (MsgBox.Question(Application.ProductName, "Bạn có muốn upload hồ sơ ?") == DialogResult.Yes)
+                    {
 
+                    }
                 }
             }
             catch (Exception e)
