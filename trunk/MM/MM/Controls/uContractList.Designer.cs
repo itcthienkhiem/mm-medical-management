@@ -45,8 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgContract = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contractCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +52,8 @@
             this.beginDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lock = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgContract)).BeginInit();
@@ -227,21 +227,8 @@
             this.dgContract.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgContract.Size = new System.Drawing.Size(784, 358);
             this.dgContract.TabIndex = 6;
+            this.dgContract.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgContract_CellMouseUp);
             this.dgContract.DoubleClick += new System.EventHandler(this.dgContract_DoubleClick);
-            // 
-            // companyContractViewBindingSource
-            // 
-            this.companyContractViewBindingSource.DataSource = typeof(MM.Databasae.CompanyContractView);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgContract);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 39);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(784, 358);
-            this.panel3.TabIndex = 1;
             // 
             // colChecked
             // 
@@ -307,6 +294,20 @@
             this.Lock.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Lock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Lock.Width = 70;
+            // 
+            // companyContractViewBindingSource
+            // 
+            this.companyContractViewBindingSource.DataSource = typeof(MM.Databasae.CompanyContractView);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgContract);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 39);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(784, 358);
+            this.panel3.TabIndex = 1;
             // 
             // uContractList
             // 

@@ -35,6 +35,12 @@ namespace MM.Dialogs
             set { _uSearchPatient.DataSource = value; }
         }
 
+        public Dictionary<string, DataRow> DictPatient
+        {
+            get { return _uSearchPatient.DictPatient; }
+            set { _uSearchPatient.DictPatient = value; }
+        }
+
         public object PatientRow
         {
             get { return _patientRow; }

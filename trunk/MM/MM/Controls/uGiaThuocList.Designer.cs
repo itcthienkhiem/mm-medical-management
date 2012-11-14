@@ -44,12 +44,12 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgGiaThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.giaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.giaBanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayApDungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.donViTinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -193,11 +193,8 @@
             this.dgGiaThuoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgGiaThuoc.Size = new System.Drawing.Size(779, 403);
             this.dgGiaThuoc.TabIndex = 4;
+            this.dgGiaThuoc.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgGiaThuoc_CellMouseUp);
             this.dgGiaThuoc.DoubleClick += new System.EventHandler(this.dgGiaThuoc_DoubleClick);
-            // 
-            // giaThuocViewBindingSource
-            // 
-            this.giaThuocViewBindingSource.DataSource = typeof(MM.Databasae.GiaThuocView);
             // 
             // colChecked
             // 
@@ -248,6 +245,10 @@
             this.donViTinhDataGridViewTextBoxColumn.HeaderText = "ĐVT";
             this.donViTinhDataGridViewTextBoxColumn.Name = "donViTinhDataGridViewTextBoxColumn";
             this.donViTinhDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // giaThuocViewBindingSource
+            // 
+            this.giaThuocViewBindingSource.DataSource = typeof(MM.Databasae.GiaThuocView);
             // 
             // uGiaThuocList
             // 

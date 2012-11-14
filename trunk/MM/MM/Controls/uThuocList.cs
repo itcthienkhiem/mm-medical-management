@@ -20,6 +20,7 @@ namespace MM.Controls
         #region Members
         private bool _isReport = false;
         private DataTable _dataSource = null;
+        private Dictionary<string, DataRow> _dictThuoc = null;
         #endregion
 
         #region Constructor
@@ -44,7 +45,7 @@ namespace MM.Controls
         {
             get
             {
-                UpdateChecked();
+                //UpdateChecked();
                 List<DataRow> checkedRows = new List<DataRow>();
                 DataTable dt = _dataSource;
                 if (dt != null && dt.Rows.Count > 0)
@@ -62,23 +63,23 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
-        private void UpdateChecked()
-        {
-            DataTable dt = dgThuoc.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    DataTable dt = dgThuoc.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string thuocGUID1 = row1["ThuocGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("ThuocGUID='{0}'", thuocGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string thuocGUID1 = row1["ThuocGUID"].ToString();
+        //        DataRow[] rows2 = _dataSource.Select(string.Format("ThuocGUID='{0}'", thuocGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
         private void UpdateGUI()
         {
@@ -95,6 +96,12 @@ namespace MM.Controls
                 _dataSource.Rows.Clear();
                 _dataSource.Clear();
                 _dataSource = null;
+            }
+
+            if (_dictThuoc != null)
+            {
+                _dictThuoc.Clear();
+                _dictThuoc = null;
             }
 
             ClearDataSource();
@@ -142,6 +149,13 @@ namespace MM.Controls
                 {
                     ClearData();
                     _dataSource = result.QueryResult as DataTable;
+
+                    if (_dictThuoc == null) _dictThuoc = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSource.Rows)
+                    {
+                        string thuocGUID = row["ThuocGUID"].ToString();
+                        _dictThuoc.Add(thuocGUID, row);
+                    }
                     OnSearchThuoc();
                 };
 
@@ -194,6 +208,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.Thuoc.Status;
                 dt.Rows.Add(newRow);
+                _dictThuoc.Add(dlg.Thuoc.ThuocGUID.ToString(), newRow);
                 //SelectLastedRow();
                 OnSearchThuoc();
             }
@@ -202,10 +217,12 @@ namespace MM.Controls
         private DataRow GetDataRow(string thuocGUID)
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("ThuocGUID = '{0}'", thuocGUID));
-            if (rows == null || rows.Length <= 0) return null;
+            if (_dictThuoc == null) return null;
+            return _dictThuoc[thuocGUID];
+            //DataRow[] rows = _dataSource.Select(string.Format("ThuocGUID = '{0}'", thuocGUID));
+            //if (rows == null || rows.Length <= 0) return null;
 
-            return rows[0];
+            //return rows[0];
         }
 
         private void SelectLastedRow()
@@ -264,7 +281,7 @@ namespace MM.Controls
         private void OnDeleteThuoc()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedThuocList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = _dataSource;
@@ -286,6 +303,7 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
+                            _dictThuoc.Remove(row["ThuocGUID"].ToString());
                             _dataSource.Rows.Remove(row);
                         }
 
@@ -304,7 +322,7 @@ namespace MM.Controls
 
         private void OnSearchThuoc()
         {
-            UpdateChecked();
+            //UpdateChecked();
             ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
@@ -354,7 +372,7 @@ namespace MM.Controls
         private void OnExportExcel()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<DataRow> checkedRows = new List<DataRow>();
             DataTable dt = _dataSource;
             foreach (DataRow row in dt.Rows)
@@ -379,6 +397,19 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dgThuoc_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgThuoc.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string thuocGUID = row["ThuocGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictThuoc[thuocGUID]["Checked"] = isChecked;
+        }
+
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
         {
             DataTable dt = dgThuoc.DataSource as DataTable;
@@ -386,6 +417,9 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+
+                string thuocGUID = row["ThuocGUID"].ToString();
+                _dictThuoc[thuocGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -476,6 +510,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 
