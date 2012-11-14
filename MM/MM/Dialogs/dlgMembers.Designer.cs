@@ -30,15 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgMembers));
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -49,27 +47,27 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.chkServiceChecked = new System.Windows.Forms.CheckBox();
             this.dgService = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dataGridViewCheckBoxXColumn2 = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel7 = new System.Windows.Forms.Panel();
             this.txtSearchService = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgMembers = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
+            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
+            this.txtSearchPatient = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dobStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.genderAsStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
-            this.txtSearchPatient = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
+            this.dataGridViewCheckBoxXColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
@@ -149,7 +147,7 @@
             // chkServiceChecked
             // 
             this.chkServiceChecked.AutoSize = true;
-            this.chkServiceChecked.Location = new System.Drawing.Point(45, 4);
+            this.chkServiceChecked.Location = new System.Drawing.Point(44, 5);
             this.chkServiceChecked.Name = "chkServiceChecked";
             this.chkServiceChecked.Size = new System.Drawing.Size(15, 14);
             this.chkServiceChecked.TabIndex = 5;
@@ -176,14 +174,14 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
             this.dgService.DataSource = this.serviceBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgService.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgService.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgService.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgService.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -191,45 +189,10 @@
             this.dgService.Location = new System.Drawing.Point(0, 0);
             this.dgService.MultiSelect = false;
             this.dgService.Name = "dgService";
-            this.dgService.ReadOnly = true;
             this.dgService.RowHeadersWidth = 30;
             this.dgService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgService.Size = new System.Drawing.Size(681, 189);
             this.dgService.TabIndex = 4;
-            // 
-            // dataGridViewCheckBoxXColumn2
-            // 
-            this.dataGridViewCheckBoxXColumn2.Checked = true;
-            this.dataGridViewCheckBoxXColumn2.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.dataGridViewCheckBoxXColumn2.CheckValue = "N";
-            this.dataGridViewCheckBoxXColumn2.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewCheckBoxXColumn2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewCheckBoxXColumn2.Frozen = true;
-            this.dataGridViewCheckBoxXColumn2.HeaderText = "";
-            this.dataGridViewCheckBoxXColumn2.Name = "dataGridViewCheckBoxXColumn2";
-            this.dataGridViewCheckBoxXColumn2.ReadOnly = true;
-            this.dataGridViewCheckBoxXColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewCheckBoxXColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxXColumn2.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Code";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mã dịch vụ";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Tên dịch vụ";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 440;
             // 
             // panel7
             // 
@@ -272,7 +235,7 @@
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 9;
@@ -285,14 +248,14 @@
             this.dgMembers.AllowUserToDeleteRows = false;
             this.dgMembers.AllowUserToOrderColumns = true;
             this.dgMembers.AutoGenerateColumns = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMembers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -302,14 +265,14 @@
             this.genderAsStrDataGridViewTextBoxColumn,
             this.IdentityCard});
             this.dgMembers.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgMembers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgMembers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgMembers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -317,72 +280,11 @@
             this.dgMembers.Location = new System.Drawing.Point(0, 0);
             this.dgMembers.MultiSelect = false;
             this.dgMembers.Name = "dgMembers";
-            this.dgMembers.ReadOnly = true;
             this.dgMembers.RowHeadersWidth = 30;
             this.dgMembers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgMembers.Size = new System.Drawing.Size(681, 496);
             this.dgMembers.TabIndex = 8;
             this.dgMembers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgMembers_ColumnHeaderMouseClick);
-            // 
-            // colChecked
-            // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle6;
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // fileNumDataGridViewTextBoxColumn
-            // 
-            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
-            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
-            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 180;
-            // 
-            // dobStrDataGridViewTextBoxColumn
-            // 
-            this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
-            this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
-            this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dobStrDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // genderAsStrDataGridViewTextBoxColumn
-            // 
-            this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
-            this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
-            this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // IdentityCard
-            // 
-            this.IdentityCard.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.IdentityCard.DefaultCellStyle = dataGridViewCellStyle9;
-            this.IdentityCard.HeaderText = "CMND";
-            this.IdentityCard.Name = "IdentityCard";
-            this.IdentityCard.ReadOnly = true;
-            this.IdentityCard.Width = 120;
             // 
             // panel2
             // 
@@ -395,6 +297,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(681, 38);
             this.panel2.TabIndex = 0;
+            // 
+            // chkTheoSoDienThoai
+            // 
+            this.chkTheoSoDienThoai.AutoSize = true;
+            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(518, 12);
+            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
+            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
+            this.chkTheoSoDienThoai.TabIndex = 15;
+            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
+            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
             // 
             // chkMaBenhNhan
             // 
@@ -435,15 +347,87 @@
             this.panel1.Size = new System.Drawing.Size(681, 38);
             this.panel1.TabIndex = 4;
             // 
-            // chkTheoSoDienThoai
+            // colChecked
             // 
-            this.chkTheoSoDienThoai.AutoSize = true;
-            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(518, 12);
-            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
-            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
-            this.chkTheoSoDienThoai.TabIndex = 15;
-            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
-            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
+            this.colChecked.DataPropertyName = "Checked";
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // fileNumDataGridViewTextBoxColumn
+            // 
+            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
+            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
+            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
+            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Width = 180;
+            // 
+            // dobStrDataGridViewTextBoxColumn
+            // 
+            this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
+            this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
+            this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dobStrDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // genderAsStrDataGridViewTextBoxColumn
+            // 
+            this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
+            this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
+            this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // IdentityCard
+            // 
+            this.IdentityCard.DataPropertyName = "IdentityCard";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.IdentityCard.DefaultCellStyle = dataGridViewCellStyle7;
+            this.IdentityCard.HeaderText = "CMND";
+            this.IdentityCard.Name = "IdentityCard";
+            this.IdentityCard.ReadOnly = true;
+            this.IdentityCard.Width = 120;
+            // 
+            // dataGridViewCheckBoxXColumn2
+            // 
+            this.dataGridViewCheckBoxXColumn2.DataPropertyName = "Checked";
+            this.dataGridViewCheckBoxXColumn2.Frozen = true;
+            this.dataGridViewCheckBoxXColumn2.HeaderText = "";
+            this.dataGridViewCheckBoxXColumn2.Name = "dataGridViewCheckBoxXColumn2";
+            this.dataGridViewCheckBoxXColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCheckBoxXColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewCheckBoxXColumn2.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Code";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã dịch vụ";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tên dịch vụ";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 440;
             // 
             // dlgMembers
             // 
@@ -503,16 +487,16 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.CheckBox chkServiceChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgService;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn dataGridViewCheckBoxXColumn2;
+        private System.Windows.Forms.CheckBox chkMaBenhNhan;
+        private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxXColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dobStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
-        private System.Windows.Forms.CheckBox chkMaBenhNhan;
-        private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
     }
 }

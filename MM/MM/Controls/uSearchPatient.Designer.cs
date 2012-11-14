@@ -48,7 +48,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgPatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +59,7 @@
             this.workPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
@@ -154,7 +154,7 @@
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 4;
@@ -212,10 +212,6 @@
             this.dgPatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_ColumnHeaderMouseClick);
             this.dgPatient.DoubleClick += new System.EventHandler(this.dgPatient_DoubleClick);
             this.dgPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgPatient_KeyDown);
-            // 
-            // patientViewBindingSource
-            // 
-            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
             // 
             // colChecked
             // 
@@ -320,6 +316,10 @@
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             this.emailDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // patientViewBindingSource
+            // 
+            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
             // 
             // uSearchPatient
             // 
