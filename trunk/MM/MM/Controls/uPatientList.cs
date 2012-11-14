@@ -23,6 +23,7 @@ namespace MM.Controls
         private DataTable _dataSource = null;
         private string _fileName = string.Empty;
         private bool _isAscending = true;
+        private Dictionary<string, DataRow> _dictPatient = null;
         #endregion
 
         #region Constructor
@@ -64,6 +65,12 @@ namespace MM.Controls
                 _dataSource.Rows.Clear();
                 _dataSource.Clear();
                 _dataSource = null;
+            }
+
+            if (_dictPatient != null)
+            {
+                _dictPatient.Clear();
+                _dictPatient = null;
             }
 
             ClearDataSource();
@@ -111,6 +118,14 @@ namespace MM.Controls
                 {
                     ClearData();
                     _dataSource = result.QueryResult as DataTable;
+
+                    if (_dictPatient == null) _dictPatient = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSource.Rows)
+                    {
+                        string patientGUID = row["PatientGUID"].ToString();
+                        _dictPatient.Add(patientGUID, row);
+                    }
+
                     OnSearchPatient();
                 };
 
@@ -244,10 +259,13 @@ namespace MM.Controls
         private DataRow GetDataRow(string patientGUID)
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("PatientGUID = '{0}'", patientGUID));
-            if (rows == null || rows.Length <= 0) return null;
+            if (_dictPatient == null) return null;
 
-            return rows[0];
+            return _dictPatient[patientGUID];
+            
+            //DataRow[] rows = _dataSource.Select(string.Format("PatientGUID = '{0}'", patientGUID));
+            //if (rows == null || rows.Length <= 0) return null;
+            //return rows[0];
         }
 
         private void OnEditPatient()
@@ -368,7 +386,7 @@ namespace MM.Controls
         private void OnDeletePatient()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedPatientList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataRow[] rows = _dataSource.Select("Checked='True'");
@@ -421,27 +439,27 @@ namespace MM.Controls
             base.RaiseOpentPatient(drPatient);
         }
 
-        private void UpdateChecked()
-        {
-            DataTable dt = dgPatient.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    //DataTable dt = dgPatient.DataSource as DataTable;
+        //    //if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    //DataRow[] rows1 = dt.Select("Checked='True'");
+        //    //if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string patientGUID1 = row1["PatientGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    //foreach (DataRow row1 in rows1)
+        //    //{
+        //    //    string patientGUID1 = row1["PatientGUID"].ToString();
+        //    //    DataRow[] rows2 = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID1));
+        //    //    if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //    //    rows2[0]["Checked"] = row1["Checked"];
+        //    //}
+        //}
 
         private void OnSearchPatient()
         {
-            UpdateChecked();
+            //UpdateChecked();
             chkChecked.Checked = false;
             List<DataRow> results = null;
             DataTable newDataSource = null;
@@ -853,6 +871,7 @@ namespace MM.Controls
         public void UpdatePatients(DataTable dtPatient)
         {
             if (_dataSource == null) return;
+            if (_dictPatient == null) return;
 
             List<string> deletedKeys = new List<string>();
             foreach (DataRow row in dtPatient.Rows)
@@ -865,11 +884,19 @@ namespace MM.Controls
                     string deletedGUID = row["DeletedBy"].ToString();
                     if (deletedGUID != Global.UserGUID.ToString())
                     {
-                        DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
-                        if (rows != null && rows.Length > 0)
+                        //DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                        //if (rows != null && rows.Length > 0)
+                        //{
+                        //    deletedKeys.Add(rows[0]["PatientGUID"].ToString());
+                        //    _dataSource.Rows.Remove(rows[0]);
+                        //}
+
+                        DataRow dr = _dictPatient[patientGUID];
+                        if (dr != null)
                         {
-                            deletedKeys.Add(rows[0]["PatientGUID"].ToString());
-                            _dataSource.Rows.Remove(rows[0]);
+                            deletedKeys.Add(patientGUID);
+                            _dictPatient.Remove(patientGUID);
+                            _dataSource.Rows.Remove(dr);
                         }
                     }
                 }
@@ -883,14 +910,31 @@ namespace MM.Controls
 
                     if (userGUID != Global.UserGUID.ToString())
                     {
-                        DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
-                        if (rows == null || rows.Length <= 0)
+                        //DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                        //if (rows == null || rows.Length <= 0)
+                        //    _dataSource.ImportRow(row);
+                        //else
+                        //{
+                        //    for (int i = 0; i < _dataSource.Columns.Count; i++)
+                        //    {
+                        //        rows[0][i] = row[i];
+                        //    }
+
+                        //    RaiseEditPatient(row);
+                        //}
+
+                        DataRow dr = _dictPatient[patientGUID];
+                        if (row == null)
+                        {
                             _dataSource.ImportRow(row);
+                            DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                            _dictPatient.Add(patientGUID, rows[0]);
+                        }
                         else
                         {
                             for (int i = 0; i < _dataSource.Columns.Count; i++)
                             {
-                                rows[0][i] = row[i];
+                                dr[i] = row[i];
                             }
 
                             RaiseEditPatient(row);
@@ -908,7 +952,7 @@ namespace MM.Controls
         private void OnTaoHoSo()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<DataRow> checkedRows = new List<DataRow>();
             DataRow[] rows = _dataSource.Select("Checked='True'");
             if (rows != null && rows.Length > 0)
@@ -1197,7 +1241,7 @@ namespace MM.Controls
         private void btnUploadHoSo_Click(object sender, EventArgs e)
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<DataRow> checkedRows = new List<DataRow>();
             DataRow[] rows = _dataSource.Select("Checked='True'");
             if (rows != null && rows.Length > 0)
@@ -1252,6 +1296,9 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+
+                string patientGUID = row["PatientGUID"].ToString();
+                _dictPatient[patientGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -1348,7 +1395,7 @@ namespace MM.Controls
         private void button1_Click(object sender, EventArgs e)
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> addedPatientList = new List<string>();
             foreach (DataRow row in _dataSource.Rows)
             {
@@ -1383,6 +1430,19 @@ namespace MM.Controls
         private void btnTaoHoSo_Click(object sender, EventArgs e)
         {
             OnTaoHoSo();
+        }
+
+        private void dgPatient_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgPatient.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string patientGUID = row["PatientGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictPatient[patientGUID]["Checked"] = isChecked;
         }
         #endregion
 
@@ -1429,6 +1489,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

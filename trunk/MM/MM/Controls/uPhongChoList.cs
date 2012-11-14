@@ -86,7 +86,7 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
-                    ClearData();
+                    
                     DataTable dt = dgPatient.DataSource as DataTable;
                     if (dt == null)
                         dgPatient.DataSource = result.QueryResult;
@@ -107,6 +107,7 @@ namespace MM.Controls
                             }
                         }
 
+                        ClearData();
                         dgPatient.DataSource = dt2;
 
                         if (selectedIndex <= dgPatient.RowCount - 1)
