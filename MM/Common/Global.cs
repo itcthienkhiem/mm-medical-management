@@ -12,6 +12,7 @@ namespace MM.Common
         public static string UsersPath = string.Format("{0}\\Users", AppDomain.CurrentDomain.BaseDirectory);
         public static string UsersFilePath = string.Format("{0}\\Users\\Users.txt", AppDomain.CurrentDomain.BaseDirectory);
         public static string FTPFolder = "domains/healthcare.com.vn/public_html/report/images/";
+        public static string HoSoPath = string.Format("{0}\\HoSo", AppDomain.CurrentDomain.BaseDirectory);
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static FTPConnectionInfo FTPConnectionInfo = new FTPConnectionInfo();
         public static int AlertDays = 3;
