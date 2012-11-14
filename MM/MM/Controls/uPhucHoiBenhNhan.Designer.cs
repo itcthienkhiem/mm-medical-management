@@ -41,13 +41,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgPatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnPhucHoi = new System.Windows.Forms.Button();
-            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
-            this.txtSearchPatient = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +52,13 @@
             this.workPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPhucHoi = new System.Windows.Forms.Button();
+            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
+            this.txtSearchPatient = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
@@ -133,70 +133,7 @@
             this.dgPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgPatient.Size = new System.Drawing.Size(867, 415);
             this.dgPatient.TabIndex = 2;
-            // 
-            // patientViewBindingSource
-            // 
-            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnPhucHoi);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 454);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(867, 36);
-            this.panel2.TabIndex = 8;
-            // 
-            // btnPhucHoi
-            // 
-            this.btnPhucHoi.Image = global::MM.Properties.Resources.backup_restore_icon__1_;
-            this.btnPhucHoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPhucHoi.Location = new System.Drawing.Point(6, 5);
-            this.btnPhucHoi.Name = "btnPhucHoi";
-            this.btnPhucHoi.Size = new System.Drawing.Size(87, 25);
-            this.btnPhucHoi.TabIndex = 6;
-            this.btnPhucHoi.Text = "     &Phục hồi";
-            this.btnPhucHoi.UseVisualStyleBackColor = true;
-            this.btnPhucHoi.Click += new System.EventHandler(this.btnPhucHoi_Click);
-            // 
-            // chkMaBenhNhan
-            // 
-            this.chkMaBenhNhan.AutoSize = true;
-            this.chkMaBenhNhan.Location = new System.Drawing.Point(393, 12);
-            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
-            this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
-            this.chkMaBenhNhan.TabIndex = 2;
-            this.chkMaBenhNhan.Text = "Theo mã bệnh nhân";
-            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
-            // 
-            // txtSearchPatient
-            // 
-            this.txtSearchPatient.Location = new System.Drawing.Point(95, 9);
-            this.txtSearchPatient.Name = "txtSearchPatient";
-            this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
-            this.txtSearchPatient.TabIndex = 1;
-            this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
-            this.txtSearchPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPatient_KeyDown);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.chkMaBenhNhan);
-            this.panel1.Controls.Add(this.txtSearchPatient);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(867, 39);
-            this.panel1.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tìm bệnh nhân:";
+            this.dgPatient.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_CellMouseUp);
             // 
             // colChecked
             // 
@@ -300,6 +237,70 @@
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             this.emailDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // patientViewBindingSource
+            // 
+            this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnPhucHoi);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 454);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(867, 36);
+            this.panel2.TabIndex = 8;
+            // 
+            // btnPhucHoi
+            // 
+            this.btnPhucHoi.Image = global::MM.Properties.Resources.backup_restore_icon__1_;
+            this.btnPhucHoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPhucHoi.Location = new System.Drawing.Point(6, 5);
+            this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.Size = new System.Drawing.Size(87, 25);
+            this.btnPhucHoi.TabIndex = 6;
+            this.btnPhucHoi.Text = "     &Phục hồi";
+            this.btnPhucHoi.UseVisualStyleBackColor = true;
+            this.btnPhucHoi.Click += new System.EventHandler(this.btnPhucHoi_Click);
+            // 
+            // chkMaBenhNhan
+            // 
+            this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Location = new System.Drawing.Point(393, 12);
+            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
+            this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
+            this.chkMaBenhNhan.TabIndex = 2;
+            this.chkMaBenhNhan.Text = "Theo mã bệnh nhân";
+            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
+            // 
+            // txtSearchPatient
+            // 
+            this.txtSearchPatient.Location = new System.Drawing.Point(95, 9);
+            this.txtSearchPatient.Name = "txtSearchPatient";
+            this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
+            this.txtSearchPatient.TabIndex = 1;
+            this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
+            this.txtSearchPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPatient_KeyDown);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.chkMaBenhNhan);
+            this.panel1.Controls.Add(this.txtSearchPatient);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(867, 39);
+            this.panel1.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tìm bệnh nhân:";
             // 
             // uPhucHoiBenhNhan
             // 

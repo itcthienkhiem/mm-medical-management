@@ -20,11 +20,27 @@ namespace MM.Dialogs
         #endregion
 
         #region Constructor
+        public dlgSelectPatient(DataTable dataSource, Dictionary<string, DataRow> dictPatient)
+        {
+            InitializeComponent();
+            _dataSource = dataSource;
+            _uSearchPatient.DataSource = dataSource;
+            _uSearchPatient.DictPatient = dictPatient;
+            _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
+        }
+
         public dlgSelectPatient(DataTable dataSource)
         {
             InitializeComponent();
             _dataSource = dataSource;
             _uSearchPatient.DataSource = dataSource;
+            _uSearchPatient.DictPatient = new Dictionary<string,DataRow>();
+            foreach (DataRow row in dataSource.Rows)
+            {
+                string patientGUID = row["PatientGUID"].ToString();
+                _uSearchPatient.DictPatient.Add(patientGUID, row);
+            }
+
             _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
         }
 
@@ -86,6 +102,16 @@ namespace MM.Dialogs
                 {
                     _dataSource = result.QueryResult as DataTable;
                     _uSearchPatient.DataSource = _dataSource;
+
+                    if (IsMulti)
+                    {
+                        _uSearchPatient.DictPatient = new Dictionary<string, DataRow>();
+                        foreach (DataRow row in _dataSource.Rows)
+                        {
+                            string patientGUID = row["PatientGUID"].ToString();
+                            _uSearchPatient.DictPatient.Add(patientGUID, row);
+                        }
+                    }
                 }
                 else
                 {
@@ -101,6 +127,16 @@ namespace MM.Dialogs
                 {
                     _dataSource = result.QueryResult as DataTable;
                     _uSearchPatient.DataSource = _dataSource;
+
+                    if (IsMulti)
+                    {
+                        _uSearchPatient.DictPatient = new Dictionary<string, DataRow>();
+                        foreach (DataRow row in _dataSource.Rows)
+                        {
+                            string patientGUID = row["PatientGUID"].ToString();
+                            _uSearchPatient.DictPatient.Add(patientGUID, row);
+                        }
+                    }
                 }
                 else
                 {

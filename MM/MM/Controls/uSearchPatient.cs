@@ -20,6 +20,7 @@ namespace MM.Controls
         private object _dataSource = null;
         private bool _isAscending = true;
         private bool _isMulti = false;
+        private Dictionary<string, DataRow> _dictPatient = null;
         #endregion
 
         #region Constructor
@@ -34,6 +35,12 @@ namespace MM.Controls
         {
             get { return _dataSource; }
             set { _dataSource = value; }
+        }
+
+        public Dictionary<string, DataRow> DictPatient
+        {
+            get { return _dictPatient; }
+            set { _dictPatient = value; }
         }
 
         public object PatientRow
@@ -63,7 +70,7 @@ namespace MM.Controls
             get
             {
                 if (_dataSource == null) return null;
-                UpdateChecked();
+                //UpdateChecked();
                 List<DataRow> checkedRows = new List<DataRow>();
                 DataTable dataSource = _dataSource as DataTable;
                 DataRow[] rows = dataSource.Select("Checked='True'");
@@ -82,24 +89,24 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
-        private void UpdateChecked()
-        {
-            DataTable dt = dgPatient.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    DataTable dt = dgPatient.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            DataTable dataSource = _dataSource as DataTable;
-            foreach (DataRow row1 in rows1)
-            {
-                string patientGUID1 = row1["PatientGUID"].ToString();
-                DataRow[] rows2 = dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    DataTable dataSource = _dataSource as DataTable;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string patientGUID1 = row1["PatientGUID"].ToString();
+        //        DataRow[] rows2 = dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
         private void ClearDataSource()
         {
@@ -115,7 +122,7 @@ namespace MM.Controls
 
         public void OnSearch()
         {
-            if (_isMulti) UpdateChecked();
+            //if (_isMulti) UpdateChecked();
 
             ClearDataSource();
 
@@ -321,6 +328,21 @@ namespace MM.Controls
                     }
 
                     _dataSource = result.QueryResult as DataTable;
+                    DataTable dt = _dataSource as DataTable;
+
+                    if (_isMulti)
+                    {
+                        if (_dictPatient == null) _dictPatient = new Dictionary<string, DataRow>();
+                        else
+                            _dictPatient.Clear();
+                    }
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        string patientGUID = row["PatientGUID"].ToString();
+                        _dictPatient.Add(patientGUID, row);
+                    }
+
                     OnSearch();
                 };
 
@@ -336,6 +358,21 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dgPatient_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (!_isMulti) return;
+
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgPatient.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string patientGUID = row["PatientGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictPatient[patientGUID]["Checked"] = isChecked;
+        }
+
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
             OnSearch();
@@ -420,6 +457,9 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+
+                string patientGUID = row["PatientGUID"].ToString();
+                _dictPatient[patientGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -448,6 +488,5 @@ namespace MM.Controls
             }
         }
         #endregion
-        
     }
 }

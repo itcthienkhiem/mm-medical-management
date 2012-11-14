@@ -44,6 +44,12 @@ namespace MM.Controls
 
             set { _dataSource = (DataTable)value; }
         }
+
+        public Dictionary<string, DataRow> DictPatient
+        {
+            get { return _dictPatient; }
+            set { _dictPatient = value; }
+        }
         #endregion
 
         #region UI Command
@@ -929,8 +935,7 @@ namespace MM.Controls
                         if (row == null)
                         {
                             _dataSource.ImportRow(row);
-                            DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
-                            _dictPatient.Add(patientGUID, rows[0]);
+                            _dictPatient.Add(patientGUID, _dataSource.Rows[_dataSource.Rows.Count - 1]);
                         }
                         else
                         {

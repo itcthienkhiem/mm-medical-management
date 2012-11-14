@@ -2723,12 +2723,15 @@ namespace MM
         {
             dlgOpentPatient dlg = new dlgOpentPatient();
             dlg.DataSource = _uPatientList.DataSource;
+            dlg.DictPatient = _uPatientList.DictPatient;
+            
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 OnPatientHistory(dlg.PatientRow);
             }
 
             _uPatientList.DataSource = dlg.DataSource;
+            _uPatientList.DictPatient = dlg.DictPatient;
         }
 
         private void OnPatientHistory(object patientRow)

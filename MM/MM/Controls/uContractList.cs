@@ -18,7 +18,7 @@ namespace MM.Controls
     {
         #region Members
         private DataTable _dataSource = null;
-
+        private Dictionary<string, DataRow> _dictContract = null;
         #endregion
 
         #region Constructor
@@ -71,14 +71,13 @@ namespace MM.Controls
                 _dataSource = null;
             }
 
-            DataTable dt = dgContract.DataSource as DataTable;
-            if (dt != null)
+            if (_dictContract != null)
             {
-                dt.Rows.Clear();
-                dt.Clear();
-                dt = null;
-                dgContract.DataSource = null;
+                _dictContract.Clear();
+                _dictContract = null;
             }
+
+            ClearDataSource();
         }
 
         private void ClearDataSource()
@@ -102,6 +101,14 @@ namespace MM.Controls
                 {
                     ClearData();
                     _dataSource = result.QueryResult as DataTable;
+
+                    if (_dictContract == null) _dictContract = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSource.Rows)
+                    {
+                        string contractGUID = row["CompanyContractGUID"].ToString();
+                        _dictContract.Add(contractGUID, row);
+                    }
+
                     OnSearchHopDong();
                 };
 
@@ -160,7 +167,7 @@ namespace MM.Controls
 
                 newRow["Lock"] = false;
                 dt.Rows.Add(newRow);
-
+                _dictContract.Add(dlg.Contract.CompanyContractGUID.ToString(), newRow);
                 //SelectLastedRow();
                 OnSearchHopDong();
             }
@@ -175,10 +182,11 @@ namespace MM.Controls
         private DataRow GetDataRow(string hopDongGUID)
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("CompanyContractGUID = '{0}'", hopDongGUID));
-            if (rows == null || rows.Length <= 0) return null;
-
-            return rows[0];
+            if (_dictContract == null) return null;
+            return _dictContract[hopDongGUID];
+            //DataRow[] rows = _dataSource.Select(string.Format("CompanyContractGUID = '{0}'", hopDongGUID));
+            //if (rows == null || rows.Length <= 0) return null;
+            //return rows[0];
         }
 
         private void OnEditContract()
@@ -236,28 +244,28 @@ namespace MM.Controls
             }
         }
 
-        private void UpdateChecked()
-        {
-            DataTable dt = dgContract.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    DataTable dt = dgContract.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string patientGUID1 = row1["CompanyContractGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("CompanyContractGUID='{0}'", patientGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string patientGUID1 = row1["CompanyContractGUID"].ToString();
+        //        DataRow[] rows2 = _dataSource.Select(string.Format("CompanyContractGUID='{0}'", patientGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
         private void OnDeleteContract()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedConList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = _dataSource;
@@ -279,6 +287,7 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
+                            _dictContract.Remove(row["CompanyContractGUID"].ToString());
                             _dataSource.Rows.Remove(row);
                         }
 
@@ -297,7 +306,7 @@ namespace MM.Controls
 
         private void OnSearchHopDong()
         {
-            UpdateChecked();
+            //UpdateChecked();
             ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
@@ -367,6 +376,19 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dgContract_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgContract.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgContract.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string contractGUID = row["CompanyContractGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictContract[contractGUID]["Checked"] = isChecked;
+        }
+
         private void dlg_OnOpenPatient(object patientRow)
         {
             base.RaiseOpentPatient(patientRow);
@@ -394,6 +416,9 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+
+                string contractGUID = row["CompanyContractGUID"].ToString();
+                _dictContract[contractGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -451,7 +476,7 @@ namespace MM.Controls
         private void btnKhoa_Click(object sender, EventArgs e)
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedConList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = _dataSource;
@@ -492,7 +517,7 @@ namespace MM.Controls
         private void btnMoKhoa_Click(object sender, EventArgs e)
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedConList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = _dataSource;
@@ -550,5 +575,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

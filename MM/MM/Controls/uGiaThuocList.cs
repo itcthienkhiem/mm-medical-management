@@ -342,6 +342,11 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dgGiaThuoc_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OnAddGiaThuoc();
@@ -434,6 +439,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
 
         
     }

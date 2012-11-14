@@ -25,6 +25,8 @@ namespace MM.Dialogs
         private List<DataRow> _deletedMemberRows = null;
         private bool _isAscending = true;
         private DataTable _giaDichVuDataSource = null;
+        private Dictionary<string, DataRow> _dictMembers = null;
+        private Dictionary<string, DataRow> _dictServices = null;
         #endregion
 
         #region Constructor
@@ -60,7 +62,7 @@ namespace MM.Dialogs
             {
                 if (_dataSourceMember == null) return null;
 
-                UpdateCheckedMembers();
+                //UpdateCheckedMembers();
 
                 List<DataRow> checkedRows = new List<DataRow>();
                 foreach (DataRow row in _dataSourceMember.Rows)
@@ -81,7 +83,7 @@ namespace MM.Dialogs
             get
             {
                 if (_dataSourceService == null) return null;
-                UpdateCheckedServices();
+                //UpdateCheckedServices();
                 List<DataRow> checkedRows = new List<DataRow>();
                 foreach (DataRow row in _dataSourceService.Rows)
                 {
@@ -100,7 +102,7 @@ namespace MM.Dialogs
             {
                 List<string> addedServices = new List<string>();
                 if (_dataSourceService == null) return addedServices;
-                UpdateCheckedServices();
+                //UpdateCheckedServices();
                 foreach (DataRow row in _dataSourceService.Rows)
                 {
                     if (Boolean.Parse(row["Checked"].ToString()))
@@ -117,7 +119,7 @@ namespace MM.Dialogs
             get 
             {
                 if (_dataSourceService == null) return null;
-                UpdateCheckedServices();
+                //UpdateCheckedServices();
                 DataTable dt = _dataSourceService.Clone();
                 foreach (DataRow row in _dataSourceService.Rows)
                 {
@@ -213,6 +215,14 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _dataSourceMember = GetDataSource((DataTable)result.QueryResult);//result.QueryResult as DataTable;
+
+                    if (_dictMembers == null) _dictMembers = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSourceMember.Rows)
+                    {
+                        string patientGUID = row["PatientGUID"].ToString();
+                        _dictMembers.Add(patientGUID, row);
+                    }
+
                     dgMembers.DataSource = _dataSourceMember;
                 };
 
@@ -239,6 +249,14 @@ namespace MM.Dialogs
             MethodInvoker method = delegate
             {
                 _dataSourceService = _giaDichVuDataSource;
+
+                if (_dictServices == null) _dictServices = new Dictionary<string, DataRow>();
+                foreach (DataRow row in _dataSourceService.Rows)
+                {
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    _dictServices.Add(serviceGUID, row);
+                }
+
                 dgService.DataSource = _dataSourceService;
             };
 
@@ -267,7 +285,7 @@ namespace MM.Dialogs
 
         private void OnSearchPatient()
         {
-            UpdateCheckedMembers();
+            //UpdateCheckedMembers();
             List<DataRow> results = null;
             DataTable newDataSource = null;
             chkChecked.Checked = false;
@@ -356,85 +374,85 @@ namespace MM.Dialogs
             dgMembers.DataSource = newDataSource;
         }
 
-        private void UpdateCheckedServices()
-        {
-            /*DataTable dt = dgService.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateCheckedServices()
+        //{
+        //    /*DataTable dt = dgService.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            foreach (DataRow row1 in dt.Rows)
-            {
-                string patientGUID1 = row1["ServiceGUID"].ToString();
-                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-                foreach (DataRow row2 in _dataSourceService.Rows)
-                {
-                    string patientGUID2 = row2["ServiceGUID"].ToString();
-                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+        //    foreach (DataRow row1 in dt.Rows)
+        //    {
+        //        string patientGUID1 = row1["ServiceGUID"].ToString();
+        //        bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+        //        foreach (DataRow row2 in _dataSourceService.Rows)
+        //        {
+        //            string patientGUID2 = row2["ServiceGUID"].ToString();
+        //            bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
 
-                    if (patientGUID1 == patientGUID2)
-                    {
-                        row2["Checked"] = row1["Checked"];
-                        break;
-                    }
-                }
-            }*/
+        //            if (patientGUID1 == patientGUID2)
+        //            {
+        //                row2["Checked"] = row1["Checked"];
+        //                break;
+        //            }
+        //        }
+        //    }*/
 
-            DataTable dt = dgService.DataSource as DataTable;
-            if (dt == null) return;
+        //    DataTable dt = dgService.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string patientGUID1 = row1["ServiceGUID"].ToString();
-                DataRow[] rows2 = _dataSourceService.Select(string.Format("ServiceGUID='{0}'", patientGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string patientGUID1 = row1["ServiceGUID"].ToString();
+        //        DataRow[] rows2 = _dataSourceService.Select(string.Format("ServiceGUID='{0}'", patientGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
-        private void UpdateCheckedMembers()
-        {
-            /*DataTable dt = dgMembers.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateCheckedMembers()
+        //{
+        //    /*DataTable dt = dgMembers.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            foreach (DataRow row1 in dt.Rows)
-            {
-                string patientGUID1 = row1["PatientGUID"].ToString();
-                bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-                foreach (DataRow row2 in _dataSourceMember.Rows)
-                {
-                    string patientGUID2 = row2["PatientGUID"].ToString();
-                    bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+        //    foreach (DataRow row1 in dt.Rows)
+        //    {
+        //        string patientGUID1 = row1["PatientGUID"].ToString();
+        //        bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+        //        foreach (DataRow row2 in _dataSourceMember.Rows)
+        //        {
+        //            string patientGUID2 = row2["PatientGUID"].ToString();
+        //            bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
 
-                    if (patientGUID1 == patientGUID2)
-                    {
-                        row2["Checked"] = row1["Checked"];
-                        break;
-                    }
-                }
-            }*/
+        //            if (patientGUID1 == patientGUID2)
+        //            {
+        //                row2["Checked"] = row1["Checked"];
+        //                break;
+        //            }
+        //        }
+        //    }*/
 
-            DataTable dt = dgMembers.DataSource as DataTable;
-            if (dt == null) return;
+        //    DataTable dt = dgMembers.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string patientGUID1 = row1["PatientGUID"].ToString();
-                DataRow[] rows2 = _dataSourceMember.Select(string.Format("PatientGUID='{0}'", patientGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string patientGUID1 = row1["PatientGUID"].ToString();
+        //        DataRow[] rows2 = _dataSourceMember.Select(string.Format("PatientGUID='{0}'", patientGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
         private void OnSearchService()
         {
-            UpdateCheckedServices();
+            //UpdateCheckedServices();
 
             chkChecked.Checked = false;
             if (txtSearchService.Text.Trim() == string.Empty)
@@ -519,6 +537,32 @@ namespace MM.Dialogs
         #endregion
 
         #region Window Event Handlers
+        private void dgMembers_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSourceMember == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgMembers.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgMembers.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string patientGUID = row["PatientGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictMembers[patientGUID]["Checked"] = isChecked;
+        }
+
+        private void dgService_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSourceService == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgService.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string serviceGUID = row["ServiceGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictServices[serviceGUID]["Checked"] = isChecked;
+        }
+
         private void txtSearchService_TextChanged(object sender, EventArgs e)
         {
             OnSearchService();
@@ -661,6 +705,9 @@ namespace MM.Dialogs
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+
+                string patientGUID = row["PatientGUID"].ToString();
+                _dictMembers[patientGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -671,6 +718,9 @@ namespace MM.Dialogs
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkServiceChecked.Checked;
+
+                string serviceGUID = row["ServiceGUID"].ToString();
+                _dictServices[serviceGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -736,6 +786,10 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
+
+        
 
         
     }
