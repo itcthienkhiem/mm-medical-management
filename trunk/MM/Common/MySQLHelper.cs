@@ -77,6 +77,27 @@ namespace MM.Common
             return result;
         }
 
+        public static Result DeleteUsers(List<string> customerList)
+        {
+            Result result = new Result();
+
+            try
+            {
+                foreach (string id in customerList)
+                {
+                    string query = string.Format("DELETE FROM users WHERE customer_id = '{0}'", id);
+                    result = ExecuteNoneQuery(query);    
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
         public static MySqlConnection  CreateConnection()
         {
             try

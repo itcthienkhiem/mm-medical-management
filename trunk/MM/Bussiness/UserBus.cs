@@ -82,8 +82,11 @@ namespace MM.Bussiness
                         user.Password = password;
                         user.CreatedDate = DateTime.Now;
                         db.Users.InsertOnSubmit(user);
-                        db.SubmitChanges();
                     }
+                    else
+                        user.Password = password;
+
+                    db.SubmitChanges();
                     
                     t.Complete();
                 }
