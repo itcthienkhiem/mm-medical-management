@@ -98,7 +98,7 @@ namespace MM.Controls
                 _dataSource = null;
             }
 
-            if (_dictKhoCapCuu == null)
+            if (_dictKhoCapCuu != null)
             {
                 _dictKhoCapCuu.Clear();
                 _dictKhoCapCuu = null;
