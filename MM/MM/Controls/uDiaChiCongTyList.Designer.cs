@@ -41,10 +41,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgDiaChi = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.diaChiCongTyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.maCongTyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diaChiCongTyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -185,11 +185,8 @@
             this.dgDiaChi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgDiaChi.Size = new System.Drawing.Size(735, 279);
             this.dgDiaChi.TabIndex = 2;
+            this.dgDiaChi.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgDiaChi_CellMouseUp);
             this.dgDiaChi.DoubleClick += new System.EventHandler(this.dgDiaChi_DoubleClick);
-            // 
-            // diaChiCongTyBindingSource
-            // 
-            this.diaChiCongTyBindingSource.DataSource = typeof(MM.Databasae.DiaChiCongTy);
             // 
             // colChecked
             // 
@@ -216,6 +213,10 @@
             this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
             this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
             this.diaChiDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // diaChiCongTyBindingSource
+            // 
+            this.diaChiCongTyBindingSource.DataSource = typeof(MM.Databasae.DiaChiCongTy);
             // 
             // uDiaChiCongTyList
             // 

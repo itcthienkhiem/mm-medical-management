@@ -47,15 +47,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgNhapKhoCapCuu = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.nhapKhoCapCuuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
-            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTenCapCuu = new System.Windows.Forms.TextBox();
-            this.raTuNgayDenNgay = new System.Windows.Forms.RadioButton();
-            this.raTenCapCuu = new System.Windows.Forms.RadioButton();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tenCapCuuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngaySanXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,6 +62,15 @@
             this.hangSanXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nhaPhanPhoiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayNhapDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nhapKhoCapCuuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTenCapCuu = new System.Windows.Forms.TextBox();
+            this.raTuNgayDenNgay = new System.Windows.Forms.RadioButton();
+            this.raTenCapCuu = new System.Windows.Forms.RadioButton();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgNhapKhoCapCuu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nhapKhoCapCuuViewBindingSource)).BeginInit();
@@ -186,98 +186,8 @@
             this.dgNhapKhoCapCuu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgNhapKhoCapCuu.Size = new System.Drawing.Size(973, 336);
             this.dgNhapKhoCapCuu.TabIndex = 4;
+            this.dgNhapKhoCapCuu.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgNhapKhoCapCuu_CellMouseUp);
             this.dgNhapKhoCapCuu.DoubleClick += new System.EventHandler(this.dgLoThuoc_DoubleClick);
-            // 
-            // nhapKhoCapCuuViewBindingSource
-            // 
-            this.nhapKhoCapCuuViewBindingSource.DataSource = typeof(MM.Databasae.NhapKhoCapCuuView);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dtpkDenNgay);
-            this.panel2.Controls.Add(this.dtpkTuNgay);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.txtTenCapCuu);
-            this.panel2.Controls.Add(this.raTuNgayDenNgay);
-            this.panel2.Controls.Add(this.raTenCapCuu);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(973, 64);
-            this.panel2.TabIndex = 6;
-            // 
-            // dtpkDenNgay
-            // 
-            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkDenNgay.Enabled = false;
-            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkDenNgay.Location = new System.Drawing.Point(279, 34);
-            this.dtpkDenNgay.Name = "dtpkDenNgay";
-            this.dtpkDenNgay.Size = new System.Drawing.Size(111, 20);
-            this.dtpkDenNgay.TabIndex = 6;
-            this.dtpkDenNgay.ValueChanged += new System.EventHandler(this.dtpkDenNgay_ValueChanged);
-            // 
-            // dtpkTuNgay
-            // 
-            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkTuNgay.Enabled = false;
-            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkTuNgay.Location = new System.Drawing.Point(103, 34);
-            this.dtpkTuNgay.Name = "dtpkTuNgay";
-            this.dtpkTuNgay.Size = new System.Drawing.Size(111, 20);
-            this.dtpkTuNgay.TabIndex = 5;
-            this.dtpkTuNgay.ValueChanged += new System.EventHandler(this.dtpkTuNgay_ValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(220, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Đến ngày:";
-            // 
-            // txtTenCapCuu
-            // 
-            this.txtTenCapCuu.Location = new System.Drawing.Point(103, 10);
-            this.txtTenCapCuu.Name = "txtTenCapCuu";
-            this.txtTenCapCuu.Size = new System.Drawing.Size(287, 20);
-            this.txtTenCapCuu.TabIndex = 2;
-            this.txtTenCapCuu.TextChanged += new System.EventHandler(this.txtTenThuoc_TextChanged);
-            // 
-            // raTuNgayDenNgay
-            // 
-            this.raTuNgayDenNgay.AutoSize = true;
-            this.raTuNgayDenNgay.Location = new System.Drawing.Point(16, 35);
-            this.raTuNgayDenNgay.Name = "raTuNgayDenNgay";
-            this.raTuNgayDenNgay.Size = new System.Drawing.Size(64, 17);
-            this.raTuNgayDenNgay.TabIndex = 1;
-            this.raTuNgayDenNgay.Text = "Từ ngày";
-            this.raTuNgayDenNgay.UseVisualStyleBackColor = true;
-            this.raTuNgayDenNgay.CheckedChanged += new System.EventHandler(this.raTuNgayDenNgay_CheckedChanged);
-            // 
-            // raTenCapCuu
-            // 
-            this.raTenCapCuu.AutoSize = true;
-            this.raTenCapCuu.Checked = true;
-            this.raTenCapCuu.Location = new System.Drawing.Point(16, 11);
-            this.raTenCapCuu.Name = "raTenCapCuu";
-            this.raTenCapCuu.Size = new System.Drawing.Size(86, 17);
-            this.raTenCapCuu.TabIndex = 0;
-            this.raTenCapCuu.TabStop = true;
-            this.raTenCapCuu.Text = "Tên cấp cứu";
-            this.raTenCapCuu.UseVisualStyleBackColor = true;
-            this.raTenCapCuu.CheckedChanged += new System.EventHandler(this.raTenThuoc_CheckedChanged);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dgNhapKhoCapCuu);
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 64);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(973, 336);
-            this.panel3.TabIndex = 7;
             // 
             // colChecked
             // 
@@ -428,6 +338,97 @@
             this.ngayNhapDataGridViewTextBoxColumn.Name = "ngayNhapDataGridViewTextBoxColumn";
             this.ngayNhapDataGridViewTextBoxColumn.ReadOnly = true;
             this.ngayNhapDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // nhapKhoCapCuuViewBindingSource
+            // 
+            this.nhapKhoCapCuuViewBindingSource.DataSource = typeof(MM.Databasae.NhapKhoCapCuuView);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dtpkDenNgay);
+            this.panel2.Controls.Add(this.dtpkTuNgay);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.txtTenCapCuu);
+            this.panel2.Controls.Add(this.raTuNgayDenNgay);
+            this.panel2.Controls.Add(this.raTenCapCuu);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(973, 64);
+            this.panel2.TabIndex = 6;
+            // 
+            // dtpkDenNgay
+            // 
+            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkDenNgay.Enabled = false;
+            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkDenNgay.Location = new System.Drawing.Point(279, 34);
+            this.dtpkDenNgay.Name = "dtpkDenNgay";
+            this.dtpkDenNgay.Size = new System.Drawing.Size(111, 20);
+            this.dtpkDenNgay.TabIndex = 6;
+            this.dtpkDenNgay.ValueChanged += new System.EventHandler(this.dtpkDenNgay_ValueChanged);
+            // 
+            // dtpkTuNgay
+            // 
+            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkTuNgay.Enabled = false;
+            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkTuNgay.Location = new System.Drawing.Point(103, 34);
+            this.dtpkTuNgay.Name = "dtpkTuNgay";
+            this.dtpkTuNgay.Size = new System.Drawing.Size(111, 20);
+            this.dtpkTuNgay.TabIndex = 5;
+            this.dtpkTuNgay.ValueChanged += new System.EventHandler(this.dtpkTuNgay_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(220, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Đến ngày:";
+            // 
+            // txtTenCapCuu
+            // 
+            this.txtTenCapCuu.Location = new System.Drawing.Point(103, 10);
+            this.txtTenCapCuu.Name = "txtTenCapCuu";
+            this.txtTenCapCuu.Size = new System.Drawing.Size(287, 20);
+            this.txtTenCapCuu.TabIndex = 2;
+            this.txtTenCapCuu.TextChanged += new System.EventHandler(this.txtTenThuoc_TextChanged);
+            // 
+            // raTuNgayDenNgay
+            // 
+            this.raTuNgayDenNgay.AutoSize = true;
+            this.raTuNgayDenNgay.Location = new System.Drawing.Point(16, 35);
+            this.raTuNgayDenNgay.Name = "raTuNgayDenNgay";
+            this.raTuNgayDenNgay.Size = new System.Drawing.Size(64, 17);
+            this.raTuNgayDenNgay.TabIndex = 1;
+            this.raTuNgayDenNgay.Text = "Từ ngày";
+            this.raTuNgayDenNgay.UseVisualStyleBackColor = true;
+            this.raTuNgayDenNgay.CheckedChanged += new System.EventHandler(this.raTuNgayDenNgay_CheckedChanged);
+            // 
+            // raTenCapCuu
+            // 
+            this.raTenCapCuu.AutoSize = true;
+            this.raTenCapCuu.Checked = true;
+            this.raTenCapCuu.Location = new System.Drawing.Point(16, 11);
+            this.raTenCapCuu.Name = "raTenCapCuu";
+            this.raTenCapCuu.Size = new System.Drawing.Size(86, 17);
+            this.raTenCapCuu.TabIndex = 0;
+            this.raTenCapCuu.TabStop = true;
+            this.raTenCapCuu.Text = "Tên cấp cứu";
+            this.raTenCapCuu.UseVisualStyleBackColor = true;
+            this.raTenCapCuu.CheckedChanged += new System.EventHandler(this.raTenThuoc_CheckedChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dgNhapKhoCapCuu);
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 64);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(973, 336);
+            this.panel3.TabIndex = 7;
             // 
             // uNhapKhoCapCuuList
             // 
