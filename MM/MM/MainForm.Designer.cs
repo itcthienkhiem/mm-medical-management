@@ -192,16 +192,15 @@
             this.cauHinhKetNoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator51 = new System.Windows.Forms.ToolStripSeparator();
             this.danhMucDiaChiCongTyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator52 = new System.Windows.Forms.ToolStripSeparator();
-            this.traCuuThongTinKhachHangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.khoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.danhMucCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator60 = new System.Windows.Forms.ToolStripSeparator();
             this.nhapKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xuatKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.keToaCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator66 = new System.Windows.Forms.ToolStripSeparator();
             this.giaCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator67 = new System.Windows.Forms.ToolStripSeparator();
+            this.keToaCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator61 = new System.Windows.Forms.ToolStripSeparator();
             this.baoCaoCapCuuHetHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.baoCaoTonKhoCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -225,6 +224,8 @@
             this.lichKhamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator63 = new System.Windows.Forms.ToolStripSeparator();
             this.thongBaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator52 = new System.Windows.Forms.ToolStripSeparator();
+            this.traCuuThongTinKhachHangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -332,7 +333,6 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator67 = new System.Windows.Forms.ToolStripSeparator();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1411,9 +1411,7 @@
             this.toolStripSeparator47,
             this.cauHinhKetNoiToolStripMenuItem,
             this.toolStripSeparator51,
-            this.danhMucDiaChiCongTyToolStripMenuItem,
-            this.toolStripSeparator52,
-            this.traCuuThongTinKhachHangToolStripMenuItem});
+            this.danhMucDiaChiCongTyToolStripMenuItem});
             resources.ApplyResources(this.xetNghiemToolStripMenuItem, "xetNghiemToolStripMenuItem");
             this.xetNghiemToolStripMenuItem.Name = "xetNghiemToolStripMenuItem";
             this.xetNghiemToolStripMenuItem.Tag = "XetNghiem";
@@ -1507,18 +1505,6 @@
             this.danhMucDiaChiCongTyToolStripMenuItem.Tag = "DiaChiCongTy";
             this.danhMucDiaChiCongTyToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // toolStripSeparator52
-            // 
-            this.toolStripSeparator52.Name = "toolStripSeparator52";
-            resources.ApplyResources(this.toolStripSeparator52, "toolStripSeparator52");
-            // 
-            // traCuuThongTinKhachHangToolStripMenuItem
-            // 
-            this.traCuuThongTinKhachHangToolStripMenuItem.Name = "traCuuThongTinKhachHangToolStripMenuItem";
-            resources.ApplyResources(this.traCuuThongTinKhachHangToolStripMenuItem, "traCuuThongTinKhachHangToolStripMenuItem");
-            this.traCuuThongTinKhachHangToolStripMenuItem.Tag = "TraCuuThongTinKhachHang";
-            this.traCuuThongTinKhachHangToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
             // khoCapCuuToolStripMenuItem
             // 
             this.khoCapCuuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1564,14 +1550,6 @@
             this.xuatKhoCapCuuToolStripMenuItem.Tag = "XuatKhoCapCuu";
             this.xuatKhoCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
-            // keToaCapCuuToolStripMenuItem
-            // 
-            resources.ApplyResources(this.keToaCapCuuToolStripMenuItem, "keToaCapCuuToolStripMenuItem");
-            this.keToaCapCuuToolStripMenuItem.Image = global::MM.Properties.Resources.prescription_icon;
-            this.keToaCapCuuToolStripMenuItem.Name = "keToaCapCuuToolStripMenuItem";
-            this.keToaCapCuuToolStripMenuItem.Tag = "KeToaCapCuu";
-            this.keToaCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
             // toolStripSeparator66
             // 
             this.toolStripSeparator66.Name = "toolStripSeparator66";
@@ -1584,6 +1562,19 @@
             this.giaCapCuuToolStripMenuItem.Name = "giaCapCuuToolStripMenuItem";
             this.giaCapCuuToolStripMenuItem.Tag = "GiaCapCuu";
             this.giaCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator67
+            // 
+            this.toolStripSeparator67.Name = "toolStripSeparator67";
+            resources.ApplyResources(this.toolStripSeparator67, "toolStripSeparator67");
+            // 
+            // keToaCapCuuToolStripMenuItem
+            // 
+            resources.ApplyResources(this.keToaCapCuuToolStripMenuItem, "keToaCapCuuToolStripMenuItem");
+            this.keToaCapCuuToolStripMenuItem.Image = global::MM.Properties.Resources.prescription_icon;
+            this.keToaCapCuuToolStripMenuItem.Name = "keToaCapCuuToolStripMenuItem";
+            this.keToaCapCuuToolStripMenuItem.Tag = "KeToaCapCuu";
+            this.keToaCapCuuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // toolStripSeparator61
             // 
@@ -1635,7 +1626,9 @@
             this.toolStripSeparator59,
             this.lichKhamToolStripMenuItem,
             this.toolStripSeparator63,
-            this.thongBaoToolStripMenuItem});
+            this.thongBaoToolStripMenuItem,
+            this.toolStripSeparator52,
+            this.traCuuThongTinKhachHangToolStripMenuItem});
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             // 
@@ -1745,6 +1738,18 @@
             this.thongBaoToolStripMenuItem.Name = "thongBaoToolStripMenuItem";
             this.thongBaoToolStripMenuItem.Tag = "ThongBao";
             this.thongBaoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator52
+            // 
+            this.toolStripSeparator52.Name = "toolStripSeparator52";
+            resources.ApplyResources(this.toolStripSeparator52, "toolStripSeparator52");
+            // 
+            // traCuuThongTinKhachHangToolStripMenuItem
+            // 
+            resources.ApplyResources(this.traCuuThongTinKhachHangToolStripMenuItem, "traCuuThongTinKhachHangToolStripMenuItem");
+            this.traCuuThongTinKhachHangToolStripMenuItem.Name = "traCuuThongTinKhachHangToolStripMenuItem";
+            this.traCuuThongTinKhachHangToolStripMenuItem.Tag = "TraCuuThongTinKhachHang";
+            this.traCuuThongTinKhachHangToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -1871,7 +1876,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1892,7 +1897,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -2502,6 +2507,7 @@
             // _uPatientList
             // 
             this._uPatientList.DataSource = null;
+            this._uPatientList.DictPatient = null;
             resources.ApplyResources(this._uPatientList, "_uPatientList");
             this._uPatientList.Name = "_uPatientList";
             // 
@@ -2529,11 +2535,6 @@
             // 
             this._timerPatient.Interval = 5000;
             this._timerPatient.Tick += new System.EventHandler(this._timerPatient_Tick);
-            // 
-            // toolStripSeparator67
-            // 
-            this.toolStripSeparator67.Name = "toolStripSeparator67";
-            resources.ApplyResources(this.toolStripSeparator67, "toolStripSeparator67");
             // 
             // MainForm
             // 
@@ -2803,10 +2804,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator50;
         private System.Windows.Forms.ToolStripMenuItem cauHinhFTPToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator51;
-        private System.Windows.Forms.ToolStripMenuItem traCuuThongTinKhachHangToolStripMenuItem;
         private Controls.uTraCuuThongTinKhachHang _uTraCuuThongTinKhachHang;
         private Controls.uDiaChiCongTyList _uDiaChiCongTyList;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator52;
         private System.Windows.Forms.ToolStripMenuItem danhMucDiaChiCongTyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator53;
         private System.Windows.Forms.ToolStripMenuItem chiTietPhieuThuDichVuToolStripMenuItem;
@@ -2870,6 +2869,8 @@
         private System.Windows.Forms.ToolStripMenuItem keToaCapCuuToolStripMenuItem;
         private Controls.uToaCapCuuList _uToaCapCuuList;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator67;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator52;
+        private System.Windows.Forms.ToolStripMenuItem traCuuThongTinKhachHangToolStripMenuItem;
 
     }
 }
