@@ -18,6 +18,7 @@ namespace MM.Controls
     {
         #region Members
         private DataTable _dataSource = null;
+        private Dictionary<string, DataRow> _dictGiaCapCuu = null;
         #endregion
 
         #region Constructor
@@ -48,14 +49,13 @@ namespace MM.Controls
                 _dataSource = null;
             }
 
-            DataTable dt = dgGiaThuoc.DataSource as DataTable;
-            if (dt != null)
+            if (_dictGiaCapCuu != null)
             {
-                dt.Rows.Clear();
-                dt.Clear();
-                dt = null;
-                dgGiaThuoc.DataSource = null;
+                _dictGiaCapCuu.Clear();
+                _dictGiaCapCuu = null;
             }
+
+            ClearDataSource();
         }
 
         public void ClearDataSource()
@@ -99,6 +99,13 @@ namespace MM.Controls
                 {
                     ClearData();
                     _dataSource = result.QueryResult as DataTable;
+
+                    if (_dictGiaCapCuu == null) _dictGiaCapCuu = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSource.Rows)
+                    {
+                        string giaCapCuuGUID = row["GiaCapCuuGUID"].ToString();
+                        _dictGiaCapCuu.Add(giaCapCuuGUID, row);
+                    }
                     OnSearchGiaThuoc();
                 };
 
@@ -112,27 +119,27 @@ namespace MM.Controls
             }
         }
 
-        private void UpdateChecked()
-        {
-            DataTable dt = dgGiaThuoc.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    DataTable dt = dgGiaThuoc.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string patientGUID1 = row1["GiaCapCuuGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("GiaCapCuuGUID='{0}'", patientGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string patientGUID1 = row1["GiaCapCuuGUID"].ToString();
+        //        DataRow[] rows2 = _dataSource.Select(string.Format("GiaCapCuuGUID='{0}'", patientGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
         private void OnSearchGiaThuoc()
         {
-            UpdateChecked();
+            //UpdateChecked();
             ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
@@ -214,6 +221,7 @@ namespace MM.Controls
                     newRow["DeletedBy"] = dlg.GiaCapCuu.DeletedBy.ToString();
 
                 dt.Rows.Add(newRow);
+                _dictGiaCapCuu.Add(dlg.GiaCapCuu.GiaCapCuuGUID.ToString(), newRow);
                 OnSearchGiaThuoc();
                 //SelectLastedRow();
             }
@@ -228,10 +236,12 @@ namespace MM.Controls
         private DataRow GetDataRow(string giaThuocGUID)
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("GiaCapCuuGUID = '{0}'", giaThuocGUID));
-            if (rows == null || rows.Length <= 0) return null;
+            if (_dictGiaCapCuu == null) return null;
+            return _dictGiaCapCuu[giaThuocGUID];
+            //DataRow[] rows = _dataSource.Select(string.Format("GiaCapCuuGUID = '{0}'", giaThuocGUID));
+            //if (rows == null || rows.Length <= 0) return null;
 
-            return rows[0];
+            //return rows[0];
         }
 
         private void OnEditGiaThuoc()
@@ -282,7 +292,7 @@ namespace MM.Controls
         private void OnDeleteGiaThuoc()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedGiaThuocList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             foreach (DataRow row in _dataSource.Rows)
@@ -304,6 +314,7 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
+                            _dictGiaCapCuu.Remove(row["GiaCapCuuGUID"].ToString());
                             _dataSource.Rows.Remove(row);
                         }
 
@@ -322,6 +333,19 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dgGiaThuoc_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgGiaThuoc.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgGiaThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string giaCapCuuGUID = row["GiaCapCuuGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictGiaCapCuu[giaCapCuuGUID]["Checked"] = isChecked;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OnAddGiaThuoc();
@@ -356,6 +380,8 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+                string giaCapCuuGUID = row["GiaCapCuuGUID"].ToString();
+                _dictGiaCapCuu[giaCapCuuGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -414,6 +440,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

@@ -18,6 +18,7 @@ namespace MM.Controls
     {
         #region Members
         private DataTable _dataSource = null;
+        private Dictionary<string, DataRow> _dictGiaThuoc = null;
         #endregion
 
         #region Constructor
@@ -48,14 +49,13 @@ namespace MM.Controls
                 _dataSource = null;
             }
 
-            DataTable dt = dgGiaThuoc.DataSource as DataTable;
-            if (dt != null)
+            if (_dictGiaThuoc != null)
             {
-                dt.Rows.Clear();
-                dt.Clear();
-                dt = null;
-                dgGiaThuoc.DataSource = null;
+                _dictGiaThuoc.Clear();
+                _dictGiaThuoc = null;
             }
+
+            ClearDataSource();
         }
 
         public void ClearDataSource()
@@ -99,6 +99,14 @@ namespace MM.Controls
                 {
                     ClearData();
                     _dataSource = result.QueryResult as DataTable;
+
+                    if (_dictGiaThuoc == null) _dictGiaThuoc = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSource.Rows)
+                    {
+                        string giaThuocGUID = row["GiaThuocGUID"].ToString();
+                        _dictGiaThuoc.Add(giaThuocGUID, row);
+                    }
+
                     OnSearchGiaThuoc();
                 };
 
@@ -112,47 +120,47 @@ namespace MM.Controls
             }
         }
 
-        private void UpdateChecked()
-        {
-            DataTable dt = dgGiaThuoc.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    DataTable dt = dgGiaThuoc.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string patientGUID1 = row1["GiaThuocGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("GiaThuocGUID='{0}'", patientGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string patientGUID1 = row1["GiaThuocGUID"].ToString();
+        //        DataRow[] rows2 = _dataSource.Select(string.Format("GiaThuocGUID='{0}'", patientGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
 
-            //DataTable dt = dgGiaThuoc.DataSource as DataTable;
-            //if (dt == null) return;
+        //    //DataTable dt = dgGiaThuoc.DataSource as DataTable;
+        //    //if (dt == null) return;
 
-            //foreach (DataRow row1 in dt.Rows)
-            //{
-            //    string giaThuocGUID1 = row1["GiaThuocGUID"].ToString();
-            //    bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-            //    foreach (DataRow row2 in _dataSource.Rows)
-            //    {
-            //        string giaThuocGUID2 = row2["GiaThuocGUID"].ToString();
-            //        bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
+        //    //foreach (DataRow row1 in dt.Rows)
+        //    //{
+        //    //    string giaThuocGUID1 = row1["GiaThuocGUID"].ToString();
+        //    //    bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
+        //    //    foreach (DataRow row2 in _dataSource.Rows)
+        //    //    {
+        //    //        string giaThuocGUID2 = row2["GiaThuocGUID"].ToString();
+        //    //        bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
 
-            //        if (giaThuocGUID1 == giaThuocGUID2)
-            //        {
-            //            row2["Checked"] = row1["Checked"];
-            //            break;
-            //        }
-            //    }
-            //}
-        }
+        //    //        if (giaThuocGUID1 == giaThuocGUID2)
+        //    //        {
+        //    //            row2["Checked"] = row1["Checked"];
+        //    //            break;
+        //    //        }
+        //    //    }
+        //    //}
+        //}
 
         private void OnSearchGiaThuoc()
         {
-            UpdateChecked();
+            //UpdateChecked();
             ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
@@ -234,6 +242,7 @@ namespace MM.Controls
                     newRow["DeletedBy"] = dlg.GiaThuoc.DeletedBy.ToString();
 
                 dt.Rows.Add(newRow);
+                _dictGiaThuoc.Add(dlg.GiaThuoc.GiaThuocGUID.ToString(), newRow);
                 OnSearchGiaThuoc();
                 //SelectLastedRow();
             }
@@ -248,10 +257,12 @@ namespace MM.Controls
         private DataRow GetDataRow(string giaThuocGUID)
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("GiaThuocGUID = '{0}'", giaThuocGUID));
-            if (rows == null || rows.Length <= 0) return null;
+            if (_dictGiaThuoc == null) return null;
+            return _dictGiaThuoc[giaThuocGUID];
+            //DataRow[] rows = _dataSource.Select(string.Format("GiaThuocGUID = '{0}'", giaThuocGUID));
+            //if (rows == null || rows.Length <= 0) return null;
 
-            return rows[0];
+            //return rows[0];
         }
 
         private void OnEditGiaThuoc()
@@ -302,7 +313,7 @@ namespace MM.Controls
         private void OnDeleteGiaThuoc()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedGiaThuocList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             foreach (DataRow row in _dataSource.Rows)
@@ -324,6 +335,7 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
+                            _dictGiaThuoc.Remove(row["GiaThuocGUID"].ToString());
                             _dataSource.Rows.Remove(row);
                         }
 
@@ -344,7 +356,15 @@ namespace MM.Controls
         #region Window Event Handlers
         private void dgGiaThuoc_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
 
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgGiaThuoc.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgGiaThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string giaThuocGUID = row["GiaThuocGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictGiaThuoc[giaThuocGUID]["Checked"] = isChecked;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -381,6 +401,8 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+                string giaThuocGUID = row["GiaThuocGUID"].ToString();
+                _dictGiaThuoc[giaThuocGUID]["Checked"] = chkChecked.Checked;
             }
         }
 

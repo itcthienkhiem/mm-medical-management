@@ -18,6 +18,7 @@ namespace MM.Controls
     {
         #region Members
         private DataTable _dataSource = null;
+        private Dictionary<string, DataRow> _dictXetNghiemTay = null;
         #endregion
 
         #region Constructor
@@ -58,6 +59,36 @@ namespace MM.Controls
             }
         }
 
+        public void ClearData()
+        {
+            if (_dataSource != null)
+            {
+                _dataSource.Rows.Clear();
+                _dataSource.Clear();
+                _dataSource = null;
+            }
+
+            if (_dictXetNghiemTay != null)
+            {
+                _dictXetNghiemTay.Clear();
+                _dictXetNghiemTay = null;
+            }
+
+            ClearDataSource();
+        }
+
+        public void ClearDataSource()
+        {
+            DataTable dt = dgXetNghiem.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                dgXetNghiem.DataSource = null;
+            }
+        }
+
         private void OnDisplayXetNghiemList()
         {
             Result result = XetNghiemTayBus.GetXetNghiemList();
@@ -65,7 +96,16 @@ namespace MM.Controls
             {
                 MethodInvoker method = delegate
                 {
+                    ClearData();
                     _dataSource = result.QueryResult as DataTable;
+
+                    if (_dictXetNghiemTay == null) _dictXetNghiemTay = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSource.Rows)
+                    {
+                        string xetNghiem_ManualGUID = row["XetNghiem_ManualGUID"].ToString();
+                        _dictXetNghiemTay.Add(xetNghiem_ManualGUID, row);
+                    }
+
                     OnSearchXetNghiem();
                 };
 
@@ -79,27 +119,28 @@ namespace MM.Controls
             }
         }
 
-        private void UpdateChecked()
-        {
-            DataTable dt = dgXetNghiem.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    DataTable dt = dgXetNghiem.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string serviceGUID1 = row1["XetNghiem_ManualGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("XetNghiem_ManualGUID='{0}'", serviceGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string serviceGUID1 = row1["XetNghiem_ManualGUID"].ToString();
+        //        DataRow[] rows2 = _dataSource.Select(string.Format("XetNghiem_ManualGUID='{0}'", serviceGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
         private void OnSearchXetNghiem()
         {
-            UpdateChecked();
+            ClearDataSource();
+            //UpdateChecked();
             chkChecked.Checked = false;
             List<DataRow> results = null;
             DataTable newDataSource = null;
@@ -180,6 +221,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.XetNghiem.Status;
                 _dataSource.Rows.Add(newRow);
+                _dictXetNghiemTay.Add(dlg.XetNghiem.XetNghiem_ManualGUID.ToString(), newRow);
                 OnSearchXetNghiem();
             }
         }
@@ -235,7 +277,7 @@ namespace MM.Controls
         private void OnDelete()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedServiceList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = _dataSource;
@@ -257,6 +299,7 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
+                            _dictXetNghiemTay.Remove(row["XetNghiem_ManualGUID"].ToString());
                             _dataSource.Rows.Remove(row);
                         }
 
@@ -277,14 +320,29 @@ namespace MM.Controls
         private DataRow GetDataRow(string xetNghiem_ManualGUID)
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("XetNghiem_ManualGUID = '{0}'", xetNghiem_ManualGUID));
-            if (rows == null || rows.Length <= 0) return null;
+            if (_dictXetNghiemTay == null) return null;
+            return _dictXetNghiemTay[xetNghiem_ManualGUID];
+            //DataRow[] rows = _dataSource.Select(string.Format("XetNghiem_ManualGUID = '{0}'", xetNghiem_ManualGUID));
+            //if (rows == null || rows.Length <= 0) return null;
 
-            return rows[0];
+            //return rows[0];
         }
         #endregion
 
         #region Window Event Handlers
+        private void dgXetNghiem_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgXetNghiem.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string xetNghiem_ManualGUID = row["XetNghiem_ManualGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictXetNghiemTay[xetNghiem_ManualGUID]["Checked"] = isChecked;
+        }
+
         private void txtXetNghiem_TextChanged(object sender, EventArgs e)
         {
             OnSearchXetNghiem();
@@ -297,6 +355,8 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+                string xetNghiem_ManualGUID = row["XetNghiem_ManualGUID"].ToString();
+                _dictXetNghiemTay[xetNghiem_ManualGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -375,5 +435,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

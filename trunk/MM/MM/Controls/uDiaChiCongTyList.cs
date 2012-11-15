@@ -18,7 +18,8 @@ namespace MM.Controls
     public partial class uDiaChiCongTyList : uBase
     {
         #region Members
-        DataTable _dataSource = null;
+        private DataTable _dataSource = null;
+        private Dictionary<string, DataRow> _dictDiaChiCongTy = null;
         #endregion
 
         #region Constructor
@@ -69,14 +70,13 @@ namespace MM.Controls
                 _dataSource = null;
             }
 
-            DataTable dt = dgDiaChi.DataSource as DataTable;
-            if (dt != null)
+            if (_dictDiaChiCongTy != null)
             {
-                dt.Rows.Clear();
-                dt.Clear();
-                dt = null;
-                dgDiaChi.DataSource = null;
+                _dictDiaChiCongTy.Clear();
+                _dictDiaChiCongTy = null;
             }
+
+            ClearDataSource();
         }
 
         public void ClearDataSource()
@@ -100,6 +100,14 @@ namespace MM.Controls
                 {
                     ClearData();
                     _dataSource = result.QueryResult as DataTable;
+
+                    if (_dictDiaChiCongTy == null) _dictDiaChiCongTy = new Dictionary<string, DataRow>();
+                    foreach (DataRow row in _dataSource.Rows)
+                    {
+                        string diaChiCongTyGUID = row["DiaChiCongTyGUID"].ToString();
+                        _dictDiaChiCongTy.Add(diaChiCongTyGUID, row);
+                    }
+
                     OnSearchDiaChiCongTy();
                 };
 
@@ -147,6 +155,7 @@ namespace MM.Controls
 
                 newRow["Status"] = dlg.DiaChiCongTy.Status;
                 dt.Rows.Add(newRow);
+                _dictDiaChiCongTy.Add(dlg.DiaChiCongTy.DiaChiCongTyGUID.ToString(), newRow);
                 OnSearchDiaChiCongTy();
             }
         }
@@ -154,10 +163,12 @@ namespace MM.Controls
         private DataRow GetDataRow(string diaChiCongTyGUID)
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            DataRow[] rows = _dataSource.Select(string.Format("DiaChiCongTyGUID = '{0}'", diaChiCongTyGUID));
-            if (rows == null || rows.Length <= 0) return null;
+            if (_dictDiaChiCongTy == null) return null;
+            return _dictDiaChiCongTy[diaChiCongTyGUID];
+            //DataRow[] rows = _dataSource.Select(string.Format("DiaChiCongTyGUID = '{0}'", diaChiCongTyGUID));
+            //if (rows == null || rows.Length <= 0) return null;
 
-            return rows[0];
+            //return rows[0];
         }
 
         private void OnEdit()
@@ -204,7 +215,7 @@ namespace MM.Controls
         private void OnDelete()
         {
             if (_dataSource == null) return;
-            UpdateChecked();
+            //UpdateChecked();
             List<string> deletedSympList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = _dataSource;//dgSymptom.DataSource as DataTable;
@@ -226,6 +237,7 @@ namespace MM.Controls
                     {
                         foreach (DataRow row in deletedRows)
                         {
+                            _dictDiaChiCongTy.Remove(row["DiaChiCongTyGUID"].ToString());
                             _dataSource.Rows.Remove(row);
                         }
 
@@ -242,27 +254,27 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những địa chỉ cần xóa.", IconType.Information);
         }
 
-        private void UpdateChecked()
-        {
-            DataTable dt = dgDiaChi.DataSource as DataTable;
-            if (dt == null) return;
+        //private void UpdateChecked()
+        //{
+        //    DataTable dt = dgDiaChi.DataSource as DataTable;
+        //    if (dt == null) return;
 
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
+        //    DataRow[] rows1 = dt.Select("Checked='True'");
+        //    if (rows1 == null || rows1.Length <= 0) return;
 
-            foreach (DataRow row1 in rows1)
-            {
-                string serviceGUID1 = row1["DiaChiCongTyGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("DiaChiCongTyGUID='{0}'", serviceGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
+        //    foreach (DataRow row1 in rows1)
+        //    {
+        //        string serviceGUID1 = row1["DiaChiCongTyGUID"].ToString();
+        //        DataRow[] rows2 = _dataSource.Select(string.Format("DiaChiCongTyGUID='{0}'", serviceGUID1));
+        //        if (rows2 == null || rows2.Length <= 0) continue;
 
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-        }
+        //        rows2[0]["Checked"] = row1["Checked"];
+        //    }
+        //}
 
         private void OnSearchDiaChiCongTy()
         {
-            UpdateChecked();
+            //UpdateChecked();
             ClearDataSource();
             chkChecked.Checked = false;
             List<DataRow> results = null;
@@ -311,6 +323,19 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dgDiaChi_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+            if (_dataSource == null) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgDiaChi.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgDiaChi.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string diaChiCongTyGUID = row["DiaChiCongTyGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            _dictDiaChiCongTy[diaChiCongTyGUID]["Checked"] = isChecked;
+        }
+
         private void txtMaCongTy_TextChanged(object sender, EventArgs e)
         {
             OnSearchDiaChiCongTy();
@@ -323,6 +348,9 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+
+                string diaChiCongTyGUID = row["DiaChiCongTyGUID"].ToString();
+                _dictDiaChiCongTy[diaChiCongTyGUID]["Checked"] = chkChecked.Checked;
             }
         }
 
@@ -367,5 +395,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

@@ -42,12 +42,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.khoCapCuuBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tenCapCuuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.donViTinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.khoCapCuuBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).BeginInit();
@@ -193,21 +193,8 @@
             this.dgThuoc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgThuoc.Size = new System.Drawing.Size(796, 364);
             this.dgThuoc.TabIndex = 2;
+            this.dgThuoc.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgThuoc_CellMouseUp);
             this.dgThuoc.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
-            // 
-            // khoCapCuuBindingSource
-            // 
-            this.khoCapCuuBindingSource.DataSource = typeof(MM.Databasae.KhoCapCuu);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgThuoc);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 35);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(796, 364);
-            this.panel3.TabIndex = 1;
             // 
             // colChecked
             // 
@@ -244,6 +231,20 @@
             this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 350;
+            // 
+            // khoCapCuuBindingSource
+            // 
+            this.khoCapCuuBindingSource.DataSource = typeof(MM.Databasae.KhoCapCuu);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgThuoc);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 35);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(796, 364);
+            this.panel3.TabIndex = 1;
             // 
             // uKhoCapCuu
             // 
