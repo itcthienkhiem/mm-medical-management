@@ -62,6 +62,16 @@ namespace MM.Controls
             btnVaoPhongCho.Enabled = Global.AllowAddPhongCho;
             btnTaoHoSo.Enabled = Global.AllowTaoHoSo;
             btnUploadHoSo.Enabled = Global.AllowUploadHoSo;
+
+            //List<string> customerList = new List<string>();
+            //customerList.Add("BBBBB0001");
+            //customerList.Add("TEST001");
+            //customerList.Add("AAAAAAA02");
+            //customerList.Add("AAAAAAA001");
+
+            //Result result = MySQLHelper.DeleteUsers(customerList);
+
+            //Result result = MySQLHelper.GetAllUsers();
         }
 
         public void ClearData()
@@ -1230,7 +1240,8 @@ namespace MM.Controls
             try
             {
                 if (!CheckHoSo(checkedRows)) return;
-
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnUploadHoSoProc), checkedRows);
+                base.ShowWaiting();
             }
             catch (Exception e)
             {
@@ -1240,6 +1251,61 @@ namespace MM.Controls
             finally
             {
                 base.HideWaiting();
+            }
+        }
+
+        private void OnUploadHoSo(List<DataRow> checkedRows)
+        {
+            foreach (DataRow row in checkedRows)
+            {
+                string maBenhNhan = row["FileNum"].ToString();
+                string tenBenhNhan = Utility.ConvertToUnSign(row["FullName"].ToString());
+                string tenBenhNhan2 = Utility.ConvertToUnSign2(row["FullName"].ToString());
+                string password = Utility.GeneratePassword();
+                string path = string.Format("{0}\\{1}@{2}", Global.HoSoPath, maBenhNhan, tenBenhNhan);
+                if (!Directory.Exists(path)) continue;
+                string[] files = Directory.GetFiles(path);
+                if (files == null || files.Length <= 0) continue;
+
+                Result result = MySQLHelper.CheckUserExist(maBenhNhan);
+                if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.CheckUserExist"), IconType.Information);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.CheckUserExist"));
+                    return;
+                }
+
+                if (result.Error.Code == ErrorCode.NOT_EXIST)
+                {
+                    result = MySQLHelper.InsertUser(maBenhNhan, password, tenBenhNhan2);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.InsertUser"), IconType.Information);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
+                        return;
+                    }
+                }
+                else
+                    password = result.QueryResult.ToString();
+
+                result = UserBus.AddUser(maBenhNhan, password);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.AddUser"), IconType.Information);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.AddUser"));
+                    return;
+                }
+
+                foreach (string file in files)
+                {
+                    string remoteFileName = string.Format("{0}/{1}/{2}", Global.FTPFolder, maBenhNhan, Path.GetFileName(file));
+                    result = FTP.UploadFile(Global.FTPConnectionInfo, file, remoteFileName);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("FTP.UploadFile"), IconType.Information);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("FTP.UploadFile"));
+                    }
+                }
             }
         }
         #endregion
@@ -1479,11 +1545,27 @@ namespace MM.Controls
                 if (OnTaoHoSo(checkedRows))
                 {
                     if (MsgBox.Question(Application.ProductName, "Bạn có muốn upload hồ sơ ?") == DialogResult.Yes)
-                    {
-                        base.HideWaiting();
-                        OnUploadHoSoAsThread(checkedRows);
-                    }
+                        OnUploadHoSo(checkedRows);
                 }
+            }
+            catch (Exception e)
+            {
+                base.HideWaiting();
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnUploadHoSoProc(object state)
+        {
+            try
+            {
+                List<DataRow> checkedRows = (List<DataRow>)state;
+                OnUploadHoSo(checkedRows);
             }
             catch (Exception e)
             {
@@ -1492,7 +1574,7 @@ namespace MM.Controls
             }
             finally
             {
-                base.HideWaiting();
+                this.HideWaiting();
             }
         }
         #endregion
