@@ -7433,6 +7433,11 @@ namespace MM.Exports
 
                 //Fill thông tin dịch vụ sử dụng cận lâm sàng
                 rowIndex = 39;
+                range = workSheet.Cells[string.Format("A{0}", rowIndex)].EntireRow;
+                range.Insert(InsertShiftDirection.Down);
+
+                rowIndex = 40;
+
                 if (ketQuaCanLamSangList != null)
                 {
                     range = workSheet.Cells[string.Format("A{0}", rowIndex)].EntireRow;
