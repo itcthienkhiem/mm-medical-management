@@ -433,20 +433,21 @@ namespace MM.Controls
                 DataTable dt = result.QueryResult as DataTable;
                 if (dt != null && dt.Rows.Count > 0)
                 {
-                    foreach (DataRow dr in dt.Rows)
+                    MethodInvoker method = delegate
                     {
-                        string tenSieuAm = Utility.ConvertToUnSign(dr["TenSieuAm"].ToString());
-                        string ketQuaSieuAmFileName = string.Format("{0}\\KetQuaSieuAm_{1}_{2}.pdf", path, tenSieuAm,
-                            DateTime.Now.ToString("ddMMyyyyHHmmssms"));
-
-                        MethodInvoker method = delegate
+                        foreach (DataRow dr in dt.Rows)
                         {
+                            string tenSieuAm = Utility.ConvertToUnSign(dr["TenSieuAm"].ToString());
+                            string ketQuaSieuAmFileName = string.Format("{0}\\KetQuaSieuAm_{1}_{2}.pdf", path, tenSieuAm,
+                            DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+                        
                             _uPrintKetQuaSieuAm.PatientRow = row;
                             _uPrintKetQuaSieuAm.ExportToPDF(dr, ketQuaSieuAmFileName);
-                        };
-                        if (InvokeRequired) BeginInvoke(method);
-                        else method.Invoke();
-                    }
+                        
+                        }
+                    };
+                    if (InvokeRequired) BeginInvoke(method);
+                    else method.Invoke();
                 }
             }
 
