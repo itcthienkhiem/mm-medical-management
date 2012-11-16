@@ -1080,7 +1080,7 @@ namespace MM.Controls
                     return false;
 
                 string pdfFileName = string.Format("{0}\\KetQuaKhamSucKhoeTongQuat_{1}.pdf", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
-                if (!Exports.ConvertExcelToPDF.Convert(ketQuaKhamTongQuatFileName, pdfFileName))
+                if (!Exports.ConvertExcelToPDF.Convert(ketQuaKhamTongQuatFileName, pdfFileName, Global.PageSetupConfig.GetPageSetup(Const.KhamSucKhoeTongQuatTemplate)))
                     return false;
 
                 //Kết quả nội soi
@@ -1106,32 +1106,39 @@ namespace MM.Controls
                             string ketQuaNoiSoiFileName = string.Format("{0}\\Temp\\KetQuaNoiSoi.xls", Application.StartupPath);
                             //string.Format("{0}\\KetQuaNoiSoi_{1}_{2}.xls", path, loaiNoiSoi.ToString(), DateTime.Now.ToString("ddMMyyyyHHmmssms"));
 
+                            PageSetup p = null;
+
                             switch (loaiNoiSoi)
                             {
                                 case LoaiNoiSoi.Tai:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiTaiToExcel(ketQuaNoiSoiFileName, row, dr))
                                         return false;
+                                    p = Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTaiTemplate);
                                     break;
                                 case LoaiNoiSoi.Mui:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiMuiToExcel(ketQuaNoiSoiFileName, row, dr))
                                         return false;
+                                    p = Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiMuiTemplate);
                                     break;
                                 case LoaiNoiSoi.Hong_ThanhQuan:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiHongThanhQuanToExcel(ketQuaNoiSoiFileName, row, dr))
                                         return false;
+                                    p = Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiHongThanhQuanTemplate);
                                     break;
                                 case LoaiNoiSoi.TaiMuiHong:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiTaiMuiHongToExcel(ketQuaNoiSoiFileName, row, dr))
                                         return false;
+                                    p = Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTaiMuiHongTemplate);
                                     break;
                                 case LoaiNoiSoi.TongQuat:
                                     if (!Exports.ExportExcel.ExportKetQuaNoiSoiTongQuatToExcel(ketQuaNoiSoiFileName, row, dr))
                                         return false;
+                                    p = Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTongQuatTemplate);
                                     break;
                             }
 
                             pdfFileName = string.Format("{0}\\KetQuaNoiSoi_{1}_{2}.xls", path, loaiNoiSoi.ToString(), DateTime.Now.ToString("ddMMyyyyHHmmssms"));
-                            if (!Exports.ConvertExcelToPDF.Convert(ketQuaNoiSoiFileName, pdfFileName))
+                            if (!Exports.ConvertExcelToPDF.Convert(ketQuaNoiSoiFileName, pdfFileName, p))
                                 return false;
                         }
                     }
@@ -1162,7 +1169,7 @@ namespace MM.Controls
                                 return false;
 
                             pdfFileName = string.Format("{0}\\KetQuaSoiCTC_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
-                            if (!Exports.ConvertExcelToPDF.Convert(ketQuaSoiCTCFileName, pdfFileName))
+                            if (!Exports.ConvertExcelToPDF.Convert(ketQuaSoiCTCFileName, pdfFileName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaSoiCTCTemplate)))
                                 return false;
                         }
                     }
