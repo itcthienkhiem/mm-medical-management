@@ -50,7 +50,7 @@ namespace MM.Exports
             }
             catch (Exception e)
             {
-                MsgBox.Show(Application.ProductName, "Không thể chuyển qua PDF. Yêu cầu phải cài Office Excel 2007.", Common.IconType.Error);
+                MsgBox.Show(Application.ProductName, "Không thể chuyển qua PDF. Yêu cầu phải cài Office Excel 2007 và Microsoft Save as PDF 2007 Add-in.", Common.IconType.Error);
                 return false;
             }
             finally
