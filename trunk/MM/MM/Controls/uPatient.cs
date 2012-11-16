@@ -336,8 +336,12 @@ namespace MM.Controls
             string path = string.Format("{0}\\{1}@{2}", Global.HoSoPath, maBenhNhan, tenBenhNhan);
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 
-            string ketQuaKhamTongQuatFileName = string.Format("{0}\\KetQuaKhamSucKhoeTongQuat_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+            string ketQuaKhamTongQuatFileName = string.Format("{0}\\Temp\\KetQuaKhamSucKhoeTongQuat.xls", Application.StartupPath);//string.Format("{0}\\KetQuaKhamSucKhoeTongQuat_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
             if (!Exports.ExportExcel.ExportKetQuaKhamTongQuatToExcel(ketQuaKhamTongQuatFileName, row, ngayKhamCuoiCungList))
+                return false;
+
+            string pdfFileName = string.Format("{0}\\KetQuaKhamSucKhoeTongQuat_{1}.pdf", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+            if (!Exports.ConvertExcelToPDF.Convert(ketQuaKhamTongQuatFileName, pdfFileName))
                 return false;
 
             //Kết quả nội soi
@@ -360,8 +364,8 @@ namespace MM.Controls
                     foreach (DataRow dr in dt.Rows)
                     {
                         LoaiNoiSoi loaiNoiSoi = (LoaiNoiSoi)Convert.ToInt32(dr["LoaiNoiSoi"]);
-                        string ketQuaNoiSoiFileName = string.Format("{0}\\KetQuaNoiSoi_{1}_{2}.xls", path, loaiNoiSoi.ToString(),
-                            DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+                        string ketQuaNoiSoiFileName = string.Format("{0}\\Temp\\KetQuaNoiSoi.xls", Application.StartupPath);
+                        //string.Format("{0}\\KetQuaNoiSoi_{1}_{2}.xls", path, loaiNoiSoi.ToString(), DateTime.Now.ToString("ddMMyyyyHHmmssms"));
 
                         switch (loaiNoiSoi)
                         {
@@ -386,6 +390,10 @@ namespace MM.Controls
                                     return false;
                                 break;
                         }
+
+                        pdfFileName = string.Format("{0}\\KetQuaNoiSoi_{1}_{2}.xls", path, loaiNoiSoi.ToString(), DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+                        if (!Exports.ConvertExcelToPDF.Convert(ketQuaNoiSoiFileName, pdfFileName))
+                            return false;
                     }
                 }
             }
@@ -409,8 +417,13 @@ namespace MM.Controls
                 {
                     foreach (DataRow dr in dt.Rows)
                     {
-                        string ketQuaSoiCTCFileName = string.Format("{0}\\KetQuaSoiCTC_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+                        string ketQuaSoiCTCFileName = string.Format("{0}\\Temp\\KetQuaSoiCTC.xls", Application.StartupPath);
+                        //string.Format("{0}\\KetQuaSoiCTC_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
                         if (!Exports.ExportExcel.ExportKetQuaSoiCTCToExcel(ketQuaSoiCTCFileName, row, dr))
+                            return false;
+
+                        pdfFileName = string.Format("{0}\\KetQuaSoiCTC_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+                        if (!Exports.ConvertExcelToPDF.Convert(ketQuaSoiCTCFileName, pdfFileName))
                             return false;
                     }
                 }
@@ -439,11 +452,11 @@ namespace MM.Controls
                         {
                             string tenSieuAm = Utility.ConvertToUnSign(dr["TenSieuAm"].ToString());
                             string ketQuaSieuAmFileName = string.Format("{0}\\KetQuaSieuAm_{1}_{2}.pdf", path, tenSieuAm,
-                            DateTime.Now.ToString("ddMMyyyyHHmmssms"));
-                        
+                                DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+
                             _uPrintKetQuaSieuAm.PatientRow = row;
                             _uPrintKetQuaSieuAm.ExportToPDF(dr, ketQuaSieuAmFileName);
-                        
+
                         }
                     };
                     if (InvokeRequired) BeginInvoke(method);

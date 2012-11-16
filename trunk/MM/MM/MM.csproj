@@ -61,6 +61,9 @@
       <HintPath>Components\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
     <Reference Include="DSBarCode, Version=1.0.4335.40892, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="SourceLibrary, Version=1.2.0.0, Culture=neutral, PublicKeyToken=96907d46c0a9af87">
       <SpecificVersion>False</SpecificVersion>
@@ -1514,6 +1517,7 @@
     <Compile Include="Dialogs\dlgWaiting.Designer.cs">
       <DependentUpon>dlgWaiting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exports\ConvertExcelToPDF.cs" />
     <Compile Include="Exports\ExportExcel.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
