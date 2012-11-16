@@ -63,8 +63,21 @@ namespace MM.Common
 
             try
             {
-                string query = string.Format("INSERT IGNORE INTO users SET customer_id = '{0}', password = '{1}', name = N'{2}'",
+                result = CheckUserExist(customerId);
+                if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
+                    return result;
+
+                string query = string.Empty;
+                if (result.Error.Code == ErrorCode.NOT_EXIST)
+                {
+                    query = string.Format("INSERT IGNORE INTO users SET customer_id = '{0}', password = '{1}', name = N'{2}'",
                     customerId, password, name);
+                }
+                else
+                {
+                    query = string.Format("UPDATE users SET password = '{0}', name = N'{1}' WHERE customer_id = '{2}'", 
+                        password, name, customerId);
+                }
 
                 result = ExecuteNoneQuery(query);
             }

@@ -489,6 +489,7 @@ namespace MM
                 Global.AllowDeleteCanLamSang = false;
                 Global.AllowTaoHoSo = false;
                 Global.AllowUploadHoSo = false;
+                Global.AllowAddMatKhauHoSo = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -1447,6 +1448,10 @@ namespace MM
                             _uToaCapCuuList.AllowExportAll = isExportAll;
                             _uToaCapCuuList.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.TaoMatKhauHoSo)
+                        {
+                            Global.AllowAddMatKhauHoSo = isAdd;
+                        }
                     }
                 }
                 else
@@ -1529,6 +1534,7 @@ namespace MM
                 Global.AllowDeleteCanLamSang = true;
                 Global.AllowTaoHoSo = true;
                 Global.AllowUploadHoSo = true;
+                Global.AllowAddMatKhauHoSo = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   

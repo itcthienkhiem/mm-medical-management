@@ -122,6 +122,7 @@ namespace MM.Controls
 
             btnTaoHoSo.Enabled = Global.AllowTaoHoSo;
             btnUploadHoSo.Enabled = Global.AllowUploadHoSo;
+            btnTaoMatKhau.Enabled = Global.AllowAddMatKhauHoSo;
 
             OnRefreshData();
             
@@ -505,32 +506,34 @@ namespace MM.Controls
             string[] files = Directory.GetFiles(path);
             if (files == null || files.Length <= 0) return;
 
-            Result result = MySQLHelper.CheckUserExist(maBenhNhan);
+            Result result = UserBus.GetUser(maBenhNhan);
             if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.CheckUserExist"), IconType.Information);
-                Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.CheckUserExist"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.GetUser"), IconType.Information);
+                Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.GetUser"));
                 return;
             }
 
             if (result.Error.Code == ErrorCode.NOT_EXIST)
             {
-                result = MySQLHelper.InsertUser(maBenhNhan, password, tenBenhNhan2);
+                result = UserBus.AddUser(maBenhNhan, password);
                 if (!result.IsOK)
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.InsertUser"), IconType.Information);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.AddUser"), IconType.Information);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.AddUser"));
                     return;
                 }
             }
             else
-                password = result.QueryResult.ToString();
+            {
+                password = (result.QueryResult as User).Password;
+            }
 
-            result = UserBus.AddUser(maBenhNhan, password);
+            result = MySQLHelper.InsertUser(maBenhNhan, password, tenBenhNhan2);
             if (!result.IsOK)
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.AddUser"), IconType.Information);
-                Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.AddUser"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.InsertUser"), IconType.Information);
+                Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
                 return;
             }
 
@@ -542,6 +545,48 @@ namespace MM.Controls
                 {
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("FTP.UploadFile"), IconType.Information);
                     Utility.WriteToTraceLog(result.GetErrorAsString("FTP.UploadFile"));
+                }
+            }
+        }
+
+        private void OnTaoMatKhauAsThread(DataRow row)
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnTaoMatKhauProc), row);
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnTaoMatKhau(DataRow row)
+        {
+            string fileNum = row["FileNum"].ToString();
+            Result result = UserBus.GetUser(fileNum);
+            if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.GetUser"), IconType.Information);
+                Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.GetUser"));
+                return;
+            }
+
+            if (result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                string password = Utility.GeneratePassword();
+                result = UserBus.AddUser(fileNum, password);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.AddUser"), IconType.Information);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.AddUser"));
+                    return;
                 }
             }
         }
@@ -622,6 +667,15 @@ namespace MM.Controls
                 OnUploadHoSoAsThread(row);
             }
         }
+
+        private void btnTaoMatKhau_Click(object sender, EventArgs e)
+        {
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn tạo mật khẩu hồ sơ cho bệnh nhân này ?") == DialogResult.Yes)
+            {
+                DataRow row = _patientRow as DataRow;
+                OnTaoMatKhauAsThread(row);
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -682,7 +736,27 @@ namespace MM.Controls
                 this.HideWaiting();
             }
         }
+
+        private void OnTaoMatKhauProc(object state)
+        {
+            try
+            {
+                DataRow row = (DataRow)state;
+                OnTaoMatKhau(row);
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                this.HideWaiting();
+            }
+        }
         #endregion
+
+        
 
         
     }

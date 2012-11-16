@@ -148,6 +148,7 @@ namespace MM.Common
         //Hồ sơ
         public static bool AllowTaoHoSo = true;
         public static bool AllowUploadHoSo = true;
+        public static bool AllowAddMatKhauHoSo = true;
 
         public static DateTime MinDateTime = new DateTime(1753, 1, 1);
         public static DateTime MaxDateTime = new DateTime(9997, 12, 31);
