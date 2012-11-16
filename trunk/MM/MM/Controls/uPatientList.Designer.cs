@@ -56,6 +56,7 @@
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnTaoMatKhau = new System.Windows.Forms.Button();
             this.btnXemHoSo = new System.Windows.Forms.Button();
             this.btnUploadHoSo = new System.Windows.Forms.Button();
             this.btnTaoHoSo = new System.Windows.Forms.Button();
@@ -87,7 +88,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 63);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1101, 341);
+            this.panel3.Size = new System.Drawing.Size(1039, 341);
             this.panel3.TabIndex = 1;
             // 
             // chkChecked
@@ -145,7 +146,7 @@
             this.dgPatient.Name = "dgPatient";
             this.dgPatient.RowHeadersWidth = 30;
             this.dgPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPatient.Size = new System.Drawing.Size(1101, 341);
+            this.dgPatient.Size = new System.Drawing.Size(1039, 341);
             this.dgPatient.TabIndex = 2;
             this.dgPatient.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_CellMouseUp);
             this.dgPatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_ColumnHeaderMouseClick);
@@ -268,6 +269,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnTaoMatKhau);
             this.panel2.Controls.Add(this.btnXemHoSo);
             this.panel2.Controls.Add(this.btnUploadHoSo);
             this.panel2.Controls.Add(this.btnTaoHoSo);
@@ -280,14 +282,26 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 404);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1101, 36);
+            this.panel2.Size = new System.Drawing.Size(1039, 36);
             this.panel2.TabIndex = 5;
+            // 
+            // btnTaoMatKhau
+            // 
+            this.btnTaoMatKhau.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoMatKhau.Image")));
+            this.btnTaoMatKhau.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTaoMatKhau.Location = new System.Drawing.Point(855, 5);
+            this.btnTaoMatKhau.Name = "btnTaoMatKhau";
+            this.btnTaoMatKhau.Size = new System.Drawing.Size(101, 25);
+            this.btnTaoMatKhau.TabIndex = 15;
+            this.btnTaoMatKhau.Text = "      &Tạo mật khẩu";
+            this.btnTaoMatKhau.UseVisualStyleBackColor = true;
+            this.btnTaoMatKhau.Click += new System.EventHandler(this.btnTaoMatKhau_Click);
             // 
             // btnXemHoSo
             // 
             this.btnXemHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnXemHoSo.Image")));
             this.btnXemHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXemHoSo.Location = new System.Drawing.Point(667, 5);
+            this.btnXemHoSo.Location = new System.Drawing.Point(661, 5);
             this.btnXemHoSo.Name = "btnXemHoSo";
             this.btnXemHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnXemHoSo.TabIndex = 13;
@@ -299,7 +313,7 @@
             // 
             this.btnUploadHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadHoSo.Image")));
             this.btnUploadHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUploadHoSo.Location = new System.Drawing.Point(758, 5);
+            this.btnUploadHoSo.Location = new System.Drawing.Point(751, 5);
             this.btnUploadHoSo.Name = "btnUploadHoSo";
             this.btnUploadHoSo.Size = new System.Drawing.Size(100, 25);
             this.btnUploadHoSo.TabIndex = 14;
@@ -311,7 +325,7 @@
             // 
             this.btnTaoHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoHoSo.Image")));
             this.btnTaoHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaoHoSo.Location = new System.Drawing.Point(576, 5);
+            this.btnTaoHoSo.Location = new System.Drawing.Point(571, 5);
             this.btnTaoHoSo.Name = "btnTaoHoSo";
             this.btnTaoHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnTaoHoSo.TabIndex = 12;
@@ -323,7 +337,7 @@
             // 
             this.btnVaoPhongCho.Image = global::MM.Properties.Resources.conference_icon;
             this.btnVaoPhongCho.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVaoPhongCho.Location = new System.Drawing.Point(456, 5);
+            this.btnVaoPhongCho.Location = new System.Drawing.Point(452, 5);
             this.btnVaoPhongCho.Name = "btnVaoPhongCho";
             this.btnVaoPhongCho.Size = new System.Drawing.Size(115, 25);
             this.btnVaoPhongCho.TabIndex = 11;
@@ -335,7 +349,7 @@
             // 
             this.btnImportExcel.Image = global::MM.Properties.Resources.Excel_icon;
             this.btnImportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportExcel.Location = new System.Drawing.Point(243, 5);
+            this.btnImportExcel.Location = new System.Drawing.Point(241, 5);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(95, 25);
             this.btnImportExcel.TabIndex = 10;
@@ -347,7 +361,7 @@
             // 
             this.btnOpenPatient.Image = global::MM.Properties.Resources.folder_customer_icon__1_;
             this.btnOpenPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenPatient.Location = new System.Drawing.Point(343, 5);
+            this.btnOpenPatient.Location = new System.Drawing.Point(340, 5);
             this.btnOpenPatient.Name = "btnOpenPatient";
             this.btnOpenPatient.Size = new System.Drawing.Size(108, 25);
             this.btnOpenPatient.TabIndex = 9;
@@ -359,7 +373,7 @@
             // 
             this.btnDelete.Image = global::MM.Properties.Resources.del;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(164, 5);
+            this.btnDelete.Location = new System.Drawing.Point(162, 5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 25);
             this.btnDelete.TabIndex = 8;
@@ -371,7 +385,7 @@
             // 
             this.btnEdit.Image = global::MM.Properties.Resources.edit;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(85, 5);
+            this.btnEdit.Location = new System.Drawing.Point(83, 5);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 25);
             this.btnEdit.TabIndex = 7;
@@ -385,7 +399,7 @@
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(6, 5);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
+            this.btnAdd.Size = new System.Drawing.Size(73, 25);
             this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "    &Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -402,7 +416,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1101, 63);
+            this.panel1.Size = new System.Drawing.Size(1039, 63);
             this.panel1.TabIndex = 0;
             // 
             // btnRefresh
@@ -474,7 +488,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uPatientList";
-            this.Size = new System.Drawing.Size(1101, 440);
+            this.Size = new System.Drawing.Size(1039, 440);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
@@ -521,5 +535,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn workPhoneDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnTaoMatKhau;
     }
 }

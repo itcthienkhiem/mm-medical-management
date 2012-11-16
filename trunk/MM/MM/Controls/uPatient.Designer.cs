@@ -99,6 +99,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
+            this.btnTaoMatKhau = new System.Windows.Forms.Button();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
@@ -598,6 +599,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnTaoMatKhau);
             this.groupBox1.Controls.Add(this.btnXemHoSo);
             this.groupBox1.Controls.Add(this.btnUploadHoSo);
             this.groupBox1.Controls.Add(this.btnTaoHoSo);
@@ -629,7 +631,7 @@
             // 
             this.btnXemHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnXemHoSo.Image")));
             this.btnXemHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXemHoSo.Location = new System.Drawing.Point(623, 150);
+            this.btnXemHoSo.Location = new System.Drawing.Point(621, 150);
             this.btnXemHoSo.Name = "btnXemHoSo";
             this.btnXemHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnXemHoSo.TabIndex = 83;
@@ -641,7 +643,7 @@
             // 
             this.btnUploadHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadHoSo.Image")));
             this.btnUploadHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUploadHoSo.Location = new System.Drawing.Point(714, 150);
+            this.btnUploadHoSo.Location = new System.Drawing.Point(711, 150);
             this.btnUploadHoSo.Name = "btnUploadHoSo";
             this.btnUploadHoSo.Size = new System.Drawing.Size(100, 25);
             this.btnUploadHoSo.TabIndex = 84;
@@ -653,7 +655,7 @@
             // 
             this.btnTaoHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoHoSo.Image")));
             this.btnTaoHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaoHoSo.Location = new System.Drawing.Point(532, 150);
+            this.btnTaoHoSo.Location = new System.Drawing.Point(531, 150);
             this.btnTaoHoSo.Name = "btnTaoHoSo";
             this.btnTaoHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnTaoHoSo.TabIndex = 82;
@@ -880,6 +882,18 @@
             this._uPrintKetQuaSieuAm.Size = new System.Drawing.Size(115, 109);
             this._uPrintKetQuaSieuAm.TabIndex = 85;
             // 
+            // btnTaoMatKhau
+            // 
+            this.btnTaoMatKhau.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoMatKhau.Image")));
+            this.btnTaoMatKhau.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTaoMatKhau.Location = new System.Drawing.Point(815, 150);
+            this.btnTaoMatKhau.Name = "btnTaoMatKhau";
+            this.btnTaoMatKhau.Size = new System.Drawing.Size(101, 25);
+            this.btnTaoMatKhau.TabIndex = 85;
+            this.btnTaoMatKhau.Text = "      &Tạo mật khẩu";
+            this.btnTaoMatKhau.UseVisualStyleBackColor = true;
+            this.btnTaoMatKhau.Click += new System.EventHandler(this.btnTaoMatKhau_Click);
+            // 
             // uPatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -983,5 +997,6 @@
         private System.Windows.Forms.Button btnUploadHoSo;
         private System.Windows.Forms.Button btnTaoHoSo;
         private uPrintKetQuaSieuAm _uPrintKetQuaSieuAm;
+        private System.Windows.Forms.Button btnTaoMatKhau;
     }
 }

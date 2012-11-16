@@ -62,6 +62,7 @@ namespace MM.Controls
             btnVaoPhongCho.Enabled = Global.AllowAddPhongCho;
             btnTaoHoSo.Enabled = Global.AllowTaoHoSo;
             btnUploadHoSo.Enabled = Global.AllowUploadHoSo;
+            btnTaoMatKhau.Enabled = Global.AllowAddMatKhauHoSo;
 
             //List<string> customerList = new List<string>();
             //customerList.Add("BBBBB0001");
@@ -1267,32 +1268,34 @@ namespace MM.Controls
                 string[] files = Directory.GetFiles(path);
                 if (files == null || files.Length <= 0) continue;
 
-                Result result = MySQLHelper.CheckUserExist(maBenhNhan);
+                Result result = UserBus.GetUser(maBenhNhan);
                 if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.CheckUserExist"), IconType.Information);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.CheckUserExist"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.GetUser"), IconType.Information);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.GetUser"));
                     return;
                 }
 
                 if (result.Error.Code == ErrorCode.NOT_EXIST)
                 {
-                    result = MySQLHelper.InsertUser(maBenhNhan, password, tenBenhNhan2);
+                    result = UserBus.AddUser(maBenhNhan, password);
                     if (!result.IsOK)
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.InsertUser"), IconType.Information);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.AddUser"), IconType.Information);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.AddUser"));
                         return;
-                    }
+                    }   
                 }
                 else
-                    password = result.QueryResult.ToString();
+                {
+                    password = (result.QueryResult as User).Password;
+                }
 
-                result = UserBus.AddUser(maBenhNhan, password);
+                result = MySQLHelper.InsertUser(maBenhNhan, password, tenBenhNhan2);
                 if (!result.IsOK)
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.AddUser"), IconType.Information);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.AddUser"));
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("MySQLHelper.InsertUser"), IconType.Information);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("MySQLHelper.InsertUser"));
                     return;
                 }
 
@@ -1306,6 +1309,51 @@ namespace MM.Controls
                         Utility.WriteToTraceLog(result.GetErrorAsString("FTP.UploadFile"));
                     }
                 }
+            }
+        }
+
+        private void OnTaoMatKhau(List<DataRow> checkedRows)
+        {
+            foreach (DataRow row in checkedRows)
+            {
+                string fileNum = row["FileNum"].ToString();
+                Result result = UserBus.GetUser(fileNum);
+                if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.GetUser"), IconType.Information);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.GetUser"));
+                    return;
+                }
+
+                if (result.Error.Code == ErrorCode.NOT_EXIST)
+                {
+                    string password = Utility.GeneratePassword();
+                    result = UserBus.AddUser(fileNum, password);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("UserBus.AddUser"), IconType.Information);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("UserBus.AddUser"));
+                        return;
+                    }
+                }
+            }
+        }
+
+        private void OnTaoMatKhauAsThread(List<DataRow> checkedRows)
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnTaoMatKhauProc), checkedRows);
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
             }
         }
         #endregion
@@ -1517,6 +1565,28 @@ namespace MM.Controls
 
             _dictPatient[patientGUID]["Checked"] = isChecked;
         }
+
+        private void btnTaoMatKhau_Click(object sender, EventArgs e)
+        {
+            if (_dataSource == null) return;
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataRow[] rows = _dataSource.Select("Checked='True'");
+            if (rows != null && rows.Length > 0)
+            {
+                foreach (DataRow row in rows)
+                {
+                    checkedRows.Add(row);
+                }
+            }
+
+            if (checkedRows.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn tạo mật khẩu hồ sơ cho những bệnh nhân bạn đánh dấu ?") == DialogResult.Yes)
+                    OnTaoMatKhauAsThread(checkedRows);
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần tạo mật khẩu hồ sơ.", IconType.Information);
+        }
         #endregion
 
         #region Working Thread
@@ -1577,7 +1647,27 @@ namespace MM.Controls
                 this.HideWaiting();
             }
         }
+
+        private void OnTaoMatKhauProc(object state)
+        {
+            try
+            {
+                List<DataRow> checkedRows = (List<DataRow>)state;
+                OnTaoMatKhau(checkedRows);
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                this.HideWaiting();
+            }
+        }
         #endregion
+
+        
 
         
 
