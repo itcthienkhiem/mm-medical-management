@@ -210,6 +210,13 @@ namespace MM.Controls
             PrintPreview(drKetQuaSieuAm);
             _textControl.Save(fileName, TXTextControl.StreamType.RichTextFormat);
         }
+
+        public void ExportToPDF(DataRow drKetQuaSieuAm, string fileName)
+        {
+            _textControl.ResetContents();
+            PrintPreview(drKetQuaSieuAm);
+            _textControl.Save(fileName, TXTextControl.StreamType.AdobePDF);
+        }
         #endregion
 
         #region Window Event Handlers

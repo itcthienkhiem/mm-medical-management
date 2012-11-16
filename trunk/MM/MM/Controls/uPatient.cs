@@ -436,13 +436,13 @@ namespace MM.Controls
                     foreach (DataRow dr in dt.Rows)
                     {
                         string tenSieuAm = Utility.ConvertToUnSign(dr["TenSieuAm"].ToString());
-                        string ketQuaSieuAmFileName = string.Format("{0}\\KetQuaSieuAm_{1}_{2}.rtf", path, tenSieuAm,
+                        string ketQuaSieuAmFileName = string.Format("{0}\\KetQuaSieuAm_{1}_{2}.pdf", path, tenSieuAm,
                             DateTime.Now.ToString("ddMMyyyyHHmmssms"));
 
                         MethodInvoker method = delegate
                         {
                             _uPrintKetQuaSieuAm.PatientRow = row;
-                            _uPrintKetQuaSieuAm.Export(dr, ketQuaSieuAmFileName);
+                            _uPrintKetQuaSieuAm.ExportToPDF(dr, ketQuaSieuAmFileName);
                         };
                         if (InvokeRequired) BeginInvoke(method);
                         else method.Invoke();
