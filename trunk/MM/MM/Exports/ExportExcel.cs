@@ -3317,6 +3317,7 @@ namespace MM.Exports
                         range.ColumnWidth = mergeCellWidth;
                         range.Value = advice;
                         range.WrapText = true;
+                        range.EntireRow.AutoFit();
                         double rowHeight = range.RowHeight;
                         range.Value = string.Empty;
                         range.ColumnWidth = colFWidth;
@@ -3330,6 +3331,10 @@ namespace MM.Exports
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
                         range.Value = advice;
+
+                        int lineCount = (int)(rowHeight / 15.75);
+                        if (rowHeight % 15.75 != 0) lineCount++;
+                        range.RowHeight = lineCount * 15.75;
 
                         //int lineCount = advice.Length / 45;
                         //if (lineCount % 40 != 0) lineCount++;
@@ -7776,7 +7781,10 @@ namespace MM.Exports
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
                         range.Value = advice;
-                        range.RowHeight = rowHeight;
+
+                        int lineCount = (int)(rowHeight / 15.75);
+                        if (rowHeight % 15.75 != 0) lineCount++;
+                        range.RowHeight = lineCount * 15.75;
 
                         //int lineCount = advice.Length / 45;
                         //if (lineCount % 40 != 0) lineCount++;
