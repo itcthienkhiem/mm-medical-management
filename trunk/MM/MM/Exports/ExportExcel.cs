@@ -3293,6 +3293,12 @@ namespace MM.Exports
                     range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
                     range.Insert(InsertShiftDirection.Down);
 
+                    double colFWidth = workSheet.Cells[string.Format("F{0}", rowIndex + 1)].ColumnWidth;
+                    double mergeCellWidth = workSheet.Cells[string.Format("F{0}", rowIndex + 1)].ColumnWidth +
+                        workSheet.Cells[string.Format("G{0}", rowIndex + 1)].ColumnWidth +
+                        workSheet.Cells[string.Format("H{0}", rowIndex + 1)].ColumnWidth +
+                        workSheet.Cells[string.Format("I{0}", rowIndex + 1)].ColumnWidth;
+
                     foreach (LoiKhuyenView loiKhuyen in loiKhuyenList)
                     {
                         string symptomName = loiKhuyen.SymptomName.Replace("\r", "").Replace("\t", "");
@@ -3307,9 +3313,16 @@ namespace MM.Exports
                         range.Borders.Weight = BorderWeight.Thin;
                         range.Value = symptomName;
 
+                        range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                        range.ColumnWidth = mergeCellWidth;
+                        range.Value = advice;
+                        range.WrapText = true;
+                        double rowHeight = range.RowHeight;
+                        range.Value = string.Empty;
+                        range.ColumnWidth = colFWidth;
+
                         range = workSheet.Cells[string.Format("F{0}:I{0}", rowIndex + 1)];
                         range.Merge();
-                        range.WrapText = true;
                         range.WrapText = true;
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
@@ -3318,14 +3331,14 @@ namespace MM.Exports
                         range.Borders.Weight = BorderWeight.Thin;
                         range.Value = advice;
 
-                        int lineCount = advice.Length / 45;
-                        if (lineCount % 40 != 0) lineCount++;
+                        //int lineCount = advice.Length / 45;
+                        //if (lineCount % 40 != 0) lineCount++;
 
-                        range.RowHeight = 15.75 * lineCount;
+                        //range.RowHeight = 15.75 * lineCount;
                         rowIndex += 1;
                         range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
                         range.Insert(InsertShiftDirection.Down);
-                        range.RowHeight = 15.75;
+                        range.EntireRow.AutoFit();
                     }
                 }
 
@@ -7725,6 +7738,12 @@ namespace MM.Exports
                     range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
                     range.Insert(InsertShiftDirection.Down);
 
+                    double colFWidth = workSheet.Cells[string.Format("F{0}", rowIndex + 1)].ColumnWidth;
+                    double mergeCellWidth = workSheet.Cells[string.Format("F{0}", rowIndex + 1)].ColumnWidth +
+                        workSheet.Cells[string.Format("G{0}", rowIndex + 1)].ColumnWidth +
+                        workSheet.Cells[string.Format("H{0}", rowIndex + 1)].ColumnWidth +
+                        workSheet.Cells[string.Format("I{0}", rowIndex + 1)].ColumnWidth;
+
                     foreach (LoiKhuyenView loiKhuyen in loiKhuyenList)
                     {
                         string symptomName = loiKhuyen.SymptomName.Replace("\r", "").Replace("\t", "");
@@ -7739,9 +7758,17 @@ namespace MM.Exports
                         range.Borders.Weight = BorderWeight.Thin;
                         range.Value = symptomName;
 
+                        range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                        range.ColumnWidth = mergeCellWidth;
+                        range.Value = advice;
+                        range.WrapText = true;
+                        range.EntireRow.AutoFit();
+                        double rowHeight = range.RowHeight;
+                        range.Value = string.Empty;
+                        range.ColumnWidth = colFWidth;
+
                         range = workSheet.Cells[string.Format("F{0}:I{0}", rowIndex + 1)];
                         range.Merge();
-                        range.WrapText = true;
                         range.WrapText = true;
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
@@ -7749,15 +7776,17 @@ namespace MM.Exports
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
                         range.Value = advice;
+                        range.RowHeight = rowHeight;
 
-                        int lineCount = advice.Length / 45;
-                        if (lineCount % 40 != 0) lineCount++;
+                        //int lineCount = advice.Length / 45;
+                        //if (lineCount % 40 != 0) lineCount++;
 
-                        range.RowHeight = 15.75 * lineCount;
+                        //range.RowHeight = 15.75 * lineCount;
                         rowIndex += 1;
                         range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)].EntireRow;
                         range.Insert(InsertShiftDirection.Down);
-                        range.RowHeight = 15.75;
+                        //range.RowHeight = 15.75;
+                        range.EntireRow.AutoFit();
                     }
                 }
                 
