@@ -291,9 +291,26 @@ namespace MM.Dialogs
             chkChecked.Checked = false;
             if (txtSearchPatient.Text.Trim() == string.Empty)
             {
-                results = (from p in _dataSourceMember.AsEnumerable()
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
+                if (raAll.Checked)
+                {
+                    results = (from p in _dataSourceMember.AsEnumerable()
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else if (raNam.Checked)
+                {
+                    results = (from p in _dataSourceMember.AsEnumerable()
+                               where p.Field<string>("GenderAsStr").Trim().ToLower() == "nam"
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else if (raNu.Checked)
+                {
+                    results = (from p in _dataSourceMember.AsEnumerable()
+                               where p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ"
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
 
                 newDataSource = _dataSourceMember.Clone();
                 foreach (DataRow row in results)
@@ -310,14 +327,35 @@ namespace MM.Dialogs
             if (chkMaBenhNhan.Checked)
             {
                 //FileNum
-                results = (from p in _dataSourceMember.AsEnumerable()
-                           where p.Field<string>("FileNum") != null &&
-                               p.Field<string>("FileNum").Trim() != string.Empty &&
-                               //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                           //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                           p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
+                if (raAll.Checked)
+                {
+                    results = (from p in _dataSourceMember.AsEnumerable()
+                               where p.Field<string>("FileNum") != null &&
+                                   p.Field<string>("FileNum").Trim() != string.Empty &&
+                               p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else if (raNam.Checked)
+                {
+                    results = (from p in _dataSourceMember.AsEnumerable()
+                               where p.Field<string>("FileNum") != null &&
+                                   p.Field<string>("FileNum").Trim() != string.Empty &&
+                               p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 &&
+                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nam"
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else if (raNu.Checked)
+                {
+                    results = (from p in _dataSourceMember.AsEnumerable()
+                               where p.Field<string>("FileNum") != null &&
+                                   p.Field<string>("FileNum").Trim() != string.Empty &&
+                               p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 &&
+                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ"
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
 
                 foreach (DataRow row in results)
                     newDataSource.Rows.Add(row.ItemArray);
@@ -332,14 +370,36 @@ namespace MM.Dialogs
             if (chkTheoSoDienThoai.Checked)
             {
                 //FileNum
-                results = (from p in _dataSourceMember.AsEnumerable()
-                           where p.Field<string>("Mobile") != null &&
-                               p.Field<string>("Mobile").Trim() != string.Empty &&
-                               //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                               //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                           p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
+                if (raAll.Checked)
+                {
+                    results = (from p in _dataSourceMember.AsEnumerable()
+                               where p.Field<string>("Mobile") != null &&
+                                   p.Field<string>("Mobile").Trim() != string.Empty &&
+                               p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else if (raNam.Checked)
+                {
+                    results = (from p in _dataSourceMember.AsEnumerable()
+                               where p.Field<string>("Mobile") != null &&
+                                   p.Field<string>("Mobile").Trim() != string.Empty &&
+                               p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 &&
+                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nam"
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                else if (raNu.Checked)
+                {
+                    results = (from p in _dataSourceMember.AsEnumerable()
+                               where p.Field<string>("Mobile") != null &&
+                                   p.Field<string>("Mobile").Trim() != string.Empty &&
+                               p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 &&
+                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ"
+                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                               select p).ToList<DataRow>();
+                }
+                
 
                 foreach (DataRow row in results)
                     newDataSource.Rows.Add(row.ItemArray);
@@ -352,15 +412,36 @@ namespace MM.Dialogs
             }
 
             //FullName
-            results = (from p in _dataSourceMember.AsEnumerable()
-                        where p.Field<string>("FullName") != null &&
-                        p.Field<string>("FullName").Trim() != string.Empty &&
-                        //(p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
-                        //str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0)
-                        p.Field<string>("FullName").ToLower().IndexOf(str) >= 0
-                        orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                        select p).ToList<DataRow>();
+            if (raAll.Checked)
+            {
 
+                results = (from p in _dataSourceMember.AsEnumerable()
+                           where p.Field<string>("FullName") != null &&
+                           p.Field<string>("FullName").Trim() != string.Empty &&
+                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0
+                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                           select p).ToList<DataRow>();
+            }
+            else if (raNam.Checked)
+            {
+                results = (from p in _dataSourceMember.AsEnumerable()
+                           where p.Field<string>("FullName") != null &&
+                           p.Field<string>("FullName").Trim() != string.Empty &&
+                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
+                           p.Field<string>("GenderAsStr").Trim().ToLower() == "nam"
+                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                           select p).ToList<DataRow>();
+            }
+            else if (raNu.Checked)
+            {
+                results = (from p in _dataSourceMember.AsEnumerable()
+                           where p.Field<string>("FullName") != null &&
+                           p.Field<string>("FullName").Trim() != string.Empty &&
+                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
+                           p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ"
+                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                           select p).ToList<DataRow>();
+            }
 
             foreach (DataRow row in results)
                 newDataSource.Rows.Add(row.ItemArray);
@@ -763,6 +844,21 @@ namespace MM.Dialogs
         {
             OnSearchPatient();
         }
+
+        private void raAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raAll.Checked) OnSearchPatient();
+        }
+
+        private void raNam_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raNam.Checked) OnSearchPatient();
+        }
+
+        private void raNu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raNu.Checked) OnSearchPatient();
+        }
         #endregion
 
         #region Working Thread
@@ -786,11 +882,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
-
-        
-
-        
     }
 }
