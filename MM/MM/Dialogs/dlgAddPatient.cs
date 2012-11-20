@@ -263,37 +263,10 @@ namespace MM.Dialogs
                     switch (tinhTrangGiaDinh.ToLower())
                     {
                         case "độc thân":
-                        case "dộc thân":
-                        case "đôc thân":
-                        case "single":
-                        case "đ":
-                        case "đt":
-                        case "đọcthân":
-                        case "độcthân":
-                        case "độ thân":
-                        case "đ t":
-                        case "dt":
-                        case "doc than":
                             raDocThan.Checked = true;
                             break;
 
                         case "có gia đình":
-                        case "có gđ":
-                        case "có g đ":
-                        case "có":
-                        case "cò":
-                        case "đang có thai":
-                        case "có gia đinh":
-                        case "có  gia đình":
-                        case "cóp gđ":
-                        case "đã có gđ":
-                        case "co gđ":
-                        case "co gd":
-                        case "cógđ":
-                        case "đã kết hôn":
-                        case "có gdđ":
-                        case "gđ":
-                        case "co 1gđ":
                             raCoGiaDinh.Checked = true;
                             break;
 
