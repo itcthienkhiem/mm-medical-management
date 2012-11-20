@@ -259,24 +259,51 @@ namespace MM.Dialogs
                 if (drPatient["Tinh_Trang_Gia_Dinh"] != null && drPatient["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
                 {
                     string tinhTrangGiaDinh = drPatient["Tinh_Trang_Gia_Dinh"].ToString().Trim();
-                    if (tinhTrangGiaDinh != string.Empty)
+                    
+                    switch (tinhTrangGiaDinh.ToLower())
                     {
-                        switch (tinhTrangGiaDinh.ToLower())
-                        {
-                            case "độc thân":
-                                raDocThan.Checked = true;
-                                break;
+                        case "độc thân":
+                        case "dộc thân":
+                        case "đôc thân":
+                        case "single":
+                        case "đ":
+                        case "đt":
+                        case "đọcthân":
+                        case "độcthân":
+                        case "độ thân":
+                        case "đ t":
+                        case "dt":
+                        case "doc than":
+                            raDocThan.Checked = true;
+                            break;
 
-                            case "có gia đình":
-                                raCoGiaDinh.Checked = true;
-                                break;
+                        case "có gia đình":
+                        case "có gđ":
+                        case "có g đ":
+                        case "có":
+                        case "cò":
+                        case "đang có thai":
+                        case "có gia đinh":
+                        case "có  gia đình":
+                        case "cóp gđ":
+                        case "đã có gđ":
+                        case "co gđ":
+                        case "co gd":
+                        case "cógđ":
+                        case "đã kết hôn":
+                        case "có gdđ":
+                        case "gđ":
+                        case "co 1gđ":
+                            raCoGiaDinh.Checked = true;
+                            break;
 
-                            default:
-                                raKhac.Checked = true;
-                                break;
-                        }
+                        default:
+                            raKhac.Checked = true;
+                            break;
                     }
                 }
+                else
+                    raKhac.Checked = true;
 
                 if (drPatient["Chich_Ngua_Viem_Gan_B"] != null && drPatient["Chich_Ngua_Viem_Gan_B"] != DBNull.Value)
                     chkChichNguaViemGanB.Checked = Convert.ToBoolean(drPatient["Chich_Ngua_Viem_Gan_B"]);
