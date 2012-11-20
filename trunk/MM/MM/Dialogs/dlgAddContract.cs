@@ -1263,6 +1263,7 @@ namespace MM.Dialogs
 
                     DataRow newRow = dataSource.NewRow();
                     newRow["Checked"] = false;
+                    newRow["PatientGUID"] = row["PatientGUID"];
                     newRow["CompanyMemberGUID"] = companyMemberGUID;
                     newRow["FileNum"] = row["FileNum"];
                     newRow["FullName"] = row["FullName"];
