@@ -139,42 +139,6 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
-        private void InitData()
-        {
-            _docThanList = new List<string>();
-            _docThanList.Add("độc thân");
-            _docThanList.Add("dộc thân");
-            _docThanList.Add("đôc thân");
-            _docThanList.Add("single");
-            _docThanList.Add("đ");
-            _docThanList.Add("đt");
-            _docThanList.Add("đọcthân");
-            _docThanList.Add("độcthân");
-            _docThanList.Add("độ thân");
-            _docThanList.Add("đ t");
-            _docThanList.Add("dt");
-            _docThanList.Add("doc than");
-
-            _coGiaDinhList = new List<string>();
-            _coGiaDinhList.Add("có gia đình");
-            _coGiaDinhList.Add("có gđ");
-            _coGiaDinhList.Add("có g đ");
-            _coGiaDinhList.Add("có");
-            _coGiaDinhList.Add("cò");
-            _coGiaDinhList.Add("đang có thai");
-            _coGiaDinhList.Add("có gia đinh");
-            _coGiaDinhList.Add("có  gia đình");
-            _coGiaDinhList.Add("cóp gđ");
-            _coGiaDinhList.Add("đã có gđ");
-            _coGiaDinhList.Add("co gđ");
-            _coGiaDinhList.Add("co gd");
-            _coGiaDinhList.Add("cógđ");
-            _coGiaDinhList.Add("đã kết hôn");
-            _coGiaDinhList.Add("có gdđ");
-            _coGiaDinhList.Add("gđ");
-            _coGiaDinhList.Add("co 1gđ");
-        }
-
         public void DisplayAsThread()
         {
             try
@@ -350,8 +314,8 @@ namespace MM.Dialogs
                 {
                     results = (from p in _dataSourceMember.AsEnumerable()
                                where p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                               p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                               _docThanList.Contains(p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower())
+                               (p.Field<string>("Tinh_Trang_Gia_Dinh") == null ||
+                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() != "có gia đình")
                                orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                                select p).ToList<DataRow>();
                 }
@@ -360,7 +324,7 @@ namespace MM.Dialogs
                     results = (from p in _dataSourceMember.AsEnumerable()
                                where p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
                                p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                               _coGiaDinhList.Contains(p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower())
+                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() == "có gia đình"
                                orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                                select p).ToList<DataRow>();
                 }
@@ -407,8 +371,8 @@ namespace MM.Dialogs
                                    p.Field<string>("FileNum").Trim() != string.Empty &&
                                p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 &&
                                p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                               p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                               _docThanList.Contains(p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower())
+                               (p.Field<string>("Tinh_Trang_Gia_Dinh") == null ||
+                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() != "có gia đình")
                                orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                                select p).ToList<DataRow>();
                 }
@@ -420,7 +384,7 @@ namespace MM.Dialogs
                                p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 &&
                                p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
                                p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                               _coGiaDinhList.Contains(p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower())
+                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() == "có gia đình"
                                orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                                select p).ToList<DataRow>();
                 }
@@ -464,8 +428,8 @@ namespace MM.Dialogs
                                    p.Field<string>("Mobile").Trim() != string.Empty &&
                                p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 &&
                                p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                               p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                               _docThanList.Contains(p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower())
+                               (p.Field<string>("Tinh_Trang_Gia_Dinh") == null ||
+                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() != "có gia đình")
                                orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                                select p).ToList<DataRow>();
                 }
@@ -477,7 +441,7 @@ namespace MM.Dialogs
                                p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 &&
                                p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
                                p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                               _coGiaDinhList.Contains(p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower())
+                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() == "có gia đình"
                                orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                                select p).ToList<DataRow>();
                 }
@@ -520,8 +484,8 @@ namespace MM.Dialogs
                            p.Field<string>("FullName").Trim() != string.Empty &&
                            p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
                            p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                           p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                           _docThanList.Contains(p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower())
+                           (p.Field<string>("Tinh_Trang_Gia_Dinh") == null ||
+                           p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() != "có gia đình")
                            orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                            select p).ToList<DataRow>();
             }
@@ -533,7 +497,7 @@ namespace MM.Dialogs
                            p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
                            p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
                            p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                           _coGiaDinhList.Contains(p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower())
+                           p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() == "có gia đình"
                            orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
                            select p).ToList<DataRow>();
             }
@@ -786,7 +750,6 @@ namespace MM.Dialogs
 
         private void dlgMembers_Load(object sender, EventArgs e)
         {
-            InitData();
             DisplayAsThread();
         }
 
