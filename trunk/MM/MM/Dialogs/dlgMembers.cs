@@ -27,8 +27,6 @@ namespace MM.Dialogs
         private DataTable _giaDichVuDataSource = null;
         private Dictionary<string, DataRow> _dictMembers = null;
         private Dictionary<string, DataRow> _dictServices = null;
-        List<string> _docThanList = null;
-        List<string> _coGiaDinhList = null;
         #endregion
 
         #region Constructor
