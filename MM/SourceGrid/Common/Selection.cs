@@ -650,7 +650,7 @@ namespace SourceGrid2
                             }
 						}
 						DataObject l_dataObj = new DataObject();
-						l_dataObj.SetData(DataFormats.Text,l_TabBuffer.ToString());
+						l_dataObj.SetData(DataFormats.UnicodeText,l_TabBuffer.ToString());
 
 						Clipboard.SetDataObject(l_dataObj,true);
 					}
@@ -676,7 +676,7 @@ namespace SourceGrid2
 					if (IsValidClipboardForPaste() && Count > 0)
 					{
 						IDataObject l_dtObj = Clipboard.GetDataObject();
-						string l_buffer = (string)l_dtObj.GetData(DataFormats.Text,true);
+						string l_buffer = (string)l_dtObj.GetData(DataFormats.UnicodeText,true);
 						//tolgo uno dei due caratteri di a capo per usare lo split
 						l_buffer = l_buffer.Replace("\x0D\x0A","\x0A");
 						string[] l_buffRows = l_buffer.Split('\x0A','\x0D');
@@ -713,7 +713,7 @@ namespace SourceGrid2
 		public bool IsValidClipboardForPaste()
 		{
 			IDataObject l_dtObj = Clipboard.GetDataObject();
-			return l_dtObj.GetDataPresent(DataFormats.Text,true);
+			return l_dtObj.GetDataPresent(DataFormats.UnicodeText,true);
 		}
 
 		private void Selection_Cut(object sender, EventArgs e)

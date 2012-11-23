@@ -63,7 +63,7 @@
             this.dgLichKham.AutoStretchColumnsToFitWidth = false;
             this.dgLichKham.AutoStretchRowsToFitHeight = false;
             this.dgLichKham.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgLichKham.ContextMenuStyle = SourceGrid2.ContextMenuStyle.None;
+            this.dgLichKham.ContextMenuStyle = SourceGrid2.ContextMenuStyle.CopyPasteSelection;
             this.dgLichKham.CustomSort = false;
             this.dgLichKham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgLichKham.FocusStyle = SourceGrid2.FocusStyle.None;
