@@ -326,6 +326,8 @@ namespace MM.Controls
                     List<LichKham> lichKhams = result.QueryResult as List<LichKham>;
 
                     dgLichKham.Redim(rowCount, colCount);
+                    dgLichKham.FixedRows = 2;
+                    dgLichKham.FixedColumns = 1;
                     InitHeader();
                     FillData(lichKhams);
                     dgLichKham.AutoSizeView(false);
