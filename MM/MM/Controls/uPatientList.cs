@@ -38,7 +38,7 @@ namespace MM.Controls
         {
             get
             {
-                if (_dataSource == null) DisplayAsThread();
+                DisplayAsThread();
                 return _dataSource;
             }
 
@@ -140,7 +140,8 @@ namespace MM.Controls
                     foreach (DataRow row in _dataSource.Rows)
                     {
                         string patientGUID = row["PatientGUID"].ToString();
-                        _dictPatient.Add(patientGUID, row);
+                        if (!_dictPatient.ContainsKey(patientGUID))
+                            _dictPatient.Add(patientGUID, row);
                     }
 
                     OnSearchPatient();
