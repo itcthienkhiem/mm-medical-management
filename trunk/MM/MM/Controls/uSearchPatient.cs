@@ -325,6 +325,12 @@ namespace MM.Controls
                         (_dataSource as DataTable).Rows.Clear();
                         (_dataSource as DataTable).Clear();
                         _dataSource = null;
+
+                        if (_dictPatient != null)
+                        {
+                            _dictPatient.Clear();
+                            _dictPatient = null;
+                        }
                     }
 
                     _dataSource = result.QueryResult as DataTable;
@@ -335,13 +341,16 @@ namespace MM.Controls
                         if (_dictPatient == null) _dictPatient = new Dictionary<string, DataRow>();
                         else
                             _dictPatient.Clear();
+
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            string patientGUID = row["PatientGUID"].ToString();
+                            if (!_dictPatient.ContainsKey(patientGUID))
+                                _dictPatient.Add(patientGUID, row);
+                        }
                     }
 
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        string patientGUID = row["PatientGUID"].ToString();
-                        _dictPatient.Add(patientGUID, row);
-                    }
+                    
 
                     OnSearch();
                 };
