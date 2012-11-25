@@ -142,6 +142,8 @@ namespace MM.Controls
                         string patientGUID = row["PatientGUID"].ToString();
                         if (!_dictPatient.ContainsKey(patientGUID))
                             _dictPatient.Add(patientGUID, row);
+                        else
+                            _dictPatient[patientGUID] = row;
                     }
 
                     OnSearchPatient();
@@ -947,7 +949,10 @@ namespace MM.Controls
                         if (row == null)
                         {
                             _dataSource.ImportRow(row);
-                            _dictPatient.Add(patientGUID, _dataSource.Rows[_dataSource.Rows.Count - 1]);
+                            if (!_dictPatient.ContainsKey(patientGUID))
+                                _dictPatient.Add(patientGUID, _dataSource.Rows[_dataSource.Rows.Count - 1]);
+                            else
+                                _dictPatient[patientGUID] = _dataSource.Rows[_dataSource.Rows.Count - 1];
                         }
                         else
                         {
