@@ -360,7 +360,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                DichVuChiDinh dvcd = db.DichVuChiDinhs.SingleOrDefault(d => d.ServiceHistoryGUID.ToString() == serviceHistoryGUID && d.Status == (byte)Status.Actived);
+                DichVuChiDinh dvcd = db.DichVuChiDinhs.FirstOrDefault(d => d.ServiceHistoryGUID.ToString() == serviceHistoryGUID && d.Status == (byte)Status.Actived);
                 if (dvcd != null && dvcd.ChiTietChiDinh.Status == (byte)Status.Actived && 
                     dvcd.ChiTietChiDinh.ChiDinh.Status == (byte)Status.Actived &&
                     dvcd.ChiTietChiDinh.ChiDinh.DocStaff.Contact.Archived == false)
