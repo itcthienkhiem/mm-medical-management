@@ -281,6 +281,7 @@ namespace MM.Controls
         {
             if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
             if (_dictPatient == null) return null;
+            if (!_dictPatient.ContainsKey(patientGUID)) return null;
 
             return _dictPatient[patientGUID];
             
@@ -913,9 +914,10 @@ namespace MM.Controls
                         //    _dataSource.Rows.Remove(rows[0]);
                         //}
 
-                        DataRow dr = _dictPatient[patientGUID];
-                        if (dr != null)
+                        
+                        if (_dictPatient.ContainsKey(patientGUID))
                         {
+                            DataRow dr = _dictPatient[patientGUID];
                             deletedKeys.Add(patientGUID);
                             _dictPatient.Remove(patientGUID);
                             _dataSource.Rows.Remove(dr);
@@ -945,8 +947,7 @@ namespace MM.Controls
                         //    RaiseEditPatient(row);
                         //}
 
-                        DataRow dr = _dictPatient[patientGUID];
-                        if (row == null)
+                        if (!_dictPatient.ContainsKey(patientGUID))
                         {
                             _dataSource.ImportRow(row);
                             if (!_dictPatient.ContainsKey(patientGUID))
@@ -956,6 +957,7 @@ namespace MM.Controls
                         }
                         else
                         {
+                            DataRow dr = _dictPatient[patientGUID];
                             for (int i = 0; i < _dataSource.Columns.Count; i++)
                             {
                                 dr[i] = row[i];
