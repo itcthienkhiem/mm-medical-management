@@ -15,7 +15,6 @@
         {
             if (disposing && (components != null))
             {
-                CloseInterfaces();
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -68,9 +67,6 @@
             this.imgListCapture = new System.Windows.Forms.ImageList(this.components);
             this.panel6 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
-            this.btnCapture = new System.Windows.Forms.Button();
-            this.btnTVTune = new System.Windows.Forms.Button();
-            this.videoPanel = new System.Windows.Forms.Panel();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -444,9 +440,6 @@
             // panel6
             // 
             this.panel6.Controls.Add(this.label14);
-            this.panel6.Controls.Add(this.btnCapture);
-            this.panel6.Controls.Add(this.btnTVTune);
-            this.panel6.Controls.Add(this.videoPanel);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel6.Location = new System.Drawing.Point(3, 3);
@@ -464,38 +457,6 @@
             this.label14.Size = new System.Drawing.Size(177, 15);
             this.label14.TabIndex = 15;
             this.label14.Text = "Danh sách hình được chụp";
-            // 
-            // btnCapture
-            // 
-            this.btnCapture.Image = ((System.Drawing.Image)(resources.GetObject("btnCapture.Image")));
-            this.btnCapture.Location = new System.Drawing.Point(420, 207);
-            this.btnCapture.Name = "btnCapture";
-            this.btnCapture.Size = new System.Drawing.Size(42, 42);
-            this.btnCapture.TabIndex = 2;
-            this.btnCapture.UseVisualStyleBackColor = true;
-            this.btnCapture.Visible = false;
-            this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
-            // 
-            // btnTVTune
-            // 
-            this.btnTVTune.Enabled = false;
-            this.btnTVTune.Image = ((System.Drawing.Image)(resources.GetObject("btnTVTune.Image")));
-            this.btnTVTune.Location = new System.Drawing.Point(373, 207);
-            this.btnTVTune.Name = "btnTVTune";
-            this.btnTVTune.Size = new System.Drawing.Size(42, 42);
-            this.btnTVTune.TabIndex = 0;
-            this.btnTVTune.UseVisualStyleBackColor = true;
-            this.btnTVTune.Visible = false;
-            this.btnTVTune.Click += new System.EventHandler(this.btnTVTune_Click);
-            // 
-            // videoPanel
-            // 
-            this.videoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.videoPanel.Location = new System.Drawing.Point(317, 4);
-            this.videoPanel.Name = "videoPanel";
-            this.videoPanel.Size = new System.Drawing.Size(200, 200);
-            this.videoPanel.TabIndex = 16;
-            this.videoPanel.Visible = false;
             // 
             // imgList
             // 
@@ -628,9 +589,6 @@
         private System.Windows.Forms.ImageList imgListCapture;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button btnCapture;
-        private System.Windows.Forms.Button btnTVTune;
-        private System.Windows.Forms.Panel videoPanel;
         private System.Windows.Forms.ImageList imgList;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
