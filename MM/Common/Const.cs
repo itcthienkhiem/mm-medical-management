@@ -21,6 +21,10 @@ namespace MM.Common
         public static string AlertSoNgayHetHanCapCuuKey = "AlertSoNgayHetHanCapCuuKey";
         public static string AlertSoLuongHetTonKhoCapCuuKey = "AlertSoLuongHetTonKhoCapCuuKey";
 
+        public static string TVHomePathKey = "TVHomePathKey";
+        public static string TVHomeSoiCTCKey = "TVHomeSoiCTCKey";
+        public static string TVHomeSieuAmKey = "TVHomeSieuAmKey";
+
         public static string AdminGUID = "00000000-0000-0000-0000-000000000000";
 
         public static string Contract = "Contract";
