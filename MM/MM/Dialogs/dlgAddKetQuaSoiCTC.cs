@@ -67,8 +67,12 @@ namespace MM.Dialogs
             Cursor.Current = Cursors.WaitCursor;
             dtpkNgayKham.Value = DateTime.Now;
             DisplayDSBasSiSoi();
-            PlayCapFactory.RunPlayCapProcess(true);
-            PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+
+            if (_allowEdit)
+            {
+                PlayCapFactory.RunPlayCapProcess(true);
+                PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+            }
         }
         
         private void DisplayDSBasSiSoi()
