@@ -1322,6 +1322,22 @@ namespace MM.Common
             }
         }
 
+        public static bool CheckRunningProcess(string processName)
+        {
+            try
+            {
+                Process[] processList = Process.GetProcessesByName(processName);
+                if (processList == null || processList.Length <= 0)
+                    return false;
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public static void XoaThongBaoTemp()
         {
             string path = string.Format("{0}\\Temp", AppDomain.CurrentDomain.BaseDirectory);

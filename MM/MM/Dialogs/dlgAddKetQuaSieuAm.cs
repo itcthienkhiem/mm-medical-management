@@ -31,6 +31,7 @@ namespace MM.Dialogs
         private int _hinh = 1;
         private Hashtable _htMauBaoCao = new Hashtable();
         private string _loaiSieuAmGUID = string.Empty;
+        private WatchingFolder _watchingFolder = null;
         #endregion
 
         #region Constructor
@@ -79,8 +80,23 @@ namespace MM.Dialogs
 
             if (_allowEdit)
             {
-                PlayCapFactory.RunPlayCapProcess(false);
-                PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+                if (!Global.TVHomeConfig.SuDungSieuAm)
+                {
+                    PlayCapFactory.RunPlayCapProcess(false);
+                    PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+                }
+                else
+                {
+                    btnHinh1.Visible = false;
+                    btnHinh2.Visible = false;
+
+                    _watchingFolder = new WatchingFolder();
+                    _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                    _watchingFolder.StartMoritoring(Global.HinhChupPath);
+
+                    if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
+                        Utility.ExecuteFile(Global.TVHomeConfig.Path);
+                }
             }
         }
 
@@ -378,13 +394,22 @@ namespace MM.Dialogs
                 if (CheckInfo())
                 {
                     SaveInfoAsThread();
-                    PlayCapFactory.KillPlayCapProcess();
+
+                    if (!Global.TVHomeConfig.SuDungSieuAm)
+                        PlayCapFactory.KillPlayCapProcess();
+                    else
+                        _watchingFolder.StopMoritoring();
                 }
                 else
                     e.Cancel = true;
             }
             else
-                PlayCapFactory.KillPlayCapProcess();
+            {
+                if (!Global.TVHomeConfig.SuDungSieuAm)
+                    PlayCapFactory.KillPlayCapProcess();
+                else
+                    _watchingFolder.StopMoritoring();
+            }
         }
 
         private void btnHinh1_Click(object sender, EventArgs e)
@@ -445,6 +470,28 @@ namespace MM.Dialogs
             catch (Exception ee)
             {
                 MessageBox.Show(this, "Could not grab picture\r\n" + ee.Message, "DirectShow.NET", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+
+        private void _watchingFolder_OnCreatedFileEvent(FileSystemEventArgs e)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(e.FullPath);
+                if (_hinh == 1)
+                {
+                    picHinh1.Image = bmp;
+                    _hinh = 2;
+                }
+                else if (_hinh == 2)
+                {
+                    picHinh2.Image = bmp;
+                    _hinh = 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
             }
         }
         #endregion

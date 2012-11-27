@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
@@ -132,6 +133,13 @@ namespace MM.Controls
         {
             _isPrint = false;
             _ketQuaSoiCTC = null;
+
+            if (Global.TVHomeConfig.SuDungSoiCTC && !File.Exists(Global.TVHomeConfig.Path))
+            {
+                MsgBox.Show(Application.ProductName, "Đường dẫn TVHome không tồn tại, vui lòng kiểm tra lại.", IconType.Information);
+                return;
+            }
+
             dlgAddKetQuaSoiCTC dlg = new dlgAddKetQuaSoiCTC(_patientGUID);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -148,6 +156,12 @@ namespace MM.Controls
             if (dgSoCTC.SelectedRows == null || dgSoCTC.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 kết quả soi.", IconType.Information);
+                return;
+            }
+
+            if (Global.AllowEditKhamCTC && Global.TVHomeConfig.SuDungSoiCTC && !File.Exists(Global.TVHomeConfig.Path))
+            {
+                MsgBox.Show(Application.ProductName, "Đường dẫn TVHome không tồn tại, vui lòng kiểm tra lại.", IconType.Information);
                 return;
             }
 
