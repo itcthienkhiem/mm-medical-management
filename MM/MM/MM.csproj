@@ -1100,6 +1100,12 @@
     <Compile Include="Dialogs\dlgSelectXetNghiemTay.Designer.cs">
       <DependentUpon>dlgSelectXetNghiemTay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgTVHomeConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgTVHomeConfig.Designer.cs">
+      <DependentUpon>dlgTVHomeConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgUpdateChiSoKetQuaXetNghiem_CellDyn3200.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1978,6 +1984,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectXetNghiemTay.resx">
       <DependentUpon>dlgSelectXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgTVHomeConfig.resx">
+      <DependentUpon>dlgTVHomeConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgUpdateChiSoKetQuaXetNghiem_CellDyn3200.resx">
       <DependentUpon>dlgUpdateChiSoKetQuaXetNghiem_CellDyn3200.cs</DependentUpon>

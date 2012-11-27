@@ -572,13 +572,13 @@
     <value>592, 17</value>
   </metadata>
   <data name="databaseConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
+    <value>192, 30</value>
   </data>
   <data name="databaseConfigurationToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình CSDL</value>
   </data>
   <data name="toolStripSeparator50.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 6</value>
+    <value>189, 6</value>
   </data>
   <data name="cauHinhFTPToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -616,13 +616,16 @@
 </value>
   </data>
   <data name="cauHinhFTPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
+    <value>192, 30</value>
   </data>
   <data name="cauHinhFTPToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình FTP</value>
   </data>
   <data name="toolStripSeparator54.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 6</value>
+    <value>189, 6</value>
+  </data>
+  <data name="cauHinhPageSetupToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="cauHinhPageSetupToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -651,13 +654,51 @@
 </value>
   </data>
   <data name="cauHinhPageSetupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
+    <value>192, 30</value>
   </data>
   <data name="cauHinhPageSetupToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình trang in</value>
   </data>
+  <data name="toolStripSeparator68.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 6</value>
+  </data>
+  <data name="cauHinhTVHomeToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="cauHinhTVHomeToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAABJVJREFUSEvtlftT
+        VGUYxwEJ6Qcadtlld8GFEWpkiQaUMtnbEVDZXS5xHa4DmCSiJHK/CBKIZZZkUWGlKZomSpIYhjoKwzDj
+        jOM4mr/4DwTL3m+w/dA8T8+7raQDjb800zTTmfnOeffdc57P+X7f9znHx+f/419PIDk5OTIpKak7ICCg
+        29fX9x8RqyWXy7s1Gk2kDwE4+oFhYWGg0OShUusRKHV5qGJKzwMSqjOWBGysysil+VxUpuegUpcDCl0O
+        KrTZKNdmg1gsRpVKhWlpaZwHoFQqITw8HJquO6D5phNabzuhfcoFHdMu6JxxQdedBei+uwg99xah974b
+        +h644dAvpEfeM437npJIJAKO44Ac/AlQKBQokUigdsyGe8ftWPezA+qvO7DxpgObbjmhZdKJrdMubJ9Z
+        wP0E67y7iAcI9t59N/Y8cGPvQzf0PvwNezxyg0AgQLVajUsAFlFoaChUXbLizh+sWD1qg5oxO+75yY61
+        1+ywd8KB+whWf8uJjZMuaJ5ewJaZBWi7s4AdBOskWBfBDhCMBHw+f3lERIWys2YoP2+BigsW2H7RCjtG
+        rFA1aoWdV2yw66odaq45YM+EA9694YQ6crZv0gkNFGMTwVrIWSvF2H7PDUFBQcsj4vF4kH/CiAXfmrDw
+        tAmKz5ix5JwZy763QPmwFStHrLj9sg13XLHDO1ftWD1uh13kbPcNB9YSrPa2C3dPurCa1o5247KIwN/f
+        H1L69aAZmIfMQQNkf22E3JMmyD9lgoIzZij8zgLF5K50mHTJCqXkrvSyDUopzpIf7VAyZoeycQdUTDgZ
+        AGgXwdO7CKkhYUPvLCb2zeIb789B0pE5VB7VI3dsHlIGDLjlSwNuPW7EbQTWnjRh+mkzZJ61YPZ5C+YO
+        WyF/xIaF5LCYHDIHtIv+WmS2i54AGIQEiQcJdGgW3zxMsI/0qOzXo/rTeUz+3ACpg0bc+pURNCdMqDtl
+        xkxy+NY5C+ZcsGI+uVspomcA63t+9bh5AnudXG38YA6TjuhRcVQPqmPzuHnAACleV2nfmEBLa5cxZMYs
+        ipIBljUac8AKr6QNvR4gUHzA4tv04RzIPybQJ/PAfTYPyV8YYMtxI3jj86zBUqNRF3sajQECgtegV8vG
+        q3kR+JL4FdLLEMiPwADeGljNk6JHfCnNSdGjEOlSRCkpKZxPdHQ0t3ZtFAoEQupAITuvOGbvl7i41zA+
+        IQEkkrC/vT4sPAwEQiFGRUXjunUxnI9Gly6srasva2huq2lsbW9pae88SOpv6egabG7bP0Tni+1d3aMd
+        Xd2PKt6uAiY2ZnOt9J/3msFmdg/dy2qwWrV1DWXZuXnCZz4XISECXx6fvypUJAqMiIgUxcTIElRqdWpR
+        UXFBVlbWaGRkJJIgk8ZFxcUFHLc5NUYmS5BKI+j9Jg7k80NWsRorfYP8aPJFEp8UHiIQVspi44Y2blJO
+        JaxPfBwfn2DUaHXukrLy35m2pWndMlmskbr/cXAwbypUJBkSCEMr2b3eGqwWq/n8g2C+YrHEVxb7qp9c
+        qSZxfgT349OT+vu/sOLTPr/qf+mKPwBaxSNZyKTbyAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="cauHinhTVHomeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 30</value>
+  </data>
+  <data name="cauHinhTVHomeToolStripMenuItem.Text" xml:space="preserve">
+    <value>Cấu hình TVHome</value>
+  </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 6</value>
+    <value>189, 6</value>
   </data>
   <data name="nhomNguoiSuDungToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -690,7 +731,7 @@
 </value>
   </data>
   <data name="nhomNguoiSuDungToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
+    <value>192, 30</value>
   </data>
   <data name="nhomNguoiSuDungToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhóm người sử dụng</value>
@@ -729,7 +770,7 @@
 </value>
   </data>
   <data name="nguoiSuDungToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
+    <value>192, 30</value>
   </data>
   <data name="nguoiSuDungToolStripMenuItem.Text" xml:space="preserve">
     <value>Người sử dụng</value>
@@ -738,7 +779,7 @@
     <value>False</value>
   </data>
   <data name="permissionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
+    <value>192, 30</value>
   </data>
   <data name="permissionToolStripMenuItem.Text" xml:space="preserve">
     <value>Phân quyền</value>
@@ -747,25 +788,25 @@
     <value>False</value>
   </data>
   <data name="changePasswordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
+    <value>192, 30</value>
   </data>
   <data name="changePasswordToolStripMenuItem.Text" xml:space="preserve">
     <value>Đổi mật khẩu</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 6</value>
+    <value>189, 6</value>
   </data>
   <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
+    <value>192, 30</value>
   </data>
   <data name="loginToolStripMenuItem.Text" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 6</value>
+    <value>189, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 22</value>
+    <value>192, 30</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Thoát</value>
@@ -1931,7 +1972,7 @@
     <value>&amp;Kho cấp cứu</value>
   </data>
   <data name="dICOMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="dICOMToolStripMenuItem.Text" xml:space="preserve">
     <value>DICOM</value>
@@ -1940,25 +1981,25 @@
     <value>False</value>
   </data>
   <data name="printLabelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="printLabelToolStripMenuItem.Text" xml:space="preserve">
     <value>In nhãn</value>
   </data>
   <data name="toolStripSeparator27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="trackingToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="trackingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="trackingToolStripMenuItem.Text" xml:space="preserve">
     <value>Truy vết</value>
   </data>
   <data name="toolStripSeparator42.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="bookingToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1989,13 +2030,13 @@
 </value>
   </data>
   <data name="bookingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="bookingToolStripMenuItem.Text" xml:space="preserve">
     <value>Lịch hẹn</value>
   </data>
   <data name="toolStripSeparator49.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="thayDoiSoHoaDonToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2029,13 +2070,13 @@
 </value>
   </data>
   <data name="thayDoiSoHoaDonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="thayDoiSoHoaDonToolStripMenuItem.Text" xml:space="preserve">
     <value>Thay đổi số hóa đơn</value>
   </data>
   <data name="toolStripSeparator57.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="tiemNguaToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2062,7 +2103,7 @@
 </value>
   </data>
   <data name="tiemNguaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="tiemNguaToolStripMenuItem.Text" xml:space="preserve">
     <value>Tiêm ngừa</value>
@@ -2100,13 +2141,13 @@
 </value>
   </data>
   <data name="cauHinhSoNgayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="cauHinhSoNgayToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình số ngày báo tiêm ngừa</value>
   </data>
   <data name="toolStripSeparator58.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="congTacNgoaiGioToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2143,13 +2184,13 @@
 </value>
   </data>
   <data name="congTacNgoaiGioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="congTacNgoaiGioToolStripMenuItem.Text" xml:space="preserve">
     <value>Công tác ngoài giờ</value>
   </data>
   <data name="toolStripSeparator59.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="lichKhamToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2182,13 +2223,13 @@
 </value>
   </data>
   <data name="lichKhamToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="lichKhamToolStripMenuItem.Text" xml:space="preserve">
     <value>Lịch khám</value>
   </data>
   <data name="toolStripSeparator63.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="thongBaoToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2221,13 +2262,13 @@
 </value>
   </data>
   <data name="thongBaoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="thongBaoToolStripMenuItem.Text" xml:space="preserve">
     <value>Thông báo</value>
   </data>
   <data name="toolStripSeparator52.Size" type="System.Drawing.Size, System.Drawing">
-    <value>245, 6</value>
+    <value>237, 6</value>
   </data>
   <data name="traCuuThongTinKhachHangToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2268,7 +2309,7 @@
 </value>
   </data>
   <data name="traCuuThongTinKhachHangToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>248, 30</value>
+    <value>240, 22</value>
   </data>
   <data name="traCuuThongTinKhachHangToolStripMenuItem.Text" xml:space="preserve">
     <value>Tra cứu thông tin khách hàng</value>
@@ -7407,6 +7448,18 @@
     <value>cauHinhPageSetupToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;cauHinhPageSetupToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator68.Name" xml:space="preserve">
+    <value>toolStripSeparator68</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator68.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cauHinhTVHomeToolStripMenuItem.Name" xml:space="preserve">
+    <value>cauHinhTVHomeToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;cauHinhTVHomeToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator7.Name" xml:space="preserve">
