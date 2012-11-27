@@ -162,6 +162,16 @@ namespace MM
                     obj = Configuration.GetValues(Const.AlertSoLuongHetTonKhoCapCuuKey);
                     if (obj != null) Global.AlertSoLuongHetTonKhoCapCuu = Convert.ToInt32(obj);
 
+                    //TVHome
+                    obj = Configuration.GetValues(Const.TVHomePathKey);
+                    if (obj != null) Global.TVHomeConfig.Path = Convert.ToString(obj);
+
+                    obj = Configuration.GetValues(Const.TVHomeSoiCTCKey);
+                    if (obj != null) Global.TVHomeConfig.SuDungSoiCTC = Convert.ToBoolean(obj);
+
+                    obj = Configuration.GetValues(Const.TVHomeSieuAmKey);
+                    if (obj != null) Global.TVHomeConfig.SuDungSieuAm = Convert.ToBoolean(obj);
+
                     if (!Global.ConnectionInfo.TestConnection())
                     {
                         dlgDatabaseConfig dlg = new dlgDatabaseConfig();
@@ -395,6 +405,10 @@ namespace MM
             Configuration.SetValues(Const.AlertDayKey, Global.AlertDays);
             Configuration.SetValues(Const.AlertSoLuongHetTonKhoCapCuuKey, Global.AlertSoLuongHetTonKhoCapCuu);
             Configuration.SetValues(Const.AlertSoNgayHetHanCapCuuKey, Global.AlertSoNgayHetHanCapCuu);
+
+            Configuration.SetValues(Const.TVHomePathKey, Global.TVHomeConfig.Path);
+            Configuration.SetValues(Const.TVHomeSoiCTCKey, Global.TVHomeConfig.SuDungSoiCTC);
+            Configuration.SetValues(Const.TVHomeSieuAmKey, Global.TVHomeConfig.SuDungSieuAm);
 
             Configuration.SaveData(Global.AppConfig);
         }
