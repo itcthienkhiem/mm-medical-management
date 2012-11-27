@@ -151,6 +151,6 @@ namespace MM.Common
         public static string BaoCaoTonKhoCapCuuTemplate = "Báo cáo tồn kho cấp cứu";
         public static string BenhNhanNgoaiGoiKhamTemplate = "Bệnh nhân ngoài gói khám";
 
-        public static string TVHomeProcessName = "";
+        public static string TVHomeProcessName = "TVHome Media2";
     }
 }
