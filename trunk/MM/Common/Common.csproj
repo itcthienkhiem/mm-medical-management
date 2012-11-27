@@ -137,6 +137,7 @@
     <Compile Include="TestResult.cs" />
     <Compile Include="TVHomeConfig.cs" />
     <Compile Include="Utility.cs" />
+    <Compile Include="WatchingFolder.cs" />
     <Compile Include="WebCam.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
