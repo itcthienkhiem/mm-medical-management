@@ -135,6 +135,7 @@
     <Compile Include="Result.cs" />
     <Compile Include="RijndaelCrypto.cs" />
     <Compile Include="TestResult.cs" />
+    <Compile Include="TVHomeConfig.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="WebCam.cs" />
   </ItemGroup>
