@@ -29,6 +29,7 @@ namespace MM.Dialogs
         private DataRow _drKetQuaSoiCTC = null;
         private bool _isPrint = false;
         private bool _allowEdit = true;
+        private WatchingFolder _watchingFolder = null;
         #endregion
 
         #region Constructor
@@ -70,11 +71,23 @@ namespace MM.Dialogs
 
             if (_allowEdit)
             {
-                PlayCapFactory.RunPlayCapProcess(true);
-                PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+                if (!Global.TVHomeConfig.SuDungSoiCTC)
+                {
+                    PlayCapFactory.RunPlayCapProcess(true);
+                    PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+                }
+                else
+                {
+                    _watchingFolder = new WatchingFolder();
+                    _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                    _watchingFolder.StartMoritoring(Global.HinhChupPath);
+
+                    if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
+                        Utility.ExecuteFile(Global.TVHomeConfig.Path);
+                }
             }
         }
-        
+                
         private void DisplayDSBasSiSoi()
         {
             //DocStaff
@@ -413,7 +426,11 @@ namespace MM.Dialogs
                 if (CheckInfo())
                 {
                     SaveInfoAsThread();
-                    PlayCapFactory.KillPlayCapProcess();
+
+                    if (!Global.TVHomeConfig.SuDungSoiCTC)
+                        PlayCapFactory.KillPlayCapProcess();
+                    else
+                        _watchingFolder.StopMoritoring();
                 }
                 else
                     e.Cancel = true;
@@ -426,13 +443,22 @@ namespace MM.Dialogs
                     {
                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
                         SaveInfoAsThread();
-                        PlayCapFactory.KillPlayCapProcess();
+
+                        if (!Global.TVHomeConfig.SuDungSoiCTC)
+                            PlayCapFactory.KillPlayCapProcess();
+                        else
+                            _watchingFolder.StopMoritoring();
                     }
                     else
                         e.Cancel = true;
                 }
                 else
-                    PlayCapFactory.KillPlayCapProcess();
+                {
+                    if (!Global.TVHomeConfig.SuDungSoiCTC)
+                        PlayCapFactory.KillPlayCapProcess();
+                    else
+                        _watchingFolder.StopMoritoring();
+                }
             }
         }
 
@@ -505,6 +531,38 @@ namespace MM.Dialogs
             _isPrint = true;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
+        }
+
+        private void _watchingFolder_OnCreatedFileEvent(FileSystemEventArgs e)
+        {
+            try
+            {
+                Bitmap bmp = new Bitmap(e.FullPath);
+                imgListCapture.Images.Add(bmp);
+
+                _imgCount++;
+                ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
+                item.Tag = bmp;
+                lvCapture.Items.Add(item);
+
+                if (lvCapture.Items.Count <= 2)
+                {
+                    switch (lvCapture.Items.Count)
+                    {
+                        case 1:
+                            picHinh1.Image = (Image)lvCapture.Items[0].Tag;
+                            break;
+                        case 2:
+                            picHinh2.Image = (Image)lvCapture.Items[1].Tag;
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+            }
+            
         }
         #endregion
 
