@@ -49,7 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.btnTVTune = new System.Windows.Forms.Button();
             this.btnSwap = new System.Windows.Forms.Button();
             this.btnHinh2 = new System.Windows.Forms.Button();
             this.picHinh2 = new System.Windows.Forms.PictureBox();
@@ -59,7 +58,6 @@
             this.picHinh1 = new System.Windows.Forms.PictureBox();
             this.ctmHinh1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.xóaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.videoPanel = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this._textControl = new TXTextControl.TextControl();
             this.panel1.SuspendLayout();
@@ -267,30 +265,16 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.btnTVTune);
             this.panel4.Controls.Add(this.btnSwap);
             this.panel4.Controls.Add(this.btnHinh2);
             this.panel4.Controls.Add(this.picHinh2);
             this.panel4.Controls.Add(this.btnHinh1);
             this.panel4.Controls.Add(this.picHinh1);
-            this.panel4.Controls.Add(this.videoPanel);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(629, 84);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(313, 616);
             this.panel4.TabIndex = 8;
-            // 
-            // btnTVTune
-            // 
-            this.btnTVTune.Enabled = false;
-            this.btnTVTune.Image = ((System.Drawing.Image)(resources.GetObject("btnTVTune.Image")));
-            this.btnTVTune.Location = new System.Drawing.Point(4, 3);
-            this.btnTVTune.Name = "btnTVTune";
-            this.btnTVTune.Size = new System.Drawing.Size(42, 42);
-            this.btnTVTune.TabIndex = 23;
-            this.btnTVTune.UseVisualStyleBackColor = true;
-            this.btnTVTune.Visible = false;
-            this.btnTVTune.Click += new System.EventHandler(this.btnTVTune_Click);
             // 
             // btnSwap
             // 
@@ -372,15 +356,6 @@
             this.xóaToolStripMenuItem1.Text = "Xóa";
             this.xóaToolStripMenuItem1.Click += new System.EventHandler(this.xóaToolStripMenuItem1_Click);
             // 
-            // videoPanel
-            // 
-            this.videoPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.videoPanel.Location = new System.Drawing.Point(5, 48);
-            this.videoPanel.Name = "videoPanel";
-            this.videoPanel.Size = new System.Drawing.Size(300, 200);
-            this.videoPanel.TabIndex = 17;
-            this.videoPanel.Visible = false;
-            // 
             // panel5
             // 
             this.panel5.Controls.Add(this._textControl);
@@ -446,7 +421,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel videoPanel;
         private System.Windows.Forms.ComboBox cboLoaiSieuAm;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtLamSang;
@@ -469,6 +443,5 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ContextMenuStrip ctmHinh1;
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem1;
-        private System.Windows.Forms.Button btnTVTune;
     }
 }
