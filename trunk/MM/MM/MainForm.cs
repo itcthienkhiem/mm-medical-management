@@ -72,6 +72,7 @@ namespace MM
             _uNguoiSuDungList.Dock = DockStyle.Fill;
             _uNguoiSuDungList.Visible = false;
         }
+
         private void StartTimerPatient()
         {
             _timerPatient.Enabled = true;
@@ -238,6 +239,9 @@ namespace MM
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"));
                 }
+
+                if (!Directory.Exists(Global.HinhChupPath))
+                    Utility.CreateFolder(Global.HinhChupPath);
             };
 
             if (InvokeRequired) BeginInvoke(method);
@@ -430,6 +434,8 @@ namespace MM
             {
                 toolsToolStripMenuItem.Enabled = isLogin;
                 changePasswordToolStripMenuItem.Enabled = isLogin;
+                cauHinhTVHomeToolStripMenuItem.Enabled = isLogin;
+                cauHinhPageSetupToolStripMenuItem.Enabled = isLogin;
 
                 Global.AllowAddYKienKhachHang = false;
                 Global.AllowShowServiePrice = false;
@@ -1684,6 +1690,8 @@ namespace MM
                 dichVuChuaXuatPhieuThuToolStripMenuItem.Enabled = isLogin;
                 bookingToolStripMenuItem.Enabled = isLogin;
                 keToaCapCuuToolStripMenuItem.Enabled = isLogin;
+                cauHinhTVHomeToolStripMenuItem.Enabled = isLogin;
+                cauHinhPageSetupToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2030,6 +2038,20 @@ namespace MM
                 case "KeToaCapCuu":
                     OnKeToaCapCuu();
                     break;
+
+                case "TVHomeConfig":
+                    OnTVHomeConfig();
+                    break;
+            }
+        }
+
+        private void OnTVHomeConfig()
+        {
+            dlgTVHomeConfig dlg = new dlgTVHomeConfig();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                dlg.SetAppConfig();
+                SaveAppConfig();
             }
         }
 
