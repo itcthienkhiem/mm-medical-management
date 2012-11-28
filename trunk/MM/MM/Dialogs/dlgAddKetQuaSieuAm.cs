@@ -477,8 +477,9 @@ namespace MM.Dialogs
         {
             try
             {
+                int count = 0;
                 Bitmap bmp = null;
-                while (bmp == null)
+                while (bmp == null && count <= 10)
                 {
                     try
                     {
@@ -488,8 +489,12 @@ namespace MM.Dialogs
                     {
                         bmp = null;
                     }
+
+                    count++;
                 }
-                
+
+                if (bmp == null) return;
+
                 if (_hinh == 1)
                 {
                     picHinh1.Image = bmp;
