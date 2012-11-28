@@ -273,10 +273,6 @@ Nguon
 ----------------------------------------------------------
 Triệu chứng (x)
 Dịch vụ (x)
-Mở bệnh nhân
-Danh sách bệnh nhân
-Phục hồi bệnh nhân
-Bệnh nhân thân thuộc
 Hợp đồng (x)
 Thuốc (x)
 Lô thuốc (x)
@@ -284,9 +280,13 @@ Giá thuốc (x)
 Danh sách XN tay
 Danh sách địa chỉ công ty
 Danh mục cấp cứu (x)
-Nhập kho cấp cứu
+Nhập kho cấp cứu (x)
 Giá cấp cứu
 In nhãn
+Mở bệnh nhân
+Danh sách bệnh nhân
+Phục hồi bệnh nhân
+Bệnh nhân thân thuộc
 
 
 
