@@ -110,7 +110,7 @@ namespace MM.Controls
             Result result = ThuocBus.GetThuocList(_name);
             if (result.IsOK)
             {
-                MethodInvoker method = delegate
+                dgThuoc.Invoke(new MethodInvoker(delegate()
                 {
                     ClearData();
 
@@ -118,10 +118,7 @@ namespace MM.Controls
                     if (_dtTemp == null) _dtTemp = dt.Clone();
                     UpdateChecked(dt);
                     dgThuoc.DataSource = dt;
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
+                }));
             }
             else
             {

@@ -98,7 +98,7 @@ namespace MM.Controls
             Result result = ServicesBus.GetServicesList(_name);
             if (result.IsOK)
             {
-                MethodInvoker method = delegate
+                dgService.Invoke(new MethodInvoker(delegate()
                 {
                     ClearData();
 
@@ -106,10 +106,7 @@ namespace MM.Controls
                     if (_dtTemp == null) _dtTemp = dt.Clone();
                     UpdateChecked(dt);
                     dgService.DataSource = dt;
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
+                }));
             }
             else
             {
