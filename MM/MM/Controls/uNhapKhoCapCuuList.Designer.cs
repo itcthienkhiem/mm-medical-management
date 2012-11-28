@@ -128,7 +128,7 @@
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(45, 5);
+            this.chkChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 5;
@@ -422,8 +422,8 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dgNhapKhoCapCuu);
             this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgNhapKhoCapCuu);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 64);
             this.panel3.Name = "panel3";
