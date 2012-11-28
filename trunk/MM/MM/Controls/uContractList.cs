@@ -17,8 +17,10 @@ namespace MM.Controls
     public partial class uContractList : uBase
     {
         #region Members
-        private DataTable _dataSource = null;
-        private Dictionary<string, DataRow> _dictContract = null;
+        private DataTable _dtTemp = null;
+        private Dictionary<string, DataRow> _dictContract = new Dictionary<string,DataRow>();
+        private string _name = string.Empty;
+        private bool _isMaHopDong = false;
         #endregion
 
         #region Constructor
@@ -36,7 +38,6 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnKhoa.Enabled = AllowLock;
             btnMoKhoa.Enabled = AllowLock;
@@ -48,6 +49,8 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+                _name = txtHopDong.Text;
+                _isMaHopDong = chkMaHopDong.Checked;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayContractListProc));
                 base.ShowWaiting();
             }
@@ -64,24 +67,6 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            if (_dataSource != null)
-            {
-                _dataSource.Rows.Clear();
-                _dataSource.Clear();
-                _dataSource = null;
-            }
-
-            if (_dictContract != null)
-            {
-                _dictContract.Clear();
-                _dictContract = null;
-            }
-
-            ClearDataSource();
-        }
-
-        private void ClearDataSource()
-        {
             DataTable dt = dgContract.DataSource as DataTable;
             if (dt != null)
             {
@@ -92,24 +77,35 @@ namespace MM.Controls
             }
         }
 
+        private void SearchAsThread()
+        {
+            try
+            {
+                chkChecked.Checked = false;
+                _name = txtHopDong.Text;
+                _isMaHopDong = chkMaHopDong.Checked;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
         private void OnDisplayContractList()
         {
-            Result result = CompanyContractBus.GetContractList();
+            Result result = CompanyContractBus.GetContractList(_name, _isMaHopDong);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
                     ClearData();
-                    _dataSource = result.QueryResult as DataTable;
 
-                    if (_dictContract == null) _dictContract = new Dictionary<string, DataRow>();
-                    foreach (DataRow row in _dataSource.Rows)
-                    {
-                        string contractGUID = row["CompanyContractGUID"].ToString();
-                        _dictContract.Add(contractGUID, row);
-                    }
-
-                    OnSearchHopDong();
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (_dtTemp == null) _dtTemp = dt.Clone();
+                    UpdateChecked(dt);
+                    dgContract.DataSource = dt;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -122,76 +118,28 @@ namespace MM.Controls
             }
         }
 
-        private void OnAddContract()
+        private void UpdateChecked(DataTable dt)
         {
-            if (_dataSource == null) return;
-            dlgAddContract dlg = new dlgAddContract();
-            if (dlg.ShowDialog(this) == DialogResult.OK)
+            foreach (DataRow row in dt.Rows)
             {
-                DataTable dt = _dataSource;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["CompanyContractGUID"] = dlg.Contract.CompanyContractGUID.ToString();
-                newRow["CompanyGUID"] = dlg.Contract.CompanyGUID.ToString();
-                newRow["TenCty"] = dlg.ComName;
-                newRow["ContractCode"] = dlg.Contract.ContractCode;
-                newRow["ContractName"] = dlg.Contract.ContractName;
-                newRow["BeginDate"] = dlg.Contract.BeginDate;
-                if (dlg.Contract.EndDate != null)
-                    newRow["EndDate"] = dlg.Contract.EndDate;
-                else
-                    newRow["EndDate"] = DBNull.Value;
-
-                newRow["Completed"] = dlg.Contract.Completed;
-
-                if (dlg.Contract.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.Contract.CreatedDate;
-
-                if (dlg.Contract.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.Contract.CreatedBy.ToString();
-
-                if (dlg.Contract.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.Contract.UpdatedDate;
-
-                if (dlg.Contract.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.Contract.UpdatedBy.ToString();
-
-                if (dlg.Contract.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.Contract.DeletedDate;
-
-                if (dlg.Contract.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.Contract.DeletedBy.ToString();
-
-                newRow["ContractStatus"] = dlg.Contract.Status;
-
-                newRow["Lock"] = false;
-                dt.Rows.Add(newRow);
-                _dictContract.Add(dlg.Contract.CompanyContractGUID.ToString(), newRow);
-                //SelectLastedRow();
-                OnSearchHopDong();
+                string key = row["CompanyContractGUID"].ToString();
+                if (_dictContract.ContainsKey(key))
+                    row["Checked"] = true;
             }
         }
 
-        private void SelectLastedRow()
+        private void OnAddContract()
         {
-            dgContract.CurrentCell = dgContract[1, dgContract.RowCount - 1];
-            dgContract.Rows[dgContract.RowCount - 1].Selected = true;
-        }
-
-        private DataRow GetDataRow(string hopDongGUID)
-        {
-            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            if (_dictContract == null) return null;
-            return _dictContract[hopDongGUID];
-            //DataRow[] rows = _dataSource.Select(string.Format("CompanyContractGUID = '{0}'", hopDongGUID));
-            //if (rows == null || rows.Length <= 0) return null;
-            //return rows[0];
+            dlgAddContract dlg = new dlgAddContract();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                SearchAsThread();
+            }
         }
 
         private void OnEditContract()
         {
-            if (_dataSource == null) return;
+            if (_dictContract == null) return;
 
             if (dgContract.SelectedRows == null || dgContract.SelectedRows.Count <= 0)
             {
@@ -199,83 +147,27 @@ namespace MM.Controls
                 return;
             }
 
-            string hopDongGUID = (dgContract.SelectedRows[0].DataBoundItem as DataRowView).Row["CompanyContractGUID"].ToString();
-            DataRow drCon = GetDataRow(hopDongGUID);
+            DataRow drCon = (dgContract.SelectedRows[0].DataBoundItem as DataRowView).Row;
             if (drCon == null) return;
 
             dlgAddContract dlg = new dlgAddContract(drCon, AllowEdit);
             dlg.OnOpenPatientEvent += new OpenPatientHandler(dlg_OnOpenPatient);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                drCon["CompanyGUID"] = dlg.Contract.CompanyGUID.ToString();
-                drCon["TenCty"] = dlg.ComName;
-                drCon["ContractCode"] = dlg.Contract.ContractCode;
-                drCon["ContractName"] = dlg.Contract.ContractName;
-                drCon["BeginDate"] = dlg.Contract.BeginDate;
-
-                if (dlg.Contract.EndDate != null)
-                    drCon["EndDate"] = dlg.Contract.EndDate;
-                else
-                    drCon["EndDate"] = DBNull.Value;
-
-                drCon["Completed"] = dlg.Contract.Completed;
-
-                if (dlg.Contract.CreatedDate.HasValue)
-                    drCon["CreatedDate"] = dlg.Contract.CreatedDate;
-
-                if (dlg.Contract.CreatedBy.HasValue)
-                    drCon["CreatedBy"] = dlg.Contract.CreatedBy.ToString();
-
-                if (dlg.Contract.UpdatedDate.HasValue)
-                    drCon["UpdatedDate"] = dlg.Contract.UpdatedDate;
-
-                if (dlg.Contract.UpdatedBy.HasValue)
-                    drCon["UpdatedBy"] = dlg.Contract.UpdatedBy.ToString();
-
-                if (dlg.Contract.DeletedDate.HasValue)
-                    drCon["DeletedDate"] = dlg.Contract.DeletedDate;
-
-                if (dlg.Contract.DeletedBy.HasValue)
-                    drCon["DeletedBy"] = dlg.Contract.DeletedBy.ToString();
-
-                drCon["ContractStatus"] = dlg.Contract.Status;
-
-                OnSearchHopDong();
+                SearchAsThread();
             }
         }
 
-        //private void UpdateChecked()
-        //{
-        //    DataTable dt = dgContract.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    DataRow[] rows1 = dt.Select("Checked='True'");
-        //    if (rows1 == null || rows1.Length <= 0) return;
-
-        //    foreach (DataRow row1 in rows1)
-        //    {
-        //        string patientGUID1 = row1["CompanyContractGUID"].ToString();
-        //        DataRow[] rows2 = _dataSource.Select(string.Format("CompanyContractGUID='{0}'", patientGUID1));
-        //        if (rows2 == null || rows2.Length <= 0) continue;
-
-        //        rows2[0]["Checked"] = row1["Checked"];
-        //    }
-        //}
-
         private void OnDeleteContract()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
+            if (_dictContract == null) return;
+
             List<string> deletedConList = new List<string>();
-            List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = _dataSource;
-            foreach (DataRow row in dt.Rows)
+            List<DataRow> deletedRows = _dictContract.Values.ToList();
+
+            foreach (DataRow row in deletedRows)
             {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    deletedConList.Add(row["CompanyContractGUID"].ToString());
-                    deletedRows.Add(row);
-                }
+                deletedConList.Add(row["CompanyContractGUID"].ToString());
             }
 
             if (deletedConList.Count > 0)
@@ -285,13 +177,18 @@ namespace MM.Controls
                     Result result = CompanyContractBus.DeleteContract(deletedConList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in deletedRows)
+                        DataTable dt = dgContract.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
+
+                        foreach (string key in deletedConList)
                         {
-                            _dictContract.Remove(row["CompanyContractGUID"].ToString());
-                            _dataSource.Rows.Remove(row);
+                            DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", key));
+                            if (rows == null || rows.Length <= 0) continue;
+                            dt.Rows.Remove(rows[0]);
                         }
 
-                        OnSearchHopDong();
+                        _dictContract.Clear();
+                        _dtTemp.Rows.Clear();
                     }
                     else
                     {
@@ -303,90 +200,37 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần xóa.", IconType.Information);
         }
-
-        private void OnSearchHopDong()
-        {
-            //UpdateChecked();
-            ClearDataSource();
-            chkChecked.Checked = false;
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-
-            if (txtHopDong.Text.Trim() == string.Empty)
-            {
-                results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<DateTime>("BeginDate") descending
-                           select p).ToList<DataRow>();
-
-                newDataSource = _dataSource.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgContract.DataSource = newDataSource;
-                if (dgContract.RowCount > 0) dgContract.Rows[0].Selected = true;
-                return;
-            }
-
-            string str = txtHopDong.Text.ToLower();
-
-            newDataSource = _dataSource.Clone();
-
-            if (chkMaHopDong.Checked)
-            {
-                //Ma hop dong
-                results = (from p in _dataSource.AsEnumerable()
-                           where p.Field<string>("ContractCode") != null &&
-                             p.Field<string>("ContractCode").Trim() != string.Empty &&
-                             p.Field<string>("ContractCode").ToLower().IndexOf(str) >= 0
-                           orderby p.Field<DateTime>("BeginDate") descending
-                           select p).ToList<DataRow>();
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgContract.DataSource = newDataSource;
-                    return;
-                }
-            }
-            else
-            {
-                //Ten hop dong
-                results = (from p in _dataSource.AsEnumerable()
-                           where p.Field<string>("ContractName").ToLower().IndexOf(str) >= 0 &&
-                           p.Field<string>("ContractName") != null &&
-                           p.Field<string>("ContractName").Trim() != string.Empty
-                           orderby p.Field<DateTime>("BeginDate") descending
-                           select p).ToList<DataRow>();
-
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgContract.DataSource = newDataSource;
-                    return;
-                }
-            }
-
-            dgContract.DataSource = newDataSource;
-        }
         #endregion
 
         #region Window Event Handlers
         private void dgContract_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
-            if (_dataSource == null) return;
 
             DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgContract.Rows[e.RowIndex].Cells[0];
             DataRow row = (dgContract.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string contractGUID = row["CompanyContractGUID"].ToString();
             bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
 
-            _dictContract[contractGUID]["Checked"] = isChecked;
+            if (isChecked)
+            {
+                if (!_dictContract.ContainsKey(contractGUID))
+                {
+                    _dtTemp.ImportRow(row);
+                    _dictContract.Add(contractGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                }
+            }
+            else
+            {
+                if (_dictContract.ContainsKey(contractGUID))
+                {
+                    _dictContract.Remove(contractGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("CompanyContractGUID='{0}'", contractGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
         }
 
         private void dlg_OnOpenPatient(object patientRow)
@@ -416,26 +260,43 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
-
                 string contractGUID = row["CompanyContractGUID"].ToString();
-                _dictContract[contractGUID]["Checked"] = chkChecked.Checked;
+
+                if (chkChecked.Checked)
+                {
+                    if (!_dictContract.ContainsKey(contractGUID))
+                    {
+                        _dtTemp.ImportRow(row);
+                        _dictContract.Add(contractGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                    }
+                }
+                else
+                {
+                    if (_dictContract.ContainsKey(contractGUID))
+                    {
+                        _dictContract.Remove(contractGUID);
+
+                        DataRow[] rows = _dtTemp.Select(string.Format("CompanyContractGUID='{0}'", contractGUID));
+                        if (rows != null && rows.Length > 0)
+                            _dtTemp.Rows.Remove(rows[0]);
+                    }
+                }
             }
         }
 
         private void dgContract_DoubleClick(object sender, EventArgs e)
         {
-            //if (!AllowEdit) return;
             OnEditContract();
         }
 
         private void txtHopDong_TextChanged(object sender, EventArgs e)
         {
-            OnSearchHopDong();
+            SearchAsThread();
         }
 
         private void chkMaHopDong_CheckedChanged(object sender, EventArgs e)
         {
-            OnSearchHopDong();
+            SearchAsThread();
         }
 
         private void txtHopDong_KeyDown(object sender, KeyEventArgs e)
@@ -475,18 +336,13 @@ namespace MM.Controls
 
         private void btnKhoa_Click(object sender, EventArgs e)
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
+            if (_dictContract == null) return;
             List<string> deletedConList = new List<string>();
-            List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = _dataSource;
-            foreach (DataRow row in dt.Rows)
+            List<DataRow> deletedRows = _dictContract.Values.ToList();
+
+            foreach (DataRow row in deletedRows)
             {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    deletedConList.Add(row["CompanyContractGUID"].ToString());
-                    deletedRows.Add(row);
-                }
+                deletedConList.Add(row["CompanyContractGUID"].ToString());
             }
 
             if (deletedConList.Count > 0)
@@ -496,12 +352,15 @@ namespace MM.Controls
                     Result result = CompanyContractBus.LockHopDong(deletedConList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in deletedRows)
-                        {
-                            row["Lock"] = 1;
-                        }
+                        DataTable dt = dgContract.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
 
-                        OnSearchHopDong();
+                        foreach (string key in deletedConList)
+                        {
+                            DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", key));
+                            if (rows == null || rows.Length <= 0) continue;
+                            rows[0]["Lock"] = 1;
+                        }
                     }
                     else
                     {
@@ -516,18 +375,13 @@ namespace MM.Controls
 
         private void btnMoKhoa_Click(object sender, EventArgs e)
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
+            if (_dictContract == null) return;
             List<string> deletedConList = new List<string>();
-            List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = _dataSource;
-            foreach (DataRow row in dt.Rows)
+            List<DataRow> deletedRows = _dictContract.Values.ToList();
+
+            foreach (DataRow row in deletedRows)
             {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    deletedConList.Add(row["CompanyContractGUID"].ToString());
-                    deletedRows.Add(row);
-                }
+                deletedConList.Add(row["CompanyContractGUID"].ToString());
             }
 
             if (deletedConList.Count > 0)
@@ -537,12 +391,15 @@ namespace MM.Controls
                     Result result = CompanyContractBus.UnlockHopDong(deletedConList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in deletedRows)
-                        {
-                            row["Lock"] = 0;
-                        }
+                        DataTable dt = dgContract.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
 
-                        OnSearchHopDong();
+                        foreach (string key in deletedConList)
+                        {
+                            DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", key));
+                            if (rows == null || rows.Length <= 0) continue;
+                            rows[0]["Lock"] = 0;
+                        }
                     }
                     else
                     {
@@ -561,7 +418,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayContractList();
             }
             catch (Exception e)
@@ -572,6 +428,19 @@ namespace MM.Controls
             finally
             {
                 base.HideWaiting();
+            }
+        }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayContractList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
             }
         }
         #endregion

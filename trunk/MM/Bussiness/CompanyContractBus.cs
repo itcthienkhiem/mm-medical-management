@@ -36,6 +36,45 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetContractList(string name, bool isMaHopDong)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (name.Trim() == string.Empty)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyContractView WITH(NOLOCK) WHERE ContractStatus={0} AND CompanyStatus={0} ORDER BY BeginDate DESC",
+                        (byte)Status.Actived);
+                }
+                else if (isMaHopDong)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyContractView WITH(NOLOCK) WHERE ContractCode LIKE N'%{0}%' AND ContractStatus={1} AND CompanyStatus={1} ORDER BY BeginDate DESC",
+                        name, (byte)Status.Actived);
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyContractView WITH(NOLOCK) WHERE ContractName LIKE N'%{0}%' AND ContractStatus={1} AND CompanyStatus={1} ORDER BY BeginDate DESC",
+                        name, (byte)Status.Actived);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetContractCount()
         {
             Result result = null;
