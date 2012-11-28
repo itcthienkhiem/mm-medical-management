@@ -1341,6 +1341,7 @@ namespace MM.Common
         public static void XoaThongBaoTemp()
         {
             string path = string.Format("{0}\\Temp", AppDomain.CurrentDomain.BaseDirectory);
+            if (!Directory.Exists(path)) return;
             string[] fileNames = Directory.GetFiles(path);
             foreach (string fn in fileNames)
             {
