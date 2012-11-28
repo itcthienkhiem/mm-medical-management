@@ -24,6 +24,7 @@ namespace MM.Controls
         private bool _isTenThuoc = true;
         private DateTime _tuNgay = DateTime.Now;
         private DateTime _denNgay = DateTime.Now;
+        private bool _flag = true;
         #endregion
 
         #region Constructor
@@ -31,8 +32,10 @@ namespace MM.Controls
         {
             InitializeComponent();
 
+            _flag = false;
             dtpkTuNgay.Value = DateTime.Now;
             dtpkDenNgay.Value = DateTime.Now;
+            _flag = true;
         }
         #endregion
 
@@ -328,11 +331,13 @@ namespace MM.Controls
 
         private void dtpkTuNgay_ValueChanged(object sender, EventArgs e)
         {
+            if (!_flag) return;
             SearchAsThread();
         }
 
         private void dtpkDenNgay_ValueChanged(object sender, EventArgs e)
         {
+            if (!_flag) return;
             SearchAsThread();
         }
 
