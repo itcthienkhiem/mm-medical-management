@@ -17,9 +17,13 @@ namespace MM.Controls
     public partial class uLoThuocList : uBase
     {
         #region Members
-        private DataTable _dataSource = null;
+        private DataTable _dtTemp = null;
         private int _currentRowIndex = 0;
-        private Dictionary<string, DataRow> _dictLoThuoc = null;
+        private Dictionary<string, DataRow> _dictLoThuoc = new Dictionary<string,DataRow>();
+        private string _name = string.Empty;
+        private bool _isTenThuoc = true;
+        private DateTime _tuNgay = DateTime.Now;
+        private DateTime _denNgay = DateTime.Now;
         #endregion
 
         #region Constructor
@@ -39,24 +43,6 @@ namespace MM.Controls
         #region UI Command
         public void ClearData()
         {
-            if (_dataSource != null)
-            {
-                _dataSource.Rows.Clear();
-                _dataSource.Clear();
-                _dataSource = null;
-            }
-
-            if (_dictLoThuoc != null)
-            {
-                _dictLoThuoc.Clear();
-                _dictLoThuoc = null;
-            }
-
-            ClearDataSource();
-        }
-
-        private void ClearDataSource()
-        {
             DataTable dt = dgLoThuoc.DataSource as DataTable;
             if (dt != null)
             {
@@ -67,11 +53,9 @@ namespace MM.Controls
             }
         }
 
-
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
         }
 
@@ -81,6 +65,11 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+                _name = txtTenThuoc.Text;
+                _isTenThuoc = raTenThuoc.Checked;
+                _tuNgay = dtpkTuNgay.Value;
+                _denNgay = dtpkDenNgay.Value;
+
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayLoThuocListProc));
                 base.ShowWaiting();
             }
@@ -95,29 +84,47 @@ namespace MM.Controls
             }
         }
 
+        private void SearchAsThread()
+        {
+            try
+            {
+                chkChecked.Checked = false;
+                _name = txtTenThuoc.Text;
+                _isTenThuoc = raTenThuoc.Checked;
+                _tuNgay = dtpkTuNgay.Value;
+                _denNgay = dtpkDenNgay.Value;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
         private void OnDisplayLoThuocList()
         {
-            Result result = LoThuocBus.GetLoThuocList();
+            Result result = LoThuocBus.GetLoThuocList(_name, _tuNgay, _denNgay, _isTenThuoc);
             if (result.IsOK)
             {
-                MethodInvoker method = delegate
+                dgLoThuoc.Invoke(new MethodInvoker(delegate()
                 {
+                    if (dgLoThuoc.CurrentRow != null)
+                        _currentRowIndex = dgLoThuoc.CurrentRow.Index;
+
                     ClearData();
-                    _dataSource = result.QueryResult as DataTable;
 
-                    if (_dictLoThuoc == null) _dictLoThuoc = new Dictionary<string, DataRow>();
-                    foreach (DataRow row in _dataSource.Rows)
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (_dtTemp == null) _dtTemp = dt.Clone();
+                    UpdateChecked(dt);
+                    dgLoThuoc.DataSource = dt;
+
+                    if (_currentRowIndex < dt.Rows.Count)
                     {
-                        string loThuocGUID = row["LoThuocGUID"].ToString();
-                        _dictLoThuoc.Add(loThuocGUID, row);
+                        dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
+                        dgLoThuoc.Rows[_currentRowIndex].Selected = true;
                     }
-
-                    OnSearchLoThuoc();
-                    //dgLoThuoc.DataSource = result.QueryResult;
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
+                }));
             }
             else
             {
@@ -126,155 +133,14 @@ namespace MM.Controls
             }
         }
 
-        //private void UpdateChecked()
-        //{
-        //    DataTable dt = dgLoThuoc.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    DataRow[] rows1 = dt.Select("Checked='True'");
-        //    if (rows1 == null || rows1.Length <= 0) return;
-
-        //    foreach (DataRow row1 in rows1)
-        //    {
-        //        string patientGUID1 = row1["LoThuocGUID"].ToString();
-        //        DataRow[] rows2 = _dataSource.Select(string.Format("LoThuocGUID='{0}'", patientGUID1));
-        //        if (rows2 == null || rows2.Length <= 0) continue;
-
-        //        rows2[0]["Checked"] = row1["Checked"];
-        //    }
-
-        //    //DataTable dt = dgLoThuoc.DataSource as DataTable;
-        //    //if (dt == null) return;
-
-        //    //foreach (DataRow row1 in dt.Rows)
-        //    //{
-        //    //    string loThuocGUID1 = row1["LoThuocGUID"].ToString();
-        //    //    bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-        //    //    foreach (DataRow row2 in _dataSource.Rows)
-        //    //    {
-        //    //        string loThuocGUID2 = row2["LoThuocGUID"].ToString();
-        //    //        bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
-
-        //    //        if (loThuocGUID1 == loThuocGUID2)
-        //    //        {
-        //    //            row2["Checked"] = row1["Checked"];
-        //    //            break;
-        //    //        }
-        //    //    }
-        //    //}
-        //}
-
-        private void OnSearchLoThuoc()
+        private void UpdateChecked(DataTable dt)
         {
-            if (_dataSource == null) return;
-            if (dgLoThuoc.CurrentRow != null)
-                _currentRowIndex = dgLoThuoc.CurrentRow.Index;
-
-            //UpdateChecked();
-            ClearDataSource();
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-
-            if (raTenThuoc.Checked)
+            foreach (DataRow row in dt.Rows)
             {
-                if (txtTenThuoc.Text.Trim() == string.Empty)
-                {
-                    DataTable dtSource = _dataSource as DataTable;
-                    results = (from p in dtSource.AsEnumerable()
-                               orderby p.Field<DateTime>("CreatedDate")
-                               select p).ToList<DataRow>();
-
-                    newDataSource = dtSource.Clone();
-
-                    foreach (DataRow row in results)
-                        newDataSource.ImportRow(row);
-
-                    dgLoThuoc.DataSource = newDataSource;
-
-                    if (_currentRowIndex < newDataSource.Rows.Count)
-                    {
-                        dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
-                        dgLoThuoc.Rows[_currentRowIndex].Selected = true;
-                    }
-
-                    return;
-                }
-
-                string str = txtTenThuoc.Text.ToLower();
-                DataTable dt = _dataSource as DataTable;
-                newDataSource = dt.Clone();
-
-                //Ten Thuoc
-                results = (from p in dt.AsEnumerable()
-                           where p.Field<string>("TenThuoc") != null &&
-                           p.Field<string>("TenThuoc").Trim() != string.Empty &&
-                           (p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0 ||
-                           str.IndexOf(p.Field<string>("TenThuoc").ToLower()) == 0)
-                           orderby p.Field<DateTime>("CreatedDate")
-                           select p).ToList<DataRow>();
-
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgLoThuoc.DataSource = newDataSource;
-
-                    if (_currentRowIndex < newDataSource.Rows.Count)
-                    {
-                        dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
-                        dgLoThuoc.Rows[_currentRowIndex].Selected = true;
-                    }
-
-                    return;
-                }
+                string key = row["LoThuocGUID"].ToString();
+                if (_dictLoThuoc.ContainsKey(key))
+                    row["Checked"] = true;
             }
-            else
-            {
-                DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
-                DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-
-                DataTable dt = _dataSource as DataTable;
-                newDataSource = dt.Clone();
-
-                results = (from p in dt.AsEnumerable()
-                           where p.Field<DateTime>("CreatedDate") != null &&
-                           p.Field<DateTime>("CreatedDate") >= tuNgay &&
-                           p.Field<DateTime>("CreatedDate") <= denNgay
-                           orderby p.Field<DateTime>("CreatedDate")
-                           select p).ToList<DataRow>();
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgLoThuoc.DataSource = newDataSource;
-
-                    if (_currentRowIndex < newDataSource.Rows.Count)
-                    {
-                        dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
-                        dgLoThuoc.Rows[_currentRowIndex].Selected = true;
-                    }
-
-                    return;
-                }
-            }
-
-            dgLoThuoc.DataSource = newDataSource;
-
-            if (_currentRowIndex < newDataSource.Rows.Count)
-            {
-                dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
-                dgLoThuoc.Rows[_currentRowIndex].Selected = true;
-            }
-        }
-
-        private void SelectLastedRow()
-        {
-            dgLoThuoc.CurrentCell = dgLoThuoc[1, dgLoThuoc.RowCount - 1];
-            dgLoThuoc.Rows[dgLoThuoc.RowCount - 1].Selected = true;
         }
 
         private void OnAddLoThuoc()
@@ -282,62 +148,8 @@ namespace MM.Controls
             dlgAddLoThuoc dlg = new dlgAddLoThuoc();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = _dataSource;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["LoThuocGUID"] = dlg.LoThuoc.LoThuocGUID.ToString();
-                newRow["MaLoThuoc"] = dlg.LoThuoc.MaLoThuoc;
-                newRow["TenLoThuoc"] = dlg.LoThuoc.TenLoThuoc;
-                newRow["ThuocGUID"] = dlg.LoThuoc.ThuocGUID;
-                newRow["TenThuoc"] = dlg.TenThuoc;
-                newRow["SoDangKy"] = dlg.LoThuoc.SoDangKy;
-                newRow["HangSanXuat"] = dlg.LoThuoc.HangSanXuat;
-                newRow["NgaySanXuat"] = dlg.LoThuoc.NgaySanXuat;
-                newRow["NgayHetHan"] = dlg.LoThuoc.NgayHetHan;
-                newRow["NhaPhanPhoi"] = dlg.LoThuoc.NhaPhanPhoi;
-                newRow["SoLuongNhap"] = dlg.LoThuoc.SoLuongNhap;
-                newRow["DonViTinhNhap"] = dlg.LoThuoc.DonViTinhNhap;
-                newRow["GiaNhap"] = dlg.LoThuoc.GiaNhap;
-                newRow["SoLuongQuiDoi"] = dlg.LoThuoc.SoLuongQuiDoi;
-                newRow["DonViTinhQuiDoi"] = dlg.LoThuoc.DonViTinhQuiDoi;
-                newRow["GiaNhapQuiDoi"] = dlg.LoThuoc.GiaNhapQuiDoi;
-                newRow["TongTien"] = dlg.LoThuoc.SoLuongNhap * dlg.LoThuoc.GiaNhap;
-
-                if (dlg.LoThuoc.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.LoThuoc.CreatedDate;
-
-                if (dlg.LoThuoc.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.LoThuoc.CreatedBy.ToString();
-
-                if (dlg.LoThuoc.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.LoThuoc.UpdatedDate;
-
-                if (dlg.LoThuoc.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.LoThuoc.UpdatedBy.ToString();
-
-                if (dlg.LoThuoc.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.LoThuoc.DeletedDate;
-
-                if (dlg.LoThuoc.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.LoThuoc.DeletedBy.ToString();
-
-                newRow["LoThuocStatus"] = dlg.LoThuoc.Status;
-                dt.Rows.Add(newRow);
-                _dictLoThuoc.Add(dlg.LoThuoc.LoThuocGUID.ToString(), newRow);
-                OnSearchLoThuoc();
-                //SelectLastedRow();
+                SearchAsThread();
             }
-        }
-
-        private DataRow GetDataRow(string loThuocGUID)
-        {
-            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            if (_dictLoThuoc == null) return null;
-            return _dictLoThuoc[loThuocGUID];
-            //DataRow[] rows = _dataSource.Select(string.Format("LoThuocGUID = '{0}'", loThuocGUID));
-            //if (rows == null || rows.Length <= 0) return null;
-            //return rows[0];
         }
 
         private void OnEditLoThuoc()
@@ -348,69 +160,24 @@ namespace MM.Controls
                 return;
             }
 
-            string loThuocGUID = (dgLoThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row["LoThuocGUID"].ToString();
-            DataRow drLoThuoc = GetDataRow(loThuocGUID);
+            DataRow drLoThuoc = (dgLoThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
             if (drLoThuoc == null) return;
             dlgAddLoThuoc dlg = new dlgAddLoThuoc(drLoThuoc, AllowEdit);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                drLoThuoc["MaLoThuoc"] = dlg.LoThuoc.MaLoThuoc;
-                drLoThuoc["TenLoThuoc"] = dlg.LoThuoc.TenLoThuoc;
-                drLoThuoc["ThuocGUID"] = dlg.LoThuoc.ThuocGUID;
-                drLoThuoc["TenThuoc"] = dlg.TenThuoc;
-                drLoThuoc["SoDangKy"] = dlg.LoThuoc.SoDangKy;
-                drLoThuoc["HangSanXuat"] = dlg.LoThuoc.HangSanXuat;
-                drLoThuoc["NgaySanXuat"] = dlg.LoThuoc.NgaySanXuat;
-                drLoThuoc["NgayHetHan"] = dlg.LoThuoc.NgayHetHan;
-                drLoThuoc["NhaPhanPhoi"] = dlg.LoThuoc.NhaPhanPhoi;
-                drLoThuoc["SoLuongNhap"] = dlg.LoThuoc.SoLuongNhap;
-                drLoThuoc["DonViTinhNhap"] = dlg.LoThuoc.DonViTinhNhap;
-                drLoThuoc["GiaNhap"] = dlg.LoThuoc.GiaNhap;
-                drLoThuoc["SoLuongQuiDoi"] = dlg.LoThuoc.SoLuongQuiDoi;
-                drLoThuoc["DonViTinhQuiDoi"] = dlg.LoThuoc.DonViTinhQuiDoi;
-                drLoThuoc["GiaNhapQuiDoi"] = dlg.LoThuoc.GiaNhapQuiDoi;
-                drLoThuoc["TongTien"] = dlg.LoThuoc.SoLuongNhap * dlg.LoThuoc.GiaNhap;
-
-                if (dlg.LoThuoc.CreatedDate.HasValue)
-                    drLoThuoc["CreatedDate"] = dlg.LoThuoc.CreatedDate;
-
-                if (dlg.LoThuoc.CreatedBy.HasValue)
-                    drLoThuoc["CreatedBy"] = dlg.LoThuoc.CreatedBy.ToString();
-
-                if (dlg.LoThuoc.UpdatedDate.HasValue)
-                    drLoThuoc["UpdatedDate"] = dlg.LoThuoc.UpdatedDate;
-
-                if (dlg.LoThuoc.UpdatedBy.HasValue)
-                    drLoThuoc["UpdatedBy"] = dlg.LoThuoc.UpdatedBy.ToString();
-
-                if (dlg.LoThuoc.DeletedDate.HasValue)
-                    drLoThuoc["DeletedDate"] = dlg.LoThuoc.DeletedDate;
-
-                if (dlg.LoThuoc.DeletedBy.HasValue)
-                    drLoThuoc["DeletedBy"] = dlg.LoThuoc.DeletedBy.ToString();
-
-                drLoThuoc["LoThuocStatus"] = dlg.LoThuoc.Status;
-                OnSearchLoThuoc();
+                SearchAsThread();
             }
         }
 
         private void OnDeleteLoThuoc()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
+            if (_dictLoThuoc == null) return;
             List<string> deletedLoThuocList = new List<string>();
-            List<DataRow> deletedRows = new List<DataRow>();
-            DataRow[] rows = _dataSource.Select("Checked='True'");
-            if (rows != null && rows.Length > 0)
+            List<DataRow> deletedRows = _dictLoThuoc.Values.ToList();
+
+            foreach (DataRow row in deletedRows)
             {
-                foreach (DataRow row in rows)
-                {
-                    if (Boolean.Parse(row["Checked"].ToString()))
-                    {
-                        deletedLoThuocList.Add(row["LoThuocGUID"].ToString());
-                        deletedRows.Add(row);
-                    }
-                }
+                deletedLoThuocList.Add(row["LoThuocGUID"].ToString());
             }
 
             if (deletedLoThuocList.Count > 0)
@@ -439,13 +206,18 @@ namespace MM.Controls
                     Result result = LoThuocBus.DeleteLoThuoc(deletedLoThuocList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in deletedRows)
+                        DataTable dt = dgLoThuoc.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
+
+                        foreach (string key in deletedLoThuocList)
                         {
-                            _dictLoThuoc.Remove(row["LoThuocGUID"].ToString());
-                            _dataSource.Rows.Remove(row);
+                            DataRow[] rows = dt.Select(string.Format("LoThuocGUID='{0}'", key));
+                            if (rows == null || rows.Length <= 0) continue;
+                            dt.Rows.Remove(rows[0]);
                         }
 
-                        OnSearchLoThuoc();
+                        _dictLoThuoc.Clear();
+                        _dtTemp.Rows.Clear();
                     }
                     else
                     {
@@ -463,14 +235,31 @@ namespace MM.Controls
         private void dgLoThuoc_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
-            if (_dataSource == null) return;
 
             DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgLoThuoc.Rows[e.RowIndex].Cells[0];
             DataRow row = (dgLoThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string loThuocGUID = row["LoThuocGUID"].ToString();
             bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
 
-            _dictLoThuoc[loThuocGUID]["Checked"] = isChecked;
+            if (isChecked)
+            {
+                if (!_dictLoThuoc.ContainsKey(loThuocGUID))
+                {
+                    _dtTemp.ImportRow(row);
+                    _dictLoThuoc.Add(loThuocGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                }
+            }
+            else
+            {
+                if (_dictLoThuoc.ContainsKey(loThuocGUID))
+                {
+                    _dictLoThuoc.Remove(loThuocGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("LoThuocGUID='{0}'", loThuocGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -481,7 +270,25 @@ namespace MM.Controls
             {
                 row["Checked"] = chkChecked.Checked;
                 string loThuocGUID = row["LoThuocGUID"].ToString();
-                _dictLoThuoc[loThuocGUID]["Checked"] = chkChecked.Checked;
+                if (chkChecked.Checked)
+                {
+                    if (!_dictLoThuoc.ContainsKey(loThuocGUID))
+                    {
+                        _dtTemp.ImportRow(row);
+                        _dictLoThuoc.Add(loThuocGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                    }
+                }
+                else
+                {
+                    if (_dictLoThuoc.ContainsKey(loThuocGUID))
+                    {
+                        _dictLoThuoc.Remove(loThuocGUID);
+
+                        DataRow[] rows = _dtTemp.Select(string.Format("LoThuocGUID='{0}'", loThuocGUID));
+                        if (rows != null && rows.Length > 0)
+                            _dtTemp.Rows.Remove(rows[0]);
+                    }
+                }
             }
         }
 
@@ -502,7 +309,6 @@ namespace MM.Controls
 
         private void dgLoThuoc_DoubleClick(object sender, EventArgs e)
         {
-            //if (!AllowEdit) return;
             OnEditLoThuoc();
         }
 
@@ -512,30 +318,28 @@ namespace MM.Controls
             dtpkTuNgay.Enabled = !raTenThuoc.Checked;
             dtpkDenNgay.Enabled = !raTenThuoc.Checked;
 
-            OnSearchLoThuoc();
+            SearchAsThread();
         }
 
         private void raTuNgayDenNgay_CheckedChanged(object sender, EventArgs e)
         {
-            OnSearchLoThuoc();
+            SearchAsThread();
         }
 
         private void dtpkTuNgay_ValueChanged(object sender, EventArgs e)
         {
-            OnSearchLoThuoc();
+            SearchAsThread();
         }
 
         private void dtpkDenNgay_ValueChanged(object sender, EventArgs e)
         {
-            OnSearchLoThuoc();
+            SearchAsThread();
         }
 
         private void txtTenThuoc_TextChanged(object sender, EventArgs e)
         {
-            OnSearchLoThuoc();
+            SearchAsThread();
         }
-
-        
         #endregion
 
         #region Working Thread
@@ -543,7 +347,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayLoThuocList();
             }
             catch (Exception e)
@@ -554,6 +357,19 @@ namespace MM.Controls
             finally
             {
                 base.HideWaiting();
+            }
+        }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayLoThuocList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
             }
         }
         #endregion
