@@ -35,6 +35,40 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetSymptomList(string symtomName)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (symtomName.Trim() == string.Empty)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Symptom WITH(NOLOCK) WHERE Status={0} ORDER BY SymptomName",
+                        (byte)Status.Actived);
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Symptom WITH(NOLOCK) WHERE SymptomName LIKE N'%{0}%' AND Status={1} ORDER BY SymptomName",
+                        symtomName, (byte)Status.Actived);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetSymptomCount()
         {
             Result result = null;
