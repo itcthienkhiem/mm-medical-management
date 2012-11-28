@@ -35,6 +35,40 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetDanhSachCapCuu(string tenCapCuu)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (tenCapCuu.Trim() == string.Empty)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KhoCapCuu WITH(NOLOCK) WHERE Status={0} ORDER BY TenCapCuu",
+                    (byte)Status.Actived);
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KhoCapCuu WITH(NOLOCK) WHERE TenCapCuu LIKE N'%{0}%' AND Status={1} ORDER BY TenCapCuu",
+                    tenCapCuu, (byte)Status.Actived);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result DeleteThongTinCapCuu(List<string> keys)
         {
             Result result = new Result();

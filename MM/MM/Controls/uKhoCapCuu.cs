@@ -19,8 +19,9 @@ namespace MM.Controls
     {
         #region Members
         private bool _isReport = false;
-        private DataTable _dataSource = null;
-        private Dictionary<string, DataRow> _dictKhoCapCuu = null;
+        private DataTable _dtTemp = null;
+        private Dictionary<string, DataRow> _dictKhoCapCuu = new Dictionary<string,DataRow>();
+        private string _name = string.Empty;
         #endregion
 
         #region Constructor
@@ -45,42 +46,13 @@ namespace MM.Controls
         {
             get
             {
-                //UpdateChecked();
-                List<DataRow> checkedRows = new List<DataRow>();
-                DataTable dt = _dataSource;
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        if (Convert.ToBoolean(row["Checked"]))
-                            checkedRows.Add(row);
-                    }
-                }
-
+                List<DataRow> checkedRows = _dictKhoCapCuu.Values.ToList();
                 return checkedRows;
             }
         }
         #endregion
 
         #region UI Command
-        //private void UpdateChecked()
-        //{
-        //    DataTable dt = dgThuoc.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    DataRow[] rows1 = dt.Select("Checked='True'");
-        //    if (rows1 == null || rows1.Length <= 0) return;
-
-        //    foreach (DataRow row1 in rows1)
-        //    {
-        //        string khoCapCuuGUID1 = row1["KhoCapCuuGUID"].ToString();
-        //        DataRow[] rows2 = _dataSource.Select(string.Format("KhoCapCuuGUID='{0}'", khoCapCuuGUID1));
-        //        if (rows2 == null || rows2.Length <= 0) continue;
-
-        //        rows2[0]["Checked"] = row1["Checked"];
-        //    }
-        //}
-
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
@@ -90,24 +62,6 @@ namespace MM.Controls
         }
 
         public void ClearData()
-        {
-            if (_dataSource != null)
-            {
-                _dataSource.Rows.Clear();
-                _dataSource.Clear();
-                _dataSource = null;
-            }
-
-            if (_dictKhoCapCuu != null)
-            {
-                _dictKhoCapCuu.Clear();
-                _dictKhoCapCuu = null;
-            }
-
-            ClearDataSource();
-        }
-
-        private void ClearDataSource()
         {
             DataTable dt = dgThuoc.DataSource as DataTable;
             if (dt != null)
@@ -125,6 +79,7 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+                _name = txtTenCapCuu.Text;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayKhoCapCuuProc));
                 base.ShowWaiting();
             }
@@ -139,28 +94,35 @@ namespace MM.Controls
             }
         }
 
+        private void SearchAsThread()
+        {
+            try
+            {
+                chkChecked.Checked = false;
+                _name = txtTenCapCuu.Text;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
         private void OnDisplayKhoCapCuu()
         {
-            Result result = KhoCapCuuBus.GetDanhSachCapCuu();
+            Result result = KhoCapCuuBus.GetDanhSachCapCuu(_name);
             if (result.IsOK)
             {
-                MethodInvoker method = delegate
+                dgThuoc.Invoke(new MethodInvoker(delegate()
                 {
                     ClearData();
-                    _dataSource = result.QueryResult as DataTable;
 
-                    if (_dictKhoCapCuu == null) _dictKhoCapCuu = new Dictionary<string, DataRow>();
-                    foreach (DataRow row in _dataSource.Rows)
-                    {
-                        string khoCapCuuGUID = row["KhoCapCuuGUID"].ToString();
-                        _dictKhoCapCuu.Add(khoCapCuuGUID, row);
-                    }
-
-                    OnSearchKhoCapCuu();
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (_dtTemp == null) _dtTemp = dt.Clone();
+                    UpdateChecked(dt);
+                    dgThuoc.DataSource = dt;
+                }));
             }
             else
             {
@@ -169,120 +131,52 @@ namespace MM.Controls
             }
         }
 
-        private void OnAdd()
+        private void UpdateChecked(DataTable dt)
         {
-            if (_dataSource == null) return;
-            dlgAddCapCuu dlg = new dlgAddCapCuu();
-            if (dlg.ShowDialog(this) == DialogResult.OK)
+            foreach (DataRow row in dt.Rows)
             {
-                DataTable dt = _dataSource;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["KhoCapCuuGUID"] = dlg.KhoCapCuu.KhoCapCuuGUID.ToString();
-                newRow["TenCapCuu"] = dlg.KhoCapCuu.TenCapCuu;
-                newRow["DonViTinh"] = dlg.KhoCapCuu.DonViTinh;
-                newRow["Note"] = dlg.KhoCapCuu.Note;
-
-                if (dlg.KhoCapCuu.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.KhoCapCuu.CreatedDate;
-
-                if (dlg.KhoCapCuu.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.KhoCapCuu.CreatedBy.ToString();
-
-                if (dlg.KhoCapCuu.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.KhoCapCuu.UpdatedDate;
-
-                if (dlg.KhoCapCuu.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.KhoCapCuu.UpdatedBy.ToString();
-
-                if (dlg.KhoCapCuu.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.KhoCapCuu.DeletedDate;
-
-                if (dlg.KhoCapCuu.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.KhoCapCuu.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.KhoCapCuu.Status;
-                dt.Rows.Add(newRow);
-                _dictKhoCapCuu.Add(dlg.KhoCapCuu.KhoCapCuuGUID.ToString(), newRow);
-                OnSearchKhoCapCuu();
+                string key = row["KhoCapCuuGUID"].ToString();
+                if (_dictKhoCapCuu.ContainsKey(key))
+                    row["Checked"] = true;
             }
         }
 
-        private DataRow GetDataRow(string thuocGUID)
+        private void OnAdd()
         {
-            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            if (_dictKhoCapCuu == null) return null;
-            return _dictKhoCapCuu[thuocGUID];
-            //DataRow[] rows = _dataSource.Select(string.Format("KhoCapCuuGUID = '{0}'", thuocGUID));
-            //if (rows == null || rows.Length <= 0) return null;
-
-            //return rows[0];
-        }
-
-        private void SelectLastedRow()
-        {
-            dgThuoc.CurrentCell = dgThuoc[1, dgThuoc.RowCount - 1];
-            dgThuoc.Rows[dgThuoc.RowCount - 1].Selected = true;
+            dlgAddCapCuu dlg = new dlgAddCapCuu();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                SearchAsThread();
+            }
         }
 
         private void OnEdit()
         {
-            if (_dataSource == null) return;
+            if (_dictKhoCapCuu == null) return;
             if (dgThuoc.SelectedRows == null || dgThuoc.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thông tin cấp cứu.", IconType.Information);
                 return;
             }
 
-            string khoCapCuuGUID = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row["KhoCapCuuGUID"].ToString();
-            DataRow drCapCuu = GetDataRow(khoCapCuuGUID);
+            DataRow drCapCuu = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
             if (drCapCuu == null) return;
             dlgAddCapCuu dlg = new dlgAddCapCuu(drCapCuu);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                drCapCuu["TenCapCuu"] = dlg.KhoCapCuu.TenCapCuu;
-                drCapCuu["DonViTinh"] = dlg.KhoCapCuu.DonViTinh;
-                drCapCuu["Note"] = dlg.KhoCapCuu.Note;
-
-                if (dlg.KhoCapCuu.CreatedDate.HasValue)
-                    drCapCuu["CreatedDate"] = dlg.KhoCapCuu.CreatedDate;
-
-                if (dlg.KhoCapCuu.CreatedBy.HasValue)
-                    drCapCuu["CreatedBy"] = dlg.KhoCapCuu.CreatedBy.ToString();
-
-                if (dlg.KhoCapCuu.UpdatedDate.HasValue)
-                    drCapCuu["UpdatedDate"] = dlg.KhoCapCuu.UpdatedDate;
-
-                if (dlg.KhoCapCuu.UpdatedBy.HasValue)
-                    drCapCuu["UpdatedBy"] = dlg.KhoCapCuu.UpdatedBy.ToString();
-
-                if (dlg.KhoCapCuu.DeletedDate.HasValue)
-                    drCapCuu["DeletedDate"] = dlg.KhoCapCuu.DeletedDate;
-
-                if (dlg.KhoCapCuu.DeletedBy.HasValue)
-                    drCapCuu["DeletedBy"] = dlg.KhoCapCuu.DeletedBy.ToString();
-
-                drCapCuu["Status"] = dlg.KhoCapCuu.Status;
-
-                OnSearchKhoCapCuu();
+                SearchAsThread();
             }
         }
 
         private void OnDelete()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
+            if (_dictKhoCapCuu == null) return;
             List<string> deletedThuocList = new List<string>();
-            List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = _dataSource;
-            foreach (DataRow row in dt.Rows)
+            List<DataRow> deletedRows = _dictKhoCapCuu.Values.ToList();
+
+            foreach (DataRow row in deletedRows)
             {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    deletedThuocList.Add(row["KhoCapCuuGUID"].ToString());
-                    deletedRows.Add(row);
-                }
+                deletedThuocList.Add(row["KhoCapCuuGUID"].ToString());
             }
 
             if (deletedThuocList.Count > 0)
@@ -292,13 +186,17 @@ namespace MM.Controls
                     Result result = KhoCapCuuBus.DeleteThongTinCapCuu(deletedThuocList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in deletedRows)
+                        DataTable dt = dgThuoc.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
+                        foreach (string key in deletedThuocList)
                         {
-                            _dictKhoCapCuu.Remove(row["KhoCapCuuGUID"].ToString());
-                            _dataSource.Rows.Remove(row);
+                            DataRow[] rows = dt.Select(string.Format("KhoCapCuuGUID='{0}'", key));
+                            if (rows == null || rows.Length <= 0) continue;
+                            dt.Rows.Remove(rows[0]);
                         }
 
-                        OnSearchKhoCapCuu();
+                        _dictKhoCapCuu.Clear();
+                        _dtTemp.Rows.Clear();
                     }
                     else
                     {
@@ -311,65 +209,11 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thông tin cấp cứu cần xóa.", IconType.Information);
         }
 
-        private void OnSearchKhoCapCuu()
-        {
-            //UpdateChecked();
-            ClearDataSource();
-            chkChecked.Checked = false;
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-
-            if (txtTenCapCuu.Text.Trim() == string.Empty)
-            {
-                results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<string>("TenCapCuu")
-                           select p).ToList<DataRow>();
-
-                newDataSource = _dataSource.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgThuoc.DataSource = newDataSource;
-                if (dgThuoc.RowCount > 0) dgThuoc.Rows[0].Selected = true;
-                return;
-            }
-
-            string str = txtTenCapCuu.Text.ToLower();
-
-            newDataSource = _dataSource.Clone();
-
-            //Name
-            results = (from p in _dataSource.AsEnumerable()
-                       where p.Field<string>("TenCapCuu") != null &&
-                           p.Field<string>("TenCapCuu").Trim() != string.Empty &&
-                           p.Field<string>("TenCapCuu").ToLower().IndexOf(str) >= 0
-                       orderby p.Field<string>("TenCapCuu")
-                       select p).ToList<DataRow>();
-
-            foreach (DataRow row in results)
-                newDataSource.ImportRow(row);
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgThuoc.DataSource = newDataSource;
-                return;
-            }
-
-            dgThuoc.DataSource = newDataSource;
-        }
-
         private void OnExportExcel()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
-            List<DataRow> checkedRows = new List<DataRow>();
-            DataTable dt = _dataSource;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                    checkedRows.Add(row);
-            }
-
+            if (_dictKhoCapCuu == null) return;
+            List<DataRow> checkedRows = _dictKhoCapCuu.Values.ToList();
+            
             if (checkedRows.Count <= 0)
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thông tin cấp cứu cần xuất excel.", IconType.Information);
             else
@@ -389,14 +233,31 @@ namespace MM.Controls
         private void dgThuoc_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
-            if (_dataSource == null) return;
 
             DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgThuoc.Rows[e.RowIndex].Cells[0];
             DataRow row = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string khoCapCuuGUID = row["KhoCapCuuGUID"].ToString();
             bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
 
-            _dictKhoCapCuu[khoCapCuuGUID]["Checked"] = isChecked;
+            if (isChecked)
+            {
+                if (!_dictKhoCapCuu.ContainsKey(khoCapCuuGUID))
+                {
+                    _dtTemp.ImportRow(row);
+                    _dictKhoCapCuu.Add(khoCapCuuGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                }
+            }
+            else
+            {
+                if (_dictKhoCapCuu.ContainsKey(khoCapCuuGUID))
+                {
+                    _dictKhoCapCuu.Remove(khoCapCuuGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("KhoCapCuuGUID='{0}'", khoCapCuuGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -407,7 +268,25 @@ namespace MM.Controls
             {
                 row["Checked"] = chkChecked.Checked;
                 string khoCapCuuGUID = row["KhoCapCuuGUID"].ToString();
-                _dictKhoCapCuu[khoCapCuuGUID]["Checked"] = chkChecked.Checked;
+                if (chkChecked.Checked)
+                {
+                    if (!_dictKhoCapCuu.ContainsKey(khoCapCuuGUID))
+                    {
+                        _dtTemp.ImportRow(row);
+                        _dictKhoCapCuu.Add(khoCapCuuGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                    }
+                }
+                else
+                {
+                    if (_dictKhoCapCuu.ContainsKey(khoCapCuuGUID))
+                    {
+                        _dictKhoCapCuu.Remove(khoCapCuuGUID);
+
+                        DataRow[] rows = _dtTemp.Select(string.Format("KhoCapCuuGUID='{0}'", khoCapCuuGUID));
+                        if (rows != null && rows.Length > 0)
+                            _dtTemp.Rows.Remove(rows[0]);
+                    }
+                }
             }
         }
 
@@ -435,7 +314,7 @@ namespace MM.Controls
 
         private void txtTenThuoc_TextChanged(object sender, EventArgs e)
         {
-            OnSearchKhoCapCuu();
+            SearchAsThread();
         }
 
         private void txtTenThuoc_KeyDown(object sender, KeyEventArgs e)
@@ -484,7 +363,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayKhoCapCuu();
             }
             catch (Exception e)
@@ -497,12 +375,19 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayKhoCapCuu();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
         #endregion
-
-        
-
-        
-
-       
     }
 }
