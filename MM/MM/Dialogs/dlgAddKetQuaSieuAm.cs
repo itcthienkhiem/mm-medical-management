@@ -477,7 +477,19 @@ namespace MM.Dialogs
         {
             try
             {
-                Bitmap bmp = new Bitmap(e.FullPath);
+                Bitmap bmp = null;
+                while (bmp == null)
+                {
+                    try
+                    {
+                        bmp = new Bitmap(e.FullPath);
+                    }
+                    catch
+                    {
+                        bmp = null;
+                    }
+                }
+                
                 if (_hinh == 1)
                 {
                     picHinh1.Image = bmp;
@@ -491,7 +503,7 @@ namespace MM.Dialogs
             }
             catch (Exception ex)
             {
-                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion

@@ -537,30 +537,45 @@ namespace MM.Dialogs
         {
             try
             {
-                Bitmap bmp = new Bitmap(e.FullPath);
-                imgListCapture.Images.Add(bmp);
-
-                _imgCount++;
-                ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
-                item.Tag = bmp;
-                lvCapture.Items.Add(item);
-
-                if (lvCapture.Items.Count <= 2)
+                lvCapture.Invoke(new MethodInvoker(delegate()
                 {
-                    switch (lvCapture.Items.Count)
+                    Bitmap bmp = null;
+                    while (bmp == null)
                     {
-                        case 1:
-                            picHinh1.Image = (Image)lvCapture.Items[0].Tag;
-                            break;
-                        case 2:
-                            picHinh2.Image = (Image)lvCapture.Items[1].Tag;
-                            break;
+                        try
+                        {
+                            bmp = new Bitmap(e.FullPath);    
+                        }
+                        catch
+                        {
+                            bmp = null;   
+                        }
                     }
-                }
+                    
+                    imgListCapture.Images.Add(bmp);
+
+                    _imgCount++;
+                    ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
+                    item.Tag = bmp;
+                    lvCapture.Items.Add(item);
+
+                    if (lvCapture.Items.Count <= 2)
+                    {
+                        switch (lvCapture.Items.Count)
+                        {
+                            case 1:
+                                picHinh1.Image = (Image)lvCapture.Items[0].Tag;
+                                break;
+                            case 2:
+                                picHinh2.Image = (Image)lvCapture.Items[1].Tag;
+                                break;
+                        }
+                    }
+                }));
             }
             catch (Exception ex)
             {
-                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
