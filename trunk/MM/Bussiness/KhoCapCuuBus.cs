@@ -49,7 +49,7 @@ namespace MM.Bussiness
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KhoCapCuu WITH(NOLOCK) WHERE TenCapCuu LIKE N'%{0}%' AND Status={1} ORDER BY TenCapCuu",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM KhoCapCuu WITH(NOLOCK) WHERE TenCapCuu LIKE N'{0}%' AND Status={1} ORDER BY TenCapCuu",
                     tenCapCuu, (byte)Status.Actived);
                 }
 
