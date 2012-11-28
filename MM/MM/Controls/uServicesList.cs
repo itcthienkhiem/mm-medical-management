@@ -18,8 +18,9 @@ namespace MM.Controls
     public partial class uServicesList : uBase
     {
         #region Members
-        DataTable _dataSource = null;
-        Dictionary<string, DataRow> _dictServices = null;
+        private DataTable _dtTemp = null;
+        private Dictionary<string, DataRow> _dictServices = new Dictionary<string,DataRow>();
+        private string _name = string.Empty;
         #endregion
 
         #region Constructor
@@ -45,24 +46,6 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            if (_dataSource != null)
-            {
-                _dataSource.Rows.Clear();
-                _dataSource.Clear();
-                _dataSource = null;
-            }
-
-            if (_dictServices != null)
-            {
-                _dictServices.Clear();
-                _dictServices = null;
-            }
-
-            ClearDataSource();
-        }
-
-        private void ClearDataSource()
-        {
             DataTable dt = dgService.DataSource as DataTable;
             if (dt != null)
             {
@@ -80,6 +63,7 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+                _name = txtTenDichVu.Text;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayServicesListProc));
                 base.ShowWaiting();
             }
@@ -94,24 +78,34 @@ namespace MM.Controls
             }
         }
 
+        private void SearchAsThread()
+        {
+            try
+            {
+                chkChecked.Checked = false;
+                _name = txtTenDichVu.Text;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
         private void OnDisplayServicesList()
         {
-            Result result = ServicesBus.GetServicesList();
+            Result result = ServicesBus.GetServicesList(_name);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
                     ClearData();
-                    _dataSource = result.QueryResult as DataTable;
 
-                    if (_dictServices == null) _dictServices = new Dictionary<string, DataRow>();
-                    foreach (DataRow row in _dataSource.Rows)
-                    {
-                        string serviceGUID = row["ServiceGUID"].ToString();
-                        _dictServices.Add(serviceGUID, row);
-                    }
-
-                    OnSearchDichVu();
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (_dtTemp == null) _dtTemp = dt.Clone();
+                    UpdateChecked(dt);
+                    dgService.DataSource = dt;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -124,159 +118,56 @@ namespace MM.Controls
             }
         }
 
-        private void OnAddService()
+        private void UpdateChecked(DataTable dt)
         {
-            if (_dataSource == null) return;
-            dlgAddServices dlg = new dlgAddServices();
-            if (dlg.ShowDialog(this) == DialogResult.OK)
+            foreach (DataRow row in dt.Rows)
             {
-                DataTable dt = _dataSource;//dgService.DataSource as DataTable;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["ServiceGUID"] = dlg.Service.ServiceGUID.ToString();
-                newRow["Code"] = dlg.Service.Code;
-                newRow["Name"] = dlg.Service.Name;
-                newRow["Price"] = dlg.Service.Price;
-                newRow["Description"] = dlg.Service.Description;
-                newRow["EnglishName"] = dlg.Service.EnglishName;
-                newRow["Type"] = dlg.Service.Type;
-                newRow["TypeStr"] = dlg.Service.Type == (byte)ServiceType.LamSang ? "Lâm sàng" : "Cận lâm sàng";
-                newRow["StaffType"] = dlg.Service.StaffType.Value;
-                newRow["StaffTypeStr"] = Utility.ParseStaffTypeEnumToName((StaffType)dlg.Service.StaffType.Value);
-
-                if (dlg.Service.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.Service.CreatedDate;
-
-                if (dlg.Service.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.Service.CreatedBy.ToString();
-
-                if (dlg.Service.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.Service.UpdatedDate;
-
-                if (dlg.Service.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.Service.UpdatedBy.ToString();
-
-                if (dlg.Service.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.Service.DeletedDate;
-
-                if (dlg.Service.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.Service.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.Service.Status;
-                dt.Rows.Add(newRow);
-                _dictServices.Add(dlg.Service.ServiceGUID.ToString(), newRow);
-                OnSearchDichVu();
+                string key = row["ServiceGUID"].ToString();
+                if (_dictServices.ContainsKey(key))
+                    row["Checked"] = true;
             }
         }
 
-        private void SelectLastedRow()
+        private void OnAddService()
         {
-            dgService.CurrentCell = dgService[1, dgService.RowCount - 1];
-            dgService.Rows[dgService.RowCount - 1].Selected = true;
-        }
-
-        private DataRow GetDataRow(string serviceGUID)
-        {
-            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            if (_dictServices == null) return null;
-            return _dictServices[serviceGUID];
-            //DataRow[] rows = _dataSource.Select(string.Format("ServiceGUID = '{0}'", serviceGUID));
-            //if (rows == null || rows.Length <= 0) return null;
-
-            //return rows[0];
+            dlgAddServices dlg = new dlgAddServices();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                SearchAsThread();
+            }
         }
 
         private void OnEditService()
         {
-            if (_dataSource == null) return;
-
             if (dgService.SelectedRows == null || dgService.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 dịch vụ.", IconType.Information);
                 return;
             }
-
-            string serviceGUID = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row["ServiceGUID"].ToString();
-            DataRow drService = GetDataRow(serviceGUID);
+            
+            DataRow drService = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row;
             if (drService == null) return;
             dlgAddServices dlg = new dlgAddServices(drService);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                drService["Code"] = dlg.Service.Code;
-                drService["Name"] = dlg.Service.Name;
-                drService["Price"] = dlg.Service.Price;
-                drService["Description"] = dlg.Service.Description;
-                drService["EnglishName"] = dlg.Service.EnglishName;
-                drService["Type"] = dlg.Service.Type;
-                drService["TypeStr"] = dlg.Service.Type == (byte)ServiceType.LamSang ? "Lâm sàng" : "Cận lâm sàng";
-                drService["StaffType"] = dlg.Service.StaffType.Value;
-                drService["StaffTypeStr"] = Utility.ParseStaffTypeEnumToName((StaffType)dlg.Service.StaffType.Value);
-
-                if (dlg.Service.CreatedDate.HasValue)
-                    drService["CreatedDate"] = dlg.Service.CreatedDate;
-
-                if (dlg.Service.CreatedBy.HasValue)
-                    drService["CreatedBy"] = dlg.Service.CreatedBy.ToString();
-
-                if (dlg.Service.UpdatedDate.HasValue)
-                    drService["UpdatedDate"] = dlg.Service.UpdatedDate;
-
-                if (dlg.Service.UpdatedBy.HasValue)
-                    drService["UpdatedBy"] = dlg.Service.UpdatedBy.ToString();
-
-                if (dlg.Service.DeletedDate.HasValue)
-                    drService["DeletedDate"] = dlg.Service.DeletedDate;
-
-                if (dlg.Service.DeletedBy.HasValue)
-                    drService["DeletedBy"] = dlg.Service.DeletedBy.ToString();
-
-                drService["Status"] = dlg.Service.Status;
-
-                OnSearchDichVu();
+                SearchAsThread();
             }
         }
 
-        //private void UpdateChecked()
-        //{
-        //    DataTable dt = dgService.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    DataRow[] rows1 = dt.Select("Checked='True'");
-        //    if (rows1 == null || rows1.Length <= 0) return;
-
-        //    foreach (DataRow row1 in rows1)
-        //    {
-        //        string serviceGUID1 = row1["ServiceGUID"].ToString();
-        //        DataRow[] rows2 = _dataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID1));
-        //        if (rows2 == null || rows2.Length <= 0) continue;
-
-        //        rows2[0]["Checked"] = row1["Checked"];
-        //    }
-        //}
-
         private void OnDeleteService()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
-            List<string> deletedServiceList = new List<string>();
-            List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = _dataSource;//dgService.DataSource as DataTable;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    deletedRows.Add(row);
-                }
-            }
+            if (_dictServices == null) return;
 
-            if (deletedRows.Count > 0)
+            List<DataRow> checkedRows = _dictServices.Values.ToList<DataRow>();
+
+            if (checkedRows.Count > 0)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những dịch vụ mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
                     List<string> noteList = new List<string>();
+                    List<string> deletedServiceList = new List<string>();
 
-                    foreach (DataRow row in deletedRows)
+                    foreach (DataRow row in checkedRows)
                     {
                         string serviceCode = row["Code"].ToString();
                         string serviceGUID = row["ServiceGUID"].ToString();
@@ -294,13 +185,17 @@ namespace MM.Controls
                         Result result = ServicesBus.DeleteServices(deletedServiceList, noteList);
                         if (result.IsOK)
                         {
-                            foreach (DataRow row in deletedRows)
+                            DataTable dt = dgService.DataSource as DataTable;
+                            if (dt == null || dt.Rows.Count <= 0) return;
+                            foreach (string key in deletedServiceList)
                             {
-                                _dictServices.Remove(row["ServiceGUID"].ToString());
-                                _dataSource.Rows.Remove(row);
+                                DataRow[] rows = dt.Select(string.Format("ServiceGUID='{0}'", key));
+                                if (rows == null || rows.Length <= 0) continue;
+                                dt.Rows.Remove(rows[0]);
                             }
 
-                            OnSearchDichVu();
+                            _dictServices.Clear();
+                            _dtTemp.Rows.Clear();
                         }
                         else
                         {
@@ -314,67 +209,11 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
 
-        private void OnSearchDichVu()
-        {
-            //UpdateChecked();
-            ClearDataSource();
-            chkChecked.Checked = false;
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-
-            if (txtTenDichVu.Text.Trim() == string.Empty)
-            {
-                results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<string>("Name")
-                           select p).ToList<DataRow>();
-
-                newDataSource = _dataSource.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgService.DataSource = newDataSource;
-                if (dgService.RowCount > 0) dgService.Rows[0].Selected = true;
-                return;
-            }
-
-            string str = txtTenDichVu.Text.ToLower();
-
-            newDataSource = _dataSource.Clone();
-
-            //Name
-            results = (from p in _dataSource.AsEnumerable()
-                        where p.Field<string>("Name") != null &&
-                            p.Field<string>("Name").Trim() != string.Empty &&
-                            p.Field<string>("Name").ToLower().IndexOf(str) >= 0
-                        //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                        //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                        orderby p.Field<string>("Name")
-                        select p).ToList<DataRow>();
-
-            foreach (DataRow row in results)
-                newDataSource.ImportRow(row);
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgService.DataSource = newDataSource;
-                return;
-            }
-
-            dgService.DataSource = newDataSource;
-        }
-
         private void OnExportExcel()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
-            List<DataRow> checkedRows = new List<DataRow>();
-            DataTable dt = _dataSource;//dgService.DataSource as DataTable;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                    checkedRows.Add(row);
-            }
+            if (_dictServices == null) return;
 
+            List<DataRow> checkedRows = _dictServices.Values.ToList();
             if (checkedRows.Count <= 0)
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xuất excel.", IconType.Information);
             else
@@ -394,14 +233,31 @@ namespace MM.Controls
         private void dgService_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
-            if (_dataSource == null) return;
-
+            
             DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgService.Rows[e.RowIndex].Cells[0];
             DataRow row = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string serviceGUID = row["ServiceGUID"].ToString();
             bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
 
-            _dictServices[serviceGUID]["Checked"] = isChecked;
+            if (isChecked)
+            {
+                if (!_dictServices.ContainsKey(serviceGUID))
+                {
+                    _dtTemp.ImportRow(row);
+                    _dictServices.Add(serviceGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                }
+            }
+            else
+            {
+                if (_dictServices.ContainsKey(serviceGUID))
+                {
+                    _dictServices.Remove(serviceGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -411,9 +267,27 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
-
                 string serviceGUID = row["ServiceGUID"].ToString();
-                _dictServices[serviceGUID]["Checked"] = chkChecked.Checked;
+
+                if (chkChecked.Checked)
+                {
+                    if (!_dictServices.ContainsKey(serviceGUID))
+                    {
+                        _dtTemp.ImportRow(row);
+                        _dictServices.Add(serviceGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                    }
+                }
+                else
+                {
+                    if (_dictServices.ContainsKey(serviceGUID))
+                    {
+                        _dictServices.Remove(serviceGUID);
+
+                        DataRow[] rows = _dtTemp.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                        if (rows != null && rows.Length > 0)
+                            _dtTemp.Rows.Remove(rows[0]);
+                    }
+                }
             }
         }
 
@@ -440,7 +314,7 @@ namespace MM.Controls
 
         private void txtTenDichVu_TextChanged(object sender, EventArgs e)
         {
-            OnSearchDichVu();
+            SearchAsThread();
         }
 
         private void txtTenDichVu_KeyDown(object sender, KeyEventArgs e)
@@ -489,7 +363,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayServicesList();
             }
             catch (Exception e)
@@ -500,6 +373,19 @@ namespace MM.Controls
             finally
             {
                 base.HideWaiting();
+            }
+        }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayServicesList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
             }
         }
         #endregion

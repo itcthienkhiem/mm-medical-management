@@ -151,8 +151,6 @@
             this.txtDichVu.Name = "txtDichVu";
             this.txtDichVu.Size = new System.Drawing.Size(290, 20);
             this.txtDichVu.TabIndex = 5;
-            this.txtDichVu.TextChanged += new System.EventHandler(this.txtTenThuoc_TextChanged);
-            this.txtDichVu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTenThuoc_KeyDown);
             // 
             // panel2
             // 

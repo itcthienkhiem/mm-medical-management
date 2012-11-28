@@ -63,16 +63,6 @@ namespace MM.Controls
             btnTaoHoSo.Enabled = Global.AllowTaoHoSo;
             btnUploadHoSo.Enabled = Global.AllowUploadHoSo;
             btnTaoMatKhau.Enabled = Global.AllowAddMatKhauHoSo;
-
-            //List<string> customerList = new List<string>();
-            //customerList.Add("BBBBB0001");
-            //customerList.Add("TEST001");
-            //customerList.Add("AAAAAAA02");
-            //customerList.Add("AAAAAAA001");
-
-            //Result result = MySQLHelper.DeleteUsers(customerList);
-
-            //Result result = MySQLHelper.GetAllUsers();
         }
 
         public void ClearData()
@@ -266,15 +256,8 @@ namespace MM.Controls
 
                 dt.Rows.Add(newRow);
                 _dictPatient.Add(dlg.Patient.PatientGUID.ToString(), newRow);
-                //SelectLastedRow();
                 OnSearchPatient();
             }
-        }
-
-        private void SelectLastedRow()
-        {
-            dgPatient.CurrentCell = dgPatient[1, dgPatient.RowCount - 1];
-            dgPatient.Rows[dgPatient.RowCount - 1].Selected = true;
         }
 
         private DataRow GetDataRow(string patientGUID)
@@ -408,7 +391,6 @@ namespace MM.Controls
         private void OnDeletePatient()
         {
             if (_dataSource == null) return;
-            //UpdateChecked();
             List<string> deletedPatientList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataRow[] rows = _dataSource.Select("Checked='True'");
@@ -462,27 +444,8 @@ namespace MM.Controls
             base.RaiseOpentPatient(drPatient);
         }
 
-        //private void UpdateChecked()
-        //{
-        //    //DataTable dt = dgPatient.DataSource as DataTable;
-        //    //if (dt == null) return;
-
-        //    //DataRow[] rows1 = dt.Select("Checked='True'");
-        //    //if (rows1 == null || rows1.Length <= 0) return;
-
-        //    //foreach (DataRow row1 in rows1)
-        //    //{
-        //    //    string patientGUID1 = row1["PatientGUID"].ToString();
-        //    //    DataRow[] rows2 = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID1));
-        //    //    if (rows2 == null || rows2.Length <= 0) continue;
-
-        //    //    rows2[0]["Checked"] = row1["Checked"];
-        //    //}
-        //}
-
         private void OnSearchPatient()
         {
-            //UpdateChecked();
             chkChecked.Checked = false;
             List<DataRow> results = null;
             DataTable newDataSource = null;
@@ -846,14 +809,6 @@ namespace MM.Controls
                     string deletedGUID = row["DeletedBy"].ToString();
                     if (deletedGUID != Global.UserGUID.ToString())
                     {
-                        //DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
-                        //if (rows != null && rows.Length > 0)
-                        //{
-                        //    deletedKeys.Add(rows[0]["PatientGUID"].ToString());
-                        //    _dataSource.Rows.Remove(rows[0]);
-                        //}
-
-                        
                         if (_dictPatient.ContainsKey(patientGUID))
                         {
                             DataRow dr = _dictPatient[patientGUID];
@@ -873,19 +828,6 @@ namespace MM.Controls
 
                     if (userGUID != Global.UserGUID.ToString())
                     {
-                        //DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID));
-                        //if (rows == null || rows.Length <= 0)
-                        //    _dataSource.ImportRow(row);
-                        //else
-                        //{
-                        //    for (int i = 0; i < _dataSource.Columns.Count; i++)
-                        //    {
-                        //        rows[0][i] = row[i];
-                        //    }
-
-                        //    RaiseEditPatient(row);
-                        //}
-
                         if (!_dictPatient.ContainsKey(patientGUID))
                         {
                             _dataSource.ImportRow(row);
@@ -917,7 +859,6 @@ namespace MM.Controls
         private void OnTaoHoSo()
         {
             if (_dataSource == null) return;
-            //UpdateChecked();
             List<DataRow> checkedRows = new List<DataRow>();
             DataRow[] rows = _dataSource.Select("Checked='True'");
             if (rows != null && rows.Length > 0)
@@ -947,15 +888,6 @@ namespace MM.Controls
             Cursor.Current = Cursors.WaitCursor;
             try
             {
-
-                //if (Directory.Exists(Global.HoSoPath))
-                //{
-                //    string[] dirs = Directory.GetDirectories(Global.HoSoPath);
-                //    foreach (string dir in dirs)
-                //    {
-                //        Directory.Delete(dir, true);    
-                //    }
-                //}
 
                 foreach (DataRow row in checkedRows)
                 {
@@ -1022,7 +954,7 @@ namespace MM.Controls
                 string path = string.Format("{0}\\{1}@{2}", Global.HoSoPath, maBenhNhan, tenBenhNhan);
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
 
-                string ketQuaKhamTongQuatFileName = string.Format("{0}\\Temp\\KetQuaKhamSucKhoeTongQuat.xls", Application.StartupPath);//string.Format("{0}\\KetQuaKhamSucKhoeTongQuat_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
+                string ketQuaKhamTongQuatFileName = string.Format("{0}\\Temp\\KetQuaKhamSucKhoeTongQuat.xls", Application.StartupPath);
                 if (!Exports.ExportExcel.ExportKetQuaKhamTongQuatToExcel(ketQuaKhamTongQuatFileName, row, ngayKhamCuoiCungList))
                     return false;
 
@@ -1051,7 +983,6 @@ namespace MM.Controls
                         {
                             LoaiNoiSoi loaiNoiSoi = (LoaiNoiSoi)Convert.ToInt32(dr["LoaiNoiSoi"]);
                             string ketQuaNoiSoiFileName = string.Format("{0}\\Temp\\KetQuaNoiSoi.xls", Application.StartupPath);
-                            //string.Format("{0}\\KetQuaNoiSoi_{1}_{2}.xls", path, loaiNoiSoi.ToString(), DateTime.Now.ToString("ddMMyyyyHHmmssms"));
 
                             PageSetup p = null;
 
@@ -1111,7 +1042,6 @@ namespace MM.Controls
                         foreach (DataRow dr in dt.Rows)
                         {
                             string ketQuaSoiCTCFileName = string.Format("{0}\\Temp\\KetQuaSoiCTC.xls", Application.StartupPath);
-                            //string.Format("{0}\\KetQuaSoiCTC_{1}.xls", path, DateTime.Now.ToString("ddMMyyyyHHmmssms"));
                             if (!Exports.ExportExcel.ExportKetQuaSoiCTCToExcel(ketQuaSoiCTCFileName, row, dr))
                                 return false;
 
@@ -1330,7 +1260,6 @@ namespace MM.Controls
         private void btnUploadHoSo_Click(object sender, EventArgs e)
         {
             if (_dataSource == null) return;
-            //UpdateChecked();
             List<DataRow> checkedRows = new List<DataRow>();
             DataRow[] rows = _dataSource.Select("Checked='True'");
             if (rows != null && rows.Length > 0)
@@ -1393,7 +1322,6 @@ namespace MM.Controls
 
         private void dgDocStaff_DoubleClick(object sender, EventArgs e)
         {
-            //if (!AllowEdit) return;
             OnEditPatient();
         }
 
@@ -1484,7 +1412,6 @@ namespace MM.Controls
         private void button1_Click(object sender, EventArgs e)
         {
             if (_dataSource == null) return;
-            //UpdateChecked();
             List<string> addedPatientList = new List<string>();
             foreach (DataRow row in _dataSource.Rows)
             {
@@ -1634,11 +1561,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
-
-        
     }
 }
