@@ -36,6 +36,40 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetGiaCapCuuList(string tenCapCuu)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (tenCapCuu.Trim() == string.Empty)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaCapCuuView WITH(NOLOCK) WHERE GiaCapCuuStatus={0} AND KhoCapCuuStatus={0} ORDER BY TenCapCuu ASC, NgayApDung DESC",
+                        (byte)Status.Actived);
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaCapCuuView WITH(NOLOCK) WHERE TenCapCuu LIKE N'{0}%' AND GiaCapCuuStatus={1} AND KhoCapCuuStatus={1} ORDER BY TenCapCuu ASC, NgayApDung DESC",
+                        tenCapCuu, (byte)Status.Actived);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetGiaCapCuuMoiNhat(string khoCapCuuGUID)
         {
             Result result = null;
