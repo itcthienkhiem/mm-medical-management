@@ -98,7 +98,7 @@ namespace MM.Controls
             Result result = CompanyContractBus.GetContractList(_name, _isMaHopDong);
             if (result.IsOK)
             {
-                MethodInvoker method = delegate
+                dgContract.Invoke(new MethodInvoker(delegate()
                 {
                     ClearData();
 
@@ -106,10 +106,7 @@ namespace MM.Controls
                     if (_dtTemp == null) _dtTemp = dt.Clone();
                     UpdateChecked(dt);
                     dgContract.DataSource = dt;
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
+                }));
             }
             else
             {

@@ -271,19 +271,19 @@ Da xong x
 --Nguoi giai quyet = Nguoi ket luan
 Nguon
 ----------------------------------------------------------
-Triệu chứng
-Dịch vụ
+Triệu chứng (x)
+Dịch vụ (x)
 Mở bệnh nhân
 Danh sách bệnh nhân
 Phục hồi bệnh nhân
 Bệnh nhân thân thuộc
-Hợp đồng
-Thuốc
-Lô thuốc
-Giá thuốc
+Hợp đồng (x)
+Thuốc (x)
+Lô thuốc (x)
+Giá thuốc (x)
 Danh sách XN tay
 Danh sách địa chỉ công ty
-Danh mục cấp cứu
+Danh mục cấp cứu (x)
 Nhập kho cấp cứu
 Giá cấp cứu
 In nhãn

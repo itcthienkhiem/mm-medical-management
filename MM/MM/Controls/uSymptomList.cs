@@ -99,17 +99,14 @@ namespace MM.Controls
             Result result = SymptomBus.GetSymptomList(_name);
             if (result.IsOK)
             {
-                MethodInvoker method = delegate
+                dgSymptom.Invoke(new MethodInvoker(delegate()
                 {
                     ClearData();
                     DataTable dt = result.QueryResult as DataTable;
                     if (_dtTemp == null) _dtTemp = dt.Clone();
                     UpdateChecked(dt);
                     dgSymptom.DataSource = dt;
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
+                }));
             }
             else
             {
