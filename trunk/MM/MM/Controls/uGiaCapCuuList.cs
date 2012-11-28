@@ -17,8 +17,9 @@ namespace MM.Controls
     public partial class uGiaCapCuuList : uBase
     {
         #region Members
-        private DataTable _dataSource = null;
-        private Dictionary<string, DataRow> _dictGiaCapCuu = null;
+        private DataTable _dtTemp = null;
+        private Dictionary<string, DataRow> _dictGiaCapCuu = new Dictionary<string,DataRow>();
+        private string _name = string.Empty;
         #endregion
 
         #region Constructor
@@ -42,24 +43,6 @@ namespace MM.Controls
 
         public void ClearData()
         {
-            if (_dataSource != null)
-            {
-                _dataSource.Rows.Clear();
-                _dataSource.Clear();
-                _dataSource = null;
-            }
-
-            if (_dictGiaCapCuu != null)
-            {
-                _dictGiaCapCuu.Clear();
-                _dictGiaCapCuu = null;
-            }
-
-            ClearDataSource();
-        }
-
-        public void ClearDataSource()
-        {
             DataTable dt = dgGiaThuoc.DataSource as DataTable;
             if (dt != null)
             {
@@ -76,6 +59,7 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+                _name = txtTenThuoc.Text;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayGiaThuocListProc));
                 base.ShowWaiting();
             }
@@ -90,27 +74,34 @@ namespace MM.Controls
             }
         }
 
+        private void SearchAsThread()
+        {
+            try
+            {
+                chkChecked.Checked = false;
+                _name = txtTenThuoc.Text;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
         private void OnDisplayGiaThuocList()
         {
-            Result result = GiaCapCuuBus.GetGiaCapCuuList();
+            Result result = GiaCapCuuBus.GetGiaCapCuuList(_name);
             if (result.IsOK)
             {
-                MethodInvoker method = delegate
+                dgGiaThuoc.Invoke(new MethodInvoker(delegate()
                 {
                     ClearData();
-                    _dataSource = result.QueryResult as DataTable;
-
-                    if (_dictGiaCapCuu == null) _dictGiaCapCuu = new Dictionary<string, DataRow>();
-                    foreach (DataRow row in _dataSource.Rows)
-                    {
-                        string giaCapCuuGUID = row["GiaCapCuuGUID"].ToString();
-                        _dictGiaCapCuu.Add(giaCapCuuGUID, row);
-                    }
-                    OnSearchGiaThuoc();
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (_dtTemp == null) _dtTemp = dt.Clone();
+                    UpdateChecked(dt);
+                    dgGiaThuoc.DataSource = dt;
+                }));
             }
             else
             {
@@ -119,134 +110,28 @@ namespace MM.Controls
             }
         }
 
-        //private void UpdateChecked()
-        //{
-        //    DataTable dt = dgGiaThuoc.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    DataRow[] rows1 = dt.Select("Checked='True'");
-        //    if (rows1 == null || rows1.Length <= 0) return;
-
-        //    foreach (DataRow row1 in rows1)
-        //    {
-        //        string patientGUID1 = row1["GiaCapCuuGUID"].ToString();
-        //        DataRow[] rows2 = _dataSource.Select(string.Format("GiaCapCuuGUID='{0}'", patientGUID1));
-        //        if (rows2 == null || rows2.Length <= 0) continue;
-
-        //        rows2[0]["Checked"] = row1["Checked"];
-        //    }
-        //}
-
-        private void OnSearchGiaThuoc()
+        private void UpdateChecked(DataTable dt)
         {
-            //UpdateChecked();
-            ClearDataSource();
-            chkChecked.Checked = false;
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-            if (txtTenThuoc.Text.Trim() == string.Empty)
+            foreach (DataRow row in dt.Rows)
             {
-                results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<string>("TenCapCuu") ascending, p.Field<DateTime>("NgayApDung") descending 
-                           select p).ToList<DataRow>();
-
-                newDataSource = _dataSource.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgGiaThuoc.DataSource = newDataSource;
-                if (dgGiaThuoc.RowCount > 0) dgGiaThuoc.Rows[0].Selected = true;
-                return;
+                string key = row["GiaCapCuuGUID"].ToString();
+                if (_dictGiaCapCuu.ContainsKey(key))
+                    row["Checked"] = true;
             }
-
-            string str = txtTenThuoc.Text.ToLower();
-
-            //FullName
-            results = (from p in _dataSource.AsEnumerable()
-                        where //(p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0 ||
-                        //str.IndexOf(p.Field<string>("TenThuoc").ToLower()) == 0) &&
-                        p.Field<string>("TenCapCuu").ToLower().IndexOf(str) == 0 &&
-                        p.Field<string>("TenCapCuu") != null &&
-                        p.Field<string>("TenCapCuu").Trim() != string.Empty
-                        orderby p.Field<string>("TenCapCuu") ascending, p.Field<DateTime>("NgayApDung") descending 
-                        select p).ToList<DataRow>();
-
-            newDataSource = _dataSource.Clone();
-            foreach (DataRow row in results)
-                newDataSource.Rows.Add(row.ItemArray);
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgGiaThuoc.DataSource = newDataSource;
-                return;
-            }
-
-            dgGiaThuoc.DataSource = newDataSource;
         }
 
         private void OnAddGiaThuoc()
         {
-            if (_dataSource == null) return;
             dlgAddGiaCapCuu dlg = new dlgAddGiaCapCuu();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                DataTable dt = _dataSource;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["GiaCapCuuGUID"] = dlg.GiaCapCuu.GiaCapCuuGUID.ToString();
-                newRow["KhoCapCuuGUID"] = dlg.GiaCapCuu.KhoCapCuuGUID.ToString();
-                newRow["TenCapCuu"] = dlg.TenCapCuu;
-                newRow["GiaBan"] = dlg.GiaCapCuu.GiaBan;
-                newRow["NgayApDung"] = dlg.GiaCapCuu.NgayApDung;
-                newRow["DonViTinh"] = dlg.DonViTinh;
-                newRow["GiaCapCuuStatus"] = dlg.GiaCapCuu.Status;
-
-                if (dlg.GiaCapCuu.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.GiaCapCuu.CreatedDate;
-
-                if (dlg.GiaCapCuu.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.GiaCapCuu.CreatedBy.ToString();
-
-                if (dlg.GiaCapCuu.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.GiaCapCuu.UpdatedDate;
-
-                if (dlg.GiaCapCuu.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.GiaCapCuu.UpdatedBy.ToString();
-
-                if (dlg.GiaCapCuu.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.GiaCapCuu.DeletedDate;
-
-                if (dlg.GiaCapCuu.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.GiaCapCuu.DeletedBy.ToString();
-
-                dt.Rows.Add(newRow);
-                _dictGiaCapCuu.Add(dlg.GiaCapCuu.GiaCapCuuGUID.ToString(), newRow);
-                OnSearchGiaThuoc();
-                //SelectLastedRow();
+                SearchAsThread();
             }
-        }
-
-        private void SelectLastedRow()
-        {
-            dgGiaThuoc.CurrentCell = dgGiaThuoc[1, dgGiaThuoc.RowCount - 1];
-            dgGiaThuoc.Rows[dgGiaThuoc.RowCount - 1].Selected = true;
-        }
-
-        private DataRow GetDataRow(string giaThuocGUID)
-        {
-            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            if (_dictGiaCapCuu == null) return null;
-            return _dictGiaCapCuu[giaThuocGUID];
-            //DataRow[] rows = _dataSource.Select(string.Format("GiaCapCuuGUID = '{0}'", giaThuocGUID));
-            //if (rows == null || rows.Length <= 0) return null;
-
-            //return rows[0];
         }
 
         private void OnEditGiaThuoc()
         {
-            if (_dataSource == null) return;
+            if (_dictGiaCapCuu == null) return;
 
             if (dgGiaThuoc.SelectedRows == null || dgGiaThuoc.SelectedRows.Count <= 0)
             {
@@ -254,55 +139,24 @@ namespace MM.Controls
                 return;
             }
 
-            string giaThuocGUID = (dgGiaThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row["GiaCapCuuGUID"].ToString();
-            DataRow drGiaThuoc = GetDataRow(giaThuocGUID);
+            DataRow drGiaThuoc = (dgGiaThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
             if (drGiaThuoc == null) return;
             dlgAddGiaCapCuu dlg = new dlgAddGiaCapCuu(drGiaThuoc);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                drGiaThuoc["KhoCapCuuGUID"] = dlg.GiaCapCuu.KhoCapCuuGUID.ToString();
-                drGiaThuoc["TenCapCuu"] = dlg.TenCapCuu;
-                drGiaThuoc["GiaBan"] = dlg.GiaCapCuu.GiaBan;
-                drGiaThuoc["NgayApDung"] = dlg.GiaCapCuu.NgayApDung;
-                drGiaThuoc["DonViTinh"] = dlg.DonViTinh;
-                drGiaThuoc["GiaCapCuuStatus"] = dlg.GiaCapCuu.Status;
-
-                if (dlg.GiaCapCuu.CreatedDate.HasValue)
-                    drGiaThuoc["CreatedDate"] = dlg.GiaCapCuu.CreatedDate;
-
-                if (dlg.GiaCapCuu.CreatedBy.HasValue)
-                    drGiaThuoc["CreatedBy"] = dlg.GiaCapCuu.CreatedBy.ToString();
-
-                if (dlg.GiaCapCuu.UpdatedDate.HasValue)
-                    drGiaThuoc["UpdatedDate"] = dlg.GiaCapCuu.UpdatedDate;
-
-                if (dlg.GiaCapCuu.UpdatedBy.HasValue)
-                    drGiaThuoc["UpdatedBy"] = dlg.GiaCapCuu.UpdatedBy.ToString();
-
-                if (dlg.GiaCapCuu.DeletedDate.HasValue)
-                    drGiaThuoc["DeletedDate"] = dlg.GiaCapCuu.DeletedDate;
-
-                if (dlg.GiaCapCuu.DeletedBy.HasValue)
-                    drGiaThuoc["DeletedBy"] = dlg.GiaCapCuu.DeletedBy.ToString();
-
-                OnSearchGiaThuoc();
+                SearchAsThread();
             }
         }
 
         private void OnDeleteGiaThuoc()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
+            if (_dictGiaCapCuu == null) return;
             List<string> deletedGiaThuocList = new List<string>();
-            List<DataRow> deletedRows = new List<DataRow>();
-            foreach (DataRow row in _dataSource.Rows)
+            List<DataRow> deletedRows = _dictGiaCapCuu.Values.ToList();
+            foreach (DataRow row in deletedRows)
             {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    string giaThuocGUID = row["GiaCapCuuGUID"].ToString();
-                    deletedGiaThuocList.Add(giaThuocGUID);
-                    deletedRows.Add(row);
-                }
+                string giaThuocGUID = row["GiaCapCuuGUID"].ToString();
+                deletedGiaThuocList.Add(giaThuocGUID);
             }
 
             if (deletedGiaThuocList.Count > 0)
@@ -312,13 +166,17 @@ namespace MM.Controls
                     Result result = GiaCapCuuBus.DeleteGiaCapCuu(deletedGiaThuocList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in deletedRows)
+                        DataTable dt = dgGiaThuoc.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
+                        foreach (string key in deletedGiaThuocList)
                         {
-                            _dictGiaCapCuu.Remove(row["GiaCapCuuGUID"].ToString());
-                            _dataSource.Rows.Remove(row);
+                            DataRow[] rows = dt.Select(string.Format("GiaThuocGUID='{0}'", key));
+                            if (rows == null || rows.Length <= 0) continue;
+                            dt.Rows.Remove(rows[0]);
                         }
 
-                        OnSearchGiaThuoc();
+                        _dictGiaCapCuu.Clear();
+                        _dtTemp.Rows.Clear();
                     }
                     else
                     {
@@ -336,14 +194,31 @@ namespace MM.Controls
         private void dgGiaThuoc_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
-            if (_dataSource == null) return;
 
             DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgGiaThuoc.Rows[e.RowIndex].Cells[0];
             DataRow row = (dgGiaThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string giaCapCuuGUID = row["GiaCapCuuGUID"].ToString();
             bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
 
-            _dictGiaCapCuu[giaCapCuuGUID]["Checked"] = isChecked;
+            if (isChecked)
+            {
+                if (!_dictGiaCapCuu.ContainsKey(giaCapCuuGUID))
+                {
+                    _dtTemp.ImportRow(row);
+                    _dictGiaCapCuu.Add(giaCapCuuGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                }
+            }
+            else
+            {
+                if (_dictGiaCapCuu.ContainsKey(giaCapCuuGUID))
+                {
+                    _dictGiaCapCuu.Remove(giaCapCuuGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("GiaCapCuuGUID='{0}'", giaCapCuuGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -370,7 +245,7 @@ namespace MM.Controls
 
         private void txtTenThuoc_TextChanged(object sender, EventArgs e)
         {
-            OnSearchGiaThuoc();
+            SearchAsThread();
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -381,7 +256,25 @@ namespace MM.Controls
             {
                 row["Checked"] = chkChecked.Checked;
                 string giaCapCuuGUID = row["GiaCapCuuGUID"].ToString();
-                _dictGiaCapCuu[giaCapCuuGUID]["Checked"] = chkChecked.Checked;
+                if (chkChecked.Checked)
+                {
+                    if (!_dictGiaCapCuu.ContainsKey(giaCapCuuGUID))
+                    {
+                        _dtTemp.ImportRow(row);
+                        _dictGiaCapCuu.Add(giaCapCuuGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                    }
+                }
+                else
+                {
+                    if (_dictGiaCapCuu.ContainsKey(giaCapCuuGUID))
+                    {
+                        _dictGiaCapCuu.Remove(giaCapCuuGUID);
+
+                        DataRow[] rows = _dtTemp.Select(string.Format("GiaCapCuuGUID='{0}'", giaCapCuuGUID));
+                        if (rows != null && rows.Length > 0)
+                            _dtTemp.Rows.Remove(rows[0]);
+                    }
+                }
             }
         }
 
@@ -426,7 +319,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayGiaThuocList();
             }
             catch (Exception e)
@@ -439,10 +331,19 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayGiaThuocList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
         #endregion
-
-        
-
-        
     }
 }

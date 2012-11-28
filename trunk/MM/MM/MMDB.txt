@@ -277,16 +277,16 @@ Hợp đồng (x)
 Thuốc (x)
 Lô thuốc (x)
 Giá thuốc (x)
-Danh sách XN tay
-Danh sách địa chỉ công ty
 Danh mục cấp cứu (x)
 Nhập kho cấp cứu (x)
-Giá cấp cứu
+Giá cấp cứu (x)
 In nhãn
 Mở bệnh nhân
 Danh sách bệnh nhân
 Phục hồi bệnh nhân
 Bệnh nhân thân thuộc
+Danh sách XN tay
+Danh sách địa chỉ công ty
 
 
 
