@@ -36,6 +36,48 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetLoThuocList(string tenThuoc, DateTime tuNgay, DateTime denNgay, bool isTenThuoc)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (isTenThuoc)
+                {
+                    if (tenThuoc.Trim() == string.Empty)
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST(SoLuongNhap * GiaNhap AS float) AS TongTien FROM LoThuocView WITH(NOLOCK) WHERE LoThuocStatus={0} AND ThuocStatus={0} ORDER BY CreatedDate",
+                        (byte)Status.Actived);
+                    }
+                    else
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST(SoLuongNhap * GiaNhap AS float) AS TongTien FROM LoThuocView WITH(NOLOCK) WHERE TenThuoc LIKE N'{0}%' AND LoThuocStatus={1} AND ThuocStatus={1} ORDER BY CreatedDate",
+                        tenThuoc, (byte)Status.Actived);
+                    }
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST(SoLuongNhap * GiaNhap AS float) AS TongTien FROM LoThuocView WITH(NOLOCK) WHERE CreatedDate BETWEEN '{0}' AND '{1}' AND LoThuocStatus={2} AND ThuocStatus={2} ORDER BY CreatedDate",
+                        tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), (byte)Status.Actived);
+                }
+                
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result CheckThuocHetHan(string thuocGUID)
         {
             Result result = new Result();
