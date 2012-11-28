@@ -19,8 +19,9 @@ namespace MM.Controls
     {
         #region Members
         private bool _isReport = false;
-        private DataTable _dataSource = null;
-        private Dictionary<string, DataRow> _dictThuoc = null;
+        private Dictionary<string, DataRow> _dictThuoc = new Dictionary<string,DataRow>();
+        private DataTable _dtTemp = null;
+        private string _name = string.Empty;
         #endregion
 
         #region Constructor
@@ -43,71 +44,19 @@ namespace MM.Controls
 
         public List<DataRow> CheckedRows
         {
-            get
-            {
-                //UpdateChecked();
-                List<DataRow> checkedRows = new List<DataRow>();
-                DataTable dt = _dataSource;
-                if (dt != null && dt.Rows.Count > 0)
-                {
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        if (Convert.ToBoolean(row["Checked"]))
-                            checkedRows.Add(row);
-                    }
-                }
-
-                return checkedRows;
-            }
+            get { return _dictThuoc.Values.ToList(); }
         }
         #endregion
 
         #region UI Command
-        //private void UpdateChecked()
-        //{
-        //    DataTable dt = dgThuoc.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    DataRow[] rows1 = dt.Select("Checked='True'");
-        //    if (rows1 == null || rows1.Length <= 0) return;
-
-        //    foreach (DataRow row1 in rows1)
-        //    {
-        //        string thuocGUID1 = row1["ThuocGUID"].ToString();
-        //        DataRow[] rows2 = _dataSource.Select(string.Format("ThuocGUID='{0}'", thuocGUID1));
-        //        if (rows2 == null || rows2.Length <= 0) continue;
-
-        //        rows2[0]["Checked"] = row1["Checked"];
-        //    }
-        //}
-
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnExportExcel.Enabled = AllowExport;
         }
 
         public void ClearData()
-        {
-            if (_dataSource != null)
-            {
-                _dataSource.Rows.Clear();
-                _dataSource.Clear();
-                _dataSource = null;
-            }
-
-            if (_dictThuoc != null)
-            {
-                _dictThuoc.Clear();
-                _dictThuoc = null;
-            }
-
-            ClearDataSource();
-        }
-
-        private void ClearDataSource()
         {
             DataTable dt = dgThuoc.DataSource as DataTable;
             if (dt != null)
@@ -126,6 +75,7 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+                _name = txtTenThuoc.Text;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayThuocListProc));
                 base.ShowWaiting();
             }
@@ -140,23 +90,34 @@ namespace MM.Controls
             }
         }
 
+        private void SearchAsThread()
+        {
+            try
+            {
+                chkChecked.Checked = false;
+                _name = txtTenThuoc.Text;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
         private void OnDisplayThuocList()
         {
-            Result result = ThuocBus.GetThuocList();
+            Result result = ThuocBus.GetThuocList(_name);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
                     ClearData();
-                    _dataSource = result.QueryResult as DataTable;
 
-                    if (_dictThuoc == null) _dictThuoc = new Dictionary<string, DataRow>();
-                    foreach (DataRow row in _dataSource.Rows)
-                    {
-                        string thuocGUID = row["ThuocGUID"].ToString();
-                        _dictThuoc.Add(thuocGUID, row);
-                    }
-                    OnSearchThuoc();
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (_dtTemp == null) _dtTemp = dt.Clone();
+                    UpdateChecked(dt);
+                    dgThuoc.DataSource = dt;
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -169,129 +130,53 @@ namespace MM.Controls
             }
         }
 
-        private void OnAddThuoc()
+        private void UpdateChecked(DataTable dt)
         {
-            if (_dataSource == null) return;
-            dlgAddThuoc dlg = new dlgAddThuoc();
-            if (dlg.ShowDialog(this) == DialogResult.OK)
+            foreach (DataRow row in dt.Rows)
             {
-                DataTable dt = _dataSource;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["ThuocGUID"] = dlg.Thuoc.ThuocGUID.ToString();
-                newRow["MaThuoc"] = dlg.Thuoc.MaThuoc;
-                newRow["TenThuoc"] = dlg.Thuoc.TenThuoc;
-                newRow["BietDuoc"] = dlg.Thuoc.BietDuoc;
-                newRow["HamLuong"] = dlg.Thuoc.HamLuong;
-                newRow["HoatChat"] = dlg.Thuoc.HoatChat;
-                newRow["DonViTinh"] = dlg.Thuoc.DonViTinh;
-                newRow["Note"] = dlg.Thuoc.Note;
-
-                if (dlg.Thuoc.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.Thuoc.CreatedDate;
-
-                if (dlg.Thuoc.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.Thuoc.CreatedBy.ToString();
-
-                if (dlg.Thuoc.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.Thuoc.UpdatedDate;
-
-                if (dlg.Thuoc.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.Thuoc.UpdatedBy.ToString();
-
-                if (dlg.Thuoc.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.Thuoc.DeletedDate;
-
-                if (dlg.Thuoc.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.Thuoc.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.Thuoc.Status;
-                dt.Rows.Add(newRow);
-                _dictThuoc.Add(dlg.Thuoc.ThuocGUID.ToString(), newRow);
-                //SelectLastedRow();
-                OnSearchThuoc();
+                string key = row["ThuocGUID"].ToString();
+                if (_dictThuoc.ContainsKey(key))
+                    row["Checked"] = true;
             }
         }
 
-        private DataRow GetDataRow(string thuocGUID)
+        private void OnAddThuoc()
         {
-            if (_dataSource == null || _dataSource.Rows.Count <= 0) return null;
-            if (_dictThuoc == null) return null;
-            return _dictThuoc[thuocGUID];
-            //DataRow[] rows = _dataSource.Select(string.Format("ThuocGUID = '{0}'", thuocGUID));
-            //if (rows == null || rows.Length <= 0) return null;
-
-            //return rows[0];
-        }
-
-        private void SelectLastedRow()
-        {
-            dgThuoc.CurrentCell = dgThuoc[1, dgThuoc.RowCount - 1];
-            dgThuoc.Rows[dgThuoc.RowCount - 1].Selected = true;
+            dlgAddThuoc dlg = new dlgAddThuoc();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                SearchAsThread();
+            }
         }
 
         private void OnEditThuoc()
         {
-            if (_dataSource == null) return;
+            if (_dictThuoc == null) return;
             if (dgThuoc.SelectedRows == null || dgThuoc.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thuốc.", IconType.Information);
                 return;
             }
 
-            string thuocGUID = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row["ThuocGUID"].ToString();
-            DataRow drThuoc = GetDataRow(thuocGUID);
+            DataRow drThuoc = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
             if (drThuoc == null) return;
             dlgAddThuoc dlg = new dlgAddThuoc(drThuoc, AllowEdit);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                drThuoc["MaThuoc"] = dlg.Thuoc.MaThuoc;
-                drThuoc["TenThuoc"] = dlg.Thuoc.TenThuoc;
-                drThuoc["BietDuoc"] = dlg.Thuoc.BietDuoc;
-                drThuoc["HamLuong"] = dlg.Thuoc.HamLuong;
-                drThuoc["HoatChat"] = dlg.Thuoc.HoatChat;
-                drThuoc["DonViTinh"] = dlg.Thuoc.DonViTinh;
-                drThuoc["Note"] = dlg.Thuoc.Note;
-
-                if (dlg.Thuoc.CreatedDate.HasValue)
-                    drThuoc["CreatedDate"] = dlg.Thuoc.CreatedDate;
-
-                if (dlg.Thuoc.CreatedBy.HasValue)
-                    drThuoc["CreatedBy"] = dlg.Thuoc.CreatedBy.ToString();
-
-                if (dlg.Thuoc.UpdatedDate.HasValue)
-                    drThuoc["UpdatedDate"] = dlg.Thuoc.UpdatedDate;
-
-                if (dlg.Thuoc.UpdatedBy.HasValue)
-                    drThuoc["UpdatedBy"] = dlg.Thuoc.UpdatedBy.ToString();
-
-                if (dlg.Thuoc.DeletedDate.HasValue)
-                    drThuoc["DeletedDate"] = dlg.Thuoc.DeletedDate;
-
-                if (dlg.Thuoc.DeletedBy.HasValue)
-                    drThuoc["DeletedBy"] = dlg.Thuoc.DeletedBy.ToString();
-
-                drThuoc["Status"] = dlg.Thuoc.Status;
-
-                OnSearchThuoc();
+                SearchAsThread();
             }
         }
 
         private void OnDeleteThuoc()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
+            if (_dictThuoc == null) return;
+            
             List<string> deletedThuocList = new List<string>();
-            List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = _dataSource;
-            foreach (DataRow row in dt.Rows)
+            List<DataRow> deletedRows = _dictThuoc.Values.ToList();
+            
+            foreach (DataRow row in deletedRows)
             {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    deletedThuocList.Add(row["ThuocGUID"].ToString());
-                    deletedRows.Add(row);
-                }
+                deletedThuocList.Add(row["ThuocGUID"].ToString());
             }
 
             if (deletedThuocList.Count > 0)
@@ -301,13 +186,18 @@ namespace MM.Controls
                     Result result = ThuocBus.DeleteThuoc(deletedThuocList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in deletedRows)
+                        DataTable dt = dgThuoc.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
+
+                        foreach (string key in deletedThuocList)
                         {
-                            _dictThuoc.Remove(row["ThuocGUID"].ToString());
-                            _dataSource.Rows.Remove(row);
+                            DataRow[] rows = dt.Select(string.Format("ThuocGUID='{0}'", key));
+                            if (rows == null || rows.Length <= 0) continue;
+                            dt.Rows.Remove(rows[0]);
                         }
 
-                        OnSearchThuoc();
+                        _dictThuoc.Clear();
+                        _dtTemp.Rows.Clear();
                     }
                     else
                     {
@@ -320,67 +210,11 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thuốc cần xóa.", IconType.Information);
         }
 
-        private void OnSearchThuoc()
-        {
-            //UpdateChecked();
-            ClearDataSource();
-            chkChecked.Checked = false;
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-
-            if (txtTenThuoc.Text.Trim() == string.Empty)
-            {
-                results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<string>("TenThuoc")
-                           select p).ToList<DataRow>();
-
-                newDataSource = _dataSource.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgThuoc.DataSource = newDataSource;
-                if (dgThuoc.RowCount > 0) dgThuoc.Rows[0].Selected = true;
-                return;
-            }
-
-            string str = txtTenThuoc.Text.ToLower();
-
-            newDataSource = _dataSource.Clone();
-
-            //Name
-            results = (from p in _dataSource.AsEnumerable()
-                       where p.Field<string>("TenThuoc") != null &&
-                           p.Field<string>("TenThuoc").Trim() != string.Empty &&
-                           p.Field<string>("TenThuoc").ToLower().IndexOf(str) >= 0
-                       //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                       //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                       orderby p.Field<string>("TenThuoc")
-                       select p).ToList<DataRow>();
-
-            foreach (DataRow row in results)
-                newDataSource.ImportRow(row);
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgThuoc.DataSource = newDataSource;
-                return;
-            }
-
-            dgThuoc.DataSource = newDataSource;
-        }
-
         private void OnExportExcel()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
-            List<DataRow> checkedRows = new List<DataRow>();
-            DataTable dt = _dataSource;
-            foreach (DataRow row in dt.Rows)
-            {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                    checkedRows.Add(row);
-            }
-
+            if (_dictThuoc == null) return;
+            List<DataRow> checkedRows = _dictThuoc.Values.ToList();
+            
             if (checkedRows.Count <= 0)
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thuốc cần xuất excel.", IconType.Information);
             else
@@ -400,14 +234,31 @@ namespace MM.Controls
         private void dgThuoc_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
-            if (_dataSource == null) return;
 
             DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgThuoc.Rows[e.RowIndex].Cells[0];
             DataRow row = (dgThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string thuocGUID = row["ThuocGUID"].ToString();
             bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
 
-            _dictThuoc[thuocGUID]["Checked"] = isChecked;
+            if (isChecked)
+            {
+                if (!_dictThuoc.ContainsKey(thuocGUID))
+                {
+                    _dtTemp.ImportRow(row);
+                    _dictThuoc.Add(thuocGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                }
+            }
+            else
+            {
+                if (_dictThuoc.ContainsKey(thuocGUID))
+                {
+                    _dictThuoc.Remove(thuocGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("ThuocGUID='{0}'", thuocGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -417,9 +268,27 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
-
                 string thuocGUID = row["ThuocGUID"].ToString();
-                _dictThuoc[thuocGUID]["Checked"] = chkChecked.Checked;
+
+                if (chkChecked.Checked)
+                {
+                    if (!_dictThuoc.ContainsKey(thuocGUID))
+                    {
+                        _dtTemp.ImportRow(row);
+                        _dictThuoc.Add(thuocGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                    }
+                }
+                else
+                {
+                    if (_dictThuoc.ContainsKey(thuocGUID))
+                    {
+                        _dictThuoc.Remove(thuocGUID);
+
+                        DataRow[] rows = _dtTemp.Select(string.Format("ThuocGUID='{0}'", thuocGUID));
+                        if (rows != null && rows.Length > 0)
+                            _dtTemp.Rows.Remove(rows[0]);
+                    }
+                }
             }
         }
 
@@ -441,13 +310,12 @@ namespace MM.Controls
         private void dgThuoc_DoubleClick(object sender, EventArgs e)
         {
             if (_isReport) return;
-            //if (!AllowEdit) return;
             OnEditThuoc();
         }
 
         private void txtTenThuoc_TextChanged(object sender, EventArgs e)
         {
-            OnSearchThuoc();
+            SearchAsThread();
         }
 
         private void txtTenThuoc_KeyDown(object sender, KeyEventArgs e)
@@ -496,7 +364,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayThuocList();
             }
             catch (Exception e)
@@ -509,12 +376,19 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayThuocList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
         #endregion
-
-        
-
-        
-
-       
     }
 }
