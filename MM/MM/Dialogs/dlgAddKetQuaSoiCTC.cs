@@ -539,19 +539,24 @@ namespace MM.Dialogs
             {
                 lvCapture.Invoke(new MethodInvoker(delegate()
                 {
+                    int count = 0;
                     Bitmap bmp = null;
-                    while (bmp == null)
+                    while (bmp == null && count <= 10)
                     {
                         try
                         {
                             bmp = new Bitmap(e.FullPath);    
                         }
-                        catch
+                        catch (Exception ex)
                         {
                             bmp = null;   
                         }
+
+                        count++;
                     }
-                    
+
+                    if (bmp == null) return;
+
                     imgListCapture.Images.Add(bmp);
 
                     _imgCount++;
